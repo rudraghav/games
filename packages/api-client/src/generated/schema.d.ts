@@ -796,6 +796,17 @@ export interface components {
             /** Avatar */
             avatar: number;
         };
+        /** PublicActionView */
+        PublicActionView: {
+            /** Version */
+            version: number;
+            /** Actor Id */
+            actor_id: string;
+            /** Type */
+            type: string;
+            /** Amount */
+            amount?: number | null;
+        };
         /** Reading */
         Reading: {
             /** Title */
@@ -913,6 +924,7 @@ export interface components {
             bot_pending: boolean;
             /** Bot Due At */
             bot_due_at?: number | null;
+            last_action?: components["schemas"]["PublicActionView"] | null;
         };
         /**
          * Section

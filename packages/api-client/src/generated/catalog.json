@@ -640,5 +640,42 @@
       "After booping, graduate one line of three into cats; with eight pieces down, you may return one instead.",
       "Only the active player checks: three adult cats in a line or eight adult cats on the bed wins."
     ]
+  },
+  {
+    "id": "shithead",
+    "name": "Shithead",
+    "subtitle": "Clear your hand, then your table cards",
+    "family": "palace",
+    "min_players": 2,
+    "max_players": 5,
+    "minutes": "15\u201330",
+    "icon": "flame",
+    "color": "ochre",
+    "bots_supported": true,
+    "play_mode": "competitive",
+    "score_label": "Result",
+    "score_order": "none",
+    "rules_version": "palace-1",
+    "settings": [
+      {
+        "key": "seven_low",
+        "label": "7: play seven or lower next",
+        "default": false
+      },
+      {
+        "key": "transparent_three",
+        "label": "3: transparent card",
+        "default": false
+      }
+    ],
+    "rules": [
+      "2\u20135 players, 52 cards. Choose three face-up cards from your six-card setup hand. Three table cards stay hidden even from you.",
+      "Play one or more equal-rank cards, matching or beating the pile. Refill your hand to three while stock remains.",
+      "2 resets; 10 always burns the pile. Four consecutive equal ranks also burn. A burn gives another turn.",
+      "Or pick up the nonempty pile and end your turn. With only face-up cards, add one chosen card before picking up.",
+      "Clear your hand, then face-up cards, then flip hidden slots blindly. A failed flip joins the pile in your hand.",
+      "Every player who clears all cards escapes. Play continues until the last remaining player loses. No points.",
+      "Optional house rules: 7 asks for seven or lower; transparent 3 looks through to the previous comparison. Both start off."
+    ]
   }
 ]

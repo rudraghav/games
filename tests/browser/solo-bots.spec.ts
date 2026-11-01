@@ -5,6 +5,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import { attachPreviewAccess, requestAs, roomAs, type RoomView } from './helpers';
 import { matchPlayer } from './fullmatch-player';
+import publishedGames from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 type Manifest = components['schemas']['GameManifest'];
 type Me = components['schemas']['MeView'];
@@ -280,7 +281,13 @@ test('one human plays every multiplayer game with the real bot driver', async ({
     await run.record();
 
     const catalogue = (await checked<Manifest[]>('games')).filter((game) => game.id !== 'tarot');
-    expect(catalogue).toHaveLength(25);
+    expect(catalogue.map((game) => game.id).sort()).toEqual(
+      publishedGames
+        .filter((game) => game.id !== 'tarot')
+        .map((game) => game.id)
+        .sort(),
+    );
+    expect(catalogue.every((game) => game.bots_supported)).toBe(true);
     if (filter?.some((id) => !catalogue.some((game) => game.id === id)))
       throw new Error('Solo filter contains an unavailable multiplayer game.');
     for (const game of catalogue) {

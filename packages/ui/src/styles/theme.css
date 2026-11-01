@@ -10,6 +10,8 @@
 @import './coop-number-games.css';
 @import './sea-and-cats.css';
 @import './workspace.css';
+@import './casino-motion.css';
+@import './shithead.css';
 @theme static {
   --color-canvas: #f6f3ed;
   --color-surface: #fffcf7;

@@ -1,5 +1,7 @@
 import { Sparkles } from 'lucide-react';
 import type { ReadingView } from '@games/api-client';
+import Image from 'next/image';
+import { tarotCharacter } from '@games/api-client/characters';
 
 type Reading = NonNullable<ReadingView['reading']>;
 export function TarotReading({
@@ -10,6 +12,16 @@ export function TarotReading({
   cards: readonly { id: string; label: string }[];
 }) {
   const cardNames = new Map(cards.map((card) => [card.id, card.label]));
+  const portraits = [
+    ...new Map(
+      reading.cards
+        .flatMap((card) => card.characters || [])
+        .flatMap((c) => {
+          const portrait = tarotCharacter(c.name, c.source);
+          return portrait ? [[portrait.id, portrait] as const] : [];
+        }),
+    ).values(),
+  ];
   return (
     <div className="tarot-reading">
       {reading.cards.map((card) => (
@@ -42,14 +54,42 @@ export function TarotReading({
             <div className="tarot-character-connections">
               <h4>Your character energy</h4>
               <ul>
-                {card.characters.map((character) => (
-                  <li key={`${character.name}-${character.source}`}>
-                    <p className="tarot-character-name">
-                      {character.name} <span>{character.source}</span>
-                    </p>
-                    <p>{character.connection}</p>
-                  </li>
-                ))}
+                {card.characters.map((character) => {
+                  const portrait = tarotCharacter(character.name, character.source);
+                  return (
+                    <li
+                      key={`${character.name}-${character.source}`}
+                      data-has-portrait={!!portrait}
+                    >
+                      {portrait ? (
+                        <figure className="tarot-character-portrait">
+                          <Image
+                            src={portrait.image}
+                            width={portrait.width}
+                            height={portrait.height}
+                            sizes="(max-width: 600px) 88px, 112px"
+                            alt={
+                              portrait.imageType === 'cosplay'
+                                ? `Cosplay depiction of ${character.name}`
+                                : `Portrait of ${portrait.performer}`
+                            }
+                          />
+                          <figcaption>
+                            {portrait.imageType === 'cosplay'
+                              ? 'Cosplay photo'
+                              : `${portrait.performerLabel} ${portrait.performer}`}
+                          </figcaption>
+                        </figure>
+                      ) : null}
+                      <div className="tarot-character-copy">
+                        <p className="tarot-character-name">
+                          {character.name} <span>{character.source}</span>
+                        </p>
+                        <p>{character.connection}</p>
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ) : card.pop_culture ? (
@@ -60,6 +100,25 @@ export function TarotReading({
           ) : null}
         </article>
       ))}
+      {portraits.length ? (
+        <details className="tarot-image-credits">
+          <summary>Image credits</summary>
+          <ul>
+            {portraits.map((p) => (
+              <li key={p.id}>
+                <a href={p.filePage} target="_blank" rel="noopener noreferrer">
+                  {p.name}: {p.credit}
+                </a>
+                {' · '}
+                <a href={p.licenseUrl} target="_blank" rel="noopener noreferrer">
+                  {p.license}
+                </a>
+                {' · resized and converted to WebP'}
+              </li>
+            ))}
+          </ul>
+        </details>
+      ) : null}
       <div className="tarot-next-step">
         <span className="eyebrow">Your next small move</span>
         <p>{reading.next_step}</p>

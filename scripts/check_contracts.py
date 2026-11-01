@@ -22,3 +22,5 @@ with TemporaryDirectory(prefix="games-contract-") as temp:
 subprocess.run([sys.executable, str(root / "scripts/export_card_faces.py"), "--check"],
                cwd=root, check=True)
 print("OpenAPI, catalogue, generated wire types and public card faces match the backend.")
+subprocess.run([sys.executable, str(root / "scripts/export_tarot_characters.py"), "--check"], cwd=root, check=True)
+subprocess.run([sys.executable, str(root / "scripts/export_casino_motion.py"), "--check"], cwd=root, check=True)

@@ -74,3 +74,9 @@ Every registered game must complete matches, score correctly, rematch, and switc
 within the same group. Hidden information, persistence, concurrency, authorization,
 responsive layouts and reconnects must pass real workflow verification. Track
 unverified requirements as gaps, never as completed capabilities.
+
+Shithead extends the catalogue to 27 experiences, including Pop Tarot. Its
+2–5-player table uses standard 52-card rules documented in the module, with
+optional seven-low and transparent-three toggles off by default. All escaped
+players win and the last remaining player loses; no score is invented. Human
+and bot seats use the same authoritative legal actions and room lifecycle.

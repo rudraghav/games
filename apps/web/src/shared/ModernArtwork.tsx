@@ -1,4 +1,4 @@
-import { PlayingCard, type CardPresentation } from '@games/ui';
+import { AzulTileArt, PlayingCard, type CardPresentation } from '@games/ui';
 
 function numberCard(value: string, color: string): CardPresentation {
   return { id: `modern-art-${value}`, value, label: value, color, subtitle: '', suit: '' };
@@ -8,7 +8,6 @@ function numberCard(value: string, color: string): CardPresentation {
 export function ModernArtwork({ gameId }: { gameId: string }) {
   if (gameId === 'azul') {
     const tones = ['blue', 'yellow', 'red', 'black', 'white'];
-    const symbols = ['◆', '✹', '✿', '✣', '❖'];
     return (
       <div className="game-art game-art--azul" aria-hidden="true">
         <div className="azul-cover-mosaic">
@@ -16,16 +15,16 @@ export function ModernArtwork({ gameId }: { gameId: string }) {
             const color = ((index % 5) + Math.floor(index / 5) * 4) % 5;
             return (
               <span className="azul-tile" data-color={tones[color]} key={index}>
-                {symbols[color]}
+                <AzulTileArt color={tones[color]} />
               </span>
             );
           })}
         </div>
         <span className="azul-cover-loose azul-tile" data-color="blue">
-          ◆
+          <AzulTileArt color="blue" />
         </span>
         <span className="azul-cover-loose azul-tile" data-color="yellow">
-          ✹
+          <AzulTileArt color="yellow" />
         </span>
       </div>
     );

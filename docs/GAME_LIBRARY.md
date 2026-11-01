@@ -1,6 +1,6 @@
 # Games library
 
-The catalogue has 25 multiplayer games and Pop Tarot. The owner authorized
+The catalogue has 26 multiplayer games and Pop Tarot. The owner authorized
 main/production and the expanded acceptance run on 1 November 2026.
 Additions reuse private rooms, profiles, action retries, chat,
 presence, results and rematches, with independent rules engines and renderers.
@@ -81,3 +81,14 @@ are not included. Original Games illustrations replace publisher card/token art.
 The canonical card-color matrix for Sea Salt & Paper is independently summed in
 tests; its README records the licensed digital inventory source and a secondary
 summary discrepancy. New release verification remains recorded in progress.txt.
+
+## Shithead — 1 November 2026
+
+Shithead adds a 2–5-player standard-card shedding game, also known as Palace.
+Its [owning rules](../backend/app/games/shithead/README.md) follow
+[Pagat](https://www.pagat.com/beating/shithead.html): three chosen face-up cards,
+three blind table cards, hand refill, 2 reset, 10/four-equal burn and last-player
+loss. Optional seven-low and transparent-three rules both default off. Every
+escaped player wins; results are unscored. A private-view-only deterministic bot
+plays complete matches without an AI service. Local rule/browser/solo evidence
+is recorded in [Shithead verification](evidence/shithead-2026-11-01/README.md).

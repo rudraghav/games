@@ -691,7 +691,6 @@
   .casino-table {
     position: relative;
     min-height: 450px;
-    container-type: inline-size;
   }
   .casino-table:is(
     [data-players='5'],

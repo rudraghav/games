@@ -1,0 +1,59 @@
+{
+  "startedAt": "2026-11-01T17:15:50.253Z",
+  "origin": "http://127.0.0.1:3217",
+  "checkoutSha": "3335cdae185b74247535202aa2d08fa8c3abca95",
+  "applicationSourceSha": null,
+  "workspaceDirty": true,
+  "sourceState": "uncommitted local workspace",
+  "hosted": false,
+  "project": "phone",
+  "selectedGames": [
+    "shithead"
+  ],
+  "selectedSeats": "limits",
+  "aiEnabled": false,
+  "complete": true,
+  "active": null,
+  "omitted": [],
+  "transport": {
+    "retryAttempts": 0,
+    "recovered": 0,
+    "failed": 0
+  },
+  "cleanup": {
+    "guestLeaveStatuses": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "roomClosed": true,
+    "failed": false,
+    "abandonStatus": 200,
+    "hostLeaveStatus": 200
+  },
+  "cases": [
+    {
+      "game": "shithead",
+      "seats": 2,
+      "moves": 57,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "game": "shithead",
+      "seats": 5,
+      "moves": 155,
+      "profileHistoryVerified": true,
+      "rematch": true
+    }
+  ],
+  "decisions": "Authorized API projections; rendered result/rematch/change-game browser controls.",
+  "rummyScenario": "Legal drops; declaration/sequences are independently engine-tested.",
+  "evidenceScope": "Local current dirty source; no pushed or deployed revision is claimed."
+}

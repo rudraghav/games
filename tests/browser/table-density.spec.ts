@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 /** Synthetic projections exercise every rendered family; no hidden state or room is fetched. */
 test('all table projections keep readable card content, touch controls and reachable decisions', async ({
@@ -9,7 +10,7 @@ test('all table projections keep readable card content, touch controls and reach
   await page.goto('/design');
   const scenario = page.getByLabel('Table scenario');
   const labels = await scenario.locator('option').allTextContents();
-  expect(labels).toHaveLength(52);
+  expect(labels).toHaveLength(catalogue.length * 2);
   const issues: { scenario: string; report: unknown }[] = [];
   for (let index = 0; index < labels.length; index++) {
     await scenario.selectOption(String(index));

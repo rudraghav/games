@@ -24,6 +24,8 @@ describe('Compact complete table presentation', () => {
     const html = renderToStaticMarkup(<CasinoTable {...p} />);
     expect(html.indexOf('casino-controls')).toBeLessThan(html.indexOf('class="casino-table"'));
     expect(html).not.toContain('class="seat-cards"');
+    expect(html).toContain('Main hand wagers, including split and doubled bets');
+    expect(html).toContain('hand bets');
   });
   it('shows the viewer’s poker cards once rather than repeating them at a seat', () => {
     const p = props('holdem');

@@ -11,13 +11,15 @@ from typing import Literal
 import httpx
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
+from app.games.tarot.characters import CHARACTERS, find_character, lane_characters
 from app.games.tarot.deck import BY_ID, POSITIONS
 from app.settings import settings
 
-PROMPT_VERSION = "pop-tarot-3"
+PROMPT_VERSION = "pop-tarot-4"
 MAX_ATTEMPTS = 2
 MAX_OUTPUT_TOKENS = 3600
 REQUEST_DEADLINE_SECONDS = 60
+ATTEMPT_TIMEOUT_SECONDS = 45
 REFERENCE_LANES = (
     "animation and animated films",
     "Indian cinema or television",
@@ -36,7 +38,8 @@ the quirky version should offer a fresh image, not repeat the normal text.
 Then connect the card to one or two named fictional characters, identify each
 character's film, series, book or game, and explain the specific parallel. Use
 different characters across the spread. Each card supplies a reference_lane to
-encourage a varied cast; choose an accurate, fitting character from that area.
+encourage a varied cast. Choose only from that card's supplied reference_characters,
+copying the name and source exactly so the matching portrait stays accurate.
 Reference
 actual established character traits, without quotes, lyrics or invented plot
 facts. Keep the normal reading useful. Aim jokes at situations, never shame
@@ -95,7 +98,13 @@ class GeneratedReading(ReadingText):
 
     @model_validator(mode="after")
     def distinct_characters(self) -> "GeneratedReading":
-        names = [character.name.casefold() for card in self.cards for character in card.characters]
+        supplied_names = [c.name.casefold() for card in self.cards for c in card.characters]
+        if len(supplied_names) != len(set(supplied_names)):
+            raise ValueError("Use a different character for each connection in this spread.")
+        references = [find_character(c.name, c.source) for card in self.cards for c in card.characters]
+        if any(c is None for c in references):
+            raise ValueError("Choose a name and source from the supplied character references.")
+        names = [c["id"] for c in references if c is not None]
         if len(names) != len(set(names)):
             raise ValueError("Use a different character for each connection in this spread.")
         return self
@@ -130,6 +139,7 @@ def provider_schema(card_ids: list[str]) -> dict:
     """
     schema = GeneratedReading.model_json_schema()
     definitions = schema["$defs"]
+    definitions["CharacterConnection"]["properties"]["name"]["enum"] = [c["name"] for c in CHARACTERS]
     section = definitions.pop("GeneratedSection")
     # New responses do not need the unstructured field retained for legacy data.
     section["properties"].pop("pop_culture")
@@ -207,6 +217,7 @@ def generate_reading(
                 "meaning": BY_ID[card_id].meaning,
                 "position": position,
                 "reference_lane": REFERENCE_LANES[(offset + index * 2) % len(REFERENCE_LANES)],
+                "reference_characters": lane_characters(REFERENCE_LANES[(offset + index * 2) % len(REFERENCE_LANES)]),
             }
             for index, (card_id, position) in enumerate(zip(card_ids, POSITIONS, strict=True))
         ],
@@ -217,7 +228,7 @@ def generate_reading(
         raise ValueError("The reading input exceeds its request budget.")
     logger = logging.getLogger("uvicorn.error")
     deadline = time.monotonic() + REQUEST_DEADLINE_SECONDS
-    with httpx.Client(timeout=httpx.Timeout(30, connect=5)) as client:
+    with httpx.Client(timeout=httpx.Timeout(ATTEMPT_TIMEOUT_SECONDS, connect=5)) as client:
         for attempt in range(1, MAX_ATTEMPTS + 1):
             if before_attempt:
                 before_attempt()
@@ -228,7 +239,9 @@ def generate_reading(
             response = client.post(
                 "https://generativelanguage.googleapis.com/v1beta/interactions",
                 headers={"x-goog-api-key": config.gemini_api_key},
-                timeout=httpx.Timeout(min(30, max(1, deadline - time.monotonic())), connect=5),
+                timeout=httpx.Timeout(
+                    min(ATTEMPT_TIMEOUT_SECONDS, max(1, deadline - time.monotonic())), connect=5
+                ),
                 json={
                     "model": config.tarot_model,
                     "store": False,

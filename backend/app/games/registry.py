@@ -14,6 +14,7 @@ from app.games.holdem.engine import HoldemEngine
 from app.games.party.engine import PartyEngine
 from app.games.rummy.engine import RummyEngine
 from app.games.sea_salt_paper.engine import PaperEngine
+from app.games.shithead.engine import ShitheadEngine
 from app.games.six_nimmt.engine import SixNimmtEngine
 from app.games.skyjo.engine import SkyjoEngine
 from app.games.tarot.engine import TarotEngine
@@ -50,6 +51,7 @@ ALL_ENGINES: list[Engine] = [
     SixNimmtEngine(),
     PaperEngine(),
     BoopEngine(),
+    ShitheadEngine(),
 ]
 ENGINES: dict[str, Engine] = {engine.manifest.id: engine for engine in ALL_ENGINES}
 for _engine in ALL_ENGINES:

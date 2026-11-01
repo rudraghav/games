@@ -68,6 +68,14 @@ Readings compose a shared pure presentation component: normal and quirky panels,
 then explained character connections; phones stack these in reading order.
 Storybook includes all 78 cards, each suit, legacy/fresh readings and pending states.
 
+Character connections pair each recognized reference with a local licensed
+performer or explicitly labeled cosplay photograph. Captions state the role;
+expandable source/license credits deduplicate by character, preserving distinct
+characters played by the same performer. Unknown or mismatched saved references
+stay text-only. Portrait/copy columns and long names fit320/390/1440 with keyboard
+accessible credits; inspected examples and checks live in
+`docs/evidence/tarot-portraits-2026-11-01`.
+
 Room presentation uses the personalized legal actions and simultaneous-decision
 metadata to distinguish Your turn, Your decision, locked choice, paused and
 complete states. The shared TurnNotice exposes these as a polite status update;
@@ -126,8 +134,12 @@ live with the owning board rules so late imports cannot hide columns or counts.
 The complete 52-scenario phone/desktop audit and inspected samples are recorded
 in `docs/evidence/table-refresh-2026-11-01`.
 
-The home starts with the game catalogue beneath a compact title/action row;
-recent rooms follow the catalogue. Exact name/alias matching has a bounded
+The home starts with a compact title/action row. Active member-room shortcuts
+precede the catalogue; finished rooms follow it. Search and Players share one
+control row; category pills scroll beside a fixed, labeled Reset control. The
+announced result count stays visually hidden to give games more first-fold space.
+At 320px the secondary header Create action uses its labeled icon, while the
+main home actions retain full phone rows. Exact name/alias matching has a bounded
 Fuse.js typo fallback after category and group-size filtering. Solo + bots shows
 all bot-capable formats and Tarot. Room chat starts collapsed and opens beside
 the table on wide screens or in a shared sheet on phones.
@@ -143,6 +155,27 @@ comes from the generated catalogue rather than a second frontend game list.
 Word Agents explains finite category-clue support; party responses are labeled
 as simulated. Bots never impersonate people or use the Tarot generation API.
 
+Casino motion follows committed, consecutive authorized snapshots. Exact public
+payments travel from rendered actor seats to the pot; visible results travel back
+to winning stacks. The viewer stays first, the current seat shares one moving
+outline, and a readable latest-action cue persists. New permitted cards reveal;
+split hands move known faces and expose the active hand inside their own rail.
+The single casino-layout query container chooses ring/grid layout from available
+canvas width. Controls and numbers update immediately, with no animation delay.
+Reduce Motion changes apply during play. Refresh, skipped versions, rematches,
+background and reconnect snapshots do not replay history. No other player's
+hidden identity enters the animation model. See the inspected before/after and
+complete legal playback evidence in `evidence/casino-motion-2026-11-01`.
+
+Catalogue covers compose the same canonical card faces, property metadata and
+original piece/ceramic/district atlases used by tables. Decorative cards retain
+readable ranks and real effects. Skyjo cover cells and shedding fans size to their
+poster containers; boards keep their actual 8×8 or 7×6 shapes. Shithead has its
+own stacked hidden/face-up cover. No additional UI kit or duplicated token layer
+is needed. Dashboard stories cover discovery, solo tiles and member shortcuts;
+phone/desktop screenshots and private-entry checks live in
+`docs/evidence/dashboard-2026-11-01`.
+
 
 Uno and Deal variants consume canonical colors/effect metadata in one shared
 renderer. Deal motifs distinguish all 24 effects and 10 property groups; paired
@@ -150,3 +183,10 @@ wild/rent bands print both names, any-color cards expose all colors accessibly,
 and orientation stays separate. Card inventory stories cover 245 canonical faces
 and every legal wild orientation at normal/compact sizes. Two browser widths
 check 980 instances. See card-inventory and compact-live evidence for originals.
+
+Shithead reuses the licensed standard-card faces with separate selectable hand
+cards and public face-up/anonymous hidden rows. Its original felt center keeps
+stock, comparison and burn counts compact; the own decision panel precedes
+opponents on phones. Optional rule labels appear only when enabled. Player-strip
+and panel bounds remain inside the viewport, with internal hand/seat scrolling,
+44px controls and pending/disconnected states covered by focused checks.

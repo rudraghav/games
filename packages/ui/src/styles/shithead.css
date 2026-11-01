@@ -1,0 +1,222 @@
+@layer components {
+  .shithead-game {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .shithead-game > .player-strip {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    justify-self: stretch;
+  }
+  .shithead-game .player-strip-seat {
+    min-width: 0;
+  }
+  .shithead-piles {
+    display: grid;
+    grid-template-columns: 84px minmax(0, 1fr) 84px;
+    gap: 16px;
+    align-items: center;
+    border-radius: var(--radius-panel);
+    padding: 14px 18px;
+    color: #f6f3ed;
+    background: #2f5147 url('/game-art/table-surfaces-v1.webp') center/300% 100%;
+    box-shadow: inset 0 0 0 5px #e8d8ac66;
+  }
+  .shithead-stock {
+    display: grid;
+    gap: 2px;
+    justify-items: center;
+    text-align: center;
+  }
+  .shithead-stock strong {
+    font-size: 22px;
+    font-variant-numeric: tabular-nums;
+  }
+  .shithead-pile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+  .shithead-pile p {
+    margin-top: 5px;
+    opacity: 0.85;
+  }
+  .shithead-empty-pile {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 76px;
+    flex: none;
+    border: 1px dashed #ffffff70;
+    border-radius: 10px;
+    font-size: 11px;
+    text-align: center;
+    padding: 4px;
+  }
+  .shithead-workspace,
+  .shithead-player-table {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-panel);
+    padding: 16px;
+    min-width: 0;
+  }
+  .shithead-workspace > p {
+    margin-top: 8px;
+  }
+  .shithead-game .card-hand {
+    gap: 10px;
+  }
+  .shithead-game .card-hand .playing-card + .playing-card {
+    margin-left: 0;
+  }
+  .shithead-game .button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .shithead-table-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .shithead-table-heading h2 {
+    font-size: 17px;
+  }
+  .shithead-table-heading strong {
+    font-size: 14px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    flex: 1;
+  }
+  .shithead-table-heading > .small {
+    flex: none;
+  }
+  .shithead-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .shithead-opponents {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .shithead-opponents .shithead-player-table {
+    padding: 12px;
+  }
+  .shithead-zone-row {
+    display: grid;
+    grid-template-columns: 60px minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    margin-top: 12px;
+  }
+  .shithead-table-cards {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    min-height: 76px;
+    min-width: 0;
+    padding-top: 12px;
+  }
+  .shithead-zone-row > .small {
+    white-space: nowrap;
+  }
+  .shithead-table-cards:has(.shithead-cleared) {
+    min-height: 28px;
+    padding-top: 0;
+  }
+  .shithead-empty-slot {
+    width: 52px;
+    height: 72px;
+    border: 1px dashed var(--color-border);
+    border-radius: 9px;
+    flex: none;
+    background: var(--color-canvas);
+  }
+  .shithead-cleared {
+    color: var(--color-ink-muted);
+    font-size: 12px;
+  }
+  .shithead-player-table[data-self='true'] {
+    border-color: #b1c2af;
+  }
+  .shithead-rule-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    color: var(--color-ink-muted);
+    font-size: 11px;
+    padding-inline: 4px;
+  }
+  .shithead-outcome {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--color-sage-light);
+    border-radius: 12px;
+    font-size: 14px;
+  }
+  @media (min-width: 1050px) {
+    .shithead-game {
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+      align-items: start;
+    }
+    .shithead-game > .player-strip,
+    .shithead-piles,
+    .shithead-rule-row,
+    .shithead-outcome,
+    .shithead-opponents {
+      grid-column: 1/-1;
+    }
+    .shithead-opponents {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+    }
+    .shithead-opponents .shithead-zone-row {
+      display: block;
+    }
+    .shithead-opponents .shithead-table-cards {
+      gap: 5px;
+    }
+  }
+  @media (max-width: 600px) {
+    .shithead-piles {
+      grid-template-columns: 45px minmax(0, 1fr) 45px;
+      gap: 8px;
+      padding: 12px;
+    }
+    .shithead-pile {
+      gap: 10px;
+    }
+    .shithead-pile > div {
+      font-size: 13px;
+    }
+    .shithead-stock .small {
+      font-size: 10px;
+    }
+    .shithead-stock strong {
+      font-size: 18px;
+    }
+    .shithead-actions > .button {
+      width: 100%;
+    }
+    .shithead-opponents {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .shithead-zone-row {
+      grid-template-columns: 48px minmax(0, 1fr);
+    }
+    .shithead-player-table,
+    .shithead-workspace {
+      padding: 12px;
+    }
+  }
+}

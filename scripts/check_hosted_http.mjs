@@ -1,6 +1,8 @@
 /** Scoped deployment HTTP checks. Tokens stay in memory and never enter output. */
 import catalogue from '../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 import faces from '../apps/web/public/playing-cards/SOURCE.json' with { type: 'json' };
+import portraits from '../apps/web/public/characters/manifest.json' with { type: 'json' };
+import { createHash } from 'node:crypto';
 const target = new URL(process.env.GAMES_TEST_URL || 'http://invalid.local');
 if (
   target.protocol !== 'https:' ||
@@ -25,6 +27,7 @@ for (const path of [
     (name) => `/game-art/${name}.webp`,
   ),
   ...Object.keys(faces.files).map((name) => `/playing-cards/${name}`),
+  ...portraits.map((portrait) => portrait.image),
   '/design',
   '/api/backend/v1/me',
   '/api/dev-session',
@@ -72,7 +75,19 @@ for (const path of [
       ? 404
       : 200;
   if (response.status !== expected) throw new Error(`Unexpected status at ${path}`);
-  if (/^\/(tarot|game-art|playing-cards)\//.test(path) && !summary.kind?.startsWith('image/'))
+  if (
+    /^\/(tarot|game-art|playing-cards|characters)\//.test(path) &&
+    !summary.kind?.startsWith('image/')
+  )
     throw new Error(`Expected artwork at ${path}`);
+  const portrait = portraits.find((entry) => entry.image === path);
+  if (portrait) {
+    const bytes = Buffer.from(await response.arrayBuffer());
+    if (
+      bytes.length !== portrait.bytes ||
+      createHash('sha256').update(bytes).digest('hex') !== portrait.sha256
+    )
+      throw new Error(`Serving portrait differs from the licensed release asset at ${path}`);
+  }
   if (!response.bodyUsed) await response.body?.cancel();
 }

@@ -5,8 +5,9 @@ from cryptography.fernet import Fernet
 from app.games.registry import ENGINES
 from app.models import Room
 from app.rooms.bots import next_bot_view
+from app.rooms.public_actions import PUBLIC_ACTIONS
 from app.rooms.repository import Repository
-from app.rooms.schemas import MemberView, MessageView, RoomView
+from app.rooms.schemas import MemberView, MessageView, PublicActionView, RoomView
 
 
 def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> RoomView:
@@ -35,6 +36,10 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
         and room.status == "playing"
         and not missing
         and next_bot_view(ENGINES[match.game_id], match.state, bots)
+    )
+    cue = (
+        repo.public_action(match.id, match.version)
+        if match and match.game_id in PUBLIC_ACTIONS and match.version > 1 else None
     )
     return RoomView(
         id=room.id,
@@ -75,4 +80,5 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
         else None,
         bot_pending=pending_bot,
         bot_due_at=match.bot_due_at if match and pending_bot else None,
+        last_action=PublicActionView.model_validate(cue) if cue else None,
     )

@@ -9,6 +9,7 @@ import { api } from '@/lib/session';
 import { keys } from './query-keys';
 import { rememberedPlayer, rememberPlayer } from './player-preferences';
 import { refreshPlayer } from './player-query';
+import { roomInvite } from './room-invite';
 
 interface RoomDialogProps {
   open: boolean;
@@ -54,7 +55,7 @@ export function RoomDialog({
     try {
       let room =
         mode === 'join'
-          ? await api.join(code.trim(), displayName.trim(), chosenAvatar)
+          ? await api.join(roomInvite(code), displayName.trim(), chosenAvatar)
           : mode === 'configure' && roomId
             ? await api.configure(roomId, game.id, capacity, settings)
             : await api.create({
@@ -98,10 +99,10 @@ export function RoomDialog({
       title={mode === 'join' ? 'Join room' : mode === 'configure' ? 'Room settings' : 'Create room'}
       description={
         mode === 'join'
-          ? 'Enter your name and room code.'
+          ? 'Enter a room code or paste an invite link.'
           : mode === 'configure'
             ? 'Choose a game and seat count.'
-            : 'Choose a game, players and settings.'
+            : 'Invite-only. Share a link or room code to add friends.'
       }
     >
       <form className="room-setup-form" onSubmit={submit}>
@@ -158,7 +159,7 @@ export function RoomDialog({
               className="input"
               value={code}
               onChange={(event) => setCode(event.target.value)}
-              placeholder="Enter your 8-character code"
+              placeholder="Code or invite link"
               required
               autoComplete="off"
               spellCheck={false}

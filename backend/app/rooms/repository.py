@@ -17,6 +17,14 @@ class Repository:
     def profile(self, user_id: str) -> Profile | None:
         return self.session.get(Profile, user_id)
 
+    def public_action(self, match_id: str, version: int) -> dict | None:
+        # The existing match-prefix primary index bounds this lookup to one match.
+        response = self.session.scalar(select(Receipt.response).where(
+            Receipt.match_id == match_id,
+            Receipt.response["committedVersion"].as_integer() == version,
+        ).limit(1))
+        return response.get("public_action") if isinstance(response, dict) else None
+
     def save_profile(self, user_id: str, name: str, avatar: int) -> Profile:
         profile = self.profile(user_id)
         if profile is None:

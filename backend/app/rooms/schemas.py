@@ -88,6 +88,13 @@ class MessageView(BaseModel):
     created_at: float
 
 
+class PublicActionView(BaseModel):
+    version: int = Field(ge=2)
+    actor_id: str
+    type: str
+    amount: int | None = Field(default=None, ge=0)
+
+
 class RoomView(BaseModel):
     id: str
     name: str
@@ -108,6 +115,7 @@ class RoomView(BaseModel):
     invite_token: str | None = None
     bot_pending: bool = False
     bot_due_at: float | None = None
+    last_action: PublicActionView | None = None
 
 
 class RoomSummary(BaseModel):

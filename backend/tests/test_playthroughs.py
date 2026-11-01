@@ -9,6 +9,14 @@ from app.games.registry import ENGINES
 
 def choose(view, randomizer):
     options = view.actions
+    if view.game_id == "shithead":
+        from app.bots import choose_action
+
+        memory = getattr(randomizer, "palace_memory", {})
+        decision = choose_action(view, view.current_player, memory.get(view.current_player))
+        memory[view.current_player] = decision.memory
+        randomizer.palace_memory = memory
+        return decision.action
     if view.game_id.startswith("uno"):
         calls = [o for o in options if o.action.type == "uno"]
         plays = [o for o in options if o.action.type == "play"]

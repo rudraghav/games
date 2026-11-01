@@ -1,0 +1,116 @@
+{
+  "frontendUnits": {
+    "files": 22,
+    "passed": 84
+  },
+  "browser": [
+    {
+      "story": "two-character-connections",
+      "width": 320,
+      "pageFits": true,
+      "portraits": 4,
+      "loaded": true,
+      "fonts": {
+        "body": true,
+        "heading": true
+      },
+      "rowIssues": [],
+      "keyboard": {
+        "open": true,
+        "firstSourceFocused": true,
+        "links": 8,
+        "creditsFit": true
+      }
+    },
+    {
+      "story": "two-character-connections",
+      "width": 390,
+      "pageFits": true,
+      "portraits": 4,
+      "loaded": true,
+      "fonts": {
+        "body": true,
+        "heading": true
+      },
+      "rowIssues": [],
+      "keyboard": {
+        "open": true,
+        "firstSourceFocused": true,
+        "links": 8,
+        "creditsFit": true
+      }
+    },
+    {
+      "story": "two-character-connections",
+      "width": 1440,
+      "pageFits": true,
+      "portraits": 4,
+      "loaded": true,
+      "fonts": {
+        "body": true,
+        "heading": true
+      },
+      "rowIssues": [],
+      "keyboard": {
+        "open": true,
+        "firstSourceFocused": true,
+        "links": 8,
+        "creditsFit": true
+      }
+    },
+    {
+      "story": "cosplay-and-long-names",
+      "width": 320,
+      "pageFits": true,
+      "portraits": 4,
+      "loaded": true,
+      "fonts": {
+        "body": true,
+        "heading": true
+      },
+      "rowIssues": [],
+      "keyboard": {
+        "open": true,
+        "firstSourceFocused": true,
+        "links": 8,
+        "creditsFit": true
+      }
+    },
+    {
+      "story": "cosplay-and-long-names",
+      "width": 390,
+      "pageFits": true,
+      "portraits": 4,
+      "loaded": true,
+      "fonts": {
+        "body": true,
+        "heading": true
+      },
+      "rowIssues": [],
+      "keyboard": {
+        "open": true,
+        "firstSourceFocused": true,
+        "links": 8,
+        "creditsFit": true
+      }
+    },
+    {
+      "story": "cosplay-and-long-names",
+      "width": 1440,
+      "pageFits": true,
+      "portraits": 4,
+      "loaded": true,
+      "fonts": {
+        "body": true,
+        "heading": true
+      },
+      "rowIssues": [],
+      "keyboard": {
+        "open": true,
+        "firstSourceFocused": true,
+        "links": 8,
+        "creditsFit": true
+      }
+    }
+  ]
+}

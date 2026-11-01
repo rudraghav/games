@@ -7,7 +7,7 @@ on a missing prerequisite; it never substitutes a tooling PASS for product proof
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | frontend    | TypeScript, lint, frontend contract/card checks, Next production build                                                                     |
 | backend     | Python lint/types, engines, special cards, complete legal scenarios, Tarot adapter                                                         |
-| contracts   | Actual OpenAPI/catalogue, generated wire-type and canonical Uno/Deal card-face inventory drift                                             |
+| contracts   | Actual OpenAPI/catalogue, generated wire types, canonical card faces, Tarot characters and deterministic casino playback fixture drift    |
 | migrations  | Fresh isolated local database upgrade, drift, RLS/public grants                                                                            |
 | multiplayer | Room membership, hidden hands, simultaneous moves, retries, reconnect, hosting, invites, saved readings, bot lifecycle/concurrency/restart |
 | browser     | Independent guest sessions, chat, move/refresh/game switch; phone/desktop; 52 min/max table scenarios; Tarot picks and expansion controls  |

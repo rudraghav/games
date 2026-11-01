@@ -15,9 +15,9 @@ describe('Modern and social game discovery', () => {
     const sorted = [...games].sort((a, b) => discoveryRank(a.id) - discoveryRank(b.id));
     expect(sorted.slice(0, 4).map((game) => game.id)).toEqual([
       'the-gang',
+      'shithead',
       'sea-salt-paper',
       'boop',
-      'six-nimmt',
     ]);
     expect(new Set(sorted.map((game) => game.id)).size).toBe(games.length);
     expect(games.filter((game) => matchesGame(game, '', 4, 'modern')).map((g) => g.id)).toEqual(

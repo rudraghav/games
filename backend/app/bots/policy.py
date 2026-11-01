@@ -8,6 +8,7 @@ from app.bots.cards import card_action
 from app.bots.casino import casino_action
 from app.bots.context import BotDecision, Context
 from app.bots.modern import modern_action, observe_modern
+from app.bots.palace import palace_action
 from app.bots.words import word_action
 from app.core.contracts import GameView, RuleError
 
@@ -38,6 +39,7 @@ BOT_GAMES = frozenset(
         "six-nimmt",
         "sea-salt-paper",
         "boop",
+        "shithead",
     }
 )
 
@@ -71,6 +73,7 @@ def choose_action(
         or card_action(ctx)
         or casino_action(ctx)
         or modern_action(ctx)
+        or palace_action(ctx)
         or word_action(ctx)
     )
     if action is None:

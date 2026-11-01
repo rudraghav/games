@@ -26,6 +26,7 @@ const families: Record<Category, readonly string[]> = {
     'boop',
   ],
   cards: [
+    'palace',
     'shedding',
     'property',
     'casino',
@@ -39,6 +40,7 @@ const families: Record<Category, readonly string[]> = {
   ],
   boards: ['board', 'mancala', 'gems', 'azul', 'boop'],
   party: [
+    'palace',
     'words',
     'shedding',
     'grid',
@@ -53,6 +55,7 @@ const families: Record<Category, readonly string[]> = {
 };
 const discoveryOrder = [
   'the-gang',
+  'shithead',
   'sea-salt-paper',
   'boop',
   'six-nimmt',
@@ -88,6 +91,7 @@ const aliases: Record<string, string> = {
   'six-nimmt': '6 nimmt 6nimmt take 5 take five numbers bullheads',
   'sea-salt-paper': 'sea salt and paper origami cards collection',
   boop: 'cats kittens bed board',
+  shithead: 'shit head palace china hand ten two slide shedding',
 };
 function searchableText(value: string) {
   return value

@@ -1,0 +1,35 @@
+[
+  {
+    "width": 320,
+    "tiles": 27,
+    "firstTop": 383.796875,
+    "pageFits": true,
+    "clippedCards": [],
+    "assets": {
+      "count": 17,
+      "allLoaded": true
+    }
+  },
+  {
+    "width": 390,
+    "tiles": 27,
+    "firstTop": 383.796875,
+    "pageFits": true,
+    "clippedCards": [],
+    "assets": {
+      "count": 17,
+      "allLoaded": true
+    }
+  },
+  {
+    "width": 1440,
+    "tiles": 27,
+    "firstTop": 310,
+    "pageFits": true,
+    "clippedCards": [],
+    "assets": {
+      "count": 17,
+      "allLoaded": true
+    }
+  }
+]

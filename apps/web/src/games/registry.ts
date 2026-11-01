@@ -19,6 +19,7 @@ import { GangTable } from './coop-number/GangTable';
 import { SixNimmtTable } from './coop-number/SixNimmtTable';
 import { PaperTable } from './sea/PaperTable';
 import { BoopTable } from './boop/BoopTable';
+import { ShitheadTable } from './shithead/ShitheadTable';
 
 const familyTables: Record<string, ComponentType<TableProps>> = {
   shedding: CardTable,
@@ -39,6 +40,7 @@ const familyTables: Record<string, ComponentType<TableProps>> = {
   'number-rows': SixNimmtTable,
   paper: PaperTable,
   boop: BoopTable,
+  palace: ShitheadTable,
 };
 export const tableRegistry = Object.fromEntries(
   games.map((game) => {

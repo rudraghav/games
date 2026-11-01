@@ -17,6 +17,15 @@ action IDs return a fresh authorized snapshot without applying a second move;
 conflicting actions fail safely. Receipts store the committed version and a
 fingerprint, avoiding a second copy of private hands or chat in every receipt.
 
+Casino receipts also store an allowlisted public action cue: committed version,
+actor, action type and public payment amount. It is computed from the actor's
+authorized pre-move view and saved in the same transaction. Only the current
+version's cue is projected to members as `last_action`; older receipts without a
+cue return null. No card identities, targets, choices, deck order or random state
+enter this cue. Durable receipts let a fresh process produce the same cue without
+adding a second event store or migration. Clients animate only contiguous live
+versions, and never replay a cue on mount, refresh, reconnect or a version gap.
+
 Private state is not available through Supabase's public Data API. A safe room
 revision notification is broadcast transactionally. Channel policies check room
 membership. Clients fetch a fresh viewer projection; raw state never enters
@@ -103,3 +112,11 @@ committed action. Scheduling gives a bot its legal out-of-turn UNO announcement
 before another bot catches it. Gang bots holding ranking chips wait for the
 human instead of repeatedly stealing/returning chips. These are scheduling
 choices over the existing engine's legal actions, not altered game rules.
+
+Shithead's independent `palace` family keeps all 52 cards in stock, private
+hands, hidden/public table slots, active pile or a burn archive. Projections
+expose occupied hidden-slot booleans, never their card identities. Its bot reads
+only its authorized view and stores at most 64 own/public rank signatures to
+vary legal choices when a pickup cycle repeats. There is no forced turn limit,
+hidden-state search or model request. An unscored outcome lists all escaped
+players as winners and the final remaining player as the loser.

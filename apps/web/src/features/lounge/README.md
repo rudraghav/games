@@ -1,9 +1,12 @@
 # Lounge and catalogue
 
-Lounge composes the existing header, hero, recent rooms and room dialog.
-GameLibrary owns search, group size and category selection; matchesGame keeps
-filtering deterministic. Search includes common aliases such as poker, draughts,
-Codenames, Splendor and Kalah while preserving the actual edition names.
+Lounge composes the existing header, compact home actions, member-room shortcuts
+and shared room dialog. Active rooms precede the catalogue in one scrolling row;
+finished rooms follow it. GameLibrary owns search, group size and category
+selection; findGames intersects them with an exact/alias match and bounded typo
+fallback. Aliases include poker, draughts, Codenames, Splendor, Kalah and Palace
+while preserving the actual edition names. Just me/Solo + bots preserve Bots
+mode when opening supported games. Join accepts codes and full invite links.
 
 GameTile and ChoiceGroup are shared UI primitives; GameArt composes the same card
 and board vocabulary as the tables. Metadata comes from the generated backend
@@ -15,3 +18,6 @@ and profiles are loaded only after the player has saved play.
 Check search aliases, category/player intersections, zero-result recovery,
 keyboard focus, reduced motion and phone overflow in the browser suite. Selected
 visual references and evidence are in docs/DESIGN_REFERENCES.md.
+The current dashboard captures and verified private-entry/solo behavior are in
+docs/evidence/dashboard-2026-11-01. Catalogue covers reuse real card metadata and
+original shared illustration assets; no second component or token system exists.

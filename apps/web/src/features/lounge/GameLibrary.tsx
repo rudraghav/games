@@ -1,12 +1,12 @@
 'use client';
 import { useRef, useState } from 'react';
-import { Search, UsersRound, X } from 'lucide-react';
+import { Search, UsersRound, RotateCcw, X } from 'lucide-react';
 import { Button, ChoiceGroup, GameTile } from '@games/ui';
 import { games } from '@games/api-client/catalog';
 import { GameArt } from '@/shared/GameArt';
 import { categories, findGames, type Category } from './catalogue-search';
 
-export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
+export function GameLibrary({ onChoose }: { onChoose: (id: string, withBots: boolean) => void }) {
   const [query, setQuery] = useState('');
   const [players, setPlayers] = useState(0);
   const [category, setCategory] = useState<Category>('all');
@@ -27,43 +27,34 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
         Games
       </h2>
       <div className="library-controls">
-        <label className="library-search">
-          <Search size={18} aria-hidden="true" />
-          <span className="sr-only">Search games</span>
-          <input
-            ref={search}
-            type="search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search games"
-            aria-controls="game-catalogue"
-            onKeyDown={(event) => {
-              if (event.key === 'Escape' && query) setQuery('');
-            }}
-          />
-          {query ? (
-            <button
-              type="button"
-              aria-label="Clear search"
-              onClick={() => {
-                setQuery('');
-                search.current?.focus();
+        <div className="library-toolbar">
+          <label className="library-search">
+            <Search size={18} aria-hidden="true" />
+            <span className="sr-only">Search games</span>
+            <input
+              ref={search}
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search games"
+              aria-controls="game-catalogue"
+              onKeyDown={(event) => {
+                if (event.key === 'Escape' && query) setQuery('');
               }}
-            >
-              <X size={16} />
-            </button>
-          ) : null}
-        </label>
-        <div className="library-category-rail" ref={categoryRail}>
-          <ChoiceGroup
-            label="Game categories"
-            className="library-categories"
-            options={categories}
-            value={category}
-            onChange={setCategory}
-          />
-        </div>
-        <div className="library-filter-row" data-active={hasFilters}>
+            />
+            {query ? (
+              <button
+                type="button"
+                aria-label="Clear search"
+                onClick={() => {
+                  setQuery('');
+                  search.current?.focus();
+                }}
+              >
+                <X size={16} />
+              </button>
+            ) : null}
+          </label>
           <label className="library-players">
             <UsersRound size={16} aria-hidden="true" />
             <span className="sr-only">Players</span>
@@ -72,7 +63,7 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
               value={players}
               onChange={(event) => setPlayers(Number(event.target.value))}
             >
-              <option value={0}>Any group size</option>
+              <option value={0}>Players</option>
               {Array.from({ length: 10 }, (_, i) => (
                 <option key={i + 1} value={i + 1}>
                   {i === 0 ? 'Just me' : `${i + 1} people`}
@@ -80,15 +71,32 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
               ))}
             </select>
           </label>
-          {hasFilters ? (
-            <Button variant="ghost" size="sm" onClick={reset}>
-              <X size={14} aria-hidden="true" /> Reset filters
-            </Button>
-          ) : null}
-          <p className="library-count small muted" role="status" aria-atomic="true">
-            {filtered.length} {filtered.length === 1 ? 'game' : 'games'}
-          </p>
         </div>
+        <div className="library-category-row">
+          <div className="library-category-rail" ref={categoryRail}>
+            <ChoiceGroup
+              label="Game categories"
+              className="library-categories"
+              options={categories}
+              value={category}
+              onChange={setCategory}
+            />
+          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="library-reset"
+            onClick={reset}
+            disabled={!hasFilters}
+            aria-label="Reset filters"
+            title="Reset filters"
+          >
+            <RotateCcw size={17} aria-hidden="true" />
+          </Button>
+        </div>
+        <p className="library-count sr-only" role="status" aria-atomic="true">
+          {filtered.length} {filtered.length === 1 ? 'game' : 'games'}
+        </p>
       </div>
       <div id="game-catalogue">
         {filtered.length ? (
@@ -102,9 +110,12 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
                 maxPlayers={game.maxPlayers}
                 minutes={game.minutes}
                 tone={game.color}
+                soloMode={players === 1 || category === 'solo'}
                 edition={game.rulesVersion.startsWith('house-') ? 'house' : 'standard'}
                 artwork={<GameArt game={game} />}
-                onChoose={() => onChoose(game.id)}
+                onChoose={() =>
+                  onChoose(game.id, (players === 1 || category === 'solo') && game.botsSupported)
+                }
               />
             ))}
           </div>

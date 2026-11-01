@@ -1,0 +1,58 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "pop-tarot-4",
+  "seconds": 28.89,
+  "question": "How can I make room for a creative hobby?",
+  "reading": {
+    "title": "A Gentle Leap Into Creativity",
+    "introduction": "Welcome to a quiet moment of reflection on how to carve out space for your creative passions. Let these three cards guide you through where you stand, what is shifting beneath your feet, and how to gently step forward without overwhelming your daily routine.",
+    "next_step": "Spend just ten uninterrupted minutes today sketching, writing, or building your hobby without worrying about the final result.",
+    "cards": [
+      {
+        "card_id": "major-00",
+        "position": "Where you are",
+        "title": "The Fool: Fresh Beginnings",
+        "interpretation": "You find yourself standing at the edge of something new, filled with a deep sense of curiosity about what your creative life could look like. Right now, you are weighing the urge to start fresh against the comfort of your usual routines. It is a moment of open-mindedness where taking a thoughtful leap means simply acknowledging that you want change, without needing to have every single detail mapped out in advance.",
+        "pop_culture": null,
+        "quirky_interpretation": "You are like someone packing an entire suitcase of snacks for a three-minute walk to the mailbox. Your enthusiasm for a new hobby is bubbling over, even if you have absolutely no idea what you are actually building yet.",
+        "characters": [
+          {
+            "name": "Ted Lasso",
+            "source": "Ted Lasso",
+            "connection": "Ted approaches unfamiliar situations with radical optimism and an open heart, much like standing at the threshold of a new creative beginning without fearing a stumble."
+          }
+        ]
+      },
+      {
+        "card_id": "wands-01",
+        "position": "What is shifting",
+        "title": "Ace of Wands: The Creative Spark",
+        "interpretation": "An energetic shift is taking place inside your daily life, as a long-dormant creative spark demands attention and expression. Your enthusiasm is building up, looking for a practical outlet rather than remaining trapped as a vague daydream. This card indicates that the desire to make things is no longer a whisper; it is an active force asking you to run a small, manageable experiment.",
+        "pop_culture": null,
+        "quirky_interpretation": "It feels as though a tiny rocket booster has suddenly been strapped to your afternoon coffee break, urging you to turn your random daydreams into actual physical projects right now.",
+        "characters": [
+          {
+            "name": "Tony Stark",
+            "source": "Iron Man",
+            "connection": "Tony constantly channels sudden bursts of inspiration into rapid prototyping and tinkering, capturing the exact energy of an Ace of Wands demanding an immediate experiment."
+          }
+        ]
+      },
+      {
+        "card_id": "major-08",
+        "position": "Your next move",
+        "title": "Strength: Patient Courage",
+        "interpretation": "When it comes to making room for your new hobby amidst a busy life, your best approach is patient courage rather than brute force. Do not try to bully your schedule into submission or demand perfection from your first attempts. Instead, gently tame your inner critic with quiet persistence, allowing yourself the grace to learn slowly and steadily over time.",
+        "pop_culture": null,
+        "quirky_interpretation": "Treat your busy schedule like a wild lion that just needs a gentle chin scratch and a well-placed snack rather than a loud argument, guiding your time with soft persistence.",
+        "characters": [
+          {
+            "name": "Paddington",
+            "source": "Paddington",
+            "connection": "Paddington handles obstacles with gentle manners, immense warmth, and quiet resilience, perfectly embodying the spirit of patient strength."
+          }
+        ]
+      }
+    ]
+  }
+}

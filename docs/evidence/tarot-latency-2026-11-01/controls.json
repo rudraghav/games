@@ -1,0 +1,137 @@
+{
+  "state": "local controlled experiments; no production verification claimed",
+  "date": "2026-11-01",
+  "controls": [
+    {
+      "startedAt": "2026-11-01T17:09:15.600731+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "tier": "free",
+      "promptVersion": "pop-tarot-4",
+      "control": "thinking_level=minimal only; model/cast/schema/text unchanged",
+      "hardDeadlineSeconds": 30,
+      "maxAttempts": 1,
+      "cards": [
+        "major-00",
+        "wands-01",
+        "major-08"
+      ],
+      "questionType": "fixed nonpersonal hobby evaluation",
+      "validated": false,
+      "errorType": "ReadTimeout",
+      "seconds": 30.009,
+      "requestCount": 1,
+      "request": {
+        "model": "gemini-3.5-flash-lite",
+        "thinking_level": "minimal",
+        "max_output_tokens": 3600,
+        "store": false,
+        "payload_sha256": "daeef020254329587c03d9cb79819e32cf0fb7497a5bcfb6b41126314322aa10"
+      },
+      "usage": {}
+    },
+    {
+      "startedAt": "2026-11-01T17:11:44.177753+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "tier": "free",
+      "promptVersion": "pop-tarot-4",
+      "control": "55s deadline only; schema/model/cast/low effort unchanged",
+      "hardDeadlineSeconds": 55,
+      "maxAttempts": 1,
+      "cards": [
+        "major-00",
+        "wands-01",
+        "major-08"
+      ],
+      "questionType": "fixed nonpersonal hobby evaluation",
+      "validated": true,
+      "seconds": 26.723,
+      "requestCount": 1,
+      "request": {
+        "model": "gemini-3.5-flash-lite",
+        "thinking_level": "low",
+        "max_output_tokens": 3600,
+        "store": false,
+        "payload_sha256": "1b8c9b77a33259497f6cbb692e62d72b0c7dbdfb2427d512ae92f5f363991643"
+      },
+      "usage": {
+        "total_tokens": 1535,
+        "total_input_tokens": 863,
+        "input_tokens_by_modality": [
+          {
+            "modality": "text",
+            "tokens": 863
+          }
+        ],
+        "total_cached_tokens": 0,
+        "total_output_tokens": 672,
+        "total_tool_use_tokens": 0,
+        "total_thought_tokens": 0,
+        "initial_input_tokens": 2915
+      },
+      "layers": [
+        {
+          "card": "major-00",
+          "normalChars": 262,
+          "quirkyChars": 183,
+          "characters": [
+            "Ted Lasso"
+          ],
+          "distinctNormalAndQuirky": true
+        },
+        {
+          "card": "wands-01",
+          "normalChars": 212,
+          "quirkyChars": 184,
+          "characters": [
+            "Tony Stark"
+          ],
+          "distinctNormalAndQuirky": true
+        },
+        {
+          "card": "major-08",
+          "normalChars": 191,
+          "quirkyChars": 168,
+          "characters": [
+            "Hermione Granger"
+          ],
+          "distinctNormalAndQuirky": true
+        }
+      ]
+    },
+    {
+      "startedAt": "2026-11-01T17:11:44.166734+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "tier": "free",
+      "control": "fixed Hello baseline; low/max32/storefalse, no schema",
+      "hardDeadlineSeconds": 55,
+      "maxAttempts": 1,
+      "maxOutputTokens": 32,
+      "seconds": 26.643,
+      "requestCount": 1,
+      "usage": {
+        "total_tokens": 7,
+        "total_input_tokens": 5,
+        "input_tokens_by_modality": [
+          {
+            "modality": "text",
+            "tokens": 5
+          }
+        ],
+        "total_cached_tokens": 0,
+        "total_output_tokens": 2,
+        "total_tool_use_tokens": 0,
+        "total_thought_tokens": 0,
+        "initial_input_tokens": 4
+      },
+      "httpStatus": 200,
+      "status": "completed",
+      "responseChars": 6,
+      "helloPresent": true
+    }
+  ],
+  "sources": [
+    "https://ai.google.dev/gemini-api/docs/thinking",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-5-flash-lite?hl=en"
+  ],
+  "conclusion": "The successful normal structured reading and tiny Hello have nearly equal latency. This is consistent with baseline provider/transport overhead close to the old30s read cap, rather than an observed schema or thinking benefit. One controlled minimal request also reached30s. No success beyond30s was observed; exact overhead cause is unproven."
+}

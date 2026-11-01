@@ -72,3 +72,49 @@ Deal editions, retaining every wild orientation. PlayingCard owns the shared
 24-effect motifs, ten group scenes, full allowed-color bands and accessible
 orientation labels. Renderers forward validated metadata instead of inferring
 actions from subtitles. Presentation coverage is separate from engine rules.
+
+## Shithead
+
+`shithead/ShitheadTable` composes the shared standard PlayingCard/Hand/Seat system.
+Setup exposes only the viewer's six candidates; selecting exactly three locks
+public table cards. The same-rank hand selector sends an actual enumerated legal
+option, and face-up pickup requires selecting its added card. Hidden slots are
+anonymous backs with occupied/cleared state; only legal own flips are buttons.
+No hidden rank or identity exists in the renderer. Rank/suit sorting preserves
+card IDs; pending, missing-presence and out-of-turn views disable moves.
+
+The API-client `shitheadDetails` parser owns stages/counts/slot booleans, pile
+comparison, optional rule flags, public last play, finish order and loser. The
+engine—not presentation—decides when a blind play fails and who loses. Its
+unscored outcome has all escaped player IDs as winners, never the last player.
+Stories cover setup, five seats, pending and disconnected. Focused real-browser
+checks select setup cards, commit a hand play, reload the saved state and verify
+stale-version rejection/room closure; full solo acceptance uses the actual bot
+client driver through the shared harness.
+
+## Casino transitions
+
+`casino-transitions` compares only authorized projections. It animates contiguous
+versions of the same unpaused match, reads allowlisted public receipt amounts,
+and preserves hidden backs as anonymous slots. Refresh, jumps, rematches and the
+first foreground/reconnect snapshot establish a baseline. `useCasinoMotion`
+expires transient cues; the latest committed public action stays readable.
+
+`CasinoMotion` composes the shared PlayingCard and TokenArt with short card/layout
+changes and actual DOM-measured chip paths. Amounts/actions update immediately;
+motion never locks controls or drives turns. The existing `useMediaQuery` applies
+Reduce Motion changes during play. Split blackjack reuses known card identities,
+keeps separate bets/active hands, and scrolls only its own hand rail on a hand shift.
+The single `casino-layout` width container owns the ring/grid fallback.
+
+`scripts/export_casino_motion.py` exports complete legal authorized-view sequences
+for Hold'em, Teen Patti and split blackjack. Its `--check` verifies 49 deterministic
+snapshots. Storybook Casino motion provides next-move, jump, refresh and pause
+controls. Focused verification/evidence is in
+`docs/evidence/casino-motion-2026-11-01`; it supplements real-room release tests.
+
+Enabling Reduce Motion cancels its current event, so restoring the preference
+cannot replay an earlier payment or reveal. The opt-in mounted regression in
+`tests/browser/casino-motion.spec.ts` uses `GAMES_STORYBOOK_URL` and covers both
+widths without creating rooms. Blackjack's total is labeled hand bets because
+the projected main/split/double sum excludes the separate insurance stake.

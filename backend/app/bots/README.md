@@ -82,3 +82,10 @@ Trio observation and transparent party behavior. Each natural scenario asserts a
 generous two-second upper bound per policy call to catch unbounded searches.
 Ruff and mypy pass for all eight policy source files. This is local algorithm
 proof; the platform's HTTP/browser and production gates are separate.
+
+Shithead adds own-six-card setup ranking, legal equal-rank sets and blind occupied
+slot choices. Only own cards and public ranks/counts inform the policy; hidden
+slots are never inspected. A bounded64-entry hash history recognizes repeated
+own/public rank situations. Varied legal plays and occasional voluntary pickup
+break greedy high-pair cycles without inventing a draw, turn deadline or forced
+loser. All movement and loser-last scoring remain authoritative engine rules.

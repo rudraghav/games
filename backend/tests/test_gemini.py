@@ -193,6 +193,35 @@ def test_transport_timeout_is_not_automatically_repeated(monkeypatch):
     assert len(calls) == 1
 
 
+@pytest.mark.parametrize("first_seconds", [40, 61])
+def test_slow_read_has_headroom_without_resetting_the_total_retry_deadline(monkeypatch, first_seconds):
+    real_client = httpx.Client
+    clock = [0.0]
+    timeouts = []
+
+    def respond(request):
+        timeouts.append(request.extensions["timeout"])
+        if len(timeouts) == 1:
+            clock[0] = first_seconds
+            return httpx.Response(200, json=provider_body("{"))
+        return httpx.Response(200, json=provider_body(json.dumps(example_reading(CARDS))))
+
+    monkeypatch.setattr("app.games.tarot.reading.time.monotonic", lambda: clock[0])
+    monkeypatch.setattr(
+        "app.games.tarot.reading.httpx.Client",
+        lambda **kwargs: real_client(transport=httpx.MockTransport(respond), **kwargs),
+    )
+    if first_seconds > 60:
+        with pytest.raises(ReadingOutputError):
+            generate_reading(CARDS, "")
+        assert len(timeouts) == 1
+    else:
+        assert len(generate_reading(CARDS, "").cards) == 3
+        assert timeouts[1]["read"] == 20
+    assert timeouts[0]["read"] == 45
+    assert all(timeout["connect"] == 5 for timeout in timeouts)
+
+
 def test_retry_requires_its_own_budget_reservation_before_transmission(monkeypatch):
     calls = mock_provider(monkeypatch, [httpx.Response(200, json=provider_body("{"))])
     attempts = []

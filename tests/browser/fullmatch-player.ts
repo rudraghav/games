@@ -2,6 +2,7 @@ import type { components } from '../../packages/api-client/src/generated/schema'
 import { modernPlayer } from './modern-player';
 import { coopNumberAction } from './coop-number-player';
 import { seaCatsAction } from './sea-cats-player';
+import { shitheadPlayer } from './shithead-player';
 
 type Game = components['schemas']['GameView'];
 type Option = components['schemas']['LegalAction'];
@@ -10,6 +11,7 @@ type Action = components['schemas']['Action'];
 /** Decisions use only this actor's authorized projection, never engine state. */
 export function matchPlayer(seed = 73) {
   const modern = modernPlayer();
+  const palace = shitheadPlayer();
   let value = seed;
   const pick = <T>(values: T[]) => {
     value = (Math.imul(value, 1664525) + 1013904223) >>> 0;
@@ -18,7 +20,8 @@ export function matchPlayer(seed = 73) {
   return (game: Game): Action => {
     const options = game.actions || [];
     if (!options.length) throw new Error('The current player has no legal decisions.');
-    const expansionAction = coopNumberAction(game, pick) || seaCatsAction(game, pick);
+    const expansionAction =
+      coopNumberAction(game, pick) || seaCatsAction(game, pick) || palace(game, pick);
     if (expansionAction) return expansionAction;
     const modernAction = modern(game, pick);
     if (modernAction) return modernAction;

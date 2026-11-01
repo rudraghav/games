@@ -1,4 +1,66 @@
 @layer components {
+  .tarot-character-connections li[data-has-portrait='true'] {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    align-items: start;
+    gap: 18px;
+  }
+  .tarot-character-portrait {
+    margin: 0;
+    min-width: 0;
+  }
+  .tarot-character-portrait img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 14px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-muted);
+  }
+  .tarot-character-portrait figcaption {
+    font-size: 10px;
+    line-height: 1.4;
+    color: var(--color-ink-muted);
+    margin-top: 6px;
+    overflow-wrap: anywhere;
+  }
+  .tarot-character-copy {
+    min-width: 0;
+  }
+  .tarot-character-copy > p:last-child {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-top: 8px;
+  }
+  .tarot-image-credits {
+    border-top: 1px solid var(--color-border);
+    padding-block: 8px;
+    font-size: 12px;
+    color: var(--color-ink-muted);
+  }
+  .tarot-image-credits summary {
+    min-height: 44px;
+    align-content: center;
+    cursor: pointer;
+  }
+  .tarot-image-credits ul {
+    display: grid;
+    gap: 10px;
+    padding: 8px 0 8px 20px;
+  }
+  .tarot-image-credits a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  @media (max-width: 600px) {
+    .tarot-character-connections li[data-has-portrait='true'] {
+      grid-template-columns: 88px minmax(0, 1fr);
+      gap: 12px;
+    }
+  }
   .modal--sticky-heading .modal-heading {
     position: sticky;
     top: 0;

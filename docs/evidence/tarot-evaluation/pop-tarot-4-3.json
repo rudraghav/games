@@ -1,0 +1,58 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "pop-tarot-4",
+  "seconds": 26.67,
+  "question": "",
+  "reading": {
+    "title": "A Gentle Tarot Reflection",
+    "introduction": "Sometimes life presents us with choices wrapped in blindfolds and balanced on tightropes. Let us look at these three cards together to see what wisdom and gentle perspective they might offer for your journey today.",
+    "next_step": "Take five quiet minutes today to write down just one detail you want to improve, then take a single small action toward it.",
+    "cards": [
+      {
+        "card_id": "swords-02",
+        "position": "Where you are",
+        "title": "The Weight of Hesitation",
+        "interpretation": "A difficult choice needs information as well as quiet; postponing it also has a cost. You find yourself at a standstill, weighing options where every path seems to carry a heavy armor. Avoid the trap of indefinite waiting, but grant yourself the clarity of gathering facts before you leap.",
+        "pop_culture": null,
+        "quirky_interpretation": "You are currently standing in a metaphorical hallway with your arms crossed so tightly against incoming carrier pigeons that you might accidentally hatch an egg on your shoulder. Put down the invisible shield and peek through your fingers.",
+        "characters": [
+          {
+            "name": "Sherlock Holmes",
+            "source": "Sherlock Holmes",
+            "connection": "Much like Sherlock staring at a blank wall until the crucial clue drops into place, you are currently pausing to gather information before making a definitive move."
+          }
+        ]
+      },
+      {
+        "card_id": "major-11",
+        "position": "What is shifting",
+        "title": "The Scales of Balance",
+        "interpretation": "Look at consequences, fairness and your responsibility in a choice. The scales are tipping, asking you to examine what is truly equitable and where your personal accountability lies in the unfolding dynamics around you.",
+        "pop_culture": null,
+        "quirky_interpretation": "Karma is gently tapping you on the shoulder with a clipboard, asking if you remembered to sign the permission slip for your own life choices. The universe is balancing its books, and every ledger is getting a thorough audit.",
+        "characters": [
+          {
+            "name": "Mulan",
+            "source": "Mulan",
+            "connection": "Like Mulan stepping up to weigh her duty to her family against her own path, you are reevaluating fairness, responsibility, and the true consequences of your choices."
+          }
+        ]
+      },
+      {
+        "card_id": "pentacles-08",
+        "position": "Your next move",
+        "title": "The Craftsperson's Focus",
+        "interpretation": "Patient practice builds skill; improve one small detail rather than chasing instant mastery. Instead of trying to reinvent your entire world overnight, focus on the rhythm of daily craftsmanship and small, steady improvements.",
+        "pop_culture": null,
+        "quirky_interpretation": "Channel your inner artisan carving tiny wooden ducks. Ignore the grand sculpture exhibition for a moment and just focus on sanding that one particularly stubborn wing until it is remarkably smooth.",
+        "characters": [
+          {
+            "name": "Leslie Knope",
+            "source": "Parks and Recreation",
+            "connection": "Emulating Leslie's legendary binder-level dedication to incremental progress, your next move is to roll up your sleeves and lovingly refine the details one step at a time."
+          }
+        ]
+      }
+    ]
+  }
+}

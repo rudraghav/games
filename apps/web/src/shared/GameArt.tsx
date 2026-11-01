@@ -1,9 +1,10 @@
 import {
-  DevelopmentCard,
+  GemDistrictArt,
   WordTile,
   PlayingCard,
   TarotCard,
   MancalaPit,
+  TokenArt,
   type CardPresentation,
 } from '@games/ui';
 import type { Game } from '@games/api-client/catalog';
@@ -11,11 +12,42 @@ import { optimizeCardArt } from './card-art';
 import { ModernArtwork } from './ModernArtwork';
 import { PartyArtwork } from './PartyArtwork';
 import { ContemporaryArtwork } from './ContemporaryArtwork';
+import { Flame } from 'lucide-react';
 
-function card(value: string, color: string, suit = '', subtitle = ''): CardPresentation {
-  return { id: `${color}-${value}`, label: value, value, color, suit, subtitle };
+function card(
+  value: string,
+  color: string,
+  suit = '',
+  subtitle = '',
+  face: Pick<CardPresentation, 'colors' | 'effect'> = {},
+): CardPresentation {
+  return {
+    id: `${color}-${value}`,
+    label: subtitle || value,
+    value,
+    color,
+    suit,
+    subtitle,
+    ...face,
+  };
 }
 export function GameArt({ game }: { game: Game }) {
+  if (game.id === 'shithead')
+    return (
+      <div className="game-art game-art--palace" aria-hidden="true">
+        <div className="palace-cover-row palace-cover-row--backs">
+          {[0, 1, 2].map((i) => (
+            <PlayingCard key={i} faceDown />
+          ))}
+        </div>
+        <div className="palace-cover-row palace-cover-row--faces">
+          {[card('2', 'ink', '♣'), card('10', 'red', '♦'), card('K', 'ink', '♠')].map((face) => (
+            <PlayingCard key={face.id} card={face} />
+          ))}
+        </div>
+        <Flame className="palace-cover-flame" />
+      </div>
+    );
   if (['the-gang', 'six-nimmt', 'sea-salt-paper', 'boop'].includes(game.id))
     return <ContemporaryArtwork gameId={game.id} />;
   if (['flip-7', 'trio', 'azul'].includes(game.id)) return <ModernArtwork gameId={game.id} />;
@@ -23,18 +55,11 @@ export function GameArt({ game }: { game: Game }) {
   if (game.id === 'checkers')
     return (
       <div className="game-art game-art--checkers" aria-hidden="true">
-        {Array.from({ length: 36 }, (_, i) => (
-          <span key={i} data-dark={(Math.floor(i / 6) + (i % 6)) % 2 === 1}>
-            <span
-              className="board-disc"
-              data-color={
-                (Math.floor(i / 6) + (i % 6)) % 2 === 1 && (i < 12 || i >= 24)
-                  ? i < 12
-                    ? 'ivory'
-                    : 'coral'
-                  : 'empty'
-              }
-            />
+        {Array.from({ length: 64 }, (_, i) => (
+          <span key={i} data-dark={(Math.floor(i / 8) + (i % 8)) % 2 === 1}>
+            {(Math.floor(i / 8) + (i % 8)) % 2 === 1 && (i < 24 || i >= 40) ? (
+              <TokenArt kind={i < 24 ? 'ivory' : 'coral'} />
+            ) : null}
           </span>
         ))}
       </div>
@@ -53,23 +78,26 @@ export function GameArt({ game }: { game: Game }) {
     );
   if (game.family === 'board')
     return (
-      <div className="game-art game-art--board" aria-hidden="true">
-        {Array.from({ length: 35 }, (_, i) => (
-          <span
-            key={i}
-            data-disc={
-              i > 13 && (i % 3 === 0 || i > 27)
-                ? game.id === 'reversi'
-                  ? i % 2
-                    ? 'ivory'
-                    : 'ink'
-                  : i % 2
-                    ? 'gold'
-                    : 'coral'
-                : 'empty'
-            }
-          />
-        ))}
+      <div className="game-art game-art--board" data-board={game.id} aria-hidden="true">
+        {Array.from({ length: game.id === 'reversi' ? 64 : 42 }, (_, i) => {
+          const piece =
+            game.id === 'reversi'
+              ? i === 27 || i === 36
+                ? 'ivory'
+                : i === 28 || i === 35
+                  ? 'ink'
+                  : null
+              : i >= 28 && (i % 3 === 0 || i >= 35)
+                ? i % 2
+                  ? 'gold'
+                  : 'coral'
+                : null;
+          return (
+            <span key={i} data-disc={piece || 'empty'}>
+              {piece ? <TokenArt kind={piece} /> : null}
+            </span>
+          );
+        })}
       </div>
     );
   if (game.family === 'words')
@@ -89,18 +117,8 @@ export function GameArt({ game }: { game: Game }) {
   if (game.family === 'gems')
     return (
       <div className="game-art game-art--gems" aria-hidden="true">
-        <DevelopmentCard
-          name="Sapphire Guild"
-          bonus="sapphire"
-          points={2}
-          cost={{ ruby: 2, emerald: 3 }}
-        />
-        <DevelopmentCard
-          name="Emerald Palace"
-          bonus="emerald"
-          points={4}
-          cost={{ sapphire: 3, onyx: 5 }}
-        />
+        <GemDistrictArt color="sapphire" tier={2} />
+        <GemDistrictArt color="emerald" tier={3} />
       </div>
     );
   if (game.family === 'tarot')
@@ -126,23 +144,26 @@ export function GameArt({ game }: { game: Game }) {
   const cards =
     game.family === 'shedding'
       ? [
-          card('7', 'red'),
+          card(game.id.includes('mercy') ? 'Discard all' : '7', 'red'),
           card(
-            game.id.includes('mercy') ? '+10' : '2',
+            game.id.includes('mercy') ? '+10' : '+2',
             game.id.includes('mercy') ? 'wild' : 'yellow',
           ),
-          card('↻', 'blue'),
+          card(game.id.includes('mercy') ? 'Skip everyone' : 'Reverse', 'blue'),
         ]
       : game.family === 'property'
         ? [
-            card('4M', 'green', 'property', 'Garden district'),
+            card('4M', 'green', 'property', 'Green property', { colors: ['green'] }),
             card(
-              game.id.includes('mercy') ? '2M' : '3M',
+              game.id.includes('mercy') ? '2M' : '1M',
               'neutral',
               'action',
               game.id.includes('mercy') ? 'Yoink!' : 'Rent',
+              game.id.includes('mercy')
+                ? { effect: 'yoink' }
+                : { effect: 'rent', colors: ['green', 'blue'] },
             ),
-            card('4M', 'blue', 'property', 'Park avenue'),
+            card('4M', 'blue', 'property', 'Dark blue property', { colors: ['blue'] }),
           ]
         : game.id === 'rummy'
           ? [card('6', 'red', '♥'), card('7', 'red', '♥'), card('8', 'red', '♥')]
@@ -152,10 +173,20 @@ export function GameArt({ game }: { game: Game }) {
   const family =
     game.family === 'shedding' ? 'shedding' : game.family === 'property' ? 'property' : 'standard';
   return (
-    <div className="game-art" aria-hidden="true">
+    <div
+      className={`game-art${game.family === 'casino' ? ' game-art--casino' : ''}`}
+      aria-hidden="true"
+    >
       {cards.map((card, i) => (
         <PlayingCard key={i} card={card} family={family} />
       ))}
+      {game.family === 'casino' ? (
+        <span className="casino-cover-chips">
+          <TokenArt kind="poker" />
+          <TokenArt kind="poker" />
+          <TokenArt kind="poker" />
+        </span>
+      ) : null}
     </div>
   );
 }

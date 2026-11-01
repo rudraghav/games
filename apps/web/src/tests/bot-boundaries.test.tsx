@@ -68,7 +68,8 @@ describe('Bot identity, discovery and proxy boundaries', () => {
     expect(findGames(games, 'monoply', 2, 'cards').map((g) => g.id)).toContain('deal');
     expect(findGames(games, 'monoply', 2, 'boards')).toEqual([]);
     expect(findGames(games, 'not-a-real-game-zxq', 0, 'all')).toEqual([]);
-    expect(findGames(games, '', 1, 'solo')).toHaveLength(26);
-    expect(games.filter((g) => g.botsSupported)).toHaveLength(25);
+    expect(findGames(games, '', 1, 'solo')).toHaveLength(games.length);
+    expect(games.filter((g) => g.botsSupported)).toHaveLength(games.length - 1);
+    expect(games.find((g) => g.id === 'tarot')?.botsSupported).toBe(false);
   });
 });

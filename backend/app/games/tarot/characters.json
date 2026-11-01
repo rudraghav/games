@@ -1,0 +1,500 @@
+[
+  {
+    "id": "mulan",
+    "name": "Mulan",
+    "source": "Mulan",
+    "lane": "animation and animated films",
+    "aliases": [
+      "Fa Mulan",
+      "Hua Mulan"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "moana",
+    "name": "Moana",
+    "source": "Moana",
+    "lane": "animation and animated films",
+    "aliases": [
+      "Moana Waialiki"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "elsa",
+    "name": "Elsa",
+    "source": "Frozen",
+    "lane": "animation and animated films",
+    "aliases": [
+      "Queen Elsa"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "joy",
+    "name": "Joy",
+    "source": "Inside Out",
+    "lane": "animation and animated films",
+    "aliases": [],
+    "sourceAliases": []
+  },
+  {
+    "id": "shrek",
+    "name": "Shrek",
+    "source": "Shrek",
+    "lane": "animation and animated films",
+    "aliases": [],
+    "sourceAliases": []
+  },
+  {
+    "id": "miguel",
+    "name": "Miguel Rivera",
+    "source": "Coco",
+    "lane": "animation and animated films",
+    "aliases": [
+      "Miguel"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "mirabel",
+    "name": "Mirabel Madrigal",
+    "source": "Encanto",
+    "lane": "animation and animated films",
+    "aliases": [
+      "Mirabel"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "chihiro",
+    "name": "Chihiro Ogino",
+    "source": "Spirited Away",
+    "lane": "animation and animated films",
+    "aliases": [
+      "Chihiro",
+      "Sen"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "geet",
+    "name": "Geet Dhillon",
+    "source": "Jab We Met",
+    "lane": "Indian cinema or television",
+    "aliases": [
+      "Geet"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "rancho",
+    "name": "Rancho",
+    "source": "3 Idiots",
+    "lane": "Indian cinema or television",
+    "aliases": [
+      "Ranchhoddas Chanchad",
+      "Phunsukh Wangdu"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "poo",
+    "name": "Poo",
+    "source": "Kabhi Khushi Kabhie Gham",
+    "lane": "Indian cinema or television",
+    "aliases": [],
+    "sourceAliases": [
+      "K3G"
+    ]
+  },
+  {
+    "id": "rani",
+    "name": "Rani Mehra",
+    "source": "Queen",
+    "lane": "Indian cinema or television",
+    "aliases": [
+      "Rani"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "bunny",
+    "name": "Bunny",
+    "source": "Yeh Jawaani Hai Deewani",
+    "lane": "Indian cinema or television",
+    "aliases": [
+      "Kabir Thapar"
+    ],
+    "sourceAliases": [
+      "YJHD"
+    ]
+  },
+  {
+    "id": "circuit",
+    "name": "Circuit",
+    "source": "Munna Bhai M.B.B.S.",
+    "lane": "Indian cinema or television",
+    "aliases": [],
+    "sourceAliases": [
+      "Munna Bhai"
+    ]
+  },
+  {
+    "id": "pushpa",
+    "name": "Pushpa Raj",
+    "source": "Pushpa",
+    "lane": "Indian cinema or television",
+    "aliases": [
+      "Pushpa"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "michael-scott",
+    "name": "Michael Scott",
+    "source": "The Office",
+    "lane": "sitcoms and comedy series",
+    "aliases": [
+      "Michael Gary Scott"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "leslie-knope",
+    "name": "Leslie Knope",
+    "source": "Parks and Recreation",
+    "lane": "sitcoms and comedy series",
+    "aliases": [],
+    "sourceAliases": [
+      "Parks and Rec"
+    ]
+  },
+  {
+    "id": "fleabag",
+    "name": "Fleabag",
+    "source": "Fleabag",
+    "lane": "sitcoms and comedy series",
+    "aliases": [],
+    "sourceAliases": []
+  },
+  {
+    "id": "ted-lasso",
+    "name": "Ted Lasso",
+    "source": "Ted Lasso",
+    "lane": "sitcoms and comedy series",
+    "aliases": [],
+    "sourceAliases": []
+  },
+  {
+    "id": "phoebe-buffay",
+    "name": "Phoebe Buffay",
+    "source": "Friends",
+    "lane": "sitcoms and comedy series",
+    "aliases": [
+      "Phoebe"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "chidi",
+    "name": "Chidi Anagonye",
+    "source": "The Good Place",
+    "lane": "sitcoms and comedy series",
+    "aliases": [
+      "Chidi"
+    ],
+    "sourceAliases": [
+      "The Good Place"
+    ]
+  },
+  {
+    "id": "holt",
+    "name": "Raymond Holt",
+    "source": "Brooklyn Nine-Nine",
+    "lane": "sitcoms and comedy series",
+    "aliases": [
+      "Captain Holt",
+      "Captain Raymond Holt"
+    ],
+    "sourceAliases": [
+      "Brooklyn 99"
+    ]
+  },
+  {
+    "id": "wednesday",
+    "name": "Wednesday Addams",
+    "source": "Wednesday",
+    "lane": "sitcoms and comedy series",
+    "aliases": [
+      "Wednesday"
+    ],
+    "sourceAliases": [
+      "The Addams Family"
+    ]
+  },
+  {
+    "id": "link",
+    "name": "Link",
+    "source": "The Legend of Zelda",
+    "lane": "video games",
+    "aliases": [],
+    "sourceAliases": [
+      "Zelda",
+      "Breath of the Wild"
+    ]
+  },
+  {
+    "id": "zelda",
+    "name": "Princess Zelda",
+    "source": "The Legend of Zelda",
+    "lane": "video games",
+    "aliases": [
+      "Zelda"
+    ],
+    "sourceAliases": [
+      "Zelda",
+      "Breath of the Wild"
+    ]
+  },
+  {
+    "id": "lara-croft",
+    "name": "Lara Croft",
+    "source": "Tomb Raider",
+    "lane": "video games",
+    "aliases": [],
+    "sourceAliases": []
+  },
+  {
+    "id": "peach",
+    "name": "Princess Peach",
+    "source": "Super Mario",
+    "lane": "video games",
+    "aliases": [
+      "Peach"
+    ],
+    "sourceAliases": [
+      "Super Mario Bros"
+    ]
+  },
+  {
+    "id": "kratos",
+    "name": "Kratos",
+    "source": "God of War",
+    "lane": "video games",
+    "aliases": [],
+    "sourceAliases": []
+  },
+  {
+    "id": "mario",
+    "name": "Mario",
+    "source": "Super Mario",
+    "lane": "video games",
+    "aliases": [],
+    "sourceAliases": [
+      "Super Mario Bros"
+    ]
+  },
+  {
+    "id": "leia",
+    "name": "Princess Leia",
+    "source": "Star Wars",
+    "lane": "fantasy or science-fiction",
+    "aliases": [
+      "Leia",
+      "Leia Organa",
+      "General Leia Organa"
+    ],
+    "sourceAliases": [
+      "Star Wars"
+    ]
+  },
+  {
+    "id": "shuri",
+    "name": "Shuri",
+    "source": "Black Panther",
+    "lane": "fantasy or science-fiction",
+    "aliases": [],
+    "sourceAliases": [
+      "Marvel",
+      "Marvel Cinematic Universe",
+      "MCU",
+      "Wakanda Forever"
+    ]
+  },
+  {
+    "id": "rey",
+    "name": "Rey",
+    "source": "Star Wars",
+    "lane": "fantasy or science-fiction",
+    "aliases": [],
+    "sourceAliases": []
+  },
+  {
+    "id": "spock",
+    "name": "Spock",
+    "source": "Star Trek",
+    "lane": "fantasy or science-fiction",
+    "aliases": [
+      "Mr Spock"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "gandalf",
+    "name": "Gandalf",
+    "source": "The Lord of the Rings",
+    "lane": "fantasy or science-fiction",
+    "aliases": [
+      "Gandalf the Grey",
+      "Gandalf the White"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "tony-stark",
+    "name": "Tony Stark",
+    "source": "Iron Man",
+    "lane": "fantasy or science-fiction",
+    "aliases": [
+      "Iron Man"
+    ],
+    "sourceAliases": [
+      "Marvel",
+      "Marvel Cinematic Universe",
+      "MCU",
+      "Avengers"
+    ]
+  },
+  {
+    "id": "miles-morales",
+    "name": "Miles Morales",
+    "source": "Spider-Man: Into the Spider-Verse",
+    "lane": "fantasy or science-fiction",
+    "aliases": [
+      "Miles"
+    ],
+    "sourceAliases": [
+      "Spider-Man",
+      "Marvel",
+      "Spider-Verse"
+    ]
+  },
+  {
+    "id": "sherlock",
+    "name": "Sherlock Holmes",
+    "source": "Sherlock Holmes",
+    "lane": "drama or mystery series",
+    "aliases": [
+      "Sherlock"
+    ],
+    "sourceAliases": [
+      "Sherlock",
+      "The Adventures of Sherlock Holmes"
+    ]
+  },
+  {
+    "id": "beth-harmon",
+    "name": "Beth Harmon",
+    "source": "The Queen's Gambit",
+    "lane": "drama or mystery series",
+    "aliases": [
+      "Beth"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "annalise",
+    "name": "Annalise Keating",
+    "source": "How to Get Away with Murder",
+    "lane": "drama or mystery series",
+    "aliases": [
+      "Annalise"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "katniss",
+    "name": "Katniss Everdeen",
+    "source": "The Hunger Games",
+    "lane": "drama or mystery series",
+    "aliases": [
+      "Katniss"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "eleven",
+    "name": "Eleven",
+    "source": "Stranger Things",
+    "lane": "drama or mystery series",
+    "aliases": [],
+    "sourceAliases": []
+  },
+  {
+    "id": "villanelle",
+    "name": "Villanelle",
+    "source": "Killing Eve",
+    "lane": "drama or mystery series",
+    "aliases": [],
+    "sourceAliases": []
+  },
+  {
+    "id": "hermione",
+    "name": "Hermione Granger",
+    "source": "Harry Potter",
+    "lane": "books or comics",
+    "aliases": [
+      "Hermione"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "harry-potter",
+    "name": "Harry Potter",
+    "source": "Harry Potter",
+    "lane": "books or comics",
+    "aliases": [
+      "Harry"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "matilda",
+    "name": "Matilda Wormwood",
+    "source": "Matilda",
+    "lane": "books or comics",
+    "aliases": [
+      "Matilda"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "elizabeth-bennet",
+    "name": "Elizabeth Bennet",
+    "source": "Pride and Prejudice",
+    "lane": "books or comics",
+    "aliases": [],
+    "sourceAliases": []
+  },
+  {
+    "id": "frodo",
+    "name": "Frodo Baggins",
+    "source": "The Lord of the Rings",
+    "lane": "books or comics",
+    "aliases": [
+      "Frodo"
+    ],
+    "sourceAliases": []
+  },
+  {
+    "id": "paddington",
+    "name": "Paddington",
+    "source": "Paddington",
+    "lane": "books or comics",
+    "aliases": [
+      "Paddington Bear"
+    ],
+    "sourceAliases": []
+  }
+]

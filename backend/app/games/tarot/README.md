@@ -26,8 +26,12 @@ parallel) for each card. Characters cannot repeat within a spread. A stable
 rotation of broad reference genres across the three cards encourages variety
 without another provider call or retaining a user's earlier readings. Humour
 targets situations rather than mocking hardship or feelings.
-All references to films, characters or music are written analogies; no licensed character artwork,
-dialogue or lyrics are bundled.
+References to films and characters are written analogies; dialogue and lyrics
+are not bundled. Fresh v4 readings choose from a documented 48-reference cast.
+Each reference has a local, licensed performer portrait (46) or clearly labeled
+cosplay photo (2), with credit, license and source links. A performer photo is
+captioned as a performer, never represented as a film still or original character
+illustration. Historical references outside this cast remain readable as text.
 
 After three picks, the player explicitly requests a personal AI reading.
 `reading.py` owns the compact prompt, schema and provider adapter; engines never
@@ -60,18 +64,29 @@ See https://ai.google.dev/gemini-api/docs/pricing.
 
 Provider: Google Gemini Interactions API with JSON Schema output, storage off,
 low thinking level and a 3,600-token output cap. Default model is configurable
-through `TAROT_MODEL`. The `pop-tarot-3` provider schema binds each of the three
+through `TAROT_MODEL`. The `pop-tarot-4` provider schema binds each of the three
 ordered card IDs and positions using supported `prefixItems`/single-value enums.
 Google ignores JSON Schema string-length constraints; descriptions communicate
 the character ranges and strict Pydantic validation remains authoritative. A
 completed but malformed/invalid response or partial truncated response receives
 at most one fresh generation with a safe failure classification, never rejected
 text. Failed, canceled, empty/safety, HTTP quota/auth and transport responses do
-not retry automatically. A 60-second retry deadline and 30-second request timeout
+not retry automatically. A 60-second retry deadline and 45-second per-request cap
 fit within the 75-second frontend proxy and 120-second saved-generation lease.
 Both attempts reserve the transactional daily budget before transmission.
+The per-request cap was raised from 30 seconds after a fresh phone request timed
+out and controlled calls measured about 27 seconds even for a two-token reply.
+Schema removal and minimal thinking did not remove the delay. The model, effort,
+output cap, total retry deadline, proxy timeout and generation lease are unchanged;
+the second attempt receives only the remaining total budget. This adds margin
+for provider latency without automatically repeating a transport failure.
 Fresh-output validation requires all new reading sections and rejects repeated
 characters, unnamed sources, missing/oversized explanations and extra fields.
+Fresh name/source pairs must match the curated cast, including explicit aliases;
+substring matches are rejected. Each card receives a rotating genre's permitted
+references, while the provider schema lists the public cast's names. The public
+frontend registry is generated from this same cast and the licensed asset manifest
+with `scripts/export_tarot_characters.py`; contract checks reject drift.
 The persisted/API model independently accepts older `pop_culture` paragraphs;
 loading those readings never fabricates quirky text or silently generates again.
 

@@ -115,7 +115,10 @@ test('personal cloud: all games, private views, revisions and a saved reading', 
       expect(option).toBeTruthy();
       const action = { ...option.action };
       if (option.input === 'amount') action.amount = option.minimum ?? 0;
-      if (option.input === 'cards') action.cards = option.eligible_cards;
+      if (option.input === 'cards') {
+        const eligible = option.eligible_cards || [];
+        action.cards = eligible.slice(0, option.maximum ?? eligible.length);
+      }
       if (option.input === 'text') action.choice = 'galactic';
       const payload = {
         match_id: view.match_id,

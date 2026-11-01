@@ -35,6 +35,7 @@ No Mercy house deck are not advertised as exact reproductions of another deck.
 | 6 nimmt! | 2–10 | 104-card inventory, private simultaneous locks, ascending reveal, sixth-card/low-row decisions, bullhead penalties and 66-point end | [6 nimmt!](../backend/app/games/six_nimmt/README.md) |
 | Sea Salt & Paper | 2–4 | Exact 58-card/color inventory, private stock/discard choices, duo effects, protected Last Chance hands, scoring and mermaid finish | [Sea Salt & Paper](../backend/app/games/sea_salt_paper/README.md) |
 | boop. | 2 | 32-piece conservation, kitten/cat displacement, blocked lines, active-player graduation and win timing | [boop.](../backend/app/games/boop/README.md) |
+| Shithead | 2–5 | 52-card conservation, three-card setup, ascending/same-rank plays, reset twos, ten/four-kind burns, refills, face-up pickup and blind failure, final loser; optional seven-low/transparent-three off by default | [Shithead](../backend/app/games/shithead/README.md) |
 
 `test_card_family_rules.py`, `test_table_rules.py`, `test_new_boards.py` and existing
 edge tests assert independent exact states/results, not merely acceptance of an

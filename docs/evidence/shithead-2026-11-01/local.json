@@ -1,0 +1,100 @@
+{
+  "state": "local only, uncommitted source",
+  "rules": "https://www.pagat.com/beating/shithead.html",
+  "focusedEngineCases": 38,
+  "genericAndPolicyCases": 11,
+  "isolatedHttpCases": 2,
+  "realRoomBrowserCases": 4,
+  "finalMinMaxGeometryCases": 2,
+  "frontendUnits": 3,
+  "solo": [
+    {
+      "startedAt": "2026-11-01T16:39:02.961Z",
+      "origin": "http://127.0.0.1:3217",
+      "hosted": false,
+      "project": "desktop",
+      "checkoutSha": "3335cdae185b74247535202aa2d08fa8c3abca95",
+      "sourceState": "uncommitted local workspace",
+      "complete": true,
+      "cleanup": true,
+      "cases": [
+        {
+          "game": "shithead",
+          "seats": 2,
+          "botCount": 1,
+          "humanMoves": 38,
+          "finalVersion": 75,
+          "clientDrives": 36,
+          "result": true,
+          "history": true,
+          "profile": true,
+          "rematch": true,
+          "switch": true,
+          "roomClosed": true
+        }
+      ]
+    },
+    {
+      "startedAt": "2026-11-01T16:39:02.961Z",
+      "origin": "http://127.0.0.1:3217",
+      "hosted": false,
+      "project": "phone",
+      "checkoutSha": "3335cdae185b74247535202aa2d08fa8c3abca95",
+      "sourceState": "uncommitted local workspace",
+      "complete": true,
+      "cleanup": true,
+      "cases": [
+        {
+          "game": "shithead",
+          "seats": 2,
+          "botCount": 1,
+          "humanMoves": 32,
+          "finalVersion": 65,
+          "clientDrives": 32,
+          "result": true,
+          "history": true,
+          "profile": true,
+          "rematch": true,
+          "switch": true,
+          "roomClosed": true
+        }
+      ]
+    }
+  ],
+  "independentHumanFullMatchCases": 4,
+  "fullMatchSourceState": "uncommitted local workspace",
+  "fullMatchCases": [
+    {
+      "width": "desktop",
+      "game": "shithead",
+      "seats": 2,
+      "moves": 59,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "width": "desktop",
+      "game": "shithead",
+      "seats": 5,
+      "moves": 107,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "width": "phone",
+      "game": "shithead",
+      "seats": 2,
+      "moves": 57,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "width": "phone",
+      "game": "shithead",
+      "seats": 5,
+      "moves": 155,
+      "profileHistoryVerified": true,
+      "rematch": true
+    }
+  ]
+}

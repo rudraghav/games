@@ -2168,6 +2168,42 @@
         ],
         "title": "ProfileView"
       },
+      "PublicActionView": {
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 2.0,
+            "title": "Version"
+          },
+          "actor_id": {
+            "type": "string",
+            "title": "Actor Id"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "amount": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Amount"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version",
+          "actor_id",
+          "type"
+        ],
+        "title": "PublicActionView"
+      },
       "Reading": {
         "properties": {
           "title": {
@@ -2475,6 +2511,16 @@
               }
             ],
             "title": "Bot Due At"
+          },
+          "last_action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PublicActionView"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",

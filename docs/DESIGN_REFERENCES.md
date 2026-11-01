@@ -45,8 +45,26 @@ using the Games-owned major sheet as a style reference. All 56 scenes were
 inspected; exact rectangle metadata accounts for different source row heights.
 The original PNG masters remain, with WebP delivery derivatives. The prompt set
 and asset provenance live in `apps/web/public/tarot/ART_PROMPTS.md`; no published
-tarot or pop-character artwork is bundled. Fictional characters appear only as
-textual reading analogies.
+tarot artwork is bundled. The later character-photo update adds licensed
+performer portraits and two labeled cosplay photos, alongside written analogies;
+the complete source and license ledger is in `apps/web/public/characters`.
+
+## Dashboard, portraits and casino motion — 1 November 2026
+
+The existing [Motion layout](https://motion.dev/docs/react-layout-animations)
+and [reduced-motion](https://motion.dev/docs/react-use-reduced-motion) primitives
+cover table transitions without another animation framework. Committed public
+payments, permitted card reveals and viewer-relative seats drive the effects;
+fresh snapshots and reconnects stay still. The shared media-query hook responds
+to live reduced-motion preference changes. Real-engine playback and actual-room
+checks supplement the inspected screenshots.
+
+Named-character image batches produced no usable images. The implemented
+alternative uses Wikimedia Commons files with item-specific CC licenses,
+credits and source links, transformed into local WebP derivatives. Performer
+captions distinguish voice/live-action roles from the two cosplay depictions.
+No arbitrary web image is fetched during a reading. Asset hashes, dimensions
+and provenance are checked against the curated reference cast.
 
 - https://playdeal.io/ — clear card faces, restrained property-game hierarchy.
 - https://apps.apple.com/us/app/zynga-poker-texas-holdem/id354902315 — seated table composition and distinct betting controls (published gameplay screenshots inspected).

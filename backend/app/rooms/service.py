@@ -27,6 +27,7 @@ from app.games.tarot.reading import (
 )
 from app.models import Match, Member, Message, Profile, Receipt, Room, TarotReading
 from app.rooms.bots import BOT_DELAY_SECONDS, BOT_NAMES, next_bot_view
+from app.rooms.public_actions import PUBLIC_ACTIONS, public_action
 from app.rooms.repository import Repository
 from app.rooms.schemas import (
     AddBots,
@@ -142,6 +143,10 @@ class RoomService:
         fingerprint: str,
     ) -> None:
         engine = ENGINES[match.game_id]
+        cue = (
+            public_action(engine.project_view(match.state, player_id), player_id, action, match.version + 1)
+            if match.game_id in PUBLIC_ACTIONS else None
+        )
         try:
             match.state = engine.apply_action(match.state, player_id, action)
         except RuleError as error:
@@ -184,7 +189,7 @@ class RoomService:
                 action_id=action_id,
                 actor_id=player_id,
                 fingerprint=fingerprint,
-                response={"committedVersion": match.version},
+                response={"committedVersion": match.version, **({"public_action": cue} if cue else {})},
             )
         )
         self.repo.flush()

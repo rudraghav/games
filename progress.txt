@@ -1094,3 +1094,256 @@
   tooling. Application runtime fingerprint remains
   3c63f94bcb210e45ec1dff462481f7ef08d89c49fa4032e9399a3a71992068c6.
   Push these verified records to main without another production deployment.
+
+2026-11-01 — Shithead feature kickoff (local work)
+- Outcome: a complete2–5-player Shithead/Palace game through the existing private
+  room, rematch/history and authorized-view bot contracts, with designed public
+  face-up/hidden table cards and a sortable selectable private hand.
+- Rules source: Pagat Shithead (read1Nov2026, updated1Oct2026).52cards; setup
+  chooses3face-up cards from6;2reset;10burns any pile and gives another turn;
+  four consecutive equal ranks burn. Optional seven-low/transparent-three house
+  rules are explicit. Face-up pickup adds one selected card; blind failed card
+  joins pickup. Last remaining player loses; every escaped player wins.
+- Acceptance: legal/illegal moves, special interactions, all52cards conserved,
+  setup/blind/other-hand privacy, reproducible min/max natural bot matches,
+  explicit loser/rank projection, and complete rendered table/browser workflow.
+  No schema or external write is needed. Engine rules documented before coding.
+
+2026-11-01 — Casino motion refinement kickoff
+- Outcome: Hold'em, Teen Patti and blackjack respond smoothly to committed chip,
+  card, current-player and split-hand changes while preserving the compact table
+  and original/licensed artwork. Motion14.9.0 is already installed; official layout,
+  AnimatePresence and reduced-motion guidance supports reuse without another kit.
+- Capture current synthetic desktop/phone tables first. Keep animations subordinate
+  to play: no action delay, no timers pretending untimed turns expire, no invented
+  moves, hidden cards or old-action replay after refresh/reconnect/version jumps.
+- Acceptance: contiguous-version public movement cues, clear actor/action/phase,
+  stable direct controls, immutable hidden information, reduced motion, keyboard,
+  crowded and narrow canvases, isolated natural-match/browser checks and owning docs.
+  All work local; parent owns contract integration and release verification.
+
+2026-11-01 — Dashboard, Tarot portraits, casino motion and Shithead kickoff
+- Outcome: content-first dashboard with improved game imagery/search/create/join;
+  private invite-only rooms stay the default and visible membership scope is clear.
+  Tarot character connections get identifiable imagery with provenance, bounded
+  safe retrieval/fallback, no reading question sent to image providers.
+- Casino transitions must follow real committed states: chips/bets/pots, cards,
+  current actor and decisions; no replay on refresh/reconnect or hidden-card leaks,
+  no motion blocking valid moves, reduced-motion and crowded phone layouts.
+- Add complete Pagat-based Shithead with explicit optional house rules, bot policy,
+  standard shared card art, privacy/conservation/edge and natural-match acceptance.
+- Baseline main3335cdae clean, production applicationb4506a29 on personal Games.
+  Use existing components/tokens/Motion and licensed/original assets; research
+  primary references before new dependencies. Local gates precede one main/prod
+  release, with retained private before-state and scoped cleanup.
+
+2026-11-01 — Dashboard discovery refinement kickoff (local)
+- Outcome: cleaner two-row search/filter controls, clearer solo selection, richer
+  covers composed from canonical card faces and original shared pieces, and easy
+  private room entry. Keep the compact content-first home and full phone CTA rows.
+- Source confirms recent_rooms joins only active memberships for the actor;
+  room reads require active membership and no public directory route exists.
+  Keep invite-only behavior. Add one plain privacy sentence to creation, no schema
+  or auth changes and no public room feed.
+- Acceptance: phone320/390 and desktop1440 fit without overflow; full cards stay
+  within posters; text/category/group filters intersect and reset/focus works;
+  Just me/Solo+bots selects Bots mode; joining accepts a code or shared invite;
+  optional account/remembered name remain unchanged. Existing imagery is reused.
+- Baseline captured actual public home at390x844 and1440x1000 in the exact owned
+  dashboard-20261101 browser. Source local; parent owns final pushes/deployment.
+
+- Shithead local implementation now includes an authoritative52-card engine,
+  choice-of-three setup, private hand→public face-up→blind-down progression,
+  reset/burn/four-kind and optional7-low/transparent3 (both defaultoff), last
+  remaining loser and allescaped winners. Public metadata never reveals hidden
+  slot IDs, even to the owner. No schema or external configuration changes.
+- Rule-based policy uses own cards/public rank counts and bounded64-signature
+  memory to avoid high-pair cycles through varied legal plays/pickups. No model,
+  artificial turn limit or hidden-state peek. Adhoc200seededmin/max runs finish;
+  committed38focused rule cases include28natural conserved matches with both
+  toggle combinations. Registry/generic/shared policy checks total49pass.
+- Three focused UI units and4real phone/desktop browser checks pass: min/max
+  layouts,44px targets, setup selection, actual same-rank hand move, reload,
+  stale conflict, hidden-slot shape and verified QAroomclosure. HTTP integration
+  naturally finishes onehuman+bot match and starts maximumfive seats (2pass).
+  Ruff/mypy3sources, focused lint, browser TypeScript and import boundaries pass.
+- The shared solo-browser harness no longer hardcodes25games; it compares exact
+  generated catalogue IDs and botcapabilities. The first focused Shithead attempt
+  stopped at that obsolete count and closed its setup rooms. A corrected live-
+  client focused run is now underway; release/browser and deployment remain with
+  parent. No push/deploy/cloudwrites or independent codegen by this subtask.
+
+- Shithead actual-client solo completes at both widths (2pass53.7s): phone
+  finalversion65,32human moves/32bot drives; desktopversion75,38human moves/
+  36bot drives. Results/history/profile/rematch/switch and group closure pass.
+  Workspace TypeScript and five shared table-layout units also pass.
+- Final inspected maximum-seat images exposed seat-strip intrinsic overflow
+  hidden by body clipping. Scoped minimum/maximum bounds and shrinking seat
+  items fix the cause; direct-panel viewport assertions now prevent regression.
+  Own card faces are separated, Face-up labels stay intact and empty rows compact.
+  Both final synthetic min/max checks pass1.5s; source frozen for parent gates.
+  Safe local summaries and two synthetic images retained in
+  docs/evidence/shithead-2026-11-01. Shared product/flow/architecture/design/library
+  docs now include the complete27-experience catalogue and Shithead semantics.
+
+2026-11-01 — Dashboard discovery refinement complete (local)
+- Search/Players and scrolling categories/Reset use two compact rows. Main phone
+  actions keep full rows;320px header Create uses its labeled icon. First game
+  starts at384px on390px phones, compared with roughly440px in baseline capture.
+- In-progress/waiting member rooms appear in one scrolling row above games;
+  finished rooms follow. Existing membership-scoped listing/read gates remain.
+  Browser proof: separate authenticated outsider cannot read the private room or
+  see its shortcut; friend joins through a pasted full invite URL. Setup states
+  invite-only once. Justme/Solo+bots carry Bots mode into creation, with truthful
+  You+bots tile metadata. No auth/schema/public-directory changes.
+- Covers use real Uno/Deal actions/colors and shared licensed/original faces,
+  ceramic/district/token assets; palace cover and Shithead aliases are integrated.
+  Correct board shapes and container-sized Skyjo/Tarot/word covers fit all27games
+  at320/390/1440, with no overflow/clipped frames and17image sources all loaded.
+- Five units;4new private-entry/solo browser cases;16existing distinct browsing/
+  board cases across original+focused rerun; final4geometry/rank and2focus-return
+  checks pass. Web/browser TypeScript, scoped lint and diff checks pass. QArooms
+  closed and membership reads verify404. Stories and source-of-truth flow/design
+  docs updated. Before/after/contact sheets and geometry are retained under
+  docs/evidence/dashboard-2026-11-01. Local source; push/prod remains with parent.
+- Required cleanup closed exact dashboard test browser and removed16.3MiB of
+  owned duplicate captures/traces/logs after concise evidence retention. Source,
+  art/credentials/dependencies/DB and other browsers preserved; requested web3217
+  and API8217 still HTTP200. No independent commits, pushes or deployments.
+- Final shared-cover audit aligns base Checkers/Reversi shapes and tiny lobby
+  grids with canonical metadata, including centered phone transforms. Two extra
+  real-room cases cover every cell of all3boards in lobby/member thumbnails at
+  320/1440 (2pass;6QAroomsclosed). Six new dashboard browser cases now pass;
+  source ownership README updated, source frozen for parent release gates.
+- Shithead cleanup removed8verified owned temporary browser-output directories
+  and obsolete safe attempt logs/summaries (about5.5MB); retained two inspected
+  synthetic images, concise verification/soloJSON and final logs. No active
+  files, tracked paths or symlinks were deleted. Parent web3217/API8217 health
+  and catalogue remain200; user browser, source, credentials and services kept.
+
+2026-11-01 — Casino committed-state motion verified locally
+- Hold’em, Teen Patti and blackjack reuse installed Motion, shared PlayingCard,
+  TokenArt and useMediaQuery. Real public payments move seat-to-pot; visible
+  payouts return towards winning stacks. Viewer-first seating, one moving turn
+  outline, persistent single action cue, readable phase/dealer marker and short
+  authorized card reveals preserve immediate authoritative controls/amounts.
+- Split blackjack moves known faces without re-dealing, reveals only new draws,
+  brings the active hand into its own horizontal rail and clears active on results.
+  Refresh, duplicate/old/jumped versions, rematches, pause/background and first
+  refocus snapshots never replay history. Live Reduce Motion changes cancel
+  positional effects. No new dependency, engine rule or hidden-state delivery.
+- Browser found/fixed a nested query container blocking the 740px seat grid;
+  casino-layout is now the one canvas-width container. Existing crowded-casino
+  tests pass on desktop/phone (2), with no collisions at 1120px/740px.
+- Focused units 14 pass; frontend types and targeted ESLint pass; exporter Ruff
+  lint/format and deterministic --check pass. Three complete real-engine authorized
+  playback sequences (34/10/5 snapshots) reached results in the isolated browser.
+  Verified chip paths, payout, permitted reveal timing, hidden dealer/opponent
+  backs, active split-hand shifts, single cue, no stale hit/fold chips, dynamic
+  reduced motion, pause/refocus/refresh/jumps and 320px/390px overflow.
+- Eight inspected synthetic before/after/motion images and reproducible scope
+  notes retained in docs/evidence/casino-motion-2026-11-01. Storybook adds legal
+  next/jump/refresh/pause previews. These supplement parent real-room/release
+  checks. Local only; parent owns integration, push, production deployment and
+  release acceptance. No codegen, cloud writes or existing service restarts here.
+- Casino cleanup: closed only casino-motion-20261101 and the verified temporary
+  Storybook 6108 process; retained eight evidence images, removed 4.75 MiB of
+  duplicate task captures/resolved traces/logs. Existing 3217 home and 8217 health
+  both returned 200 after cleanup. No user browser, source, credentials or data removed.
+
+2026-11-01 — Casino release-gate and real-room follow-up
+- Outcome: prevent deterministic casino playback fixtures drifting from engines,
+  then verify Hold’em, Teen Patti and blackjack through real local room/client
+  flows on phone and desktop. Reuse the existing generated-contract check and
+  opt-in filtered solo suite; leave application source frozen. No API restart,
+  build, external writes or independent release.
+- Acceptance: contracts gate runs exporter --check read-only; all three games
+  finish, persist/profile results, rematch and switch with their group at both
+  widths. Real browser drives every bot; close only owned QA rooms and retain
+  metadata-only evidence.
+
+2026-11-01 — Tarot portrait presentation follow-up (local)
+- Outcome: verify local licensed performer/cosplay portraits, captions and image
+  credits in the actual saved-reading component, preserving text-only legacy or
+  unrecognized references. Same-performer characters keep distinct identities;
+  repeated references to one character share one credit entry.
+- Acceptance: targeted frontend contracts plus actual two-character/cosplay/long-
+  name stories fit320/390/1440 without overflow; keep concise inspected captures.
+  Fix only observed new portrait CSS issues. Correct the stale discovery-order
+  expectation for Shithead. No backend/API/cloud/codegen/build or release changes.
+- Four new frontend contracts verify local licensed portrait/caption/source and
+  license links, explicit cosplay labels, legacy/unknown or mismatched references
+  without guessed faces, and character-based credit deduplication for shared
+  performers. Shithead ranking expectation corrected. All84frontend units across
+  22files pass, as do focused lint, web types and diff checks.
+- Existing two-character and new cosplay/long-name reading stories fit320/390/
+  1440 with all4local portraits decoded, no row collision/overflow and keyboard
+  Enter/Tab reaching expanded attribution links. Existing local app fonts loaded
+  into isolated Storybook for final inspection. No new portrait CSS fix needed.
+  Two inspected non-personal images plus6layout metrics retained with the source
+  evidence under docs/evidence/tarot-portraits-2026-11-01. Local only; parent owns
+  final release and live acceptance.
+- Cleanup closed exact Tarot test browser and verified temporary Storybook6109,
+  then removed about0.7MiB of owned duplicate captures/logs after retaining two
+  images and frontend checks. Requested web3217/API8217 remainHTTP200. No other
+  browsers, source/art, credentials, dependencies or database were removed.
+- Follow-up gate: scripts/check_contracts.py now runs the read-only casino
+  fixture exporter alongside existing generated assets. Named contracts group
+  PASS, including all 49 deterministic authorized snapshots. No regeneration.
+- Real local solo-client acceptance PASS: both viewport tests in 19.3 seconds,
+  six natural casino matches. Each verifies saved/rendered profile results,
+  rematch, same-group switching and no page overflow. Per viewport Hold’em
+  completes version 9 with 4 human/4 actual client bot moves; Teen Patti version 5
+  with 2/2; blackjack automated dealer ends version 3 phone/version 4 desktop
+  with 2/3 human moves. Setup also verifies retry/reconnect/add-remove/autostart.
+- Both safe summaries report complete/cleanup true and every roomClosed true;
+  all four owned setup/group rooms close with fresh unreadable-room assertions.
+  Retained real-rooms-phone.json and real-rooms-desktop.json in casino evidence.
+  Runtime source remained frozen; local workspace evidence, no push/deploy claim.
+- Follow-up cleanup removed only the two owned duplicate safe summaries and
+  successful runner marker after retention; Playwright closed its test contexts.
+  Existing web 3217 and API 8217 both remain HTTP 200. No server restart/build.
+
+2026-11-01 — Final casino integration review and preference-edge fix
+- Read-only backend review confirmed public cue amounts match engine commits,
+  side-pot/payout reconciliation, membership/hidden-data boundary, current-version
+  receipt retrieval and retry/reconnect behavior. No backend changes required.
+- Fixed a real frontend edge: toggling Reduce Motion on/off within one event’s
+  900ms lifetime could replay its payment/reveal. Hook now cancels/suppresses its
+  event while reduced, leaving restoration static until a new committed version.
+  Optional mounted regression covers payment and flop cancellation/restoration,
+  plus a following fresh action. Both widths PASS (2 tests, 3.5 seconds).
+- Blackjack’s displayed sum now says hand bets, with main/split/double semantics
+  in aria; insurance remains a separately cued stake. Existing table unit asserts
+  the label. No engine, contract, schema, fetching or card artwork change.
+- Final frontend types/lint, browser TypeScript and 14 focused units PASS.
+  Tightened mounted regression to assert within 850ms of its move so expiry of
+  the 900ms event cannot hide replay; final phone/desktop rerun 2 PASS in 2.3s.
+- Cleanup closed only final-review Storybook 6108 and disposed its own successful
+  runner markers/log. Test contexts closed; existing web/API remain HTTP 200.
+  Runtime frozen for parent release verification; no independent external writes.
+
+2026-11-01 — Combined lounge/table release acceptance (local; production pending)
+- Integrated compact private dashboard/covers, committed casino cues and motion,
+  Shithead 2–5 seats/non-LLM bot, and48licensed Tarot-reference photos. Freshv4
+  pairs validate against the same generated public cast; legacyunknowns staytext.
+-718backend,133isolatedroom,84frontend cases pass; Python/TS/lint, contract/
+  portrait/casino-fixture drift, fresh migrations/grants, module boundaries,
+  Next/Storybook builds pass. Full regular browser96pass,17intentional opt-in
+  skips; obsolete52fixture count failed once, corrected to catalogue-derived54,
+  then full density/casino-layout checks4/4pass. No product assertion weakened.
+- Actual-client complete matches:6casino solo,4Shithead human at2/5seats,
+  2Shithead solo and2freshAI Tarot across phone/desktop. New references'images
+  load and savedreading/history/rematch/switch/closure pass. Dynamic reduced
+  motion restoration regression fixed and verified inside850ms, bothwidths.
+- Initial30s Tarot transport failures led to bounded controls: even2-tokenHello
+  took26.643s, fullvalidatedreading26.723s; enumremoval/minimal thinking didnot
+  remove timeouts. Keptmodel/effort, raisedperrequestcap45s insideunchanged60s
+  overalldeadline/proxy75s/lease120s; deadlinesregressionspass. Finalrealclient
+  phone/desktop readings succeededfirstattempt. Outagesretainspread/retry.
+-50localrooms pass:actionp95388ms/privatefetch223ms;botdrive512ms/fetch307ms.
+  PersonalGamesVercel+Supabase scope verified; cloudschema/grants remainhead
+  a6e442b15d80; protected owneraccount/profile/identity/fourrooms hashedbefore.
+  Recoverypoint dpl_9kyjAskSc3UCrS3RSgGjp8GsmgSQ retained. Noauth/env/schema
+  changes. Oneintentional productiondeployment followsmainpush, thenlivechecks.
+  Detailedscope/limits:docs/evidence/lounge-tables-2026-11-01/README.md.

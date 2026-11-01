@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import { Plus } from 'lucide-react';
 import { Button, Wordmark } from '@games/ui';
-import { gameById } from '@games/api-client/catalog';
 import { api } from '@/lib/session';
 import { RoomDialog } from '@/shared/RoomDialog';
 import { SiteHeader } from '@/shared/SiteHeader';
 import { keys } from '@/shared/query-keys';
 import { useHasPlayed } from '@/shared/player-preferences';
 import { GameLibrary } from './GameLibrary';
+import { RoomShortcut } from './RoomShortcut';
 
 export function Lounge() {
   const [dialog, setDialog] = useState<{
@@ -20,12 +20,21 @@ export function Lounge() {
   } | null>(null);
   const played = useHasPlayed();
   const me = useQuery({ queryKey: keys.me, queryFn: () => api.me(), enabled: played });
+  const activeRooms = (me.data?.rooms || [])
+    .filter((room) => room.status === 'playing' || room.status === 'lobby')
+    .toSorted((a, b) => Number(b.status === 'playing') - Number(a.status === 'playing'));
+  const recentRooms = (me.data?.rooms || []).filter((room) => room.status === 'finished');
   return (
     <>
       <SiteHeader>
-        <Button size="sm" onClick={() => setDialog({ mode: 'create', gameId: 'uno' })}>
+        <Button
+          size="sm"
+          className="lounge-create"
+          aria-label="Create room"
+          onClick={() => setDialog({ mode: 'create', gameId: 'uno' })}
+        >
           <Plus size={16} />
-          Create room
+          <span>Create room</span>
         </Button>
       </SiteHeader>
       <main className="page-width">
@@ -49,21 +58,30 @@ export function Lounge() {
             </div>
           </div>
         </section>
-        <GameLibrary onChoose={(gameId) => setDialog({ mode: 'create', gameId })} />
-        {me.data?.rooms.length ? (
-          <section aria-label="Your recent rooms">
+        {activeRooms.length ? (
+          <section className="lounge-room-section" aria-label="Your rooms">
+            <h2>Your rooms</h2>
+            <div className="room-shortcuts">
+              {activeRooms.map((room) => (
+                <RoomShortcut key={room.id} room={room} />
+              ))}
+            </div>
+          </section>
+        ) : null}
+        <GameLibrary
+          onChoose={(gameId, withBots) => setDialog({ mode: 'create', gameId, withBots })}
+        />
+        {recentRooms.length ? (
+          <section
+            className="lounge-room-section lounge-room-section--recent"
+            aria-label="Your recent rooms"
+          >
             <div className="section-heading">
               <h2>Recent rooms</h2>
             </div>
             <div className="recent-rooms">
-              {me.data.rooms.slice(0, 3).map((room) => (
-                <Link key={room.id} href={`/rooms/${room.id}`} className="recent-room">
-                  <span className="eyebrow">{gameById(room.gameId).name}</span>
-                  <strong>{room.name}</strong>
-                  <span className="small muted">
-                    {room.players} players · {room.status === 'playing' ? 'Playing' : 'Lobby'}
-                  </span>
-                </Link>
+              {recentRooms.slice(0, 3).map((room) => (
+                <RoomShortcut key={room.id} room={room} />
               ))}
             </div>
           </section>

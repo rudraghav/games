@@ -208,7 +208,26 @@ test('every game finishes at both seat limits, renders results, rematches and ke
                 const count = await connections.getByRole('listitem').count();
                 expect(count).toBeGreaterThanOrEqual(1);
                 expect(count).toBeLessThanOrEqual(2);
+                await expect(connections.locator('.tarot-character-portrait img')).toHaveCount(
+                  count,
+                );
+                for (const image of await connections
+                  .locator('.tarot-character-portrait img')
+                  .all()) {
+                  await image.scrollIntoViewIfNeeded();
+                  await expect
+                    .poll(() =>
+                      image.evaluate((node) => {
+                        const photo = node as HTMLImageElement;
+                        return photo.complete && photo.naturalWidth > 0;
+                      }),
+                    )
+                    .toBe(true);
+                }
               }
+              await expect(page.locator('.tarot-image-credits summary')).toHaveText(
+                'Image credits',
+              );
               tarotReadingText = await page.locator('.tarot-reading').innerText();
               snapshot = await roomAs(page, roomId!);
               break;

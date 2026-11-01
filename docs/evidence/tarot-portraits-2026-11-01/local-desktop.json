@@ -1,0 +1,51 @@
+{
+  "startedAt": "2026-11-01T17:14:59.239Z",
+  "origin": "http://127.0.0.1:3217",
+  "checkoutSha": "3335cdae185b74247535202aa2d08fa8c3abca95",
+  "applicationSourceSha": null,
+  "workspaceDirty": true,
+  "sourceState": "uncommitted local workspace",
+  "hosted": false,
+  "project": "desktop",
+  "selectedGames": [
+    "tarot"
+  ],
+  "selectedSeats": "limits",
+  "aiEnabled": true,
+  "complete": true,
+  "active": null,
+  "omitted": [],
+  "transport": {
+    "retryAttempts": 0,
+    "recovered": 0,
+    "failed": 0
+  },
+  "cleanup": {
+    "guestLeaveStatuses": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "roomClosed": true,
+    "failed": false,
+    "abandonStatus": 200,
+    "hostLeaveStatus": 200
+  },
+  "cases": [
+    {
+      "game": "tarot",
+      "seats": 1,
+      "moves": 3,
+      "profileHistoryVerified": true,
+      "rematch": true
+    }
+  ],
+  "decisions": "Authorized API projections; rendered result/rematch/change-game browser controls.",
+  "rummyScenario": "Legal drops; declaration/sequences are independently engine-tested."
+}

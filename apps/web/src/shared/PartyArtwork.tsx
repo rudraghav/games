@@ -7,24 +7,21 @@ export function PartyArtwork({ gameId }: { gameId: string }) {
     <div className="game-art party-artwork" data-party-art={mode} aria-hidden="true">
       <div className="party-artwork__card party-artwork__card--back">
         <Sparkles />
-        <span>
-          {mode === 'vote'
-            ? 'The room has spoken.'
-            : mode === 'predict'
-              ? 'You know me. Right?'
-              : 'A little plot twist.'}
+        <span className="party-artwork__lines">
+          <i />
+          <i />
+          <i />
         </span>
       </div>
       <div className="party-artwork__card party-artwork__card--front">
         {mode === 'spill' ? (
           <>
             <MessageCircle className="party-artwork__symbol" strokeWidth={1.5} />
-            <strong>
-              Tell us
-              <br />
-              everything.
-            </strong>
-            <small>or absolutely nothing.</small>
+            <strong className="party-artwork__question">?</strong>
+            <span className="party-artwork__answer-lines">
+              <i />
+              <i />
+            </span>
           </>
         ) : mode === 'vote' ? (
           <>
@@ -33,28 +30,27 @@ export function PartyArtwork({ gameId }: { gameId: string }) {
               <span />
               <span />
             </div>
-            <strong>
-              Who’s the
-              <br />
-              plot twist?
+            <strong className="party-artwork__question">
+              <Check />
             </strong>
             <span className="party-artwork__ballot">
-              <Check size={15} strokeWidth={3} /> Your vote. Their reputation.
+              <span />
+              <span />
+              <span />
             </span>
           </>
         ) : (
           <>
-            <small>Trust your gut.</small>
+            <Sparkles className="party-artwork__symbol" />
             <div className="party-artwork__ab">
               <b>A</b>
               <i>or</i>
               <b>B</b>
             </div>
-            <strong>
-              Read your
-              <br />
-              people.
-            </strong>
+            <span className="party-artwork__answer-lines">
+              <i />
+              <i />
+            </span>
           </>
         )}
       </div>

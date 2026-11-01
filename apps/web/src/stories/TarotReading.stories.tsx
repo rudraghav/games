@@ -54,3 +54,39 @@ export const SavedEarlierReading: Story = {
     },
   },
 };
+export const CosplayAndLongNames: Story = {
+  args: {
+    reading: {
+      ...tarotReadingExample,
+      cards: tarotReadingExample.cards.map((card, index) => ({
+        ...card,
+        characters:
+          index === 0
+            ? [
+                {
+                  name: 'Princess Peach',
+                  source: 'Super Mario',
+                  connection:
+                    'Her calm agency is a reminder to choose the next step for yourself, even when the adventure gets chaotic.',
+                },
+                {
+                  name: 'Miles Morales',
+                  source: 'Spider-Man: Into the Spider-Verse',
+                  connection:
+                    'He learns by taking a small leap before he has every answer. Your creative experiment can begin the same way.',
+                },
+              ]
+            : index === 1
+              ? [
+                  {
+                    name: 'Chidi Anagonye',
+                    source: 'The Good Place',
+                    connection:
+                      'Careful thought helps until it stops you trying. Let one imperfect, thoughtful experiment answer the next question.',
+                  },
+                ]
+              : card.characters,
+      })),
+    },
+  },
+};

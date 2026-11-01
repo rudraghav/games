@@ -1,0 +1,31 @@
+{
+  "promptVersion": "pop-tarot-4",
+  "precedingTransportTimeouts": 1,
+  "scenarios": [
+    {
+      "scenario": "pop-tarot-4-1",
+      "seconds": 28.89,
+      "cards": 3,
+      "connections": 3,
+      "model": "gemini-3.5-flash-lite",
+      "firstAttempt": true
+    },
+    {
+      "scenario": "pop-tarot-4-2",
+      "seconds": 27.94,
+      "cards": 3,
+      "connections": 3,
+      "model": "gemini-3.5-flash-lite",
+      "firstAttempt": true
+    },
+    {
+      "scenario": "pop-tarot-4-3",
+      "seconds": 26.67,
+      "cards": 3,
+      "connections": 3,
+      "model": "gemini-3.5-flash-lite",
+      "firstAttempt": true
+    }
+  ],
+  "scope": "Fixed non-personal evaluation; not exhaustive reliability proof."
+}

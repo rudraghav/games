@@ -80,6 +80,14 @@ export function mapRoom(wire: Wire['RoomView']) {
     revision: wire.revision,
     matchId: wire.match_id,
     matchVersion: wire.match_version,
+    lastAction: wire.last_action
+      ? {
+          version: wire.last_action.version,
+          actorId: wire.last_action.actor_id,
+          type: wire.last_action.type,
+          amount: wire.last_action.amount ?? null,
+        }
+      : null,
     paused: wire.paused,
     botPending: wire.bot_pending ?? false,
     botDueAt: wire.bot_due_at ?? null,

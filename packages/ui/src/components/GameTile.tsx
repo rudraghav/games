@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { ArrowRight, Clock3, UsersRound } from 'lucide-react';
+import { ArrowRight, Bot, Clock3, UsersRound } from 'lucide-react';
 
 export function GameTile({
   name,
@@ -11,6 +11,7 @@ export function GameTile({
   artwork,
   onChoose,
   edition = 'standard',
+  soloMode = false,
 }: {
   name: string;
   subtitle: string;
@@ -21,6 +22,7 @@ export function GameTile({
   artwork: ReactNode;
   onChoose: () => void;
   edition?: 'standard' | 'house';
+  soloMode?: boolean;
 }) {
   return (
     <button
@@ -41,12 +43,18 @@ export function GameTile({
         <p>{subtitle}</p>
         <div className="game-meta">
           <span>
-            <UsersRound size={12} aria-hidden="true" />
-            {minPlayers === maxPlayers
-              ? minPlayers === 1
-                ? 'Solo'
-                : `${minPlayers} players`
-              : `${minPlayers}–${maxPlayers} players`}
+            {soloMode && minPlayers > 1 ? (
+              <Bot size={12} aria-hidden="true" />
+            ) : (
+              <UsersRound size={12} aria-hidden="true" />
+            )}
+            {soloMode && minPlayers > 1
+              ? 'You + bots'
+              : minPlayers === maxPlayers
+                ? minPlayers === 1
+                  ? 'Solo'
+                  : `${minPlayers} players`
+                : `${minPlayers}–${maxPlayers} players`}
           </span>
           <span>
             <Clock3 size={12} aria-hidden="true" />

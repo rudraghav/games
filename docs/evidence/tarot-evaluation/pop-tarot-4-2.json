@@ -1,0 +1,58 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "pop-tarot-4",
+  "seconds": 27.94,
+  "question": "I feel stuck in a routine. What could I reflect on?",
+  "reading": {
+    "title": "A Gentle Shift Out of the Routine",
+    "introduction": "Routines can feel like cozy little fortresses until you realize they are actually just locked doors. Let us look at what assumptions you are holding, what you might be mourning, and how a tiny spark of hope can guide you forward.",
+    "next_step": "Take five minutes today to do one completely unfamiliar thing, like walking a brand new route to the corner store or making tea in a cup you never normally use.",
+    "cards": [
+      {
+        "card_id": "major-16",
+        "position": "Where you are",
+        "title": "The Tower: Rebuilding on Honesty",
+        "interpretation": "You are currently questioning an unstable assumption that has kept you bound to your routine. It is time to let go of the idea that safety equals staying still, and instead rebuild your daily life on something much more honest and true to who you are right now.",
+        "pop_culture": null,
+        "quirky_interpretation": "Your routine is like a house built entirely out of expired coupons and sheer stubbornness. Sometimes a gust of wind is just what you need to clear out the nonsense and start fresh.",
+        "characters": [
+          {
+            "name": "Tony Stark",
+            "source": "Iron Man",
+            "connection": "Tony frequently has to watch his carefully constructed systems fall apart so he can invent something radically better and more authentic."
+          }
+        ]
+      },
+      {
+        "card_id": "cups-05",
+        "position": "What is shifting",
+        "title": "Five of Cups: Seeing What Remains",
+        "interpretation": "Acknowledge disappointment without letting what was lost hide what still remains. As your routine shifts, you might feel a pang of regret for old habits, but look closely and you will see plenty of supportive structures still waiting beside you.",
+        "pop_culture": null,
+        "quirky_interpretation": "You are staring so intently at your spilled morning coffee that you are completely ignoring the brand new kettle sitting right there ready to brew a better cup.",
+        "characters": [
+          {
+            "name": "Paddington",
+            "source": "Paddington",
+            "connection": "Paddington always faces unexpected mishaps with a resilient spirit, finding a warm marmalade sandwich and a welcoming heart even when things go awry."
+          }
+        ]
+      },
+      {
+        "card_id": "major-17",
+        "position": "Your next move",
+        "title": "The Star: Space for Renewal",
+        "interpretation": "Make space for renewal, hope and small acts of restoration. Your next move does not need to be a massive overhaul; simply open the window, breathe in some fresh perspective, and let gentle optimism guide your steps.",
+        "pop_culture": null,
+        "quirky_interpretation": "Treat your spirit like a houseplant that has been kept in a dark closet for months. Take it outside, give it a little water, and watch how quickly it remembers how to stretch toward the light.",
+        "characters": [
+          {
+            "name": "Geet Dhillon",
+            "source": "Jab We Met",
+            "connection": "Geet embraces spontaneous adventures and reminds everyone around her to choose hope and vibrant self-expression over rigid expectations."
+          }
+        ]
+      }
+    ]
+  }
+}

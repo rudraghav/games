@@ -1,0 +1,75 @@
+{
+  "startedAt": "2026-11-01T17:00:54.197Z",
+  "origin": "http://127.0.0.1:3217",
+  "hosted": false,
+  "project": "phone",
+  "checkoutSha": "3335cdae185b74247535202aa2d08fa8c3abca95",
+  "applicationSourceSha": null,
+  "sourceState": "uncommitted local workspace",
+  "selectedGames": [
+    "holdem",
+    "teen-patti",
+    "blackjack"
+  ],
+  "complete": true,
+  "cleanup": true,
+  "active": null,
+  "setup": {
+    "autoStart": true,
+    "clickedMove": true,
+    "addRemove": true,
+    "retry": true,
+    "reconnect": true
+  },
+  "driver": {
+    "requests": 9,
+    "successes": 7,
+    "failures": 2
+  },
+  "cases": [
+    {
+      "game": "holdem",
+      "seats": 2,
+      "botCount": 1,
+      "humanMoves": 4,
+      "finalVersion": 9,
+      "clientDrives": 4,
+      "result": true,
+      "history": true,
+      "profile": true,
+      "rematch": true,
+      "switch": true,
+      "roomClosed": true
+    },
+    {
+      "game": "teen-patti",
+      "seats": 2,
+      "botCount": 1,
+      "humanMoves": 2,
+      "finalVersion": 5,
+      "clientDrives": 2,
+      "result": true,
+      "history": true,
+      "profile": true,
+      "rematch": true,
+      "switch": true,
+      "roomClosed": true
+    },
+    {
+      "game": "blackjack",
+      "seats": 1,
+      "botCount": 0,
+      "humanMoves": 2,
+      "finalVersion": 3,
+      "clientDrives": 0,
+      "result": true,
+      "history": true,
+      "profile": true,
+      "rematch": true,
+      "switch": true,
+      "roomClosed": true
+    }
+  ],
+  "decisions": "One group room per viewport respects room-creation limits. Human authorized projections only; bots advance exclusively through the rendered client driver. Human API moves trigger the normal visible-tab refresh path. The shared group room closes after all selected games.",
+  "rummyScenario": "The human may legally drop; bot declarations and complete rule coverage are independently verified."
+}
