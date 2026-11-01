@@ -736,6 +736,27 @@
   API-client, game-table, shared UI/art and AI inputs match the fully accepted
   first release. No database migration, auth/provider setting or account change
   is needed. The corrective rollout retains the same production project/path.
+- Corrective main f21fc0e485f52212f08dd165eac7f37a5efafc99 pushed with remote parity;
+  production dpl_7aT9pMzY3wHgRzfrxmf6mkVL85tZ is READY in Mumbai, with canonical
+  alias and both source metadata fields verified. Fresh actual desktop/phone
+  guests recognize their seat and Ready without reload, finish a natural match,
+  refresh results and rematch. Both test rooms close with404 readback. Final
+  catalogue/art/auth-boundary HTTP checks pass. No additional AI calls needed.
+- Original owner room/profile/Google-account fingerprints remain unchanged;
+  permanent Google linkage is preserved. Final production request/runtime scans
+  return zero errors, no omitted pages/intervals. Final source reuse and safe
+  metadata are recorded in contemporary-release-2026-11-01/VERIFICATION.md.
+- Completion cleanup removed 76,302,721 bytes (72.77MiB) of verified duplicate
+  release outputs, including resolved failed traces and Storybook output; 13
+  inspected first/corrective production images remain. Earlier subtask scratch
+  cleanup is recorded separately. The completed owner-readback helper is removed;
+  private credential/state receipts, all artwork masters/source, databases and
+  history, dependencies, normal browser sessions and requested services remain.
+  All 227 final runtime inputs are unchanged by this documentation closure;
+  no duplicate deployment is required.
+- Final identity-regression cleanup removed another 963,769 bytes from three
+  exact completed local output folders. All registered QA rooms have404 readback;
+  requested web/API services and the dedicated database remain healthy.
 
 - Hosted phone verification at 0525db5 found an entry race: the initial /me read
   returned profile:null 13 ms after join committed, and invalidation reused that

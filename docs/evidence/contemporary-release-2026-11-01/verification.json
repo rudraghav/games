@@ -1,0 +1,40 @@
+{
+  "id": "dpl_7aT9pMzY3wHgRzfrxmf6mkVL85tZ",
+  "url": "games-cndxpm4ba-rudraghavs-projects.vercel.app",
+  "target": "production",
+  "readyState": "READY",
+  "regions": [
+    "bom1"
+  ],
+  "createdAt": 1793539570572,
+  "alias": "games-seven-black.vercel.app",
+  "applicationSourceSha": "f21fc0e485f52212f08dd165eac7f37a5efafc99",
+  "githubSourceSha": "f21fc0e485f52212f08dd165eac7f37a5efafc99",
+  "originalOwnerStatePreserved": true,
+  "permanentGoogleLinkPreserved": true,
+  "httpBoundaryChecksPassed": true,
+  "hostedCorrectiveWorkflows": {
+    "desktop": true,
+    "phone": true,
+    "freshGuestIdentity": true,
+    "naturalResultRefreshRematch": true,
+    "roomsClosed": true
+  },
+  "logs": {
+    "request": {
+      "errors": 0,
+      "hasMore": false,
+      "excludedIntervals": []
+    },
+    "runtime": {
+      "errors": 0,
+      "hasMore": false,
+      "excludedIntervals": []
+    }
+  },
+  "hostedEngineAcceptanceSource": "0525db5028826e99d3be8505e15517cc40a74d74",
+  "hostedEngineCases": 16,
+  "hostedEngineMoves": 3140,
+  "savedAiReadings": 2,
+  "runtimeReuseVerified": true
+}

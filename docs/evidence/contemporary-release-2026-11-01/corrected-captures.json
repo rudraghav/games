@@ -1,0 +1,49 @@
+{
+  "applicationSourceSha": "f21fc0e485f52212f08dd165eac7f37a5efafc99",
+  "productionDeployment": "dpl_7aT9pMzY3wHgRzfrxmf6mkVL85tZ",
+  "source": "https://games-seven-black.vercel.app",
+  "status": "corrective production room flows passed with natural result, refresh, rematch, and room closure",
+  "workflowDurationSeconds": {
+    "desktop": 16.5,
+    "phone": 10.4
+  },
+  "friendIdentityAndReadyWithoutReload": true,
+  "files": [
+    {
+      "file": "corrected-lobby-desktop-masked.png",
+      "bytes": 79313,
+      "sha256": "67f1a46cfa2298bc7889ed2975281b6917716d2b4ab0bf20802afb1d9d9c52b5",
+      "invitePanelMasked": true
+    },
+    {
+      "file": "corrected-room-options-desktop.png",
+      "bytes": 18426,
+      "sha256": "02900055bde8b6a34417e8fff6d53e5e032e205fdaf3547271003813f121f9b9",
+      "invitePanelMasked": false
+    },
+    {
+      "file": "corrected-results-rematch-desktop-masked.png",
+      "bytes": 162356,
+      "sha256": "a062b6e3a212f753d5766dbbf7b36c445737f24ed6791b928cbcc89e0fcd2053",
+      "invitePanelMasked": true
+    },
+    {
+      "file": "corrected-lobby-phone-masked.png",
+      "bytes": 204604,
+      "sha256": "d00e4b7671f342e90a10fb9805ee4f739e1dbe78898aaa1f2c39485ca492ef38",
+      "invitePanelMasked": true
+    },
+    {
+      "file": "corrected-room-options-phone.png",
+      "bytes": 61649,
+      "sha256": "1fa2d5ebd4c0b4e4996b8bc8df0d937a73c4b5a51395bf34b7e10294a958f099",
+      "invitePanelMasked": false
+    },
+    {
+      "file": "corrected-results-rematch-phone-masked.png",
+      "bytes": 418035,
+      "sha256": "13e51a786f7df482377023e23770637f2a98574808e7a91a4f9b7040cafc0b4d",
+      "invitePanelMasked": true
+    }
+  ]
+}

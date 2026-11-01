@@ -21,7 +21,33 @@ invites. Player names belong to the isolated test sessions.
 - [Results/rematch — desktop, invite masked](production-results-rematch-desktop-masked.png)
 
 The original production phone room flow stopped on the guest-entry issue after
-these lobby/options captures. Its failure trace remains in the ignored test
-output pending diagnosis and final corrective verification; the phone pictures
-are not represented as a passing end-to-end room run. Final release status and
+these lobby/options captures. Its failure trace was retained during diagnosis;
+the first phone pictures are not represented as a passing end-to-end room run.
+The corrected run below resolves that failure. Final release status and
 source/deployment parity belong to the root progress and verification record.
+
+## Corrected production verification
+
+Application source `f21fc0e485f52212f08dd165eac7f37a5efafc99` is served by READY
+production deployment `dpl_7aT9pMzY3wHgRzfrxmf6mkVL85tZ`. The release harness passed
+fresh actual room workflows on desktop (16.5 seconds) and phone (10.4 seconds):
+the newly joined friend sees their own `you` identity and can ready without a
+reload, then both players complete a natural match, refresh saved results and
+enter rematch readiness. Each test closes its room in the final cleanup hook.
+
+All six corrected screenshots below were opened and inspected before retention.
+Invite panels remain masked in lobby/results images; room-options images contain
+only controls. The seven first-release images above remain unchanged for source
+provenance. `corrected-captures.json` records the final source, deployment,
+workflow outcomes, byte counts and SHA-256 hashes separately from the first run.
+
+- [Corrected lobby — desktop, invite masked](corrected-lobby-desktop-masked.png)
+- [Corrected lobby — phone, invite masked](corrected-lobby-phone-masked.png)
+- [Corrected room options — desktop](corrected-room-options-desktop.png)
+- [Corrected room options — phone](corrected-room-options-phone.png)
+- [Corrected results/rematch — desktop, invite masked](corrected-results-rematch-desktop-masked.png)
+- [Corrected results/rematch — phone, invite masked](corrected-results-rematch-phone-masked.png)
+
+After final corrective acceptance, the resolved first-run failure trace and the
+duplicate corrected test output were removed through the scoped cleanup policy.
+These selected screenshots and the sanitized identity-race diagnosis remain.

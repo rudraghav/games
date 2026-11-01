@@ -47,6 +47,8 @@ artwork, complete-match and room evidence live in
 [new games](docs/evidence/new-games-2026-11-01/README.md),
 [browsing](docs/evidence/browsing-2026-11-01/README.md) and
 [room design](docs/evidence/room-audit-2026-11-01/README.md).
+See [final production verification](docs/evidence/contemporary-release-2026-11-01/VERIFICATION.md)
+for exact sources, hosted matches and the verified guest-entry correction.
 Google account signup passed live consent and the production callback. Linking
 the owner's guest retained the same player ID, saved name and existing room;
 the verified Google identity survives refresh. See the project journal and
