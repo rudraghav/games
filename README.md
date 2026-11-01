@@ -27,6 +27,9 @@ hosted Tarot reading saved and survived reload. Historical previews remain
 rollback references. Complete-match and independent rule-regression evidence is
 recorded in the rules audit and release verification guide.
 Provider outages/quota failures keep the saved spread and offer an honest retry.
+The 1 November release passed 54 complete-match phone/desktop scenarios on
+production, two real saved readings and a fifty-room private Broadcast load run.
+See [verified release evidence](docs/evidence/release-2026-11-01/README.md).
 Google account signup passed live consent and the production callback. Linking
 the owner's guest retained the same player ID, saved name and existing room;
 the verified Google identity survives refresh. See the project journal and
@@ -80,9 +83,10 @@ tokens live in `@games/ui`.
 
 ## Delivery boundary
 
-The owner requested production hosting on 1 November 2026. All nine competitive
-games must still satisfy the approved acceptance, including edition-specific
-No Mercy rules, before the catalogue can be considered fully validated.
+The owner requested production hosting and full verification on 1 November 2026.
+The release passed the recorded match, privacy, persistence, layout and load
+acceptance for all sixteen documented formats, including the approved No Mercy
+house inventory.
 Completing a scripted match does not certify every rule. The independent
 [rules audit](docs/RULE_AUDIT.md) separates expected-outcome rules checks from
 complete-match scenarios and documents traditional/house choices. The owner

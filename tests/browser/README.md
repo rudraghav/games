@@ -31,6 +31,15 @@ For cloud acceptance, set `GAMES_TEST_URL=https://games-seven-black.vercel.app`.
 Do not run multiple cloud suites blindly: anonymous signups and application
 actions are rate-limited. The driver paces moves within the production limit;
 it does not bypass or weaken authorization, presence or rate limits.
+Supabase's default anonymous-signup limiter uses a token bucket with capacity
+thirty and a continuous refill of thirty per hour per IP, rather than a hard
+rolling-hour reset. Consult the actual project configuration and the
+[current Auth limits](https://supabase.com/docs/guides/auth/rate-limits) before
+restarting cloud suites; a 429 remains a failure, never a cue to weaken limits.
+The driver retries one allowlisted transient transport failure for a snapshot
+GET or idempotent presence heartbeat. It records recovery counts and safe reason
+codes, never original errors/headers. HTTP errors and other mutations are never
+retried, so application/rule failures remain visible.
 
 ## Fifty-room hosted load
 

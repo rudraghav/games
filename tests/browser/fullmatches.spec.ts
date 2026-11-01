@@ -1,8 +1,16 @@
 import { expect, test, type Page } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import type { components } from '../../packages/api-client/src/generated/schema';
-import { attachPreviewAccess, requestAs, roomAs, type RoomView } from './helpers';
+import {
+  attachPreviewAccess,
+  requestAs,
+  roomAs,
+  TestTransportError,
+  transportTelemetry,
+  type RoomView,
+} from './helpers';
 import { matchPlayer } from './fullmatch-player';
 
 // Explicit long-running acceptance, separate from quick UI regressions. Decisions
@@ -28,6 +36,9 @@ test('every game finishes at both seat limits, renders results, rematches and ke
   if (seatFilter?.some((seats) => !Number.isInteger(seats) || seats < 1))
     throw new Error('Full-match seat filters must be positive integers.');
   const startedAt = new Date().toISOString();
+  const origin = new URL(baseURL!).origin;
+  const checkoutSha = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+  const applicationSourceSha = process.env.GAMES_RELEASE_SHA || checkoutSha;
   const project = test.info().project.name;
   const evidence = `.vercel/fullmatches-${project}-${(filter?.join('_') || 'all').replace(/[^a-z0-9_-]/g, '_')}${seatFilter ? '-seats' + seatFilter.join('_') : ''}.json`;
   const omitted: string[] = [];
@@ -41,6 +52,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
   } | null = null;
   let complete = false;
   let failureType: string | undefined;
+  let failureReason: string | undefined;
   const cleanup: {
     abandonStatus?: number;
     guestLeaveStatuses: number[];
@@ -55,6 +67,10 @@ test('every game finishes at both seat limits, renders results, rematches and ke
       JSON.stringify(
         {
           startedAt,
+          origin,
+          checkoutSha,
+          applicationSourceSha,
+          hosted: Boolean(process.env.GAMES_TEST_URL),
           project,
           selectedGames: filter || 'all',
           selectedSeats: seatFilter || 'limits',
@@ -63,6 +79,8 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           active,
           omitted,
           failureType,
+          failureReason,
+          transport: transportTelemetry(),
           cleanup,
           cases: summaries,
           decisions:
@@ -90,6 +108,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
   }
   try {
     await attachPreviewAccess(page);
+    page.setDefaultNavigationTimeout(30000);
     await page.goto('/');
     const catalogue: components['schemas']['GameManifest'][] = await checked(page, 'games', 'GET');
     if (filter?.some((id) => !catalogue.some((game) => game.id === id)))
@@ -109,6 +128,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
       const context = await browser.newContext({ baseURL, viewport: page.viewportSize()! });
       contexts.push(context);
       const friend = await context.newPage();
+      friend.setDefaultNavigationTimeout(30000);
       players.push(friend);
       await attachPreviewAccess(friend);
       await friend.goto('/');
@@ -264,6 +284,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
     complete = true;
   } catch (error) {
     failureType = error instanceof Error ? error.name : 'Unknown failure';
+    failureReason = error instanceof TestTransportError ? error.reason : undefined;
     throw error;
   } finally {
     try {

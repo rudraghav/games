@@ -1,0 +1,420 @@
+{
+  "id": "dpl_Gkx12Spvyt5yiVrCHmpyQ3S4buH5",
+  "readyState": "READY",
+  "target": "production",
+  "alias": [
+    "games-seven-black.vercel.app",
+    "games-rudraghavs-projects.vercel.app"
+  ],
+  "regions": [
+    "bom1"
+  ],
+  "releaseSourceSha": "ce8a3b6b289b5aef804cd8cfb8e4230030b9eae6",
+  "githubCommitSha": "ce8a3b6b289b5aef804cd8cfb8e4230030b9eae6",
+  "origin": "https://games-seven-black.vercel.app",
+  "http": {
+    "home": 200,
+    "privacy": 200,
+    "design": 404,
+    "unauthenticatedProfile": 401,
+    "developmentIdentity": 404,
+    "catalogue": 16,
+    "houseDeckExplicit": true,
+    "allTarotArt": 200
+  },
+  "auth": {
+    "guestsEnabled": true,
+    "googleEnabled": true
+  },
+  "privateRealtime": {
+    "memberDelivery": "passed",
+    "nonmemberSubscription": "denied",
+    "nonmemberRoomRead": 404
+  },
+  "load": {
+    "startedAt": "2026-11-01T07:18:08.441Z",
+    "origin": "https://games-seven-black.vercel.app",
+    "rooms": 50,
+    "guests": 5,
+    "mode": "broadcast",
+    "passed": true,
+    "committedActions": 50,
+    "synchronizedRooms": 50,
+    "actionMs": {
+      "median": 285,
+      "p95": 977,
+      "max": 2365
+    },
+    "synchronizationMs": {
+      "median": 858,
+      "p95": 1059,
+      "max": 2601
+    },
+    "broadcastMs": {
+      "median": 274,
+      "p95": 966,
+      "max": 2353
+    },
+    "semantics": "Submission to committed response; submission to authorized observer snapshot after private Broadcast or explicit 250ms polling.",
+    "cleanupClosedRooms": 50
+  },
+  "fullMatches": {
+    "passed": true,
+    "games": 16,
+    "distinctScenarios": 54,
+    "legalActions": 2962,
+    "realTarotReadings": 2,
+    "desktop": [
+      {
+        "game": "uno",
+        "seats": 2,
+        "moves": 32,
+        "rematch": true
+      },
+      {
+        "game": "uno",
+        "seats": 10,
+        "moves": 181,
+        "rematch": true
+      },
+      {
+        "game": "uno-no-mercy",
+        "seats": 2,
+        "moves": 54,
+        "rematch": true
+      },
+      {
+        "game": "uno-no-mercy",
+        "seats": 6,
+        "moves": 67,
+        "rematch": true
+      },
+      {
+        "game": "deal",
+        "seats": 2,
+        "moves": 52,
+        "rematch": true
+      },
+      {
+        "game": "deal",
+        "seats": 5,
+        "moves": 30,
+        "rematch": true
+      },
+      {
+        "game": "deal-no-mercy",
+        "seats": 2,
+        "moves": 51,
+        "rematch": true
+      },
+      {
+        "game": "deal-no-mercy",
+        "seats": 5,
+        "moves": 83,
+        "rematch": true
+      },
+      {
+        "game": "holdem",
+        "seats": 2,
+        "moves": 8,
+        "rematch": true
+      },
+      {
+        "game": "holdem",
+        "seats": 9,
+        "moves": 36,
+        "rematch": true
+      },
+      {
+        "game": "rummy",
+        "seats": 2,
+        "moves": 1,
+        "rematch": true
+      },
+      {
+        "game": "rummy",
+        "seats": 6,
+        "moves": 5,
+        "rematch": true
+      },
+      {
+        "game": "teen-patti",
+        "seats": 2,
+        "moves": 1,
+        "rematch": true
+      },
+      {
+        "game": "teen-patti",
+        "seats": 6,
+        "moves": 9,
+        "rematch": true
+      },
+      {
+        "game": "blackjack",
+        "seats": 1,
+        "moves": 3,
+        "rematch": true
+      },
+      {
+        "game": "blackjack",
+        "seats": 7,
+        "moves": 13,
+        "rematch": true
+      },
+      {
+        "game": "skyjo",
+        "seats": 2,
+        "moves": 64,
+        "rematch": true
+      },
+      {
+        "game": "skyjo",
+        "seats": 8,
+        "moves": 256,
+        "rematch": true
+      },
+      {
+        "game": "tarot",
+        "seats": 1,
+        "moves": 3,
+        "rematch": true
+      },
+      {
+        "game": "four-in-a-row",
+        "seats": 2,
+        "moves": 19,
+        "rematch": true
+      },
+      {
+        "game": "reversi",
+        "seats": 2,
+        "moves": 60,
+        "rematch": true
+      },
+      {
+        "game": "word-agents",
+        "seats": 4,
+        "moves": 11,
+        "rematch": true
+      },
+      {
+        "game": "word-agents",
+        "seats": 10,
+        "moves": 35,
+        "rematch": true
+      },
+      {
+        "game": "gem-market",
+        "seats": 2,
+        "moves": 45,
+        "rematch": true
+      },
+      {
+        "game": "gem-market",
+        "seats": 4,
+        "moves": 90,
+        "rematch": true
+      },
+      {
+        "game": "checkers",
+        "seats": 2,
+        "moves": 115,
+        "rematch": true
+      },
+      {
+        "game": "mancala",
+        "seats": 2,
+        "moves": 53,
+        "rematch": true
+      }
+    ],
+    "phone": [
+      {
+        "game": "uno",
+        "seats": 2,
+        "moves": 154,
+        "rematch": true
+      },
+      {
+        "game": "uno",
+        "seats": 10,
+        "moves": 231,
+        "rematch": true
+      },
+      {
+        "game": "uno-no-mercy",
+        "seats": 2,
+        "moves": 26,
+        "rematch": true
+      },
+      {
+        "game": "uno-no-mercy",
+        "seats": 6,
+        "moves": 65,
+        "rematch": true
+      },
+      {
+        "game": "deal",
+        "seats": 2,
+        "moves": 93,
+        "rematch": true
+      },
+      {
+        "game": "deal",
+        "seats": 5,
+        "moves": 92,
+        "rematch": true
+      },
+      {
+        "game": "deal-no-mercy",
+        "seats": 2,
+        "moves": 72,
+        "rematch": true
+      },
+      {
+        "game": "deal-no-mercy",
+        "seats": 5,
+        "moves": 91,
+        "rematch": true
+      },
+      {
+        "game": "holdem",
+        "seats": 2,
+        "moves": 8,
+        "rematch": true
+      },
+      {
+        "game": "holdem",
+        "seats": 9,
+        "moves": 36,
+        "rematch": true
+      },
+      {
+        "game": "rummy",
+        "seats": 2,
+        "moves": 1,
+        "rematch": true
+      },
+      {
+        "game": "rummy",
+        "seats": 6,
+        "moves": 5,
+        "rematch": true
+      },
+      {
+        "game": "teen-patti",
+        "seats": 2,
+        "moves": 1,
+        "rematch": true
+      },
+      {
+        "game": "teen-patti",
+        "seats": 6,
+        "moves": 9,
+        "rematch": true
+      },
+      {
+        "game": "blackjack",
+        "seats": 1,
+        "moves": 2,
+        "rematch": true
+      },
+      {
+        "game": "blackjack",
+        "seats": 7,
+        "moves": 14,
+        "rematch": true
+      },
+      {
+        "game": "skyjo",
+        "seats": 2,
+        "moves": 64,
+        "rematch": true
+      },
+      {
+        "game": "skyjo",
+        "seats": 8,
+        "moves": 256,
+        "rematch": true
+      },
+      {
+        "game": "tarot",
+        "seats": 1,
+        "moves": 3,
+        "rematch": true
+      },
+      {
+        "game": "four-in-a-row",
+        "seats": 2,
+        "moves": 28,
+        "rematch": true
+      },
+      {
+        "game": "reversi",
+        "seats": 2,
+        "moves": 60,
+        "rematch": true
+      },
+      {
+        "game": "word-agents",
+        "seats": 4,
+        "moves": 12,
+        "rematch": true
+      },
+      {
+        "game": "word-agents",
+        "seats": 10,
+        "moves": 23,
+        "rematch": true
+      },
+      {
+        "game": "gem-market",
+        "seats": 2,
+        "moves": 49,
+        "rematch": true
+      },
+      {
+        "game": "gem-market",
+        "seats": 4,
+        "moves": 94,
+        "rematch": true
+      },
+      {
+        "game": "checkers",
+        "seats": 2,
+        "moves": 41,
+        "rematch": true
+      },
+      {
+        "game": "mancala",
+        "seats": 2,
+        "moves": 55,
+        "rematch": true
+      }
+    ],
+    "phoneResumedAfterNetworkFailure": true,
+    "phoneCleanup": {
+      "closedExactTaskRoom": true,
+      "unplayedRematchAbandoned": true,
+      "closedMemberships": 10,
+      "allPriorResultsPreserved": true,
+      "originalOwnerRoomUnchanged": true,
+      "noRowsDeleted": true
+    },
+    "decisions": "Authorized API-driven decisions; actual rendered results/history and clicked rematch/change-game controls. Shuffled Rummy browser drops remain separate from conserved valid-declaration engine fixtures."
+  },
+  "servingAlias": {
+    "alias": "games-seven-black.vercel.app",
+    "deployment": "dpl_Gkx12Spvyt5yiVrCHmpyQ3S4buH5",
+    "servingSource": "ce8a3b6b289b5aef804cd8cfb8e4230030b9eae6",
+    "verified": true
+  },
+  "ownerPersistence": {
+    "originalRoomExists": true,
+    "samePlayer": true,
+    "sameSavedName": true,
+    "permanentAccount": true,
+    "googleLinked": true
+  },
+  "closure": "Following main closure commit changes only documentation/evidence and test tooling; application runtime remains this verified source. No duplicate application deployment."
+}

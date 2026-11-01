@@ -6,48 +6,88 @@ export type RoomView = Omit<components['schemas']['RoomView'], 'game'> & {
   game: Required<components['schemas']['GameView']> | null;
 };
 
+const TRANSIENT_REASONS = [
+  'ECONNRESET',
+  'ERR_NETWORK_CHANGED',
+  'ETIMEDOUT',
+  'ERR_CONNECTION_RESET',
+  'ERR_CONNECTION_CLOSED',
+  'ERR_INTERNET_DISCONNECTED',
+  'ENETUNREACH',
+  'ECONNREFUSED',
+  'EAI_AGAIN',
+] as const;
+type TransportReason = (typeof TRANSIENT_REASONS)[number] | 'OTHER' | 'COOKIE_SESSION';
+const transportCounts = { retryAttempts: 0, recovered: 0, failed: 0 };
+export function transportTelemetry() {
+  return { ...transportCounts };
+}
+
 export class TestTransportError extends Error {
-  constructor(method: string, path: string) {
+  constructor(
+    method: string,
+    path: string,
+    readonly reason: TransportReason = 'OTHER',
+  ) {
     const operation =
       path.startsWith('rooms/') && path.split('/').length === 2
         ? 'room snapshot'
         : path.split('/').at(-1);
-    super(`Games test transport failed: ${method} ${operation}`);
+    super(`Games test transport failed: ${method} ${operation} (${reason})`);
     this.name = 'TestTransportError';
   }
 }
 
 // Read only the session belonging to this isolated test context. Never log it.
 export async function requestAs(page: Page, path: string, method = 'GET', data?: unknown) {
+  let session;
   try {
     const parts = (await page.context().cookies())
       .filter((cookie) => /^sb-.+-auth-token(?:\.\d+)?$/.test(cookie.name))
       .sort((a, b) => a.name.localeCompare(b.name));
     const encoded = parts.map((part) => part.value).join('');
-    const session = encoded
+    session = encoded
       ? JSON.parse(
           encoded.startsWith('base64-')
             ? Buffer.from(encoded.slice(7), 'base64url').toString()
             : encoded,
         )
       : null;
-    return await page.request.fetch(`/api/backend/v1/${path}`, {
-      method,
-      data,
-      headers: {
-        ...(session ? { Authorization: `Bearer ${session.access_token}` } : {}),
-        ...(process.env.VERCEL_OIDC_TOKEN && process.env.GAMES_TEST_URL
-          ? {
-              'x-vercel-trusted-oidc-idp-token': process.env.VERCEL_OIDC_TOKEN,
-            }
-          : {}),
-      },
-    });
   } catch {
-    // Playwright's transport exceptions include its full request headers/cookies.
-    // Never retain that exception as a cause or expose it in test output.
-    throw new TestTransportError(method, path);
+    transportCounts.failed++;
+    throw new TestTransportError(method, path, 'COOKIE_SESSION');
   }
+  const safeToRepeat =
+    method === 'GET' || (method === 'POST' && /^rooms\/[^/]+\/heartbeat$/.test(path));
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const response = await page.request.fetch(`/api/backend/v1/${path}`, {
+        method,
+        data,
+        headers: {
+          ...(session ? { Authorization: `Bearer ${session.access_token}` } : {}),
+          ...(process.env.VERCEL_OIDC_TOKEN && process.env.GAMES_TEST_URL
+            ? { 'x-vercel-trusted-oidc-idp-token': process.env.VERCEL_OIDC_TOKEN }
+            : {}),
+        },
+      });
+      if (attempt) transportCounts.recovered++;
+      return response; // HTTP errors are returned untouched and never retried.
+    } catch (error) {
+      // Retain only an allowlisted code. Playwright's full exception includes
+      // authenticated headers/cookies and must never become a cause or output.
+      const message = error instanceof Error ? error.message : '';
+      const reason = TRANSIENT_REASONS.find((code) => message.includes(code)) || 'OTHER';
+      if (safeToRepeat && attempt === 0 && reason !== 'OTHER') {
+        transportCounts.retryAttempts++;
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        continue;
+      }
+      transportCounts.failed++;
+      throw new TestTransportError(method, path, reason);
+    }
+  }
+  throw new TestTransportError(method, path);
 }
 
 export async function roomAs(page: Page, id: string): Promise<RoomView> {

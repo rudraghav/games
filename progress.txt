@@ -461,3 +461,52 @@
   test outputs remain ignored. Personal GitHub/Vercel target and previous Ready
   production recovery point were rechecked. Push main, deploy through the sole
   personal CLI path, then record actual hosted acceptance and latency separately.
+- Main ce8a3b6b289b5aef804cd8cfb8e4230030b9eae6 pushed with remote parity;
+  production dpl_Gkx12Spvyt5yiVrCHmpyQ3S4buH5 is READY in bom1, both source
+  metadata fields matching that commit. Public Games domain serves 16 entries,
+  home/privacy 200, private profile 401, hosted dev identity 404 and gallery 404;
+  house-deck version/label readback and static artwork passed. Existing Google
+  and guest auth remain enabled. Scoped read found zero active old No Mercy
+  matches, so the approved house-inventory change affects no active prior game.
+- Actual production fifty-room load passed: 50 unique matches committed and 50
+  observers synchronized through private Broadcast; all 50 test rooms closed.
+  Action median 285 / p95 977 ms, Broadcast median 274 / p95 966 ms, authorized observer
+  snapshot median 858 / p95 1059 ms (maximum 2601 ms). These are hosted end-to-end
+  measurements, separate from the local in-process figures above.
+- Live private Broadcast/chat delivery passed; a nonmember's subscription and
+  room API read were rejected. Fresh production phone/desktop captures fit the
+  viewport and show the new catalogue/house identity. Hosted full-match acceptance
+  is running with explicit serving-source/origin metadata. An initial browser
+  navigation was interrupted by a host network/sleep change before auth or rooms;
+  bounded navigation and task-scoped keep-awake allow a fresh run without app or
+  production configuration changes. No repeat application deployment.
+- Production acceptance completed: all sixteen experiences passed 54 distinct
+  min/max desktop/phone scenarios and 2,962 legal actions, saved score/winner history,
+  rendered results, rematch and same-group game switching. Both real Tarot readings
+  saved/reloaded successfully. Desktop's 27 cases passed; phone's 19 completed cases
+  plus eight same-source recovery cases cover all 27. Full proofs carry explicit
+  production origin and application SHA, preventing stale local evidence reuse.
+- A second machine/network interruption occurred after the phone Four-in-a-Row
+  natural result/rematch creation. Its exact synthetic room was scoped by
+  creation window, ten known anonymous test members and unplayed rematch version 1.
+  A private before-state preceded narrow administrative closure. Fresh readback
+  proved ten inactive memberships, only that rematch abandoned, all 20 earlier
+  natural results unchanged, original owner room unchanged and no rows deleted.
+- Owner confirmed stable connectivity. Current Supabase primary docs clarified
+  token-bucket capacity/refill, allowing the remaining eight phone cases without
+  changing limits, credentials or IP routing. No auth 429 occurred. The recovery
+  suite passed with zero transport retries/failures and closed its own room.
+  Transport-tooling regression now passes 20 checks for privacy, safe read/presence
+  recovery and no create/join/start/action or HTTP-error retries.
+- Final source remains ce8a3b6b289b5aef804cd8cfb8e4230030b9eae6 serving production;
+  alias readback matches dpl_Gkx12Spvyt5yiVrCHmpyQ3S4buH5. Release artifacts under
+  docs/evidence/release-2026-11-01 separate local and actual hosted evidence.
+  Push the closure notes/test-tooling change to main without another app deploy;
+  application inputs remain identical to the verified serving commit.
+- Completion cleanup removed only task-owned temporary logs, duplicate captures,
+  resolved failure contexts and successful-run markers. Preserved source, concise
+  local/hosted evidence, credential files, dependencies, database history, normal
+  browser sessions and requested development services. All test contexts and the
+  task's keep-awake process ended. Fresh local web/API and production checks are
+  200; dedicated games-postgres remains running; private setup files retain
+  owner-only permissions. No unrelated project services were stopped.

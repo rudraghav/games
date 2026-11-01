@@ -48,6 +48,15 @@ house-version and large-payment fixes. Thirteen frontend tests, 285 backend test
 43 isolated multiplayer checks and four transport/privacy checks passed. See
 `docs/evidence/release-2026-11-01/local.json` for metadata-only per-game results.
 
+Production acceptance also passed all sixteen experiences across 54 distinct
+phone/desktop scenarios and 2,962 legal actions, including two saved real Tarot
+readings. A network-interrupted phone run was completed through a focused
+same-source recovery, with task-room cleanup verified separately. Fifty hosted
+rooms committed and synchronized through private Broadcast; action p95 was
+977 ms and authorized observer snapshot p95 1,059 ms. Nonmember subscription/read
+denial and the original owner's account/room preservation passed. See
+`docs/evidence/release-2026-11-01/production.json` for exact source and per-game proof.
+
 Complete matches are an explicit long-running acceptance run:
 
 ```sh
@@ -81,7 +90,7 @@ The repaired Tarot provider contract passed six fresh non-personal strict-schema
 evaluations first attempt (2.24–4.15 s). Malformed/truncated/incorrect-card output
 has one budgeted regeneration at most. Quota/auth/transport/safety failures do
 not loop or save invented output. Final real browser/persistence and production
-checks must pass before closing this release.
+checks passed for this release; future changes must repeat affected verification.
 
 ## Historical baseline evidence and limits — 31 October 2026
 
