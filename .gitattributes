@@ -1,0 +1,3 @@
+# Preserve byte-identical upstream SVGs; integrity and executable-content checks
+# are enforced by playing-card-assets.test.tsx instead of reformatting vendor art.
+apps/web/public/playing-cards/*.svg -whitespace

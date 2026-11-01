@@ -18,6 +18,10 @@ The card asset commit is pinned to
 origin statement, individual hashes and source metadata are retained in
 `apps/web/public/playing-cards`. Imported SVGs are checked for executable content;
 they are decorative inside the accessible Games-owned card controls.
+The vendored SVGs retain upstream formatting and exact hashes, including its
+trailing whitespace. A scoped Git whitespace attribute preserves those originals;
+all authored code keeps ordinary whitespace checks. Asset integrity and
+executable-content tests remain mandatory for every face.
 
 Games keeps one component vocabulary: cards, tiles, hands, seats, action panels,
 dialogs and themes. It does not layer a second application shell on top of the
