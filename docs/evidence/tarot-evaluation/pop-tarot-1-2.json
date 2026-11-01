@@ -1,0 +1,34 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "pop-tarot-1",
+  "seconds": 2.45,
+  "question": "I feel stuck in a routine. What could I reflect on?",
+  "reading": {
+    "title": "Breaking the Loop",
+    "introduction": "It is so easy to mistake a comfortable rut for a safe home, but your curiosity is knocking on the door. Let us look at where you are and how a gentle shake-up might help you find your footing again.",
+    "cards": [
+      {
+        "card_id": "major-16",
+        "position": "Where you are",
+        "title": "The Tower",
+        "interpretation": "You are currently questioning an unstable assumption about your daily routine, realizing that the walls you built for safety have started to feel more like a cage. This is a wonderful moment to gently let go of the old story and rebuild your days on something far more honest and aligned with who you are right now.",
+        "pop_culture": "Truman Burbank finally walking toward the exit door of his constructed reality in The Truman Show"
+      },
+      {
+        "card_id": "cups-05",
+        "position": "What is shifting",
+        "title": "Five of Cups",
+        "interpretation": "Some friction in your emotional landscape is inviting a brand new approach to how you connect with your feelings and the people around you. Instead of dwelling on what has felt repetitive or disappointing, you are noticing where genuine warmth is still available if you turn around to look.",
+        "pop_culture": "Eleanor Shellstrop realizing she actually cares about her ethics study group in The Good Place"
+      },
+      {
+        "card_id": "major-17",
+        "position": "Your next move",
+        "title": "The Star",
+        "interpretation": "Your next move is to make deliberate space for renewal, quiet hope, and small acts of restoration that recharge your spirit. You do not need a massive life overhaul today, just a clear night sky of the mind where you can remember what you are aiming for.",
+        "pop_culture": "Andy Dufresne standing in the rain with his arms wide open after escaping to freedom in The Shawshank Redemption"
+      }
+    ],
+    "next_step": "Take ten minutes today to write down one tiny, unusual habit you would like to try this week just for the fun of it."
+  }
+}

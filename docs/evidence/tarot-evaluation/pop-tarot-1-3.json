@@ -1,0 +1,34 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "pop-tarot-1",
+  "seconds": 2.14,
+  "question": "",
+  "reading": {
+    "title": "The Art of the Balanced Pivot",
+    "introduction": "Welcome to your reading. Let us take a gentle, clear-eyed look at where you stand right now without any unnecessary pressure.",
+    "cards": [
+      {
+        "card_id": "swords-02",
+        "position": "Where you are",
+        "title": "Two of Swords",
+        "interpretation": "You are currently holding a delicate stalemate, weighing competing ideas and difficult truths as if deciding which alarm clock to gently toss out the window.",
+        "pop_culture": "Like Neo trying to pick between the red pill and the blue pill while experiencing a mild existential crisis."
+      },
+      {
+        "card_id": "major-11",
+        "position": "What is shifting",
+        "title": "Justice",
+        "interpretation": "A sense of accountability is stepping into the room, asking you to own your role in the equilibrium and look closely at the long-term consequences of your choices.",
+        "pop_culture": "Reminiscent of Elle Woods walking into the courtroom in her pink suit and completely rearranging the logic of the case through sheer preparation."
+      },
+      {
+        "card_id": "pentacles-08",
+        "position": "Your next move",
+        "title": "Eight of Pentacles",
+        "interpretation": "Your path forward is rooted in steady, repetitive, and satisfying craftsmanship where daily work and practical care finally start to compound.",
+        "pop_culture": "Channeling Leslie Knope meticulously color-coding a binder because the joy is truly in the execution of the task."
+      }
+    ],
+    "next_step": "Spend ten minutes today writing down just one practical priority for your workspace and take the first small action toward it."
+  }
+}

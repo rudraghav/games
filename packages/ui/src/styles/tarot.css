@@ -1,0 +1,410 @@
+@layer components {
+  .lobby-game .game-art {
+    position: relative;
+    inset: auto;
+    flex: none;
+  }
+  .tarot-card {
+    width: 180px;
+    aspect-ratio: 2/3;
+    border: 1px solid var(--color-ink);
+    border-radius: 12px;
+    background: var(--color-white);
+    padding: 7px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: none;
+    box-shadow: var(--shadow-card);
+    color: var(--color-ink);
+  }
+  .tarot-art {
+    display: block;
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    background: var(--color-coral);
+    border-radius: 6px;
+  }
+  .tarot-art--illustrated {
+    background-image: var(--tarot-image);
+    background-size: 300% 200%;
+    background-position: var(--tarot-x) var(--tarot-y);
+  }
+  .tarot-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30px;
+    padding: 5px 2px 0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    line-height: 1.1;
+  }
+  .tarot-card--back {
+    background: var(--color-plum);
+    border-color: var(--color-plum);
+    color: var(--color-ochre-light);
+  }
+  .tarot-back {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 7px;
+    border: 1px solid var(--color-ochre);
+    background:
+      radial-gradient(circle, transparent 1px, var(--color-plum) 1px) 0 0/8px 8px,
+      var(--color-ochre);
+    position: relative;
+  }
+  .tarot-back:before,
+  .tarot-back:after {
+    content: '';
+    position: absolute;
+    border: 1px solid var(--color-ochre);
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    transform: rotate(35deg);
+  }
+  .tarot-back:after {
+    transform: rotate(-35deg);
+  }
+  .tarot-back-orbit {
+    font-size: 70px;
+    z-index: 1;
+  }
+  .tarot-back i {
+    font-family: var(--font-display);
+    font-size: 21px;
+    margin-top: 13px;
+  }
+  .tarot-card--compact {
+    width: 96px;
+    border-radius: 8px;
+    padding: 5px;
+  }
+  .tarot-card--compact .tarot-back-orbit {
+    font-size: 40px;
+  }
+  .tarot-card--compact .tarot-back i {
+    font-size: 14px;
+    margin-top: 2px;
+  }
+  .tarot-card--selected {
+    outline: 3px solid var(--color-ochre);
+    outline-offset: 3px;
+  }
+  .tarot-card:disabled {
+    opacity: 0.5;
+  }
+  .tarot-art[data-suit='cups'] {
+    background-color: var(--color-sky);
+  }
+  .tarot-art[data-suit='swords'] {
+    background-color: var(--color-plum);
+  }
+  .tarot-art[data-suit='pentacles'] {
+    background-color: var(--color-sage);
+  }
+  .tarot-orbit {
+    position: absolute;
+    width: 80%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid var(--color-ochre-light);
+    background: var(--color-card-yellow);
+    left: 10%;
+    top: 12%;
+    box-shadow: 12px 12px 0 var(--color-ink);
+  }
+  .tarot-suit {
+    position: absolute;
+    color: var(--color-ink);
+    z-index: 1;
+    top: 15%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 96px;
+    text-shadow: 4px 4px var(--color-white);
+  }
+  .tarot-rank {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20%;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--color-white);
+    text-shadow: 2px 2px var(--color-ink);
+  }
+  .tarot-pips {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2px;
+    position: absolute;
+    bottom: 8%;
+    left: 10%;
+    right: 10%;
+    color: var(--color-ochre-light);
+  }
+  .tarot-pips i {
+    font-style: normal;
+    font-size: 14px;
+  }
+  .game-art--tarot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .game-art--tarot > .tarot-card {
+    position: absolute;
+    width: 110px;
+  }
+  .game-art--tarot > .tarot-card:nth-child(1) {
+    transform: translate(-58px, 10px) rotate(-18deg);
+  }
+  .game-art--tarot > .tarot-card:nth-child(2) {
+    transform: translate(55px, 9px) rotate(17deg);
+  }
+  .game-art--tarot > .tarot-card:nth-child(3) {
+    transform: rotate(-3deg);
+  }
+  .game-art--tarot .tarot-name {
+    font-size: 8px;
+    min-height: 24px;
+  }
+  .tarot-table {
+    max-width: 960px;
+    margin: auto;
+    padding: 0 12px 24px;
+  }
+  .tarot-intro {
+    text-align: center;
+    margin: 12px auto 40px;
+    max-width: 650px;
+  }
+  .tarot-little-star {
+    color: var(--color-coral);
+    font-size: 36px;
+    display: block;
+    margin-bottom: 15px;
+  }
+  .tarot-intro h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    margin: 12px 0 18px;
+  }
+  .tarot-intro > p:last-child {
+    color: var(--color-ink-muted);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .tarot-spread {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 720px;
+    margin: 0 auto 35px;
+  }
+  .tarot-spread-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+  }
+  .tarot-spread-slot .eyebrow {
+    font-size: 9px;
+  }
+  .tarot-spread-slot .tarot-card {
+    width: 100%;
+    max-width: 190px;
+  }
+  .tarot-card-meaning {
+    font-size: 12px;
+    color: var(--color-ink-muted);
+    line-height: 1.7;
+    min-height: 60px;
+  }
+  .tarot-pick-area {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    border-radius: var(--radius-card);
+    padding: 24px;
+  }
+  .tarot-pick-area .section-heading {
+    margin: 0 0 15px;
+  }
+  .tarot-pick-area h3 {
+    font-size: 15px;
+  }
+  .tarot-deck {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 15px 5px 22px;
+    scrollbar-width: thin;
+    overscroll-behavior-inline: contain;
+  }
+  .tarot-deck .tarot-card:nth-child(3n) {
+    transform: rotate(3deg);
+  }
+  .tarot-deck .tarot-card:nth-child(3n + 1) {
+    transform: rotate(-3deg);
+  }
+  .tarot-question {
+    max-width: 560px;
+    margin: 0 auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    padding: 26px;
+  }
+  .tarot-question > .button {
+    width: 100%;
+    margin: 6px 0 15px;
+  }
+  .tarot-question > p {
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+  .tarot-question textarea {
+    resize: vertical;
+  }
+  .tarot-reading {
+    max-width: 700px;
+    margin: 20px auto;
+  }
+  .tarot-reading article {
+    padding: 28px 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .tarot-reading article > h3 {
+    font-family: var(--font-display);
+    font-size: 29px;
+    font-weight: 500;
+    margin: 12px 0;
+  }
+  .tarot-reading article > p {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  .culture-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: var(--color-plum-light);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    color: var(--color-plum);
+  }
+  .culture-note svg {
+    flex: none;
+    margin-top: 3px;
+  }
+  .culture-note p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .tarot-next-step {
+    padding: 25px;
+    background: var(--color-ochre-light);
+    border-radius: var(--radius-card);
+  }
+  .tarot-next-step > p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-top: 10px;
+  }
+  .tarot-footnote {
+    font-size: 11px;
+    color: var(--color-ink-muted);
+    text-align: center;
+    padding: 32px 15px 0;
+  }
+  @media (max-width: 600px) {
+    .tarot-table {
+      padding: 0 0 20px;
+    }
+    .tarot-intro {
+      margin: 0 auto 28px;
+    }
+    .tarot-intro h2 {
+      font-size: 34px;
+    }
+    .tarot-intro > p:last-child {
+      font-size: 13px;
+    }
+    .tarot-spread {
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .tarot-spread-slot {
+      gap: 12px;
+    }
+    .tarot-spread-slot > .eyebrow {
+      font-size: 8px;
+      letter-spacing: 0.04em;
+      min-height: 22px;
+    }
+    .tarot-spread-slot .tarot-card {
+      border-radius: 8px;
+      padding: 4px;
+    }
+    .tarot-spread-slot .tarot-name {
+      font-size: 8px;
+      min-height: 23px;
+    }
+    .tarot-spread-slot .tarot-back-orbit {
+      font-size: 45px;
+    }
+    .tarot-spread-slot .tarot-back i {
+      font-size: 14px;
+      margin-top: 3px;
+    }
+    .tarot-card-meaning {
+      font-size: 10px;
+      line-height: 1.7;
+    }
+    .tarot-pick-area {
+      padding: 18px 14px;
+    }
+    .tarot-pick-area .section-heading {
+      display: block;
+    }
+    .tarot-pick-area .section-heading p {
+      margin-top: 7px;
+    }
+    .tarot-question {
+      padding: 22px 18px;
+    }
+    .tarot-art .tarot-suit {
+      font-size: 53px;
+    }
+    .tarot-art .tarot-rank {
+      font-size: 15px;
+    }
+    .tarot-art .tarot-pips i {
+      font-size: 9px;
+    }
+    .tarot-reading article > h3 {
+      font-size: 26px;
+    }
+    .tarot-reading article > p {
+      font-size: 14px;
+    }
+  }
+}

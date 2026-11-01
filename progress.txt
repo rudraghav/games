@@ -1,0 +1,339 @@
+## 2026-10-31 — Tarot, shared tables and account setup
+
+- Owner selected AI-written personal Tarot readings and then supplied their
+  personal Gemini setup. The reader now uses Gemini Interactions with a typed
+  three-card contract, bounded output, no provider storage, a saved generation
+  lease, and counts-only usage logs. Dedicated GEMINI_API_KEY is pending in the
+  ignored local AI environment file; live AI quality is not yet verified.
+- Original pop-art illustrations cover the 22 major arcana in four generated
+  atlases; the 56 minor cards use Games-owned suit/rank/pip compositions. Shared
+  TarotCard owns frames, artwork sampling, card back, touch/keyboard selection
+  and reduced motion. Research/licence decisions remain in DESIGN_REFERENCES.
+- Added shared seats/piles/actions and distinct shedding, property, casino,
+  Skyjo and Tarot compositions; room/lobby/chat/invites, private polling and
+  Broadcast subscription hooks; profile and optional email linking routes.
+- Local browser verified lounge → Tarot lobby → three distinct picks → saved
+  spread and honest AI-unavailable state. Fixed proxy origin validation against
+  the public Host header. Frontend type/lint checks passed before latest edits.
+- Latest deterministic engine suite: 54 passing. Fresh isolated Postgres upgrade
+  and schema comparison passed; seven room/privacy/concurrency/Tarot persistence
+  and migration checks passed. These are partial acceptance evidence.
+- Personal Vercel Hobby workspace confirmed in the owner's signed-in Chrome
+  session. Connector access to that workspace returns forbidden, and its scoped
+  consent recovery returned team-not-found. Personal deployment CLI setup is
+  being prepared. No Vercel project or deployment has been created yet.
+- State: local only; no commit or push. Personal Supabase preview exists and is
+  healthy; cloud migrations/auth configuration and hosted multiplayer verification
+  remain outstanding. All-game release gates still apply.
+
+## 2026-10-31 — Nine-game implementation kickoff
+
+- Scope extension: owner requested online/Dribbble/free-kit research and a tenth
+  Tarot experience: full 78-card deck, original modern pop-art design, AI-written
+  personal readings with pop-culture analogies. Recorded design sources and reuse
+  decisions in docs/DESIGN_REFERENCES.md. AI output will use a compact prompt,
+  typed schema, validators, usage logging and a focused live eval.
+- Owner created games-preview in the personal Supabase organization through the
+  browser. Dashboard reports healthy in Mumbai. No cloud migrations applied yet.
+- Local initial Alembic upgrade/schema comparison and backend type check passed.
+  Initial engine suite: 51 passing tests. Further family/API/browser coverage is
+  still required; these results do not certify the release.
+
+- Outcome: implement the approved private game-night app in this repository.
+- Scope: Uno, Uno No Mercy, Monopoly Deal, Deal No Mercy, no-limit Hold'em,
+  Indian 13-card rummy, classic Teen Patti, blackjack and Skyjo. Guest invites,
+  optional accounts, room chat/reactions, untimed turns, human opponents.
+- Architecture: Next.js/Tailwind shared UI, generated API client, FastAPI game
+  registry, service-owned transactions, Postgres state, private Supabase broadcasts.
+- Acceptance: completed matches and rematches in all nine games; invalid/concurrent
+  moves rejected; hidden cards inaccessible; reconnect and host transfer work;
+  phone/desktop browser checks; 50-room load run; type/lint/test/build and migration
+  checks. Release remains gated until acceptance is verified.
+- Current state: implementing locally. No commit, push, database provisioning,
+  deployment, or live verification has occurred. Supabase organization choice pending.
+
+## 2026-10-31 — Personal hosting connection and verification follow-through
+
+- Outcome: keep Games isolated in the owner's personal cloud accounts, finish
+  reproducible local checks, and make hosted identity fail closed. Acceptance:
+  hosted requests cannot mint/use local development identities; generated
+  contracts remain current; all existing engine/room/browser checks pass.
+- Personal Vercel `games` is now created and linked using a separate personal
+  CLI login. Preview configuration contains the dedicated Gemini key as a
+  Secret, its model as Config, and development auth disabled. No deployment,
+  commit or push has occurred. The earlier entry's pending-project state is historical.
+- The dedicated Gemini key authenticates and lists models, but generation
+  returned HTTP 402 for depleted prepayment credits. Browser inspection showed
+  Google Cloud welcome credits and an AI Studio prepay requirement. Google's
+  current rules exclude welcome credits from Gemini API/AI Studio usage; a
+  separate free API tier exists. No billing upgrade/top-up was performed and
+  no successful live reading or quality evaluation is claimed.
+- Added lockfile-backed Python 3.13 dependencies, a separate migration connection
+  setting, and pooler-safe database connection options. Runtime uses no prepared
+  statements; remote database connections require TLS. Local database remains local.
+- Latest completed evidence before follow-through: 78 engine/edge/playthrough
+  checks plus five Tarot/adapter checks; seven isolated room/migration checks;
+  six phone/desktop browser flows; 50 local concurrent rooms (action p95 689 ms,
+  snapshot p95 391 ms). Newly edited rummy grouping and other subsequent changes
+  require a fresh affected run below. None establishes full release acceptance.
+- State: local implementation continues. Supabase cloud migration/auth,
+  production isolation, hosted multiplayer/Realtime, canonical Deal No Mercy
+  inventory, all-game browser completion and live AI evaluation remain gaps.
+- Follow-through verification passed: frontend types/lint, four frontend checks,
+  production build; Python lint/types and 88 engine/playthrough/auth checks;
+  generated contracts and import boundaries; fresh migration/drift/privacy check;
+  six room integration checks; six browser flows on desktop/phone. Python lock
+  consistency passed. Retained the requested local web/API/database services;
+  the API was restarted with current code and access logging disabled.
+
+## 2026-10-31 — Free-tier Tarot development kickoff
+
+- Owner explicitly chose Gemini's free API tier for development, acknowledging
+  its usage limits and Google product-improvement terms. Keep paid billing and
+  unrelated projects unchanged; use a dedicated Games development key.
+- Acceptance: verify a free-tier project, use its server-only key without
+  exposing it, display the active data-use notice before submission, validate a
+  real three-card reading and persist it through refresh. Paid-model fallback
+  and automatic top-ups are outside this change.
+- Current step: AI Studio's new-project form is blank; preparing the dedicated
+  project through Google Cloud. No replacement credential or successful reading yet.
+- Created the dedicated Games Development project through Google Cloud. Cloud
+  automatically attached its trial billing account; unlinked billing from this
+  newly created empty project only. AI Studio readback now explicitly shows
+  Games Development as Free tier. The billing account and older projects remain
+  intact. Prepared its named key form, stopped before credential creation for
+  the required human handoff, and opened the ignored AI environment file.
+- Added server-owned `TAROT_API_TIER`/generated `api_tier` contract and the
+  associated question-field notice. Submission waits for the server snapshot.
+  Verification: 90 backend checks, Python types/lint, generated-contract drift,
+  frontend types/lint/four checks/production build, and two desktop/phone Tarot
+  browser checks passed. Existing paid-project key is preserved pending the
+  owner's replacement; no further generation call was made with it.
+- State: local changes only; no push or deployment. Waiting for the owner to
+  create/save the prepared free-tier key before live reading verification.
+
+## 2026-10-31 — Live free-tier verification
+
+- Owner saved the replacement key. Authentication/model discovery succeeded;
+  three fixed non-personal evaluation requests passed the exact card/position
+  schema in 2.57, 2.45 and 2.14 seconds. Reviewed the saved outputs: card meanings,
+  recognisable pop-culture analogies and practical next steps are present.
+- A real browser generation reached Gemini but the room recorded a failed
+  reading with no payload. The UI preserved the spread. Investigating this
+  separate app-path failure before retrying or claiming saved-reading success;
+  add counts-only failure diagnostics and verify retry/persistence behavior.
+- Retry succeeded with the same three cards. Fresh browser reload and a full
+  Uvicorn stop/start both returned identical saved reading text and all three
+  sections. At 390px the same reading had no horizontal overflow. Saved desktop
+  and phone visual evidence; retained the working browser page for review.
+- Added exception-type/validation-count failure logging without private payloads.
+  The new isolated regression test confirms failure preserves the spread,
+  sensitive exception content stays out of responses/logs, and retry saves once.
+  Verification passed: Python lint/types, 90 backend checks and seven isolated
+  multiplayer/persistence checks. The original rejected response was not stored,
+  so its exact parser/validation cause cannot be reconstructed retrospectively.
+- The personal Games preview now has the working key as a Secret and model/tier
+  as Config. Added an explicit AI-refresh mode to the existing preview utility;
+  checks account/project and preview-only scope, transmits values through stdin,
+  and never deploys. No production settings, billing top-ups, push or deployment.
+- Current state: Gemini free-tier development and saved-reading verification
+  complete. Supabase cloud configuration, hosted multiplayer and all-game release
+  acceptance remain outstanding as listed in docs/VERIFICATION.md.
+- Browser recovery now refetches the saved reading after a submission error,
+  allowing an already committed result to recover without generating again;
+  failed attempts explain that the cards are saved. After this edit, frontend
+  types/lint/four checks/production build and both Tarot phone/desktop browser
+  checks passed. Import-boundary and preview-tool syntax checks also passed.
+- Vercel readback confirmed the three AI setting names, Secret/Config types and
+  preview-only scope. Secret values were never printed or read back. The CLI's
+  list response does not provide plaintext Config values in this account, so
+  exact Config values are supported by the successful update acknowledgements,
+  rather than a plaintext comparison. No application deployment was triggered.
+- Retained the requested local web/API/database and successful reading preview.
+  Removed the successful test-run marker; kept source, evaluation outputs and
+  visual evidence. No changes were made to another repository or billing account.
+
+## 2026-10-31 — Online preview and library expansion kickoff
+
+- Owner requested personal Supabase setup, a Vercel deployment for testing every
+  game online, and a broader library including Splendor/Codenames-style games.
+  Deliver a preview for testing; production acceptance remains separate.
+- Acceptance: real Supabase guest sessions; reviewed cloud Alembic migrations;
+  authorized/private persisted rooms; Vercel web/backend binding; independent
+  online players can create/join/start/move/refresh/rematch. No local identities
+  or another product's credentials/data in the deployment.
+- Initial expansion: Four in a Row, Reversi, a Codenames-style team word game
+  using an original word list, and Gem Market, an original Splendor-style gem
+  engine with documented card values. Add only complete playable modules to the
+  catalogue; record other common-game candidates in the library roadmap.
+- Current cloud access: available Supabase connector does not list the personal
+  Games project; project-scoped connection is denied. Prepared a private cloud
+  setup file and requested the saved database password, publishable key and
+  anonymous sign-in setting. Local development data remains separate.
+
+- Credential correction verified against the exact personal Games session pooler.
+  Applied both reviewed cloud migrations; schema drift and private-table RLS/grants
+  passed. Configured database/auth/encryption settings in personal Vercel preview
+  only, preserving local credentials and the existing working Gemini settings.
+- Implemented Four in a Row, Reversi, Word Agents and Gem Market, with owning rule
+  documentation, server-only legality, private projections, generated API mappings,
+  shared UI primitives/variants and 28 min/max table fixtures. Word Agents and Gem
+  Market are documented house editions inspired by Codenames and Splendor.
+- Local checks passed: Python lint/types, 131 backend checks, contracts, module
+  boundaries, seven isolated multiplayer checks, six browser workflows (28 table
+  scenarios at phone/desktop), frontend types/lint/four tests/production build,
+  and Storybook build. New expansion interaction browser checks are in progress.
+- Repeated 50-room local load: action median/p95/max 535/606/715 ms; snapshot
+  281/337/369 ms. This is not hosted internet/Broadcast latency. No application
+  deployment, production release, Git commit or push yet.
+
+- The initial CLI deployment selected its first-deployment production default and
+  failed during framework detection (Next/Storybook ambiguity), before serving
+  an application. No production credentials were configured. Pin service framework
+  identifiers and explicitly select the preview environment for the next attempt;
+  inspect its actual target and build status before online verification.
+
+- Preview dpl_2QmeLjKzgSWXMZZZUFPHtc58dNdS reached Ready, target preview, with
+  Next and FastAPI together. Four real anonymous Supabase identities created/joined
+  a cloud room. Uno, Uno No Mercy and Deal passed hosted action/retry/stale/refresh
+  checks so far; the complete hosted catalogue is still in progress.
+- All eight new-game phone/desktop interaction checks passed, including a complete
+  Four in a Row result, Reversi flips, spymaster-key privacy and gem selection.
+  The gallery visual review caught development-card clipping from generic phone
+  dimensions. Added semantic card dimension variables and a cost-bounds regression.
+- Actual preview HTTP checks: catalogue 200/14 games, original artwork 200,
+  unauthenticated profile 401 and local-only session endpoint 404. Image optimizer
+  returned 404, so add deterministic static WebP derivatives, retaining all masters.
+  Pin Mumbai function runtime beside the database. These runtime/UI fixes require
+  a verified replacement preview; the previous deployment remains the rollback.
+
+- Replacement dpl_FAT8zLC6D7p7CANHsACPiTkmNkK6 reached Ready in Mumbai (both
+  services confirmed via fresh inspection). All 14 engines passed a single hosted
+  create/join/start/action/retry/stale-conflict/refresh catalogue smoke with four
+  real guests and the same group. Real Gemini generation returned a complete
+  reading and reload returned exactly the saved result. Private room subscription
+  joined successfully; a focused receive/nonmember check is finishing separately.
+- Final UI verification: 131 backend checks, seven multiplayer checks, cloud/local
+  migrations, contracts, boundaries, frontend types/lint/four tests/production
+  build, 14 local browser workflows and Storybook build passed. Two extra gallery
+  phone/desktop checks passed after fixing the home board/word artwork modifiers.
+  This final CSS change requires one replacement preview; engine source is unchanged.
+- HTTP and actual screenshots verified 14 catalogue entries, four WebP images at
+  200, no phone page overflow, profile 401 without identity and hosted dev-session
+  404. The unused framework image optimizer remains 404; the app now uses static
+  derivatives instead. Runtime source fingerprint before the final CSS correction:
+  e8e0dfd9969effbd3ba7f7bc0fd517da44483638b3d0871af284c693267152ec.
+- No production application release, Git commit or Git push. Production gates
+  still include edition inventory verification, complete browser matches/rematches
+  at all seat counts, hosted 50-room load, optional email linking and isolated
+  production provisioning. Vercel preview protection is retained pending the
+  owner's choice about access for friends; room authorization stays required.
+
+- Final deployment dpl_CiiSDEFqQgpRcg93CG7xeng8JvMR is Ready, explicitly preview,
+  with web and backend in bom1. URL:
+  https://games-r9le3idrh-rudraghavs-projects.vercel.app
+  Runtime fingerprint: 530d35bec676b5a1ebdc892371f43b63890713d1a3dd295c3a5e32ef72198844.
+  Only the shared expansion CSS differs from the all-14 hosted pass; backend and
+  AI source are identical. Fresh final checks repeated the original nine game
+  action/retry/conflict/refresh paths, correct artwork HTTP responses, phone and
+  desktop screenshots, hosted auth boundary and exact serving region/target.
+- Private Broadcast receive/authorization check passed on the final deployment:
+  actual state_changed binary frame, rendered cross-browser phone chat, denied
+  nonmember channel join and 404 room read. Early test failures were harness
+  assumptions about a hidden phone indicator, JSON-only frames and duplicate
+  desktop/mobile chat locators; no Realtime application fix was needed.
+- Optional repeated AI generation returned 502 with ValidationError/two errors.
+  No raw question/provider result was logged or retained. Prior hosted real
+  generation/refresh succeeded with the same backend; failed-reading preservation
+  and retry persistence have deterministic coverage. AI reliability remains a
+  preview limitation, not a production PASS. No speculative prompt changes.
+- Source/docs remain local and uncommitted; the verified application is deployed
+  through the personal CLI. No Git push or production application release.
+- Completion cleanup removed task-owned temporary request/runtime/build/deploy
+  logs and the successful browser marker. Retained concise verification JSON,
+  screenshots, all source, private environment files, dependency/browser runtimes,
+  cloud/local databases and requested dev services. Local web/API health is 200
+  and the exact Games Postgres container remains running.
+
+## 2026-10-31 — Google account signup kickoff
+
+- Owner requested Google/Gmail signup using the personal Google Cloud account
+  already used for Gemini (raghavmulpuru@gmail.com). Reuse Games Development if
+  available; keep the global Shikha CLI configuration and billing unchanged.
+- Acceptance: a discoverable Continue with Google control, OAuth/PKCE return to
+  Games, verified account identity, new-account guest linking preserving the
+  player ID/history, explicit handling for an existing-account conflict/cancel,
+  and project-scoped provider/manual-linking/redirect settings. No Gmail data
+  access is required: only basic Google account identity, email and profile.
+- Current access: CLI is signed into Shikha, and Chrome blocks Apple Events
+  JavaScript. Requested access to the already signed-in personal setup tabs;
+  app implementation and focused checks can proceed independently.
+
+- Added AccountSection, a shared account navigation control and a small typed
+  Google flow helper. Fresh visitors use OAuth sign-in/signup; guests with saved
+  play and email players use identity linking. Existing-account switching is
+  explicit; an identity conflict never silently replaces the guest session.
+- Hardened the PKCE callback with safe status messages, no raw provider error
+  descriptions, private/no-store and no-referrer headers. Browser checks exposed
+  Next's internal localhost origin changing the redirect host; a relative Location
+  fixes that and retains the browser's player cookie without trusting host headers.
+- Passed frontend types/lint, ten frontend checks (six new auth cases), production
+  build and both phone/desktop account browser checks. Same player ID survives
+  callback cancellation; profile layout has no phone overflow. Full affected
+  browser regression is running. Backend/schema/API contracts are unchanged.
+- Google remains disabled on the real Supabase project. Personal Google Cloud
+  credentials are not in the CLI; Chrome rejects Apple Events JavaScript and
+  macOS also denies osascript accessibility control. The requested Chrome setting
+  is still pending. No Google/Supabase provider writes or application deployment
+  have occurred in this task; the existing online preview remains intact.
+- Final affected groups passed: frontend types/lint/10 tests/production build,
+  browser type-check plus 16 phone/desktop workflows (four cloud-only cases
+  intentionally skipped locally), and module boundaries. Kept screenshots and
+  setup documentation. Closed task-owned test browsers and removed the successful
+  test marker; retained all source, credentials, databases and local dev services.
+- Handoff required: enable Chrome View → Developer → Allow JavaScript from Apple
+  Events, or complete the documented Google client/Supabase provider configuration.
+  Resume with the prepared local implementation; do not repeat the passing local
+  suite unless source changes. Live Google authorization/PKCE/player-ID readback
+  and one preview deployment remain outstanding.
+
+## 2026-11-01 — Google provider setup and production release
+
+- Owner enabled Chrome control and explicitly approved Google's API Services
+  User Data Policy. Verified personal account and existing Games Development
+  project (games-development-513310); created Games branding and Games Web client.
+  No billing changes or additional Google Cloud project.
+- Enabled manual identity linking on the exact personal Supabase Games project;
+  saved/reloaded verification kept anonymous signup, new signup and email
+  confirmation enabled. Added restricted Games preview/local callback allowlist.
+- During client inspection, the first newly created secret appeared in an
+  accessibility label. Created a replacement before use, captured it only in an
+  ignored owner-only credential file, and requested disabling the unused exposed
+  secret. Readback showed an Enable control for the old credential; final readback
+  and login verification remain pending. Mask provider credentials in all further
+  browser inspection output. Google provider public settings now report enabled.
+- Owner explicitly changed the target to push main and deploy production, with no
+  further preview needed. Keep the existing dedicated Games cloud data and stable
+  encryption secret so rooms/invitations survive; local development stays isolated.
+  Existing previews are rollback references. Configure production-only Vercel
+  entries, verify locally, commit/push exact main and deploy once through the
+  personal CLI. This is the owner's requested product rollout; remaining rules,
+  full-match/load and AI reliability gaps must stay documented, not called solved.
+- Published the Google OAuth audience as External/In production after the owner
+  requested production rollout. Saved and reloaded exactly three non-sensitive
+  scopes (openid, email, profile); no sensitive/restricted scopes. Branding uses
+  the stable Games production homepage/privacy URL. Google provider is enabled.
+- Production-only Vercel configuration completed: database/encryption/provider
+  secrets, public Supabase settings, APP_ENV=production and disabled local-auth
+  flags. Reused the existing Games cloud data/invitation encryption identity;
+  reviewed cloud migrations, schema drift and private RLS/grants passed.
+- Added a public factual privacy page for Google branding, signup/room data and
+  Gemini's free-tier disclosure. Latest checks passed: Python lint/types and
+  132 backend checks, contract drift, boundaries, frontend types/lint/10 checks/
+  build, browser type-check and both account phone/desktop checks. The full
+  16-workflow suite passed before the privacy-only addition.
+- Personal GitHub identity and admin/push permission verified for rudraghav/games;
+  remote main is empty. Credential scan of all 235 candidate files passed, and
+  private setup/credential files are ignored. Prepare the initial verified main
+  commit with the owner's GitHub noreply identity, then use only the personal CLI
+  for the requested production deployment. Live verification follows the rollout.

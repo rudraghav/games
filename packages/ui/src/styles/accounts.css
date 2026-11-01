@@ -1,0 +1,35 @@
+@layer components {
+  .account-link > p {
+    margin: 12px 0 18px;
+  }
+  .account-switch {
+    display: block;
+    margin-top: 16px;
+  }
+  .account-email {
+    margin-top: 24px;
+  }
+  .privacy-page {
+    max-width: 800px;
+    padding-block: 60px 90px;
+  }
+  .privacy-page .hero-title {
+    font-size: clamp(42px, 7vw, 66px);
+    margin-block: 14px 20px;
+  }
+  .privacy-page section {
+    margin-block: 36px;
+  }
+  .privacy-page h2 {
+    font-size: 23px;
+    margin-bottom: 14px;
+  }
+  .privacy-page p {
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .privacy-page section a {
+    color: var(--color-sage);
+    overflow-wrap: anywhere;
+  }
+}

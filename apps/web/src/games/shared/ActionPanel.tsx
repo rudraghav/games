@@ -1,0 +1,156 @@
+'use client';
+import { useState } from 'react';
+import { Button, PlayingCard } from '@games/ui';
+import type { Action, ActionOption, Card } from '@games/api-client';
+import { playerName, type TableProps } from '../types';
+
+function Decision({
+  option,
+  onAction,
+  pending,
+  assets,
+}: {
+  option: ActionOption;
+  onAction: (action: Action) => void;
+  pending: boolean;
+  assets: Card[];
+}) {
+  const [amount, setAmount] = useState(option.minimum ?? 0);
+  const [cards, setCards] = useState<string[]>([]);
+  return (
+    <div className="decision-control">
+      {option.input === 'amount' ? (
+        <label className="amount-control">
+          <span className="sr-only">{option.label} amount</span>
+          <input
+            type="number"
+            min={option.minimum ?? 0}
+            max={option.maximum ?? 0}
+            step={option.step}
+            value={amount}
+            onChange={(event) => setAmount(Number(event.target.value))}
+          />
+          <span>chips</span>
+        </label>
+      ) : null}
+      {option.input === 'cards' ? (
+        <div className="payment-selection">
+          <p className="small muted">
+            Choose cards from your bank or properties. Overpayments aren’t refunded.
+          </p>
+          <div className="payment-cards">
+            {assets
+              .filter((card) => option.eligibleCards.includes(card.id))
+              .map((card) => (
+                <PlayingCard
+                  key={card.id}
+                  card={card}
+                  family="property"
+                  compact
+                  selected={cards.includes(card.id)}
+                  onClick={() =>
+                    setCards((previous) =>
+                      previous.includes(card.id)
+                        ? previous.filter((id) => id !== card.id)
+                        : [...previous, card.id],
+                    )
+                  }
+                />
+              ))}
+          </div>
+        </div>
+      ) : null}
+      <Button
+        variant={
+          ['fold', 'end_turn', 'decline'].includes(option.value.type) ? 'secondary' : 'primary'
+        }
+        disabled={
+          pending ||
+          (option.input === 'amount' &&
+            (amount < (option.minimum ?? 0) ||
+              amount > (option.maximum ?? 0) ||
+              (amount - (option.minimum ?? 0)) % option.step !== 0))
+        }
+        onClick={() =>
+          onAction({
+            ...option.value,
+            ...(option.input === 'amount' ? { amount } : {}),
+            ...(option.input === 'cards' ? { cards } : {}),
+          })
+        }
+      >
+        {option.label}
+      </Button>
+    </div>
+  );
+}
+
+export function ActionPanel({
+  match,
+  room,
+  selfId,
+  onAction,
+  pending,
+  selected,
+  clear,
+  cardSelectionRequired = false,
+}: TableProps & { selected?: string | null; clear?: () => void; cardSelectionRequired?: boolean }) {
+  const own = match.players.find((player) => player.id === selfId);
+  const assets = own ? [...own.bank, ...Object.values(own.properties).flat()] : [];
+  const choices = match.actions.filter(
+    (option) =>
+      !option.value.card ||
+      option.value.card === selected ||
+      (!selected &&
+        !cardSelectionRequired &&
+        !match.hand.some((card) => card.id === option.value.card)),
+  );
+  return (
+    <section className="action-panel" aria-label="Your actions" aria-busy={pending}>
+      <div className="action-context">
+        <strong>
+          {match.currentPlayer === selfId
+            ? 'Your move.'
+            : match.currentPlayer
+              ? `${playerName(room, match.currentPlayer)}’s move`
+              : 'At the table'}
+        </strong>
+        <span className="small muted">
+          {pending
+            ? 'Saving your move…'
+            : selected
+              ? 'Choose what to do with this card.'
+              : match.actions.some((option) => option.value.card)
+                ? 'Select a card to see its moves.'
+                : match.phase.replaceAll('_', ' ')}
+        </span>
+        {selected ? (
+          <button className="text-button" onClick={clear}>
+            Clear selection
+          </button>
+        ) : null}
+      </div>
+      <div className="action-choices">
+        {choices.map((option, i) => (
+          <Decision
+            key={JSON.stringify(option.value) + i}
+            option={{
+              ...option,
+              label:
+                option.label +
+                (option.value.target ? ` · ${playerName(room, option.value.target)}` : ''),
+            }}
+            onAction={onAction}
+            pending={pending || room.paused}
+            assets={assets}
+          />
+        ))}
+        {!match.actions.length ? (
+          <span className="small muted">
+            {match.phase === 'finished' ? 'That’s a wrap.' : 'Waiting for the next move…'}
+          </span>
+        ) : null}
+      </div>
+    </section>
+  );
+}

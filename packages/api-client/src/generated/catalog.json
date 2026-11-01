@@ -1,0 +1,278 @@
+[
+  {
+    "id": "uno",
+    "name": "Uno",
+    "subtitle": "The classic colour clash.",
+    "family": "shedding",
+    "min_players": 2,
+    "max_players": 10,
+    "minutes": "10\u201320",
+    "icon": "layers",
+    "color": "coral",
+    "rules_version": "1",
+    "settings": [
+      {
+        "key": "stack_draw_two",
+        "label": "Stack draw-two cards",
+        "default": false
+      },
+      {
+        "key": "seven_zero",
+        "label": "7 swaps & 0 passes",
+        "default": false
+      }
+    ],
+    "rules": [
+      "Match the colour, number or symbol.",
+      "Call UNO when one card remains.",
+      "Empty your hand first. Draw four may be challenged."
+    ]
+  },
+  {
+    "id": "uno-no-mercy",
+    "name": "Uno No Mercy",
+    "subtitle": "Friendships, on hard mode.",
+    "family": "shedding",
+    "min_players": 2,
+    "max_players": 6,
+    "minutes": "20\u201340",
+    "icon": "layers",
+    "color": "coral",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Match the colour, number or symbol.",
+      "Call UNO when one card remains.",
+      "25 cards means elimination; stack equal or higher draws."
+    ]
+  },
+  {
+    "id": "deal",
+    "name": "Monopoly Deal",
+    "subtitle": "Build an empire, one card at a time.",
+    "family": "property",
+    "min_players": 2,
+    "max_players": 5,
+    "minutes": "15\u201325",
+    "icon": "building",
+    "color": "sage",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Collect three complete property sets in different colours.",
+      "Draw two and play up to three cards per turn. Keep at most seven.",
+      "Bank money to pay rent. Counter attacks with Just Say No."
+    ]
+  },
+  {
+    "id": "deal-no-mercy",
+    "name": "Monopoly Deal No Mercy",
+    "subtitle": "Make bank. Make enemies.",
+    "family": "property",
+    "min_players": 2,
+    "max_players": 5,
+    "minutes": "15\u201325",
+    "icon": "building",
+    "color": "plum",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Collect three complete property sets in different colours.",
+      "Draw two and play up to three cards per turn. Keep at most seven.",
+      "Debt must be settled before your own plays. Nothing is safe."
+    ]
+  },
+  {
+    "id": "holdem",
+    "name": "Texas Hold\u2019em",
+    "subtitle": "Find your seat at the table.",
+    "family": "casino",
+    "min_players": 2,
+    "max_players": 9,
+    "minutes": "20\u201360",
+    "icon": "spade",
+    "color": "pine",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Make the best five-card hand from your two cards and five community cards.",
+      "Blinds 1/2. Each player starts with 200 free chips.",
+      "No-limit betting, side pots and split pots are supported."
+    ]
+  },
+  {
+    "id": "rummy",
+    "name": "Rummy",
+    "subtitle": "A good hand comes together.",
+    "family": "rummy",
+    "min_players": 2,
+    "max_players": 6,
+    "minutes": "15\u201330",
+    "icon": "cards",
+    "color": "ochre",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Draw one, discard one, and arrange your 13 cards.",
+      "Declare with two sequences, including one pure sequence.",
+      "Points format. Jokers are wild; maximum loss is 80 points."
+    ]
+  },
+  {
+    "id": "teen-patti",
+    "name": "Teen Patti",
+    "subtitle": "Three cards. Endless possibilities.",
+    "family": "casino",
+    "min_players": 2,
+    "max_players": 6,
+    "minutes": "15\u201330",
+    "icon": "diamond",
+    "color": "plum",
+    "rules_version": "1",
+    "settings": [
+      {
+        "key": "sideshows",
+        "label": "Allow sideshows",
+        "default": true
+      }
+    ],
+    "rules": [
+      "Play blind or look at your three cards and play seen.",
+      "Trail beats sequence, colour, pair and high card.",
+      "Free chips only. Boot 1; base stake cap 64; pot cap 1024."
+    ]
+  },
+  {
+    "id": "blackjack",
+    "name": "Blackjack",
+    "subtitle": "A little luck. A little nerve.",
+    "family": "casino",
+    "min_players": 1,
+    "max_players": 7,
+    "minutes": "5\u201315",
+    "icon": "club",
+    "color": "pine",
+    "rules_version": "1",
+    "settings": [
+      {
+        "key": "hit_soft_17",
+        "label": "Dealer hits soft 17",
+        "default": false
+      }
+    ],
+    "rules": [
+      "Get closer to 21 than the dealer without going over.",
+      "Blackjack pays 3:2. Ties return your stake.",
+      "Split pairs or double on two cards."
+    ]
+  },
+  {
+    "id": "skyjo",
+    "name": "Skyjo",
+    "subtitle": "Small numbers. Big surprises.",
+    "family": "grid",
+    "min_players": 2,
+    "max_players": 8,
+    "minutes": "15\u201330",
+    "icon": "grid",
+    "color": "sky",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Reveal two cards, then trade to lower your grid's score.",
+      "Three matching revealed cards in a column disappear.",
+      "At 100 total points, the lowest score wins."
+    ]
+  },
+  {
+    "id": "tarot",
+    "name": "Pop Tarot",
+    "subtitle": "Your plot twist is in the cards.",
+    "family": "tarot",
+    "min_players": 1,
+    "max_players": 1,
+    "minutes": "5\u201310",
+    "icon": "sparkles",
+    "color": "plum",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Think of a question, or simply see what comes up.",
+      "Pick three cards: where you are, what is shifting, your next move.",
+      "Get an AI-written personal reading with a pop-culture twist.",
+      "A playful reflection, not a prediction or professional advice."
+    ]
+  },
+  {
+    "id": "four-in-a-row",
+    "name": "Four in a Row",
+    "subtitle": "One more move. Four in a row.",
+    "family": "board",
+    "min_players": 2,
+    "max_players": 2,
+    "minutes": "5\u201315",
+    "icon": "circle",
+    "color": "coral",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Drop a disc into an open column.",
+      "Connect four horizontally, vertically or diagonally to win.",
+      "A full board without a four-in-a-row is a draw."
+    ]
+  },
+  {
+    "id": "reversi",
+    "name": "Reversi",
+    "subtitle": "Turn the whole table around.",
+    "family": "board",
+    "min_players": 2,
+    "max_players": 2,
+    "minutes": "10\u201325",
+    "icon": "circle",
+    "color": "sage",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Place a disc to bracket and flip an opponent\u2019s line.",
+      "You must pass when no capturing placement is available.",
+      "When neither player can move, the most discs wins."
+    ]
+  },
+  {
+    "id": "word-agents",
+    "name": "Word Agents",
+    "subtitle": "One clue. A room full of possibilities.",
+    "family": "words",
+    "min_players": 4,
+    "max_players": 10,
+    "minutes": "15\u201330",
+    "icon": "type",
+    "color": "coral",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Two spymasters know the key. Their teams see only the words.",
+      "Give a one-word clue and a number; your team gets up to one extra guess.",
+      "Find all your agents and avoid the assassin."
+    ]
+  },
+  {
+    "id": "gem-market",
+    "name": "Gem Market",
+    "subtitle": "Small gems. A brilliant empire.",
+    "family": "gems",
+    "min_players": 2,
+    "max_players": 4,
+    "minutes": "20\u201340",
+    "icon": "gem",
+    "color": "sage",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Collect gems, reserve a card or buy a development each turn.",
+      "Developments discount future purchases; patrons reward a balanced engine.",
+      "At 15 prestige, finish the round. Most prestige wins; fewer developments breaks a tie."
+    ]
+  }
+]

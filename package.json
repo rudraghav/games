@@ -1,0 +1,25 @@
+{
+  "name": "games",
+  "private": true,
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "dev": "pnpm --filter @games/web dev",
+    "build": "pnpm --filter @games/web build",
+    "type-check": "pnpm -r type-check",
+    "lint": "pnpm --filter @games/web lint",
+    "test": "vitest run",
+    "gen:api": "backend/.venv/bin/python scripts/export_contract.py && openapi-typescript packages/api-client/openapi.json -o packages/api-client/src/generated/schema.d.ts",
+    "storybook": "pnpm --filter @games/web storybook",
+    "test:browser": "playwright test",
+    "verify": "python3 scripts/verify.py"
+  },
+  "devDependencies": {
+    "@playwright/test": "catalog:",
+    "openapi-typescript": "catalog:",
+    "prettier": "3.9.10",
+    "sharp": "0.35.5",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "type": "module"
+}

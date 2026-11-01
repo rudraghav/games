@@ -1,0 +1,8 @@
+**/generated/**
+**/node_modules/**
+**/.next/**
+**/storybook-static/**
+packages/api-client/openapi.json
+pnpm-lock.yaml
+.env*
+.vercel/**

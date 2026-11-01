@@ -1,0 +1,83 @@
+# Games
+
+A private game-night web app: bring your people, share a room, play another round.
+Built with Next.js, TypeScript, Tailwind, FastAPI, Supabase and Vercel Services.
+
+The catalogue contains Uno, Uno No Mercy, Monopoly Deal, Monopoly Deal No Mercy,
+Texas Hold'em, Indian 13-card rummy, Teen Patti, blackjack, Skyjo and solo Pop
+Tarot, Four in a Row, Reversi, Word Agents and Gem Market. Tarot uses a full
+78-card deck and personal Gemini-written readings with pop-culture analogies.
+Word Agents is a Codenames-style house edition with an original word list;
+Gem Market is a Splendor-style game with original card costs and patrons.
+
+**Production target: [Games](https://games-rudraghavs-projects.vercel.app), early access.** The personal
+Vercel `games` project runs Next and FastAPI together. Personal
+Supabase `games-preview` has anonymous authentication, reviewed cloud migrations,
+schema drift and private-table grants verified. Production cloud settings are
+configured separately from local development. The Gemini free-tier key generates real
+readings. Three fixed evaluations passed, and a browser reading survived refresh
+and an API process restart. The question form discloses the free-tier data-use
+terms. Four independent real guest sessions exercised every catalogue engine
+online: start, legal move, retry, stale-version conflict and refresh. A real
+hosted Tarot reading saved and survived reload. Historical previews remain
+rollback references. Full match/rule acceptance remains separate.
+AI response validation can occasionally require a retry; the spread stays saved.
+Google account signup is implemented and verified locally, and its personal
+provider is configured. Live consent and production rollout verification are
+recorded in the project journal. See [Google sign-in setup](docs/GOOGLE_SIGN_IN.md).
+
+## Run locally
+
+The current development services use web **3217**, API **8217**, and dedicated
+Postgres **55439**. Other projects' services must remain untouched.
+
+```sh
+pnpm install --frozen-lockfile
+cd backend
+uv sync --locked --extra dev --inexact
+uv run alembic upgrade head
+uv run uvicorn app.main:app --host 127.0.0.1 --port 8217
+```
+
+In another terminal at the repository root:
+
+```sh
+pnpm dev
+```
+
+Configure ignored `.env` and `apps/web/.env.local` from `.env.example`.
+Development identity is explicitly local-only and is rejected in hosted
+environments. `.env.ai.local` holds the dedicated server-side Gemini key. The
+separate `.env.cloud.local` setup file is never loaded into local play, preserving
+the boundary between local and hosted databases. Keep all these files out of Git.
+
+## Verify and extend
+
+```sh
+python3 scripts/verify.py --list
+python3 scripts/verify.py frontend backend contracts migrations multiplayer browser tooling
+python3 scripts/verify.py load
+pnpm storybook
+```
+
+See [verification and release gates](docs/VERIFICATION.md), the
+[product contract](docs/PRD.md), [application flow](docs/APP_FLOW.md),
+[backend architecture](docs/BACKEND_STRUCTURE.md), [design system](docs/UI_UX_SYSTEM.md),
+[design research](docs/DESIGN_REFERENCES.md) and [feature kickoff](docs/process/feature-kickoff.md).
+Each engine owns its rules README; frontend compositions are documented under
+`apps/web/src/games`. The single `progress.txt` records verified state and gaps.
+
+Regenerate the actual backend contract with `pnpm gen:api`; update visual
+fixtures with `backend/.venv/bin/python scripts/export_fixtures.py`. Game modules
+extend registries rather than shared rule switches. Components, variants and
+tokens live in `@games/ui`.
+
+## Delivery boundary
+
+The owner requested production hosting on 1 November 2026. All nine competitive
+games must still satisfy the approved acceptance, including edition-specific
+No Mercy rules, before the catalogue can be considered fully validated.
+Completing a scripted match does not certify every rule. The Deal No Mercy deck
+denominations/printed card values still need canonical verification, and hosted
+all-game browser match completion, hosted load and AI reliability remain
+required. `docs/VERIFICATION.md` distinguishes passing checks from those gaps.

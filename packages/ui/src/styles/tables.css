@@ -1,0 +1,1182 @@
+@layer components {
+  .rummy-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .rummy-groups {
+    margin-top: 22px;
+  }
+  .rummy-group + .rummy-group {
+    padding-top: 15px;
+    border-top: 1px solid var(--color-border);
+  }
+  .rummy-group .card-hand {
+    justify-content: flex-start;
+  }
+  .grid-card-empty {
+    width: 100%;
+    aspect-ratio: 2/3;
+    border: 1px dashed var(--color-border);
+    border-radius: 7px;
+    opacity: 0.6;
+  }
+  .profile-page {
+    padding-top: 65px;
+    padding-bottom: 80px;
+  }
+  .profile-intro {
+    margin-bottom: 44px;
+  }
+  .profile-intro .hero-title {
+    font-size: 56px;
+    margin: 14px 0 20px;
+  }
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 26px;
+    align-items: start;
+  }
+  .profile-card {
+    padding: 30px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-panel);
+  }
+  .profile-card > .heading-md {
+    margin-bottom: 26px;
+  }
+  .account-link {
+    padding-top: 25px;
+    margin-top: 28px;
+    border-top: 1px solid var(--color-border);
+  }
+  .account-link > p {
+    margin: 12px 0;
+  }
+  .profile-notice {
+    line-height: 1.8;
+    color: var(--color-sage);
+    margin-top: 18px;
+  }
+  .history-row {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 13px;
+  }
+  .history-row > div {
+    display: grid;
+    gap: 5px;
+  }
+  .history-row > span {
+    color: var(--color-sage);
+  }
+  .history-empty {
+    text-align: center;
+    padding: 40px 15px;
+  }
+  .history-empty > span {
+    color: var(--color-coral);
+    font-size: 40px;
+  }
+  .history-empty > h3 {
+    font-size: 17px;
+    margin-top: 20px;
+  }
+  .history-empty > p {
+    margin: 14px 0 26px;
+  }
+  .center-state {
+    min-height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 30px;
+    text-align: center;
+  }
+  .text-button {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color: var(--color-sage);
+    font-size: 13px;
+    min-height: 44px;
+  }
+  .room-page {
+    min-height: 100dvh;
+  }
+  .room-header {
+    height: 84px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .room-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .room-title {
+    flex: 1;
+    min-width: 0;
+  }
+  .room-title h1 {
+    font-size: 15px;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .room-title > span {
+    color: var(--color-ink-muted);
+    font-size: 12px;
+  }
+  .room-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .connection-state {
+    color: var(--color-sage);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    margin-right: 14px;
+  }
+  .room-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    max-width: 1800px;
+    margin: auto;
+  }
+  .room-main {
+    min-width: 0;
+    padding: 24px 30px 48px;
+  }
+  .desktop-chat {
+    border-left: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .desktop-chat > .chat {
+    position: sticky;
+    top: 0;
+    height: calc(100dvh - 84px);
+  }
+  .button.mobile-chat-button {
+    display: none;
+  }
+  .connection-banner {
+    padding: 14px 18px;
+    background: var(--color-ochre-light);
+    border-radius: var(--radius-control);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .table-announcement {
+    text-align: center;
+    margin-bottom: 24px;
+    min-height: 45px;
+  }
+  .table-announcement p {
+    font-size: 14px;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .lobby {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-panel);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(180px, 0.7fr) 1.4fr;
+    margin: 8px auto 0;
+    max-width: 1040px;
+  }
+  .lobby-game {
+    background: var(--color-sage-light);
+    text-align: center;
+    padding: 45px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .lobby-game[data-tone='pine'] {
+    background: var(--color-pine);
+    color: var(--color-white);
+  }
+  .lobby-game[data-tone='plum'] {
+    background: var(--color-plum-light);
+  }
+  .lobby-game[data-tone='coral'] {
+    background: var(--color-coral-light);
+  }
+  .lobby-game[data-tone='ochre'] {
+    background: var(--color-ochre-light);
+  }
+  .lobby-game .game-art {
+    height: 220px;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+  .lobby-game h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 34px;
+    margin: 10px 0;
+    letter-spacing: -0.04em;
+  }
+  .lobby-game > p {
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 200px;
+  }
+  .lobby-body {
+    padding: 32px;
+  }
+  .lobby-body .section-heading {
+    margin: 0 0 28px;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .lobby-body .heading-md {
+    font-size: 28px;
+    line-height: 1.15;
+    margin-top: 8px;
+  }
+  .lobby-seats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .seat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    position: relative;
+    padding: 14px 12px;
+    border-radius: 18px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .seat--active {
+    border-color: var(--color-sage);
+    box-shadow: 0 0 0 2px var(--color-sage-light);
+  }
+  .seat--empty {
+    border-style: dashed;
+    background: transparent;
+  }
+  .seat--compact {
+    padding: 8px 10px;
+    gap: 8px;
+    border-radius: 14px;
+  }
+  .seat-copy {
+    min-width: 0;
+    flex: 1;
+  }
+  .seat-copy strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .seat-copy > span {
+    display: block;
+    font-size: 11px;
+    color: var(--color-ink-muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .empty-avatar {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    border: 1px dashed var(--color-border);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-ink-muted);
+    font-size: 22px;
+  }
+  .turn-light {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-sage);
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
+  .invite-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    padding: 20px;
+    margin: 28px 0 12px;
+    border-radius: 16px;
+    background: var(--color-canvas);
+  }
+  .room-code {
+    display: block;
+    margin-top: 7px;
+    font-size: 21px;
+    letter-spacing: 0.16em;
+    user-select: all;
+  }
+  .invite-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .lobby-start {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0 14px;
+  }
+  .lobby-rules {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .chat {
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+    height: 65dvh;
+  }
+  .chat-heading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 20px;
+  }
+  .chat-messages {
+    overflow: auto;
+    flex: 1;
+    min-height: 0;
+    padding: 24px 0;
+    scrollbar-width: thin;
+  }
+  .chat-empty {
+    text-align: center;
+    padding: 80px 0;
+    font-size: 13px;
+    color: var(--color-ink-muted);
+    line-height: 1.8;
+  }
+  .chat-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-bottom: 20px;
+  }
+  .chat-message > div {
+    min-width: 0;
+  }
+  .chat-message strong {
+    font-size: 11px;
+    color: var(--color-ink-muted);
+    font-weight: 500;
+  }
+  .chat-message p {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 3px;
+    overflow-wrap: anywhere;
+  }
+  .chat-message p[data-reaction='true'] {
+    font-size: 28px;
+  }
+  .chat-reactions {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    margin: 8px 0;
+  }
+  .chat-reactions button {
+    border: none;
+    background: transparent;
+    width: 38px;
+    height: 44px;
+    font-size: 19px;
+    border-radius: 10px;
+  }
+  .chat-reactions button:hover {
+    background: var(--color-canvas);
+  }
+  .chat-form {
+    display: flex;
+    gap: 8px;
+  }
+  .chat-form .input {
+    min-width: 0;
+  }
+  .chat-form .button {
+    flex: none;
+  }
+  .table-layout {
+    max-width: 1120px;
+    margin: auto;
+  }
+  .player-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 26px;
+  }
+  .player-strip .seat {
+    max-width: 200px;
+    flex: 1 1 150px;
+  }
+  .felt-table {
+    background: radial-gradient(ellipse at 50% 35%, var(--color-pine), var(--color-pine-dark));
+    border: 8px solid var(--color-sage);
+    border-radius: 44%;
+    position: relative;
+    color: var(--color-white);
+    box-shadow:
+      inset 0 0 0 1px var(--color-ochre),
+      var(--shadow-soft);
+  }
+  .card-table {
+    min-height: 280px;
+    width: min(90%, 750px);
+    margin: 0 auto 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .table-watermark {
+    font-family: var(--font-display);
+    font-size: 100px;
+    font-style: italic;
+    opacity: 0.08;
+    position: absolute;
+    left: 48%;
+    top: 15%;
+    pointer-events: none;
+  }
+  .center-piles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    position: relative;
+  }
+  .card-pile {
+    text-align: center;
+    position: relative;
+  }
+  .card-pile > span {
+    display: block;
+    font-size: 11px;
+    margin-top: 10px;
+    opacity: 0.7;
+  }
+  .pile-shadow {
+    border-radius: 10px;
+    box-shadow:
+      3px 3px 0 var(--color-border),
+      5px 5px 0 var(--color-ink-muted);
+  }
+  .table-detail {
+    font-size: 11px;
+    margin-top: 18px;
+    opacity: 0.8;
+  }
+  .private-hand {
+    min-width: 0;
+    background: var(--color-surface);
+    border-radius: var(--radius-card);
+    padding: 20px 22px 8px;
+    margin: 12px 0;
+    border: 1px solid var(--color-border);
+  }
+  .hand-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .hand-heading h3 {
+    font-size: 14px;
+  }
+  .hand-heading h3 > span {
+    margin-left: 8px;
+    font-weight: 400;
+  }
+  .input--small {
+    display: inline;
+    width: auto;
+    min-height: 36px;
+    padding: 5px 8px;
+    font-size: 12px;
+    margin-left: 8px;
+  }
+  .action-panel {
+    background: var(--color-surface);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-border);
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    position: sticky;
+    bottom: 10px;
+    box-shadow: var(--shadow-soft);
+    z-index: 3;
+  }
+  .action-context {
+    min-width: 140px;
+  }
+  .action-context > strong {
+    display: block;
+    font-size: 14px;
+  }
+  .action-context > span {
+    display: block;
+    margin-top: 4px;
+  }
+  .action-choices {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    max-height: 240px;
+    overflow: auto;
+  }
+  .decision-control {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .amount-control {
+    display: flex;
+    padding: 0 12px;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    height: 46px;
+    font-size: 11px;
+    color: var(--color-ink-muted);
+  }
+  .amount-control input {
+    border: 0;
+    outline-offset: 2px;
+    width: 70px;
+    background: transparent;
+    color: var(--color-ink);
+  }
+  .payment-selection {
+    flex-basis: 100%;
+  }
+  .payment-cards {
+    display: flex;
+    gap: 8px;
+    padding: 22px 4px 8px;
+    overflow: auto;
+  }
+  .table-help {
+    text-align: center;
+    padding: 14px 20px;
+  }
+  .casino-table {
+    position: relative;
+    min-height: 570px;
+  }
+  .casino-felt {
+    position: absolute;
+    inset: 90px 5% 100px;
+    border: 10px solid var(--color-sage);
+    border-radius: 48%;
+    background: radial-gradient(ellipse, var(--color-pine), var(--color-pine-dark));
+    box-shadow:
+      inset 0 0 0 1px var(--color-ochre),
+      var(--shadow-soft);
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .casino-felt .eyebrow {
+    color: var(--color-white);
+    opacity: 0.6;
+  }
+  .community-cards {
+    display: flex;
+    gap: 7px;
+    min-height: 90px;
+    position: relative;
+  }
+  .pot {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 12px;
+  }
+  .pot strong {
+    font-size: 24px;
+  }
+  .chip-symbol {
+    font-size: 25px;
+    color: var(--color-card-yellow);
+  }
+  .casino-seat {
+    position: absolute;
+    left: var(--seat-x);
+    top: var(--seat-y);
+    transform: translate(-50%, -50%);
+    width: 150px;
+    text-align: center;
+  }
+  .casino-seat .seat {
+    text-align: left;
+  }
+  .casino-seat[data-folded='true'] {
+    opacity: 0.5;
+  }
+  .seat-cards {
+    display: flex;
+    justify-content: center;
+    margin-top: 7px;
+    min-height: 70px;
+  }
+  .seat-cards .playing-card {
+    width: 42px;
+    height: 60px;
+    font-size: 10px;
+    margin: 0 -5px;
+  }
+  .seat-cards .card-center {
+    font-size: 22px;
+  }
+  .seat-cards .card-corner {
+    font-size: 10px;
+    padding: 3px;
+  }
+  .seat-cards .card-corner--bottom {
+    display: none;
+  }
+  .seat-bet {
+    display: inline-block;
+    background: var(--color-ochre-light);
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+  }
+  .deal-piles,
+  .skyjo-piles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    padding: 12px 0 26px;
+  }
+  .deal-piles .playing-card {
+    width: 72px;
+    height: 102px;
+  }
+  .property-players {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .property-player {
+    padding: 16px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    min-width: 0;
+  }
+  .property-player[data-own='true'] {
+    border-color: var(--color-sage);
+  }
+  .bank-row {
+    margin: 18px 0;
+  }
+  .bank-cards {
+    display: flex;
+    gap: 6px;
+    overflow: auto;
+    padding: 15px 0 8px;
+  }
+  .property-sets {
+    display: flex;
+    gap: 16px;
+    overflow: auto;
+    padding: 0 0 12px;
+    min-height: 120px;
+  }
+  .property-set {
+    flex: none;
+  }
+  .property-set-cards {
+    display: flex;
+    padding-top: 18px;
+  }
+  .property-set-cards > .playing-card {
+    margin-right: -32px;
+  }
+  .property-set-cards > .playing-card:last-child {
+    margin-right: 0;
+  }
+  .property-set .playing-card,
+  .bank-cards .playing-card {
+    width: 58px;
+    height: 84px;
+  }
+  .property-set .property-name,
+  .bank-cards .property-name {
+    font-size: 8px;
+  }
+  .empty-properties {
+    padding-top: 25px;
+  }
+  .skyjo-players {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .skyjo-player {
+    padding: 18px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+  }
+  .skyjo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
+    margin: 18px auto 0;
+    max-width: 310px;
+  }
+  .skyjo-grid .playing-card {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2/3;
+    min-width: 0;
+  }
+  .skyjo-grid .grid-card-value {
+    font-size: 30px;
+  }
+  .skyjo-piles .playing-card {
+    width: 66px;
+    height: 94px;
+  }
+  .results {
+    padding: 32px 0;
+    text-align: center;
+  }
+  .results h2 {
+    margin-top: 10px;
+  }
+  .scoreboard {
+    max-width: 420px;
+    margin: 22px auto 0;
+  }
+  .scoreboard > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 13px;
+    gap: 12px;
+  }
+  .menu-actions {
+    display: grid;
+    gap: 12px;
+    padding-top: 20px;
+  }
+  .rules-list {
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .rules-list li {
+    margin: 16px 0;
+  }
+  .room-error {
+    position: sticky;
+    bottom: 0;
+    z-index: 4;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+    padding: 16px;
+    border-radius: var(--radius-control);
+  }
+  @media (max-width: 1100px) {
+    .room-content {
+      grid-template-columns: minmax(0, 1fr) 270px;
+    }
+    .room-main {
+      padding: 22px 18px;
+    }
+    .lobby {
+      grid-template-columns: 1fr;
+    }
+    .lobby-game {
+      padding: 24px;
+    }
+    .lobby-game .game-art {
+      height: 140px;
+      margin: 0;
+    }
+    .lobby-game .game-art > .playing-card {
+      transform: scale(0.8);
+    }
+    .lobby-game h2 {
+      font-size: 28px;
+    }
+    .lobby-game > p {
+      max-width: none;
+    }
+    .casino-seat {
+      width: 125px;
+    }
+    .casino-seat .avatar {
+      display: none;
+    }
+    .lobby-body {
+      padding: 24px;
+    }
+  }
+  @media (max-width: 900px) {
+    .room-content {
+      display: block;
+    }
+    .desktop-chat {
+      display: none;
+    }
+    .button.mobile-chat-button {
+      display: inline-flex;
+    }
+    .room-header {
+      padding: 0 18px;
+      gap: 16px;
+      height: 74px;
+    }
+    .connection-state {
+      display: none;
+    }
+    .lobby {
+      grid-template-columns: 0.7fr 1.4fr;
+    }
+    .lobby-game .game-art {
+      height: 180px;
+    }
+    .casino-seat {
+      width: 150px;
+    }
+    .casino-seat .avatar {
+      display: inline-flex;
+    }
+  }
+  @media (max-width: 600px) {
+    .rummy-tools {
+      gap: 10px;
+    }
+    .rummy-tools > label {
+      font-size: 11px;
+    }
+    .private-hand:has(.rummy-tools) > .hand-heading {
+      flex-wrap: wrap;
+    }
+    .player-strip {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding: 3px 3px 8px;
+    }
+    .player-strip .seat {
+      flex: 0 0 155px;
+    }
+    .room-header {
+      gap: 12px;
+      padding: 0 12px;
+    }
+    .room-brand .wordmark {
+      font-size: 23px;
+    }
+    .room-brand > svg {
+      display: none;
+    }
+    .room-toolbar {
+      gap: 1px;
+    }
+    .room-toolbar .button {
+      width: 38px;
+      height: 42px;
+    }
+    .room-title h1 {
+      font-size: 12px;
+    }
+    .room-title > span {
+      font-size: 10px;
+    }
+    .room-main {
+      padding: 20px 12px 32px;
+    }
+    .lobby {
+      display: block;
+    }
+    .lobby-game {
+      min-height: 165px;
+      padding: 16px 24px;
+      position: relative;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .lobby-game .game-art {
+      position: absolute;
+      width: 150px;
+      height: 170px;
+      right: -15px;
+      top: 15px;
+      transform: scale(0.65);
+      transform-origin: top center;
+    }
+    .lobby-game .eyebrow,
+    .lobby-game > h2,
+    .lobby-game > p {
+      max-width: 56%;
+      position: relative;
+    }
+    .lobby-game h2 {
+      font-size: 27px;
+      line-height: 1.1;
+    }
+    .lobby-body {
+      padding: 24px 18px;
+    }
+    .lobby-seats {
+      gap: 10px;
+    }
+    .lobby-seats .seat {
+      padding: 10px 8px;
+      gap: 8px;
+    }
+    .lobby-seats .avatar {
+      width: 35px;
+      height: 35px;
+      font-size: 12px;
+    }
+    .lobby-seats .seat-copy strong {
+      font-size: 12px;
+    }
+    .invite-panel {
+      padding: 15px 12px;
+      flex-wrap: wrap;
+    }
+    .room-code {
+      font-size: 18px;
+    }
+    .invite-actions .button {
+      padding: 8px 10px;
+    }
+    .player-strip {
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+    .player-strip .seat {
+      flex-basis: 130px;
+      max-width: none;
+    }
+    .card-table {
+      width: 100%;
+      min-height: 245px;
+      border-width: 6px;
+      border-radius: 35%;
+    }
+    .center-piles {
+      gap: 24px;
+    }
+    .center-piles .playing-card {
+      width: 78px;
+      height: 112px;
+    }
+    .private-hand {
+      padding: 17px 14px 3px;
+    }
+    .action-panel {
+      position: relative;
+      bottom: 0;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 18px 14px;
+      gap: 14px;
+    }
+    .action-choices {
+      justify-content: flex-start;
+      max-height: 300px;
+    }
+    .action-context {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .action-context > span {
+      font-size: 11px;
+    }
+    .action-choices .button {
+      font-size: 12px;
+      padding: 10px 13px;
+    }
+    .casino-table {
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+    }
+    .casino-felt {
+      position: relative;
+      inset: auto;
+      min-height: 230px;
+      border-width: 6px;
+      order: 2;
+      margin: 10px 0 0;
+      padding: 24px 14px;
+      gap: 14px;
+    }
+    .casino-seats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px 7px;
+    }
+    .casino-seat {
+      position: static;
+      width: auto;
+      transform: none;
+      min-width: 0;
+    }
+    .casino-seat .seat {
+      padding: 6px;
+    }
+    .casino-seat .avatar {
+      display: none;
+    }
+    .casino-seat .seat-copy strong {
+      font-size: 11px;
+    }
+    .casino-seat .seat-copy > span {
+      font-size: 10px;
+    }
+    .seat-cards {
+      min-height: 58px;
+    }
+    .seat-cards .playing-card {
+      width: 35px;
+      height: 50px;
+    }
+    .community-cards {
+      gap: 5px;
+      min-height: 68px;
+    }
+    .community-cards .playing-card {
+      width: 46px;
+      height: 67px;
+    }
+    .community-cards .card-center {
+      font-size: 28px;
+    }
+    .community-cards .card-corner {
+      font-size: 11px;
+    }
+    .property-players {
+      grid-template-columns: 1fr;
+    }
+    .property-player {
+      padding: 14px;
+    }
+    .skyjo-players {
+      gap: 10px;
+    }
+    .skyjo-player {
+      padding: 10px 7px;
+    }
+    .skyjo-player .avatar {
+      display: none;
+    }
+    .skyjo-grid {
+      gap: 4px;
+      margin-top: 12px;
+    }
+    .skyjo-grid .grid-card-value {
+      font-size: 23px;
+    }
+    .skyjo-grid .card-back-pattern span {
+      font-size: 22px;
+    }
+    .skyjo-piles {
+      gap: 17px;
+      flex-wrap: wrap;
+    }
+    .skyjo-piles .playing-card {
+      width: 58px;
+      height: 84px;
+    }
+    .skyjo-piles .eyebrow {
+      flex-basis: 100%;
+      text-align: center;
+    }
+  }
+  @media (max-width: 700px) {
+    .profile-grid {
+      grid-template-columns: 1fr;
+    }
+    .profile-page {
+      padding-top: 38px;
+    }
+    .profile-intro .hero-title {
+      font-size: 42px;
+    }
+    .profile-card {
+      padding: 24px;
+    }
+  }
+  @media (max-width: 600px) {
+    .skyjo-player[data-own='true'] {
+      grid-column: 1/-1;
+      order: -1;
+    }
+    .skyjo-player[data-own='true'] .avatar {
+      display: inline-flex;
+    }
+  }
+}

@@ -1,0 +1,88 @@
+'use client';
+import { useEffect, useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { ApiError, type Action, type Room } from '@games/api-client';
+import { api, ensureSession, supabase } from '@/lib/session';
+import { keys } from '@/shared/query-keys';
+
+export function useRoom(id: string) {
+  const cache = useQueryClient();
+  const [live, setLive] = useState(false);
+  const me = useQuery({ queryKey: keys.me, queryFn: () => api.me() });
+  const room = useQuery({
+    queryKey: keys.room(id),
+    queryFn: () => api.room(id),
+    refetchInterval: live ? 15000 : 4000,
+    refetchOnWindowFocus: 'always',
+    refetchOnReconnect: 'always',
+    retry: (count, error) => count < 2 && (!(error instanceof ApiError) || error.status >= 500),
+  });
+  useEffect(() => {
+    let cancelled = false;
+    const heartbeat = () => {
+      if (document.visibilityState !== 'visible' || cancelled) return;
+      void api
+        .heartbeat(id)
+        .then((snapshot) => {
+          if (!cancelled)
+            cache.setQueryData<Room>(keys.room(id), (current) =>
+              !current || current.revision <= snapshot.revision ? snapshot : current,
+            );
+        })
+        .catch(() => {
+          if (!cancelled) setLive(false);
+        });
+    };
+    heartbeat();
+    const interval = window.setInterval(heartbeat, 15000);
+    window.addEventListener('online', heartbeat);
+    document.addEventListener('visibilitychange', heartbeat);
+    const client = supabase;
+    const channel = client?.channel(`room:${id}`, { config: { private: true } });
+    if (channel && client)
+      void ensureSession()
+        .then(async () => {
+          if (cancelled) return;
+          const token = (await client.auth.getSession()).data.session?.access_token;
+          await client.realtime.setAuth(token);
+          channel
+            .on('broadcast', { event: 'state_changed' }, () => {
+              void cache.invalidateQueries({ queryKey: keys.room(id) });
+            })
+            .subscribe((status) => {
+              if (!cancelled) {
+                setLive(status === 'SUBSCRIBED');
+                if (status === 'SUBSCRIBED') heartbeat();
+              }
+            });
+        })
+        .catch(() => {
+          if (!cancelled) setLive(false);
+        });
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+      window.removeEventListener('online', heartbeat);
+      document.removeEventListener('visibilitychange', heartbeat);
+      if (channel && client) void client.removeChannel(channel);
+    };
+  }, [cache, id]);
+  const mutation = useMutation({
+    mutationFn: (operation: () => Promise<Room>) => operation(),
+    onSuccess: (snapshot) => {
+      cache.setQueryData<Room>(keys.room(id), (current) =>
+        !current || current.revision <= snapshot.revision ? snapshot : current,
+      );
+    },
+    onError: () => {
+      void cache.invalidateQueries({ queryKey: keys.room(id) });
+    },
+  });
+  function move(action: Action) {
+    const current = cache.getQueryData<Room>(keys.room(id));
+    if (!current?.matchId || current.matchVersion == null || mutation.isPending) return;
+    const actionId = crypto.randomUUID();
+    mutation.mutate(() => api.move(id, current.matchId!, current.matchVersion!, action, actionId));
+  }
+  return { room, me, live, mutation, move };
+}

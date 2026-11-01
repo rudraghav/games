@@ -1,0 +1,33 @@
+{
+  "deployment": "dpl_CiiSDEFqQgpRcg93CG7xeng8JvMR",
+  "url": "https://games-r9le3idrh-rudraghavs-projects.vercel.app",
+  "target": "preview",
+  "region": "bom1",
+  "runtimeSourceFingerprint": "530d35bec676b5a1ebdc892371f43b63890713d1a3dd295c3a5e32ef72198844",
+  "local": {
+    "backendTests": 131,
+    "multiplayerTests": 7,
+    "browserWorkflows": 14,
+    "tableScenariosPerViewport": 28,
+    "frontendTests": 4,
+    "simultaneousLocalRooms": 50,
+    "typesLintBuildContractsMigrationsStorybook": "passed"
+  },
+  "hosted": {
+    "catalogueExperiences": 14,
+    "allEngineOpeningSmoke": "passed on preceding preview with identical backend; final repeated first nine before optional AI failure",
+    "privateBroadcastDelivery": "passed",
+    "nonmemberSubscriptionAndRoomRead": "denied",
+    "staticWebpAtlases": 4,
+    "unauthenticatedProfileStatus": 401,
+    "developmentIdentityStatus": 404,
+    "savedRealReading": "passed on preceding preview with identical backend",
+    "repeatedRealReading": "schema validation failure; spread preserved"
+  },
+  "limits": [
+    "production acceptance remains open",
+    "Vercel authentication retained pending owner choice",
+    "AI may require retry",
+    "source local and uncommitted"
+  ]
+}
