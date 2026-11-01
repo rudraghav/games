@@ -1,0 +1,53 @@
+{
+  "startedAt": "2026-11-01T13:03:00.972Z",
+  "origin": "http://127.0.0.1:3217",
+  "checkoutSha": "0525db5028826e99d3be8505e15517cc40a74d74",
+  "applicationSourceSha": null,
+  "workspaceDirty": true,
+  "sourceState": "uncommitted local workspace",
+  "hosted": false,
+  "project": "desktop",
+  "selectedGames": [
+    "boop"
+  ],
+  "selectedSeats": [
+    2
+  ],
+  "aiEnabled": false,
+  "complete": true,
+  "active": null,
+  "omitted": [],
+  "transport": {
+    "retryAttempts": 0,
+    "recovered": 0,
+    "failed": 0
+  },
+  "cleanup": {
+    "guestLeaveStatuses": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "roomClosed": true,
+    "failed": false,
+    "abandonStatus": 200,
+    "hostLeaveStatus": 200
+  },
+  "cases": [
+    {
+      "game": "boop",
+      "seats": 2,
+      "moves": 80,
+      "profileHistoryVerified": true,
+      "rematch": true
+    }
+  ],
+  "decisions": "Authorized API projections; rendered result/rematch/change-game browser controls.",
+  "rummyScenario": "Legal drops; declaration/sequences are independently engine-tested."
+}

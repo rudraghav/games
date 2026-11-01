@@ -33,16 +33,36 @@ export function RoomScreen({ id }: { id: string }) {
   const router = useRouter();
   const room = query.data;
   const selfId = me.data?.profile?.id || '';
-  if (!room)
+  const playerUnavailable = room && me.isSuccess && !selfId;
+  const entryError = query.error || me.error;
+  if (!room || !selfId)
     return (
       <main className="center-state">
         <Link href="/">
           <Wordmark />
         </Link>
         <h1 className="heading-md">
-          {query.error ? 'This seat needs an invite.' : 'Pulling up your chair…'}
+          {entryError
+            ? 'Let’s reconnect your seat.'
+            : playerUnavailable
+              ? 'Let’s find your player details.'
+              : 'Pulling up your chair…'}
         </h1>
-        <p className="muted">{query.error?.message || 'Connecting to your room.'}</p>
+        <p className="muted">
+          {entryError?.message ||
+            (playerUnavailable
+              ? 'Try again to confirm your place at the table.'
+              : 'Connecting to your room.')}
+        </p>
+        {entryError || playerUnavailable ? (
+          <Button
+            variant="secondary"
+            pending={query.isFetching || me.isFetching}
+            onClick={() => void Promise.all([query.refetch(), me.refetch()])}
+          >
+            Try again
+          </Button>
+        ) : null}
         <Link href="/" className="button button--secondary button--md">
           Back to the lounge
         </Link>

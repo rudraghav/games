@@ -705,3 +705,49 @@
   rollback dpl_teg2sasVTrQkHbcJd2r53bEbgkbE retained. Personal Games project/account
   verified, automatic Git deployment absent, one explicit production CLI path
   selected. Source credential-value scan passes. Push/rollout is the next step.
+- Main 0525db5028826e99d3be8505e15517cc40a74d74 pushed with remote parity;
+  production dpl_53tE3F2V6shmdW7Yha1CEz2vXvdd became READY in Mumbai. Alias and
+  release/GitHub source metadata match. Public readback verifies 26 games, all
+  eight Tarot atlases, both new illustration atlases, me401 and dev/design404.
+  Eight hosted public browsing/art/layout checks and both Tarot deck flows pass.
+- A supplementary actual phone room workflow found a real guest-entry race:
+  the pre-join me read returned profile:null 13ms after join committed; query
+  invalidation reused that in-flight result, so the friend had membership but no
+  recognized seat/Ready control. Sanitized trace timings and limits are retained
+  in room-audit-2026-11-01/identity-race.md. The exact QA room was closed through
+  ordinary authorized HTTP, two leaves200 and final404. No credentials retained.
+- Corrective source cancels the old player read and fetches fresh identity after
+  entry. Unresolved identity cannot act as an unseated player. Failed reads lead
+  to read-only room recovery without repeating the committed create/join.
+  Eight focused local browser cases pass: delayed-null race, failed-read recovery,
+  natural friend flow/results/rematch and Tarot picks/refresh on both widths.
+- Corrective local frontend gates pass: 50 tests, workspace types/lint, production
+  build, browser-test types and import boundaries. Backend, API-client, game
+  tables, UI package, artwork and AI inputs are identical to 0525db5; their engine,
+  schema, multiplayer, load and Storybook checks remain applicable. First-release
+  hosted full matches are finishing before one necessary corrective deployment.
+- First release hosted acceptance completed at 0525db5: all 16 distinct cases
+  passed, 3,140 legal moves, two real saved Tarot readings and 16 rendered profile
+  history checks. Results, refresh, rematch and same-group switching pass. Both
+  rooms closed, 20 leaves200, zero transport retries/failures. Request/runtime
+  error scans return zero records with no omitted intervals or pages. Exact safe
+  records are retained separately from the subsequent guest-entry correction.
+- Corrective changes touch only three frontend runtime files. All backend,
+  API-client, game-table, shared UI/art and AI inputs match the fully accepted
+  first release. No database migration, auth/provider setting or account change
+  is needed. The corrective rollout retains the same production project/path.
+
+- Hosted phone verification at 0525db5 found an entry race: the initial /me read
+  returned profile:null 13 ms after join committed, and invalidation reused that
+  in-flight result. The friend had a valid membership but no client self identity.
+  Its QA room was closed normally with final 404; sanitized evidence lives in
+  docs/evidence/room-audit-2026-11-01/identity-race.md.
+- Corrective source cancels the old player query and fetches authoritative player
+  details after create/join. Unresolved identity never shows seat/game controls.
+  Failed fresh reads navigate to the committed room and offer read-only retry,
+  preventing duplicate room creation. Scoped test cleanup uses a separate
+  afterEach budget before closing known test contexts.
+- Eight focused local browser cases pass across both widths: delayed-null race,
+  committed-create/read-failure recovery, fresh natural room/result/rematch and
+  Tarot selection/refresh. Eight related unit cases pass. No new hosted identities
+  were created for this investigation; corrective production release is pending.

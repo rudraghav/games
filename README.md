@@ -6,7 +6,8 @@ Built with Next.js, TypeScript, Tailwind, FastAPI, Supabase and Vercel Services.
 The catalogue contains Uno, Uno No Mercy, Monopoly Deal, Monopoly Deal No Mercy,
 Texas Hold'em, Indian 13-card rummy, Teen Patti, blackjack, Skyjo and solo Pop
 Tarot, Four in a Row, Reversi, Word Agents, Gem Market, Checkers, Mancala,
-Flip 7, Trio, Azul, Spill or Chill, Most Likely and Hot Seat. All 78 Tarot cards
+Flip 7, Trio, Azul, Spill or Chill, Most Likely, Hot Seat, The Gang, 6 nimmt!,
+Sea Salt & Paper and boop.: **26 experiences**. All 78 Tarot cards
 have original pop-art illustrations and an explorable deck. Fresh personal
 Gemini readings give each card a grounded interpretation, a quirky take and
 one or two explained character parallels. Existing saved readings stay intact.
@@ -38,6 +39,14 @@ The modern/party expansion passed 26 additional hosted full-match scenarios
 (2,477 moves), including two richer real Tarot readings. Final portrait framing,
 poster ranks and browser icons passed four focused hosted phone/desktop checks.
 See [current expansion release](docs/evidence/modern-party-2026-11-01/RELEASE.md).
+The contemporary expansion adds cooperative poker, simultaneous number rows,
+ocean-card collecting and kitten/cat tactics. Browsing uses category pills,
+familiar-name search and group-size filters; mobile actions occupy dedicated
+rows, with secondary room controls grouped in the kebab menu. Rules, original
+artwork, complete-match and room evidence live in
+[new games](docs/evidence/new-games-2026-11-01/README.md),
+[browsing](docs/evidence/browsing-2026-11-01/README.md) and
+[room design](docs/evidence/room-audit-2026-11-01/README.md).
 Google account signup passed live consent and the production callback. Linking
 the owner's guest retained the same player ID, saved name and existing room;
 the verified Google identity survives refresh. See the project journal and

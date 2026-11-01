@@ -30,7 +30,13 @@ test('every game finishes at both seat limits, renders results, rematches and ke
   let roomId: string | undefined;
   let heartbeatAt = 0;
   const lastMove = new Map<Page, number>();
-  const summaries: { game: string; seats: number; moves: number; rematch: boolean }[] = [];
+  const summaries: {
+    game: string;
+    seats: number;
+    moves: number;
+    profileHistoryVerified: boolean;
+    rematch: boolean;
+  }[] = [];
   const filter = process.env.GAMES_FULL_MATCH_GAME?.split(',').filter(Boolean);
   const seatFilter = process.env.GAMES_FULL_MATCH_SEATS?.split(',').map(Number);
   if (seatFilter?.some((seats) => !Number.isInteger(seats) || seats < 1))
@@ -52,6 +58,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
     moves?: number;
     naturalResultVerified?: boolean;
     historyVerified?: boolean;
+    profileHistoryVerified?: boolean;
     renderedResultsVerified?: boolean;
   } | null = null;
   let complete = false;
@@ -250,6 +257,34 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           ).toBe(true);
           active = { ...active!, moves, naturalResultVerified: true, historyVerified: true };
           await record();
+
+          // Compare the actual saved result with rendered profile history. Use
+          // the server catalogue's semantics, never the frontend formatter.
+          const roomURL = page.url();
+          await page.goto('/profile');
+          const historyRow = page.locator(`.history-row[href="/rooms/${roomId}"]`).first();
+          await expect(historyRow.locator('strong')).toHaveText(game.name);
+          const historyOutcome = historyRow.locator(':scope > span');
+          const won = savedResult!.winners.includes(identities[0]);
+          const scoreOrder = game.score_order || 'high';
+          const units = (game.score_label || 'Points').toLocaleLowerCase();
+          if (game.id === 'tarot') {
+            await expect(historyOutcome).toHaveText('A little perspective');
+          } else if (game.play_mode === 'cooperative') {
+            await expect(historyOutcome).toContainText(won ? 'You won together' : 'Team defeat');
+            if (scoreOrder !== 'none')
+              await expect(historyOutcome).toContainText(`${savedResult!.score} ${units}`);
+          } else if (won) {
+            await expect(historyOutcome).toHaveText('You won ✦');
+          } else if (scoreOrder === 'none') {
+            await expect(historyOutcome).toHaveText('Match finished');
+          } else {
+            await expect(historyOutcome).toHaveText(`${savedResult!.score} ${units}`);
+          }
+          if (scoreOrder === 'none') await expect(historyOutcome).not.toContainText('0 points');
+          active.profileHistoryVerified = true;
+          await record();
+          await page.goto(roomURL);
           await page.reload();
           if (game.id === 'tarot') {
             await expect(page.locator('.tarot-reading')).toBeVisible();
@@ -299,7 +334,13 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           const changed = await roomAs(page, roomId!);
           expect(changed.members.length).toBe(maxSeats);
           expect(changed.members.every((member) => playerById.has(member.id))).toBe(true);
-          summaries.push({ game: game.id, seats, moves, rematch: true });
+          summaries.push({
+            game: game.id,
+            seats,
+            moves,
+            profileHistoryVerified: true,
+            rematch: true,
+          });
           active = null;
           await record();
           console.log(JSON.stringify(summaries.at(-1)));

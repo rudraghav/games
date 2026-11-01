@@ -57,3 +57,8 @@ Selected inspected images:
 - [boop. lobby](boop-lobby-after-phone.png)
 
 See [checks.json](checks.json) for concise source and acceptance metadata.
+
+The subsequent hosted phone check exposed a guest-entry identity race. Its exact
+cause, sanitized timing evidence and corrective local coverage are recorded in
+[identity-race.md](identity-race.md); the earlier local success does not supersede
+that production finding.

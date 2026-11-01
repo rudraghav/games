@@ -41,3 +41,10 @@ and ending a match remain deliberate actions. Escape closes dialogs and returns
 keyboard focus to the opener. Live turn summaries distinguish the normal actor
 from another player who has a legal reaction or simultaneous decision. Results
 show team wins/losses for cooperative games and the correct score ordering/units.
+
+After create/join commits, room entry cancels any earlier player-profile query
+and fetches the authoritative identity before navigating. A late pre-entry
+`profile: null` response cannot overwrite the joined identity. If this fresh read
+fails, navigation still reaches the committed room, where retry only refetches
+the room and player details; it never repeats create/join. Seat/game controls
+remain hidden until the player's identity is confirmed.

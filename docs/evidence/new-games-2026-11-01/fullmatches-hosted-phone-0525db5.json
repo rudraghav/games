@@ -1,0 +1,104 @@
+{
+  "startedAt": "2026-11-01T13:04:01.147Z",
+  "origin": "https://games-seven-black.vercel.app",
+  "checkoutSha": "0525db5028826e99d3be8505e15517cc40a74d74",
+  "applicationSourceSha": "0525db5028826e99d3be8505e15517cc40a74d74",
+  "workspaceDirty": true,
+  "sourceState": "explicit serving revision",
+  "hosted": true,
+  "project": "phone",
+  "selectedGames": [
+    "tarot",
+    "the-gang",
+    "six-nimmt",
+    "sea-salt-paper",
+    "boop"
+  ],
+  "selectedSeats": "limits",
+  "aiEnabled": true,
+  "complete": true,
+  "active": null,
+  "omitted": [],
+  "transport": {
+    "retryAttempts": 0,
+    "recovered": 0,
+    "failed": 0
+  },
+  "cleanup": {
+    "guestLeaveStatuses": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "roomClosed": true,
+    "failed": false,
+    "abandonStatus": 200,
+    "hostLeaveStatus": 200
+  },
+  "cases": [
+    {
+      "game": "tarot",
+      "seats": 1,
+      "moves": 3,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "game": "the-gang",
+      "seats": 3,
+      "moves": 47,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "game": "the-gang",
+      "seats": 6,
+      "moves": 92,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "game": "six-nimmt",
+      "seats": 2,
+      "moves": 236,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "game": "six-nimmt",
+      "seats": 10,
+      "moves": 356,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "game": "sea-salt-paper",
+      "seats": 2,
+      "moves": 290,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "game": "sea-salt-paper",
+      "seats": 4,
+      "moves": 425,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "game": "boop",
+      "seats": 2,
+      "moves": 80,
+      "profileHistoryVerified": true,
+      "rematch": true
+    }
+  ],
+  "decisions": "Authorized API projections; rendered result/rematch/change-game browser controls.",
+  "rummyScenario": "Legal drops; declaration/sequences are independently engine-tested."
+}

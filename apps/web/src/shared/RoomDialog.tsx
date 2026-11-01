@@ -8,6 +8,7 @@ import { games, gameById } from '@games/api-client/catalog';
 import { api } from '@/lib/session';
 import { keys } from './query-keys';
 import { rememberedPlayer, rememberPlayer } from './player-preferences';
+import { refreshPlayer } from './player-query';
 
 interface RoomDialogProps {
   open: boolean;
@@ -65,7 +66,9 @@ export function RoomDialog({
       }
       rememberPlayer(displayName.trim(), chosenAvatar);
       cache.setQueryData(keys.room(room.id), room);
-      await cache.invalidateQueries({ queryKey: keys.me });
+      // Room entry already committed. A failed identity read must lead to the
+      // room's read-only retry state, never back to a repeatable create/join.
+      await refreshPlayer(cache, () => api.me()).catch(() => undefined);
       onOpenChange(false);
       router.push(`/rooms/${room.id}`);
     } catch (error) {

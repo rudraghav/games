@@ -1,0 +1,42 @@
+{
+  "applicationSourceSha": "0525db5028826e99d3be8505e15517cc40a74d74",
+  "source": "https://games-seven-black.vercel.app",
+  "status": "first-release screenshots; corrective guest-entry verification pending",
+  "files": [
+    {
+      "file": "production-library-desktop.png",
+      "bytes": 245421,
+      "sha256": "5b5dd2cf1f6e9a9d2231ee5485b9eb30b277906f793abd544a2a7c01374f6448"
+    },
+    {
+      "file": "production-library-phone.png",
+      "bytes": 428249,
+      "sha256": "3a8d6115fa53e70ed02299dcb41dca909a057c992b2fbf4a528d39e808dd23bb"
+    },
+    {
+      "file": "production-lobby-desktop-masked.png",
+      "bytes": 79313,
+      "sha256": "67f1a46cfa2298bc7889ed2975281b6917716d2b4ab0bf20802afb1d9d9c52b5"
+    },
+    {
+      "file": "production-lobby-phone-masked.png",
+      "bytes": 204604,
+      "sha256": "d00e4b7671f342e90a10fb9805ee4f739e1dbe78898aaa1f2c39485ca492ef38"
+    },
+    {
+      "file": "production-results-rematch-desktop-masked.png",
+      "bytes": 162356,
+      "sha256": "a062b6e3a212f753d5766dbbf7b36c445737f24ed6791b928cbcc89e0fcd2053"
+    },
+    {
+      "file": "production-room-options-desktop.png",
+      "bytes": 18426,
+      "sha256": "02900055bde8b6a34417e8fff6d53e5e032e205fdaf3547271003813f121f9b9"
+    },
+    {
+      "file": "production-room-options-phone.png",
+      "bytes": 61649,
+      "sha256": "1fa2d5ebd4c0b4e4996b8bc8df0d937a73c4b5a51395bf34b7e10294a958f099"
+    }
+  ]
+}

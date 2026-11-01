@@ -65,7 +65,11 @@ GAMES_FULL_MATCHES=1 GAMES_TEST_AI=1 pnpm exec playwright test tests/browser/ful
 
 The harness reuses ten independent player sessions, exercises each distinct
 minimum/maximum seat limit, naturally reaches results and clicks rematch/change
-game while preserving the group. Bulk moves use the authorized API, not private
+game while preserving the group. It also opens the host's rendered profile,
+checks the latest room history row against the saved result and server catalogue
+semantics, and records `profileHistoryVerified` for every completed case. This
+distinguishes shared team outcomes, declared score units and games without point
+scores before returning to the room. Bulk moves use the authorized API, not private
 engine-state injection. Tarot needs `GAMES_TEST_AI=1` for real generation; Rummy
 browser drops and separate conserved declaration fixtures are distinguished.
 Use `GAMES_FULL_MATCH_GAME` for a focused retry of comma-separated game IDs and
