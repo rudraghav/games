@@ -1,0 +1,12 @@
+{
+  "ownedRawOutputDirectoriesRemoved": 2,
+  "bytesReclaimed": 49651193,
+  "selectedCardOriginalsRetained": 17,
+  "selectedTableOriginalsRetained": 15,
+  "actualPageOriginalsRetained": 6,
+  "ownedQaRoomClosed": true,
+  "requestedServices": {
+    "3217": 200,
+    "8217": 200
+  }
+}

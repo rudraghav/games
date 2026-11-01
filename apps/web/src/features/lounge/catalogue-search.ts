@@ -1,4 +1,5 @@
 import type { Game } from '@games/api-client/catalog';
+import Fuse from 'fuse.js';
 
 export const categories = [
   { value: 'all', label: 'All games' },
@@ -7,7 +8,7 @@ export const categories = [
   { value: 'boards', label: 'Board games' },
   { value: 'party', label: 'Party' },
   { value: 'cooperative', label: 'Co-op' },
-  { value: 'solo', label: 'Solo' },
+  { value: 'solo', label: 'Solo + bots' },
 ] as const;
 export type Category = (typeof categories)[number]['value'];
 const families: Record<Category, readonly string[]> = {
@@ -104,11 +105,47 @@ export function matchesGame(game: Game, query: string, players: number, category
     searchableText(query)
       .split(/\s+/)
       .every((word) => text.includes(word)) &&
-    (!players || (game.minPlayers <= players && game.maxPlayers >= players)) &&
+    (!players ||
+      (game.maxPlayers >= players &&
+        (game.minPlayers <= players || (players === 1 && game.botsSupported)))) &&
     (category === 'all' ||
-      (category === 'cooperative'
-        ? game.playMode === 'cooperative'
-        : families[category].includes(game.family))) &&
-    (category !== 'solo' || game.minPlayers === 1)
+      (category === 'solo'
+        ? game.minPlayers === 1 || game.botsSupported
+        : category === 'cooperative'
+          ? game.playMode === 'cooperative'
+          : families[category].includes(game.family))) &&
+    (category !== 'solo' || game.minPlayers === 1 || game.botsSupported)
   );
+}
+
+/** Exact names/aliases win; a bounded fuzzy fallback also accepts ordinary typos. */
+export function findGames(
+  games: readonly Game[],
+  query: string,
+  players: number,
+  category: Category,
+) {
+  const eligible = games.filter((game) => matchesGame(game, '', players, category));
+  const normalized = searchableText(query);
+  const exact = eligible.filter((game) => matchesGame(game, query, players, category));
+  if (!normalized || exact.length)
+    return exact.sort((a, b) => discoveryRank(a.id) - discoveryRank(b.id));
+  if (normalized.length < 3) return [];
+  const index = new Fuse(
+    eligible.map((game) => ({
+      game,
+      name: searchableText(game.name),
+      aliases: searchableText(aliases[game.id] || ''),
+    })),
+    {
+      keys: [
+        { name: 'name', weight: 0.8 },
+        { name: 'aliases', weight: 0.2 },
+      ],
+      threshold: 0.28,
+      ignoreLocation: true,
+      minMatchCharLength: 3,
+    },
+  );
+  return index.search(normalized).map((result) => result.item.game);
 }

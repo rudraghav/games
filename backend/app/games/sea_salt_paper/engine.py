@@ -27,7 +27,7 @@ def pair_kind(cards: list[str]) -> str | None:
 class PaperEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="sea-salt-paper", name="Sea Salt & Paper", subtitle="A tiny ocean. A tide of possibilities.",
+            id="sea-salt-paper", name="Sea Salt & Paper", subtitle="Collect sets and play card pairs",
             family="paper", min_players=2, max_players=4, minutes="15–25", icon="sailboat",
             color="sky", rules_version="base-58-1", rules=[
                 "58-card base edition. Take a discard top, or draw two, keep one and discard the other.",

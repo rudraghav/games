@@ -1,0 +1,562 @@
+{
+  "canonicalFaces": 245,
+  "byGame": {
+    "uno": 54,
+    "uno-no-mercy": 68,
+    "deal": 56,
+    "deal-no-mercy": 67
+  },
+  "sizes": [
+    "normal",
+    "compact"
+  ],
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 1440,
+      "height": 1000
+    }
+  ],
+  "renderedCardsChecked": 980,
+  "geometryBrowserCasesPassed": 2,
+  "canonicalInventoryUnitsPassed": 3,
+  "captureGroups": [
+    {
+      "mode": "phone",
+      "game": "uno",
+      "group": "red",
+      "index": 0,
+      "faces": 13
+    },
+    {
+      "mode": "phone",
+      "game": "uno",
+      "group": "yellow",
+      "index": 1,
+      "faces": 13
+    },
+    {
+      "mode": "phone",
+      "game": "uno",
+      "group": "green",
+      "index": 2,
+      "faces": 13
+    },
+    {
+      "mode": "phone",
+      "game": "uno",
+      "group": "blue",
+      "index": 3,
+      "faces": 13
+    },
+    {
+      "mode": "phone",
+      "game": "uno",
+      "group": "wild",
+      "index": 4,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "uno",
+      "group": "Interactive states",
+      "index": 5,
+      "faces": 0
+    },
+    {
+      "mode": "phone",
+      "game": "uno-no-mercy",
+      "group": "red",
+      "index": 0,
+      "faces": 16
+    },
+    {
+      "mode": "phone",
+      "game": "uno-no-mercy",
+      "group": "yellow",
+      "index": 1,
+      "faces": 16
+    },
+    {
+      "mode": "phone",
+      "game": "uno-no-mercy",
+      "group": "green",
+      "index": 2,
+      "faces": 16
+    },
+    {
+      "mode": "phone",
+      "game": "uno-no-mercy",
+      "group": "blue",
+      "index": 3,
+      "faces": 16
+    },
+    {
+      "mode": "phone",
+      "game": "uno-no-mercy",
+      "group": "wild",
+      "index": 4,
+      "faces": 4
+    },
+    {
+      "mode": "phone",
+      "game": "uno-no-mercy",
+      "group": "Interactive states",
+      "index": 5,
+      "faces": 0
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Money",
+      "index": 0,
+      "faces": 6
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Properties",
+      "index": 1,
+      "faces": 10
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Wild \u00b7 brown / sky",
+      "index": 2,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Wild \u00b7 pink / orange",
+      "index": 3,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Wild \u00b7 red / yellow",
+      "index": 4,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Wild \u00b7 green / blue",
+      "index": 5,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Wild \u00b7 sky / rail",
+      "index": 6,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Wild \u00b7 green / rail",
+      "index": 7,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Wild \u00b7 rail / utility",
+      "index": 8,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Wild \u00b7 brown / sky / pink / orange / red / yellow / green / blue / rail / utility",
+      "index": 9,
+      "faces": 10
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Rent",
+      "index": 10,
+      "faces": 6
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Actions",
+      "index": 11,
+      "faces": 10
+    },
+    {
+      "mode": "phone",
+      "game": "deal",
+      "group": "Interactive states",
+      "index": 12,
+      "faces": 0
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Money",
+      "index": 0,
+      "faces": 7
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Properties",
+      "index": 1,
+      "faces": 10
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 brown / sky",
+      "index": 2,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 pink / orange",
+      "index": 3,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 red / yellow",
+      "index": 4,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 green / blue",
+      "index": 5,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 sky / rail",
+      "index": 6,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 green / rail",
+      "index": 7,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 rail / utility",
+      "index": 8,
+      "faces": 2
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 brown / sky / pink / orange / red / yellow / green / blue / rail / utility",
+      "index": 9,
+      "faces": 10
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Rent",
+      "index": 10,
+      "faces": 12
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Actions",
+      "index": 11,
+      "faces": 14
+    },
+    {
+      "mode": "phone",
+      "game": "deal-no-mercy",
+      "group": "Interactive states",
+      "index": 12,
+      "faces": 0
+    },
+    {
+      "mode": "desktop",
+      "game": "uno",
+      "group": "red",
+      "index": 0,
+      "faces": 13
+    },
+    {
+      "mode": "desktop",
+      "game": "uno",
+      "group": "yellow",
+      "index": 1,
+      "faces": 13
+    },
+    {
+      "mode": "desktop",
+      "game": "uno",
+      "group": "green",
+      "index": 2,
+      "faces": 13
+    },
+    {
+      "mode": "desktop",
+      "game": "uno",
+      "group": "blue",
+      "index": 3,
+      "faces": 13
+    },
+    {
+      "mode": "desktop",
+      "game": "uno",
+      "group": "wild",
+      "index": 4,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "uno",
+      "group": "Interactive states",
+      "index": 5,
+      "faces": 0
+    },
+    {
+      "mode": "desktop",
+      "game": "uno-no-mercy",
+      "group": "red",
+      "index": 0,
+      "faces": 16
+    },
+    {
+      "mode": "desktop",
+      "game": "uno-no-mercy",
+      "group": "yellow",
+      "index": 1,
+      "faces": 16
+    },
+    {
+      "mode": "desktop",
+      "game": "uno-no-mercy",
+      "group": "green",
+      "index": 2,
+      "faces": 16
+    },
+    {
+      "mode": "desktop",
+      "game": "uno-no-mercy",
+      "group": "blue",
+      "index": 3,
+      "faces": 16
+    },
+    {
+      "mode": "desktop",
+      "game": "uno-no-mercy",
+      "group": "wild",
+      "index": 4,
+      "faces": 4
+    },
+    {
+      "mode": "desktop",
+      "game": "uno-no-mercy",
+      "group": "Interactive states",
+      "index": 5,
+      "faces": 0
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Money",
+      "index": 0,
+      "faces": 6
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Properties",
+      "index": 1,
+      "faces": 10
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Wild \u00b7 brown / sky",
+      "index": 2,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Wild \u00b7 pink / orange",
+      "index": 3,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Wild \u00b7 red / yellow",
+      "index": 4,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Wild \u00b7 green / blue",
+      "index": 5,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Wild \u00b7 sky / rail",
+      "index": 6,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Wild \u00b7 green / rail",
+      "index": 7,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Wild \u00b7 rail / utility",
+      "index": 8,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Wild \u00b7 brown / sky / pink / orange / red / yellow / green / blue / rail / utility",
+      "index": 9,
+      "faces": 10
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Rent",
+      "index": 10,
+      "faces": 6
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Actions",
+      "index": 11,
+      "faces": 10
+    },
+    {
+      "mode": "desktop",
+      "game": "deal",
+      "group": "Interactive states",
+      "index": 12,
+      "faces": 0
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Money",
+      "index": 0,
+      "faces": 7
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Properties",
+      "index": 1,
+      "faces": 10
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 brown / sky",
+      "index": 2,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 pink / orange",
+      "index": 3,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 red / yellow",
+      "index": 4,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 green / blue",
+      "index": 5,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 sky / rail",
+      "index": 6,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 green / rail",
+      "index": 7,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 rail / utility",
+      "index": 8,
+      "faces": 2
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Wild \u00b7 brown / sky / pink / orange / red / yellow / green / blue / rail / utility",
+      "index": 9,
+      "faces": 10
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Rent",
+      "index": 10,
+      "faces": 12
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Actions",
+      "index": 11,
+      "faces": 14
+    },
+    {
+      "mode": "desktop",
+      "game": "deal-no-mercy",
+      "group": "Interactive states",
+      "index": 12,
+      "faces": 0
+    }
+  ],
+  "allGroupsOpenedAndReviewed": true,
+  "knownRemainingClippingDefects": 0
+}

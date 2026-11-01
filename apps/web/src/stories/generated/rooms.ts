@@ -23,7 +23,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.422472
+          "last_seen": 1793545466.116159,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -32,7 +33,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.422476
+          "last_seen": 1793545466.116163,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -75,7 +77,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "8",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:2:0",
@@ -83,7 +87,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "wild:wild:3",
@@ -91,7 +97,9 @@ export const fixtures = [
             "color": "wild",
             "subtitle": "UNO",
             "value": "Wild",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:7:0",
@@ -99,7 +107,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "7",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:reverse:0",
@@ -107,7 +117,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "Reverse",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:6:1",
@@ -115,7 +127,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "6",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:reverse:1",
@@ -123,7 +137,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "Reverse",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [],
@@ -133,7 +149,9 @@ export const fixtures = [
           "color": "red",
           "subtitle": "UNO",
           "value": "2",
-          "suit": ""
+          "suit": "",
+          "colors": [],
+          "effect": ""
         },
         "drawn": null,
         "draw_count": 93,
@@ -283,7 +301,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -309,7 +329,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.422668
+          "last_seen": 1793545466.1173198,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -318,7 +339,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4226692
+          "last_seen": 1793545466.117325,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -327,7 +349,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4226701
+          "last_seen": 1793545466.1173272,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -336,7 +359,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.422671
+          "last_seen": 1793545466.117328,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -345,7 +369,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4226718
+          "last_seen": 1793545466.117329,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -354,7 +379,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.422673
+          "last_seen": 1793545466.117331,
+          "is_bot": false
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -363,7 +389,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.422675
+          "last_seen": 1793545466.117332,
+          "is_bot": false
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -372,7 +399,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.422675
+          "last_seen": 1793545466.117333,
+          "is_bot": false
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -381,7 +409,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.422676
+          "last_seen": 1793545466.1173341,
+          "is_bot": false
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -390,7 +419,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.422677
+          "last_seen": 1793545466.117336,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -537,7 +567,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "8",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:2:0",
@@ -545,7 +577,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "wild:wild:3",
@@ -553,7 +587,9 @@ export const fixtures = [
             "color": "wild",
             "subtitle": "UNO",
             "value": "Wild",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:7:0",
@@ -561,7 +597,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "7",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:reverse:0",
@@ -569,7 +607,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "Reverse",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:6:1",
@@ -577,7 +617,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "6",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:reverse:1",
@@ -585,7 +627,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "Reverse",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "wild:wild4:0",
@@ -593,7 +637,9 @@ export const fixtures = [
             "color": "wild",
             "subtitle": "UNO",
             "value": "+4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:6:1",
@@ -601,7 +647,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "6",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:5:0",
@@ -609,7 +657,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "5",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:reverse:1",
@@ -617,7 +667,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "Reverse",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:8:1",
@@ -625,7 +677,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "8",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:2:1",
@@ -633,7 +687,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:2:1",
@@ -641,7 +697,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:6:0",
@@ -649,7 +707,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "6",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:draw2:1",
@@ -657,7 +717,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "+2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:3:0",
@@ -665,7 +727,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "3",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:2:0",
@@ -673,7 +737,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:1:1",
@@ -681,7 +747,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "wild:wild4:3",
@@ -689,7 +757,9 @@ export const fixtures = [
             "color": "wild",
             "subtitle": "UNO",
             "value": "+4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:draw2:1",
@@ -697,7 +767,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "+2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:8:1",
@@ -705,7 +777,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "8",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:1:0",
@@ -713,7 +787,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:3:1",
@@ -721,7 +797,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "3",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:6:1",
@@ -729,7 +807,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "6",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:8:0",
@@ -737,7 +817,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "8",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:skip:1",
@@ -745,7 +827,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "Skip",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:skip:0",
@@ -753,7 +837,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "Skip",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:2:1",
@@ -761,7 +847,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:skip:1",
@@ -769,7 +857,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "Skip",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:reverse:0",
@@ -777,7 +867,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "Reverse",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:5:0",
@@ -785,7 +877,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "5",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:6:1",
@@ -793,7 +887,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "6",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:3:0",
@@ -801,7 +897,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "3",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:0:0",
@@ -809,7 +907,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "0",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:5:0",
@@ -817,7 +917,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "5",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:9:0",
@@ -825,7 +927,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "9",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:6:0",
@@ -833,7 +937,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "6",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:3:1",
@@ -841,7 +947,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "3",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:7:0",
@@ -849,7 +957,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "7",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:skip:0",
@@ -857,7 +967,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "Skip",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:1:1",
@@ -865,7 +977,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [],
@@ -875,7 +989,9 @@ export const fixtures = [
           "color": "red",
           "subtitle": "UNO",
           "value": "2",
-          "suit": ""
+          "suit": "",
+          "colors": [],
+          "effect": ""
         },
         "drawn": null,
         "draw_count": 2,
@@ -1443,7 +1559,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -1469,7 +1587,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.42297
+          "last_seen": 1793545466.117695,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -1478,7 +1597,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.422972
+          "last_seen": 1793545466.117697,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -1521,7 +1641,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "Discard all",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:2:0",
@@ -1529,7 +1651,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:4:1",
@@ -1537,7 +1661,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:reverse:2",
@@ -1545,7 +1671,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "Reverse",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:3:0",
@@ -1553,7 +1681,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "3",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:5:0",
@@ -1561,7 +1691,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "5",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "wild:reverse4:2",
@@ -1569,7 +1701,9 @@ export const fixtures = [
             "color": "wild",
             "subtitle": "UNO",
             "value": "Reverse +4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [],
@@ -1579,7 +1713,9 @@ export const fixtures = [
           "color": "green",
           "subtitle": "UNO",
           "value": "6",
-          "suit": ""
+          "suit": "",
+          "colors": [],
+          "effect": ""
         },
         "drawn": null,
         "draw_count": 152,
@@ -1729,7 +1865,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -1755,7 +1893,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423114
+          "last_seen": 1793545466.117862,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -1764,7 +1903,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423115
+          "last_seen": 1793545466.117864,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -1773,7 +1913,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423116
+          "last_seen": 1793545466.1178648,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -1782,7 +1923,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4231172
+          "last_seen": 1793545466.117866,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -1791,7 +1933,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4231172
+          "last_seen": 1793545466.117867,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -1800,7 +1943,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423118
+          "last_seen": 1793545466.117868,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -1895,7 +2039,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "Discard all",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:2:0",
@@ -1903,7 +2049,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:4:1",
@@ -1911,7 +2059,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:reverse:2",
@@ -1919,7 +2069,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "Reverse",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:3:0",
@@ -1927,7 +2079,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "3",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:5:0",
@@ -1935,7 +2089,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "5",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "wild:reverse4:2",
@@ -1943,7 +2099,9 @@ export const fixtures = [
             "color": "wild",
             "subtitle": "UNO",
             "value": "Reverse +4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "wild:wild10:6",
@@ -1951,7 +2109,9 @@ export const fixtures = [
             "color": "wild",
             "subtitle": "UNO",
             "value": "+10",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:6:0",
@@ -1959,7 +2119,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "6",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:draw4:0",
@@ -1967,7 +2129,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "+4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:draw2:0",
@@ -1975,7 +2139,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "+2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:5:1",
@@ -1983,7 +2149,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "5",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:skip:2",
@@ -1991,7 +2159,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "Skip",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:draw2:1",
@@ -1999,7 +2169,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "+2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:reverse:1",
@@ -2007,7 +2179,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "Reverse",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "wild:roulette:3",
@@ -2015,7 +2189,9 @@ export const fixtures = [
             "color": "wild",
             "subtitle": "UNO",
             "value": "Colour roulette",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "green:discard_all:1",
@@ -2023,7 +2199,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "UNO",
             "value": "Discard all",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:0:0",
@@ -2031,7 +2209,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "0",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "blue:4:1",
@@ -2039,7 +2219,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "UNO",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "yellow:8:1",
@@ -2047,7 +2229,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "UNO",
             "value": "8",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:discard_all:0",
@@ -2055,7 +2239,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "Discard all",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:7:0",
@@ -2063,7 +2249,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "7",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "wild:roulette:0",
@@ -2071,7 +2259,9 @@ export const fixtures = [
             "color": "wild",
             "subtitle": "UNO",
             "value": "Colour roulette",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "red:draw2:1",
@@ -2079,7 +2269,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "UNO",
             "value": "+2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [],
@@ -2089,7 +2281,9 @@ export const fixtures = [
           "color": "green",
           "subtitle": "UNO",
           "value": "2",
-          "suit": ""
+          "suit": "",
+          "colors": [],
+          "effect": ""
         },
         "drawn": null,
         "draw_count": 108,
@@ -2429,7 +2623,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -2455,7 +2651,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423282
+          "last_seen": 1793545466.1180649,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -2464,7 +2661,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4232829
+          "last_seen": 1793545466.118067,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -2507,7 +2705,12 @@ export const fixtures = [
             "color": "green",
             "subtitle": "Rent",
             "value": "1M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [
+              "green",
+              "blue"
+            ],
+            "effect": "rent"
           },
           {
             "id": "d053",
@@ -2515,7 +2718,12 @@ export const fixtures = [
             "color": "green",
             "subtitle": "Wild property",
             "value": "4M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "green",
+              "blue"
+            ],
+            "effect": ""
           },
           {
             "id": "d103",
@@ -2523,7 +2731,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "Hotel",
             "value": "4M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [],
+            "effect": "hotel"
           },
           {
             "id": "d038",
@@ -2531,7 +2741,11 @@ export const fixtures = [
             "color": "green",
             "subtitle": "Green",
             "value": "4M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "green"
+            ],
+            "effect": ""
           },
           {
             "id": "d046",
@@ -2539,7 +2753,11 @@ export const fixtures = [
             "color": "utility",
             "subtitle": "Utility",
             "value": "2M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "utility"
+            ],
+            "effect": ""
           },
           {
             "id": "d069",
@@ -2547,7 +2765,20 @@ export const fixtures = [
             "color": "brown",
             "subtitle": "Rent",
             "value": "3M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [
+              "brown",
+              "sky",
+              "pink",
+              "orange",
+              "red",
+              "yellow",
+              "green",
+              "blue",
+              "rail",
+              "utility"
+            ],
+            "effect": "rent"
           },
           {
             "id": "d084",
@@ -2555,7 +2786,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "Just say no",
             "value": "4M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [],
+            "effect": "no"
           }
         ],
         "community": [],
@@ -2744,12 +2977,15 @@ export const fixtures = [
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [],
             "b34c747c-f55f-5ca1-a9f1-9a962b463165": []
           },
-          "pending": null
+          "pending": null,
+          "payment_amount": 0
         }
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -2775,7 +3011,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4233978
+          "last_seen": 1793545466.1182091,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -2784,7 +3021,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423399
+          "last_seen": 1793545466.11821,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -2793,7 +3031,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4234
+          "last_seen": 1793545466.118211,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -2802,7 +3041,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4234009
+          "last_seen": 1793545466.118212,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -2811,7 +3051,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4234009
+          "last_seen": 1793545466.1182132,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -2893,7 +3134,12 @@ export const fixtures = [
             "color": "green",
             "subtitle": "Rent",
             "value": "1M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [
+              "green",
+              "blue"
+            ],
+            "effect": "rent"
           },
           {
             "id": "d053",
@@ -2901,7 +3147,12 @@ export const fixtures = [
             "color": "green",
             "subtitle": "Wild property",
             "value": "4M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "green",
+              "blue"
+            ],
+            "effect": ""
           },
           {
             "id": "d103",
@@ -2909,7 +3160,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "Hotel",
             "value": "4M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [],
+            "effect": "hotel"
           },
           {
             "id": "d038",
@@ -2917,7 +3170,11 @@ export const fixtures = [
             "color": "green",
             "subtitle": "Green",
             "value": "4M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "green"
+            ],
+            "effect": ""
           },
           {
             "id": "d046",
@@ -2925,7 +3182,11 @@ export const fixtures = [
             "color": "utility",
             "subtitle": "Utility",
             "value": "2M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "utility"
+            ],
+            "effect": ""
           },
           {
             "id": "d007",
@@ -2933,7 +3194,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "MONEY",
             "value": "2M",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "d082",
@@ -2941,7 +3204,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "Just say no",
             "value": "4M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [],
+            "effect": "no"
           }
         ],
         "community": [],
@@ -3133,12 +3398,15 @@ export const fixtures = [
             "19285837-cef0-568b-9a40-febfd6a8cb39": [],
             "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9": []
           },
-          "pending": null
+          "pending": null,
+          "payment_amount": 0
         }
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -3164,7 +3432,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423502
+          "last_seen": 1793545466.1183329,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -3173,7 +3442,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4235032
+          "last_seen": 1793545466.118334,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -3216,7 +3486,12 @@ export const fixtures = [
             "color": "rail",
             "subtitle": "Double rent",
             "value": "1M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [
+              "rail",
+              "utility"
+            ],
+            "effect": "rent_double"
           },
           {
             "id": "d053",
@@ -3224,7 +3499,12 @@ export const fixtures = [
             "color": "green",
             "subtitle": "Wild property",
             "value": "4M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "green",
+              "rail"
+            ],
+            "effect": ""
           },
           {
             "id": "d103",
@@ -3232,7 +3512,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "Super sly deal",
             "value": "3M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [],
+            "effect": "super_sly"
           },
           {
             "id": "d038",
@@ -3240,7 +3522,11 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "Blue",
             "value": "4M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "blue"
+            ],
+            "effect": ""
           },
           {
             "id": "d046",
@@ -3248,7 +3534,12 @@ export const fixtures = [
             "color": "brown",
             "subtitle": "Wild property",
             "value": "1M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "brown",
+              "sky"
+            ],
+            "effect": ""
           },
           {
             "id": "d069",
@@ -3256,7 +3547,20 @@ export const fixtures = [
             "color": "brown",
             "subtitle": "Rent",
             "value": "3M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [
+              "brown",
+              "sky",
+              "pink",
+              "orange",
+              "red",
+              "yellow",
+              "green",
+              "blue",
+              "rail",
+              "utility"
+            ],
+            "effect": "rent"
           },
           {
             "id": "d084",
@@ -3264,7 +3568,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "Heist",
             "value": "4M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [],
+            "effect": "heist"
           }
         ],
         "community": [],
@@ -3472,12 +3778,15 @@ export const fixtures = [
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [],
             "b34c747c-f55f-5ca1-a9f1-9a962b463165": []
           },
-          "pending": null
+          "pending": null,
+          "payment_amount": 0
         }
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -3503,7 +3812,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4236102
+          "last_seen": 1793545466.118463,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -3512,7 +3822,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4236119
+          "last_seen": 1793545466.118464,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -3521,7 +3832,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4236119
+          "last_seen": 1793545466.118465,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -3530,7 +3842,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4236128
+          "last_seen": 1793545466.1184661,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -3539,7 +3852,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423614
+          "last_seen": 1793545466.118467,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -3621,7 +3935,12 @@ export const fixtures = [
             "color": "rail",
             "subtitle": "Double rent",
             "value": "1M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [
+              "rail",
+              "utility"
+            ],
+            "effect": "rent_double"
           },
           {
             "id": "d053",
@@ -3629,7 +3948,12 @@ export const fixtures = [
             "color": "green",
             "subtitle": "Wild property",
             "value": "4M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "green",
+              "rail"
+            ],
+            "effect": ""
           },
           {
             "id": "d103",
@@ -3637,7 +3961,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "Super sly deal",
             "value": "3M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [],
+            "effect": "super_sly"
           },
           {
             "id": "d038",
@@ -3645,7 +3971,11 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "Blue",
             "value": "4M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "blue"
+            ],
+            "effect": ""
           },
           {
             "id": "d046",
@@ -3653,7 +3983,12 @@ export const fixtures = [
             "color": "brown",
             "subtitle": "Wild property",
             "value": "1M",
-            "suit": "property"
+            "suit": "property",
+            "colors": [
+              "brown",
+              "sky"
+            ],
+            "effect": ""
           },
           {
             "id": "d017",
@@ -3661,7 +3996,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "MONEY",
             "value": "15M",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "d070",
@@ -3669,7 +4006,20 @@ export const fixtures = [
             "color": "brown",
             "subtitle": "Double rent",
             "value": "3M",
-            "suit": "action"
+            "suit": "action",
+            "colors": [
+              "brown",
+              "sky",
+              "pink",
+              "orange",
+              "red",
+              "yellow",
+              "green",
+              "blue",
+              "rail",
+              "utility"
+            ],
+            "effect": "rent_double"
           }
         ],
         "community": [],
@@ -3880,12 +4230,15 @@ export const fixtures = [
             "19285837-cef0-568b-9a40-febfd6a8cb39": [],
             "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9": []
           },
-          "pending": null
+          "pending": null,
+          "payment_amount": 0
         }
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -3911,7 +4264,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4238012
+          "last_seen": 1793545466.118596,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -3920,7 +4274,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4238029
+          "last_seen": 1793545466.118597,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -3963,7 +4318,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "9",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2D:0",
@@ -3971,7 +4328,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "2",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [],
@@ -4068,7 +4427,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -4094,7 +4455,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423893
+          "last_seen": 1793545466.1187,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4103,7 +4465,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423894
+          "last_seen": 1793545466.118701,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -4112,7 +4475,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4238951
+          "last_seen": 1793545466.1187022,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -4121,7 +4485,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423896
+          "last_seen": 1793545466.1187031,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -4130,7 +4495,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423897
+          "last_seen": 1793545466.118704,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -4139,7 +4505,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423897
+          "last_seen": 1793545466.1187048,
+          "is_bot": false
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -4148,7 +4515,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4238982
+          "last_seen": 1793545466.118706,
+          "is_bot": false
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -4157,7 +4525,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423899
+          "last_seen": 1793545466.118707,
+          "is_bot": false
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -4166,7 +4535,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4239
+          "last_seen": 1793545466.118708,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -4300,7 +4670,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "9",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2D:0",
@@ -4308,7 +4680,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "2",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [],
@@ -4328,7 +4702,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -4354,7 +4730,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.42398
+          "last_seen": 1793545466.1187992,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4363,7 +4740,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.423981
+          "last_seen": 1793545466.1188,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -4406,7 +4784,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "3",
-            "suit": "\u2660"
+            "suit": "\u2660",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "AC:1",
@@ -4414,7 +4794,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "A",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "AD:0",
@@ -4422,7 +4804,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "A",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9C:0",
@@ -4430,7 +4814,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "9",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "KD:0",
@@ -4438,7 +4824,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "K",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "JH:0",
@@ -4446,7 +4834,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "J",
-            "suit": "\u2665"
+            "suit": "\u2665",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9C:1",
@@ -4454,7 +4844,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "9",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "AD:1",
@@ -4462,7 +4854,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "A",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8C:1",
@@ -4470,7 +4864,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "8",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6H:1",
@@ -4478,7 +4874,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "6",
-            "suit": "\u2665"
+            "suit": "\u2665",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8D:1",
@@ -4486,7 +4884,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "8",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "JD:0",
@@ -4494,7 +4894,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "J",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3H:0",
@@ -4502,7 +4904,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "3",
-            "suit": "\u2665"
+            "suit": "\u2665",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [
@@ -4512,7 +4916,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "3",
-            "suit": "\u2665"
+            "suit": "\u2665",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": {
@@ -4521,7 +4927,9 @@ export const fixtures = [
           "color": "red",
           "subtitle": "",
           "value": "A",
-          "suit": "\u2665"
+          "suit": "\u2665",
+          "colors": [],
+          "effect": ""
         },
         "drawn": null,
         "draw_count": 78,
@@ -4593,7 +5001,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -4619,7 +5029,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424085
+          "last_seen": 1793545466.118913,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4628,7 +5039,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424087
+          "last_seen": 1793545466.1189141,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -4637,7 +5049,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424088
+          "last_seen": 1793545466.118915,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -4646,7 +5059,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424088
+          "last_seen": 1793545466.118916,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -4655,7 +5069,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4240892
+          "last_seen": 1793545466.118916,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -4664,7 +5079,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4240901
+          "last_seen": 1793545466.1189172,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -4759,7 +5175,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "3",
-            "suit": "\u2660"
+            "suit": "\u2660",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "AC:1",
@@ -4767,7 +5185,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "A",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "AD:0",
@@ -4775,7 +5195,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "A",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9C:0",
@@ -4783,7 +5205,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "9",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "KD:0",
@@ -4791,7 +5215,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "K",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "JH:0",
@@ -4799,7 +5225,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "J",
-            "suit": "\u2665"
+            "suit": "\u2665",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9C:1",
@@ -4807,7 +5235,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "9",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "AD:1",
@@ -4815,7 +5245,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "A",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8C:1",
@@ -4823,7 +5255,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "8",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6H:1",
@@ -4831,7 +5265,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "6",
-            "suit": "\u2665"
+            "suit": "\u2665",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8D:1",
@@ -4839,7 +5275,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "8",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "JD:0",
@@ -4847,7 +5285,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "J",
-            "suit": "\u2666"
+            "suit": "\u2666",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3H:0",
@@ -4855,7 +5295,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "3",
-            "suit": "\u2665"
+            "suit": "\u2665",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [
@@ -4865,7 +5307,9 @@ export const fixtures = [
             "color": "red",
             "subtitle": "",
             "value": "3",
-            "suit": "\u2665"
+            "suit": "\u2665",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": {
@@ -4874,7 +5318,9 @@ export const fixtures = [
           "color": "ink",
           "subtitle": "",
           "value": "7",
-          "suit": "\u2660"
+          "suit": "\u2660",
+          "colors": [],
+          "effect": ""
         },
         "drawn": null,
         "draw_count": 26,
@@ -4946,7 +5392,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -4972,7 +5420,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4241889
+          "last_seen": 1793545466.119015,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4981,7 +5430,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.42419
+          "last_seen": 1793545466.119016,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -5110,7 +5560,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -5136,7 +5588,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424275
+          "last_seen": 1793545466.119096,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5145,7 +5598,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4242759
+          "last_seen": 1793545466.119097,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -5154,7 +5608,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424277
+          "last_seen": 1793545466.1190982,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -5163,7 +5618,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424278
+          "last_seen": 1793545466.119099,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -5172,7 +5628,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424279
+          "last_seen": 1793545466.1190999,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -5181,7 +5638,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4242802
+          "last_seen": 1793545466.1191008,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -5343,7 +5801,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -5369,7 +5829,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424445
+          "last_seen": 1793545466.11923,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -5429,7 +5890,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -5455,7 +5918,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424594
+          "last_seen": 1793545466.119353,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5464,7 +5928,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424596
+          "last_seen": 1793545466.119354,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -5473,7 +5938,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424597
+          "last_seen": 1793545466.119355,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -5482,7 +5948,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424598
+          "last_seen": 1793545466.119356,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -5491,7 +5958,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424599
+          "last_seen": 1793545466.1193569,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -5500,7 +5968,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424599
+          "last_seen": 1793545466.119358,
+          "is_bot": false
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -5509,7 +5978,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4246001
+          "last_seen": 1793545466.119359,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -5647,7 +6117,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -5673,7 +6145,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424702
+          "last_seen": 1793545466.1194592,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5682,7 +6155,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424703
+          "last_seen": 1793545466.11946,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -5752,7 +6226,9 @@ export const fixtures = [
           "color": "green",
           "subtitle": "SKYJO",
           "value": "4",
-          "suit": ""
+          "suit": "",
+          "colors": [],
+          "effect": ""
         },
         "drawn": null,
         "draw_count": 125,
@@ -5996,7 +6472,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -6022,7 +6500,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424843
+          "last_seen": 1793545466.119607,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -6031,7 +6510,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424845
+          "last_seen": 1793545466.1196082,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -6040,7 +6520,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.424845
+          "last_seen": 1793545466.119609,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -6049,7 +6530,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4248462
+          "last_seen": 1793545466.11961,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -6058,7 +6540,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4248471
+          "last_seen": 1793545466.1196108,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -6067,7 +6550,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4248478
+          "last_seen": 1793545466.119612,
+          "is_bot": false
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -6076,7 +6560,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4248488
+          "last_seen": 1793545466.119613,
+          "is_bot": false
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -6085,7 +6570,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.42485
+          "last_seen": 1793545466.119614,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -6311,7 +6797,9 @@ export const fixtures = [
           "color": "yellow",
           "subtitle": "SKYJO",
           "value": "6",
-          "suit": ""
+          "suit": "",
+          "colors": [],
+          "effect": ""
         },
         "drawn": null,
         "draw_count": 53,
@@ -6555,7 +7043,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -6581,7 +7071,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4249659
+          "last_seen": 1793545466.119733,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -8102,7 +8593,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -8128,7 +8621,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4252212
+          "last_seen": 1793545466.12171,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -9649,7 +10143,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -9675,7 +10171,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.42668
+          "last_seen": 1793545466.12205,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -9684,7 +10181,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.426681
+          "last_seen": 1793545466.1220522,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -9728,7 +10226,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -9736,7 +10236,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -9744,7 +10246,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -9752,7 +10256,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -9760,7 +10266,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -9768,7 +10276,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -9776,7 +10286,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -9784,7 +10296,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -9792,7 +10306,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -9800,7 +10316,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -9808,7 +10326,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -9816,7 +10336,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -9824,7 +10346,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -9832,7 +10356,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "14",
@@ -9840,7 +10366,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "15",
@@ -9848,7 +10376,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "16",
@@ -9856,7 +10386,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "17",
@@ -9864,7 +10396,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "18",
@@ -9872,7 +10406,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "19",
@@ -9880,7 +10416,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "20",
@@ -9888,7 +10426,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "21",
@@ -9896,7 +10436,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "22",
@@ -9904,7 +10446,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "23",
@@ -9912,7 +10456,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "24",
@@ -9920,7 +10466,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "25",
@@ -9928,7 +10476,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "26",
@@ -9936,7 +10486,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "27",
@@ -9944,7 +10496,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "28",
@@ -9952,7 +10506,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "29",
@@ -9960,7 +10516,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "30",
@@ -9968,7 +10526,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "31",
@@ -9976,7 +10536,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "32",
@@ -9984,7 +10546,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "33",
@@ -9992,7 +10556,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "34",
@@ -10000,7 +10566,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "35",
@@ -10008,7 +10576,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "36",
@@ -10016,7 +10586,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "37",
@@ -10024,7 +10596,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "38",
@@ -10032,7 +10606,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "39",
@@ -10040,7 +10616,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "40",
@@ -10048,7 +10626,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "41",
@@ -10056,7 +10636,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -10209,7 +10791,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -10235,7 +10819,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.426784
+          "last_seen": 1793545466.122188,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -10244,7 +10829,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.426786
+          "last_seen": 1793545466.12219,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -10288,7 +10874,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -10296,7 +10884,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -10304,7 +10894,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -10312,7 +10904,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -10320,7 +10914,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -10328,7 +10924,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -10336,7 +10934,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -10344,7 +10944,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -10352,7 +10954,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -10360,7 +10964,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -10368,7 +10974,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -10376,7 +10984,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -10384,7 +10994,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -10392,7 +11004,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "14",
@@ -10400,7 +11014,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "15",
@@ -10408,7 +11024,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "16",
@@ -10416,7 +11034,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "17",
@@ -10424,7 +11044,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "18",
@@ -10432,7 +11054,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "19",
@@ -10440,7 +11064,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "20",
@@ -10448,7 +11074,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "21",
@@ -10456,7 +11084,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "22",
@@ -10464,7 +11094,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "23",
@@ -10472,7 +11104,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "24",
@@ -10480,7 +11114,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "25",
@@ -10488,7 +11124,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "26",
@@ -10496,7 +11134,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "27",
@@ -10504,7 +11144,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "28",
@@ -10512,7 +11154,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "29",
@@ -10520,7 +11164,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "30",
@@ -10528,7 +11174,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "31",
@@ -10536,7 +11184,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "32",
@@ -10544,7 +11194,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "33",
@@ -10552,7 +11204,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "34",
@@ -10560,7 +11214,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "35",
@@ -10568,7 +11224,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "36",
@@ -10576,7 +11234,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "37",
@@ -10584,7 +11244,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "38",
@@ -10592,7 +11254,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "39",
@@ -10600,7 +11264,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "40",
@@ -10608,7 +11274,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "41",
@@ -10616,7 +11284,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -10769,7 +11439,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -10795,7 +11467,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4268749
+          "last_seen": 1793545466.122307,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -10804,7 +11477,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4268758
+          "last_seen": 1793545466.1223092,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -10848,7 +11522,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -10856,7 +11532,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -10864,7 +11542,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -10872,7 +11552,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -10880,7 +11562,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -10888,7 +11572,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -10896,7 +11582,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -10904,7 +11592,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -10912,7 +11602,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -10920,7 +11612,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -10928,7 +11622,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -10936,7 +11632,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -10944,7 +11642,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -10952,7 +11652,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "14",
@@ -10960,7 +11662,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "15",
@@ -10968,7 +11672,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "16",
@@ -10976,7 +11682,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "17",
@@ -10984,7 +11692,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "18",
@@ -10992,7 +11702,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "19",
@@ -11000,7 +11712,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "20",
@@ -11008,7 +11722,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "21",
@@ -11016,7 +11732,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "22",
@@ -11024,7 +11742,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "23",
@@ -11032,7 +11752,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "24",
@@ -11040,7 +11762,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "25",
@@ -11048,7 +11772,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "26",
@@ -11056,7 +11782,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "27",
@@ -11064,7 +11792,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "28",
@@ -11072,7 +11802,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "29",
@@ -11080,7 +11812,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "30",
@@ -11088,7 +11822,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "31",
@@ -11096,7 +11832,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "32",
@@ -11104,7 +11842,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "33",
@@ -11112,7 +11852,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "34",
@@ -11120,7 +11862,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "35",
@@ -11128,7 +11872,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "36",
@@ -11136,7 +11882,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "37",
@@ -11144,7 +11892,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "38",
@@ -11152,7 +11902,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "39",
@@ -11160,7 +11912,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "40",
@@ -11168,7 +11922,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "41",
@@ -11176,7 +11932,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "42",
@@ -11184,7 +11942,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "43",
@@ -11192,7 +11952,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "44",
@@ -11200,7 +11962,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "45",
@@ -11208,7 +11972,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "46",
@@ -11216,7 +11982,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "47",
@@ -11224,7 +11992,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "48",
@@ -11232,7 +12002,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "49",
@@ -11240,7 +12012,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "50",
@@ -11248,7 +12022,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "51",
@@ -11256,7 +12032,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "52",
@@ -11264,7 +12042,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "53",
@@ -11272,7 +12052,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "54",
@@ -11280,7 +12062,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "55",
@@ -11288,7 +12072,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "56",
@@ -11296,7 +12082,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "57",
@@ -11304,7 +12092,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "58",
@@ -11312,7 +12102,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "59",
@@ -11320,7 +12112,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "60",
@@ -11328,7 +12122,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "61",
@@ -11336,7 +12132,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "62",
@@ -11344,7 +12142,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "63",
@@ -11352,7 +12152,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -11448,7 +12250,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -11474,7 +12278,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427048
+          "last_seen": 1793545466.1227698,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -11483,7 +12288,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427049
+          "last_seen": 1793545466.122771,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -11527,7 +12333,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -11535,7 +12343,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -11543,7 +12353,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -11551,7 +12363,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -11559,7 +12373,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -11567,7 +12383,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -11575,7 +12393,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -11583,7 +12403,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -11591,7 +12413,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -11599,7 +12423,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -11607,7 +12433,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -11615,7 +12443,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -11623,7 +12453,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -11631,7 +12463,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "14",
@@ -11639,7 +12473,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "15",
@@ -11647,7 +12483,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "16",
@@ -11655,7 +12493,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "17",
@@ -11663,7 +12503,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "18",
@@ -11671,7 +12513,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "19",
@@ -11679,7 +12523,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "20",
@@ -11687,7 +12533,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "21",
@@ -11695,7 +12543,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "22",
@@ -11703,7 +12553,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "23",
@@ -11711,7 +12563,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "24",
@@ -11719,7 +12573,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "25",
@@ -11727,7 +12583,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "26",
@@ -11735,7 +12593,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "27",
@@ -11743,7 +12603,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "28",
@@ -11751,7 +12613,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "29",
@@ -11759,7 +12623,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "30",
@@ -11767,7 +12633,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "31",
@@ -11775,7 +12643,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "32",
@@ -11783,7 +12653,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "33",
@@ -11791,7 +12663,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "34",
@@ -11799,7 +12673,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "35",
@@ -11807,7 +12683,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "36",
@@ -11815,7 +12693,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "37",
@@ -11823,7 +12703,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "38",
@@ -11831,7 +12713,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "39",
@@ -11839,7 +12723,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "40",
@@ -11847,7 +12733,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "41",
@@ -11855,7 +12743,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "42",
@@ -11863,7 +12753,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "43",
@@ -11871,7 +12763,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "44",
@@ -11879,7 +12773,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "45",
@@ -11887,7 +12783,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "46",
@@ -11895,7 +12793,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "47",
@@ -11903,7 +12803,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "48",
@@ -11911,7 +12813,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "49",
@@ -11919,7 +12823,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "50",
@@ -11927,7 +12833,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "51",
@@ -11935,7 +12843,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "52",
@@ -11943,7 +12853,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "53",
@@ -11951,7 +12863,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "54",
@@ -11959,7 +12873,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "55",
@@ -11967,7 +12883,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "56",
@@ -11975,7 +12893,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "57",
@@ -11983,7 +12903,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "58",
@@ -11991,7 +12913,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "59",
@@ -11999,7 +12923,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "60",
@@ -12007,7 +12933,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "61",
@@ -12015,7 +12943,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "62",
@@ -12023,7 +12953,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "63",
@@ -12031,7 +12963,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -12127,7 +13061,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -12153,7 +13089,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427244
+          "last_seen": 1793545466.123008,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -12162,7 +13099,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4272451
+          "last_seen": 1793545466.123009,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -12171,7 +13109,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4272451
+          "last_seen": 1793545466.1230102,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -12180,7 +13119,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427246
+          "last_seen": 1793545466.123011,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -12250,7 +13190,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Island",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -12258,7 +13200,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Puzzle",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -12266,7 +13210,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Cave",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -12274,7 +13220,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Tea",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -12282,7 +13230,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Sky",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -12290,7 +13240,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Bone",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -12298,7 +13250,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Honey",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -12306,7 +13260,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Magnet",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -12314,7 +13270,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Branch",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -12322,7 +13280,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Pilot",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -12330,7 +13290,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Paint",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -12338,7 +13300,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Winter",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -12346,7 +13310,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Sand",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -12354,7 +13320,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Coast",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "14",
@@ -12362,7 +13330,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Stone",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "15",
@@ -12370,7 +13340,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Wheel",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "16",
@@ -12378,7 +13350,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Wave",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "17",
@@ -12386,7 +13360,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Jazz",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "18",
@@ -12394,7 +13370,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Atlas",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "19",
@@ -12402,7 +13380,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Moon",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "20",
@@ -12410,7 +13390,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Lantern",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "21",
@@ -12418,7 +13400,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Rocket",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "22",
@@ -12426,7 +13410,9 @@ export const fixtures = [
             "color": "assassin",
             "subtitle": "hidden",
             "value": "Bicycle",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "23",
@@ -12434,7 +13420,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Tomato",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "24",
@@ -12442,7 +13430,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Kite",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -12476,7 +13466,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -12502,7 +13494,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4273531
+          "last_seen": 1793545466.123172,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -12511,7 +13504,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427354
+          "last_seen": 1793545466.123174,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -12520,7 +13514,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4273548
+          "last_seen": 1793545466.123175,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -12529,7 +13524,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4273548
+          "last_seen": 1793545466.1231759,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -12538,7 +13534,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427356
+          "last_seen": 1793545466.123177,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -12547,7 +13544,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427357
+          "last_seen": 1793545466.123178,
+          "is_bot": false
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -12556,7 +13554,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427358
+          "last_seen": 1793545466.123178,
+          "is_bot": false
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -12565,7 +13564,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427358
+          "last_seen": 1793545466.123179,
+          "is_bot": false
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -12574,7 +13574,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4273589
+          "last_seen": 1793545466.1231802,
+          "is_bot": false
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -12583,7 +13584,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.42736
+          "last_seen": 1793545466.123181,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -12731,7 +13733,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Island",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -12739,7 +13743,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Puzzle",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -12747,7 +13753,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Cave",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -12755,7 +13763,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Tea",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -12763,7 +13773,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Sky",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -12771,7 +13783,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Bone",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -12779,7 +13793,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Honey",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -12787,7 +13803,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Magnet",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -12795,7 +13813,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Branch",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -12803,7 +13823,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Pilot",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -12811,7 +13833,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Paint",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -12819,7 +13843,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Winter",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -12827,7 +13853,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Sand",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -12835,7 +13863,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Coast",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "14",
@@ -12843,7 +13873,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Stone",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "15",
@@ -12851,7 +13883,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Wheel",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "16",
@@ -12859,7 +13893,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Wave",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "17",
@@ -12867,7 +13903,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Jazz",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "18",
@@ -12875,7 +13913,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Atlas",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "19",
@@ -12883,7 +13923,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Moon",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "20",
@@ -12891,7 +13933,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "hidden",
             "value": "Lantern",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "21",
@@ -12899,7 +13943,9 @@ export const fixtures = [
             "color": "blue",
             "subtitle": "hidden",
             "value": "Rocket",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "22",
@@ -12907,7 +13953,9 @@ export const fixtures = [
             "color": "assassin",
             "subtitle": "hidden",
             "value": "Bicycle",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "23",
@@ -12915,7 +13963,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Tomato",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "24",
@@ -12923,7 +13973,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "hidden",
             "value": "Kite",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -12963,7 +14015,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -12989,7 +14043,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427476
+          "last_seen": 1793545466.1233332,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -12998,7 +14053,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427477
+          "last_seen": 1793545466.123335,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -13048,7 +14104,9 @@ export const fixtures = [
             "color": "onyx",
             "subtitle": "2 sapphire \u00b7 1 ruby \u00b7 1 emerald",
             "value": "0",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-1-emerald-2",
@@ -13056,7 +14114,9 @@ export const fixtures = [
             "color": "emerald",
             "subtitle": "2 onyx \u00b7 2 sapphire",
             "value": "0",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-1-ruby-3",
@@ -13064,7 +14124,9 @@ export const fixtures = [
             "color": "ruby",
             "subtitle": "1 ruby \u00b7 1 emerald \u00b7 1 onyx \u00b7 1 pearl \u00b7 1 sapphire",
             "value": "1",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-1-ruby-7",
@@ -13072,7 +14134,9 @@ export const fixtures = [
             "color": "ruby",
             "subtitle": "4 onyx",
             "value": "1",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-2-ruby-4",
@@ -13080,7 +14144,9 @@ export const fixtures = [
             "color": "ruby",
             "subtitle": "4 emerald \u00b7 2 onyx \u00b7 2 sapphire",
             "value": "3",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-2-onyx-3",
@@ -13088,7 +14154,9 @@ export const fixtures = [
             "color": "onyx",
             "subtitle": "2 onyx \u00b7 2 pearl \u00b7 2 sapphire \u00b7 2 ruby",
             "value": "2",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-2-ruby-3",
@@ -13096,7 +14164,9 @@ export const fixtures = [
             "color": "ruby",
             "subtitle": "2 ruby \u00b7 2 emerald \u00b7 2 onyx \u00b7 2 pearl",
             "value": "2",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-2-emerald-2",
@@ -13104,7 +14174,9 @@ export const fixtures = [
             "color": "emerald",
             "subtitle": "3 onyx \u00b7 3 sapphire \u00b7 2 ruby",
             "value": "3",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-3-pearl-2",
@@ -13112,7 +14184,9 @@ export const fixtures = [
             "color": "pearl",
             "subtitle": "3 pearl \u00b7 3 sapphire \u00b7 3 ruby \u00b7 3 emerald",
             "value": "4",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-3-ruby-0",
@@ -13120,7 +14194,9 @@ export const fixtures = [
             "color": "ruby",
             "subtitle": "3 emerald \u00b7 3 onyx \u00b7 5 pearl",
             "value": "4",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-3-sapphire-2",
@@ -13128,7 +14204,9 @@ export const fixtures = [
             "color": "sapphire",
             "subtitle": "3 sapphire \u00b7 3 ruby \u00b7 3 emerald \u00b7 3 onyx",
             "value": "4",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-3-sapphire-0",
@@ -13136,7 +14214,9 @@ export const fixtures = [
             "color": "sapphire",
             "subtitle": "3 ruby \u00b7 3 emerald \u00b7 5 onyx",
             "value": "4",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "patron-4",
@@ -13144,7 +14224,9 @@ export const fixtures = [
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 ruby \u00b7 3 onyx",
             "value": "3",
-            "suit": "patron"
+            "suit": "patron",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "patron-7",
@@ -13152,7 +14234,9 @@ export const fixtures = [
             "color": "gold",
             "subtitle": "3 sapphire \u00b7 3 ruby \u00b7 3 onyx",
             "value": "3",
-            "suit": "patron"
+            "suit": "patron",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "patron-0",
@@ -13160,7 +14244,9 @@ export const fixtures = [
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 sapphire \u00b7 3 ruby",
             "value": "3",
-            "suit": "patron"
+            "suit": "patron",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -13785,34 +14871,6 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-1-emerald-2": {
-              "tier": 1,
-              "cost": {
-                "onyx": 2,
-                "sapphire": 2
-              },
-              "bonus": "emerald",
-              "points": 0
-            },
-            "gem-3-sapphire-2": {
-              "tier": 3,
-              "cost": {
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 3
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
-            "gem-1-ruby-7": {
-              "tier": 1,
-              "cost": {
-                "onyx": 4
-              },
-              "bonus": "ruby",
-              "points": 1
-            },
             "gem-2-ruby-3": {
               "tier": 2,
               "cost": {
@@ -13823,28 +14881,6 @@ export const fixtures = [
               },
               "bonus": "ruby",
               "points": 2
-            },
-            "gem-1-onyx-1": {
-              "tier": 1,
-              "cost": {
-                "sapphire": 2,
-                "ruby": 1,
-                "emerald": 1
-              },
-              "bonus": "onyx",
-              "points": 0
-            },
-            "gem-1-ruby-3": {
-              "tier": 1,
-              "cost": {
-                "ruby": 1,
-                "emerald": 1,
-                "onyx": 1,
-                "pearl": 1,
-                "sapphire": 1
-              },
-              "bonus": "ruby",
-              "points": 1
             },
             "gem-3-ruby-0": {
               "tier": 3,
@@ -13865,16 +14901,6 @@ export const fixtures = [
               },
               "bonus": "sapphire",
               "points": 4
-            },
-            "gem-2-ruby-4": {
-              "tier": 2,
-              "cost": {
-                "emerald": 4,
-                "onyx": 2,
-                "sapphire": 2
-              },
-              "bonus": "ruby",
-              "points": 3
             },
             "gem-2-emerald-2": {
               "tier": 2,
@@ -13907,6 +14933,66 @@ export const fixtures = [
               },
               "bonus": "onyx",
               "points": 2
+            },
+            "gem-3-sapphire-2": {
+              "tier": 3,
+              "cost": {
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 3
+              },
+              "bonus": "sapphire",
+              "points": 4
+            },
+            "gem-1-ruby-7": {
+              "tier": 1,
+              "cost": {
+                "onyx": 4
+              },
+              "bonus": "ruby",
+              "points": 1
+            },
+            "gem-1-ruby-3": {
+              "tier": 1,
+              "cost": {
+                "ruby": 1,
+                "emerald": 1,
+                "onyx": 1,
+                "pearl": 1,
+                "sapphire": 1
+              },
+              "bonus": "ruby",
+              "points": 1
+            },
+            "gem-2-ruby-4": {
+              "tier": 2,
+              "cost": {
+                "emerald": 4,
+                "onyx": 2,
+                "sapphire": 2
+              },
+              "bonus": "ruby",
+              "points": 3
+            },
+            "gem-1-onyx-1": {
+              "tier": 1,
+              "cost": {
+                "sapphire": 2,
+                "ruby": 1,
+                "emerald": 1
+              },
+              "bonus": "onyx",
+              "points": 0
+            },
+            "gem-1-emerald-2": {
+              "tier": 1,
+              "cost": {
+                "onyx": 2,
+                "sapphire": 2
+              },
+              "bonus": "emerald",
+              "points": 0
             }
           },
           "patron_costs": {
@@ -13931,7 +15017,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -13957,7 +15045,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427778
+          "last_seen": 1793545466.123681,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -13966,7 +15055,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427779
+          "last_seen": 1793545466.123683,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -13975,7 +15065,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4277802
+          "last_seen": 1793545466.1236842,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -13984,7 +15075,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.427781
+          "last_seen": 1793545466.1236851,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -14066,7 +15158,9 @@ export const fixtures = [
             "color": "onyx",
             "subtitle": "2 sapphire \u00b7 1 ruby \u00b7 1 emerald",
             "value": "0",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-1-emerald-2",
@@ -14074,7 +15168,9 @@ export const fixtures = [
             "color": "emerald",
             "subtitle": "2 onyx \u00b7 2 sapphire",
             "value": "0",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-1-ruby-3",
@@ -14082,7 +15178,9 @@ export const fixtures = [
             "color": "ruby",
             "subtitle": "1 ruby \u00b7 1 emerald \u00b7 1 onyx \u00b7 1 pearl \u00b7 1 sapphire",
             "value": "1",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-1-ruby-7",
@@ -14090,7 +15188,9 @@ export const fixtures = [
             "color": "ruby",
             "subtitle": "4 onyx",
             "value": "1",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-2-ruby-4",
@@ -14098,7 +15198,9 @@ export const fixtures = [
             "color": "ruby",
             "subtitle": "4 emerald \u00b7 2 onyx \u00b7 2 sapphire",
             "value": "3",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-2-onyx-3",
@@ -14106,7 +15208,9 @@ export const fixtures = [
             "color": "onyx",
             "subtitle": "2 onyx \u00b7 2 pearl \u00b7 2 sapphire \u00b7 2 ruby",
             "value": "2",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-2-ruby-3",
@@ -14114,7 +15218,9 @@ export const fixtures = [
             "color": "ruby",
             "subtitle": "2 ruby \u00b7 2 emerald \u00b7 2 onyx \u00b7 2 pearl",
             "value": "2",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-2-emerald-2",
@@ -14122,7 +15228,9 @@ export const fixtures = [
             "color": "emerald",
             "subtitle": "3 onyx \u00b7 3 sapphire \u00b7 2 ruby",
             "value": "3",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-3-pearl-2",
@@ -14130,7 +15238,9 @@ export const fixtures = [
             "color": "pearl",
             "subtitle": "3 pearl \u00b7 3 sapphire \u00b7 3 ruby \u00b7 3 emerald",
             "value": "4",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-3-ruby-0",
@@ -14138,7 +15248,9 @@ export const fixtures = [
             "color": "ruby",
             "subtitle": "3 emerald \u00b7 3 onyx \u00b7 5 pearl",
             "value": "4",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-3-sapphire-2",
@@ -14146,7 +15258,9 @@ export const fixtures = [
             "color": "sapphire",
             "subtitle": "3 sapphire \u00b7 3 ruby \u00b7 3 emerald \u00b7 3 onyx",
             "value": "4",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "gem-3-sapphire-0",
@@ -14154,7 +15268,9 @@ export const fixtures = [
             "color": "sapphire",
             "subtitle": "3 ruby \u00b7 3 emerald \u00b7 5 onyx",
             "value": "4",
-            "suit": "development"
+            "suit": "development",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "patron-4",
@@ -14162,7 +15278,9 @@ export const fixtures = [
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 ruby \u00b7 3 onyx",
             "value": "3",
-            "suit": "patron"
+            "suit": "patron",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "patron-7",
@@ -14170,7 +15288,9 @@ export const fixtures = [
             "color": "gold",
             "subtitle": "3 sapphire \u00b7 3 ruby \u00b7 3 onyx",
             "value": "3",
-            "suit": "patron"
+            "suit": "patron",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "patron-0",
@@ -14178,7 +15298,9 @@ export const fixtures = [
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 sapphire \u00b7 3 ruby",
             "value": "3",
-            "suit": "patron"
+            "suit": "patron",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "patron-5",
@@ -14186,7 +15308,9 @@ export const fixtures = [
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 emerald \u00b7 3 onyx",
             "value": "3",
-            "suit": "patron"
+            "suit": "patron",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "patron-1",
@@ -14194,7 +15318,9 @@ export const fixtures = [
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 sapphire \u00b7 3 emerald",
             "value": "3",
-            "suit": "patron"
+            "suit": "patron",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -14849,34 +15975,6 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-1-emerald-2": {
-              "tier": 1,
-              "cost": {
-                "onyx": 2,
-                "sapphire": 2
-              },
-              "bonus": "emerald",
-              "points": 0
-            },
-            "gem-3-sapphire-2": {
-              "tier": 3,
-              "cost": {
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 3
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
-            "gem-1-ruby-7": {
-              "tier": 1,
-              "cost": {
-                "onyx": 4
-              },
-              "bonus": "ruby",
-              "points": 1
-            },
             "gem-2-ruby-3": {
               "tier": 2,
               "cost": {
@@ -14887,28 +15985,6 @@ export const fixtures = [
               },
               "bonus": "ruby",
               "points": 2
-            },
-            "gem-1-onyx-1": {
-              "tier": 1,
-              "cost": {
-                "sapphire": 2,
-                "ruby": 1,
-                "emerald": 1
-              },
-              "bonus": "onyx",
-              "points": 0
-            },
-            "gem-1-ruby-3": {
-              "tier": 1,
-              "cost": {
-                "ruby": 1,
-                "emerald": 1,
-                "onyx": 1,
-                "pearl": 1,
-                "sapphire": 1
-              },
-              "bonus": "ruby",
-              "points": 1
             },
             "gem-3-ruby-0": {
               "tier": 3,
@@ -14929,16 +16005,6 @@ export const fixtures = [
               },
               "bonus": "sapphire",
               "points": 4
-            },
-            "gem-2-ruby-4": {
-              "tier": 2,
-              "cost": {
-                "emerald": 4,
-                "onyx": 2,
-                "sapphire": 2
-              },
-              "bonus": "ruby",
-              "points": 3
             },
             "gem-2-emerald-2": {
               "tier": 2,
@@ -14971,6 +16037,66 @@ export const fixtures = [
               },
               "bonus": "onyx",
               "points": 2
+            },
+            "gem-3-sapphire-2": {
+              "tier": 3,
+              "cost": {
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 3
+              },
+              "bonus": "sapphire",
+              "points": 4
+            },
+            "gem-1-ruby-7": {
+              "tier": 1,
+              "cost": {
+                "onyx": 4
+              },
+              "bonus": "ruby",
+              "points": 1
+            },
+            "gem-1-ruby-3": {
+              "tier": 1,
+              "cost": {
+                "ruby": 1,
+                "emerald": 1,
+                "onyx": 1,
+                "pearl": 1,
+                "sapphire": 1
+              },
+              "bonus": "ruby",
+              "points": 1
+            },
+            "gem-2-ruby-4": {
+              "tier": 2,
+              "cost": {
+                "emerald": 4,
+                "onyx": 2,
+                "sapphire": 2
+              },
+              "bonus": "ruby",
+              "points": 3
+            },
+            "gem-1-onyx-1": {
+              "tier": 1,
+              "cost": {
+                "sapphire": 2,
+                "ruby": 1,
+                "emerald": 1
+              },
+              "bonus": "onyx",
+              "points": 0
+            },
+            "gem-1-emerald-2": {
+              "tier": 1,
+              "cost": {
+                "onyx": 2,
+                "sapphire": 2
+              },
+              "bonus": "emerald",
+              "points": 0
             }
           },
           "patron_costs": {
@@ -15005,7 +16131,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -15031,7 +16159,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4280572
+          "last_seen": 1793545466.1240819,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -15040,7 +16169,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4280589
+          "last_seen": 1793545466.124083,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -15084,7 +16214,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -15092,7 +16224,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -15100,7 +16234,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -15108,7 +16244,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -15116,7 +16254,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -15124,7 +16264,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -15132,7 +16274,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -15140,7 +16284,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -15148,7 +16294,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -15156,7 +16304,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -15164,7 +16314,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -15172,7 +16324,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -15180,7 +16334,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -15188,7 +16344,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "14",
@@ -15196,7 +16354,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "15",
@@ -15204,7 +16364,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "16",
@@ -15212,7 +16374,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "17",
@@ -15220,7 +16384,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "18",
@@ -15228,7 +16394,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "19",
@@ -15236,7 +16404,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "20",
@@ -15244,7 +16414,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "21",
@@ -15252,7 +16424,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "22",
@@ -15260,7 +16434,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "23",
@@ -15268,7 +16444,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "24",
@@ -15276,7 +16454,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "25",
@@ -15284,7 +16464,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "26",
@@ -15292,7 +16474,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "27",
@@ -15300,7 +16484,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "28",
@@ -15308,7 +16494,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "29",
@@ -15316,7 +16504,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "30",
@@ -15324,7 +16514,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "31",
@@ -15332,7 +16524,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "32",
@@ -15340,7 +16534,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "33",
@@ -15348,7 +16544,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "34",
@@ -15356,7 +16554,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "35",
@@ -15364,7 +16564,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "36",
@@ -15372,7 +16574,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "37",
@@ -15380,7 +16584,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "38",
@@ -15388,7 +16594,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "39",
@@ -15396,7 +16604,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "40",
@@ -15404,7 +16614,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "41",
@@ -15412,7 +16624,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "42",
@@ -15420,7 +16634,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "43",
@@ -15428,7 +16644,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "44",
@@ -15436,7 +16654,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "45",
@@ -15444,7 +16664,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "46",
@@ -15452,7 +16674,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "47",
@@ -15460,7 +16684,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "48",
@@ -15468,7 +16694,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "49",
@@ -15476,7 +16704,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "50",
@@ -15484,7 +16714,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "51",
@@ -15492,7 +16724,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "52",
@@ -15500,7 +16734,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "53",
@@ -15508,7 +16744,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "54",
@@ -15516,7 +16754,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "55",
@@ -15524,7 +16764,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "56",
@@ -15532,7 +16774,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "57",
@@ -15540,7 +16784,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "58",
@@ -15548,7 +16794,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "59",
@@ -15556,7 +16804,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "60",
@@ -15564,7 +16814,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "61",
@@ -15572,7 +16824,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "62",
@@ -15580,7 +16834,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "63",
@@ -15588,7 +16844,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -15741,7 +16999,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -15767,7 +17027,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4282181
+          "last_seen": 1793545466.1242728,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -15776,7 +17037,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4282188
+          "last_seen": 1793545466.124274,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -15820,7 +17082,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -15828,7 +17092,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -15836,7 +17102,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -15844,7 +17112,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -15852,7 +17122,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -15860,7 +17132,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -15868,7 +17142,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -15876,7 +17152,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -15884,7 +17162,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -15892,7 +17172,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -15900,7 +17182,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -15908,7 +17192,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -15916,7 +17202,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -15924,7 +17212,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "14",
@@ -15932,7 +17222,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "15",
@@ -15940,7 +17232,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "16",
@@ -15948,7 +17242,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "17",
@@ -15956,7 +17252,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "18",
@@ -15964,7 +17262,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "19",
@@ -15972,7 +17272,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "20",
@@ -15980,7 +17282,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "21",
@@ -15988,7 +17292,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "22",
@@ -15996,7 +17302,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "23",
@@ -16004,7 +17312,9 @@ export const fixtures = [
             "color": "ivory",
             "subtitle": "",
             "value": "2",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "24",
@@ -16012,7 +17322,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "25",
@@ -16020,7 +17332,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "26",
@@ -16028,7 +17342,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "27",
@@ -16036,7 +17352,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "28",
@@ -16044,7 +17362,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "29",
@@ -16052,7 +17372,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "30",
@@ -16060,7 +17382,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "31",
@@ -16068,7 +17392,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "32",
@@ -16076,7 +17402,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "33",
@@ -16084,7 +17412,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "34",
@@ -16092,7 +17422,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "35",
@@ -16100,7 +17432,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "36",
@@ -16108,7 +17442,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "37",
@@ -16116,7 +17452,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "38",
@@ -16124,7 +17462,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "39",
@@ -16132,7 +17472,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "40",
@@ -16140,7 +17482,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "41",
@@ -16148,7 +17492,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "42",
@@ -16156,7 +17502,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "43",
@@ -16164,7 +17512,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "44",
@@ -16172,7 +17522,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "45",
@@ -16180,7 +17532,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "46",
@@ -16188,7 +17542,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "47",
@@ -16196,7 +17552,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "48",
@@ -16204,7 +17562,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "49",
@@ -16212,7 +17572,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "50",
@@ -16220,7 +17582,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "51",
@@ -16228,7 +17592,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "52",
@@ -16236,7 +17602,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "53",
@@ -16244,7 +17612,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "54",
@@ -16252,7 +17622,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "55",
@@ -16260,7 +17632,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "56",
@@ -16268,7 +17642,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "57",
@@ -16276,7 +17652,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "58",
@@ -16284,7 +17662,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "59",
@@ -16292,7 +17672,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "60",
@@ -16300,7 +17682,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "61",
@@ -16308,7 +17692,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "62",
@@ -16316,7 +17702,9 @@ export const fixtures = [
             "color": "coral",
             "subtitle": "",
             "value": "1",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "63",
@@ -16324,7 +17712,9 @@ export const fixtures = [
             "color": "empty",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -16477,7 +17867,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -16503,7 +17895,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4283671
+          "last_seen": 1793545466.124445,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -16512,7 +17905,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4283679
+          "last_seen": 1793545466.1244469,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -16556,7 +17950,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -16564,7 +17960,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -16572,7 +17970,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -16580,7 +17980,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -16588,7 +17990,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -16596,7 +18000,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -16604,7 +18010,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "0",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -16612,7 +18020,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -16620,7 +18030,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -16628,7 +18040,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -16636,7 +18050,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -16644,7 +18060,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -16652,7 +18070,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -16660,7 +18080,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "0",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -16792,7 +18214,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -16818,7 +18242,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.428437
+          "last_seen": 1793545466.124521,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -16827,7 +18252,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.428438
+          "last_seen": 1793545466.124523,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -16871,7 +18297,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -16879,7 +18307,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -16887,7 +18317,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -16895,7 +18327,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -16903,7 +18337,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -16911,7 +18347,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -16919,7 +18357,9 @@ export const fixtures = [
             "color": "sage",
             "subtitle": "",
             "value": "0",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -16927,7 +18367,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -16935,7 +18377,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -16943,7 +18387,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -16951,7 +18397,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -16959,7 +18407,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -16967,7 +18417,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -16975,7 +18427,9 @@ export const fixtures = [
             "color": "ochre",
             "subtitle": "",
             "value": "0",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -17107,7 +18561,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -17133,7 +18589,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4285572
+          "last_seen": 1793545466.124653,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -17142,7 +18599,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.428558
+          "last_seen": 1793545466.124655,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -17151,7 +18609,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.428559
+          "last_seen": 1793545466.1246562,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -17176,7 +18635,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "11",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17198,7 +18659,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "10",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17220,7 +18683,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "9",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17294,7 +18759,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -17320,7 +18787,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.428693
+          "last_seen": 1793545466.124801,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -17329,7 +18797,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.428694
+          "last_seen": 1793545466.124802,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -17338,7 +18807,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.428695
+          "last_seen": 1793545466.124803,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -17347,7 +18817,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4286962
+          "last_seen": 1793545466.124804,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -17356,7 +18827,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4286962
+          "last_seen": 1793545466.1248052,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -17365,7 +18837,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.428697
+          "last_seen": 1793545466.124806,
+          "is_bot": false
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -17374,7 +18847,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.428698
+          "last_seen": 1793545466.124807,
+          "is_bot": false
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -17383,7 +18857,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4286988
+          "last_seen": 1793545466.124807,
+          "is_bot": false
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -17392,7 +18867,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4287
+          "last_seen": 1793545466.1248078,
+          "is_bot": false
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -17401,7 +18877,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4287
+          "last_seen": 1793545466.124809,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -17426,7 +18903,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "11",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17448,7 +18927,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "10",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17470,7 +18951,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "9",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17492,7 +18975,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "10",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17514,7 +18999,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "9",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17536,7 +19023,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "7",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17558,7 +19047,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "12",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17580,7 +19071,9 @@ export const fixtures = [
                 "color": "blue",
                 "subtitle": "",
                 "value": "\u00d72",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17602,7 +19095,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "8",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17624,7 +19119,9 @@ export const fixtures = [
                 "color": "yellow",
                 "subtitle": "",
                 "value": "5",
-                "suit": "\u2726"
+                "suit": "\u2726",
+                "colors": [],
+                "effect": ""
               }
             ],
             "bank": [],
@@ -17712,7 +19209,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -17738,7 +19237,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4288142
+          "last_seen": 1793545466.124931,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -17747,7 +19247,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4288151
+          "last_seen": 1793545466.124932,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -17756,7 +19257,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4288158
+          "last_seen": 1793545466.124933,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -17812,7 +19314,9 @@ export const fixtures = [
             "color": "violet",
             "subtitle": "",
             "value": "2",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-7-1",
@@ -17820,7 +19324,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "",
             "value": "7",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-7-0",
@@ -17828,7 +19334,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "",
             "value": "7",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-8-2",
@@ -17836,7 +19344,9 @@ export const fixtures = [
             "color": "violet",
             "subtitle": "",
             "value": "8",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-8-1",
@@ -17844,7 +19354,9 @@ export const fixtures = [
             "color": "violet",
             "subtitle": "",
             "value": "8",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-9-2",
@@ -17852,7 +19364,9 @@ export const fixtures = [
             "color": "violet",
             "subtitle": "",
             "value": "9",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-9-0",
@@ -17860,7 +19374,9 @@ export const fixtures = [
             "color": "violet",
             "subtitle": "",
             "value": "9",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-10-1",
@@ -17868,7 +19384,9 @@ export const fixtures = [
             "color": "violet",
             "subtitle": "",
             "value": "10",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-12-0",
@@ -17876,7 +19394,9 @@ export const fixtures = [
             "color": "violet",
             "subtitle": "",
             "value": "12",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [
@@ -17886,7 +19406,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-1",
@@ -17894,7 +19416,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-2",
@@ -17902,7 +19426,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-3",
@@ -17910,7 +19436,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-4",
@@ -17918,7 +19446,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-5",
@@ -17926,7 +19456,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-6",
@@ -17934,7 +19466,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-7",
@@ -17942,7 +19476,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-8",
@@ -17950,7 +19486,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -18253,7 +19791,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -18279,7 +19819,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4289532
+          "last_seen": 1793545466.125081,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -18288,7 +19829,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4289541
+          "last_seen": 1793545466.125082,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -18297,7 +19839,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4289548
+          "last_seen": 1793545466.125083,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -18306,7 +19849,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4289558
+          "last_seen": 1793545466.125084,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -18315,7 +19859,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.428957
+          "last_seen": 1793545466.1250849,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -18324,7 +19869,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.428958
+          "last_seen": 1793545466.125086,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -18419,7 +19965,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "",
             "value": "7",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-7-0",
@@ -18427,7 +19975,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "",
             "value": "7",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-8-2",
@@ -18435,7 +19985,9 @@ export const fixtures = [
             "color": "violet",
             "subtitle": "",
             "value": "8",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-9-2",
@@ -18443,7 +19995,9 @@ export const fixtures = [
             "color": "violet",
             "subtitle": "",
             "value": "9",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "trio-12-0",
@@ -18451,7 +20005,9 @@ export const fixtures = [
             "color": "violet",
             "subtitle": "",
             "value": "12",
-            "suit": "\u2726"
+            "suit": "\u2726",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [
@@ -18461,7 +20017,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-1",
@@ -18469,7 +20027,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-2",
@@ -18477,7 +20037,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-3",
@@ -18485,7 +20047,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-4",
@@ -18493,7 +20057,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "table-slot-5",
@@ -18501,7 +20067,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "?",
-            "suit": "hidden"
+            "suit": "hidden",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -18861,7 +20429,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -18887,7 +20457,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429111
+          "last_seen": 1793545466.1252391,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -18896,7 +20467,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429112
+          "last_seen": 1793545466.125241,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -19385,7 +20957,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -19411,7 +20985,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4293718
+          "last_seen": 1793545466.1254442,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -19420,7 +20995,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429374
+          "last_seen": 1793545466.1254451,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -19429,7 +21005,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429374
+          "last_seen": 1793545466.1254458,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -19438,7 +21015,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429375
+          "last_seen": 1793545466.1254468,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -20295,7 +21873,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -20321,7 +21901,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429618
+          "last_seen": 1793545466.125708,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -20330,7 +21911,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4296188
+          "last_seen": 1793545466.125709,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -20339,7 +21921,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.42962
+          "last_seen": 1793545466.12571,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -20470,7 +22053,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -20496,7 +22081,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429704
+          "last_seen": 1793545466.125802,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -20505,7 +22091,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429705
+          "last_seen": 1793545466.125803,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -20514,7 +22101,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429706
+          "last_seen": 1793545466.125804,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -20523,7 +22111,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429707
+          "last_seen": 1793545466.1258051,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -20532,7 +22121,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429708
+          "last_seen": 1793545466.125806,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -20541,7 +22131,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429709
+          "last_seen": 1793545466.125807,
+          "is_bot": false
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -20550,7 +22141,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4297101
+          "last_seen": 1793545466.125807,
+          "is_bot": false
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -20559,7 +22151,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429711
+          "last_seen": 1793545466.1258082,
+          "is_bot": false
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -20568,7 +22161,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4297118
+          "last_seen": 1793545466.125809,
+          "is_bot": false
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -20577,7 +22171,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429713
+          "last_seen": 1793545466.12581,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -20799,7 +22394,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -20825,7 +22422,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4298189
+          "last_seen": 1793545466.1258821,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -20834,7 +22432,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4298198
+          "last_seen": 1793545466.1258829,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -20843,7 +22442,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429821
+          "last_seen": 1793545466.1258838,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -20974,7 +22574,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -21000,7 +22602,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429897
+          "last_seen": 1793545466.125996,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -21009,7 +22612,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429898
+          "last_seen": 1793545466.125997,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -21018,7 +22622,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429898
+          "last_seen": 1793545466.125998,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -21027,7 +22632,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429899
+          "last_seen": 1793545466.1259992,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -21036,7 +22642,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4299
+          "last_seen": 1793545466.1260002,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -21045,7 +22652,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4299011
+          "last_seen": 1793545466.126001,
+          "is_bot": false
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -21054,7 +22662,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429902
+          "last_seen": 1793545466.1260018,
+          "is_bot": false
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -21063,7 +22672,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429903
+          "last_seen": 1793545466.1260018,
+          "is_bot": false
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -21072,7 +22682,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429903
+          "last_seen": 1793545466.126003,
+          "is_bot": false
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -21081,7 +22692,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429904
+          "last_seen": 1793545466.126004,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -21436,7 +23048,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -21462,7 +23076,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429996
+          "last_seen": 1793545466.126105,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -21471,7 +23086,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.429997
+          "last_seen": 1793545466.126106,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -21480,7 +23096,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4299982
+          "last_seen": 1793545466.126107,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -21614,7 +23231,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -21640,7 +23259,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430069
+          "last_seen": 1793545466.126233,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -21649,7 +23269,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.43007
+          "last_seen": 1793545466.126234,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -21658,7 +23279,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430071
+          "last_seen": 1793545466.1262348,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -21667,7 +23289,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430072
+          "last_seen": 1793545466.126236,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -21676,7 +23299,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430073
+          "last_seen": 1793545466.1262379,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -21685,7 +23309,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4300742
+          "last_seen": 1793545466.126239,
+          "is_bot": false
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -21694,7 +23319,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430075
+          "last_seen": 1793545466.12624,
+          "is_bot": false
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -21703,7 +23329,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430075
+          "last_seen": 1793545466.126241,
+          "is_bot": false
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -21712,7 +23339,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430076
+          "last_seen": 1793545466.1262422,
+          "is_bot": false
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -21721,7 +23349,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4300768
+          "last_seen": 1793545466.126243,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -21946,7 +23575,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -21972,7 +23603,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430161
+          "last_seen": 1793545466.1263418,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -21981,7 +23613,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430162
+          "last_seen": 1793545466.126343,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -21990,7 +23623,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430163
+          "last_seen": 1793545466.126344,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -22055,7 +23689,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "J",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "AC:0",
@@ -22063,7 +23699,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "A",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [],
@@ -22157,7 +23795,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -22183,7 +23823,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430253
+          "last_seen": 1793545466.126459,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -22192,7 +23833,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430254
+          "last_seen": 1793545466.126461,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -22201,7 +23843,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4302552
+          "last_seen": 1793545466.126462,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -22210,7 +23853,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4302561
+          "last_seen": 1793545466.126463,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -22219,7 +23863,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4302568
+          "last_seen": 1793545466.126464,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -22228,7 +23873,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430258
+          "last_seen": 1793545466.126465,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -22341,7 +23987,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "J",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "AC:0",
@@ -22349,7 +23997,9 @@ export const fixtures = [
             "color": "ink",
             "subtitle": "",
             "value": "A",
-            "suit": "\u2663"
+            "suit": "\u2663",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [],
@@ -22506,7 +24156,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -22532,7 +24184,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430358
+          "last_seen": 1793545466.126582,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -22541,7 +24194,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.43036
+          "last_seen": 1793545466.126583,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -22584,7 +24238,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-36",
@@ -22592,7 +24248,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "36",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-39",
@@ -22600,7 +24258,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "39",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-40",
@@ -22608,7 +24268,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "3",
             "value": "40",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-53",
@@ -22616,7 +24278,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "53",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-54",
@@ -22624,7 +24288,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "54",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-58",
@@ -22632,7 +24298,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "58",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-81",
@@ -22640,7 +24308,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "81",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-97",
@@ -22648,7 +24318,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "97",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-98",
@@ -22656,7 +24328,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "98",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [],
@@ -22869,7 +24543,9 @@ export const fixtures = [
                 "color": "blue",
                 "subtitle": "2",
                 "value": "5",
-                "suit": ""
+                "suit": "",
+                "colors": [],
+                "effect": ""
               }
             ],
             [
@@ -22879,7 +24555,9 @@ export const fixtures = [
                 "color": "green",
                 "subtitle": "1",
                 "value": "84",
-                "suit": ""
+                "suit": "",
+                "colors": [],
+                "effect": ""
               }
             ],
             [
@@ -22889,7 +24567,9 @@ export const fixtures = [
                 "color": "green",
                 "subtitle": "1",
                 "value": "47",
-                "suit": ""
+                "suit": "",
+                "colors": [],
+                "effect": ""
               }
             ],
             [
@@ -22899,7 +24579,9 @@ export const fixtures = [
                 "color": "blue",
                 "subtitle": "2",
                 "value": "45",
-                "suit": ""
+                "suit": "",
+                "colors": [],
+                "effect": ""
               }
             ]
           ],
@@ -22931,7 +24613,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -22957,7 +24641,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4305332
+          "last_seen": 1793545466.126852,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -22966,7 +24651,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430534
+          "last_seen": 1793545466.126854,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -22975,7 +24661,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4305348
+          "last_seen": 1793545466.126854,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -22984,7 +24671,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430536
+          "last_seen": 1793545466.126855,
+          "is_bot": false
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -22993,7 +24681,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430537
+          "last_seen": 1793545466.1268559,
+          "is_bot": false
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -23002,7 +24691,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430537
+          "last_seen": 1793545466.126857,
+          "is_bot": false
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -23011,7 +24701,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430538
+          "last_seen": 1793545466.126858,
+          "is_bot": false
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -23020,7 +24711,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430539
+          "last_seen": 1793545466.126859,
+          "is_bot": false
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -23029,7 +24721,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.43054
+          "last_seen": 1793545466.1268601,
+          "is_bot": false
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -23038,7 +24731,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430541
+          "last_seen": 1793545466.126861,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -23185,7 +24879,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "4",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-36",
@@ -23193,7 +24889,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "36",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-39",
@@ -23201,7 +24899,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "39",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-40",
@@ -23209,7 +24909,9 @@ export const fixtures = [
             "color": "yellow",
             "subtitle": "3",
             "value": "40",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-53",
@@ -23217,7 +24919,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "53",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-54",
@@ -23225,7 +24929,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "54",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-58",
@@ -23233,7 +24939,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "58",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-81",
@@ -23241,7 +24949,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "81",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-97",
@@ -23249,7 +24959,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "97",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "number-98",
@@ -23257,7 +24969,9 @@ export const fixtures = [
             "color": "green",
             "subtitle": "1",
             "value": "98",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "community": [],
@@ -23470,7 +25184,9 @@ export const fixtures = [
                 "color": "green",
                 "subtitle": "1",
                 "value": "42",
-                "suit": ""
+                "suit": "",
+                "colors": [],
+                "effect": ""
               }
             ],
             [
@@ -23480,7 +25196,9 @@ export const fixtures = [
                 "color": "green",
                 "subtitle": "1",
                 "value": "52",
-                "suit": ""
+                "suit": "",
+                "colors": [],
+                "effect": ""
               }
             ],
             [
@@ -23490,7 +25208,9 @@ export const fixtures = [
                 "color": "red",
                 "subtitle": "5",
                 "value": "77",
-                "suit": ""
+                "suit": "",
+                "colors": [],
+                "effect": ""
               }
             ],
             [
@@ -23500,7 +25220,9 @@ export const fixtures = [
                 "color": "red",
                 "subtitle": "5",
                 "value": "11",
-                "suit": ""
+                "suit": "",
+                "colors": [],
+                "effect": ""
               }
             ]
           ],
@@ -23556,7 +25278,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -23582,7 +25306,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4307
+          "last_seen": 1793545466.127032,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -23591,7 +25316,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430701
+          "last_seen": 1793545466.127033,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -23710,7 +25436,9 @@ export const fixtures = [
               "color": "gray",
               "subtitle": "Collection \u00b7 0 / 3 / 6 / 9 / 12",
               "value": "Octopus",
-              "suit": "octopus"
+              "suit": "octopus",
+              "colors": [],
+              "effect": ""
             },
             {
               "id": "paper-captain-peach-0",
@@ -23718,7 +25446,9 @@ export const fixtures = [
               "color": "peach",
               "subtitle": "+3 per sailor",
               "value": "Captain",
-              "suit": "captain"
+              "suit": "captain",
+              "colors": [],
+              "effect": ""
             }
           ],
           "private_options": [],
@@ -23730,7 +25460,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -23756,7 +25488,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430816
+          "last_seen": 1793545466.1271732,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -23765,7 +25498,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4308171
+          "last_seen": 1793545466.127174,
+          "is_bot": false
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -23774,7 +25508,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4308171
+          "last_seen": 1793545466.1271749,
+          "is_bot": false
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -23783,7 +25518,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.430818
+          "last_seen": 1793545466.127176,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -23928,7 +25664,9 @@ export const fixtures = [
               "color": "gray",
               "subtitle": "Collection \u00b7 0 / 3 / 6 / 9 / 12",
               "value": "Octopus",
-              "suit": "octopus"
+              "suit": "octopus",
+              "colors": [],
+              "effect": ""
             },
             {
               "id": "paper-captain-peach-0",
@@ -23936,7 +25674,9 @@ export const fixtures = [
               "color": "peach",
               "subtitle": "+3 per sailor",
               "value": "Captain",
-              "suit": "captain"
+              "suit": "captain",
+              "colors": [],
+              "effect": ""
             }
           ],
           "private_options": [],
@@ -23948,7 +25688,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -23974,7 +25716,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4308832
+          "last_seen": 1793545466.127247,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -23983,7 +25726,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4308841
+          "last_seen": 1793545466.1272478,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -24027,7 +25771,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -24035,7 +25781,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -24043,7 +25791,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -24051,7 +25801,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -24059,7 +25811,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -24067,7 +25821,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -24075,7 +25831,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -24083,7 +25841,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -24091,7 +25851,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -24099,7 +25861,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -24107,7 +25871,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -24115,7 +25881,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -24123,7 +25891,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -24131,7 +25901,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "14",
@@ -24139,7 +25911,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "15",
@@ -24147,7 +25921,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "16",
@@ -24155,7 +25931,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "17",
@@ -24163,7 +25941,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "18",
@@ -24171,7 +25951,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "19",
@@ -24179,7 +25961,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "20",
@@ -24187,7 +25971,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "21",
@@ -24195,7 +25981,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "22",
@@ -24203,7 +25991,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "23",
@@ -24211,7 +26001,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "24",
@@ -24219,7 +26011,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "25",
@@ -24227,7 +26021,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "26",
@@ -24235,7 +26031,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "27",
@@ -24243,7 +26041,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "28",
@@ -24251,7 +26051,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "29",
@@ -24259,7 +26061,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "30",
@@ -24267,7 +26071,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "31",
@@ -24275,7 +26081,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "32",
@@ -24283,7 +26091,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "33",
@@ -24291,7 +26101,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "34",
@@ -24299,7 +26111,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "35",
@@ -24307,7 +26121,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -25028,7 +26844,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   },
   {
@@ -25054,7 +26872,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.4311192
+          "last_seen": 1793545466.1274571,
+          "is_bot": false
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -25063,7 +26882,8 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793537413.43112
+          "last_seen": 1793545466.127458,
+          "is_bot": false
         }
       ],
       "messages": [],
@@ -25107,7 +26927,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "1",
@@ -25115,7 +26937,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "2",
@@ -25123,7 +26947,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "3",
@@ -25131,7 +26957,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "4",
@@ -25139,7 +26967,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "5",
@@ -25147,7 +26977,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "6",
@@ -25155,7 +26987,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "7",
@@ -25163,7 +26997,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "8",
@@ -25171,7 +27007,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "9",
@@ -25179,7 +27017,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "10",
@@ -25187,7 +27027,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "11",
@@ -25195,7 +27037,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "12",
@@ -25203,7 +27047,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "13",
@@ -25211,7 +27057,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "14",
@@ -25219,7 +27067,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "15",
@@ -25227,7 +27077,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "16",
@@ -25235,7 +27087,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "17",
@@ -25243,7 +27097,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "18",
@@ -25251,7 +27107,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "19",
@@ -25259,7 +27117,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "20",
@@ -25267,7 +27127,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "21",
@@ -25275,7 +27137,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "22",
@@ -25283,7 +27147,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "23",
@@ -25291,7 +27157,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "24",
@@ -25299,7 +27167,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "25",
@@ -25307,7 +27177,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "26",
@@ -25315,7 +27187,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "27",
@@ -25323,7 +27197,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "28",
@@ -25331,7 +27207,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "29",
@@ -25339,7 +27217,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "30",
@@ -25347,7 +27227,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "31",
@@ -25355,7 +27237,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "32",
@@ -25363,7 +27247,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "33",
@@ -25371,7 +27257,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "34",
@@ -25379,7 +27267,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           },
           {
             "id": "35",
@@ -25387,7 +27277,9 @@ export const fixtures = [
             "color": "neutral",
             "subtitle": "",
             "value": "",
-            "suit": ""
+            "suit": "",
+            "colors": [],
+            "effect": ""
           }
         ],
         "discard": null,
@@ -26108,7 +28000,9 @@ export const fixtures = [
       },
       "paused": false,
       "missing_players": [],
-      "invite_token": null
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null
     }
   }
 ] satisfies { label: string; selfId: string; room: components["schemas"]["RoomView"] }[];

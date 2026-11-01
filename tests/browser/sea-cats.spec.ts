@@ -89,7 +89,7 @@ test('paper choices stay private through refresh and boop pieces move with mouse
     await Promise.all([page.reload(), friend.reload()]);
     await page.getByRole('button', { name: 'Draw two · keep one', exact: true }).click();
     await expect(
-      page.getByRole('heading', { name: 'Which one are you keeping?', exact: true }),
+      page.getByRole('heading', { name: 'Choose a card to keep', exact: true }),
     ).toBeVisible();
     const own = (await roomAs(page, roomId)).game!;
     expect(own.phase).toBe('choosing');

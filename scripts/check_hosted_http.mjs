@@ -1,5 +1,6 @@
 /** Scoped deployment HTTP checks. Tokens stay in memory and never enter output. */
 import catalogue from '../packages/api-client/src/generated/catalog.json' with { type: 'json' };
+import faces from '../apps/web/public/playing-cards/SOURCE.json' with { type: 'json' };
 const target = new URL(process.env.GAMES_TEST_URL || 'http://invalid.local');
 if (
   target.protocol !== 'https:' ||
@@ -20,6 +21,10 @@ for (const path of [
   ...['wands', 'cups', 'swords', 'pentacles'].map((suit) => `/tarot/minor-${suit}-v1.webp`),
   '/game-art/boop-pieces-v1.webp',
   '/game-art/paper-symbols-v1.webp',
+  ...['gem-districts-v1', 'ceramic-tiles-v1', 'board-tokens-v1', 'table-surfaces-v1'].map(
+    (name) => `/game-art/${name}.webp`,
+  ),
+  ...Object.keys(faces.files).map((name) => `/playing-cards/${name}`),
   '/design',
   '/api/backend/v1/me',
   '/api/dev-session',
@@ -39,9 +44,15 @@ for (const path of [
   if (path.endsWith('/games') && response.ok) {
     const games = await response.json();
     summary.games = games.length;
+    summary.botGames = games.filter((game) => game.bots_supported).length;
     if (
       games.length !== catalogue.length ||
-      catalogue.some((game) => !games.some((entry) => entry.id === game.id))
+      catalogue.some(
+        (game) =>
+          !games.some(
+            (entry) => entry.id === game.id && entry.bots_supported === game.bots_supported,
+          ),
+      )
     )
       throw new Error('Serving catalogue differs from the release catalogue.');
     if (
@@ -61,5 +72,7 @@ for (const path of [
       ? 404
       : 200;
   if (response.status !== expected) throw new Error(`Unexpected status at ${path}`);
+  if (/^\/(tarot|game-art|playing-cards)\//.test(path) && !summary.kind?.startsWith('image/'))
+    throw new Error(`Expected artwork at ${path}`);
   if (!response.bodyUsed) await response.body?.cancel();
 }

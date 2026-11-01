@@ -381,3 +381,26 @@
     }
   }
 }
+
+@layer components {
+  .paper-heading {
+    margin-bottom: 14px;
+    gap: 8px;
+  }
+  .paper-stock > strong {
+    font-size: 28px;
+  }
+  .paper-hand {
+    margin-top: 14px;
+  }
+  .paper-collections {
+    margin-top: 16px;
+    gap: 8px;
+  }
+  .paper-collections details {
+    padding: 12px;
+  }
+  .boop-table > .paper-heading {
+    margin-bottom: 10px;
+  }
+}

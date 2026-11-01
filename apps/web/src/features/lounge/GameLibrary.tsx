@@ -4,7 +4,7 @@ import { Search, UsersRound, X } from 'lucide-react';
 import { Button, ChoiceGroup, GameTile } from '@games/ui';
 import { games } from '@games/api-client/catalog';
 import { GameArt } from '@/shared/GameArt';
-import { categories, discoveryRank, matchesGame, type Category } from './catalogue-search';
+import { categories, findGames, type Category } from './catalogue-search';
 
 export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
   const [query, setQuery] = useState('');
@@ -13,9 +13,7 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
   const search = useRef<HTMLInputElement>(null);
   const categoryRail = useRef<HTMLDivElement>(null);
   const hasFilters = query.trim().length > 0 || players !== 0 || category !== 'all';
-  const filtered = games
-    .filter((game) => matchesGame(game, query, players, category))
-    .sort((a, b) => discoveryRank(a.id) - discoveryRank(b.id));
+  const filtered = findGames(games, query, players, category);
   const reset = () => {
     setQuery('');
     setPlayers(0);
@@ -25,9 +23,9 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
   };
   return (
     <section id="games" className="game-library" aria-labelledby="library-heading">
-      <div className="section-heading">
-        <h2 id="library-heading">What are we playing?</h2>
-      </div>
+      <h2 id="library-heading" className="sr-only">
+        Games
+      </h2>
       <div className="library-controls">
         <label className="library-search">
           <Search size={18} aria-hidden="true" />
@@ -37,7 +35,7 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search games or familiar names"
+            placeholder="Search games"
             aria-controls="game-catalogue"
             onKeyDown={(event) => {
               if (event.key === 'Escape' && query) setQuery('');
@@ -65,7 +63,7 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
             onChange={setCategory}
           />
         </div>
-        <div className="library-filter-row">
+        <div className="library-filter-row" data-active={hasFilters}>
           <label className="library-players">
             <UsersRound size={16} aria-hidden="true" />
             <span className="sr-only">Players</span>
@@ -88,7 +86,7 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
             </Button>
           ) : null}
           <p className="library-count small muted" role="status" aria-atomic="true">
-            {filtered.length} {filtered.length === 1 ? 'game' : 'games'} for your table
+            {filtered.length} {filtered.length === 1 ? 'game' : 'games'}
           </p>
         </div>
       </div>
@@ -112,7 +110,7 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
           </div>
         ) : (
           <div className="library-empty">
-            <h3>No games at this table yet.</h3>
+            <h3>No games found</h3>
             <p>Try another name, category or group size.</p>
             <Button variant="secondary" onClick={reset}>
               Show all games

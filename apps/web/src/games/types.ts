@@ -8,5 +8,8 @@ export interface TableProps {
   imageLoader?: (path: string) => string;
 }
 export function playerName(room: Room, id: string) {
-  return room.members.find((member) => member.id === id)?.name || 'Player';
+  const member = room.members.find((item) => item.id === id);
+  return member
+    ? `${member.name}${member.isBot && !/^bot\b/i.test(member.name) ? ' (Bot)' : ''}`
+    : 'Player';
 }

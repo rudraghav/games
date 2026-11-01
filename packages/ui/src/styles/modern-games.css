@@ -575,3 +575,166 @@
     }
   }
 }
+
+@layer components {
+  .modern-game-heading {
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .modern-game-heading h2 {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.3;
+    margin-top: 4px;
+  }
+  .trio-own-hand {
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+  .trio-reveals[data-empty='true'] {
+    min-height: 0;
+    padding: 10px 0;
+    font-size: 12px;
+  }
+  .trio-reveals {
+    min-height: 110px;
+    padding: 12px 0;
+  }
+  .trio-hands {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .trio-player {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+  }
+  .trio-player strong {
+    font-size: 12px;
+  }
+  .trio-player .trio-end-actions {
+    margin: 0;
+    flex-wrap: nowrap;
+  }
+  .trio-collections {
+    grid-column: 1/-1;
+  }
+  .azul-table {
+    display: flex;
+    flex-direction: column;
+  }
+  .azul-player-board > summary {
+    cursor: pointer;
+  }
+  .azul-player-board:not([open]) {
+    padding-block: 12px;
+  }
+  .azul-player-board:not([open]) .azul-board-name {
+    margin: 0;
+  }
+  .azul-player-boards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .azul-player-board[data-own='true'] .azul-board-body {
+    max-width: 440px;
+    margin-inline: auto;
+  }
+  .azul-table[data-phase='placing'] .azul-factories {
+    order: 2;
+    margin-top: 18px;
+  }
+  .azul-table[data-phase='placing'] .azul-player-boards {
+    order: 1;
+  }
+  .azul-tile-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .azul-tile:has(.azul-tile-art) {
+    padding: 0;
+    overflow: hidden;
+  }
+  @media (max-width: 600px) {
+    .modern-game-heading {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .modern-game-heading h2 {
+      font-size: 16px;
+    }
+    .trio-hands {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .trio-player {
+      grid-template-columns: minmax(0, 1fr) 144px;
+    }
+    .trio-player > div:first-child {
+      gap: 3px;
+    }
+    .trio-player strong {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .trio-end-actions .button {
+      min-width: 68px;
+      padding-inline: 8px;
+    }
+    .azul-factories {
+      display: flex;
+      overflow-x: auto;
+      gap: 8px;
+      padding-bottom: 10px;
+      scrollbar-width: thin;
+      scroll-snap-type: x proximity;
+    }
+    .azul-factory {
+      flex: 0 0 144px;
+      scroll-snap-align: start;
+    }
+    .azul-factory-colors {
+      min-height: 88px;
+    }
+    .azul-player-boards {
+      gap: 8px;
+      margin-top: 8px;
+    }
+  }
+}
+
+@layer components {
+  @media (max-width: 600px) {
+    .flip-player {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 48px;
+      gap: 8px;
+      padding: 12px;
+    }
+    .flip-player-name {
+      grid-column: 1 / -1;
+      margin: 0;
+      font-size: 12px;
+    }
+    .flip-card-row {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      min-height: 65px;
+      padding: 3px;
+    }
+    .flip-round-score {
+      margin: 0;
+      align-self: center;
+      font-size: 10px;
+    }
+    .flip-round-score b {
+      display: block;
+      font-size: 20px;
+    }
+  }
+}

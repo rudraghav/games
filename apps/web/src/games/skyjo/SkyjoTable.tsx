@@ -43,6 +43,7 @@ export function SkyjoTable(props: TableProps) {
                   name={member?.name || 'Player'}
                   you={player.id === selfId}
                   avatar={member?.avatar}
+                  bot={member?.isBot}
                   active={match.currentPlayer === player.id}
                   caption={`${player.score} points`}
                   connected={member?.connected ?? false}

@@ -19,7 +19,7 @@ class RummyEngine(BaseEngine):
             GameManifest(
                 id="rummy",
                 name="Rummy",
-                subtitle="A good hand comes together.",
+                subtitle="13-card Indian points rummy",
                 family="rummy",
                 min_players=2,
                 max_players=6,

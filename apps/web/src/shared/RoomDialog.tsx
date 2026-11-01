@@ -3,7 +3,7 @@ import { useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { ArrowRight, Link2 } from 'lucide-react';
-import { Avatar, Button, Modal } from '@games/ui';
+import { Avatar, Button, Modal, ChoiceGroup } from '@games/ui';
 import { games, gameById } from '@games/api-client/catalog';
 import { api } from '@/lib/session';
 import { keys } from './query-keys';
@@ -17,6 +17,7 @@ interface RoomDialogProps {
   gameId?: string;
   invite?: string;
   roomId?: string;
+  withBots?: boolean;
 }
 export function RoomDialog({
   open,
@@ -25,16 +26,20 @@ export function RoomDialog({
   gameId = 'uno',
   invite = '',
   roomId,
+  withBots = false,
 }: RoomDialogProps) {
   const router = useRouter();
   const cache = useQueryClient();
   const me = useQuery({ queryKey: keys.me, queryFn: () => api.me(), enabled: open });
   const [selectedGame, setSelectedGame] = useState(gameId);
+  const [playWith, setPlayWith] = useState<'friends' | 'bots'>(withBots ? 'bots' : 'friends');
   const [name, setName] = useState<string>();
   const [avatar, setAvatar] = useState<number>();
   const [roomName, setRoomName] = useState('');
   const [code, setCode] = useState(invite);
-  const [capacity, setCapacity] = useState(Math.min(4, gameById(gameId).maxPlayers));
+  const [capacity, setCapacity] = useState(
+    withBots ? gameById(gameId).minPlayers : Math.min(4, gameById(gameId).maxPlayers),
+  );
   const [settings, setSettings] = useState<Record<string, boolean>>({});
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
@@ -59,10 +64,19 @@ export function RoomDialog({
                 roomName: roomName.trim() || `${displayName.trim()}'s game night`,
                 capacity,
                 settings,
+                bots: playWith === 'bots' && game.botsSupported ? capacity - 1 : 0,
               });
-      if (mode === 'create' && game.family === 'tarot') {
-        await api.ready(room.id, true);
-        room = await api.start(room.id);
+      if (
+        mode === 'create' &&
+        (game.family === 'tarot' || (playWith === 'bots' && game.botsSupported))
+      ) {
+        // Creation is already committed; failed auto-start recovers in this room.
+        try {
+          await api.ready(room.id, true);
+          room = await api.start(room.id);
+        } catch {
+          room = await api.room(room.id).catch(() => room);
+        }
       }
       rememberPlayer(displayName.trim(), chosenAvatar);
       cache.setQueryData(keys.room(room.id), room);
@@ -81,19 +95,13 @@ export function RoomDialog({
     <Modal
       open={open}
       onOpenChange={onOpenChange}
-      title={
-        mode === 'join'
-          ? 'Your seat is waiting.'
-          : mode === 'configure'
-            ? 'What’s next?'
-            : 'Make a night of it.'
-      }
+      title={mode === 'join' ? 'Join room' : mode === 'configure' ? 'Room settings' : 'Create room'}
       description={
         mode === 'join'
-          ? 'A name, an invite, and you’re in.'
+          ? 'Enter your name and room code.'
           : mode === 'configure'
-            ? 'Pick a game. Everyone will ready up again.'
-            : 'Pick your game. We’ll save the seats for your people.'
+            ? 'Choose a game and seat count.'
+            : 'Choose a game, players and settings.'
       }
     >
       <form className="room-setup-form" onSubmit={submit}>
@@ -111,6 +119,20 @@ export function RoomDialog({
                 autoComplete="nickname"
               />
             </label>
+            {mode === 'create' && game.botsSupported ? (
+              <ChoiceGroup
+                label="Play with"
+                options={[
+                  { value: 'friends', label: 'Friends' },
+                  { value: 'bots', label: 'Bots' },
+                ]}
+                value={playWith}
+                onChange={(value) => {
+                  setPlayWith(value);
+                  if (value === 'bots') setCapacity(game.minPlayers);
+                }}
+              />
+            ) : null}
             <div className="avatar-options" role="group" aria-label="Choose your avatar colour">
               {Array.from({ length: 8 }, (_, i) => (
                 <button
@@ -222,7 +244,9 @@ export function RoomDialog({
               ? 'Join the room'
               : mode === 'configure'
                 ? 'Choose game'
-                : 'Create room'}
+                : playWith === 'bots'
+                  ? 'Play game'
+                  : 'Create room'}
             <ArrowRight size={16} />
           </Button>
         </div>

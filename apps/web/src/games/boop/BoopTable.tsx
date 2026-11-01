@@ -88,7 +88,7 @@ function Bed({ match, room, selfId, pending, onAction }: TableProps) {
       </div>
       {match.phase === 'graduating' && match.currentPlayer === selfId ? (
         <section className="boop-graduation" aria-label="Graduation choices">
-          <h3>Time to grow up.</h3>
+          <h3>Choose a graduation</h3>
           <p className="small muted">
             Choose one line to graduate.
             {returns.size ? ' Or tap one piece on the bed to bring it back.' : ''}
@@ -127,10 +127,9 @@ export function BoopTable(props: TableProps) {
       <section className="sea-cat-table boop-table" aria-label="boop bed table">
         <div className="paper-heading">
           <div>
-            <p className="eyebrow">A cozy contest</p>
-            <h2>Make a little room.</h2>
+            <p className="eyebrow">Your pieces</p>
           </div>
-          <span className="small muted">Three cats in a row wins.</span>
+          <span className="small muted">Three cats in a row wins</span>
         </div>
         <Bed key={`${room.matchId}:${room.matchVersion}`} {...props} />
         <div className="boop-progress" aria-label="Cat graduation progress">

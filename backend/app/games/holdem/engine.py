@@ -18,7 +18,7 @@ class HoldemEngine(BaseEngine):
             GameManifest(
                 id="holdem",
                 name="Texas Hold’em",
-                subtitle="Find your seat at the table.",
+                subtitle="No-limit Texas Hold’em poker",
                 family="casino",
                 score_label="Net chips",
                 min_players=2,

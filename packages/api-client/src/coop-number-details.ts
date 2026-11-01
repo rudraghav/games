@@ -1,17 +1,11 @@
 import { z } from 'zod';
+import { cardSchema as card } from './card-schema';
 import type { components } from './generated/schema';
 
 type Detail = components['schemas']['GameView']['detail'];
 const nonnegative = z.number().int().nonnegative();
 const counts = z.record(z.string(), nonnegative);
-const card = z.object({
-  id: z.string(),
-  label: z.string(),
-  value: z.string(),
-  color: z.string(),
-  subtitle: z.string(),
-  suit: z.string(),
-});
+
 const mode = z.enum(['simultaneous', 'turn']);
 const gang = z.object({
   heist: z.number().int().min(1).max(5),

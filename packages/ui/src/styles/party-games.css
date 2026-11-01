@@ -299,3 +299,43 @@
     }
   }
 }
+
+@layer components {
+  .party-spotlight {
+    margin-block: 14px;
+  }
+  .party-prompt {
+    padding: 20px;
+  }
+  .party-prompt > svg {
+    display: none;
+  }
+  .party-prompt h2 {
+    font-size: clamp(24px, 3.4vw, 34px);
+  }
+  .party-options {
+    margin-top: 16px;
+    gap: 12px;
+  }
+  .party-decisions,
+  .party-reveal {
+    margin-top: 16px;
+  }
+  .party-choice-grid {
+    margin-block: 12px;
+  }
+}
+
+@layer components {
+  .party-prompt {
+    background-image:
+      linear-gradient(var(--party-tint), #fffc), url('/game-art/table-surfaces-v1.webp');
+    background-size:
+      auto,
+      300% auto;
+    background-position:
+      center,
+      100% 50%;
+    box-shadow: inset 0 0 0 1px #ffffff80;
+  }
+}

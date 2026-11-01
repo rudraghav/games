@@ -4,6 +4,7 @@ from cryptography.fernet import Fernet
 
 from app.games.registry import ENGINES
 from app.models import Room
+from app.rooms.bots import next_bot_view
 from app.rooms.repository import Repository
 from app.rooms.schemas import MemberView, MessageView, RoomView
 
@@ -16,7 +17,7 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
         [
             p
             for p in match.participants
-            if not any(m.user_id == p and now - m.seen_at < 45 for m, _ in members)
+            if not any(m.user_id == p and (m.is_bot or now - m.seen_at < 45) for m, _ in members)
         ]
         if match and room.status == "playing"
         else []
@@ -25,6 +26,15 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
         ENGINES[match.game_id].project_view(match.state, user_id)
         if match and user_id in match.participants
         else None
+    )
+    bots = [
+        m for m, _ in members if m.is_bot and m.seated and match and m.user_id in match.participants
+    ]
+    pending_bot = bool(
+        match
+        and room.status == "playing"
+        and not missing
+        and next_bot_view(ENGINES[match.game_id], match.state, bots)
     )
     return RoomView(
         id=room.id,
@@ -45,8 +55,9 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
                 avatar=p.avatar,
                 ready=m.ready,
                 seated=m.seated,
-                connected=now - m.seen_at < 45,
+                connected=m.is_bot or now - m.seen_at < 45,
                 last_seen=m.seen_at,
+                is_bot=m.is_bot,
             )
             for m, p in members
         ],
@@ -62,4 +73,6 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
         invite_token=cipher.decrypt(room.invite_ciphertext.encode()).decode()
         if room.owner_id == user_id
         else None,
+        bot_pending=pending_bot,
+        bot_due_at=match.bot_due_at if match and pending_bot else None,
     )

@@ -192,6 +192,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/rooms/{room_id}/bots": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Add Bots */
+        post: operations["add_bots_v1_rooms__room_id__bots_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/rooms/{room_id}/bots/drive": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Drive Bots */
+        post: operations["drive_bots_v1_rooms__room_id__bots_drive_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/rooms/{room_id}/chat": {
         parameters: {
             query?: never;
@@ -388,6 +422,14 @@ export interface components {
             /** Groups */
             groups?: string[][];
         };
+        /** AddBots */
+        AddBots: {
+            /**
+             * Count
+             * @default 1
+             */
+            count: number;
+        };
         /** CardView */
         CardView: {
             /** Id */
@@ -414,6 +456,13 @@ export interface components {
              * @default
              */
             suit: string;
+            /** Colors */
+            colors?: string[];
+            /**
+             * Effect
+             * @default
+             */
+            effect: string;
         };
         /** CharacterConnection */
         CharacterConnection: {
@@ -460,6 +509,21 @@ export interface components {
             settings?: {
                 [key: string]: boolean;
             };
+            /**
+             * Bots
+             * @default 0
+             */
+            bots: number;
+        };
+        /** DriveBots */
+        DriveBots: {
+            /**
+             * Match Id
+             * Format: uuid
+             */
+            match_id: string;
+            /** Expected Version */
+            expected_version: number;
         };
         /** GameManifest */
         GameManifest: {
@@ -481,6 +545,11 @@ export interface components {
             icon: string;
             /** Color */
             color: string;
+            /**
+             * Bots Supported
+             * @default false
+             */
+            bots_supported: boolean;
             /**
              * Play Mode
              * @default competitive
@@ -631,6 +700,11 @@ export interface components {
             connected: boolean;
             /** Last Seen */
             last_seen: number;
+            /**
+             * Is Bot
+             * @default false
+             */
+            is_bot: boolean;
         };
         /** MessageView */
         MessageView: {
@@ -832,6 +906,13 @@ export interface components {
             missing_players: string[];
             /** Invite Token */
             invite_token?: string | null;
+            /**
+             * Bot Pending
+             * @default false
+             */
+            bot_pending: boolean;
+            /** Bot Due At */
+            bot_due_at?: number | null;
         };
         /**
          * Section
@@ -1282,6 +1363,80 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": components["schemas"]["Move"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoomView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    add_bots_v1_rooms__room_id__bots_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                room_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AddBots"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoomView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    drive_bots_v1_rooms__room_id__bots_drive_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                room_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DriveBots"];
             };
         };
         responses: {

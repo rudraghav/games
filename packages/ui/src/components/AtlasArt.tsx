@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 /** Complete illustration cells with proportional framing and no neighbouring art. */
 export function AtlasArt({
   src,
@@ -14,6 +16,7 @@ export function AtlasArt({
   width: number;
   height: number;
 }) {
+  const clipId = useId();
   const cellWidth = width / columns;
   const cellHeight = height / rows;
   return (
@@ -24,7 +27,17 @@ export function AtlasArt({
       aria-hidden="true"
       focusable="false"
     >
-      <image href={src} width={width} height={height} />
+      <defs>
+        <clipPath id={clipId}>
+          <rect
+            x={(index % columns) * cellWidth}
+            y={Math.floor(index / columns) * cellHeight}
+            width={cellWidth}
+            height={cellHeight}
+          />
+        </clipPath>
+      </defs>
+      <image href={src} width={width} height={height} clipPath={`url(#${clipId})`} />
     </svg>
   );
 }

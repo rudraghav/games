@@ -21,7 +21,7 @@ def side(seat: int) -> range:
 class MancalaEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="mancala", name="Mancala", subtitle="Sow a little. Steal a march.",
+            id="mancala", name="Mancala", subtitle="Sow seeds and score captures",
             family="mancala", min_players=2, max_players=2, minutes="5–15", icon="circle",
             color="ochre", rules=[
                 "Kalah: four seeds in each of twelve pits, with two stores starting empty.",

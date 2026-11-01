@@ -43,7 +43,7 @@ def round_points(s: State, player: str) -> int:
 class FlipSevenEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="flip-7", name="Flip 7", subtitle="One more card. Famous last words.",
+            id="flip-7", name="Flip 7", subtitle="Push your luck without repeating a number",
             family="flip-seven", min_players=3, max_players=10, minutes="15–25", icon="sparkles",
             color="coral", rules_version="edition-3.1", rules=[
                 "94-card deck. Hit for a card or Stay to bank your round points. Duplicate numbers bust.",

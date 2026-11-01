@@ -5,7 +5,12 @@ import type { Game } from '@games/api-client/catalog';
 export function RoomResults({ room, game }: { room: Room; game: Game }) {
   const match = room.game;
   if (!match) return null;
-  const name = (id: string) => room.members.find((member) => member.id === id)?.name || 'Player';
+  const name = (id: string) => {
+    const member = room.members.find((member) => member.id === id);
+    return member
+      ? `${member.name}${member.isBot && !/^bot\b/i.test(member.name) ? ' (Bot)' : ''}`
+      : 'Player';
+  };
   const cooperative = game.playMode === 'cooperative';
   const title = cooperative
     ? match.winners.length

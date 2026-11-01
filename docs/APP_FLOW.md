@@ -15,6 +15,21 @@ Phones keep both main home actions in full rows, category pills in a contained
 rail, and group controls above the live result count. Selecting a tile opens
 that game's existing shared room-creation flow.
 
+The home page starts with a compact game picker rather than a large promotional
+hero. Play with bots opens room creation in Bots mode; selecting a game tile
+allows Friends or Bots. Bots mode fills the other selected seats, readies the
+human and starts automatically. If auto-start or the fresh identity read fails,
+the already-created room remains the destination; the form never repeats creation.
+One-person discovery includes supported bot games. Search uses exact aliases
+first and a bounded Fuse.js typo fallback, intersected with category/player filters.
+
+The host can add/fill/remove labeled bot seats in the lobby. A human joining a
+full lobby replaces a bot. Bots never receive login sessions or hosting rights;
+only human presence leases pause/resume play. A connected member drives due bot
+moves through the versioned server endpoint, one paced committed action at a
+time. Bots resume from persisted schedule/memory after refresh or server restart.
+Chat is collapsed initially and opens as a desktop sidebar or phone dialog.
+
 Create room is a shared dialog. Room setup includes game-specific settings from
 the engine catalogue. Copy link/code is available in the lobby. Start validates
 minimum/maximum players, fresh presence and readiness server-side. The table
@@ -34,7 +49,7 @@ Tarot offers Explore the deck with major/suit filters, independent of the saved
 three-card spread. Fresh reading sections show The grounded read, The plot twist
 and Character energy; previously saved readings retain their original content.
 
-On phones, the room title sits above the table on its own readable row, and
+On phones, the room title and compact toolbar share a row above the table, and
 inviting, readying, starting and shared move controls each use a complete row.
 Room options groups secondary host controls behind a vertical kebab; leaving
 and ending a match remain deliberate actions. Escape closes dialogs and returns

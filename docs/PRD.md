@@ -17,7 +17,12 @@ remain reusable. No fabricated reading is shown when AI is unavailable.
 
 Guests choose a name/avatar and play immediately. Optional Google or email accounts retain
 identity and results. Room chips have no monetary value. Multiplayer opponents are
-human; blackjack has an automated dealer. Rooms have chat and reactions.
+human by default; optional rule-based bot seats now let one person play any
+multiplayer game. Blackjack also keeps its automated dealer. Bot decisions use
+only that seat's permitted view, with no LLM calls or hidden-hand access. Bots
+are labeled, ready automatically and never own a room. Party bot preferences are
+simulated; Word Agents bots use a documented offline category vocabulary.
+Rooms have chat and reactions.
 
 The host selects rules before a match. All seated players must be ready. Late
 arrivals wait until the next match. No turn clock. A lost presence lease pauses
@@ -65,7 +70,7 @@ that lower is better, and unscored games retain player outcomes without an
 invented numeric ranking. Search and intersecting category/group-size filters
 remain available on phones with dedicated rows for primary actions.
 
-All nine games must complete matches, score correctly, rematch, and switch games
+Every registered game must complete matches, score correctly, rematch, and switch games
 within the same group. Hidden information, persistence, concurrency, authorization,
 responsive layouts and reconnects must pass real workflow verification. Track
 unverified requirements as gaps, never as completed capabilities.

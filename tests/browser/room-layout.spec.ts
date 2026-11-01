@@ -47,12 +47,14 @@ test('room controls, turn notices and a natural result stay clear on narrow layo
   }
   async function wholeRows(selector: string) {
     expect(
-      await page.locator(selector).evaluateAll((buttons) =>
-        buttons.every((button) => {
-          const frame = button.parentElement!.getBoundingClientRect();
-          const box = button.getBoundingClientRect();
-          return box.height >= 44 && Math.abs(box.width - frame.width) < 2;
-        }),
+      await page.locator(selector).evaluateAll(
+        (buttons) =>
+          buttons.length > 0 &&
+          buttons.every((button) => {
+            const frame = button.parentElement!.getBoundingClientRect();
+            const box = button.getBoundingClientRect();
+            return box.height >= 44 && Math.abs(box.width - frame.width) < 2;
+          }),
       ),
     ).toBe(true);
   }
@@ -91,13 +93,14 @@ test('room controls, turn notices and a natural result stay clear on narrow layo
     await wholeRows('.lobby-start > .button');
     await wholeRows('.invite-actions > .button');
     expect(
-      await page.locator('.lobby-game').evaluate((hero) => {
-        const art = hero.querySelector('.game-art')!;
-        const title = hero.querySelector('h2')!;
+      await page.locator('.lobby-summary').evaluate((summary) => {
+        const art = summary.querySelector('.lobby-game')!.getBoundingClientRect();
+        const title = summary.querySelector('h2')!.getBoundingClientRect();
         return (
-          getComputedStyle(art).position === 'absolute' &&
-          hero.getBoundingClientRect().height < 230 &&
-          art.getBoundingClientRect().left >= title.getBoundingClientRect().right - 2
+          art.width <= 90 &&
+          art.height <= 76 &&
+          summary.getBoundingClientRect().height <= 90 &&
+          art.right <= title.left + 2
         );
       }),
     ).toBe(true);
@@ -191,7 +194,7 @@ test('phone move rows and actor seats remain usable during pending and paused st
   await page.screenshot({ path: test.info().outputPath('paused-actions.png'), fullPage: true });
 });
 
-test('new game lobby artwork stays beside the mobile title', async ({ page }) => {
+test('compact lobby artwork leaves room for players and phone actions', async ({ page }) => {
   test.skip(test.info().project.name !== 'phone', 'Phone poster composition.');
   let id: string | undefined;
   const owned: OwnedRoom = { actors: [page], contexts: [] };
@@ -219,19 +222,26 @@ test('new game lobby artwork stays beside the mobile title', async ({ page }) =>
       ).ok(),
     ).toBe(true);
     await page.reload();
-    await expect(page.locator('.lobby-game h2')).toHaveText(name);
+    await expect(page.locator('.room-title > span')).toHaveText(name);
+    await expect(page.locator('.lobby-summary h2')).toHaveText('Players');
+    await expect(page.locator('.lobby-summary .game-art')).toHaveCount(1);
     expect(
-      await page.locator('.lobby-game').evaluate((hero) => {
-        const art = hero.querySelector('.game-art')!.getBoundingClientRect();
-        const title = hero.querySelector('h2')!.getBoundingClientRect();
-        return art.left >= title.right - 2 && hero.getBoundingClientRect().height < 230;
+      await page.locator('.lobby-summary').evaluate((summary) => {
+        const art = summary.querySelector('.lobby-game')!.getBoundingClientRect();
+        const title = summary.querySelector('h2')!.getBoundingClientRect();
+        return (
+          art.width <= 90 &&
+          art.height <= 76 &&
+          summary.getBoundingClientRect().height <= 90 &&
+          art.right <= title.left + 2
+        );
       }),
     ).toBe(true);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,
     );
     await page
-      .locator('.lobby-game')
+      .locator('.lobby-summary')
       .screenshot({ path: test.info().outputPath(`${game}-lobby.png`) });
   }
 });
@@ -344,7 +354,7 @@ test('committed room entry recovers from a profile read failure without creating
   await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
   owned.id = new URL(page.url()).pathname.split('/').at(-1)!;
   await expect(
-    page.getByRole('heading', { name: 'Let’s reconnect your seat.', exact: true }),
+    page.getByRole('heading', { name: 'Reconnect to your room', exact: true }),
   ).toBeVisible();
   await expect(page.getByRole('button', { name: 'Take an open seat', exact: true })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Create room', exact: true })).toHaveCount(0);

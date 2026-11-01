@@ -40,7 +40,7 @@ export function WordsTable(props: TableProps) {
         <div className="word-clue">
           <p className="eyebrow">{data.activeTeam === 0 ? 'Red' : 'Blue'} team</p>
           <h2>
-            {data.clue || 'A connection is coming…'}
+            {data.clue || 'Waiting for a clue'}
             {data.clue ? <span>{data.clueCount}</span> : null}
           </h2>
           {match.phase === 'guess' ? (
@@ -90,7 +90,7 @@ export function WordsTable(props: TableProps) {
                 maxLength={32}
                 value={clue}
                 onChange={(event) => setClue(event.target.value)}
-                placeholder="Find their common thread…"
+                placeholder="Enter one word"
                 disabled={blocked}
                 required
               />
@@ -117,6 +117,11 @@ export function WordsTable(props: TableProps) {
               Give clue
             </Button>
           </form>
+        ) : null}
+        {room.members.some((member) => member.isBot) && match.phase !== 'finished' ? (
+          <p className="small muted">
+            Bots understand category clues such as animals, music and travel.
+          </p>
         ) : null}
         {data.role === 'operative' &&
         match.phase === 'guess' &&

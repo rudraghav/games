@@ -38,12 +38,12 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
       <SiteHeader />
       <main className="profile-page page-width">
         <div className="profile-intro">
-          <p className="eyebrow">Your corner of the lounge</p>
-          <h1 className="hero-title">A familiar face.</h1>
-          <p className="muted">A name, a little personality, and the games you’ve shared.</p>
+          <p className="eyebrow">Profile</p>
+          <h1 className="hero-title">Your profile</h1>
+          <p className="muted">Manage your name and account.</p>
         </div>
         {me.isPending ? (
-          <p className="muted">Finding your player…</p>
+          <p className="muted">Loading profile…</p>
         ) : me.error ? (
           <p className="error-note" role="alert">
             {me.error.message}
@@ -51,7 +51,7 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
         ) : (
           <div className="profile-grid">
             <section className="profile-card">
-              <h2 className="heading-md">Make it yours.</h2>
+              <h2 className="heading-md">Player details</h2>
               <form onSubmit={submit}>
                 <label className="field">
                   Your name
@@ -99,7 +99,7 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
               ) : null}
             </section>
             <section className="profile-card">
-              <h2 className="heading-md">One for the memories.</h2>
+              <h2 className="heading-md">Match history</h2>
               <div className="match-history">
                 {me.data?.history.length ? (
                   me.data.history.map((match) => (
@@ -126,10 +126,8 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
                 ) : (
                   <div className="history-empty">
                     <span>✳</span>
-                    <h3>Your next good story starts here.</h3>
-                    <p className="small muted">
-                      Finish a game or a Tarot reading and it’ll find a home here.
-                    </p>
+                    <h3>No matches yet.</h3>
+                    <p className="small muted">Completed games and readings appear here.</p>
                     <Link href="/" className="button button--secondary button--md">
                       Find your game
                     </Link>

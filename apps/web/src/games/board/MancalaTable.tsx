@@ -43,9 +43,9 @@ export function MancalaTable(props: TableProps) {
         </p>
         <p className="small muted board-help">
           {match.phase === 'finished'
-            ? 'Every seed counted.'
+            ? 'Match complete.'
             : match.currentPlayer === selfId
-              ? 'Your move. Choose one of your lit pits.'
+              ? 'Choose one of your highlighted pits.'
               : 'Sow counterclockwise. Finish in your store to go again.'}
         </p>
       </section>

@@ -31,6 +31,11 @@ Verify card conservation, bills and insolvency,
 counter chains, wild orientation, set protection in classic, every No Mercy action,
 debt settlement into immediate actions, maximum hand discard, and win-on-transfer.
 
+The public projection includes `payment_amount` only while the current bill is
+awaiting asset selection (zero otherwise). This is the same already-announced
+amount shown to the payer and lets rule-based bots/UI calculate a bank-first
+payment without parsing English copy. No hidden state or rule is changed.
+
 ## 1 November 2026 rule audit
 
 Acceptance: preserve exact card inventory through complete min/max-seat matches,
@@ -107,3 +112,15 @@ Full-match API testing exposed another boundary beyond pure rules: a valid
 The shared contract now admits the full 115-card selection bound. A projection
 regression validates and applies all 33 selected assets with conservation, while
 HTTP integration checks verify that the real request path accepts it.
+
+## Public card-face metadata
+
+`CardView.colors` contains every color printed on a visible property or rent
+card; `color` remains its current orientation. `CardView.effect` contains the
+printed action identifier, such as `rent_double` or `breaker`. These public face
+fields distinguish green/blue from green/rail wilds and two-color from any-color
+rent without interpreting opaque card IDs. Empty defaults keep other families
+compatible. Only cards already authorized in the viewer projection receive
+metadata; other hands, stock order and shuffle randomness remain private.
+Focused regressions cover both editions, matching-orientation wilds, all-color
+rent, immutable deck definitions and hidden-card projection boundaries.

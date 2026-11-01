@@ -3,6 +3,11 @@
 A private game-night web app: bring your people, share a room, play another round.
 Built with Next.js, TypeScript, Tailwind, FastAPI, Supabase and Vercel Services.
 
+Every multiplayer game supports optional rule-based bots for solo play. Choose
+**Play with bots**, or add bot seats in a room. Bots use their own cards and public
+observations; no AI API is involved. Word Agents bots understand a finite set of
+category clues, and party bots use simulated answers and votes.
+
 The catalogue contains Uno, Uno No Mercy, Monopoly Deal, Monopoly Deal No Mercy,
 Texas Hold'em, Indian 13-card rummy, Teen Patti, blackjack, Skyjo and solo Pop
 Tarot, Four in a Row, Reversi, Word Agents, Gem Market, Checkers, Mancala,
@@ -87,6 +92,14 @@ python3 scripts/verify.py frontend backend contracts migrations multiplayer brow
 python3 scripts/verify.py load
 pnpm storybook
 ```
+
+Run the complete solo-bot browser path with `GAMES_SOLO_BOTS=1 pnpm exec
+playwright test tests/browser/solo-bots.spec.ts --workers=2`. The local candidate
+passed all 25 games on phone and desktop: 50 natural matches and 2,643 committed
+actions, including results, saved/profile history, rematch, game changes and
+verified room closure. Setup, bot seats, interrupted moves and reconnect also
+passed. [Local evidence](docs/evidence/bots-ui-2026-11-01/local.json) records the
+uncommitted source boundary; hosted verification is a separate release gate.
 
 See [verification and release gates](docs/VERIFICATION.md), the
 [product contract](docs/PRD.md), [application flow](docs/APP_FLOW.md),

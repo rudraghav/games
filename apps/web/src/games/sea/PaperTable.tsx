@@ -30,7 +30,7 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
       {match.phase === 'draw' ? (
         <section className="paper-draw" aria-label="Draw a card">
           <div className="paper-stock">
-            <span className="eyebrow">The stock</span>
+            <span className="eyebrow">Draw pile</span>
             <strong>{match.drawCount}</strong>
             <Button
               disabled={blocked || !action('take_stock')}
@@ -66,9 +66,7 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
       ) : null}
       {['choosing', 'crab_card'].includes(match.phase) && data.private_options.length ? (
         <section className="paper-private-choice" aria-label="Your private card choice">
-          <h3>
-            {match.phase === 'choosing' ? 'Which one are you keeping?' : 'A find from the discard.'}
-          </h3>
+          <h3>{match.phase === 'choosing' ? 'Choose a card to keep' : 'Choose a discard card'}</h3>
           <p className="small muted">Only you can see these choices.</p>
           <div className="paper-card-row">
             {data.private_options.map((card) => {
@@ -101,7 +99,7 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
       ) : null}
       {match.phase === 'crab_pile' && options.length ? (
         <section className="paper-private-choice">
-          <h3>Choose one discard to explore.</h3>
+          <h3>Choose a discard pile</h3>
           <div className="paper-actions">
             {options.map((o) => (
               <Button
@@ -118,7 +116,7 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
       ) : null}
       {match.phase === 'steal' && options.length ? (
         <section className="paper-private-choice">
-          <h3>Whose hand will you borrow from?</h3>
+          <h3>Choose a player to steal from</h3>
           <div className="paper-actions">
             {options.map((o) => (
               <Button
@@ -154,9 +152,7 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
             />
           ))}
         </div>
-        {!match.hand.length ? (
-          <p className="muted small">Your first card is still out at sea.</p>
-        ) : null}
+        {!match.hand.length ? <p className="muted small">No cards yet.</p> : null}
         {match.currentPlayer === selfId ? (
           <div className="paper-actions" aria-label="Your turn choices">
             {pairs.length ? (
@@ -201,7 +197,6 @@ export function PaperTable(props: TableProps) {
         <div className="paper-heading">
           <div>
             <p className="eyebrow">Round {data.round}</p>
-            <h2>A little ocean of possibility.</h2>
           </div>
           <span className="small muted">First to {data.target} points</span>
         </div>

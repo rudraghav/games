@@ -1,5 +1,7 @@
 import { Avatar } from './Avatar';
 import { cn } from '../lib/cn';
+import type { ReactNode } from 'react';
+import { Bot } from 'lucide-react';
 
 interface SeatProps {
   name?: string;
@@ -12,6 +14,8 @@ interface SeatProps {
   you?: boolean;
   nameLayout?: 'truncate' | 'wrap';
   activeLabel?: string;
+  bot?: boolean;
+  action?: ReactNode;
 }
 export function Seat({
   name,
@@ -24,7 +28,10 @@ export function Seat({
   you,
   nameLayout = 'truncate',
   activeLabel = 'Current turn',
+  bot = false,
+  action,
 }: SeatProps) {
+  const displayName = bot ? name?.replace(/^Bot\s+/i, '') : name;
   return (
     <div
       data-name-layout={nameLayout}
@@ -36,14 +43,20 @@ export function Seat({
       )}
     >
       {name ? (
-        <Avatar name={name} seed={avatar} size={compact ? 'sm' : 'lg'} />
+        <Avatar name={displayName || name} seed={avatar} size={compact ? 'sm' : 'lg'} />
       ) : (
         <span className="empty-avatar">+</span>
       )}
       <div className="seat-copy">
         <strong title={name}>
-          <span className="seat-name">{name || 'An open seat'}</span>
+          <span className="seat-name">{displayName || 'Open seat'}</span>
           {name && you ? <span className="seat-self">you</span> : null}
+          {name && bot ? (
+            <span className="seat-kind">
+              <Bot size={12} aria-hidden="true" />
+              Bot
+            </span>
+          ) : null}
         </strong>
         <span>
           {!name
@@ -56,6 +69,7 @@ export function Seat({
         </span>
       </div>
       {active ? <span className="turn-light" role="img" aria-label={activeLabel} /> : null}
+      {action ? <span className="seat-action">{action}</span> : null}
     </div>
   );
 }

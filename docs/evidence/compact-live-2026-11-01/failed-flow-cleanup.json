@@ -1,0 +1,10 @@
+{
+  "owned_failed_flow_room_closed": true,
+  "actors": 2,
+  "http_statuses": [
+    200,
+    200,
+    200,
+    404
+  ]
+}

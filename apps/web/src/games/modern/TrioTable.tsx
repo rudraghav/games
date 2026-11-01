@@ -22,9 +22,9 @@ export function TrioTable(props: TableProps) {
         <div className="modern-game-heading">
           <div>
             <p className="eyebrow">Simple mode</p>
-            <h2>Remember. Reveal. Repeat.</h2>
+            <h2>Find three matching cards</h2>
           </div>
-          <span className="small muted">Three trios, or the sevens.</span>
+          <span className="small muted">Three trios or the sevens wins.</span>
         </div>
         <section className="trio-own-hand" aria-label="Your private sorted hand">
           <p className="eyebrow">Your sorted hand</p>
@@ -54,7 +54,12 @@ export function TrioTable(props: TableProps) {
             );
           })}
         </div>
-        <div className="trio-reveals" aria-label="This turn’s revealed cards" aria-live="polite">
+        <div
+          className="trio-reveals"
+          data-empty={!data.revealed.length}
+          aria-label="This turn’s revealed cards"
+          aria-live="polite"
+        >
           {data.revealed.length ? (
             data.revealed.map((reveal) => (
               <div key={reveal.card.id}>
@@ -67,7 +72,7 @@ export function TrioTable(props: TableProps) {
               </div>
             ))
           ) : (
-            <p className="muted">A matching three is waiting to be found.</p>
+            <p className="muted">No cards revealed.</p>
           )}
         </div>
         <div className="trio-hands" aria-label="Player hands and collections">
@@ -118,11 +123,7 @@ export function TrioTable(props: TableProps) {
         </div>
         {review ? (
           <div className="modern-review">
-            <p>
-              {data.failed
-                ? 'Take a moment to remember those numbers.'
-                : 'A perfect three. Your collection is growing.'}
-            </p>
+            <p>{data.failed ? 'Cards return after this turn.' : 'Trio collected.'}</p>
             <Button disabled={blocked} onClick={() => onAction(review.value)}>
               Continue
             </Button>

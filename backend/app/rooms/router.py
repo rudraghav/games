@@ -7,8 +7,10 @@ from app.auth import Identity, identity
 from app.db import sessions
 from app.games.tarot.reading import ReadingInput, ReadingView
 from app.rooms.schemas import (
+    AddBots,
     ChatInput,
     CreateRoom,
+    DriveBots,
     JoinRoom,
     MeView,
     Move,
@@ -90,6 +92,16 @@ def start(room_id: str, actor: Actor, svc: Service) -> RoomView:
 @router.post("/rooms/{room_id}/actions", response_model=RoomView)
 def move(room_id: str, data: Move, actor: Actor, svc: Service) -> RoomView:
     return svc.move(actor, room_id, data)
+
+
+@router.post("/rooms/{room_id}/bots", response_model=RoomView)
+def add_bots(room_id: str, data: AddBots, actor: Actor, svc: Service) -> RoomView:
+    return svc.add_bots(actor, room_id, data)
+
+
+@router.post("/rooms/{room_id}/bots/drive", response_model=RoomView)
+def drive_bots(room_id: str, data: DriveBots, actor: Actor, svc: Service) -> RoomView:
+    return svc.drive_bots(actor, room_id, data)
 
 
 @router.post("/rooms/{room_id}/chat", response_model=RoomView)

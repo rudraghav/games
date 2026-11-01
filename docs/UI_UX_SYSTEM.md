@@ -1,7 +1,8 @@
 # Games design system
 
-Warm ivory lounge; dark ink, muted sage and terracotta accents. Cards are original
-vector/typographic compositions with large readable symbols. Casino tables use
+Warm ivory lounge; dark ink, muted sage and terracotta accents. Cards combine
+large readable ranks/actions, documented SVG playing-card faces and original
+illustration atlases. Casino tables use
 deep pine felt, warm rails, clear seat positions, pots and compact action controls.
 Property games show banks and property collections; rummy supports hand groups;
 Skyjo uses a 3×4 grid. Never shrink a full desktop table into an unreadable phone.
@@ -72,7 +73,7 @@ metadata to distinguish Your turn, Your decision, locked choice, paused and
 complete states. The shared TurnNotice exposes these as a polite status update;
 the horizontal phone player strip reveals the current actor without moving the
 page vertically. Lobby names wrap instead of concealing their identities.
-Phone room headers give the room title its own row. Invite, ready/start and
+Phone room headers keep the title and compact toolbar in one row. Invite, ready/start and
 shared move buttons occupy full rows with at least 44px targets. Secondary host
 controls and leaving live behind the vertical room-options kebab, in the shared
 Radix dialog with grouped rows and a separate destructive confirmation. Controlled
@@ -98,3 +99,54 @@ of guessing scoring semantics from a game ID. Unscored results still show every
 participant; cooperative loss is a team defeat, not a tie.
 Saved profile history uses the same declared outcome semantics and score units:
 team defeat/victory, penalty points, net chips, or an unscored match label.
+
+
+Table density follows the player's next decision. Casino private cards and
+controls share the first row on wide canvases and stack before the public table
+on phones. Crowded seats use separated bands; the canvas itself, rather than
+only the viewport, selects the grid fallback. Split blackjack hands keep their
+own cards, wager and active outline. Betting inputs expose a full 44px target.
+Card-game piles use compact frames beside the hand, with actions below both.
+
+New original district and ceramic atlases use the existing AtlasArt primitive.
+GemDistrictArt selects one of 15 color/tier scenes or a patron crest; AzulTileArt
+selects six distinct patterns. Whole illustration cells use proportional meet
+alignment. Text, cost tokens and interaction states remain accessible UI outside
+the decorative art. Gem opponent engines and Azul opponent boards are expandable;
+required patron/placement decisions stay exposed. Felt, wood and plum material
+variants reuse one three-strip atlas without replacing card labels or controls.
+
+
+AtlasArt clips the exact source cell before proportional meet alignment. The clip
+prevents neighboring illustrations from painting into a rectangular letterbox;
+CSS overflow alone cannot establish that boundary. TokenArt reuses six original
+wooden discs, marble and poker-chip pieces; Mancala keeps numeric seed counts
+visible above representative piece artwork. Phone board dimensions and paddings
+live with the owning board rules so late imports cannot hide columns or counts.
+The complete 52-scenario phone/desktop audit and inspected samples are recorded
+in `docs/evidence/table-refresh-2026-11-01`.
+
+The home starts with the game catalogue beneath a compact title/action row;
+recent rooms follow the catalogue. Exact name/alias matching has a bounded
+Fuse.js typo fallback after category and group-size filtering. Solo + bots shows
+all bot-capable formats and Tarot. Room chat starts collapsed and opens beside
+the table on wide screens or in a shared sheet on phones.
+
+The standard PlayingCard variant uses all 54 pinned, licensed vector faces.
+Shedding cards separate their action icon, rank and short name; property cards
+share district art and value/name slots. Card selection and real labels stay in
+the shared accessible control. See `docs/REUSE_RESEARCH.md` for provenance.
+
+Bots have explicit seat labels, host-only add/remove controls, an automatic
+versioned move driver and a retry action for interrupted moves. Bot capability
+comes from the generated catalogue rather than a second frontend game list.
+Word Agents explains finite category-clue support; party responses are labeled
+as simulated. Bots never impersonate people or use the Tarot generation API.
+
+
+Uno and Deal variants consume canonical colors/effect metadata in one shared
+renderer. Deal motifs distinguish all 24 effects and 10 property groups; paired
+wild/rent bands print both names, any-color cards expose all colors accessibly,
+and orientation stays separate. Card inventory stories cover 245 canonical faces
+and every legal wild orientation at normal/compact sizes. Two browser widths
+check 980 instances. See card-inventory and compact-live evidence for originals.

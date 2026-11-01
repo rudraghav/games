@@ -38,7 +38,7 @@ def lines(board: list, player: str, adult_only: bool = False) -> list[list[int]]
 class BoopEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="boop", name="boop.", subtitle="Tiny kittens. Delightfully big moves.",
+            id="boop", name="boop.", subtitle="Push kittens and line up three cats",
             family="boop", min_players=2, max_players=2, minutes="15–25", icon="cat",
             color="coral", rules_version="standard-1", score_order="none", rules=[
                 "Place a kitten or available cat in any empty square on the 6×6 bed.",

@@ -28,7 +28,7 @@ def hand_name(cards: list[str]) -> str:
 class GangEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="the-gang", name="The Gang", subtitle="One crew. Three vaults. No poker faces spared.",
+            id="the-gang", name="The Gang", subtitle="Rank poker hands together",
             family="cooperative-poker", min_players=3, max_players=6, minutes="20–30",
             icon="spade", color="pine", rules_version="basic-1", play_mode="cooperative",
             score_label="Vaults", score_order="high", rules=[

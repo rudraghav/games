@@ -23,7 +23,7 @@ class UnoEngine(BaseEngine):
             GameManifest(
                 id="uno-no-mercy" if mercy else "uno",
                 name="Uno No Mercy" if mercy else "Uno",
-                subtitle="Friendships, on hard mode." if mercy else "The classic colour clash.",
+                subtitle="Big draws, stacking and elimination" if mercy else "Match colors and numbers",
                 family="shedding",
                 min_players=2,
                 max_players=6 if mercy else 10,

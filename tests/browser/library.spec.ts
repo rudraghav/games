@@ -47,13 +47,11 @@ test('catalogue search, category and group size work with keyboard and reduced m
   await page.goto('/');
   const tiles = page.getByRole('button', { name: /^Create .+ room$/ });
   await expect(tiles).toHaveCount(catalogue.length);
-  await expect(
-    page.getByText(`${catalogue.length} games for your table`, { exact: true }),
-  ).toBeVisible();
+  await expect(page.getByText(`${catalogue.length} games`, { exact: true })).toBeVisible();
   await expect(
     page
       .getByRole('button', { name: 'Create Monopoly Deal No Mercy room', exact: true })
-      .getByText('Games house deck. No mercy.', { exact: true }),
+      .getByText(/Games house deck/),
   ).toBeVisible();
   await page.getByRole('searchbox', { name: 'Search games' }).fill('poker');
   await expect(
@@ -68,7 +66,7 @@ test('catalogue search, category and group size work with keyboard and reduced m
     page.getByRole('button', { name: 'Create Mancala room', exact: true }),
   ).toBeVisible();
   await page.getByLabel('Players', { exact: true }).selectOption('10');
-  await expect(page.getByRole('heading', { name: 'No games at this table yet.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'No games found' })).toBeVisible();
   await page.getByRole('button', { name: 'Show all games' }).focus();
   await page.keyboard.press('Enter');
   await expect(tiles).toHaveCount(catalogue.length);

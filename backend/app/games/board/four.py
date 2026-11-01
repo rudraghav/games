@@ -14,7 +14,7 @@ from app.games.board.view import board_view
 class FourEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="four-in-a-row", name="Four in a Row", subtitle="One more move. Four in a row.",
+            id="four-in-a-row", name="Four in a Row", subtitle="Connect four discs to win",
             family="board", min_players=2, max_players=2, minutes="5–15", icon="circle",
             color="coral", rules=["Drop a disc into an open column.",
                 "Connect four horizontally, vertically or diagonally to win.",

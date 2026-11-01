@@ -20,7 +20,7 @@ const room = mapRoom(
 describe('Room entry identity boundary', () => {
   it('keeps unresolved identity out of seat and game controls', () => {
     const html = renderToStaticMarkup(<RoomScreen id={room.id} />);
-    expect(html).toContain('Let’s find your player details.');
+    expect(html).toContain('Player details unavailable');
     expect(html).toContain('Try again');
     expect(html).not.toContain('Take an open seat');
     expect(html).not.toContain('I’m ready');

@@ -6,7 +6,7 @@ test('profile offers Google sign-in and a canceled callback preserves the player
 }) => {
   await page.goto('/');
   await page.getByRole('link', { name: 'Sign in', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'A familiar face.', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Your profile', exact: true })).toBeVisible();
   const account = page.getByRole('region', { name: 'Your Games account', exact: true });
   await expect(
     account.getByRole('button', { name: 'Continue with Google', exact: true }),

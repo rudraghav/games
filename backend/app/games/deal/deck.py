@@ -78,6 +78,8 @@ class DealCard:
                 value=f"{self.value}M",
                 color="neutral",
                 subtitle="MONEY",
+                colors=list(self.colors),
+                effect=self.action,
             )
         name = (
             "Wild property"
@@ -93,6 +95,8 @@ class DealCard:
             color=color,
             subtitle=name,
             suit="property" if self.kind == "property" else "action",
+            colors=list(self.colors),
+            effect=self.action,
         )
 
 

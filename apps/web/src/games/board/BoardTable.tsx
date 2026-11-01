@@ -1,7 +1,7 @@
 'use client';
 import { useState, type CSSProperties } from 'react';
 import { ArrowDown, Crown } from 'lucide-react';
-import { Button } from '@games/ui';
+import { Button, TokenArt, type TokenKind } from '@games/ui';
 import { boardDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
@@ -62,6 +62,9 @@ export function BoardTable(props: TableProps) {
                 const label = `${cell.label}: ${cell.value ? `${cell.subtitle === 'King' ? 'king, ' : ''}${playerName(room, match.players[Number(cell.value) - 1].id)}` : 'empty'}`;
                 const content = (
                   <span className="board-disc" data-color={cell.color}>
+                    {cell.value && ['coral', 'gold', 'ivory', 'ink'].includes(cell.color) ? (
+                      <TokenArt kind={cell.color as TokenKind} />
+                    ) : null}
                     {cell.subtitle === 'King' ? <Crown size={20} aria-hidden="true" /> : null}
                   </span>
                 );
@@ -108,11 +111,11 @@ export function BoardTable(props: TableProps) {
         </div>
         <p className="small muted board-help">
           {board.draw
-            ? 'An even match.'
+            ? 'Draw.'
             : match.phase === 'finished'
-              ? 'A good round, well played.'
+              ? 'Match complete.'
               : four
-                ? 'Choose a column. Every disc changes the picture.'
+                ? 'Choose a column to drop a disc.'
                 : checkers
                   ? selected
                     ? 'Choose a marked diagonal. Jumps are compulsory.'

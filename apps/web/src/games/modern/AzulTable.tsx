@@ -1,22 +1,14 @@
 'use client';
-import { Button } from '@games/ui';
+import { Button, AzulTileArt } from '@games/ui';
 import { azulDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
 
 const colors = ['blue', 'yellow', 'red', 'black', 'white'] as const;
-const symbols: Record<string, string> = {
-  blue: '◆',
-  yellow: '✹',
-  red: '✿',
-  black: '✣',
-  white: '❖',
-  first: '1',
-};
 function Tile({ color, ghost = false }: { color: string; ghost?: boolean }) {
   return (
     <span className="azul-tile" data-color={color} data-ghost={ghost} aria-label={`${color} tile`}>
-      {symbols[color]}
+      <AzulTileArt color={color} />
     </span>
   );
 }
@@ -73,11 +65,11 @@ export function AzulTable(props: TableProps) {
   return (
     <div className="table-layout modern-game">
       <PlayerStrip {...props} playerCaption={(p) => `${p.score} points`} />
-      <section className="azul-table" aria-label="Azul tile table">
+      <section className="azul-table" data-phase={match.phase} aria-label="Azul tile table">
         <div className="modern-game-heading">
           <div>
             <p className="eyebrow">Round {data.round}</p>
-            <h2>A wall worth making.</h2>
+            <h2>{match.phase === 'placing' ? 'Place your tiles' : 'Choose tiles'}</h2>
           </div>
           <span className="small muted">
             {data.marker
@@ -105,19 +97,20 @@ export function AzulTable(props: TableProps) {
         ) : null}
         <div className="azul-player-boards">
           {orderedPlayers.map((player) => (
-            <section
+            <details
               key={player.id}
               className="azul-player-board"
               data-own={player.id === selfId}
               aria-label={`${playerName(room, player.id)} board`}
+              open={player.id === selfId}
             >
-              <div className="azul-board-name">
+              <summary className="azul-board-name">
                 <strong>
                   {playerName(room, player.id)}
                   {player.id === selfId ? ' · you' : ''}
                 </strong>
                 <b>{player.score} pts</b>
-              </div>
+              </summary>
               <div className="azul-board-body">
                 <div className="azul-pattern-lines" aria-label="Pattern lines">
                   {data.lines[player.id].map((line, row) => {
@@ -201,7 +194,7 @@ export function AzulTable(props: TableProps) {
                     : ''}
                 </p>
               ) : null}
-            </section>
+            </details>
           ))}
         </div>
         {next ? (

@@ -35,3 +35,23 @@ describes the supplied master; the exact original paper prompt was not retained.
 The boop prompt in PROMPTS.json is retained verbatim. Both delivery files are
 reproducible with `node scripts/prepare_game_art.mjs` (WebP quality 90, alpha 100,
 no resizing). All generated original masters remain preserved.
+
+## Districts, tiles, materials and tokens — 1 November 2026
+
+Four additional original ImageGen masters share the warm illustrated table style.
+Exact prompts are retained in `DESIGN_PROMPTS_2026_11_01.json`; generated output
+dimensions are authoritative even when a requested square composition differs.
+
+| Master | Dimensions / cells | Reading order / use |
+| --- | --- | --- |
+| `gem-districts-v1.png` | 1254×1254; 4×4 | Pearl, sapphire, ruby, emerald, onyx each workshop/guild/palace; final patron crest. Gem Market tiers and Deal property art |
+| `ceramic-tiles-v1.png` | 1536×1024; 3×2 square cells | Blue, yellow, red, dark, ivory, first-player sun. Original Azul motifs |
+| `board-tokens-v1.png` | 1536×1024; 3×2 square cells | Coral, gold, ivory, dark discs; glass marble; poker chip. Board pieces, Mancala seeds and casino wagers |
+| `table-surfaces-v1.png` | 1254×1254; three vertical strips | Walnut, pine felt, plum cloth. Table materials |
+
+The first three masters preserve transparency. `AtlasArt` clips individual cells
+before aspect-ratio-preserving alignment, so adjacent artwork cannot bleed into
+letterbox space. Wrappers own typed colors/tiers/token variants; labels, counts,
+controls and authoritative values remain accessible UI above the illustration.
+Run `node scripts/prepare_game_art.mjs` for the four matching WebP delivery files
+(quality 88, alpha 100, no resizing). Original PNGs and prompts remain committed.

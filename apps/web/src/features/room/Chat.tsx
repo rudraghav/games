@@ -37,7 +37,7 @@ export function Chat({ room, selfId, send, pending }: ChatProps) {
           <p className="chat-empty">
             The table’s open.
             <br />
-            Say hello to your people.
+            No messages yet.
           </p>
         ) : (
           room.messages.map((message) => {

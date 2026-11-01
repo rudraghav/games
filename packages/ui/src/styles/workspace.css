@@ -1,0 +1,646 @@
+@layer components {
+  .hero.hero--compact {
+    display: block;
+    padding: 22px 0 16px;
+    min-height: 0;
+  }
+  .hero--compact > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 24px;
+    align-items: center;
+  }
+  .hero--compact .hero-title {
+    font-size: 34px;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .hero--compact .hero-copy {
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+  }
+  .hero--compact .hero-actions {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 0;
+  }
+  .game-library .section-heading {
+    padding-top: 12px;
+    margin-bottom: 16px;
+  }
+  .room-page .room-header {
+    height: 64px;
+    padding: 8px 22px;
+    gap: 18px;
+  }
+  .room-page .room-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .room-page .room-content[data-chat-open='true'] {
+    grid-template-columns: minmax(0, 1fr) 310px;
+  }
+  .room-page .room-main {
+    padding: 14px 22px 32px;
+  }
+  .room-page .room-chat-button {
+    display: inline-flex;
+  }
+  .room-page .desktop-chat > .chat {
+    height: calc(100dvh - 64px);
+  }
+  .room-page .table-announcement {
+    margin-bottom: 12px;
+    padding: 10px 12px;
+  }
+  .room-page .turn-notice-main p {
+    line-height: 1.4;
+    font-size: 13px;
+  }
+  .room-page .lobby {
+    display: block;
+  }
+  .room-page .lobby-body {
+    padding: 18px;
+  }
+  .lobby-body .section-heading {
+    padding: 0;
+    margin-bottom: 14px;
+  }
+  .lobby-body .lobby-summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+  .lobby-summary .lobby-game {
+    position: relative;
+    width: 76px;
+    height: 62px;
+    min-height: 0;
+    flex: none;
+    padding: 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .lobby-summary .lobby-game .game-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    transform: scale(0.7);
+  }
+  .lobby-summary h2 {
+    font-size: 24px;
+  }
+  .lobby-summary p {
+    margin-top: 4px;
+  }
+  .room-page .lobby-seats {
+    margin-bottom: 14px;
+  }
+  .room-page .invite-panel {
+    margin-block: 14px;
+    padding: 12px 16px;
+  }
+  .bot-seat-tools {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .seat .seat-kind {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    color: var(--color-sage);
+    padding: 2px 5px;
+    background: var(--color-sage-light);
+    border-radius: 6px;
+    line-height: 1;
+    flex: none;
+  }
+  .seat .seat-action {
+    margin-left: auto;
+    align-self: center;
+  }
+  .seat .seat-action .button {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+  .playing-card .standard-card-art {
+    position: absolute;
+    inset: 3px;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    display: block;
+  }
+  .playing-card--shedding .shedding-index {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 800;
+  }
+  .playing-card--shedding .shedding-face {
+    position: absolute;
+    inset: 17px 5px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    background: var(--color-white);
+    border-radius: 48%;
+    color: var(--card-color);
+    font-weight: 850;
+  }
+  .playing-card--shedding .shedding-face strong {
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .playing-card--shedding .shedding-face svg {
+    width: 29px;
+    height: 29px;
+    flex: none;
+    stroke-width: 2.5;
+  }
+  .playing-card--shedding .card-action-name {
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    font-size: 7px;
+    line-height: 1.05;
+    min-height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-wrap: anywhere;
+  }
+  .playing-card--shedding.playing-card--compact .shedding-face {
+    inset: 13px 3px 16px;
+  }
+  .playing-card--shedding.playing-card--compact .shedding-face strong {
+    font-size: 21px;
+  }
+  .playing-card--shedding.playing-card--compact .shedding-face svg {
+    width: 17px;
+    height: 17px;
+  }
+  .playing-card--shedding.playing-card--compact .shedding-index {
+    font-size: 9px;
+  }
+  .playing-card--shedding.playing-card--compact .card-action-name {
+    font-size: 5px;
+    min-height: 11px;
+  }
+  .playing-card--property {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) 25px;
+    gap: 3px;
+  }
+  .playing-card--property .property-symbol {
+    margin: 0;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .playing-card--property .property-symbol > svg {
+    width: 32px;
+    height: 32px;
+  }
+  .playing-card--property .property-symbol .gem-district-art {
+    height: 100%;
+    width: 100%;
+    max-width: 65px;
+  }
+  .playing-card--property .property-name {
+    position: static;
+    font-size: 8px;
+    line-height: 1.15;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .playing-card--property.playing-card--compact {
+    grid-template-rows: 10px minmax(0, 1fr) 20px;
+    padding: 9px 4px 3px;
+  }
+  .playing-card--property.playing-card--compact .property-name {
+    font-size: 6px;
+    overflow-wrap: anywhere;
+  }
+  .playing-card--property.playing-card--compact .property-symbol > svg {
+    width: 22px;
+    height: 22px;
+  }
+  @media (max-width: 600px) {
+    .hero.hero--compact {
+      padding: 14px 0 6px;
+    }
+    .hero--compact > div {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 5px;
+    }
+    .hero--compact .hero-title {
+      font-size: 28px;
+    }
+    .hero--compact .hero-copy {
+      font-size: 13px;
+    }
+    .hero--compact .hero-actions {
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: 10px;
+    }
+    .room-page .room-header {
+      height: auto;
+      min-height: 56px;
+      padding: 8px 14px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 6px 10px;
+    }
+    .room-page .room-brand {
+      display: none;
+    }
+    .room-page .room-title {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .room-page .room-toolbar {
+      grid-column: 2;
+      grid-row: 1;
+      gap: 2px;
+    }
+    .room-page .room-title h1 {
+      font-size: 12px;
+    }
+    .room-page .room-title > span {
+      font-size: 11px;
+    }
+    .room-page .room-toolbar .connection-state {
+      display: none;
+    }
+    .room-page .room-main {
+      padding: 10px 12px 24px;
+    }
+    .room-page .lobby-body {
+      padding: 14px;
+    }
+    .room-page .lobby-seats {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .room-page .lobby-start {
+      margin-top: 12px;
+    }
+    .bot-seat-tools > .button {
+      width: 100%;
+    }
+    .playing-card--shedding:not(.playing-card--compact) .shedding-face strong {
+      font-size: 27px;
+    }
+    .playing-card--shedding:not(.playing-card--compact) .shedding-face svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+@layer components {
+  .playing-card.playing-card--shedding,
+  .playing-card.playing-card--property {
+    container-type: inline-size;
+    font-family: var(--font-body, Arial), sans-serif;
+  }
+  .playing-card--shedding .shedding-draw-mark {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .playing-card--shedding .shedding-draw-mark > svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+    fill-opacity: 0.09;
+    stroke: currentColor;
+    stroke-width: 2;
+    opacity: 0.6;
+  }
+  .playing-card--shedding .shedding-face .shedding-draw-mark > strong {
+    position: relative;
+    font-size: clamp(14px, 48cqw, 32px);
+    letter-spacing: -1px;
+    text-shadow: 0 0 3px white;
+  }
+  .playing-card--shedding .shedding-face[data-design='reverse-draw'] > svg {
+    width: 40%;
+    height: 40%;
+  }
+  .playing-card--shedding .shedding-face[data-design='reverse-draw'] > strong {
+    font-size: clamp(13px, 38cqw, 26px);
+  }
+  .playing-card--shedding .shedding-all-mark {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 5;
+  }
+  .playing-card.playing-card--property {
+    display: grid;
+    grid-template-rows: 12px minmax(0, 1fr) 28px;
+    gap: 2px;
+    padding: 15px 5px 4px;
+    background: linear-gradient(145deg, #fffdf5, white);
+  }
+  .playing-card--property .property-band {
+    display: flex;
+    height: 10px;
+    overflow: visible;
+    background: #3d5148;
+  }
+  .property-band > span {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    background: var(--property-ink);
+  }
+  [data-property-color='brown'] {
+    --property-ink: #85604c;
+  }
+  [data-property-color='sky'] {
+    --property-ink: #80bfd6;
+  }
+  [data-property-color='pink'] {
+    --property-ink: #ce87ac;
+  }
+  [data-property-color='orange'] {
+    --property-ink: #dc944b;
+  }
+  [data-property-color='red'] {
+    --property-ink: #bc5a4b;
+  }
+  [data-property-color='yellow'] {
+    --property-ink: #dbc04f;
+  }
+  [data-property-color='green'] {
+    --property-ink: #508463;
+  }
+  [data-property-color='blue'] {
+    --property-ink: #355e99;
+  }
+  [data-property-color='rail'] {
+    --property-ink: #404d4c;
+  }
+  [data-property-color='utility'] {
+    --property-ink: #8caaa2;
+  }
+  .property-band > span[data-active='true']::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: calc(50% - 3px);
+    width: 6px;
+    height: 6px;
+    transform: rotate(45deg);
+    background: var(--property-ink);
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+  }
+  .playing-card--property .property-value {
+    position: relative;
+    z-index: 1;
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 800;
+  }
+  .playing-card--property .property-symbol {
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .property-scene,
+  .property-district,
+  .property-infrastructure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+  }
+  .property-scene[data-wild='true'] {
+    gap: 2px;
+  }
+  .property-district > .gem-district-art {
+    max-width: none;
+  }
+  .property-district[data-property-scene='pink'] {
+    filter: hue-rotate(-20deg) saturate(0.75);
+  }
+  .property-district[data-property-scene='orange'] {
+    filter: saturate(1.4);
+  }
+  .property-infrastructure {
+    position: relative;
+    flex-direction: column;
+    color: #40565e;
+    border-radius: 8px;
+    background: #dfe9e666;
+    max-width: 48px;
+  }
+  .property-infrastructure > svg {
+    width: 65%;
+    height: 65%;
+    stroke-width: 2;
+  }
+  .property-track {
+    width: 75%;
+    height: 5px;
+    border-block: 1px solid currentColor;
+    background: repeating-linear-gradient(90deg, transparent 0 4px, currentColor 4px 5px);
+  }
+  .property-utilities {
+    flex-direction: row;
+    color: #4b7988;
+  }
+  .property-utilities > svg {
+    width: 40%;
+    height: 65%;
+  }
+  .property-utilities > svg:first-child {
+    color: #ac8031;
+  }
+  .property-footer {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+    text-align: center;
+  }
+  .playing-card--property .property-name {
+    position: static;
+    display: block;
+    min-width: 0;
+    font-size: clamp(7px, 14cqw, 9px);
+    font-weight: 800;
+    line-height: 1.02;
+    overflow-wrap: normal;
+    word-break: normal;
+    text-align: center;
+  }
+  .property-color-label,
+  .property-active-label {
+    display: block;
+    font-size: clamp(6px, 11cqw, 7px);
+    line-height: 1;
+    white-space: normal;
+    color: #43514a;
+  }
+  .property-active-label {
+    font-weight: 700;
+    color: #75592d;
+  }
+  .playing-card.playing-card--property.playing-card--compact {
+    grid-template-rows: 8px minmax(0, 1fr) 21px;
+    padding: 11px 3px 2px;
+    gap: 1px;
+  }
+  .playing-card--property.playing-card--compact .property-band {
+    height: 7px;
+  }
+  .playing-card--property.playing-card--compact .property-value {
+    font-size: 8px;
+  }
+  .playing-card--property.playing-card--compact .property-name {
+    font-size: 6px;
+    overflow-wrap: anywhere;
+  }
+  .playing-card--property.playing-card--compact .property-color-label,
+  .playing-card--property.playing-card--compact .property-active-label {
+    font-size: 5px;
+  }
+  .money-art {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    color: #7d693c;
+  }
+  .money-art > svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: #e5d9b733;
+    stroke: currentColor;
+    stroke-width: 0.7;
+  }
+  .money-art > strong {
+    position: relative;
+    font-size: clamp(12px, 32cqw, 23px);
+    font-weight: 850;
+    letter-spacing: -1px;
+  }
+  .playing-card--property[data-card-kind='money'] {
+    background: linear-gradient(135deg, #e5ecd9, #fffdf3);
+  }
+  .playing-card--property[data-card-kind='money'] .property-band {
+    background: #87936f;
+  }
+  .deal-action-art {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 52px;
+    height: 100%;
+    color: #3d7168;
+    border-radius: 10px;
+    background: color-mix(in srgb, currentColor 8%, transparent);
+  }
+  .deal-action-art > svg {
+    position: relative;
+    width: 68%;
+    height: 68%;
+    stroke-width: 1.7;
+  }
+  .deal-action-orbit {
+    position: absolute;
+    inset: 2px;
+    border: 1px solid currentColor;
+    opacity: 0.2;
+    border-radius: 50%;
+  }
+  .deal-action-art > b {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: clamp(6px, 14cqw, 10px);
+    line-height: 1;
+    padding: 2px;
+    border-radius: 5px;
+    background: white;
+    color: #5c456e;
+  }
+  .deal-action-cards {
+    position: absolute;
+    inset: 5px;
+    border: 1px dashed currentColor;
+    opacity: 0.2;
+    transform: rotate(-8deg);
+    border-radius: 4px;
+  }
+  .deal-action-art:is([data-effect='no'], [data-effect='crash'], [data-effect='tough']) {
+    color: #b4574c;
+  }
+  .deal-action-art:is(
+    [data-effect='rent'],
+    [data-effect='rent_double'],
+    [data-effect='debt'],
+    [data-effect='forced_debt'],
+    [data-effect='yoink'],
+    [data-effect='tax']
+  ) {
+    color: #987332;
+  }
+  .deal-action-art:is(
+    [data-effect='sly'],
+    [data-effect='super_sly'],
+    [data-effect='heist'],
+    [data-effect='double']
+  ) {
+    color: #78587d;
+  }
+  .deal-action-art:is(
+    [data-effect='forced'],
+    [data-effect='unfair'],
+    [data-effect='pass_go'],
+    [data-effect='go_again'],
+    [data-effect='fill']
+  ) {
+    color: #426a91;
+  }
+  .deal-action-art[data-effect='birthday'] {
+    color: #b16f8b;
+  }
+  .deal-action-art:is([data-effect='breaker'], [data-effect='repossession']) {
+    color: #4f5860;
+  }
+}

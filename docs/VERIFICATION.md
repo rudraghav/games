@@ -3,16 +3,24 @@
 Use `python3 scripts/verify.py --list` for the named check groups. The runner fails
 on a missing prerequisite; it never substitutes a tooling PASS for product proof.
 
-| Group | Coverage |
-| --- | --- |
-| frontend | TypeScript, lint, frontend contract/card checks, Next production build |
-| backend | Python lint/types, engines, special cards, complete legal scenarios, Tarot adapter |
-| contracts | Actual OpenAPI/catalogue and generated wire-type drift |
-| migrations | Fresh isolated local database upgrade, drift, RLS/public grants |
-| multiplayer | Room membership, hidden hands, simultaneous moves, retries, reconnect, hosting, invites, saved readings |
-| browser | Independent guest sessions, chat, move/refresh/game switch; phone/desktop; 52 min/max table scenarios; Tarot picks and expansion controls |
-| tooling | Game/feature/shared-UI import boundaries |
-| load | 50 simultaneous local private rooms, committed action and snapshot latency |
+| Group       | Coverage                                                                                                                                   |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| frontend    | TypeScript, lint, frontend contract/card checks, Next production build                                                                     |
+| backend     | Python lint/types, engines, special cards, complete legal scenarios, Tarot adapter                                                         |
+| contracts   | Actual OpenAPI/catalogue, generated wire-type and canonical Uno/Deal card-face inventory drift                                             |
+| migrations  | Fresh isolated local database upgrade, drift, RLS/public grants                                                                            |
+| multiplayer | Room membership, hidden hands, simultaneous moves, retries, reconnect, hosting, invites, saved readings, bot lifecycle/concurrency/restart |
+| browser     | Independent guest sessions, chat, move/refresh/game switch; phone/desktop; 52 min/max table scenarios; Tarot picks and expansion controls  |
+| tooling     | Game/feature/shared-UI import boundaries                                                                                                   |
+| load        | 50 simultaneous local private rooms, committed action and snapshot latency                                                                 |
+
+The current bot layer adds 144 policy tests, including 100 naturally completed
+matches across all 25 multiplayer games at minimum/maximum seats and two seeds.
+Sixty room integration cases cover one-human completion for all 25 games,
+maximum-capacity starts, bot identity isolation, leases, retries, simultaneous
+drivers and an actual process restart. Policy tests receive authorized views and
+durable observations only. These deterministic checks are separate from the
+opt-in real-client solo suite below and any hosted verification in the journal.
 
 Database checks create a random `games_verify_*` database on the dedicated local
 server, apply the reviewed Alembic history and remove only that exact database.
@@ -75,6 +83,29 @@ browser drops and separate conserved declaration fixtures are distinguished.
 Use `GAMES_FULL_MATCH_GAME` for a focused retry of comma-separated game IDs and
 `GAMES_FULL_MATCH_SEATS` for a specific player count. The helper sanitizes
 transport/cookie-decoding failures so test reports never echo authentication.
+
+Solo-bot acceptance is a separate opt-in browser run:
+
+```sh
+GAMES_SOLO_BOTS=1 pnpm exec playwright test tests/browser/solo-bots.spec.ts --workers=2 --output=output/playwright/solo-bots
+```
+
+It reuses one human guest and one group room per viewport for all 25 multiplayer games, with the
+minimum required bot seats (blackjack also has its automated dealer). The actual
+room client drives every bot move; the harness never calls the drive endpoint.
+Human decisions use only that human's authorized projection, followed by the
+normal visible-tab refresh path. Results, saved/profile history, rematch,
+and same-group game changes are checked for each game. The shared room closes
+after the selected catalogue finishes, with a fresh unreadable-room check;
+reusing the room respects the existing twelve-creations-per-hour limit.
+The initial UI scenario also covers bot setup/autostart, a clicked board move,
+bot seat add/remove, interrupted-driver retry and reconnect without state loss.
+Use `GAMES_SOLO_BOT_GAMES` for a focused comma-separated subset. Safe summaries
+are written to a unique ignored `.vercel/solo-bots-<viewport>-<run>.json` file;
+they contain counts/status/source metadata, never hands, credentials or invites.
+Local runs allow 40 minutes per viewport; hosted runs allow 75 minutes for network
+round trips. Both retain a 45-second stall guard, a 4,000-version match bound and
+the unchanged server limits.
 
 After the single production deployment, repeat with
 `GAMES_TEST_URL=https://games-seven-black.vercel.app`, then run private Broadcast

@@ -20,7 +20,7 @@ class TeenPattiEngine(BaseEngine):
             GameManifest(
                 id="teen-patti",
                 name="Teen Patti",
-                subtitle="Three cards. Endless possibilities.",
+                subtitle="Three-card blind and seen poker",
                 family="casino",
                 score_label="Net chips",
                 min_players=2,

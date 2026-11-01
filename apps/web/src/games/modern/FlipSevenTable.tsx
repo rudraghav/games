@@ -18,15 +18,15 @@ export function FlipSevenTable(props: TableProps) {
           data.pending_card
             ? `Choose an active player for ${data.pending_card}.`
             : review
-              ? 'Every point is saved. Ready for another round?'
-              : 'Seven different numbers ends the round. A duplicate risks the lot.'
+              ? 'Round complete.'
+              : 'Draw or stay. Seven different numbers ends the round.'
         }
       />
       <section className="flip-seven-table" aria-label="Flip 7 table">
         <div className="modern-game-heading">
           <div>
             <p className="eyebrow">Round {data.round}</p>
-            <h2>How far will you flip?</h2>
+            <h2>Cards in play</h2>
           </div>
           <span className="small muted">{match.drawCount} cards in the shoe</span>
         </div>
@@ -61,7 +61,7 @@ export function FlipSevenTable(props: TableProps) {
                       <PlayingCard key={index} faceDown compact />
                     ),
                   )}
-                  {!player.cards.length ? <span className="small muted">A fresh start</span> : null}
+                  {!player.cards.length ? <span className="small muted">No cards yet</span> : null}
                 </div>
                 <p className="flip-round-score">
                   <b>{review ? (data.round_scores[player.id] ?? 0) : data.at_risk[player.id]}</b>{' '}

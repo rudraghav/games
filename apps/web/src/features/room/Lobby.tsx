@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Copy, Check, Link2, ArrowRight, Settings2 } from 'lucide-react';
+import { Copy, Check, Link2, ArrowRight, Settings2, Bot, X } from 'lucide-react';
 import { Button, Seat } from '@games/ui';
 import type { Room } from '@games/api-client';
 import { gameById } from '@games/api-client/catalog';
@@ -13,8 +13,19 @@ interface LobbyProps {
   start: () => void;
   configure: () => void;
   pending: boolean;
+  addBots?: (count: number) => void;
+  removeBot?: (id: string) => void;
 }
-export function Lobby({ room, selfId, ready, start, configure, pending }: LobbyProps) {
+export function Lobby({
+  room,
+  selfId,
+  ready,
+  start,
+  configure,
+  pending,
+  addBots,
+  removeBot,
+}: LobbyProps) {
   const [copied, setCopied] = useState('');
   const [copyError, setCopyError] = useState('');
   const game = gameById(room.gameId);
@@ -37,23 +48,18 @@ export function Lobby({ room, selfId, ready, start, configure, pending }: LobbyP
   }
   return (
     <section className="lobby">
-      <div className="lobby-game" data-tone={game.color}>
-        <GameArt game={game} />
-        <span className="eyebrow">
-          {room.status === 'finished' ? 'Another round?' : 'Tonight’s game'}
-        </span>
-        <h2>{game.name}</h2>
-        <p>{game.subtitle}</p>
-      </div>
       <div className="lobby-body">
         <div className="section-heading">
-          <div>
-            <p className="eyebrow">Make yourself comfortable</p>
-            <h2 className="heading-md">
-              {room.status === 'finished'
-                ? 'Keep the good company.'
-                : 'The gang’s getting together.'}
-            </h2>
+          <div className="lobby-summary">
+            <div className="lobby-game" data-tone={game.color}>
+              <GameArt game={game} />
+            </div>
+            <div>
+              <h2 className="heading-md">Players</h2>
+              <p className="small muted">
+                {seated.length} of {room.capacity} seats
+              </p>
+            </div>
           </div>
           {host ? (
             <Button
@@ -77,12 +83,46 @@ export function Lobby({ room, selfId, ready, start, configure, pending }: LobbyP
                 nameLayout="wrap"
                 you={member?.id === selfId}
                 avatar={member?.avatar}
+                bot={member?.isBot}
+                action={
+                  host && member?.isBot && removeBot ? (
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      disabled={pending}
+                      aria-label={`Remove ${member.name} bot`}
+                      onClick={() => removeBot(member.id)}
+                    >
+                      <X size={15} />
+                    </Button>
+                  ) : undefined
+                }
                 ready={member?.ready}
                 connected={member?.connected}
               />
             );
           })}
         </div>
+        {host && addBots && game.botsSupported && seated.length < room.capacity ? (
+          <div className="bot-seat-tools">
+            <Button variant="secondary" disabled={pending} onClick={() => addBots(1)}>
+              <Bot size={16} />
+              Add bot
+            </Button>
+            {room.capacity - seated.length > 1 ? (
+              <Button
+                variant="ghost"
+                disabled={pending}
+                onClick={() => addBots(room.capacity - seated.length)}
+              >
+                Fill seats with bots
+              </Button>
+            ) : null}
+          </div>
+        ) : null}
+        {room.members.some((member) => member.isBot) && game.family === 'party' ? (
+          <p className="small muted">Bots use simulated answers and votes.</p>
+        ) : null}
         <div className="invite-panel" role="group" aria-label="Invite friends">
           <div>
             <span className="eyebrow">Your room code</span>

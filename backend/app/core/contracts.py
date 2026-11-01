@@ -45,6 +45,9 @@ class CardView(BaseModel):
     subtitle: str = ""
     value: str = ""
     suit: str = ""
+    # Printed face metadata, not hidden state or a replacement for orientation.
+    colors: list[str] = Field(default_factory=list)
+    effect: str = ""
 
 
 class PlayerView(BaseModel):
@@ -94,6 +97,7 @@ class GameManifest(BaseModel):
     minutes: str
     icon: str
     color: str
+    bots_supported: bool = False
     play_mode: Literal['competitive', 'cooperative', 'solo'] = 'competitive'
     score_label: str = Field(default='Points', min_length=1, max_length=30)
     score_order: Literal['high', 'low', 'none'] = 'high'

@@ -1,0 +1,118 @@
+{
+  "measurements": [
+    {
+      "label": "home",
+      "mode": "phone",
+      "pageFits": true,
+      "firstGameTop": 441.796875,
+      "botBadges": 0,
+      "botNames": [],
+      "primaryActions": [
+        {
+          "label": "Play with bots",
+          "top": 135.796875,
+          "height": 51
+        },
+        {
+          "label": "Join a room",
+          "top": 198.796875,
+          "height": 51
+        }
+      ]
+    },
+    {
+      "label": "home",
+      "mode": "desktop",
+      "pageFits": true,
+      "firstGameTop": 358,
+      "botBadges": 0,
+      "botNames": [],
+      "primaryActions": [
+        {
+          "label": "Play with bots",
+          "top": 114,
+          "height": 52
+        },
+        {
+          "label": "Join a room",
+          "top": 114,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "label": "bot-lobby",
+      "mode": "phone",
+      "pageFits": true,
+      "botBadges": 1,
+      "botNames": [
+        {
+          "width": 82.578125,
+          "height": 18
+        },
+        {
+          "width": 22.703125,
+          "height": 18
+        }
+      ],
+      "primaryActions": [
+        {
+          "label": "I\u2019m ready",
+          "top": 549.390625,
+          "height": 48
+        },
+        {
+          "label": "Start game",
+          "top": 607.390625,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "label": "bot-lobby",
+      "mode": "desktop",
+      "pageFits": true,
+      "botBadges": 1,
+      "botNames": [
+        {
+          "width": 89.46875,
+          "height": 19.5
+        },
+        {
+          "width": 24.59375,
+          "height": 19.5
+        }
+      ],
+      "primaryActions": [
+        {
+          "label": "I\u2019m ready",
+          "top": 408.484375,
+          "height": 46
+        },
+        {
+          "label": "Start game",
+          "top": 408.484375,
+          "height": 46
+        }
+      ]
+    },
+    {
+      "label": "bot-table",
+      "mode": "phone",
+      "pageFits": true,
+      "botBadges": 1,
+      "botNames": [],
+      "primaryActions": []
+    },
+    {
+      "label": "bot-table",
+      "mode": "desktop",
+      "pageFits": true,
+      "botBadges": 1,
+      "botNames": [],
+      "primaryActions": []
+    }
+  ],
+  "ownedRoomClosed": true,
+  "roomCodesMasked": true
+}

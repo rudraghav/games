@@ -1,17 +1,11 @@
 import { z } from 'zod';
+import { cardSchema as card } from './card-schema';
 import type { components } from './generated/schema';
 
 type Detail = components['schemas']['GameView']['detail'];
 const counts = z.record(z.string(), z.number().int().nonnegative());
 const colors = z.enum(['blue', 'yellow', 'red', 'black', 'white']);
-const card = z.object({
-  id: z.string(),
-  label: z.string(),
-  value: z.string(),
-  color: z.string(),
-  subtitle: z.string(),
-  suit: z.string(),
-});
+
 const trio = z.object({
   revealed: z.array(z.object({ owner: z.string(), slot: z.number().int(), card })),
   failed: z.boolean(),

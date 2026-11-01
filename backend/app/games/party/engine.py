@@ -19,9 +19,9 @@ from app.games.party.prompts import HOT_SEAT, LIKELY, SPILL
 
 Mode = Literal["spill-or-chill", "most-likely", "hot-seat"]
 META: dict[Mode, tuple[str, str, str]] = {
-    "spill-or-chill": ("Spill or Chill", "A good story. Zero pressure.", "coral"),
-    "most-likely": ("Most Likely", "Secret votes. Extremely public personalities.", "ochre"),
-    "hot-seat": ("Hot Seat", "How well do your friends really know you?", "sage"),
+    "spill-or-chill": ("Spill or Chill", "Answer a question or pass", "coral"),
+    "most-likely": ("Most Likely", "Vote privately, then reveal", "ochre"),
+    "hot-seat": ("Hot Seat", "Predict another player’s choice", "sage"),
 }
 
 

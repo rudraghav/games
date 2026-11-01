@@ -37,7 +37,7 @@ def payment(s: State, player: str, card: str) -> dict[str, int] | None:
 class GemMarketEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="gem-market", name="Gem Market", subtitle="Small gems. A brilliant empire.",
+            id="gem-market", name="Gem Market", subtitle="Collect gems and buy developments",
             family="gems", min_players=2, max_players=4, minutes="20–40", icon="gem", color="sage",
             rules=["Collect gems, reserve a card or buy a development each turn.",
                 "Developments discount future purchases; patrons reward a balanced engine.",

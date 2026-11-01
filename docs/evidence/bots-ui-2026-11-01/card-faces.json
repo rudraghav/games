@@ -1,0 +1,4467 @@
+[
+  {
+    "key": "uno:classic:red:0",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "0",
+    "card": {
+      "id": "red:0:0",
+      "label": "Red 0",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "0",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:1",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "1",
+    "card": {
+      "id": "red:1:0",
+      "label": "Red 1",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "1",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:2",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "2",
+    "card": {
+      "id": "red:2:0",
+      "label": "Red 2",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:3",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "3",
+    "card": {
+      "id": "red:3:0",
+      "label": "Red 3",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "3",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:4",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "4",
+    "card": {
+      "id": "red:4:0",
+      "label": "Red 4",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:5",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "5",
+    "card": {
+      "id": "red:5:0",
+      "label": "Red 5",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "5",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:6",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "6",
+    "card": {
+      "id": "red:6:0",
+      "label": "Red 6",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "6",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:7",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "7",
+    "card": {
+      "id": "red:7:0",
+      "label": "Red 7",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "7",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:8",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "8",
+    "card": {
+      "id": "red:8:0",
+      "label": "Red 8",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "8",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:9",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "9",
+    "card": {
+      "id": "red:9:0",
+      "label": "Red 9",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "9",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:skip",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "skip",
+    "card": {
+      "id": "red:skip:0",
+      "label": "Red Skip",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "Skip",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:reverse",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "reverse",
+    "card": {
+      "id": "red:reverse:0",
+      "label": "Red Reverse",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "Reverse",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:red:draw2",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "draw2",
+    "card": {
+      "id": "red:draw2:0",
+      "label": "Red +2",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "+2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:0",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "0",
+    "card": {
+      "id": "yellow:0:0",
+      "label": "Yellow 0",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "0",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:1",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "1",
+    "card": {
+      "id": "yellow:1:0",
+      "label": "Yellow 1",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "1",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:2",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "2",
+    "card": {
+      "id": "yellow:2:0",
+      "label": "Yellow 2",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:3",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "3",
+    "card": {
+      "id": "yellow:3:0",
+      "label": "Yellow 3",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "3",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:4",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "4",
+    "card": {
+      "id": "yellow:4:0",
+      "label": "Yellow 4",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:5",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "5",
+    "card": {
+      "id": "yellow:5:0",
+      "label": "Yellow 5",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "5",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:6",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "6",
+    "card": {
+      "id": "yellow:6:0",
+      "label": "Yellow 6",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "6",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:7",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "7",
+    "card": {
+      "id": "yellow:7:0",
+      "label": "Yellow 7",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "7",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:8",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "8",
+    "card": {
+      "id": "yellow:8:0",
+      "label": "Yellow 8",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "8",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:9",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "9",
+    "card": {
+      "id": "yellow:9:0",
+      "label": "Yellow 9",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "9",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:skip",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "skip",
+    "card": {
+      "id": "yellow:skip:0",
+      "label": "Yellow Skip",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "Skip",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:reverse",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "reverse",
+    "card": {
+      "id": "yellow:reverse:0",
+      "label": "Yellow Reverse",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "Reverse",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:yellow:draw2",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "draw2",
+    "card": {
+      "id": "yellow:draw2:0",
+      "label": "Yellow +2",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "+2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:0",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "0",
+    "card": {
+      "id": "green:0:0",
+      "label": "Green 0",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "0",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:1",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "1",
+    "card": {
+      "id": "green:1:0",
+      "label": "Green 1",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "1",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:2",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "2",
+    "card": {
+      "id": "green:2:0",
+      "label": "Green 2",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:3",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "3",
+    "card": {
+      "id": "green:3:0",
+      "label": "Green 3",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "3",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:4",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "4",
+    "card": {
+      "id": "green:4:0",
+      "label": "Green 4",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:5",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "5",
+    "card": {
+      "id": "green:5:0",
+      "label": "Green 5",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "5",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:6",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "6",
+    "card": {
+      "id": "green:6:0",
+      "label": "Green 6",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "6",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:7",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "7",
+    "card": {
+      "id": "green:7:0",
+      "label": "Green 7",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "7",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:8",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "8",
+    "card": {
+      "id": "green:8:0",
+      "label": "Green 8",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "8",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:9",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "9",
+    "card": {
+      "id": "green:9:0",
+      "label": "Green 9",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "9",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:skip",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "skip",
+    "card": {
+      "id": "green:skip:0",
+      "label": "Green Skip",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "Skip",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:reverse",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "reverse",
+    "card": {
+      "id": "green:reverse:0",
+      "label": "Green Reverse",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "Reverse",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:green:draw2",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "draw2",
+    "card": {
+      "id": "green:draw2:0",
+      "label": "Green +2",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "+2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:0",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "0",
+    "card": {
+      "id": "blue:0:0",
+      "label": "Blue 0",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "0",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:1",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "1",
+    "card": {
+      "id": "blue:1:0",
+      "label": "Blue 1",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "1",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:2",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "2",
+    "card": {
+      "id": "blue:2:0",
+      "label": "Blue 2",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:3",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "3",
+    "card": {
+      "id": "blue:3:0",
+      "label": "Blue 3",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "3",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:4",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "4",
+    "card": {
+      "id": "blue:4:0",
+      "label": "Blue 4",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:5",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "5",
+    "card": {
+      "id": "blue:5:0",
+      "label": "Blue 5",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "5",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:6",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "6",
+    "card": {
+      "id": "blue:6:0",
+      "label": "Blue 6",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "6",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:7",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "7",
+    "card": {
+      "id": "blue:7:0",
+      "label": "Blue 7",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "7",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:8",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "8",
+    "card": {
+      "id": "blue:8:0",
+      "label": "Blue 8",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "8",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:9",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "9",
+    "card": {
+      "id": "blue:9:0",
+      "label": "Blue 9",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "9",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:skip",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "skip",
+    "card": {
+      "id": "blue:skip:0",
+      "label": "Blue Skip",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "Skip",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:reverse",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "reverse",
+    "card": {
+      "id": "blue:reverse:0",
+      "label": "Blue Reverse",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "Reverse",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:blue:draw2",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "draw2",
+    "card": {
+      "id": "blue:draw2:0",
+      "label": "Blue +2",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "+2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:wild:wild",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "wild",
+    "card": {
+      "id": "wild:wild:0",
+      "label": "Wild Wild",
+      "color": "wild",
+      "subtitle": "UNO",
+      "value": "Wild",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:classic:wild:wild4",
+    "game": "uno",
+    "family": "shedding",
+    "kind": "wild4",
+    "card": {
+      "id": "wild:wild4:0",
+      "label": "Wild +4",
+      "color": "wild",
+      "subtitle": "UNO",
+      "value": "+4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d000:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d000",
+      "label": "1M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "1M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d006:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d006",
+      "label": "2M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "2M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d011:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d011",
+      "label": "3M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "3M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d014:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d014",
+      "label": "4M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "4M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d017:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d017",
+      "label": "5M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "5M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d019:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d019",
+      "label": "10M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "10M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d020:brown",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "brown",
+    "card": {
+      "id": "d020",
+      "label": "Brown",
+      "color": "brown",
+      "subtitle": "Brown",
+      "value": "1M",
+      "suit": "property",
+      "colors": [
+        "brown"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d022:sky",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "sky",
+    "card": {
+      "id": "d022",
+      "label": "Sky",
+      "color": "sky",
+      "subtitle": "Sky",
+      "value": "1M",
+      "suit": "property",
+      "colors": [
+        "sky"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d025:pink",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "pink",
+    "card": {
+      "id": "d025",
+      "label": "Pink",
+      "color": "pink",
+      "subtitle": "Pink",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "pink"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d028:orange",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "orange",
+    "card": {
+      "id": "d028",
+      "label": "Orange",
+      "color": "orange",
+      "subtitle": "Orange",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "orange"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d031:red",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "red",
+    "card": {
+      "id": "d031",
+      "label": "Red",
+      "color": "red",
+      "subtitle": "Red",
+      "value": "3M",
+      "suit": "property",
+      "colors": [
+        "red"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d034:yellow",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "yellow",
+    "card": {
+      "id": "d034",
+      "label": "Yellow",
+      "color": "yellow",
+      "subtitle": "Yellow",
+      "value": "3M",
+      "suit": "property",
+      "colors": [
+        "yellow"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d037:green",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "green",
+    "card": {
+      "id": "d037",
+      "label": "Green",
+      "color": "green",
+      "subtitle": "Green",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "green"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d040:blue",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "blue",
+    "card": {
+      "id": "d040",
+      "label": "Blue",
+      "color": "blue",
+      "subtitle": "Blue",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "blue"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d042:rail",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "rail",
+    "card": {
+      "id": "d042",
+      "label": "Rail",
+      "color": "rail",
+      "subtitle": "Rail",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "rail"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d046:utility",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "utility",
+    "card": {
+      "id": "d046",
+      "label": "Utility",
+      "color": "utility",
+      "subtitle": "Utility",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d048:brown",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "brown",
+    "card": {
+      "id": "d048",
+      "label": "Wild property",
+      "color": "brown",
+      "subtitle": "Wild property",
+      "value": "1M",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d048:sky",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "sky",
+    "card": {
+      "id": "d048",
+      "label": "Wild property",
+      "color": "sky",
+      "subtitle": "Wild property",
+      "value": "1M",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d049:pink",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "pink",
+    "card": {
+      "id": "d049",
+      "label": "Wild property",
+      "color": "pink",
+      "subtitle": "Wild property",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "pink",
+        "orange"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d049:orange",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "orange",
+    "card": {
+      "id": "d049",
+      "label": "Wild property",
+      "color": "orange",
+      "subtitle": "Wild property",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "pink",
+        "orange"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d051:red",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "red",
+    "card": {
+      "id": "d051",
+      "label": "Wild property",
+      "color": "red",
+      "subtitle": "Wild property",
+      "value": "3M",
+      "suit": "property",
+      "colors": [
+        "red",
+        "yellow"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d051:yellow",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "yellow",
+    "card": {
+      "id": "d051",
+      "label": "Wild property",
+      "color": "yellow",
+      "subtitle": "Wild property",
+      "value": "3M",
+      "suit": "property",
+      "colors": [
+        "red",
+        "yellow"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d053:green",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "green",
+    "card": {
+      "id": "d053",
+      "label": "Wild property",
+      "color": "green",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "green",
+        "blue"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d053:blue",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "blue",
+    "card": {
+      "id": "d053",
+      "label": "Wild property",
+      "color": "blue",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "green",
+        "blue"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d054:sky",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "sky",
+    "card": {
+      "id": "d054",
+      "label": "Wild property",
+      "color": "sky",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "sky",
+        "rail"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d054:rail",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "rail",
+    "card": {
+      "id": "d054",
+      "label": "Wild property",
+      "color": "rail",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "sky",
+        "rail"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d055:green",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "green",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "green",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "green",
+        "rail"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d055:rail",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "rail",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "rail",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "green",
+        "rail"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d056:rail",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "rail",
+    "card": {
+      "id": "d056",
+      "label": "Wild property",
+      "color": "rail",
+      "subtitle": "Wild property",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d056:utility",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "utility",
+    "card": {
+      "id": "d056",
+      "label": "Wild property",
+      "color": "utility",
+      "subtitle": "Wild property",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d057:brown",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "brown",
+    "card": {
+      "id": "d057",
+      "label": "Wild property",
+      "color": "brown",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d057:sky",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "sky",
+    "card": {
+      "id": "d057",
+      "label": "Wild property",
+      "color": "sky",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d057:pink",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "pink",
+    "card": {
+      "id": "d057",
+      "label": "Wild property",
+      "color": "pink",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d057:orange",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "orange",
+    "card": {
+      "id": "d057",
+      "label": "Wild property",
+      "color": "orange",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d057:red",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "red",
+    "card": {
+      "id": "d057",
+      "label": "Wild property",
+      "color": "red",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d057:yellow",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "yellow",
+    "card": {
+      "id": "d057",
+      "label": "Wild property",
+      "color": "yellow",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d057:green",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "green",
+    "card": {
+      "id": "d057",
+      "label": "Wild property",
+      "color": "green",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d057:blue",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "blue",
+    "card": {
+      "id": "d057",
+      "label": "Wild property",
+      "color": "blue",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d057:rail",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "rail",
+    "card": {
+      "id": "d057",
+      "label": "Wild property",
+      "color": "rail",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d057:utility",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "property",
+    "orientation": "utility",
+    "card": {
+      "id": "d057",
+      "label": "Wild property",
+      "color": "utility",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:classic:d059:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d059",
+      "label": "Rent",
+      "color": "brown",
+      "subtitle": "Rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "brown",
+        "sky"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:classic:d061:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d061",
+      "label": "Rent",
+      "color": "pink",
+      "subtitle": "Rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "pink",
+        "orange"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:classic:d063:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d063",
+      "label": "Rent",
+      "color": "red",
+      "subtitle": "Rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "red",
+        "yellow"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:classic:d065:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d065",
+      "label": "Rent",
+      "color": "green",
+      "subtitle": "Rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "green",
+        "blue"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:classic:d067:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d067",
+      "label": "Rent",
+      "color": "rail",
+      "subtitle": "Rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "rail",
+        "utility"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:classic:d069:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d069",
+      "label": "Rent",
+      "color": "brown",
+      "subtitle": "Rent",
+      "value": "3M",
+      "suit": "action",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:classic:d072:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d072",
+      "label": "Pass Go",
+      "color": "neutral",
+      "subtitle": "Pass Go",
+      "value": "1M",
+      "suit": "action",
+      "colors": [],
+      "effect": "pass_go"
+    }
+  },
+  {
+    "key": "deal:classic:d082:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d082",
+      "label": "Just say no",
+      "color": "neutral",
+      "subtitle": "Just say no",
+      "value": "4M",
+      "suit": "action",
+      "colors": [],
+      "effect": "no"
+    }
+  },
+  {
+    "key": "deal:classic:d085:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d085",
+      "label": "Debt collector",
+      "color": "neutral",
+      "subtitle": "Debt collector",
+      "value": "3M",
+      "suit": "action",
+      "colors": [],
+      "effect": "debt"
+    }
+  },
+  {
+    "key": "deal:classic:d088:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d088",
+      "label": "It's my birthday",
+      "color": "neutral",
+      "subtitle": "It's my birthday",
+      "value": "2M",
+      "suit": "action",
+      "colors": [],
+      "effect": "birthday"
+    }
+  },
+  {
+    "key": "deal:classic:d091:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d091",
+      "label": "Sly deal",
+      "color": "neutral",
+      "subtitle": "Sly deal",
+      "value": "3M",
+      "suit": "action",
+      "colors": [],
+      "effect": "sly"
+    }
+  },
+  {
+    "key": "deal:classic:d094:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d094",
+      "label": "Forced deal",
+      "color": "neutral",
+      "subtitle": "Forced deal",
+      "value": "3M",
+      "suit": "action",
+      "colors": [],
+      "effect": "forced"
+    }
+  },
+  {
+    "key": "deal:classic:d097:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d097",
+      "label": "Deal breaker",
+      "color": "neutral",
+      "subtitle": "Deal breaker",
+      "value": "5M",
+      "suit": "action",
+      "colors": [],
+      "effect": "breaker"
+    }
+  },
+  {
+    "key": "deal:classic:d099:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d099",
+      "label": "House",
+      "color": "neutral",
+      "subtitle": "House",
+      "value": "3M",
+      "suit": "action",
+      "colors": [],
+      "effect": "house"
+    }
+  },
+  {
+    "key": "deal:classic:d102:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d102",
+      "label": "Hotel",
+      "color": "neutral",
+      "subtitle": "Hotel",
+      "value": "4M",
+      "suit": "action",
+      "colors": [],
+      "effect": "hotel"
+    }
+  },
+  {
+    "key": "deal:classic:d104:hand",
+    "game": "monopoly-deal",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d104",
+      "label": "Double the rent",
+      "color": "neutral",
+      "subtitle": "Double the rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [],
+      "effect": "double"
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:0",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "0",
+    "card": {
+      "id": "red:0:0",
+      "label": "Red 0",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "0",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:1",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "1",
+    "card": {
+      "id": "red:1:0",
+      "label": "Red 1",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "1",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:2",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "2",
+    "card": {
+      "id": "red:2:0",
+      "label": "Red 2",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:3",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "3",
+    "card": {
+      "id": "red:3:0",
+      "label": "Red 3",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "3",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:4",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "4",
+    "card": {
+      "id": "red:4:0",
+      "label": "Red 4",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:5",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "5",
+    "card": {
+      "id": "red:5:0",
+      "label": "Red 5",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "5",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:6",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "6",
+    "card": {
+      "id": "red:6:0",
+      "label": "Red 6",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "6",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:7",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "7",
+    "card": {
+      "id": "red:7:0",
+      "label": "Red 7",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "7",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:8",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "8",
+    "card": {
+      "id": "red:8:0",
+      "label": "Red 8",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "8",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:9",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "9",
+    "card": {
+      "id": "red:9:0",
+      "label": "Red 9",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "9",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:skip",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "skip",
+    "card": {
+      "id": "red:skip:0",
+      "label": "Red Skip",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "Skip",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:reverse",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "reverse",
+    "card": {
+      "id": "red:reverse:0",
+      "label": "Red Reverse",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "Reverse",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:draw2",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "draw2",
+    "card": {
+      "id": "red:draw2:0",
+      "label": "Red +2",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "+2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:draw4",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "draw4",
+    "card": {
+      "id": "red:draw4:0",
+      "label": "Red +4",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "+4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:discard_all",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "discard_all",
+    "card": {
+      "id": "red:discard_all:0",
+      "label": "Red Discard all",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "Discard all",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:red:skip_all",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "skip_all",
+    "card": {
+      "id": "red:skip_all:0",
+      "label": "Red Skip everyone",
+      "color": "red",
+      "subtitle": "UNO",
+      "value": "Skip everyone",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:0",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "0",
+    "card": {
+      "id": "yellow:0:0",
+      "label": "Yellow 0",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "0",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:1",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "1",
+    "card": {
+      "id": "yellow:1:0",
+      "label": "Yellow 1",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "1",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:2",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "2",
+    "card": {
+      "id": "yellow:2:0",
+      "label": "Yellow 2",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:3",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "3",
+    "card": {
+      "id": "yellow:3:0",
+      "label": "Yellow 3",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "3",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:4",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "4",
+    "card": {
+      "id": "yellow:4:0",
+      "label": "Yellow 4",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:5",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "5",
+    "card": {
+      "id": "yellow:5:0",
+      "label": "Yellow 5",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "5",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:6",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "6",
+    "card": {
+      "id": "yellow:6:0",
+      "label": "Yellow 6",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "6",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:7",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "7",
+    "card": {
+      "id": "yellow:7:0",
+      "label": "Yellow 7",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "7",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:8",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "8",
+    "card": {
+      "id": "yellow:8:0",
+      "label": "Yellow 8",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "8",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:9",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "9",
+    "card": {
+      "id": "yellow:9:0",
+      "label": "Yellow 9",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "9",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:skip",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "skip",
+    "card": {
+      "id": "yellow:skip:0",
+      "label": "Yellow Skip",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "Skip",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:reverse",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "reverse",
+    "card": {
+      "id": "yellow:reverse:0",
+      "label": "Yellow Reverse",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "Reverse",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:draw2",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "draw2",
+    "card": {
+      "id": "yellow:draw2:0",
+      "label": "Yellow +2",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "+2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:draw4",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "draw4",
+    "card": {
+      "id": "yellow:draw4:0",
+      "label": "Yellow +4",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "+4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:discard_all",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "discard_all",
+    "card": {
+      "id": "yellow:discard_all:0",
+      "label": "Yellow Discard all",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "Discard all",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:yellow:skip_all",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "skip_all",
+    "card": {
+      "id": "yellow:skip_all:0",
+      "label": "Yellow Skip everyone",
+      "color": "yellow",
+      "subtitle": "UNO",
+      "value": "Skip everyone",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:0",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "0",
+    "card": {
+      "id": "green:0:0",
+      "label": "Green 0",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "0",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:1",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "1",
+    "card": {
+      "id": "green:1:0",
+      "label": "Green 1",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "1",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:2",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "2",
+    "card": {
+      "id": "green:2:0",
+      "label": "Green 2",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:3",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "3",
+    "card": {
+      "id": "green:3:0",
+      "label": "Green 3",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "3",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:4",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "4",
+    "card": {
+      "id": "green:4:0",
+      "label": "Green 4",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:5",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "5",
+    "card": {
+      "id": "green:5:0",
+      "label": "Green 5",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "5",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:6",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "6",
+    "card": {
+      "id": "green:6:0",
+      "label": "Green 6",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "6",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:7",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "7",
+    "card": {
+      "id": "green:7:0",
+      "label": "Green 7",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "7",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:8",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "8",
+    "card": {
+      "id": "green:8:0",
+      "label": "Green 8",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "8",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:9",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "9",
+    "card": {
+      "id": "green:9:0",
+      "label": "Green 9",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "9",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:skip",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "skip",
+    "card": {
+      "id": "green:skip:0",
+      "label": "Green Skip",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "Skip",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:reverse",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "reverse",
+    "card": {
+      "id": "green:reverse:0",
+      "label": "Green Reverse",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "Reverse",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:draw2",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "draw2",
+    "card": {
+      "id": "green:draw2:0",
+      "label": "Green +2",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "+2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:draw4",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "draw4",
+    "card": {
+      "id": "green:draw4:0",
+      "label": "Green +4",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "+4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:discard_all",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "discard_all",
+    "card": {
+      "id": "green:discard_all:0",
+      "label": "Green Discard all",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "Discard all",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:green:skip_all",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "skip_all",
+    "card": {
+      "id": "green:skip_all:0",
+      "label": "Green Skip everyone",
+      "color": "green",
+      "subtitle": "UNO",
+      "value": "Skip everyone",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:0",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "0",
+    "card": {
+      "id": "blue:0:0",
+      "label": "Blue 0",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "0",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:1",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "1",
+    "card": {
+      "id": "blue:1:0",
+      "label": "Blue 1",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "1",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:2",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "2",
+    "card": {
+      "id": "blue:2:0",
+      "label": "Blue 2",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:3",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "3",
+    "card": {
+      "id": "blue:3:0",
+      "label": "Blue 3",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "3",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:4",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "4",
+    "card": {
+      "id": "blue:4:0",
+      "label": "Blue 4",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:5",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "5",
+    "card": {
+      "id": "blue:5:0",
+      "label": "Blue 5",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "5",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:6",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "6",
+    "card": {
+      "id": "blue:6:0",
+      "label": "Blue 6",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "6",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:7",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "7",
+    "card": {
+      "id": "blue:7:0",
+      "label": "Blue 7",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "7",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:8",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "8",
+    "card": {
+      "id": "blue:8:0",
+      "label": "Blue 8",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "8",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:9",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "9",
+    "card": {
+      "id": "blue:9:0",
+      "label": "Blue 9",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "9",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:skip",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "skip",
+    "card": {
+      "id": "blue:skip:0",
+      "label": "Blue Skip",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "Skip",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:reverse",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "reverse",
+    "card": {
+      "id": "blue:reverse:0",
+      "label": "Blue Reverse",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "Reverse",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:draw2",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "draw2",
+    "card": {
+      "id": "blue:draw2:0",
+      "label": "Blue +2",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "+2",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:draw4",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "draw4",
+    "card": {
+      "id": "blue:draw4:0",
+      "label": "Blue +4",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "+4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:discard_all",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "discard_all",
+    "card": {
+      "id": "blue:discard_all:0",
+      "label": "Blue Discard all",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "Discard all",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:blue:skip_all",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "skip_all",
+    "card": {
+      "id": "blue:skip_all:0",
+      "label": "Blue Skip everyone",
+      "color": "blue",
+      "subtitle": "UNO",
+      "value": "Skip everyone",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:wild:reverse4",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "reverse4",
+    "card": {
+      "id": "wild:reverse4:0",
+      "label": "Wild Reverse +4",
+      "color": "wild",
+      "subtitle": "UNO",
+      "value": "Reverse +4",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:wild:wild6",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "wild6",
+    "card": {
+      "id": "wild:wild6:0",
+      "label": "Wild +6",
+      "color": "wild",
+      "subtitle": "UNO",
+      "value": "+6",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:wild:wild10",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "wild10",
+    "card": {
+      "id": "wild:wild10:0",
+      "label": "Wild +10",
+      "color": "wild",
+      "subtitle": "UNO",
+      "value": "+10",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "uno:no-mercy:wild:roulette",
+    "game": "uno-no-mercy",
+    "family": "shedding",
+    "kind": "roulette",
+    "card": {
+      "id": "wild:roulette:0",
+      "label": "Wild Colour roulette",
+      "color": "wild",
+      "subtitle": "UNO",
+      "value": "Colour roulette",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d000:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d000",
+      "label": "1M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "1M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d005:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d005",
+      "label": "2M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "2M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d009:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d009",
+      "label": "3M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "3M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d012:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d012",
+      "label": "4M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "4M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d014:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d014",
+      "label": "5M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "5M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d016:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d016",
+      "label": "10M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "10M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d017:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "money",
+    "orientation": null,
+    "card": {
+      "id": "d017",
+      "label": "15M",
+      "color": "neutral",
+      "subtitle": "MONEY",
+      "value": "15M",
+      "suit": "",
+      "colors": [],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d018:brown",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "brown",
+    "card": {
+      "id": "d018",
+      "label": "Brown",
+      "color": "brown",
+      "subtitle": "Brown",
+      "value": "1M",
+      "suit": "property",
+      "colors": [
+        "brown"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d020:sky",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "sky",
+    "card": {
+      "id": "d020",
+      "label": "Sky",
+      "color": "sky",
+      "subtitle": "Sky",
+      "value": "1M",
+      "suit": "property",
+      "colors": [
+        "sky"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d023:pink",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "pink",
+    "card": {
+      "id": "d023",
+      "label": "Pink",
+      "color": "pink",
+      "subtitle": "Pink",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "pink"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d026:orange",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "orange",
+    "card": {
+      "id": "d026",
+      "label": "Orange",
+      "color": "orange",
+      "subtitle": "Orange",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "orange"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d029:red",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "red",
+    "card": {
+      "id": "d029",
+      "label": "Red",
+      "color": "red",
+      "subtitle": "Red",
+      "value": "3M",
+      "suit": "property",
+      "colors": [
+        "red"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d032:yellow",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "yellow",
+    "card": {
+      "id": "d032",
+      "label": "Yellow",
+      "color": "yellow",
+      "subtitle": "Yellow",
+      "value": "3M",
+      "suit": "property",
+      "colors": [
+        "yellow"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d035:green",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "green",
+    "card": {
+      "id": "d035",
+      "label": "Green",
+      "color": "green",
+      "subtitle": "Green",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "green"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d038:blue",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "blue",
+    "card": {
+      "id": "d038",
+      "label": "Blue",
+      "color": "blue",
+      "subtitle": "Blue",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "blue"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d040:rail",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "rail",
+    "card": {
+      "id": "d040",
+      "label": "Rail",
+      "color": "rail",
+      "subtitle": "Rail",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "rail"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d044:utility",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "utility",
+    "card": {
+      "id": "d044",
+      "label": "Utility",
+      "color": "utility",
+      "subtitle": "Utility",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d046:brown",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "brown",
+    "card": {
+      "id": "d046",
+      "label": "Wild property",
+      "color": "brown",
+      "subtitle": "Wild property",
+      "value": "1M",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d046:sky",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "sky",
+    "card": {
+      "id": "d046",
+      "label": "Wild property",
+      "color": "sky",
+      "subtitle": "Wild property",
+      "value": "1M",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d047:pink",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "pink",
+    "card": {
+      "id": "d047",
+      "label": "Wild property",
+      "color": "pink",
+      "subtitle": "Wild property",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "pink",
+        "orange"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d047:orange",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "orange",
+    "card": {
+      "id": "d047",
+      "label": "Wild property",
+      "color": "orange",
+      "subtitle": "Wild property",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "pink",
+        "orange"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d049:red",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "red",
+    "card": {
+      "id": "d049",
+      "label": "Wild property",
+      "color": "red",
+      "subtitle": "Wild property",
+      "value": "3M",
+      "suit": "property",
+      "colors": [
+        "red",
+        "yellow"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d049:yellow",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "yellow",
+    "card": {
+      "id": "d049",
+      "label": "Wild property",
+      "color": "yellow",
+      "subtitle": "Wild property",
+      "value": "3M",
+      "suit": "property",
+      "colors": [
+        "red",
+        "yellow"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d051:green",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "green",
+    "card": {
+      "id": "d051",
+      "label": "Wild property",
+      "color": "green",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "green",
+        "blue"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d051:blue",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "blue",
+    "card": {
+      "id": "d051",
+      "label": "Wild property",
+      "color": "blue",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "green",
+        "blue"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d052:sky",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "sky",
+    "card": {
+      "id": "d052",
+      "label": "Wild property",
+      "color": "sky",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "sky",
+        "rail"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d052:rail",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "rail",
+    "card": {
+      "id": "d052",
+      "label": "Wild property",
+      "color": "rail",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "sky",
+        "rail"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d053:green",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "green",
+    "card": {
+      "id": "d053",
+      "label": "Wild property",
+      "color": "green",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "green",
+        "rail"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d053:rail",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "rail",
+    "card": {
+      "id": "d053",
+      "label": "Wild property",
+      "color": "rail",
+      "subtitle": "Wild property",
+      "value": "4M",
+      "suit": "property",
+      "colors": [
+        "green",
+        "rail"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d054:rail",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "rail",
+    "card": {
+      "id": "d054",
+      "label": "Wild property",
+      "color": "rail",
+      "subtitle": "Wild property",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d054:utility",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "utility",
+    "card": {
+      "id": "d054",
+      "label": "Wild property",
+      "color": "utility",
+      "subtitle": "Wild property",
+      "value": "2M",
+      "suit": "property",
+      "colors": [
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d055:brown",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "brown",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "brown",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d055:sky",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "sky",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "sky",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d055:pink",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "pink",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "pink",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d055:orange",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "orange",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "orange",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d055:red",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "red",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "red",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d055:yellow",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "yellow",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "yellow",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d055:green",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "green",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "green",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d055:blue",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "blue",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "blue",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d055:rail",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "rail",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "rail",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d055:utility",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "property",
+    "orientation": "utility",
+    "card": {
+      "id": "d055",
+      "label": "Wild property",
+      "color": "utility",
+      "subtitle": "Wild property",
+      "value": "\u2727",
+      "suit": "property",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": ""
+    }
+  },
+  {
+    "key": "deal:no-mercy:d057:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d057",
+      "label": "Rent",
+      "color": "brown",
+      "subtitle": "Rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "brown",
+        "sky"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d058:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d058",
+      "label": "Double rent",
+      "color": "brown",
+      "subtitle": "Double rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "brown",
+        "sky"
+      ],
+      "effect": "rent_double"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d059:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d059",
+      "label": "Rent",
+      "color": "pink",
+      "subtitle": "Rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "pink",
+        "orange"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d060:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d060",
+      "label": "Double rent",
+      "color": "pink",
+      "subtitle": "Double rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "pink",
+        "orange"
+      ],
+      "effect": "rent_double"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d061:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d061",
+      "label": "Rent",
+      "color": "red",
+      "subtitle": "Rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "red",
+        "yellow"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d062:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d062",
+      "label": "Double rent",
+      "color": "red",
+      "subtitle": "Double rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "red",
+        "yellow"
+      ],
+      "effect": "rent_double"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d063:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d063",
+      "label": "Rent",
+      "color": "green",
+      "subtitle": "Rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "green",
+        "blue"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d064:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d064",
+      "label": "Double rent",
+      "color": "green",
+      "subtitle": "Double rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "green",
+        "blue"
+      ],
+      "effect": "rent_double"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d065:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d065",
+      "label": "Rent",
+      "color": "rail",
+      "subtitle": "Rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "rail",
+        "utility"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d066:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d066",
+      "label": "Double rent",
+      "color": "rail",
+      "subtitle": "Double rent",
+      "value": "1M",
+      "suit": "action",
+      "colors": [
+        "rail",
+        "utility"
+      ],
+      "effect": "rent_double"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d067:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d067",
+      "label": "Rent",
+      "color": "brown",
+      "subtitle": "Rent",
+      "value": "3M",
+      "suit": "action",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": "rent"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d070:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d070",
+      "label": "Double rent",
+      "color": "brown",
+      "subtitle": "Double rent",
+      "value": "3M",
+      "suit": "action",
+      "colors": [
+        "brown",
+        "sky",
+        "pink",
+        "orange",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "rail",
+        "utility"
+      ],
+      "effect": "rent_double"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d073:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d073",
+      "label": "Deal breaker",
+      "color": "neutral",
+      "subtitle": "Deal breaker",
+      "value": "3M",
+      "suit": "action",
+      "colors": [],
+      "effect": "breaker"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d076:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d076",
+      "label": "Forced debt",
+      "color": "neutral",
+      "subtitle": "Forced debt",
+      "value": "2M",
+      "suit": "action",
+      "colors": [],
+      "effect": "forced_debt"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d079:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d079",
+      "label": "Go again",
+      "color": "neutral",
+      "subtitle": "Go again",
+      "value": "1M",
+      "suit": "action",
+      "colors": [],
+      "effect": "go_again"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d082:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d082",
+      "label": "Heist",
+      "color": "neutral",
+      "subtitle": "Heist",
+      "value": "4M",
+      "suit": "action",
+      "colors": [],
+      "effect": "heist"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d085:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d085",
+      "label": "Just say no",
+      "color": "neutral",
+      "subtitle": "Just say no",
+      "value": "4M",
+      "suit": "action",
+      "colors": [],
+      "effect": "no"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d090:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d090",
+      "label": "Market crash",
+      "color": "neutral",
+      "subtitle": "Market crash",
+      "value": "4M",
+      "suit": "action",
+      "colors": [],
+      "effect": "crash"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d093:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d093",
+      "label": "Pass Go, Go, Go!",
+      "color": "neutral",
+      "subtitle": "Pass Go, Go, Go!",
+      "value": "1M",
+      "suit": "action",
+      "colors": [],
+      "effect": "fill"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d097:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d097",
+      "label": "Repossession",
+      "color": "neutral",
+      "subtitle": "Repossession",
+      "value": "5M",
+      "suit": "action",
+      "colors": [],
+      "effect": "repossession"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d099:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d099",
+      "label": "Shack",
+      "color": "neutral",
+      "subtitle": "Shack",
+      "value": "3M",
+      "suit": "action",
+      "colors": [],
+      "effect": "shack"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d102:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d102",
+      "label": "Super sly deal",
+      "color": "neutral",
+      "subtitle": "Super sly deal",
+      "value": "3M",
+      "suit": "action",
+      "colors": [],
+      "effect": "super_sly"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d105:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d105",
+      "label": "Tax collector",
+      "color": "neutral",
+      "subtitle": "Tax collector",
+      "value": "5M",
+      "suit": "action",
+      "colors": [],
+      "effect": "tax"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d107:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d107",
+      "label": "Tough luck",
+      "color": "neutral",
+      "subtitle": "Tough luck",
+      "value": "5M",
+      "suit": "action",
+      "colors": [],
+      "effect": "tough"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d110:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d110",
+      "label": "Unfair trade",
+      "color": "neutral",
+      "subtitle": "Unfair trade",
+      "value": "4M",
+      "suit": "action",
+      "colors": [],
+      "effect": "unfair"
+    }
+  },
+  {
+    "key": "deal:no-mercy:d112:hand",
+    "game": "monopoly-deal-no-mercy",
+    "family": "property",
+    "kind": "action",
+    "orientation": null,
+    "card": {
+      "id": "d112",
+      "label": "Yoink!",
+      "color": "neutral",
+      "subtitle": "Yoink!",
+      "value": "2M",
+      "suit": "action",
+      "colors": [],
+      "effect": "yoink"
+    }
+  }
+]

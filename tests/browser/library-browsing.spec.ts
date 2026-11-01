@@ -4,7 +4,7 @@ import catalogue from '../../packages/api-client/src/generated/catalog.json' wit
 test('browsing filters intersect, reset deliberately and keep keyboard focus', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/#games');
-  const library = page.getByRole('region', { name: 'What are we playing?' });
+  const library = page.getByRole('region', { name: 'Games' });
   const search = library.getByRole('searchbox', { name: 'Search games' });
   const tiles = library.getByRole('button', { name: /^Create .+ room$/ });
 
@@ -13,10 +13,10 @@ test('browsing filters intersect, reset deliberately and keep keyboard focus', a
   await search.fill('SEA SALT & PAPER');
   await expect(tiles).toHaveCount(1);
   await expect(tiles).toHaveAccessibleName('Create Sea Salt & Paper room');
-  await expect(library.getByRole('status')).toHaveText('1 game for your table');
+  await expect(library.getByRole('status')).toHaveText('1 game');
 
   await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('5');
-  await expect(library.getByRole('heading', { name: 'No games at this table yet.' })).toBeVisible();
+  await expect(library.getByRole('heading', { name: 'No games found' })).toBeVisible();
   await library.getByRole('button', { name: 'Reset filters', exact: true }).click();
   await expect(search).toBeFocused();
   await expect(search).toHaveValue('');
@@ -75,9 +75,9 @@ test('mobile browsing keeps primary actions in full rows and filters within the 
     }
     await page.setViewportSize({ width: 390, height: 844 });
   }
-  const library = page.getByRole('region', { name: 'What are we playing?' });
+  const library = page.getByRole('region', { name: 'Games' });
   await library.scrollIntoViewIfNeeded();
-  const solo = library.getByRole('button', { name: 'Solo', exact: true });
+  const solo = library.getByRole('button', { name: 'Solo + bots', exact: true });
   await solo.focus();
   await page.keyboard.press('Enter');
   await expect(solo).toBeInViewport();
@@ -88,7 +88,7 @@ test('mobile browsing keeps primary actions in full rows and filters within the 
     'true',
   );
   await expect(library.getByRole('button', { name: 'All games', exact: true })).toBeInViewport();
-  await expect(library.getByRole('status')).toHaveText(`${catalogue.length} games for your table`);
+  await expect(library.getByRole('status')).toHaveText(`${catalogue.length} games`);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: testInfo.outputPath('browsing.png') });
 });
@@ -136,7 +136,7 @@ test('room setup groups profile and game fields with full phone action rows', as
   for (const mode of ['create', 'join'] as const) {
     await page
       .getByRole('button', {
-        name: mode === 'create' ? 'Start a game night' : 'Join a room',
+        name: mode === 'create' ? 'Create room' : 'Join a room',
         exact: true,
       })
       .click();

@@ -8,6 +8,7 @@ relevant architecture/UI/rules document before meaningful changes.
 - Share UI through `@games/ui`, use semantic tokens and typed variants, and keep routes thin. Check existing primitives before adding one.
 - Backend wire types are generated from OpenAPI, never handwritten in the frontend. Map/validate responses at the API-client boundary.
 - Game extensions use registries. Engines may depend on core/family helpers, never another game module. UI features must not import one another.
+- Multiplayer additions include a bounded non-LLM bot policy using only that bot's authorized projection and durable observations; register capability and verify a one-human complete match. Never pass private engine state into bot policies.
 - The server owns game outcomes. Never expose unrevealed cards, deck order, or randomness to a client, log, or public realtime payload.
 - Schema changes use reviewed Alembic migrations. Games databases, keys and deployments are separate from other products.
 - Run `python3 scripts/verify.py --list`, then affected groups. A build alone does not establish product correctness. Do not disable checks to pass.

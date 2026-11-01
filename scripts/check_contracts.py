@@ -19,4 +19,6 @@ with TemporaryDirectory(prefix="games-contract-") as temp:
     subprocess.run(["pnpm", "exec", "openapi-typescript", str(target / "openapi.json"), "-o", str(output)], cwd=root, check=True)
     if output.read_text() != (target / "src/generated/schema.d.ts").read_text():
         raise SystemExit("Wire-type drift. Run pnpm gen:api.")
-print("OpenAPI, catalogue and generated wire types match the backend.")
+subprocess.run([sys.executable, str(root / "scripts/export_card_faces.py"), "--check"],
+               cwd=root, check=True)
+print("OpenAPI, catalogue, generated wire types and public card faces match the backend.")

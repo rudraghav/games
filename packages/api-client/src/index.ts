@@ -8,6 +8,7 @@ export { trioDetails, flipSevenDetails, azulDetails } from './modern-details';
 export { partyDetails } from './party-details';
 export { gangDetails, sixNimmtDetails } from './coop-number-details';
 export { paperDetails, boopDetails } from './sea-cats-details';
+export { blackjackDetails } from './casino-details';
 
 export class ApiError extends Error {
   constructor(
@@ -64,6 +65,7 @@ export function createApi(accessToken?: () => Promise<string | null>) {
       roomName: string;
       capacity: number;
       settings: Record<string, boolean>;
+      bots?: number;
     }) {
       return mapRoom(
         unwrap(
@@ -75,6 +77,7 @@ export function createApi(accessToken?: () => Promise<string | null>) {
               room_name: input.roomName,
               capacity: input.capacity,
               settings: input.settings,
+              bots: input.bots ?? 0,
             },
           }),
         ),
@@ -187,6 +190,23 @@ export function createApi(accessToken?: () => Promise<string | null>) {
         unwrap(
           await client.DELETE('/v1/rooms/{room_id}/members/{user_id}', {
             params: { path: { room_id: id, user_id: userId } },
+          }),
+        ),
+      );
+    },
+    async addBots(id: string, count = 1) {
+      return mapRoom(
+        unwrap(
+          await client.POST('/v1/rooms/{room_id}/bots', { params: params(id), body: { count } }),
+        ),
+      );
+    },
+    async driveBots(id: string, matchId: string, expectedVersion: number) {
+      return mapRoom(
+        unwrap(
+          await client.POST('/v1/rooms/{room_id}/bots/drive', {
+            params: params(id),
+            body: { match_id: matchId, expected_version: expectedVersion },
           }),
         ),
       );

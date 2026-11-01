@@ -47,6 +47,7 @@ class Member(Base):
     ready: Mapped[bool] = mapped_column(Boolean, default=False)
     seated: Mapped[bool] = mapped_column(Boolean, default=True)
     active: Mapped[bool] = mapped_column(Boolean, default=True)
+    is_bot: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")
     joined_at: Mapped[float] = mapped_column(Float, default=time.time)
     seen_at: Mapped[float] = mapped_column(Float, default=time.time)
 
@@ -63,6 +64,8 @@ class Match(Base):
     state: Mapped[dict[str, Any]] = mapped_column(JSON)
     participants: Mapped[list[str]] = mapped_column(JSON)
     result: Mapped[dict[str, Any] | None] = mapped_column(JSON, nullable=True)
+    bot_memory: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, server_default="{}")
+    bot_due_at: Mapped[float] = mapped_column(Float, default=0, server_default="0")
     created_at: Mapped[float] = mapped_column(Float, default=time.time)
 
 

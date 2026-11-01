@@ -1,6 +1,40 @@
 {
-  "name": "@games/web", "version": "0.1.0", "private": true,
-  "scripts": {"dev": "next dev --hostname 127.0.0.1 --port 3217", "build": "next build", "start": "next start --port 3217", "type-check": "tsc --noEmit", "lint": "eslint src", "storybook": "storybook dev -p 6105", "build-storybook": "storybook build"},
-  "dependencies": {"@games/ui": "workspace:*", "@games/api-client": "workspace:*", "next": "catalog:", "react": "catalog:", "react-dom": "catalog:", "@supabase/supabase-js": "catalog:", "@supabase/ssr": "catalog:", "@tanstack/react-query": "catalog:", "lucide-react": "catalog:", "motion": "catalog:", "zod": "catalog:"},
-  "devDependencies": {"typescript": "catalog:", "@types/react": "catalog:", "@types/react-dom": "catalog:", "@types/node": "catalog:", "tailwindcss": "catalog:", "@tailwindcss/postcss": "catalog:", "eslint": "catalog:", "eslint-config-next": "catalog:", "storybook": "catalog:", "@storybook/nextjs-vite": "catalog:"}
+  "name": "@games/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 3217",
+    "build": "next build",
+    "start": "next start --port 3217",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src",
+    "storybook": "storybook dev -p 6105",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@games/api-client": "workspace:*",
+    "@games/ui": "workspace:*",
+    "@supabase/ssr": "catalog:",
+    "@supabase/supabase-js": "catalog:",
+    "@tanstack/react-query": "catalog:",
+    "fuse.js": "7.1.0",
+    "lucide-react": "catalog:",
+    "motion": "catalog:",
+    "next": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@storybook/nextjs-vite": "catalog:",
+    "@tailwindcss/postcss": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-next": "catalog:",
+    "storybook": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
+  }
 }

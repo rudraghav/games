@@ -1,23 +1,28 @@
 import { z } from 'zod';
 import type { components } from './generated/schema';
+import { cardSchema } from './card-schema';
 
 type Wire = components['schemas'];
+type WireCard = Wire['CardView'];
+type CompatibleCard = Omit<WireCard, 'colors' | 'effect'> &
+  Partial<Pick<WireCard, 'colors' | 'effect'>>;
+const memberId = z.union([z.string().uuid(), z.string().regex(/^bot:[a-f0-9]{32}$/)]);
+const memberGate = z
+  .object({ id: memberId, is_bot: z.boolean().default(false) })
+  .refine(
+    (member) => member.id.startsWith('bot:') === member.is_bot,
+    'Bot identifiers must match their declared seat kind.',
+  );
 const roomGate = z.object({
   id: z.string().uuid(),
   status: z.enum(['lobby', 'playing', 'finished', 'closed']),
   revision: z.number().int(),
-  members: z.array(z.object({ id: z.string().uuid() })),
+  owner_id: z.string().uuid(),
+  members: z.array(memberGate),
 });
 
-export function mapCard(card: Wire['CardView']) {
-  return {
-    id: card.id,
-    label: card.label,
-    value: card.value,
-    color: card.color,
-    subtitle: card.subtitle,
-    suit: card.suit,
-  };
+export function mapCard(card: CompatibleCard) {
+  return cardSchema.parse(card);
 }
 
 function mapGame(game: Wire['GameView']) {
@@ -76,10 +81,13 @@ export function mapRoom(wire: Wire['RoomView']) {
     matchId: wire.match_id,
     matchVersion: wire.match_version,
     paused: wire.paused,
+    botPending: wire.bot_pending ?? false,
+    botDueAt: wire.bot_due_at ?? null,
     missingPlayers: wire.missing_players,
     inviteToken: wire.invite_token,
     members: wire.members.map((member) => ({
       id: member.id,
+      isBot: member.is_bot ?? false,
       name: member.name,
       avatar: member.avatar,
       ready: member.ready,

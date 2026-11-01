@@ -36,7 +36,7 @@ class SkyjoEngine(BaseEngine):
             GameManifest(
                 id="skyjo",
                 name="Skyjo",
-                subtitle="Small numbers. Big surprises.",
+                subtitle="Reveal your grid. Lowest score wins.",
                 family="grid",
                 score_order="low",
                 min_players=2,

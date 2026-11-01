@@ -25,7 +25,7 @@ export function GemsTable(props: TableProps) {
     setSelected(null);
     setChosen({});
   }
-  function development(card: Card) {
+  function development(card: Card, readOnly = false) {
     const info = data.cardInfo[card.id];
     const patron = card.suit === 'patron';
     return (
@@ -34,15 +34,16 @@ export function GemsTable(props: TableProps) {
         name={card.label}
         bonus={patron ? 'gold' : info.bonus}
         points={patron ? 3 : info.points}
-        cost={patron ? data.patronCosts[card.id] : info.cost}
-        selected={selected === card.id}
-        onClick={() => setSelected(selected === card.id ? null : card.id)}
+        cost={patron ? data.patronCosts[card.id] || {} : info.cost}
+        tier={patron ? undefined : info.tier}
+        selected={!readOnly && selected === card.id}
+        onClick={readOnly ? undefined : () => setSelected(selected === card.id ? null : card.id)}
         disabled={pending || room.paused}
       />
     );
   }
   return (
-    <div className="table-layout">
+    <div className="table-layout gem-layout">
       <PlayerStrip
         {...props}
         playerCaption={(player) => `${player.score} prestige · ${player.count} reserved`}
@@ -54,10 +55,23 @@ export function GemsTable(props: TableProps) {
             <ResourceToken key={color} color={color} count={data.tokens[selfId]?.[color] || 0} />
           ))}
         </div>
+        <div className="gem-own-discounts" aria-label="Your permanent discounts">
+          <span className="small muted">Discounts</span>
+          {gemColors
+            .filter((color) => color !== 'gold')
+            .map((color) => (
+              <ResourceToken
+                key={color}
+                color={color}
+                count={data.bonuses[selfId]?.[color] || 0}
+                compact
+              />
+            ))}
+        </div>
         {match.hand.length ? (
           <>
             <p className="eyebrow">Your reserved cards</p>
-            <div className="gem-card-row">{match.hand.map(development)}</div>
+            <div className="gem-card-row">{match.hand.map((card) => development(card))}</div>
           </>
         ) : null}
       </section>
@@ -66,7 +80,7 @@ export function GemsTable(props: TableProps) {
         match={{
           ...match,
           actions: match.actions.filter(
-            (option) => !['take', 'take_pair'].includes(option.value.type),
+            (option) => !['take', 'take_pair', 'reserve_blind'].includes(option.value.type),
           ),
         }}
         pinSelection
@@ -129,27 +143,56 @@ export function GemsTable(props: TableProps) {
             ) : null}
           </div>
         ) : null}
-        <div className="patron-row" aria-label="Patrons">
-          {match.community.filter((card) => card.suit === 'patron').map(development)}
-        </div>
+        {match.actions.some((option) => option.value.type === 'reserve_blind') ? (
+          <details className="gem-secondary-actions">
+            <summary>Reserve from a deck</summary>
+            <div>
+              {match.actions
+                .filter((option) => option.value.type === 'reserve_blind')
+                .map((option) => (
+                  <Button
+                    key={option.value.choice}
+                    variant="secondary"
+                    disabled={pending || room.paused}
+                    onClick={() => submit(option.value)}
+                  >
+                    {option.label}
+                  </Button>
+                ))}
+            </div>
+          </details>
+        ) : null}
         {[3, 2, 1].map((tier) => (
           <section className="gem-tier" key={tier} aria-label={`Tier ${tier} developments`}>
             <span className="eyebrow">Tier {tier}</span>
             <div className="gem-card-row">
               {match.community
                 .filter((card) => data.cardInfo[card.id]?.tier === tier)
-                .map(development)}
+                .map((card) => development(card))}
             </div>
           </section>
         ))}
+        <details className="gem-patrons" open={match.phase === 'patron' || undefined}>
+          <summary>Patrons · 3 prestige each</summary>
+          <div className="patron-row" aria-label="Patrons">
+            {match.community
+              .filter((card) => card.suit === 'patron')
+              .map((card) => development(card))}
+          </div>
+        </details>
       </section>
       <div className="gem-engines">
         {match.players.map((player) => (
-          <section key={player.id}>
-            <h3>{playerName(room, player.id)}</h3>
-            <p className="small muted">
-              {player.score} prestige · {player.properties.Patrons?.length || 0} patrons
-            </p>
+          <details key={player.id}>
+            <summary>
+              <strong>
+                {playerName(room, player.id)}
+                {player.id === selfId ? ' · you' : ''}
+              </strong>
+              <span>
+                {player.score} prestige · {player.properties.Patrons?.length || 0} patrons
+              </span>
+            </summary>
             <div className="gem-discounts">
               {gemColors
                 .filter((color) => color !== 'gold')
@@ -164,7 +207,12 @@ export function GemsTable(props: TableProps) {
                   </span>
                 ))}
             </div>
-          </section>
+            <div className="gem-card-row gem-bought-cards">
+              {Object.values(player.properties)
+                .flat()
+                .map((card) => development(card, true))}
+            </div>
+          </details>
         ))}
       </div>
     </div>

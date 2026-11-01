@@ -1,3 +1,4 @@
+from app.bots import supports_bots
 from app.core.contracts import Engine
 from app.games.azul.engine import AzulEngine
 from app.games.blackjack.engine import BlackjackEngine
@@ -51,3 +52,5 @@ ALL_ENGINES: list[Engine] = [
     BoopEngine(),
 ]
 ENGINES: dict[str, Engine] = {engine.manifest.id: engine for engine in ALL_ENGINES}
+for _engine in ALL_ENGINES:
+    _engine.manifest.bots_supported = supports_bots(_engine.manifest.id)

@@ -512,3 +512,339 @@
     }
   }
 }
+
+@layer components {
+  .classic-board,
+  .word-table,
+  .gem-table {
+    padding: 18px;
+  }
+  .board-help {
+    padding-top: 12px;
+  }
+  .word-clue {
+    padding: 12px 0;
+  }
+  .word-clue h2 {
+    font-family: var(--font-body);
+    font-size: clamp(22px, 3vw, 32px);
+  }
+  .gem-district-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .development-illustration {
+    display: flex;
+    width: 100%;
+    min-height: 36px;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin-block: 4px;
+  }
+  .resource-token > span {
+    display: flex;
+    align-items: center;
+  }
+  .resource-token--compact svg {
+    width: 11px;
+    height: 11px;
+  }
+  .gem-own-discounts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .gem-layout .gem-resources {
+    gap: 8px;
+    margin: 10px 0 12px;
+  }
+  .gem-secondary-actions {
+    margin-bottom: 16px;
+  }
+  .gem-secondary-actions > summary,
+  .gem-patrons > summary {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 0;
+  }
+  .gem-secondary-actions > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 8px;
+  }
+  .gem-layout .gem-engines {
+    margin-top: 12px;
+  }
+  .gem-engines > details {
+    padding: 14px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    min-width: 0;
+  }
+  .gem-engines > details > summary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 6px 12px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  .gem-engines > details > summary > strong {
+    overflow-wrap: anywhere;
+  }
+  .gem-engines > details > summary > span {
+    color: var(--color-ink-muted);
+    font-size: 12px;
+  }
+  .gem-bought-cards:empty {
+    display: none;
+  }
+  @media (max-width: 600px) {
+    .gem-layout .gem-supply {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 3px;
+    }
+    .gem-layout .gem-supply-choice {
+      min-width: 0;
+      width: 100%;
+      min-height: 44px;
+      padding: 3px;
+    }
+    .gem-layout .gem-supply .resource-token {
+      width: 40px;
+      min-width: 40px;
+      height: 40px;
+      gap: 3px;
+      padding: 0 5px;
+      font-size: 16px;
+      border-width: 2px;
+    }
+    .gem-layout .gem-resources {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 4px;
+    }
+    .gem-layout .gem-resources .resource-token {
+      min-width: 0;
+      height: 36px;
+      font-size: 15px;
+      gap: 3px;
+      padding: 0 4px;
+      border-width: 2px;
+    }
+    .gem-layout .gem-take-controls {
+      margin: 8px 0 14px;
+      gap: 8px;
+    }
+    .gem-layout .gem-take-controls > p {
+      width: 100%;
+    }
+    .gem-layout .gem-take-controls > .button {
+      width: 100%;
+    }
+    .gem-layout .gem-secondary-actions > div {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .gem-layout .gem-tier .gem-card-row,
+    .gem-layout .private-hand .gem-card-row {
+      gap: 8px;
+      padding-block: 8px 12px;
+    }
+    .gem-layout .gem-tier .playing-card.development-card,
+    .gem-layout .private-hand .playing-card.development-card {
+      --card-width: 128px;
+      flex-basis: 128px;
+      width: 128px;
+      min-height: 212px;
+      padding: 9px 8px;
+    }
+    .gem-layout .development-illustration {
+      height: 64px;
+    }
+    .gem-layout .gem-engines {
+      gap: 8px;
+    }
+    .gem-layout .gem-engines > details {
+      padding: 12px;
+    }
+  }
+}
+
+@layer components {
+  .classic-board {
+    background-image: linear-gradient(#fff9, #fff9), url('/game-art/table-surfaces-v1.webp');
+    background-size:
+      auto,
+      300% auto;
+    background-position:
+      center,
+      0 50%;
+    border-color: #c1a176;
+    box-shadow:
+      inset 0 0 0 1px #fff8,
+      0 8px 24px #62441f12;
+  }
+  .classic-board .board-help,
+  .classic-board .mancala-owner {
+    color: #4c3a25;
+  }
+  .word-table {
+    background-image: linear-gradient(#fff9, #fff9), url('/game-art/table-surfaces-v1.webp');
+    background-size:
+      auto,
+      300% auto;
+    background-position:
+      center,
+      0 50%;
+  }
+  .gem-table .small,
+  .gem-table .eyebrow {
+    color: #4c3a25;
+  }
+  .gem-table {
+    background-image: linear-gradient(#fffb, #fffb), url('/game-art/table-surfaces-v1.webp');
+    background-size:
+      auto,
+      300% auto;
+    background-position:
+      center,
+      0 50%;
+  }
+}
+
+@layer components {
+  .gem-bought-cards {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+  }
+  .gem-bought-cards .playing-card.development-card {
+    flex: 0 0 128px;
+    width: 128px;
+  }
+}
+
+@layer components {
+  @media (max-width: 600px) {
+    .classic-board {
+      margin-inline: 0;
+      padding: 12px 0;
+    }
+    .classic-board--reversi .board-surface,
+    .classic-board--checkers .board-surface {
+      min-width: calc(var(--board-columns) * 44px);
+    }
+    .classic-board--reversi .board-grid,
+    .classic-board--checkers .board-grid {
+      gap: 0;
+      padding: 0;
+    }
+    .classic-board .board-help {
+      padding: 12px 10px 0;
+    }
+  }
+}
+
+@layer components {
+  .token-art,
+  .token-art > .atlas-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .token-art {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .board-disc {
+    position: relative;
+  }
+  .board-disc > .token-art {
+    position: absolute;
+    inset: -3px;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+  }
+  .board-disc > svg {
+    position: relative;
+    z-index: 1;
+  }
+  .mancala-pit {
+    position: relative;
+    min-height: 76px;
+    padding: 34px 2px 6px;
+    justify-content: end;
+  }
+  .mancala-pit .mancala-seeds {
+    position: absolute;
+    inset: 7px 2px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+    max-height: 30px;
+  }
+  .mancala-pit .mancala-seed {
+    display: block;
+    width: 14px;
+    height: 14px;
+  }
+  .mancala-pit .mancala-seed:nth-child(2n) {
+    transform: rotate(55deg);
+  }
+  .mancala-pit .mancala-seed:nth-child(3n) {
+    transform: rotate(-35deg);
+  }
+  @media (max-width: 600px) {
+    .mancala-board {
+      min-width: 352px;
+      grid-template-columns: 24px minmax(0, 1fr) 24px;
+      padding-inline: 6px;
+      gap: 4px;
+    }
+    .mancala-rows > div {
+      gap: 3px;
+    }
+    .mancala-pit {
+      min-height: 68px;
+      padding-top: 32px;
+    }
+    .mancala-pit .mancala-seed {
+      width: 12px;
+      height: 12px;
+    }
+    .game-art--mancala .mancala-seeds {
+      display: none;
+    }
+    .mancala-pit--store .mancala-seed {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+
+@layer components {
+  .classic-board--reversi .board-square {
+    box-shadow: inset 0 0 0 0.5px #d8e0d238;
+  }
+  .word-key-note,
+  .word-clue .eyebrow {
+    color: #4c3a25;
+  }
+  @media (min-width: 601px) {
+    .gem-layout .gem-tier .gem-card-row {
+      grid-template-columns: repeat(4, minmax(0, 180px));
+      justify-content: center;
+    }
+  }
+}

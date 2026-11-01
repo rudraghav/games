@@ -49,7 +49,7 @@ def position(s: State) -> str:
 class CheckersEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="checkers", name="Checkers", subtitle="A small move. A clever little trap.",
+            id="checkers", name="Checkers", subtitle="Capture the opposing pieces",
             family="board", min_players=2, max_players=2, minutes="10–25", icon="crown",
             color="sage", rules=[
                 "Move diagonally forward on dark squares. Captures are compulsory.",

@@ -19,7 +19,7 @@ class TarotEngine(BaseEngine):
             GameManifest(
                 id="tarot",
                 name="Pop Tarot",
-                subtitle="Your plot twist is in the cards.",
+                subtitle="Choose three cards for a personal reading",
                 family="tarot",
                 play_mode="solo",
                 score_order="none",

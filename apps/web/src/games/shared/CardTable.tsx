@@ -22,7 +22,7 @@ export function CardTable(props: TableProps) {
             : a.value.localeCompare(b.value, undefined, { numeric: true }),
         );
   return (
-    <div className="table-layout">
+    <div className="table-layout card-game-layout">
       <PlayerStrip {...props} />
       <div className="card-table felt-table">
         <span className="table-watermark">g.</span>

@@ -32,7 +32,12 @@ test('table decisions stay near the hand and explain direct grid actions', async
   await scenario.selectOption({ label: 'Texas Hold’em · minimum seats' });
   const cards = await page.locator('.private-hand').boundingBox();
   const decisions = await page.getByRole('region', { name: 'Your actions' }).boundingBox();
-  expect(cards!.y + cards!.height).toBeLessThanOrEqual(decisions!.y);
+  if (page.viewportSize()!.width < 600)
+    expect(cards!.y + cards!.height).toBeLessThanOrEqual(decisions!.y);
+  else {
+    expect(Math.abs(cards!.y - decisions!.y)).toBeLessThan(2);
+    expect(cards!.x + cards!.width).toBeLessThanOrEqual(decisions!.x);
+  }
   expect(
     await page.locator('.action-panel').evaluate((element) => getComputedStyle(element).position),
   ).toBe('relative');

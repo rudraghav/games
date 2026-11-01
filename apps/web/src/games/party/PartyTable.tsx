@@ -27,13 +27,13 @@ export function PartyTable(props: TableProps) {
   const instruction =
     data.mode === 'spill-or-chill'
       ? isSpotlight
-        ? 'Answer aloud, keep it chill, or pass. Your call.'
-        : 'The spotlight belongs to ' + playerName(room, data.spotlight) + '.'
+        ? 'Answer aloud, keep your answer private, or pass.'
+        : 'Current player: ' + playerName(room, data.spotlight) + '.'
       : data.mode === 'most-likely'
         ? 'Choose one friend. Your vote stays secret until everyone is in.'
         : isSpotlight
-          ? 'Choose your real answer. Keep your poker face.'
-          : 'Predict the spotlight player’s answer. Keep it secret.';
+          ? 'Choose your answer.'
+          : 'Predict the highlighted player’s answer.';
 
   function key(option: ActionOption) {
     return option.value.target || option.value.choice;
@@ -46,7 +46,7 @@ export function PartyTable(props: TableProps) {
     return option.value.choice === 'share'
       ? 'Share · I answered aloud'
       : option.value.choice === 'chill'
-        ? 'Chill · keep this one to myself'
+        ? 'Keep private'
         : 'Pass';
   }
 
@@ -57,9 +57,9 @@ export function PartyTable(props: TableProps) {
       : choice === 'b'
         ? `B · ${data.options[1]}`
         : choice === 'share'
-          ? 'Shared a story'
+          ? 'Answered aloud'
           : choice === 'chill'
-            ? 'Kept it chill'
+            ? 'Kept private'
             : 'Passed';
   }
 
@@ -74,6 +74,9 @@ export function PartyTable(props: TableProps) {
         }
       />
       <section className="party-table" data-mode={data.mode} aria-label={`${title} table`}>
+        {room.members.some((member) => member.isBot) ? (
+          <p className="small muted">Bot answers and votes are simulated.</p>
+        ) : null}
         <div className="party-table__topline">
           <p className="eyebrow">{title}</p>
           <span className="small">
@@ -112,8 +115,8 @@ export function PartyTable(props: TableProps) {
                   ? 'The hot seat passed. No points this round.'
                   : `The answer was ${data.result.answer?.toUpperCase()}.`
                 : data.mode === 'most-likely'
-                  ? 'The room has spoken.'
-                  : 'That’s a turn in the spotlight.'}
+                  ? 'Votes revealed.'
+                  : 'Round complete.'}
             </h3>
             <div className="party-reveal__list">
               {match.players

@@ -38,7 +38,7 @@ TEAM_COLORS = ["coral", "blue"]
 class WordAgentsEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="word-agents", name="Word Agents", subtitle="One clue. A room full of possibilities.",
+            id="word-agents", name="Word Agents", subtitle="Give clues and find your team’s words",
             family="words", min_players=4, max_players=10, minutes="15–30", icon="type",
             color="coral", rules=["Two spymasters know the key. Their teams see only the words.",
                 "Give a one-word clue and a number; your team gets up to one extra guess.",

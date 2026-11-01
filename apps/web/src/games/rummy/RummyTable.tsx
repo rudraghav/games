@@ -24,7 +24,7 @@ export function RummyTable(props: TableProps) {
         });
   }
   return (
-    <div className="table-layout">
+    <div className="table-layout card-game-layout rummy-layout">
       <PlayerStrip {...props} />
       <div className="card-table felt-table">
         <span className="table-watermark">g.</span>

@@ -78,11 +78,64 @@ export function useRoom(id: string) {
       void cache.invalidateQueries({ queryKey: keys.room(id) });
     },
   });
+  // A connected human drives a single due, persisted bot action. The server
+  // serializes competing drivers and ignores stale/repeated versions safely.
+  const {
+    mutate: driveBot,
+    isPending: drivingBot,
+    isError: botFailed,
+    error: botError,
+    reset: retryBots,
+    variables: driven,
+  } = useMutation({
+    mutationFn: ({ matchId, version }: { matchId: string; version: number }) =>
+      api.driveBots(id, matchId, version),
+    onSuccess: (snapshot) =>
+      cache.setQueryData<Room>(keys.room(id), (current) =>
+        !current || current.revision <= snapshot.revision ? snapshot : current,
+      ),
+    onError: () => void cache.invalidateQueries({ queryKey: keys.room(id) }),
+    retry: (count, error) => count < 1 && (!(error instanceof ApiError) || error.status >= 500),
+    retryDelay: 1500,
+  });
+  const selfId = me.data?.profile?.id;
+  const { botPending, paused, matchId, matchVersion, botDueAt } = room.data || {};
+  useEffect(() => {
+    if (botFailed && driven && (driven.matchId !== matchId || driven.version !== matchVersion))
+      retryBots();
+  }, [botFailed, driven, matchId, matchVersion, retryBots]);
+  useEffect(() => {
+    if (
+      !selfId ||
+      !botPending ||
+      paused ||
+      !matchId ||
+      matchVersion == null ||
+      drivingBot ||
+      botFailed
+    )
+      return;
+    const timeout = window.setTimeout(
+      () => driveBot({ matchId, version: matchVersion }),
+      Math.max(800, (botDueAt ?? 0) * 1000 - Date.now()),
+    );
+    return () => window.clearTimeout(timeout);
+  }, [
+    selfId,
+    botPending,
+    paused,
+    matchId,
+    matchVersion,
+    botDueAt,
+    drivingBot,
+    botFailed,
+    driveBot,
+  ]);
   function move(action: Action) {
     const current = cache.getQueryData<Room>(keys.room(id));
     if (!current?.matchId || current.matchVersion == null || mutation.isPending) return;
     const actionId = crypto.randomUUID();
     mutation.mutate(() => api.move(id, current.matchId!, current.matchVersion!, action, actionId));
   }
-  return { room, me, live, mutation, move };
+  return { room, me, live, mutation, move, botError, retryBots };
 }

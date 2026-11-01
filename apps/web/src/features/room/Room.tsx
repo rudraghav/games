@@ -25,9 +25,11 @@ import { useRoom } from './useRoom';
 import { Chat } from './Chat';
 import { Lobby } from './Lobby';
 import { RoomResults } from './RoomResults';
+import { useMediaQuery } from '@/shared/use-media-query';
 
 export function RoomScreen({ id }: { id: string }) {
-  const { room: query, me, live, mutation, move } = useRoom(id);
+  const { room: query, me, live, mutation, move, botError, retryBots } = useRoom(id);
+  const desktop = useMediaQuery('(min-width: 1100px)');
   const [panel, setPanel] = useState<'chat' | 'rules' | 'menu' | 'configure' | null>(null);
   const [confirmAbandon, setConfirmAbandon] = useState(false);
   const router = useRouter();
@@ -43,10 +45,10 @@ export function RoomScreen({ id }: { id: string }) {
         </Link>
         <h1 className="heading-md">
           {entryError
-            ? 'Let’s reconnect your seat.'
+            ? 'Reconnect to your room'
             : playerUnavailable
-              ? 'Let’s find your player details.'
-              : 'Pulling up your chair…'}
+              ? 'Player details unavailable'
+              : 'Loading room…'}
         </h1>
         <p className="muted">
           {entryError?.message ||
@@ -114,9 +116,10 @@ export function RoomScreen({ id }: { id: string }) {
           <Button
             size="icon"
             variant="ghost"
-            className="mobile-chat-button"
-            aria-label="Open chat"
-            onClick={() => setPanel('chat')}
+            className="room-chat-button"
+            aria-label={panel === 'chat' ? 'Close chat' : 'Open chat'}
+            aria-expanded={panel === 'chat'}
+            onClick={() => setPanel(panel === 'chat' ? null : 'chat')}
           >
             <MessageCircle size={19} />
           </Button>
@@ -130,7 +133,7 @@ export function RoomScreen({ id }: { id: string }) {
           </Button>
         </div>
       </header>
-      <main className="room-content">
+      <main className="room-content" data-chat-open={desktop && panel === 'chat'}>
         <div className="room-main">
           {query.isError ? (
             <div className="connection-banner" role="status">
@@ -148,6 +151,14 @@ export function RoomScreen({ id }: { id: string }) {
                 .map((id) => room.members.find((m) => m.id === id)?.name || 'a player')
                 .join(', ')}
               . Play resumes when everyone reconnects.
+            </div>
+          ) : null}
+          {botError ? (
+            <div className="connection-banner" role="alert">
+              Bot moves paused.{' '}
+              <Button size="sm" variant="secondary" onClick={() => retryBots()}>
+                Retry bot moves
+              </Button>
             </div>
           ) : null}
           {room.game ? (
@@ -180,6 +191,8 @@ export function RoomScreen({ id }: { id: string }) {
               start={() => operate(() => api.start(id))}
               configure={() => setPanel('configure')}
               pending={mutation.isPending}
+              addBots={(count) => operate(() => api.addBots(id, count))}
+              removeBot={(botId) => operate(() => api.kick(id, botId))}
             />
           ) : !room.game ? (
             <div className="center-state">
@@ -195,10 +208,10 @@ export function RoomScreen({ id }: { id: string }) {
             </p>
           ) : null}
         </div>
-        <aside className="desktop-chat">{chat}</aside>
+        {desktop && panel === 'chat' ? <aside className="desktop-chat">{chat}</aside> : null}
       </main>
       <Modal
-        open={panel === 'chat'}
+        open={!desktop && panel === 'chat'}
         onOpenChange={(open) => {
           if (!open) setPanel(null);
         }}

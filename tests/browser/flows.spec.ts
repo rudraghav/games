@@ -4,7 +4,7 @@ import gameCatalogue from '../../packages/api-client/src/generated/catalog.json'
 
 test('the complete catalogue and every table scenario fit the viewport', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { name: 'Good company. Great games.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Choose a game', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /^Create .+ room$/ })).toHaveCount(
     gameCatalogue.length,
   );
@@ -45,10 +45,11 @@ test('the complete catalogue and every table scenario fit the viewport', async (
 test('independent guests create, join, chat, play, refresh and switch games', async ({
   page,
   browser,
-  context,
 }) => {
   const guestContext = await browser.newContext({ viewport: page.viewportSize()! });
   const guest = await guestContext.newPage();
+  let ownedRoomId: string | undefined;
+  let friendJoined = false;
   try {
     await page.goto('/');
     await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
@@ -61,6 +62,7 @@ test('independent guests create, join, chat, play, refresh and switch games', as
     await setup.getByRole('button', { name: 'Create room', exact: true }).click();
     await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
     const roomPath = new URL(page.url()).pathname;
+    ownedRoomId = roomPath.split('/').at(-1)!;
     const code = await page.locator('.room-code').innerText();
     await guest.goto('/');
     await guest.getByRole('button', { name: 'Join a room', exact: true }).click();
@@ -69,6 +71,7 @@ test('independent guests create, join, chat, play, refresh and switch games', as
     await join.getByRole('textbox', { name: 'Room code', exact: true }).fill(code);
     await join.getByRole('button', { name: 'Join the room', exact: true }).click();
     await expect(guest).toHaveURL(page.url());
+    friendJoined = true;
     await page.getByRole('button', { name: 'I’m ready', exact: true }).click();
     await guest.getByRole('button', { name: 'I’m ready', exact: true }).click();
     await expect(page.getByRole('button', { name: 'Start game', exact: true })).toBeEnabled();
@@ -91,8 +94,14 @@ test('independent guests create, join, chat, play, refresh and switch games', as
     await expect
       .poll(async () => (await (await page.request.get(apiPath)).json()).match_version)
       .toBeGreaterThan(snapshot.match_version);
-    if (await page.getByRole('button', { name: 'Open chat', exact: true }).isVisible())
-      await page.getByRole('button', { name: 'Open chat', exact: true }).click();
+    const visibleChat = page
+      .getByRole('region', { name: 'Room chat', exact: true })
+      .filter({ visible: true });
+    await expect(visibleChat).toHaveCount(0);
+    const openChat = page.getByRole('button', { name: 'Open chat', exact: true });
+    await expect(openChat).toHaveAttribute('aria-expanded', 'false');
+    await openChat.click();
+    await expect(page.locator('.room-chat-button')).toHaveAttribute('aria-expanded', 'true');
     const chat = page
       .getByRole('region', { name: 'Room chat', exact: true })
       .filter({ visible: true });
@@ -101,6 +110,12 @@ test('independent guests create, join, chat, play, refresh and switch games', as
     await expect(chat.getByText('Ready for a good game.', { exact: true })).toBeVisible();
     const close = page.getByRole('button', { name: 'Close dialog', exact: true });
     if (await close.isVisible()) await close.click();
+    else await page.getByRole('button', { name: 'Close chat', exact: true }).click();
+    await expect(visibleChat).toHaveCount(0);
+    await expect(page.getByRole('button', { name: 'Open chat', exact: true })).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    );
     await page.getByRole('button', { name: 'Room options', exact: true }).click();
     await page.getByRole('button', { name: 'End this match', exact: true }).click();
     await page.getByRole('button', { name: 'Yes, end this match', exact: true }).click();
@@ -108,15 +123,27 @@ test('independent guests create, join, chat, play, refresh and switch games', as
     await page.getByRole('combobox', { name: 'The game', exact: true }).selectOption('skyjo');
     await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
     await page.getByRole('button', { name: 'Choose game', exact: true }).click();
-    await expect(page.getByRole('heading', { name: 'Skyjo', exact: true })).toBeVisible();
-    await expect(guest.getByRole('heading', { name: 'Skyjo', exact: true })).toBeVisible();
-    // Clean up only this test's memberships through the same authorized API.
-    await context.request.post(`/api/backend${roomPath.replace('/rooms/', '/v1/rooms/')}/leave`);
-    await guestContext.request.post(
-      `/api/backend${roomPath.replace('/rooms/', '/v1/rooms/')}/leave`,
-    );
+    await expect(page.locator('.room-title > span')).toHaveText('Skyjo');
+    await expect(guest.locator('.room-title > span')).toHaveText('Skyjo');
+    await expect(page.getByRole('heading', { name: 'Players', exact: true })).toBeVisible();
+    await expect(guest.getByRole('heading', { name: 'Players', exact: true })).toBeVisible();
   } finally {
-    await guestContext.close();
+    try {
+      if (ownedRoomId) {
+        const current = await requestAs(page, `rooms/${ownedRoomId}`);
+        if (current.status() !== 404) {
+          expect(current.status()).toBe(200);
+          if ((await current.json()).status === 'playing')
+            expect((await requestAs(page, `rooms/${ownedRoomId}/abandon`, 'POST')).ok()).toBe(true);
+          if (friendJoined)
+            expect((await requestAs(guest, `rooms/${ownedRoomId}/leave`, 'POST')).ok()).toBe(true);
+          expect((await requestAs(page, `rooms/${ownedRoomId}/leave`, 'POST')).ok()).toBe(true);
+          expect((await requestAs(page, `rooms/${ownedRoomId}`)).status()).toBe(404);
+        }
+      }
+    } finally {
+      await guestContext.close();
+    }
   }
 });
 

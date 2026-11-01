@@ -20,7 +20,7 @@ function NumberCard({
   small?: boolean;
 }) {
   return (
-    <div className="six-number-card" data-small={small}>
+    <div className="six-number-card" data-small={small} data-digits={card.value.length}>
       <PlayingCard
         card={card}
         family="grid"
@@ -64,9 +64,8 @@ export function SixNimmtTable(props: TableProps) {
             <p className="eyebrow">
               Round {data.round} · selection {data.trick}/10
             </p>
-            <h2>Don’t be the sixth.</h2>
           </div>
-          <span className="small muted">Fewest penalties wins</span>
+          <span className="small muted">Lowest penalty total wins</span>
         </header>
         {simultaneous ? (
           <section className="six-hand-panel" aria-label="Your private number cards">

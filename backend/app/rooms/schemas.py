@@ -28,6 +28,7 @@ class CreateRoom(ProfileInput):
     room_name: str = Field(default="Game night", min_length=1, max_length=60)
     capacity: int = Field(default=4, ge=1, le=10)
     settings: dict[str, bool] = Field(default_factory=dict)
+    bots: int = Field(default=0, ge=0, le=9)
 
 
 class JoinRoom(ProfileInput):
@@ -42,6 +43,15 @@ class RoomSettings(Request):
 
 class Ready(Request):
     ready: bool
+
+
+class AddBots(Request):
+    count: int = Field(default=1, ge=1, le=9)
+
+
+class DriveBots(Request):
+    match_id: UUID
+    expected_version: int = Field(ge=1)
 
 
 class Move(Request):
@@ -67,6 +77,7 @@ class MemberView(ProfileView):
     seated: bool
     connected: bool
     last_seen: float
+    is_bot: bool = False
 
 
 class MessageView(BaseModel):
@@ -95,6 +106,8 @@ class RoomView(BaseModel):
     paused: bool
     missing_players: list[str]
     invite_token: str | None = None
+    bot_pending: bool = False
+    bot_due_at: float | None = None
 
 
 class RoomSummary(BaseModel):

@@ -424,3 +424,65 @@
     }
   }
 }
+
+@layer components {
+  .tarot-table {
+    display: flex;
+    flex-direction: column;
+  }
+  .tarot-intro {
+    margin: 0 auto 18px;
+    max-width: 650px;
+  }
+  .tarot-intro h2 {
+    font-size: clamp(25px, 4vw, 36px);
+    margin: 5px 0 8px;
+  }
+  .tarot-intro > p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .tarot-table[data-phase='choosing'] .tarot-intro {
+    margin-bottom: 12px;
+  }
+  .tarot-table[data-phase='choosing'] .tarot-pick-area {
+    order: 1;
+    margin-bottom: 16px;
+  }
+  .tarot-table[data-phase='choosing'] .tarot-spread {
+    order: 2;
+    width: 100%;
+    max-width: 400px;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .tarot-table[data-phase='choosing'] .tarot-spread-slot {
+    gap: 8px;
+  }
+  .tarot-table[data-phase='choosing'] .tarot-spread-slot .tarot-card {
+    max-width: 110px;
+  }
+  .tarot-table[data-phase='choosing'] .tarot-card-meaning {
+    min-height: 0;
+  }
+  .tarot-pick-area {
+    padding: 16px;
+  }
+  .tarot-pick-area .section-heading {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+    padding-top: 0;
+  }
+  .tarot-question,
+  .tarot-reading {
+    width: 100%;
+  }
+}
+
+@layer components {
+  .tarot-footnote {
+    order: 5;
+  }
+}

@@ -35,6 +35,7 @@ export function PlayerStrip({
               name={member?.name || 'Player'}
               you={player.id === selfId}
               avatar={member?.avatar}
+              bot={member?.isBot}
               compact
               active={
                 pendingPlayers

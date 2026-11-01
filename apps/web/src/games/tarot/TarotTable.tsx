@@ -35,17 +35,24 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
   const reading = saved.data?.reading;
   const writing = generate.isPending || saved.data?.status === 'generating';
   return (
-    <div className="tarot-table">
+    <div className="tarot-table" data-phase={match.phase}>
       <div className="tarot-intro">
-        <span className="tarot-little-star">✳</span>
-        <p className="eyebrow">A little cosmic perspective</p>
-        <h2>{reading ? reading.title : 'Let’s see your next plot twist.'}</h2>
+        <p className="eyebrow">Three-card reading</p>
+        <h2>
+          {reading
+            ? reading.title
+            : match.phase === 'choosing'
+              ? 'Pick three cards'
+              : 'Your three-card spread'}
+        </h2>
         <p>
           {reading
             ? reading.introduction
-            : 'A moment for you. Three cards. A fresh way to look at things.'}
+            : match.phase === 'choosing'
+              ? 'Choose three cards, then add an optional question.'
+              : 'Add an optional question for your reading.'}
         </p>
-        <Button variant="ghost" size="sm" onClick={() => setExploreDeck(true)}>
+        <Button variant="ghost" onClick={() => setExploreDeck(true)}>
           Explore the deck
         </Button>
       </div>
@@ -60,9 +67,9 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
               name={match.community[i]?.label}
               imageLoader={imageLoader}
             />
-            <p className="tarot-card-meaning">
-              {match.community[i]?.subtitle || 'Your card is waiting.'}
-            </p>
+            {match.community[i] ? (
+              <p className="tarot-card-meaning">{match.community[i].subtitle}</p>
+            ) : null}
           </div>
         ))}
       </div>
@@ -70,7 +77,7 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
         <section className="tarot-pick-area">
           <div className="section-heading">
             <h3>Choose card {match.community.length + 1} of 3</h3>
-            <p className="small muted">Go with the one that catches your eye.</p>
+            <p className="small muted">Select a face-down card.</p>
           </div>
           <div
             className="tarot-deck"
@@ -87,9 +94,7 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
               />
             ))}
           </div>
-          <p className="small muted">
-            Scroll through the deck. Every face-down card is a different possibility.
-          </p>
+          <p className="small muted">Scroll to see more cards.</p>
         </section>
       ) : reading ? (
         <TarotReading reading={reading} cards={match.community} />
@@ -107,7 +112,7 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
               className="input"
               maxLength={400}
               rows={3}
-              placeholder="A decision, a fresh start, or just the general vibe…"
+              placeholder="What would you like to reflect on?"
               value={question}
               aria-describedby="tarot-data-use"
               onChange={(event) => setQuestion(event.target.value)}

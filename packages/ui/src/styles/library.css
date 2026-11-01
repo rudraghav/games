@@ -2,8 +2,8 @@
   .library-controls {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
-    margin: 0 0 25px;
+    gap: 10px;
+    margin: 0 0 16px;
     min-width: 0;
   }
   .library-search,
@@ -171,8 +171,8 @@
   }
   .mancala-pit {
     min-width: 0;
-    min-height: 64px;
-    padding: 10px 2px;
+    min-height: 76px;
+    padding: 34px 2px 6px;
     border: 1px solid #bdad8a;
     background: #dfd0af;
     box-shadow: inset 0 3px 8px #65533021;
@@ -280,7 +280,7 @@
       min-height: 69px;
     }
     .library-controls {
-      gap: 14px;
+      gap: 10px;
       grid-template-columns: minmax(0, 1fr);
     }
     .library-search {
@@ -301,6 +301,11 @@
       grid-column: 1 / -1;
       margin-left: 0;
       margin-top: 2px;
+    }
+    .library-filter-row[data-active='false'] .library-count {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
     }
     .library-category-rail {
       overflow-x: auto;
@@ -325,13 +330,13 @@
       flex-shrink: 0;
     }
     .classic-board--checkers .board-surface {
-      min-width: 366px;
+      min-width: 352px;
     }
     .mancala-board {
-      min-width: 372px;
-      grid-template-columns: 31px minmax(0, 1fr) 31px;
-      gap: 5px;
-      padding: 16px 7px;
+      min-width: 352px;
+      grid-template-columns: 24px minmax(0, 1fr) 24px;
+      gap: 4px;
+      padding: 16px 6px;
       border-radius: 28px;
     }
     .mancala-rows {
@@ -341,11 +346,11 @@
       overflow-x: auto;
     }
     .mancala-rows > div {
-      gap: 4px;
+      gap: 3px;
     }
     .mancala-pit {
-      min-height: 48px;
-      padding: 6px 1px;
+      min-height: 68px;
+      padding: 32px 1px 6px;
     }
     .mancala-pit strong {
       font-size: 18px;

@@ -21,9 +21,9 @@ class DealEngine(BaseEngine):
             GameManifest(
                 id="deal-no-mercy" if mercy else "deal",
                 name="Monopoly Deal No Mercy" if mercy else "Monopoly Deal",
-                subtitle="Games house deck. No mercy."
+                subtitle="Property trading with a Games house deck"
                 if mercy
-                else "Build an empire, one card at a time.",
+                else "Collect three property sets",
                 family="property",
                 min_players=2,
                 max_players=5,
@@ -230,5 +230,7 @@ class DealEngine(BaseEngine):
                 "moves": s["moves"],
                 "debts": s["debts"],
                 "pending": s["queue"][0]["kind"] if s["queue"] else None,
+                "payment_amount": s["queue"][0].get("amount", 0)
+                if s["queue"] and s["queue"][0].get("payment") else 0,
             },
         )

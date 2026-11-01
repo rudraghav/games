@@ -29,7 +29,7 @@ def face(card: str) -> CardView:
 class TrioEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="trio", name="Trio", subtitle="A little memory. A perfect three.",
+            id="trio", name="Trio", subtitle="Find three matching numbers",
             family="trio", min_players=3, max_players=6, minutes="10–15", icon="layers",
             color="plum", rules_version="simple-1", rules=[
                 "Simple individual mode. Three copies each of numbers 1–12; sorted private hands.",

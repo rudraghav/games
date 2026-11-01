@@ -31,7 +31,7 @@ def captures(board: list[int | None], cell: int, seat: int) -> list[int]:
 class ReversiEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="reversi", name="Reversi", subtitle="Turn the whole table around.",
+            id="reversi", name="Reversi", subtitle="Capture and flip opposing discs",
             family="board", min_players=2, max_players=2, minutes="10–25", icon="circle",
             color="sage", rules=["Place a disc to bracket and flip an opponent’s line.",
                 "You must pass when no capturing placement is available.",

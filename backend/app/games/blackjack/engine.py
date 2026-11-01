@@ -20,7 +20,7 @@ class BlackjackEngine(BaseEngine):
             GameManifest(
                 id="blackjack",
                 name="Blackjack",
-                subtitle="A little luck. A little nerve.",
+                subtitle="Beat the automated dealer",
                 family="casino",
                 score_label="Net chips",
                 min_players=1,

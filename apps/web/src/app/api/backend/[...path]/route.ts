@@ -1,26 +1,10 @@
 import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
-
-const ROUTES: [RegExp, string[]][] = [
-  [/^v1\/games$/, ['GET']],
-  [/^v1\/me$/, ['GET']],
-  [/^v1\/profile$/, ['PUT']],
-  [/^v1\/rooms$/, ['POST']],
-  [/^v1\/rooms\/join$/, ['POST']],
-  [/^v1\/rooms\/[\da-f-]{36}$/, ['GET']],
-  [/^v1\/rooms\/[\da-f-]{36}\/reading$/, ['GET', 'POST']],
-  [
-    /^v1\/rooms\/[\da-f-]{36}\/(heartbeat|start|actions|chat|claim-host|invite|abandon|leave)$/,
-    ['POST'],
-  ],
-  [/^v1\/rooms\/[\da-f-]{36}\/(ready|settings)$/, ['PUT']],
-  [/^v1\/rooms\/[\da-f-]{36}\/members\/[\da-f-]{36}$/, ['DELETE']],
-];
+import { isBackendRoute } from '@/lib/backend-routes';
 
 async function proxy(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
   const path = (await context.params).path.join('/');
-  if (!ROUTES.some(([pattern, methods]) => pattern.test(path) && methods.includes(request.method)))
-    return new Response('Not found', { status: 404 });
+  if (!isBackendRoute(path, request.method)) return new Response('Not found', { status: 404 });
   const origin = request.headers.get('origin');
   if (request.method !== 'GET' && origin) {
     try {

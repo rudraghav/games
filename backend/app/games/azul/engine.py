@@ -62,7 +62,7 @@ def end_bonus(wall: list[list[str | None]]) -> int:
 class AzulEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="azul", name="Azul", subtitle="Your next masterpiece, one tile at a time.",
+            id="azul", name="Azul", subtitle="Draft tiles and complete your wall",
             family="azul", min_players=2, max_players=4, minutes="25–40", icon="grid",
             color="sky", rules_version="colored-wall-1", rules=[
                 "Standard colored wall. Draft every tile of one color from one factory or the center.",

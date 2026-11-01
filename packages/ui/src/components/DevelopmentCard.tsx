@@ -1,4 +1,6 @@
 import { cn } from '../lib/cn';
+import { Gem, Sparkles } from 'lucide-react';
+import { GemDistrictArt } from './GemDistrictArt';
 
 export const gemColors = ['pearl', 'sapphire', 'ruby', 'emerald', 'onyx', 'gold'] as const;
 export function ResourceToken({
@@ -14,9 +16,12 @@ export function ResourceToken({
     <span
       className={cn('resource-token', compact && 'resource-token--compact')}
       data-gem={color}
+      role="img"
       aria-label={`${count ?? ''} ${color}`.trim()}
     >
-      <span aria-hidden="true">{color === 'gold' ? '✦' : '◆'}</span>
+      <span aria-hidden="true">
+        {color === 'gold' ? <Sparkles size={14} /> : <Gem size={14} />}
+      </span>
       {count != null ? <b>{count}</b> : null}
     </span>
   );
@@ -29,6 +34,7 @@ export function DevelopmentCard({
   selected = false,
   onClick,
   disabled,
+  tier,
 }: {
   name: string;
   bonus: string;
@@ -37,6 +43,7 @@ export function DevelopmentCard({
   selected?: boolean;
   onClick?: () => void;
   disabled?: boolean;
+  tier?: number;
 }) {
   const label = `${name}, ${points} prestige, ${Object.entries(cost)
     .map(([color, n]) => `${n} ${color}`)
@@ -53,7 +60,18 @@ export function DevelopmentCard({
         <ResourceToken color={bonus} compact />
       </span>
       <span className="development-illustration" aria-hidden="true">
-        {bonus === 'gold' ? '♛' : '◇'}
+        <GemDistrictArt
+          color={bonus}
+          tier={
+            tier ??
+            (name.toLowerCase().includes('palace')
+              ? 3
+              : name.toLowerCase().includes('guild')
+                ? 2
+                : 1)
+          }
+          patron={bonus === 'gold'}
+        />
       </span>
       <strong>{name}</strong>
       <span className="development-cost">

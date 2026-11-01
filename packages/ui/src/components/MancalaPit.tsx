@@ -1,4 +1,5 @@
 import { cn } from '../lib/cn';
+import { TokenArt } from './TokenArt';
 
 export function MancalaPit({
   count,
@@ -18,6 +19,15 @@ export function MancalaPit({
   const className = cn('mancala-pit', store && 'mancala-pit--store');
   const content = (
     <>
+      {count > 0 ? (
+        <span className="mancala-seeds" aria-hidden="true">
+          {Array.from({ length: Math.min(count, 6) }, (_, index) => (
+            <span className="mancala-seed" key={index}>
+              <TokenArt kind="marble" />
+            </span>
+          ))}
+        </span>
+      ) : null}
       <strong>{count}</strong>
       <span>{store ? 'store' : 'seeds'}</span>
     </>

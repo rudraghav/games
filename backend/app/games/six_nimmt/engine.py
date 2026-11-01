@@ -30,7 +30,7 @@ def face(number: int) -> CardView:
 class SixNimmtEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(GameManifest(
-            id="six-nimmt", name="6 nimmt!", subtitle="Pick a number. Dodge the sixth card.",
+            id="six-nimmt", name="6 nimmt!", subtitle="Choose numbers and avoid penalty rows",
             family="number-rows", min_players=2, max_players=10, minutes="20–40",
             icon="layers", color="coral", rules_version="classic-1", score_label="Penalty points",
             score_order="low", rules=[

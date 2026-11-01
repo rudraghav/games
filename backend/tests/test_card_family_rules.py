@@ -94,6 +94,58 @@ def test_light_blue_railroad_wild_uses_its_printed_four_million_value():
 
 
 @pytest.mark.parametrize("mercy", [False, True])
+def test_deal_wild_faces_keep_printed_colors_when_orientation_matches(mercy):
+    cards = make_deck(mercy).values()
+    green_blue = next(c for c in cards if c.kind == "property" and c.colors == ("green", "blue"))
+    green_rail = next(c for c in cards if c.kind == "property" and c.colors == ("green", "rail"))
+    first, second = green_blue.view("green"), green_rail.view("green")
+    assert first.color == second.color == "green"
+    assert first.value == second.value == "4M"
+    assert first.subtitle == second.subtitle == "Wild property"
+    assert first.colors == ["green", "blue"]
+    assert second.colors == ["green", "rail"]
+    assert first.effect == second.effect == ""
+    # Mutating a presentation cannot mutate the canonical deck definition.
+    first.colors.append("pink")
+    assert green_blue.colors == ("green", "blue")
+
+
+@pytest.mark.parametrize("mercy", [False, True])
+def test_deal_rent_faces_keep_every_printed_color_and_effect(mercy):
+    cards = make_deck(mercy).values()
+    for effect in ("rent", "rent_double") if mercy else ("rent",):
+        rent = next(c for c in cards if c.action == effect and len(c.colors) == 10)
+        face = rent.view()
+        assert face.color == "brown"
+        assert face.colors == list(RENTS)
+        assert face.effect == effect
+        assert face.suit == "action"
+
+
+@pytest.mark.parametrize("mercy", [False, True])
+def test_deal_face_metadata_does_not_expose_hidden_cards_or_randomness(mercy):
+    engine = DealEngine(mercy)
+    state = engine.setup(["p0", "p1"], {}, seed=19)
+    before = deepcopy(state)
+    view = engine.project_view(state, "p0")
+    visible = view.hand + [c for p in view.players for c in p.bank]
+    visible += [c for p in view.players for group in p.properties.values() for c in group]
+    if view.discard:
+        visible.append(view.discard)
+    assert not {c.id for c in visible}.intersection(state["hands"]["p1"] + state["deck"])
+    for face in visible:
+        canonical = engine.cards[face.id]
+        assert face.colors == list(canonical.colors)
+        assert face.effect == canonical.action
+        assert set(face.model_dump()) == {
+            "id", "label", "color", "subtitle", "value", "suit", "colors", "effect"
+        }
+    assert '"seed"' not in view.model_dump_json()
+    assert '"deck"' not in view.model_dump_json()
+    assert state == before
+
+
+@pytest.mark.parametrize("mercy", [False, True])
 def test_uno_deck_composition_and_unique_physical_cards(mercy):
     cards = deck(mercy)
     assert len(cards) == len(set(cards)) == (168 if mercy else 108)

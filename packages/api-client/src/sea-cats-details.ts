@@ -1,17 +1,11 @@
 import { z } from 'zod';
+import { cardSchema as card } from './card-schema';
 import type { components } from './generated/schema';
 
 type Detail = components['schemas']['GameView']['detail'];
 const count = z.number().int().nonnegative();
 const counts = z.record(z.string(), count);
-const card = z.object({
-  id: z.string(),
-  label: z.string(),
-  value: z.string(),
-  suit: z.string(),
-  color: z.string(),
-  subtitle: z.string(),
-});
+
 const paper = z.object({
   round: count,
   target: z.number().int().positive(),

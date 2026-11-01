@@ -58,7 +58,7 @@ describe('Sea Salt & Paper and boop decision surfaces', () => {
         pending={false}
       />,
     );
-    expect(html).toContain('Which one are you keeping?');
+    expect(html).toContain('Choose a card to keep');
     expect(html).toContain('Only you can see these choices.');
     expect(html).not.toContain('Keep selected');
     expect(html).not.toContain('Draw two · keep one');

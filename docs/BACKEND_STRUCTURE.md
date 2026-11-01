@@ -47,3 +47,59 @@ bank/property cards; the API must accept what the engine offers. Each engine
 still rejects duplicate, foreign or insufficient selections. Isolated HTTP
 integration tests pay thirty-three conserved assets in both Deal editions and
 verify immutable engine inputs, rejected ineligible cards and persisted readback.
+
+Visible card projections include additive printed-face `colors` and `effect`
+metadata. Deal retains its current `color` orientation while exposing all printed
+property/rent colors and the action identifier. This resolves ambiguous wilds
+without exposing additional cards, engine state or shuffle randomness; other
+families use empty defaults. The API client's shared `cardSchema` validates and
+normalizes those fields for hands and nested casino/modern/cooperative/paper
+details alike; older responses receive the same empty defaults. UI components
+consume the domain card instead of rebuilding per-game wire-card shapes.
+
+## Room bots
+
+Room-owned bots use reserved `bot:` profile identifiers, not Supabase accounts.
+Memberships declare `is_bot`; authentication accepts UUID subjects only, and
+room services additionally reject bot identities at the human authorization
+boundary. Only a human host can add/remove lobby bots. Human arrivals replace a
+lobby bot when seats are full; running matches keep their fixed participants.
+Bots never claim hosting, and the last human leaving closes the room even if
+bots remain. Retired memberships/profiles and match history are preserved.
+
+Bots are ready/connected without a presence heartbeat. Human leases still pause
+the whole match. A match persists bot policy memory and its next due timestamp.
+`POST /rooms/{id}/bots/drive` accepts a match ID and expected version, locks the
+room, and applies at most one due legal bot move. Stale/concurrent drives return
+the caller's fresh authorized snapshot without another move. Human and bot moves
+share the same apply/result/receipt transaction; every committed bot move has a
+deterministic receipt and version increment. There is no process-local worker or
+sleeping request. Reconnect/redeploy resumes from persisted state.
+
+Policy functions receive only `engine.project_view(state, bot_id)` and that bot's
+own JSON memory (at most 16KiB per bot). Private independent 128-bit policy seeds
+are persisted there; public room/seat identifiers cannot predict hidden votes.
+Policies cannot inspect state, opponent hands, engine seed or deck order.
+Trio and Flip 7 observe authorized public reveals even between their turns.
+Strategies use ordinary rules/search/heuristics without an
+LLM or network call. Bot memory stays in the private match table and is never
+part of a player response or Realtime payload. A private room view exposes only
+`bot_pending` and its safe next `bot_due_at` timestamp for frontend scheduling.
+
+Migration `a6e442b15d80` adds three columns to existing private tables, with
+backfills preserving all human memberships and old matches. It changes neither
+public grants nor membership/Broadcast policies.
+
+| Wire operation | Authorization and behavior |
+| --- | --- |
+| `POST /v1/rooms`, optional `bots` | Existing creation; atomically fills requested open seats with 0–9 bots |
+| `POST /v1/rooms/{id}/bots`, `{count}` | Human host; adds 1–9 bots to available lobby seats |
+| `DELETE /v1/rooms/{id}/members/{bot_id}` | Existing human-host removal between matches; preserves the retired profile/history |
+| `POST /v1/rooms/{id}/bots/drive`, `{match_id, expected_version}` | Human member; at most one due bot move; stale/concurrent calls are safe no-ops |
+
+`MemberView.is_bot` is explicit; `bot_due_at` is epoch seconds and is returned
+only when safe bot work is pending. The normal pacing interval is 800ms after a
+committed action. Scheduling gives a bot its legal out-of-turn UNO announcement
+before another bot catches it. Gang bots holding ranking chips wait for the
+human instead of repeatedly stealing/returning chips. These are scheduling
+choices over the existing engine's legal actions, not altered game rules.

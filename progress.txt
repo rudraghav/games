@@ -772,3 +772,253 @@
   committed-create/read-failure recovery, fresh natural room/result/rematch and
   Tarot selection/refresh. Eight related unit cases pass. No new hosted identities
   were created for this investigation; corrective production release is pending.
+
+2026-11-01 — Solo bots, full table design and gameplay-first layout kickoff
+- Owner requests non-LLM bots for every multiplayer game, reputable reusable
+  libraries/free licensed assets, direct copy, more first-fold gameplay and a
+  fresh review of every card/table/board for overlap and unfinished artwork.
+- Baseline: clean main5a1eaa8, production appf21fc0e,26 experiences. Preserve
+  original78-card Tarot art, saved readings, owner identity/rooms and live data.
+- Acceptance: one human can fill any multiplayer room with labeled rule-based
+  bots, complete/rematch/switch; bot identity cannot authenticate or host; private
+  projections alone inform bots; paced moves persist across concurrency/restart.
+  No LLM/API charges or hidden-state cheating. Party answers are simulated.
+- Screenshot-first audit covers52 min/max projections on both widths. Remove
+  filler copy, compact headers, prioritize games/hand/actions, repair actual card
+  collisions and add complete licensed/original artwork through shared variants.
+- Verify libraries by primary source, exact license/version and current repo
+  signals rather than stars alone; record adopted assets/dependencies/provenance.
+  Additive reviewed migration, contracts and owning docs accompany implementation;
+  local gates precede main/personal production and actual solo-bot/browser proof.
+
+- Bot policy layer is complete locally: all 25 multiplayer games use pure,
+  non-LLM choices from each bot's authorized projection and bounded own memory.
+  Existing validated card/rummy helpers and public-board searches are reused; no
+  RL/ML runtime or paid provider is required. Word Agents uses an original finite
+  semantic lexicon, and party responses are explicitly simulated preferences.
+- Policy verification passes 144 cases in 25.41s: 100 natural matches across all
+  games/minimum/maximum/two seeds, plus deterministic input/memory immutability,
+  private hand/key parity, real rummy declarations, board win/block, blackjack
+  strategy, bank-first Deal payments, Trio observation and Gang ranking tests.
+  Ruff and mypy pass for eight policy source files; per-decision search/memory
+  bounds are asserted. No policy code remains in progress.
+- Integration discovered and corrected UNO scheduling precedence: bots may
+  announce their one-card hand before the next bot catches it, preventing an
+  all-bot classic UNO loop. Gang holders wait for the human rather than cycling
+  steals. Independent private policy seeds preserve retries without making
+  hidden party votes reproducible from public match/seat identifiers.
+- Deal projections add the already-public payment_amount while asset selection
+  is pending (zero otherwise), allowing payment selection without parsing UI copy.
+  This does not change its rules/state. Policy work created no disposable browser,
+  cloud or temporary-file resources; all source, services and caches are retained.
+  Deployment/browser acceptance remains owned by the parent release.
+
+- Bot platform implemented locally: reserved non-authenticatable bot profiles,
+  explicit bot memberships, host-only lobby management, human replacement/seating
+  priority, no bot host transfer, and last-human room closure. Human leases alone
+  pause play; bots remain ready for rematches. Existing histories are preserved.
+- Reviewed additive migration a6e442b15d80 adds is_bot, private bot_memory and
+  bot_due_at to existing protected tables. Fresh isolated upgrade/drift/privacy
+  checks pass; dedicated local Games DB upgraded/drift clean, no cloud touched.
+- Authoritative bot drive applies one paced, version-locked move through the same
+  receipt/outcome transaction as humans. Stale concurrent drives are safe no-ops;
+  independent private 128-bit policy seeds persist across retries/restarts and
+  never expose engine shuffle randomness. Policies receive their own projection
+  and bounded memory only. UNO announcement priority and Gang waiting avoid loops;
+  Trio/Flip7 public observations persist between turns without hidden-state access.
+- Platform verification covers 60 new HTTP cases: all 25 multiplayer games finish
+  naturally with one human and bots, all 25 start at maximum seats, plus auth,
+  privacy, presence, concurrency/retry, actual post-restart progression, public
+  memory, rematch/switch and room closure. Combined existing/schema run passed128
+  cases; its only failure was an entropy-count test patch also counting engine
+  setup. Scoping that patch after setup passed the corrected case (0.63s), with
+  runtime unchanged. Platform Ruff/mypy pass. All isolated DBs cleaned by runner;
+  no disposable browser/cloud resources created. Current work local, uncommitted;
+  frontend/browser, cloud migration and production release remain with parent.
+
+- Solo browser acceptance kickoff: one isolated human identity per viewport
+  must finish all25 multiplayer games while the real room client drives bots.
+  Tests may choose human moves from that human's authorized projection only;
+  no raw state, bot impersonation, direct drive calls or hosted signup yet.
+  Acceptance includes UI setup/autostart and a clicked move, lobby bot add/remove,
+  driver failure/retry, reconnect, natural results/profile history, rematch,
+  same-group game switch and verified task-room closure. Safe unique local
+  evidence distinguishes dirty source from any later explicit serving revision.
+
+
+2026-11-01 — Complete table design/spacing audit (local verified)
+- Captured104 synthetic min/max before and 104 final after images for26 games at
+  390x844 and1440x1000. Opened all26 maximum phone and all26 maximum desktop
+  after images; reinspected changed final frames. Final104 have zero page
+  overflow. Full matrix and15 retained originals are in
+  docs/evidence/table-refresh-2026-11-01; raw captures remain in task output for
+  parent release closure. A fresh52-scenario gallery sweep has zero page errors.
+- Shared original district/ceramic/token artwork now composes typed UI wrappers.
+  AtlasArt explicitly clips a source cell before meet alignment, preventing
+  neighboring art in letterbox space while preserving complete illustrations.
+  Mancala keeps exact counts with bounded marble art; classic boards use wooden
+  pieces; casino wagers/pots use original chips. Shared standard/shedding/property
+  card artwork is integrated by the root release owner.
+- Casino decisions/private cards precede the table, avoid duplicate poker hands
+  and fake undealt backs, and preserve separate split blackjack hands/bets/active
+  state. Crowded rings avoid collisions and respond to actual canvas width.
+  Card-game piles share a compact hand layout; Skyjo cards no longer collide.
+- Eight-column phone boards fit44px squares; Gem Market uses readable illustrated
+  cards, own discounts and expandable secondary collections. Azul shares ceramic
+  pieces with a phone factory rail and expandable opponent boards. Compact Trio,
+  Flip7,6nimmt,party,Paper,boop and Tarot layouts remove empty panels/filler copy.
+- Focused verification:19 UI units,8 density/usability browser cases and8 existing
+  modern/SeaSalt/boop independent-player browser cases pass. Web/browser TypeScript,
+  focused table/story/test lint, tooling verification and diff whitespace pass.
+  Natural bot full matches, release pushes/build/deploy and production checks are
+  owned by the parent release. This entry establishes local table behavior only.
+
+- Final Tarot copy distinguishes card picking from the selected spread while a
+  reading is pending. Focused lint, web TypeScript and tooling pass after this
+  one-file text change; the captured choosing fixtures are unchanged.
+- Table cleanup closed only the isolated tables-20261101 browser, removed884,848
+  bytes of four obsolete owned debug PNGs, retained the104 before/104 after raw
+  captures pending parent release closure, and verified web/API both return200.
+
+- Root verification on the integrated bot/UI source:582 backend engine/policy
+  tests,128 multiplayer HTTP cases, fresh isolated migration/privacy check,
+  generated contracts and import boundaries pass. Frontend59 tests, workspace
+  TypeScript, lint and focused format checks pass. The real-client solo suite
+  and final builds are still running/pending; these are not hosted-match claims.
+- Personal production preflight confirms rudraghav/rudraghavs-projects Games,
+  project prj_ktWnIpFSa7waRIO8gm7dQrkAB6Za, existing serving sourcef21fc0e and
+  READY rollback dpl_7aT9pMzY3wHgRzfrxmf6mkVL85tZ. Scoped private owner/account/
+  profile/three-room fingerprints were captured before writes; no raw rows saved.
+- Applied reviewed additive migration a6e442b15d80 to the dedicated personal
+  Games Supabase pdkkpjpholsgmllehzax. Cloud upgrade, schema drift and existing
+  private-table RLS/grants all pass. No auth/provider/env/other-product settings
+  changed. Source remains local/uncommitted; no push or deployment yet.
+
+- Bot platform release review found no further consequential/security defect;
+  checked human membership/host gates, reserved IDs, locked versioned drives,
+  private bounded memory/projections, persisted pacing and restart behavior.
+  Reviewed additive migration/rollback checklist and same-origin bot route
+  allowlist are in docs/evidence/bots-ui-2026-11-01/PLATFORM.md.
+- Final local load verification passes both50-room cases in6.30s on a fresh
+  isolated migrated database. Human blackjack action median422ms/p95478ms;
+  authorized snapshot198/296ms. Simultaneous barrier-released SixNimmt bot
+  drive median519ms/p95579ms; private snapshot279/333ms. Real800ms pacing,
+  ordinary rate limits/auth, exactlyonecommit, hidden choices and last-human
+  room closure all verified. This measures localHTTP/DB contention for one
+  cheap decision, not worst-case policyCPU or hosted Broadcast/network latency.
+  Runner removed its disposable DB; no cloudwrites/restart/build/commit/deploy
+  by platform review. Other agents services/browser sessions preserved.
+
+- Local solo-browser acceptance passes on the final frozen runtime: all 25 games
+  on phone and desktop, 50 natural matches, 2,643 committed actions (1,296 human
+  and 1,347 actual client-driven bot actions), 14.3 minutes with two isolated workers.
+  Every match verifies saved result/score/winners, rendered profile/results,
+  rematch and same-group game changes; both shared group rooms close with fresh
+  404 readbacks. Initial UI rooms also close. Setup/autostart, a clicked board move,
+  bot add/remove, two controlled 503 responses/retry and reconnect all pass on both.
+- The browser harness reuses one human and one group room per viewport, adjusts
+  required bot seats between games, and never calls bots/drive itself. This keeps
+  the existing 12 room creations/hour limit intact. The human wagers before a
+  heads-up Teen Patti show and plays two Rummy turns before a later legal drop,
+  ensuring the browser observes the opponent's actual bot turns. Dealer-only
+  blackjack correctly needs no additional bot at its minimum one-player table.
+- Safe complete evidence is docs/evidence/bots-ui-2026-11-01/local.json. Strict
+  TypeScript passes for all browser test files. This is local uncommitted source,
+  not a pushed/deployed/hosted result. Production verification waits for the
+  parent's exact serving SHA; no hosted test identities have been created here.
+
+- Public Deal card faces now expose additive colors[] and effect metadata;
+  current color still records orientation. Matching green/blue and green/rail
+  wilds remain distinct; two-color versus all-color Rent retains printed colors
+  and action identity. Other families have empty defaults; gameplay/state and
+  hidden-card boundaries unchanged. Focused6new cases plus affected card-family
+  and allengine setup/privacy suite170pass1.24s; Ruff,mypy2files and generated
+  contract gate pass. gen:api and52projected room fixtures refreshed.
+- Safe canonical inventory docs/evidence/bots-ui-2026-11-01/card-faces.json
+  covers every distinct face and every legal property orientation: Uno 54,
+  UnoNoMercy 68,Deal 56,DealNoMercy 67. Generated only from public deck definitions,
+  with no players, randomness or hidden matchstate. Shared UI mapping/gallery
+  and actual rendered comparison belong to root/table-design agent. Source
+  local, uncommitted; noAPIrestart/cloud/deployment by platform agent.
+
+- Owner requested an exhaustive card-face follow-up before release. Canonical
+  inventory revealed visually ambiguous wild property/rent variants, shared
+  action icons and collapsed property colors. Additive public face metadata now
+  preserves all printed colors and effect identity; rules, state and bot policies
+  are unchanged. The UI pass is reviewing245 distinct Uno/Deal faces including
+  both No Mercy editions and every legal property orientation, normal/compact.
+- Final backend/core metadata rerun passes588 tests in35.52s,128 multiplayer
+  cases in79.79s, isolated migration/privacy, generated contracts, Python lint/
+  types and import boundaries. Previous100 policy matches and50 real-client solo
+  matches remain valid behavior evidence; final card visuals/builds are pending.
+- Removed redundant home section heading/subtitle, shortened search/count text,
+  and kept unfiltered phone count beside the group selector to reclaim the fold.
+  Noninteractive illustrated cards now have an image role/accessible card name;
+  bot party tables explain simulated answers even when auto-start skips lobby.
+  Shortened remaining form/chat/error copy and avoided repeated Bot suffixes.
+
+- Card inventory tooling kickoff: preserve the245-row public fixture schema
+  and order while adding deterministic regeneration and read-only drift checks
+  to the named contracts gate. Acceptance: existinginventory checks without
+  writes, missing/changed inventory fails, normalregeneration is byte-identical.
+  No runtime/OpenAPI/room-fixture regeneration or release action in this step.
+
+- Card inventory exporter complete: scripts/export_card_faces.py regenerates
+  the same245-row schema/order; --check is read-only and now part of the
+  contracts gate. Missing/changed inventory negative checks failed as expected
+  without writes; scratch regeneration matched the canonical bytes exactly,
+  passing --check preserved filemtime. Contracts/tooling,Ruff on both scripts,
+  exporterformat and diffcheck pass. No runtime/OpenAPI/roomfixture changes.
+  Removed only the exporter import check ownbytecode/scratch resources.
+
+- Additional regular functional browser regression passes all 54 tests in 3.4
+  minutes with two workers across phone/desktop: account, transport, flows,
+  expansion, coop-number, party, modern and sea-cats. No regular specs or runtime
+  code changed. Coverage includes independent human rooms/chat/refresh/switch,
+  private selections, modern/party interactions, Gang ranking, Boop keyboard/mouse
+  and the full 78-card Tarot browser. Safe summary is added to local.json;
+  final card-face/geometry checks remain separate while artwork is in progress.
+
+- Functional browser regression passes54 phone/desktop cases in3.4min: account,
+  transport, independent guest rooms/chat/move/refresh/switch, classic expansion,
+  modern/party, cooperative number selection, SeaSalt privacy and boop keyboard/
+  mouse. Full78-card Tarot browsing remains covered. No runtime repair or spec
+  change was needed for that run. Final density/card inventory and geometry
+  checks await the exhaustive shared-face styling pass, then builds/release.
+
+- Inventory maintenance correction: regeneration/--check now target stable
+  apps/web/src/stories/generated/card-faces.json. Its245rows are byte-identical
+  to this releases dated card-faces.json, which remains frozen historical
+  evidence. Tableagent notified to import stable path. Focused driftcheck and
+  bytecomparison pass; no rooms/OpenAPI generation or runtime/release action.
+- Hosted solo acceptance permits 75 minutes per viewport for remote round trips;
+  local remains 40 minutes. The 45-second no-progress guard, 4,000-version match
+  bound, original guest/group reuse and all server limits are unchanged. Strict
+  browser TypeScript passes after this tests-only deadline adjustment.
+
+- Final frozen runtime passes frontend63 units, workspace/browser TypeScript,
+  lint, optimized Next.js build and Storybook build. The full regular browser
+  run passed85 cases; two stale house-deck copy assertions failed, were updated
+  to assert the clear current label, then passed on both widths in2.2s. Total87
+  distinct regular cases pass;17 explicit opt-in/viewport cases remain separate
+  (card inventory, solo/full-match, hosted/realtime/capture). The exhaustive card
+  inventory separately passes both widths for980 rendered normal/compact cards.
+- Shared card-schema normalization preserves new/legacy metadata in hands and
+  nested casino, modern, cooperative and paper detail. Root regression covers
+  all four nested boundaries. Runtime fingerprint3c63f94bcb210e45ec1dff462481f7ef08d89c49fa4032e9399a3a71992068c6
+  is unchanged after final builds/tests; current changes remain local/unpushed.
+
+- Card-design closure: all 245 canonical Uno/Deal faces and legal orientations
+  share action motifs, full color bands and accessible orientation labels.
+  Normal/compact phone+desktop sweep checks980 cards ; 3 inventory+5 table units
+  and 2 browser cases pass. All 76 final semantic-group images reviewed; compact
+  Repossession/+10 overflow fixed without weakening checks. Runtime frozen.
+- Actual six-page evidence: phone first tile 442px (was 600), 48px Ready/Start rows
+  above fold, one Bot badge, unsqueezed name, no page overflow. Codes masked;
+  exact QA room closed 404. Retained 17 card originals, 15 broad-table originals
+  and complete geometry matrices. Source local; parent owns push/deploy proof.
+- Audit cleanup closed only the owned isolated browser and temporary Storybook
+  server. Removed 49.7 MB of raw captures and resolved traces after retaining
+  38 original screenshots, complete metrics and safe QA closure receipts.
+  Requested web/API remain healthy200; credentials, masters and user sessions
+  were preserved. No production write or commit was made by this subtask.

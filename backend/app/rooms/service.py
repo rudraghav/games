@@ -2,10 +2,11 @@ from __future__ import annotations
 
 import base64
 import hashlib
+import json
 import logging
 import secrets
 import time
-from uuid import uuid4
+from uuid import UUID, uuid4, uuid5
 
 from cryptography.fernet import Fernet
 from fastapi import HTTPException
@@ -13,7 +14,7 @@ from pydantic import ValidationError
 from sqlalchemy.orm import Session
 
 from app.auth import Identity
-from app.core.contracts import RuleError
+from app.core.contracts import Action, RuleError
 from app.games.registry import ENGINES
 from app.games.tarot.reading import (
     PROMPT_VERSION,
@@ -24,11 +25,14 @@ from app.games.tarot.reading import (
     ReadingView,
     generate_reading,
 )
-from app.models import Match, Member, Message, Receipt, Room, TarotReading
+from app.models import Match, Member, Message, Profile, Receipt, Room, TarotReading
+from app.rooms.bots import BOT_DELAY_SECONDS, BOT_NAMES, next_bot_view
 from app.rooms.repository import Repository
 from app.rooms.schemas import (
+    AddBots,
     ChatInput,
     CreateRoom,
+    DriveBots,
     JoinRoom,
     MatchSummary,
     MeView,
@@ -69,7 +73,7 @@ class RoomService:
     def _room(self, room_id: str, actor: Identity, lock: bool = False, host: bool = False) -> Room:
         room = self.repo.room(room_id, lock)
         member = self.repo.member(room_id, actor.id)
-        if room is None or member is None or not member.active:
+        if room is None or member is None or not member.active or member.is_bot:
             raise HTTPException(404, "This room is unavailable to your player session.")
         if host and room.owner_id != actor.id:
             raise HTTPException(403, "Only the host can do that.")
@@ -89,6 +93,108 @@ class RoomService:
         if member is None or not member.active:
             raise HTTPException(404, "Player membership is unavailable.")
         return member
+
+    def _add_bots(self, room: Room, count: int) -> None:
+        from app.bots import supports_bots
+
+        members = self.repo.members(room.id)
+        if not supports_bots(room.game_id) or count > room.capacity - sum(
+            m.seated for m, _ in members
+        ):
+            raise HTTPException(422, "Choose a bot for each available multiplayer seat.")
+        if len(members) + count > 20:
+            raise HTTPException(422, "This room has no room for more players.")
+        used = {p.name for _, p in members}
+        choices = [
+            (f"Bot {name}{f' {cycle + 1}' if cycle else ''}", i % 8)
+            for cycle in range(3)
+            for i, name in enumerate(BOT_NAMES)
+        ]
+        for _ in range(count):
+            choice = next((item for item in choices if item[0] not in used), None)
+            if choice is None:
+                raise HTTPException(422, "This room already has the maximum number of bots.")
+            name, avatar = choice
+            used.add(name)
+            bot_id = "bot:" + uuid4().hex
+            self.repo.add(Profile(id=bot_id, name=name, avatar=avatar))
+            self.repo.flush()
+            self.repo.add(
+                Member(room_id=room.id, user_id=bot_id, is_bot=True, ready=True, seated=True)
+            )
+        self.repo.flush()
+
+    def _connected(self, room_id: str, match: Match) -> bool:
+        available = {
+            m.user_id
+            for m, _ in self.repo.members(room_id)
+            if m.is_bot or time.time() - m.seen_at < 45
+        }
+        return set(match.participants) <= available
+
+    def _apply_action(
+        self,
+        room: Room,
+        match: Match,
+        player_id: str,
+        action: Action,
+        action_id: str,
+        fingerprint: str,
+    ) -> None:
+        engine = ENGINES[match.game_id]
+        try:
+            match.state = engine.apply_action(match.state, player_id, action)
+        except RuleError as error:
+            raise HTTPException(422, str(error)) from error
+        observing_bots = (
+            [
+                member
+                for member, _ in self.repo.members(room.id)
+                if member.is_bot and member.user_id in match.participants
+            ]
+            if match.game_id in {"trio", "flip-7"}
+            else []
+        )
+        if observing_bots:
+            from app.bots import observe_view
+
+            memories = dict(match.bot_memory)
+            for member in observing_bots:
+                view = engine.project_view(match.state, member.user_id)
+                memory = observe_view(view, member.user_id, self._bot_memory(match, member.user_id))
+                if len(json.dumps(memory, allow_nan=False)) > 16384:
+                    raise HTTPException(
+                        503, "This bot could not finish its move. Please try again."
+                    )
+                memories[member.user_id] = memory
+            match.bot_memory = memories
+        match.version += 1
+        match.bot_due_at = time.time() + BOT_DELAY_SECONDS
+        room.revision += 1
+        if match.state["phase"] == "finished":
+            view = engine.project_view(match.state, player_id)
+            match.result = {
+                "winners": view.winners,
+                "scores": {p.id: p.score for p in view.players},
+            }
+            room.status = "finished"
+        self.repo.add(
+            Receipt(
+                match_id=match.id,
+                action_id=action_id,
+                actor_id=player_id,
+                fingerprint=fingerprint,
+                response={"committedVersion": match.version},
+            )
+        )
+        self.repo.flush()
+
+    @staticmethod
+    def _bot_memory(match: Match, bot_id: str) -> dict:
+        saved = match.bot_memory.get(bot_id)
+        # Independent private randomness keeps hidden party choices unpredictable
+        # from public identifiers without sharing the engine's shuffle seed.
+        return saved if saved is not None else {"seed": secrets.randbits(128)}
 
     def create(self, actor: Identity, data: CreateRoom) -> RoomView:
         self._rate(actor, "create", 12, 3600)
@@ -111,6 +217,8 @@ class RoomService:
             self.repo.flush()
             self.repo.add(Member(room_id=room.id, user_id=actor.id))
             self.repo.flush()
+            if data.bots:
+                self._add_bots(room, data.bots)
             return room_view(self.repo, room, actor.id, self.cipher)
 
     def join(self, actor: Identity, data: JoinRoom) -> RoomView:
@@ -125,6 +233,12 @@ class RoomService:
                 raise HTTPException(409, "This room is full.")
             self.repo.save_profile(actor.id, data.name, data.avatar)
             seated = room.status != "playing" and sum(m.seated for m, _ in members) < room.capacity
+            if room.status != "playing" and not seated and not (existing and existing.active):
+                # Friends can replace a lobby bot; never alter a running match.
+                replacement = next((m for m, _ in reversed(members) if m.is_bot and m.seated), None)
+                if replacement:
+                    replacement.active, replacement.seated, replacement.ready = False, False, False
+                    seated = True
             if existing:
                 if not existing.active:
                     existing.active, existing.seated, existing.ready = True, seated, False
@@ -173,8 +287,15 @@ class RoomService:
                 )
             room.game_id, room.capacity, room.settings = data.game_id, data.capacity, values
             room.status, room.match_id = "lobby", None
-            for i, (member, _) in enumerate(self.repo.members(room_id)):
-                member.ready, member.seated = False, i < data.capacity
+            members = sorted(self.repo.members(room_id), key=lambda pair: pair[0].is_bot)
+            bots_allowed = True
+            if any(member.is_bot for member, _ in members):
+                from app.bots import supports_bots
+
+                bots_allowed = supports_bots(data.game_id)
+            for i, (member, _) in enumerate(members):
+                member.seated = i < data.capacity and (not member.is_bot or bots_allowed)
+                member.ready = member.is_bot and member.seated
             room.revision += 1
             self.repo.flush()
             return room_view(self.repo, room, actor.id, self.cipher)
@@ -188,7 +309,7 @@ class RoomService:
             seated = [m for m, _ in self.repo.members(room_id) if m.seated]
             engine = ENGINES[room.game_id]
             if not engine.manifest.min_players <= len(seated) <= room.capacity or not all(
-                m.ready and time.time() - m.seen_at < 45 for m in seated
+                (m.is_bot or m.ready and time.time() - m.seen_at < 45) for m in seated
             ):
                 raise HTTPException(
                     409,
@@ -204,6 +325,7 @@ class RoomService:
                 rules_version=engine.manifest.rules_version,
                 state=engine.setup(players, room.settings),
                 participants=players,
+                bot_due_at=time.time() + BOT_DELAY_SECONDS,
             )
             self.repo.add(match)
             self.repo.flush()
@@ -211,7 +333,7 @@ class RoomService:
             room.round_number += 1
             room.revision += 1
             for member in seated:
-                member.ready = False
+                member.ready = member.is_bot
             self.repo.flush()
             return room_view(self.repo, room, actor.id, self.cipher)
 
@@ -235,37 +357,59 @@ class RoomService:
                     409, "The table changed. Your hand has been refreshed; choose your move again."
                 )
             self._member(room_id, actor.id).seen_at = time.time()
-            connected = {
-                m.user_id for m, _ in self.repo.members(room_id) if time.time() - m.seen_at < 45
-            }
-            if not set(match.participants) <= connected:
+            if not self._connected(room_id, match):
                 raise HTTPException(409, "The table is paused while a player reconnects.")
-            engine = ENGINES[match.game_id]
-            try:
-                match.state = engine.apply_action(match.state, actor.id, data.action)
-            except RuleError as error:
-                raise HTTPException(422, str(error)) from error
-            match.version += 1
+            self._apply_action(room, match, actor.id, data.action, str(data.action_id), fingerprint)
+            return room_view(self.repo, room, actor.id, self.cipher)
+
+    def add_bots(self, actor: Identity, room_id: str, data: AddBots) -> RoomView:
+        self._rate(actor, "bots", 30)
+        with self.session.begin():
+            room = self._room(room_id, actor, lock=True, host=True)
+            if room.status == "playing":
+                raise HTTPException(409, "Bots can be added between matches.")
+            self._add_bots(room, data.count)
             room.revision += 1
-            if match.state["phase"] == "finished":
-                view = engine.project_view(match.state, actor.id)
-                match.result = {
-                    "winners": view.winners,
-                    "scores": {p.id: p.score for p in view.players},
-                }
-                room.status = "finished"
-            self.repo.flush()
-            response = room_view(self.repo, room, actor.id, self.cipher)
-            self.repo.add(
-                Receipt(
-                    match_id=match.id,
-                    action_id=str(data.action_id),
-                    actor_id=actor.id,
-                    fingerprint=fingerprint,
-                    response={"committedVersion": match.version},
-                )
-            )
-            return response
+            return room_view(self.repo, room, actor.id, self.cipher)
+
+    def drive_bots(self, actor: Identity, room_id: str, data: DriveBots) -> RoomView:
+        self._rate(actor, "bot-drive", 180)
+        with self.session.begin():
+            room = self._room(room_id, actor, lock=True)
+            match = self.repo.match(room.match_id)
+            # Stale/concurrent drives are successful no-ops with the caller's
+            # fresh view; no retry can advance the same expected version twice.
+            if (
+                not match
+                or room.status != "playing"
+                or match.id != str(data.match_id)
+                or match.version != data.expected_version
+            ):
+                return room_view(self.repo, room, actor.id, self.cipher)
+            self._member(room_id, actor.id).seen_at = time.time()
+            if time.time() < match.bot_due_at or not self._connected(room_id, match):
+                return room_view(self.repo, room, actor.id, self.cipher)
+            bots = [
+                m
+                for m, _ in self.repo.members(room_id)
+                if m.is_bot and m.seated and m.user_id in match.participants
+            ]
+            selected = next_bot_view(ENGINES[match.game_id], match.state, bots)
+            if selected is None:
+                return room_view(self.repo, room, actor.id, self.cipher)
+            from app.bots import choose_action
+
+            bot_id, view = selected
+            memory = self._bot_memory(match, bot_id)
+            decision = choose_action(view, bot_id, memory)
+            serialized = json.dumps(decision.memory, allow_nan=False)
+            if len(serialized) > 16384:
+                raise HTTPException(503, "This bot could not finish its move. Please try again.")
+            match.bot_memory = {**match.bot_memory, bot_id: decision.memory}
+            action_id = str(uuid5(UUID(match.id), f"bot:{match.version}:{bot_id}"))
+            fingerprint = hashlib.sha256(decision.action.model_dump_json().encode()).hexdigest()
+            self._apply_action(room, match, bot_id, decision.action, action_id, fingerprint)
+            return room_view(self.repo, room, actor.id, self.cipher)
 
     def chat(self, actor: Identity, room_id: str, data: ChatInput) -> RoomView:
         self._rate(actor, "chat", 20)
@@ -328,6 +472,7 @@ class RoomService:
             saved.prompt_version = PROMPT_VERSION
             cards = [match.state["deck"][i] for i in match.state["picks"]]
             question = saved.question
+
         # The provider call deliberately runs without a database transaction or row lock.
         def reserve_attempt() -> None:
             with self.session.begin():
@@ -342,8 +487,11 @@ class RoomService:
                 "games.ai.failure model=%s error_type=%s validation_errors=%s",
                 settings().tarot_model,
                 type(error).__name__,
-                error.error_count() if isinstance(error, ValidationError)
-                else error.errors if isinstance(error, ReadingOutputError) else 0,
+                error.error_count()
+                if isinstance(error, ValidationError)
+                else error.errors
+                if isinstance(error, ReadingOutputError)
+                else 0,
             )
             with self.session.begin():
                 self._room(room_id, actor, lock=True)
@@ -402,7 +550,7 @@ class RoomService:
                     match.result = {"abandoned": True, "winners": [], "scores": {}}
                 room.status, room.match_id = "lobby", None
                 for member, _ in members:
-                    member.ready = False
+                    member.ready = member.is_bot and member.seated
             elif action == "kick":
                 if room.status == "playing" or target == actor.id:
                     raise HTTPException(
@@ -415,16 +563,23 @@ class RoomService:
                     victim.active, victim.seated, victim.ready = False, False, False
             elif action == "leave":
                 self._member(room_id, actor.id).active = False
-                if room.owner_id == actor.id:
+                humans = [m for m, _ in members if not m.is_bot and m.user_id != actor.id]
+                if not humans:
+                    match = self.repo.match(room.match_id)
+                    if match and room.status == "playing":
+                        match.result = {"abandoned": True, "winners": [], "scores": {}}
+                    room.status = "closed"
+                    for member, _ in members:
+                        if member.is_bot:
+                            member.active, member.seated, member.ready = False, False, False
+                elif room.owner_id == actor.id:
                     remaining = [
                         m
                         for m, _ in members
-                        if m.user_id != actor.id and time.time() - m.seen_at < 45
+                        if not m.is_bot and m.user_id != actor.id and time.time() - m.seen_at < 45
                     ]
                     if remaining:
                         room.owner_id = remaining[0].user_id
-                    elif len(members) == 1:
-                        room.status = "closed"
             room.revision += 1
             self.repo.flush()
             return room_view(self.repo, room, actor.id, self.cipher)
