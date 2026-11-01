@@ -1,0 +1,116 @@
+{
+  "environment": "local development",
+  "readingSource": "Explicit network-boundary preview of the checked-in non-personal Storybook fixture; no provider call or player reading used.",
+  "scenarios": [
+    {
+      "viewport": "desktop",
+      "atlasImages": [
+        {
+          "path": "/tarot/major-01.webp",
+          "width": 960,
+          "height": 960,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/major-02.webp",
+          "width": 960,
+          "height": 960,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/major-03.webp",
+          "width": 960,
+          "height": 960,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/major-04.webp",
+          "width": 960,
+          "height": 960,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/minor-wands-v1.webp",
+          "width": 1024,
+          "height": 1536,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/minor-cups-v1.webp",
+          "width": 1024,
+          "height": 1536,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/minor-swords-v1.webp",
+          "width": 1024,
+          "height": 1536,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/minor-pentacles-v1.webp",
+          "width": 1024,
+          "height": 1536,
+          "decoded": true
+        }
+      ],
+      "roomClosed": true,
+      "noPageOverflow": true
+    },
+    {
+      "viewport": "phone",
+      "atlasImages": [
+        {
+          "path": "/tarot/major-01.webp",
+          "width": 960,
+          "height": 960,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/major-02.webp",
+          "width": 960,
+          "height": 960,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/major-03.webp",
+          "width": 960,
+          "height": 960,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/major-04.webp",
+          "width": 960,
+          "height": 960,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/minor-wands-v1.webp",
+          "width": 1024,
+          "height": 1536,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/minor-cups-v1.webp",
+          "width": 1024,
+          "height": 1536,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/minor-swords-v1.webp",
+          "width": 1024,
+          "height": 1536,
+          "decoded": true
+        },
+        {
+          "path": "/tarot/minor-pentacles-v1.webp",
+          "width": 1024,
+          "height": 1536,
+          "decoded": true
+        }
+      ],
+      "roomClosed": true,
+      "noPageOverflow": true
+    }
+  ]
+}

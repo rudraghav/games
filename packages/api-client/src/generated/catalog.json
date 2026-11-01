@@ -313,5 +313,146 @@
       "Finish in your store to play again. Finish in your empty pit opposite seeds to capture both.",
       "When either side empties, sweep the other side into its own store. Most seeds wins; equal stores draw."
     ]
+  },
+  {
+    "id": "flip-7",
+    "name": "Flip 7",
+    "subtitle": "One more card. Famous last words.",
+    "family": "flip-seven",
+    "min_players": 3,
+    "max_players": 10,
+    "minutes": "15\u201325",
+    "icon": "sparkles",
+    "color": "coral",
+    "rules_version": "edition-3.1",
+    "settings": [],
+    "rules": [
+      "94-card deck. Hit for a card or Stay to bank your round points. Duplicate numbers bust.",
+      "Freeze banks a target; Flip Three forces up to three cards; Second Chance saves one duplicate.",
+      "During Flip Three, resolve extra Freeze/Flip Three cards after the batch unless the drawer busts.",
+      "Seven distinct numbers end the round and add 15. Double numbers before adding modifiers.",
+      "Highest score at 200 wins after the round. Tied leaders play on. Resolved actions stay out until round end."
+    ]
+  },
+  {
+    "id": "trio",
+    "name": "Trio",
+    "subtitle": "A little memory. A perfect three.",
+    "family": "trio",
+    "min_players": 3,
+    "max_players": 6,
+    "minutes": "10\u201315",
+    "icon": "layers",
+    "color": "plum",
+    "rules_version": "simple-1",
+    "settings": [],
+    "rules": [
+      "Simple individual mode. Three copies each of numbers 1\u201312; sorted private hands.",
+      "Reveal a table card or any hand\u2019s current lowest or highest card, including your own.",
+      "A mismatch ends your turn. Three equal numbers earn a trio.",
+      "Collect three trios, or the trio of sevens, to win. Review reveals before continuing."
+    ]
+  },
+  {
+    "id": "azul",
+    "name": "Azul",
+    "subtitle": "Your next masterpiece, one tile at a time.",
+    "family": "azul",
+    "min_players": 2,
+    "max_players": 4,
+    "minutes": "25\u201340",
+    "icon": "grid",
+    "color": "sky",
+    "rules_version": "colored-wall-1",
+    "settings": [],
+    "rules": [
+      "Standard colored wall. Draft every tile of one color from one factory or the center.",
+      "Put the draft in one compatible pattern line. Excess goes to your floor.",
+      "Completed lines place one wall tile and score linked neighbors; unfinished lines stay.",
+      "Floor costs are 1,1,2,2,2,3,3. The first center taker gets the marker and starts next round.",
+      "A complete wall row ends the round and match. Bonuses: row 2, column 7, color 10. Ties favor more complete rows.",
+      "Games exhaustion convention: if no tiles can form a new offer, finish with normal bonuses. Unfinished lines stay put."
+    ]
+  },
+  {
+    "id": "spill-or-chill",
+    "name": "Spill or Chill",
+    "subtitle": "A good story. Zero pressure.",
+    "family": "party",
+    "min_players": 3,
+    "max_players": 10,
+    "minutes": "10\u201325",
+    "icon": "sparkles",
+    "color": "coral",
+    "rules_version": "house-party-1",
+    "settings": [
+      {
+        "key": "sip_prompts",
+        "label": "Optional sip prompts \u00b7 any drink",
+        "default": false
+      }
+    ],
+    "rules": [
+      "Games original house rules: 48 original prompts, two spotlight turns per person.",
+      "The spotlight player answers aloud and chooses Share, Chill or Pass.",
+      "Share and Chill both earn one participation point. Pass earns zero.",
+      "No answers are recorded. The most participation points wins.",
+      "The spotlight player advances each reveal. Equal highest scores share the win.",
+      "Sip prompts are optional, use any drink and never affect scoring. Passing is always available."
+    ]
+  },
+  {
+    "id": "most-likely",
+    "name": "Most Likely",
+    "subtitle": "Secret votes. Extremely public personalities.",
+    "family": "party",
+    "min_players": 3,
+    "max_players": 10,
+    "minutes": "10\u201325",
+    "icon": "sparkles",
+    "color": "ochre",
+    "rules_version": "house-party-1",
+    "settings": [
+      {
+        "key": "sip_prompts",
+        "label": "Optional sip prompts \u00b7 any drink",
+        "default": false
+      }
+    ],
+    "rules": [
+      "Games original house rules: 48 original prompts, two spotlight turns per person.",
+      "Everyone secretly votes for another player, or passes. No self-votes.",
+      "Votes lock on submission and reveal together. Tied positive leaders each earn a point.",
+      "All-pass rounds award no points. Most spotlight points wins.",
+      "The spotlight player advances each reveal. Equal highest scores share the win.",
+      "Sip prompts are optional, use any drink and never affect scoring. Passing is always available."
+    ]
+  },
+  {
+    "id": "hot-seat",
+    "name": "Hot Seat",
+    "subtitle": "How well do your friends really know you?",
+    "family": "party",
+    "min_players": 3,
+    "max_players": 10,
+    "minutes": "10\u201325",
+    "icon": "sparkles",
+    "color": "sage",
+    "rules_version": "house-party-1",
+    "settings": [
+      {
+        "key": "sip_prompts",
+        "label": "Optional sip prompts \u00b7 any drink",
+        "default": false
+      }
+    ],
+    "rules": [
+      "Games original house rules: 48 original prompts, two spotlight turns per person.",
+      "The spotlight player privately chooses A or B; everyone else predicts their choice.",
+      "Everyone may pass. Decisions lock and reveal only after everyone submits.",
+      "Correct predictions earn one point; a spotlight pass awards none. Most points wins.",
+      "The spotlight player advances each reveal. Equal highest scores share the win.",
+      "Sip prompts are optional, use any drink and never affect scoring. Passing is always available."
+    ]
   }
 ]

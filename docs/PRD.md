@@ -41,6 +41,19 @@ owner approved a clearly labeled Games house deck for Deal No Mercy because its
 complete printed money-card multiplicities were unavailable. Exact house counts
 and verified printed effects are recorded in that engine's README and rule sheet.
 
+The subsequent owner-requested expansion adds Flip 7 (edition 3.1), Trio
+(individual Simple mode), Azul (standard colored wall) and three original party
+modes: Spill or Chill, Most Likely and Hot Seat. This brings the catalogue to 22.
+Party rooms support 3–10 players, original nonrepeating prompts, private locked
+votes/predictions where applicable, balanced spotlight turns and optional sip
+suggestions. Passing and any drink work without affecting participation access.
+
+Every Tarot card now has an original illustration: 22 major and 56 minor arcana.
+A canonical deck browser reveals artwork without exposing the shuffled game deck.
+Fresh readings include a grounded and separate quirky interpretation plus one
+or two named character connections per card. Distinct minor-card meanings guide
+the model. Older saved output remains readable without invented new sections.
+
 ## Release gate
 
 All nine games must complete matches, score correctly, rematch, and switch games

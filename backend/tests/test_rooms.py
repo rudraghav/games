@@ -197,6 +197,10 @@ def test_tarot_ai_output_is_saved_and_reading_private(client, monkeypatch):
     reading = client.post(path + "/reading", headers=headers[0], json=payload)
     assert reading.status_code == 200, reading.text
     assert reading.json()["status"] == "complete"
+    assert all(
+        card["quirky_interpretation"] and 1 <= len(card["characters"]) <= 2
+        for card in reading.json()["reading"]["cards"]
+    )
     assert client.post(path + "/reading", headers=headers[0], json=payload).json() == reading.json()
     assert client.get(path + "/reading", headers=headers[0]).json() == reading.json()
     assert len(calls) == 1
@@ -209,6 +213,49 @@ def test_tarot_ai_output_is_saved_and_reading_private(client, monkeypatch):
     assert client.post(path + "/reading", headers=headers[0], json=payload).status_code == 409
     with sessions()() as session:
         assert session.get(Match, room["match_id"]).result is not None
+
+
+def test_legacy_tarot_history_remains_readable_without_regeneration_or_fabricated_layers(
+    client, monkeypatch
+):
+    room, headers = seated_room(client, "tarot", 1)
+    path = f"/v1/rooms/{room['id']}"
+    for i in range(3):
+        room = client.post(
+            path + "/actions", headers=headers[0],
+            json={"match_id": room["match_id"], "action_id": str(uuid4()),
+                  "expected_version": room["match_version"],
+                  "action": {"type": "pick", "choice": str(i)}},
+        ).json()
+    cards = [card["id"] for card in room["game"]["community"]]
+    legacy = example_reading(cards)
+    for section in legacy["cards"]:
+        del section["quirky_interpretation"], section["characters"]
+        section["pop_culture"] = "A character analogy from the saved earlier reading."
+    with sessions()() as session:
+        session.add(TarotReading(
+            match_id=room["match_id"], status="complete", payload=legacy,
+            question="An earlier saved question", prompt_version="pop-tarot-2",
+            attempt_id=str(uuid4()), lease_until=0,
+        ))
+        session.commit()
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("Saved readings must not make another provider call.")
+
+    monkeypatch.setattr("app.rooms.service.generate_reading", forbidden)
+    saved = client.get(path + "/reading", headers=headers[0])
+    assert saved.status_code == 200 and saved.json()["status"] == "complete"
+    assert saved.json()["question"] == "An earlier saved question"
+    for section in saved.json()["reading"]["cards"]:
+        assert section["quirky_interpretation"] is None and section["characters"] == []
+        assert section["pop_culture"] == "A character analogy from the saved earlier reading."
+    repeated = client.post(
+        path + "/reading", headers=headers[0], json={"match_id": room["match_id"]}
+    )
+    assert repeated.json() == saved.json()
+    with sessions()() as session:
+        assert session.get(TarotReading, room["match_id"]).payload == legacy
 
 
 def test_tarot_unavailable_does_not_fake_a_reading(client, monkeypatch):

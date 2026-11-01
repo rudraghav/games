@@ -11,6 +11,10 @@ import { BoardTable } from './board/BoardTable';
 import { MancalaTable } from './board/MancalaTable';
 import { WordsTable } from './words/WordsTable';
 import { GemsTable } from './gems/GemsTable';
+import { FlipSevenTable } from './modern/FlipSevenTable';
+import { TrioTable } from './modern/TrioTable';
+import { AzulTable } from './modern/AzulTable';
+import { PartyTable } from './party/PartyTable';
 
 const familyTables: Record<string, ComponentType<TableProps>> = {
   shedding: CardTable,
@@ -23,6 +27,10 @@ const familyTables: Record<string, ComponentType<TableProps>> = {
   mancala: MancalaTable,
   words: WordsTable,
   gems: GemsTable,
+  'flip-seven': FlipSevenTable,
+  trio: TrioTable,
+  azul: AzulTable,
+  party: PartyTable,
 };
 export const tableRegistry = Object.fromEntries(
   games.map((game) => {

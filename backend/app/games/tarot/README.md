@@ -1,5 +1,16 @@
 # Pop Tarot
 
+## Reading expansion acceptance — 1 November 2026
+
+New readings must give every selected card a grounded interpretation, a separate
+playful interpretation and one or two named fictional-character connections with
+an explained relationship to that card. All 56 minor meanings must be distinct
+editorial interpretations of their traditional archetypes. Saved earlier readings
+remain readable without inventing missing sections. Provider retries, time and
+attempt budgets, privacy, exact spread identity and atomic persistence continue
+to apply. Acceptance includes strict fresh-output validation, legacy readback,
+fixed live evaluations and phone/desktop rendering of the expanded sections.
+
 An original reflective solo experience, not a competitive game. The player asks
 an optional question and chooses three face-down positions from a shuffled
 78-card deck: 22 major arcana and four 14-card suits. Cards are unique, upright
@@ -7,8 +18,15 @@ only in this edition, and never leave the server until selected. The spread is
 **Where you are / What is shifting / Your next move**. Picking cannot be undone.
 
 The meanings in `deck.py` are Games' concise editorial interpretation of
-traditional archetypes, not copied guidebook text. All references to films,
-characters or music are written analogies; no licensed character artwork,
+traditional archetypes, not copied guidebook text. Every one of the 56 minor
+cards has an individual meaning; rank/suit template phrases are not used.
+New readings separate the normal interpretation from a playful reinterpretation
+and one or two structured character connections (name, source and explained
+parallel) for each card. Characters cannot repeat within a spread. A stable
+rotation of broad reference genres across the three cards encourages variety
+without another provider call or retaining a user's earlier readings. Humour
+targets situations rather than mocking hardship or feelings.
+All references to films, characters or music are written analogies; no licensed character artwork,
 dialogue or lyrics are bundled.
 
 After three picks, the player explicitly requests a personal AI reading.
@@ -41,8 +59,8 @@ retains the general Gemini transmission notice without the free-tier statement.
 See https://ai.google.dev/gemini-api/docs/pricing.
 
 Provider: Google Gemini Interactions API with JSON Schema output, storage off,
-low thinking level and a 2,400-token output cap. Default model is configurable
-through `TAROT_MODEL`. The `pop-tarot-2` provider schema binds each of the three
+low thinking level and a 3,600-token output cap. Default model is configurable
+through `TAROT_MODEL`. The `pop-tarot-3` provider schema binds each of the three
 ordered card IDs and positions using supported `prefixItems`/single-value enums.
 Google ignores JSON Schema string-length constraints; descriptions communicate
 the character ranges and strict Pydantic validation remains authoritative. A
@@ -52,6 +70,10 @@ text. Failed, canceled, empty/safety, HTTP quota/auth and transport responses do
 not retry automatically. A 60-second retry deadline and 30-second request timeout
 fit within the 75-second frontend proxy and 120-second saved-generation lease.
 Both attempts reserve the transactional daily budget before transmission.
+Fresh-output validation requires all new reading sections and rejects repeated
+characters, unnamed sources, missing/oversized explanations and extra fields.
+The persisted/API model independently accepts older `pop_culture` paragraphs;
+loading those readings never fabricates quirky text or silently generates again.
 
 See [Google structured output](https://ai.google.dev/gemini-api/docs/structured-output)
 and [Interactions status reference](https://ai.google.dev/api/interactions-api)
@@ -59,7 +81,7 @@ and [Interactions status reference](https://ai.google.dev/api/interactions-api)
 retained, so their exact rejection cannot be reconstructed. The confirmed contract
 gap was relying on provider-ignored length keywords without a recovery path.
 
-Reliability verification: 28 focused Tarot/provider checks and nine isolated-room
+Historical v2 reliability verification: 28 focused Tarot/provider checks and nine isolated-room
 checks passed, including recovery from malformed/truncated/oversized/missing-field
 output, exact card identity validation, exhausted retry budgets, privacy, saved
 readback and no regeneration on repeated submission. Six non-personal live
@@ -67,6 +89,18 @@ scenarios passed strict schema/card-position checks on their first attempts in
 2.24–4.15 seconds on 1 November 2026. These are bounded reliability samples,
 not a guarantee against provider outages. Metadata-only evaluation evidence is
 retained privately; no player questions, readings or tokens are in logs.
+
+Current v3 verification: 34 focused engine/provider checks and eight isolated-room
+checks pass, including required normal/quirky/character layers, two-character
+bounds, repeated-character rejection, legacy persistence without mutation or new
+provider calls, output recovery, authorization and transactional retry budgets.
+Three fixed real-provider scenarios passed first attempt in 3.83–4.20 seconds;
+metadata and review limits are in `docs/evidence/tarot-v3-2026-11-01`. Separate
+frontend tests cover legacy presentation and text escaping; phone/desktop browser
+checks cover the 78-card explorer, suit filters, choices and refresh. Real-AI
+phone/desktop full matches also pass all new sections, exact rendered readback,
+history, natural results, rematch and same-group switching, with clean test-room
+closure and no transport recovery needed.
 
 Cost controls: 16,000-character request ceiling, 10 reading requests per player
 per hour, and a transactional application-wide default of 100 provider attempts

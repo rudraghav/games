@@ -1214,6 +1214,36 @@
         ],
         "title": "CardView"
       },
+      "CharacterConnection": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 70,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "source": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Source"
+          },
+          "connection": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 30,
+            "title": "Connection"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "source",
+          "connection"
+        ],
+        "title": "CharacterConnection"
+      },
       "ChatInput": {
         "properties": {
           "body": {
@@ -1931,6 +1961,12 @@
             "minLength": 20,
             "title": "Introduction"
           },
+          "next_step": {
+            "type": "string",
+            "maxLength": 400,
+            "minLength": 15,
+            "title": "Next Step"
+          },
           "cards": {
             "items": {
               "$ref": "#/components/schemas/Section"
@@ -1939,12 +1975,6 @@
             "maxItems": 3,
             "minItems": 3,
             "title": "Cards"
-          },
-          "next_step": {
-            "type": "string",
-            "maxLength": 400,
-            "minLength": 15,
-            "title": "Next Step"
           }
         },
         "additionalProperties": false,
@@ -1952,8 +1982,8 @@
         "required": [
           "title",
           "introduction",
-          "cards",
-          "next_step"
+          "next_step",
+          "cards"
         ],
         "title": "Reading"
       },
@@ -2254,10 +2284,38 @@
             "title": "Interpretation"
           },
           "pop_culture": {
-            "type": "string",
-            "maxLength": 450,
-            "minLength": 20,
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 450,
+                "minLength": 20
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Pop Culture"
+          },
+          "quirky_interpretation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 40
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quirky Interpretation"
+          },
+          "characters": {
+            "items": {
+              "$ref": "#/components/schemas/CharacterConnection"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "title": "Characters"
           }
         },
         "additionalProperties": false,
@@ -2266,10 +2324,10 @@
           "card_id",
           "position",
           "title",
-          "interpretation",
-          "pop_culture"
+          "interpretation"
         ],
-        "title": "Section"
+        "title": "Section",
+        "description": "Stored/wire contract also accepts readings saved before the expansion."
       },
       "SessionToken": {
         "properties": {

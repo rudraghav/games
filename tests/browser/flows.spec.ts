@@ -125,6 +125,28 @@ test('Tarot reveals three distinct cards and survives a refresh', async ({ page 
   await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Browser Reader');
   await page.getByRole('button', { name: 'Create room', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Choose card 1 of 3' })).toBeVisible();
+  await page.getByRole('button', { name: 'Explore the deck', exact: true }).click();
+  const gallery = page.getByRole('dialog', { name: 'The whole cosmic cast' });
+  await expect(gallery.locator('.tarot-deck-gallery .tarot-card')).toHaveCount(78);
+  for (const suit of ['Wands', 'Cups', 'Swords', 'Pentacles']) {
+    await gallery.getByRole('button', { name: suit, exact: true }).click();
+    await expect(gallery.locator('.tarot-deck-gallery .tarot-card')).toHaveCount(14);
+  }
+  await gallery.getByRole('button', { name: 'Major arcana', exact: true }).click();
+  await expect(gallery.locator('.tarot-deck-gallery .tarot-card')).toHaveCount(22);
+  expect(await gallery.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(
+    true,
+  );
+  await gallery.evaluate((element) => {
+    element.scrollTop = element.scrollHeight;
+  });
+  const closeDeck = gallery.getByRole('button', { name: 'Close dialog', exact: true });
+  await expect(closeDeck).toBeInViewport();
+  await closeDeck.click();
+  await expect(gallery).toHaveCount(0);
+  await page.getByRole('button', { name: 'Explore the deck', exact: true }).click();
+  await page.keyboard.press('Escape');
+  await expect(gallery).toHaveCount(0);
   for (const position of [4, 17, 65]) {
     await page.getByRole('button', { name: `Choose card ${position}`, exact: true }).click();
     await expect(
@@ -142,4 +164,7 @@ test('Tarot reveals three distinct cards and survives a refresh', async ({ page 
   await expect
     .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
     .toBe(true);
+  const apiPath = `/api/backend${new URL(page.url()).pathname.replace('/rooms/', '/v1/rooms/')}`;
+  expect((await page.request.post(`${apiPath}/abandon`)).status()).toBe(200);
+  expect((await page.request.post(`${apiPath}/leave`)).status()).toBe(200);
 });

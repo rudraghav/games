@@ -11,5 +11,6 @@ export { cn } from './lib/cn';
 export { Seat } from './components/Seat';
 export { CardPile } from './components/CardPile';
 export { TarotCard } from './components/TarotCard';
+export { tarotArtwork } from './lib/tarot-artwork';
 export { WordTile } from './components/WordTile';
 export { DevelopmentCard, ResourceToken, gemColors } from './components/DevelopmentCard';

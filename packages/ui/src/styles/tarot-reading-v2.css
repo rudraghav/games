@@ -1,0 +1,112 @@
+@layer components {
+  .modal--sticky-heading .modal-heading {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding-block: 10px;
+    background: var(--color-surface);
+  }
+  .tarot-intro > .button {
+    margin-top: 14px;
+  }
+  .tarot-deck-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+  }
+  .tarot-deck-gallery .tarot-card {
+    width: 100%;
+  }
+  .tarot-deck-gallery .tarot-name {
+    min-height: 34px;
+    text-align: center;
+  }
+  .tarot-perspectives {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 22px;
+    margin-top: 20px;
+  }
+  .tarot-perspectives > section {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+  }
+  .tarot-perspectives[data-variant='single'] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tarot-perspectives > .tarot-quirky-read {
+    background: var(--color-plum-light);
+    border-color: transparent;
+    color: var(--color-plum);
+  }
+  .tarot-reading h4 {
+    font-size: 12px;
+    font-weight: 650;
+    line-height: 1.5;
+  }
+  .tarot-perspectives h4 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .tarot-perspectives p,
+  .tarot-character-connections li > p:last-child {
+    font-size: 14px;
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+  }
+  .tarot-character-connections {
+    margin-top: 22px;
+  }
+  .tarot-character-connections > h4 {
+    margin-bottom: 12px;
+    color: var(--color-ink-muted);
+  }
+  .tarot-character-connections ul {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+    padding: 0;
+    margin: 0;
+  }
+  .tarot-character-connections li {
+    border-left: 3px solid var(--color-coral);
+    padding-left: 16px;
+    min-width: 0;
+  }
+  .tarot-character-name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .tarot-character-name > span {
+    color: var(--color-ink-muted);
+    font-size: 12px;
+    font-weight: 400;
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 600px) {
+    .tarot-deck-gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 12px;
+    }
+    .tarot-perspectives {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+    .tarot-perspectives > section {
+      padding: 18px;
+    }
+  }
+}

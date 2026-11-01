@@ -8,11 +8,15 @@ import {
 } from '@games/ui';
 import type { Game } from '@games/api-client/catalog';
 import { optimizeCardArt } from './card-art';
+import { ModernArtwork } from './ModernArtwork';
+import { PartyArtwork } from './PartyArtwork';
 
 function card(value: string, color: string, suit = '', subtitle = ''): CardPresentation {
   return { id: `${color}-${value}`, label: value, value, color, suit, subtitle };
 }
 export function GameArt({ game }: { game: Game }) {
+  if (['flip-7', 'trio', 'azul'].includes(game.id)) return <ModernArtwork gameId={game.id} />;
+  if (game.family === 'party') return <PartyArtwork gameId={game.id} />;
   if (game.id === 'checkers')
     return (
       <div className="game-art game-art--checkers" aria-hidden="true">

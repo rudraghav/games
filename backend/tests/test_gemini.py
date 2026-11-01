@@ -50,9 +50,11 @@ def test_gemini_request_is_bounded_private_and_schema_checked(monkeypatch):
     assert result.cards[0].card_id == cards[0]
     payload = captured[0]
     assert payload["store"] is False
-    assert payload["generation_config"] == {"thinking_level": "low", "max_output_tokens": 2400}
+    assert payload["generation_config"] == {"thinking_level": "low", "max_output_tokens": 3600}
     assert payload["response_format"]["mime_type"] == "application/json"
-    assert json.loads(payload["input"])["cards"][0]["card_id"] == cards[0]
+    context = json.loads(payload["input"])
+    assert context["cards"][0]["card_id"] == cards[0]
+    assert len({card["reference_lane"] for card in context["cards"]}) == 3
     schema = payload["response_format"]["schema"]
     assert schema["properties"]["title"]["description"] == "Use 1–100 characters."
     positions = ["Where you are", "What is shifting", "Your next move"]
@@ -61,6 +63,11 @@ def test_gemini_request_is_bounded_private_and_schema_checked(monkeypatch):
     ):
         assert item["properties"]["card_id"]["enum"] == [card_id]
         assert item["properties"]["position"]["enum"] == [position]
+        assert {"quirky_interpretation", "characters"} <= set(item["required"])
+        assert "pop_culture" not in item["properties"]
+        assert item["properties"]["characters"]["minItems"] == 1
+        assert item["properties"]["characters"]["maxItems"] == 2
+    assert schema["$defs"]["CharacterConnection"]["properties"]["connection"]["description"] == "Use 30–300 characters."
 
 
 def test_blocked_provider_output_is_not_returned_as_a_reading(monkeypatch):

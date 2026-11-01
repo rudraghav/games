@@ -4,13 +4,15 @@ import { Search, X } from 'lucide-react';
 import { Button, ChoiceGroup, GameTile } from '@games/ui';
 import { games } from '@games/api-client/catalog';
 import { GameArt } from '@/shared/GameArt';
-import { categories, matchesGame, type Category } from './catalogue-search';
+import { categories, discoveryRank, matchesGame, type Category } from './catalogue-search';
 
 export function GameLibrary({ onChoose }: { onChoose: (id: string) => void }) {
   const [query, setQuery] = useState('');
   const [players, setPlayers] = useState(0);
   const [category, setCategory] = useState<Category>('all');
-  const filtered = games.filter((game) => matchesGame(game, query, players, category));
+  const filtered = games
+    .filter((game) => matchesGame(game, query, players, category))
+    .sort((a, b) => discoveryRank(a.id) - discoveryRank(b.id));
   const reset = () => {
     setQuery('');
     setPlayers(0);

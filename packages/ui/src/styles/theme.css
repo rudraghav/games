@@ -3,6 +3,9 @@
 @import './expansion.css';
 @import './accounts.css';
 @import './library.css';
+@import './modern-games.css';
+@import './party-games.css';
+@import './tarot-reading-v2.css';
 @theme static {
   --color-canvas: #f6f3ed;
   --color-surface: #fffcf7;

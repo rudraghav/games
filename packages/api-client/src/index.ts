@@ -4,6 +4,8 @@ import type { paths } from './generated/schema';
 import { mapMe, mapRoom, type Action } from './mappers';
 export type { Room, Match, Card, Player, Action, ActionOption, Me, ReadingView } from './mappers';
 export { boardDetails, wordsDetails, gemsDetails } from './game-details';
+export { trioDetails, flipSevenDetails, azulDetails } from './modern-details';
+export { partyDetails } from './party-details';
 
 export class ApiError extends Error {
   constructor(

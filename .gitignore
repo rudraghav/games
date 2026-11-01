@@ -3,6 +3,7 @@ node_modules/
 .turbo/
 storybook-static/
 playwright-report/
+.playwright-cli/
 test-results/
 output/playwright/
 *.tsbuildinfo

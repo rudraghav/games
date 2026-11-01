@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-01",
+  "sourceState": "verified local working tree before release commit",
+  "runtimeFingerprint": "f26483a0ec0179235ef4173478b198594f70e6d57d1ac58e27c4ae20b9603558",
+  "runtimeFiles": 210,
+  "checks": {
+    "frontendTests": 30,
+    "backendTests": 371,
+    "multiplayerTests": 58,
+    "regularBrowserChecks": 56,
+    "tableProjections": 44,
+    "newFullMatchCases": 26,
+    "modernMoves": 1394,
+    "partyMoves": 1080,
+    "realTarotFullMatches": 2,
+    "types": true,
+    "lint": true,
+    "nextBuild": true,
+    "storybookBuild": true,
+    "contracts": true,
+    "boundaries": true,
+    "localMigrations": true,
+    "cloudMigrationsDriftRls": true
+  },
+  "baseline": "Sixteen existing engines retain prior production full-match/load acceptance; their table projections and shared workflows are refreshed in the regular suite.",
+  "production": "pending deployment and hosted acceptance"
+}

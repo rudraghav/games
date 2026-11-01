@@ -32,3 +32,18 @@ Deal hand/decisions precede the collections; phone casino decisions precede the
 seat grid; Skyjo's direct-grid instruction precedes the grids. Rank sorting uses
 actual playing-card order. The table audit and phone/desktop regression evidence
 live under docs/evidence/tables-2026-11-01.
+
+Modern games reuse the table/action vocabulary: Flip 7 shows readable personal
+number runs and Hit/Stay decisions; Trio separates private sorted hands, public
+hand-end requests and stable memory slots; Azul uses tile shapes alongside color,
+factory sources and explicit pattern-line placement. Party games share one
+prompt/choice/reveal table and typed projection validator, with distinct original
+poster variants. Games remain registry-driven rather than special room routes.
+
+Tarot's artwork registry maps every canonical ID to an original atlas rectangle.
+SVG viewports preserve illustration proportions and clip neighboring cells;
+WebP delivery reuses eight cached atlases. No minor card falls back to pip art.
+The deck dialog filters all 78 cards without accessing hidden shuffled order.
+Readings compose a shared pure presentation component: normal and quirky panels,
+then explained character connections; phones stack these in reading order.
+Storybook includes all 78 cards, each suit, legacy/fresh readings and pending states.

@@ -10,7 +10,7 @@ on a missing prerequisite; it never substitutes a tooling PASS for product proof
 | contracts | Actual OpenAPI/catalogue and generated wire-type drift |
 | migrations | Fresh isolated local database upgrade, drift, RLS/public grants |
 | multiplayer | Room membership, hidden hands, simultaneous moves, retries, reconnect, hosting, invites, saved readings |
-| browser | Independent guest sessions, chat, move/refresh/game switch; phone/desktop; 28 min/max table scenarios; Tarot picks and expansion controls |
+| browser | Independent guest sessions, chat, move/refresh/game switch; phone/desktop; 44 min/max table scenarios; Tarot picks and expansion controls |
 | tooling | Game/feature/shared-UI import boundaries |
 | load | 50 simultaneous local private rooms, committed action and snapshot latency |
 
@@ -23,7 +23,7 @@ official browser runtime with `PLAYWRIGHT_SKIP_BROWSER_GC=1 pnpm exec playwright
 install chromium`; preserve other projects' browser caches. Success traces are
 disposable; retain concise evidence and failure traces needed for open issues.
 
-## Current release verification — 1 November 2026
+## Sixteen-game production baseline — 1 November 2026
 
 The owner requested main/production, then complete-match/rule verification,
 Tarot reliability repairs and expansion. Production uses the existing dedicated
@@ -180,3 +180,22 @@ application schema history.
 the explicitly linked personal Games preview AI settings. It checks the signed-in
 account and linked project and refuses shared/branch-specific entries before any
 write. Values enter the CLI through stdin. No deployment is triggered.
+
+## Modern/party and Tarot v3 expansion
+
+This batch adds six formats, taking the catalogue to 22. Its evidence is separate
+from the sixteen-game production baseline above. The backend group includes
+`test_modern_games.py` and `test_party_games.py`; the browser suite exercises all
+44 generated min/max table projections. `party.spec.ts` adds independent real
+choice/lock/wait/reveal/refresh checks; modern tests cover source/placement and
+hand-end/memory controls. Full-match filters select the six additions and Tarot
+without needlessly replaying unaffected engines.
+
+`tarot-artwork.test.tsx` checks all78 canonical IDs, unique bounded atlas cells,
+PNG/WebP existence and actual illustrated markup. Real browser checks open the
+entire deck and each suit/major filter. Tarot v3 unit tests distinguish strict new
+output from historical stored data; fresh generation requires a normal read,
+quirky read and1–2 explained named-character links per card. Small real-provider
+samples and hosted saved-reading verification remain distinct from deterministic
+contract/failure tests. Counts, source/deployment and local/hosted completion are
+recorded in progress.txt and owning evidence folders.

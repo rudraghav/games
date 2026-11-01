@@ -27,6 +27,10 @@ No Mercy house deck are not advertised as exact reproductions of another deck.
 | Gem Market | 2–4 | Original catalogue, token/deck conservation, discounts/reservations, patrons, final round and ties | [Gem Market](../backend/app/games/gem_market/README.md) |
 | Checkers | 2 | Compulsory/continued jumps, promotion stop, short kings, blocked wins, threefold/quiet draws | [New boards](../backend/app/games/board/NEW_BOARDS.md) |
 | Mancala | 2 | Four-seed Kalah, both-side sowing, store skip/extra turns, opposite capture convention, final sweep/ties | [New boards](../backend/app/games/board/NEW_BOARDS.md) |
+| Flip 7 | 3–10 | 94-card inventory, modifiers, Second Chance/Freeze/Flip Three ordering, seven-card finish, 200-point ties/conservation | [Flip 7](../backend/app/games/flip_seven/README.md) |
+| Trio | 3–6 | 36-card inventory, current hand ends, stable slots, failed reveal return, sevens/three-trio victory, private hands | [Trio](../backend/app/games/trio/README.md) |
+| Azul | 2–4 | 100-tile conservation, drafting, valid pattern rows, overflow/marker, wall adjacency, floor/bonuses/ties | [Azul](../backend/app/games/azul/README.md) |
+| Three party originals | 3–10 each | Original48-prompt decks, balanced rotations, private concurrent decisions, ties/pass/reveal and immutable state | [Party](../backend/app/games/party/README.md) |
 
 `test_card_family_rules.py`, `test_table_rules.py`, `test_new_boards.py` and existing
 edge tests assert independent exact states/results, not merely acceptance of an

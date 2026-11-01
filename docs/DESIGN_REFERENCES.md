@@ -29,6 +29,25 @@ flow-specific findings are retained with this release's verification evidence.
 
 ## Visual references
 
+### Modern/social expansion, 1 November 2026
+
+Research checked the [Dribbble card dashboard listing](https://dribbble.com/shots/20197471-UI-Card-Game-Dashboard),
+publisher game presentations and [BGA's current review](https://en.boardgamearena.com/news?id=1025).
+The Dribbble text result exposed an announcement image rather than usable design
+art; it is not treated as an inspected visual or a reusable asset. The existing
+Playdeal/readable-card references and fresh Games screenshots guide implementation.
+Modern posters now have numeric-card, ceramic-tile and party-prompt variants.
+No extra UI kit or commercial illustration library is needed: existing MIT
+primitives, semantic tokens and original graphics cover these new tables.
+
+The built-in image-generation skill created four original minor-arcana atlases,
+using the Games-owned major sheet as a style reference. All 56 scenes were
+inspected; exact rectangle metadata accounts for different source row heights.
+The original PNG masters remain, with WebP delivery derivatives. The prompt set
+and asset provenance live in `apps/web/public/tarot/ART_PROMPTS.md`; no published
+tarot or pop-character artwork is bundled. Fictional characters appear only as
+textual reading analogies.
+
 - https://playdeal.io/ — clear card faces, restrained property-game hierarchy.
 - https://apps.apple.com/us/app/zynga-poker-texas-holdem/id354902315 — seated table composition and distinct betting controls (published gameplay screenshots inspected).
 - https://dribbble.com/shots/27205355-Card-Game-App-UI — premium table/seat composition; visual inspiration, not an asset licence.

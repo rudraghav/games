@@ -2,15 +2,18 @@
 import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Sparkles, ArrowRight } from 'lucide-react';
-import { Button, TarotCard } from '@games/ui';
+import { Button, ChoiceGroup, Modal, TarotCard, tarotArtwork } from '@games/ui';
 import { ApiError } from '@games/api-client';
 import { api } from '@/lib/session';
 import { keys } from '@/shared/query-keys';
 import type { TableProps } from '../types';
+import { TarotReading } from './TarotReading';
 
 const positions = ['Where you are', 'What is shifting', 'Your next move'];
 export function TarotTable({ match, room, onAction, pending, imageLoader }: TableProps) {
   const [question, setQuestion] = useState('');
+  const [exploreDeck, setExploreDeck] = useState(false);
+  const [deckSuit, setDeckSuit] = useState('all');
   const cache = useQueryClient();
   const queryKey = ['tarot-reading', room.id, room.matchId];
   const saved = useQuery({
@@ -42,6 +45,9 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
             ? reading.introduction
             : 'A moment for you. Three cards. A fresh way to look at things.'}
         </p>
+        <Button variant="ghost" size="sm" onClick={() => setExploreDeck(true)}>
+          Explore the deck
+        </Button>
       </div>
       <div className="tarot-spread">
         {positions.map((position, i) => (
@@ -86,25 +92,7 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
           </p>
         </section>
       ) : reading ? (
-        <div className="tarot-reading">
-          {reading.cards.map((card, i) => (
-            <article key={card.card_id}>
-              <span className="eyebrow">
-                {positions[i]} · {match.community[i]?.label}
-              </span>
-              <h3>{card.title}</h3>
-              <p>{card.interpretation}</p>
-              <div className="culture-note">
-                <Sparkles size={19} />
-                <p>{card.pop_culture}</p>
-              </div>
-            </article>
-          ))}
-          <div className="tarot-next-step">
-            <span className="eyebrow">Your next small move</span>
-            <p>{reading.next_step}</p>
-          </div>
-        </div>
+        <TarotReading reading={reading} cards={match.community} />
       ) : (
         <form
           className="tarot-question"
@@ -159,6 +147,37 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
       <p className="tarot-footnote">
         A playful reflection, not a prediction. You’re the one writing your story.
       </p>
+      <Modal
+        open={exploreDeck}
+        onOpenChange={setExploreDeck}
+        title="The whole cosmic cast"
+        description="Explore all 78 illustrations. Your shuffled cards stay a surprise."
+        wide
+        stickyHeader
+      >
+        <ChoiceGroup
+          label="Tarot suit"
+          value={deckSuit}
+          onChange={setDeckSuit}
+          options={[
+            { value: 'all', label: 'All 78' },
+            { value: 'major', label: 'Major arcana' },
+            { value: 'wands', label: 'Wands' },
+            { value: 'cups', label: 'Cups' },
+            { value: 'swords', label: 'Swords' },
+            { value: 'pentacles', label: 'Pentacles' },
+          ]}
+        />
+        <ul className="tarot-deck-gallery" aria-label="Tarot illustrations">
+          {Object.entries(tarotArtwork)
+            .filter(([id]) => deckSuit === 'all' || id.startsWith(`${deckSuit}-`))
+            .map(([id, artwork]) => (
+              <li key={id}>
+                <TarotCard id={id} name={artwork.name} imageLoader={imageLoader} />
+              </li>
+            ))}
+        </ul>
+      </Modal>
     </div>
   );
 }

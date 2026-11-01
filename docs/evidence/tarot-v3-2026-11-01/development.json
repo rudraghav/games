@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-01",
+  "environment": "local development; real Gemini provider",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "pop-tarot-3",
+  "planned_max_provider_attempts": 6,
+  "actual_provider_attempts": 3,
+  "strict_fresh_contract_passed": true,
+  "scenarios": [
+    {
+      "id": 1,
+      "seconds": 3.94,
+      "attempts": 1,
+      "cards": [
+        "major-00",
+        "wands-01",
+        "major-08"
+      ],
+      "normal_sections": 3,
+      "quirky_sections": 3,
+      "character_connections": 3
+    },
+    {
+      "id": 2,
+      "seconds": 3.83,
+      "attempts": 1,
+      "cards": [
+        "major-16",
+        "cups-05",
+        "major-17"
+      ],
+      "normal_sections": 3,
+      "quirky_sections": 3,
+      "character_connections": 3
+    },
+    {
+      "id": 3,
+      "seconds": 4.2,
+      "attempts": 1,
+      "cards": [
+        "swords-02",
+        "pentacles-05",
+        "cups-10"
+      ],
+      "normal_sections": 3,
+      "quirky_sections": 3,
+      "character_connections": 3
+    }
+  ],
+  "quality_review": {
+    "distinct_interpretations": true,
+    "named_character_sources_and_explained_card_connections": true,
+    "varied_reference_areas": [
+      "sitcoms",
+      "fantasy",
+      "books",
+      "Indian cinema",
+      "video games"
+    ],
+    "unique_character_names_across_three_spreads": 8,
+    "connections_across_three_spreads": 9,
+    "limitation": "Small non-personal fixed evaluation; not a guarantee of provider availability or factual perfection."
+  }
+}

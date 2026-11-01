@@ -1,0 +1,577 @@
+@layer components {
+  .game-art--modern-numbers .grid-card-value {
+    font-family: var(--font-display);
+    font-size: 43px;
+  }
+  .game-art--modern-numbers .playing-card {
+    border: 2px solid #fff5db;
+  }
+  .game-art--trio .playing-card:nth-child(2) {
+    transform: rotate(-3deg) translateY(-12px);
+  }
+  .modern-cover-star {
+    position: absolute;
+    right: 12%;
+    top: 18%;
+    color: #fff5df;
+    font-size: 31px;
+    transform: rotate(13deg);
+  }
+  .game-art--azul {
+    background: #e1edf1;
+  }
+  .azul-cover-mosaic {
+    display: grid;
+    grid-template-columns: repeat(5, 26px);
+    gap: 5px;
+    padding: 12px;
+    background: #faf8ef;
+    border: 1px solid #bdccd1;
+    box-shadow: 4px 10px 0 #96adb92e;
+    border-radius: 10px;
+    transform: rotate(-9deg);
+  }
+  .azul-cover-mosaic .azul-tile {
+    width: 26px;
+    height: 26px;
+    font-size: 21px;
+  }
+  .azul-cover-loose {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    right: 15%;
+    top: 25%;
+    transform: rotate(22deg);
+  }
+  .azul-cover-loose:last-child {
+    top: 65%;
+    right: 11%;
+    transform: rotate(-13deg);
+  }
+  .modern-game-heading {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .modern-game-heading h2 {
+    font-family: var(--font-display);
+    font-size: clamp(25px, 3vw, 36px);
+    margin-top: 6px;
+  }
+  .flip-seven-table,
+  .trio-table,
+  .azul-table {
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-panel);
+    background: var(--color-surface);
+    min-width: 0;
+  }
+  .flip-seven-table {
+    background: linear-gradient(145deg, #fff8ee, #f5e9d5);
+  }
+  .flip-player-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .flip-player {
+    padding: 17px;
+    min-width: 0;
+    border: 1px solid #d9c9ad;
+    border-radius: 18px;
+    background: #fffaf2;
+  }
+  .flip-player[data-current='true'] {
+    border-color: var(--color-coral);
+    box-shadow: 0 0 0 2px #db654d22;
+  }
+  .flip-player[data-status='busted'] {
+    opacity: 0.62;
+  }
+  .flip-player-name {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .flip-player-name strong {
+    overflow-wrap: anywhere;
+  }
+  .flip-player-name > span {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-muted);
+  }
+  .flip-card-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    min-height: 70px;
+    align-items: center;
+  }
+  .flip-number-card {
+    width: 58px;
+    height: 82px;
+    flex: 0 0 58px;
+    background: #efb749;
+  }
+  .flip-number-card[data-color='coral'] {
+    background: #c75f4d;
+  }
+  .flip-number-card .card-center {
+    font-size: 26px;
+  }
+  .flip-number-card .card-center[data-small='true'] {
+    font-size: 12px;
+    line-height: 1.15;
+    text-align: center;
+    padding: 8px;
+  }
+  .flip-number-card .card-corner {
+    font-size: 9px;
+    left: 5px;
+    top: 5px;
+  }
+  .flip-number-card .card-corner--bottom {
+    left: auto;
+    top: auto;
+    right: 5px;
+    bottom: 5px;
+  }
+  .flip-number-card .card-corner span,
+  .flip-number-card .card-action-name {
+    display: none;
+  }
+  .flip-round-score {
+    margin-top: 12px;
+    color: var(--color-ink-muted);
+    font-size: 13px;
+  }
+  .flip-round-score b {
+    color: var(--color-ink);
+    font-size: 22px;
+  }
+  .trio-table {
+    background: #f3edf6;
+  }
+  .trio-table-cards {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 70px));
+    gap: 10px;
+    justify-content: center;
+  }
+  .trio-table-cards .playing-card,
+  .trio-reveals .playing-card,
+  .trio-own-hand .playing-card {
+    width: 62px;
+    height: 88px;
+  }
+  .trio-empty {
+    width: 62px;
+    height: 88px;
+    border: 1px dashed #c9b9d1;
+    border-radius: 10px;
+  }
+  .trio-reveals {
+    display: flex;
+    min-height: 150px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 18px 0;
+  }
+  .trio-reveals > div {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    min-width: 0;
+    max-width: 100px;
+    text-align: center;
+  }
+  .trio-reveals > div > span {
+    overflow-wrap: anywhere;
+  }
+  .trio-hands {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .trio-player {
+    border: 1px solid #d9cbdc;
+    background: #fffcf7;
+    padding: 14px;
+    border-radius: 15px;
+    min-width: 0;
+  }
+  .trio-player > div:first-child {
+    display: grid;
+    gap: 5px;
+  }
+  .trio-player strong {
+    overflow-wrap: anywhere;
+  }
+  .trio-end-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .trio-end-actions .button {
+    min-height: 44px;
+  }
+  .trio-collections {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .trio-collections > span {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+    background: #e8d7ed;
+    padding: 6px 9px;
+    border-radius: 8px;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .trio-collections small {
+    font-size: 10px;
+  }
+  .trio-own-hand {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid #dacbdc;
+  }
+  .trio-own-hand .flip-card-row {
+    margin-top: 12px;
+  }
+  .modern-review {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+  }
+  .azul-table {
+    background: linear-gradient(150deg, #eaf1f4, #faf5ec);
+  }
+  .azul-factories {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .azul-factory {
+    background: #fffdf7;
+    border: 1px solid #d8dce0;
+    border-radius: 18px;
+    padding: 11px;
+    min-width: 0;
+  }
+  .azul-factory-colors {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+    margin-top: 8px;
+    min-height: 46px;
+  }
+  .azul-draft-button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    min-height: 44px;
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    padding: 3px;
+    font-size: 12px;
+  }
+  .azul-draft-button:not(:disabled):hover {
+    border-color: var(--color-focus);
+    background: #f1eee7;
+  }
+  .azul-draft-button:disabled {
+    cursor: default;
+  }
+  .azul-tile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    border-radius: 5px;
+    border: 1px solid #ffffff66;
+    background: #3d6b9b;
+    color: #e9f2ff;
+    box-shadow:
+      inset 0 -3px 0 #0002,
+      0 1px 3px #20344418;
+    font-size: 21px;
+    line-height: 1;
+  }
+  .azul-tile[data-color='yellow'] {
+    background: #e5b654;
+    color: #765324;
+  }
+  .azul-tile[data-color='red'] {
+    background: #c96256;
+    color: #ffddc1;
+  }
+  .azul-tile[data-color='black'] {
+    background: #304450;
+    color: #82b7c1;
+  }
+  .azul-tile[data-color='white'] {
+    background: #f6f0df;
+    color: #497b9e;
+    border-color: #c8cfd1;
+  }
+  .azul-tile[data-color='first'] {
+    background: #faf8ee;
+    color: #514e46;
+    border-color: #bcb7a4;
+    font-weight: 700;
+  }
+  .azul-tile[data-ghost='true'] {
+    opacity: 0.18;
+    box-shadow: none;
+  }
+  .azul-tile--empty {
+    background: #c5d1d84d;
+    border: 1px dashed #a8b8c0;
+    box-shadow: none;
+  }
+  .azul-empty-offer {
+    color: #c9c7bd;
+    padding: 10px;
+  }
+  .azul-draft-preview {
+    margin-top: 20px;
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    text-align: center;
+    padding: 16px;
+    border: 1px solid #b7c9d2;
+    border-radius: 16px;
+    background: #f6fbfd;
+  }
+  .azul-draft-preview > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+  }
+  .azul-player-boards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .azul-player-board {
+    background: #fffdf7;
+    border: 1px solid #c6d0d4;
+    border-radius: 18px;
+    padding: 16px;
+    min-width: 0;
+  }
+  .azul-player-board[data-own='true'] {
+    border-color: #729cac;
+  }
+  .azul-board-name {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+  .azul-board-name strong {
+    overflow-wrap: anywhere;
+  }
+  .azul-board-name > b {
+    white-space: nowrap;
+    color: var(--color-sky);
+  }
+  .azul-board-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+  }
+  .azul-pattern-lines {
+    display: grid;
+    gap: 5px;
+  }
+  .azul-pattern-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3px;
+    padding: 2px 0;
+    min-width: 0;
+    min-height: 44px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+  }
+  .azul-pattern-line > span {
+    display: flex;
+    justify-content: end;
+    gap: 3px;
+  }
+  .azul-pattern-line > small {
+    color: #79909a;
+    font-size: 10px;
+  }
+  .azul-pattern-line:not(:disabled) {
+    border-color: #b08336;
+    background: #fff3d6;
+    outline-offset: 1px;
+  }
+  .azul-wall {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 4px;
+    padding: 3px 0;
+    align-content: space-between;
+  }
+  .azul-board-body .azul-tile {
+    width: 23px;
+    height: 25px;
+    flex-basis: 23px;
+    font-size: 17px;
+  }
+  .azul-wall .azul-tile {
+    width: 100%;
+  }
+  .azul-floor {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+  }
+  .azul-floor > div {
+    display: flex;
+    gap: 4px;
+  }
+  .azul-floor-cell {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 31px;
+    border-radius: 5px;
+    background: #eaded64d;
+  }
+  .azul-floor-cell > small {
+    color: #a38b7b;
+    font-size: 10px;
+  }
+  .azul-round-summary {
+    margin-top: 10px;
+  }
+  @media (max-width: 1000px) {
+    .azul-player-boards {
+      grid-template-columns: 1fr;
+    }
+    .azul-board-body {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      max-width: 400px;
+      margin-inline: auto;
+    }
+    .azul-board-body .azul-tile {
+      width: 28px;
+      height: 28px;
+      flex-basis: 28px;
+      font-size: 21px;
+    }
+    .azul-wall .azul-tile {
+      width: 100%;
+    }
+    .azul-factories {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 600px) {
+    .flip-seven-table,
+    .trio-table,
+    .azul-table {
+      padding: 16px 12px;
+      border-radius: 20px;
+    }
+    .modern-game-heading {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .flip-player-grid {
+      grid-template-columns: 1fr;
+    }
+    .flip-player {
+      padding: 13px;
+    }
+    .trio-hands {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .trio-table-cards {
+      grid-template-columns: repeat(3, 62px);
+      gap: 9px;
+    }
+    .trio-player {
+      padding: 11px;
+    }
+    .trio-end-actions .button {
+      padding-inline: 10px;
+      flex: 1;
+    }
+    .azul-factories {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .azul-factory {
+      padding: 10px;
+    }
+    .azul-player-board {
+      padding: 12px 8px;
+    }
+    .azul-board-body {
+      gap: 8px;
+    }
+    .azul-board-body .azul-tile {
+      width: 20px;
+      height: 25px;
+      flex-basis: 20px;
+      font-size: 17px;
+    }
+    .azul-pattern-line > span {
+      gap: 2px;
+    }
+    .azul-pattern-line > small {
+      display: none;
+    }
+    .azul-wall {
+      gap: 3px;
+    }
+    .azul-wall .azul-tile {
+      width: 100%;
+    }
+    .azul-floor .azul-tile {
+      width: 25px;
+      height: 25px;
+      flex-basis: 25px;
+      font-size: 17px;
+    }
+    .azul-floor-cell {
+      width: 25px;
+    }
+  }
+}

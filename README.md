@@ -5,8 +5,12 @@ Built with Next.js, TypeScript, Tailwind, FastAPI, Supabase and Vercel Services.
 
 The catalogue contains Uno, Uno No Mercy, Monopoly Deal, Monopoly Deal No Mercy,
 Texas Hold'em, Indian 13-card rummy, Teen Patti, blackjack, Skyjo and solo Pop
-Tarot, Four in a Row, Reversi, Word Agents, Gem Market, Checkers and Mancala. Tarot uses a full
-78-card deck and personal Gemini-written readings with pop-culture analogies.
+Tarot, Four in a Row, Reversi, Word Agents, Gem Market, Checkers, Mancala,
+Flip 7, Trio, Azul, Spill or Chill, Most Likely and Hot Seat. All 78 Tarot cards
+have original pop-art illustrations and an explorable deck. Fresh personal
+Gemini readings give each card a grounded interpretation, a quirky take and
+one or two explained character parallels. Existing saved readings stay intact.
+The three original party games have 144 prompts and optional sip suggestions.
 Word Agents is a Codenames-style house edition with an original word list;
 Gem Market is a Splendor-style game with original card costs and patrons.
 Deal No Mercy uses an explicitly labeled Games house deck, approved by the owner;
@@ -87,6 +91,9 @@ The owner requested production hosting and full verification on 1 November 2026.
 The release passed the recorded match, privacy, persistence, layout and load
 acceptance for all sixteen documented formats, including the approved No Mercy
 house inventory.
+The modern/party expansion adds six documented formats through the same private
+room contract. Its current verification and deployment state is recorded separately
+in the journal; the preceding sixteen-game evidence remains historical proof.
 Completing a scripted match does not certify every rule. The independent
 [rules audit](docs/RULE_AUDIT.md) separates expected-outcome rules checks from
 complete-match scenarios and documents traditional/house choices. The owner

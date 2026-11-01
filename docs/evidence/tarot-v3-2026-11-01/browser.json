@@ -1,0 +1,84 @@
+{
+  "environment": "local development working tree",
+  "generation": "real configured Gemini; empty optional question",
+  "checks": [
+    "3grounded+3quirkysections",
+    "1or2characterseach",
+    "exactsavedrenderedtextafterreload",
+    "savedhistory",
+    "rematch",
+    "samegroupswitch"
+  ],
+  "cases": [
+    {
+      "viewport": "desktop",
+      "complete": true,
+      "origin": "http://127.0.0.1:3217",
+      "cases": [
+        {
+          "game": "tarot",
+          "seats": 1,
+          "moves": 3,
+          "rematch": true
+        }
+      ],
+      "cleanup": {
+        "guestLeaveStatuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "roomClosed": true,
+        "failed": false,
+        "abandonStatus": 200,
+        "hostLeaveStatus": 200
+      },
+      "transport": {
+        "retryAttempts": 0,
+        "recovered": 0,
+        "failed": 0
+      }
+    },
+    {
+      "viewport": "phone",
+      "complete": true,
+      "origin": "http://127.0.0.1:3217",
+      "cases": [
+        {
+          "game": "tarot",
+          "seats": 1,
+          "moves": 3,
+          "rematch": true
+        }
+      ],
+      "cleanup": {
+        "guestLeaveStatuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "roomClosed": true,
+        "failed": false,
+        "abandonStatus": 200,
+        "hostLeaveStatus": 200
+      },
+      "transport": {
+        "retryAttempts": 0,
+        "recovered": 0,
+        "failed": 0
+      }
+    }
+  ]
+}

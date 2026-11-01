@@ -23,7 +23,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3436868
+          "last_seen": 1793523158.435692
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -32,7 +32,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.343691
+          "last_seen": 1793523158.4356961
         }
       ],
       "messages": [],
@@ -309,7 +309,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3441122
+          "last_seen": 1793523158.4358988
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -318,7 +318,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3441138
+          "last_seen": 1793523158.435901
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -327,7 +327,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344115
+          "last_seen": 1793523158.4359019
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -336,7 +336,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344116
+          "last_seen": 1793523158.435903
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -345,7 +345,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344117
+          "last_seen": 1793523158.435904
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -354,7 +354,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344118
+          "last_seen": 1793523158.435905
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -363,7 +363,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344118
+          "last_seen": 1793523158.435905
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -372,7 +372,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344119
+          "last_seen": 1793523158.435906
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -381,7 +381,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.34412
+          "last_seen": 1793523158.435908
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -390,7 +390,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344121
+          "last_seen": 1793523158.43591
         }
       ],
       "messages": [],
@@ -1469,7 +1469,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3445609
+          "last_seen": 1793523158.436221
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -1478,7 +1478,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344563
+          "last_seen": 1793523158.4362218
         }
       ],
       "messages": [],
@@ -1755,7 +1755,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344722
+          "last_seen": 1793523158.43638
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -1764,7 +1764,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344723
+          "last_seen": 1793523158.4363809
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -1773,7 +1773,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344724
+          "last_seen": 1793523158.436382
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -1782,7 +1782,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344725
+          "last_seen": 1793523158.436383
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -1791,7 +1791,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344726
+          "last_seen": 1793523158.436384
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -1800,7 +1800,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344726
+          "last_seen": 1793523158.436384
         }
       ],
       "messages": [],
@@ -2455,7 +2455,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.344915
+          "last_seen": 1793523158.436558
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -2464,7 +2464,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3449159
+          "last_seen": 1793523158.4365592
         }
       ],
       "messages": [],
@@ -2775,7 +2775,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345046
+          "last_seen": 1793523158.436686
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -2784,7 +2784,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345047
+          "last_seen": 1793523158.436688
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -2793,7 +2793,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345048
+          "last_seen": 1793523158.436689
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -2802,7 +2802,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3450491
+          "last_seen": 1793523158.436689
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -2811,7 +2811,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.34505
+          "last_seen": 1793523158.4366899
         }
       ],
       "messages": [],
@@ -3164,7 +3164,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3451679
+          "last_seen": 1793523158.436804
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -3173,7 +3173,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3451688
+          "last_seen": 1793523158.436805
         }
       ],
       "messages": [],
@@ -3503,7 +3503,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345289
+          "last_seen": 1793523158.436926
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -3512,7 +3512,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345291
+          "last_seen": 1793523158.436927
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -3521,7 +3521,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345292
+          "last_seen": 1793523158.436928
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -3530,7 +3530,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345292
+          "last_seen": 1793523158.436929
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -3539,7 +3539,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345293
+          "last_seen": 1793523158.436929
         }
       ],
       "messages": [],
@@ -3911,7 +3911,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345414
+          "last_seen": 1793523158.437042
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -3920,7 +3920,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3454158
+          "last_seen": 1793523158.437043
         }
       ],
       "messages": [],
@@ -4094,7 +4094,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345518
+          "last_seen": 1793523158.4371378
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4103,7 +4103,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345519
+          "last_seen": 1793523158.43714
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -4112,7 +4112,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.34552
+          "last_seen": 1793523158.437141
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -4121,7 +4121,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345521
+          "last_seen": 1793523158.437141
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -4130,7 +4130,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345522
+          "last_seen": 1793523158.4371421
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -4139,7 +4139,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3455229
+          "last_seen": 1793523158.437143
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -4148,7 +4148,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345524
+          "last_seen": 1793523158.437144
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -4157,7 +4157,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345525
+          "last_seen": 1793523158.437145
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -4166,7 +4166,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345525
+          "last_seen": 1793523158.437145
         }
       ],
       "messages": [],
@@ -4354,7 +4354,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345612
+          "last_seen": 1793523158.43723
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4363,7 +4363,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3456142
+          "last_seen": 1793523158.437231
         }
       ],
       "messages": [],
@@ -4619,7 +4619,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3457239
+          "last_seen": 1793523158.437336
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4628,7 +4628,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3457248
+          "last_seen": 1793523158.437338
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -4637,7 +4637,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345726
+          "last_seen": 1793523158.437338
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -4646,7 +4646,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345727
+          "last_seen": 1793523158.4373388
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -4655,7 +4655,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345728
+          "last_seen": 1793523158.43734
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -4664,7 +4664,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345729
+          "last_seen": 1793523158.437341
         }
       ],
       "messages": [],
@@ -4972,7 +4972,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345824
+          "last_seen": 1793523158.43743
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4981,7 +4981,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345825
+          "last_seen": 1793523158.437431
         }
       ],
       "messages": [],
@@ -5136,7 +5136,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3459032
+          "last_seen": 1793523158.437505
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5145,7 +5145,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345904
+          "last_seen": 1793523158.437506
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -5154,7 +5154,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3459048
+          "last_seen": 1793523158.4375072
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -5163,7 +5163,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3459048
+          "last_seen": 1793523158.437508
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -5172,7 +5172,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345906
+          "last_seen": 1793523158.437508
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -5181,7 +5181,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.345907
+          "last_seen": 1793523158.437509
         }
       ],
       "messages": [],
@@ -5369,7 +5369,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3460329
+          "last_seen": 1793523158.437634
         }
       ],
       "messages": [],
@@ -5455,7 +5455,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346164
+          "last_seen": 1793523158.4377658
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5464,7 +5464,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346165
+          "last_seen": 1793523158.437767
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -5473,7 +5473,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3461661
+          "last_seen": 1793523158.437768
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -5482,7 +5482,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346167
+          "last_seen": 1793523158.437768
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -5491,7 +5491,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346168
+          "last_seen": 1793523158.437769
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -5500,7 +5500,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346168
+          "last_seen": 1793523158.43777
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -5509,7 +5509,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346169
+          "last_seen": 1793523158.437771
         }
       ],
       "messages": [],
@@ -5673,7 +5673,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346269
+          "last_seen": 1793523158.4378712
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5682,7 +5682,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3462698
+          "last_seen": 1793523158.4378722
         }
       ],
       "messages": [],
@@ -6022,7 +6022,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346414
+          "last_seen": 1793523158.4380102
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -6031,7 +6031,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346415
+          "last_seen": 1793523158.438011
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -6040,7 +6040,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3464162
+          "last_seen": 1793523158.438012
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -6049,7 +6049,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346417
+          "last_seen": 1793523158.4380128
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -6058,7 +6058,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346418
+          "last_seen": 1793523158.438014
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -6067,7 +6067,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3464189
+          "last_seen": 1793523158.438014
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -6076,7 +6076,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.34642
+          "last_seen": 1793523158.438015
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -6085,7 +6085,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346422
+          "last_seen": 1793523158.438016
         }
       ],
       "messages": [],
@@ -6581,7 +6581,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3465421
+          "last_seen": 1793523158.438129
         }
       ],
       "messages": [],
@@ -8128,7 +8128,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.346912
+          "last_seen": 1793523158.4384818
         }
       ],
       "messages": [],
@@ -9675,7 +9675,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347182
+          "last_seen": 1793523158.438747
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -9684,7 +9684,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347183
+          "last_seen": 1793523158.438748
         }
       ],
       "messages": [],
@@ -10235,7 +10235,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347297
+          "last_seen": 1793523158.438863
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -10244,7 +10244,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3472981
+          "last_seen": 1793523158.4388638
         }
       ],
       "messages": [],
@@ -10795,7 +10795,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3474078
+          "last_seen": 1793523158.438963
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -10804,7 +10804,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347409
+          "last_seen": 1793523158.438964
         }
       ],
       "messages": [],
@@ -11474,7 +11474,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3476071
+          "last_seen": 1793523158.439169
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -11483,7 +11483,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347608
+          "last_seen": 1793523158.4391701
         }
       ],
       "messages": [],
@@ -12153,7 +12153,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347834
+          "last_seen": 1793523158.43941
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -12162,7 +12162,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3478348
+          "last_seen": 1793523158.439411
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -12171,7 +12171,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347836
+          "last_seen": 1793523158.4394119
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -12180,7 +12180,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347837
+          "last_seen": 1793523158.439413
         }
       ],
       "messages": [],
@@ -12502,7 +12502,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347956
+          "last_seen": 1793523158.4395258
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -12511,7 +12511,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347957
+          "last_seen": 1793523158.439528
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -12520,7 +12520,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347958
+          "last_seen": 1793523158.439528
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -12529,7 +12529,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.347959
+          "last_seen": 1793523158.439529
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -12538,7 +12538,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.34796
+          "last_seen": 1793523158.43953
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -12547,7 +12547,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3479612
+          "last_seen": 1793523158.439531
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -12556,7 +12556,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3479621
+          "last_seen": 1793523158.439532
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -12565,7 +12565,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3479629
+          "last_seen": 1793523158.439532
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -12574,7 +12574,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3479638
+          "last_seen": 1793523158.439533
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -12583,7 +12583,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3479638
+          "last_seen": 1793523158.4395342
         }
       ],
       "messages": [],
@@ -12989,7 +12989,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.348096
+          "last_seen": 1793523158.439671
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -12998,7 +12998,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.348097
+          "last_seen": 1793523158.439672
         }
       ],
       "messages": [],
@@ -13803,16 +13803,6 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 1
             },
-            "gem-2-emerald-2": {
-              "tier": 2,
-              "cost": {
-                "onyx": 3,
-                "sapphire": 3,
-                "ruby": 2
-              },
-              "bonus": "emerald",
-              "points": 3
-            },
             "gem-3-sapphire-2": {
               "tier": 3,
               "cost": {
@@ -13823,50 +13813,6 @@ export const fixtures = [
               },
               "bonus": "sapphire",
               "points": 4
-            },
-            "gem-1-ruby-3": {
-              "tier": 1,
-              "cost": {
-                "ruby": 1,
-                "emerald": 1,
-                "onyx": 1,
-                "pearl": 1,
-                "sapphire": 1
-              },
-              "bonus": "ruby",
-              "points": 1
-            },
-            "gem-1-onyx-1": {
-              "tier": 1,
-              "cost": {
-                "sapphire": 2,
-                "ruby": 1,
-                "emerald": 1
-              },
-              "bonus": "onyx",
-              "points": 0
-            },
-            "gem-2-ruby-3": {
-              "tier": 2,
-              "cost": {
-                "ruby": 2,
-                "emerald": 2,
-                "onyx": 2,
-                "pearl": 2
-              },
-              "bonus": "ruby",
-              "points": 2
-            },
-            "gem-2-onyx-3": {
-              "tier": 2,
-              "cost": {
-                "onyx": 2,
-                "pearl": 2,
-                "sapphire": 2,
-                "ruby": 2
-              },
-              "bonus": "onyx",
-              "points": 2
             },
             "gem-1-emerald-2": {
               "tier": 1,
@@ -13888,6 +13834,49 @@ export const fixtures = [
               "bonus": "pearl",
               "points": 4
             },
+            "gem-2-emerald-2": {
+              "tier": 2,
+              "cost": {
+                "onyx": 3,
+                "sapphire": 3,
+                "ruby": 2
+              },
+              "bonus": "emerald",
+              "points": 3
+            },
+            "gem-1-onyx-1": {
+              "tier": 1,
+              "cost": {
+                "sapphire": 2,
+                "ruby": 1,
+                "emerald": 1
+              },
+              "bonus": "onyx",
+              "points": 0
+            },
+            "gem-2-onyx-3": {
+              "tier": 2,
+              "cost": {
+                "onyx": 2,
+                "pearl": 2,
+                "sapphire": 2,
+                "ruby": 2
+              },
+              "bonus": "onyx",
+              "points": 2
+            },
+            "gem-1-ruby-3": {
+              "tier": 1,
+              "cost": {
+                "ruby": 1,
+                "emerald": 1,
+                "onyx": 1,
+                "pearl": 1,
+                "sapphire": 1
+              },
+              "bonus": "ruby",
+              "points": 1
+            },
             "gem-3-sapphire-0": {
               "tier": 3,
               "cost": {
@@ -13907,6 +13896,17 @@ export const fixtures = [
               },
               "bonus": "ruby",
               "points": 4
+            },
+            "gem-2-ruby-3": {
+              "tier": 2,
+              "cost": {
+                "ruby": 2,
+                "emerald": 2,
+                "onyx": 2,
+                "pearl": 2
+              },
+              "bonus": "ruby",
+              "points": 2
             }
           },
           "patron_costs": {
@@ -13957,7 +13957,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.348487
+          "last_seen": 1793523158.440005
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -13966,7 +13966,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.348489
+          "last_seen": 1793523158.440007
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -13975,7 +13975,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.34849
+          "last_seen": 1793523158.440008
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -13984,7 +13984,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.348491
+          "last_seen": 1793523158.440008
         }
       ],
       "messages": [],
@@ -14867,16 +14867,6 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 1
             },
-            "gem-2-emerald-2": {
-              "tier": 2,
-              "cost": {
-                "onyx": 3,
-                "sapphire": 3,
-                "ruby": 2
-              },
-              "bonus": "emerald",
-              "points": 3
-            },
             "gem-3-sapphire-2": {
               "tier": 3,
               "cost": {
@@ -14887,50 +14877,6 @@ export const fixtures = [
               },
               "bonus": "sapphire",
               "points": 4
-            },
-            "gem-1-ruby-3": {
-              "tier": 1,
-              "cost": {
-                "ruby": 1,
-                "emerald": 1,
-                "onyx": 1,
-                "pearl": 1,
-                "sapphire": 1
-              },
-              "bonus": "ruby",
-              "points": 1
-            },
-            "gem-1-onyx-1": {
-              "tier": 1,
-              "cost": {
-                "sapphire": 2,
-                "ruby": 1,
-                "emerald": 1
-              },
-              "bonus": "onyx",
-              "points": 0
-            },
-            "gem-2-ruby-3": {
-              "tier": 2,
-              "cost": {
-                "ruby": 2,
-                "emerald": 2,
-                "onyx": 2,
-                "pearl": 2
-              },
-              "bonus": "ruby",
-              "points": 2
-            },
-            "gem-2-onyx-3": {
-              "tier": 2,
-              "cost": {
-                "onyx": 2,
-                "pearl": 2,
-                "sapphire": 2,
-                "ruby": 2
-              },
-              "bonus": "onyx",
-              "points": 2
             },
             "gem-1-emerald-2": {
               "tier": 1,
@@ -14952,6 +14898,49 @@ export const fixtures = [
               "bonus": "pearl",
               "points": 4
             },
+            "gem-2-emerald-2": {
+              "tier": 2,
+              "cost": {
+                "onyx": 3,
+                "sapphire": 3,
+                "ruby": 2
+              },
+              "bonus": "emerald",
+              "points": 3
+            },
+            "gem-1-onyx-1": {
+              "tier": 1,
+              "cost": {
+                "sapphire": 2,
+                "ruby": 1,
+                "emerald": 1
+              },
+              "bonus": "onyx",
+              "points": 0
+            },
+            "gem-2-onyx-3": {
+              "tier": 2,
+              "cost": {
+                "onyx": 2,
+                "pearl": 2,
+                "sapphire": 2,
+                "ruby": 2
+              },
+              "bonus": "onyx",
+              "points": 2
+            },
+            "gem-1-ruby-3": {
+              "tier": 1,
+              "cost": {
+                "ruby": 1,
+                "emerald": 1,
+                "onyx": 1,
+                "pearl": 1,
+                "sapphire": 1
+              },
+              "bonus": "ruby",
+              "points": 1
+            },
             "gem-3-sapphire-0": {
               "tier": 3,
               "cost": {
@@ -14971,6 +14960,17 @@ export const fixtures = [
               },
               "bonus": "ruby",
               "points": 4
+            },
+            "gem-2-ruby-3": {
+              "tier": 2,
+              "cost": {
+                "ruby": 2,
+                "emerald": 2,
+                "onyx": 2,
+                "pearl": 2
+              },
+              "bonus": "ruby",
+              "points": 2
             }
           },
           "patron_costs": {
@@ -15031,7 +15031,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.348795
+          "last_seen": 1793523158.441622
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -15040,7 +15040,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3487968
+          "last_seen": 1793523158.4416242
         }
       ],
       "messages": [],
@@ -15767,7 +15767,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3489642
+          "last_seen": 1793523158.4417942
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -15776,7 +15776,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3489652
+          "last_seen": 1793523158.441795
         }
       ],
       "messages": [],
@@ -16503,7 +16503,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.3491158
+          "last_seen": 1793523158.441955
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -16512,7 +16512,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.349117
+          "last_seen": 1793523158.4419572
         }
       ],
       "messages": [],
@@ -16818,7 +16818,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.34919
+          "last_seen": 1793523158.442034
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -16827,7 +16827,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793515038.349191
+          "last_seen": 1793523158.442035
         }
       ],
       "messages": [],
@@ -17103,6 +17103,4845 @@ export const fixtures = [
         "detail": {
           "draw": false,
           "last_move": null
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Flip 7 \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "8387eff7-0293-51fe-adb7-d933fd9eb3da",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "flip-7",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 3,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "e32fbdbd-6cc2-516d-9bd5-32b56be4d9d4",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442156
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442157
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442158
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "flip-7",
+        "phase": "playing",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-11-10",
+                "label": "11",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "11",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-10-7",
+                "label": "10",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "10",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-9-1",
+                "label": "9",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "9",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 91,
+        "pot": 0,
+        "message": "Flipped 9.",
+        "actions": [
+          {
+            "label": "Hit \u00b7 flip a card",
+            "action": {
+              "type": "hit",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Stay \u00b7 bank 11",
+            "action": {
+              "type": "stay",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "round": 1,
+          "status": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": "active",
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": "active",
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": "active"
+          },
+          "round_scores": {},
+          "at_risk": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 11,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 10,
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": 9
+          },
+          "pending_card": "",
+          "dealer": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5"
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Flip 7 \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "e60b42c8-e230-5824-a8cf-8a88032513b9",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "flip-7",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 10,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "e32fbdbd-6cc2-516d-9bd5-32b56be4d9d4",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442299
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4422998
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442301
+        },
+        {
+          "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442302
+        },
+        {
+          "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+          "name": "Noor",
+          "avatar": 4,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442303
+        },
+        {
+          "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+          "name": "Alex",
+          "avatar": 5,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442304
+        },
+        {
+          "id": "d03315f3-275f-534f-915a-d668855c7de9",
+          "name": "Jules",
+          "avatar": 6,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442304
+        },
+        {
+          "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+          "name": "Kai",
+          "avatar": 7,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442305
+        },
+        {
+          "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+          "name": "Robin",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442306
+        },
+        {
+          "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
+          "name": "Ari",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442307
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "flip-7",
+        "phase": "playing",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-11-10",
+                "label": "11",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "11",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-10-7",
+                "label": "10",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "10",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-9-1",
+                "label": "9",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "9",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-10-0",
+                "label": "10",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "10",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-9-0",
+                "label": "9",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "9",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-7-0",
+                "label": "7",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "7",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d03315f3-275f-534f-915a-d668855c7de9",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-12-2",
+                "label": "12",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "12",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "times-2",
+                "label": "\u00d72",
+                "color": "blue",
+                "subtitle": "",
+                "value": "\u00d72",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-8-6",
+                "label": "8",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "8",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              {
+                "id": "n-5-3",
+                "label": "5",
+                "color": "yellow",
+                "subtitle": "",
+                "value": "5",
+                "suit": "\u2726"
+              }
+            ],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 84,
+        "pot": 0,
+        "message": "Flipped 5.",
+        "actions": [
+          {
+            "label": "Hit \u00b7 flip a card",
+            "action": {
+              "type": "hit",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Stay \u00b7 bank 11",
+            "action": {
+              "type": "stay",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "round": 1,
+          "status": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": "active",
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": "active",
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": "active",
+            "19285837-cef0-568b-9a40-febfd6a8cb39": "active",
+            "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9": "active",
+            "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46": "active",
+            "d03315f3-275f-534f-915a-d668855c7de9": "active",
+            "b99cae13-1a84-5dfe-95f8-3ec6f935de22": "active",
+            "a8e0bd43-e804-5665-9c48-c5581447c0fe": "active",
+            "3e67b5ca-94db-57c3-b0e1-f1d5ad017207": "active"
+          },
+          "round_scores": {},
+          "at_risk": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 11,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 10,
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": 9,
+            "19285837-cef0-568b-9a40-febfd6a8cb39": 10,
+            "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9": 9,
+            "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46": 7,
+            "d03315f3-275f-534f-915a-d668855c7de9": 12,
+            "b99cae13-1a84-5dfe-95f8-3ec6f935de22": 0,
+            "a8e0bd43-e804-5665-9c48-c5581447c0fe": 8,
+            "3e67b5ca-94db-57c3-b0e1-f1d5ad017207": 5
+          },
+          "pending_card": "",
+          "dealer": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5"
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Trio \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "2a55ce19-5388-5877-bcff-2174fb24d84c",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "trio",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 3,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "b32556ce-cd88-53a7-8666-2cdf24c23c99",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4424279
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4424288
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.44243
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "trio",
+        "phase": "revealing",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 9,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 9,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 9,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [
+          {
+            "id": "trio-2-2",
+            "label": "Trio 2",
+            "color": "violet",
+            "subtitle": "",
+            "value": "2",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-7-1",
+            "label": "Trio 7",
+            "color": "yellow",
+            "subtitle": "",
+            "value": "7",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-7-0",
+            "label": "Trio 7",
+            "color": "yellow",
+            "subtitle": "",
+            "value": "7",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-8-2",
+            "label": "Trio 8",
+            "color": "violet",
+            "subtitle": "",
+            "value": "8",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-8-1",
+            "label": "Trio 8",
+            "color": "violet",
+            "subtitle": "",
+            "value": "8",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-9-2",
+            "label": "Trio 9",
+            "color": "violet",
+            "subtitle": "",
+            "value": "9",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-9-0",
+            "label": "Trio 9",
+            "color": "violet",
+            "subtitle": "",
+            "value": "9",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-10-1",
+            "label": "Trio 10",
+            "color": "violet",
+            "subtitle": "",
+            "value": "10",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-12-0",
+            "label": "Trio 12",
+            "color": "violet",
+            "subtitle": "",
+            "value": "12",
+            "suit": "\u2726"
+          }
+        ],
+        "community": [
+          {
+            "id": "table-slot-0",
+            "label": "Table position 1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-1",
+            "label": "Table position 2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-2",
+            "label": "Table position 3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-3",
+            "label": "Table position 4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-4",
+            "label": "Table position 5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-5",
+            "label": "Table position 6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-6",
+            "label": "Table position 7",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-7",
+            "label": "Table position 8",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-8",
+            "label": "Table position 9",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          }
+        ],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Find three matching numbers. Reveal a card to begin.",
+        "actions": [
+          {
+            "label": "Reveal table card 1",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 2",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 3",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 4",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 5",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 6",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "5",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 7",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "6",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 8",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "7",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 9",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "8",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal lowest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+              "color": "",
+              "choice": "low",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal highest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+              "color": "",
+              "choice": "high",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal lowest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+              "color": "",
+              "choice": "low",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal highest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+              "color": "",
+              "choice": "high",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal lowest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+              "color": "",
+              "choice": "low",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal highest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+              "color": "",
+              "choice": "high",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "revealed": [],
+          "failed": false
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Trio \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "1c544f8e-5673-5d17-b14b-63a1c09d95fc",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "trio",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 6,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "b32556ce-cd88-53a7-8666-2cdf24c23c99",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442571
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442572
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442573
+        },
+        {
+          "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442574
+        },
+        {
+          "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+          "name": "Noor",
+          "avatar": 4,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442574
+        },
+        {
+          "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+          "name": "Alex",
+          "avatar": 5,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4425752
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "trio",
+        "phase": "revealing",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 5,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 5,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 5,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+            "count": 5,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+            "count": 5,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+            "count": 5,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [
+          {
+            "id": "trio-7-1",
+            "label": "Trio 7",
+            "color": "yellow",
+            "subtitle": "",
+            "value": "7",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-7-0",
+            "label": "Trio 7",
+            "color": "yellow",
+            "subtitle": "",
+            "value": "7",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-8-2",
+            "label": "Trio 8",
+            "color": "violet",
+            "subtitle": "",
+            "value": "8",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-9-2",
+            "label": "Trio 9",
+            "color": "violet",
+            "subtitle": "",
+            "value": "9",
+            "suit": "\u2726"
+          },
+          {
+            "id": "trio-12-0",
+            "label": "Trio 12",
+            "color": "violet",
+            "subtitle": "",
+            "value": "12",
+            "suit": "\u2726"
+          }
+        ],
+        "community": [
+          {
+            "id": "table-slot-0",
+            "label": "Table position 1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-1",
+            "label": "Table position 2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-2",
+            "label": "Table position 3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-3",
+            "label": "Table position 4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-4",
+            "label": "Table position 5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          },
+          {
+            "id": "table-slot-5",
+            "label": "Table position 6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "?",
+            "suit": "hidden"
+          }
+        ],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Find three matching numbers. Reveal a card to begin.",
+        "actions": [
+          {
+            "label": "Reveal table card 1",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 2",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 3",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 4",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 5",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal table card 6",
+            "action": {
+              "type": "reveal_table",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "5",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal lowest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+              "color": "",
+              "choice": "low",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal highest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+              "color": "",
+              "choice": "high",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal lowest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+              "color": "",
+              "choice": "low",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal highest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+              "color": "",
+              "choice": "high",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal lowest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+              "color": "",
+              "choice": "low",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal highest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+              "color": "",
+              "choice": "high",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal lowest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "19285837-cef0-568b-9a40-febfd6a8cb39",
+              "color": "",
+              "choice": "low",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal highest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "19285837-cef0-568b-9a40-febfd6a8cb39",
+              "color": "",
+              "choice": "high",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal lowest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+              "color": "",
+              "choice": "low",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal highest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+              "color": "",
+              "choice": "high",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal lowest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+              "color": "",
+              "choice": "low",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Reveal highest",
+            "action": {
+              "type": "reveal_hand",
+              "card": "",
+              "target": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+              "color": "",
+              "choice": "high",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "revealed": [],
+          "failed": false
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Azul \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "edb4d42e-42c5-5f51-849b-f8fd4a3482dd",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "azul",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 2,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "402552ff-8932-567f-83ee-8272e4539bff",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442724
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4427252
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "azul",
+        "phase": "drafting",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 80,
+        "pot": 0,
+        "message": "Choose a color from a factory to begin.",
+        "actions": [
+          {
+            "label": "1 yellow \u00b7 factory 1",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 red \u00b7 factory 1",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "red",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 black \u00b7 factory 1",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "black",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 yellow \u00b7 factory 2",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 white \u00b7 factory 2",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "white",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 blue \u00b7 factory 3",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "blue",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 yellow \u00b7 factory 3",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 black \u00b7 factory 3",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "black",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 white \u00b7 factory 3",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "white",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 blue \u00b7 factory 4",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "blue",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 yellow \u00b7 factory 4",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 red \u00b7 factory 4",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "red",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 white \u00b7 factory 4",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "white",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 yellow \u00b7 factory 5",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 red \u00b7 factory 5",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "red",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 black \u00b7 factory 5",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "black",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "round": 1,
+          "factories": [
+            [
+              "black",
+              "red",
+              "yellow",
+              "red"
+            ],
+            [
+              "yellow",
+              "yellow",
+              "white",
+              "white"
+            ],
+            [
+              "black",
+              "white",
+              "yellow",
+              "blue"
+            ],
+            [
+              "blue",
+              "yellow",
+              "red",
+              "white"
+            ],
+            [
+              "yellow",
+              "black",
+              "red",
+              "red"
+            ]
+          ],
+          "center": [],
+          "marker": true,
+          "draft": [],
+          "lines": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [
+              [],
+              [],
+              [],
+              [],
+              []
+            ],
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": [
+              [],
+              [],
+              [],
+              [],
+              []
+            ]
+          },
+          "walls": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ],
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "floors": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [],
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": []
+          },
+          "starter": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "last_scores": {}
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Azul \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "ff1a1b28-e604-56c1-9835-a834fc12ef4e",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "azul",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 4,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "402552ff-8932-567f-83ee-8272e4539bff",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442912
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442913
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442914
+        },
+        {
+          "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.442915
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "azul",
+        "phase": "drafting",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 64,
+        "pot": 0,
+        "message": "Choose a color from a factory to begin.",
+        "actions": [
+          {
+            "label": "1 yellow \u00b7 factory 1",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 red \u00b7 factory 1",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "red",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 black \u00b7 factory 1",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "black",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 yellow \u00b7 factory 2",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 white \u00b7 factory 2",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "white",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 blue \u00b7 factory 3",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "blue",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 yellow \u00b7 factory 3",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 black \u00b7 factory 3",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "black",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 white \u00b7 factory 3",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "white",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 blue \u00b7 factory 4",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "blue",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 yellow \u00b7 factory 4",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 red \u00b7 factory 4",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "red",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 white \u00b7 factory 4",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "white",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 yellow \u00b7 factory 5",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 red \u00b7 factory 5",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "red",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 black \u00b7 factory 5",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "black",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 blue \u00b7 factory 6",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "blue",
+              "choice": "5",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 black \u00b7 factory 6",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "black",
+              "choice": "5",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 blue \u00b7 factory 7",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "blue",
+              "choice": "6",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 yellow \u00b7 factory 7",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "6",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 black \u00b7 factory 7",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "black",
+              "choice": "6",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 blue \u00b7 factory 8",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "blue",
+              "choice": "7",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 yellow \u00b7 factory 8",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "7",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 red \u00b7 factory 8",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "red",
+              "choice": "7",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 white \u00b7 factory 8",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "white",
+              "choice": "7",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "2 blue \u00b7 factory 9",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "blue",
+              "choice": "8",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 yellow \u00b7 factory 9",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "yellow",
+              "choice": "8",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1 red \u00b7 factory 9",
+            "action": {
+              "type": "draft_tiles",
+              "card": "",
+              "target": "",
+              "color": "red",
+              "choice": "8",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "round": 1,
+          "factories": [
+            [
+              "black",
+              "red",
+              "yellow",
+              "red"
+            ],
+            [
+              "yellow",
+              "yellow",
+              "white",
+              "white"
+            ],
+            [
+              "black",
+              "white",
+              "yellow",
+              "blue"
+            ],
+            [
+              "blue",
+              "yellow",
+              "red",
+              "white"
+            ],
+            [
+              "yellow",
+              "black",
+              "red",
+              "red"
+            ],
+            [
+              "blue",
+              "black",
+              "blue",
+              "black"
+            ],
+            [
+              "yellow",
+              "blue",
+              "black",
+              "black"
+            ],
+            [
+              "yellow",
+              "red",
+              "white",
+              "blue"
+            ],
+            [
+              "blue",
+              "yellow",
+              "red",
+              "blue"
+            ]
+          ],
+          "center": [],
+          "marker": true,
+          "draft": [],
+          "lines": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [
+              [],
+              [],
+              [],
+              [],
+              []
+            ],
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": [
+              [],
+              [],
+              [],
+              [],
+              []
+            ],
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": [
+              [],
+              [],
+              [],
+              [],
+              []
+            ],
+            "19285837-cef0-568b-9a40-febfd6a8cb39": [
+              [],
+              [],
+              [],
+              [],
+              []
+            ]
+          },
+          "walls": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ],
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ],
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ],
+            "19285837-cef0-568b-9a40-febfd6a8cb39": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "floors": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [],
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": [],
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": [],
+            "19285837-cef0-568b-9a40-febfd6a8cb39": []
+          },
+          "starter": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "last_scores": {}
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Spill or Chill \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "056c58c5-f283-5889-9db0-848ef1d3a4c5",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "spill-or-chill",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 3,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "69f17af6-6cb7-5c0b-872c-79093c30fd7e",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4431481
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443149
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.44315
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "spill-or-chill",
+        "phase": "answer",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Spotlight player, share a story or keep it chill. Passing is always welcome.",
+        "actions": [
+          {
+            "label": "Share \u00b7 I answered aloud",
+            "action": {
+              "type": "respond",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "share",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Chill \u00b7 keep this one to myself",
+            "action": {
+              "type": "respond",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "chill",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Pass",
+            "action": {
+              "type": "respond",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "pass",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "mode": "spill-or-chill",
+          "round": 1,
+          "rounds": 6,
+          "spotlight": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "prompt": "Which fictional vehicle would create the most chaos in your life?",
+          "options": [],
+          "submitted": [],
+          "own_choice": null,
+          "result": null,
+          "sip_prompts": false
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Spill or Chill \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "ceab7d59-b2c0-5720-8c62-c0d119eca21f",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "spill-or-chill",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 10,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "69f17af6-6cb7-5c0b-872c-79093c30fd7e",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443232
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443233
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443234
+        },
+        {
+          "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4432352
+        },
+        {
+          "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+          "name": "Noor",
+          "avatar": 4,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443236
+        },
+        {
+          "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+          "name": "Alex",
+          "avatar": 5,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443237
+        },
+        {
+          "id": "d03315f3-275f-534f-915a-d668855c7de9",
+          "name": "Jules",
+          "avatar": 6,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4432378
+        },
+        {
+          "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+          "name": "Kai",
+          "avatar": 7,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4432378
+        },
+        {
+          "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+          "name": "Robin",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443239
+        },
+        {
+          "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
+          "name": "Ari",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.44324
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "spill-or-chill",
+        "phase": "answer",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d03315f3-275f-534f-915a-d668855c7de9",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Spotlight player, share a story or keep it chill. Passing is always welcome.",
+        "actions": [
+          {
+            "label": "Share \u00b7 I answered aloud",
+            "action": {
+              "type": "respond",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "share",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Chill \u00b7 keep this one to myself",
+            "action": {
+              "type": "respond",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "chill",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Pass",
+            "action": {
+              "type": "respond",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "pass",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "mode": "spill-or-chill",
+          "round": 1,
+          "rounds": 20,
+          "spotlight": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "prompt": "Which fictional vehicle would create the most chaos in your life?",
+          "options": [],
+          "submitted": [],
+          "own_choice": null,
+          "result": null,
+          "sip_prompts": false
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Most Likely \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "16bb70a0-86d5-5920-ae4e-ce06c6df3c6a",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "most-likely",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 3,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "a06b6529-bff2-5f63-9149-f287c993ac0c",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4433138
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443315
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443316
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "most-likely",
+        "phase": "vote",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Make your secret vote. Everyone reveals together.",
+        "actions": [
+          {
+            "label": "Vote for seat 2",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Vote for seat 3",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Pass",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "pass",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "mode": "most-likely",
+          "round": 1,
+          "rounds": 6,
+          "spotlight": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "prompt": "Who is most likely to save a screenshot and find it again when it matters?",
+          "options": [],
+          "submitted": [],
+          "own_choice": null,
+          "result": null,
+          "sip_prompts": false
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Most Likely \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "169e58a4-0615-546b-b6bd-48c6f9f89bd5",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "most-likely",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 10,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "a06b6529-bff2-5f63-9149-f287c993ac0c",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443399
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4434
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4434009
+        },
+        {
+          "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443402
+        },
+        {
+          "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+          "name": "Noor",
+          "avatar": 4,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443403
+        },
+        {
+          "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+          "name": "Alex",
+          "avatar": 5,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443403
+        },
+        {
+          "id": "d03315f3-275f-534f-915a-d668855c7de9",
+          "name": "Jules",
+          "avatar": 6,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443404
+        },
+        {
+          "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+          "name": "Kai",
+          "avatar": 7,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4434052
+        },
+        {
+          "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+          "name": "Robin",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443406
+        },
+        {
+          "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
+          "name": "Ari",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443407
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "most-likely",
+        "phase": "vote",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d03315f3-275f-534f-915a-d668855c7de9",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Make your secret vote. Everyone reveals together.",
+        "actions": [
+          {
+            "label": "Vote for seat 2",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Vote for seat 3",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Vote for seat 4",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "19285837-cef0-568b-9a40-febfd6a8cb39",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Vote for seat 5",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Vote for seat 6",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Vote for seat 7",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "d03315f3-275f-534f-915a-d668855c7de9",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Vote for seat 8",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Vote for seat 9",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Vote for seat 10",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Pass",
+            "action": {
+              "type": "vote",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "pass",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "mode": "most-likely",
+          "round": 1,
+          "rounds": 20,
+          "spotlight": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "prompt": "Who is most likely to save a screenshot and find it again when it matters?",
+          "options": [],
+          "submitted": [],
+          "own_choice": null,
+          "result": null,
+          "sip_prompts": false
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Hot Seat \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "a7a225ae-14ab-565f-81cf-df459a26e1cf",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "hot-seat",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 3,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "b228b9e0-2ab1-5484-9b02-201b20be71c9",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4435
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443501
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4435022
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "hot-seat",
+        "phase": "predict",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "One secret preference. A room full of predictions. Lock yours in.",
+        "actions": [
+          {
+            "label": "Choose A",
+            "action": {
+              "type": "choose",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "a",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Choose B",
+            "action": {
+              "type": "choose",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "b",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Pass",
+            "action": {
+              "type": "choose",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "pass",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "mode": "hot-seat",
+          "round": 1,
+          "rounds": 6,
+          "spotlight": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "prompt": "A creative project should begin with:",
+          "options": [
+            "A beautiful plan",
+            "An exciting first experiment"
+          ],
+          "submitted": [],
+          "own_choice": null,
+          "result": null,
+          "sip_prompts": false
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Hot Seat \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "185c2fb6-5b23-5219-b22b-a3ae307f4538",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "hot-seat",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 10,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "b228b9e0-2ab1-5484-9b02-201b20be71c9",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443577
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443578
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.44358
+        },
+        {
+          "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.4435809
+        },
+        {
+          "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+          "name": "Noor",
+          "avatar": 4,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443582
+        },
+        {
+          "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+          "name": "Alex",
+          "avatar": 5,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443583
+        },
+        {
+          "id": "d03315f3-275f-534f-915a-d668855c7de9",
+          "name": "Jules",
+          "avatar": 6,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443583
+        },
+        {
+          "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+          "name": "Kai",
+          "avatar": 7,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443584
+        },
+        {
+          "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+          "name": "Robin",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443585
+        },
+        {
+          "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
+          "name": "Ari",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793523158.443586
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "hot-seat",
+        "phase": "predict",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d03315f3-275f-534f-915a-d668855c7de9",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "One secret preference. A room full of predictions. Lock yours in.",
+        "actions": [
+          {
+            "label": "Choose A",
+            "action": {
+              "type": "choose",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "a",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Choose B",
+            "action": {
+              "type": "choose",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "b",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Pass",
+            "action": {
+              "type": "choose",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "pass",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "mode": "hot-seat",
+          "round": 1,
+          "rounds": 20,
+          "spotlight": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "prompt": "A creative project should begin with:",
+          "options": [
+            "A beautiful plan",
+            "An exciting first experiment"
+          ],
+          "submitted": [],
+          "own_choice": null,
+          "result": null,
+          "sip_prompts": false
         }
       },
       "paused": false,

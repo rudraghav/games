@@ -1,0 +1,146 @@
+{
+  "localOnly": true,
+  "sourceState": "Uncommitted workspace expansion on main; release source recorded separately by the release owner.",
+  "partyExperiences": 3,
+  "originalPrompts": 144,
+  "engineTests": 26,
+  "fullMatchCases": 12,
+  "acceptedMoves": 1080,
+  "fullMatchResults": [
+    {
+      "origin": "http://127.0.0.1:3217",
+      "project": "desktop",
+      "complete": true,
+      "transport": {
+        "retryAttempts": 0,
+        "recovered": 0,
+        "failed": 0
+      },
+      "cleanup": {
+        "guestLeaveStatuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "roomClosed": true,
+        "failed": false,
+        "abandonStatus": 200,
+        "hostLeaveStatus": 200
+      },
+      "cases": [
+        {
+          "game": "spill-or-chill",
+          "seats": 3,
+          "moves": 12,
+          "rematch": true
+        },
+        {
+          "game": "spill-or-chill",
+          "seats": 10,
+          "moves": 40,
+          "rematch": true
+        },
+        {
+          "game": "most-likely",
+          "seats": 3,
+          "moves": 24,
+          "rematch": true
+        },
+        {
+          "game": "most-likely",
+          "seats": 10,
+          "moves": 220,
+          "rematch": true
+        },
+        {
+          "game": "hot-seat",
+          "seats": 3,
+          "moves": 24,
+          "rematch": true
+        },
+        {
+          "game": "hot-seat",
+          "seats": 10,
+          "moves": 220,
+          "rematch": true
+        }
+      ]
+    },
+    {
+      "origin": "http://127.0.0.1:3217",
+      "project": "phone",
+      "complete": true,
+      "transport": {
+        "retryAttempts": 0,
+        "recovered": 0,
+        "failed": 0
+      },
+      "cleanup": {
+        "guestLeaveStatuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "roomClosed": true,
+        "failed": false,
+        "abandonStatus": 200,
+        "hostLeaveStatus": 200
+      },
+      "cases": [
+        {
+          "game": "spill-or-chill",
+          "seats": 3,
+          "moves": 12,
+          "rematch": true
+        },
+        {
+          "game": "spill-or-chill",
+          "seats": 10,
+          "moves": 40,
+          "rematch": true
+        },
+        {
+          "game": "most-likely",
+          "seats": 3,
+          "moves": 24,
+          "rematch": true
+        },
+        {
+          "game": "most-likely",
+          "seats": 10,
+          "moves": 220,
+          "rematch": true
+        },
+        {
+          "game": "hot-seat",
+          "seats": 3,
+          "moves": 24,
+          "rematch": true
+        },
+        {
+          "game": "hot-seat",
+          "seats": 10,
+          "moves": 220,
+          "rematch": true
+        }
+      ]
+    }
+  ],
+  "decisionMethod": "Authorized personalized API decisions; actual browser result, rematch and change-game controls.",
+  "httpPrivacyConcurrencyTests": 2,
+  "frontendContractRenderTests": 3,
+  "independentSessionClickWorkflows": 6,
+  "visualInspectionComplete": true
+}

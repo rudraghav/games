@@ -11,13 +11,24 @@ interface ModalProps {
   description?: string;
   children: ReactNode;
   wide?: boolean;
+  stickyHeader?: boolean;
 }
-export function Modal({ open, onOpenChange, title, description, children, wide }: ModalProps) {
+export function Modal({
+  open,
+  onOpenChange,
+  title,
+  description,
+  children,
+  wide,
+  stickyHeader,
+}: ModalProps) {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay" />
-        <Dialog.Content className={cn('modal', wide && 'modal--wide')}>
+        <Dialog.Content
+          className={cn('modal', wide && 'modal--wide', stickyHeader && 'modal--sticky-heading')}
+        >
           <div className="modal-heading">
             <Dialog.Title className="heading-md">{title}</Dialog.Title>
             <Dialog.Close className="icon-button" aria-label="Close dialog">

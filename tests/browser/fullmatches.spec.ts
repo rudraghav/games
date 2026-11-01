@@ -38,7 +38,11 @@ test('every game finishes at both seat limits, renders results, rematches and ke
   const startedAt = new Date().toISOString();
   const origin = new URL(baseURL!).origin;
   const checkoutSha = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
-  const applicationSourceSha = process.env.GAMES_RELEASE_SHA || checkoutSha;
+  const workspaceDirty = Boolean(
+    execFileSync('git', ['status', '--porcelain'], { encoding: 'utf8' }).trim(),
+  );
+  const applicationSourceSha =
+    process.env.GAMES_RELEASE_SHA || (workspaceDirty ? null : checkoutSha);
   const project = test.info().project.name;
   const evidence = `.vercel/fullmatches-${project}-${(filter?.join('_') || 'all').replace(/[^a-z0-9_-]/g, '_')}${seatFilter ? '-seats' + seatFilter.join('_') : ''}.json`;
   const omitted: string[] = [];
@@ -70,6 +74,12 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           origin,
           checkoutSha,
           applicationSourceSha,
+          workspaceDirty,
+          sourceState: process.env.GAMES_RELEASE_SHA
+            ? 'explicit serving revision'
+            : workspaceDirty
+              ? 'uncommitted local workspace'
+              : 'clean checkout',
           hosted: Boolean(process.env.GAMES_TEST_URL),
           project,
           selectedGames: filter || 'all',
@@ -144,7 +154,6 @@ test('every game finishes at both seat limits, renders results, rematches and ke
       players.map(async (player) => (await checked(player, 'me', 'GET')).profile.id),
     );
     const playerById = new Map(identities.map((id, index) => [id, players[index]]));
-    const choose = matchPlayer();
     for (const [index, game] of catalogue.entries()) {
       if (filter && !filter.includes(game.id)) continue;
       if (game.id === 'tarot' && process.env.GAMES_TEST_AI !== '1') {
@@ -155,6 +164,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
       for (const seats of new Set([game.min_players, game.max_players])) {
         if (seatFilter && !seatFilter.includes(seats)) continue;
         await test.step(`${game.name}: ${seats} seats`, async () => {
+          const choose = matchPlayer();
           active = { game: game.id, seats };
           await record();
           let snapshot: RoomView = await checked(page, `rooms/${roomId}/settings`, 'PUT', {
@@ -171,6 +181,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           await page.reload();
           await expect(page.locator('.table-announcement')).toBeVisible();
           let moves = 0;
+          let tarotReadingText: string | undefined;
           while (snapshot.status === 'playing' && moves < 3000) {
             if (Date.now() - heartbeatAt > 10000) await heartbeats();
             if (game.id === 'tarot' && snapshot.game?.phase === 'reading') {
@@ -179,6 +190,19 @@ test('every game finishes at both seat limits, renders results, rematches and ke
               await expect(submit).toBeEnabled();
               await submit.click();
               await expect(page.locator('.tarot-reading')).toBeVisible({ timeout: 74000 });
+              await expect(
+                page.getByRole('heading', { name: 'The grounded read', exact: true }),
+              ).toHaveCount(3);
+              await expect(
+                page.getByRole('heading', { name: 'The plot twist', exact: true }),
+              ).toHaveCount(3);
+              await expect(page.locator('.tarot-character-connections')).toHaveCount(3);
+              for (const connections of await page.locator('.tarot-character-connections').all()) {
+                const count = await connections.getByRole('listitem').count();
+                expect(count).toBeGreaterThanOrEqual(1);
+                expect(count).toBeLessThanOrEqual(2);
+              }
+              tarotReadingText = await page.locator('.tarot-reading').innerText();
               snapshot = await roomAs(page, roomId!);
               break;
             }
@@ -229,6 +253,9 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           await page.reload();
           if (game.id === 'tarot') {
             await expect(page.locator('.tarot-reading')).toBeVisible();
+            await expect(page.locator('.tarot-reading')).toHaveText(tarotReadingText!, {
+              useInnerText: true,
+            });
           } else {
             await expect(page.locator('.results .scoreboard > div')).toHaveCount(seats);
             if (seats > 1) {

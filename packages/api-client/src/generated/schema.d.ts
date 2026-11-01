@@ -415,6 +415,15 @@ export interface components {
              */
             suit: string;
         };
+        /** CharacterConnection */
+        CharacterConnection: {
+            /** Name */
+            name: string;
+            /** Source */
+            source: string;
+            /** Connection */
+            connection: string;
+        };
         /** ChatInput */
         ChatInput: {
             /** Body */
@@ -702,10 +711,10 @@ export interface components {
             title: string;
             /** Introduction */
             introduction: string;
-            /** Cards */
-            cards: components["schemas"]["Section"][];
             /** Next Step */
             next_step: string;
+            /** Cards */
+            cards: components["schemas"]["Section"][];
         };
         /** ReadingInput */
         ReadingInput: {
@@ -807,7 +816,10 @@ export interface components {
             /** Invite Token */
             invite_token?: string | null;
         };
-        /** Section */
+        /**
+         * Section
+         * @description Stored/wire contract also accepts readings saved before the expansion.
+         */
         Section: {
             /** Card Id */
             card_id: string;
@@ -818,7 +830,11 @@ export interface components {
             /** Interpretation */
             interpretation: string;
             /** Pop Culture */
-            pop_culture: string;
+            pop_culture?: string | null;
+            /** Quirky Interpretation */
+            quirky_interpretation?: string | null;
+            /** Characters */
+            characters?: components["schemas"]["CharacterConnection"][];
         };
         /** SessionToken */
         SessionToken: {

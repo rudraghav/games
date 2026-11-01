@@ -1,6 +1,6 @@
 # Application flow
 
-- `/`: public, server-rendered lounge with fifteen competitive games and Pop Tarot; search/category/group-size discovery, create/join and recent rooms.
+- `/`: public, server-rendered lounge with 21 multiplayer games and Pop Tarot; search/category/group-size discovery, create/join and recent rooms.
 - `/rooms/[id]`: authenticated membership-only lobby, live table, results and room chat.
 - `/join/[token]`: guest identity and explicit join; navigate to the stable room URL after joining.
 - `/profile`: Google signup/sign-in, guest-preserving account/email linking, saved name/avatar and match results.
@@ -18,3 +18,11 @@ Pending moves disable duplicate controls. Validation errors explain the action
 without exposing internal state. Realtime loss shows reconnecting and enables
 bounded polling; snapshots are fetched on reconnect and refocus. Chat stays in a
 side panel on desktop and a sheet on phones. Forms and card controls work without dragging.
+
+Party decisions use select → lock → wait for friends → reveal → next prompt.
+Concurrent submissions can conflict; a fresh snapshot preserves the locked
+choices already committed and lets the remaining player submit deliberately.
+Optional sip prompts are set before starting; every mode always permits Pass.
+Tarot offers Explore the deck with major/suit filters, independent of the saved
+three-card spread. Fresh reading sections show The grounded read, The plot twist
+and Character energy; previously saved readings retain their original content.

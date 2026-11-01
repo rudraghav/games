@@ -1,0 +1,118 @@
+{
+  "checkedAt": "2026-11-01T08:57:08.568682+00:00",
+  "state": "local working tree; not pushed or deployed by this subtask",
+  "origin": "http://127.0.0.1:3217",
+  "modernModuleFingerprint": "bb002a3b702a4d7ea64b8d9524c28bbbb90bfae82ebc6fb6d2a0f8b720fccf18",
+  "fingerprintFiles": [
+    "apps/web/src/games/modern/AzulTable.tsx",
+    "apps/web/src/games/modern/FlipSevenTable.tsx",
+    "apps/web/src/games/modern/TrioTable.tsx",
+    "apps/web/src/shared/ModernArtwork.tsx",
+    "backend/app/games/azul/engine.py",
+    "backend/app/games/flip_seven/engine.py",
+    "backend/app/games/trio/engine.py",
+    "packages/api-client/src/modern-details.ts",
+    "packages/ui/src/styles/modern-games.css"
+  ],
+  "backendChecks": 24,
+  "frontendModernChecks": 8,
+  "projectionOnlyPolicyMatches": 18,
+  "focusedBrowserTests": 4,
+  "freshCaptionGalleryBrowserTests": 2,
+  "cases": [
+    {
+      "game": "trio",
+      "seats": 3,
+      "moves": 50,
+      "rematch": true,
+      "viewport": "desktop"
+    },
+    {
+      "game": "trio",
+      "seats": 6,
+      "moves": 74,
+      "rematch": true,
+      "viewport": "desktop"
+    },
+    {
+      "game": "azul",
+      "seats": 2,
+      "moves": 108,
+      "rematch": true,
+      "viewport": "desktop"
+    },
+    {
+      "game": "azul",
+      "seats": 4,
+      "moves": 156,
+      "rematch": true,
+      "viewport": "desktop"
+    },
+    {
+      "game": "trio",
+      "seats": 3,
+      "moves": 44,
+      "rematch": true,
+      "viewport": "phone"
+    },
+    {
+      "game": "trio",
+      "seats": 6,
+      "moves": 62,
+      "rematch": true,
+      "viewport": "phone"
+    },
+    {
+      "game": "azul",
+      "seats": 2,
+      "moves": 102,
+      "rematch": true,
+      "viewport": "phone"
+    },
+    {
+      "game": "azul",
+      "seats": 4,
+      "moves": 158,
+      "rematch": true,
+      "viewport": "phone"
+    },
+    {
+      "game": "flip-7",
+      "seats": 3,
+      "moves": 91,
+      "rematch": true,
+      "viewport": "desktop"
+    },
+    {
+      "game": "flip-7",
+      "seats": 10,
+      "moves": 222,
+      "rematch": true,
+      "viewport": "desktop"
+    },
+    {
+      "game": "flip-7",
+      "seats": 3,
+      "moves": 88,
+      "rematch": true,
+      "viewport": "phone"
+    },
+    {
+      "game": "flip-7",
+      "seats": 10,
+      "moves": 239,
+      "rematch": true,
+      "viewport": "phone"
+    }
+  ],
+  "selectedCaseMoves": 1394,
+  "decisions": "Bulk matches use only authorized actor projections; browser results/rematch/switch clicked. Separate real-room checks click actual table controls and verify saved refresh.",
+  "coverageBoundary": "Eight ordinary Trio/Azul browser cases precede the defensive zero-offer refactor, covered again by final complete engine/policy checks. Final Flip7 cases were rerun after effect-card transfer correction.",
+  "azulExhaustion": "Constructed, conserved80-wall20-incomplete-tile fixture; natural-history reachability not established. Documented Games safeguard, not a publisher rule.",
+  "cleanup": {
+    "allFullMatchRoomsClosed": true,
+    "realControlRoomsClosed": true,
+    "testContextsClosed": true
+  },
+  "externalWrites": false
+}
