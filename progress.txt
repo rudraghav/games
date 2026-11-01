@@ -337,3 +337,18 @@
   private setup/credential files are ignored. Prepare the initial verified main
   commit with the owner's GitHub noreply identity, then use only the personal CLI
   for the requested production deployment. Live verification follows the rollout.
+- Main 02d59f2654179ca543d0e223ac0ba009d03afd7e pushed to rudraghav/games;
+  remote SHA parity verified. Production dpl_G1XgZEohxisRpEXWdM6pWC4m2JG2 was
+  BLOCKED before build because Vercel could not recognize the GitHub noreply
+  commit author. No application was served by that deployment.
+- Verified /v2/user against the isolated personal Vercel account: rudraghav and
+  the owner's requested personal email match. Use that verified email on the next
+  ordinary release-record commit, preserving the initial commit/history. Retry
+  deployment only after the new main commit is pushed and read back. Backend/UI
+  runtime source remains unchanged; prior checks remain applicable.
+- Provider readbacks: Google External/In production with exactly three basic
+  scopes; original unused secret Disabled and replacement Enabled. Supabase
+  Google/anonymous/manual linking enabled, production site URL and exact callback
+  saved, existing preview/local allowlist retained. Production secrets/config
+  were written without credential output, and private credential files remain
+  ignored with owner-only permissions.

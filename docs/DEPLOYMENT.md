@@ -19,6 +19,11 @@ Release path: verify locally, commit/push exact main to rudraghav/games, then us
 the personal Vercel CLI with `--environment production`. No Git integration is
 enabled in parallel, avoiding a duplicate deployment. Verify the production
 alias, serving source, auth boundary, guest multiplayer and Google PKCE callback.
+Vercel's production author gate did not recognize the owner's GitHub noreply
+address on the initial commit. Verify the personal Vercel account/email before
+creating a release commit; use that verified owner identity. Preserve existing
+commits and fast-forward main rather than rewriting history. A blocked deployment
+is retained as an audit record; retry only after the author-identity cause is fixed.
 
 The deployment target is the already linked personal Vercel Games project and
 the dedicated personal Supabase `games-preview`. It is a testing preview; the
