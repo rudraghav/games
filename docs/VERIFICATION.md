@@ -10,7 +10,7 @@ on a missing prerequisite; it never substitutes a tooling PASS for product proof
 | contracts | Actual OpenAPI/catalogue and generated wire-type drift |
 | migrations | Fresh isolated local database upgrade, drift, RLS/public grants |
 | multiplayer | Room membership, hidden hands, simultaneous moves, retries, reconnect, hosting, invites, saved readings |
-| browser | Independent guest sessions, chat, move/refresh/game switch; phone/desktop; 44 min/max table scenarios; Tarot picks and expansion controls |
+| browser | Independent guest sessions, chat, move/refresh/game switch; phone/desktop; 52 min/max table scenarios; Tarot picks and expansion controls |
 | tooling | Game/feature/shared-UI import boundaries |
 | load | 50 simultaneous local private rooms, committed action and snapshot latency |
 

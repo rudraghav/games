@@ -610,3 +610,98 @@
   task browsers/keep-awake processes ended, and every task room is closed.
 - Documentation/test-capture closure finalized. Final application fingerprint
   remains unchanged; this closure does not require another app deployment.
+
+2026-11-01 — Room design audit and contemporary library expansion kickoff
+- Owner asks whether all Tarot imagery and game-room/card/turn/move experiences
+  are complete, requests spacing/alignment improvements and another researched
+  batch of popular, fun games. All 78 Tarot IDs already have original artwork;
+  recheck current delivery instead of using historical screenshots as fresh proof.
+- Scope: screenshot-first audit of home/create/lobby/table/decisions/results on
+  phone and desktop, all 44 existing min/max projections, then shared root-cause
+  layout and turn/action improvements. Preserve warm lounge and original cards;
+  extend existing UI components/tokens rather than replacing the design system.
+- Add The Gang (basic cooperative poker), 6 nimmt! (classic 104-card format),
+  Sea Salt & Paper (base 58-card format), and boop. (standard kitten/cat board).
+  Canonical publisher rules/inventories precede each engine; optional expansions
+  stay excluded unless fully implemented. Original Games art, no copied decks.
+- Acceptance: four complete engines with legal/illegal/edge/privacy/conservation
+  and min/max natural-match tests; matching responsive, keyboard/touch tables;
+  current-room invite/readiness, turn ownership, move decisions, reconnect and
+  results audit evidence; all 78 Tarot art coverage retained; generated contracts,
+  local verification/build/schema gates, then main and personal production rollout
+  under standing authorization with actual hosted match and UI readback.
+- Baseline: clean main df318d7, serving app 78526f0 / dpl_teg2sasVTrQkHbcJd2r53bEbgkbE.
+  Dedicated personal Supabase, owner room/profile/history and requested local
+  services remain intact. Current task local; no new push/deployment yet.
+- Additional owner steering: improve browsing/search, useful category pills,
+  mobile grouping and full-width main action rows, secondary room controls under
+  a labeled kebab menu. Preserve the existing shared Radix/token system.
+- All four modules registered through the engine/table registries; generated
+  catalogue has 26 experiences and fixture export has 52 private projections.
+  New original transparent cat/ocean atlases and preserved masters serve shared
+  card/piece components; their WebP derivation is reproducible.
+- Current local gates pass: 438 backend checks (including natural min/max paths),
+  68 isolated multiplayer checks, contract drift/import boundaries, local/cloud
+  migration drift and private-table grants, 44 frontend tests and workspace types.
+  Generic privacy tests now compare exact integer-card wire IDs; cooperative loss
+  remains a real defeat, without inventing a draw to satisfy old assertions.
+- Fresh 50-room local load passes: action median 856ms/p95 991ms/max 1045ms;
+  snapshot median 367ms/p95 580ms/max 650ms. This is local HTTP concurrency proof,
+  distinct from hosted Broadcast latency. No new production rollout yet.
+- Additional owner scope: improve browsing/search, useful category pills, grouped
+  mobile controls, overflow menus for secondary room actions, and full mobile
+  rows for primary CTAs. Acceptance includes intersecting search/category/players,
+  accessible clear/reset, honest result counts, reachable filters and no page
+  overflow at phone widths. Existing component/token system remains the foundation.
+- Browsing/mobile implementation verified locally: full search row, contained
+  category pills including metadata-driven Co-op, intersecting group controls,
+  punctuation/alias matching, focus-preserving clear/Escape, and complete reset
+  that reveals All games. Phone main CTAs use full rows; setup has a 44px avatar
+  grid, stacked fields and separate submit/cancel rows with aligned code label.
+- Five discovery units, targeted ESLint and web types pass. Twelve distinct
+  desktop/phone browser cases cover browsing/setup and existing catalogue/icon
+  behavior, with final setup-label rerun passing. New poster geometry and actual
+  images inspected at 1440/390/320px; initial clipping fixed before fresh captures.
+  Selected public evidence: docs/evidence/browsing-2026-11-01. This status is local;
+  production rollout and full release checks remain in the parent task.
+
+- Shared room audit is locally verified: explicit normal/reaction/locked/paused
+  turn notices, actor-revealing phone player strip, wrapping lobby identities,
+  reachable Flip 7/Gem Market decisions and correctly sized Rummy controls. Phone
+  headers, invitations, readiness and move actions use clean full rows. Secondary
+  host controls are grouped behind a vertical kebab using the existing Radix UI.
+- Browser testing found and fixed controlled-dialog focus loss on Escape, plus
+  a global Tarot CSS rule/inherited inset that mispositioned every phone lobby
+  poster. Actual title/art non-overlap now passes for all four new game lobbies.
+  Results distinguish cooperative defeat, penalty ordering and no-score games.
+- Five focused room browser cases, five presentation unit cases, web/UI/browser
+  types and web lint pass. Two independent-player natural matches saved results,
+  refreshed and started rematches; every task room closed with 404 readback.
+  Selected inspected before/after captures and limits are recorded in
+  docs/evidence/room-audit-2026-11-01. Current work remains local pending root
+  release gates; no production acceptance is inferred from the visual audit.
+- Final integration also carries declared score units into saved profile history,
+  preventing cooperative losses, penalty totals and net chips being labeled as
+  generic points. Three focused history-label cases cover these boundaries.
+  Phone CTAs in the four new modules use full rows; Paper/boop shared guidance
+  follows the current phase and remains neutral about which viewer reads it.
+- Broad browser run verified 78 cases plus 13 intentional opt-in/viewport skips;
+  its sole initial failure was a new 6 nimmt! test observing state before the
+  last lock committed. The corrected committed-state test passed fresh on both
+  viewports, together with Tarot artwork/pick/refresh regressions (four checks).
+  Regular browser coverage therefore has 79 distinct passing cases across
+  these runs. Full matches for the new modules remain separately in progress.
+- Final local acceptance: all 14 distinct new-game seat/viewport matches pass,
+  3,018 legal moves, natural outcomes, saved history, rendered results, rematch
+  and same-group switching. Both rooms closed, all 20 leave responses succeeded,
+  with zero transport retries/failures. Safe records retain honest dirty-workspace
+  provenance under docs/evidence/new-games-2026-11-01.
+- Final release gates pass: 47 frontend tests, workspace types/lint, Next and
+  Storybook production builds, 438 backend checks, 68 isolated multiplayer checks,
+  contract drift, import boundaries, fresh local migration/privacy and cloud
+  migration/drift/grants. The final backend copy updates received a fresh full
+  backend pass; profile/history received focused labels/types/lint and final build.
+- Private owner room/profile/Google-account fingerprints and READY production
+  rollback dpl_teg2sasVTrQkHbcJd2r53bEbgkbE retained. Personal Games project/account
+  verified, automatic Git deployment absent, one explicit production CLI path
+  selected. Source credential-value scan passes. Push/rollout is the next step.

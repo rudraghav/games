@@ -6,18 +6,55 @@ export const categories = [
   { value: 'cards', label: 'Cards' },
   { value: 'boards', label: 'Board games' },
   { value: 'party', label: 'Party' },
+  { value: 'cooperative', label: 'Co-op' },
   { value: 'solo', label: 'Solo' },
 ] as const;
 export type Category = (typeof categories)[number]['value'];
 const families: Record<Category, readonly string[]> = {
   all: [],
-  modern: ['flip-seven', 'trio', 'azul', 'words', 'gems', 'grid'],
-  cards: ['shedding', 'property', 'casino', 'rummy', 'grid', 'flip-seven', 'trio'],
-  boards: ['board', 'mancala', 'gems', 'azul'],
-  party: ['words', 'shedding', 'grid', 'party', 'flip-seven', 'trio'],
+  modern: [
+    'flip-seven',
+    'trio',
+    'azul',
+    'words',
+    'gems',
+    'grid',
+    'cooperative-poker',
+    'number-rows',
+    'paper',
+    'boop',
+  ],
+  cards: [
+    'shedding',
+    'property',
+    'casino',
+    'rummy',
+    'grid',
+    'flip-seven',
+    'trio',
+    'cooperative-poker',
+    'number-rows',
+    'paper',
+  ],
+  boards: ['board', 'mancala', 'gems', 'azul', 'boop'],
+  party: [
+    'words',
+    'shedding',
+    'grid',
+    'party',
+    'flip-seven',
+    'trio',
+    'cooperative-poker',
+    'number-rows',
+  ],
+  cooperative: [],
   solo: ['tarot', 'casino'],
 };
 const discoveryOrder = [
+  'the-gang',
+  'sea-salt-paper',
+  'boop',
+  'six-nimmt',
   'flip-7',
   'trio',
   'azul',
@@ -46,17 +83,32 @@ const aliases: Record<string, string> = {
   'spill-or-chill': 'drinking drinks sip truth questions party',
   'most-likely': 'drinking drinks sip voting party',
   'hot-seat': 'drinking drinks sip predictions party',
+  'the-gang': 'cooperative co op poker heist team',
+  'six-nimmt': '6 nimmt 6nimmt take 5 take five numbers bullheads',
+  'sea-salt-paper': 'sea salt and paper origami cards collection',
+  boop: 'cats kittens bed board',
 };
+function searchableText(value: string) {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase()
+    .replace(/[’']/g, '')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim();
+}
+
 export function matchesGame(game: Game, query: string, players: number, category: Category) {
-  const text = `${game.name} ${game.subtitle} ${aliases[game.id] || ''}`.toLocaleLowerCase();
+  const text = searchableText(`${game.name} ${game.subtitle} ${aliases[game.id] || ''}`);
   return (
-    query
-      .trim()
-      .toLocaleLowerCase()
+    searchableText(query)
       .split(/\s+/)
       .every((word) => text.includes(word)) &&
     (!players || (game.minPlayers <= players && game.maxPlayers >= players)) &&
-    (category === 'all' || families[category].includes(game.family)) &&
+    (category === 'all' ||
+      (category === 'cooperative'
+        ? game.playMode === 'cooperative'
+        : families[category].includes(game.family))) &&
     (category !== 'solo' || game.minPlayers === 1)
   );
 }

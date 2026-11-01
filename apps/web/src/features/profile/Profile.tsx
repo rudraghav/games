@@ -10,6 +10,7 @@ import { SiteHeader } from '@/shared/SiteHeader';
 import { keys } from '@/shared/query-keys';
 import { rememberPlayer } from '@/shared/player-preferences';
 import { AccountSection } from './AccountSection';
+import { historyResult } from './history-result';
 
 export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }) {
   const cache = useQueryClient();
@@ -114,11 +115,11 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
                         </span>
                       </div>
                       <span>
-                        {match.gameId === 'tarot'
-                          ? 'A little perspective'
-                          : match.winners.includes(me.data.profile?.id || '')
-                            ? 'You won ✦'
-                            : `${match.score} points`}
+                        {historyResult(
+                          gameById(match.gameId),
+                          match.score,
+                          match.winners.includes(me.data.profile?.id || ''),
+                        )}
                       </span>
                     </Link>
                   ))

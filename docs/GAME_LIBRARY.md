@@ -1,6 +1,6 @@
 # Games library
 
-The catalogue has 21 multiplayer games and Pop Tarot. The owner authorized
+The catalogue has 25 multiplayer games and Pop Tarot. The owner authorized
 main/production and the expanded acceptance run on 1 November 2026.
 Additions reuse private rooms, profiles, action retries, chat,
 presence, results and rematches, with independent rules engines and renderers.
@@ -31,8 +31,8 @@ https://www.spacecowboys-games.com/game/splendor/.
 
 ## Further candidates
 
-Prioritize contemporary social formats over further ancient abstracts. The Gang,
-Scout, Sea Salt & Paper and newer tile/engine builders remain researched candidates,
+Prioritize contemporary social formats over further ancient abstracts. Scout
+and newer tile/engine builders remain researched candidates,
 not available catalogue entries. Each requires a verified complete inventory,
 rules and end-to-end match acceptance before registration.
 
@@ -60,3 +60,24 @@ formats informed the choice of social interactions; their proprietary prompts
 are not bundled. Optional sip suggestions accept any drink and never require
 consumption, disclosure or a reason to pass. No additional classics were added
 in this batch.
+
+## Cooperative, ocean and cat expansion — 1 November 2026
+
+Selection uses current play and award evidence, not a claim that every game is
+new. [BGA's 2025 review](https://en.boardgamearena.com/news?id=1025) places 6 nimmt!
+first by distinct players. The Gang's publisher manual documents its basic
+cooperative format; boop. appears in [Mensa's 2023 winners](https://www.us.mensa.org/newsroom/press-releases/2023-mensa-select-winners-announced/).
+Sea Salt & Paper's rules and edition inventory are sourced in its module.
+
+| Module | Seats | Included format | Owning rules |
+| --- | --- | --- | --- |
+| The Gang | 3–6 | Basic cooperative poker; four streets, three vaults or three alarms | [The Gang](../backend/app/games/the_gang/README.md) |
+| 6 nimmt! | 2–10 | Classic 104-card simultaneous selection; 66-penalty-point finish | [6 nimmt!](../backend/app/games/six_nimmt/README.md) |
+| Sea Salt & Paper | 2–4 | Base 58 cards; duos, Stop, Last Chance, mermaids and cumulative scoring | [Sea Salt & Paper](../backend/app/games/sea_salt_paper/README.md) |
+| boop. | 2 | Standard 6×6 bed; kittens, cats, boops and graduation decisions | [boop.](../backend/app/games/boop/README.md) |
+
+The Gang's optional challenge/professional modules and Sea Salt & Paper expansions
+are not included. Original Games illustrations replace publisher card/token art.
+The canonical card-color matrix for Sea Salt & Paper is independently summed in
+tests; its README records the licensed digital inventory source and a secondary
+summary discrepancy. New release verification remains recorded in progress.txt.

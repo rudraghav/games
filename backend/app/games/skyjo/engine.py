@@ -38,6 +38,7 @@ class SkyjoEngine(BaseEngine):
                 name="Skyjo",
                 subtitle="Small numbers. Big surprises.",
                 family="grid",
+                score_order="low",
                 min_players=2,
                 max_players=8,
                 minutes="15–30",

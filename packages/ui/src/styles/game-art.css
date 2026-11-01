@@ -1,0 +1,144 @@
+@layer components {
+  .boop-piece,
+  .paper-card-art {
+    display: inline-flex;
+    width: 100%;
+    aspect-ratio: 1;
+    min-width: 0;
+    line-height: 0;
+  }
+  .atlas-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .contemporary-art {
+    isolation: isolate;
+    container-type: inline-size;
+  }
+  .contemporary-art > .playing-card {
+    width: 86px;
+    height: 122px;
+    min-height: 122px;
+  }
+  .contemporary-art--gang {
+    background: #dde6dc;
+  }
+  .gang-cover-chip {
+    position: absolute;
+    bottom: 25px;
+    right: 35px;
+    display: grid;
+    place-items: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: var(--color-ochre);
+    color: white;
+    border: 5px dashed #f3e9ce;
+    box-shadow: 0 4px 0 #917136;
+    font-size: 13px;
+  }
+  .contemporary-art--six {
+    background: #e5dff0;
+  }
+  .six-cover-symbol {
+    position: absolute;
+    right: 24px;
+    bottom: 18px;
+    font-size: 35px;
+    transform: rotate(-10deg);
+  }
+  .contemporary-art--boop {
+    background: #ebdfdc;
+    gap: 0;
+  }
+  .boop-cover-bed {
+    position: absolute;
+    inset: 35px 22px 24px;
+    z-index: -1;
+    background: #d7c4d9;
+    border: 12px solid #eee0ef;
+    border-radius: 38px;
+    transform: rotate(-7deg);
+    box-shadow: 0 7px 0 #b9a1bd;
+  }
+  .contemporary-art--boop .boop-piece {
+    width: 136px;
+    flex: 0 1 136px;
+  }
+  .contemporary-art--boop .boop-piece:first-of-type {
+    transform: translate(9px, 10px) rotate(-8deg);
+  }
+  .contemporary-art--boop .boop-piece:last-of-type {
+    transform: translate(-8px, -6px) rotate(7deg);
+  }
+  .contemporary-art--paper {
+    background: #dce9e7;
+    gap: 0;
+  }
+  .paper-cover-disc {
+    position: absolute;
+    width: 166px;
+    height: 166px;
+    border-radius: 50%;
+    background: #f7ecd1;
+    z-index: -1;
+  }
+  .contemporary-art--paper .paper-card-art {
+    width: 118px;
+    flex: 0 1 118px;
+    margin-inline: -13px;
+    transform: rotate(-12deg);
+  }
+  .contemporary-art--paper .paper-card-art:last-child {
+    transform: rotate(13deg);
+  }
+  .contemporary-art--paper .paper-card-art:nth-last-child(2) {
+    transform: translateY(-20px);
+  }
+  .game-poster:has(.contemporary-art) {
+    container-type: inline-size;
+  }
+  .game-art.contemporary-art {
+    transform: none;
+    margin: 0;
+    padding: 0;
+  }
+  .game-art.contemporary-art > .playing-card {
+    --card-width: clamp(42px, 27cqw, 86px);
+    width: var(--card-width);
+    flex: 0 0 var(--card-width);
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 68 / 96;
+  }
+  .contemporary-art--six .grid-card-value {
+    font-size: clamp(22px, 16cqw, 44px);
+  }
+  .contemporary-art .gang-cover-chip {
+    width: clamp(32px, 21cqw, 65px);
+    height: auto;
+    aspect-ratio: 1;
+    right: 8%;
+    bottom: 10%;
+    font-size: clamp(8px, 4cqw, 13px);
+    border-width: 3px;
+    z-index: 2;
+  }
+  .contemporary-art .six-cover-symbol {
+    right: 5%;
+    bottom: 5%;
+    font-size: clamp(20px, 10cqw, 35px);
+  }
+  .contemporary-art--paper .paper-card-art {
+    width: 32cqw;
+    flex: 0 0 32cqw;
+    margin-inline: -3cqw;
+  }
+  .contemporary-art--boop .boop-piece {
+    width: min(45cqw, 136px);
+    flex: 0 0 min(45cqw, 136px);
+  }
+}

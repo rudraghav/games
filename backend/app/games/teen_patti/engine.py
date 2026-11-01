@@ -22,6 +22,7 @@ class TeenPattiEngine(BaseEngine):
                 name="Teen Patti",
                 subtitle="Three cards. Endless possibilities.",
                 family="casino",
+                score_label="Net chips",
                 min_players=2,
                 max_players=6,
                 minutes="15–30",

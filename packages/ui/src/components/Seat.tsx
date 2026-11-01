@@ -10,6 +10,8 @@ interface SeatProps {
   caption?: string;
   compact?: boolean;
   you?: boolean;
+  nameLayout?: 'truncate' | 'wrap';
+  activeLabel?: string;
 }
 export function Seat({
   name,
@@ -20,9 +22,12 @@ export function Seat({
   caption,
   compact,
   you,
+  nameLayout = 'truncate',
+  activeLabel = 'Current turn',
 }: SeatProps) {
   return (
     <div
+      data-name-layout={nameLayout}
       className={cn(
         'seat',
         active && 'seat--active',
@@ -37,8 +42,8 @@ export function Seat({
       )}
       <div className="seat-copy">
         <strong title={name}>
-          {name || 'An open seat'}
-          {name && you ? ' (you)' : ''}
+          <span className="seat-name">{name || 'An open seat'}</span>
+          {name && you ? <span className="seat-self">you</span> : null}
         </strong>
         <span>
           {!name
@@ -47,10 +52,10 @@ export function Seat({
               ? 'Reconnecting…'
               : ready
                 ? 'Ready to play'
-                : caption || 'Getting comfortable'}
+                : caption || 'Not ready yet'}
         </span>
       </div>
-      {active ? <span className="turn-light" aria-label="Current turn" /> : null}
+      {active ? <span className="turn-light" role="img" aria-label={activeLabel} /> : null}
     </div>
   );
 }

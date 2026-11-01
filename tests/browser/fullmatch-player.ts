@@ -1,5 +1,7 @@
 import type { components } from '../../packages/api-client/src/generated/schema';
 import { modernPlayer } from './modern-player';
+import { coopNumberAction } from './coop-number-player';
+import { seaCatsAction } from './sea-cats-player';
 
 type Game = components['schemas']['GameView'];
 type Option = components['schemas']['LegalAction'];
@@ -16,6 +18,8 @@ export function matchPlayer(seed = 73) {
   return (game: Game): Action => {
     const options = game.actions || [];
     if (!options.length) throw new Error('The current player has no legal decisions.');
+    const expansionAction = coopNumberAction(game, pick) || seaCatsAction(game, pick);
+    if (expansionAction) return expansionAction;
     const modernAction = modern(game, pick);
     if (modernAction) return modernAction;
     const ofType = (...types: string[]) => options.filter((o) => types.includes(o.action.type));

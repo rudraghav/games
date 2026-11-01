@@ -1,0 +1,450 @@
+@layer components {
+  .coop-number-game {
+    min-width: 0;
+  }
+  .coop-number-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .coop-number-heading h2 {
+    font-family: var(--font-display);
+    font-size: clamp(27px, 4vw, 38px);
+    line-height: 1.15;
+    margin-top: 5px;
+  }
+  .coop-number-heading h3 {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  .coop-number-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  .coop-number-review {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+  }
+  .coop-number-review p {
+    max-width: 48ch;
+    line-height: 1.65;
+  }
+  .gang-table,
+  .six-table {
+    min-width: 0;
+    padding: clamp(18px, 3vw, 32px);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-panel);
+  }
+  .gang-counters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .gang-counters > span {
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .gang-community {
+    --card-width: 72px;
+    --card-height: 100px;
+    display: flex;
+    gap: 10px;
+    padding: 28px 18px;
+    justify-content: center;
+    background: var(--color-pine);
+    border-radius: 20px;
+    margin-top: 24px;
+  }
+  .gang-empty-card {
+    width: var(--card-width);
+    height: var(--card-height);
+    border: 1px dashed #ffffff50;
+    border-radius: 9px;
+    flex: none;
+  }
+  .gang-private {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-block: 24px;
+  }
+  .gang-private > div:first-child {
+    max-width: 45ch;
+  }
+  .gang-private h3 {
+    margin-block: 6px 8px;
+    font-size: 19px;
+  }
+  .gang-private p {
+    line-height: 1.65;
+  }
+  .gang-pocket-cards {
+    --card-width: 82px;
+    --card-height: 115px;
+    display: flex;
+    gap: 10px;
+  }
+  .gang-decision {
+    padding-top: 22px;
+    border-top: 1px solid var(--color-border);
+  }
+  .gang-chip-rack {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+    margin-block: 20px;
+  }
+  .gang-chip-choice {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    min-width: 0;
+    min-height: 102px;
+    padding: 10px 6px;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--color-ink);
+  }
+  .gang-chip-choice[aria-pressed='true'] {
+    border-color: var(--color-sage);
+    background: var(--color-sage-light);
+  }
+  .gang-chip-choice:disabled {
+    opacity: 0.5;
+  }
+  .gang-chip-choice small {
+    max-width: 100%;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .gang-rank-chip {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px dashed var(--color-surface);
+    background: var(--color-ink-muted);
+    color: var(--color-white);
+    box-shadow: 0 2px 6px #0002;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .gang-chip-rack[data-chip-color='white'] .gang-rank-chip {
+    background: var(--color-surface-muted);
+    color: var(--color-ink);
+    border-color: var(--color-ink-muted);
+  }
+  .gang-chip-rack[data-chip-color='yellow'] .gang-rank-chip {
+    background: var(--color-ochre);
+  }
+  .gang-chip-rack[data-chip-color='orange'] .gang-rank-chip {
+    background: var(--color-card-orange);
+    color: var(--color-ink);
+  }
+  .gang-chip-rack[data-chip-color='red'] .gang-rank-chip {
+    background: var(--color-coral);
+  }
+  .gang-decision-note {
+    min-height: 44px;
+    line-height: 1.65;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  .gang-showdown {
+    display: grid;
+    justify-items: start;
+    gap: 14px;
+    padding: 22px;
+    background: var(--color-sage-light);
+    border-radius: 18px;
+  }
+  .gang-showdown p {
+    line-height: 1.65;
+  }
+  .gang-revealed {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .gang-revealed > section {
+    display: grid;
+    gap: 7px;
+    min-width: 145px;
+  }
+  .gang-revealed > section > div {
+    --card-width: 58px;
+    --card-height: 82px;
+    display: flex;
+    gap: 7px;
+  }
+  .gang-history {
+    margin-top: 28px;
+  }
+  .gang-history h3 {
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+  .gang-history-grid > div {
+    display: grid;
+    grid-template-columns: minmax(90px, 1.5fr) repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    align-items: center;
+    padding-block: 10px;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 13px;
+  }
+  .gang-history-grid > div:first-child {
+    color: var(--color-ink-muted);
+    font-size: 11px;
+  }
+  .gang-history-grid strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 12px;
+  }
+  .gang-history-grid span:not(:first-child) {
+    text-align: center;
+  }
+  .six-hand-panel {
+    margin-top: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .six-hand {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-block: 18px;
+  }
+  .six-hand-panel > p {
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .six-number-card {
+    --card-width: 75px;
+    --card-height: 100px;
+    position: relative;
+    width: var(--card-width);
+    flex: none;
+  }
+  .six-number-card .playing-card {
+    width: var(--card-width);
+    height: var(--card-height);
+    margin: 0;
+  }
+  .six-number-card .grid-card-value {
+    font-size: 29px;
+    line-height: 1;
+    transform: translateY(-7px);
+    font-variant-numeric: tabular-nums;
+  }
+  .six-card-penalty {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 12px;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-white);
+  }
+  .six-number-card .playing-card[data-color='yellow'] + .six-card-penalty {
+    color: var(--color-ink);
+  }
+  .six-number-card[data-small='true'] {
+    --card-width: 52px;
+    --card-height: 70px;
+  }
+  .six-number-card[data-small='true'] .grid-card-value {
+    font-size: 23px;
+    transform: translateY(-6px);
+  }
+  .six-number-card[data-small='true'] .six-card-penalty {
+    bottom: 8px;
+    font-size: 10px;
+  }
+  .six-locked {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .six-locked p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 38ch;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .six-rows {
+    display: grid;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .six-row {
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 14px;
+    min-width: 0;
+  }
+  .six-row[data-full='true'] {
+    border-color: var(--color-coral);
+  }
+  .six-row > header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .six-row h3 {
+    font-size: 13px;
+  }
+  .six-row > header .button {
+    margin-left: auto;
+  }
+  .six-row-cards {
+    display: flex;
+    gap: 8px;
+    min-width: 0;
+  }
+  .six-row-decision {
+    padding: 18px;
+    margin-top: 24px;
+    background: var(--color-coral-light);
+    border-radius: 16px;
+  }
+  .six-row-decision h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .six-row-decision p {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .six-revealed {
+    margin-top: 24px;
+  }
+  .six-revealed h3 {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+  .six-revealed > div {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  .six-revealed figure {
+    margin: 0;
+    flex: none;
+    width: 78px;
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+  }
+  .six-revealed figcaption {
+    max-width: 78px;
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 600px) {
+    .coop-number-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .coop-number-actions > .button,
+    .six-hand-panel > .button,
+    .coop-number-review > .button,
+    .gang-showdown > .button {
+      width: 100%;
+    }
+    .gang-community {
+      --card-width: 44px;
+      --card-height: 64px;
+      gap: 7px;
+      padding: 20px 8px;
+    }
+    .gang-community .card-corner {
+      font-size: 10px;
+    }
+    .gang-community .card-center {
+      font-size: 21px;
+    }
+    .gang-private {
+      align-items: flex-start;
+    }
+    .gang-chip-rack {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .gang-chip-choice {
+      min-height: 92px;
+    }
+    .gang-rank-chip {
+      width: 48px;
+      height: 48px;
+    }
+    .gang-history-grid > div {
+      grid-template-columns: minmax(72px, 1.4fr) repeat(4, minmax(0, 1fr));
+      gap: 4px;
+      font-size: 12px;
+    }
+    .gang-history-grid > div:first-child {
+      font-size: 10px;
+    }
+    .six-table {
+      padding: 16px;
+    }
+    .six-number-card {
+      --card-width: 59px;
+      --card-height: 82px;
+    }
+    .six-hand {
+      gap: 8px;
+    }
+    .six-row {
+      padding: 10px;
+    }
+    .six-row-cards {
+      gap: 5px;
+    }
+    .six-row-cards .six-number-card {
+      --card-width: 44px;
+      --card-height: 62px;
+    }
+    .six-row-cards .grid-card-value {
+      font-size: 20px;
+    }
+  }
+}

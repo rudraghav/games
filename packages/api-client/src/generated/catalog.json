@@ -9,6 +9,9 @@
     "minutes": "10\u201320",
     "icon": "layers",
     "color": "coral",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [
       {
@@ -38,6 +41,9 @@
     "minutes": "20\u201340",
     "icon": "layers",
     "color": "coral",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -56,6 +62,9 @@
     "minutes": "15\u201325",
     "icon": "building",
     "color": "sage",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -74,6 +83,9 @@
     "minutes": "15\u201325",
     "icon": "building",
     "color": "plum",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "house-deck-1",
     "settings": [],
     "rules": [
@@ -93,6 +105,9 @@
     "minutes": "20\u201360",
     "icon": "spade",
     "color": "pine",
+    "play_mode": "competitive",
+    "score_label": "Net chips",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -111,6 +126,9 @@
     "minutes": "15\u201330",
     "icon": "cards",
     "color": "ochre",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -129,6 +147,9 @@
     "minutes": "15\u201330",
     "icon": "diamond",
     "color": "plum",
+    "play_mode": "competitive",
+    "score_label": "Net chips",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [
       {
@@ -153,6 +174,9 @@
     "minutes": "5\u201315",
     "icon": "club",
     "color": "pine",
+    "play_mode": "competitive",
+    "score_label": "Net chips",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [
       {
@@ -177,6 +201,9 @@
     "minutes": "15\u201330",
     "icon": "grid",
     "color": "sky",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "low",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -195,6 +222,9 @@
     "minutes": "5\u201310",
     "icon": "sparkles",
     "color": "plum",
+    "play_mode": "solo",
+    "score_label": "Points",
+    "score_order": "none",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -214,6 +244,9 @@
     "minutes": "5\u201315",
     "icon": "circle",
     "color": "coral",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -232,6 +265,9 @@
     "minutes": "10\u201325",
     "icon": "circle",
     "color": "sage",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -250,6 +286,9 @@
     "minutes": "15\u201330",
     "icon": "type",
     "color": "coral",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -268,6 +307,9 @@
     "minutes": "20\u201340",
     "icon": "gem",
     "color": "sage",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -286,6 +328,9 @@
     "minutes": "10\u201325",
     "icon": "crown",
     "color": "sage",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -305,6 +350,9 @@
     "minutes": "5\u201315",
     "icon": "circle",
     "color": "ochre",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -324,6 +372,9 @@
     "minutes": "15\u201325",
     "icon": "sparkles",
     "color": "coral",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "edition-3.1",
     "settings": [],
     "rules": [
@@ -344,6 +395,9 @@
     "minutes": "10\u201315",
     "icon": "layers",
     "color": "plum",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "simple-1",
     "settings": [],
     "rules": [
@@ -363,6 +417,9 @@
     "minutes": "25\u201340",
     "icon": "grid",
     "color": "sky",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "colored-wall-1",
     "settings": [],
     "rules": [
@@ -384,6 +441,9 @@
     "minutes": "10\u201325",
     "icon": "sparkles",
     "color": "coral",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "house-party-1",
     "settings": [
       {
@@ -411,6 +471,9 @@
     "minutes": "10\u201325",
     "icon": "sparkles",
     "color": "ochre",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "house-party-1",
     "settings": [
       {
@@ -438,6 +501,9 @@
     "minutes": "10\u201325",
     "icon": "sparkles",
     "color": "sage",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
     "rules_version": "house-party-1",
     "settings": [
       {
@@ -453,6 +519,100 @@
       "Correct predictions earn one point; a spotlight pass awards none. Most points wins.",
       "The spotlight player advances each reveal. Equal highest scores share the win.",
       "Sip prompts are optional, use any drink and never affect scoring. Passing is always available."
+    ]
+  },
+  {
+    "id": "the-gang",
+    "name": "The Gang",
+    "subtitle": "One crew. Three vaults. No poker faces spared.",
+    "family": "cooperative-poker",
+    "min_players": 3,
+    "max_players": 6,
+    "minutes": "20\u201330",
+    "icon": "spade",
+    "color": "pine",
+    "play_mode": "cooperative",
+    "score_label": "Vaults",
+    "score_order": "high",
+    "rules_version": "basic-1",
+    "settings": [],
+    "rules": [
+      "Basic cooperative game. Win three vaults before three alarms. No betting or money.",
+      "Two private pocket cards; reveal the flop, turn and river across four chip rounds.",
+      "Take or steal a current-color chip, or return yours. One star means weakest; the highest means strongest.",
+      "The instant everyone holds a chip, that round ends. Earlier chip colors remain as public history.",
+      "Reveal in red-chip order. Best five-of-seven poker hands must be equally strong or stronger each time; exact ties are fine.",
+      "Do not share information about your own hand. Challenge/specialist and advanced modes are not included."
+    ]
+  },
+  {
+    "id": "six-nimmt",
+    "name": "6 nimmt!",
+    "subtitle": "Pick a number. Dodge the sixth card.",
+    "family": "number-rows",
+    "min_players": 2,
+    "max_players": 10,
+    "minutes": "20\u201340",
+    "icon": "layers",
+    "color": "coral",
+    "play_mode": "competitive",
+    "score_label": "Penalty points",
+    "score_order": "low",
+    "rules_version": "classic-1",
+    "settings": [],
+    "rules": [
+      "Classic 104-card deck. Ten private cards each; four public rows. Lowest penalty total wins.",
+      "Everyone locks one secret card, then all reveal together. Numbers resolve from lowest to highest.",
+      "Each card follows the greatest row-end number below it. The sixth card takes that row's five cards as penalties.",
+      "A card below every row end must take a row of its owner's choice, becoming its new starter.",
+      "Penalty values: ordinary 1; ending in five 2; multiples of ten 3; multiples of eleven 5; 55 has 7.",
+      "After all ten cards, total penalties. At 66 or more, finish the round: lowest total wins and equal lowest totals tie."
+    ]
+  },
+  {
+    "id": "sea-salt-paper",
+    "name": "Sea Salt & Paper",
+    "subtitle": "A tiny ocean. A tide of possibilities.",
+    "family": "paper",
+    "min_players": 2,
+    "max_players": 4,
+    "minutes": "15\u201325",
+    "icon": "sailboat",
+    "color": "sky",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
+    "rules_version": "base-58-1",
+    "settings": [],
+    "rules": [
+      "58-card base edition. Take a discard top, or draw two, keep one and discard the other.",
+      "Play duos: crabs search one discard, boats repeat your turn, fish draw, shark+swimmer steal.",
+      "Played and unplayed cards both score. At 7+ points, choose Stop or bet on Last Chance.",
+      "Last Chance reveals/protects hands. A successful caller scores cards+color; others color only. Failed caller scores color only.",
+      "Stock exhaustion at turn end scores nothing. Targets 40/35/30 at 2/3/4 seats; all four mermaids win instantly."
+    ]
+  },
+  {
+    "id": "boop",
+    "name": "boop.",
+    "subtitle": "Tiny kittens. Delightfully big moves.",
+    "family": "boop",
+    "min_players": 2,
+    "max_players": 2,
+    "minutes": "15\u201325",
+    "icon": "cat",
+    "color": "coral",
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "none",
+    "rules_version": "standard-1",
+    "settings": [],
+    "rules": [
+      "Place a kitten or available cat in any empty square on the 6\u00d76 bed.",
+      "Adjacent pieces boop one space away. Occupied destinations block; no chain reactions.",
+      "Kittens cannot push cats. Off-bed pieces return to their owner's pool.",
+      "After booping, graduate one line of three into cats; with eight pieces down, you may return one instead.",
+      "Only the active player checks: three adult cats in a line or eight adult cats on the bed wins."
     ]
   }
 ]

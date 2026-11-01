@@ -21,6 +21,8 @@ class TarotEngine(BaseEngine):
                 name="Pop Tarot",
                 subtitle="Your plot twist is in the cards.",
                 family="tarot",
+                play_mode="solo",
+                score_order="none",
                 min_players=1,
                 max_players=1,
                 minutes="5–10",

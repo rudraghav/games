@@ -31,6 +31,10 @@ No Mercy house deck are not advertised as exact reproductions of another deck.
 | Trio | 3–6 | 36-card inventory, current hand ends, stable slots, failed reveal return, sevens/three-trio victory, private hands | [Trio](../backend/app/games/trio/README.md) |
 | Azul | 2–4 | 100-tile conservation, drafting, valid pattern rows, overflow/marker, wall adjacency, floor/bonuses/ties | [Azul](../backend/app/games/azul/README.md) |
 | Three party originals | 3–10 each | Original 48-prompt decks, balanced rotations, private concurrent decisions, ties/pass/reveal and immutable state | [Party](../backend/app/games/party/README.md) |
+| The Gang | 3–6 | 52-card inventory, four streets, public chip taking/returning, final-allocation advance, tied hand order and cooperative victory/defeat | [The Gang](../backend/app/games/the_gang/README.md) |
+| 6 nimmt! | 2–10 | 104-card inventory, private simultaneous locks, ascending reveal, sixth-card/low-row decisions, bullhead penalties and 66-point end | [6 nimmt!](../backend/app/games/six_nimmt/README.md) |
+| Sea Salt & Paper | 2–4 | Exact 58-card/color inventory, private stock/discard choices, duo effects, protected Last Chance hands, scoring and mermaid finish | [Sea Salt & Paper](../backend/app/games/sea_salt_paper/README.md) |
+| boop. | 2 | 32-piece conservation, kitten/cat displacement, blocked lines, active-player graduation and win timing | [boop.](../backend/app/games/boop/README.md) |
 
 `test_card_family_rules.py`, `test_table_rules.py`, `test_new_boards.py` and existing
 edge tests assert independent exact states/results, not merely acceptance of an

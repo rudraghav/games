@@ -35,6 +35,12 @@ version before room creation; integration tests start and reload every game at
 both seat limits to catch constraints that pure engine setup cannot exercise.
 `house-deck-1` identifies the owner-approved Deal No Mercy Games inventory.
 
+Game manifests also declare play_mode (competitive/cooperative/solo), score_label
+and score_order (high/low/none). These additive catalogue fields do not change
+persisted match state. Cooperative engines may finish with no winners on team
+defeat; the service persists that result normally. Frontend results consume the
+declared semantics rather than inferring a tie from an empty winner list.
+
 Action card selections allow up to 115 identifiers, covering the largest current
 selectable Deal asset inventory. A legal payment can include more than thirty
 bank/property cards; the API must accept what the engine offers. Each engine

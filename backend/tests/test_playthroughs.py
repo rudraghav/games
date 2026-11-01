@@ -56,5 +56,14 @@ def test_complete_match_at_each_player_limit(game_id, maximum):
         assert view.actions, (game_id, view.phase)
         state = engine.apply_action(state, turn, choose(view, randomizer))
     assert state["phase"] == "finished", f"{game_id} did not complete within its bounded scenario"
-    assert state["winners"] or state.get("draw")
+    if engine.manifest.play_mode == "cooperative":
+        # A completed cooperative defeat has no individual winner. Finished
+        # phase/outcome is authoritative; it must not be relabeled as a draw.
+        assert engine.outcome(state) == state["winners"]
+        assert state["winners"] in [[], players]
+        if not state["winners"]:
+            scores = {player.score for player in engine.project_view(state, players[0]).players}
+            assert len(scores) == 1  # The team shares its result on defeat too.
+    else:
+        assert state["winners"] or state.get("draw")
     assert all(not engine.legal_actions(state, player) for player in players)

@@ -2,16 +2,29 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { BookOpen, MessageCircle, MoreHorizontal, ArrowLeft, Wifi, RefreshCw } from 'lucide-react';
-import { Button, Modal, Wordmark } from '@games/ui';
+import {
+  BookOpen,
+  MessageCircle,
+  MoreVertical,
+  ArrowLeft,
+  Wifi,
+  RefreshCw,
+  Settings2,
+  Link2,
+  Flag,
+  LogOut,
+} from 'lucide-react';
+import { Button, Modal, Wordmark, TurnNotice } from '@games/ui';
 import { gameById } from '@games/api-client/catalog';
 import { api } from '@/lib/session';
 import { RoomDialog } from '@/shared/RoomDialog';
 import { tableRegistry } from '@/games/registry';
 import { optimizeCardArt } from '@/shared/card-art';
+import { turnState } from '@/games/shared/turn-state';
 import { useRoom } from './useRoom';
 import { Chat } from './Chat';
 import { Lobby } from './Lobby';
+import { RoomResults } from './RoomResults';
 
 export function RoomScreen({ id }: { id: string }) {
   const { room: query, me, live, mutation, move } = useRoom(id);
@@ -39,6 +52,7 @@ export function RoomScreen({ id }: { id: string }) {
   const host = room.ownerId === selfId;
   const self = room.members.find((member) => member.id === selfId);
   const Table = tableRegistry[room.gameId];
+  const turn = room.game ? turnState(room.game, room, selfId) : null;
   const operate = (operation: () => ReturnType<typeof api.room>) => mutation.mutate(operation);
   const chat = (
     <Chat
@@ -92,7 +106,7 @@ export function RoomScreen({ id }: { id: string }) {
             aria-label="Room options"
             onClick={() => setPanel('menu')}
           >
-            <MoreHorizontal size={21} />
+            <MoreVertical size={21} />
           </Button>
         </div>
       </header>
@@ -118,10 +132,12 @@ export function RoomScreen({ id }: { id: string }) {
           ) : null}
           {room.game ? (
             <>
-              <div className="table-announcement" aria-live="polite">
-                <span className="eyebrow">{room.game.phase.replaceAll('_', ' ')}</span>
-                <p>{room.game.message}</p>
-              </div>
+              <TurnNotice
+                label={turn!.label}
+                tone={turn!.tone}
+                message={room.game.message}
+                pending={mutation.isPending}
+              />
               <Table
                 key={room.matchId}
                 match={room.game}
@@ -132,29 +148,7 @@ export function RoomScreen({ id }: { id: string }) {
                 pending={mutation.isPending || !selfId}
               />
               {room.status === 'finished' && room.game.id !== 'tarot' ? (
-                <section className="results">
-                  <span className="eyebrow">The results are in</span>
-                  <h2 className="heading-md">
-                    {room.game.detail.draw === true
-                      ? 'An even match. It’s a draw.'
-                      : room.game.winners.length
-                        ? `${room.game.winners.map((id) => room.members.find((member) => member.id === id)?.name || 'Player').join(' & ')} ${room.game.winners.length === 1 ? 'wins' : 'win'}!`
-                        : 'A good round, well played.'}
-                  </h2>
-                  <div className="scoreboard">
-                    {room.game.players.map((player) => (
-                      <div key={player.id}>
-                        <strong>
-                          {room.members.find((member) => member.id === player.id)?.name || 'Player'}
-                        </strong>
-                        <span>
-                          {player.score} points
-                          {player.chips != null ? ` · ${player.chips} chips` : ''}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </section>
+                <RoomResults room={room} game={game} />
               ) : null}
             </>
           ) : null}
@@ -220,24 +214,33 @@ export function RoomScreen({ id }: { id: string }) {
           }
         }}
         title="Your room"
+        description="Manage this room or leave the table."
       >
         <div className="menu-actions">
           {host ? (
-            <>
+            <section className="room-options-group" aria-label="Host controls">
               <Button
                 variant="secondary"
-                disabled={room.status === 'playing'}
+                disabled={room.status === 'playing' || mutation.isPending}
                 onClick={() => setPanel('configure')}
               >
+                <Settings2 size={17} aria-hidden="true" />
                 Change game
               </Button>
-              <Button variant="secondary" onClick={() => operate(() => api.rotateInvite(id))}>
+              <Button
+                variant="secondary"
+                pending={mutation.isPending}
+                onClick={() => operate(() => api.rotateInvite(id))}
+              >
+                <Link2 size={17} aria-hidden="true" />
                 Replace invite link and code
               </Button>
               {room.status === 'playing' ? (
                 <>
                   <Button
                     variant="danger"
+                    pending={mutation.isPending}
+                    aria-describedby={confirmAbandon ? 'end-match-confirmation' : undefined}
                     onClick={() => {
                       if (confirmAbandon) {
                         operate(() => api.abandon(id));
@@ -246,18 +249,23 @@ export function RoomScreen({ id }: { id: string }) {
                       } else setConfirmAbandon(true);
                     }}
                   >
+                    <Flag size={17} aria-hidden="true" />
                     {confirmAbandon ? 'Yes, end this match' : 'End this match'}
                   </Button>
                   {confirmAbandon ? (
-                    <p className="small muted">
+                    <p className="small muted" id="end-match-confirmation">
                       This returns everyone to the lobby. The current match won’t be scored.
                     </p>
                   ) : null}
                 </>
               ) : null}
-            </>
+            </section>
           ) : (
-            <Button variant="secondary" onClick={() => operate(() => api.claim(id))}>
+            <Button
+              variant="secondary"
+              pending={mutation.isPending}
+              onClick={() => operate(() => api.claim(id))}
+            >
               Claim hosting if the host is away
             </Button>
           )}
@@ -268,6 +276,7 @@ export function RoomScreen({ id }: { id: string }) {
               mutation.mutate(() => api.leave(id), { onSuccess: () => router.push('/') });
             }}
           >
+            <LogOut size={17} aria-hidden="true" />
             Leave room
           </Button>
         </div>

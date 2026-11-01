@@ -26,6 +26,15 @@ export function TrioTable(props: TableProps) {
           </div>
           <span className="small muted">Three trios, or the sevens.</span>
         </div>
+        <section className="trio-own-hand" aria-label="Your private sorted hand">
+          <p className="eyebrow">Your sorted hand</p>
+          <div className="flip-card-row">
+            {match.hand.map((card) => (
+              <PlayingCard key={card.id} card={card} family="grid" compact />
+            ))}
+            {!match.hand.length ? <span className="small muted">Your hand is empty.</span> : null}
+          </div>
+        </section>
         <div className="trio-table-cards" aria-label="Face-down table positions">
           {match.community.map((card, index) => {
             const choice = tableChoices.get(String(index));
@@ -107,15 +116,6 @@ export function TrioTable(props: TableProps) {
             </section>
           ))}
         </div>
-        <section className="trio-own-hand" aria-label="Your private sorted hand">
-          <p className="eyebrow">Your sorted hand</p>
-          <div className="flip-card-row">
-            {match.hand.map((card) => (
-              <PlayingCard key={card.id} card={card} family="grid" compact />
-            ))}
-            {!match.hand.length ? <span className="small muted">Your hand is empty.</span> : null}
-          </div>
-        </section>
         {review ? (
           <div className="modern-review">
             <p>

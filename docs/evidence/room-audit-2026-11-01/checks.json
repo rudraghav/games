@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-01",
+  "before": {
+    "productionSource": "78526f0ff5ca8546a97bdbf70343169912cdcb53",
+    "origin": "https://games-seven-black.vercel.app",
+    "localSyntheticScenarios": 44,
+    "localSyntheticCaptures": 88,
+    "productionCaptures": 24,
+    "productionFamilies": 8,
+    "productionGuests": 4,
+    "productionAuditRoomClosed": true
+  },
+  "after": {
+    "sourceBase": "df318d7c175d31ad6a6033ec380cca479b9dcc00",
+    "workingTreeDirty": true,
+    "origin": "http://127.0.0.1:3217",
+    "desktopWidth": 1440,
+    "phoneWidth": 390,
+    "focusedBrowserCases": 5,
+    "actualNaturalMatches": 2,
+    "actualRematchesStarted": 2,
+    "newPhoneLobbyArtKinds": 4,
+    "presentationUnitCases": 5,
+    "taskRoomsClosedWith404": true
+  },
+  "checks": [
+    "Readable wrapping lobby identities",
+    "Full phone invite/readiness/move rows with 44px minimum targets",
+    "Grouped room options dialog",
+    "Escape restores focus to opener",
+    "Normal turn and separate reaction labels",
+    "Pending and paused actions disabled",
+    "Natural saved competitive result, refresh and rematch",
+    "Four new phone poster/title non-overlap",
+    "Cooperative defeat, penalty ordering and no-score identities covered by focused unit tests and stories"
+  ],
+  "limits": [
+    "Before and after lobby images use different games and seat counts; they document shared patterns, not pixel-matched screens.",
+    "Synthetic gallery states are not natural matches.",
+    "This focused UI audit does not reverify all game engines or assert full accessibility compliance.",
+    "Production after-state belongs to the subsequent release verification."
+  ]
+}

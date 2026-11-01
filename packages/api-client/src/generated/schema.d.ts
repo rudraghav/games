@@ -482,6 +482,23 @@ export interface components {
             /** Color */
             color: string;
             /**
+             * Play Mode
+             * @default competitive
+             * @enum {string}
+             */
+            play_mode: "competitive" | "cooperative" | "solo";
+            /**
+             * Score Label
+             * @default Points
+             */
+            score_label: string;
+            /**
+             * Score Order
+             * @default high
+             * @enum {string}
+             */
+            score_order: "high" | "low" | "none";
+            /**
              * Rules Version
              * @default 1
              */

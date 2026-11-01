@@ -6,6 +6,9 @@
 @import './modern-games.css';
 @import './party-games.css';
 @import './tarot-reading-v2.css';
+@import './game-art.css';
+@import './coop-number-games.css';
+@import './sea-and-cats.css';
 @theme static {
   --color-canvas: #f6f3ed;
   --color-surface: #fffcf7;
@@ -346,6 +349,32 @@
     justify-content: flex-end;
     gap: 10px;
     margin-top: 24px;
+  }
+  .room-setup-form .avatar-options {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 4px;
+    margin-block: 16px 22px;
+  }
+  .room-setup-form .field > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .room-setup-form .avatar-option {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    justify-self: center;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background: transparent;
+    padding: 0;
+  }
+  .room-setup-form .avatar-option[aria-pressed='true'] {
+    border-color: var(--color-sage);
+    background: var(--color-sage-light);
   }
   .toggle-row {
     display: flex;
@@ -1113,6 +1142,30 @@
   .modal {
     padding: 22px;
     max-height: calc(100dvh - 24px);
+  }
+  .room-setup-form .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .room-setup-form .avatar-options {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .room-setup-form .input {
+    font-size: 16px;
+  }
+  .room-setup-form .form-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .room-setup-form .form-footer .button {
+    width: 100%;
+    min-height: 48px;
+  }
+  .room-setup-form .form-footer .button[type='submit'] {
+    order: -1;
   }
   .heading-md {
     font-size: 27px;

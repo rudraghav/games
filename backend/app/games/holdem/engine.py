@@ -20,6 +20,7 @@ class HoldemEngine(BaseEngine):
                 name="Texas Hold’em",
                 subtitle="Find your seat at the table.",
                 family="casino",
+                score_label="Net chips",
                 min_players=2,
                 max_players=9,
                 minutes="20–60",

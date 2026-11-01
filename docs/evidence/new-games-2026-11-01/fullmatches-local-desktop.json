@@ -1,0 +1,89 @@
+{
+  "startedAt": "2026-11-01T12:50:56.328Z",
+  "origin": "http://127.0.0.1:3217",
+  "checkoutSha": "df318d7c175d31ad6a6033ec380cca479b9dcc00",
+  "applicationSourceSha": null,
+  "workspaceDirty": true,
+  "sourceState": "uncommitted local workspace",
+  "hosted": false,
+  "project": "desktop",
+  "selectedGames": [
+    "the-gang",
+    "six-nimmt",
+    "sea-salt-paper",
+    "boop"
+  ],
+  "selectedSeats": "limits",
+  "aiEnabled": false,
+  "complete": true,
+  "active": null,
+  "omitted": [],
+  "transport": {
+    "retryAttempts": 0,
+    "recovered": 0,
+    "failed": 0
+  },
+  "cleanup": {
+    "guestLeaveStatuses": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "roomClosed": true,
+    "failed": false,
+    "abandonStatus": 200,
+    "hostLeaveStatus": 200
+  },
+  "cases": [
+    {
+      "game": "the-gang",
+      "seats": 3,
+      "moves": 47,
+      "rematch": true
+    },
+    {
+      "game": "the-gang",
+      "seats": 6,
+      "moves": 92,
+      "rematch": true
+    },
+    {
+      "game": "six-nimmt",
+      "seats": 2,
+      "moves": 311,
+      "rematch": true
+    },
+    {
+      "game": "six-nimmt",
+      "seats": 10,
+      "moves": 475,
+      "rematch": true
+    },
+    {
+      "game": "sea-salt-paper",
+      "seats": 2,
+      "moves": 269,
+      "rematch": true
+    },
+    {
+      "game": "sea-salt-paper",
+      "seats": 4,
+      "moves": 289,
+      "rematch": true
+    },
+    {
+      "game": "boop",
+      "seats": 2,
+      "moves": 80,
+      "rematch": true
+    }
+  ],
+  "decisions": "Authorized API projections; rendered result/rematch/change-game browser controls.",
+  "rummyScenario": "Legal drops; declaration/sequences are independently engine-tested."
+}

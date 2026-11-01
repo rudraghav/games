@@ -47,6 +47,39 @@ export function GemsTable(props: TableProps) {
         {...props}
         playerCaption={(player) => `${player.score} prestige · ${player.count} reserved`}
       />
+      <section className="private-hand">
+        <h3>Your collection</h3>
+        <div className="gem-resources">
+          {gemColors.map((color) => (
+            <ResourceToken key={color} color={color} count={data.tokens[selfId]?.[color] || 0} />
+          ))}
+        </div>
+        {match.hand.length ? (
+          <>
+            <p className="eyebrow">Your reserved cards</p>
+            <div className="gem-card-row">{match.hand.map(development)}</div>
+          </>
+        ) : null}
+      </section>
+      <ActionPanel
+        {...props}
+        match={{
+          ...match,
+          actions: match.actions.filter(
+            (option) => !['take', 'take_pair'].includes(option.value.type),
+          ),
+        }}
+        pinSelection
+        instruction={
+          selected
+            ? `${[...match.community, ...match.hand].find((card) => card.id === selected)?.label || 'Card'} selected.`
+            : 'Select a development to buy or reserve.'
+        }
+        cardSelectionRequired
+        selected={selected}
+        clear={() => setSelected(null)}
+        onAction={submit}
+      />
       <section className="gem-table" aria-label="Gem Market">
         <div className="gem-supply" aria-label="Shared gem supply">
           {gemColors.map((color) =>
@@ -110,33 +143,6 @@ export function GemsTable(props: TableProps) {
           </section>
         ))}
       </section>
-      <section className="private-hand">
-        <h3>Your collection</h3>
-        <div className="gem-resources">
-          {gemColors.map((color) => (
-            <ResourceToken key={color} color={color} count={data.tokens[selfId]?.[color] || 0} />
-          ))}
-        </div>
-        {match.hand.length ? (
-          <>
-            <p className="eyebrow">Your reserved cards</p>
-            <div className="gem-card-row">{match.hand.map(development)}</div>
-          </>
-        ) : null}
-      </section>
-      <ActionPanel
-        {...props}
-        match={{
-          ...match,
-          actions: match.actions.filter(
-            (option) => !['take', 'take_pair'].includes(option.value.type),
-          ),
-        }}
-        cardSelectionRequired
-        selected={selected}
-        clear={() => setSelected(null)}
-        onAction={submit}
-      />
       <div className="gem-engines">
         {match.players.map((player) => (
           <section key={player.id}>

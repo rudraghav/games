@@ -93,7 +93,7 @@ export function RoomDialog({
             : 'Pick your game. We’ll save the seats for your people.'
       }
     >
-      <form onSubmit={submit}>
+      <form className="room-setup-form" onSubmit={submit}>
         {mode !== 'configure' ? (
           <>
             <label className="field">
@@ -118,7 +118,7 @@ export function RoomDialog({
                   aria-pressed={chosenAvatar === i}
                   onClick={() => setAvatar(i)}
                 >
-                  <Avatar name={displayName || 'You'} seed={i} />
+                  <Avatar name={displayName || 'You'} seed={i} size="sm" />
                 </button>
               ))}
             </div>

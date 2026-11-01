@@ -27,6 +27,19 @@ metadata. Filters intersect and offer a reset from an empty state. Mancala pits
 and stores use a typed MancalaPit variant; Checkers extends the shared board
 renderer with source/destination selection and visible crowns.
 
+Browsing keeps search, category pills and group controls in deliberate rows.
+Phone category pills scroll inside their own rail; keyboard focus reveals the
+selected filter without widening the page. Co-op discovery reads the engine's
+play-mode metadata. Search accepts familiar names, punctuation and accented input;
+Clear search and Escape preserve the category/group, while Reset filters restores
+all choices and returns focus to search. One live result count follows the
+controls. Phone hero actions occupy full rows, and tile subtitles remain readable
+so unfamiliar games can be understood before opening room setup.
+Room setup uses a scoped avatar grid with 44px pressed-state choices, stacked
+phone fields, and full-width submit/cancel rows. Form changes preserve the same
+shared create/join/configure behavior and are documented with inspected captures
+in `evidence/browsing-2026-11-01`.
+
 Action panels participate in document flow so they cannot obscure private cards.
 Deal hand/decisions precede the collections; phone casino decisions precede the
 seat grid; Skyjo's direct-grid instruction precedes the grids. Rank sorting uses
@@ -53,3 +66,35 @@ The deck dialog filters all 78 cards without accessing hidden shuffled order.
 Readings compose a shared pure presentation component: normal and quirky panels,
 then explained character connections; phones stack these in reading order.
 Storybook includes all 78 cards, each suit, legacy/fresh readings and pending states.
+
+Room presentation uses the personalized legal actions and simultaneous-decision
+metadata to distinguish Your turn, Your decision, locked choice, paused and
+complete states. The shared TurnNotice exposes these as a polite status update;
+the horizontal phone player strip reveals the current actor without moving the
+page vertically. Lobby names wrap instead of concealing their identities.
+Phone room headers give the room title its own row. Invite, ready/start and
+shared move buttons occupy full rows with at least 44px targets. Secondary host
+controls and leaving live behind the vertical room-options kebab, in the shared
+Radix dialog with grouped rows and a separate destructive confirmation. Controlled
+dialogs restore focus to their opener when closing without replacing the dialog.
+
+Result composition follows the server winner IDs and catalogue play/score
+metadata: cooperative defeat is a team result, penalty scores sort low first,
+and games without meaningful scores retain player identities without invented
+points. Storybook covers reactions, saving, disconnection, team defeat, low-score
+results and no-score results. The current screenshot audit and its limits are
+recorded under `docs/evidence/room-audit-2026-11-01/README.md`.
+
+Illustrated game pieces share an AtlasArt viewport and semantic wrappers:
+BoopPiece selects kitten/cat and coral/blue variants; PaperCardArt selects one of
+14 original ocean symbols, and PaperPlayingCard composes it with readable type,
+color name and rule text. Complete cells use proportional meet alignment.
+Masters and reproducible WebP derivatives live in public/game-art; run
+`node scripts/prepare_game_art.mjs` after deliberate master changes.
+
+Catalogue metadata owns playMode, scoreLabel and scoreOrder, validated at the
+API-client boundary from generated wire fields. Results use these fields instead
+of guessing scoring semantics from a game ID. Unscored results still show every
+participant; cooperative loss is a team defeat, not a tie.
+Saved profile history uses the same declared outcome semantics and score units:
+team defeat/victory, penalty points, net chips, or an unscored match label.

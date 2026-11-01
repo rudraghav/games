@@ -61,6 +61,7 @@ export function Lobby({ room, selfId, ready, start, configure, pending }: LobbyP
               variant="ghost"
               aria-label="Change game and settings"
               onClick={configure}
+              disabled={pending}
             >
               <Settings2 size={19} />
             </Button>
@@ -73,6 +74,7 @@ export function Lobby({ room, selfId, ready, start, configure, pending }: LobbyP
               <Seat
                 key={member?.id || i}
                 name={member?.name}
+                nameLayout="wrap"
                 you={member?.id === selfId}
                 avatar={member?.avatar}
                 ready={member?.ready}
@@ -81,7 +83,7 @@ export function Lobby({ room, selfId, ready, start, configure, pending }: LobbyP
             );
           })}
         </div>
-        <div className="invite-panel">
+        <div className="invite-panel" role="group" aria-label="Invite friends">
           <div>
             <span className="eyebrow">Your room code</span>
             <strong className="room-code">{room.code}</strong>
@@ -110,7 +112,7 @@ export function Lobby({ room, selfId, ready, start, configure, pending }: LobbyP
               </span>
             ))}
         </div>
-        <div className="lobby-start">
+        <div className="lobby-start" role="group" aria-label="Get ready to play">
           <Button variant={own?.ready ? 'secondary' : 'primary'} pending={pending} onClick={ready}>
             {own?.ready ? (
               <>

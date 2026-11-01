@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button, PlayingCard } from '@games/ui';
 import type { Action, ActionOption, Card } from '@games/api-client';
 import { playerName, type TableProps } from '../types';
+import { turnState } from './turn-state';
 
 function Decision({
   option,
@@ -98,11 +99,13 @@ export function ActionPanel({
   clear,
   cardSelectionRequired = false,
   instruction,
+  pinSelection = false,
 }: TableProps & {
   selected?: string | null;
   clear?: () => void;
   cardSelectionRequired?: boolean;
   instruction?: string;
+  pinSelection?: boolean;
 }) {
   const own = match.players.find((player) => player.id === selfId);
   const assets = own ? [...own.bank, ...Object.values(own.properties).flat()] : [];
@@ -114,16 +117,16 @@ export function ActionPanel({
         !cardSelectionRequired &&
         !match.hand.some((card) => card.id === option.value.card)),
   );
+  if (match.phase === 'finished' && !match.actions.length) return null;
+  const turn = turnState(match, room, selfId);
   return (
-    <section className="action-panel" aria-label="Your actions" aria-busy={pending}>
+    <section
+      className={`action-panel${pinSelection && selected ? ' action-panel--pinned' : ''}`}
+      aria-label="Your actions"
+      aria-busy={pending}
+    >
       <div className="action-context">
-        <strong>
-          {match.currentPlayer === selfId
-            ? 'Your move.'
-            : match.currentPlayer
-              ? `${playerName(room, match.currentPlayer)}’s move`
-              : 'At the table'}
-        </strong>
+        <strong>{turn.label}</strong>
         <span className="small muted">
           {pending
             ? 'Saving your move…'

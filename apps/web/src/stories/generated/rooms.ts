@@ -23,7 +23,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.435692
+          "last_seen": 1793537413.422472
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -32,7 +32,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4356961
+          "last_seen": 1793537413.422476
         }
       ],
       "messages": [],
@@ -309,7 +309,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4358988
+          "last_seen": 1793537413.422668
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -318,7 +318,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.435901
+          "last_seen": 1793537413.4226692
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -327,7 +327,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4359019
+          "last_seen": 1793537413.4226701
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -336,7 +336,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.435903
+          "last_seen": 1793537413.422671
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -345,7 +345,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.435904
+          "last_seen": 1793537413.4226718
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -354,7 +354,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.435905
+          "last_seen": 1793537413.422673
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -363,7 +363,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.435905
+          "last_seen": 1793537413.422675
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -372,7 +372,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.435906
+          "last_seen": 1793537413.422675
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -381,7 +381,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.435908
+          "last_seen": 1793537413.422676
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -390,7 +390,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.43591
+          "last_seen": 1793537413.422677
         }
       ],
       "messages": [],
@@ -1469,7 +1469,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436221
+          "last_seen": 1793537413.42297
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -1478,7 +1478,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4362218
+          "last_seen": 1793537413.422972
         }
       ],
       "messages": [],
@@ -1755,7 +1755,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.43638
+          "last_seen": 1793537413.423114
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -1764,7 +1764,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4363809
+          "last_seen": 1793537413.423115
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -1773,7 +1773,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436382
+          "last_seen": 1793537413.423116
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -1782,7 +1782,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436383
+          "last_seen": 1793537413.4231172
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -1791,7 +1791,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436384
+          "last_seen": 1793537413.4231172
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -1800,7 +1800,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436384
+          "last_seen": 1793537413.423118
         }
       ],
       "messages": [],
@@ -2455,7 +2455,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436558
+          "last_seen": 1793537413.423282
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -2464,7 +2464,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4365592
+          "last_seen": 1793537413.4232829
         }
       ],
       "messages": [],
@@ -2775,7 +2775,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436686
+          "last_seen": 1793537413.4233978
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -2784,7 +2784,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436688
+          "last_seen": 1793537413.423399
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -2793,7 +2793,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436689
+          "last_seen": 1793537413.4234
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -2802,7 +2802,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436689
+          "last_seen": 1793537413.4234009
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -2811,7 +2811,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4366899
+          "last_seen": 1793537413.4234009
         }
       ],
       "messages": [],
@@ -3164,7 +3164,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436804
+          "last_seen": 1793537413.423502
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -3173,7 +3173,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436805
+          "last_seen": 1793537413.4235032
         }
       ],
       "messages": [],
@@ -3503,7 +3503,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436926
+          "last_seen": 1793537413.4236102
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -3512,7 +3512,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436927
+          "last_seen": 1793537413.4236119
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -3521,7 +3521,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436928
+          "last_seen": 1793537413.4236119
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -3530,7 +3530,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436929
+          "last_seen": 1793537413.4236128
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -3539,7 +3539,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.436929
+          "last_seen": 1793537413.423614
         }
       ],
       "messages": [],
@@ -3911,7 +3911,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437042
+          "last_seen": 1793537413.4238012
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -3920,7 +3920,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437043
+          "last_seen": 1793537413.4238029
         }
       ],
       "messages": [],
@@ -4094,7 +4094,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4371378
+          "last_seen": 1793537413.423893
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4103,7 +4103,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.43714
+          "last_seen": 1793537413.423894
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -4112,7 +4112,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437141
+          "last_seen": 1793537413.4238951
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -4121,7 +4121,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437141
+          "last_seen": 1793537413.423896
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -4130,7 +4130,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4371421
+          "last_seen": 1793537413.423897
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -4139,7 +4139,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437143
+          "last_seen": 1793537413.423897
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -4148,7 +4148,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437144
+          "last_seen": 1793537413.4238982
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -4157,7 +4157,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437145
+          "last_seen": 1793537413.423899
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -4166,7 +4166,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437145
+          "last_seen": 1793537413.4239
         }
       ],
       "messages": [],
@@ -4354,7 +4354,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.43723
+          "last_seen": 1793537413.42398
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4363,7 +4363,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437231
+          "last_seen": 1793537413.423981
         }
       ],
       "messages": [],
@@ -4619,7 +4619,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437336
+          "last_seen": 1793537413.424085
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4628,7 +4628,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437338
+          "last_seen": 1793537413.424087
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -4637,7 +4637,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437338
+          "last_seen": 1793537413.424088
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -4646,7 +4646,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4373388
+          "last_seen": 1793537413.424088
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -4655,7 +4655,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.43734
+          "last_seen": 1793537413.4240892
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -4664,7 +4664,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437341
+          "last_seen": 1793537413.4240901
         }
       ],
       "messages": [],
@@ -4972,7 +4972,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.43743
+          "last_seen": 1793537413.4241889
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4981,7 +4981,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437431
+          "last_seen": 1793537413.42419
         }
       ],
       "messages": [],
@@ -5136,7 +5136,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437505
+          "last_seen": 1793537413.424275
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5145,7 +5145,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437506
+          "last_seen": 1793537413.4242759
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -5154,7 +5154,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4375072
+          "last_seen": 1793537413.424277
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -5163,7 +5163,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437508
+          "last_seen": 1793537413.424278
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -5172,7 +5172,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437508
+          "last_seen": 1793537413.424279
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -5181,7 +5181,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437509
+          "last_seen": 1793537413.4242802
         }
       ],
       "messages": [],
@@ -5369,7 +5369,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437634
+          "last_seen": 1793537413.424445
         }
       ],
       "messages": [],
@@ -5455,7 +5455,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4377658
+          "last_seen": 1793537413.424594
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5464,7 +5464,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437767
+          "last_seen": 1793537413.424596
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -5473,7 +5473,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437768
+          "last_seen": 1793537413.424597
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -5482,7 +5482,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437768
+          "last_seen": 1793537413.424598
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -5491,7 +5491,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437769
+          "last_seen": 1793537413.424599
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -5500,7 +5500,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.43777
+          "last_seen": 1793537413.424599
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -5509,7 +5509,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.437771
+          "last_seen": 1793537413.4246001
         }
       ],
       "messages": [],
@@ -5673,7 +5673,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4378712
+          "last_seen": 1793537413.424702
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5682,7 +5682,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4378722
+          "last_seen": 1793537413.424703
         }
       ],
       "messages": [],
@@ -6022,7 +6022,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4380102
+          "last_seen": 1793537413.424843
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -6031,7 +6031,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438011
+          "last_seen": 1793537413.424845
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -6040,7 +6040,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438012
+          "last_seen": 1793537413.424845
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -6049,7 +6049,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4380128
+          "last_seen": 1793537413.4248462
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -6058,7 +6058,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438014
+          "last_seen": 1793537413.4248471
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -6067,7 +6067,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438014
+          "last_seen": 1793537413.4248478
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -6076,7 +6076,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438015
+          "last_seen": 1793537413.4248488
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -6085,7 +6085,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438016
+          "last_seen": 1793537413.42485
         }
       ],
       "messages": [],
@@ -6581,7 +6581,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438129
+          "last_seen": 1793537413.4249659
         }
       ],
       "messages": [],
@@ -8128,7 +8128,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4384818
+          "last_seen": 1793537413.4252212
         }
       ],
       "messages": [],
@@ -9675,7 +9675,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438747
+          "last_seen": 1793537413.42668
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -9684,7 +9684,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438748
+          "last_seen": 1793537413.426681
         }
       ],
       "messages": [],
@@ -10235,7 +10235,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438863
+          "last_seen": 1793537413.426784
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -10244,7 +10244,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4388638
+          "last_seen": 1793537413.426786
         }
       ],
       "messages": [],
@@ -10795,7 +10795,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438963
+          "last_seen": 1793537413.4268749
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -10804,7 +10804,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.438964
+          "last_seen": 1793537413.4268758
         }
       ],
       "messages": [],
@@ -11474,7 +11474,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439169
+          "last_seen": 1793537413.427048
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -11483,7 +11483,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4391701
+          "last_seen": 1793537413.427049
         }
       ],
       "messages": [],
@@ -12153,7 +12153,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.43941
+          "last_seen": 1793537413.427244
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -12162,7 +12162,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439411
+          "last_seen": 1793537413.4272451
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -12171,7 +12171,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4394119
+          "last_seen": 1793537413.4272451
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -12180,7 +12180,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439413
+          "last_seen": 1793537413.427246
         }
       ],
       "messages": [],
@@ -12502,7 +12502,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4395258
+          "last_seen": 1793537413.4273531
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -12511,7 +12511,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439528
+          "last_seen": 1793537413.427354
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -12520,7 +12520,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439528
+          "last_seen": 1793537413.4273548
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -12529,7 +12529,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439529
+          "last_seen": 1793537413.4273548
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -12538,7 +12538,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.43953
+          "last_seen": 1793537413.427356
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -12547,7 +12547,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439531
+          "last_seen": 1793537413.427357
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -12556,7 +12556,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439532
+          "last_seen": 1793537413.427358
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -12565,7 +12565,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439532
+          "last_seen": 1793537413.427358
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -12574,7 +12574,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439533
+          "last_seen": 1793537413.4273589
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -12583,7 +12583,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4395342
+          "last_seen": 1793537413.42736
         }
       ],
       "messages": [],
@@ -12989,7 +12989,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439671
+          "last_seen": 1793537413.427476
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -12998,7 +12998,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.439672
+          "last_seen": 1793537413.427477
         }
       ],
       "messages": [],
@@ -13785,23 +13785,14 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-2-ruby-4": {
-              "tier": 2,
+            "gem-1-emerald-2": {
+              "tier": 1,
               "cost": {
-                "emerald": 4,
                 "onyx": 2,
                 "sapphire": 2
               },
-              "bonus": "ruby",
-              "points": 3
-            },
-            "gem-1-ruby-7": {
-              "tier": 1,
-              "cost": {
-                "onyx": 4
-              },
-              "bonus": "ruby",
-              "points": 1
+              "bonus": "emerald",
+              "points": 0
             },
             "gem-3-sapphire-2": {
               "tier": 3,
@@ -13814,35 +13805,24 @@ export const fixtures = [
               "bonus": "sapphire",
               "points": 4
             },
-            "gem-1-emerald-2": {
+            "gem-1-ruby-7": {
               "tier": 1,
               "cost": {
-                "onyx": 2,
-                "sapphire": 2
+                "onyx": 4
               },
-              "bonus": "emerald",
-              "points": 0
+              "bonus": "ruby",
+              "points": 1
             },
-            "gem-3-pearl-2": {
-              "tier": 3,
-              "cost": {
-                "pearl": 3,
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3
-              },
-              "bonus": "pearl",
-              "points": 4
-            },
-            "gem-2-emerald-2": {
+            "gem-2-ruby-3": {
               "tier": 2,
               "cost": {
-                "onyx": 3,
-                "sapphire": 3,
-                "ruby": 2
+                "ruby": 2,
+                "emerald": 2,
+                "onyx": 2,
+                "pearl": 2
               },
-              "bonus": "emerald",
-              "points": 3
+              "bonus": "ruby",
+              "points": 2
             },
             "gem-1-onyx-1": {
               "tier": 1,
@@ -13853,17 +13833,6 @@ export const fixtures = [
               },
               "bonus": "onyx",
               "points": 0
-            },
-            "gem-2-onyx-3": {
-              "tier": 2,
-              "cost": {
-                "onyx": 2,
-                "pearl": 2,
-                "sapphire": 2,
-                "ruby": 2
-              },
-              "bonus": "onyx",
-              "points": 2
             },
             "gem-1-ruby-3": {
               "tier": 1,
@@ -13877,16 +13846,6 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 1
             },
-            "gem-3-sapphire-0": {
-              "tier": 3,
-              "cost": {
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 5
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
             "gem-3-ruby-0": {
               "tier": 3,
               "cost": {
@@ -13897,15 +13856,56 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 4
             },
-            "gem-2-ruby-3": {
+            "gem-3-sapphire-0": {
+              "tier": 3,
+              "cost": {
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 5
+              },
+              "bonus": "sapphire",
+              "points": 4
+            },
+            "gem-2-ruby-4": {
               "tier": 2,
               "cost": {
-                "ruby": 2,
-                "emerald": 2,
+                "emerald": 4,
                 "onyx": 2,
-                "pearl": 2
+                "sapphire": 2
               },
               "bonus": "ruby",
+              "points": 3
+            },
+            "gem-2-emerald-2": {
+              "tier": 2,
+              "cost": {
+                "onyx": 3,
+                "sapphire": 3,
+                "ruby": 2
+              },
+              "bonus": "emerald",
+              "points": 3
+            },
+            "gem-3-pearl-2": {
+              "tier": 3,
+              "cost": {
+                "pearl": 3,
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3
+              },
+              "bonus": "pearl",
+              "points": 4
+            },
+            "gem-2-onyx-3": {
+              "tier": 2,
+              "cost": {
+                "onyx": 2,
+                "pearl": 2,
+                "sapphire": 2,
+                "ruby": 2
+              },
+              "bonus": "onyx",
               "points": 2
             }
           },
@@ -13957,7 +13957,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.440005
+          "last_seen": 1793537413.427778
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -13966,7 +13966,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.440007
+          "last_seen": 1793537413.427779
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -13975,7 +13975,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.440008
+          "last_seen": 1793537413.4277802
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -13984,7 +13984,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.440008
+          "last_seen": 1793537413.427781
         }
       ],
       "messages": [],
@@ -14849,23 +14849,14 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-2-ruby-4": {
-              "tier": 2,
+            "gem-1-emerald-2": {
+              "tier": 1,
               "cost": {
-                "emerald": 4,
                 "onyx": 2,
                 "sapphire": 2
               },
-              "bonus": "ruby",
-              "points": 3
-            },
-            "gem-1-ruby-7": {
-              "tier": 1,
-              "cost": {
-                "onyx": 4
-              },
-              "bonus": "ruby",
-              "points": 1
+              "bonus": "emerald",
+              "points": 0
             },
             "gem-3-sapphire-2": {
               "tier": 3,
@@ -14878,35 +14869,24 @@ export const fixtures = [
               "bonus": "sapphire",
               "points": 4
             },
-            "gem-1-emerald-2": {
+            "gem-1-ruby-7": {
               "tier": 1,
               "cost": {
-                "onyx": 2,
-                "sapphire": 2
+                "onyx": 4
               },
-              "bonus": "emerald",
-              "points": 0
+              "bonus": "ruby",
+              "points": 1
             },
-            "gem-3-pearl-2": {
-              "tier": 3,
-              "cost": {
-                "pearl": 3,
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3
-              },
-              "bonus": "pearl",
-              "points": 4
-            },
-            "gem-2-emerald-2": {
+            "gem-2-ruby-3": {
               "tier": 2,
               "cost": {
-                "onyx": 3,
-                "sapphire": 3,
-                "ruby": 2
+                "ruby": 2,
+                "emerald": 2,
+                "onyx": 2,
+                "pearl": 2
               },
-              "bonus": "emerald",
-              "points": 3
+              "bonus": "ruby",
+              "points": 2
             },
             "gem-1-onyx-1": {
               "tier": 1,
@@ -14917,17 +14897,6 @@ export const fixtures = [
               },
               "bonus": "onyx",
               "points": 0
-            },
-            "gem-2-onyx-3": {
-              "tier": 2,
-              "cost": {
-                "onyx": 2,
-                "pearl": 2,
-                "sapphire": 2,
-                "ruby": 2
-              },
-              "bonus": "onyx",
-              "points": 2
             },
             "gem-1-ruby-3": {
               "tier": 1,
@@ -14941,16 +14910,6 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 1
             },
-            "gem-3-sapphire-0": {
-              "tier": 3,
-              "cost": {
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 5
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
             "gem-3-ruby-0": {
               "tier": 3,
               "cost": {
@@ -14961,15 +14920,56 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 4
             },
-            "gem-2-ruby-3": {
+            "gem-3-sapphire-0": {
+              "tier": 3,
+              "cost": {
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 5
+              },
+              "bonus": "sapphire",
+              "points": 4
+            },
+            "gem-2-ruby-4": {
               "tier": 2,
               "cost": {
-                "ruby": 2,
-                "emerald": 2,
+                "emerald": 4,
                 "onyx": 2,
-                "pearl": 2
+                "sapphire": 2
               },
               "bonus": "ruby",
+              "points": 3
+            },
+            "gem-2-emerald-2": {
+              "tier": 2,
+              "cost": {
+                "onyx": 3,
+                "sapphire": 3,
+                "ruby": 2
+              },
+              "bonus": "emerald",
+              "points": 3
+            },
+            "gem-3-pearl-2": {
+              "tier": 3,
+              "cost": {
+                "pearl": 3,
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3
+              },
+              "bonus": "pearl",
+              "points": 4
+            },
+            "gem-2-onyx-3": {
+              "tier": 2,
+              "cost": {
+                "onyx": 2,
+                "pearl": 2,
+                "sapphire": 2,
+                "ruby": 2
+              },
+              "bonus": "onyx",
               "points": 2
             }
           },
@@ -15031,7 +15031,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.441622
+          "last_seen": 1793537413.4280572
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -15040,7 +15040,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4416242
+          "last_seen": 1793537413.4280589
         }
       ],
       "messages": [],
@@ -15767,7 +15767,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4417942
+          "last_seen": 1793537413.4282181
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -15776,7 +15776,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.441795
+          "last_seen": 1793537413.4282188
         }
       ],
       "messages": [],
@@ -16503,7 +16503,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.441955
+          "last_seen": 1793537413.4283671
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -16512,7 +16512,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4419572
+          "last_seen": 1793537413.4283679
         }
       ],
       "messages": [],
@@ -16818,7 +16818,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442034
+          "last_seen": 1793537413.428437
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -16827,7 +16827,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442035
+          "last_seen": 1793537413.428438
         }
       ],
       "messages": [],
@@ -17133,7 +17133,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442156
+          "last_seen": 1793537413.4285572
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -17142,7 +17142,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442157
+          "last_seen": 1793537413.428558
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -17151,7 +17151,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442158
+          "last_seen": 1793537413.428559
         }
       ],
       "messages": [],
@@ -17320,7 +17320,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442299
+          "last_seen": 1793537413.428693
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -17329,7 +17329,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4422998
+          "last_seen": 1793537413.428694
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -17338,7 +17338,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442301
+          "last_seen": 1793537413.428695
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -17347,7 +17347,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442302
+          "last_seen": 1793537413.4286962
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -17356,7 +17356,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442303
+          "last_seen": 1793537413.4286962
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -17365,7 +17365,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442304
+          "last_seen": 1793537413.428697
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -17374,7 +17374,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442304
+          "last_seen": 1793537413.428698
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -17383,7 +17383,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442305
+          "last_seen": 1793537413.4286988
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -17392,7 +17392,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442306
+          "last_seen": 1793537413.4287
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -17401,7 +17401,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442307
+          "last_seen": 1793537413.4287
         }
       ],
       "messages": [],
@@ -17738,7 +17738,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4424279
+          "last_seen": 1793537413.4288142
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -17747,7 +17747,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4424288
+          "last_seen": 1793537413.4288151
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -17756,7 +17756,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.44243
+          "last_seen": 1793537413.4288158
         }
       ],
       "messages": [],
@@ -18279,7 +18279,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442571
+          "last_seen": 1793537413.4289532
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -18288,7 +18288,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442572
+          "last_seen": 1793537413.4289541
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -18297,7 +18297,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442573
+          "last_seen": 1793537413.4289548
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -18306,7 +18306,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442574
+          "last_seen": 1793537413.4289558
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -18315,7 +18315,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442574
+          "last_seen": 1793537413.428957
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -18324,7 +18324,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4425752
+          "last_seen": 1793537413.428958
         }
       ],
       "messages": [],
@@ -18887,7 +18887,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442724
+          "last_seen": 1793537413.429111
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -18896,7 +18896,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4427252
+          "last_seen": 1793537413.429112
         }
       ],
       "messages": [],
@@ -19411,7 +19411,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442912
+          "last_seen": 1793537413.4293718
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -19420,7 +19420,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442913
+          "last_seen": 1793537413.429374
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -19429,7 +19429,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442914
+          "last_seen": 1793537413.429374
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -19438,7 +19438,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.442915
+          "last_seen": 1793537413.429375
         }
       ],
       "messages": [],
@@ -20321,7 +20321,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4431481
+          "last_seen": 1793537413.429618
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -20330,7 +20330,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443149
+          "last_seen": 1793537413.4296188
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -20339,7 +20339,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.44315
+          "last_seen": 1793537413.42962
         }
       ],
       "messages": [],
@@ -20496,7 +20496,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443232
+          "last_seen": 1793537413.429704
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -20505,7 +20505,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443233
+          "last_seen": 1793537413.429705
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -20514,7 +20514,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443234
+          "last_seen": 1793537413.429706
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -20523,7 +20523,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4432352
+          "last_seen": 1793537413.429707
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -20532,7 +20532,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443236
+          "last_seen": 1793537413.429708
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -20541,7 +20541,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443237
+          "last_seen": 1793537413.429709
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -20550,7 +20550,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4432378
+          "last_seen": 1793537413.4297101
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -20559,7 +20559,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4432378
+          "last_seen": 1793537413.429711
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -20568,7 +20568,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443239
+          "last_seen": 1793537413.4297118
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -20577,7 +20577,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.44324
+          "last_seen": 1793537413.429713
         }
       ],
       "messages": [],
@@ -20825,7 +20825,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4433138
+          "last_seen": 1793537413.4298189
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -20834,7 +20834,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443315
+          "last_seen": 1793537413.4298198
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -20843,7 +20843,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443316
+          "last_seen": 1793537413.429821
         }
       ],
       "messages": [],
@@ -21000,7 +21000,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443399
+          "last_seen": 1793537413.429897
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -21009,7 +21009,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4434
+          "last_seen": 1793537413.429898
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -21018,7 +21018,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4434009
+          "last_seen": 1793537413.429898
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -21027,7 +21027,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443402
+          "last_seen": 1793537413.429899
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -21036,7 +21036,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443403
+          "last_seen": 1793537413.4299
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -21045,7 +21045,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443403
+          "last_seen": 1793537413.4299011
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -21054,7 +21054,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443404
+          "last_seen": 1793537413.429902
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -21063,7 +21063,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4434052
+          "last_seen": 1793537413.429903
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -21072,7 +21072,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443406
+          "last_seen": 1793537413.429903
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -21081,7 +21081,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443407
+          "last_seen": 1793537413.429904
         }
       ],
       "messages": [],
@@ -21462,7 +21462,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4435
+          "last_seen": 1793537413.429996
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -21471,7 +21471,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443501
+          "last_seen": 1793537413.429997
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -21480,7 +21480,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4435022
+          "last_seen": 1793537413.4299982
         }
       ],
       "messages": [],
@@ -21640,7 +21640,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443577
+          "last_seen": 1793537413.430069
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -21649,7 +21649,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443578
+          "last_seen": 1793537413.43007
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -21658,7 +21658,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.44358
+          "last_seen": 1793537413.430071
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -21667,7 +21667,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.4435809
+          "last_seen": 1793537413.430072
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -21676,7 +21676,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443582
+          "last_seen": 1793537413.430073
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -21685,7 +21685,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443583
+          "last_seen": 1793537413.4300742
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -21694,7 +21694,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443583
+          "last_seen": 1793537413.430075
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -21703,7 +21703,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443584
+          "last_seen": 1793537413.430075
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -21712,7 +21712,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443585
+          "last_seen": 1793537413.430076
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -21721,7 +21721,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793523158.443586
+          "last_seen": 1793537413.4300768
         }
       ],
       "messages": [],
@@ -21942,6 +21942,4168 @@ export const fixtures = [
           "own_choice": null,
           "result": null,
           "sip_prompts": false
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "The Gang \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "3e98e748-e35f-5929-a409-a05701ec699f",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "the-gang",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 3,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "950f704d-aa4d-5244-8c63-418b05c534ec",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430161
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430162
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430163
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "the-gang",
+        "phase": "chips",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 2,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              null,
+              null
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 2,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              null,
+              null
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 2,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              null,
+              null
+            ],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [
+          {
+            "id": "JC:0",
+            "label": "J \u2663",
+            "color": "ink",
+            "subtitle": "",
+            "value": "J",
+            "suit": "\u2663"
+          },
+          {
+            "id": "AC:0",
+            "label": "A \u2663",
+            "color": "ink",
+            "subtitle": "",
+            "value": "A",
+            "suit": "\u2663"
+          }
+        ],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 46,
+        "pot": 0,
+        "message": "Estimate your pocket cards. Everyone can take a white chip.",
+        "actions": [
+          {
+            "label": "Take 1-star chip",
+            "action": {
+              "type": "claim_chip",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 1,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Take 2-star chip",
+            "action": {
+              "type": "claim_chip",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 2,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Take 3-star chip",
+            "action": {
+              "type": "claim_chip",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 3,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "heist": 1,
+          "street": 0,
+          "vaults": 0,
+          "alarms": 0,
+          "chips": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": null,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": null,
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": null
+          },
+          "history": [],
+          "revealed": [],
+          "last_success": null,
+          "own_hand_name": null,
+          "decision_mode": "simultaneous",
+          "pending_players": [
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4"
+          ],
+          "hand_names": {}
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "The Gang \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "9a48518c-0331-5b79-8a60-bb4c5c42b6f6",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "the-gang",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 6,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "950f704d-aa4d-5244-8c63-418b05c534ec",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430253
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430254
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.4302552
+        },
+        {
+          "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.4302561
+        },
+        {
+          "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+          "name": "Noor",
+          "avatar": 4,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.4302568
+        },
+        {
+          "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+          "name": "Alex",
+          "avatar": 5,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430258
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "the-gang",
+        "phase": "chips",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 2,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              null,
+              null
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 2,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              null,
+              null
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 2,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              null,
+              null
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+            "count": 2,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              null,
+              null
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+            "count": 2,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              null,
+              null
+            ],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+            "count": 2,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [
+              null,
+              null
+            ],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [
+          {
+            "id": "JC:0",
+            "label": "J \u2663",
+            "color": "ink",
+            "subtitle": "",
+            "value": "J",
+            "suit": "\u2663"
+          },
+          {
+            "id": "AC:0",
+            "label": "A \u2663",
+            "color": "ink",
+            "subtitle": "",
+            "value": "A",
+            "suit": "\u2663"
+          }
+        ],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 40,
+        "pot": 0,
+        "message": "Estimate your pocket cards. Everyone can take a white chip.",
+        "actions": [
+          {
+            "label": "Take 1-star chip",
+            "action": {
+              "type": "claim_chip",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 1,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Take 2-star chip",
+            "action": {
+              "type": "claim_chip",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 2,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Take 3-star chip",
+            "action": {
+              "type": "claim_chip",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 3,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Take 4-star chip",
+            "action": {
+              "type": "claim_chip",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 4,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Take 5-star chip",
+            "action": {
+              "type": "claim_chip",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 5,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Take 6-star chip",
+            "action": {
+              "type": "claim_chip",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 6,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "heist": 1,
+          "street": 0,
+          "vaults": 0,
+          "alarms": 0,
+          "chips": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": null,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": null,
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": null,
+            "19285837-cef0-568b-9a40-febfd6a8cb39": null,
+            "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9": null,
+            "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46": null
+          },
+          "history": [],
+          "revealed": [],
+          "last_success": null,
+          "own_hand_name": null,
+          "decision_mode": "simultaneous",
+          "pending_players": [
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "19285837-cef0-568b-9a40-febfd6a8cb39",
+            "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+            "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46"
+          ],
+          "hand_names": {}
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "6 nimmt! \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "3679dbdf-bc39-5241-a698-ee6462dd5f5c",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "six-nimmt",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 2,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "adb12bd6-ad14-5e82-b976-6db3cf1b3224",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430358
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.43036
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "six-nimmt",
+        "phase": "selecting",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [
+          {
+            "id": "number-4",
+            "label": "4, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "number-36",
+            "label": "36, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "36",
+            "suit": ""
+          },
+          {
+            "id": "number-39",
+            "label": "39, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "39",
+            "suit": ""
+          },
+          {
+            "id": "number-40",
+            "label": "40, 3 penalty points",
+            "color": "yellow",
+            "subtitle": "3",
+            "value": "40",
+            "suit": ""
+          },
+          {
+            "id": "number-53",
+            "label": "53, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "53",
+            "suit": ""
+          },
+          {
+            "id": "number-54",
+            "label": "54, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "54",
+            "suit": ""
+          },
+          {
+            "id": "number-58",
+            "label": "58, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "58",
+            "suit": ""
+          },
+          {
+            "id": "number-81",
+            "label": "81, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "81",
+            "suit": ""
+          },
+          {
+            "id": "number-97",
+            "label": "97, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "97",
+            "suit": ""
+          },
+          {
+            "id": "number-98",
+            "label": "98, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "98",
+            "suit": ""
+          }
+        ],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 80,
+        "pot": 0,
+        "message": "Everyone chooses one private card. The lowest revealed number resolves first.",
+        "actions": [
+          {
+            "label": "Lock 4",
+            "action": {
+              "type": "select_number",
+              "card": "number-4",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 36",
+            "action": {
+              "type": "select_number",
+              "card": "number-36",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 39",
+            "action": {
+              "type": "select_number",
+              "card": "number-39",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 40",
+            "action": {
+              "type": "select_number",
+              "card": "number-40",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 53",
+            "action": {
+              "type": "select_number",
+              "card": "number-53",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 54",
+            "action": {
+              "type": "select_number",
+              "card": "number-54",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 58",
+            "action": {
+              "type": "select_number",
+              "card": "number-58",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 81",
+            "action": {
+              "type": "select_number",
+              "card": "number-81",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 97",
+            "action": {
+              "type": "select_number",
+              "card": "number-97",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 98",
+            "action": {
+              "type": "select_number",
+              "card": "number-98",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "round": 1,
+          "trick": 1,
+          "rows": [
+            [
+              {
+                "id": "number-5",
+                "label": "5, 2 penalty points",
+                "color": "blue",
+                "subtitle": "2",
+                "value": "5",
+                "suit": ""
+              }
+            ],
+            [
+              {
+                "id": "number-84",
+                "label": "84, 1 penalty point",
+                "color": "green",
+                "subtitle": "1",
+                "value": "84",
+                "suit": ""
+              }
+            ],
+            [
+              {
+                "id": "number-47",
+                "label": "47, 1 penalty point",
+                "color": "green",
+                "subtitle": "1",
+                "value": "47",
+                "suit": ""
+              }
+            ],
+            [
+              {
+                "id": "number-45",
+                "label": "45, 2 penalty points",
+                "color": "blue",
+                "subtitle": "2",
+                "value": "45",
+                "suit": ""
+              }
+            ]
+          ],
+          "row_penalties": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "selected_players": [],
+          "own_selection": null,
+          "revealed": [],
+          "round_penalties": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 0,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 0
+          },
+          "total_penalties": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 0,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 0
+          },
+          "round_scores": {},
+          "pending_player": null,
+          "decision_mode": "simultaneous",
+          "pending_players": [
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165"
+          ]
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "6 nimmt! \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "28210144-d34b-5acc-9131-75c8fdfb2098",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "six-nimmt",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 10,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "adb12bd6-ad14-5e82-b976-6db3cf1b3224",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.4305332
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430534
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.4305348
+        },
+        {
+          "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430536
+        },
+        {
+          "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+          "name": "Noor",
+          "avatar": 4,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430537
+        },
+        {
+          "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+          "name": "Alex",
+          "avatar": 5,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430537
+        },
+        {
+          "id": "d03315f3-275f-534f-915a-d668855c7de9",
+          "name": "Jules",
+          "avatar": 6,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430538
+        },
+        {
+          "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+          "name": "Kai",
+          "avatar": 7,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430539
+        },
+        {
+          "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+          "name": "Robin",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.43054
+        },
+        {
+          "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
+          "name": "Ari",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430541
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "six-nimmt",
+        "phase": "selecting",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "d03315f3-275f-534f-915a-d668855c7de9",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
+            "count": 10,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [
+          {
+            "id": "number-4",
+            "label": "4, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "number-36",
+            "label": "36, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "36",
+            "suit": ""
+          },
+          {
+            "id": "number-39",
+            "label": "39, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "39",
+            "suit": ""
+          },
+          {
+            "id": "number-40",
+            "label": "40, 3 penalty points",
+            "color": "yellow",
+            "subtitle": "3",
+            "value": "40",
+            "suit": ""
+          },
+          {
+            "id": "number-53",
+            "label": "53, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "53",
+            "suit": ""
+          },
+          {
+            "id": "number-54",
+            "label": "54, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "54",
+            "suit": ""
+          },
+          {
+            "id": "number-58",
+            "label": "58, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "58",
+            "suit": ""
+          },
+          {
+            "id": "number-81",
+            "label": "81, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "81",
+            "suit": ""
+          },
+          {
+            "id": "number-97",
+            "label": "97, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "97",
+            "suit": ""
+          },
+          {
+            "id": "number-98",
+            "label": "98, 1 penalty point",
+            "color": "green",
+            "subtitle": "1",
+            "value": "98",
+            "suit": ""
+          }
+        ],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Everyone chooses one private card. The lowest revealed number resolves first.",
+        "actions": [
+          {
+            "label": "Lock 4",
+            "action": {
+              "type": "select_number",
+              "card": "number-4",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 36",
+            "action": {
+              "type": "select_number",
+              "card": "number-36",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 39",
+            "action": {
+              "type": "select_number",
+              "card": "number-39",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 40",
+            "action": {
+              "type": "select_number",
+              "card": "number-40",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 53",
+            "action": {
+              "type": "select_number",
+              "card": "number-53",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 54",
+            "action": {
+              "type": "select_number",
+              "card": "number-54",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 58",
+            "action": {
+              "type": "select_number",
+              "card": "number-58",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 81",
+            "action": {
+              "type": "select_number",
+              "card": "number-81",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 97",
+            "action": {
+              "type": "select_number",
+              "card": "number-97",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Lock 98",
+            "action": {
+              "type": "select_number",
+              "card": "number-98",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "round": 1,
+          "trick": 1,
+          "rows": [
+            [
+              {
+                "id": "number-42",
+                "label": "42, 1 penalty point",
+                "color": "green",
+                "subtitle": "1",
+                "value": "42",
+                "suit": ""
+              }
+            ],
+            [
+              {
+                "id": "number-52",
+                "label": "52, 1 penalty point",
+                "color": "green",
+                "subtitle": "1",
+                "value": "52",
+                "suit": ""
+              }
+            ],
+            [
+              {
+                "id": "number-77",
+                "label": "77, 5 penalty points",
+                "color": "red",
+                "subtitle": "5",
+                "value": "77",
+                "suit": ""
+              }
+            ],
+            [
+              {
+                "id": "number-11",
+                "label": "11, 5 penalty points",
+                "color": "red",
+                "subtitle": "5",
+                "value": "11",
+                "suit": ""
+              }
+            ]
+          ],
+          "row_penalties": [
+            1,
+            1,
+            5,
+            5
+          ],
+          "selected_players": [],
+          "own_selection": null,
+          "revealed": [],
+          "round_penalties": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 0,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 0,
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": 0,
+            "19285837-cef0-568b-9a40-febfd6a8cb39": 0,
+            "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9": 0,
+            "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46": 0,
+            "d03315f3-275f-534f-915a-d668855c7de9": 0,
+            "b99cae13-1a84-5dfe-95f8-3ec6f935de22": 0,
+            "a8e0bd43-e804-5665-9c48-c5581447c0fe": 0,
+            "3e67b5ca-94db-57c3-b0e1-f1d5ad017207": 0
+          },
+          "total_penalties": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 0,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 0,
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": 0,
+            "19285837-cef0-568b-9a40-febfd6a8cb39": 0,
+            "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9": 0,
+            "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46": 0,
+            "d03315f3-275f-534f-915a-d668855c7de9": 0,
+            "b99cae13-1a84-5dfe-95f8-3ec6f935de22": 0,
+            "a8e0bd43-e804-5665-9c48-c5581447c0fe": 0,
+            "3e67b5ca-94db-57c3-b0e1-f1d5ad017207": 0
+          },
+          "round_scores": {},
+          "pending_player": null,
+          "decision_mode": "simultaneous",
+          "pending_players": [
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "19285837-cef0-568b-9a40-febfd6a8cb39",
+            "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+            "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+            "d03315f3-275f-534f-915a-d668855c7de9",
+            "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+            "a8e0bd43-e804-5665-9c48-c5581447c0fe",
+            "3e67b5ca-94db-57c3-b0e1-f1d5ad017207"
+          ]
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Sea Salt & Paper \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "d37c373f-9204-5371-8192-80e1536660fd",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "sea-salt-paper",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 2,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "562280bc-b0e1-5695-aeeb-df921c44937d",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.4307
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430701
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "sea-salt-paper",
+        "phase": "draw",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 56,
+        "pot": 0,
+        "message": "A new tide. Draw from the deck or either discard.",
+        "actions": [
+          {
+            "label": "Draw from deck",
+            "action": {
+              "type": "take_stock",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Take discard 1",
+            "action": {
+              "type": "take_discard",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Take discard 2",
+            "action": {
+              "type": "take_discard",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "round": 1,
+          "target": 40,
+          "caller": null,
+          "protected": [],
+          "pile_counts": [
+            1,
+            1
+          ],
+          "discard_tops": [
+            {
+              "id": "paper-octopus-gray-0",
+              "label": "Octopus \u00b7 Gray",
+              "color": "gray",
+              "subtitle": "Collection \u00b7 0 / 3 / 6 / 9 / 12",
+              "value": "Octopus",
+              "suit": "octopus"
+            },
+            {
+              "id": "paper-captain-peach-0",
+              "label": "Captain \u00b7 Peach",
+              "color": "peach",
+              "subtitle": "+3 per sailor",
+              "value": "Captain",
+              "suit": "captain"
+            }
+          ],
+          "private_options": [],
+          "own_points": 0,
+          "own_bonus": 0,
+          "round_result": {},
+          "instant_mermaids": null
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Sea Salt & Paper \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "066cc110-c293-5d4b-b42b-c0079680a107",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "sea-salt-paper",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 4,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "562280bc-b0e1-5695-aeeb-df921c44937d",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430816
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.4308171
+        },
+        {
+          "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.4308171
+        },
+        {
+          "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.430818
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "sea-salt-paper",
+        "phase": "draw",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 56,
+        "pot": 0,
+        "message": "A new tide. Draw from the deck or either discard.",
+        "actions": [
+          {
+            "label": "Draw from deck",
+            "action": {
+              "type": "take_stock",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Take discard 1",
+            "action": {
+              "type": "take_discard",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Take discard 2",
+            "action": {
+              "type": "take_discard",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "round": 1,
+          "target": 30,
+          "caller": null,
+          "protected": [],
+          "pile_counts": [
+            1,
+            1
+          ],
+          "discard_tops": [
+            {
+              "id": "paper-octopus-gray-0",
+              "label": "Octopus \u00b7 Gray",
+              "color": "gray",
+              "subtitle": "Collection \u00b7 0 / 3 / 6 / 9 / 12",
+              "value": "Octopus",
+              "suit": "octopus"
+            },
+            {
+              "id": "paper-captain-peach-0",
+              "label": "Captain \u00b7 Peach",
+              "color": "peach",
+              "subtitle": "+3 per sailor",
+              "value": "Captain",
+              "suit": "captain"
+            }
+          ],
+          "private_options": [],
+          "own_points": 0,
+          "own_bonus": 0,
+          "round_result": {},
+          "instant_mermaids": null
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "boop. \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "874a78e4-7e23-5ce2-803d-8ec311800f4a",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "boop",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 2,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "adb1eb39-799a-5c48-a31f-34a7450d223f",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.4308832
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.4308841
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "boop",
+        "phase": "placing",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [
+          {
+            "id": "0",
+            "label": "Empty A1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "1",
+            "label": "Empty B1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "2",
+            "label": "Empty C1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "3",
+            "label": "Empty D1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "4",
+            "label": "Empty E1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "5",
+            "label": "Empty F1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "6",
+            "label": "Empty A2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "7",
+            "label": "Empty B2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "8",
+            "label": "Empty C2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "9",
+            "label": "Empty D2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "10",
+            "label": "Empty E2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "11",
+            "label": "Empty F2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "12",
+            "label": "Empty A3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "13",
+            "label": "Empty B3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "14",
+            "label": "Empty C3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "15",
+            "label": "Empty D3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "16",
+            "label": "Empty E3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "17",
+            "label": "Empty F3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "18",
+            "label": "Empty A4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "19",
+            "label": "Empty B4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "20",
+            "label": "Empty C4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "21",
+            "label": "Empty D4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "22",
+            "label": "Empty E4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "23",
+            "label": "Empty F4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "24",
+            "label": "Empty A5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "25",
+            "label": "Empty B5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "26",
+            "label": "Empty C5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "27",
+            "label": "Empty D5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "28",
+            "label": "Empty E5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "29",
+            "label": "Empty F5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "30",
+            "label": "Empty A6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "31",
+            "label": "Empty B6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "32",
+            "label": "Empty C6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "33",
+            "label": "Empty D6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "34",
+            "label": "Empty E6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "35",
+            "label": "Empty F6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          }
+        ],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "A cozy bed. Pick a square for your first kitten.",
+        "actions": [
+          {
+            "label": "Place kitten at A1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "5",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at A2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "6",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "7",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "8",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "9",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "10",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "11",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at A3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "12",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "13",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "14",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "15",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "16",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "17",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at A4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "18",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "19",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "20",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "21",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "22",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "23",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at A5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "24",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "25",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "26",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "27",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "28",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "29",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at A6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "30",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "31",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "32",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "33",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "34",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "35",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "pools": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": {
+              "kitten": 8,
+              "cat": 0
+            },
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": {
+              "kitten": 8,
+              "cat": 0
+            }
+          },
+          "retired": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 0,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 0
+          },
+          "reserve": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 8,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 8
+          },
+          "last_move": null,
+          "last_pushes": [],
+          "moves": 0
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "boop. \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "f063ea87-12ba-5aca-9e6d-0e3beea0cc97",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "boop",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 2,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "adb1eb39-799a-5c48-a31f-34a7450d223f",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.4311192
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793537413.43112
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "boop",
+        "phase": "placing",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [
+          {
+            "id": "0",
+            "label": "Empty A1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "1",
+            "label": "Empty B1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "2",
+            "label": "Empty C1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "3",
+            "label": "Empty D1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "4",
+            "label": "Empty E1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "5",
+            "label": "Empty F1",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "6",
+            "label": "Empty A2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "7",
+            "label": "Empty B2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "8",
+            "label": "Empty C2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "9",
+            "label": "Empty D2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "10",
+            "label": "Empty E2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "11",
+            "label": "Empty F2",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "12",
+            "label": "Empty A3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "13",
+            "label": "Empty B3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "14",
+            "label": "Empty C3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "15",
+            "label": "Empty D3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "16",
+            "label": "Empty E3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "17",
+            "label": "Empty F3",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "18",
+            "label": "Empty A4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "19",
+            "label": "Empty B4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "20",
+            "label": "Empty C4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "21",
+            "label": "Empty D4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "22",
+            "label": "Empty E4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "23",
+            "label": "Empty F4",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "24",
+            "label": "Empty A5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "25",
+            "label": "Empty B5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "26",
+            "label": "Empty C5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "27",
+            "label": "Empty D5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "28",
+            "label": "Empty E5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "29",
+            "label": "Empty F5",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "30",
+            "label": "Empty A6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "31",
+            "label": "Empty B6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "32",
+            "label": "Empty C6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "33",
+            "label": "Empty D6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "34",
+            "label": "Empty E6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "35",
+            "label": "Empty F6",
+            "color": "neutral",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          }
+        ],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "A cozy bed. Pick a square for your first kitten.",
+        "actions": [
+          {
+            "label": "Place kitten at A1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F1",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "5",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at A2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "6",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "7",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "8",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "9",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "10",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F2",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "11",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at A3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "12",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "13",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "14",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "15",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "16",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F3",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "17",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at A4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "18",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "19",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "20",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "21",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "22",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F4",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "23",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at A5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "24",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "25",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "26",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "27",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "28",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F5",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "29",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at A6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "30",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at B6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "31",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at C6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "32",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at D6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "33",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at E6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "34",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place kitten at F6",
+            "action": {
+              "type": "place",
+              "card": "",
+              "target": "",
+              "color": "kitten",
+              "choice": "35",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "pools": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": {
+              "kitten": 8,
+              "cat": 0
+            },
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": {
+              "kitten": 8,
+              "cat": 0
+            }
+          },
+          "retired": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 0,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 0
+          },
+          "reserve": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 8,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 8
+          },
+          "last_move": null,
+          "last_pushes": [],
+          "moves": 0
         }
       },
       "paused": false,

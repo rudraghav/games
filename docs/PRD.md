@@ -56,6 +56,15 @@ the model. Older saved output remains readable without invented new sections.
 
 ## Release gate
 
+The contemporary expansion adds The Gang (basic cooperative poker), 6 nimmt!
+(classic 104-card game), Sea Salt & Paper (base 58-card game) and boop. (standard
+kitten/cat game). The catalogue contains 26 experiences after registration.
+Publisher rules and exact edition boundaries live in each module README.
+Cooperative outcomes distinguish team victory and defeat; penalty scores explain
+that lower is better, and unscored games retain player outcomes without an
+invented numeric ranking. Search and intersecting category/group-size filters
+remain available on phones with dedicated rows for primary actions.
+
 All nine games must complete matches, score correctly, rematch, and switch games
 within the same group. Hidden information, persistence, concurrency, authorization,
 responsive layouts and reconnects must pass real workflow verification. Track

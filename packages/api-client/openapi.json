@@ -1356,6 +1356,33 @@
             "type": "string",
             "title": "Color"
           },
+          "play_mode": {
+            "type": "string",
+            "enum": [
+              "competitive",
+              "cooperative",
+              "solo"
+            ],
+            "title": "Play Mode",
+            "default": "competitive"
+          },
+          "score_label": {
+            "type": "string",
+            "maxLength": 30,
+            "minLength": 1,
+            "title": "Score Label",
+            "default": "Points"
+          },
+          "score_order": {
+            "type": "string",
+            "enum": [
+              "high",
+              "low",
+              "none"
+            ],
+            "title": "Score Order",
+            "default": "high"
+          },
           "rules_version": {
             "type": "string",
             "maxLength": 16,

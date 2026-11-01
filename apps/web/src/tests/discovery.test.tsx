@@ -13,7 +13,12 @@ describe('Modern and social game discovery', () => {
   });
   it('puts the new modern games first while preserving every catalogue entry', () => {
     const sorted = [...games].sort((a, b) => discoveryRank(a.id) - discoveryRank(b.id));
-    expect(sorted.slice(0, 3).map((game) => game.id)).toEqual(['flip-7', 'trio', 'azul']);
+    expect(sorted.slice(0, 4).map((game) => game.id)).toEqual([
+      'the-gang',
+      'sea-salt-paper',
+      'boop',
+      'six-nimmt',
+    ]);
     expect(new Set(sorted.map((game) => game.id)).size).toBe(games.length);
     expect(games.filter((game) => matchesGame(game, '', 4, 'modern')).map((g) => g.id)).toEqual(
       expect.arrayContaining(['trio', 'flip-7', 'azul', 'word-agents', 'gem-market']),

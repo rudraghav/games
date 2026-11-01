@@ -15,6 +15,10 @@ import { FlipSevenTable } from './modern/FlipSevenTable';
 import { TrioTable } from './modern/TrioTable';
 import { AzulTable } from './modern/AzulTable';
 import { PartyTable } from './party/PartyTable';
+import { GangTable } from './coop-number/GangTable';
+import { SixNimmtTable } from './coop-number/SixNimmtTable';
+import { PaperTable } from './sea/PaperTable';
+import { BoopTable } from './boop/BoopTable';
 
 const familyTables: Record<string, ComponentType<TableProps>> = {
   shedding: CardTable,
@@ -31,6 +35,10 @@ const familyTables: Record<string, ComponentType<TableProps>> = {
   trio: TrioTable,
   azul: AzulTable,
   party: PartyTable,
+  'cooperative-poker': GangTable,
+  'number-rows': SixNimmtTable,
+  paper: PaperTable,
+  boop: BoopTable,
 };
 export const tableRegistry = Object.fromEntries(
   games.map((game) => {

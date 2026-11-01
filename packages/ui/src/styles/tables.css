@@ -453,7 +453,7 @@
     gap: 10px;
     margin: 0 auto 26px;
   }
-  .player-strip .seat {
+  .player-strip > .player-strip-seat {
     max-width: 200px;
     flex: 1 1 150px;
   }
@@ -535,11 +535,11 @@
     margin-left: 8px;
     font-weight: 400;
   }
-  .input--small {
+  .input.input--small {
     display: inline;
     width: auto;
-    min-height: 36px;
-    padding: 5px 8px;
+    min-height: 44px;
+    padding: 7px 10px;
     font-size: 12px;
     margin-left: 8px;
   }
@@ -930,7 +930,7 @@
       overflow-x: auto;
       padding: 3px 3px 8px;
     }
-    .player-strip .seat {
+    .player-strip > .player-strip-seat {
       flex: 0 0 155px;
     }
     .room-header {
@@ -975,6 +975,10 @@
       height: 170px;
       right: -15px;
       top: 15px;
+      left: auto;
+      bottom: auto;
+      margin: 0;
+      padding: 0;
       transform: scale(0.65);
       transform-origin: top center;
     }
@@ -1020,7 +1024,7 @@
       gap: 7px;
       margin-bottom: 18px;
     }
-    .player-strip .seat {
+    .player-strip > .player-strip-seat {
       flex-basis: 130px;
       max-width: none;
     }
@@ -1194,6 +1198,268 @@
     }
     .skyjo-player[data-own='true'] .avatar {
       display: inline-flex;
+    }
+  }
+}
+
+@layer components {
+  .table-announcement.turn-notice {
+    max-width: 1120px;
+    margin: 0 auto 20px;
+    min-height: 72px;
+    padding: 14px 16px;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-border);
+    border-radius: 14px;
+    background: var(--color-surface);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+  }
+  .turn-notice[data-tone='active'] {
+    border-left-color: var(--color-sage);
+  }
+  .turn-notice[data-tone='paused'] {
+    border-left-color: var(--color-ochre);
+  }
+  .turn-notice-icon {
+    display: grid;
+    place-items: center;
+    color: var(--color-ink-muted);
+    flex: none;
+  }
+  .turn-notice[data-tone='active'] .turn-notice-icon {
+    color: var(--color-sage);
+  }
+  .turn-notice-main {
+    min-width: 0;
+    flex: 1;
+  }
+  .turn-notice-main > strong {
+    display: block;
+    font-size: 14px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .turn-notice .turn-notice-main > p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+  }
+  .turn-notice-saving {
+    flex: none;
+    font-size: 12px;
+    color: var(--color-ink-muted);
+  }
+  .turn-notice-spinner {
+    animation: turn-notice-spin 1s linear infinite;
+  }
+  @keyframes turn-notice-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .player-strip-seat > .seat {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+  }
+  .seat-copy > strong {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .seat-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .seat-self {
+    flex: none;
+    color: var(--color-ink-muted);
+    font-size: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .seat[data-name-layout='wrap'] .seat-name {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .rummy-tools > label {
+    display: grid;
+    gap: 6px;
+  }
+  .rummy-tools .input--small {
+    width: 100%;
+    margin-left: 0;
+  }
+  .private-hand:has(.gem-resources) .gem-resources {
+    margin: 12px 0 4px;
+  }
+  .flip-seven-table {
+    margin-top: 16px;
+  }
+  .trio-own-hand {
+    margin: 12px 0 22px;
+  }
+  .room-options-group {
+    display: grid;
+    gap: 10px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .menu-actions > .button,
+  .room-options-group > .button {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+  }
+  .room-options-group > p {
+    margin: 0;
+    line-height: 1.6;
+  }
+  .scoreboard strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    text-align: left;
+  }
+  .scoreboard > div > span {
+    text-align: right;
+    line-height: 1.5;
+  }
+  .scoreboard > div[data-winner='true'] {
+    background: var(--color-sage-light);
+    border-radius: 10px;
+  }
+  .team-result-score {
+    margin: 18px 0 0;
+    color: var(--color-ink-muted);
+  }
+  .results-score-note {
+    margin-top: 12px;
+  }
+  .team-result-score > strong {
+    font-size: 26px;
+    color: var(--color-sage);
+    margin-right: 5px;
+  }
+  @media (max-width: 900px) {
+    .action-panel--pinned {
+      position: sticky;
+      top: 10px;
+      z-index: 12;
+      box-shadow: 0 8px 24px #26382220;
+    }
+  }
+  @media (max-width: 600px) {
+    .room-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 6px 12px;
+      height: auto;
+      min-height: 108px;
+      padding: 10px 14px 12px;
+    }
+    .room-brand {
+      grid-column: 1;
+      grid-row: 1;
+      width: fit-content;
+      min-height: 44px;
+    }
+    .room-title {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+    .room-title h1 {
+      font-size: 15px;
+      line-height: 1.4;
+    }
+    .room-title > span {
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .room-toolbar {
+      grid-column: 2;
+      grid-row: 1;
+      gap: 4px;
+    }
+    .room-toolbar .button {
+      width: 44px;
+      height: 44px;
+    }
+    .lobby-start,
+    .invite-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      width: 100%;
+      gap: 10px;
+    }
+    .lobby-start > .button,
+    .invite-actions > .button {
+      width: 100%;
+      min-height: 48px;
+    }
+    .invite-panel {
+      align-items: stretch;
+      gap: 16px;
+    }
+    .invite-actions > .button--primary {
+      order: -1;
+    }
+    .action-choices {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      width: 100%;
+      align-items: stretch;
+      overflow-x: hidden;
+    }
+    .decision-control {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      width: 100%;
+    }
+    .decision-control > .button {
+      width: 100%;
+      min-height: 48px;
+      font-size: 13px;
+    }
+    .decision-control > .amount-control {
+      justify-content: space-between;
+    }
+    .decision-control .amount-control input {
+      width: 100%;
+      min-width: 0;
+    }
+    .rummy-tools {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+    }
+    .rummy-tools > label {
+      min-width: 0;
+    }
+    .table-announcement.turn-notice {
+      padding: 12px;
+      margin-bottom: 16px;
+    }
+    .gem-table .gem-card-row,
+    .private-hand .gem-card-row {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      scroll-snap-type: x proximity;
+    }
+    .gem-tier .gem-card-row .playing-card.development-card,
+    .private-hand .gem-card-row .playing-card.development-card {
+      --card-width: min(44vw, 156px);
+      flex: 0 0 var(--card-width);
+      scroll-snap-align: start;
+    }
+    .lobby-body .section-heading {
+      margin-bottom: 22px;
     }
   }
 }

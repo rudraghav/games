@@ -39,7 +39,11 @@ def test_setup_limits_and_hidden_information(game_id, maximum):
             if game_id == "skyjo":
                 hidden = state["grids"][other]
             for card in hidden:
-                assert json.dumps(card) not in wire
+                # Number-row cards use native integers internally, while the
+                # wire carries distinct string IDs. Searching raw `3` also
+                # matches unrelated counts and number-30, giving false leaks.
+                card_id = f"number-{card}" if game_id == "six-nimmt" else card
+                assert json.dumps(card_id) not in wire
     with pytest.raises(RuleError):
         engine.setup(players + players, {})
 

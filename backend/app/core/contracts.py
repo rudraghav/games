@@ -94,6 +94,9 @@ class GameManifest(BaseModel):
     minutes: str
     icon: str
     color: str
+    play_mode: Literal['competitive', 'cooperative', 'solo'] = 'competitive'
+    score_label: str = Field(default='Points', min_length=1, max_length=30)
+    score_order: Literal['high', 'low', 'none'] = 'high'
     rules_version: str = Field(default="1", min_length=1, max_length=16)
     settings: list[Setting] = Field(default_factory=list)
     rules: list[str] = Field(default_factory=list)

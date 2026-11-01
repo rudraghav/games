@@ -22,6 +22,7 @@ class BlackjackEngine(BaseEngine):
                 name="Blackjack",
                 subtitle="A little luck. A little nerve.",
                 family="casino",
+                score_label="Net chips",
                 min_players=1,
                 max_players=7,
                 minutes="5–15",

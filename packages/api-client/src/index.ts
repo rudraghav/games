@@ -6,6 +6,8 @@ export type { Room, Match, Card, Player, Action, ActionOption, Me, ReadingView }
 export { boardDetails, wordsDetails, gemsDetails } from './game-details';
 export { trioDetails, flipSevenDetails, azulDetails } from './modern-details';
 export { partyDetails } from './party-details';
+export { gangDetails, sixNimmtDetails } from './coop-number-details';
+export { paperDetails, boopDetails } from './sea-cats-details';
 
 export class ApiError extends Error {
   constructor(
