@@ -39,7 +39,7 @@ export function TarotCard({
               <svg
                 className="tarot-illustration"
                 viewBox={artwork.viewBox}
-                preserveAspectRatio="xMidYMid slice"
+                preserveAspectRatio={`${artwork.alignment} slice`}
                 aria-hidden="true"
                 focusable="false"
               >

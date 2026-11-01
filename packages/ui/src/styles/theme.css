@@ -861,17 +861,19 @@
     margin-left: -14px;
   }
   .game-art--grid {
+    --card-width: 37px;
+    --card-height: 41px;
     display: grid;
-    grid-template-columns: repeat(4, 37px);
-    grid-template-rows: repeat(3, 41px);
+    grid-template-columns: repeat(4, var(--card-width));
+    grid-template-rows: repeat(3, var(--card-height));
     gap: 5px;
     align-content: center;
     transform: rotate(-9deg);
     padding: 0;
   }
   .game-art--grid > .playing-card {
-    width: 37px;
-    height: 41px;
+    width: var(--card-width);
+    height: var(--card-height);
     margin: 0 !important;
     transform: none !important;
     border-width: 2px;

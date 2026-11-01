@@ -33,6 +33,12 @@ seat grid; Skyjo's direct-grid instruction precedes the grids. Rank sorting uses
 actual playing-card order. The table audit and phone/desktop regression evidence
 live under docs/evidence/tables-2026-11-01.
 
+The app icon follows the existing sage diamond and coral period from Wordmark.
+`apps/web/src/app/icon.svg` is the editable vector source; `favicon.ico` is its
+16/32/48/64-pixel compatibility export, discovered through Next.js file metadata.
+Catalogue grid artwork supplies its own inherited card dimensions, so mobile
+playing-card defaults cannot enlarge decorative Skyjo ranks or affect game hands.
+
 Modern games reuse the table/action vocabulary: Flip 7 shows readable personal
 number runs and Hit/Stay decisions; Trio separates private sorted hands, public
 hand-end requests and stable memory slots; Azul uses tile shapes alongside color,

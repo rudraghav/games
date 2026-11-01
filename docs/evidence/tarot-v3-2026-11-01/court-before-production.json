@@ -1,0 +1,50 @@
+{
+  "origin": "https://games-seven-black.vercel.app",
+  "expectedApplicationSource": "2380273",
+  "checkoutSha": "238027323a10a0c91e1fe2f1f48e43b5f717f6b2",
+  "startedAt": "2026-11-01T09:11:15.986Z",
+  "newGuestContexts": 1,
+  "providerCalls": 0,
+  "captures": [
+    {
+      "viewport": "desktop",
+      "suit": "Wands",
+      "file": null,
+      "visibleCourtCards": "Queen of Wands, King of Wands",
+      "artworkPaintVerified": false,
+      "discardedReason": "Image paint had not completed; placeholder capture is not portrait-crop evidence."
+    },
+    {
+      "viewport": "desktop",
+      "suit": "Cups",
+      "file": null,
+      "visibleCourtCards": "Queen of Cups, King of Cups",
+      "artworkPaintVerified": false,
+      "discardedReason": "Image paint had not completed; placeholder capture is not portrait-crop evidence."
+    },
+    {
+      "viewport": "phone",
+      "suit": "Wands",
+      "file": "court-before-wands-phone.png",
+      "visibleCourtCards": "Queen of Wands, King of Wands",
+      "artworkPaintVerified": true,
+      "visualFinding": "Cups Queen/King lose their heads; Wands Queen loses eyes/crown with center slicing."
+    },
+    {
+      "viewport": "phone",
+      "suit": "Cups",
+      "file": "court-before-cups-phone.png",
+      "visibleCourtCards": "Queen of Cups, King of Cups",
+      "artworkPaintVerified": true,
+      "visualFinding": "Cups Queen/King lose their heads; Wands Queen loses eyes/crown with center slicing."
+    }
+  ],
+  "cleanup": {
+    "abandonStatus": 200,
+    "leaveStatus": 200,
+    "formerMembershipStatus": 404,
+    "absentFromActiveRooms": true
+  },
+  "completed": true,
+  "evidenceLimit": "Only the phone captures establish the production portrait defect; unused desktop loading screenshots were discarded."
+}

@@ -1,0 +1,228 @@
+{
+  "sourceSha": "238027323a10a0c91e1fe2f1f48e43b5f717f6b2",
+  "deployment": "dpl_9cmRMGzRHameGgL352FddjM1kWDT",
+  "completeCases": 26,
+  "acceptedMoves": 2477,
+  "realSavedTarotReadings": 2,
+  "results": [
+    {
+      "origin": "https://games-seven-black.vercel.app",
+      "applicationSourceSha": "238027323a10a0c91e1fe2f1f48e43b5f717f6b2",
+      "project": "desktop",
+      "complete": true,
+      "cases": [
+        {
+          "game": "tarot",
+          "seats": 1,
+          "moves": 3,
+          "rematch": true
+        },
+        {
+          "game": "flip-7",
+          "seats": 3,
+          "moves": 93,
+          "rematch": true
+        },
+        {
+          "game": "flip-7",
+          "seats": 10,
+          "moves": 263,
+          "rematch": true
+        },
+        {
+          "game": "trio",
+          "seats": 3,
+          "moves": 32,
+          "rematch": true
+        },
+        {
+          "game": "trio",
+          "seats": 6,
+          "moves": 66,
+          "rematch": true
+        },
+        {
+          "game": "azul",
+          "seats": 2,
+          "moves": 112,
+          "rematch": true
+        },
+        {
+          "game": "azul",
+          "seats": 4,
+          "moves": 170,
+          "rematch": true
+        },
+        {
+          "game": "spill-or-chill",
+          "seats": 3,
+          "moves": 12,
+          "rematch": true
+        },
+        {
+          "game": "spill-or-chill",
+          "seats": 10,
+          "moves": 40,
+          "rematch": true
+        },
+        {
+          "game": "most-likely",
+          "seats": 3,
+          "moves": 24,
+          "rematch": true
+        },
+        {
+          "game": "most-likely",
+          "seats": 10,
+          "moves": 220,
+          "rematch": true
+        },
+        {
+          "game": "hot-seat",
+          "seats": 3,
+          "moves": 24,
+          "rematch": true
+        },
+        {
+          "game": "hot-seat",
+          "seats": 10,
+          "moves": 220,
+          "rematch": true
+        }
+      ],
+      "transport": {
+        "retryAttempts": 0,
+        "recovered": 0,
+        "failed": 0
+      },
+      "cleanup": {
+        "guestLeaveStatuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "roomClosed": true,
+        "failed": false,
+        "abandonStatus": 200,
+        "hostLeaveStatus": 200
+      },
+      "decisions": "Authorized API projections; rendered result/rematch/change-game browser controls."
+    },
+    {
+      "origin": "https://games-seven-black.vercel.app",
+      "applicationSourceSha": "238027323a10a0c91e1fe2f1f48e43b5f717f6b2",
+      "project": "phone",
+      "complete": true,
+      "cases": [
+        {
+          "game": "tarot",
+          "seats": 1,
+          "moves": 3,
+          "rematch": true
+        },
+        {
+          "game": "flip-7",
+          "seats": 3,
+          "moves": 80,
+          "rematch": true
+        },
+        {
+          "game": "flip-7",
+          "seats": 10,
+          "moves": 229,
+          "rematch": true
+        },
+        {
+          "game": "trio",
+          "seats": 3,
+          "moves": 25,
+          "rematch": true
+        },
+        {
+          "game": "trio",
+          "seats": 6,
+          "moves": 57,
+          "rematch": true
+        },
+        {
+          "game": "azul",
+          "seats": 2,
+          "moves": 106,
+          "rematch": true
+        },
+        {
+          "game": "azul",
+          "seats": 4,
+          "moves": 158,
+          "rematch": true
+        },
+        {
+          "game": "spill-or-chill",
+          "seats": 3,
+          "moves": 12,
+          "rematch": true
+        },
+        {
+          "game": "spill-or-chill",
+          "seats": 10,
+          "moves": 40,
+          "rematch": true
+        },
+        {
+          "game": "most-likely",
+          "seats": 3,
+          "moves": 24,
+          "rematch": true
+        },
+        {
+          "game": "most-likely",
+          "seats": 10,
+          "moves": 220,
+          "rematch": true
+        },
+        {
+          "game": "hot-seat",
+          "seats": 3,
+          "moves": 24,
+          "rematch": true
+        },
+        {
+          "game": "hot-seat",
+          "seats": 10,
+          "moves": 220,
+          "rematch": true
+        }
+      ],
+      "transport": {
+        "retryAttempts": 0,
+        "recovered": 0,
+        "failed": 0
+      },
+      "cleanup": {
+        "guestLeaveStatuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "roomClosed": true,
+        "failed": false,
+        "abandonStatus": 200,
+        "hostLeaveStatus": 200
+      },
+      "decisions": "Authorized API projections; rendered result/rematch/change-game browser controls."
+    }
+  ],
+  "pending": "Focused final portrait-framing and catalogue-icon correction, separate release source. Engine/AI code unchanged."
+}

@@ -191,11 +191,11 @@ choice/lock/wait/reveal/refresh checks; modern tests cover source/placement and
 hand-end/memory controls. Full-match filters select the six additions and Tarot
 without needlessly replaying unaffected engines.
 
-`tarot-artwork.test.tsx` checks all78 canonical IDs, unique bounded atlas cells,
+`tarot-artwork.test.tsx` checks all 78 canonical IDs, unique bounded atlas cells,
 PNG/WebP existence and actual illustrated markup. Real browser checks open the
 entire deck and each suit/major filter. Tarot v3 unit tests distinguish strict new
 output from historical stored data; fresh generation requires a normal read,
-quirky read and1–2 explained named-character links per card. Small real-provider
+quirky read and 1–2 explained named-character links per card. Small real-provider
 samples and hosted saved-reading verification remain distinct from deterministic
 contract/failure tests. Counts, source/deployment and local/hosted completion are
 recorded in progress.txt and owning evidence folders.

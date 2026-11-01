@@ -1,0 +1,98 @@
+{
+  "origin": "http://127.0.0.1:3217",
+  "sourceState": "Uncommitted local targeted four-court focal-alignment patch",
+  "checkoutSha": "238027323a10a0c91e1fe2f1f48e43b5f717f6b2",
+  "startedAt": "2026-11-01T09:13:40.715Z",
+  "newLocalGuestContexts": 1,
+  "newSupabaseIdentities": 0,
+  "providerCalls": 0,
+  "decodedAssets": [
+    {
+      "path": "/tarot/major-01.webp",
+      "width": 960,
+      "height": 960,
+      "decoded": true
+    },
+    {
+      "path": "/tarot/major-02.webp",
+      "width": 960,
+      "height": 960,
+      "decoded": true
+    },
+    {
+      "path": "/tarot/major-03.webp",
+      "width": 960,
+      "height": 960,
+      "decoded": true
+    },
+    {
+      "path": "/tarot/major-04.webp",
+      "width": 960,
+      "height": 960,
+      "decoded": true
+    },
+    {
+      "path": "/tarot/minor-wands-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "decoded": true
+    },
+    {
+      "path": "/tarot/minor-cups-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "decoded": true
+    },
+    {
+      "path": "/tarot/minor-swords-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "decoded": true
+    },
+    {
+      "path": "/tarot/minor-pentacles-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "decoded": true
+    }
+  ],
+  "captures": [
+    {
+      "viewport": "desktop",
+      "suit": "Wands",
+      "file": "court-after-wands-desktop.png",
+      "alignment": "xMidYMin slice",
+      "visibleCourtCards": "Queen of Wands, King of Wands"
+    },
+    {
+      "viewport": "desktop",
+      "suit": "Cups",
+      "file": "court-after-cups-desktop.png",
+      "alignment": "xMidYMin slice",
+      "visibleCourtCards": "Queen of Cups, King of Cups"
+    },
+    {
+      "viewport": "phone",
+      "suit": "Wands",
+      "file": "court-after-wands-phone.png",
+      "alignment": "xMidYMin slice",
+      "visibleCourtCards": "Queen of Wands, King of Wands"
+    },
+    {
+      "viewport": "phone",
+      "suit": "Cups",
+      "file": "court-after-cups-phone.png",
+      "alignment": "xMidYMin slice",
+      "visibleCourtCards": "Queen of Cups, King of Cups"
+    }
+  ],
+  "cleanup": {
+    "abandonStatus": 200,
+    "leaveStatus": 200,
+    "formerMembershipStatus": 404,
+    "absentFromActiveRooms": true
+  },
+  "completed": true,
+  "artworkManifestSha256": "9cc4ef960526de4312d4a27d7f0adcff5400079b1426852a2eb59599c6411704",
+  "visualReview": "All four captures inspected: complete faces/crowns and readable upper portraits, no neighbouring-cell bleed."
+}

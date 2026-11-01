@@ -1,0 +1,50 @@
+{
+  "capturedAt": "2026-11-01T09:21:22.244244+00:00",
+  "origin": "http://127.0.0.1:3217",
+  "production": false,
+  "sourceState": "Uncommitted corrective patch on238027323a10a0c91e1fe2f1f48e43b5f717f6b2; final release source recorded separately.",
+  "before": {
+    "faviconHttp": 404,
+    "skyjoCardWidth": 69,
+    "skyjoCardHeight": 99,
+    "all12RankLabelsWithinPoster": false
+  },
+  "after": {
+    "faviconHttp": 200,
+    "svgIconHttp": 200,
+    "nextIconMetadataPresent": true,
+    "skyjoCardWidth": 37,
+    "skyjoCardHeight": 41,
+    "all12RankLabelsWithinPoster": true
+  },
+  "verification": {
+    "publicBrowserCases": 2,
+    "viewports": [
+      "1440x1000",
+      "390x844"
+    ],
+    "browserTypesPassed": true,
+    "identitiesCreated": 0,
+    "roomsCreated": 0,
+    "aiCalls": 0,
+    "contextsClosed": true
+  },
+  "artifacts": [
+    {
+      "file": "polish-skyjo-phone-before.png",
+      "sha256": "85caa866ba209f72c1261e40b689c73661d6230cce637f6edeb1f39cf36f8805",
+      "visuallyInspected": true
+    },
+    {
+      "file": "polish-skyjo-phone-after.png",
+      "sha256": "6deea0dbe9858378fff3819a8406eafcba83ab3a56cb8a0b33ab43365b485362",
+      "visuallyInspected": true
+    },
+    {
+      "file": "polish-brand-icon.png",
+      "sha256": "69a462a3cd2c45a38608e4a9a972c169757a027cf04193aebd351781ff16f4d6",
+      "visuallyInspected": true
+    }
+  ],
+  "iconSource": "Native original SVG following Wordmark sage diamond/coral period; ICO compatibility frames16/32/48/64 from that vector."
+}

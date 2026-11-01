@@ -2,6 +2,44 @@ import { expect, test } from '@playwright/test';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 import { requestAs, roomAs } from './helpers';
 
+test('catalogue ranks fit their poster and browser icons load', async ({ page }) => {
+  await page.goto('/');
+  const icon = page.locator('head link[rel="icon"][type="image/svg+xml"]');
+  await expect(icon).toHaveAttribute('href', /\/icon\.svg(?:\?|$)/);
+  const vector = await page.request.get(
+    new URL((await icon.getAttribute('href'))!, page.url()).href,
+  );
+  expect(vector.status()).toBe(200);
+  expect(vector.headers()['content-type']).toContain('image/svg+xml');
+  const favicon = await page.request.get('/favicon.ico');
+  expect(favicon.status()).toBe(200);
+  expect(favicon.headers()['content-type']).toMatch(/image\/(?:x-icon|vnd\.microsoft\.icon)/);
+  expect((await favicon.body()).length).toBeGreaterThan(22);
+
+  await page.getByRole('searchbox', { name: 'Search games' }).fill('skyjo');
+  const poster = page
+    .getByRole('button', { name: 'Create Skyjo room', exact: true })
+    .locator('.game-poster');
+  await expect(poster.locator('.grid-card-value')).toHaveCount(12);
+  // Verify what the browser actually draws, independent of CSS pixel constants:
+  // every displayed rank must fit inside the poster's clipping rectangle.
+  expect(
+    await poster.evaluate((element) => {
+      const bounds = element.getBoundingClientRect();
+      return [...element.querySelectorAll('.grid-card-value')].every((rank) => {
+        const box = rank.getBoundingClientRect();
+        return (
+          box.left >= bounds.left &&
+          box.right <= bounds.right &&
+          box.top >= bounds.top &&
+          box.bottom <= bounds.bottom
+        );
+      });
+    }),
+  ).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
 test('catalogue search, category and group size work with keyboard and reduced motion', async ({
   page,
 }) => {

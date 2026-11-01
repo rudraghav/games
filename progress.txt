@@ -531,29 +531,29 @@
   intact. Current work local; no new push/deployment yet.
 - Implementation integrated:22 registered experiences and44 projected table
   fixtures; six new independent rule modules/tables reuse private room contracts.
-  Party family has144 original prompts,48 per mode, and3–10seat balanced rotations.
+  Party family has 144 original prompts,48 per mode, and3–10seat balanced rotations.
   Modern rules sources and explicit included editions are documented.
-- Original art complete: four ImageGen suit atlases supply56 minor illustrations;
+- Original art complete: four ImageGen suit atlases supply 56 minor illustrations;
   original22 major masters preserved. Inspected pixel rectangles and SVG clipping
-  map all78 IDs without pip fallback; PNG/WebP derivatives, deck browser and full
-  Storybook suit/deck stories added. All78 bounded unique-cell rendering checks pass.
+  map all 78 IDs without pip fallback; PNG/WebP derivatives, deck browser and full
+  Storybook suit/deck stories added. All 78 bounded unique-cell rendering checks pass.
 - Tarot v3 strict fresh output requires grounded/quirky/1–2 explained character
-  connections;56 minor meanings are individually authored. Legacy history remains
+  connections; 56 minor meanings are individually authored. Legacy history remains
   readable. Three final live genre-diverse provider samples passed first attempt
-  in3.83–4.20s; both local phone/desktop real readings saved/reloaded and completed
+  in 3.83–4.20s; both local phone/desktop real readings saved/reloaded and completed
   rematch/switch. Evidence separates synthetic layout fixtures from real API calls.
-- Current checks:365 backend tests,56 isolated multiplayer checks, fresh migration
+- Current checks: 365 backend tests, 56 isolated multiplayer checks, fresh migration
   upgrade/drift/privacy grants, generated contracts and import boundaries pass.
-  Frontend20 tests/types passed before final modern test additions. Party click
-  workflows6/6 and modern fixture controls2/2 passed; new natural-match suites and
+  Frontend 20 tests/types passed before final modern test additions. Party click
+  workflows 6/6 and modern fixture controls 2/2 passed; new natural-match suites and
   final-source release gates are running. No push/new deployment yet.
-- Final local source:371 backend checks,58 isolated multiplayer checks (including
+- Final local source: 371 backend checks, 58 isolated multiplayer checks (including
   new concurrent private party submissions/retry/restart), generated contracts,
   boundaries and cloud migration/drift/RLS/grants all pass. Regular browser suite
-  passed56 checks on phone/desktop, including all44 table projections; six hosted
+  passed 56 checks on phone/desktop, including all 44 table projections; six hosted
   or long-running opt-in tests were separately invoked where applicable.
-- New-game natural acceptance passed26 distinct viewport/seat cases:12 modern
-  cases/1,394 accepted moves,12 party cases/1,080 moves,2 real Tarot readings.
+- New-game natural acceptance passed 26 distinct viewport/seat cases: 12 modern
+  cases/1,394 accepted moves, 12 party cases/1,080 moves, 2 real Tarot readings.
   Final Flip7 pile-transfer rule fix received four fresh limit/viewport reruns;
   Azul's rare zero-offer safeguard is explicitly a Games convention with conserved
   static fixture, not a claimed reachable canonical publisher rule. Other modern
@@ -563,11 +563,30 @@
   ten-seat voting, correct reveal avatars and a sticky-close deck dialog. Tarot
   avoids repeated adjacent card names. Final types/lint/unit checks and both Next
   and Storybook production builds are running before the authorized release.
-- Final release gates passed:30 frontend tests, workspace types/lint, Next build,
-  Storybook build,371 backend checks,58 database-backed multiplayer checks,
+- Final release gates passed: 30 frontend tests, workspace types/lint, Next build,
+  Storybook build, 371 backend checks, 58 database-backed multiplayer checks,
   56 regular browsers, contracts/boundaries and local/cloud schema/privacy gates.
   Original owner room/profile private fingerprints and permanent Google linkage
   saved before rollout. Serving rollback is dpl_Gkx12Spvyt5yiVrCHmpyQ3S4buH5.
   Metadata-only local-release.json records the verified runtime fingerprint.
   Source secret scan found no live credential values; its sole initial broad
   prefix hit was the intentional negative fixture sb_secret_forbidden.
+- Main 2380273 pushed with remote parity. Production dpl_9cmRMGzRHameGgL352FddjM1kWDT
+  became READY in Mumbai; canonical alias and both source metadata fields matched.
+  All 26 actual hosted new-experience cases passed 2,477 legal moves, results/history,
+  rematch/switch and 2 real saved Tarot readings. Both test rooms closed with zero
+  transport failures/retries. Production request logs report no 5xx records.
+- A closer actual production gallery review found four tall court portraits lost
+  their heads under center cropping, missed in the first broad review. Explicit
+  top alignment now preserves Wands/Cups Queen/King faces and crowns; all four are
+  visually inspected on phone/desktop locally. A geometry regression verifies
+  pinned head centers remain in-frame; authenticated cleanup also works hosted.
+- Focused corrective release also addresses two audit cosmetics: original Games
+  favicon assets and scoped Skyjo poster sizing. Engines, provider contract,
+  database and auth stay at the fully accepted source. This is a necessary visual
+  correction through the same personal production path, not an unchanged redeploy.
+- Corrective source verified: workspace types/lint,30 frontend tests, Next and
+  Storybook builds, browser-test types and four focused phone/desktop checks pass.
+  These check all four court head centers, saved spread refresh/authorized room
+  cleanup, all12 decorative poster ranks and SVG/ICO delivery/metadata. No backend
+  or API-client differences from the source accepted in26 hosted full matches.

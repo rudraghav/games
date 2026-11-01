@@ -1,0 +1,133 @@
+{
+  "capturedAt": "2026-11-01T09:08:14.768261+00:00",
+  "production": true,
+  "origin": "https://games-seven-black.vercel.app",
+  "path": "/",
+  "applicationSourceSha": "238027323a10a0c91e1fe2f1f48e43b5f717f6b2",
+  "sourceVerification": "Production deployment verified by release owner before capture; checkout HEAD also matches this source. All screenshots fetched from the public production origin.",
+  "homeCatalogueCount": 22,
+  "browser": "Two fresh isolated Chromium sessions; desktop and phone viewport inspection.",
+  "identityCreated": false,
+  "roomsCreated": 0,
+  "aiCalls": 0,
+  "contextsClosed": true,
+  "artifacts": [
+    {
+      "file": "production-modern-desktop.png",
+      "category": "Modern favourites",
+      "games": [
+        "Flip 7",
+        "Trio",
+        "Azul",
+        "Skyjo",
+        "Word Agents",
+        "Gem Market"
+      ],
+      "count": 6,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "observedDocumentWidth": 1440,
+      "pageOverflow": false,
+      "visuallyInspected": true,
+      "sha256": "08aec14ff081396e7cb9f403793d8e635dfd8a574ecf6cfc77119375492cdd57"
+    },
+    {
+      "file": "production-modern-phone.png",
+      "category": "Modern favourites",
+      "games": [
+        "Flip 7",
+        "Trio",
+        "Azul",
+        "Skyjo",
+        "Word Agents",
+        "Gem Market"
+      ],
+      "count": 6,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "observedDocumentWidth": 390,
+      "pageOverflow": false,
+      "visuallyInspected": true,
+      "sha256": "50045c5a0669bf339eeffbc6fc0d8008cace52a2554e640825afc63d2270945c"
+    },
+    {
+      "file": "production-party-desktop.png",
+      "category": "Party",
+      "games": [
+        "Flip 7",
+        "Trio",
+        "Spill or Chill",
+        "Most Likely",
+        "Hot Seat",
+        "Uno",
+        "Uno No Mercy",
+        "Skyjo",
+        "Word Agents"
+      ],
+      "count": 9,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "observedDocumentWidth": 1440,
+      "pageOverflow": false,
+      "visuallyInspected": true,
+      "sha256": "8c988cac266995e05d3950f1e4e66af84eb796294c0c224d55ae234841209c32"
+    },
+    {
+      "file": "production-party-phone.png",
+      "category": "Party",
+      "games": [
+        "Flip 7",
+        "Trio",
+        "Spill or Chill",
+        "Most Likely",
+        "Hot Seat",
+        "Uno",
+        "Uno No Mercy",
+        "Skyjo",
+        "Word Agents"
+      ],
+      "count": 9,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "observedDocumentWidth": 390,
+      "pageOverflow": false,
+      "visuallyInspected": true,
+      "sha256": "6b5aa3913902ca4ba51f309c3c5ed3f1a8bd1422626172b076e82f77b0763edc"
+    }
+  ],
+  "additionalFilterCheck": {
+    "category": "Party",
+    "query": "drinking",
+    "expectedGames": [
+      "Spill or Chill",
+      "Most Likely",
+      "Hot Seat"
+    ],
+    "passedOn": [
+      "desktop",
+      "phone"
+    ],
+    "overflow": false
+  },
+  "observations": [
+    {
+      "severity": "cosmetic",
+      "existingBeforeRelease": true,
+      "detail": "Browser requests /favicon.ico, which returns404; no other console errors observed."
+    },
+    {
+      "severity": "cosmetic",
+      "existingBeforeRelease": true,
+      "detail": "Skyjo decorative phone poster has oversized/cropped card ranks. Existing unlayered mobile playing-card dimensions override layered poster dimensions; these rules predate this release. New games, titles, filters and page layout remain readable."
+    }
+  ],
+  "newGameOrFilterRegressionFound": false
+}

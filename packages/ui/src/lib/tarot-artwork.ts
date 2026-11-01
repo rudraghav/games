@@ -5,6 +5,7 @@ export interface TarotArtwork {
   viewBox: string;
   atlasWidth: number;
   atlasHeight: number;
+  alignment: 'xMidYMid' | 'xMidYMin';
 }
 const majorNames = [
   'The Fool',
@@ -63,6 +64,7 @@ export const tarotArtwork: Readonly<Record<string, TarotArtwork>> = Object.fromE
       viewBox: `${(number % 3) * 418 + 1} ${Math.floor((number % 6) / 3) * 627 + 1} 416 625`,
       atlasWidth: 1254,
       atlasHeight: 1254,
+      alignment: 'xMidYMid',
     },
   ]),
   ...Object.entries(suitRows).flatMap(([suit, rows]) =>
@@ -76,6 +78,7 @@ export const tarotArtwork: Readonly<Record<string, TarotArtwork>> = Object.fromE
           viewBox: `${(index % 4) * 256 + 1} ${rows[row] + 1} 254 ${rows[row + 1] - rows[row] - 2}`,
           atlasWidth: 1024,
           atlasHeight: 1536,
+          alignment: index >= 12 && (suit === 'wands' || suit === 'cups') ? 'xMidYMin' : 'xMidYMid',
         },
       ];
     }),

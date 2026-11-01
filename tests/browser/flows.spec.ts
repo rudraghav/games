@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { requestAs } from './helpers';
 import gameCatalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 test('the complete catalogue and every table scenario fit the viewport', async ({ page }) => {
@@ -120,51 +121,93 @@ test('independent guests create, join, chat, play, refresh and switch games', as
 });
 
 test('Tarot reveals three distinct cards and survives a refresh', async ({ page }) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).click();
-  await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Browser Reader');
-  await page.getByRole('button', { name: 'Create room', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Choose card 1 of 3' })).toBeVisible();
-  await page.getByRole('button', { name: 'Explore the deck', exact: true }).click();
-  const gallery = page.getByRole('dialog', { name: 'The whole cosmic cast' });
-  await expect(gallery.locator('.tarot-deck-gallery .tarot-card')).toHaveCount(78);
-  for (const suit of ['Wands', 'Cups', 'Swords', 'Pentacles']) {
-    await gallery.getByRole('button', { name: suit, exact: true }).click();
-    await expect(gallery.locator('.tarot-deck-gallery .tarot-card')).toHaveCount(14);
-  }
-  await gallery.getByRole('button', { name: 'Major arcana', exact: true }).click();
-  await expect(gallery.locator('.tarot-deck-gallery .tarot-card')).toHaveCount(22);
-  expect(await gallery.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(
-    true,
-  );
-  await gallery.evaluate((element) => {
-    element.scrollTop = element.scrollHeight;
-  });
-  const closeDeck = gallery.getByRole('button', { name: 'Close dialog', exact: true });
-  await expect(closeDeck).toBeInViewport();
-  await closeDeck.click();
-  await expect(gallery).toHaveCount(0);
-  await page.getByRole('button', { name: 'Explore the deck', exact: true }).click();
-  await page.keyboard.press('Escape');
-  await expect(gallery).toHaveCount(0);
-  for (const position of [4, 17, 65]) {
-    await page.getByRole('button', { name: `Choose card ${position}`, exact: true }).click();
+  let tarotRoomId: string | undefined;
+  try {
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).click();
+    await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Browser Reader');
+    await page.getByRole('button', { name: 'Create room', exact: true }).click();
+    await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
+    tarotRoomId = new URL(page.url()).pathname.split('/').at(-1)!;
+    await expect(page.getByRole('heading', { name: 'Choose card 1 of 3' })).toBeVisible();
+    await page.getByRole('button', { name: 'Explore the deck', exact: true }).click();
+    const gallery = page.getByRole('dialog', { name: 'The whole cosmic cast' });
+    await expect(gallery.locator('.tarot-deck-gallery .tarot-card')).toHaveCount(78);
+    for (const suit of ['Wands', 'Cups', 'Swords', 'Pentacles']) {
+      await gallery.getByRole('button', { name: suit, exact: true }).click();
+      await expect(gallery.locator('.tarot-deck-gallery .tarot-card')).toHaveCount(14);
+      if (suit === 'Wands' || suit === 'Cups') {
+        for (const rank of ['Queen', 'King']) {
+          const art = gallery.locator(`.tarot-card[aria-label="${rank} of ${suit}"] svg`);
+          await art.scrollIntoViewIfNeeded();
+          // Pinned head centers in the original tall atlas panels. Center-cropping
+          // hid these points even though every image loaded and every cell was valid.
+          const faceVisible = await art.evaluate(
+            (element, headOffset) => {
+              const svg = element as SVGSVGElement;
+              const view = svg.viewBox.baseVal;
+              const point = svg.createSVGPoint();
+              point.x = view.x + view.width / 2;
+              point.y = view.y + headOffset;
+              const matrix = svg.getScreenCTM();
+              if (!matrix) return false;
+              const face = point.matrixTransform(matrix);
+              const frame = svg.getBoundingClientRect();
+              return (
+                face.x > frame.left &&
+                face.x < frame.right &&
+                face.y > frame.top &&
+                face.y < frame.bottom
+              );
+            },
+            suit === 'Wands' ? 65 : 85,
+          );
+          expect(faceVisible, `${rank} of ${suit} must keep its head in frame`).toBe(true);
+        }
+        await gallery.evaluate((element) => {
+          element.scrollTop = 0;
+        });
+      }
+    }
+    await gallery.getByRole('button', { name: 'Major arcana', exact: true }).click();
+    await expect(gallery.locator('.tarot-deck-gallery .tarot-card')).toHaveCount(22);
+    expect(await gallery.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(
+      true,
+    );
+    await gallery.evaluate((element) => {
+      element.scrollTop = element.scrollHeight;
+    });
+    const closeDeck = gallery.getByRole('button', { name: 'Close dialog', exact: true });
+    await expect(closeDeck).toBeInViewport();
+    await closeDeck.click();
+    await expect(gallery).toHaveCount(0);
+    await page.getByRole('button', { name: 'Explore the deck', exact: true }).click();
+    await page.keyboard.press('Escape');
+    await expect(gallery).toHaveCount(0);
+    for (const position of [4, 17, 65]) {
+      await page.getByRole('button', { name: `Choose card ${position}`, exact: true }).click();
+      await expect(
+        page.getByRole('button', { name: `Choose card ${position}`, exact: true }),
+      ).toHaveCount(0);
+    }
+    await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
     await expect(
-      page.getByRole('button', { name: `Choose card ${position}`, exact: true }),
-    ).toHaveCount(0);
+      page.getByText(/Google may use questions and readings to improve its products/),
+    ).toBeVisible();
+    const names = await page.locator('.tarot-spread .tarot-name').allTextContents();
+    expect(new Set(names).size).toBe(3);
+    await page.reload();
+    await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(names);
+    await expect
+      .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+      .toBe(true);
+  } finally {
+    if (tarotRoomId) {
+      const current = await requestAs(page, `rooms/${tarotRoomId}`, 'GET');
+      if (current.ok() && (await current.json()).status === 'playing')
+        expect((await requestAs(page, `rooms/${tarotRoomId}/abandon`, 'POST')).status()).toBe(200);
+      expect((await requestAs(page, `rooms/${tarotRoomId}/leave`, 'POST')).status()).toBe(200);
+      expect((await requestAs(page, `rooms/${tarotRoomId}`, 'GET')).status()).toBe(404);
+    }
   }
-  await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
-  await expect(
-    page.getByText(/Google may use questions and readings to improve its products/),
-  ).toBeVisible();
-  const names = await page.locator('.tarot-spread .tarot-name').allTextContents();
-  expect(new Set(names).size).toBe(3);
-  await page.reload();
-  await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(names);
-  await expect
-    .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
-    .toBe(true);
-  const apiPath = `/api/backend${new URL(page.url()).pathname.replace('/rooms/', '/v1/rooms/')}`;
-  expect((await page.request.post(`${apiPath}/abandon`)).status()).toBe(200);
-  expect((await page.request.post(`${apiPath}/leave`)).status()).toBe(200);
 });

@@ -40,3 +40,9 @@ The app's deck dialog and the All78 Storybook story expose the canonical artwork
 catalogue, never the hidden shuffled engine order. Automated coverage proves
 78 unique bounded cells, available PNG/WebP assets and illustrated rendering.
 See [prompt set and provenance](ART_PROMPTS.md).
+
+Tall Wands/Cups Queen and King panels use top-aligned framing. A focused live
+review caught that centered cropping removed their heads despite valid source
+rectangles. Four specific focal alignments now preserve faces/crowns; a browser
+geometry regression checks pinned head centers in both viewport sizes. Focused
+before/after captures distinguish actual production evidence from local fixes.
