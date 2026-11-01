@@ -14,6 +14,11 @@ if (process.env.GAMES_LOAD_ROOMS !== '50')
   throw new Error('Set GAMES_LOAD_ROOMS=50 to run the authorized fifty-room check.');
 const mode = process.env.GAMES_LOAD_MODE || 'broadcast';
 if (!['broadcast', 'poll'].includes(mode)) throw new Error('Choose broadcast or poll measurement.');
+// Supply the source verified on the serving deployment, rather than inferring
+// it from a local checkout that may contain unrelated tooling changes.
+const applicationCommit = process.env.GAMES_LOAD_APP_SHA || null;
+if (applicationCommit && !/^[a-f0-9]{40}$/.test(applicationCommit))
+  throw new Error('GAMES_LOAD_APP_SHA must be a full verified application commit.');
 const source = await readFile(new URL('../.env.cloud.local', import.meta.url), 'utf8');
 const values = Object.fromEntries(
   source
@@ -39,6 +44,7 @@ const observations = new Map();
 const clients = [];
 const cleanup = [];
 const startTime = new Date().toISOString();
+const evidenceFile = `.vercel/hosted-load-${mode}-${startTime.replace(/[:.]/g, '-')}-${randomUUID().slice(0, 8)}.json`;
 
 async function api(actor, path, method = 'GET', data, allowMissing = false) {
   const response = await fetch(new URL(`/api/backend/v1/${path}`, target), {
@@ -317,11 +323,13 @@ try {
     outcome.passed = false;
     process.exitCode = 1;
   }
+  outcome.applicationCommit = applicationCommit;
+  outcome.evidenceFile = evidenceFile;
   console.log(JSON.stringify(outcome, null, 2));
   await mkdir(new URL('../.vercel/', import.meta.url), { recursive: true });
   await writeFile(
-    new URL(`../.vercel/hosted-load-${mode}.json`, import.meta.url),
+    new URL(`../${evidenceFile}`, import.meta.url),
     JSON.stringify(outcome, null, 2) + '\n',
-    { mode: 0o600 },
+    { mode: 0o600, flag: 'wx' },
   );
 }

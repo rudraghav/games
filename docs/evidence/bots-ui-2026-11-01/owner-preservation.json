@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-11-01T15:56:03.366167+00:00",
+  "allPreexistingFingerprintsUnchanged": true,
+  "protectedRooms": 3,
+  "protectedMemberships": 3,
+  "currentOwnedRooms": 4,
+  "newOwnerRoomsAfterPreflight": 1,
+  "comparisons": {
+    "account": true,
+    "profile": true,
+    "identities": true,
+    "rooms": true,
+    "memberships": true
+  },
+  "decision": "Preserve the additional owner-created room; compare preexisting rows at the recorded preflight cutoff, without changing owner data."
+}

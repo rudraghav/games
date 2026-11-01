@@ -1,0 +1,22 @@
+{
+  "applicationSourceSha": "b4506a29c5062d215b5b43a02e56c7899ff4d9f3",
+  "origin": "https://games-seven-black.vercel.app",
+  "humanPlayerSmoke": {
+    "games": 26,
+    "createStartActionRetryStaleConflictRefresh": true,
+    "privateViewsAndUnauthenticatedDenial": true
+  },
+  "privateBroadcast": {
+    "memberChatDelivered": true,
+    "nonmemberSubscribeDenied": true,
+    "nonmemberRoomReadDenied": true
+  },
+  "scope": "Opening-action and authorization smoke, separate from full solo-bot matches. One explicit fresh real-provider Tarot reading was saved and read back after reload.",
+  "freshTarotReading": {
+    "aiEnabled": true,
+    "completeReadings": 1,
+    "savedAndIdenticalAfterReload": true,
+    "strictV3ProviderContract": true,
+    "source": "Separate GAMES_TEST_AI=1 hosted confirmation,1 passed in1.4min"
+  }
+}

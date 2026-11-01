@@ -94,12 +94,14 @@ pnpm storybook
 ```
 
 Run the complete solo-bot browser path with `GAMES_SOLO_BOTS=1 pnpm exec
-playwright test tests/browser/solo-bots.spec.ts --workers=2`. The local candidate
-passed all 25 games on phone and desktop: 50 natural matches and 2,643 committed
-actions, including results, saved/profile history, rematch, game changes and
-verified room closure. Setup, bot seats, interrupted moves and reconnect also
-passed. [Local evidence](docs/evidence/bots-ui-2026-11-01/local.json) records the
-uncommitted source boundary; hosted verification is a separate release gate.
+playwright test tests/browser/solo-bots.spec.ts --workers=2`. Local and production
+each passed all 25 games on phone and desktop: 50 natural matches per environment,
+including results, saved/profile history, rematch, game changes and verified room
+closure. Setup, bot seats, interrupted moves and reconnect also passed.
+[Local evidence](docs/evidence/bots-ui-2026-11-01/local.json) records 2,643 committed
+actions; [production evidence](docs/evidence/bots-ui-2026-11-01/production.json)
+records 2,642 on source `b4506a2`, with bot responses reconciled against authoritative
+versions so retries do not inflate move counts.
 
 See [verification and release gates](docs/VERIFICATION.md), the
 [product contract](docs/PRD.md), [application flow](docs/APP_FLOW.md),

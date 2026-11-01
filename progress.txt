@@ -1022,3 +1022,75 @@
   38 original screenshots, complete metrics and safe QA closure receipts.
   Requested web/API remain healthy200; credentials, masters and user sessions
   were preserved. No production write or commit was made by this subtask.
+
+- Production is READY at games-seven-black.vercel.app, deployment
+  dpl_9kyjAskSc3UCrS3RSgGjp8GsmgSQ inbom1. releaseSourceSha and githubCommitSha
+  bothb4506a29c5062d215b5b43a02e56c7899ff4d9f3 match the pushed main release.
+  Personal project still has no Git auto-deploy; one intentional deployment used.
+- Public HTTP checks pass26 catalogue/25 bot capabilities, all54 licensed faces,
+  all Tarot/WebP and new original atlases, image content types, unauthenticated
+  401 and hosted development/gallery404 boundaries. Google+anonymous auth remain
+  enabled. Runtime/request error scans since deployment returnzero with complete
+  pagination/no excluded intervals. Final end-of-run scan remains pending.
+- Hosted human opening-action/retry/stale/refresh/privacy checks pass every26
+  game, and private Broadcast delivered chat while rejecting a nonmember's
+  subscription and room read. Tarot card selection passes in this smoke; real
+  generation is a separate explicit GAMES_TEST_AI=1 confirmation now running.
+- Hosted50-room Broadcast load passes50 commits and50 synchronized observers:
+  action median414ms/p95936ms, Broadcast408/807ms, observer snapshot521/941ms;
+  all50 task rooms closed/channels disconnected. Evidence output is now unique
+  and exclusive instead of overwriting historical load records (tooling only).
+- Protected owner's account/profile/Google identity and three preexisting rooms/
+  memberships match preflight hashes exactly. The owner created one additional
+  room during the run; it is preserved. Comparison correctly uses the preflight
+  cutoff rather than treating this legitimate new room as corruption.
+- Root cleanup removed23,310,596bytes of exact owned resolved browser outputs and
+  scratch, after lsof/symlink/tracked-path checks. Agents removed49.7MB raw audit
+  duplicates; all38 concise images, masters, source, credentials, DB/dependencies,
+  user sessions and requested web3217/API8217 remain; both services return200.
+  Full hosted solo acceptance continues; no completion claim is made yet.
+
+- Production solo acceptance passes all 25 multiplayer games on desktop and
+  phone: 50 natural matches on serving source
+  b4506a29c5062d215b5b43a02e56c7899ff4d9f3, deployment
+  dpl_9kyjAskSc3UCrS3RSgGjp8GsmgSQ. Desktop took 18.2 minutes, phone 20.8.
+  Results, saved scores/winners, profile rows, rematch and same-group switches
+  pass for every game; both UI setup rooms and both shared group rooms close
+  with fresh 404 readbacks. Setup/autostart, clicked moves, bot add/remove,
+  controlled driver retry and reconnect/version preservation pass on both widths.
+- Authoritative production count is 2,642 commits from sum(finalVersion - 1):
+  1,295 successful unique human moves plus 1,347 committed bot actions. The 1,347
+  successful natural-match client drive responses match exactly: zero no-op/
+  retry-response inflation. Four browser-intercepted 503 responses exercised
+  recovery outside these match counts; unexpected driver failures are zero.
+  Only two ordinary guest identities were used, with one reused group room each;
+  no engine state, other hands or direct test calls to bots/drive were used.
+- Safe evidence is docs/evidence/bots-ui-2026-11-01/production.json. Test contexts
+  closed automatically, task rooms are closed, complete summaries retained.
+  No runtime changes, push or deployment were performed by the browser agent.
+
+2026-11-01 — Solo bots and complete-card release closure
+- Final production sourceb4506a29c5062d215b5b43a02e56c7899ff4d9f3 is READY,
+  Mumbai, publicaliasassigned; fresh provider readback matches both source fields.
+  All25 multiplayer games complete naturally on phone+desktop:50 live matches,
+  2,642commits (1,295human +1,347bot), zero no-op inflation/unexpecteddrivererrors;
+  both setup rooms and both shared group rooms close with404 readback.
+- Explicit AI-enabled hosted confirmation passedone fresh Tarot reading, saved
+  and identical afterreload. The earlier26-game human smoke, retry/stale/version
+  privacy and privateBroadcast member/nonmember checks passed separately.
+- Overlapping complete provider log scans cover15:47:13Z through the final live
+  verification window:zero runtimeerrors/zero request5xx, no missing pages or
+  excluded intervals. Fresh final owner readback again preserves every preflight
+  account/profile/identity/three-room fingerprint and the owner's additional room.
+- Complete release evidence: docs/evidence/bots-ui-2026-11-01/README.md, with
+  deployment, local/live solo, human/AI smoke, load, logs and owner preservation.
+  Card audit retains245faces/980render checks/76reviewed groups;38final images
+  across card/table/actual-flow evidence. Stable inventory drift gate protects
+  future card additions; shared cardSchema normalizes nested/direct card variants.
+- All task test browsers/channels/rooms closed; only verified owned disposable
+  resources removed. Requested web3217/API8217 return200; sources, artwork,
+  credentials/dependencies, databases, user browser and unrelated services remain.
+- Final closure changes are documentation/evidence and append-only load-output
+  tooling. Application runtime fingerprint remains
+  3c63f94bcb210e45ec1dff462481f7ef08d89c49fa4032e9399a3a71992068c6.
+  Push these verified records to main without another production deployment.

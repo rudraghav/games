@@ -1,0 +1,27 @@
+{
+  "id": "dpl_9kyjAskSc3UCrS3RSgGjp8GsmgSQ",
+  "url": "games-ha8y0gye1-rudraghavs-projects.vercel.app",
+  "target": "production",
+  "readyState": "READY",
+  "regions": [
+    "bom1"
+  ],
+  "alias": [
+    "games-seven-black.vercel.app",
+    "games-rudraghavs-projects.vercel.app"
+  ],
+  "createdAt": 1793548033038,
+  "applicationSourceSha": "b4506a29c5062d215b5b43a02e56c7899ff4d9f3",
+  "githubSourceSha": "b4506a29c5062d215b5b43a02e56c7899ff4d9f3",
+  "runtimeFingerprint": "3c63f94bcb210e45ec1dff462481f7ef08d89c49fa4032e9399a3a71992068c6",
+  "httpChecks": {
+    "catalogueGames": 26,
+    "botSupportedGames": 25,
+    "licensedCardFaces": 54,
+    "newOriginalAtlases": 4,
+    "allArtworkReturnsImages": true,
+    "unauthenticatedMe": 401,
+    "hostedDevIdentity": 404,
+    "hostedDesignGallery": 404
+  }
+}

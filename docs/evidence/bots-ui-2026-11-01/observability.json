@@ -1,0 +1,66 @@
+{
+  "applicationSourceSha": "b4506a29c5062d215b5b43a02e56c7899ff4d9f3",
+  "runtimeErrors": 0,
+  "request5xx": 0,
+  "completePagination": true,
+  "excludedIntervals": 0,
+  "segments": {
+    "runtime": [
+      {
+        "type": "summary",
+        "recordsReturned": 0,
+        "timeRange": {
+          "start": "2026-11-01T15:47:13.000Z",
+          "end": "2026-11-01T15:54:41.470Z"
+        },
+        "pagination": {
+          "hasMore": false,
+          "next": null
+        },
+        "excludedIntervals": []
+      },
+      {
+        "type": "summary",
+        "recordsReturned": 0,
+        "timeRange": {
+          "start": "2026-11-01T15:54:41.000Z",
+          "end": "2026-11-01T16:11:55.171Z"
+        },
+        "pagination": {
+          "hasMore": false,
+          "next": null
+        },
+        "excludedIntervals": []
+      }
+    ],
+    "request": [
+      {
+        "type": "summary",
+        "recordsReturned": 0,
+        "timeRange": {
+          "start": "2026-11-01T15:47:13.000Z",
+          "end": "2026-11-01T15:54:42.000Z"
+        },
+        "pagination": {
+          "hasMore": false,
+          "next": null
+        },
+        "excludedIntervals": []
+      },
+      {
+        "type": "summary",
+        "recordsReturned": 0,
+        "timeRange": {
+          "start": "2026-11-01T15:54:42.000Z",
+          "end": "2026-11-01T16:11:55.000Z"
+        },
+        "pagination": {
+          "hasMore": false,
+          "next": null
+        },
+        "excludedIntervals": []
+      }
+    ]
+  },
+  "scope": "Two overlapping scans cover the serving interval within Hobby log retention."
+}

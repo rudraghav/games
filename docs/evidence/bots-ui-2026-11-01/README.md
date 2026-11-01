@@ -30,7 +30,40 @@ phone and desktop: 50 natural matches, 2,643 committed actions (1,296 human and
 rematch, same-group switching and final closure passed for every case. Setup,
 clicked play, bot add/remove, interrupted-driver retry and reconnect also passed.
 The later card metadata/art changes preserve engine and bot behavior. Final
-builds and production results are recorded separately as the release closes.
+builds and production results are recorded below.
+
+## Production verified
+
+[Games](https://games-seven-black.vercel.app) serves application source
+`b4506a29c5062d215b5b43a02e56c7899ff4d9f3` from READY production deployment
+`dpl_9kyjAskSc3UCrS3RSgGjp8GsmgSQ` in Mumbai. Both provider source metadata
+fields and the public alias match. One deployment was used; later changes are
+verification records and a load-evidence filename fix, with identical app bytes.
+
+- [50 natural solo matches](production.json): all 25 multiplayer formats on phone
+  and desktop; 2,642 commits, including 1,347 bot moves. Results/history/profile,
+  rematch, same-group changes, recovery and closure passed for every game.
+- [Human/private-access smoke](human-smoke.json): all 26 opening paths,
+  retry/conflict/refresh and private views. A member received Broadcast chat;
+  an outsider's subscription and room read were denied. A separate AI-enabled
+  check saved one fresh Tarot reading and verified identical reload data.
+- [50-room live load](production-load.json): every action committed and observer
+  synchronized through private Broadcast. Action p95 936ms; observer snapshot
+  p95 941ms. All test memberships/channels closed.
+- [Deployment/artwork checks](deployment.json): 26 games/25 bot capabilities,
+  all 54 licensed card faces, original/Tarot atlases, and hosted auth/dev boundaries.
+- [Error scans](observability.json): zero runtime errors or request 5xx, complete
+  pagination and no excluded intervals over the serving verification window.
+- [Final owner preservation](owner-final-preservation.json): all preexisting
+  account/profile/identity/three-room fingerprints unchanged; the additional
+  owner-created room remains intact.
+
+Word Agents uses a finite clue vocabulary and party bots use simulated responses.
+Blackjack's minimum solo table needs only its required automated dealer. These
+limits are explicit; completion counts are separate from exhaustive rule proof.
+The [245-face visual review](../card-inventory-2026-11-01/README.md),
+[all-game table audit](../table-refresh-2026-11-01/README.md) and
+[actual compact flow](../compact-live-2026-11-01/README.md) retain reviewed images.
 
 ## Canonical card-face inventory
 
