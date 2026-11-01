@@ -1,0 +1,123 @@
+{
+  "date": "2026-11-01",
+  "origin": "https://games-seven-black.vercel.app",
+  "finalDeployment": {
+    "id": "dpl_teg2sasVTrQkHbcJd2r53bEbgkbE",
+    "readyState": "READY",
+    "target": "production",
+    "regions": [
+      "bom1"
+    ],
+    "sourceSha": "78526f0ff5ca8546a97bdbf70343169912cdcb53",
+    "githubCommitSha": "78526f0ff5ca8546a97bdbf70343169912cdcb53",
+    "servingAlias": "games-seven-black.vercel.app",
+    "aliasMatches": true
+  },
+  "engineAcceptanceSource": "238027323a10a0c91e1fe2f1f48e43b5f717f6b2",
+  "fullMatchCases": 26,
+  "acceptedMoves": 2477,
+  "realSavedTarotReadings": 2,
+  "engineAndAiCodeUnchanged": true,
+  "finalUiBrowserCases": 4,
+  "courtHeadCentersVerified": 8,
+  "all78ArtworkMapped": true,
+  "all8AtlasesDelivered": true,
+  "faviconSvgAndIco200": true,
+  "all12SkyjoPosterRanksFit": true,
+  "ownerPreservation": {
+    "originalRoomUnchanged": true,
+    "ownerProfileUnchanged": true,
+    "googleLinked": true,
+    "permanentAccount": true,
+    "anonymousSignInEnabled": true,
+    "googleSignInEnabled": true
+  },
+  "cleanup": "Both full-match rooms and both final solo Tarot rooms closed; no test browser remains.",
+  "httpChecks": [
+    {
+      "path": "/",
+      "status": 200,
+      "kind": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "kind": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/favicon.ico",
+      "status": 200,
+      "kind": "image/vnd.microsoft.icon"
+    },
+    {
+      "path": "/icon.svg",
+      "status": 200,
+      "kind": "image/svg+xml"
+    },
+    {
+      "path": "/api/backend/v1/games",
+      "status": 200,
+      "kind": "application/json"
+    },
+    {
+      "path": "/api/backend/v1/me",
+      "status": 401,
+      "kind": "text/plain;charset=UTF-8"
+    },
+    {
+      "path": "/design",
+      "status": 404,
+      "kind": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/tarot/major-01.webp",
+      "status": 200,
+      "kind": "image/webp"
+    },
+    {
+      "path": "/tarot/major-02.webp",
+      "status": 200,
+      "kind": "image/webp"
+    },
+    {
+      "path": "/tarot/major-03.webp",
+      "status": 200,
+      "kind": "image/webp"
+    },
+    {
+      "path": "/tarot/major-04.webp",
+      "status": 200,
+      "kind": "image/webp"
+    },
+    {
+      "path": "/tarot/minor-wands-v1.webp",
+      "status": 200,
+      "kind": "image/webp"
+    },
+    {
+      "path": "/tarot/minor-cups-v1.webp",
+      "status": 200,
+      "kind": "image/webp"
+    },
+    {
+      "path": "/tarot/minor-swords-v1.webp",
+      "status": 200,
+      "kind": "image/webp"
+    },
+    {
+      "path": "/tarot/minor-pentacles-v1.webp",
+      "status": 200,
+      "kind": "image/webp"
+    }
+  ],
+  "logs": {
+    "requests": {
+      "recordsReturned": 0,
+      "complete": true
+    },
+    "runtime": {
+      "recordsReturned": 0,
+      "complete": true
+    }
+  }
+}

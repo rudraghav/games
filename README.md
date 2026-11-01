@@ -34,6 +34,10 @@ Provider outages/quota failures keep the saved spread and offer an honest retry.
 The 1 November release passed 54 complete-match phone/desktop scenarios on
 production, two real saved readings and a fifty-room private Broadcast load run.
 See [verified release evidence](docs/evidence/release-2026-11-01/README.md).
+The modern/party expansion passed 26 additional hosted full-match scenarios
+(2,477 moves), including two richer real Tarot readings. Final portrait framing,
+poster ranks and browser icons passed four focused hosted phone/desktop checks.
+See [current expansion release](docs/evidence/modern-party-2026-11-01/RELEASE.md).
 Google account signup passed live consent and the production callback. Linking
 the owner's guest retained the same player ID, saved name and existing room;
 the verified Google identity survives refresh. See the project journal and

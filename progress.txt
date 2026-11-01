@@ -590,3 +590,23 @@
   These check all four court head centers, saved spread refresh/authorized room
   cleanup, all12 decorative poster ranks and SVG/ICO delivery/metadata. No backend
   or API-client differences from the source accepted in26 hosted full matches.
+
+- Final application 78526f0ff5ca8546a97bdbf70343169912cdcb53 pushed with remote
+  parity and served by READY production dpl_teg2sasVTrQkHbcJd2r53bEbgkbE in Mumbai.
+  Fresh alias/source metadata matched. Four hosted corrective browser checks
+  passed, including decoded card art, all four court head centers on both
+  viewports, saved spread refresh, room closure, favicon and 12 poster ranks.
+  Final HTTP checks verify 22 entries/all 8 atlases/icons and auth/private boundaries.
+- Original owner room/profile fingerprints are unchanged; Google remains linked
+  and permanent, Google/anonymous providers remain enabled. Final request/runtime
+  log windows contain zero errors and no omitted intervals/pages. Runtime/API/AI
+  source reuse is explicit: 26 hosted full matches at 2380273, focused visual checks
+  at 78526f0; backend and API-client code are identical across these two sources.
+- Completion cleanup removed 47.7 MiB of verified task-owned Storybook output,
+  duplicate successful browser captures/markers, closed CLI snapshots and build
+  logs. Selected source/artwork/evidence, credential files, dependencies, database
+  history, normal browser sessions and requested web/API services are preserved.
+  Both local services return 200; dedicated games-postgres remains running. All
+  task browsers/keep-awake processes ended, and every task room is closed.
+- Documentation/test-capture closure finalized. Final application fingerprint
+  remains unchanged; this closure does not require another app deployment.

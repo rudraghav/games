@@ -137,6 +137,14 @@ test('Tarot reveals three distinct cards and survives a refresh', async ({ page 
       await gallery.getByRole('button', { name: suit, exact: true }).click();
       await expect(gallery.locator('.tarot-deck-gallery .tarot-card')).toHaveCount(14);
       if (suit === 'Wands' || suit === 'Cups') {
+        await gallery
+          .locator('svg image')
+          .first()
+          .evaluate(async (element) => {
+            const bitmap = new Image();
+            bitmap.src = element.getAttribute('href')!;
+            await bitmap.decode();
+          });
         for (const rank of ['Queen', 'King']) {
           const art = gallery.locator(`.tarot-card[aria-label="${rank} of ${suit}"] svg`);
           await art.scrollIntoViewIfNeeded();
@@ -163,6 +171,15 @@ test('Tarot reveals three distinct cards and survives a refresh', async ({ page 
             suit === 'Wands' ? 65 : 85,
           );
           expect(faceVisible, `${rank} of ${suit} must keep its head in frame`).toBe(true);
+          if (process.env.GAMES_TEST_URL && rank === 'Queen')
+            await art
+              .locator('..')
+              .locator('..')
+              .screenshot({
+                path: test
+                  .info()
+                  .outputPath(`court-${suit.toLowerCase()}-${rank.toLowerCase()}.png`),
+              });
         }
         await gallery.evaluate((element) => {
           element.scrollTop = 0;

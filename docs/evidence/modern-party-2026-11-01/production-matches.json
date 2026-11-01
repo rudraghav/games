@@ -224,5 +224,6 @@
       "decisions": "Authorized API projections; rendered result/rematch/change-game browser controls."
     }
   ],
-  "pending": "Focused final portrait-framing and catalogue-icon correction, separate release source. Engine/AI code unchanged."
+  "finalVisualCorrectionSource": "78526f0ff5ca8546a97bdbf70343169912cdcb53",
+  "engineAndAiCodeUnchanged": true
 }

@@ -1,10 +1,12 @@
 # Modern games, party games and complete Tarot
 
-Application source: `238027323a10a0c91e1fe2f1f48e43b5f717f6b2`.
+Final application source: `78526f0ff5ca8546a97bdbf70343169912cdcb53`.
+Engine/AI full-match source: `238027323a10a0c91e1fe2f1f48e43b5f717f6b2`.
 Production: https://games-seven-black.vercel.app.
-Vercel: `dpl_9cmRMGzRHameGgL352FddjM1kWDT`, READY, production, Mumbai.
+Vercel: `dpl_teg2sasVTrQkHbcJd2r53bEbgkbE`, READY, production, Mumbai.
 Fresh alias readback and both source metadata fields match this application commit.
-One personal Vercel CLI deployment was used; there is no duplicate preview rollout.
+The personal Vercel CLI production path served the expansion, followed by a
+necessary portrait/poster/icon correction. No preview or unchanged app redeploy.
 
 ## Local proof
 
@@ -25,12 +27,18 @@ The public catalogue reports 22 experiences. All eight WebP atlases return image
 Home/privacy return 200; unauthenticated profile returns 401; development identity,
 design gallery and browser scratch paths return 404. The API proxy deliberately
 has no public health route; actual authenticated match actions exercise the
-backend and database. Hosted natural-match and saved-reading acceptance is
-running; final counts are recorded after completion, separately from local proof.
+backend and database. Hosted acceptance passed 26 distinct cases and 2,477 accepted moves, including
+two real saved readings. Both rooms closed with zero transport failures/retries.
+The final visual correction passed four more phone/desktop browser cases: all
+four court head centers stay in-frame, all 78 cards browse, the spread survives
+refresh, all 12 decorative ranks fit, and SVG/ICO icons load. Engines/AI code
+are byte-identical to the complete-match source. See production-final.json.
 
-Existing owner room/profile fingerprints and Google linkage were captured
-privately before rollout. No schema or credential rotation was needed. Runtime
-source fingerprint is in local-release.json; follow-up documentation and upload
+Fresh readback confirmed the original owner room and profile are unchanged,
+Google linkage remains permanent, and Google/anonymous sign-in remain enabled.
+Final production request/runtime log queries returned zero errors with complete
+coverage of their query windows. No schema or credential rotation was needed. The final runtime
+fingerprint is in final-polish-local.json; follow-up documentation and upload
 exclusions do not change the serving application. Browser scratch files contain
 only synthetic party-gallery snapshots and are not public application assets;
 future uploads explicitly exclude their directory.
