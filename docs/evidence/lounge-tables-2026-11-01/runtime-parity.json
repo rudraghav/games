@@ -1,0 +1,9 @@
+{
+  "applicationCommit": "02ff60357e9165c51afdda952eef7a83f3a72af3",
+  "runtimeFileCount": 352,
+  "changedSinceInitialVerifiedSource": [
+    "apps/web/src/games/tarot/TarotReading.tsx"
+  ],
+  "allRuntimeFilesMatchCommittedBytes": true,
+  "fingerprint": "10c8850020881aa01fd2bd4ae5b74618dc9bccd9483be6ce9ee70fd8e256eb33"
+}

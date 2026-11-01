@@ -130,15 +130,16 @@ test('every game finishes at both seat limits, renders results, rematches and ke
     const catalogue: components['schemas']['GameManifest'][] = await checked(page, 'games', 'GET');
     if (filter?.some((id) => !catalogue.some((game) => game.id === id)))
       throw new Error('The full-match filter contains an unavailable game.');
-    // A focused run needs only its selected games' seats. Keep two for the
-    // initial Uno lobby; do not create ten cloud guests for a solo Tarot check.
-    const maxSeats = Math.max(
-      2,
-      ...catalogue
-        .filter((game) => !filter || filter.includes(game.id))
-        .map((game) => game.max_players),
+    // Start with the selected game supporting the largest group, so focused
+    // solo checks need one guest rather than an unnecessary multiplayer lobby.
+    const selected = catalogue.filter((game) => !filter || filter.includes(game.id));
+    const initialGame = selected.reduce((largest, game) =>
+      game.max_players > largest.max_players ? game : largest,
     );
-    await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
+    const maxSeats = initialGame.max_players;
+    await page
+      .getByRole('button', { name: `Create ${initialGame.name} room`, exact: true })
+      .click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Full Match Host');
     await page
       .getByRole('textbox', { name: 'Room name', exact: true })
@@ -147,7 +148,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
     await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/, { timeout: 45000 });
     roomId = new URL(page.url()).pathname.split('/').at(-1)!;
-    const code = await page.locator('.room-code').innerText();
+    const code = maxSeats > 1 ? await page.locator('.room-code').innerText() : '';
     for (let seat = 1; seat < maxSeats; seat++) {
       const context = await browser.newContext({ baseURL, viewport: page.viewportSize()! });
       contexts.push(context);
@@ -168,6 +169,10 @@ test('every game finishes at both seat limits, renders results, rematches and ke
       players.map(async (player) => (await checked(player, 'me', 'GET')).profile.id),
     );
     const playerById = new Map(identities.map((id, index) => [id, players[index]]));
+    // Solo Tarot creation starts immediately; configure the controlled match
+    // below from the lobby just as with the other initial-game choices.
+    if ((await roomAs(page, roomId!)).status === 'playing')
+      await checked(page, `rooms/${roomId}/abandon`);
     for (const [index, game] of catalogue.entries()) {
       if (filter && !filter.includes(game.id)) continue;
       if (game.id === 'tarot' && process.env.GAMES_TEST_AI !== '1') {

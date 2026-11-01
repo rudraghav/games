@@ -1,0 +1,15 @@
+{
+  "applicationCommit": "02ff60357e9165c51afdda952eef7a83f3a72af3",
+  "origin": "https://games-seven-black.vercel.app",
+  "checkedPaths": 121,
+  "portraits": 48,
+  "portraitChecksumsVerified": true,
+  "licensedPlayingCards": 54,
+  "games": 27,
+  "botGames": 26,
+  "authBoundary": {
+    "/design": 404,
+    "/api/backend/v1/me": 401,
+    "/api/dev-session": 404
+  }
+}

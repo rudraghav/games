@@ -65,3 +65,21 @@ asset/license/hash/dimension/generatedregistry parity. Together with Tarot and
 Gemini tests,105cases pass locally. The exporter now rejects byte/hash/dimension
 drift and incomplete WebP containers; four tamper fixtures protect those gates.
 Ruff and the48portrait exportercheck pass. No live provider call was made.
+
+## Final hosted readback
+
+Application `02ff603` on READY production deployment
+`dpl_JB1s7UJpd8qxvK8P4a65phGGSb96` delivers the bounded portraits directly,
+retaining lazy loading, alt text and intrinsic dimensions. Actual photo decoding
+caught the initial production optimizer 404. The correction passed 84 units,
+types, lint and build before its focused rollout.
+
+Fresh AI matches passed on desktop (36.8s) and phone (28.6s): all normal, quirky
+and character sections, every photo decoded, identical refresh, history, rematch,
+switching and room closure. `production-desktop.json` and `production-phone.json`
+record the exact application revision. The combined release retains 121 hosted
+path/hash/auth checks and final log scans.
+
+The combined record also documents one guest-setup failure and an interrupted
+test waiting for a lobby code after Tarot auto-started. No auth limits were
+relaxed. The interrupted test's exact room was closed through RoomService.

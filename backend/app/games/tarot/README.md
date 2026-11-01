@@ -131,3 +131,12 @@ purchasing credit or upgrading billing. This small evaluation is not exhaustive.
 Acceptance: all 78 identities unique, deterministic seeded draws, no deck leak,
 exactly three choices, persisted personal output, wrong-card output rejected,
 honest unavailable/error states, keyboard and phone card picking, reduced motion.
+
+V4 release evidence: all 48 reference pairs/assets are covered by focused tests
+and the contract exporter; 718 backend and 84 frontend cases pass. Final real
+hosted desktop/phone readings validate and persist every layer, with all portrait
+images decoded, unchanged refresh, history/rematch and closed test rooms. Bundled
+WebPs use direct public delivery because the initial production Services image
+optimizer URL returned 404. The final source 02ff603 corrects only that delivery;
+provider transport failures remain honest saved-spread retry states. See
+`docs/evidence/lounge-tables-2026-11-01/README.md` for exact revisions and limits.

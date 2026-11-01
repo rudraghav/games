@@ -46,5 +46,49 @@ failed spreads stay saved for an explicit retry.
 - [Tarot photos, licenses and UI](../tarot-portraits-2026-11-01/README.md)
 - [Tarot latency controls](../tarot-latency-2026-11-01/README.md)
 
-This record currently describes local acceptance. Production state will be
-recorded after the single deployment and fresh hosted verification.
+## Production verification
+
+The final [production deployment](corrective-deployment.json) is READY in Mumbai:
+`dpl_JB1s7UJpd8qxvK8P4a65phGGSb96`, application source
+`02ff60357e9165c51afdda952eef7a83f3a72af3`. Both provider SHA fields and the public
+alias match. The initial [deployment](deployment.json) remains recorded separately.
+Its hosted checks discovered that root image-optimization URLs returned404 while
+the originals returned200. One focused corrective deployment now delivers the
+already bounded WebPs directly. No auth, environment, schema or engine change
+was made in that correction.
+
+- Six hosted dashboard/private-room cases, six natural casino solo matches, and
+  four Shithead human matches at2/5seats pass. Their source is the initial c1169d2;
+  [runtime parity](runtime-parity.json) proves the correction changes only the
+  Tarot reading component. Those dashboard, casino, Shithead and backend inputs
+  remain byte-identical, so their passing checks were retained.
+- Final real-AI Tarot matches pass on desktop36.8s and phone28.6s, including every
+  portrait decoded, normal/quirky/character layers, identical refresh readback,
+  saved/profile results, rematch and group retention. Both test rooms closed.
+  [Desktop](../tarot-portraits-2026-11-01/production-desktop.json) and
+  [phone](../tarot-portraits-2026-11-01/production-phone.json) retain safe summaries.
+- [HTTP checks](hosted-http.json) verify121 paths:27games/26bot capabilities,
+  48photo checksums,54licensed card faces and original artwork. Unauthenticated
+  profile reads return401; hosted dev/design paths return404.
+- [Fifty private rooms](production-load.json) all committed/synchronized through
+  private Broadcast and closed. Under concurrent release-browser traffic,
+  action p95 was2535ms and observer snapshot p95 was2680ms. This ran on c1169d2;
+  the backend is unchanged in the correction.
+- [Final log scans](observability.json) cover the serving revision's checks with
+  complete pagination, no excluded intervals, zero runtime errors/warnings and
+  zero request5xx. The initial rollout's one provider ReadTimeout is recorded
+  separately and is not hidden by this final-revision scan.
+- [Owner preservation](owner-preservation.json) confirms the Google account,
+  profile, identity, four rooms and memberships are unchanged, schema head
+  a6e442b15d80. No provider keys, sessions, invites or private hands enter evidence.
+
+One phone attempt stopped at guest-session creation after many test signups;
+this was separate from Tarot generation. The focused harness now starts with
+the selected largest-capacity game and creates one guest for solo Tarot. Its
+first version incorrectly waited for a lobby code after Tarot auto-start; that
+test was interrupted and its one exact owned room closed through RoomService.
+The corrected solo flow passed. No sign-in rate limit or auth boundary was relaxed.
+
+Final cleanup preserves all requested local services, user sessions, source,
+credentials, databases, original artwork and the complete license ledger. The
+release records remain distinct from exhaustive rules or provider-uptime claims.

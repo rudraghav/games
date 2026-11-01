@@ -1,0 +1,29 @@
+{
+  "deployment": "dpl_JB1s7UJpd8qxvK8P4a65phGGSb96",
+  "applicationCommit": "02ff60357e9165c51afdda952eef7a83f3a72af3",
+  "scans": [
+    {
+      "source": "runtime",
+      "query": "level:error OR level:warn OR level:fatal",
+      "records": 0,
+      "window": {
+        "start": "2026-11-01T17:27:38.000Z",
+        "end": "2026-11-01T17:37:36.825Z"
+      },
+      "fullyPaginated": true,
+      "excludedIntervals": []
+    },
+    {
+      "source": "requests",
+      "query": "httpStatus >= 500",
+      "records": 0,
+      "window": {
+        "start": "2026-11-01T17:27:38.000Z",
+        "end": "2026-11-01T17:37:36.000Z"
+      },
+      "fullyPaginated": true,
+      "excludedIntervals": []
+    }
+  ],
+  "scope": "Final serving revision through completed hosted phone/desktop checks; initial rollout issues remain separately recorded."
+}

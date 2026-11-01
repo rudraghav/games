@@ -1,0 +1,16 @@
+{
+  "project": "pdkkpjpholsgmllehzax",
+  "before": "2026-11-01T17:03:51.231975+00:00",
+  "after": "2026-11-01T17:27:31.096361+00:00",
+  "counts": {
+    "profile": 1,
+    "ownedRooms": 4,
+    "memberships": 4,
+    "identities": 1
+  },
+  "permanentGoogleAccount": true,
+  "allProtectedFingerprintsUnchanged": true,
+  "schemaHead": "a6e442b15d80",
+  "finalCheckedAt": "2026-11-01T17:37:38.496143+00:00",
+  "finalProtectedFingerprintsUnchanged": true
+}

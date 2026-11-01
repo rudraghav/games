@@ -25,6 +25,12 @@ Gem Market is a Splendor-style game with original card costs and patrons.
 Deal No Mercy uses an explicitly labeled Games house deck, approved by the owner;
 its documented inventory is not represented as Hasbro's exact printed G3071 deck.
 
+The latest [dashboard/table release verification](docs/evidence/lounge-tables-2026-11-01/README.md)
+records private discovery, committed casino motion, Shithead at both seat limits,
+48 credited Tarot reference photos, hosted readings and the production image-route
+correction. Application source is `02ff603`; later evidence-only commits preserve
+the same verified application bytes.
+
 **Production: [Games](https://games-seven-black.vercel.app), early access.** The personal
 Vercel `games` project runs Next and FastAPI together. Personal
 Supabase `games-preview` has anonymous authentication, reviewed cloud migrations,

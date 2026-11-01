@@ -1420,3 +1420,33 @@
 - A second intentional productionrollout isrequired forthisobservedimage-route
   fix. Thisisachangedsource release, notduplicatepromotion ofthefirstdeployment.
   Initialdeployment/load/gameproofretained; finalportrait/AIreadback follows.
+
+2026-11-01 — Final Games production verification and closure
+- Final serving application: 02ff60357e9165c51afdda952eef7a83f3a72af3, READY
+  production dpl_JB1s7UJpd8qxvK8P4a65phGGSb96 in bom1. Provider GitHub SHA,
+  explicit source metadata and games-seven-black.vercel.app alias match. All352
+  committed runtime inputs match; evidence/test-only closure needs no redeploy.
+- Final hosted Tarot desktop36.8s and phone28.6s pass: every local portrait
+  decoded, grounded/quirky/character sections, identical saved refresh, natural
+  results, profile/history, rematch and retained group. Both QA rooms closed.
+  Earlier phone setup could not create its surplus guest; focused acceptance now
+  creates one guest for solo Tarot without changing auth limits. Its first
+  harness revision waited for a lobby code after Tarot auto-start; interrupted
+  exact owned room was scoped by creator/name/time, privately snapshotted, left
+  through RoomService and fresh-read404 verified. No user room was touched.
+- Initial c1169d2 hosted evidence remains valid for unchanged inputs:6dashboard
+  cases,6casino natural solo matches,4Shithead human matches at2/5seats,50private
+  Broadcast rooms with all memberships closed. Final121 HTTP checks verify27
+  games/26bot capabilities,48photo hashes,54card faces, other art/auth/dev gates.
+- Final deployment log scans through17:37:36Z:0runtime errors/warnings and0request
+  5xx, complete pagination/no excluded intervals. Initial provider ReadTimeout
+  remains documented; saved spreads retain explicit retry during provider outages.
+- Fresh protected-owner readback17:37:38Z confirms unchanged account/profile/
+  Google identity/four rooms/memberships and schema a6e442b15d80. Detailed release
+  evidence is docs/evidence/lounge-tables-2026-11-01/README.md.
+- Required cleanup closed exact owned test browsers/temporary Storybooks and
+  retired QA rooms. Parent removed17 verified scratch/capture paths (~1.28MB),
+  plus earlier14KB capture; agents recorded their scoped cleanup separately.
+  Source, art/masters/license ledger, evidence, credentials, dependencies, DB,
+  user browser and requested dev services retained. Local3217, API8217 health
+  and production home all return200 after cleanup. No further runtime work remains.
