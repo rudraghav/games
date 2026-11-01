@@ -1,0 +1,19 @@
+{
+  "id": "dpl_8F3o8ntZKUXCbpvoGxi5G93LDt43",
+  "readyState": "READY",
+  "target": "production",
+  "url": "games-2ub5vnmms-rudraghavs-projects.vercel.app",
+  "alias": [
+    "games-seven-black.vercel.app",
+    "games-rudraghavs-projects.vercel.app"
+  ],
+  "regions": [
+    "bom1"
+  ],
+  "createdAt": 1793553504968,
+  "ready": 1793553565772,
+  "applicationCommit": "c1169d204e99e2da70cafa2c9a8fe0aaf7793142",
+  "gitSourceSha": "c1169d204e99e2da70cafa2c9a8fe0aaf7793142",
+  "gitDirty": "1",
+  "projectId": "prj_ktWnIpFSa7waRIO8gm7dQrkAB6Za"
+}

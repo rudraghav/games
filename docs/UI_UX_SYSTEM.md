@@ -176,6 +176,12 @@ is needed. Dashboard stories cover discovery, solo tiles and member shortcuts;
 phone/desktop screenshots and private-entry checks live in
 `docs/evidence/dashboard-2026-11-01`.
 
+Tarot reference photos are already bounded 400×500 WebPs. Deliver their local
+public paths directly (`Image unoptimized`), retaining intrinsic dimensions,
+lazy loading and alt text. The root image-optimization URL returned 404 in the
+production Vercel Services arrangement despite direct originals returning 200;
+real hosted image decoding is a release check, alongside the asset hash check.
+
 
 Uno and Deal variants consume canonical colors/effect metadata in one shared
 renderer. Deal motifs distinguish all 24 effects and 10 property groups; paired

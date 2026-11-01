@@ -56,3 +56,27 @@ Research used [Apple's search-field guidance](https://developer.apple.com/design
 for controls near their filtered content and [Board Game Arena's official FAQ](https://en.boardgamearena.com/faq)
 for invitation-based friend tables. All rendered artwork remains the existing
 licensed or Games-original assets; no additional dependency or UI kit was added.
+
+## Production verification
+
+The same six dashboard cases pass on
+https://games-seven-black.vercel.app in29.0s across desktop and phone, on
+application `c1169d204e99e2da70cafa2c9a8fe0aaf7793142`, deployment
+`dpl_8F3o8ntZKUXCbpvoGxi5G93LDt43`. These cover private membership and outsider404,
+pasted full invite links, active shortcuts, solo Bots intent and focus, all card
+cover frames at320/390/1440, and complete lobby/member thumbnails for three board
+games. All eight QA rooms were left by their participants and reads verified404.
+Traces were off; private room screenshots and temporary outputs were not retained.
+
+The public anonymous home was visually inspected at390×844 and1440×1000. Both
+show27games, no member-room section, no page overflow, and all17cover image
+sources loaded. The first tile begins at384px on phone and310px on desktop.
+Retained images contain only the public home: [phone](production-phone-390.png),
+[desktop](production-desktop-1440.png). [Concise results](production.json) contain
+no player/room IDs, invites, credentials or private payloads. This follow-up made
+no runtime, provider-setting or deployment change.
+
+Cleanup closed only dashboard-production-20261101 and removed0.58MiB of its
+temporary output, including member screenshots and logs. Public home and API
+catalogue readbacks remain HTTP200; no private invites, tokens or room payloads
+were copied into retained evidence.

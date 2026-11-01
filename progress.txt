@@ -1287,6 +1287,21 @@
   then removed about0.7MiB of owned duplicate captures/logs after retaining two
   images and frontend checks. Requested web3217/API8217 remainHTTP200. No other
   browsers, source/art, credentials, dependencies or database were removed.
+
+2026-11-01 — Dashboard production verification
+- Exact origin https://games-seven-black.vercel.app, applicationc1169d204e99e2da70cafa2c9a8fe0aaf7793142,
+  deploymentdpl_8F3o8ntZKUXCbpvoGxi5G93LDt43. All6hosted dashboard cases pass29.0s
+  across desktop/phone: solo→Bots/focus, pasted full invite URLs, member shortcuts,
+  authenticated outsider404, all card cover frames and complete3board thumbnails.
+  All8QArooms were left by all participants and reads verified404; traces off.
+- Anonymous public phone390×844 and desktop1440×1000 captures visually inspected:
+  all27games,17image sources loaded, no member rooms or page overflow. Two public
+  screenshots and metadata-only production.json retained in dashboard evidence.
+  No runtime/provider/deployment changes; parent owns wider production acceptance.
+- Required cleanup closed exact production-dashboard browser and removed0.58MiB
+  of owned private-member screenshots/temporary logs after retaining only public
+  captures and concise non-secret results. Fresh publichome/APIcatalogueHTTP200;
+  no private invites/tokens/payloads copied, other browsers/services preserved.
 - Follow-up gate: scripts/check_contracts.py now runs the read-only casino
   fixture exporter alongside existing generated assets. Named contracts group
   PASS, including all 49 deterministic authorized snapshots. No regeneration.
@@ -1347,3 +1362,61 @@
   Recoverypoint dpl_9kyjAskSc3UCrS3RSgGjp8GsmgSQ retained. Noauth/env/schema
   changes. Oneintentional productiondeployment followsmainpush, thenlivechecks.
   Detailedscope/limits:docs/evidence/lounge-tables-2026-11-01/README.md.
+
+- Shithead independent human-view full-match acceptance passes all4min/max
+  phone/desktop cases locally (2projecttests51.8s): desktop2/5seats59/107moves,
+  phone2/5seats57/155moves. Natural results, saved/profile/rendered outcomes,
+  rematch/group retention and both final group closures pass. Safe summarycopies
+  explicitly label currentdirtysource in docs/evidence/shithead-2026-11-01.
+  No runtime edits/restarts; exactowned45bytebrowseroutput cleaned, concise
+  log retained, alltaskbrowsercontextsclosed and web3217/API8217health200.
+
+2026-11-01 — Production casino real-room acceptance
+- Target games-seven-black.vercel.app, parent-verified application source
+  c1169d204e99e2da70cafa2c9a8fe0aaf7793142, deployment
+  dpl_8F3o8ntZKUXCbpvoGxi5G93LDt43. Existing filtered solo suite both widths PASS
+  in 37.0 seconds: six natural complete Hold’em/Teen Patti/blackjack cases.
+- Each verifies results, saved/rendered profile history, rematch, same-group
+  switching and no page overflow. Per width Hold’em ends version 9 (4 human/4
+  client bot moves), Teen Patti version 5 (2/2), blackjack version 3 (2 human
+  decisions, automated dealer). Setup retry/reconnect/add-remove/autostart pass.
+- Both safe summaries complete/cleanup true, every case roomClosed true; four
+  owned setup/group rooms close with fresh 404 assertions. Retained separate
+  production-phone.json/production-desktop.json in casino evidence. No runtime,
+  configuration, deployment, commit or unrelated room changes by this check.
+- Production check cleanup removed only owned duplicate safe summaries and
+  successful runner marker after evidence retention. Browser contexts closed;
+  no requested service or user session was stopped. No test rooms remain open.
+
+2026-11-01 — Shithead production full-match verification
+- Serving Games app c1169d204e99e2da70cafa2c9a8fe0aaf7793142 passes four
+  natural min/max matches on phone and desktop (two viewport tests,1.9minutes):
+  desktop2/5players99/140moves; phone2/5players76/143moves. Saved/profile and
+  rendered outcomes, rematches and group retention pass. Each group closes with
+  allfour guest leaves200, hostleave200 and roomClosed:true.
+- Production summaries are retained separately from local dirty-source evidence
+  in docs/evidence/shithead-2026-11-01/production-{desktop,phone}.json. Runtime,
+  cloud config and deployment unchanged; parent owns final release documentation.
+  Owned45byteoutput cleaned, concise log kept, test contexts closed; production
+  home and requested web3217/API8217health return200 after cleanup.
+
+2026-11-01 — Initial production readback and focused portrait correction
+- Mainc1169d204e99e2da70cafa2c9a8fe0aaf7793142 deployed once throughpersonal
+  GamesVercelpath todpl_8F3o8ntZKUXCbpvoGxi5G93LDt43,READYproductionbom1,
+  bothsourceSHAs/publicalias verified. Runtime352filefingerprint matches the
+  verifiedsource. CLIgitDirty=1 reflected disposable testoutput; no runtime drift.
+- Hosted6dashboard/private-entry cases,6casino natural solo matches and4Shithead
+  human complete matches at2/5seats pass. AllownedQArooms closed.50liveprivate
+  rooms synchronized byBroadcast;actionp952535ms/snapshot2680ms under concurrent
+  releasebrowsertraffic, all50closed. All48originalportraitassetbytes/hashes,
+  54cardSVGs/catalogue27/bots26 andauth/devboundaries passHTTPchecks.
+- RealhostedTarot uncovered root/_next/image404 despiteoriginalWebPs200;desktop
+  readinggenerated butphotodecodeassertionfailed. PhoneproviderloggedReadTimeout;
+  spreadstayedavailablewithretry. Sourcecorrection deliversthealreadybounded
+  400x500WebPsdirectly viaImageunoptimized, preservinglazyload/alt/dimensions.
+  Regressionassertion plus84units,TS/lint/productionbuildpass. Noengine/backend/
+  DB/env changes. Focusedfullmatchdriver nowcreatesonlyselectedgames'seatcount
+  (floor2forinitialUno) toavoidsurpluscloudguests;browserTSpasses.
+- A second intentional productionrollout isrequired forthisobservedimage-route
+  fix. Thisisachangedsource release, notduplicatepromotion ofthefirstdeployment.
+  Initialdeployment/load/gameproofretained; finalportrait/AIreadback follows.

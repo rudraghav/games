@@ -1,0 +1,56 @@
+{
+  "verified_at_utc": "2026-11-01T17:23:55+00:00",
+  "origin": "https://games-seven-black.vercel.app",
+  "application_sha": "c1169d204e99e2da70cafa2c9a8fe0aaf7793142",
+  "deployment_id": "dpl_8F3o8ntZKUXCbpvoGxi5G93LDt43",
+  "suite": {
+    "file": "tests/browser/dashboard-refinement.spec.ts",
+    "passed": 6,
+    "projects": [
+      "desktop",
+      "phone"
+    ],
+    "duration_seconds": 29.0,
+    "trace": "off"
+  },
+  "coverage": [
+    "Solo intent and Bots setup, keyboard focus and invite-only description",
+    "Pasted full invite URLs and both members returning-room shortcuts",
+    "Authenticated outsider cannot read room or see a member shortcut",
+    "Every canonical card cover fits at320/390/1440",
+    "All cells of Checkers/Reversi/Four in a Row fit lobby and member thumbnails"
+  ],
+  "qa_cleanup": {
+    "rooms": 8,
+    "all_participants_left": true,
+    "leave_status": 200,
+    "read_after_leave_status": 404
+  },
+  "public_home": [
+    {
+      "width": 390,
+      "height": 844,
+      "tiles": 27,
+      "pageFits": true,
+      "firstTileTop": 383.796875,
+      "memberRoomSectionPresent": false,
+      "assets": {
+        "sources": 17,
+        "allLoaded": true
+      }
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "tiles": 27,
+      "pageFits": true,
+      "firstTileTop": 310,
+      "memberRoomSectionPresent": false,
+      "assets": {
+        "sources": 17,
+        "allLoaded": true
+      }
+    }
+  ],
+  "scope": "Existing released application; no runtime edits, provider settings, or deployment changes."
+}

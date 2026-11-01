@@ -130,7 +130,14 @@ test('every game finishes at both seat limits, renders results, rematches and ke
     const catalogue: components['schemas']['GameManifest'][] = await checked(page, 'games', 'GET');
     if (filter?.some((id) => !catalogue.some((game) => game.id === id)))
       throw new Error('The full-match filter contains an unavailable game.');
-    const maxSeats = Math.max(...catalogue.map((game) => game.max_players));
+    // A focused run needs only its selected games' seats. Keep two for the
+    // initial Uno lobby; do not create ten cloud guests for a solo Tarot check.
+    const maxSeats = Math.max(
+      2,
+      ...catalogue
+        .filter((game) => !filter || filter.includes(game.id))
+        .map((game) => game.max_players),
+    );
     await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Full Match Host');
     await page

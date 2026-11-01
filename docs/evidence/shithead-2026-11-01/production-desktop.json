@@ -1,0 +1,55 @@
+{
+  "startedAt": "2026-11-01T17:20:56.103Z",
+  "origin": "https://games-seven-black.vercel.app",
+  "checkoutSha": "c1169d204e99e2da70cafa2c9a8fe0aaf7793142",
+  "applicationSourceSha": "c1169d204e99e2da70cafa2c9a8fe0aaf7793142",
+  "workspaceDirty": true,
+  "sourceState": "explicit serving revision",
+  "hosted": true,
+  "project": "desktop",
+  "selectedGames": [
+    "shithead"
+  ],
+  "selectedSeats": "limits",
+  "aiEnabled": false,
+  "complete": true,
+  "active": null,
+  "omitted": [],
+  "transport": {
+    "retryAttempts": 0,
+    "recovered": 0,
+    "failed": 0
+  },
+  "cleanup": {
+    "guestLeaveStatuses": [
+      200,
+      200,
+      200,
+      200
+    ],
+    "roomClosed": true,
+    "failed": false,
+    "abandonStatus": 200,
+    "hostLeaveStatus": 200
+  },
+  "cases": [
+    {
+      "game": "shithead",
+      "seats": 2,
+      "moves": 99,
+      "profileHistoryVerified": true,
+      "rematch": true
+    },
+    {
+      "game": "shithead",
+      "seats": 5,
+      "moves": 140,
+      "profileHistoryVerified": true,
+      "rematch": true
+    }
+  ],
+  "decisions": "Authorized API projections; rendered result/rematch/change-game browser controls.",
+  "rummyScenario": "Legal drops; declaration/sequences are independently engine-tested.",
+  "evidenceScope": "Live production acceptance; explicit serving application revision, separate from dirty local test-driver changes.",
+  "deploymentId": "dpl_8F3o8ntZKUXCbpvoGxi5G93LDt43"
+}

@@ -96,3 +96,8 @@ Independent human-browser full-match acceptance now also passes2and5seats on
 both phone and desktop: four natural matches, saved/profile/rendered outcomes,
 rematch, group retention and final room closure. These runs use authorized views
 only and explicitly identify current dirty local source, not a deployed revision.
+
+Subsequent live production acceptance passes the samefour min/max/viewport cases
+against application `c1169d2`: all natural results, profile/history/rematches and
+final group closures. The evidence retains production summaries separately from
+the earlier dirty-source local runs; no runtime change was made by acceptance.

@@ -1,7 +1,8 @@
-# Shithead local verification — 1 November 2026
+# Shithead verification — 1 November 2026
 
-Local source evidence, based on main `3335cdae`; the parent release owns pushed
-and production verification. No deployment is claimed by this record.
+Initial local source evidence is based on main `3335cdae`; those local records
+make no deployment claim. The production section below records the subsequent
+live acceptance against the parent's verified serving revision.
 
 - 38 focused rule tests include 28 natural matches at 2/5 seats, default and
   optional rules, all 52 cards conserved, legal/illegal actions and hidden privacy.
@@ -40,7 +41,7 @@ record and final local logs remain. Web3217 and API8217 health/catalogue return
 
 ## Independent human full matches at both limits
 
-The current uncommitted local workspace also passes allfour full-match cases
+The current uncommitted local workspace also passes all four full-match cases
 (two viewport projects,51.8s total): desktop2seats59moves/5seats107moves,
 phone2seats57moves/5seats155moves. Choices use only each independent human
 session's authorized projection. All matches reach their natural result and
@@ -55,3 +56,28 @@ before group closure; the four scored/finished acceptance matches are natural.
 All task browser contexts close. The exact disposable output directory was
 removed after source/symlink/open-file checks, with the concise log retained;
 web3217/API8217 health still return200. No runtime change or restart occurred.
+
+## Production acceptance
+
+The live app at https://games-seven-black.vercel.app passes all four natural
+Shithead matches at both seat limits and widths (two viewport projects, 1.9 minutes total):
+
+| Width | 2 players | 5 players |
+| --- | --- | --- |
+| Desktop | 99 moves | 140 moves |
+| Phone | 76 moves | 143 moves |
+
+Serving application SHA: `c1169d204e99e2da70cafa2c9a8fe0aaf7793142`.
+Deployment: `dpl_8F3o8ntZKUXCbpvoGxi5G93LDt43`, verified by the parent release.
+[Desktop production summary](production-desktop.json) and
+[phone production summary](production-phone.json) retain the explicit serving
+revision separately from dirty local test-driver changes. Local evidence above
+is preserved. No runtime, configuration or deployment change was made by this run.
+
+Natural outcomes, history/profile, rendered results, rematches and group retention
+pass in all four cases. Both groups are complete, have no active case, and close
+successfully: each four guest leaves200, host leave200, roomClosed:true and no
+cleanup failure. Fresh rematches are deliberately abandoned before closure.
+Task browser contexts close; trace capture was off. The exact owned disposable
+output was removed after Git/symlink/open-file checks; concise log retained.
+Production home and requested local web/API health all return200 after cleanup.

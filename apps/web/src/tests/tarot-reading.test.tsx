@@ -28,6 +28,9 @@ describe('saved Tarot reading presentation', () => {
     expect(html.match(/The grounded read/g)).toHaveLength(3);
     expect(html.match(/The plot twist/g)).toHaveLength(3);
     expect(html.match(/Your character energy/g)).toHaveLength(3);
+    // These bounded WebPs must work through the Services public route without
+    // depending on the unavailable root image-optimization endpoint.
+    expect(html).not.toContain('/_next/image');
     for (const section of reading.cards) {
       for (const character of section.characters) {
         expect(html).toContain(character.name);

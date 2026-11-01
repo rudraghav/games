@@ -65,6 +65,7 @@ export function TarotReading({
                         <figure className="tarot-character-portrait">
                           <Image
                             src={portrait.image}
+                            unoptimized
                             width={portrait.width}
                             height={portrait.height}
                             sizes="(max-width: 600px) 88px, 112px"

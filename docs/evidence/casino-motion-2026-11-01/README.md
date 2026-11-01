@@ -157,3 +157,27 @@ has its own exact cue and is not included in the engine's public hand-bet sum.
 Earlier retained captures use the preceding `wagered` label.
 The regression asserts it observes the result within 850ms of the move, so expiry
 of the 900ms event cannot produce a false pass.
+
+## Production acceptance
+
+On 2026-11-01, the parent release verified production revision
+`c1169d204e99e2da70cafa2c9a8fe0aaf7793142` at
+`https://games-seven-black.vercel.app`, deployment
+`dpl_8F3o8ntZKUXCbpvoGxi5G93LDt43`. The existing filtered solo suite then passed
+against that production target on phone and desktop: **2 tests, six natural
+matches, 37.0 seconds**. No runtime, configuration or deployment changed during
+the check.
+
+Every case verified results, saved/rendered profile history, rematch and game
+switching with the same group. Per viewport, Hold'em finished at version 9 with
+four human decisions and four actual client bot drives; Teen Patti finished at
+version 5 with two human decisions and two bot drives; blackjack finished at
+version 3 with two human decisions against its automated dealer.
+
+`production-phone.json` and `production-desktop.json` retain safe counts/status
+and the exact explicit release SHA. Both report `complete: true`, `cleanup: true`
+and `roomClosed: true` for every case. All four owned setup/group rooms closed
+with fresh 404 readback. Setup also verified bot autostart, a clicked board move,
+add/remove, the two deliberately injected 503 retry responses, and reconnect.
+The normal casino bot drives succeeded. Production evidence supplements, and
+does not overwrite, the earlier local/synthetic evidence.

@@ -1,0 +1,29 @@
+{
+  "startedAt": "2026-11-01T17:20:56.342Z",
+  "origin": "https://games-seven-black.vercel.app",
+  "rooms": 50,
+  "guests": 5,
+  "mode": "broadcast",
+  "passed": true,
+  "committedActions": 50,
+  "synchronizedRooms": 50,
+  "actionMs": {
+    "median": 553,
+    "p95": 2535,
+    "max": 2708
+  },
+  "synchronizationMs": {
+    "median": 723,
+    "p95": 2680,
+    "max": 2808
+  },
+  "broadcastMs": {
+    "median": 499,
+    "p95": 2527,
+    "max": 2699
+  },
+  "semantics": "Submission to committed response; submission to authorized observer snapshot after private Broadcast or explicit 250ms polling.",
+  "cleanupClosedRooms": 50,
+  "applicationCommit": "c1169d204e99e2da70cafa2c9a8fe0aaf7793142",
+  "evidenceFile": ".vercel/hosted-load-broadcast-2026-11-01T17-20-56-342Z-92f55824.json"
+}
