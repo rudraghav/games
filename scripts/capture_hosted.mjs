@@ -1,7 +1,7 @@
 import { chromium } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
 const target = new URL(process.env.GAMES_TEST_URL || 'http://invalid.local');
-if (target.protocol !== 'https:' || !(target.hostname === 'games-rudraghavs-projects.vercel.app' || /^games-[a-z0-9]+-rudraghavs-projects\.vercel\.app$/.test(target.hostname))) throw new Error('Set the personal Games deployment URL.');
+if (target.protocol !== 'https:' || !(target.hostname === 'games-seven-black.vercel.app' || /^games-[a-z0-9]+-rudraghavs-projects\.vercel\.app$/.test(target.hostname))) throw new Error('Set the personal Games deployment URL.');
 const browser = await chromium.launch();
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });

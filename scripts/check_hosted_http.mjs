@@ -1,7 +1,7 @@
-/** Exact-preview HTTP checks. Tokens stay in memory and never enter output. */
+/** Scoped deployment HTTP checks. Tokens stay in memory and never enter output. */
 const target = new URL(process.env.GAMES_TEST_URL || 'http://invalid.local');
-if (target.protocol !== 'https:' || !(target.hostname === 'games-rudraghavs-projects.vercel.app' || /^games-[a-z0-9]+-rudraghavs-projects\.vercel\.app$/.test(target.hostname))) {
-  throw new Error('Set the exact personal Games preview URL.');
+if (target.protocol !== 'https:' || !(target.hostname === 'games-seven-black.vercel.app' || /^games-[a-z0-9]+-rudraghavs-projects\.vercel\.app$/.test(target.hostname))) {
+  throw new Error('Set the exact personal Games deployment URL.');
 }
 const headers = process.env.VERCEL_OIDC_TOKEN
   ? { 'x-vercel-trusted-oidc-idp-token': process.env.VERCEL_OIDC_TOKEN } : {};

@@ -10,7 +10,7 @@ Tarot, Four in a Row, Reversi, Word Agents and Gem Market. Tarot uses a full
 Word Agents is a Codenames-style house edition with an original word list;
 Gem Market is a Splendor-style game with original card costs and patrons.
 
-**Production target: [Games](https://games-rudraghavs-projects.vercel.app), early access.** The personal
+**Production: [Games](https://games-seven-black.vercel.app), early access.** The personal
 Vercel `games` project runs Next and FastAPI together. Personal
 Supabase `games-preview` has anonymous authentication, reviewed cloud migrations,
 schema drift and private-table grants verified. Production cloud settings are
@@ -22,9 +22,10 @@ online: start, legal move, retry, stale-version conflict and refresh. A real
 hosted Tarot reading saved and survived reload. Historical previews remain
 rollback references. Full match/rule acceptance remains separate.
 AI response validation can occasionally require a retry; the spread stays saved.
-Google account signup is implemented and verified locally, and its personal
-provider is configured. Live consent and production rollout verification are
-recorded in the project journal. See [Google sign-in setup](docs/GOOGLE_SIGN_IN.md).
+Google account signup passed live consent and the production callback. Linking
+the owner's guest retained the same player ID, saved name and existing room;
+the verified Google identity survives refresh. See the project journal and
+[Google sign-in setup](docs/GOOGLE_SIGN_IN.md).
 
 ## Run locally
 

@@ -20,7 +20,7 @@ login. No Gmail API or mailbox permissions are required.
 3. On the dedicated personal games-preview Supabase project, enable Google using
    that client ID and secret. Enable manual identity linking. Keep nonce checks
    enabled, anonymous guests enabled and other provider settings intact.
-4. Set the production site to `https://games-rudraghavs-projects.vercel.app` and
+4. Set the production site to `https://games-seven-black.vercel.app` and
    allow its exact `/auth/callback` URL. A
    future preview pattern must be restricted to this personal Games project:
    `https://games-*-rudraghavs-projects.vercel.app/auth/callback`. Local development
@@ -56,8 +56,11 @@ flow checks. Those checks caught and fixed an internal-localhost callback redire
 the browser now stays on its original host and keeps the same player cookie.
 Google branding uses Games, the production home/privacy URLs and basic identity
 scopes. The owner approved the API User Data Policy and requested main/production
-deployment. Live consent, callback and retained player ID/history are checked as
-part of that rollout, with exact results in progress.txt.
+deployment. Live production consent and PKCE callback passed with the owner's
+personal Google account. Scoped database readback proved the guest player ID,
+saved name and existing room ownership were retained; the account is permanent,
+email-verified and linked to Google. The saved room remained accessible after
+linking. Refresh verification and exact rollout evidence are in progress.txt.
 
 References: [Supabase Google sign-in](https://supabase.com/docs/guides/auth/social-sign-in/auth-google),
 [guest identity linking](https://supabase.com/docs/guides/auth/auth-anonymous),

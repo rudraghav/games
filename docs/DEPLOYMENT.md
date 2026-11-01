@@ -1,8 +1,11 @@
-# Personal Games testing preview
+# Personal Games deployment
 
 ## Owner-requested production target — 1 November 2026
 
 The owner explicitly requested main and production instead of further previews.
+The public production address is **https://games-seven-black.vercel.app**.
+`games-rudraghavs-projects.vercel.app` is a protected team deployment alias;
+use the public address for friend invitations and Google app branding.
 The existing dedicated Games Supabase project retains its current name/data and
 stable encryption secret; local development remains a separate local database.
 Historical previews are rollback references. This early production deployment
@@ -26,8 +29,16 @@ commits and fast-forward main rather than rewriting history. A blocked deploymen
 is retained as an audit record; retry only after the author-identity cause is fixed.
 
 The deployment target is the already linked personal Vercel Games project and
-the dedicated personal Supabase `games-preview`. It is a testing preview; the
-production acceptance gate in VERIFICATION.md remains in force.
+the dedicated personal Supabase `games-preview`, whose name predates this
+production rollout. The full product acceptance gate in VERIFICATION.md remains
+in force; production hosting is early access at the owner's request.
+
+Production deployment `dpl_5JSzmbXp6gU8VL6YUVDCoPXJg7Gp` is Ready in Mumbai,
+serving main `ebd6badaa548c6d18b975db20d09f17e1ebdc92f`. Live checks passed for
+all fourteen opening-action paths, retries/conflicts/refresh, private Broadcast,
+cross-room denial and Google signup retaining the original player and room.
+The subsequent URL/documentation/tooling correction does not change deployed
+runtime inputs and does not trigger a second application deployment.
 
 ## Credential handoff
 
@@ -47,8 +58,8 @@ and retained across deployments so saved invitations remain decryptable.
 
 ```sh
 backend/.venv/bin/python scripts/cloud_preview.py check
-backend/.venv/bin/python scripts/cloud_preview.py migrate
-backend/.venv/bin/python scripts/cloud_preview.py configure
+backend/.venv/bin/python scripts/cloud_preview.py migrate --environment production
+backend/.venv/bin/python scripts/cloud_preview.py configure --environment production
 ```
 
 Each operation checks the configured project identity and selected personal
@@ -56,14 +67,14 @@ Vercel account/project. Checks verify the publishable key, anonymous sign-in
 configuration, asymmetric signing keys and session database connection. Migrate
 uses reviewed Alembic history on the session pooler (5432), then checks schema
 drift and private-table RLS/grants. Configure uses transaction pooling (6543)
-with no prepared statements, TLS and preview-only environment entries. Secrets
+with no prepared statements, TLS and entries scoped to the explicit environment. Secrets
 are supplied to the CLI through stdin and never echoed. A mismatched project,
 shared environment entry, missing setting or failed check stops the operation.
 
 The local `.env`, local database and local development identity stay separate.
 No cloud migration command resets a database. These helpers do not deploy.
 
-## Deployment and online verification
+## Historical preview deployment and online verification
 
 Run affected verification groups locally, then deploy once through the personal
 Vercel CLI configuration and **explicit `--environment preview`** (the CLI can
@@ -90,6 +101,7 @@ opt-in; regular local browser runs skip them. `GAMES_TEST_AI=1` opts into a real
 generation. Reuse identities within the catalogue scenario to respect anonymous
 signup limits. Never commit session storage or tokens.
 
-The final testing URL is https://games-r9le3idrh-rudraghavs-projects.vercel.app.
-It retains Vercel Authentication pending the owner's answer about friend access.
-Application membership/invite checks remain required independently of that gate.
+The historical testing URL is https://games-r9le3idrh-rudraghavs-projects.vercel.app.
+It retains Vercel Authentication as a rollback reference. Current friend access
+uses the public production address above. Application membership/invite checks
+remain required independently of Vercel's deployment gate.

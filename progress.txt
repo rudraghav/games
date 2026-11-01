@@ -352,3 +352,32 @@
   saved, existing preview/local allowlist retained. Production secrets/config
   were written without credential output, and private credential files remain
   ignored with owner-only permissions.
+- Main ebd6badaa548c6d18b975db20d09f17e1ebdc92f pushed and remote parity verified.
+  Production dpl_5JSzmbXp6gU8VL6YUVDCoPXJg7Gp is READY in bom1, with both
+  releaseSourceSha and githubCommitSha matching that main commit. Vercel assigned
+  https://games-seven-black.vercel.app as the public production domain; the team
+  alias remains protected. Corrected Google home/privacy/origin and Supabase
+  site/callback settings to the public domain, preserving existing allowlists.
+  Fresh Supabase URL readback and public HTTP checks passed.
+- Actual production browser verification passed both hosted scenarios: four
+  independent guests opened all fourteen games, made legal actions, retried
+  actions, rejected stale moves and refreshed; private Broadcast delivered room
+  revisions/chat, and a nonmember could neither subscribe nor read the room.
+  AI generation was intentionally excluded from this smoke: intermittent schema
+  validation failures remain unresolved, with saved-spread/retry behavior intact.
+- Owner Google signup passed actual basic-identity consent and PKCE callback on
+  the public production domain. A scoped before/after database comparison proved
+  the same guest player ID, saved name and existing room ownership were retained;
+  the account is now permanent, email-verified and linked to Google. Original
+  room access and refreshed Google-connected profile both passed. No Google
+  tokens, raw player identifiers or private room references are in this journal.
+- Final public checks passed home/profile/privacy 200, all fourteen catalogue
+  entries, original/optimized Tarot art, unauthenticated profile 401 and hosted
+  development identity 404. Latest correction passed script syntax, tooling
+  boundaries and git diff checks; earlier full affected verification remains
+  applicable because application runtime inputs did not change.
+- Closure changes only production URL references, scoped HTTP/capture tooling and
+  this release evidence. Commit/push them to main without a duplicate docs-only
+  application deployment. Serving runtime remains the verified ebd6badaa revision.
+  Full-match/min-max browser coverage, canonical Deal No Mercy printed values,
+  hosted 50-room load and Tarot reliability remain open acceptance requirements.
