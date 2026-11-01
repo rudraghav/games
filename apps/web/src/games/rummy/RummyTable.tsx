@@ -7,6 +7,7 @@ import { PlayerStrip } from '../shared/PlayerStrip';
 import { ActionPanel } from '../shared/ActionPanel';
 
 const buckets = ['Ungrouped', 'Group 1', 'Group 2', 'Group 3', 'Group 4'];
+const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A', '★'];
 export function RummyTable(props: TableProps) {
   const { match } = props;
   const [selected, setSelected] = useState<string | null>(null);
@@ -15,13 +16,12 @@ export function RummyTable(props: TableProps) {
   function arranged(cards: Card[]) {
     return sort === 'dealt'
       ? cards
-      : [...cards].sort((a, b) =>
-          (sort === 'suit' ? `${a.suit}-${a.value}` : a.value).localeCompare(
-            sort === 'suit' ? `${b.suit}-${b.value}` : b.value,
-            undefined,
-            { numeric: true },
-          ),
-        );
+      : [...cards].sort((a, b) => {
+          const rankDifference = ranks.indexOf(a.value) - ranks.indexOf(b.value);
+          return sort === 'suit'
+            ? a.suit.localeCompare(b.suit) || rankDifference
+            : rankDifference || a.suit.localeCompare(b.suit);
+        });
   }
   return (
     <div className="table-layout">

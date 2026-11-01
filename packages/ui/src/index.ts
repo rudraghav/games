@@ -1,4 +1,7 @@
 export { Button } from './components/Button';
+export { ChoiceGroup } from './components/ChoiceGroup';
+export { GameTile } from './components/GameTile';
+export { MancalaPit } from './components/MancalaPit';
 export { Avatar } from './components/Avatar';
 export { Modal } from './components/Modal';
 export { PlayingCard, type CardPresentation } from './components/PlayingCard';

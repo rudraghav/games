@@ -13,7 +13,7 @@ GROUPS = {
     "backend": ("Python lint/types and deterministic engine tests", [
         [PYTHON, "-m", "ruff", "check", "backend/app", "backend/tests"],
         [PYTHON, "-m", "mypy", "--config-file", "backend/pyproject.toml", "backend/app"],
-        [PYTHON, "-m", "pytest", "backend/tests/test_engines.py", "backend/tests/test_uno_edges.py", "backend/tests/test_playthroughs.py", "backend/tests/test_tarot.py", "backend/tests/test_gemini.py", "backend/tests/test_auth.py", "backend/tests/test_cloud_config.py", "backend/tests/test_expansion.py", "backend/tests/test_gem_market_edges.py", "-q"]]),
+        [PYTHON, "-m", "pytest", "backend/tests/test_engines.py", "backend/tests/test_uno_edges.py", "backend/tests/test_playthroughs.py", "backend/tests/test_tarot.py", "backend/tests/test_gemini.py", "backend/tests/test_auth.py", "backend/tests/test_cloud_config.py", "backend/tests/test_expansion.py", "backend/tests/test_gem_market_edges.py", "backend/tests/test_card_family_rules.py", "backend/tests/test_table_rules.py", "backend/tests/test_new_boards.py", "-q"]]),
     "contracts": ("Generated OpenAPI/catalogue/wire-type drift", [[PYTHON, "scripts/check_contracts.py"]]),
     "migrations": ("Fresh local schema upgrade, drift and privacy grants", [
         [PYTHON, "scripts/isolated_backend.py", "tests/test_migrations.py", "-q"]]),

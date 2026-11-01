@@ -1,11 +1,12 @@
 import { expect, test } from '@playwright/test';
+import gameCatalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
-test('all fourteen experiences and twenty-eight table scenarios fit the viewport', async ({
-  page,
-}) => {
+test('the complete catalogue and every table scenario fit the viewport', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Good company. Great games.' })).toBeVisible();
-  await expect(page.getByRole('button', { name: /^Create .+ room$/ })).toHaveCount(14);
+  await expect(page.getByRole('button', { name: /^Create .+ room$/ })).toHaveCount(
+    gameCatalogue.length,
+  );
   await expect(page.getByRole('button', { name: 'Create Pop Tarot room' })).toBeVisible();
   for (const selector of ['.game-art--board', '.game-art--words']) {
     expect(
@@ -16,12 +17,17 @@ test('all fourteen experiences and twenty-eight table scenarios fit the viewport
     ).toBe('grid');
   }
   await page.goto('/design');
-  for (let i = 0; i < 28; i++) {
+  const scenarioCount = await page.getByLabel('Table scenario').locator('option').count();
+  for (let i = 0; i < scenarioCount; i++) {
     await page.getByLabel('Table scenario').selectOption(String(i));
     await expect
       .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
       .toBe(true);
-    if (i >= 26) {
+    if (
+      (await page.getByLabel('Table scenario').locator('option:checked').innerText()).includes(
+        'Gem Market',
+      )
+    ) {
       expect(
         await page.locator('.gem-tier .development-card').evaluateAll((cards) =>
           cards.every((card) => {

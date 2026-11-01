@@ -6,31 +6,48 @@ export type RoomView = Omit<components['schemas']['RoomView'], 'game'> & {
   game: Required<components['schemas']['GameView']> | null;
 };
 
+export class TestTransportError extends Error {
+  constructor(method: string, path: string) {
+    const operation =
+      path.startsWith('rooms/') && path.split('/').length === 2
+        ? 'room snapshot'
+        : path.split('/').at(-1);
+    super(`Games test transport failed: ${method} ${operation}`);
+    this.name = 'TestTransportError';
+  }
+}
+
 // Read only the session belonging to this isolated test context. Never log it.
 export async function requestAs(page: Page, path: string, method = 'GET', data?: unknown) {
-  const parts = (await page.context().cookies())
-    .filter((cookie) => /^sb-.+-auth-token(?:\.\d+)?$/.test(cookie.name))
-    .sort((a, b) => a.name.localeCompare(b.name));
-  const encoded = parts.map((part) => part.value).join('');
-  const session = encoded
-    ? JSON.parse(
-        encoded.startsWith('base64-')
-          ? Buffer.from(encoded.slice(7), 'base64url').toString()
-          : encoded,
-      )
-    : null;
-  return page.request.fetch(`/api/backend/v1/${path}`, {
-    method,
-    data,
-    headers: {
-      ...(session ? { Authorization: `Bearer ${session.access_token}` } : {}),
-      ...(process.env.VERCEL_OIDC_TOKEN && process.env.GAMES_TEST_URL
-        ? {
-            'x-vercel-trusted-oidc-idp-token': process.env.VERCEL_OIDC_TOKEN,
-          }
-        : {}),
-    },
-  });
+  try {
+    const parts = (await page.context().cookies())
+      .filter((cookie) => /^sb-.+-auth-token(?:\.\d+)?$/.test(cookie.name))
+      .sort((a, b) => a.name.localeCompare(b.name));
+    const encoded = parts.map((part) => part.value).join('');
+    const session = encoded
+      ? JSON.parse(
+          encoded.startsWith('base64-')
+            ? Buffer.from(encoded.slice(7), 'base64url').toString()
+            : encoded,
+        )
+      : null;
+    return await page.request.fetch(`/api/backend/v1/${path}`, {
+      method,
+      data,
+      headers: {
+        ...(session ? { Authorization: `Bearer ${session.access_token}` } : {}),
+        ...(process.env.VERCEL_OIDC_TOKEN && process.env.GAMES_TEST_URL
+          ? {
+              'x-vercel-trusted-oidc-idp-token': process.env.VERCEL_OIDC_TOKEN,
+            }
+          : {}),
+      },
+    });
+  } catch {
+    // Playwright's transport exceptions include its full request headers/cookies.
+    // Never retain that exception as a cause or expose it in test output.
+    throw new TestTransportError(method, path);
+  }
 }
 
 export async function roomAs(page: Page, id: string): Promise<RoomView> {

@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { Hand, PlayingCard, TarotCard } from '@games/ui';
 import { mapRoom } from '@games/api-client/mappers';
 import { fixtures } from '@/stories/generated/rooms';
+import { BoardTable } from '@/games/board/BoardTable';
 
 const secret = {
   id: 'private-card',
@@ -13,6 +14,29 @@ const secret = {
   subtitle: '',
 };
 describe('Card accessibility and public contracts', () => {
+  it('announces Checkers kings through the actual selectable square', () => {
+    const fixture = fixtures.find((item) => item.label === 'Checkers · minimum seats')!;
+    const room = mapRoom(fixture.room);
+    const match = room.game!;
+    const source = match.actions[0].value.choice.split(':')[0];
+    const king = match.community.find((cell) => cell.id === source)!;
+    const crowned = {
+      ...match,
+      community: match.community.map((cell) =>
+        cell.id === source ? { ...cell, subtitle: 'King' } : cell,
+      ),
+    };
+    const html = renderToStaticMarkup(
+      <BoardTable
+        room={room}
+        match={crowned}
+        selfId={fixture.selfId}
+        onAction={() => undefined}
+        pending={false}
+      />,
+    );
+    expect(html).toContain(`aria-label="Select king ${king.label}"`);
+  });
   it('does not reveal a face-down card through its accessible name or colour', () => {
     const html = renderToStaticMarkup(
       <PlayingCard card={secret} faceDown onClick={() => undefined} />,

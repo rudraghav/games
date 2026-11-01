@@ -16,6 +16,23 @@ export function SkyjoTable(props: TableProps) {
           ) : null}
           <span className="eyebrow">Round {String(match.detail.round ?? 1)}</span>
         </div>
+        <ActionPanel
+          {...props}
+          instruction={
+            match.currentPlayer === selfId &&
+            match.actions.some((option) => ['reveal', 'swap'].includes(option.value.type))
+              ? match.actions.some((option) => option.value.type === 'swap')
+                ? 'Choose a card in your grid to replace.'
+                : 'Choose a face-down card in your grid to reveal.'
+              : undefined
+          }
+          match={{
+            ...match,
+            actions: match.actions.filter(
+              (option) => !['reveal', 'swap'].includes(option.value.type),
+            ),
+          }}
+        />
         <div className="skyjo-players">
           {match.players.map((player) => {
             const member = room.members.find((m) => m.id === player.id);
@@ -67,18 +84,8 @@ export function SkyjoTable(props: TableProps) {
           })}
         </div>
       </div>
-      <ActionPanel
-        {...props}
-        match={{
-          ...match,
-          actions: match.actions.filter(
-            (option) => !['reveal', 'swap'].includes(option.value.type),
-          ),
-        }}
-      />
       <p className="small muted table-help">
-        Choose a card in your grid to reveal or replace it. Three matching cards in a column
-        disappear.
+        Three matching cards in a column disappear, including during the final reveal.
       </p>
     </div>
   );

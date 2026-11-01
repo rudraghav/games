@@ -1,0 +1,410 @@
+{
+  "date": "2026-11-01",
+  "runtimeSourceFingerprint": "c6412dbcaee1b578801ae49fe693ccdcb71d73492c89e817e21fef0988e27418",
+  "frontend": {
+    "typesLintBuildStorybook": "passed",
+    "unitTests": 13
+  },
+  "backend": {
+    "typesLint": "passed",
+    "tests": 285,
+    "multiplayerTests": 43,
+    "migrationChecks": 1
+  },
+  "browser": {
+    "regularWorkflows": 26,
+    "transportPrivacyChecks": 4,
+    "tableScenariosPerViewport": 32,
+    "distinctFullMatchCases": 54,
+    "desktop": [
+      {
+        "game": "uno",
+        "seats": 2,
+        "moves": 38,
+        "rematch": true
+      },
+      {
+        "game": "uno",
+        "seats": 10,
+        "moves": 192,
+        "rematch": true
+      },
+      {
+        "game": "uno-no-mercy",
+        "seats": 2,
+        "moves": 11,
+        "rematch": true
+      },
+      {
+        "game": "uno-no-mercy",
+        "seats": 6,
+        "moves": 97,
+        "rematch": true
+      },
+      {
+        "game": "deal",
+        "seats": 2,
+        "moves": 65,
+        "rematch": true
+      },
+      {
+        "game": "deal",
+        "seats": 5,
+        "moves": 82,
+        "rematch": true
+      },
+      {
+        "game": "deal-no-mercy",
+        "seats": 2,
+        "moves": 76,
+        "rematch": true
+      },
+      {
+        "game": "deal-no-mercy",
+        "seats": 5,
+        "moves": 90,
+        "rematch": true
+      },
+      {
+        "game": "holdem",
+        "seats": 2,
+        "moves": 8,
+        "rematch": true
+      },
+      {
+        "game": "holdem",
+        "seats": 9,
+        "moves": 36,
+        "rematch": true
+      },
+      {
+        "game": "rummy",
+        "seats": 2,
+        "moves": 1,
+        "rematch": true
+      },
+      {
+        "game": "rummy",
+        "seats": 6,
+        "moves": 5,
+        "rematch": true
+      },
+      {
+        "game": "teen-patti",
+        "seats": 2,
+        "moves": 1,
+        "rematch": true
+      },
+      {
+        "game": "teen-patti",
+        "seats": 6,
+        "moves": 12,
+        "rematch": true
+      },
+      {
+        "game": "blackjack",
+        "seats": 1,
+        "moves": 2,
+        "rematch": true
+      },
+      {
+        "game": "blackjack",
+        "seats": 7,
+        "moves": 14,
+        "rematch": true
+      },
+      {
+        "game": "skyjo",
+        "seats": 2,
+        "moves": 64,
+        "rematch": true
+      },
+      {
+        "game": "skyjo",
+        "seats": 8,
+        "moves": 256,
+        "rematch": true
+      },
+      {
+        "game": "tarot",
+        "seats": 1,
+        "moves": 3,
+        "rematch": true
+      },
+      {
+        "game": "four-in-a-row",
+        "seats": 2,
+        "moves": 18,
+        "rematch": true
+      },
+      {
+        "game": "reversi",
+        "seats": 2,
+        "moves": 60,
+        "rematch": true
+      },
+      {
+        "game": "word-agents",
+        "seats": 4,
+        "moves": 5,
+        "rematch": true
+      },
+      {
+        "game": "word-agents",
+        "seats": 10,
+        "moves": 2,
+        "rematch": true
+      },
+      {
+        "game": "gem-market",
+        "seats": 2,
+        "moves": 44,
+        "rematch": true
+      },
+      {
+        "game": "gem-market",
+        "seats": 4,
+        "moves": 98,
+        "rematch": true
+      },
+      {
+        "game": "checkers",
+        "seats": 2,
+        "moves": 46,
+        "rematch": true
+      },
+      {
+        "game": "mancala",
+        "seats": 2,
+        "moves": 47,
+        "rematch": true
+      }
+    ],
+    "phone": [
+      {
+        "game": "uno",
+        "seats": 2,
+        "moves": 66,
+        "rematch": true
+      },
+      {
+        "game": "uno",
+        "seats": 10,
+        "moves": 197,
+        "rematch": true
+      },
+      {
+        "game": "uno-no-mercy",
+        "seats": 2,
+        "moves": 6,
+        "rematch": true
+      },
+      {
+        "game": "uno-no-mercy",
+        "seats": 6,
+        "moves": 94,
+        "rematch": true
+      },
+      {
+        "game": "deal",
+        "seats": 2,
+        "moves": 60,
+        "rematch": true
+      },
+      {
+        "game": "deal",
+        "seats": 5,
+        "moves": 70,
+        "rematch": true
+      },
+      {
+        "game": "deal-no-mercy",
+        "seats": 2,
+        "moves": 97,
+        "rematch": true
+      },
+      {
+        "game": "deal-no-mercy",
+        "seats": 5,
+        "moves": 109,
+        "rematch": true
+      },
+      {
+        "game": "holdem",
+        "seats": 2,
+        "moves": 8,
+        "rematch": true
+      },
+      {
+        "game": "holdem",
+        "seats": 9,
+        "moves": 36,
+        "rematch": true
+      },
+      {
+        "game": "rummy",
+        "seats": 2,
+        "moves": 1,
+        "rematch": true
+      },
+      {
+        "game": "rummy",
+        "seats": 6,
+        "moves": 5,
+        "rematch": true
+      },
+      {
+        "game": "teen-patti",
+        "seats": 2,
+        "moves": 1,
+        "rematch": true
+      },
+      {
+        "game": "teen-patti",
+        "seats": 6,
+        "moves": 6,
+        "rematch": true
+      },
+      {
+        "game": "blackjack",
+        "seats": 1,
+        "moves": 2,
+        "rematch": true
+      },
+      {
+        "game": "blackjack",
+        "seats": 7,
+        "moves": 14,
+        "rematch": true
+      },
+      {
+        "game": "skyjo",
+        "seats": 2,
+        "moves": 64,
+        "rematch": true
+      },
+      {
+        "game": "skyjo",
+        "seats": 8,
+        "moves": 256,
+        "rematch": true
+      },
+      {
+        "game": "tarot",
+        "seats": 1,
+        "moves": 3,
+        "rematch": true
+      },
+      {
+        "game": "four-in-a-row",
+        "seats": 2,
+        "moves": 26,
+        "rematch": true
+      },
+      {
+        "game": "reversi",
+        "seats": 2,
+        "moves": 60,
+        "rematch": true
+      },
+      {
+        "game": "word-agents",
+        "seats": 4,
+        "moves": 10,
+        "rematch": true
+      },
+      {
+        "game": "word-agents",
+        "seats": 10,
+        "moves": 21,
+        "rematch": true
+      },
+      {
+        "game": "gem-market",
+        "seats": 2,
+        "moves": 53,
+        "rematch": true
+      },
+      {
+        "game": "gem-market",
+        "seats": 4,
+        "moves": 87,
+        "rematch": true
+      },
+      {
+        "game": "checkers",
+        "seats": 2,
+        "moves": 45,
+        "rematch": true
+      },
+      {
+        "game": "mancala",
+        "seats": 2,
+        "moves": 61,
+        "rematch": true
+      }
+    ],
+    "decisions": "Authorized API decisions; rendered results/history and clicked rematch/game switching; Rummy browser drops separate from conserved valid-declaration integration fixtures."
+  },
+  "ai": {
+    "promptVersion": "pop-tarot-2",
+    "results": [
+      {
+        "scenario": 1,
+        "ok": true,
+        "seconds": 4.15,
+        "attempts": 1,
+        "exactCardPositions": true,
+        "strictSchema": true
+      },
+      {
+        "scenario": 2,
+        "ok": true,
+        "seconds": 3.1,
+        "attempts": 1,
+        "exactCardPositions": true,
+        "strictSchema": true
+      },
+      {
+        "scenario": 3,
+        "ok": true,
+        "seconds": 2.56,
+        "attempts": 1,
+        "exactCardPositions": true,
+        "strictSchema": true
+      },
+      {
+        "scenario": 4,
+        "ok": true,
+        "seconds": 2.24,
+        "attempts": 1,
+        "exactCardPositions": true,
+        "strictSchema": true
+      },
+      {
+        "scenario": 5,
+        "ok": true,
+        "seconds": 2.82,
+        "attempts": 1,
+        "exactCardPositions": true,
+        "strictSchema": true
+      },
+      {
+        "scenario": 6,
+        "ok": true,
+        "seconds": 2.71,
+        "attempts": 1,
+        "exactCardPositions": true,
+        "strictSchema": true
+      }
+    ]
+  },
+  "localLoad": {
+    "rooms": 50,
+    "actionMedianMs": 374,
+    "actionP95Ms": 432,
+    "snapshotMedianMs": 192,
+    "snapshotP95Ms": 225
+  },
+  "production": "pending rollout and live verification; no claim from local checks"
+}

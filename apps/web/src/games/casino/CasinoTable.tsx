@@ -1,14 +1,13 @@
 'use client';
-import { useState, type CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 import { Hand, PlayingCard, Seat } from '@games/ui';
 import { ActionPanel } from '../shared/ActionPanel';
 import type { TableProps } from '../types';
 
 export function CasinoTable(props: TableProps) {
   const { match, room, selfId } = props;
-  const [selected, setSelected] = useState<string | null>(null);
   return (
-    <div className="table-layout">
+    <div className="table-layout casino-layout">
       <div className="casino-table">
         <div className="casino-felt">
           <span className="table-watermark">g.</span>
@@ -86,11 +85,7 @@ export function CasinoTable(props: TableProps) {
                 : 'Your cards'}
             </h3>
           </div>
-          <Hand
-            cards={match.hand}
-            selectedIds={selected ? [selected] : []}
-            onSelect={(id) => setSelected(id === selected ? null : id)}
-          />
+          <Hand cards={match.hand} />
         </div>
       ) : null}
       <ActionPanel {...props} />

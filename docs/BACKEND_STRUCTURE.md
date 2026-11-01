@@ -27,3 +27,17 @@ scoped access. All requests verify the token's issuer/audience/signature. Local
 development can explicitly enable signed development identities; hosted startup
 rejects development auth. Reviewed Alembic migrations are the sole application
 schema history. Preview and production require separate Games databases.
+## Persisted rules-version boundary
+
+GameManifest.rules_version is a nonempty string of at most sixteen characters,
+matching the persisted Match column. Registry construction rejects an oversized
+version before room creation; integration tests start and reload every game at
+both seat limits to catch constraints that pure engine setup cannot exercise.
+`house-deck-1` identifies the owner-approved Deal No Mercy Games inventory.
+
+Action card selections allow up to 115 identifiers, covering the largest current
+selectable Deal asset inventory. A legal payment can include more than thirty
+bank/property cards; the API must accept what the engine offers. Each engine
+still rejects duplicate, foreign or insufficient selections. Isolated HTTP
+integration tests pay thirty-three conserved assets in both Deal editions and
+verify immutable engine inputs, rejected ineligible cards and persisted readback.

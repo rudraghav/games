@@ -20,3 +20,15 @@ screenshots. Reuse interaction ideas, create Games-owned artwork and components.
 
 Storybook covers primitive variants, table layouts, crowded/maximum hands,
 pending/disconnected states and narrow viewports.
+
+The catalogue composes shared GameTile and ChoiceGroup primitives, with a labeled
+search field and group-size select. Fixed seat counts and solo play use concise
+metadata. Filters intersect and offer a reset from an empty state. Mancala pits
+and stores use a typed MancalaPit variant; Checkers extends the shared board
+renderer with source/destination selection and visible crowns.
+
+Action panels participate in document flow so they cannot obscure private cards.
+Deal hand/decisions precede the collections; phone casino decisions precede the
+seat grid; Skyjo's direct-grid instruction precedes the grids. Rank sorting uses
+actual playing-card order. The table audit and phone/desktop regression evidence
+live under docs/evidence/tables-2026-11-01.

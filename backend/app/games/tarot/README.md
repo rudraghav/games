@@ -42,8 +42,31 @@ See https://ai.google.dev/gemini-api/docs/pricing.
 
 Provider: Google Gemini Interactions API with JSON Schema output, storage off,
 low thinking level and a 2,400-token output cap. Default model is configurable
-through `TAROT_MODEL`. See https://ai.google.dev/gemini-api/docs/structured-output
-and https://ai.google.dev/gemini-api/docs/models (reviewed 31 October 2026).
+through `TAROT_MODEL`. The `pop-tarot-2` provider schema binds each of the three
+ordered card IDs and positions using supported `prefixItems`/single-value enums.
+Google ignores JSON Schema string-length constraints; descriptions communicate
+the character ranges and strict Pydantic validation remains authoritative. A
+completed but malformed/invalid response or partial truncated response receives
+at most one fresh generation with a safe failure classification, never rejected
+text. Failed, canceled, empty/safety, HTTP quota/auth and transport responses do
+not retry automatically. A 60-second retry deadline and 30-second request timeout
+fit within the 75-second frontend proxy and 120-second saved-generation lease.
+Both attempts reserve the transactional daily budget before transmission.
+
+See [Google structured output](https://ai.google.dev/gemini-api/docs/structured-output)
+and [Interactions status reference](https://ai.google.dev/api/interactions-api)
+(reviewed 1 November 2026). The old rejected responses were deliberately not
+retained, so their exact rejection cannot be reconstructed. The confirmed contract
+gap was relying on provider-ignored length keywords without a recovery path.
+
+Reliability verification: 28 focused Tarot/provider checks and nine isolated-room
+checks passed, including recovery from malformed/truncated/oversized/missing-field
+output, exact card identity validation, exhausted retry budgets, privacy, saved
+readback and no regeneration on repeated submission. Six non-personal live
+scenarios passed strict schema/card-position checks on their first attempts in
+2.24–4.15 seconds on 1 November 2026. These are bounded reliability samples,
+not a guarantee against provider outages. Metadata-only evaluation evidence is
+retained privately; no player questions, readings or tokens are in logs.
 
 Cost controls: 16,000-character request ceiling, 10 reading requests per player
 per hour, and a transactional application-wide default of 100 provider attempts

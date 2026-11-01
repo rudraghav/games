@@ -2,6 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
 import { requestAs, roomAs } from './helpers';
 import type { components } from '../../packages/api-client/src/generated/schema';
+import gameCatalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 // An explicit live check, not part of routine local runs. Four guest identities
 // are reused across the catalogue to respect Supabase's anonymous signup limit.
@@ -41,7 +42,9 @@ test('personal cloud: all games, private views, revisions and a saved reading', 
         );
     }
     await page.goto('/');
-    await expect(page.getByRole('button', { name: /^Create .+ room$/ })).toHaveCount(14);
+    await expect(page.getByRole('button', { name: /^Create .+ room$/ })).toHaveCount(
+      gameCatalogue.length,
+    );
     await page.getByRole('button', { name: 'Create Word Agents room', exact: true }).click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Cloud Test Host');
     await page

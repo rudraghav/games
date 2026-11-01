@@ -22,7 +22,9 @@ class Action(BaseModel):
     choice: str = ""
     amount: int = Field(default=0, ge=0, le=1_000_000)
     slot: int = Field(default=0, ge=0, le=11)
-    cards: list[str] = Field(default_factory=list, max_length=30)
+    # A Deal payment can legally select every asset in its 115-card house deck.
+    # Engines still validate ownership, uniqueness and the payment obligation.
+    cards: list[str] = Field(default_factory=list, max_length=115)
     groups: list[list[str]] = Field(default_factory=list, max_length=13)
 
 
@@ -92,7 +94,7 @@ class GameManifest(BaseModel):
     minutes: str
     icon: str
     color: str
-    rules_version: str = "1"
+    rules_version: str = Field(default="1", min_length=1, max_length=16)
     settings: list[Setting] = Field(default_factory=list)
     rules: list[str] = Field(default_factory=list)
 

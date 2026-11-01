@@ -10,6 +10,11 @@ equal hands. With two active players, blind may request show; seen may request
 show only against seen. The table caps base stake at 64 and pot at 1024; a pot
 cap causes a multiway showdown. These are explicit app house limits.
 
-Optional sideshows default on. Folded cards remain hidden. Status: implementation
-in progress; verify blind/seen stakes, ranking, consent, show eligibility, ties,
-chip conservation, pot-cap settlement and hidden blind cards.
+Optional sideshows default on. Folded cards remain hidden. Reference checked on
+1 November 2026: [Pagat's documented rules](https://www.pagat.com/vying/teen_patti.html).
+This app deliberately uses AKQ above A23 and permits seen-neighbour sideshows
+without requiring every remaining player to be seen; these are fixed house
+choices rather than a claim of one universal edition. `test_table_rules.py`
+checks seen stake parity, blind privacy, show eligibility, sideshow consent/ties,
+requester-loses showdown ties, min/max full matches and chip conservation.
+The pot cap settles immediately, even when a sideshow payment crosses it.

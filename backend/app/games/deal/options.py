@@ -10,14 +10,21 @@ def card_options(
     options = [legal(f"Bank {card.value}M", "bank", card=ident)] if card.kind != "property" else []
     if card.kind == "property":
         return [legal(f"Property · {c}", "property", card=ident, color=c) for c in card.colors]
-    if card.kind == "money" or card.action == "no" or gift and card.action == "go_again":
+    if card.kind == "money" or card.action == "no" or gift and card.action in {"go_again", "shack"}:
         return options
     kind = card.action
     others = [p for p in s["order"] if p != player]
     if kind in ("pass_go", "fill", "birthday", "go_again"):
         options.append(legal(card.view().label, "play", card=ident))
     elif kind == "double":
-        if s["moves"] >= 2 and any(cards[c].action == "rent" for c in s["hands"][player]):
+        if s["moves"] >= 2 and any(
+            cards[c].action == "rent"
+            and any(
+                option.action.type == "play"
+                for option in card_options(s, player, c, cards, mercy)
+            )
+            for c in s["hands"][player]
+        ):
             options.append(legal("Double next rent", "play", card=ident))
     elif kind in ("house", "hotel", "shack", "rent", "rent_double"):
         for key, group in s["properties"][player].items():
@@ -26,7 +33,9 @@ def card_options(
             if not any(cards[c].kind == "property" for c in group):
                 continue
             if kind in ("rent", "rent_double"):
-                if color not in card.colors:
+                if color not in card.colors or not any(
+                    cards[c].kind == "property" and cards[c].value for c in group
+                ):
                     continue
                 targets = others if not mercy and len(card.colors) == 10 else [None]
                 for target in targets:
@@ -238,7 +247,9 @@ def legal_actions(
                 or cards[ident].action == "double"
                 and o.action.type == "play"
             ]
-    for key, group in s["properties"][player].items():
+    # A Double the Rent is committed together with its following Rent card.
+    # Moving a wild away meanwhile could otherwise leave no legal rent or end.
+    for key, group in s["properties"][player].items() if s["boost"] == 1 else []:
         for c in group:
             if cards[c].kind == "property" and len(cards[c].colors) > 1:
                 for color in cards[c].colors:

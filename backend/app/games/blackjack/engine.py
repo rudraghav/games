@@ -67,10 +67,10 @@ class BlackjackEngine(BaseEngine):
                 legal("Place bet", "bet", input="amount", minimum=2, maximum=p["chips"], step=2)
             ]
         if s["phase"] == "insurance":
-            return [
-                legal("No insurance", "decline"),
-                legal(f"Insure for {p['bet'] // 2}", "accept"),
-            ]
+            actions = [legal("No insurance", "decline")]
+            if p["chips"] >= p["bet"] // 2:
+                actions.append(legal(f"Insure for {p['bet'] // 2}", "accept"))
+            return actions
         hand = p["hands"][s["hand_index"]]
         actions = [legal("Hit", "hit"), legal("Stand", "stand")]
         if len(hand["cards"]) == 2 and p["chips"] >= hand["bet"]:
@@ -104,6 +104,8 @@ class BlackjackEngine(BaseEngine):
         while s["turn"] < len(s["order"]):
             hands = s["players"][s["order"][s["turn"]]]["hands"]
             for i, hand in enumerate(hands):
+                if blackjack_total(hand["cards"])[0] >= 21:
+                    hand["done"] = True
                 if not hand["done"]:
                     s["hand_index"] = i
                     return

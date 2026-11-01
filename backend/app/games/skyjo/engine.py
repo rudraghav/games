@@ -135,6 +135,9 @@ class SkyjoEngine(BaseEngine):
         elif s["finisher"] and player in s["remaining"]:
             s["remaining"].remove(player)
         if s["finisher"] and not s["remaining"]:
+            for p in s["order"]:
+                s["revealed"][p] = [True] * 12
+                self._columns(s, p)
             totals = {p: sum(int(c.split(":")[1]) for c in s["grids"][p] if c) for p in s["order"]}
             finisher = s["finisher"]
             if totals[finisher] > 0 and any(

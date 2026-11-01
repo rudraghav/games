@@ -21,3 +21,11 @@ Tarot masters remain intact. An optional image loader lets the app request compa
 static WebP derivatives while Storybook can use the original PNG atlases.
 Change tokens and shared variants to improve a family, then inspect the component
 and maximum-size table stories before checking the affected room flow.
+## Discovery and board additions
+
+GameTile composes artwork, title, subtitle and seat/duration metadata, with a
+typed house-edition variant whose label remains visible on phones. ChoiceGroup
+provides labeled, keyboard-reachable pressed choices without navigation side
+effects. MancalaPit shares numeric pit/store rendering, last-move emphasis and
+disabled states between actual play and catalogue art. Components stay unaware
+of game engines, API models and feature state. All variants are in Storybook.

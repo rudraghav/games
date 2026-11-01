@@ -1,0 +1,196 @@
+{
+  "date": "2026-11-01",
+  "target": "local /design synthetic projected fixtures",
+  "viewports": {
+    "phone": [
+      390,
+      844
+    ],
+    "desktop": [
+      1440,
+      1000
+    ]
+  },
+  "reducedMotion": true,
+  "before": [
+    {
+      "id": "holdem",
+      "device": "desktop",
+      "pageOverflow": false,
+      "actions": 0
+    },
+    {
+      "id": "deal",
+      "device": "desktop",
+      "pageOverflow": false,
+      "actions": 1
+    },
+    {
+      "id": "rummy",
+      "device": "desktop",
+      "pageOverflow": false,
+      "actions": 3
+    },
+    {
+      "id": "skyjo",
+      "device": "desktop",
+      "pageOverflow": false,
+      "actions": 0
+    },
+    {
+      "id": "holdem",
+      "device": "phone",
+      "pageOverflow": false,
+      "actions": 0
+    },
+    {
+      "id": "deal",
+      "device": "phone",
+      "pageOverflow": false,
+      "actions": 1
+    },
+    {
+      "id": "rummy",
+      "device": "phone",
+      "pageOverflow": false,
+      "actions": 3
+    },
+    {
+      "id": "skyjo",
+      "device": "phone",
+      "pageOverflow": false,
+      "actions": 0
+    }
+  ],
+  "after": [
+    {
+      "id": "holdem",
+      "device": "desktop",
+      "limit": "minimum",
+      "pageOverflow": false,
+      "actions": 4,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "holdem",
+      "device": "desktop",
+      "limit": "maximum",
+      "pageOverflow": false,
+      "actions": 0,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "deal",
+      "device": "desktop",
+      "limit": "minimum",
+      "pageOverflow": false,
+      "actions": 1,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "deal",
+      "device": "desktop",
+      "limit": "maximum",
+      "pageOverflow": false,
+      "actions": 1,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "rummy",
+      "device": "desktop",
+      "limit": "minimum",
+      "pageOverflow": false,
+      "actions": 3,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "rummy",
+      "device": "desktop",
+      "limit": "maximum",
+      "pageOverflow": false,
+      "actions": 3,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "skyjo",
+      "device": "desktop",
+      "limit": "minimum",
+      "pageOverflow": false,
+      "actions": 0,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "skyjo",
+      "device": "desktop",
+      "limit": "maximum",
+      "pageOverflow": false,
+      "actions": 0,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "holdem",
+      "device": "phone",
+      "limit": "minimum",
+      "pageOverflow": false,
+      "actions": 4,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "holdem",
+      "device": "phone",
+      "limit": "maximum",
+      "pageOverflow": false,
+      "actions": 0,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "deal",
+      "device": "phone",
+      "limit": "minimum",
+      "pageOverflow": false,
+      "actions": 1,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "deal",
+      "device": "phone",
+      "limit": "maximum",
+      "pageOverflow": false,
+      "actions": 1,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "rummy",
+      "device": "phone",
+      "limit": "minimum",
+      "pageOverflow": false,
+      "actions": 3,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "rummy",
+      "device": "phone",
+      "limit": "maximum",
+      "pageOverflow": false,
+      "actions": 3,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "skyjo",
+      "device": "phone",
+      "limit": "minimum",
+      "pageOverflow": false,
+      "actions": 0,
+      "actionPanelPosition": "relative"
+    },
+    {
+      "id": "skyjo",
+      "device": "phone",
+      "limit": "maximum",
+      "pageOverflow": false,
+      "actions": 0,
+      "actionPanelPosition": "relative"
+    }
+  ],
+  "browserChecks": "4 passed across desktop and phone in table-usability.spec.ts"
+}

@@ -1,6 +1,6 @@
 # Application flow
 
-- `/`: public, server-rendered lounge with thirteen competitive games and Pop Tarot; create/join and recent rooms.
+- `/`: public, server-rendered lounge with fifteen competitive games and Pop Tarot; search/category/group-size discovery, create/join and recent rooms.
 - `/rooms/[id]`: authenticated membership-only lobby, live table, results and room chat.
 - `/join/[token]`: guest identity and explicit join; navigate to the stable room URL after joining.
 - `/profile`: Google signup/sign-in, guest-preserving account/email linking, saved name/avatar and match results.

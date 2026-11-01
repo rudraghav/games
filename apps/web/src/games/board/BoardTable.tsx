@@ -1,6 +1,6 @@
 'use client';
-import type { CSSProperties } from 'react';
-import { ArrowDown } from 'lucide-react';
+import { useState, type CSSProperties } from 'react';
+import { ArrowDown, Crown } from 'lucide-react';
 import { Button } from '@games/ui';
 import { boardDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
@@ -10,7 +10,10 @@ export function BoardTable(props: TableProps) {
   const { match, room, onAction, pending } = props;
   const board = boardDetails(match.detail);
   const four = match.id === 'four-in-a-row';
+  const checkers = match.id === 'checkers';
+  const [selected, setSelected] = useState<string | null>(null);
   const options = new Map(match.actions.map((option) => [option.value.choice, option]));
+  const sources = new Set(match.actions.map((option) => option.value.choice.split(':')[0]));
   const blocked = pending || room.paused;
   return (
     <div className="table-layout">
@@ -21,12 +24,12 @@ export function BoardTable(props: TableProps) {
             ? match.players[0].id === player.id
               ? 'Coral discs'
               : 'Gold discs'
-            : `${player.score} discs`
+            : `${player.score} ${checkers ? 'captures' : 'discs'}`
         }
       />
       <section
-        className={`classic-board classic-board--${four ? 'four' : 'reversi'}`}
-        aria-label={`${four ? 'Four in a Row' : 'Reversi'} board`}
+        className={`classic-board classic-board--${four ? 'four' : checkers ? 'checkers' : 'reversi'}`}
+        aria-label={`${four ? 'Four in a Row' : checkers ? 'Checkers' : 'Reversi'} board`}
       >
         <div className="board-scroll">
           <div
@@ -54,9 +57,14 @@ export function BoardTable(props: TableProps) {
             ) : null}
             <div className="board-grid" role="group" aria-label="Playing surface">
               {match.community.map((cell, index) => {
-                const option = options.get(cell.id);
-                const label = `${cell.label}: ${cell.value ? playerName(room, match.players[Number(cell.value) - 1].id) : 'empty'}`;
-                const content = <span className="board-disc" data-color={cell.color} />;
+                const option = options.get(checkers ? `${selected}:${cell.id}` : cell.id);
+                const selectable = checkers && sources.has(cell.id);
+                const label = `${cell.label}: ${cell.value ? `${cell.subtitle === 'King' ? 'king, ' : ''}${playerName(room, match.players[Number(cell.value) - 1].id)}` : 'empty'}`;
+                const content = (
+                  <span className="board-disc" data-color={cell.color}>
+                    {cell.subtitle === 'King' ? <Crown size={20} aria-hidden="true" /> : null}
+                  </span>
+                );
                 return four ? (
                   <div
                     key={cell.id}
@@ -71,11 +79,25 @@ export function BoardTable(props: TableProps) {
                     key={cell.id}
                     type="button"
                     className="board-square"
-                    aria-label={option?.label || label}
-                    disabled={blocked || !option}
+                    aria-label={
+                      option?.label ||
+                      (selectable
+                        ? `Select ${cell.subtitle === 'King' ? 'king' : 'piece'} ${cell.label}`
+                        : label)
+                    }
+                    disabled={blocked || (!option && !selectable)}
                     data-legal={Boolean(option)}
+                    data-dark={
+                      (Math.floor(index / board.columns) + (index % board.columns)) % 2 === 1
+                    }
+                    aria-pressed={checkers ? selected === cell.id : undefined}
                     data-last={board.lastMove === index}
-                    onClick={() => option && onAction(option.value)}
+                    onClick={() => {
+                      if (option) {
+                        onAction(option.value);
+                        setSelected(null);
+                      } else if (selectable) setSelected(selected === cell.id ? null : cell.id);
+                    }}
                   >
                     {content}
                   </button>
@@ -91,7 +113,11 @@ export function BoardTable(props: TableProps) {
               ? 'A good round, well played.'
               : four
                 ? 'Choose a column. Every disc changes the picture.'
-                : 'Choose a marked square to flip the line.'}
+                : checkers
+                  ? selected
+                    ? 'Choose a marked diagonal. Jumps are compulsory.'
+                    : 'Choose a piece, then its destination.'
+                  : 'Choose a marked square to flip the line.'}
         </p>
       </section>
     </div>

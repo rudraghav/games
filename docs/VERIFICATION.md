@@ -23,7 +23,67 @@ official browser runtime with `PLAYWRIGHT_SKIP_BROWSER_GC=1 pnpm exec playwright
 install chromium`; preserve other projects' browser caches. Success traces are
 disposable; retain concise evidence and failure traces needed for open issues.
 
-## Current evidence and limits
+## Current release verification — 1 November 2026
+
+The owner requested main/production, then complete-match/rule verification,
+Tarot reliability repairs and expansion. Production uses the existing dedicated
+Games Supabase data and stable encryption identity; local verification remains
+isolated. Google signup and guest-preserving linking passed live consent/callback
+and scoped player/room readback in the preceding production release.
+
+The catalogue now contains sixteen experiences. The owner explicitly approved
+the labeled Deal No Mercy Games house inventory; no unverified claim to Hasbro's
+printed money multiplicities is made. See [the rules audit](RULE_AUDIT.md) and
+each module's canonical sources, table choices and expected-outcome tests.
+
+Named frontend/backend/contracts/migrations/multiplayer/tooling/local-load groups
+passed after the rule/Tarot work. Phone/desktop catalogue/board workflows passed
+six checks; the existing regression suite passed sixteen and the new table
+usability suite passed four. All 32 generated min/max table scenarios fit each
+viewport. The root journal records final-source reruns and exact counts.
+
+Local acceptance reached 54 distinct full-match seat/viewport cases, including
+two real saved Tarot readings. Final-source Deal cases were rerun after the
+house-version and large-payment fixes. Thirteen frontend tests, 285 backend tests,
+43 isolated multiplayer checks and four transport/privacy checks passed. See
+`docs/evidence/release-2026-11-01/local.json` for metadata-only per-game results.
+
+Complete matches are an explicit long-running acceptance run:
+
+```sh
+GAMES_FULL_MATCHES=1 GAMES_TEST_AI=1 pnpm exec playwright test tests/browser/fullmatches.spec.ts --output=output/playwright/fullmatches
+```
+
+The harness reuses ten independent player sessions, exercises each distinct
+minimum/maximum seat limit, naturally reaches results and clicks rematch/change
+game while preserving the group. Bulk moves use the authorized API, not private
+engine-state injection. Tarot needs `GAMES_TEST_AI=1` for real generation; Rummy
+browser drops and separate conserved declaration fixtures are distinguished.
+Use `GAMES_FULL_MATCH_GAME` for a focused retry of comma-separated game IDs and
+`GAMES_FULL_MATCH_SEATS` for a specific player count. The helper sanitizes
+transport/cookie-decoding failures so test reports never echo authentication.
+
+After the single production deployment, repeat with
+`GAMES_TEST_URL=https://games-seven-black.vercel.app`, then run private Broadcast
+authorization and the explicit fifty-room load check:
+
+```sh
+GAMES_TEST_URL=https://games-seven-black.vercel.app GAMES_LOAD_ROOMS=50 node scripts/check_hosted_load.mjs
+```
+
+The load tool measures real committed actions, private Broadcast arrival and
+authorized observer snapshots for fifty simultaneous rooms. Polling is a
+separately labeled fallback, never called Broadcast proof. It closes only its
+own memberships and keeps all saved history. Results, latency and cleanup counts
+are retained without tokens, invite codes or hidden cards.
+
+The repaired Tarot provider contract passed six fresh non-personal strict-schema
+evaluations first attempt (2.24–4.15 s). Malformed/truncated/incorrect-card output
+has one budgeted regeneration at most. Quota/auth/transport/safety failures do
+not loop or save invented output. Final real browser/persistence and production
+checks must pass before closing this release.
+
+## Historical baseline evidence and limits — 31 October 2026
 
 - Google account connection is implemented locally: regular OAuth for a fresh
   visitor, manual linking for saved guest/email players, explicit existing-account
@@ -79,7 +139,7 @@ disposable; retain concise evidence and failure traces needed for open issues.
   `TAROT_API_TIER` controls the notice, not Google's actual billing or quota;
   it must match the key's project.
 
-## Required before production
+## Historical pre-production checklist — superseded by the release run above
 
 1. Verify the No Mercy Deal edition's complete printed inventory and values with
    canonical publisher/physical-deck evidence; finish action-specific edge coverage.
@@ -97,7 +157,7 @@ disposable; retain concise evidence and failure traces needed for open issues.
    gates, then use one intentional deployment path. Verify the actual rollout and
    a live multiplayer smoke test before calling the release complete.
 
-## Hosting configuration
+## Historical preview hosting configuration
 
 The personal `rudraghavs-projects/games` Vercel project is linked. Its preview has
 the working free-tier Gemini key as a Secret, model/tier as Config, and development auth disabled.

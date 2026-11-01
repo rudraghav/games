@@ -67,19 +67,20 @@
   {
     "id": "deal-no-mercy",
     "name": "Monopoly Deal No Mercy",
-    "subtitle": "Make bank. Make enemies.",
+    "subtitle": "Games house deck. No mercy.",
     "family": "property",
     "min_players": 2,
     "max_players": 5,
     "minutes": "15\u201325",
     "icon": "building",
     "color": "plum",
-    "rules_version": "1",
+    "rules_version": "house-deck-1",
     "settings": [],
     "rules": [
       "Collect three complete property sets in different colours.",
       "Draw two and play up to three cards per turn. Keep at most seven.",
-      "Debt must be settled before your own plays. Nothing is safe."
+      "Debt must be settled before your own plays. Nothing is safe.",
+      "Games house deck: 18 money cards \u2014 5\u00d71M, 4\u00d72M, 3\u00d73M, 2\u00d74M, 2\u00d75M, 1\u00d710M, 1\u00d715M. Printed action effects; money copy counts are a house convention."
     ]
   },
   {
@@ -273,6 +274,44 @@
       "Collect gems, reserve a card or buy a development each turn.",
       "Developments discount future purchases; patrons reward a balanced engine.",
       "At 15 prestige, finish the round. Most prestige wins; fewer developments breaks a tie."
+    ]
+  },
+  {
+    "id": "checkers",
+    "name": "Checkers",
+    "subtitle": "A small move. A clever little trap.",
+    "family": "board",
+    "min_players": 2,
+    "max_players": 2,
+    "minutes": "10\u201325",
+    "icon": "crown",
+    "color": "sage",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Move diagonally forward on dark squares. Captures are compulsory.",
+      "Finish every available jump with the same piece; choose any capture path.",
+      "Reach the far row to become a king. Crowning ends that turn; kings move either way.",
+      "Win when the other player has no pieces or legal move. Threefold repetition or 40 moves each without a capture/man move draws."
+    ]
+  },
+  {
+    "id": "mancala",
+    "name": "Mancala",
+    "subtitle": "Sow a little. Steal a march.",
+    "family": "mancala",
+    "min_players": 2,
+    "max_players": 2,
+    "minutes": "5\u201315",
+    "icon": "circle",
+    "color": "ochre",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Kalah: four seeds in each of twelve pits, with two stores starting empty.",
+      "Choose a pit on your side. Sow counterclockwise, including your store and skipping your opponent\u2019s.",
+      "Finish in your store to play again. Finish in your empty pit opposite seeds to capture both.",
+      "When either side empties, sweep the other side into its own store. Most seeds wins; equal stores draw."
     ]
   }
 ]

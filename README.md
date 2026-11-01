@@ -5,23 +5,28 @@ Built with Next.js, TypeScript, Tailwind, FastAPI, Supabase and Vercel Services.
 
 The catalogue contains Uno, Uno No Mercy, Monopoly Deal, Monopoly Deal No Mercy,
 Texas Hold'em, Indian 13-card rummy, Teen Patti, blackjack, Skyjo and solo Pop
-Tarot, Four in a Row, Reversi, Word Agents and Gem Market. Tarot uses a full
+Tarot, Four in a Row, Reversi, Word Agents, Gem Market, Checkers and Mancala. Tarot uses a full
 78-card deck and personal Gemini-written readings with pop-culture analogies.
 Word Agents is a Codenames-style house edition with an original word list;
 Gem Market is a Splendor-style game with original card costs and patrons.
+Deal No Mercy uses an explicitly labeled Games house deck, approved by the owner;
+its documented inventory is not represented as Hasbro's exact printed G3071 deck.
 
 **Production: [Games](https://games-seven-black.vercel.app), early access.** The personal
 Vercel `games` project runs Next and FastAPI together. Personal
 Supabase `games-preview` has anonymous authentication, reviewed cloud migrations,
 schema drift and private-table grants verified. Production cloud settings are
 configured separately from local development. The Gemini free-tier key generates real
-readings. Three fixed evaluations passed, and a browser reading survived refresh
+readings. The repaired adapter binds all three card identities/positions, budgets
+every attempt and regenerates malformed output at most once. Six fresh fixed
+evaluations passed on their first attempts. A browser reading survived refresh
 and an API process restart. The question form discloses the free-tier data-use
 terms. Four independent real guest sessions exercised every catalogue engine
 online: start, legal move, retry, stale-version conflict and refresh. A real
 hosted Tarot reading saved and survived reload. Historical previews remain
-rollback references. Full match/rule acceptance remains separate.
-AI response validation can occasionally require a retry; the spread stays saved.
+rollback references. Complete-match and independent rule-regression evidence is
+recorded in the rules audit and release verification guide.
+Provider outages/quota failures keep the saved spread and offer an honest retry.
 Google account signup passed live consent and the production callback. Linking
 the owner's guest retained the same player ID, saved name and existing room;
 the verified Google identity survives refresh. See the project journal and
@@ -78,7 +83,8 @@ tokens live in `@games/ui`.
 The owner requested production hosting on 1 November 2026. All nine competitive
 games must still satisfy the approved acceptance, including edition-specific
 No Mercy rules, before the catalogue can be considered fully validated.
-Completing a scripted match does not certify every rule. The Deal No Mercy deck
-denominations/printed card values still need canonical verification, and hosted
-all-game browser match completion, hosted load and AI reliability remain
-required. `docs/VERIFICATION.md` distinguishes passing checks from those gaps.
+Completing a scripted match does not certify every rule. The independent
+[rules audit](docs/RULE_AUDIT.md) separates expected-outcome rules checks from
+complete-match scenarios and documents traditional/house choices. The owner
+approved the explicit Deal No Mercy house inventory on 1 November 2026.
+`docs/VERIFICATION.md` and `progress.txt` record local and hosted acceptance results.

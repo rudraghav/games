@@ -1,6 +1,8 @@
 from app.core.contracts import Engine
 from app.games.blackjack.engine import BlackjackEngine
+from app.games.board.checkers import CheckersEngine
 from app.games.board.four import FourEngine
+from app.games.board.mancala import MancalaEngine
 from app.games.board.reversi import ReversiEngine
 from app.games.deal.engine import DealEngine
 from app.games.gem_market.engine import GemMarketEngine
@@ -27,5 +29,7 @@ ALL_ENGINES: list[Engine] = [
     ReversiEngine(),
     WordAgentsEngine(),
     GemMarketEngine(),
+    CheckersEngine(),
+    MancalaEngine(),
 ]
 ENGINES: dict[str, Engine] = {engine.manifest.id: engine for engine in ALL_ENGINES}

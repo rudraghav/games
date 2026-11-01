@@ -129,7 +129,7 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
           <p className="small muted" id="tarot-data-use">
             Your question and chosen cards are sent to Google Gemini to write this reading.
             {saved.data?.api_tier === 'free'
-              ? ' This development version uses the free tier: Google may use questions and readings to improve its products. Keep your question non-sensitive.'
+              ? ' This version uses the free tier: Google may use questions and readings to improve its products. Keep your question non-sensitive.'
               : null}
           </p>
           <Button

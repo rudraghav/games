@@ -1,4 +1,4 @@
-from app.core.cards import draw, rng
+from app.core.cards import rng
 from app.core.contracts import (
     Action,
     BaseEngine,
@@ -11,7 +11,7 @@ from app.core.contracts import (
 )
 from app.games.deal import effects, options
 from app.games.deal.deck import make_deck
-from app.games.deal.table import finish, locate, place, rent
+from app.games.deal.table import draw_cards, finish, locate, place, rent
 
 
 class DealEngine(BaseEngine):
@@ -21,7 +21,7 @@ class DealEngine(BaseEngine):
             GameManifest(
                 id="deal-no-mercy" if mercy else "deal",
                 name="Monopoly Deal No Mercy" if mercy else "Monopoly Deal",
-                subtitle="Make bank. Make enemies."
+                subtitle="Games house deck. No mercy."
                 if mercy
                 else "Build an empire, one card at a time.",
                 family="property",
@@ -30,12 +30,16 @@ class DealEngine(BaseEngine):
                 minutes="15–25",
                 icon="building",
                 color="plum" if mercy else "sage",
+                rules_version="house-deck-1" if mercy else "1",
                 rules=[
                     "Collect three complete property sets in different colours.",
                     "Draw two and play up to three cards per turn. Keep at most seven.",
                     "Debt must be settled before your own plays. Nothing is safe."
                     if mercy
                     else "Bank money to pay rent. Counter attacks with Just Say No.",
+                    *([
+                        "Games house deck: 18 money cards — 5×1M, 4×2M, 3×3M, 2×4M, 2×5M, 1×10M, 1×15M. Printed action effects; money copy counts are a house convention."
+                    ] if mercy else []),
                 ],
             )
         )
@@ -67,7 +71,7 @@ class DealEngine(BaseEngine):
             "winners": [],
             "message": "Three sets. One winner.",
         }
-        s["hands"][players[0]].extend(draw(s, 2))
+        s["hands"][players[0]].extend(draw_cards(s, 2))
         return s
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
@@ -86,7 +90,7 @@ class DealEngine(BaseEngine):
                 s["turn"] = (s["turn"] + 1) % len(s["order"])
             s.update(phase="playing", moves=3, boost=1, end_requested=False, again=False)
             new = s["order"][s["turn"]]
-            s["hands"][new].extend(draw(s, 2 if s["hands"][new] else 5))
+            s["hands"][new].extend(draw_cards(s, 2 if s["hands"][new] else 5))
 
     def _play(self, s: State, player: str, action: Action) -> None:
         ident = action.card
@@ -108,7 +112,7 @@ class DealEngine(BaseEngine):
         others = [p for p in s["order"] if p != player]
         if kind in ("pass_go", "fill"):
             s["hands"][player].extend(
-                draw(s, 2 if kind == "pass_go" else max(0, 7 - len(s["hands"][player])))
+                draw_cards(s, 2 if kind == "pass_go" else max(0, 7 - len(s["hands"][player])))
             )
         elif kind == "go_again":
             s["again"], s["end_requested"] = True, True

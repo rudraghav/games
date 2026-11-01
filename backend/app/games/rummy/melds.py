@@ -87,13 +87,14 @@ def deadwood(cards: list[str], wild: str) -> int:
     full = sum(values)
 
     @lru_cache(None)
-    def visit(mask: int, pure: bool) -> int:
+    def visit(mask: int, sequences: int, pure: bool) -> int:
         total = (
-            full - sum(values[i] for i in range(len(cards)) if mask & (1 << i)) if pure else full
+            full - sum(values[i] for i in range(len(cards)) if mask & (1 << i))
+            if pure and sequences >= 2 else full
         )
-        for bits, _, is_pure in options:
+        for bits, sequence, is_pure in options:
             if not bits & mask:
-                total = min(total, visit(mask | bits, pure or is_pure))
+                total = min(total, visit(mask | bits, min(2, sequences + sequence), pure or is_pure))
         return total
 
-    return min(80, visit(0, False))
+    return min(80, visit(0, 0, False))

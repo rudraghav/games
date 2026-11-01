@@ -2,6 +2,31 @@
 
 Reviewed 31 October 2026. Inspiration is separated from reusable assets.
 
+## 1 November 2026 discovery and table review
+
+Fresh phone/desktop captures of the current production lounge were inspected.
+The warm palette, readable ranks and direct room actions remain useful. The
+unfiltered fourteen-tile phone page required a long scroll, so GameLibrary now
+adds query, group-size and category discovery with one announced result count.
+The shared GameTile and ChoiceGroup primitives keep future additions consistent.
+Checkers and Kalah/Mancala use the same authoritative room/result contract.
+
+Fresh [Playdeal](https://playdeal.io/) capture confirms clear card values and a
+direct guest entry. [PlayingCards.io](https://playingcards.io/) was reviewed for
+room-first access and common-game discovery. [this Dribbble lobby concept](https://dribbble.com/shots/26321588-Online-Game-Lobby-Design)
+was researched for ready-seat and table composition; its browser capture was
+blank and was rejected as visual evidence. Board Game Arena's catalogue did not
+render in the text browser, so no unobserved filter behavior is attributed to it.
+
+The official [Kenney Board Game Pack](https://kenney.nl/assets/boardgame-pack)
+lists CC0 and 490 files. It is a verified free optional asset source; no download,
+relicensing or replacement of the Games-owned card system is necessary for this
+release. Dribbble artwork remains inspiration only, never bundled as licensed art.
+
+Table captures exposed hand/action overlap and phone action-discovery problems;
+the owning table components address those directly. Current screenshots and
+flow-specific findings are retained with this release's verification evidence.
+
 ## Visual references
 
 - https://playdeal.io/ — clear card faces, restrained property-game hierarchy.

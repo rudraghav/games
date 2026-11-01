@@ -1,0 +1,53 @@
+# Browser verification
+
+Routine `pnpm test:browser` checks independent sessions and responsive controls.
+Long acceptance and cloud checks are explicit opt-ins so normal verification does
+not silently consume guest-signup quotas or AI calls. No test persists auth state.
+
+## Complete matches
+
+```sh
+GAMES_FULL_MATCHES=1 GAMES_TEST_AI=1 pnpm exec playwright test tests/browser/fullmatches.spec.ts --project desktop --project phone --output output/playwright/fullmatches
+```
+
+The catalogue supplies each game's minimum and maximum seats; an equal limit is
+tested once. Ten independent browser contexts are reused, with authorized private
+API projections supplying decisions. Matches finish through legal actions rather
+than state injection. The browser checks rendered scores, refreshed results,
+portrait width, clicked rematch, and the change-game sheet while preserving the
+group. Rematches are started, then explicitly ended to move to the next game.
+Rummy's browser scenario ends through legal drops; valid declarations and
+sequence/scoring rules receive independent controlled-deal engine tests.
+
+`GAMES_FULL_MATCH_GAME=deal,deal-no-mercy` restricts a debugging rerun. Omit the
+filter for catalogue-wide acceptance. `GAMES_FULL_MATCH_SEATS=5` can further
+restrict a focused retry to one supported seat limit. `GAMES_TEST_AI=1` enables one real Tarot
+generation per browser project; without it, Tarot generation is explicitly
+omitted. The saved real reading is rendered and reread after refresh. Failure
+traces/screenshots are disabled because projections contain private cards.
+Metadata-only per-case progress is written to ignored `.vercel/fullmatches-*.json`.
+
+For cloud acceptance, set `GAMES_TEST_URL=https://games-seven-black.vercel.app`.
+Do not run multiple cloud suites blindly: anonymous signups and application
+actions are rate-limited. The driver paces moves within the production limit;
+it does not bypass or weaken authorization, presence or rate limits.
+
+## Fifty-room hosted load
+
+```sh
+GAMES_TEST_URL=https://games-seven-black.vercel.app GAMES_LOAD_ROOMS=50 node scripts/check_hosted_load.mjs
+```
+
+This separate tool creates five real anonymous identities, each owning ten rooms
+and observing ten others, staying within existing create/join/start limits.
+It prepares fifty blackjack rooms, subscribes to fifty private Broadcast channels,
+then commits fifty simultaneous bets. Metrics separate submission-to-commit,
+Broadcast arrival, and authorized observer snapshot completion. Optional
+`GAMES_LOAD_MODE=poll` measures explicit 250ms polling separately; it must not be
+reported as Broadcast latency. Tokens, invite codes and card data remain in memory.
+
+The tool preserves database history and closes only its own rooms through abandon
+and leave endpoints, reporting cleanup counts. It disconnects its own Realtime
+clients and writes only aggregate latency/status metadata to ignored `.vercel`.
+It reads the exact personal Games publishable configuration from `.env.cloud.local`
+and refuses other deployment origins. It never uses a database/service-role key.

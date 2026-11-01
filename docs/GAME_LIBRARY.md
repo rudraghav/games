@@ -1,8 +1,8 @@
 # Games library
 
-The existing nine competitive games and Pop Tarot remain available for local
-verification. An online testing preview is authorized; the full production gate
-is unchanged. Additions reuse private rooms, profiles, action retries, chat,
+The catalogue has fifteen competitive games and Pop Tarot. The owner authorized
+main/production and the expanded acceptance run on 1 November 2026.
+Additions reuse private rooms, profiles, action retries, chat,
 presence, results and rematches, with independent rules engines and renderers.
 
 ## Current expansion batch
@@ -13,6 +13,8 @@ presence, results and rematches, with independent rules engines and renderers.
 | Reversi | 2 | Eight-direction brackets, forced pass, terminal disc scoring | Flips, pass/end detection, no illegal non-capturing placement |
 | Word Agents | 4–10 | Codenames-style teams, one-word clues, private spymaster key, assassin | Role privacy, clue/guess limits, opponent/neutral/assassin outcomes |
 | Gem Market | 2–4 | Splendor-style gem collection, discounts, reserved cards, patrons and prestige | Token/deck conservation, affordability, hand limit, patrons/final round/ties |
+| Checkers | 2 | American/English rules, compulsory jumps, short kings, promotion, repeated/quiet draws | Independent exact positions, complete matches, keyboard piece/destination selection |
+| Mancala | 2 | Four-seed Kalah, sowing, extra turns, captures, end sweep | Seed conservation, both sides, captures/draws, complete matches and rematch |
 
 Word Agents uses a Games-owned common-noun list and original presentation.
 Spymasters are the first two seats; later seats alternate between their teams.
@@ -29,7 +31,7 @@ https://www.spacecowboys-games.com/game/splendor/.
 
 ## Further candidates
 
-Chess, checkers, backgammon and dominoes extend the public-board/table vocabulary.
+Chess, backgammon and dominoes can extend the public-board/table vocabulary.
 Hearts and Spades share a trick-taking family while retaining separate bidding,
 trump and scoring rules. Ludo needs a dice/track layout; Yahtzee needs a reusable
 score sheet and explicit dice-lock decisions. These are candidates, not catalogue

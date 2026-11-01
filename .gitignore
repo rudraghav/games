@@ -4,6 +4,7 @@ node_modules/
 storybook-static/
 playwright-report/
 test-results/
+output/playwright/
 *.tsbuildinfo
 __pycache__/
 .pytest_cache/

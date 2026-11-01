@@ -8,6 +8,9 @@ import {
   Seat,
   TarotCard,
   WordTile,
+  ChoiceGroup,
+  GameTile,
+  MancalaPit,
 } from '@games/ui';
 const card = {
   id: 'demo',
@@ -20,6 +23,45 @@ const card = {
 function Components() {
   return (
     <div style={{ display: 'grid', gap: 30, maxWidth: 900 }}>
+      <ChoiceGroup
+        label="Game categories"
+        options={[
+          { value: 'all', label: 'All games' },
+          { value: 'board', label: 'Board games' },
+        ]}
+        value="all"
+        onChange={() => undefined}
+      />
+      <div style={{ display: 'flex', gap: 15 }}>
+        <MancalaPit count={4} label="Sow four seeds" onClick={() => undefined} />
+        <MancalaPit count={22} label="Store: 22 seeds" store />
+        <MancalaPit count={0} label="Empty pit" disabled onClick={() => undefined} />
+      </div>
+      <div style={{ maxWidth: 300 }}>
+        <GameTile
+          name="Mancala"
+          subtitle="Sow a little. Steal a march."
+          minPlayers={2}
+          maxPlayers={2}
+          minutes="5–15"
+          tone="ochre"
+          artwork={<MancalaPit count={4} label="Four seeds" />}
+          onChoose={() => undefined}
+        />
+        <GameTile
+          name="Monopoly Deal No Mercy"
+          subtitle="Games house deck. No mercy."
+          minPlayers={2}
+          maxPlayers={5}
+          minutes="15–25"
+          tone="plum"
+          edition="house"
+          artwork={
+            <PlayingCard card={{ ...card, value: '15M', subtitle: 'MONEY' }} family="property" />
+          }
+          onChoose={() => undefined}
+        />
+      </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
         {(['primary', 'secondary', 'ghost', 'danger'] as const).map((variant) => (
           <Button key={variant} variant={variant}>

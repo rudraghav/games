@@ -107,7 +107,7 @@ def make_deck(mercy: bool) -> dict[str, DealCard]:
             cards[ident] = DealCard(ident, kind, value, colors, action)
 
     for value, count in (
-        [(1, 6), (2, 4), (3, 3), (4, 2), (5, 2), (10, 1)]
+        [(1, 5), (2, 4), (3, 3), (4, 2), (5, 2), (10, 1), (15, 1)]
         if mercy
         else [(1, 6), (2, 5), (3, 3), (4, 3), (5, 2), (10, 1)]
     ):
@@ -123,7 +123,9 @@ def make_deck(mercy: bool) -> dict[str, DealCard]:
         (("green", "rail"), 1),
         (PAIRS[4], 1),
     ]:
-        add("property", max(VALUES[c] for c in colors), count, colors)
+        # This printed wild is 4M even though its two ordinary colours are 1M/2M.
+        value = 4 if colors == ("sky", "rail") else max(VALUES[c] for c in colors)
+        add("property", value, count, colors)
     add("property", 0, 2, tuple(RENTS))
     for colors in PAIRS:
         add("action", 1, 1 if mercy else 2, colors, "rent")
@@ -133,20 +135,20 @@ def make_deck(mercy: bool) -> dict[str, DealCard]:
     if mercy:
         add("action", 3, 3, tuple(RENTS), "rent_double")
         specs = [
-            ("breaker", 5, 3),
-            ("forced_debt", 3, 3),
+            ("breaker", 3, 3),
+            ("forced_debt", 2, 3),
             ("go_again", 1, 3),
-            ("heist", 3, 3),
+            ("heist", 4, 3),
             ("no", 4, 5),
-            ("crash", 3, 3),
-            ("fill", 2, 4),
-            ("repossession", 4, 2),
+            ("crash", 4, 3),
+            ("fill", 1, 4),
+            ("repossession", 5, 2),
             ("shack", 3, 3),
-            ("super_sly", 5, 3),
-            ("tax", 4, 2),
+            ("super_sly", 3, 3),
+            ("tax", 5, 2),
             ("tough", 5, 3),
             ("unfair", 4, 2),
-            ("yoink", 5, 3),
+            ("yoink", 2, 3),
         ]
     else:
         specs = [

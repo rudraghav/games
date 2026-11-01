@@ -23,7 +23,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1876411
+          "last_seen": 1793515038.3436868
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -32,7 +32,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.187645
+          "last_seen": 1793515038.343691
         }
       ],
       "messages": [],
@@ -309,7 +309,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1880372
+          "last_seen": 1793515038.3441122
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -318,7 +318,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1880388
+          "last_seen": 1793515038.3441138
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -327,7 +327,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.18804
+          "last_seen": 1793515038.344115
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -336,7 +336,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188041
+          "last_seen": 1793515038.344116
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -345,7 +345,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188042
+          "last_seen": 1793515038.344117
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -354,7 +354,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188042
+          "last_seen": 1793515038.344118
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -363,7 +363,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188043
+          "last_seen": 1793515038.344118
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -372,7 +372,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188044
+          "last_seen": 1793515038.344119
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -381,7 +381,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188045
+          "last_seen": 1793515038.34412
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -390,7 +390,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188046
+          "last_seen": 1793515038.344121
         }
       ],
       "messages": [],
@@ -1469,7 +1469,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1884742
+          "last_seen": 1793515038.3445609
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -1478,7 +1478,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188475
+          "last_seen": 1793515038.344563
         }
       ],
       "messages": [],
@@ -1755,7 +1755,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188632
+          "last_seen": 1793515038.344722
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -1764,7 +1764,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1886342
+          "last_seen": 1793515038.344723
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -1773,7 +1773,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1886349
+          "last_seen": 1793515038.344724
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -1782,7 +1782,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1886358
+          "last_seen": 1793515038.344725
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -1791,7 +1791,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188637
+          "last_seen": 1793515038.344726
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -1800,7 +1800,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188638
+          "last_seen": 1793515038.344726
         }
       ],
       "messages": [],
@@ -2363,69 +2363,12 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Colour roulette \u00b7 red",
+            "label": "Play Colour roulette",
             "action": {
               "type": "play",
               "card": "wild:roulette:3",
               "target": "",
-              "color": "red",
-              "choice": "",
-              "amount": 0,
-              "slot": 0,
-              "cards": [],
-              "groups": []
-            },
-            "input": null,
-            "minimum": null,
-            "maximum": null,
-            "step": 1,
-            "eligible_cards": []
-          },
-          {
-            "label": "Play Colour roulette \u00b7 yellow",
-            "action": {
-              "type": "play",
-              "card": "wild:roulette:3",
-              "target": "",
-              "color": "yellow",
-              "choice": "",
-              "amount": 0,
-              "slot": 0,
-              "cards": [],
-              "groups": []
-            },
-            "input": null,
-            "minimum": null,
-            "maximum": null,
-            "step": 1,
-            "eligible_cards": []
-          },
-          {
-            "label": "Play Colour roulette \u00b7 green",
-            "action": {
-              "type": "play",
-              "card": "wild:roulette:3",
-              "target": "",
-              "color": "green",
-              "choice": "",
-              "amount": 0,
-              "slot": 0,
-              "cards": [],
-              "groups": []
-            },
-            "input": null,
-            "minimum": null,
-            "maximum": null,
-            "step": 1,
-            "eligible_cards": []
-          },
-          {
-            "label": "Play Colour roulette \u00b7 blue",
-            "action": {
-              "type": "play",
-              "card": "wild:roulette:3",
-              "target": "",
-              "color": "blue",
+              "color": "",
               "choice": "",
               "amount": 0,
               "slot": 0,
@@ -2458,69 +2401,12 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Colour roulette \u00b7 red",
+            "label": "Play Colour roulette",
             "action": {
               "type": "play",
               "card": "wild:roulette:0",
               "target": "",
-              "color": "red",
-              "choice": "",
-              "amount": 0,
-              "slot": 0,
-              "cards": [],
-              "groups": []
-            },
-            "input": null,
-            "minimum": null,
-            "maximum": null,
-            "step": 1,
-            "eligible_cards": []
-          },
-          {
-            "label": "Play Colour roulette \u00b7 yellow",
-            "action": {
-              "type": "play",
-              "card": "wild:roulette:0",
-              "target": "",
-              "color": "yellow",
-              "choice": "",
-              "amount": 0,
-              "slot": 0,
-              "cards": [],
-              "groups": []
-            },
-            "input": null,
-            "minimum": null,
-            "maximum": null,
-            "step": 1,
-            "eligible_cards": []
-          },
-          {
-            "label": "Play Colour roulette \u00b7 green",
-            "action": {
-              "type": "play",
-              "card": "wild:roulette:0",
-              "target": "",
-              "color": "green",
-              "choice": "",
-              "amount": 0,
-              "slot": 0,
-              "cards": [],
-              "groups": []
-            },
-            "input": null,
-            "minimum": null,
-            "maximum": null,
-            "step": 1,
-            "eligible_cards": []
-          },
-          {
-            "label": "Play Colour roulette \u00b7 blue",
-            "action": {
-              "type": "play",
-              "card": "wild:roulette:0",
-              "target": "",
-              "color": "blue",
+              "color": "",
               "choice": "",
               "amount": 0,
               "slot": 0,
@@ -2569,7 +2455,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188852
+          "last_seen": 1793515038.344915
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -2578,7 +2464,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188853
+          "last_seen": 1793515038.3449159
         }
       ],
       "messages": [],
@@ -2889,7 +2775,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1889899
+          "last_seen": 1793515038.345046
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -2898,7 +2784,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188991
+          "last_seen": 1793515038.345047
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -2907,7 +2793,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188992
+          "last_seen": 1793515038.345048
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -2916,7 +2802,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188993
+          "last_seen": 1793515038.3450491
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -2925,7 +2811,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.188994
+          "last_seen": 1793515038.34505
         }
       ],
       "messages": [],
@@ -3278,7 +3164,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189108
+          "last_seen": 1793515038.3451679
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -3287,7 +3173,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189109
+          "last_seen": 1793515038.3451688
         }
       ],
       "messages": [],
@@ -3345,7 +3231,7 @@ export const fixtures = [
             "label": "Super sly deal",
             "color": "neutral",
             "subtitle": "Super sly deal",
-            "value": "5M",
+            "value": "3M",
             "suit": "action"
           },
           {
@@ -3377,7 +3263,7 @@ export const fixtures = [
             "label": "Heist",
             "color": "neutral",
             "subtitle": "Heist",
-            "value": "3M",
+            "value": "4M",
             "suit": "action"
           }
         ],
@@ -3465,7 +3351,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Bank 5M",
+            "label": "Bank 3M",
             "action": {
               "type": "bank",
               "card": "d103",
@@ -3560,7 +3446,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Bank 3M",
+            "label": "Bank 4M",
             "action": {
               "type": "bank",
               "card": "d084",
@@ -3617,7 +3503,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189229
+          "last_seen": 1793515038.345289
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -3626,7 +3512,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.18923
+          "last_seen": 1793515038.345291
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -3635,7 +3521,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1892312
+          "last_seen": 1793515038.345292
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -3644,7 +3530,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189232
+          "last_seen": 1793515038.345292
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -3653,7 +3539,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1892328
+          "last_seen": 1793515038.345293
         }
       ],
       "messages": [],
@@ -3750,7 +3636,7 @@ export const fixtures = [
             "label": "Super sly deal",
             "color": "neutral",
             "subtitle": "Super sly deal",
-            "value": "5M",
+            "value": "3M",
             "suit": "action"
           },
           {
@@ -3771,10 +3657,10 @@ export const fixtures = [
           },
           {
             "id": "d017",
-            "label": "10M",
+            "label": "15M",
             "color": "neutral",
             "subtitle": "MONEY",
-            "value": "10M",
+            "value": "15M",
             "suit": ""
           },
           {
@@ -3870,7 +3756,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Bank 5M",
+            "label": "Bank 3M",
             "action": {
               "type": "bank",
               "card": "d103",
@@ -3946,7 +3832,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Bank 10M",
+            "label": "Bank 15M",
             "action": {
               "type": "bank",
               "card": "d017",
@@ -4025,7 +3911,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189356
+          "last_seen": 1793515038.345414
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4034,7 +3920,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189357
+          "last_seen": 1793515038.3454158
         }
       ],
       "messages": [],
@@ -4176,7 +4062,8 @@ export const fixtures = [
         "detail": {
           "button": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
           "current_bet": 2,
-          "pots": []
+          "pots": [],
+          "refunds": {}
         }
       },
       "paused": false,
@@ -4207,7 +4094,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189461
+          "last_seen": 1793515038.345518
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4216,7 +4103,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189462
+          "last_seen": 1793515038.345519
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -4225,7 +4112,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1894631
+          "last_seen": 1793515038.34552
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -4234,7 +4121,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189464
+          "last_seen": 1793515038.345521
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -4243,7 +4130,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189465
+          "last_seen": 1793515038.345522
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -4252,7 +4139,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189465
+          "last_seen": 1793515038.3455229
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -4261,7 +4148,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189466
+          "last_seen": 1793515038.345524
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -4270,7 +4157,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189467
+          "last_seen": 1793515038.345525
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -4279,7 +4166,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189468
+          "last_seen": 1793515038.345525
         }
       ],
       "messages": [],
@@ -4435,7 +4322,8 @@ export const fixtures = [
         "detail": {
           "button": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
           "current_bet": 2,
-          "pots": []
+          "pots": [],
+          "refunds": {}
         }
       },
       "paused": false,
@@ -4466,7 +4354,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189556
+          "last_seen": 1793515038.345612
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4475,7 +4363,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189557
+          "last_seen": 1793515038.3456142
         }
       ],
       "messages": [],
@@ -4731,7 +4619,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1897652
+          "last_seen": 1793515038.3457239
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -4740,7 +4628,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189775
+          "last_seen": 1793515038.3457248
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -4749,7 +4637,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1897779
+          "last_seen": 1793515038.345726
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -4758,7 +4646,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189781
+          "last_seen": 1793515038.345727
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -4767,7 +4655,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.189795
+          "last_seen": 1793515038.345728
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -4776,7 +4664,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1897972
+          "last_seen": 1793515038.345729
         }
       ],
       "messages": [],
@@ -5084,7 +4972,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190003
+          "last_seen": 1793515038.345824
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5093,7 +4981,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190005
+          "last_seen": 1793515038.345825
         }
       ],
       "messages": [],
@@ -5248,7 +5136,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190102
+          "last_seen": 1793515038.3459032
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5257,7 +5145,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190103
+          "last_seen": 1793515038.345904
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -5266,7 +5154,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190104
+          "last_seen": 1793515038.3459048
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -5275,7 +5163,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1901052
+          "last_seen": 1793515038.3459048
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -5284,7 +5172,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1901062
+          "last_seen": 1793515038.345906
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -5293,7 +5181,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1901069
+          "last_seen": 1793515038.345907
         }
       ],
       "messages": [],
@@ -5481,7 +5369,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190242
+          "last_seen": 1793515038.3460329
         }
       ],
       "messages": [],
@@ -5567,7 +5455,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1903749
+          "last_seen": 1793515038.346164
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5576,7 +5464,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190376
+          "last_seen": 1793515038.346165
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -5585,7 +5473,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190377
+          "last_seen": 1793515038.3461661
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -5594,7 +5482,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190378
+          "last_seen": 1793515038.346167
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -5603,7 +5491,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190379
+          "last_seen": 1793515038.346168
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -5612,7 +5500,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.19038
+          "last_seen": 1793515038.346168
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -5621,7 +5509,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190381
+          "last_seen": 1793515038.346169
         }
       ],
       "messages": [],
@@ -5785,7 +5673,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190488
+          "last_seen": 1793515038.346269
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -5794,7 +5682,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190489
+          "last_seen": 1793515038.3462698
         }
       ],
       "messages": [],
@@ -6134,7 +6022,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190667
+          "last_seen": 1793515038.346414
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -6143,7 +6031,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1906712
+          "last_seen": 1793515038.346415
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -6152,7 +6040,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190672
+          "last_seen": 1793515038.3464162
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -6161,7 +6049,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1906729
+          "last_seen": 1793515038.346417
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -6170,7 +6058,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1906738
+          "last_seen": 1793515038.346418
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -6179,7 +6067,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190675
+          "last_seen": 1793515038.3464189
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -6188,7 +6076,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190675
+          "last_seen": 1793515038.34642
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -6197,7 +6085,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190676
+          "last_seen": 1793515038.346422
         }
       ],
       "messages": [],
@@ -6693,7 +6581,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.190829
+          "last_seen": 1793515038.3465421
         }
       ],
       "messages": [],
@@ -8240,7 +8128,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.191225
+          "last_seen": 1793515038.346912
         }
       ],
       "messages": [],
@@ -9787,7 +9675,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1915011
+          "last_seen": 1793515038.347182
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -9796,7 +9684,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.191502
+          "last_seen": 1793515038.347183
         }
       ],
       "messages": [],
@@ -10347,7 +10235,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1916218
+          "last_seen": 1793515038.347297
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -10356,7 +10244,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.191623
+          "last_seen": 1793515038.3472981
         }
       ],
       "messages": [],
@@ -10907,7 +10795,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.191751
+          "last_seen": 1793515038.3474078
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -10916,7 +10804,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.191756
+          "last_seen": 1793515038.347409
         }
       ],
       "messages": [],
@@ -11586,7 +11474,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.192051
+          "last_seen": 1793515038.3476071
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -11595,7 +11483,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1920562
+          "last_seen": 1793515038.347608
         }
       ],
       "messages": [],
@@ -12265,7 +12153,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.192341
+          "last_seen": 1793515038.347834
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -12274,7 +12162,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.192343
+          "last_seen": 1793515038.3478348
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -12283,7 +12171,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1923468
+          "last_seen": 1793515038.347836
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -12292,7 +12180,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.192348
+          "last_seen": 1793515038.347837
         }
       ],
       "messages": [],
@@ -12614,7 +12502,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.19248
+          "last_seen": 1793515038.347956
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -12623,7 +12511,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.192481
+          "last_seen": 1793515038.347957
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -12632,7 +12520,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.192482
+          "last_seen": 1793515038.347958
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -12641,7 +12529,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1924832
+          "last_seen": 1793515038.347959
         },
         {
           "id": "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
@@ -12650,7 +12538,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1924841
+          "last_seen": 1793515038.34796
         },
         {
           "id": "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
@@ -12659,7 +12547,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.192485
+          "last_seen": 1793515038.3479612
         },
         {
           "id": "d03315f3-275f-534f-915a-d668855c7de9",
@@ -12668,7 +12556,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1924858
+          "last_seen": 1793515038.3479621
         },
         {
           "id": "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
@@ -12677,7 +12565,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.192487
+          "last_seen": 1793515038.3479629
         },
         {
           "id": "a8e0bd43-e804-5665-9c48-c5581447c0fe",
@@ -12686,7 +12574,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.192487
+          "last_seen": 1793515038.3479638
         },
         {
           "id": "3e67b5ca-94db-57c3-b0e1-f1d5ad017207",
@@ -12695,7 +12583,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.192488
+          "last_seen": 1793515038.3479638
         }
       ],
       "messages": [],
@@ -13101,7 +12989,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.192642
+          "last_seen": 1793515038.348096
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -13110,7 +12998,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1926441
+          "last_seen": 1793515038.348097
         }
       ],
       "messages": [],
@@ -13897,58 +13785,6 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-3-sapphire-2": {
-              "tier": 3,
-              "cost": {
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 3
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
-            "gem-3-pearl-2": {
-              "tier": 3,
-              "cost": {
-                "pearl": 3,
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3
-              },
-              "bonus": "pearl",
-              "points": 4
-            },
-            "gem-2-onyx-3": {
-              "tier": 2,
-              "cost": {
-                "onyx": 2,
-                "pearl": 2,
-                "sapphire": 2,
-                "ruby": 2
-              },
-              "bonus": "onyx",
-              "points": 2
-            },
-            "gem-3-sapphire-0": {
-              "tier": 3,
-              "cost": {
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 5
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
-            "gem-1-emerald-2": {
-              "tier": 1,
-              "cost": {
-                "onyx": 2,
-                "sapphire": 2
-              },
-              "bonus": "emerald",
-              "points": 0
-            },
             "gem-2-ruby-4": {
               "tier": 2,
               "cost": {
@@ -13959,16 +13795,13 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 3
             },
-            "gem-2-ruby-3": {
-              "tier": 2,
+            "gem-1-ruby-7": {
+              "tier": 1,
               "cost": {
-                "ruby": 2,
-                "emerald": 2,
-                "onyx": 2,
-                "pearl": 2
+                "onyx": 4
               },
               "bonus": "ruby",
-              "points": 2
+              "points": 1
             },
             "gem-2-emerald-2": {
               "tier": 2,
@@ -13980,23 +13813,16 @@ export const fixtures = [
               "bonus": "emerald",
               "points": 3
             },
-            "gem-3-ruby-0": {
+            "gem-3-sapphire-2": {
               "tier": 3,
               "cost": {
+                "sapphire": 3,
+                "ruby": 3,
                 "emerald": 3,
-                "onyx": 3,
-                "pearl": 5
+                "onyx": 3
               },
-              "bonus": "ruby",
+              "bonus": "sapphire",
               "points": 4
-            },
-            "gem-1-ruby-7": {
-              "tier": 1,
-              "cost": {
-                "onyx": 4
-              },
-              "bonus": "ruby",
-              "points": 1
             },
             "gem-1-ruby-3": {
               "tier": 1,
@@ -14019,6 +13845,68 @@ export const fixtures = [
               },
               "bonus": "onyx",
               "points": 0
+            },
+            "gem-2-ruby-3": {
+              "tier": 2,
+              "cost": {
+                "ruby": 2,
+                "emerald": 2,
+                "onyx": 2,
+                "pearl": 2
+              },
+              "bonus": "ruby",
+              "points": 2
+            },
+            "gem-2-onyx-3": {
+              "tier": 2,
+              "cost": {
+                "onyx": 2,
+                "pearl": 2,
+                "sapphire": 2,
+                "ruby": 2
+              },
+              "bonus": "onyx",
+              "points": 2
+            },
+            "gem-1-emerald-2": {
+              "tier": 1,
+              "cost": {
+                "onyx": 2,
+                "sapphire": 2
+              },
+              "bonus": "emerald",
+              "points": 0
+            },
+            "gem-3-pearl-2": {
+              "tier": 3,
+              "cost": {
+                "pearl": 3,
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3
+              },
+              "bonus": "pearl",
+              "points": 4
+            },
+            "gem-3-sapphire-0": {
+              "tier": 3,
+              "cost": {
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 5
+              },
+              "bonus": "sapphire",
+              "points": 4
+            },
+            "gem-3-ruby-0": {
+              "tier": 3,
+              "cost": {
+                "emerald": 3,
+                "onyx": 3,
+                "pearl": 5
+              },
+              "bonus": "ruby",
+              "points": 4
             }
           },
           "patron_costs": {
@@ -14069,7 +13957,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1930292
+          "last_seen": 1793515038.348487
         },
         {
           "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -14078,7 +13966,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.1930308
+          "last_seen": 1793515038.348489
         },
         {
           "id": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
@@ -14087,7 +13975,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.193033
+          "last_seen": 1793515038.34849
         },
         {
           "id": "19285837-cef0-568b-9a40-febfd6a8cb39",
@@ -14096,7 +13984,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793463243.193034
+          "last_seen": 1793515038.348491
         }
       ],
       "messages": [],
@@ -14961,58 +14849,6 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-3-sapphire-2": {
-              "tier": 3,
-              "cost": {
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 3
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
-            "gem-3-pearl-2": {
-              "tier": 3,
-              "cost": {
-                "pearl": 3,
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3
-              },
-              "bonus": "pearl",
-              "points": 4
-            },
-            "gem-2-onyx-3": {
-              "tier": 2,
-              "cost": {
-                "onyx": 2,
-                "pearl": 2,
-                "sapphire": 2,
-                "ruby": 2
-              },
-              "bonus": "onyx",
-              "points": 2
-            },
-            "gem-3-sapphire-0": {
-              "tier": 3,
-              "cost": {
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 5
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
-            "gem-1-emerald-2": {
-              "tier": 1,
-              "cost": {
-                "onyx": 2,
-                "sapphire": 2
-              },
-              "bonus": "emerald",
-              "points": 0
-            },
             "gem-2-ruby-4": {
               "tier": 2,
               "cost": {
@@ -15023,16 +14859,13 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 3
             },
-            "gem-2-ruby-3": {
-              "tier": 2,
+            "gem-1-ruby-7": {
+              "tier": 1,
               "cost": {
-                "ruby": 2,
-                "emerald": 2,
-                "onyx": 2,
-                "pearl": 2
+                "onyx": 4
               },
               "bonus": "ruby",
-              "points": 2
+              "points": 1
             },
             "gem-2-emerald-2": {
               "tier": 2,
@@ -15044,23 +14877,16 @@ export const fixtures = [
               "bonus": "emerald",
               "points": 3
             },
-            "gem-3-ruby-0": {
+            "gem-3-sapphire-2": {
               "tier": 3,
               "cost": {
+                "sapphire": 3,
+                "ruby": 3,
                 "emerald": 3,
-                "onyx": 3,
-                "pearl": 5
+                "onyx": 3
               },
-              "bonus": "ruby",
+              "bonus": "sapphire",
               "points": 4
-            },
-            "gem-1-ruby-7": {
-              "tier": 1,
-              "cost": {
-                "onyx": 4
-              },
-              "bonus": "ruby",
-              "points": 1
             },
             "gem-1-ruby-3": {
               "tier": 1,
@@ -15083,6 +14909,68 @@ export const fixtures = [
               },
               "bonus": "onyx",
               "points": 0
+            },
+            "gem-2-ruby-3": {
+              "tier": 2,
+              "cost": {
+                "ruby": 2,
+                "emerald": 2,
+                "onyx": 2,
+                "pearl": 2
+              },
+              "bonus": "ruby",
+              "points": 2
+            },
+            "gem-2-onyx-3": {
+              "tier": 2,
+              "cost": {
+                "onyx": 2,
+                "pearl": 2,
+                "sapphire": 2,
+                "ruby": 2
+              },
+              "bonus": "onyx",
+              "points": 2
+            },
+            "gem-1-emerald-2": {
+              "tier": 1,
+              "cost": {
+                "onyx": 2,
+                "sapphire": 2
+              },
+              "bonus": "emerald",
+              "points": 0
+            },
+            "gem-3-pearl-2": {
+              "tier": 3,
+              "cost": {
+                "pearl": 3,
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3
+              },
+              "bonus": "pearl",
+              "points": 4
+            },
+            "gem-3-sapphire-0": {
+              "tier": 3,
+              "cost": {
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 5
+              },
+              "bonus": "sapphire",
+              "points": 4
+            },
+            "gem-3-ruby-0": {
+              "tier": 3,
+              "cost": {
+                "emerald": 3,
+                "onyx": 3,
+                "pearl": 5
+              },
+              "bonus": "ruby",
+              "points": 4
             }
           },
           "patron_costs": {
@@ -15113,6 +15001,2108 @@ export const fixtures = [
             }
           },
           "final_round": false
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Checkers \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "69122409-2057-5035-8e61-d71968af2bc0",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "checkers",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 2,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "6cad4e1a-87be-50f0-88b9-04d7ea7568bc",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793515038.348795
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793515038.3487968
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "checkers",
+        "phase": "playing",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [
+          {
+            "id": "0",
+            "label": "A8",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "1",
+            "label": "B8",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "2",
+            "label": "C8",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "3",
+            "label": "D8",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "4",
+            "label": "E8",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "5",
+            "label": "F8",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "6",
+            "label": "G8",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "7",
+            "label": "H8",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "8",
+            "label": "A7",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "9",
+            "label": "B7",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "10",
+            "label": "C7",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "11",
+            "label": "D7",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "12",
+            "label": "E7",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "13",
+            "label": "F7",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "14",
+            "label": "G7",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "15",
+            "label": "H7",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "16",
+            "label": "A6",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "17",
+            "label": "B6",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "18",
+            "label": "C6",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "19",
+            "label": "D6",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "20",
+            "label": "E6",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "21",
+            "label": "F6",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "22",
+            "label": "G6",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "23",
+            "label": "H6",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "24",
+            "label": "A5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "25",
+            "label": "B5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "26",
+            "label": "C5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "27",
+            "label": "D5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "28",
+            "label": "E5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "29",
+            "label": "F5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "30",
+            "label": "G5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "31",
+            "label": "H5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "32",
+            "label": "A4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "33",
+            "label": "B4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "34",
+            "label": "C4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "35",
+            "label": "D4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "36",
+            "label": "E4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "37",
+            "label": "F4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "38",
+            "label": "G4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "39",
+            "label": "H4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "40",
+            "label": "A3",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "41",
+            "label": "B3",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "42",
+            "label": "C3",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "43",
+            "label": "D3",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "44",
+            "label": "E3",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "45",
+            "label": "F3",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "46",
+            "label": "G3",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "47",
+            "label": "H3",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "48",
+            "label": "A2",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "49",
+            "label": "B2",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "50",
+            "label": "C2",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "51",
+            "label": "D2",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "52",
+            "label": "E2",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "53",
+            "label": "F2",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "54",
+            "label": "G2",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "55",
+            "label": "H2",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "56",
+            "label": "A1",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "57",
+            "label": "B1",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "58",
+            "label": "C1",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "59",
+            "label": "D1",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "60",
+            "label": "E1",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "61",
+            "label": "F1",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "62",
+            "label": "G1",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "63",
+            "label": "H1",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          }
+        ],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Coral moves first. Choose a piece.",
+        "actions": [
+          {
+            "label": "Move A3 to B4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "40:33",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move C3 to B4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "42:33",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move C3 to D4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "42:35",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move E3 to D4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "44:35",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move E3 to F4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "44:37",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move G3 to F4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "46:37",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move G3 to H4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "46:39",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "rows": 8,
+          "columns": 8,
+          "draw": false,
+          "last_move": null
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Checkers \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "79f69fbc-ea53-584d-822c-26f3aa0df8a4",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "checkers",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 2,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "6cad4e1a-87be-50f0-88b9-04d7ea7568bc",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793515038.3489642
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793515038.3489652
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "checkers",
+        "phase": "playing",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [
+          {
+            "id": "0",
+            "label": "A8",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "1",
+            "label": "B8",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "2",
+            "label": "C8",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "3",
+            "label": "D8",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "4",
+            "label": "E8",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "5",
+            "label": "F8",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "6",
+            "label": "G8",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "7",
+            "label": "H8",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "8",
+            "label": "A7",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "9",
+            "label": "B7",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "10",
+            "label": "C7",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "11",
+            "label": "D7",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "12",
+            "label": "E7",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "13",
+            "label": "F7",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "14",
+            "label": "G7",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "15",
+            "label": "H7",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "16",
+            "label": "A6",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "17",
+            "label": "B6",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "18",
+            "label": "C6",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "19",
+            "label": "D6",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "20",
+            "label": "E6",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "21",
+            "label": "F6",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "22",
+            "label": "G6",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "23",
+            "label": "H6",
+            "color": "ivory",
+            "subtitle": "",
+            "value": "2",
+            "suit": ""
+          },
+          {
+            "id": "24",
+            "label": "A5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "25",
+            "label": "B5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "26",
+            "label": "C5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "27",
+            "label": "D5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "28",
+            "label": "E5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "29",
+            "label": "F5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "30",
+            "label": "G5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "31",
+            "label": "H5",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "32",
+            "label": "A4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "33",
+            "label": "B4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "34",
+            "label": "C4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "35",
+            "label": "D4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "36",
+            "label": "E4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "37",
+            "label": "F4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "38",
+            "label": "G4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "39",
+            "label": "H4",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "40",
+            "label": "A3",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "41",
+            "label": "B3",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "42",
+            "label": "C3",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "43",
+            "label": "D3",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "44",
+            "label": "E3",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "45",
+            "label": "F3",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "46",
+            "label": "G3",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "47",
+            "label": "H3",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "48",
+            "label": "A2",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "49",
+            "label": "B2",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "50",
+            "label": "C2",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "51",
+            "label": "D2",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "52",
+            "label": "E2",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "53",
+            "label": "F2",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "54",
+            "label": "G2",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "55",
+            "label": "H2",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "56",
+            "label": "A1",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "57",
+            "label": "B1",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "58",
+            "label": "C1",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "59",
+            "label": "D1",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "60",
+            "label": "E1",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "61",
+            "label": "F1",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          },
+          {
+            "id": "62",
+            "label": "G1",
+            "color": "coral",
+            "subtitle": "",
+            "value": "1",
+            "suit": ""
+          },
+          {
+            "id": "63",
+            "label": "H1",
+            "color": "empty",
+            "subtitle": "",
+            "value": "",
+            "suit": ""
+          }
+        ],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Coral moves first. Choose a piece.",
+        "actions": [
+          {
+            "label": "Move A3 to B4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "40:33",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move C3 to B4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "42:33",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move C3 to D4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "42:35",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move E3 to D4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "44:35",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move E3 to F4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "44:37",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move G3 to F4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "46:37",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Move G3 to H4",
+            "action": {
+              "type": "move",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "46:39",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "rows": 8,
+          "columns": 8,
+          "draw": false,
+          "last_move": null
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Mancala \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "ed5d89bb-a1c0-5967-a6d2-c1239ec3ea0b",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "mancala",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 2,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "3e04dbc1-7e86-5117-97c4-ad2a33ba4d25",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793515038.3491158
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793515038.349117
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "mancala",
+        "phase": "playing",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [
+          {
+            "id": "0",
+            "label": "Pit 1",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "1",
+            "label": "Pit 2",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "2",
+            "label": "Pit 3",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "3",
+            "label": "Pit 4",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "4",
+            "label": "Pit 5",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "5",
+            "label": "Pit 6",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "6",
+            "label": "Store",
+            "color": "sage",
+            "subtitle": "",
+            "value": "0",
+            "suit": ""
+          },
+          {
+            "id": "7",
+            "label": "Pit 1",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "8",
+            "label": "Pit 2",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "9",
+            "label": "Pit 3",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "10",
+            "label": "Pit 4",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "11",
+            "label": "Pit 5",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "12",
+            "label": "Pit 6",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "13",
+            "label": "Store",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "0",
+            "suit": ""
+          }
+        ],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Choose a pit on your side to start sowing.",
+        "actions": [
+          {
+            "label": "Sow pit 1 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sow pit 2 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sow pit 3 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sow pit 4 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sow pit 5 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sow pit 6 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "5",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "draw": false,
+          "last_move": null
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null
+    }
+  },
+  {
+    "label": "Mancala \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "6136d9ff-6f60-5f3a-bc27-80c7bc1ef929",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "mancala",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 2,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "3e04dbc1-7e86-5117-97c4-ad2a33ba4d25",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793515038.34919
+        },
+        {
+          "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 1793515038.349191
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "mancala",
+        "phase": "playing",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [
+          {
+            "id": "0",
+            "label": "Pit 1",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "1",
+            "label": "Pit 2",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "2",
+            "label": "Pit 3",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "3",
+            "label": "Pit 4",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "4",
+            "label": "Pit 5",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "5",
+            "label": "Pit 6",
+            "color": "sage",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "6",
+            "label": "Store",
+            "color": "sage",
+            "subtitle": "",
+            "value": "0",
+            "suit": ""
+          },
+          {
+            "id": "7",
+            "label": "Pit 1",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "8",
+            "label": "Pit 2",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "9",
+            "label": "Pit 3",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "10",
+            "label": "Pit 4",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "11",
+            "label": "Pit 5",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "12",
+            "label": "Pit 6",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "4",
+            "suit": ""
+          },
+          {
+            "id": "13",
+            "label": "Store",
+            "color": "ochre",
+            "subtitle": "",
+            "value": "0",
+            "suit": ""
+          }
+        ],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Choose a pit on your side to start sowing.",
+        "actions": [
+          {
+            "label": "Sow pit 1 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sow pit 2 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sow pit 3 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sow pit 4 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sow pit 5 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sow pit 6 \u00b7 4 seeds",
+            "action": {
+              "type": "sow",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "5",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "draw": false,
+          "last_move": null
         }
       },
       "paused": false,

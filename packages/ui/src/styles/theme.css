@@ -2,6 +2,7 @@
 @import './tarot.css';
 @import './expansion.css';
 @import './accounts.css';
+@import './library.css';
 @theme static {
   --color-canvas: #f6f3ed;
   --color-surface: #fffcf7;

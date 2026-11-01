@@ -1,6 +1,6 @@
 # Uno family
 
-Status: implementation in progress. Rules reference: Mattel classic 108-card
+Rules reference: Mattel classic 108-card
 edition (https://service.mattel.com/instruction_sheets/uno%20basic%20is.pdf) and https://service.mattel.com/instruction_sheets/HVW18-Eng.pdf (168-card
 Show 'em No Mercy). Classic supports 2–10 players; No Mercy 2–6.
 
@@ -23,3 +23,28 @@ when the next player begins an ordinary move. All hand changes are server-owned.
 
 Verification: deterministic special-card scenarios, deck conservation, legal-action
 playthroughs, viewer redaction, plus multi-session browser workflows.
+
+## 1 November 2026 rule audit
+
+Acceptance: compare the two editions independently against the linked Mattel
+instructions, verify every physical card remains in exactly one server zone
+through complete seeded matches at both seat limits, and cover card effects with
+expected-state assertions independent of the legal-action generator. A match here
+is one hand; classic's optional 500-point and No Mercy's optional 1,000-point
+multi-hand victory methods are not silently substituted for this room format.
+
+Deck contract: classic uses one zero and two each of 1–9 in each colour, two
+each coloured Skip/Reverse/+2, four Wild and four Wild +4 (108 unique IDs).
+The 168-card No Mercy deck uses two each of 0–9 per colour, three each
+Skip/Reverse/Discard All, two each +2/+4, one Skip Everyone, and eight each
+Wild Reverse +4/+6/+10/Colour Roulette. Card values are face value, 20 for
+coloured actions and 50 for wilds; No Mercy adds 250 per eliminated player.
+
+The audit corrected Colour Roulette so the recipient's chosen colour governs
+the next play, and a final No Mercy 7/0 wins before handing an empty hand to
+someone else. Roulette no longer asks its actor for a redundant colour first.
+Classic 7/0 is an explicitly enabled house rule; its swap/pass completes before
+the resulting empty-hand check. Regression examples cover challenge penalties,
+discard-all ordering, skip-everyone, opening actions and final draw scoring.
+Three seeded complete matches per edition at both player limits preserve every
+unique physical card after every action, including elimination and recycling.

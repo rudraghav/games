@@ -98,6 +98,7 @@ class TeenPattiEngine(BaseEngine):
                     input="amount",
                     minimum=minimum,
                     maximum=min(minimum * 2, 128 if p["seen"] else 64, p["chips"]),
+                    step=2 if p["seen"] else 1,
                 )
             )
             active = self._active(s)
@@ -161,6 +162,9 @@ class TeenPattiEngine(BaseEngine):
         else:
             self._pay(s, player, s["stake"] * (2 if p["seen"] else 1))
             if action.type == "sideshow":
+                if s["pot"] >= 1024:
+                    self._finish(s, True)
+                    return s
                 s["pending"] = {"actor": player, "target": self._previous(s, player)}
                 return s
             active = self._active(s)

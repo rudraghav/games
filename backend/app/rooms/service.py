@@ -19,6 +19,8 @@ from app.games.tarot.reading import (
     PROMPT_VERSION,
     Reading,
     ReadingInput,
+    ReadingLimitError,
+    ReadingOutputError,
     ReadingView,
     generate_reading,
 )
@@ -317,10 +319,6 @@ class RoomService:
                 raise HTTPException(
                     503, "Personal readings are not configured yet. Your cards are saved."
                 )
-            if self.repo.rate("tarot-provider-daily-budget", 86400) > settings().tarot_daily_limit:
-                raise HTTPException(
-                    429, "Today's personal reading limit has been reached. Your spread is saved."
-                )
             attempt, match_id = str(uuid4()), match.id
             if saved is None:
                 saved = TarotReading(match_id=match_id)
@@ -331,20 +329,31 @@ class RoomService:
             cards = [match.state["deck"][i] for i in match.state["picks"]]
             question = saved.question
         # The provider call deliberately runs without a database transaction or row lock.
+        def reserve_attempt() -> None:
+            with self.session.begin():
+                count = self.repo.rate("tarot-provider-daily-budget", 86400)
+            if count > settings().tarot_daily_limit:
+                raise ReadingLimitError("The daily reading budget is exhausted.")
+
         try:
-            result = generate_reading(cards, question)
+            result = generate_reading(cards, question, before_attempt=reserve_attempt)
         except Exception as error:
             logging.getLogger("uvicorn.error").warning(
                 "games.ai.failure model=%s error_type=%s validation_errors=%s",
                 settings().tarot_model,
                 type(error).__name__,
-                error.error_count() if isinstance(error, ValidationError) else 0,
+                error.error_count() if isinstance(error, ValidationError)
+                else error.errors if isinstance(error, ReadingOutputError) else 0,
             )
             with self.session.begin():
                 self._room(room_id, actor, lock=True)
                 saved = self.repo.reading(match_id)
                 if saved and saved.attempt_id == attempt:
                     saved.status = "failed"
+            if isinstance(error, ReadingLimitError):
+                raise HTTPException(
+                    429, "Today's personal reading limit has been reached. Your spread is saved."
+                ) from None
             raise HTTPException(
                 502, "Your reading could not be completed. Your cards are saved; please retry."
             ) from None

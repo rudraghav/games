@@ -28,6 +28,7 @@ function Decision({
             max={option.maximum ?? 0}
             step={option.step}
             value={amount}
+            disabled={pending}
             onChange={(event) => setAmount(Number(event.target.value))}
           />
           <span>chips</span>
@@ -55,6 +56,7 @@ function Decision({
                         : [...previous, card.id],
                     )
                   }
+                  disabled={pending}
                 />
               ))}
           </div>
@@ -67,7 +69,8 @@ function Decision({
         disabled={
           pending ||
           (option.input === 'amount' &&
-            (amount < (option.minimum ?? 0) ||
+            (!Number.isFinite(amount) ||
+              amount < (option.minimum ?? 0) ||
               amount > (option.maximum ?? 0) ||
               (amount - (option.minimum ?? 0)) % option.step !== 0))
         }
@@ -94,7 +97,13 @@ export function ActionPanel({
   selected,
   clear,
   cardSelectionRequired = false,
-}: TableProps & { selected?: string | null; clear?: () => void; cardSelectionRequired?: boolean }) {
+  instruction,
+}: TableProps & {
+  selected?: string | null;
+  clear?: () => void;
+  cardSelectionRequired?: boolean;
+  instruction?: string;
+}) {
   const own = match.players.find((player) => player.id === selfId);
   const assets = own ? [...own.bank, ...Object.values(own.properties).flat()] : [];
   const choices = match.actions.filter(
@@ -118,11 +127,15 @@ export function ActionPanel({
         <span className="small muted">
           {pending
             ? 'Saving your move…'
-            : selected
-              ? 'Choose what to do with this card.'
-              : match.actions.some((option) => option.value.card)
-                ? 'Select a card to see its moves.'
-                : match.phase.replaceAll('_', ' ')}
+            : room.paused
+              ? 'Waiting for players to reconnect.'
+              : instruction
+                ? instruction
+                : selected
+                  ? 'Choose what to do with this card.'
+                  : match.actions.some((option) => option.value.card)
+                    ? 'Select a card to see its moves.'
+                    : match.phase.replaceAll('_', ' ')}
         </span>
         {selected ? (
           <button className="text-button" onClick={clear}>
@@ -133,7 +146,10 @@ export function ActionPanel({
       <div className="action-choices">
         {choices.map((option, i) => (
           <Decision
-            key={JSON.stringify(option.value) + i}
+            key={
+              JSON.stringify([option.value, option.minimum, option.maximum, option.eligibleCards]) +
+              i
+            }
             option={{
               ...option,
               label:
@@ -145,7 +161,10 @@ export function ActionPanel({
             assets={assets}
           />
         ))}
-        {!match.actions.length ? (
+        {selected && !choices.length ? (
+          <span className="small muted">This card has no available move.</span>
+        ) : null}
+        {!match.actions.length && !instruction ? (
           <span className="small muted">
             {match.phase === 'finished' ? 'That’s a wrap.' : 'Waiting for the next move…'}
           </span>

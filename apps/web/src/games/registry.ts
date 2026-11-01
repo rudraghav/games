@@ -8,6 +8,7 @@ import { SkyjoTable } from './skyjo/SkyjoTable';
 import { TarotTable } from './tarot/TarotTable';
 import { RummyTable } from './rummy/RummyTable';
 import { BoardTable } from './board/BoardTable';
+import { MancalaTable } from './board/MancalaTable';
 import { WordsTable } from './words/WordsTable';
 import { GemsTable } from './gems/GemsTable';
 
@@ -19,6 +20,7 @@ const familyTables: Record<string, ComponentType<TableProps>> = {
   grid: SkyjoTable,
   tarot: TarotTable,
   board: BoardTable,
+  mancala: MancalaTable,
   words: WordsTable,
   gems: GemsTable,
 };

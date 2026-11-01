@@ -52,6 +52,7 @@ class RummyEngine(BaseEngine):
             "discard": [cards.pop()],
             "dropped": {},
             "played": [],
+            "open_pickup": None,
             "scores": {p: 0 for p in players},
             "winners": [],
             "message": "Draw, group your cards, then discard.",
@@ -71,6 +72,7 @@ class RummyEngine(BaseEngine):
         return [
             option
             for c in s["hands"][player]
+            if c != s.get("open_pickup")
             for option in [
                 legal(f"Discard {card_view(c).label}", "discard", card=c),
                 legal(f"Declare · discard {card_view(c).label}", "declare", card=c),
@@ -90,6 +92,7 @@ class RummyEngine(BaseEngine):
         validate_action(self.legal_actions(state, player), action)
         s = self.copy(state)
         if action.type in ("draw_stock", "draw_discard"):
+            s["open_pickup"] = s["discard"][-1] if action.type == "draw_discard" else None
             s["hands"][player].extend(
                 draw(s) if action.type == "draw_stock" else [s["discard"].pop()]
             )
@@ -100,6 +103,7 @@ class RummyEngine(BaseEngine):
         else:
             s["hands"][player].remove(action.card)
             s["discard"].append(action.card)
+            s["open_pickup"] = None
             if action.type == "declare":
                 if valid_declaration(s["hands"][player], s["wild"]):
                     self._finish(s, player)

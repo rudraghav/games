@@ -11,6 +11,11 @@ do not reopen raising for players whose action is not reopened by the cumulative
 increase. All-in runouts, folded contributions, side pots, ties and clockwise
 odd-chip allocation are part of settlement. Folded hands remain concealed.
 
-Status: implementation in progress. A match is one hand; rematch deals another.
-Verify hand rankings, heads-up order, blind credit, short raises, all-in runouts,
-multiway side pots, split/odd pots, chip conservation and private projections.
+A match is one hand; rematch deals another. The 1 November 2026 audit also checked
+[PokerStars' rules](https://www.pokerstars.com/help/articles/poker-rules-master/229151/)
+for heads-up order, side-pot eligibility and minimum raises. `test_table_rules.py`
+independently checks all nine ranking categories, wheel/raise boundaries,
+cumulative short all-ins, odd-chip order and min/max complete matches with exact
+card/chip conservation. Uncalled excess is refunded separately, never counted
+as a winning side pot; a lone funded player cannot raise against only all-ins.
+Existing side-pot fixtures verify unequal stacks and folded-hand redaction.

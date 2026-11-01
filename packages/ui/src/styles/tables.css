@@ -552,8 +552,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 22px;
-    position: sticky;
-    bottom: 10px;
+    position: relative;
     box-shadow: var(--shadow-soft);
     z-index: 3;
   }
@@ -716,6 +715,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
+    margin-top: 18px;
   }
   .property-player {
     padding: 16px;
@@ -735,6 +735,9 @@
     gap: 6px;
     overflow: auto;
     padding: 15px 0 8px;
+  }
+  .bank-cards:not(:has(.playing-card)) {
+    padding: 8px 0 0;
   }
   .property-sets {
     display: flex;
@@ -766,12 +769,16 @@
     font-size: 8px;
   }
   .empty-properties {
-    padding-top: 25px;
+    padding-top: 0;
+  }
+  .property-sets:has(.empty-properties) {
+    min-height: 0;
   }
   .skyjo-players {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
+    margin-top: 18px;
   }
   .skyjo-player {
     padding: 18px;
@@ -1060,22 +1067,32 @@
       padding: 10px 13px;
     }
     .casino-table {
-      min-height: 520px;
+      display: contents;
+    }
+    .casino-layout {
       display: flex;
       flex-direction: column;
+    }
+    .casino-layout > .private-hand {
+      order: 1;
+    }
+    .casino-layout > .action-panel {
+      order: 2;
+      margin-bottom: 18px;
     }
     .casino-felt {
       position: relative;
       inset: auto;
-      min-height: 230px;
+      min-height: 180px;
       border-width: 6px;
-      order: 2;
-      margin: 10px 0 0;
+      order: 0;
+      margin: 0 0 10px;
       padding: 24px 14px;
       gap: 14px;
     }
     .casino-seats {
       display: grid;
+      order: 3;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px 7px;
     }

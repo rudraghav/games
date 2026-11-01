@@ -381,3 +381,83 @@
   application deployment. Serving runtime remains the verified ebd6badaa revision.
   Full-match/min-max browser coverage, canonical Deal No Mercy printed values,
   hosted 50-room load and Tarot reliability remain open acceptance requirements.
+
+## 2026-11-01 — Complete-match verification, Tarot reliability and library polish
+
+- Owner requested full-match/rule verification for every game, Tarot fixes,
+  additional common games and researched UI improvements, followed by main and
+  production. Preserve personal cloud resources, existing rooms/account links,
+  historical evidence and the single personal-CLI release path.
+- Acceptance: independently sourced rules and expected-outcome edge tests;
+  real player sessions reaching results/rematch/game-switch at both seat limits;
+  phone/desktop crowded layouts, keyboard/reduced motion, hidden information and
+  restart/retry safety; bounded fresh Gemini evaluations with valid saved output;
+  all verification groups, hosted load and fresh production rollout readback.
+  Never substitute legal-action self-play or opening smoke for independent rules
+  proof. Record any unavailable publisher evidence instead of certifying guesses.
+- Expansion scope: American Checkers and Kalah (Mancala), each fully playable with
+  explicit rules, independent engine tests, shared table components and the same
+  rooms/results/rematch contract. Catalogue work will add search/player/category
+  discovery to the existing warm lounge, grounded in fresh screenshot inspection
+  and current Playdeal, PlayingCards.io, Board Game Arena and Dribbble research.
+- Workstreams: Uno/Deal publisher audit; casino/rummy/Skyjo/expansion rules audit;
+  Tarot provider-contract repair; shared UI, new boards and complete browser/release
+  verification. Changes remain local until all affected checks pass.
+- Owner approved a clearly labeled Games house deck for Deal No Mercy. Original
+  physical-card photographs corrected nine printed bank values and established
+  the missing 15M denomination; the eighteen money-card copy counts are explicit
+  Games choices. In-app rules, phone catalogue label and version distinguish this
+  115-card house inventory from Hasbro's exact boxed G3071 inventory.
+- Fixed rummy's two-sequence scoring gate/open-pickup discard, blackjack funded
+  insurance and split-21 completion, Hold'em uncalled-refund/raise semantics,
+  Teen Patti pot-cap/sideshow settlement and Skyjo's final-reveal column removal.
+  Uno/Deal fixes cover roulette colour ownership, final 7/0 victory, doubled-rent
+  deadlocks, zero-value-only rent, debt-paid Shack behavior, building transfers
+  and full Deal discard recycling. Independent expected-state tests own these
+  cases separately from legal-action self-play.
+- Tarot now sends exact card/position tuple constraints plus character guidance,
+  validates returned output strictly and permits one fresh malformed/truncated
+  regeneration within the proxy deadline. Each actual provider attempt reserves
+  the transactional daily budget. Auth/quota/transport/safety failures do not loop.
+  Six fresh fixed evaluations passed first attempt, 2.24–4.15 s. No raw questions,
+  readings or provider credentials were retained in diagnostic output.
+- Added Checkers and four-seed Kalah/Mancala with independent expected-position,
+  capture/promotion/draw/sweep/conservation checks and accessible board decisions.
+  Catalogue discovery, GameTile/ChoiceGroup/MancalaPit variants and researched
+  table-layout fixes passed six new and four usability browser checks. Existing
+  sixteen workflow checks and all 32 synthetic table scenarios per viewport passed.
+- Full desktop run reached natural results, clicked rematch and switched games
+  for all sixteen experiences (27 distinct seat cases, with real Tarot). The
+  subsequent phone run exposed a persistence boundary: house version text exceeded
+  Match's VARCHAR(16). Shortened to house-deck-1, validated the shared manifest
+  length, and added 32 actual-database start/readback scenarios. Final reruns are
+  in progress; pure setup/playthrough results never substitute for persistence.
+- Latest frozen-source named checks: frontend types/lint/12 tests/build, backend
+  types/lint/284 tests, contracts and boundaries passed. Isolated multiplayer
+  passed 41 checks including every game's min/max persisted start. Fresh local
+  migration/drift and 50-room local load passed (action median374/p95432 ms;
+  snapshot median192/p95225 ms). Storybook build and production schema/RLS/grants
+  readback passed. Source remains local; no new push/deployment yet in this task.
+- Full-match verification exposed a second real boundary bug: legal Deal bills
+  can select 31/33 bank/property assets, but Action.cards rejected more than 30.
+  Raised the bounded wire selection to 115, matching the largest selectable deck;
+  engines still enforce ownership/eligibility. Both editions now have actual
+  HTTP large-payment, invalid-selection, version/readback/conservation tests.
+- Final local acceptance passed: 285 backend checks, 43 isolated multiplayer
+  checks, 13 frontend checks, types/lint/build/contracts/boundaries/Storybook,
+  local migrations/load, 26 regular phone/desktop workflows and four sanitized
+  transport/privacy checks. Every game reached natural results/rematch/switch at
+  each distinct seat limit across 54 viewport cases, with saved score/winner
+  history checked. Rummy shuffled browser drops remain separate from conserved
+  valid-declaration fixtures; bulk match decisions use authorized API projections.
+- Final phone suite passed all 27 cases with real Tarot. Desktop's 27-case baseline
+  was supplemented by all four final-source Deal cases. A local rebuild caused
+  ECONNRESET after one natural result; stabilized source and a focused five-seat
+  rerun passed. Diagnostic transport/cookie errors are now sanitized, and resolved
+  local test-cookie captures were removed. Latest task rooms closed successfully.
+- Local release evidence is saved under docs/evidence/release-2026-11-01;
+  runtime fingerprint c6412dbcaee1b578801ae49fe693ccdcb71d73492c89e817e21fef0988e27418.
+  Known-secret scan passed 275 candidate source/evidence files; credentials and
+  test outputs remain ignored. Personal GitHub/Vercel target and previous Ready
+  production recovery point were rechecked. Push main, deploy through the sole
+  personal CLI path, then record actual hosted acceptance and latency separately.

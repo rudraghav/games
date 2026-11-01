@@ -9,13 +9,36 @@ export function DealTable(props: TableProps) {
   const [selected, setSelected] = useState<string | null>(null);
   const select = (id: string) => setSelected(id === selected ? null : id);
   return (
-    <div className="table-layout">
-      <div className="deal-table">
-        <div className="deal-piles">
-          <CardPile label="Draw" count={match.drawCount} family="property" />
-          <CardPile label="Discard" card={match.discard} family="property" />
-          <span className="small muted">{Number(match.detail.moves ?? 0)} actions this turn</span>
+    <div className="table-layout deal-layout">
+      <div className="deal-piles">
+        <CardPile label="Draw" count={match.drawCount} family="property" />
+        <CardPile label="Discard" card={match.discard} family="property" />
+        <span className="small muted">{Number(match.detail.moves ?? 0)} actions this turn</span>
+      </div>
+      <div className="private-hand">
+        <div className="hand-heading">
+          <h3>
+            Your hand <span className="muted">{match.hand.length}</span>
+          </h3>
         </div>
+        <Hand
+          cards={match.hand}
+          family="property"
+          selectedIds={selected ? [selected] : []}
+          onSelect={select}
+        />
+      </div>
+      <ActionPanel
+        {...props}
+        selected={selected}
+        cardSelectionRequired
+        clear={() => setSelected(null)}
+        onAction={(action) => {
+          props.onAction(action);
+          setSelected(null);
+        }}
+      />
+      <div className="deal-table">
         <div className="property-players">
           {match.players.map((player) => {
             const member = room.members.find((m) => m.id === player.id);
@@ -40,7 +63,11 @@ export function DealTable(props: TableProps) {
                         family="property"
                         compact
                         selected={selected === card.id}
-                        onClick={() => select(card.id)}
+                        onClick={
+                          match.actions.some((option) => option.value.card === card.id)
+                            ? () => select(card.id)
+                            : undefined
+                        }
                       />
                     ))}
                     {!player.bank.length ? (
@@ -60,7 +87,11 @@ export function DealTable(props: TableProps) {
                             family="property"
                             compact
                             selected={selected === card.id}
-                            onClick={() => select(card.id)}
+                            onClick={
+                              match.actions.some((option) => option.value.card === card.id)
+                                ? () => select(card.id)
+                                : undefined
+                            }
                           />
                         ))}
                       </div>
@@ -75,28 +106,6 @@ export function DealTable(props: TableProps) {
           })}
         </div>
       </div>
-      <div className="private-hand">
-        <div className="hand-heading">
-          <h3>
-            Your hand <span className="muted">{match.hand.length}</span>
-          </h3>
-        </div>
-        <Hand
-          cards={match.hand}
-          family="property"
-          selectedIds={selected ? [selected] : []}
-          onSelect={select}
-        />
-      </div>
-      <ActionPanel
-        {...props}
-        selected={selected}
-        clear={() => setSelected(null)}
-        onAction={(action) => {
-          props.onAction(action);
-          setSelected(null);
-        }}
-      />
     </div>
   );
 }

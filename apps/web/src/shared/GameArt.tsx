@@ -3,6 +3,7 @@ import {
   WordTile,
   PlayingCard,
   TarotCard,
+  MancalaPit,
   type CardPresentation,
 } from '@games/ui';
 import type { Game } from '@games/api-client/catalog';
@@ -12,6 +13,37 @@ function card(value: string, color: string, suit = '', subtitle = ''): CardPrese
   return { id: `${color}-${value}`, label: value, value, color, suit, subtitle };
 }
 export function GameArt({ game }: { game: Game }) {
+  if (game.id === 'checkers')
+    return (
+      <div className="game-art game-art--checkers" aria-hidden="true">
+        {Array.from({ length: 36 }, (_, i) => (
+          <span key={i} data-dark={(Math.floor(i / 6) + (i % 6)) % 2 === 1}>
+            <span
+              className="board-disc"
+              data-color={
+                (Math.floor(i / 6) + (i % 6)) % 2 === 1 && (i < 12 || i >= 24)
+                  ? i < 12
+                    ? 'ivory'
+                    : 'coral'
+                  : 'empty'
+              }
+            />
+          </span>
+        ))}
+      </div>
+    );
+  if (game.family === 'mancala')
+    return (
+      <div className="game-art game-art--mancala" aria-hidden="true">
+        <MancalaPit count={12} label="Store" store />
+        <div>
+          {Array.from({ length: 6 }, (_, i) => (
+            <MancalaPit key={i} count={4} label="Pit" />
+          ))}
+        </div>
+        <MancalaPit count={8} label="Store" store />
+      </div>
+    );
   if (game.family === 'board')
     return (
       <div className="game-art game-art--board" aria-hidden="true">
@@ -96,9 +128,9 @@ export function GameArt({ game }: { game: Game }) {
         ]
       : game.family === 'property'
         ? [
-            card('2M', 'green', 'property', 'Garden district'),
+            card('4M', 'green', 'property', 'Garden district'),
             card(
-              game.id.includes('mercy') ? '10M' : '3M',
+              game.id.includes('mercy') ? '2M' : '3M',
               'neutral',
               'action',
               game.id.includes('mercy') ? 'Yoink!' : 'Rent',

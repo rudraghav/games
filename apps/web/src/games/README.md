@@ -11,7 +11,7 @@ amount steps/payment eligibility. Shared visual vocabulary lives in `@games/ui`.
 - `rummy`: sortable local hand groups and explicit discard/declaration choices.
 - `skyjo`: 3×4 grids, hidden/revealed/removed slots and draw/swap decisions.
 - `tarot`: private three-card selection and persisted AI reading status.
-- `board`: public-board composition shared by Four in a Row and Reversi.
+- `board`: public-board composition shared by Four in a Row, Reversi and Checkers; Kalah/Mancala composes shared numeric pits/stores.
 - `words`: private spymaster key, one-word clues and confirmed team guesses.
 - `gems`: resource selection, development/patron cards, private reservations and prestige.
 

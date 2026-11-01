@@ -28,8 +28,8 @@ export function PlayerStrip({
                   : player.folded
                     ? 'Folded'
                     : player.chips != null
-                      ? `${player.chips} chips · ${player.bet} bet`
-                      : `${player.count} cards · ${player.score} points`
+                      ? `${player.chips} chips${player.bet ? ` · ${player.bet} bet` : ''}`
+                      : `${player.count} cards${player.score ? ` · ${player.score} points` : ''}`
             }
           />
         );

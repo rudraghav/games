@@ -1,6 +1,6 @@
 from app.core.contracts import Action, RuleError, State
 from app.games.deal.deck import DealCard
-from app.games.deal.table import assets, transfer
+from app.games.deal.table import assets, locate, transfer
 
 
 def queue(s: State, actor: str, target: str, kind: str, **kwargs: object) -> None:
@@ -90,6 +90,14 @@ def act(s: State, player: str, action: Action, cards: dict[str, DealCard], mercy
         effect["keep"] = action.card
         return
     if action.type == "give":
+        if effect["kind"] == "repossession":
+            key = locate(s, target, action.card)
+            if key is not None:
+                # A Shack on a partially repossessed set leaves with a given
+                # property, even when its original anchor is the kept card.
+                for card in s["properties"][target][key]:
+                    if cards[card].action == "shack":
+                        s["links"][card] = action.card
         transfer(s, target, action.target, action.card, cards)
         remaining = (
             s["banks"][target]

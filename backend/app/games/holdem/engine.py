@@ -64,6 +64,7 @@ class HoldemEngine(BaseEngine):
             "winners": [],
             "shown": [],
             "pots": [],
+            "refunds": {},
             "message": "Blinds are in. Your move.",
         }
         sb, bb = (0, 1) if n == 2 else (1, 2)
@@ -103,7 +104,10 @@ class HoldemEngine(BaseEngine):
             actions.append(
                 legal("Raise to", "raise", input="amount", minimum=minimum, maximum=maximum)
             )
-        if maximum <= s["current_bet"] or can_raise:
+        opponents_can_bet = any(
+            s["players"][q]["chips"] for q in self._active(s) if q != player
+        )
+        if maximum <= s["current_bet"] or can_raise and opponents_can_bet:
             actions.append(legal(f"All in · {p['chips']}", "all_in"))
         return actions
 
@@ -121,10 +125,17 @@ class HoldemEngine(BaseEngine):
         for level in levels:
             contributors = [p for p in s["order"] if s["players"][p]["total"] >= level]
             amount = (level - previous) * len(contributors)
+            if len(contributors) == 1:
+                # Returning an unmatched wager is not winning a side pot.
+                p = contributors[0]
+                s["players"][p]["chips"] += amount
+                s.setdefault("refunds", {})[p] = amount
+                previous = level
+                continue
             eligible = [p for p in active if s["players"][p]["total"] >= level]
             if not eligible:
-                # An uncalled excess belongs to its contributor, even if it folded.
-                eligible = contributors
+                # Folded chips cannot win; a sole surviving hand receives dead money.
+                eligible = active
             best = max(ranks.get(p, (0,)) for p in eligible)
             won = [p for p in eligible if ranks.get(p, (0,)) == best]
             clockwise = s["order"][s["button"] + 1 :] + s["order"][: s["button"] + 1]
@@ -218,7 +229,9 @@ class HoldemEngine(BaseEngine):
             if player in s["players"]
             else [],
             community=[card_view(c) for c in s["board"]],
-            pot=sum(p["total"] for p in s["players"].values()),
+            pot=sum(pot["amount"] for pot in s["pots"])
+            if s["phase"] == "finished"
+            else sum(p["total"] for p in s["players"].values()),
             actions=self.legal_actions(s, player),
             message=s["message"],
             winners=s["winners"],
@@ -226,5 +239,6 @@ class HoldemEngine(BaseEngine):
                 "button": s["order"][s["button"]],
                 "current_bet": s["current_bet"],
                 "pots": s["pots"],
+                "refunds": s.get("refunds", {}),
             },
         )

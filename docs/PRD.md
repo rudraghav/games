@@ -34,6 +34,13 @@ the same room, privacy, action/version, rematch and renderer contracts. A game
 must be playable before it appears as an available catalogue choice. See
 `GAME_LIBRARY.md` for rules sources, edition boundaries and further candidates.
 
+The next owner-requested expansion adds American Checkers and four-seed Kalah
+(Mancala), giving sixteen experiences. Search, player count and category filters
+help groups choose without changing room membership. On 1 November 2026 the
+owner approved a clearly labeled Games house deck for Deal No Mercy because its
+complete printed money-card multiplicities were unavailable. Exact house counts
+and verified printed effects are recorded in that engine's README and rule sheet.
+
 ## Release gate
 
 All nine games must complete matches, score correctly, rematch, and switch games

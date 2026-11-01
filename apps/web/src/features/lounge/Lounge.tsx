@@ -2,15 +2,16 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowRight, Plus, UsersRound, Clock3, Link2, Sparkles, Check } from 'lucide-react';
+import { ArrowRight, Plus, UsersRound, Link2, Sparkles, Check } from 'lucide-react';
 import { Button, Wordmark } from '@games/ui';
-import { games, gameById } from '@games/api-client/catalog';
+import { gameById } from '@games/api-client/catalog';
 import { api } from '@/lib/session';
 import { RoomDialog } from '@/shared/RoomDialog';
 import { SiteHeader } from '@/shared/SiteHeader';
 import { keys } from '@/shared/query-keys';
 import { useHasPlayed } from '@/shared/player-preferences';
-import { GameArt, HeroScene } from '@/shared/GameArt';
+import { HeroScene } from '@/shared/GameArt';
+import { GameLibrary } from './GameLibrary';
 
 export function Lounge() {
   const [dialog, setDialog] = useState<{ mode: 'create' | 'join'; gameId: string } | null>(null);
@@ -74,43 +75,7 @@ export function Lounge() {
             </div>
           </section>
         ) : null}
-        <section id="games">
-          <div className="section-heading">
-            <h2>What are we playing?</h2>
-            <p className="small muted">Find a favourite. Make it a night.</p>
-          </div>
-          <div className="catalogue-grid">
-            {games.map((game) => (
-              <button
-                key={game.id}
-                className="game-tile"
-                onClick={() => setDialog({ mode: 'create', gameId: game.id })}
-                aria-label={`Create ${game.name} room`}
-              >
-                <div className="game-poster" data-tone={game.color}>
-                  <GameArt game={game} />
-                </div>
-                <div className="game-tile-body">
-                  <div className="game-tile-heading">
-                    <h3>{game.name}</h3>
-                    <ArrowRight className="tile-arrow" size={16} />
-                  </div>
-                  <p>{game.subtitle}</p>
-                  <div className="game-meta">
-                    <span>
-                      <UsersRound size={12} />
-                      {game.minPlayers}–{game.maxPlayers} players
-                    </span>
-                    <span>
-                      <Clock3 size={12} />
-                      {game.minutes} min
-                    </span>
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
-        </section>
+        <GameLibrary onChoose={(gameId) => setDialog({ mode: 'create', gameId })} />
         <section className="home-bottom" id="how-it-works" aria-label="How it works">
           <article>
             <Sparkles size={20} />

@@ -24,3 +24,8 @@ There is no deck/discard score. The result names every member of the winning tea
 contact counts are shown as scores. Setup, moves and views are deterministic for
 a saved seed/state. Acceptance covers all endings, clue bounds, mandatory first
 guess, guess limits, teammate actions and key privacy across every role.
+
+The 1 November 2026 audit reviewed CGE's publisher description against these
+explicit house choices. `test_expansion.py` covers the assassin, last enemy agent,
+clue rejection, guess limit and key privacy; `test_table_rules.py` completes
+shuffled matches at 4/10 seats without altering the saved key or board.

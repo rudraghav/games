@@ -1,5 +1,7 @@
 # Public-board classics
 
+Checkers and Kalah/Mancala extend this family; see [their rules and acceptance](NEW_BOARDS.md).
+
 Four in a Row: two players alternate dropping one disc into a non-full column
 of a seven-column, six-row board. Gravity chooses the landing cell. The first
 horizontal, vertical or diagonal line of four wins; a full board without a line
@@ -18,3 +20,8 @@ does not calculate captures or wins. Results, player identity, reconnect, rooms
 and rematches use the existing shared service. Acceptance includes out-of-turn
 rejection, full columns/non-capturing squares, directional wins/flips, passes,
 draws, immutable input state and bounded complete matches.
+
+Audit: `test_expansion.py` independently checks gravity, all winning directions,
+full-column rejection, Reversi eight-direction captures, forced passes and
+terminal counts. `test_table_rules.py` additionally completes both games at their
+two-player limit while checking immutable inputs and disabled terminal actions.

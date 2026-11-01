@@ -161,7 +161,7 @@ class UnoEngine(BaseEngine):
                 if kind == "7" and (self.mercy or s["settings"].get("seven_zero"))
                 else [None]
             )
-            for c in COLORS if color == "wild" else [None]:
+            for c in COLORS if color == "wild" and kind != "roulette" else [None]:
                 for target in targets:
                     actions.append(
                         legal(
@@ -228,6 +228,7 @@ class UnoEngine(BaseEngine):
                 self._advance(s)
         elif action.type == "choose":
             opening = s["pending"]["type"] == "opening_color"
+            s["color"] = action.color
             if not opening:
                 while player not in s["eliminated"]:
                     before = len(s["hands"][player])
@@ -237,8 +238,6 @@ class UnoEngine(BaseEngine):
                         or s["hands"][player][-1].split(":")[0] == action.color
                     ):
                         break
-            else:
-                s["color"] = action.color
             s["pending"] = None
             if not opening:
                 self._advance(s)
@@ -275,12 +274,19 @@ class UnoEngine(BaseEngine):
                 extras = [c for c in s["hands"][player] if c.split(":")[0] == color]
                 s["hands"][player] = [c for c in s["hands"][player] if c not in extras]
                 s["discard"][-1:-1] = extras
-            if kind == "7" and action.target:
+            # No Mercy ends as soon as the final card is played, before a 7/0
+            # could transfer the newly empty hand to another player.
+            final_mercy_card = self.mercy and not s["hands"][player]
+            if kind == "7" and action.target and not final_mercy_card:
                 s["hands"][player], s["hands"][action.target] = (
                     s["hands"][action.target],
                     s["hands"][player],
                 )
-            if kind == "0" and (self.mercy or s["settings"].get("seven_zero")):
+            if (
+                kind == "0"
+                and (self.mercy or s["settings"].get("seven_zero"))
+                and not final_mercy_card
+            ):
                 active = [p for p in s["order"] if p not in s["eliminated"]]
                 old = {p: s["hands"][p] for p in active}
                 for i, p in enumerate(active):

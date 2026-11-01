@@ -28,3 +28,10 @@ to their owner; bought cards, chips, discounts, patrons and scores are public.
 Acceptance: all 90 identities unique, seeded shuffle, legal take/return limits,
 discount/gold payments, no negative supplies, reservation privacy and cap, patron
 choice, exact card/chip conservation, final seating round and tie handling.
+
+The 1 November 2026 audit checked the linked publisher rules for the shared turn
+loop and retained this edition's original costs, patrons and automatic payment
+choice. `test_expansion.py` verifies conservation throughout complete 2/4-seat
+matches and reservation privacy; `test_gem_market_edges.py` independently checks
+the final seating round, fewer-development tie-break and one-patron limit.
+`test_table_rules.py` adds separate 2/4-seat completion seeds.

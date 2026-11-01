@@ -1,5 +1,19 @@
+from app.core.cards import shuffle_saved
 from app.core.contracts import State
 from app.games.deal.deck import RENTS, DealCard
+
+
+def draw_cards(s: State, count: int) -> list[str]:
+    """Deal discards have no active top card: recycle the entire used pile."""
+    drawn = []
+    for _ in range(count):
+        if not s["deck"]:
+            if not s["discard"]:
+                break
+            s["deck"], s["discard"] = s["discard"], []
+            shuffle_saved(s, s["deck"])
+        drawn.append(s["deck"].pop())
+    return drawn
 
 
 def complete(group: list[str], cards: dict[str, DealCard], color: str) -> bool:

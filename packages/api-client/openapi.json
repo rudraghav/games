@@ -1154,7 +1154,7 @@
               "type": "string"
             },
             "type": "array",
-            "maxItems": 30,
+            "maxItems": 115,
             "title": "Cards"
           },
           "groups": {
@@ -1328,6 +1328,8 @@
           },
           "rules_version": {
             "type": "string",
+            "maxLength": 16,
+            "minLength": 1,
             "title": "Rules Version",
             "default": "1"
           },
