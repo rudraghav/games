@@ -1,3 +1,39 @@
+## 2026-11-02 — Board accessibility local release checks pass
+
+- Three UI components now expose every Four cell and both owners' Mancala
+  pits/stores as named semantic objects. No extra keyboard stops or move controls;
+  rules/API/schema/dependencies unchanged. Detailed source and limits are recorded
+  in docs/evidence/board-accessibility-2026-11-02/.
+- Named report verify-c2ff12bacffa435c926b0aea57c6e691 passes frontend types,
+  lint,134tests and production build plus browser types/20desktop-phone cases.
+  Four new fixture cases assert the actual accessibility tree; two saved-room
+  cases verify keyboard commit/version+1, other-seat equality, exact refresh and
+  overview nonmutation/focus return. Related rail/board regressions also pass.
+- Personal target/auth/pooler preflight and no-op Alembic/schema drift/private
+  grants pass at a6e442b15d80. Owner fingerprint retained privately. All461runtime
+  inputs match120531183f482f4e17963a19c49f5493d1f9acbb5668fe96e40e6de587852565.
+  Prior servingcfd990a/dpl_FRh4dLZ1kfEiuChjUcQ1QFn8X1v5 is rollback reference.
+- State: local verification complete; next push this focused batch, deploy once
+  and verify actual hosted saved-game behavior, owner preservation and logs.
+
+## 2026-11-02 — Next task: public board accessibility
+
+- Outcome: make existing public board state available to assistive technology.
+  Fresh rendered accessibility snapshots confirmed Four in a Row exposes no42
+  cell labels, Mancala stores lose their names, and its overview exposes bare
+  counts instead of pit/store identities. Existing overview move controls remain
+  correctly read-only. This follows the completed17-item release.
+- Acceptance: all42 Four cells expose exact square/occupant labels; all14 Mancala
+  positions include owner, pit/store and count in main/overview representations;
+  no new focus stops or hidden information; keyboard moves, Escape/focus return
+  and saved refresh still work on phone/desktop. Existing board mechanics unchanged.
+- Boundary: semantic UI corrections in current board components/shared MancalaPit,
+  browser regressions and owning docs. No API/schema/dependency change. This is
+  accessibility-tree/keyboard evidence, not a native screen-reader usability study.
+- Task board-accessibility-20261102 owns the narrow paths. QA outputs remain under
+  output/playwright/board-accessibility; preserve existing services/history. Next:
+  implement, run affected named checks, then push/verify one scoped rollout.
+
 ## 2026-11-02 — Audit improvements pushed and production verified
 
 - Application cfd990ac7491fc82e4eff7354f93e0ef7fc1c12f is pushed to main and

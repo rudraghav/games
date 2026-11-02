@@ -1,5 +1,10 @@
 # Games design system
 
+Read-only board cells use named semantic elements, not labels on generic empty
+containers. Four in a Row exposes every square and occupant as a named image.
+Mancala labels include the public owner, pit/store and seed count on both the
+main board and overview. These do not add focus stops or move controls.
+
 Warm ivory lounge; dark ink, muted sage and terracotta accents. Cards combine
 large readable ranks/actions, documented SVG playing-card faces and original
 illustration atlases. Casino tables use

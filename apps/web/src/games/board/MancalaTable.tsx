@@ -7,6 +7,11 @@ import { BoardViewport } from './BoardViewport';
 export function MancalaTable(props: TableProps) {
   const { match, room, selfId, onAction, pending } = props;
   const options = new Map(match.actions.map((option) => [option.value.choice, option]));
+  const ownerName = (index: number) => playerName(room, match.players[index < 7 ? 0 : 1].id);
+  function positionLabel(index: number) {
+    const card = match.community[index];
+    return `${ownerName(index)} · ${card.label}: ${card.value} seeds`;
+  }
   function pit(index: number) {
     const card = match.community[index];
     const option = options.get(card.id);
@@ -14,7 +19,7 @@ export function MancalaTable(props: TableProps) {
       <MancalaPit
         key={index}
         count={Number(card.value)}
-        label={option?.label || `${card.label}: ${card.value} seeds`}
+        label={option ? `${option.label} · ${ownerName(index)}` : positionLabel(index)}
         store={index === 6 || index === 13}
         highlighted={match.detail.last_move === index}
         disabled={pending || room.paused || !option}
@@ -34,7 +39,7 @@ export function MancalaTable(props: TableProps) {
           label="Mancala board"
           overview={
             <div className="mancala-overview" role="group" aria-label="All pits and stores">
-              <span aria-label={`${match.community[13].label}: ${match.community[13].value} seeds`}>
+              <span role="img" aria-label={positionLabel(13)}>
                 {match.community[13].value}
               </span>
               <div>
@@ -44,17 +49,14 @@ export function MancalaTable(props: TableProps) {
                 ].map((row, index) => (
                   <div key={index}>
                     {row.map((slot) => (
-                      <span
-                        key={slot}
-                        aria-label={`${match.community[slot].label}: ${match.community[slot].value} seeds`}
-                      >
+                      <span key={slot} role="img" aria-label={positionLabel(slot)}>
                         {match.community[slot].value}
                       </span>
                     ))}
                   </div>
                 ))}
               </div>
-              <span aria-label={`${match.community[6].label}: ${match.community[6].value} seeds`}>
+              <span role="img" aria-label={positionLabel(6)}>
                 {match.community[6].value}
               </span>
             </div>

@@ -44,7 +44,7 @@ export function MancalaPit({
       {content}
     </button>
   ) : (
-    <div className={className} aria-label={label} data-last={highlighted}>
+    <div className={className} role="img" aria-label={label} data-last={highlighted}>
       {content}
     </div>
   );

@@ -2,6 +2,13 @@
 
 Routine `pnpm test:browser` checks independent sessions and responsive controls.
 
+`board-accessibility.spec.ts` checks the actual accessibility tree of legal
+Four/Mancala projections, including every static position, owner labels, keyboard
+activation and read-only overview focus. `board-accessibility-saved.spec.ts`
+checks real saved-room moves and refresh on desktop/phone; it also runs against
+an explicitly selected hosted origin, closes only its own rooms and preserves
+history. No native screen-reader study is implied by these browser checks.
+
 `deal-workspace.spec.ts` also checks the local-only `/design/deal` review harness.
 Its twelve synthetic scenarios and paired outcomes come from real Deal engine
 actions and authorized projections, with conservation/privacy assertions in

@@ -17,6 +17,10 @@ supplies a labelled colour/count vocabulary for shared supplies, personal
 collections, costs and discounts, in full and compact sizes. These components
 accept presentation data only; rules and private-role decisions remain server-owned.
 
+Read-only `MancalaPit` instances expose a named image, keeping the supplied owner,
+store and seed-count label in the accessibility tree. Interactive pits remain
+native buttons; decorative seeds do not create additional announcements or stops.
+
 Tarot masters remain intact. An optional image loader lets the app request compact
 static WebP derivatives while Storybook can use the original PNG atlases.
 Change tokens and shared variants to improve a family, then inspect the component

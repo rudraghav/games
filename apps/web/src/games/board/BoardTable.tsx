@@ -105,6 +105,7 @@ export function BoardTable(props: TableProps) {
                   <div
                     key={cell.id}
                     className="board-square"
+                    role="img"
                     aria-label={label}
                     data-last={board.lastMove === index}
                     data-winning={board.winningCells.includes(index)}

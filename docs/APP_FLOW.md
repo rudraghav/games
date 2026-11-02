@@ -1,5 +1,11 @@
 # Application flow
 
+Public board positions remain inspectable through the accessibility tree:
+Four in a Row exposes all42 squares and occupants; Mancala exposes both owners'
+pits/stores and seed counts. Whole-board overviews remain read-only and Escape
+returns focus to the opener. Keyboard activation submits only the existing
+full-size legal move controls.
+
 - `/`: public, server-rendered lounge with 26 multiplayer games and Pop Tarot; search/category/group-size discovery, create/join and member-only room shortcuts.
 - `/rooms/[id]`: authenticated membership-only lobby, live table, results and room chat.
 - `/join/[token]`: guest identity and explicit join; navigate to the stable room URL after joining.

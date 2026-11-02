@@ -1,0 +1,37 @@
+{
+  "state": "locally_verified_before_push",
+  "baseline": "3a37997dd85ccad69812e6425cd166a4e8f23466",
+  "frontend": {
+    "types": "passed",
+    "lint": "passed",
+    "tests": 134,
+    "productionBuild": "passed"
+  },
+  "browser": {
+    "types": "passed",
+    "casesPassed": 20,
+    "devices": [
+      "desktop",
+      "phone"
+    ],
+    "specs": [
+      "board-accessibility",
+      "board-accessibility-saved",
+      "modern-board-fixes",
+      "hand-navigation"
+    ]
+  },
+  "report": "verify-c2ff12bacffa435c926b0aea57c6e691",
+  "runtimeFingerprint": "120531183f482f4e17963a19c49f5493d1f9acbb5668fe96e40e6de587852565",
+  "runtimeFiles": 461,
+  "cloudPreflight": {
+    "targetAuthAndPooler": "passed",
+    "schemaUpgrade": "no-op",
+    "drift": "none",
+    "privateRlsGrants": "passed",
+    "schemaHead": "a6e442b15d80"
+  },
+  "scope": "Three UI components only; no server rules/API/schema/dependency changes",
+  "notRerun": "Unchanged backend/multiplayer/load suites retain their prior audit release evidence; no new backend claim",
+  "limit": "Accessibility-tree and keyboard checks do not certify native screen-reader usability"
+}
