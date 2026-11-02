@@ -22,6 +22,8 @@ previews stay bounded. Do not validate only an outer seat's rectangle: verify it
 painted card contents and neighbouring rows. Rails keep intrinsic card spacing
 constant when overflow navigation appears. Full boards can use the typed
 `navigationPosition="below"` variant to keep controls outside the board canvas.
+Measure overflow before paint so navigation appearing on the first selection
+cannot move the action area.
 The current per-game density/action matrix is in
 `evidence/crowded-actions-2026-11-02`.
 

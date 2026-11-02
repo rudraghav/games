@@ -68,5 +68,6 @@ UI actions/versions, public agreement, refresh and narrow boards using four real
 guest sessions. It closes its own room and preserves match history. These ordinary
 saved flows complement the explicit density probes; they do not guarantee a
 naturally dealt extreme hand. The [named local gate](verification.json) passed types, lint, 134 unit tests, the
-production build, generated contracts and all 88 browser cases. Production
-verification is recorded separately after deployment.
+production build, generated contracts and all 88 browser cases. [Production verification](production.json) also passed: the exact pushed build
+is live, both hosted device cases cover six saved games, all test rooms are
+closed, existing owner data is unchanged and scoped release logs are clean.

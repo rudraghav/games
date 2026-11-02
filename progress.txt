@@ -1,3 +1,31 @@
+## 2026-11-03 — Crowded layouts pushed and live verified
+
+- Application 4d89dcac173f2f9cb89e1f67ba80a773e9ce4088 is pushed to main.
+  One production deployment dpl_AnMe74miedQyfcPVETKkcSebCAAH is READY in bom1;
+  canonical Games alias and both source metadata fields match. Rollback remains
+  dpl_Cp8cvJar2tCk49vqNrg7GKuqQHmk. No schema/rule/API/provider setting changed.
+- Hosted desktop/phone saved-room checks both pass across the two Deal editions,
+  Blackjack, Sea Salt & Paper, Word Agents and Boop. Exact actions/versions,
+  public agreement, private choices, refresh and narrow controls pass. Read-only
+  closure confirms two closed QA rooms, zero active memberships, twelve retained
+  matches and 22 move receipts. Eight temporary guest profiles/history preserved.
+- Five public/auth/design boundaries pass; catalogue remains 27 games. All five
+  permanent owner fingerprints are unchanged, including five existing rooms.
+  Deployment logs from 2026-11-02T18:48:54.621110+00:00 through
+  2026-11-02T18:52:54+00:00 contain zero warnings/errors/fatals and zero HTTP500+
+  records, with complete pagination and no excluded intervals.
+- Final local gate passes 134 unit tests, types/lint/build/contracts and all88
+  browser cases. The bounded matrix covers259 natural projections at four widths
+  (1,036 renders), plus five controlled Deal density/transfer probes. This is not
+  an exhaustive claim for every combined state or a native screen-reader study.
+- Cleanup receipts total 78 task-owned superseded files, 7,441,631bytes.
+  Useful current captures and safe evidence retained. No new services/worktrees;
+  existing web3217/API8217 return200. Source/art/user screenshots/history/databases/
+  credentials/branches/dependencies and existing services preserved.
+- Evidence: docs/evidence/crowded-actions-2026-11-02/production.json. All461
+  runtime files still match75f8936af1e8c4539aa61be2bd12bc7a3a1e122ba3882d85ece76b09eb91c220.
+  This closure updates documentation/evidence only; no second deployment needed.
+
 ## 2026-11-03 — Crowded-state local release gates passed
 
 - Named report verify-f8963850568e421c89ccd20975b4c91f passes frontend,

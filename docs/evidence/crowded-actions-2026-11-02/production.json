@@ -1,0 +1,91 @@
+{
+  "state": "pushed_deployed_live_verified",
+  "verifiedAt": "2026-11-02T18:54:36.670157+00:00",
+  "applicationCommit": "4d89dcac173f2f9cb89e1f67ba80a773e9ce4088",
+  "branch": "main",
+  "deployment": {
+    "id": "dpl_AnMe74miedQyfcPVETKkcSebCAAH",
+    "target": "production",
+    "readyState": "READY",
+    "regions": [
+      "bom1"
+    ],
+    "alias": "https://games-seven-black.vercel.app",
+    "bothSourceMetadataFieldsMatch": true
+  },
+  "rollbackDeployment": "dpl_Cp8cvJar2tCk49vqNrg7GKuqQHmk",
+  "deployments": 1,
+  "gitIntegration": false,
+  "schema": {
+    "head": "a6e442b15d80",
+    "upgrade": "no-op; drift and private grants passed"
+  },
+  "hosted": {
+    "casesPassed": 2,
+    "devices": [
+      "desktop",
+      "phone"
+    ],
+    "guests": 8,
+    "games": [
+      "deal",
+      "deal-no-mercy",
+      "blackjack",
+      "sea-salt-paper",
+      "word-agents",
+      "boop"
+    ],
+    "checks": [
+      "Exact authorized UI payload/version and one saved action per choice",
+      "Public state agrees across seats and survives refresh",
+      "Private Paper choices remain scoped to their viewer",
+      "Word Agents and Boop controls remain reachable at320/390",
+      "Both QA rooms closed with every member read404; history retained"
+    ],
+    "httpBoundariesPassed": 5,
+    "catalogueGames": 27,
+    "limits": "Ordinary saved flows complement density projections; no extreme hand or full-match claim"
+  },
+  "logs": {
+    "start": "2026-11-02T18:48:54.621110+00:00",
+    "end": "2026-11-02T18:52:54+00:00",
+    "warningsErrorsFatals": 0,
+    "http500Plus": 0,
+    "hasMore": false,
+    "excludedIntervals": []
+  },
+  "ownerPreservation": {
+    "accountProfileRoomsMembershipsIdentities": "all five fingerprints unchanged",
+    "existingOwnerRooms": 5
+  },
+  "qaReadback": {
+    "checkedAt": "2026-11-02T18:52:55.525139+00:00",
+    "closedRooms": 2,
+    "activeMemberships": 0,
+    "preservedMatches": 12,
+    "preservedMoveReceipts": 22,
+    "readOnly": true
+  },
+  "runtime": {
+    "files": 461,
+    "fingerprint": "75f8936af1e8c4539aa61be2bd12bc7a3a1e122ba3882d85ece76b09eb91c220",
+    "allFilesMatchTestedAndDeployedSource": true
+  },
+  "cleanup": {
+    "removedFiles": 78,
+    "removedBytes": 7441631,
+    "scope": "Exact task-owned superseded captures, snapshots, failed reproductions, scratch scripts and duplicate logs; concise checks/current selected captures retained",
+    "newServicesOrWorktrees": 0,
+    "localHealth": {
+      "web": 200,
+      "api": 200
+    },
+    "preserved": "Source, original art, user screenshots, match/profile history, databases, credentials, branches, dependencies, private rollback/owner receipts, existing local web/API/database and user browser"
+  },
+  "limits": [
+    "Bounded matrix across all27 games, not an exhaustive enumeration of every combination",
+    "Native screen-reader user study not performed",
+    "Server rules/API/schema unchanged and not newly certified by this UI batch"
+  ],
+  "closure": "Subsequent commit updates docs/evidence only; no duplicate deployment."
+}

@@ -1,5 +1,5 @@
 {
-  "state": "local_verified_not_yet_released",
+  "state": "local_verified",
   "checkedAt": "2026-11-02T18:47:59.465021+00:00",
   "namedReport": "verify-f8963850568e421c89ccd20975b4c91f",
   "groups": [
@@ -59,5 +59,6 @@
     "Density fixtures are distinguished from ordinary saved multiplayer flows",
     "No native screen-reader user study",
     "Server rules/API/schema unchanged; backend suites not newly certified by this UI batch"
-  ]
+  ],
+  "releaseReceipt": "production.json"
 }
