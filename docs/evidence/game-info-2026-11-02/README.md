@@ -119,5 +119,8 @@ stable selections. It predates these information changes. It does not replace
 new source/type/browser checks or prove a new production rollout.
 
 This information pass is **local** until the root release records its commit,
-deployment and live verification. No schema, engine rules, hidden projection,
-production account or provider configuration was changed by this subtask.
+deployment and live verification. The Gang/Paper follow-up also ran four local saved-room regressions; fresh
+readback confirms all four closed with zero active memberships, preserving ten
+profiles, eight matches and56receipts. Fixture capture itself writes no rooms.
+No schema, engine rules, hidden projection, production account or provider
+configuration was changed by this subtask.

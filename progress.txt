@@ -1,3 +1,32 @@
+## 2026-11-02 — Active-scope workflow release
+
+- Refreshed verification after upstream integration: 44 workflow tests passed; report verify-3939fd1a702f419a971f0d9785d98c4d. Product checks remain owned by their existing release.
+
+- Integrated the latest remote main before publication; preserved its product commits and journal. The Games focused --browser-file option and its path validation remain available; the merged runner has a regression check for focused plans.
+
+- Scope: this is one of eight active repositories selected by the owner. Anoū,
+  the public Mission SOAR website, Shikha Alliance, the separate department
+  website and LMS Nagaland are excluded. Original working copies are preserved.
+- Verified: 43 workflow regression cases and the existing applicable
+  tooling safeguards passed locally. Check report: verify-01f49060b5f640d19fd39870133df1bc.
+- Normal branch protections, production/migration/security gates and scheduled
+  maintenance are retained. Hosted Actions were not used as passing evidence;
+  no account, payment, billing or runner permission setting was changed.
+- Publication: prepared for main from fdb8b6d0047b. Code/manifest inputs
+  are unchanged by this journal-only closure; exact pushed revision and remote
+  state are recorded separately in the private release receipt.
+
+## 2026-11-02 — Scoped workflow adapters
+
+- Outcome: explicit task ownership, accepted handoffs and bounded local check
+  reports, preserving the existing product-specific commands and release gates.
+- Scope: shared scripts/tests, this journal, the workflow guide and instruction
+  pointer; no product data, runtime routes, credentials or provider settings.
+- Acceptance: portable ownership/reporting regression tests pass; current-source
+  plans validate; scoped commits preserve unrelated work and normal branch rules.
+- Verification: local tooling and plan checks passed; publication follows the
+  normal branch rules. Billing is unchanged.
+
 ## 2026-10-31 — Tarot, shared tables and account setup
 
 - Owner selected AI-written personal Tarot readings and then supplied their
@@ -2124,3 +2153,22 @@
   without losing either journal, adapt affected verification metadata and run
   the combined tooling/contract gates before publication. No force push or
   production change has occurred.
+
+2026-11-02 — Combined main ready for production
+- Merged remote main0a8d18b into verified feature2c38d90. Git merged the owning
+  verification runner and both journals without conflicts; the four astrology
+  test additions remain in the backend/multiplayer groups. Native task records
+  recognize both active records for this outcome. No unrelated workflow work
+  was replaced or removed.
+- Combined tooling/contracts report verify-4916f333976a4827ae8e68c459fa07b5 passed:
+  44workflow tests, import boundaries and generated OpenAPI/card/portrait/Deal/
+  247-state parity. All445runtime inputs still match the fully tested fingerprint.
+  Only verification tooling and documentation differ from the earlier gates.
+- Corrected the child cleanup/evidence scope: the Gang/Paper follow-up created
+  four local regression rooms; all were already closed with zero active members
+  after the suite, preserving10profiles,8matches and56receipts. Their fixture
+  capture itself made no database writes. The separate interrupted Tarot child
+  room was also closed through authorized local endpoints; history is retained.
+- Next: push the combined main, deploy once to the personal production project,
+  then verify source/alias, real private readings and Deal info, logs, owner
+  preservation and cleanup before calling the release complete.

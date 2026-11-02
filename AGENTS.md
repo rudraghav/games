@@ -15,3 +15,11 @@ relevant architecture/UI/rules document before meaningful changes.
 - Keep secrets in ignored environment files. Never commit real credentials, access-bearing invite URLs, or private game state.
 - Maintain the module README, applicable source-of-truth docs and the single root `progress.txt` in the same change. Distinguish local, pushed, deployed and live-verified.
 - Preserve existing work. Read the user's task-cleanup and release-verification policies at completion/release; clean only task-owned disposable resources.
+
+## Workflow ownership and verification
+
+Inspect `python3 -B scripts/task.py list` before substantial work. Claim narrow
+paths with this chat's ID and root `progress.txt`; preserve history and accept
+handoffs explicitly. Use `python3 -B scripts/verify.py --list` and `--plan GROUP`.
+Default checks cover tooling only; product/browser/live evidence stays separate.
+See [workflow verification](docs/WORKFLOW_VERIFICATION.md).

@@ -1,5 +1,5 @@
 {
-  "scope": "Local UI information review. No production mutation, provider call or saved-room write.",
+  "scope": "Local UI source/fixture review plus four saved local Gang/Paper regression rooms. No production mutation or provider call; fixture capture performs no room writes.",
   "games": 27,
   "legalScenarios": 247,
   "currentScreenCaptures": 54,
@@ -888,5 +888,11 @@
         }
       ]
     }
-  ]
+  ],
+  "localSavedRoomFollowup": {
+    "rooms": 4,
+    "closed": 4,
+    "activeMembers": 0,
+    "scope": "Gang/Paper desktop/phone regression workflows"
+  }
 }

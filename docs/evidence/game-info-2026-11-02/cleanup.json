@@ -17,7 +17,7 @@
     "existing app/API services and browser sessions"
   ],
   "createdServers": 0,
-  "createdDatabaseRooms": 0,
+  "createdDatabaseRooms": 4,
   "providerCalls": 0,
   "childOwnedBrowserRuns": "completed and closed; no browser server retained",
   "remainingScratchFiles": [
@@ -29,5 +29,13 @@
     "scenario-export.log",
     "types-final.log",
     "units.log"
-  ]
+  ],
+  "localSavedRoomReadback": {
+    "roomsClosed": 4,
+    "activeMembers": 0,
+    "profilesPreserved": 10,
+    "matchesPreserved": 8,
+    "receiptsPreserved": 56,
+    "scope": "Gang/Paper desktop/phone follow-up; fixture capture itself performs no database writes"
+  }
 }
