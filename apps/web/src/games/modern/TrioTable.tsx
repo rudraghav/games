@@ -27,7 +27,7 @@ export function TrioTable(props: TableProps) {
           <span className="small muted">Three trios or the sevens wins.</span>
         </div>
         <section className="trio-own-hand" aria-label="Your private sorted hand">
-          <p className="eyebrow">Your sorted hand</p>
+          <p className="eyebrow">Your hand · private · low to high</p>
           <div className="flip-card-row">
             {match.hand.map((card) => (
               <PlayingCard key={card.id} card={card} family="grid" compact />
@@ -35,22 +35,28 @@ export function TrioTable(props: TableProps) {
             {!match.hand.length ? <span className="small muted">Your hand is empty.</span> : null}
           </div>
         </section>
+        <h3 className="trio-zone-heading">Table cards</h3>
         <div className="trio-table-cards" aria-label="Face-down table positions">
           {match.community.map((card, index) => {
             const choice = tableChoices.get(String(index));
-            return card.suit === 'empty' ? (
-              <div className="trio-empty" key={card.id} aria-label={card.label} />
-            ) : (
-              <PlayingCard
-                key={`slot-${index}`}
-                card={card}
-                faceDown={card.suit === 'hidden'}
-                family="grid"
-                compact
-                label={choice?.label || card.label}
-                onClick={choice ? () => onAction(choice.value) : undefined}
-                disabled={blocked || !choice}
-              />
+            return (
+              <div className="trio-table-slot" key={`slot-${index}`}>
+                {card.suit === 'empty' ? (
+                  <div className="trio-empty" key={card.id} aria-label={card.label} />
+                ) : (
+                  <PlayingCard
+                    key={`slot-${index}`}
+                    card={card}
+                    faceDown={card.suit === 'hidden'}
+                    family="grid"
+                    compact
+                    label={choice?.label || card.label}
+                    onClick={choice ? () => onAction(choice.value) : undefined}
+                    disabled={blocked || !choice}
+                  />
+                )}
+                <small>{index + 1}</small>
+              </div>
             );
           })}
         </div>
@@ -72,7 +78,7 @@ export function TrioTable(props: TableProps) {
               </div>
             ))
           ) : (
-            <p className="muted">No cards revealed.</p>
+            <p className="muted">Choose a table card or ask for a player’s lowest or highest.</p>
           )}
         </div>
         <div className="trio-hands" aria-label="Player hands and collections">

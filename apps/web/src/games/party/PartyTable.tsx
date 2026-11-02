@@ -96,7 +96,7 @@ export function PartyTable(props: TableProps) {
         <div className="party-prompt">
           <Sparkles size={28} aria-hidden="true" />
           <h2>{data.prompt}</h2>
-          {data.mode === 'hot-seat' ? (
+          {data.mode === 'hot-seat' && data.result ? (
             <div className="party-options" aria-label="Preference options">
               {data.options.map((option, i) => (
                 <p key={option}>
@@ -204,6 +204,7 @@ export function PartyTable(props: TableProps) {
                   ))}
                 </div>
                 <Button
+                  className="party-commit"
                   disabled={blocked || !selectedOption}
                   pending={pending}
                   onClick={() => {

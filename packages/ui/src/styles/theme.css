@@ -12,6 +12,8 @@
 @import './workspace.css';
 @import './casino-motion.css';
 @import './shithead.css';
+@import './card-workspaces.css';
+@import './deal-workspace.css';
 @theme static {
   --color-canvas: #f6f3ed;
   --color-surface: #fffcf7;

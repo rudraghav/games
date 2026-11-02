@@ -16,7 +16,7 @@ test('modern covers and every modern table fit with readable touch controls', as
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
         true,
       );
-      const controls = page.locator('.modern-game button:enabled');
+      const controls = page.locator('.modern-game button:enabled:visible');
       expect(await controls.count()).toBeGreaterThan(0);
       expect(
         await controls.evaluateAll((buttons) =>

@@ -103,56 +103,6 @@ export function CasinoTable(props: TableProps) {
           data-casino-version={room.matchVersion}
           ref={canvas}
         >
-          <div className="casino-controls">
-            {showOwnHand ? (
-              <div className="private-hand">
-                <div className="hand-heading">
-                  <h3>{blackjack ? 'Your hands' : 'Your cards'}</h3>
-                </div>
-                {blackjack ? (
-                  <div className="blackjack-hands" ref={hands}>
-                    {blackjack.hands.map((hand, index) => (
-                      <motion.section
-                        className="blackjack-hand"
-                        data-active={activeHand === index}
-                        key={hand.cards[0]?.id || index}
-                        layout="position"
-                        transition={{ layout: spring }}
-                        aria-label={`Hand ${index + 1}${activeHand === index ? ', active' : ''}`}
-                      >
-                        <p>
-                          <strong>
-                            Hand {index + 1}
-                            {activeHand === index ? ' · active' : ''}
-                          </strong>
-                          <span>{hand.bet} chips bet</span>
-                        </p>
-                        <CasinoCardRow
-                          cards={hand.cards}
-                          group={`own-${index}`}
-                          event={event}
-                          label={`Cards in hand ${index + 1}`}
-                          compact
-                          hand
-                        />
-                      </motion.section>
-                    ))}
-                  </div>
-                ) : (
-                  <CasinoCardRow
-                    cards={match.hand}
-                    group="own"
-                    event={event}
-                    label="Your hand"
-                    hand
-                  />
-                )}
-              </div>
-            ) : null}
-            <div className="casino-decision-shell">
-              <ActionPanel {...props} />
-            </div>
-          </div>
           <div className="casino-table" data-players={players.length}>
             <div className="casino-felt">
               <span className="table-watermark" aria-hidden="true">
@@ -314,6 +264,56 @@ export function CasinoTable(props: TableProps) {
                   </div>
                 );
               })}
+            </div>
+          </div>
+          <div className="casino-controls">
+            {showOwnHand ? (
+              <div className="private-hand">
+                <div className="hand-heading">
+                  <h3>{blackjack ? 'Your hands' : 'Your cards'}</h3>
+                </div>
+                {blackjack ? (
+                  <div className="blackjack-hands" ref={hands}>
+                    {blackjack.hands.map((hand, index) => (
+                      <motion.section
+                        className="blackjack-hand"
+                        data-active={activeHand === index}
+                        key={hand.cards[0]?.id || index}
+                        layout="position"
+                        transition={{ layout: spring }}
+                        aria-label={`Hand ${index + 1}${activeHand === index ? ', active' : ''}`}
+                      >
+                        <p>
+                          <strong>
+                            Hand {index + 1}
+                            {activeHand === index ? ' · active' : ''}
+                          </strong>
+                          <span>{hand.bet} chips bet</span>
+                        </p>
+                        <CasinoCardRow
+                          cards={hand.cards}
+                          group={`own-${index}`}
+                          event={event}
+                          label={`Cards in hand ${index + 1}`}
+                          compact
+                          hand
+                        />
+                      </motion.section>
+                    ))}
+                  </div>
+                ) : (
+                  <CasinoCardRow
+                    cards={match.hand}
+                    group="own"
+                    event={event}
+                    label="Your hand"
+                    hand
+                  />
+                )}
+              </div>
+            ) : null}
+            <div className="casino-decision-shell">
+              <ActionPanel {...props} />
             </div>
           </div>
           <CasinoChipFlights event={event} canvas={canvas} pot={pot} seats={seats} />

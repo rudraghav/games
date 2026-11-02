@@ -65,8 +65,51 @@ export function SixNimmtTable(props: TableProps) {
               Round {data.round} · selection {data.trick}/10
             </p>
           </div>
-          <span className="small muted">Lowest penalty total wins</span>
+          <span className="small muted">A sixth card takes the row</span>
         </header>
+        <div className="six-rows" aria-label="Four ascending number rows">
+          {data.rows.map((row, index) => {
+            const take = match.actions.find(
+              (o) => o.value.type === 'take_row' && o.value.choice === String(index),
+            );
+            return (
+              <section key={index} className="six-row" data-full={row.length === 5}>
+                <header>
+                  <h3>Row {index + 1}</h3>
+                  <span className="small muted">
+                    {data.row_penalties[index]}{' '}
+                    {data.row_penalties[index] === 1 ? 'penalty' : 'penalties'}
+                  </span>
+                  <span className="six-row-capacity">{row.length}/5</span>
+                </header>
+                <div
+                  className="six-row-cards"
+                  aria-label={`Row ${index + 1}, ${row.length} of 5 spaces filled`}
+                >
+                  {Array.from({ length: 5 }, (_, slot) =>
+                    row[slot] ? (
+                      <NumberCard key={row[slot].id} card={row[slot]} small />
+                    ) : (
+                      <span className="six-row-slot" key={`empty-${slot}`} aria-hidden="true">
+                        {slot + 1}
+                      </span>
+                    ),
+                  )}
+                </div>
+                {take ? (
+                  <Button
+                    size="sm"
+                    variant="secondary"
+                    disabled={blocked}
+                    onClick={() => onAction(take.value)}
+                  >
+                    Take row {index + 1}
+                  </Button>
+                ) : null}
+              </section>
+            );
+          })}
+        </div>
         {simultaneous ? (
           <section className="six-hand-panel" aria-label="Your private number cards">
             <div className="coop-number-heading">
@@ -128,36 +171,6 @@ export function SixNimmtTable(props: TableProps) {
             </p>
           </div>
         ) : null}
-        <div className="six-rows" aria-label="Four ascending number rows">
-          {data.rows.map((row, index) => {
-            const take = match.actions.find(
-              (o) => o.value.type === 'take_row' && o.value.choice === String(index),
-            );
-            return (
-              <section key={index} className="six-row" data-full={row.length === 5}>
-                <header>
-                  <h3>Row {index + 1}</h3>
-                  <span className="small muted">{data.row_penalties[index]} penalties</span>
-                  {take ? (
-                    <Button
-                      size="sm"
-                      variant="secondary"
-                      disabled={blocked}
-                      onClick={() => onAction(take.value)}
-                    >
-                      Take row {index + 1}
-                    </Button>
-                  ) : null}
-                </header>
-                <div className="six-row-cards">
-                  {row.map((card) => (
-                    <NumberCard key={card.id} card={card} small />
-                  ))}
-                </div>
-              </section>
-            );
-          })}
-        </div>
         {data.revealed.length ? (
           <section className="six-revealed" aria-label="This selection’s revealed numbers">
             <h3>Revealed, in order</h3>

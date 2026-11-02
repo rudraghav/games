@@ -1,18 +1,28 @@
 'use client';
 import { useState } from 'react';
 import type { Card } from '@games/api-client';
-import { CardPile, Hand } from '@games/ui';
+import { Button, Hand } from '@games/ui';
 import type { TableProps } from '../types';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { ActionPanel } from '../shared/ActionPanel';
+import { TablePile } from '../shared/TablePile';
 
 const buckets = ['Ungrouped', 'Group 1', 'Group 2', 'Group 3', 'Group 4'];
 const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A', '★'];
 export function RummyTable(props: TableProps) {
-  const { match } = props;
+  const { match, room, pending, onAction } = props;
   const [selected, setSelected] = useState<string | null>(null);
   const [groups, setGroups] = useState<Record<string, number>>({});
   const [sort, setSort] = useState('dealt');
+  const selectedCard = match.hand.find((card) => card.id === selected);
+  const drawStock = match.actions.find((option) => option.value.type === 'draw_stock');
+  const drawDiscard = match.actions.find((option) => option.value.type === 'draw_discard');
+  const decisionMatch = {
+    ...match,
+    actions: match.actions.filter(
+      (option) => !['draw_stock', 'draw_discard'].includes(option.value.type),
+    ),
+  };
   function arranged(cards: Card[]) {
     return sort === 'dealt'
       ? cards
@@ -29,8 +39,22 @@ export function RummyTable(props: TableProps) {
       <div className="card-table felt-table">
         <span className="table-watermark">g.</span>
         <div className="center-piles">
-          <CardPile label="Draw pile" count={match.drawCount} />
-          <CardPile label="Discard" card={match.discard} />
+          <TablePile
+            label="Draw pile"
+            count={match.drawCount}
+            action={drawStock}
+            onAction={onAction}
+            pending={pending}
+            paused={room.paused}
+          />
+          <TablePile
+            label="Discard"
+            card={match.discard}
+            action={drawDiscard}
+            onAction={onAction}
+            pending={pending}
+            paused={room.paused}
+          />
         </div>
         <span className="table-detail">Wild rank: {String(match.detail.wild_rank)}</span>
       </div>
@@ -52,29 +76,32 @@ export function RummyTable(props: TableProps) {
                 <option value="rank">By rank</option>
               </select>
             </label>
-            <label className="small">
-              Move selected card
-              <select
-                className="input input--small"
-                disabled={!selected}
-                value={selected ? (groups[selected] ?? 0) : 0}
-                onChange={(event) => {
-                  if (selected)
-                    setGroups((previous) => ({
-                      ...previous,
-                      [selected]: Number(event.target.value),
-                    }));
-                }}
-              >
-                {buckets.map((label, i) => (
-                  <option key={label} value={i}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-            </label>
           </div>
         </div>
+        {selectedCard ? (
+          <div
+            className="rummy-group-controls"
+            role="group"
+            aria-label={`Move ${selectedCard.label} to a group`}
+          >
+            <span className="small">Group {selectedCard.label}</span>
+            <div>
+              {buckets.map((label, bucket) => (
+                <Button
+                  key={label}
+                  size="sm"
+                  variant={(groups[selectedCard.id] ?? 0) === bucket ? 'primary' : 'secondary'}
+                  aria-pressed={(groups[selectedCard.id] ?? 0) === bucket}
+                  onClick={() =>
+                    setGroups((previous) => ({ ...previous, [selectedCard.id]: bucket }))
+                  }
+                >
+                  {label}
+                </Button>
+              ))}
+            </div>
+          </div>
+        ) : null}
         <div className="rummy-groups">
           {buckets.map((label, bucket) => {
             const cards = arranged(match.hand.filter((card) => (groups[card.id] ?? 0) === bucket));
@@ -83,8 +110,9 @@ export function RummyTable(props: TableProps) {
                 <span className="eyebrow">{label}</span>
                 <Hand
                   cards={cards}
+                  disabled={pending || room.paused}
                   label={label}
-                  selectedIds={selected ? [selected] : []}
+                  selectedIds={selectedCard ? [selectedCard.id] : []}
                   onSelect={(id) => setSelected(id === selected ? null : id)}
                 />
               </div>
@@ -94,7 +122,19 @@ export function RummyTable(props: TableProps) {
       </section>
       <ActionPanel
         {...props}
-        selected={selected}
+        match={decisionMatch}
+        selected={selectedCard?.id}
+        cardSelectionRequired
+        pinSelection
+        instruction={
+          match.actions.length
+            ? match.phase === 'draw'
+              ? 'Draw from either available pile. Arrange your hand at any time.'
+              : !selectedCard
+                ? 'Select a card to discard or declare.'
+                : undefined
+            : undefined
+        }
         clear={() => setSelected(null)}
         onAction={(action) => {
           props.onAction(action);

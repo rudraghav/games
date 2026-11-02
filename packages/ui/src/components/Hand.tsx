@@ -8,6 +8,8 @@ interface HandProps {
   onSelect?: (id: string) => void;
   label?: string;
   compact?: boolean;
+  playableIds?: string[];
+  disabled?: boolean;
 }
 export function Hand({
   cards,
@@ -16,6 +18,8 @@ export function Hand({
   onSelect,
   label = 'Your hand',
   compact,
+  playableIds,
+  disabled,
 }: HandProps) {
   return (
     <div
@@ -31,6 +35,8 @@ export function Hand({
             family={family}
             compact={compact}
             selected={selectedIds.includes(card.id)}
+            playable={playableIds ? playableIds.includes(card.id) : undefined}
+            disabled={disabled}
             onClick={onSelect ? () => onSelect(card.id) : undefined}
           />
         ))}

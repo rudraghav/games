@@ -124,3 +124,88 @@ compatible. Only cards already authorized in the viewer projection receive
 metadata; other hands, stock order and shuffle randomness remain private.
 Focused regressions cover both editions, matching-orientation wilds, all-color
 rent, immutable deck definitions and hidden-card projection boundaries.
+
+## Named property sets and table destinations — 2 November 2026
+
+Ordinary properties have distinct US identities instead of color-only labels.
+The named properties are fixed metadata attached to the existing physical card
+IDs. The order, colors, bank values, action effects and complete deck inventory
+are unchanged; saved matches still store only those IDs and their pile keys.
+Restarting an older match projects its canonical names without rewriting data.
+The No Mercy house format reuses these classic identities as part of its
+already approved classic property composition, not as a certification of G3071
+printed property faces.
+
+| Set | Properties | Full set | Rent ladder (M) |
+|---|---|---:|---|
+| Brown | Mediterranean Avenue; Baltic Avenue | 2 | 1 / 2 |
+| Light blue | Oriental Avenue; Vermont Avenue; Connecticut Avenue | 3 | 1 / 2 / 3 |
+| Pink | St. Charles Place; States Avenue; Virginia Avenue | 3 | 1 / 2 / 4 |
+| Orange | St. James Place; Tennessee Avenue; New York Avenue | 3 | 1 / 3 / 5 |
+| Red | Kentucky Avenue; Indiana Avenue; Illinois Avenue | 3 | 2 / 3 / 6 |
+| Yellow | Atlantic Avenue; Ventnor Avenue; Marvin Gardens | 3 | 2 / 4 / 6 |
+| Green | Pacific Avenue; North Carolina Avenue; Pennsylvania Avenue | 3 | 2 / 4 / 7 |
+| Dark blue | Park Place; Boardwalk | 2 | 3 / 8 |
+| Railroads | Reading Railroad; Pennsylvania Railroad; B&O Railroad; Short Line | 4 | 1 / 2 / 3 / 4 |
+| Utilities | Electric Company; Water Works | 2 | 1 / 2 |
+
+Primary references: Hasbro's [US street-name comparison](https://hasbro-new.custhelp.com/app/answers/detail/a_id/124/)
+and [B&O Railroad clarification](https://hasbro-new.custhelp.com/app/answers/detail/a_id/45/),
+plus the B0965 card guide linked above. Original Hasbro-printed
+[railroad](https://monopolydealrules.com/photos/cards/railroad-property-card.png)
+and [utility](https://monopolydealrules.com/photos/cards/utility-property-card.png)
+photographs were inspected for the remaining names and rent ladders. Their
+printed Short Line name is retained; B&O punctuation is normalized to the
+publisher's current FAQ spelling. The enthusiast site's inventory prose is not
+used to override the publisher guide.
+
+Visible property cards add `set_name`, `set_size` and `rent_ladder` to `CardView`.
+For a wild these describe its current orientation; `colors` still retains all
+printed choices. Non-property faces and other games retain null/null/empty-list
+defaults. The Deal view additionally supplies:
+
+- `property_groups`: static `{color, name, set_size, rent_ladder, properties}`
+  references for set inspection; property names are not hidden state.
+- `collections`: one `{player, key, color, count, set_size, complete, rent}` per
+  visible nonempty pile. Count excludes buildings; completion and rent come
+  from the authoritative engine, including active building modifiers. A pile
+  without properties has zero rent.
+- `pending_action`: null or `{kind, actor, target, responder, amount, blocked,
+  stage}`. Stage is `select`, `counter`, `payment` or `distribution`. This is a
+  minimal public decision summary, never the internal event object or private
+  hand selection. Existing `pending` and `payment_amount` remain compatible.
+
+Property and rearrangement actions keep their bare `color` and carry the exact
+destination pile in `choice`. Players may select an incomplete pile or start a
+new pile of the allowed color. Complete piles reject additions. Empty slots are
+reused so repeated free moves cannot grow saved state or legal options without
+bound. Older actions with an empty `choice` resolve only to the first legal
+destination, retaining the previous deterministic behavior. Ordinary property
+cards can also move between same-color piles for free on their owner's turn,
+as clarified in Hasbro [FAQ 922](https://hasbro-new.custhelp.com/app/answers/detail/a_id/922/)
+and [FAQ 937](https://hasbro-new.custhelp.com/app/answers/detail/a_id/937/).
+Counter/payment phases and a committed Double the Rent still prevent
+rearrangement. Existing turn progression is unchanged: the third spent play
+automatically advances the turn, after any required discard/pending resolution.
+Free collection moves are available before and between those plays; this change
+does not add a separate final rearrangement phase. Buildings remain with their
+original collection when a property
+is moved; its classic building bonus remains inactive while incomplete, and
+anchors are refreshed to a remaining property. This preserves the established
+building/rent behavior rather than introducing a new payment or banking rule.
+
+Independent tests assert all 28 names, original inventory fingerprints, old
+ID-only state restoration, wild orientation, immutable metadata, exact pile
+selection, forged/full destinations, same-color moves, bounded repeated moves,
+legacy actions, building rent/anchors and public decision privacy. Bot scoring
+uses the selected pile's visible count, so a new-pile option does not obscure a
+completing move. Complete deterministic min/max matches and bot matches remain
+part of verification.
+
+The independent rendered-workspace audit caught a misleading rent quote for a
+collection made only from zero-value any-color wilds. Legal Rent actions were
+already blocked, but the shared rent helper still returned the color's base
+ladder. It now returns zero unless the collection contains a property with a
+monetary value; inactive buildings cannot supply that missing base. Both
+editions, all-zero-wild groups with/without buildings and building-only groups
+have direct regressions, and the public UI fixture asserts the same zero quote.

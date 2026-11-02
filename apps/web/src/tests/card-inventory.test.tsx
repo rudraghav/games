@@ -22,8 +22,8 @@ const render = (face: Face, compact = false) =>
 
 describe('Canonical card face coverage', () => {
   it('renders every semantic face and legal property orientation at both frame sizes', () => {
-    expect(inventory).toHaveLength(245);
-    expect(new Set(inventory.map((face) => face.key)).size).toBe(245);
+    expect(inventory).toHaveLength(281);
+    expect(new Set(inventory.map((face) => face.key)).size).toBe(281);
     expect(
       Object.fromEntries(
         ['uno', 'uno-no-mercy', 'monopoly-deal', 'monopoly-deal-no-mercy'].map((game) => [
@@ -31,7 +31,7 @@ describe('Canonical card face coverage', () => {
           inventory.filter((face) => face.game === game).length,
         ]),
       ),
-    ).toEqual({ uno: 54, 'uno-no-mercy': 68, 'monopoly-deal': 56, 'monopoly-deal-no-mercy': 67 });
+    ).toEqual({ uno: 54, 'uno-no-mercy': 68, 'monopoly-deal': 74, 'monopoly-deal-no-mercy': 85 });
     for (const face of inventory)
       for (const compact of [false, true]) {
         const html = render(face, compact);
@@ -43,6 +43,21 @@ describe('Canonical card face coverage', () => {
         for (const color of face.card.colors)
           expect(html).toContain(`data-property-color="${color}"`);
       }
+  });
+  it('gives every ordinary property a distinct printed identity rather than collapsing its colour', () => {
+    for (const game of ['monopoly-deal', 'monopoly-deal-no-mercy']) {
+      const properties = inventory.filter(
+        (face) => face.game === game && face.kind === 'property' && face.card.colors.length === 1,
+      );
+      expect(properties).toHaveLength(28);
+      expect(new Set(properties.map((face) => face.card.label)).size).toBe(28);
+      for (const face of properties) {
+        const html = render(face);
+        expect(html).toContain(face.card.label.replaceAll('&', '&amp;'));
+        expect(html).not.toContain('gem-district-art');
+        expect(html).toContain('deal-rent-ladder');
+      }
+    }
   });
   it('keeps every Deal action graphically distinct, including ordinary and doubled rent', () => {
     const byEffect = new Map(

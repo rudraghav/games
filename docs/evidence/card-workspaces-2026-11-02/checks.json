@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-02",
+  "state": "local verified, not committed or deployed by subtask",
+  "viewports": [
+    390,
+    1440
+  ],
+  "tableScenarios": 32,
+  "faces": {
+    "uno": 54,
+    "uno-no-mercy": 68,
+    "deal": 74,
+    "deal-no-mercy": 85
+  },
+  "faceFrames": [
+    "normal",
+    "compact"
+  ],
+  "visualSheets": 20,
+  "checks": {
+    "focusedUI": 22,
+    "density": 4,
+    "usability": 4,
+    "inventory": 4,
+    "motion": 2,
+    "localRoomWorkflow": 13,
+    "intentionalDesktopSkips": 1
+  },
+  "yellowContrast": {
+    "ink": "#624509",
+    "fill": "#edbe4a",
+    "centre": "#fffdf8",
+    "onFill": 5.08,
+    "onCentre": 8.7
+  },
+  "fullMatchesAndRelease": "parent-owned separate gates"
+}

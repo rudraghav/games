@@ -1,0 +1,2802 @@
+{
+  "before": [
+    {
+      "scenario": 0,
+      "label": "Uno \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "00-390.png",
+      "height": 550.390625,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 8,
+      "action": {
+        "x": 0,
+        "y": 444.390625,
+        "w": 354,
+        "h": 106
+      },
+      "hand": {
+        "x": 0,
+        "y": 263.390625,
+        "w": 354,
+        "h": 171
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 1,
+      "label": "Uno \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "01-390.png",
+      "height": 550.390625,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 43,
+      "action": {
+        "x": 0,
+        "y": 444.390625,
+        "w": 354,
+        "h": 106
+      },
+      "hand": {
+        "x": 0,
+        "y": 263.390625,
+        "w": 354,
+        "h": 171
+      },
+      "headings": [
+        "Your hand 42"
+      ]
+    },
+    {
+      "scenario": 2,
+      "label": "Uno No Mercy \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "02-390.png",
+      "height": 502.390625,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 7,
+      "action": {
+        "x": 0,
+        "y": 444.390625,
+        "w": 354,
+        "h": 58
+      },
+      "hand": {
+        "x": 0,
+        "y": 263.390625,
+        "w": 354,
+        "h": 171
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 3,
+      "label": "Uno No Mercy \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "03-390.png",
+      "height": 502.390625,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 24,
+      "action": {
+        "x": 0,
+        "y": 444.390625,
+        "w": 354,
+        "h": 58
+      },
+      "hand": {
+        "x": 0,
+        "y": 263.390625,
+        "w": 354,
+        "h": 171
+      },
+      "headings": [
+        "Your hand 24"
+      ]
+    },
+    {
+      "scenario": 4,
+      "label": "Monopoly Deal \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "04-390.png",
+      "height": 790.875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 8,
+      "action": {
+        "x": 0,
+        "y": 361.5,
+        "w": 354,
+        "h": 106
+      },
+      "hand": {
+        "x": 0,
+        "y": 178.5,
+        "w": 354,
+        "h": 171
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 5,
+      "label": "Monopoly Deal \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "05-390.png",
+      "height": 1081.546875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 8,
+      "action": {
+        "x": 0,
+        "y": 361.5,
+        "w": 354,
+        "h": 106
+      },
+      "hand": {
+        "x": 0,
+        "y": 178.5,
+        "w": 354,
+        "h": 171
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 6,
+      "label": "Monopoly Deal No Mercy \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "06-390.png",
+      "height": 790.875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 8,
+      "action": {
+        "x": 0,
+        "y": 361.5,
+        "w": 354,
+        "h": 106
+      },
+      "hand": {
+        "x": 0,
+        "y": 178.5,
+        "w": 354,
+        "h": 171
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 7,
+      "label": "Monopoly Deal No Mercy \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "07-390.png",
+      "height": 1081.546875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 8,
+      "action": {
+        "x": 0,
+        "y": 361.5,
+        "w": 354,
+        "h": 106
+      },
+      "hand": {
+        "x": 0,
+        "y": 178.5,
+        "w": 354,
+        "h": 171
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 8,
+      "label": "Texas Hold\u2019em \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "08-390.png",
+      "height": 811.75,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 5,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 354,
+        "h": 511
+      },
+      "hand": {
+        "x": 0,
+        "y": 0,
+        "w": 354,
+        "h": 171
+      },
+      "headings": [
+        "Your cards"
+      ]
+    },
+    {
+      "scenario": 9,
+      "label": "Texas Hold\u2019em \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "09-390.png",
+      "height": 821.546875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 0,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 354,
+        "h": 261.796875
+      },
+      "hand": {
+        "x": 0,
+        "y": 0,
+        "w": 354,
+        "h": 171
+      },
+      "headings": [
+        "Your cards"
+      ]
+    },
+    {
+      "scenario": 10,
+      "label": "Rummy \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "10-390.png",
+      "height": 867.578125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 17,
+      "action": {
+        "x": 0,
+        "y": 569.984375,
+        "w": 354,
+        "h": 218
+      },
+      "hand": {
+        "x": 0,
+        "y": 263.390625,
+        "w": 354,
+        "h": 296.59375
+      },
+      "headings": [
+        "Your hand 13 cards"
+      ]
+    },
+    {
+      "scenario": 11,
+      "label": "Rummy \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "11-390.png",
+      "height": 867.578125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 17,
+      "action": {
+        "x": 0,
+        "y": 569.984375,
+        "w": 354,
+        "h": 218
+      },
+      "hand": {
+        "x": 0,
+        "y": 263.390625,
+        "w": 354,
+        "h": 296.59375
+      },
+      "headings": [
+        "Your hand 13 cards"
+      ]
+    },
+    {
+      "scenario": 12,
+      "label": "Teen Patti \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "12-390.png",
+      "height": 603,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 5,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 354,
+        "h": 328
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 13,
+      "label": "Teen Patti \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "13-390.png",
+      "height": 676.5,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 4,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 354,
+        "h": 272
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 14,
+      "label": "Blackjack \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "14-390.png",
+      "height": 370,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 354,
+        "h": 160
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 15,
+      "label": "Blackjack \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "15-390.png",
+      "height": 499,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 354,
+        "h": 160
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 16,
+      "label": "Skyjo \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "16-390.png",
+      "height": 1032.625,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 12,
+      "action": {
+        "x": 0,
+        "y": 182,
+        "w": 354,
+        "h": 58
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 17,
+      "label": "Skyjo \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "17-390.png",
+      "height": 1845.296875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 12,
+      "action": {
+        "x": 0,
+        "y": 182,
+        "w": 354,
+        "h": 58
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 18,
+      "label": "Pop Tarot \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "18-390.png",
+      "height": 744.296875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 79,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Pick three cards",
+        "Choose card 1 of 3"
+      ]
+    },
+    {
+      "scenario": 19,
+      "label": "Pop Tarot \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "19-390.png",
+      "height": 744.296875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 79,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Pick three cards",
+        "Choose card 1 of 3"
+      ]
+    },
+    {
+      "scenario": 20,
+      "label": "Four in a Row \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "20-390.png",
+      "height": 493,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 7,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 21,
+      "label": "Four in a Row \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "21-390.png",
+      "height": 493,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 7,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 22,
+      "label": "Reversi \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "22-390.png",
+      "height": 488.6875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 4,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 23,
+      "label": "Reversi \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "23-390.png",
+      "height": 488.6875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 4,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 24,
+      "label": "Word Agents \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "24-390.png",
+      "height": 599.875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 0,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Waiting for a clue"
+      ]
+    },
+    {
+      "scenario": 25,
+      "label": "Word Agents \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "25-390.png",
+      "height": 599.875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 0,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Waiting for a clue"
+      ]
+    },
+    {
+      "scenario": 26,
+      "label": "Gem Market \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "26-390.png",
+      "height": 1524.875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 17,
+      "action": {
+        "x": 0,
+        "y": 233.28125,
+        "w": 354,
+        "h": 58
+      },
+      "hand": {
+        "x": 0,
+        "y": 95.28125,
+        "w": 354,
+        "h": 126
+      },
+      "headings": [
+        "Your collection"
+      ]
+    },
+    {
+      "scenario": 27,
+      "label": "Gem Market \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "27-390.png",
+      "height": 1631.875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 17,
+      "action": {
+        "x": 0,
+        "y": 233.28125,
+        "w": 354,
+        "h": 58
+      },
+      "hand": {
+        "x": 0,
+        "y": 95.28125,
+        "w": 354,
+        "h": 126
+      },
+      "headings": [
+        "Your collection"
+      ]
+    },
+    {
+      "scenario": 28,
+      "label": "Checkers \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "28-390.png",
+      "height": 506.6875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 4,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 29,
+      "label": "Checkers \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "29-390.png",
+      "height": 506.6875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 4,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 30,
+      "label": "Mancala \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "30-390.png",
+      "height": 459.078125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 6,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 31,
+      "label": "Mancala \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "31-390.png",
+      "height": 459.078125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 6,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 32,
+      "label": "Flip 7 \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "32-390.png",
+      "height": 786.171875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 0,
+        "y": 93.28125,
+        "w": 354,
+        "h": 192.59375
+      },
+      "hand": null,
+      "headings": [
+        "Cards in play"
+      ]
+    },
+    {
+      "scenario": 33,
+      "label": "Flip 7 \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "33-390.png",
+      "height": 1745.171875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 0,
+        "y": 93.28125,
+        "w": 354,
+        "h": 192.59375
+      },
+      "hand": null,
+      "headings": [
+        "Cards in play"
+      ]
+    },
+    {
+      "scenario": 34,
+      "label": "Trio \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "34-390.png",
+      "height": 898.875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 15,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Find three matching cards"
+      ]
+    },
+    {
+      "scenario": 35,
+      "label": "Trio \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "35-390.png",
+      "height": 1023.875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 18,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Find three matching cards"
+      ]
+    },
+    {
+      "scenario": 36,
+      "label": "Azul \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "36-390.png",
+      "height": 753.1875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 16,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose tiles"
+      ]
+    },
+    {
+      "scenario": 37,
+      "label": "Azul \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "37-390.png",
+      "height": 863.1875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 28,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose tiles"
+      ]
+    },
+    {
+      "scenario": 38,
+      "label": "Spill or Chill \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "38-390.png",
+      "height": 715.984375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Which fictional vehicle would create the most chaos in your life?"
+      ]
+    },
+    {
+      "scenario": 39,
+      "label": "Spill or Chill \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "39-390.png",
+      "height": 715.984375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Which fictional vehicle would create the most chaos in your life?"
+      ]
+    },
+    {
+      "scenario": 40,
+      "label": "Most Likely \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "40-390.png",
+      "height": 665.390625,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Who is most likely to save a screenshot and find it again when it matters?"
+      ]
+    },
+    {
+      "scenario": 41,
+      "label": "Most Likely \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "41-390.png",
+      "height": 869.390625,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Who is most likely to save a screenshot and find it again when it matters?"
+      ]
+    },
+    {
+      "scenario": 42,
+      "label": "Hot Seat \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "42-390.png",
+      "height": 763.078125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "A creative project should begin with:"
+      ]
+    },
+    {
+      "scenario": 43,
+      "label": "Hot Seat \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "43-390.png",
+      "height": 763.078125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "A creative project should begin with:"
+      ]
+    },
+    {
+      "scenario": 44,
+      "label": "The Gang \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "44-390.png",
+      "height": 726.4375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Preflop",
+        "Estimate your relative strength",
+        "Everyone can choose"
+      ]
+    },
+    {
+      "scenario": 45,
+      "label": "The Gang \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "45-390.png",
+      "height": 830.9375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 6,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Preflop",
+        "Estimate your relative strength",
+        "Everyone can choose"
+      ]
+    },
+    {
+      "scenario": 46,
+      "label": "6 nimmt! \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "46-390.png",
+      "height": 715.4375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose one number",
+        "Row 1",
+        "Row 2",
+        "Row 3",
+        "Row 4"
+      ]
+    },
+    {
+      "scenario": 47,
+      "label": "6 nimmt! \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "47-390.png",
+      "height": 715.4375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose one number",
+        "Row 1",
+        "Row 2",
+        "Row 3",
+        "Row 4"
+      ]
+    },
+    {
+      "scenario": 48,
+      "label": "Sea Salt & Paper \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "48-390.png",
+      "height": 794.46875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Your hand"
+      ]
+    },
+    {
+      "scenario": 49,
+      "label": "Sea Salt & Paper \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "49-390.png",
+      "height": 950.46875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Your hand"
+      ]
+    },
+    {
+      "scenario": 50,
+      "label": "boop. \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "50-390.png",
+      "height": 647.109375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 37,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 51,
+      "label": "boop. \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "51-390.png",
+      "height": 647.109375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 37,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 52,
+      "label": "Shithead \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "52-390.png",
+      "height": 910.578125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 7,
+      "action": null,
+      "hand": {
+        "x": 13,
+        "y": 331.578125,
+        "w": 328,
+        "h": 133
+      },
+      "headings": [
+        "Choose your table cards"
+      ]
+    },
+    {
+      "scenario": 53,
+      "label": "Shithead \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "53-390.png",
+      "height": 1468.578125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 7,
+      "action": null,
+      "hand": {
+        "x": 13,
+        "y": 331.578125,
+        "w": 328,
+        "h": 133
+      },
+      "headings": [
+        "Choose your table cards"
+      ]
+    },
+    {
+      "scenario": 0,
+      "label": "Uno \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "00-1440.png",
+      "height": 359.890625,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 8,
+      "action": {
+        "x": 0,
+        "y": 283.890625,
+        "w": 1120,
+        "h": 76
+      },
+      "hand": {
+        "x": 196,
+        "y": 80.890625,
+        "w": 924,
+        "h": 191
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 1,
+      "label": "Uno \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "01-1440.png",
+      "height": 426.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 43,
+      "action": {
+        "x": 0,
+        "y": 350.78125,
+        "w": 1120,
+        "h": 76
+      },
+      "hand": {
+        "x": 196,
+        "y": 147.78125,
+        "w": 924,
+        "h": 191
+      },
+      "headings": [
+        "Your hand 42"
+      ]
+    },
+    {
+      "scenario": 2,
+      "label": "Uno No Mercy \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "02-1440.png",
+      "height": 359.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 7,
+      "action": {
+        "x": 0,
+        "y": 283.890625,
+        "w": 1120,
+        "h": 75.796875
+      },
+      "hand": {
+        "x": 196,
+        "y": 80.890625,
+        "w": 924,
+        "h": 191
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 3,
+      "label": "Uno No Mercy \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "03-1440.png",
+      "height": 359.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 24,
+      "action": {
+        "x": 0,
+        "y": 283.890625,
+        "w": 1120,
+        "h": 75.796875
+      },
+      "hand": {
+        "x": 196,
+        "y": 80.890625,
+        "w": 924,
+        "h": 191
+      },
+      "headings": [
+        "Your hand 24"
+      ]
+    },
+    {
+      "scenario": 4,
+      "label": "Monopoly Deal \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "04-1440.png",
+      "height": 687.984375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 8,
+      "action": {
+        "x": 0,
+        "y": 381.5,
+        "w": 1120,
+        "h": 76
+      },
+      "hand": {
+        "x": 0,
+        "y": 178.5,
+        "w": 1120,
+        "h": 191
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 5,
+      "label": "Monopoly Deal \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "05-1440.png",
+      "height": 881.765625,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 8,
+      "action": {
+        "x": 0,
+        "y": 381.5,
+        "w": 1120,
+        "h": 76
+      },
+      "hand": {
+        "x": 0,
+        "y": 178.5,
+        "w": 1120,
+        "h": 191
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 6,
+      "label": "Monopoly Deal No Mercy \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "06-1440.png",
+      "height": 687.984375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 8,
+      "action": {
+        "x": 0,
+        "y": 381.5,
+        "w": 1120,
+        "h": 76
+      },
+      "hand": {
+        "x": 0,
+        "y": 178.5,
+        "w": 1120,
+        "h": 191
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 7,
+      "label": "Monopoly Deal No Mercy \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "07-1440.png",
+      "height": 881.765625,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 8,
+      "action": {
+        "x": 0,
+        "y": 381.5,
+        "w": 1120,
+        "h": 76
+      },
+      "hand": {
+        "x": 0,
+        "y": 178.5,
+        "w": 1120,
+        "h": 191
+      },
+      "headings": [
+        "Your hand 7"
+      ]
+    },
+    {
+      "scenario": 8,
+      "label": "Texas Hold\u2019em \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "08-1440.png",
+      "height": 653,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 5,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 1120,
+        "h": 191
+      },
+      "hand": {
+        "x": 0,
+        "y": 0,
+        "w": 240,
+        "h": 191
+      },
+      "headings": [
+        "Your cards"
+      ]
+    },
+    {
+      "scenario": 9,
+      "label": "Texas Hold\u2019em \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "09-1440.png",
+      "height": 723,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 0,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 1120,
+        "h": 191
+      },
+      "hand": {
+        "x": 0,
+        "y": 0,
+        "w": 240,
+        "h": 191
+      },
+      "headings": [
+        "Your cards"
+      ]
+    },
+    {
+      "scenario": 10,
+      "label": "Rummy \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "10-1440.png",
+      "height": 516.484375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 17,
+      "action": {
+        "x": 0,
+        "y": 379.6875,
+        "w": 1120,
+        "h": 76
+      },
+      "hand": {
+        "x": 196,
+        "y": 80.890625,
+        "w": 924,
+        "h": 286.796875
+      },
+      "headings": [
+        "Your hand 13 cards"
+      ]
+    },
+    {
+      "scenario": 11,
+      "label": "Rummy \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "11-1440.png",
+      "height": 516.484375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 17,
+      "action": {
+        "x": 0,
+        "y": 379.6875,
+        "w": 1120,
+        "h": 76
+      },
+      "hand": {
+        "x": 196,
+        "y": 80.890625,
+        "w": 924,
+        "h": 286.796875
+      },
+      "headings": [
+        "Your hand 13 cards"
+      ]
+    },
+    {
+      "scenario": 12,
+      "label": "Teen Patti \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "12-1440.png",
+      "height": 593.796875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 5,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 1120,
+        "h": 131.796875
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 13,
+      "label": "Teen Patti \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "13-1440.png",
+      "height": 663.796875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 4,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 1120,
+        "h": 131.796875
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 14,
+      "label": "Blackjack \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "14-1440.png",
+      "height": 593.796875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 1120,
+        "h": 131.796875
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 15,
+      "label": "Blackjack \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "15-1440.png",
+      "height": 663.796875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "w": 1120,
+        "h": 131.796875
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 16,
+      "label": "Skyjo \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "16-1440.png",
+      "height": 753.109375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 12,
+      "action": {
+        "x": 0,
+        "y": 158.5,
+        "w": 1120,
+        "h": 75.796875
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 17,
+      "label": "Skyjo \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "17-1440.png",
+      "height": 1693.140625,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 12,
+      "action": {
+        "x": 0,
+        "y": 158.5,
+        "w": 1120,
+        "h": 75.796875
+      },
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 18,
+      "label": "Pop Tarot \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "18-1440.png",
+      "height": 735.171875,
+      "width": 960,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 79,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Pick three cards",
+        "Choose card 1 of 3"
+      ]
+    },
+    {
+      "scenario": 19,
+      "label": "Pop Tarot \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "19-1440.png",
+      "height": 735.171875,
+      "width": 960,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 79,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Pick three cards",
+        "Choose card 1 of 3"
+      ]
+    },
+    {
+      "scenario": 20,
+      "label": "Four in a Row \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "20-1440.png",
+      "height": 657.15625,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 7,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 21,
+      "label": "Four in a Row \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "21-1440.png",
+      "height": 657.15625,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 7,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 22,
+      "label": "Reversi \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "22-1440.png",
+      "height": 679.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 4,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 23,
+      "label": "Reversi \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "23-1440.png",
+      "height": 679.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 4,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 24,
+      "label": "Word Agents \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "24-1440.png",
+      "height": 679.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 0,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Waiting for a clue"
+      ]
+    },
+    {
+      "scenario": 25,
+      "label": "Word Agents \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "25-1440.png",
+      "height": 746.578125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 0,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Waiting for a clue"
+      ]
+    },
+    {
+      "scenario": 26,
+      "label": "Gem Market \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "26-1440.png",
+      "height": 1560.1875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 17,
+      "action": {
+        "x": 0,
+        "y": 222.890625,
+        "w": 1120,
+        "h": 75.796875
+      },
+      "hand": {
+        "x": 0,
+        "y": 68.890625,
+        "w": 1120,
+        "h": 142
+      },
+      "headings": [
+        "Your collection"
+      ]
+    },
+    {
+      "scenario": 27,
+      "label": "Gem Market \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "27-1440.png",
+      "height": 1603.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 17,
+      "action": {
+        "x": 0,
+        "y": 222.890625,
+        "w": 1120,
+        "h": 75.796875
+      },
+      "hand": {
+        "x": 0,
+        "y": 68.890625,
+        "w": 1120,
+        "h": 142
+      },
+      "headings": [
+        "Your collection"
+      ]
+    },
+    {
+      "scenario": 28,
+      "label": "Checkers \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "28-1440.png",
+      "height": 679.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 4,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 29,
+      "label": "Checkers \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "29-1440.png",
+      "height": 679.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 4,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 30,
+      "label": "Mancala \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "30-1440.png",
+      "height": 498.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 6,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 31,
+      "label": "Mancala \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "31-1440.png",
+      "height": 498.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 6,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 32,
+      "label": "Flip 7 \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "32-1440.png",
+      "height": 674.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 0,
+        "y": 68.890625,
+        "w": 1120,
+        "h": 76
+      },
+      "hand": null,
+      "headings": [
+        "Cards in play"
+      ]
+    },
+    {
+      "scenario": 33,
+      "label": "Flip 7 \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "33-1440.png",
+      "height": 1371.671875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 0,
+        "y": 135.78125,
+        "w": 1120,
+        "h": 76
+      },
+      "hand": null,
+      "headings": [
+        "Cards in play"
+      ]
+    },
+    {
+      "scenario": 34,
+      "label": "Trio \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "34-1440.png",
+      "height": 692.28125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 15,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Find three matching cards"
+      ]
+    },
+    {
+      "scenario": 35,
+      "label": "Trio \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "35-1440.png",
+      "height": 766.28125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 18,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Find three matching cards"
+      ]
+    },
+    {
+      "scenario": 36,
+      "label": "Azul \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "36-1440.png",
+      "height": 879.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 16,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose tiles"
+      ]
+    },
+    {
+      "scenario": 37,
+      "label": "Azul \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "37-1440.png",
+      "height": 1051.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 28,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose tiles"
+      ]
+    },
+    {
+      "scenario": 38,
+      "label": "Spill or Chill \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "38-1440.png",
+      "height": 593.09375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Which fictional vehicle would create the most chaos in your life?"
+      ]
+    },
+    {
+      "scenario": 39,
+      "label": "Spill or Chill \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "39-1440.png",
+      "height": 659.984375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Which fictional vehicle would create the most chaos in your life?"
+      ]
+    },
+    {
+      "scenario": 40,
+      "label": "Most Likely \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "40-1440.png",
+      "height": 625.890625,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Who is most likely to save a screenshot and find it again when it matters?"
+      ]
+    },
+    {
+      "scenario": 41,
+      "label": "Most Likely \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "41-1440.png",
+      "height": 896.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Who is most likely to save a screenshot and find it again when it matters?"
+      ]
+    },
+    {
+      "scenario": 42,
+      "label": "Hot Seat \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "42-1440.png",
+      "height": 628.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "A creative project should begin with:"
+      ]
+    },
+    {
+      "scenario": 43,
+      "label": "Hot Seat \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "43-1440.png",
+      "height": 695.671875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "A creative project should begin with:"
+      ]
+    },
+    {
+      "scenario": 44,
+      "label": "The Gang \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "44-1440.png",
+      "height": 581.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Preflop",
+        "Estimate your relative strength",
+        "Everyone can choose"
+      ]
+    },
+    {
+      "scenario": 45,
+      "label": "The Gang \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "45-1440.png",
+      "height": 581.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 6,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Preflop",
+        "Estimate your relative strength",
+        "Everyone can choose"
+      ]
+    },
+    {
+      "scenario": 46,
+      "label": "6 nimmt! \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "46-1440.png",
+      "height": 676.109375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose one number",
+        "Row 1",
+        "Row 2",
+        "Row 3",
+        "Row 4"
+      ]
+    },
+    {
+      "scenario": 47,
+      "label": "6 nimmt! \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "47-1440.png",
+      "height": 743,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose one number",
+        "Row 1",
+        "Row 2",
+        "Row 3",
+        "Row 4"
+      ]
+    },
+    {
+      "scenario": 48,
+      "label": "Sea Salt & Paper \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "48-1440.png",
+      "height": 599.578125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Your hand"
+      ]
+    },
+    {
+      "scenario": 49,
+      "label": "Sea Salt & Paper \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "49-1440.png",
+      "height": 677.578125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Your hand"
+      ]
+    },
+    {
+      "scenario": 50,
+      "label": "boop. \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "50-1440.png",
+      "height": 809.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 37,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 51,
+      "label": "boop. \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "51-1440.png",
+      "height": 809.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 37,
+      "action": null,
+      "hand": null,
+      "headings": []
+    },
+    {
+      "scenario": 52,
+      "label": "Shithead \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "52-1440.png",
+      "height": 788.984375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 7,
+      "action": null,
+      "hand": {
+        "x": 17,
+        "y": 316.984375,
+        "w": 581.546875,
+        "h": 150
+      },
+      "headings": [
+        "Choose your table cards"
+      ]
+    },
+    {
+      "scenario": 53,
+      "label": "Shithead \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "53-1440.png",
+      "height": 788.984375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 7,
+      "action": null,
+      "hand": {
+        "x": 17,
+        "y": 316.984375,
+        "w": 581.546875,
+        "h": 150
+      },
+      "headings": [
+        "Choose your table cards"
+      ]
+    }
+  ],
+  "afterScoped": [
+    {
+      "scenario": 26,
+      "label": "Gem Market \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "26-390.png",
+      "height": 1231.6875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 12,
+      "action": {
+        "x": 0,
+        "y": 226.28125,
+        "w": 354,
+        "h": 58
+      },
+      "hand": {
+        "x": 0,
+        "y": 95.28125,
+        "w": 354,
+        "h": 119
+      },
+      "headings": [
+        "Your collection"
+      ]
+    },
+    {
+      "scenario": 27,
+      "label": "Gem Market \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "27-390.png",
+      "height": 1338.6875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 12,
+      "action": {
+        "x": 0,
+        "y": 226.28125,
+        "w": 354,
+        "h": 58
+      },
+      "hand": {
+        "x": 0,
+        "y": 95.28125,
+        "w": 354,
+        "h": 119
+      },
+      "headings": [
+        "Your collection"
+      ]
+    },
+    {
+      "scenario": 32,
+      "label": "Flip 7 \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "32-390.png",
+      "height": 675.078125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 13,
+        "y": 350.078125,
+        "w": 328,
+        "h": 162
+      },
+      "hand": null,
+      "headings": [
+        "Your round"
+      ]
+    },
+    {
+      "scenario": 33,
+      "label": "Flip 7 \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "33-390.png",
+      "height": 1151.078125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 13,
+        "y": 350.078125,
+        "w": 328,
+        "h": 162
+      },
+      "hand": null,
+      "headings": [
+        "Your round"
+      ]
+    },
+    {
+      "scenario": 34,
+      "label": "Trio \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "34-390.png",
+      "height": 1082.75,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 15,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Find three matching cards",
+        "Table cards"
+      ]
+    },
+    {
+      "scenario": 35,
+      "label": "Trio \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "35-390.png",
+      "height": 1097.15625,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 18,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Find three matching cards",
+        "Table cards"
+      ]
+    },
+    {
+      "scenario": 36,
+      "label": "Azul \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "36-390.png",
+      "height": 883.1875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 18,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose tiles",
+        "5 factories"
+      ]
+    },
+    {
+      "scenario": 37,
+      "label": "Azul \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "37-390.png",
+      "height": 993.1875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 30,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose tiles",
+        "9 factories"
+      ]
+    },
+    {
+      "scenario": 38,
+      "label": "Spill or Chill \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "38-390.png",
+      "height": 715.984375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Which fictional vehicle would create the most chaos in your life?"
+      ]
+    },
+    {
+      "scenario": 39,
+      "label": "Spill or Chill \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "39-390.png",
+      "height": 715.984375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Which fictional vehicle would create the most chaos in your life?"
+      ]
+    },
+    {
+      "scenario": 40,
+      "label": "Most Likely \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "40-390.png",
+      "height": 665.390625,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Who is most likely to save a screenshot and find it again when it matters?"
+      ]
+    },
+    {
+      "scenario": 41,
+      "label": "Most Likely \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "41-390.png",
+      "height": 869.390625,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Who is most likely to save a screenshot and find it again when it matters?"
+      ]
+    },
+    {
+      "scenario": 42,
+      "label": "Hot Seat \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "42-390.png",
+      "height": 681.078125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "A creative project should begin with:"
+      ]
+    },
+    {
+      "scenario": 43,
+      "label": "Hot Seat \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "43-390.png",
+      "height": 681.078125,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "A creative project should begin with:"
+      ]
+    },
+    {
+      "scenario": 44,
+      "label": "The Gang \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "44-390.png",
+      "height": 629.171875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Preflop",
+        "Everyone can choose"
+      ]
+    },
+    {
+      "scenario": 45,
+      "label": "The Gang \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "45-390.png",
+      "height": 629.171875,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 6,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Preflop",
+        "Everyone can choose"
+      ]
+    },
+    {
+      "scenario": 46,
+      "label": "6 nimmt! \u00b7 minimum seats",
+      "viewport": 390,
+      "file": "46-390.png",
+      "height": 811.84375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Row 1",
+        "Row 2",
+        "Row 3",
+        "Row 4",
+        "Choose one number"
+      ]
+    },
+    {
+      "scenario": 47,
+      "label": "6 nimmt! \u00b7 maximum seats",
+      "viewport": 390,
+      "file": "47-390.png",
+      "height": 811.84375,
+      "width": 354,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Row 1",
+        "Row 2",
+        "Row 3",
+        "Row 4",
+        "Choose one number"
+      ]
+    },
+    {
+      "scenario": 26,
+      "label": "Gem Market \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "26-1440.png",
+      "height": 1523.6875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 17,
+      "action": {
+        "x": 0,
+        "y": 208.890625,
+        "w": 1120,
+        "h": 75.796875
+      },
+      "hand": {
+        "x": 0,
+        "y": 68.890625,
+        "w": 1120,
+        "h": 128
+      },
+      "headings": [
+        "Your collection"
+      ]
+    },
+    {
+      "scenario": 27,
+      "label": "Gem Market \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "27-1440.png",
+      "height": 1567.1875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 17,
+      "action": {
+        "x": 0,
+        "y": 208.890625,
+        "w": 1120,
+        "h": 75.796875
+      },
+      "hand": {
+        "x": 0,
+        "y": 68.890625,
+        "w": 1120,
+        "h": 128
+      },
+      "headings": [
+        "Your collection"
+      ]
+    },
+    {
+      "scenario": 32,
+      "label": "Flip 7 \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "32-1440.png",
+      "height": 535.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 25,
+        "y": 336.78125,
+        "w": 1070,
+        "h": 76
+      },
+      "hand": null,
+      "headings": [
+        "Your round"
+      ]
+    },
+    {
+      "scenario": 33,
+      "label": "Flip 7 \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "33-1440.png",
+      "height": 978.671875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 2,
+      "action": {
+        "x": 25,
+        "y": 403.671875,
+        "w": 1070,
+        "h": 76
+      },
+      "hand": null,
+      "headings": [
+        "Your round"
+      ]
+    },
+    {
+      "scenario": 34,
+      "label": "Trio \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "34-1440.png",
+      "height": 768.96875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 15,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Find three matching cards",
+        "Table cards"
+      ]
+    },
+    {
+      "scenario": 35,
+      "label": "Trio \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "35-1440.png",
+      "height": 842.96875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 18,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Find three matching cards",
+        "Table cards"
+      ]
+    },
+    {
+      "scenario": 36,
+      "label": "Azul \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "36-1440.png",
+      "height": 605.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 16,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose tiles",
+        "5 factories"
+      ]
+    },
+    {
+      "scenario": 37,
+      "label": "Azul \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "37-1440.png",
+      "height": 738.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 28,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Choose tiles",
+        "9 factories"
+      ]
+    },
+    {
+      "scenario": 38,
+      "label": "Spill or Chill \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "38-1440.png",
+      "height": 593.09375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Which fictional vehicle would create the most chaos in your life?"
+      ]
+    },
+    {
+      "scenario": 39,
+      "label": "Spill or Chill \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "39-1440.png",
+      "height": 659.984375,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Which fictional vehicle would create the most chaos in your life?"
+      ]
+    },
+    {
+      "scenario": 40,
+      "label": "Most Likely \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "40-1440.png",
+      "height": 625.890625,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Who is most likely to save a screenshot and find it again when it matters?"
+      ]
+    },
+    {
+      "scenario": 41,
+      "label": "Most Likely \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "41-1440.png",
+      "height": 896.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Who is most likely to save a screenshot and find it again when it matters?"
+      ]
+    },
+    {
+      "scenario": 42,
+      "label": "Hot Seat \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "42-1440.png",
+      "height": 585.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "A creative project should begin with:"
+      ]
+    },
+    {
+      "scenario": 43,
+      "label": "Hot Seat \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "43-1440.png",
+      "height": 652.671875,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "A creative project should begin with:"
+      ]
+    },
+    {
+      "scenario": 44,
+      "label": "The Gang \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "44-1440.png",
+      "height": 624.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 3,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Preflop",
+        "Everyone can choose"
+      ]
+    },
+    {
+      "scenario": 45,
+      "label": "The Gang \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "45-1440.png",
+      "height": 624.78125,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 6,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Preflop",
+        "Everyone can choose"
+      ]
+    },
+    {
+      "scenario": 46,
+      "label": "6 nimmt! \u00b7 minimum seats",
+      "viewport": 1440,
+      "file": "46-1440.png",
+      "height": 610.515625,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Row 1",
+        "Row 2",
+        "Row 3",
+        "Row 4",
+        "Choose one number"
+      ]
+    },
+    {
+      "scenario": 47,
+      "label": "6 nimmt! \u00b7 maximum seats",
+      "viewport": 1440,
+      "file": "47-1440.png",
+      "height": 677.40625,
+      "width": 1120,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 10,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Row 1",
+        "Row 2",
+        "Row 3",
+        "Row 4",
+        "Choose one number"
+      ]
+    },
+    {
+      "scenario": 34,
+      "label": "Trio \u00b7 minimum seats",
+      "viewport": 320,
+      "file": "34-320.png",
+      "height": 1062.21875,
+      "width": 284,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 15,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Find three matching cards",
+        "Table cards"
+      ]
+    },
+    {
+      "scenario": 35,
+      "label": "Trio \u00b7 maximum seats",
+      "viewport": 320,
+      "file": "35-320.png",
+      "height": 1096.484375,
+      "width": 284,
+      "overflow": false,
+      "tiny": [],
+      "controlCount": 18,
+      "action": null,
+      "hand": null,
+      "headings": [
+        "Find three matching cards",
+        "Table cards"
+      ]
+    }
+  ],
+  "checks": {
+    "scopedRegressionBrowser": "Final12/12 pass, desktop and phone plus320px",
+    "existingVisualModern": "2/2 pass after visible-control selector correction",
+    "existingLiveRoomWorkflows": "10/10 pass, phone/desktop; modern, co-op-number and party",
+    "existingVisualCoop": "2/2 pass",
+    "componentAndPolicyUnits": "14/14 pass",
+    "scopedEslint": "pass",
+    "browserTypeScript": "pass",
+    "globalWebTypeScript": "Parent Deal review fixture typing still in progress; not a scoped module error"
+  },
+  "limits": [
+    "Synthetic initial projections do not establish full-match behavior or all UI states.",
+    "No full catalogue production or engine-rule claim belongs to this scoped audit.",
+    "Parent owns release, shared-card and other-family changes."
+  ],
+  "savedRoomGemMarket": {
+    "desktop": "passed",
+    "phone": "passed",
+    "coverage": [
+      "three-gem selection",
+      "saved move",
+      "version update",
+      "refresh",
+      "exact test-room cleanup"
+    ]
+  }
+}

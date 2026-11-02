@@ -48,6 +48,9 @@ class CardView(BaseModel):
     # Printed face metadata, not hidden state or a replacement for orientation.
     colors: list[str] = Field(default_factory=list)
     effect: str = ""
+    set_name: str | None = None
+    set_size: int | None = None
+    rent_ladder: list[int] = Field(default_factory=list)
 
 
 class PlayerView(BaseModel):

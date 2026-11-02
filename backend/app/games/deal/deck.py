@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from pydantic import JsonValue
+
 from app.core.contracts import CardView
 
 RENTS = {
@@ -32,6 +34,32 @@ VALUES = {
     "blue": 4,
     "rail": 2,
     "utility": 2,
+}
+SET_NAMES = {
+    "brown": "Brown",
+    "sky": "Light blue",
+    "pink": "Pink",
+    "orange": "Orange",
+    "red": "Red",
+    "yellow": "Yellow",
+    "green": "Green",
+    "blue": "Dark blue",
+    "rail": "Railroads",
+    "utility": "Utilities",
+}
+# Ordered identities preserve the existing dNNN IDs and saved match inventory.
+# The approved No Mercy house deck reuses this classic property composition.
+PROPERTY_NAMES = {
+    "brown": ("Mediterranean Avenue", "Baltic Avenue"),
+    "sky": ("Oriental Avenue", "Vermont Avenue", "Connecticut Avenue"),
+    "pink": ("St. Charles Place", "States Avenue", "Virginia Avenue"),
+    "orange": ("St. James Place", "Tennessee Avenue", "New York Avenue"),
+    "red": ("Kentucky Avenue", "Indiana Avenue", "Illinois Avenue"),
+    "yellow": ("Atlantic Avenue", "Ventnor Avenue", "Marvin Gardens"),
+    "green": ("Pacific Avenue", "North Carolina Avenue", "Pennsylvania Avenue"),
+    "blue": ("Park Place", "Boardwalk"),
+    "rail": ("Reading Railroad", "Pennsylvania Railroad", "B&O Railroad", "Short Line"),
+    "utility": ("Electric Company", "Water Works"),
 }
 NAMES = {
     "pass_go": "Pass Go",
@@ -68,6 +96,7 @@ class DealCard:
     value: int
     colors: tuple[str, ...] = ()
     action: str = ""
+    name: str = ""
 
     def view(self, orientation: str | None = None) -> CardView:
         color = orientation or (self.colors[0] if self.colors else "neutral")
@@ -84,7 +113,7 @@ class DealCard:
         name = (
             "Wild property"
             if self.kind == "property" and len(self.colors) > 1
-            else color.title()
+            else self.name
             if self.kind == "property"
             else NAMES[self.action]
         )
@@ -97,18 +126,36 @@ class DealCard:
             suit="property" if self.kind == "property" else "action",
             colors=list(self.colors),
             effect=self.action,
+            set_name=SET_NAMES[color] if self.kind == "property" else None,
+            set_size=len(RENTS[color]) if self.kind == "property" else None,
+            rent_ladder=list(RENTS[color]) if self.kind == "property" else [],
         )
+
+
+def property_groups() -> list[JsonValue]:
+    """Static printed set reference, independent of ownership or hidden cards."""
+    return [
+        {
+            "color": color,
+            "name": SET_NAMES[color],
+            "set_size": len(RENTS[color]),
+            "rent_ladder": list(RENTS[color]),
+            "properties": list(PROPERTY_NAMES[color]),
+        }
+        for color in RENTS
+    ]
 
 
 def make_deck(mercy: bool) -> dict[str, DealCard]:
     cards: dict[str, DealCard] = {}
 
     def add(
-        kind: str, value: int, count: int, colors: tuple[str, ...] = (), action: str = ""
+        kind: str, value: int, count: int, colors: tuple[str, ...] = (), action: str = "",
+        name: str = "",
     ) -> None:
         for _ in range(count):
             ident = f"d{len(cards):03}"
-            cards[ident] = DealCard(ident, kind, value, colors, action)
+            cards[ident] = DealCard(ident, kind, value, colors, action, name)
 
     for value, count in (
         [(1, 5), (2, 4), (3, 3), (4, 2), (5, 2), (10, 1), (15, 1)]
@@ -116,8 +163,9 @@ def make_deck(mercy: bool) -> dict[str, DealCard]:
         else [(1, 6), (2, 5), (3, 3), (4, 3), (5, 2), (10, 1)]
     ):
         add("money", value, count)
-    for color, rents in RENTS.items():
-        add("property", VALUES[color], len(rents), (color,))
+    for color in RENTS:
+        for name in PROPERTY_NAMES[color]:
+            add("property", VALUES[color], 1, (color,), name=name)
     for colors, count in [
         (PAIRS[0], 1),
         (PAIRS[1], 2),

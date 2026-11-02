@@ -1,5 +1,7 @@
+from pydantic import JsonValue
+
 from app.core.cards import shuffle_saved
-from app.core.contracts import State
+from app.core.contracts import RuleError, State
 from app.games.deal.deck import RENTS, DealCard
 
 
@@ -23,24 +25,37 @@ def complete(group: list[str], cards: dict[str, DealCard], color: str) -> bool:
 
 def groups_for(s: State, player: str, color: str, cards: dict[str, DealCard]) -> list[str]:
     groups = s["properties"][player]
+    # Reuse one emptied pile rather than allocating unbounded keys when a player
+    # repeatedly rearranges the same card. Keep the old first-available order.
+    empty = next((key for key, group in groups.items() if key.split(":")[0] == color and not group), None)
     available = [
         key
         for key, value in groups.items()
         if key.split(":")[0] == color
         and sum(cards[c].kind == "property" for c in value) < len(RENTS[color])
+        and (value or key == empty)
     ]
-    return available + [f"{color}:{sum(key.split(':')[0] == color for key in groups)}"]
+    if empty:
+        return available
+    index = 0
+    while f"{color}:{index}" in groups:
+        index += 1
+    return available + [f"{color}:{index}"]
 
 
 def place(
-    s: State, player: str, ident: str, cards: dict[str, DealCard], color: str | None = None
+    s: State, player: str, ident: str, cards: dict[str, DealCard], color: str | None = None,
+    destination: str = "",
 ) -> None:
     card = cards[ident]
     if card.kind != "property":
         s["banks"][player].append(ident)
         return
     chosen = color or card.colors[0]
-    key = groups_for(s, player, chosen, cards)[0]
+    available = groups_for(s, player, chosen, cards)
+    if chosen not in card.colors or destination and destination not in available:
+        raise RuleError("Choose an available collection for this property.")
+    key = destination or available[0]
     s["properties"][player].setdefault(key, []).append(ident)
 
 
@@ -76,6 +91,10 @@ def assets(s: State, player: str, cards: dict[str, DealCard]) -> list[str]:
 def rent(s: State, player: str, key: str, cards: dict[str, DealCard]) -> int:
     group = s["properties"][player][key]
     color = key.split(":")[0]
+    # A zero-value any-colour wild cannot collect rent by itself. Buildings
+    # cannot supply the missing property base, including an inactive Shack.
+    if not any(cards[c].kind == "property" and cards[c].value for c in group):
+        return 0
     count = sum(cards[c].kind == "property" for c in group)
     value = RENTS[color][min(count, len(RENTS[color])) - 1]
     for ident in group:
@@ -85,6 +104,22 @@ def rent(s: State, player: str, key: str, cards: dict[str, DealCard]) -> int:
         elif complete(group, cards, color):
             value += 3 if action == "house" else 4 if action == "hotel" else 0
     return value
+
+
+def collection_details(s: State, cards: dict[str, DealCard]) -> list[JsonValue]:
+    result: list[JsonValue] = []
+    for player in s["order"]:
+        for key, group in s["properties"][player].items():
+            if not group:
+                continue
+            color = key.split(":")[0]
+            count = sum(cards[c].kind == "property" for c in group)
+            result.append({
+                "player": player, "key": key, "color": color, "count": count,
+                "set_size": len(RENTS[color]), "complete": complete(group, cards, color),
+                "rent": rent(s, player, key, cards) if count else 0,
+            })
+    return result
 
 
 def finish(s: State, cards: dict[str, DealCard]) -> None:

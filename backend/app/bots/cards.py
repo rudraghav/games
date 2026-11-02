@@ -138,7 +138,11 @@ def _deal(ctx: Context) -> Action:
             if card is None:  # A debt gift is visible as the permitted action.
                 return 20 if action.type == "property" else 10
             if action.type == "property":
-                groups = [g for k, g in own.properties.items() if k.split(":")[0] == action.color]
+                groups = (
+                    [own.properties.get(action.choice, [])]
+                    if action.choice
+                    else [g for k, g in own.properties.items() if k.split(":")[0] == action.color]
+                )
                 held = max((sum(c.suit == "property" for c in g) for g in groups), default=0)
                 need = len(RENTS[action.color])
                 return 70 + held * 15 + (90 if held + 1 == need else 0)

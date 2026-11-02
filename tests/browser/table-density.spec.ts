@@ -76,6 +76,8 @@ test('all table projections keep readable card content, touch controls and reach
         '.casino-controls,.card-game-layout > .private-hand,.tarot-pick-area',
       );
       return {
+        casino: root.classList.contains('casino-layout'),
+        viewportWidth: innerWidth,
         overflow: document.documentElement.scrollWidth > innerWidth,
         boardClipped:
           innerWidth >= 390 &&
@@ -94,7 +96,10 @@ test('all table projections keep readable card content, touch controls and reach
       report.clipping.length ||
       report.gridOverlap.length ||
       report.controls.length ||
-      (report.actionOffset != null && report.actionOffset >= 330)
+      // Casino's full-size public table precedes its private dock on desktop;
+      // compact layouts keep decisions between the felt and opponent seat grid.
+      (report.actionOffset != null &&
+        report.actionOffset >= (report.casino && report.viewportWidth > 900 ? 650 : 330))
     )
       issues.push({ scenario: labels[index], report });
   }

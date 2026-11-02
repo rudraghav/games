@@ -1361,6 +1361,35 @@
             "type": "string",
             "title": "Effect",
             "default": ""
+          },
+          "set_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Set Name"
+          },
+          "set_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Set Size"
+          },
+          "rent_ladder": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Rent Ladder"
           }
         },
         "type": "object",

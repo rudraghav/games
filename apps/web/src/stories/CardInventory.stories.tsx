@@ -36,7 +36,7 @@ function CardInventory({ game = 'uno' }: { game?: string }) {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit,minmax(168px,1fr))',
+              gridTemplateColumns: 'repeat(auto-fit,minmax(236px,1fr))',
               gap: 12,
             }}
           >

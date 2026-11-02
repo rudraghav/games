@@ -24,3 +24,4 @@ subprocess.run([sys.executable, str(root / "scripts/export_card_faces.py"), "--c
 print("OpenAPI, catalogue, generated wire types and public card faces match the backend.")
 subprocess.run([sys.executable, str(root / "scripts/export_tarot_characters.py"), "--check"], cwd=root, check=True)
 subprocess.run([sys.executable, str(root / "scripts/export_casino_motion.py"), "--check"], cwd=root, check=True)
+subprocess.run([sys.executable, str(root / "scripts/export_deal_scenarios.py"), "--check"], cwd=root, check=True)

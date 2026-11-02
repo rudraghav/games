@@ -711,9 +711,6 @@
 @layer components {
   @media (max-width: 600px) {
     .flip-player {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 48px;
-      gap: 8px;
       padding: 12px;
     }
     .flip-player-name {
@@ -735,6 +732,211 @@
     .flip-round-score b {
       display: block;
       font-size: 20px;
+    }
+  }
+}
+
+@layer components {
+  .flip-seven-table > .action-panel {
+    margin-block: 12px 18px;
+    background: #fffdf7;
+  }
+  .flip-player-name {
+    align-items: center;
+    min-height: 44px;
+    margin: 0;
+    cursor: pointer;
+    list-style: none;
+  }
+  .flip-player-name::-webkit-details-marker {
+    display: none;
+  }
+  .flip-player-name::after {
+    content: '+';
+    flex: none;
+    color: var(--color-ink-muted);
+    font-size: 20px;
+  }
+  .flip-player[open] > .flip-player-name::after {
+    content: '−';
+  }
+  .flip-player-name > span {
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .flip-player-identity {
+    display: grid;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+  }
+  .flip-player-identity strong {
+    color: var(--color-ink);
+    font-size: 13px;
+  }
+  .flip-player-identity small {
+    font-size: 11px;
+    color: var(--color-ink-muted);
+    text-transform: capitalize;
+  }
+  .flip-player-name .flip-round-score {
+    margin: 0;
+    flex: none;
+    font-size: 11px;
+    text-align: right;
+  }
+  .flip-player-name .flip-round-score b {
+    display: block;
+    font-size: 22px;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+  }
+  .flip-player > .flip-card-row {
+    margin-top: 12px;
+  }
+  .trio-zone-heading {
+    margin-block: 18px 12px;
+    font-size: 13px;
+  }
+  .trio-table-slot {
+    display: grid;
+    justify-items: center;
+    gap: 5px;
+  }
+  .trio-table-slot > small {
+    font-size: 10px;
+    color: var(--color-ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .trio-reveals[data-empty='true'] {
+    text-align: center;
+    line-height: 1.6;
+    padding-block: 12px;
+  }
+  .azul-supply {
+    min-width: 0;
+  }
+  .azul-factory--center {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    border-color: #a6bbc6;
+    background: #f9fcfc;
+  }
+  .azul-factory--center > span {
+    max-width: 90px;
+    flex: none;
+    color: var(--color-ink);
+  }
+  .azul-factory--center .azul-factory-colors {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 44px;
+    margin: 0;
+    flex: 1;
+  }
+  .azul-factory--center .azul-draft-button {
+    min-width: 44px;
+  }
+  .azul-center-marker {
+    display: grid;
+    place-items: center;
+    min-height: 44px;
+    padding-inline: 3px;
+  }
+  .azul-factory-navigation {
+    display: none;
+  }
+  .azul-factory-navigation h3 {
+    font-size: 13px;
+  }
+  .azul-factory-navigation > div {
+    display: flex;
+    gap: 6px;
+  }
+  .azul-table[data-phase='placing'] .azul-supply {
+    order: 2;
+    margin-top: 18px;
+  }
+  .azul-table[data-phase='placing'] .azul-factories {
+    margin-top: 0;
+  }
+  @media (min-width: 1001px) {
+    .azul-table {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      gap: 18px;
+    }
+    .azul-table > .modern-game-heading,
+    .azul-table > .modern-review,
+    .azul-draft-preview {
+      grid-column: 1 / -1;
+    }
+    .azul-supply {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .azul-factories {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .azul-player-boards {
+      grid-column: 2;
+      grid-row: 2;
+      margin-top: 0;
+      gap: 8px;
+    }
+    .azul-draft-preview {
+      grid-row: 2;
+      margin: 0;
+    }
+    .azul-table[data-phase='placing'] .azul-player-boards {
+      grid-column: 1;
+      grid-row: 3;
+    }
+    .azul-table[data-phase='placing'] .azul-supply {
+      grid-column: 2;
+      grid-row: 3;
+      margin: 0;
+    }
+  }
+  @media (max-width: 600px) {
+    .flip-player-grid {
+      gap: 8px;
+    }
+    .trio-own-hand .flip-card-row {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+      overflow: visible;
+    }
+    .trio-own-hand .flip-card-row .playing-card {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 62 / 88;
+    }
+    .flip-player:not([open]) {
+      padding-block: 7px;
+    }
+    .azul-factory-navigation {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .azul-factories {
+      overscroll-behavior-inline: contain;
+    }
+    .azul-factory {
+      flex-basis: calc((100% - 8px) / 2);
+    }
+    .azul-factory-colors {
+      min-height: 88px;
+    }
+    .azul-factory--center .azul-factory-colors {
+      min-height: 44px;
     }
   }
 }

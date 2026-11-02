@@ -847,4 +847,72 @@
       justify-content: center;
     }
   }
+  .gem-wallet-color {
+    display: grid;
+    justify-items: center;
+    gap: 5px;
+    min-width: 0;
+  }
+  .gem-wallet-color > small {
+    font-size: 10px;
+    color: var(--color-ink-muted);
+    white-space: nowrap;
+  }
+  .gem-layout .gem-tier-navigation {
+    display: none;
+  }
+  .gem-tier-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .gem-tier-heading > small {
+    font-size: 11px;
+  }
+  @media (max-width: 600px) {
+    .gem-layout .gem-wallet {
+      padding-block: 12px;
+    }
+    .gem-layout .gem-resources {
+      margin-bottom: 0;
+      gap: 6px;
+    }
+    .gem-wallet-color > .resource-token {
+      width: 100%;
+    }
+    .gem-wallet-color > small {
+      font-size: 8px;
+    }
+    .gem-layout .gem-tier-navigation {
+      display: flex;
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .gem-tier-navigation > .button {
+      flex: 1;
+      min-width: 44px;
+      padding-inline: 8px;
+      border-radius: 999px;
+    }
+    .gem-tier[data-active='false'] {
+      display: none;
+    }
+    .gem-layout .gem-tier .gem-card-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      overflow: visible;
+    }
+    .gem-layout .gem-tier .playing-card.development-card {
+      --card-width: 100%;
+      width: 100%;
+      min-height: 198px;
+    }
+  }
+  @media (max-width: 380px) {
+    .gem-layout .gem-supply {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      row-gap: 8px;
+    }
+  }
 }

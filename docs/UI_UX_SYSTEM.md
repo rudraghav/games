@@ -41,11 +41,12 @@ phone fields, and full-width submit/cancel rows. Form changes preserve the same
 shared create/join/configure behavior and are documented with inspected captures
 in `evidence/browsing-2026-11-01`.
 
-Action panels participate in document flow so they cannot obscure private cards.
-Deal hand/decisions precede the collections; phone casino decisions precede the
-seat grid; Skyjo's direct-grid instruction precedes the grids. Rank sorting uses
-actual playing-card order. The table audit and phone/desktop regression evidence
-live under docs/evidence/tables-2026-11-01.
+Actions remain beside the objects they affect. Deal presents opponents, stock,
+own bank/sets, then a hand and contextual move composer. Casino tables lead with
+the public table and keep private cards/actions together directly below it on
+compact screens. Skyjo keeps the viewer's grid first; pile actions sit beside
+their source. Rank sorting uses actual playing-card order. Current screenshot
+findings and the 27-game review matrix live in `evidence/gameplay-2026-11-02`.
 
 The app icon follows the existing sage diamond and coral period from Wordmark.
 `apps/web/src/app/icon.svg` is the editable vector source; `favicon.ico` is its
@@ -112,8 +113,8 @@ team defeat/victory, penalty points, net chips, or an unscored match label.
 
 
 Table density follows the player's next decision. Casino private cards and
-controls share the first row on wide canvases and stack before the public table
-on phones. Crowded seats use separated bands; the canvas itself, rather than
+controls share a dock after the public table. Crowded seats use separated bands;
+the canvas itself, rather than
 only the viewport, selects the grid fallback. Split blackjack hands keep their
 own cards, wager and active outline. Betting inputs expose a full 44px target.
 Card-game piles use compact frames beside the hand, with actions below both.
@@ -147,8 +148,9 @@ all bot-capable formats and Tarot. Room chat starts collapsed and opens beside
 the table on wide screens or in a shared sheet on phones.
 
 The standard PlayingCard variant uses all 54 pinned, licensed vector faces.
-Shedding cards separate their action icon, rank and short name; property cards
-share district art and value/name slots. Card selection and real labels stay in
+Shedding cards separate their action icon, rank and short name. Deal cards use
+named title deeds, printed rent schedules, distinct bank notes and action icons
+with concise effects. District illustrations belong to Gem Market. Card selection and real labels stay in
 the shared accessible control. See `docs/REUSE_RESEARCH.md` for provenance.
 
 Bots have explicit seat labels, host-only add/remove controls, an automatic
@@ -185,12 +187,24 @@ production Vercel Services arrangement despite direct originals returning 200;
 real hosted image decoding is a release check, alongside the asset hash check.
 
 
-Uno and Deal variants consume canonical colors/effect metadata in one shared
-renderer. Deal motifs distinguish all 24 effects and 10 property groups; paired
-wild/rent bands print both names, any-color cards expose all colors accessibly,
-and orientation stays separate. Card inventory stories cover 245 canonical faces
-and every legal wild orientation at normal/compact sizes. Two browser widths
-check 980 instances. See card-inventory and compact-live evidence for originals.
+Uno and Deal consume canonical metadata in one shared renderer. Deal has all28
+US property names, ten rent schedules and24distinct action effects; wild/rent
+bands print both names and orientation stays separate. Full cards use126×178px
+frames and compact table cards80×114px. Hands separate card faces with a gap;
+horizontal scrolling preserves legibility instead of covering neighbouring text.
+The281-face inventory retains each named property and legal wild orientation at
+normal/compact sizes. Two widths check1,124instances, including instructions and
+rent cells. Historical card-inventory evidence remains; current review is in
+`evidence/gameplay-2026-11-02`.
+
+Deal uses authoritative collection counts, completion and rent from the server.
+Each set can reveal its printed property checklist and rent ladder. Selecting a
+card exposes only personalized legal moves, including exact existing/new pile
+destinations. Banking has an explicit confirmation. Payments select actual bank
+or property assets and show value, amount remaining and overpayment; a bank-only
+suggestion never automatically commits collateral. Counter prompts identify the
+actor, target, amount and blocked state while keeping the board available.
+Changing a target or cancelling banking clears the previous move selection.
 
 Shithead reuses the licensed standard-card faces with separate selectable hand
 cards and public face-up/anonymous hidden rows. Its original felt center keeps
@@ -198,3 +212,12 @@ stock, comparison and burn counts compact; the own decision panel precedes
 opponents on phones. Optional rule labels appear only when enabled. Player-strip
 and panel bounds remain inside the viewport, with internal hand/seat scrolling,
 44px controls and pending/disconnected states covered by focused checks.
+
+The 2 November card-workspace review keeps the casino felt before the private
+hand/decision dock, with compact opponent seats below that dock. Uno highlights
+server-legal cards without hiding inspectable cards. Rummy/Skyjo draw controls
+sit on their matching piles; Skyjo's viewer grid comes first in DOM order.
+Shithead keeps own zones together and preserves sorting across match revisions.
+Yellow Uno text uses measured 4.5:1-or-better ink in both card sizes. Complete
+281-face paired sheets and focused behavior/visual evidence are retained in
+`docs/evidence/card-workspaces-2026-11-02`.

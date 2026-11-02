@@ -11,6 +11,7 @@ export function GemsTable(props: TableProps) {
   const data = gemsDetails(match.detail);
   const [selected, setSelected] = useState<string | null>(null);
   const [chosen, setChosen] = useState<Record<string, number>>({});
+  const [marketTier, setMarketTier] = useState(1);
   const canTake = match.actions.some((option) => ['take', 'take_pair'].includes(option.value.type));
   const chosenColors = Object.keys(chosen).filter((color) => chosen[color]);
   const take = match.actions.find((option) =>
@@ -48,25 +49,19 @@ export function GemsTable(props: TableProps) {
         {...props}
         playerCaption={(player) => `${player.score} prestige · ${player.count} reserved`}
       />
-      <section className="private-hand">
+      <section className="private-hand gem-wallet">
         <h3>Your collection</h3>
         <div className="gem-resources">
           {gemColors.map((color) => (
-            <ResourceToken key={color} color={color} count={data.tokens[selfId]?.[color] || 0} />
+            <div className="gem-wallet-color" key={color}>
+              <ResourceToken color={color} count={data.tokens[selfId]?.[color] || 0} />
+              {color !== 'gold' ? (
+                <small>{data.bonuses[selfId]?.[color] || 0} discount</small>
+              ) : (
+                <small>Wild</small>
+              )}
+            </div>
           ))}
-        </div>
-        <div className="gem-own-discounts" aria-label="Your permanent discounts">
-          <span className="small muted">Discounts</span>
-          {gemColors
-            .filter((color) => color !== 'gold')
-            .map((color) => (
-              <ResourceToken
-                key={color}
-                color={color}
-                count={data.bonuses[selfId]?.[color] || 0}
-                compact
-              />
-            ))}
         </div>
         {match.hand.length ? (
           <>
@@ -162,9 +157,36 @@ export function GemsTable(props: TableProps) {
             </div>
           </details>
         ) : null}
-        {[3, 2, 1].map((tier) => (
-          <section className="gem-tier" key={tier} aria-label={`Tier ${tier} developments`}>
-            <span className="eyebrow">Tier {tier}</span>
+        <div
+          className="choice-group gem-tier-navigation"
+          role="group"
+          aria-label="Development tiers"
+        >
+          {[1, 2, 3].map((tier) => (
+            <Button
+              key={tier}
+              variant="secondary"
+              aria-pressed={marketTier === tier}
+              onClick={() => {
+                setMarketTier(tier);
+                setSelected(null);
+              }}
+            >
+              Tier {tier}
+            </Button>
+          ))}
+        </div>
+        {[1, 2, 3].map((tier) => (
+          <section
+            className="gem-tier"
+            key={tier}
+            data-active={marketTier === tier}
+            aria-label={`Tier ${tier} developments`}
+          >
+            <div className="gem-tier-heading">
+              <span className="eyebrow">Tier {tier}</span>
+              <small className="muted">4 cards</small>
+            </div>
             <div className="gem-card-row">
               {match.community
                 .filter((card) => data.cardInfo[card.id]?.tier === tier)

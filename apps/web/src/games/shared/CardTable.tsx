@@ -7,22 +7,39 @@ import { ActionPanel } from './ActionPanel';
 import { PlayerStrip } from './PlayerStrip';
 
 export function CardTable(props: TableProps) {
-  const { match } = props;
+  const { match, room, pending } = props;
   const [selected, setSelected] = useState<string | null>(null);
-  const [sort, setSort] = useState('dealt');
   const family = gameById(match.id).family === 'shedding' ? 'shedding' : 'standard';
-  const cards =
-    sort === 'dealt'
-      ? match.hand
-      : [...match.hand].sort((a, b) =>
-          sort === 'suit'
-            ? `${a.suit}-${a.value}`.localeCompare(`${b.suit}-${b.value}`, undefined, {
-                numeric: true,
-              })
-            : a.value.localeCompare(b.value, undefined, { numeric: true }),
-        );
+  const selectedCard = match.hand.find((card) => card.id === selected);
+  const choosingColour = match.actions.some((option) => option.value.type === 'choose');
+  const challenging = match.actions.some((option) => option.value.type === 'challenge');
+  const draw = match.actions.find((option) => option.value.type === 'draw');
+  const canPlay = match.actions.some((option) => option.value.type === 'play');
+  const canPass = match.actions.some((option) => option.value.type === 'end_turn');
+  const penalty = Number(match.detail.penalty ?? 0);
+  const instruction = choosingColour
+    ? 'Choose the colour for the next play.'
+    : challenging
+      ? 'Accept the draw or challenge the wild +4.'
+      : selectedCard
+        ? undefined
+        : penalty > 0
+          ? canPlay
+            ? `Draw ${penalty} cards or stack an allowed draw card.`
+            : `Draw ${penalty} cards.`
+          : canPass
+            ? canPlay
+              ? 'Play your drawn card or pass.'
+              : 'Pass to end your turn.'
+            : canPlay
+              ? draw
+                ? 'Choose a card to play, or draw.'
+                : 'Choose a card to play.'
+              : draw
+                ? `${draw.label}.`
+                : undefined;
   return (
-    <div className="table-layout card-game-layout">
+    <div className="table-layout card-game-layout uno-workspace">
       <PlayerStrip {...props} />
       <div className="card-table felt-table">
         <span className="table-watermark">g.</span>
@@ -31,7 +48,10 @@ export function CardTable(props: TableProps) {
           <CardPile label="Discard" card={match.discard} family={family} />
         </div>
         {match.detail.color ? (
-          <span className="table-detail">Current colour: {String(match.detail.color)}</span>
+          <span className="table-detail uno-current-colour" data-color={String(match.detail.color)}>
+            <i aria-hidden="true" /> {String(match.detail.color)}
+            <span className="sr-only"> is the current colour</span>
+          </span>
         ) : null}
         {match.detail.wild_rank ? (
           <span className="table-detail">Wild rank: {String(match.detail.wild_rank)}</span>
@@ -42,31 +62,25 @@ export function CardTable(props: TableProps) {
           <h3>
             Your hand <span className="muted">{match.hand.length}</span>
           </h3>
-          {match.id === 'rummy' ? (
-            <label className="small">
-              Sort{' '}
-              <select
-                className="input input--small"
-                value={sort}
-                onChange={(event) => setSort(event.target.value)}
-              >
-                <option value="dealt">As dealt</option>
-                <option value="suit">By suit</option>
-                <option value="rank">By rank</option>
-              </select>
-            </label>
-          ) : null}
+          {selectedCard ? <span className="small muted">{selectedCard.label}</span> : null}
         </div>
         <Hand
           family={family}
-          cards={cards}
-          selectedIds={selected ? [selected] : []}
+          cards={match.hand}
+          playableIds={match.actions.flatMap((option) =>
+            option.value.card ? [option.value.card] : [],
+          )}
+          disabled={pending || room.paused}
+          selectedIds={selectedCard ? [selectedCard.id] : []}
           onSelect={(id) => setSelected(id === selected ? null : id)}
         />
       </div>
       <ActionPanel
         {...props}
-        selected={selected}
+        selected={selectedCard?.id}
+        cardSelectionRequired
+        pinSelection
+        instruction={instruction}
         clear={() => setSelected(null)}
         onAction={(action) => {
           props.onAction(action);

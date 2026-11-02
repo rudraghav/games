@@ -463,6 +463,12 @@ export interface components {
              * @default
              */
             effect: string;
+            /** Set Name */
+            set_name?: string | null;
+            /** Set Size */
+            set_size?: number | null;
+            /** Rent Ladder */
+            rent_ladder?: number[];
         };
         /** CharacterConnection */
         CharacterConnection: {

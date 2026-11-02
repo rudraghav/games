@@ -43,20 +43,51 @@ The design gallery returns 404 in production. Browser workflow checks live in
 
 The shared card-game layout puts piles beside the hand on wide canvases and in
 one compact column on phones. Action panels stay in document flow. Casino games
-render a single private decision workspace before the public table; the same
+render the public table before a single private decision dock; the same
 cards are not duplicated at the viewer's seat. Crowded tables use spaced ring
 positions, then switch to a seat grid based on the available canvas width,
 including when chat is open. Blackjack's projected detail is validated by the
 API client and keeps each split hand, its bet and active state separate. Empty
 pre-deal seats never invent card backs; the dealer's unrevealed card stays hidden.
 
+On compact casino canvases the order is felt, own cards/decisions, then opponent
+seats. The full-size ring keeps the dock immediately below the table. Uno marks
+only server-legal cards while leaving other cards inspectable; card moves appear
+after selection, and colour/draw/challenge instructions reflect the legal choices.
+Yellow-card ranks, corners and captions use measured contrasting ink.
+
+`shared/TablePile` places an authorized draw action on its corresponding pile for
+Rummy and Skyjo. It is one labeled keyboard/touch control, disabled while saving
+or paused. Rummy's local group buttons preserve card identity across sorting;
+declarations are still validated by the engine. Skyjo rotates public seat order
+to put the viewer's grid first, and names each legal slot by action, row and
+column. Shithead groups the viewer's own zones; selection expires with the match
+version while sorting persists until a new match. These changes never inspect a
+hidden card or infer a legal move. Per-game checks and complete paired card-face
+sheets are recorded in `docs/evidence/card-workspaces-2026-11-02`.
+
 Gem Market shares typed development cards, resource tokens and complete district
 illustration cells. Tier and color select the art; readable names, points and
-costs remain real UI. Reserved cards and current resources precede the market;
+costs remain real UI. The wallet pairs each color's token count with its permanent
+discount. Tier 1 leads; phones show all four developments in a selected tier using
+three explicit tier controls, while desktop keeps all twelve developments visible.
+Reserved cards and current resources precede the market;
 blind reservations, patrons and opponent collections expand on demand. A required
 patron choice opens its collection. Azul shares six patterned ceramic pieces,
-keeps the viewer's board open and opponent boards expandable, and places factories
-in a horizontal phone rail. Placement brings the player's board before factories.
+keeps the viewer's board open and opponent boards expandable. Its center and
+first-player marker remain outside the horizontal phone factory rail; previous/
+next controls provide a click and keyboard alternative to swiping. Reduced motion
+uses immediate scrolling. Placement brings the player's board before factories.
+
+Flip 7 places the viewer's live cards/risk directly before hit/stay decisions;
+opponent summaries retain scores and status with native keyboard disclosures for
+their public cards. Trio numbers stable table positions and distinguishes the
+private sorted hand from public reveals and lowest/highest requests. Party games
+show one active A/B choice set and a full-row confirmation; closed rounds retain
+their option reference. The Gang groups private cards and ranks estimates from
+weakest to strongest. 6 nimmt! shows exact penalties and five visible slots per
+ascending row before the private number selection; missing slots never fabricate
+cards. These compositions continue to send only server-enumerated actions.
 
 Seat variants and player-name helpers identify bots explicitly. Renderers still
 consume only personalized projections and server-owned legal actions. Pure visual
@@ -76,9 +107,9 @@ three desktop columns and a full-width interactive own grid on phones. See the
 26-game matrix and retained inspected images in the table-refresh evidence.
 
 
-Card inventory stories use the generated 245-face source for both Uno and both
+Card inventory stories use the generated 281-face source for both Uno and both
 Deal editions, retaining every wild orientation. PlayingCard owns the shared
-24-effect motifs, ten group scenes, full allowed-color bands and accessible
+24-effect symbols, all 28 named US properties with rent schedules, full allowed-color bands and accessible
 orientation labels. Renderers forward validated metadata instead of inferring
 actions from subtitles. Presentation coverage is separate from engine rules.
 

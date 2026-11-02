@@ -89,3 +89,10 @@ slots are never inspected. A bounded64-entry hash history recognizes repeated
 own/public rank situations. Varied legal plays and occasional voluntary pickup
 break greedy high-pair cycles without inventing a draw, turn deadline or forced
 loser. All movement and loser-last scoring remain authoritative engine rules.
+
+Deal property actions now name their exact collection destination in `choice`.
+The policy scores the visible count of that selected pile, so a free new-pile
+option cannot distract it from completing an existing set. Older projections
+without a destination keep the original color-based fallback. Rearrangements
+still do not enter the policy's ordinary play priorities, preventing free-move
+loops; no hidden collection, hand or stock data is added to its inputs.

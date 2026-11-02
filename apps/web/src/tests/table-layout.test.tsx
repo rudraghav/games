@@ -19,10 +19,10 @@ const props = (id: string) => {
 };
 
 describe('Compact complete table presentation', () => {
-  it('renders the casino decision workspace before its table and does not invent undealt cards', () => {
+  it('renders the casino table before its decision dock and does not invent undealt cards', () => {
     const p = props('blackjack');
     const html = renderToStaticMarkup(<CasinoTable {...p} />);
-    expect(html.indexOf('casino-controls')).toBeLessThan(html.indexOf('class="casino-table"'));
+    expect(html.indexOf('class="casino-table"')).toBeLessThan(html.indexOf('casino-controls'));
     expect(html).not.toContain('class="seat-cards"');
     expect(html).toContain('Main hand wagers, including split and doubled bets');
     expect(html).toContain('hand bets');

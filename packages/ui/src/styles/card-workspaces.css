@@ -1,0 +1,138 @@
+@layer components {
+  .playing-card--shedding[data-color='yellow'] .shedding-face,
+  .playing-card--shedding[data-color='yellow'] .shedding-index,
+  .playing-card--shedding[data-color='yellow'] .card-action-name {
+    color: #624509;
+  }
+  .table-pile-button.button {
+    display: block;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 6px;
+    border-radius: 12px;
+    color: inherit;
+    white-space: normal;
+  }
+  .table-pile-button .card-pile > span {
+    display: block;
+    max-width: 100px;
+    line-height: 1.35;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .table-pile-button .pile-shadow {
+    width: max-content;
+    margin-inline: auto;
+  }
+  .table-pile-button:enabled:hover {
+    background: #ffffff18;
+  }
+  .uno-current-colour {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    text-transform: capitalize;
+  }
+  .uno-current-colour > i {
+    display: block;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #fff9;
+    border-radius: 50%;
+  }
+  .uno-current-colour[data-color='red'] > i {
+    background: var(--color-card-red);
+  }
+  .uno-current-colour[data-color='yellow'] > i {
+    background: var(--color-card-yellow);
+  }
+  .uno-current-colour[data-color='green'] > i {
+    background: var(--color-card-green);
+  }
+  .uno-current-colour[data-color='blue'] > i {
+    background: var(--color-card-blue);
+  }
+  .uno-workspace .hand-heading,
+  .rummy-layout .hand-heading {
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+  .uno-workspace .hand-heading > .small {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .rummy-layout .center-piles {
+    align-items: start;
+    gap: 12px;
+  }
+  .rummy-layout .rummy-tools {
+    gap: 8px;
+  }
+  .rummy-layout .rummy-tools label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rummy-group-controls {
+    margin-top: 12px;
+    padding: 10px 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .rummy-group-controls > div {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    padding-bottom: 4px;
+    overflow-x: auto;
+  }
+  .rummy-group-controls .button {
+    flex: none;
+    min-height: 44px;
+  }
+  .skyjo-workspace .skyjo-piles {
+    flex-wrap: wrap;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+  }
+  .skyjo-workspace .skyjo-player[data-own='true'] {
+    border-color: var(--color-sage);
+  }
+  .casino-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .casino-layout > .casino-controls {
+    order: 2;
+    margin: 12px 0 0;
+  }
+  @media (max-width: 900px) {
+    .uno-workspace > .action-panel--pinned,
+    .rummy-layout > .action-panel--pinned {
+      position: static;
+    }
+    .uno-workspace > .action-panel .decision-control,
+    .rummy-layout > .action-panel .decision-control {
+      width: 100%;
+    }
+    .uno-workspace > .action-panel .button,
+    .rummy-layout > .action-panel .button {
+      width: 100%;
+      min-height: 46px;
+      white-space: normal;
+    }
+    .casino-layout > .casino-controls {
+      margin: 0 0 12px;
+    }
+  }
+  @container (max-width: 850px) {
+    .casino-felt {
+      order: 1;
+    }
+    .casino-seats {
+      order: 3;
+    }
+  }
+}

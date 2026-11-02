@@ -19,7 +19,7 @@ function card(
   color: string,
   suit = '',
   subtitle = '',
-  face: Pick<CardPresentation, 'colors' | 'effect'> = {},
+  face: Pick<CardPresentation, 'colors' | 'effect' | 'setName' | 'setSize' | 'rentLadder'> = {},
 ): CardPresentation {
   return {
     id: `${color}-${value}`,
@@ -153,7 +153,12 @@ export function GameArt({ game }: { game: Game }) {
         ]
       : game.family === 'property'
         ? [
-            card('4M', 'green', 'property', 'Green property', { colors: ['green'] }),
+            card('4M', 'green', 'property', 'North Carolina Avenue', {
+              colors: ['green'],
+              setName: 'Green',
+              setSize: 3,
+              rentLadder: [2, 4, 7],
+            }),
             card(
               game.id.includes('mercy') ? '2M' : '1M',
               'neutral',
@@ -163,7 +168,12 @@ export function GameArt({ game }: { game: Game }) {
                 ? { effect: 'yoink' }
                 : { effect: 'rent', colors: ['green', 'blue'] },
             ),
-            card('4M', 'blue', 'property', 'Dark blue property', { colors: ['blue'] }),
+            card('4M', 'blue', 'property', 'Boardwalk', {
+              colors: ['blue'],
+              setName: 'Dark blue',
+              setSize: 2,
+              rentLadder: [3, 8],
+            }),
           ]
         : game.id === 'rummy'
           ? [card('6', 'red', '♥'), card('7', 'red', '♥'), card('8', 'red', '♥')]

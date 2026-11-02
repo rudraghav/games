@@ -10,6 +10,7 @@ export { gangDetails, sixNimmtDetails } from './coop-number-details';
 export { paperDetails, boopDetails } from './sea-cats-details';
 export { blackjackDetails } from './casino-details';
 export { shitheadDetails } from './shithead-details';
+export { dealDetails, type DealGroup, type DealDetails } from './deal-details';
 
 export class ApiError extends Error {
   constructor(

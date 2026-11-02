@@ -239,7 +239,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -249,7 +252,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -511,7 +517,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -521,7 +530,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -788,7 +800,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -798,7 +813,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -1065,7 +1083,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -1075,7 +1096,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -1342,7 +1366,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -1352,7 +1379,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -1619,7 +1649,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -1629,7 +1662,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -1896,7 +1932,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -1906,7 +1945,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -2250,7 +2292,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -2260,7 +2305,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -2527,7 +2575,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -2537,7 +2588,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -2804,7 +2858,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -2814,7 +2871,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -2826,7 +2886,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -2836,7 +2899,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -2846,7 +2912,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -3112,7 +3181,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -3122,7 +3194,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -3134,7 +3209,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -3144,7 +3222,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -3154,7 +3235,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -3420,7 +3504,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -3430,7 +3517,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -3442,7 +3532,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -3452,7 +3545,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -3462,7 +3558,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -3728,7 +3827,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -3738,7 +3840,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -3750,7 +3855,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -3760,7 +3868,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -3770,7 +3881,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -4036,7 +4150,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -4046,7 +4163,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -4058,7 +4178,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -4068,7 +4191,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -4078,7 +4204,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -4344,7 +4473,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -4354,7 +4486,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -4366,7 +4501,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -4376,7 +4514,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -4386,7 +4527,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -4652,7 +4796,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -4662,7 +4809,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -4674,7 +4824,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -4684,7 +4837,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -4694,7 +4850,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -4960,7 +5119,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -4970,7 +5132,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -4982,7 +5147,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -4992,7 +5160,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -5002,7 +5173,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -5345,7 +5519,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -5355,7 +5532,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -5367,7 +5547,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -5377,7 +5560,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -5387,7 +5573,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -5397,7 +5586,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -5663,7 +5855,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -5673,7 +5868,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -5685,7 +5883,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -5695,7 +5896,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -5705,7 +5909,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -5715,7 +5922,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -5981,7 +6191,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -5991,7 +6204,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -6003,7 +6219,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -6013,7 +6232,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -6023,7 +6245,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -6033,7 +6258,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -6299,7 +6527,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -6309,7 +6540,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -6321,7 +6555,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -6331,7 +6568,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -6341,7 +6581,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -6351,7 +6594,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -6617,7 +6863,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -6627,7 +6876,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -6639,7 +6891,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -6649,7 +6904,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -6659,7 +6917,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -6669,7 +6930,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -6935,7 +7199,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -6945,7 +7212,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -6957,7 +7227,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -6967,7 +7240,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -6977,7 +7253,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -6987,7 +7266,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -7253,7 +7535,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -7263,7 +7548,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -7275,7 +7563,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -7285,7 +7576,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -7295,7 +7589,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -7305,7 +7602,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -7571,7 +7871,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -7581,7 +7884,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -7593,7 +7899,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -7603,7 +7912,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -7613,7 +7925,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -7623,7 +7938,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -7966,7 +8284,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -7976,7 +8297,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -7988,7 +8312,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -7998,7 +8325,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -8008,7 +8338,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -8018,7 +8351,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6D:0",
@@ -8028,7 +8364,10 @@
               "value": "6",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -8294,7 +8633,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -8304,7 +8646,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -8316,7 +8661,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -8326,7 +8674,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -8336,7 +8687,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -8346,7 +8700,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6D:0",
@@ -8356,7 +8713,10 @@
               "value": "6",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -8622,7 +8982,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -8632,7 +8995,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -8644,7 +9010,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -8654,7 +9023,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -8664,7 +9036,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -8674,7 +9049,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6D:0",
@@ -8684,7 +9062,10 @@
               "value": "6",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -8950,7 +9331,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -8960,7 +9344,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -8972,7 +9359,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -8982,7 +9372,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -8992,7 +9385,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -9002,7 +9398,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6D:0",
@@ -9012,7 +9411,10 @@
               "value": "6",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -9278,7 +9680,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -9288,7 +9693,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -9300,7 +9708,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -9310,7 +9721,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -9320,7 +9734,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -9330,7 +9747,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6D:0",
@@ -9340,7 +9760,10 @@
               "value": "6",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -9606,7 +10029,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -9616,7 +10042,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -9628,7 +10057,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -9638,7 +10070,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -9648,7 +10083,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -9658,7 +10096,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6D:0",
@@ -9668,7 +10109,10 @@
               "value": "6",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -9934,7 +10378,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -9944,7 +10391,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -9956,7 +10406,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -9966,7 +10419,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -9976,7 +10432,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -9986,7 +10445,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6D:0",
@@ -9996,7 +10458,10 @@
               "value": "6",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -10262,7 +10727,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -10272,7 +10740,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -10284,7 +10755,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -10294,7 +10768,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -10304,7 +10781,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -10314,7 +10794,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6D:0",
@@ -10324,7 +10807,10 @@
               "value": "6",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -10558,7 +11044,10 @@
                   "value": "9",
                   "suit": "\u2666",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "2D:0",
@@ -10568,7 +11057,10 @@
                   "value": "2",
                   "suit": "\u2666",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -10592,7 +11084,10 @@
                   "value": "8",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "QH:0",
@@ -10602,7 +11097,10 @@
                   "value": "Q",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -10626,7 +11124,10 @@
                   "value": "7",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "KS:0",
@@ -10636,7 +11137,10 @@
                   "value": "K",
                   "suit": "\u2660",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -10660,7 +11164,10 @@
                   "value": "8",
                   "suit": "\u2663",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "TD:0",
@@ -10670,7 +11177,10 @@
                   "value": "10",
                   "suit": "\u2666",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -10707,7 +11217,10 @@
                   "value": "9",
                   "suit": "\u2660",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "3S:0",
@@ -10717,7 +11230,10 @@
                   "value": "3",
                   "suit": "\u2660",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -10741,7 +11257,10 @@
                   "value": "4",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "KH:0",
@@ -10751,7 +11270,10 @@
                   "value": "K",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -10775,7 +11297,10 @@
                   "value": "K",
                   "suit": "\u2663",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "5H:0",
@@ -10785,7 +11310,10 @@
                   "value": "5",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -10809,7 +11337,10 @@
                   "value": "8",
                   "suit": "\u2666",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "9H:0",
@@ -10819,7 +11350,10 @@
                   "value": "9",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -10835,7 +11369,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -10845,7 +11382,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -10857,7 +11397,10 @@
               "value": "10",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "5S:0",
@@ -10867,7 +11410,10 @@
               "value": "5",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6S:0",
@@ -10877,7 +11423,10 @@
               "value": "6",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "AC:0",
@@ -10887,7 +11436,10 @@
               "value": "A",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "6D:0",
@@ -10897,7 +11449,10 @@
               "value": "6",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -11208,7 +11763,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -11218,7 +11776,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "8H:0",
@@ -11228,7 +11789,10 @@
               "value": "8",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -11394,7 +11958,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -11404,7 +11971,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "8H:0",
@@ -11414,7 +11984,10 @@
               "value": "8",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -11541,7 +12114,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -11551,7 +12127,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "8H:0",
@@ -11561,7 +12140,10 @@
               "value": "8",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -11688,7 +12270,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -11698,7 +12283,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "8H:0",
@@ -11708,7 +12296,10 @@
               "value": "8",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -11835,7 +12426,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -11845,7 +12439,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "8H:0",
@@ -11855,7 +12452,10 @@
               "value": "8",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -11982,7 +12582,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -11992,7 +12595,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "8H:0",
@@ -12002,7 +12608,10 @@
               "value": "8",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -12187,7 +12796,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -12197,7 +12809,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "8H:0",
@@ -12207,7 +12822,10 @@
               "value": "8",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -12334,7 +12952,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -12344,7 +12965,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "8H:0",
@@ -12354,7 +12978,10 @@
               "value": "8",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -12450,7 +13077,10 @@
                   "value": "9",
                   "suit": "\u2666",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "2D:0",
@@ -12460,7 +13090,10 @@
                   "value": "2",
                   "suit": "\u2666",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "8H:0",
@@ -12470,7 +13103,10 @@
                   "value": "8",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -12507,7 +13143,10 @@
                   "value": "8",
                   "suit": "\u2663",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "TD:0",
@@ -12517,7 +13156,10 @@
                   "value": "10",
                   "suit": "\u2666",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "5C:0",
@@ -12527,7 +13169,10 @@
                   "value": "5",
                   "suit": "\u2663",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -12543,7 +13188,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2D:0",
@@ -12553,7 +13201,10 @@
               "value": "2",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "8H:0",
@@ -12563,7 +13214,10 @@
               "value": "8",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [],
@@ -12732,7 +13386,10 @@
                   "value": "Q",
                   "suit": "\u2660",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "QH:3",
@@ -12742,7 +13399,10 @@
                   "value": "Q",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -12758,7 +13418,10 @@
               "value": "Q",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "QH:3",
@@ -12768,7 +13431,10 @@
               "value": "Q",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -12780,7 +13446,10 @@
               "value": "10",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -12881,7 +13550,10 @@
                     "value": "Q",
                     "suit": "\u2660",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   },
                   {
                     "id": "QH:3",
@@ -12891,7 +13563,10 @@
                     "value": "Q",
                     "suit": "\u2665",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   }
                 ],
                 "bet": 10
@@ -12959,7 +13634,10 @@
                   "value": "Q",
                   "suit": "\u2660",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "TH:1",
@@ -12969,7 +13647,10 @@
                   "value": "10",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "QH:3",
@@ -12979,7 +13660,10 @@
                   "value": "Q",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "2C:3",
@@ -12989,7 +13673,10 @@
                   "value": "2",
                   "suit": "\u2663",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -13005,7 +13692,10 @@
               "value": "Q",
               "suit": "\u2660",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "TH:1",
@@ -13015,7 +13705,10 @@
               "value": "10",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -13027,7 +13720,10 @@
               "value": "10",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -13109,7 +13805,10 @@
                     "value": "Q",
                     "suit": "\u2660",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   },
                   {
                     "id": "TH:1",
@@ -13119,7 +13818,10 @@
                     "value": "10",
                     "suit": "\u2665",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   }
                 ],
                 "bet": 10
@@ -13134,7 +13836,10 @@
                     "value": "Q",
                     "suit": "\u2665",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   },
                   {
                     "id": "2C:3",
@@ -13144,7 +13849,10 @@
                     "value": "2",
                     "suit": "\u2663",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   }
                 ],
                 "bet": 10
@@ -13212,7 +13920,10 @@
                   "value": "Q",
                   "suit": "\u2660",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "TH:1",
@@ -13222,7 +13933,10 @@
                   "value": "10",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "7S:0",
@@ -13232,7 +13946,10 @@
                   "value": "7",
                   "suit": "\u2660",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "QH:3",
@@ -13242,7 +13959,10 @@
                   "value": "Q",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "2C:3",
@@ -13252,7 +13972,10 @@
                   "value": "2",
                   "suit": "\u2663",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -13268,7 +13991,10 @@
               "value": "Q",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2C:3",
@@ -13278,7 +14004,10 @@
               "value": "2",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -13290,7 +14019,10 @@
               "value": "10",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -13372,7 +14104,10 @@
                     "value": "Q",
                     "suit": "\u2660",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   },
                   {
                     "id": "TH:1",
@@ -13382,7 +14117,10 @@
                     "value": "10",
                     "suit": "\u2665",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   },
                   {
                     "id": "7S:0",
@@ -13392,7 +14130,10 @@
                     "value": "7",
                     "suit": "\u2660",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   }
                 ],
                 "bet": 10
@@ -13407,7 +14148,10 @@
                     "value": "Q",
                     "suit": "\u2665",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   },
                   {
                     "id": "2C:3",
@@ -13417,7 +14161,10 @@
                     "value": "2",
                     "suit": "\u2663",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   }
                 ],
                 "bet": 10
@@ -13485,7 +14232,10 @@
                   "value": "Q",
                   "suit": "\u2660",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "TH:1",
@@ -13495,7 +14245,10 @@
                   "value": "10",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "7S:0",
@@ -13505,7 +14258,10 @@
                   "value": "7",
                   "suit": "\u2660",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "QH:3",
@@ -13515,7 +14271,10 @@
                   "value": "Q",
                   "suit": "\u2665",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "2C:3",
@@ -13525,7 +14284,10 @@
                   "value": "2",
                   "suit": "\u2663",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 },
                 {
                   "id": "JD:3",
@@ -13535,7 +14297,10 @@
                   "value": "J",
                   "suit": "\u2666",
                   "colors": [],
-                  "effect": ""
+                  "effect": "",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
                 }
               ],
               "bank": [],
@@ -13551,7 +14316,10 @@
               "value": "Q",
               "suit": "\u2665",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "2C:3",
@@ -13561,7 +14329,10 @@
               "value": "2",
               "suit": "\u2663",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "JD:3",
@@ -13571,7 +14342,10 @@
               "value": "J",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "community": [
@@ -13583,7 +14357,10 @@
               "value": "10",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "9D:2",
@@ -13593,7 +14370,10 @@
               "value": "9",
               "suit": "\u2666",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "discard": null,
@@ -13617,7 +14397,10 @@
                     "value": "Q",
                     "suit": "\u2660",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   },
                   {
                     "id": "TH:1",
@@ -13627,7 +14410,10 @@
                     "value": "10",
                     "suit": "\u2665",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   },
                   {
                     "id": "7S:0",
@@ -13637,7 +14423,10 @@
                     "value": "7",
                     "suit": "\u2660",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   }
                 ],
                 "bet": 10
@@ -13652,7 +14441,10 @@
                     "value": "Q",
                     "suit": "\u2665",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   },
                   {
                     "id": "2C:3",
@@ -13662,7 +14454,10 @@
                     "value": "2",
                     "suit": "\u2663",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   },
                   {
                     "id": "JD:3",
@@ -13672,7 +14467,10 @@
                     "value": "J",
                     "suit": "\u2666",
                     "colors": [],
-                    "effect": ""
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
                   }
                 ],
                 "bet": 10

@@ -324,6 +324,10 @@
   .party-choice-grid {
     margin-block: 12px;
   }
+  .party-commit,
+  .party-reveal > .button {
+    width: 100%;
+  }
 }
 
 @layer components {

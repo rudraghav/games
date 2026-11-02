@@ -10,7 +10,11 @@ import { playerName, type TableProps } from '../types';
 function ShitheadDecision(props: TableProps) {
   const { match, room, selfId, onAction, pending } = props;
   const data = shitheadDetails(match.detail);
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selection, setSelection] = useState<{ version: number | null; cards: string[] }>({
+    version: room.matchVersion,
+    cards: [],
+  });
+  const selected = selection.version === room.matchVersion ? selection.cards : [];
   const [sortBySuit, setSortBySuit] = useState(false);
   const ownStage = data.stages[selfId];
   const myTurn = match.currentPlayer === selfId && match.phase !== 'finished';
@@ -41,7 +45,7 @@ function ShitheadDecision(props: TableProps) {
     ownStage === 'setup'
       ? 'Choose three cards to keep face-up.'
       : ownStage === 'face_down'
-        ? 'Flip one hidden card below.'
+        ? 'Choose a hidden card on your table.'
         : ownStage === 'out'
           ? 'You are safe. The remaining players continue.'
           : ownStage === 'face_up'
@@ -49,11 +53,16 @@ function ShitheadDecision(props: TableProps) {
             : 'Select one or more cards of the same rank.';
 
   function select(card: Card) {
-    setSelected((old) => {
-      if (old.includes(card.id)) return old.filter((id) => id !== card.id);
-      if (arrange) return [...old.slice(-2), card.id];
-      const same = old.every((id) => pool.find((c) => c.id === id)?.value === card.value);
-      return same ? [...old, card.id] : [card.id];
+    setSelection((previous) => {
+      const old = previous.version === room.matchVersion ? previous.cards : [];
+      let cards: string[];
+      if (old.includes(card.id)) cards = old.filter((id) => id !== card.id);
+      else if (arrange) cards = [...old.slice(-2), card.id];
+      else {
+        const same = old.every((id) => pool.find((c) => c.id === id)?.value === card.value);
+        cards = same ? [...old, card.id] : [card.id];
+      }
+      return { version: room.matchVersion, cards };
     });
   }
   function faceRow(playerId: string) {
@@ -131,68 +140,85 @@ function ShitheadDecision(props: TableProps) {
 
   return (
     <>
-      <section className="shithead-workspace" aria-label="Your cards and decisions">
-        <div className="shithead-table-heading">
-          <h2>{ownStage === 'setup' ? 'Choose your table cards' : 'Your hand'}</h2>
-          {match.hand.length ? (
-            <Button size="sm" variant="ghost" onClick={() => setSortBySuit((old) => !old)}>
-              {sortBySuit ? 'Sort by rank' : 'Sort by suit'}
-            </Button>
-          ) : (
-            <span className="small muted">0 cards</span>
-          )}
-        </div>
-        <p className="small muted">
-          {myTurn || ownStage === 'out' ? instruction : 'Waiting for the current player.'}
-        </p>
-        {match.hand.length ? (
-          <Hand
-            cards={sortedHand}
-            selectedIds={selected}
-            onSelect={!blocked ? (id) => select(match.hand.find((c) => c.id === id)!) : undefined}
-          />
-        ) : (
+      <div className="shithead-own-zone" data-stage={ownStage}>
+        <section className="shithead-workspace" aria-label="Your cards and decisions">
+          <div className="shithead-table-heading">
+            <h2>
+              {ownStage === 'setup'
+                ? 'Choose your table cards'
+                : ownStage === 'face_up'
+                  ? 'Play your face-up cards'
+                  : ownStage === 'face_down'
+                    ? 'Reveal a hidden card'
+                    : ownStage === 'out'
+                      ? 'You are safe'
+                      : 'Your hand'}
+            </h2>
+            {match.hand.length ? (
+              <Button size="sm" variant="ghost" onClick={() => setSortBySuit((old) => !old)}>
+                {sortBySuit ? 'Sort by rank' : 'Sort by suit'}
+              </Button>
+            ) : (
+              <span className="small muted">0 cards</span>
+            )}
+          </div>
           <p className="small muted">
-            {ownStage === 'face_down'
-              ? 'Your hidden cards are ready.'
-              : ownStage === 'face_up'
-                ? 'Play from your table below.'
-                : 'Hand cleared.'}
+            {myTurn || ownStage === 'out' ? instruction : 'Waiting for the current player.'}
           </p>
-        )}
-        <div className="shithead-actions" aria-label="Your Shithead actions">
-          {arrange ? (
-            <Button
-              disabled={blocked || selected.length !== 3}
-              onClick={() => onAction({ ...arrange.value, cards: selected })}
-            >
-              Keep selected three face-up · {selected.length}/3
-            </Button>
-          ) : null}
-          {options.length ? (
-            <Button disabled={blocked || !play} onClick={() => play && onAction(play.value)}>
-              Play selected{selected.length ? ` · ${selected.length}` : ''}
-            </Button>
-          ) : null}
-          {match.actions.some((o) => o.value.type === 'pickup') ? (
-            <Button
-              variant="secondary"
-              disabled={blocked || !pickup}
-              onClick={() => pickup && onAction(pickup.value)}
-            >
-              {ownStage === 'face_up'
-                ? 'Take pile with selected card'
-                : `Take pile · ${data.pile_count} cards`}
-            </Button>
-          ) : null}
-          {selected.length ? (
-            <Button variant="ghost" onClick={() => setSelected([])} disabled={pending}>
-              Clear selection
-            </Button>
-          ) : null}
-        </div>
-      </section>
-      {faceRow(selfId)}
+          {match.hand.length ? (
+            <Hand
+              cards={sortedHand}
+              disabled={blocked}
+              selectedIds={selected}
+              onSelect={!blocked ? (id) => select(match.hand.find((c) => c.id === id)!) : undefined}
+            />
+          ) : (
+            <p className="small muted">
+              {ownStage === 'face_down'
+                ? 'Your hidden cards are ready.'
+                : ownStage === 'face_up'
+                  ? 'Play from your table below.'
+                  : 'Hand cleared.'}
+            </p>
+          )}
+          <div className="shithead-actions" aria-label="Your Shithead actions">
+            {arrange ? (
+              <Button
+                disabled={blocked || selected.length !== 3}
+                onClick={() => onAction({ ...arrange.value, cards: selected })}
+              >
+                Keep selected three face-up · {selected.length}/3
+              </Button>
+            ) : null}
+            {options.length ? (
+              <Button disabled={blocked || !play} onClick={() => play && onAction(play.value)}>
+                Play selected{selected.length ? ` · ${selected.length}` : ''}
+              </Button>
+            ) : null}
+            {match.actions.some((o) => o.value.type === 'pickup') ? (
+              <Button
+                variant="secondary"
+                disabled={blocked || !pickup}
+                onClick={() => pickup && onAction(pickup.value)}
+              >
+                {ownStage === 'face_up'
+                  ? 'Take pile with selected card'
+                  : `Take pile · ${data.pile_count} cards`}
+              </Button>
+            ) : null}
+            {selected.length ? (
+              <Button
+                variant="ghost"
+                onClick={() => setSelection({ version: room.matchVersion, cards: [] })}
+                disabled={pending}
+              >
+                Clear selection
+              </Button>
+            ) : null}
+          </div>
+        </section>
+        {faceRow(selfId)}
+      </div>
       <div className="shithead-opponents">
         {match.players
           .filter((p) => p.id !== selfId)
@@ -255,7 +281,7 @@ export function ShitheadTable(props: TableProps) {
           <span>{playerName(room, data.loser)} is last. Everyone else escaped.</span>
         </div>
       ) : null}
-      <ShitheadDecision key={`${room.matchId}:${room.matchVersion}`} {...props} />
+      <ShitheadDecision key={room.matchId ?? match.id} {...props} />
     </div>
   );
 }

@@ -1,0 +1,840 @@
+@layer components {
+  .playing-card.playing-card--property.playing-card--back {
+    width: 126px;
+    height: 178px;
+  }
+  .playing-card.playing-card--property.playing-card--back.playing-card--compact {
+    width: 80px;
+    height: 114px;
+  }
+  .playing-card.playing-card--empty {
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border: 1px dashed var(--color-border);
+    color: var(--color-ink-muted);
+    box-shadow: none;
+    font-size: 10px;
+  }
+  .pile-shadow:has(.playing-card--empty)::before,
+  .pile-shadow:has(.playing-card--empty)::after {
+    display: none;
+  }
+  /* Printed information is the artwork: names, denominations and rent schedules. */
+  .playing-card.playing-card--property:not(.playing-card--back) {
+    --card-width: 126px;
+    --card-height: 178px;
+    display: grid;
+    grid-template-rows: 20px minmax(0, 1fr) 34px;
+    gap: 5px;
+    width: var(--card-width);
+    height: var(--card-height);
+    padding: 23px 9px 8px;
+    border: 1px solid #d4cfc2;
+    border-radius: 8px;
+    background: #fffdf6;
+    color: #292b27;
+    text-align: left;
+  }
+  .playing-card--property .property-band {
+    height: 15px;
+  }
+  .playing-card--property .deal-card-meta {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 5px;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .playing-card--property .property-value {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .deal-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 5px;
+    min-height: 0;
+    min-width: 0;
+  }
+  .playing-card.playing-card--property .property-name {
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+    text-transform: none;
+  }
+  .playing-card--property .property-color-label,
+  .playing-card--property .property-active-label {
+    font-size: 8px;
+    line-height: 1.2;
+  }
+  .deal-card-instruction {
+    font-size: 8px;
+    line-height: 1.3;
+    color: #5b6055;
+  }
+  .deal-card-foot {
+    display: grid;
+    gap: 4px;
+    align-content: end;
+    border-top: 1px solid #dad6ca;
+    padding-top: 4px;
+    font-size: 8px;
+    line-height: 1.1;
+    color: #616759;
+  }
+  .deal-rent-label {
+    font-size: 6.5px;
+    font-weight: 650;
+    letter-spacing: 0.025em;
+  }
+  .deal-rent-ladder {
+    display: flex;
+    justify-content: space-between;
+    gap: 3px;
+  }
+  .deal-rent-ladder > span {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+  }
+  .deal-rent-ladder small {
+    color: #71796b;
+    font-size: 7px;
+  }
+  .deal-rent-ladder b {
+    color: #292b27;
+    font-size: 10px;
+  }
+  .playing-card--property .deal-action-art {
+    width: 22px;
+    height: 22px;
+    max-width: none;
+    background: transparent;
+    border-radius: 0;
+    align-self: start;
+  }
+  .playing-card--property .deal-action-art > svg {
+    width: 22px;
+    height: 22px;
+  }
+  .playing-card--property .deal-action-art > b {
+    bottom: -2px;
+    right: -8px;
+    font-size: 9px;
+  }
+  .playing-card--property[data-card-kind='action'] .property-band:empty {
+    background: #6a5675;
+  }
+  .playing-card--property[data-card-kind='money'] {
+    background: #eef1df;
+  }
+  .playing-card--property .money-art {
+    min-height: 50px;
+  }
+  .playing-card--property .money-art > strong {
+    font-size: 36px;
+  }
+  .playing-card.playing-card--property.playing-card--compact:not(.playing-card--back) {
+    --card-width: 80px;
+    --card-height: 114px;
+    grid-template-rows: 12px minmax(0, 1fr) 22px;
+    gap: 3px;
+    padding: 14px 6px 5px;
+  }
+  .playing-card--property.playing-card--compact .property-band {
+    height: 9px;
+  }
+  .playing-card--property.playing-card--compact .deal-card-meta {
+    font-size: 5px;
+  }
+  .playing-card--property.playing-card--compact .property-value {
+    font-size: 10px;
+  }
+  .playing-card.playing-card--property.playing-card--compact .property-name {
+    font-size: 9px;
+    line-height: 1.1;
+  }
+  .playing-card--property.playing-card--compact .property-color-label,
+  .playing-card--property.playing-card--compact .property-active-label {
+    font-size: 5px;
+  }
+  .playing-card--property.playing-card--compact .deal-card-instruction {
+    display: none;
+  }
+  .playing-card--property.playing-card--compact .deal-action-art,
+  .playing-card--property.playing-card--compact .deal-action-art > svg {
+    width: 16px;
+    height: 16px;
+  }
+  .playing-card--property.playing-card--compact .deal-card-foot {
+    font-size: 5px;
+    gap: 2px;
+    padding-top: 3px;
+  }
+  .playing-card--property.playing-card--compact .deal-rent-label {
+    font-size: 4.5px;
+  }
+  .playing-card--property.playing-card--compact .deal-rent-ladder {
+    gap: 2px;
+  }
+  .playing-card--property.playing-card--compact .deal-rent-ladder > span {
+    gap: 1px;
+  }
+  .playing-card--property.playing-card--compact .deal-rent-ladder small {
+    font-size: 5px;
+  }
+  .playing-card--property.playing-card--compact .deal-rent-ladder b {
+    font-size: 7px;
+  }
+  .playing-card--property.playing-card--compact .money-art {
+    min-height: 30px;
+  }
+  .playing-card--property.playing-card--compact .money-art > strong {
+    font-size: 23px;
+  }
+  .game-art .playing-card.playing-card--property:not(.playing-card--back) {
+    grid-template-rows: 12px minmax(0, 1fr) 13px;
+    gap: 3px;
+    padding: 16px 5px 4px;
+  }
+  .game-art .playing-card--property .property-band {
+    height: 10px;
+  }
+  .game-art .playing-card--property .deal-card-meta {
+    font-size: 5px;
+  }
+  .game-art .playing-card--property .property-value {
+    font-size: 9px;
+  }
+  .game-art .playing-card.playing-card--property .property-name {
+    font-size: 9px;
+  }
+  .game-art .playing-card--property .deal-card-instruction,
+  .game-art .playing-card--property .deal-rent-label {
+    display: none;
+  }
+  .game-art .playing-card--property .deal-card-foot {
+    font-size: 5px;
+    padding-top: 2px;
+  }
+  .game-art .playing-card--property .deal-rent-ladder b {
+    font-size: 6px;
+  }
+  .game-art .playing-card--property .deal-rent-ladder small {
+    font-size: 4px;
+  }
+  .game-art .playing-card--property .deal-rent-ladder > span {
+    gap: 1px;
+  }
+  .game-art .playing-card--property .property-color-label {
+    font-size: 5px;
+  }
+  .game-art .playing-card--property .deal-action-art,
+  .game-art .playing-card--property .deal-action-art > svg {
+    width: 16px;
+    height: 16px;
+  }
+  .card-hand {
+    gap: 8px;
+  }
+  .hand-scroll .card-hand > .playing-card + .playing-card {
+    margin-left: 0;
+  }
+  .playing-card[data-playable='true']:not(.playing-card--selected) {
+    border-color: var(--color-sage);
+    box-shadow:
+      0 0 0 1px #4d655044,
+      var(--shadow-card);
+  }
+  .playing-card[data-playable='false'] {
+    filter: saturate(0.65);
+  }
+  .deal-workspace {
+    display: grid;
+    gap: 12px;
+    container-type: inline-size;
+  }
+  .deal-opponents {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    align-items: start;
+    padding: 2px 2px 10px;
+    scroll-snap-type: x proximity;
+  }
+  .deal-opponents > .deal-player {
+    flex: 1 0 240px;
+    min-width: 0;
+    max-width: 440px;
+    scroll-snap-align: start;
+  }
+  .deal-player {
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+    min-width: 0;
+  }
+  .deal-player[data-own='true'] {
+    border-color: #9eab92;
+    background: #fcfbf5;
+  }
+  .deal-player[data-active='true'] {
+    box-shadow: inset 0 3px var(--color-sage);
+  }
+  .deal-player-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 11px;
+  }
+  .deal-player-heading .seat {
+    border: none;
+    box-shadow: none;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    flex: 1;
+    min-width: 0;
+  }
+  .deal-player-heading .avatar {
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
+  }
+  .deal-player-heading .turn-light {
+    right: 0;
+    top: 1px;
+  }
+  .deal-opponent-bank {
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    padding-right: 9px;
+  }
+  .deal-opponent-details > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    cursor: pointer;
+    font-size: 11px;
+    color: var(--color-ink-muted);
+    padding: 0 12px;
+    min-height: 44px;
+  }
+  .deal-opponent-details[open] > summary {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .deal-assets {
+    display: grid;
+    grid-template-columns: minmax(130px, 180px) minmax(0, 1fr);
+    gap: 14px;
+    padding: 12px;
+  }
+  .deal-player[data-empty='true'] > .deal-assets {
+    display: grid;
+    grid-template-columns: minmax(65px, 120px) minmax(0, 1fr);
+    align-items: center;
+  }
+  .deal-player[data-empty='true'] .deal-bank-notes {
+    display: none;
+  }
+  .deal-player[data-empty='true'] .deal-bank > header {
+    margin: 0;
+  }
+  .deal-player[data-empty='true'] .deal-empty-collection {
+    min-height: 52px;
+    padding: 0;
+    font-size: 11px;
+  }
+  .deal-player[data-empty='true'] .deal-set-slots {
+    display: none;
+  }
+  .deal-opponents .deal-assets {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .deal-bank > header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+  .deal-bank > header > span {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .deal-bank > header > strong {
+    font-size: 17px;
+    font-variant-numeric: tabular-nums;
+  }
+  .deal-bank-notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    max-height: 160px;
+    overflow-y: auto;
+    padding: 3px;
+  }
+  .deal-bank-note {
+    display: flex;
+    flex: 1 0 64px;
+    max-width: 145px;
+    min-width: 0;
+    flex-direction: column;
+    gap: 3px;
+    padding: 7px;
+    background: #eff1e4;
+    border: 1px solid #d0d6c1;
+    border-radius: 7px;
+    min-height: 48px;
+    text-align: left;
+    color: var(--color-ink);
+  }
+  .deal-bank-note > b {
+    font-size: 15px;
+  }
+  .deal-bank-note > span {
+    font-size: 9px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+  .deal-bank-note[aria-pressed='true'] {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 1px;
+    background: var(--color-ochre-light);
+  }
+  .deal-empty {
+    display: block;
+    padding: 10px 0;
+    font-size: 11px;
+    color: var(--color-ink-muted);
+  }
+  .deal-collections {
+    display: flex;
+    min-width: 0;
+    align-items: start;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 3px 3px 9px;
+  }
+  .deal-collection {
+    flex: 0 0 auto;
+    min-width: 175px;
+    max-width: 440px;
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--property-ink);
+    border-radius: 9px;
+    background: white;
+    padding: 8px;
+  }
+  .deal-collection[data-complete='true'] {
+    background: #f7f9f2;
+  }
+  .deal-collection > header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    margin-bottom: 7px;
+    min-width: 0;
+  }
+  .deal-collection > header > strong {
+    flex: 1;
+  }
+  .deal-collection > header > span:not(.deal-set-dot) {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink-muted);
+  }
+  .deal-set-dot {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--property-ink);
+    flex: none;
+  }
+  .deal-collection-cards {
+    display: flex;
+    align-items: start;
+    gap: 5px;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 14px 3px 6px;
+  }
+  .deal-buildings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 3px;
+  }
+  .deal-buildings > :is(button, span) {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid #c9d0c1;
+    border-radius: 6px;
+    background: #eef1e4;
+    color: var(--color-ink);
+    padding: 6px;
+    font-size: 10px;
+  }
+  .deal-buildings > button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .deal-buildings > button[aria-pressed='true'] {
+    outline: 2px solid var(--color-focus);
+  }
+  .deal-buildings > :is(button, span) > span {
+    color: var(--color-ink-muted);
+    font-size: 9px;
+  }
+  .deal-collection > footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 11px;
+  }
+  .deal-set-reference {
+    position: relative;
+  }
+  .deal-set-reference > summary {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    min-width: 44px;
+    min-height: 44px;
+    cursor: pointer;
+    color: var(--color-ink-muted);
+  }
+  .deal-set-reference[open] {
+    position: static;
+  }
+  .deal-set-reference > div {
+    font-size: 11px;
+    line-height: 1.6;
+    padding: 12px;
+    background: #f6f3ed;
+    border-radius: 8px;
+    max-width: 240px;
+  }
+  .deal-set-reference ul {
+    padding: 0;
+    margin: 8px 0;
+    list-style: none;
+  }
+  .deal-set-reference li {
+    color: var(--color-ink-muted);
+  }
+  .deal-set-reference li[data-owned='true'] {
+    color: var(--color-pine);
+    font-weight: 650;
+  }
+  .deal-collection:has(.deal-set-reference[open]) {
+    max-width: 360px;
+  }
+  .deal-empty-collection {
+    display: flex;
+    flex: 1;
+    gap: 12px;
+    align-items: center;
+    min-height: 80px;
+    padding: 12px;
+    color: var(--color-ink-muted);
+    font-size: 12px;
+  }
+  .deal-set-slots {
+    display: flex;
+    gap: 4px;
+    flex: none;
+  }
+  .deal-set-slots > i {
+    width: 25px;
+    height: 38px;
+    border: 1px dashed #bdc7b6;
+    border-radius: 4px;
+  }
+  .deal-destination,
+  .deal-new-set {
+    border: 1px dashed var(--color-sage);
+    color: var(--color-sage);
+    background: var(--color-sage-light);
+    border-radius: 8px;
+    font-size: 12px;
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+  .deal-destination {
+    width: 100%;
+    margin-top: 4px;
+  }
+  .deal-new-set {
+    flex: 0 0 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    min-height: 125px;
+    border-top: 4px solid var(--property-ink);
+  }
+  .deal-destination[aria-pressed='true'],
+  .deal-new-set[aria-pressed='true'] {
+    outline: 2px solid var(--color-focus);
+  }
+  .deal-center {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 7px 10px;
+  }
+  .deal-stock {
+    display: flex;
+    align-items: start;
+    gap: 15px;
+  }
+  .deal-stock .playing-card,
+  .deal-stock .playing-card.playing-card--property:not(.playing-card--back) {
+    --card-width: 80px;
+    --card-height: 114px;
+  }
+  .deal-stock .card-pile > span {
+    font-size: 10px;
+  }
+  .deal-last-move {
+    flex: 1;
+    min-width: 0;
+    max-width: 450px;
+  }
+  .deal-last-move p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 6px;
+    overflow-wrap: anywhere;
+  }
+  .deal-turn-controls {
+    margin-left: auto;
+    display: grid;
+    gap: 9px;
+    justify-items: end;
+    flex: none;
+  }
+  .deal-turn-controls > span {
+    font-size: 11px;
+    color: var(--color-ink-muted);
+  }
+  .deal-turn-controls > span > b {
+    font-size: 18px;
+    color: var(--color-ink);
+  }
+  .deal-hand-dock {
+    min-width: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+  .deal-hand-dock > .hand-heading {
+    padding: 12px 15px 0;
+    gap: 10px;
+  }
+  .deal-hand-dock .hand-scroll {
+    padding-top: 22px;
+  }
+  .deal-hand-dock .card-hand {
+    justify-content: flex-start;
+    padding-inline: 4px;
+  }
+  .deal-composer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.9fr);
+    gap: 18px;
+    padding: 14px;
+    border-bottom: 1px solid var(--color-border);
+    background: #f0f2e8;
+  }
+  .deal-selected-preview {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: 14px;
+  }
+  .deal-selected-preview > .playing-card {
+    flex: none;
+  }
+  .deal-selected-preview h3 {
+    font-size: 20px;
+    font-family: var(--font-display);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .deal-selected-preview p {
+    font-size: 12px;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+  .deal-selected-preview > .icon-button {
+    align-self: start;
+    flex: none;
+    margin-left: auto;
+  }
+  .deal-move-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .deal-move-form > label {
+    display: grid;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--color-ink-muted);
+  }
+  .deal-move-form .input {
+    font-size: 12px;
+    padding-inline: 10px;
+    min-width: 0;
+    width: 100%;
+  }
+  .deal-move-summary {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .deal-commit-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .deal-resolution {
+    padding: 15px;
+    border: 1px solid #c8b989;
+    background: #fbf6e7;
+    border-radius: 14px;
+    display: grid;
+    gap: 12px;
+  }
+  .deal-resolution > div:first-child {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .deal-resolution h3 {
+    font-size: 16px;
+    text-transform: capitalize;
+  }
+  .deal-resolution p {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .deal-resolution-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .deal-payment-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+  .deal-quick-rules {
+    font-size: 12px;
+    color: var(--color-ink-muted);
+    line-height: 1.7;
+  }
+  .deal-quick-rules > summary {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 7px;
+    min-height: 44px;
+    cursor: pointer;
+    width: fit-content;
+  }
+  .deal-quick-rules p {
+    max-width: 650px;
+    margin-bottom: 10px;
+  }
+  @container (max-width: 700px) {
+    .deal-collection-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 80px);
+    }
+    .deal-assets {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .deal-bank-notes {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+    .deal-bank-note {
+      flex: 0 0 80px;
+    }
+    .deal-center {
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 0;
+    }
+    .deal-last-move {
+      order: 3;
+      flex: 1 0 100%;
+      max-width: none;
+    }
+    .deal-last-move .eyebrow {
+      display: none;
+    }
+    .deal-last-move p {
+      margin: 0;
+      font-size: 12px;
+    }
+    .deal-composer {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+    .deal-composer .deal-selected-preview > .playing-card.playing-card--property {
+      display: none;
+    }
+    .deal-selected-preview h3 {
+      font-size: 21px;
+    }
+    .deal-selected-preview p {
+      font-size: 11px;
+    }
+    .deal-commit-actions,
+    .deal-resolution-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .deal-commit-actions > .button,
+    .deal-resolution-actions > .button {
+      width: 100%;
+      min-height: 46px;
+    }
+    .deal-hand-dock > .hand-heading {
+      flex-wrap: wrap;
+      padding-inline: 12px;
+    }
+    .deal-opponents > .deal-player {
+      flex-basis: 230px;
+    }
+  }
+}

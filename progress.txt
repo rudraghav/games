@@ -1547,3 +1547,162 @@
   commands without configuration changes. Final local/production health readback
   follows; evidence-only closure will not redeploy unchanged application bytes.
 - Final restored development web3217/API8217 and production home all return200.
+
+2026-11-02 — Deal-first gameplay redesign kickoff
+- Outcome: build recognizable, playable table experiences, beginning with both
+  Deal editions and then reviewing every other catalogue game. User screenshots
+  and Playdeal changelog are interaction references, not instructions to copy
+  timers or enable their house rules. Existing untimed/private rules remain.
+- Deal acceptance: real US property identities, readable values/rent ladders and
+  distinct action faces; opponent summaries, shared play area, own bank/sets and
+  reachable hand/actions in one coherent table. Selecting a card exposes legal
+  play/bank/placement/target options; payments and counters retain board context.
+- Preserve stable card IDs, saved matches, authoritative legality, hidden hands,
+  version/retry/reconnect behavior, No Mercy house-deck disclosure and bot parity.
+  Changes go through shared typed card/UI primitives with game-specific layouts.
+- Capture current54min/max scenarios at phone/desktop before shared edits. Review
+  all27experiences; distinguish actual workflow fixes from simple gallery checks.
+  Verify targeted decisions, full matches, visual/card inventories and release
+  gates before the existing authorized main/production deployment path.
+- Starting point: clean mainb2baa71; serving application8758cd6. No changes yet
+  beyond this kickoff journal; screenshot-first audit underway.
+
+2026-11-02 — Deal identities, collection choices and public decisions (local)
+- Both Deal formats now project 28 distinct US property identities, friendly set
+  names, required counts and printed rent ladders. Classic identities were checked
+  against publisher references and printed card photographs; No Mercy retains its
+  approved Games house composition and disclosure. Physical IDs, deck order, all
+  values/effects and rules versions are unchanged; old ID-only matches restore
+  named faces and current wild orientations without a database rewrite.
+- Public views include the static set reference, authoritative visible collection
+  counts/completion/rent, and minimal counter/payment context. Internal event
+  choices, other hands, stock order and randomness remain private. Shared wire
+  card fields are additive; parent owns generated contracts and frontend mapping.
+- Players can choose a specific incomplete/new pile using action choice while
+  color remains compatible. Standard properties and wilds can rearrange free on
+  their owner's turn, including between same-color piles. Legacy empty choices
+  still pick the old first available destination. Empty slots are reused; full,
+  mismatched and forged destinations reject. Existing third-play automatic turn
+  progression is deliberately unchanged and documented.
+- Buildings retain their collection and existing inactive-on-incomplete rent
+  behavior; moved anchors refresh. Bot scoring uses the chosen visible pile and
+  still avoids free-move loops. No hidden-state bot access or LLM calls added.
+- 88 focused card-family rule/inventory/projection tests pass; the combined prior
+  run also passed all 150 bot-policy cases including min/max complete matches,
+  for 238 current cases across those files. Scoped Ruff, mypy (7 source files) and
+  whitespace checks pass. Browser/full-release checks remain with parent.
+- Local only: no cloud write, migration, commit, push or deployment by this
+  subtask. Cleaned only its two disposable reference-image downloads (~0.91 MiB);
+  source links, product work, credentials, databases and active services preserved.
+
+2026-11-02 — Gameplay framing audit and modern/party/co-op composition (local, in progress)
+- Reviewed all 108 current synthetic frames (27 games × min/max × phone/desktop)
+  before changes. Recorded per-game findings, evidence limits and observable
+  acceptance in docs/evidence/gameplay-2026-11-02/AUDIT.md. No private room data
+  or hidden engine state is used for screenshots.
+- Scoped modern, party, cooperative-number and Gem Market changes put visible
+  boards/hands beside their decisions, preserve exact legal actions, make
+  factory navigation explicit, and keep phone market cards readable. Parent
+  owns Deal/shared-card/casino/rummy/Skyjo/Shithead work and release proof.
+- First focused UI regression run passed 10 cases across phone/desktop. Real-room
+  modern/party/co-op checks and final local verification are running. No commit,
+  push, cloud configuration or deployment by this subtask.
+
+2026-11-02 — Card workspace and complete face review (local verified)
+- Recorded 32 before/after synthetic min/max views for Uno, Uno No Mercy,
+  Hold'em, Teen Patti, blackjack, Rummy, Skyjo and Shithead at phone/desktop widths.
+  Card-specific choices, direct pile moves, precise grid targets, viewer-first
+  Skyjo order and grouped Shithead own zones now follow the rendered play area.
+- Casino context precedes its own decision dock; compact opponents follow the
+  dock. Existing committed-version chip/card motion, split hands and exact hand
+  wager semantics are preserved. Shithead sort survives versions while selected
+  cards expire safely with a version change.
+- Mounted and visually inspected all 281 canonical Uno/Deal faces/orientations
+  in normal/compact pairs. Printed labels, instructions and rent cells pass both
+  widths. Fixed yellow Uno ink after visual inspection: measured 5.08:1 on fill,
+  8.70:1 on ivory centre; a browser contrast regression now enforces 4.5:1.
+- Local checks: 22 focused UI/privacy/motion tests; frontend/browser types and
+  scoped lint; 4 density/crowded-seat cases; 4 usability cases; 4 mounted inventory
+  cases; 2 mounted motion cases; and 13 real-room/Shithead cases all pass. One
+  phone-only lobby case intentionally skips desktop. CLI local interactions also
+  pass at both widths. Prior selector/hydration failures and fixes are documented.
+- Evidence and acceptance limits: docs/evidence/card-workspaces-2026-11-02.
+  No engine-rule/cloud/migration change, commit, push or deployment by this
+  subtask. Parent owns all-game full matches, bots, final build/release and hosted
+  proof. Test rooms were closed; task browser/Storybook cleanup follows, retaining
+  only concise synthetic evidence and preserving shared active web/API/database.
+
+2026-11-02 — Gameplay framing scoped verification complete (local only)
+- Final modern/co-op/party/Gem Market composition regression: 12/12 browser cases
+  pass across phone/desktop and 320px. Existing modern/co-op/party saved-room
+  workflows pass 10/10, with four corresponding visual cases passing. Scoped
+  unit/policy files pass 14/14; component ESLint, browser TypeScript and whitespace
+  checks pass. Parent Deal fixture typing was still in progress at the last
+  global web TypeScript run; parent retains complete release gates.
+- Retained the full 27-game baseline review as 18 contact sheets; final changed
+  family review as 6 sheets and 14 readable frames; complete metrics/limits in
+  docs/evidence/gameplay-2026-11-02. All 38 final scoped frames have no document
+  overflow or visible enabled controls below 44px. Gem Market tier choices were
+  browser-checked synthetically; parent owns the saved-room catalogue check.
+- Scope is frozen. Parent owns shared/Deal/game-family integration and all
+  commit/push/deploy proof. Closing only the isolated audit browser and removing
+  its obsolete scratch capture scripts/logs; baseline images retained for parent
+  comparison. Requested web/API services and unrelated work preserved.
+- Cleanup complete: closed only this subtask's browser and Storybook6106; removed
+  27.6 MiB of owned disposable captures/traces/scripts after retaining 2.8 MiB of
+  concise synthetic evidence. Shared web3217 and API8217 both return200; database,
+  credentials, user browser sessions and other agents' resources remain intact.
+
+2026-11-02 — Independent Deal decision review and local browser proof
+- Added ten deterministic synthetic Deal scenarios with engine-applied paired
+  outcomes: named/built collections, exact/new pile placement, same-color free
+  moves, targeted swaps, counters, counter-counters, exact/overpaid/insolvent
+  payments and No Mercy disclosure. Exporter asserts card conservation and viewer
+  privacy; only authorized RoomViews and visible test identifiers are written.
+  Fixture drift is checked through the contracts entry point.
+- New local-only /design/deal review harness records callbacks and known projected
+  outcomes without accounts, rooms or database writes. It shares /design's
+  production not-found guard. The existing 54 gallery indices are unchanged.
+- Independent review found a stale target selection could submit an earlier
+  Forced Deal; parent fixed target/banking cancellation resets. Mounted tests
+  prove both give/take labels and the exact submitted target/pile/cards.
+- Visual review also found zero-value-only wild collections quoted base rent
+  despite having no legal Rent. Fixed the shared rent helper at the source;
+  all-zero wilds and building-only groups now report zero in both editions.
+  Buildings cannot supply a missing valued-property base.
+- After the final guard and compact-building update, 94 focused backend rule
+  tests, 12 frontend units and all 12 browser flows (6 phone, 6 desktop) pass.
+  Scoped Ruff/mypy/ESLint, test/web TypeScript, fixture drift and whitespace checks
+  pass. Eight screenshots of real rendered projected states retained in
+  output/playwright/deal-workspace for parent visual review. No page overflow.
+- This is local UI/engine proof; parent owns real-room HTTP/full-match/release
+  verification. No cloud writes, restarts, builds, commits or deploys by this
+  subtask. All owned browser contexts closed; only its temporary fetched HTML
+  was cleaned. Source fixtures and concise screenshot evidence remain.
+
+2026-11-02 — Deal-first redesign integrated; local release gates passed
+- Rebuilt both Deal editions around named US property deeds, public banks/sets,
+  authoritative rent/completion, exact pile destinations and contextual moves.
+  Banking confirms; payments expose totals/no-change/insolvency; counters show
+  participants. Stable IDs/saved state/legacy actions/No Mercy house format kept.
+- Shared hands separate readable faces; all281Uno/Deal faces and orientations
+  reviewed in both sizes. Corrected yellow Uno contrast and misleading zero-wild
+  rent, stale swap targets, pile sizing and compact building attachments.
+- Reviewed all27experiences at both seat limits and390/1440widths; improved
+  nineteen game compositions through shared family modules. Other clear boards
+  retained. Detailed findings/limits in the three2November evidence folders.
+- Final frontend gate passes: types/lint/104tests/build. Backend gate passes
+  lint/types/763tests. Contracts, fixtures and module boundaries pass. Earlier
+  same-task isolated migration/privacy and133multiplayer checks passed.
+- Eight real Deal full matches (both editions,2/5seats,phone/desktop) and four
+  actual browser bot-driver matches pass results/history/rematch/group switching.
+  Twelve focused mounted Deal flows and affected family browser suites pass;
+  saved-room Gem moves pass both widths. Discovery regression14/14passes.
+- Local50-room actionp95=622ms; snapshotp95=288ms; botdrivep95=629ms;
+  botsnapshotp95=408ms. These are local bounds, not production latency claims.
+- Personal cloud preflight passed; exact Games project/account and isolated
+  Supabase target verified. Owner5rooms/account/profile/memberships/Google
+  identity fingerprinted privately before release. DBhead remainsa6e442b15d80.
+  Vercel Gitlink remainsnull; use one explicit production deploy after push.
+- Current state: locally verified, not yet pushed/deployed. Previous production
+  dpl_25avkf3PTgecMZxJLoeG7gLAaivs/source8758cd6 remains rollback reference.

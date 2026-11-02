@@ -1,6 +1,6 @@
 from app.core.contracts import LegalAction, State, legal
-from app.games.deal.deck import RENTS, DealCard
-from app.games.deal.table import assets, complete
+from app.games.deal.deck import RENTS, SET_NAMES, DealCard
+from app.games.deal.table import assets, complete, groups_for
 
 
 def card_options(
@@ -9,7 +9,11 @@ def card_options(
     card = cards[ident]
     options = [legal(f"Bank {card.value}M", "bank", card=ident)] if card.kind != "property" else []
     if card.kind == "property":
-        return [legal(f"Property · {c}", "property", card=ident, color=c) for c in card.colors]
+        return [
+            legal(f"Place · {SET_NAMES[color]}", "property", card=ident, color=color, choice=key)
+            for color in card.colors
+            for key in groups_for(s, player, color, cards)
+        ]
     if card.kind == "money" or card.action == "no" or gift and card.action in {"go_again", "shack"}:
         return options
     kind = card.action
@@ -251,10 +255,13 @@ def legal_actions(
     # Moving a wild away meanwhile could otherwise leave no legal rent or end.
     for key, group in s["properties"][player].items() if s["boost"] == 1 else []:
         for c in group:
-            if cards[c].kind == "property" and len(cards[c].colors) > 1:
+            if cards[c].kind == "property":
                 for color in cards[c].colors:
-                    if color != key.split(":")[0]:
+                    for destination in groups_for(s, player, color, cards):
+                        if destination == key:
+                            continue
                         actions.append(
-                            legal(f"Move wild · {color}", "rearrange", card=c, color=color)
+                            legal(f"Move · {SET_NAMES[color]}", "rearrange", card=c,
+                                  color=color, choice=destination)
                         )
     return actions

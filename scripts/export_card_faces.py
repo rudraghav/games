@@ -34,9 +34,9 @@ def card_faces() -> list[dict[str, object]]:
                 }
             )
 
-        seen_deal: set[tuple[str, str, int, tuple[str, ...]]] = set()
+        seen_deal: set[tuple[str, str, int, tuple[str, ...], str]] = set()
         for card in make_deck(mercy).values():
-            semantic = (card.kind, card.action, card.value, card.colors)
+            semantic = (card.kind, card.action, card.value, card.colors, card.name)
             if semantic in seen_deal:
                 continue
             seen_deal.add(semantic)

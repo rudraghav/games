@@ -10,8 +10,8 @@ from app.core.contracts import (
     validate_action,
 )
 from app.games.deal import effects, options
-from app.games.deal.deck import make_deck
-from app.games.deal.table import draw_cards, finish, locate, place, rent
+from app.games.deal.deck import make_deck, property_groups
+from app.games.deal.table import collection_details, draw_cards, finish, locate, place, rent
 
 
 class DealEngine(BaseEngine):
@@ -105,7 +105,7 @@ class DealEngine(BaseEngine):
             s["banks"][player].append(ident)
             return
         if action.type == "property":
-            place(s, player, ident, self.cards, action.color)
+            place(s, player, ident, self.cards, action.color, action.choice)
             return
         kind = card.action
         s["discard"].append(ident)
@@ -163,7 +163,16 @@ class DealEngine(BaseEngine):
         s["message"] = f"Played {card.view().label}."
 
     def apply_action(self, state: State, player: str, action: Action) -> State:
-        validate_action(self.legal_actions(state, player), action)
+        options = self.legal_actions(state, player)
+        if action.type in {"property", "rearrange"} and not action.choice:
+            # Pre-destination clients chose only a color. Resolve their action to
+            # the same first available pile, without admitting an illegal move.
+            action = next(
+                (option.action for option in options
+                 if option.action.model_copy(update={"choice": ""}) == action),
+                action,
+            )
+        validate_action(options, action)
         s = self.copy(state)
         if s["queue"]:
             effects.act(s, player, action, self.cards, self.mercy)
@@ -174,8 +183,18 @@ class DealEngine(BaseEngine):
             s["gift"] = {"card": action.card, "recipient": action.target}
         elif action.type == "rearrange":
             key = locate(s, player, action.card)
+            # Destination availability was checked before vacating the source;
+            # place first so its newly empty key cannot replace the chosen key.
+            place(s, player, action.card, self.cards, action.color, action.choice)
             s["properties"][player][key].remove(action.card)
-            place(s, player, action.card, self.cards, action.color)
+            # A building stays with its collection when a property is rearranged.
+            # It gives no classic rent bonus while that collection is incomplete.
+            remaining = s["properties"][player][key]
+            for building, anchor in s["links"].items():
+                if anchor == action.card and building in remaining:
+                    s["links"][building] = next(
+                        (c for c in remaining if self.cards[c].kind == "property"), ""
+                    )
         elif action.type == "discard":
             s["hands"][player].remove(action.card)
             s["discard"].append(action.card)
@@ -188,8 +207,16 @@ class DealEngine(BaseEngine):
 
     def project_view(self, s: State, player: str) -> GameView:
         current = s["order"][s["turn"]]
+        pending = None
         if s["queue"]:
             e = s["queue"][0]
+            pending = {
+                "kind": e["kind"], "actor": e["actor"], "target": e["target"],
+                "responder": e["responder"], "amount": e.get("amount"),
+                "blocked": e["blocked"],
+                "stage": "select" if e.get("select") else "payment" if e.get("payment")
+                else "distribution" if e.get("distribution") else "counter",
+            }
             current = (
                 e["actor"]
                 if e.get("select")
@@ -232,5 +259,8 @@ class DealEngine(BaseEngine):
                 "pending": s["queue"][0]["kind"] if s["queue"] else None,
                 "payment_amount": s["queue"][0].get("amount", 0)
                 if s["queue"] and s["queue"][0].get("payment") else 0,
+                "property_groups": property_groups(),
+                "collections": collection_details(s, self.cards),
+                "pending_action": pending,
             },
         )

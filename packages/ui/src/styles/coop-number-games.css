@@ -520,4 +520,147 @@
   .gang-community:not(:has(.playing-card)) {
     display: none;
   }
+  .gang-private {
+    justify-content: flex-start;
+    gap: 24px;
+    padding: 18px;
+    background: var(--color-sage-light);
+    border: 1px solid #49685624;
+    border-radius: 16px;
+  }
+  .gang-private > div:first-child {
+    flex: 1;
+    max-width: none;
+  }
+  .gang-pocket-cards {
+    flex: none;
+  }
+  .gang-rank-scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--color-ink-muted);
+    margin-top: 16px;
+  }
+  .gang-chip-rack {
+    grid-template-columns: repeat(var(--gang-players, 6), minmax(0, 1fr));
+    margin-block: 6px 12px;
+  }
+  .gang-chip-choice {
+    min-height: 80px;
+  }
+  .six-rows {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr));
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .six-row {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+  }
+  .six-row > header {
+    display: grid;
+    margin: 0;
+    gap: 4px;
+  }
+  .six-row-capacity {
+    font-size: 10px;
+    color: var(--color-ink-muted);
+  }
+  .six-row-cards {
+    align-items: center;
+    padding-bottom: 0;
+  }
+  .six-row-slot {
+    display: grid;
+    place-items: center;
+    flex: 0 0 52px;
+    height: 70px;
+    border: 1px dashed #bcb8ab;
+    border-radius: 7px;
+    background: #eeece626;
+    color: #989488;
+    font-size: 11px;
+  }
+  .six-row[data-full='true'] {
+    background: var(--color-coral-light);
+  }
+  @media (max-width: 600px) {
+    .gang-private {
+      gap: 12px;
+      padding: 14px;
+    }
+    .gang-pocket-cards {
+      --card-width: 62px;
+      --card-height: 87px;
+    }
+    .gang-chip-rack {
+      grid-template-columns: repeat(var(--gang-players, 6), minmax(0, 1fr));
+      gap: 3px;
+    }
+    .gang-rank-chip {
+      width: 40px;
+      height: 40px;
+      font-size: 17px;
+      border-width: 3px;
+    }
+    .gang-rank-chip svg {
+      width: 11px;
+    }
+    .gang-chip-choice {
+      min-height: 80px;
+      padding: 8px 1px;
+    }
+    .gang-chip-choice small {
+      font-size: 10px;
+    }
+    .six-row {
+      grid-template-columns: 58px minmax(0, 1fr);
+      gap: 8px;
+      padding: 9px 8px;
+    }
+    .six-row > header .small {
+      font-size: 10px;
+    }
+    .six-row-cards {
+      gap: 4px;
+    }
+    .six-row-cards .six-number-card,
+    .six-row-slot {
+      --card-width: 38px;
+      --card-height: 55px;
+      flex-basis: 38px;
+      height: 55px;
+    }
+    .six-row-slot {
+      border-radius: 6px;
+    }
+    .six-row > .button {
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+  }
+  @media (max-width: 380px) {
+    .gang-chip-rack {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .six-row {
+      grid-template-columns: 50px minmax(0, 1fr);
+    }
+    .six-row-cards .six-number-card,
+    .six-row-slot {
+      --card-width: 30px;
+      --card-height: 46px;
+      flex-basis: 30px;
+      height: 46px;
+    }
+    .six-row-cards .six-number-card .grid-card-value {
+      font-size: 18px;
+    }
+    .six-row-cards .six-number-card[data-digits='3'] .grid-card-value {
+      font-size: 14px;
+    }
+  }
 }

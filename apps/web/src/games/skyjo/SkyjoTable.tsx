@@ -1,16 +1,40 @@
 'use client';
 import { CardPile, PlayingCard, Seat } from '@games/ui';
 import { ActionPanel } from '../shared/ActionPanel';
+import { TablePile } from '../shared/TablePile';
 import type { TableProps } from '../types';
 
 export function SkyjoTable(props: TableProps) {
   const { match, room, selfId, onAction, pending } = props;
+  const viewer = match.players.findIndex((player) => player.id === selfId);
+  const players =
+    viewer < 0
+      ? match.players
+      : [...match.players.slice(viewer), ...match.players.slice(0, viewer)];
+  const stockAction = match.actions.find((option) => option.value.type === 'draw_stock');
+  const discardAction = match.actions.find((option) => option.value.type === 'draw_discard');
   return (
-    <div className="table-layout">
+    <div className="table-layout skyjo-workspace">
       <div className="skyjo-table">
         <div className="skyjo-piles">
-          <CardPile label="Draw" family="grid" count={match.drawCount} />
-          <CardPile label="Discard" family="grid" card={match.discard} />
+          <TablePile
+            label="Draw"
+            family="grid"
+            count={match.drawCount}
+            action={stockAction}
+            onAction={onAction}
+            pending={pending}
+            paused={room.paused}
+          />
+          <TablePile
+            label="Discard"
+            family="grid"
+            card={match.discard}
+            action={discardAction}
+            onAction={onAction}
+            pending={pending}
+            paused={room.paused}
+          />
           {match.drawn ? (
             <CardPile label="Your drawn card" family="grid" card={match.drawn} />
           ) : null}
@@ -24,17 +48,20 @@ export function SkyjoTable(props: TableProps) {
               ? match.actions.some((option) => option.value.type === 'swap')
                 ? 'Choose a card in your grid to replace.'
                 : 'Choose a face-down card in your grid to reveal.'
-              : undefined
+              : stockAction || discardAction
+                ? 'Choose either pile, then replace a card in your grid.'
+                : undefined
           }
           match={{
             ...match,
             actions: match.actions.filter(
-              (option) => !['reveal', 'swap'].includes(option.value.type),
+              (option) =>
+                !['reveal', 'swap', 'draw_stock', 'draw_discard'].includes(option.value.type),
             ),
           }}
         />
         <div className="skyjo-players">
-          {match.players.map((player) => {
+          {players.map((player) => {
             const member = room.members.find((m) => m.id === player.id);
             return (
               <article className="skyjo-player" key={player.id} data-own={player.id === selfId}>
@@ -45,10 +72,18 @@ export function SkyjoTable(props: TableProps) {
                   avatar={member?.avatar}
                   bot={member?.isBot}
                   active={match.currentPlayer === player.id}
-                  caption={`${player.score} points`}
+                  caption={`${player.score} total points`}
                   connected={member?.connected ?? false}
                 />
-                <div className="skyjo-grid">
+                <div
+                  className="skyjo-grid"
+                  role="group"
+                  aria-label={
+                    player.id === selfId
+                      ? 'Your Skyjo grid'
+                      : `${member?.name || 'Player'}’s Skyjo grid`
+                  }
+                >
                   {player.cards.map((card, slot) => {
                     if (player.removedSlots.includes(slot))
                       return (
@@ -73,7 +108,8 @@ export function SkyjoTable(props: TableProps) {
                         faceDown={!card}
                         family="grid"
                         compact
-                        label={`${card?.label || 'Face-down card'}, row ${Math.floor(slot / 4) + 1}, column ${(slot % 4) + 1}`}
+                        playable={!!action}
+                        label={`${action ? (action.value.type === 'swap' ? 'Replace' : 'Reveal') : card?.label || 'Face-down card'}, row ${Math.floor(slot / 4) + 1}, column ${(slot % 4) + 1}${action && card ? `, ${card.label}` : ''}`}
                         onClick={action ? () => onAction(action.value) : undefined}
                         disabled={pending || room.paused}
                       />

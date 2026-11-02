@@ -1,5 +1,13 @@
 # Verification and release
 
+Latest Deal/table redesign verification is recorded in
+`evidence/deal-redesign-2026-11-02`, `evidence/gameplay-2026-11-02` and
+`evidence/card-workspaces-2026-11-02`. It includes all27initial-table reviews,
+281named/special card faces, exact Deal pile/target/payment/counter decisions,
+complete minimum/maximum Deal matches, actual browser bot-driver matches and
+the 50-room local load check. Historical release evidence below remains history;
+the newest pushed/deployed source and hosted checks belong to `progress.txt`.
+
 Use `python3 scripts/verify.py --list` for the named check groups. The runner fails
 on a missing prerequisite; it never substitutes a tooling PASS for product proof.
 

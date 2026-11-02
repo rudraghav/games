@@ -1,6 +1,26 @@
 # Browser verification
 
 Routine `pnpm test:browser` checks independent sessions and responsive controls.
+
+`deal-workspace.spec.ts` also checks the local-only `/design/deal` review harness.
+Its ten synthetic scenarios and paired outcomes come from real Deal engine
+actions and authorized projections, with conservation/privacy assertions in
+`scripts/export_deal_scenarios.py`. Only public views and visible test identifiers
+are exported. `--check` participates in the contracts gate. The review page
+cannot create rooms, mutate databases or appear in a production build.
+
+The focused phone/desktop checks cover exact existing/new pile destinations,
+same-color rearrangement, target resets, banking cancellation, forced swap
+give/take labels, counter chains, exact/overpaid/insolvent payments, hidden hands,
+named properties, rent, house-deck disclosure and paused controls. Submitted
+callbacks are compared with engine-produced actions and known next projections.
+This verifies the mounted decision UI; independent real-room HTTP/full-match
+tests remain required for persistence, multiplayer and authorization proof.
+
+Run with `pnpm exec playwright test tests/browser/deal-workspace.spec.ts
+--output=output/playwright/deal-workspace-results`; screenshots are retained in
+`output/playwright/deal-workspace/` for visual review. Regenerate fixtures with
+`backend/.venv/bin/python scripts/export_deal_scenarios.py` after producer changes.
 Long acceptance and cloud checks are explicit opt-ins so normal verification does
 not silently consume guest-signup quotas or AI calls. No test persists auth state.
 

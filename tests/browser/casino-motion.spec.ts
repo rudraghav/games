@@ -15,6 +15,10 @@ test('restoring motion never replays the canceled current payment or card reveal
     ).href,
   );
   const next = page.getByRole('button', { name: 'Next move', exact: true });
+  // Storybook hydrates after iframe navigation. Its initial load is outside
+  // the committed event's lifetime, so establish the mounted baseline first.
+  await expect(next).toBeVisible();
+  await expect(page.locator('[data-casino-version]')).toHaveAttribute('data-casino-version', '1');
   const paymentStarted = Date.now();
   await next.click();
   await expect(page.locator('[data-flight]')).toHaveCount(3);

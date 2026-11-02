@@ -23,7 +23,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.386764,
+          "last_seen": 1793594396.142735,
           "is_bot": false
         },
         {
@@ -33,7 +33,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.38677,
+          "last_seen": 1793594396.142739,
           "is_bot": false
         }
       ],
@@ -79,7 +79,10 @@ export const fixtures = [
             "value": "8",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:2:0",
@@ -89,7 +92,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "wild:wild:3",
@@ -99,7 +105,10 @@ export const fixtures = [
             "value": "Wild",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:7:0",
@@ -109,7 +118,10 @@ export const fixtures = [
             "value": "7",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:reverse:0",
@@ -119,7 +131,10 @@ export const fixtures = [
             "value": "Reverse",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:6:1",
@@ -129,7 +144,10 @@ export const fixtures = [
             "value": "6",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:reverse:1",
@@ -139,7 +157,10 @@ export const fixtures = [
             "value": "Reverse",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -151,7 +172,10 @@ export const fixtures = [
           "value": "2",
           "suit": "",
           "colors": [],
-          "effect": ""
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
         },
         "drawn": null,
         "draw_count": 93,
@@ -330,7 +354,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387222,
+          "last_seen": 1793594396.142978,
           "is_bot": false
         },
         {
@@ -340,7 +364,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387226,
+          "last_seen": 1793594396.14298,
           "is_bot": false
         },
         {
@@ -350,7 +374,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3872268,
+          "last_seen": 1793594396.142981,
           "is_bot": false
         },
         {
@@ -360,7 +384,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387228,
+          "last_seen": 1793594396.142982,
           "is_bot": false
         },
         {
@@ -370,7 +394,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387229,
+          "last_seen": 1793594396.142983,
           "is_bot": false
         },
         {
@@ -380,7 +404,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.38723,
+          "last_seen": 1793594396.142983,
           "is_bot": false
         },
         {
@@ -390,7 +414,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.38723,
+          "last_seen": 1793594396.142984,
           "is_bot": false
         },
         {
@@ -400,7 +424,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3872309,
+          "last_seen": 1793594396.1429849,
           "is_bot": false
         },
         {
@@ -410,7 +434,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387233,
+          "last_seen": 1793594396.142986,
           "is_bot": false
         },
         {
@@ -420,7 +444,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387234,
+          "last_seen": 1793594396.142987,
           "is_bot": false
         }
       ],
@@ -570,7 +594,10 @@ export const fixtures = [
             "value": "8",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:2:0",
@@ -580,7 +607,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "wild:wild:3",
@@ -590,7 +620,10 @@ export const fixtures = [
             "value": "Wild",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:7:0",
@@ -600,7 +633,10 @@ export const fixtures = [
             "value": "7",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:reverse:0",
@@ -610,7 +646,10 @@ export const fixtures = [
             "value": "Reverse",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:6:1",
@@ -620,7 +659,10 @@ export const fixtures = [
             "value": "6",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:reverse:1",
@@ -630,7 +672,10 @@ export const fixtures = [
             "value": "Reverse",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "wild:wild4:0",
@@ -640,7 +685,10 @@ export const fixtures = [
             "value": "+4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:6:1",
@@ -650,7 +698,10 @@ export const fixtures = [
             "value": "6",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:5:0",
@@ -660,7 +711,10 @@ export const fixtures = [
             "value": "5",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:reverse:1",
@@ -670,7 +724,10 @@ export const fixtures = [
             "value": "Reverse",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:8:1",
@@ -680,7 +737,10 @@ export const fixtures = [
             "value": "8",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:2:1",
@@ -690,7 +750,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:2:1",
@@ -700,7 +763,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:6:0",
@@ -710,7 +776,10 @@ export const fixtures = [
             "value": "6",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:draw2:1",
@@ -720,7 +789,10 @@ export const fixtures = [
             "value": "+2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:3:0",
@@ -730,7 +802,10 @@ export const fixtures = [
             "value": "3",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:2:0",
@@ -740,7 +815,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:1:1",
@@ -750,7 +828,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "wild:wild4:3",
@@ -760,7 +841,10 @@ export const fixtures = [
             "value": "+4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:draw2:1",
@@ -770,7 +854,10 @@ export const fixtures = [
             "value": "+2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:8:1",
@@ -780,7 +867,10 @@ export const fixtures = [
             "value": "8",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:1:0",
@@ -790,7 +880,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:3:1",
@@ -800,7 +893,10 @@ export const fixtures = [
             "value": "3",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:6:1",
@@ -810,7 +906,10 @@ export const fixtures = [
             "value": "6",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:8:0",
@@ -820,7 +919,10 @@ export const fixtures = [
             "value": "8",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:skip:1",
@@ -830,7 +932,10 @@ export const fixtures = [
             "value": "Skip",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:skip:0",
@@ -840,7 +945,10 @@ export const fixtures = [
             "value": "Skip",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:2:1",
@@ -850,7 +958,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:skip:1",
@@ -860,7 +971,10 @@ export const fixtures = [
             "value": "Skip",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:reverse:0",
@@ -870,7 +984,10 @@ export const fixtures = [
             "value": "Reverse",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:5:0",
@@ -880,7 +997,10 @@ export const fixtures = [
             "value": "5",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:6:1",
@@ -890,7 +1010,10 @@ export const fixtures = [
             "value": "6",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:3:0",
@@ -900,7 +1023,10 @@ export const fixtures = [
             "value": "3",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:0:0",
@@ -910,7 +1036,10 @@ export const fixtures = [
             "value": "0",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:5:0",
@@ -920,7 +1049,10 @@ export const fixtures = [
             "value": "5",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:9:0",
@@ -930,7 +1062,10 @@ export const fixtures = [
             "value": "9",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:6:0",
@@ -940,7 +1075,10 @@ export const fixtures = [
             "value": "6",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:3:1",
@@ -950,7 +1088,10 @@ export const fixtures = [
             "value": "3",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:7:0",
@@ -960,7 +1101,10 @@ export const fixtures = [
             "value": "7",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:skip:0",
@@ -970,7 +1114,10 @@ export const fixtures = [
             "value": "Skip",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:1:1",
@@ -980,7 +1127,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -992,7 +1142,10 @@ export const fixtures = [
           "value": "2",
           "suit": "",
           "colors": [],
-          "effect": ""
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
         },
         "drawn": null,
         "draw_count": 2,
@@ -1589,7 +1742,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387579,
+          "last_seen": 1793594396.1433191,
           "is_bot": false
         },
         {
@@ -1599,7 +1752,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3875809,
+          "last_seen": 1793594396.143321,
           "is_bot": false
         }
       ],
@@ -1645,7 +1798,10 @@ export const fixtures = [
             "value": "Discard all",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:2:0",
@@ -1655,7 +1811,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:4:1",
@@ -1665,7 +1824,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:reverse:2",
@@ -1675,7 +1837,10 @@ export const fixtures = [
             "value": "Reverse",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:3:0",
@@ -1685,7 +1850,10 @@ export const fixtures = [
             "value": "3",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:5:0",
@@ -1695,7 +1863,10 @@ export const fixtures = [
             "value": "5",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "wild:reverse4:2",
@@ -1705,7 +1876,10 @@ export const fixtures = [
             "value": "Reverse +4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -1717,7 +1891,10 @@ export const fixtures = [
           "value": "6",
           "suit": "",
           "colors": [],
-          "effect": ""
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
         },
         "drawn": null,
         "draw_count": 152,
@@ -1896,7 +2073,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387744,
+          "last_seen": 1793594396.1434822,
           "is_bot": false
         },
         {
@@ -1906,7 +2083,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3877451,
+          "last_seen": 1793594396.1434839,
           "is_bot": false
         },
         {
@@ -1916,7 +2093,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387746,
+          "last_seen": 1793594396.1434848,
           "is_bot": false
         },
         {
@@ -1926,7 +2103,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387747,
+          "last_seen": 1793594396.1434848,
           "is_bot": false
         },
         {
@@ -1936,7 +2113,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387748,
+          "last_seen": 1793594396.143486,
           "is_bot": false
         },
         {
@@ -1946,7 +2123,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3877492,
+          "last_seen": 1793594396.143487,
           "is_bot": false
         }
       ],
@@ -2044,7 +2221,10 @@ export const fixtures = [
             "value": "Discard all",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:2:0",
@@ -2054,7 +2234,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:4:1",
@@ -2064,7 +2247,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:reverse:2",
@@ -2074,7 +2260,10 @@ export const fixtures = [
             "value": "Reverse",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:3:0",
@@ -2084,7 +2273,10 @@ export const fixtures = [
             "value": "3",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:5:0",
@@ -2094,7 +2286,10 @@ export const fixtures = [
             "value": "5",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "wild:reverse4:2",
@@ -2104,7 +2299,10 @@ export const fixtures = [
             "value": "Reverse +4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "wild:wild10:6",
@@ -2114,7 +2312,10 @@ export const fixtures = [
             "value": "+10",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:6:0",
@@ -2124,7 +2325,10 @@ export const fixtures = [
             "value": "6",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:draw4:0",
@@ -2134,7 +2338,10 @@ export const fixtures = [
             "value": "+4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:draw2:0",
@@ -2144,7 +2351,10 @@ export const fixtures = [
             "value": "+2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:5:1",
@@ -2154,7 +2364,10 @@ export const fixtures = [
             "value": "5",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:skip:2",
@@ -2164,7 +2377,10 @@ export const fixtures = [
             "value": "Skip",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:draw2:1",
@@ -2174,7 +2390,10 @@ export const fixtures = [
             "value": "+2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:reverse:1",
@@ -2184,7 +2403,10 @@ export const fixtures = [
             "value": "Reverse",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "wild:roulette:3",
@@ -2194,7 +2416,10 @@ export const fixtures = [
             "value": "Colour roulette",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "green:discard_all:1",
@@ -2204,7 +2429,10 @@ export const fixtures = [
             "value": "Discard all",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:0:0",
@@ -2214,7 +2442,10 @@ export const fixtures = [
             "value": "0",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "blue:4:1",
@@ -2224,7 +2455,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "yellow:8:1",
@@ -2234,7 +2468,10 @@ export const fixtures = [
             "value": "8",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:discard_all:0",
@@ -2244,7 +2481,10 @@ export const fixtures = [
             "value": "Discard all",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:7:0",
@@ -2254,7 +2494,10 @@ export const fixtures = [
             "value": "7",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "wild:roulette:0",
@@ -2264,7 +2507,10 @@ export const fixtures = [
             "value": "Colour roulette",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "red:draw2:1",
@@ -2274,7 +2520,10 @@ export const fixtures = [
             "value": "+2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -2286,7 +2535,10 @@ export const fixtures = [
           "value": "2",
           "suit": "",
           "colors": [],
-          "effect": ""
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
         },
         "drawn": null,
         "draw_count": 108,
@@ -2655,7 +2907,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387934,
+          "last_seen": 1793594396.143683,
           "is_bot": false
         },
         {
@@ -2665,7 +2917,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.387936,
+          "last_seen": 1793594396.1436841,
           "is_bot": false
         }
       ],
@@ -2714,7 +2966,10 @@ export const fixtures = [
               "green",
               "blue"
             ],
-            "effect": "rent"
+            "effect": "rent",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d053",
@@ -2727,7 +2982,14 @@ export const fixtures = [
               "green",
               "blue"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Green",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              4,
+              7
+            ]
           },
           {
             "id": "d103",
@@ -2737,31 +2999,47 @@ export const fixtures = [
             "value": "4M",
             "suit": "action",
             "colors": [],
-            "effect": "hotel"
+            "effect": "hotel",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d038",
-            "label": "Green",
+            "label": "North Carolina Avenue",
             "color": "green",
-            "subtitle": "Green",
+            "subtitle": "North Carolina Avenue",
             "value": "4M",
             "suit": "property",
             "colors": [
               "green"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Green",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              4,
+              7
+            ]
           },
           {
             "id": "d046",
-            "label": "Utility",
+            "label": "Electric Company",
             "color": "utility",
-            "subtitle": "Utility",
+            "subtitle": "Electric Company",
             "value": "2M",
             "suit": "property",
             "colors": [
               "utility"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Utilities",
+            "set_size": 2,
+            "rent_ladder": [
+              1,
+              2
+            ]
           },
           {
             "id": "d069",
@@ -2782,7 +3060,10 @@ export const fixtures = [
               "rail",
               "utility"
             ],
-            "effect": "rent"
+            "effect": "rent",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d084",
@@ -2792,7 +3073,10 @@ export const fixtures = [
             "value": "4M",
             "suit": "action",
             "colors": [],
-            "effect": "no"
+            "effect": "no",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -2841,13 +3125,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 green",
+            "label": "Place \u00b7 Green",
             "action": {
               "type": "property",
               "card": "d053",
               "target": "",
               "color": "green",
-              "choice": "",
+              "choice": "green:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -2860,13 +3144,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 blue",
+            "label": "Place \u00b7 Dark blue",
             "action": {
               "type": "property",
               "card": "d053",
               "target": "",
               "color": "blue",
-              "choice": "",
+              "choice": "blue:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -2898,13 +3182,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 green",
+            "label": "Place \u00b7 Green",
             "action": {
               "type": "property",
               "card": "d038",
               "target": "",
               "color": "green",
-              "choice": "",
+              "choice": "green:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -2917,13 +3201,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 utility",
+            "label": "Place \u00b7 Utilities",
             "action": {
               "type": "property",
               "card": "d046",
               "target": "",
               "color": "utility",
-              "choice": "",
+              "choice": "utility:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -2982,7 +3266,157 @@ export const fixtures = [
             "b34c747c-f55f-5ca1-a9f1-9a962b463165": []
           },
           "pending": null,
-          "payment_amount": 0
+          "payment_amount": 0,
+          "property_groups": [
+            {
+              "color": "brown",
+              "name": "Brown",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Mediterranean Avenue",
+                "Baltic Avenue"
+              ]
+            },
+            {
+              "color": "sky",
+              "name": "Light blue",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                3
+              ],
+              "properties": [
+                "Oriental Avenue",
+                "Vermont Avenue",
+                "Connecticut Avenue"
+              ]
+            },
+            {
+              "color": "pink",
+              "name": "Pink",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                4
+              ],
+              "properties": [
+                "St. Charles Place",
+                "States Avenue",
+                "Virginia Avenue"
+              ]
+            },
+            {
+              "color": "orange",
+              "name": "Orange",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                3,
+                5
+              ],
+              "properties": [
+                "St. James Place",
+                "Tennessee Avenue",
+                "New York Avenue"
+              ]
+            },
+            {
+              "color": "red",
+              "name": "Red",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                3,
+                6
+              ],
+              "properties": [
+                "Kentucky Avenue",
+                "Indiana Avenue",
+                "Illinois Avenue"
+              ]
+            },
+            {
+              "color": "yellow",
+              "name": "Yellow",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                6
+              ],
+              "properties": [
+                "Atlantic Avenue",
+                "Ventnor Avenue",
+                "Marvin Gardens"
+              ]
+            },
+            {
+              "color": "green",
+              "name": "Green",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                7
+              ],
+              "properties": [
+                "Pacific Avenue",
+                "North Carolina Avenue",
+                "Pennsylvania Avenue"
+              ]
+            },
+            {
+              "color": "blue",
+              "name": "Dark blue",
+              "set_size": 2,
+              "rent_ladder": [
+                3,
+                8
+              ],
+              "properties": [
+                "Park Place",
+                "Boardwalk"
+              ]
+            },
+            {
+              "color": "rail",
+              "name": "Railroads",
+              "set_size": 4,
+              "rent_ladder": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "properties": [
+                "Reading Railroad",
+                "Pennsylvania Railroad",
+                "B&O Railroad",
+                "Short Line"
+              ]
+            },
+            {
+              "color": "utility",
+              "name": "Utilities",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Electric Company",
+                "Water Works"
+              ]
+            }
+          ],
+          "collections": [],
+          "pending_action": null
         }
       },
       "paused": false,
@@ -3016,7 +3450,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388067,
+          "last_seen": 1793594396.143876,
           "is_bot": false
         },
         {
@@ -3026,7 +3460,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3880682,
+          "last_seen": 1793594396.143877,
           "is_bot": false
         },
         {
@@ -3036,7 +3470,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3880692,
+          "last_seen": 1793594396.143878,
           "is_bot": false
         },
         {
@@ -3046,7 +3480,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3880699,
+          "last_seen": 1793594396.143879,
           "is_bot": false
         },
         {
@@ -3056,7 +3490,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3880708,
+          "last_seen": 1793594396.14388,
           "is_bot": false
         }
       ],
@@ -3144,7 +3578,10 @@ export const fixtures = [
               "green",
               "blue"
             ],
-            "effect": "rent"
+            "effect": "rent",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d053",
@@ -3157,7 +3594,14 @@ export const fixtures = [
               "green",
               "blue"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Green",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              4,
+              7
+            ]
           },
           {
             "id": "d103",
@@ -3167,31 +3611,47 @@ export const fixtures = [
             "value": "4M",
             "suit": "action",
             "colors": [],
-            "effect": "hotel"
+            "effect": "hotel",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d038",
-            "label": "Green",
+            "label": "North Carolina Avenue",
             "color": "green",
-            "subtitle": "Green",
+            "subtitle": "North Carolina Avenue",
             "value": "4M",
             "suit": "property",
             "colors": [
               "green"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Green",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              4,
+              7
+            ]
           },
           {
             "id": "d046",
-            "label": "Utility",
+            "label": "Electric Company",
             "color": "utility",
-            "subtitle": "Utility",
+            "subtitle": "Electric Company",
             "value": "2M",
             "suit": "property",
             "colors": [
               "utility"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Utilities",
+            "set_size": 2,
+            "rent_ladder": [
+              1,
+              2
+            ]
           },
           {
             "id": "d007",
@@ -3201,7 +3661,10 @@ export const fixtures = [
             "value": "2M",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d082",
@@ -3211,7 +3674,10 @@ export const fixtures = [
             "value": "4M",
             "suit": "action",
             "colors": [],
-            "effect": "no"
+            "effect": "no",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -3260,13 +3726,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 green",
+            "label": "Place \u00b7 Green",
             "action": {
               "type": "property",
               "card": "d053",
               "target": "",
               "color": "green",
-              "choice": "",
+              "choice": "green:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -3279,13 +3745,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 blue",
+            "label": "Place \u00b7 Dark blue",
             "action": {
               "type": "property",
               "card": "d053",
               "target": "",
               "color": "blue",
-              "choice": "",
+              "choice": "blue:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -3317,13 +3783,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 green",
+            "label": "Place \u00b7 Green",
             "action": {
               "type": "property",
               "card": "d038",
               "target": "",
               "color": "green",
-              "choice": "",
+              "choice": "green:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -3336,13 +3802,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 utility",
+            "label": "Place \u00b7 Utilities",
             "action": {
               "type": "property",
               "card": "d046",
               "target": "",
               "color": "utility",
-              "choice": "",
+              "choice": "utility:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -3404,7 +3870,157 @@ export const fixtures = [
             "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9": []
           },
           "pending": null,
-          "payment_amount": 0
+          "payment_amount": 0,
+          "property_groups": [
+            {
+              "color": "brown",
+              "name": "Brown",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Mediterranean Avenue",
+                "Baltic Avenue"
+              ]
+            },
+            {
+              "color": "sky",
+              "name": "Light blue",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                3
+              ],
+              "properties": [
+                "Oriental Avenue",
+                "Vermont Avenue",
+                "Connecticut Avenue"
+              ]
+            },
+            {
+              "color": "pink",
+              "name": "Pink",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                4
+              ],
+              "properties": [
+                "St. Charles Place",
+                "States Avenue",
+                "Virginia Avenue"
+              ]
+            },
+            {
+              "color": "orange",
+              "name": "Orange",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                3,
+                5
+              ],
+              "properties": [
+                "St. James Place",
+                "Tennessee Avenue",
+                "New York Avenue"
+              ]
+            },
+            {
+              "color": "red",
+              "name": "Red",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                3,
+                6
+              ],
+              "properties": [
+                "Kentucky Avenue",
+                "Indiana Avenue",
+                "Illinois Avenue"
+              ]
+            },
+            {
+              "color": "yellow",
+              "name": "Yellow",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                6
+              ],
+              "properties": [
+                "Atlantic Avenue",
+                "Ventnor Avenue",
+                "Marvin Gardens"
+              ]
+            },
+            {
+              "color": "green",
+              "name": "Green",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                7
+              ],
+              "properties": [
+                "Pacific Avenue",
+                "North Carolina Avenue",
+                "Pennsylvania Avenue"
+              ]
+            },
+            {
+              "color": "blue",
+              "name": "Dark blue",
+              "set_size": 2,
+              "rent_ladder": [
+                3,
+                8
+              ],
+              "properties": [
+                "Park Place",
+                "Boardwalk"
+              ]
+            },
+            {
+              "color": "rail",
+              "name": "Railroads",
+              "set_size": 4,
+              "rent_ladder": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "properties": [
+                "Reading Railroad",
+                "Pennsylvania Railroad",
+                "B&O Railroad",
+                "Short Line"
+              ]
+            },
+            {
+              "color": "utility",
+              "name": "Utilities",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Electric Company",
+                "Water Works"
+              ]
+            }
+          ],
+          "collections": [],
+          "pending_action": null
         }
       },
       "paused": false,
@@ -3438,7 +4054,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388194,
+          "last_seen": 1793594396.14405,
           "is_bot": false
         },
         {
@@ -3448,7 +4064,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388196,
+          "last_seen": 1793594396.1440508,
           "is_bot": false
         }
       ],
@@ -3497,7 +4113,10 @@ export const fixtures = [
               "rail",
               "utility"
             ],
-            "effect": "rent_double"
+            "effect": "rent_double",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d053",
@@ -3510,7 +4129,14 @@ export const fixtures = [
               "green",
               "rail"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Green",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              4,
+              7
+            ]
           },
           {
             "id": "d103",
@@ -3520,19 +4146,28 @@ export const fixtures = [
             "value": "3M",
             "suit": "action",
             "colors": [],
-            "effect": "super_sly"
+            "effect": "super_sly",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d038",
-            "label": "Blue",
+            "label": "Park Place",
             "color": "blue",
-            "subtitle": "Blue",
+            "subtitle": "Park Place",
             "value": "4M",
             "suit": "property",
             "colors": [
               "blue"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Dark blue",
+            "set_size": 2,
+            "rent_ladder": [
+              3,
+              8
+            ]
           },
           {
             "id": "d046",
@@ -3545,7 +4180,13 @@ export const fixtures = [
               "brown",
               "sky"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Brown",
+            "set_size": 2,
+            "rent_ladder": [
+              1,
+              2
+            ]
           },
           {
             "id": "d069",
@@ -3566,7 +4207,10 @@ export const fixtures = [
               "rail",
               "utility"
             ],
-            "effect": "rent"
+            "effect": "rent",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d084",
@@ -3576,7 +4220,10 @@ export const fixtures = [
             "value": "4M",
             "suit": "action",
             "colors": [],
-            "effect": "heist"
+            "effect": "heist",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -3625,13 +4272,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 green",
+            "label": "Place \u00b7 Green",
             "action": {
               "type": "property",
               "card": "d053",
               "target": "",
               "color": "green",
-              "choice": "",
+              "choice": "green:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -3644,13 +4291,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 rail",
+            "label": "Place \u00b7 Railroads",
             "action": {
               "type": "property",
               "card": "d053",
               "target": "",
               "color": "rail",
-              "choice": "",
+              "choice": "rail:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -3682,13 +4329,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 blue",
+            "label": "Place \u00b7 Dark blue",
             "action": {
               "type": "property",
               "card": "d038",
               "target": "",
               "color": "blue",
-              "choice": "",
+              "choice": "blue:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -3701,13 +4348,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 brown",
+            "label": "Place \u00b7 Brown",
             "action": {
               "type": "property",
               "card": "d046",
               "target": "",
               "color": "brown",
-              "choice": "",
+              "choice": "brown:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -3720,13 +4367,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 sky",
+            "label": "Place \u00b7 Light blue",
             "action": {
               "type": "property",
               "card": "d046",
               "target": "",
               "color": "sky",
-              "choice": "",
+              "choice": "sky:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -3785,7 +4432,157 @@ export const fixtures = [
             "b34c747c-f55f-5ca1-a9f1-9a962b463165": []
           },
           "pending": null,
-          "payment_amount": 0
+          "payment_amount": 0,
+          "property_groups": [
+            {
+              "color": "brown",
+              "name": "Brown",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Mediterranean Avenue",
+                "Baltic Avenue"
+              ]
+            },
+            {
+              "color": "sky",
+              "name": "Light blue",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                3
+              ],
+              "properties": [
+                "Oriental Avenue",
+                "Vermont Avenue",
+                "Connecticut Avenue"
+              ]
+            },
+            {
+              "color": "pink",
+              "name": "Pink",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                4
+              ],
+              "properties": [
+                "St. Charles Place",
+                "States Avenue",
+                "Virginia Avenue"
+              ]
+            },
+            {
+              "color": "orange",
+              "name": "Orange",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                3,
+                5
+              ],
+              "properties": [
+                "St. James Place",
+                "Tennessee Avenue",
+                "New York Avenue"
+              ]
+            },
+            {
+              "color": "red",
+              "name": "Red",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                3,
+                6
+              ],
+              "properties": [
+                "Kentucky Avenue",
+                "Indiana Avenue",
+                "Illinois Avenue"
+              ]
+            },
+            {
+              "color": "yellow",
+              "name": "Yellow",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                6
+              ],
+              "properties": [
+                "Atlantic Avenue",
+                "Ventnor Avenue",
+                "Marvin Gardens"
+              ]
+            },
+            {
+              "color": "green",
+              "name": "Green",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                7
+              ],
+              "properties": [
+                "Pacific Avenue",
+                "North Carolina Avenue",
+                "Pennsylvania Avenue"
+              ]
+            },
+            {
+              "color": "blue",
+              "name": "Dark blue",
+              "set_size": 2,
+              "rent_ladder": [
+                3,
+                8
+              ],
+              "properties": [
+                "Park Place",
+                "Boardwalk"
+              ]
+            },
+            {
+              "color": "rail",
+              "name": "Railroads",
+              "set_size": 4,
+              "rent_ladder": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "properties": [
+                "Reading Railroad",
+                "Pennsylvania Railroad",
+                "B&O Railroad",
+                "Short Line"
+              ]
+            },
+            {
+              "color": "utility",
+              "name": "Utilities",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Electric Company",
+                "Water Works"
+              ]
+            }
+          ],
+          "collections": [],
+          "pending_action": null
         }
       },
       "paused": false,
@@ -3819,7 +4616,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388321,
+          "last_seen": 1793594396.144222,
           "is_bot": false
         },
         {
@@ -3829,7 +4626,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388322,
+          "last_seen": 1793594396.144223,
           "is_bot": false
         },
         {
@@ -3839,7 +4636,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388323,
+          "last_seen": 1793594396.144224,
           "is_bot": false
         },
         {
@@ -3849,7 +4646,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388324,
+          "last_seen": 1793594396.1442251,
           "is_bot": false
         },
         {
@@ -3859,7 +4656,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3883252,
+          "last_seen": 1793594396.1442251,
           "is_bot": false
         }
       ],
@@ -3947,7 +4744,10 @@ export const fixtures = [
               "rail",
               "utility"
             ],
-            "effect": "rent_double"
+            "effect": "rent_double",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d053",
@@ -3960,7 +4760,14 @@ export const fixtures = [
               "green",
               "rail"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Green",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              4,
+              7
+            ]
           },
           {
             "id": "d103",
@@ -3970,19 +4777,28 @@ export const fixtures = [
             "value": "3M",
             "suit": "action",
             "colors": [],
-            "effect": "super_sly"
+            "effect": "super_sly",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d038",
-            "label": "Blue",
+            "label": "Park Place",
             "color": "blue",
-            "subtitle": "Blue",
+            "subtitle": "Park Place",
             "value": "4M",
             "suit": "property",
             "colors": [
               "blue"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Dark blue",
+            "set_size": 2,
+            "rent_ladder": [
+              3,
+              8
+            ]
           },
           {
             "id": "d046",
@@ -3995,7 +4811,13 @@ export const fixtures = [
               "brown",
               "sky"
             ],
-            "effect": ""
+            "effect": "",
+            "set_name": "Brown",
+            "set_size": 2,
+            "rent_ladder": [
+              1,
+              2
+            ]
           },
           {
             "id": "d017",
@@ -4005,7 +4827,10 @@ export const fixtures = [
             "value": "15M",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "d070",
@@ -4026,7 +4851,10 @@ export const fixtures = [
               "rail",
               "utility"
             ],
-            "effect": "rent_double"
+            "effect": "rent_double",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -4075,13 +4903,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 green",
+            "label": "Place \u00b7 Green",
             "action": {
               "type": "property",
               "card": "d053",
               "target": "",
               "color": "green",
-              "choice": "",
+              "choice": "green:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -4094,13 +4922,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 rail",
+            "label": "Place \u00b7 Railroads",
             "action": {
               "type": "property",
               "card": "d053",
               "target": "",
               "color": "rail",
-              "choice": "",
+              "choice": "rail:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -4132,13 +4960,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 blue",
+            "label": "Place \u00b7 Dark blue",
             "action": {
               "type": "property",
               "card": "d038",
               "target": "",
               "color": "blue",
-              "choice": "",
+              "choice": "blue:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -4151,13 +4979,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 brown",
+            "label": "Place \u00b7 Brown",
             "action": {
               "type": "property",
               "card": "d046",
               "target": "",
               "color": "brown",
-              "choice": "",
+              "choice": "brown:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -4170,13 +4998,13 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Property \u00b7 sky",
+            "label": "Place \u00b7 Light blue",
             "action": {
               "type": "property",
               "card": "d046",
               "target": "",
               "color": "sky",
-              "choice": "",
+              "choice": "sky:0",
               "amount": 0,
               "slot": 0,
               "cards": [],
@@ -4238,7 +5066,157 @@ export const fixtures = [
             "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9": []
           },
           "pending": null,
-          "payment_amount": 0
+          "payment_amount": 0,
+          "property_groups": [
+            {
+              "color": "brown",
+              "name": "Brown",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Mediterranean Avenue",
+                "Baltic Avenue"
+              ]
+            },
+            {
+              "color": "sky",
+              "name": "Light blue",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                3
+              ],
+              "properties": [
+                "Oriental Avenue",
+                "Vermont Avenue",
+                "Connecticut Avenue"
+              ]
+            },
+            {
+              "color": "pink",
+              "name": "Pink",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                4
+              ],
+              "properties": [
+                "St. Charles Place",
+                "States Avenue",
+                "Virginia Avenue"
+              ]
+            },
+            {
+              "color": "orange",
+              "name": "Orange",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                3,
+                5
+              ],
+              "properties": [
+                "St. James Place",
+                "Tennessee Avenue",
+                "New York Avenue"
+              ]
+            },
+            {
+              "color": "red",
+              "name": "Red",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                3,
+                6
+              ],
+              "properties": [
+                "Kentucky Avenue",
+                "Indiana Avenue",
+                "Illinois Avenue"
+              ]
+            },
+            {
+              "color": "yellow",
+              "name": "Yellow",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                6
+              ],
+              "properties": [
+                "Atlantic Avenue",
+                "Ventnor Avenue",
+                "Marvin Gardens"
+              ]
+            },
+            {
+              "color": "green",
+              "name": "Green",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                7
+              ],
+              "properties": [
+                "Pacific Avenue",
+                "North Carolina Avenue",
+                "Pennsylvania Avenue"
+              ]
+            },
+            {
+              "color": "blue",
+              "name": "Dark blue",
+              "set_size": 2,
+              "rent_ladder": [
+                3,
+                8
+              ],
+              "properties": [
+                "Park Place",
+                "Boardwalk"
+              ]
+            },
+            {
+              "color": "rail",
+              "name": "Railroads",
+              "set_size": 4,
+              "rent_ladder": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "properties": [
+                "Reading Railroad",
+                "Pennsylvania Railroad",
+                "B&O Railroad",
+                "Short Line"
+              ]
+            },
+            {
+              "color": "utility",
+              "name": "Utilities",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Electric Company",
+                "Water Works"
+              ]
+            }
+          ],
+          "collections": [],
+          "pending_action": null
         }
       },
       "paused": false,
@@ -4272,7 +5250,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388452,
+          "last_seen": 1793594396.144402,
           "is_bot": false
         },
         {
@@ -4282,7 +5260,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388453,
+          "last_seen": 1793594396.144403,
           "is_bot": false
         }
       ],
@@ -4328,7 +5306,10 @@ export const fixtures = [
             "value": "9",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2D:0",
@@ -4338,7 +5319,10 @@ export const fixtures = [
             "value": "2",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -4464,7 +5448,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388552,
+          "last_seen": 1793594396.144508,
           "is_bot": false
         },
         {
@@ -4474,7 +5458,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388554,
+          "last_seen": 1793594396.1445088,
           "is_bot": false
         },
         {
@@ -4484,7 +5468,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388554,
+          "last_seen": 1793594396.144511,
           "is_bot": false
         },
         {
@@ -4494,7 +5478,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388555,
+          "last_seen": 1793594396.144512,
           "is_bot": false
         },
         {
@@ -4504,7 +5488,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388556,
+          "last_seen": 1793594396.1445131,
           "is_bot": false
         },
         {
@@ -4514,7 +5498,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388557,
+          "last_seen": 1793594396.144514,
           "is_bot": false
         },
         {
@@ -4524,7 +5508,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3885581,
+          "last_seen": 1793594396.144515,
           "is_bot": false
         },
         {
@@ -4534,7 +5518,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388559,
+          "last_seen": 1793594396.144516,
           "is_bot": false
         },
         {
@@ -4544,7 +5528,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3885598,
+          "last_seen": 1793594396.1445172,
           "is_bot": false
         }
       ],
@@ -4681,7 +5665,10 @@ export const fixtures = [
             "value": "9",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2D:0",
@@ -4691,7 +5678,10 @@ export const fixtures = [
             "value": "2",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -4740,7 +5730,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3886468,
+          "last_seen": 1793594396.144619,
           "is_bot": false
         },
         {
@@ -4750,7 +5740,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388648,
+          "last_seen": 1793594396.14462,
           "is_bot": false
         }
       ],
@@ -4796,7 +5786,10 @@ export const fixtures = [
             "value": "3",
             "suit": "\u2660",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "AC:1",
@@ -4806,7 +5799,10 @@ export const fixtures = [
             "value": "A",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "AD:0",
@@ -4816,7 +5812,10 @@ export const fixtures = [
             "value": "A",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9C:0",
@@ -4826,7 +5825,10 @@ export const fixtures = [
             "value": "9",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "KD:0",
@@ -4836,7 +5838,10 @@ export const fixtures = [
             "value": "K",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "JH:0",
@@ -4846,7 +5851,10 @@ export const fixtures = [
             "value": "J",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9C:1",
@@ -4856,7 +5864,10 @@ export const fixtures = [
             "value": "9",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "AD:1",
@@ -4866,7 +5877,10 @@ export const fixtures = [
             "value": "A",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8C:1",
@@ -4876,7 +5890,10 @@ export const fixtures = [
             "value": "8",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6H:1",
@@ -4886,7 +5903,10 @@ export const fixtures = [
             "value": "6",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8D:1",
@@ -4896,7 +5916,10 @@ export const fixtures = [
             "value": "8",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "JD:0",
@@ -4906,7 +5929,10 @@ export const fixtures = [
             "value": "J",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3H:0",
@@ -4916,7 +5942,10 @@ export const fixtures = [
             "value": "3",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [
@@ -4928,7 +5957,10 @@ export const fixtures = [
             "value": "3",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": {
@@ -4939,7 +5971,10 @@ export const fixtures = [
           "value": "A",
           "suit": "\u2665",
           "colors": [],
-          "effect": ""
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
         },
         "drawn": null,
         "draw_count": 78,
@@ -5040,7 +6075,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3887548,
+          "last_seen": 1793594396.1447349,
           "is_bot": false
         },
         {
@@ -5050,7 +6085,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388756,
+          "last_seen": 1793594396.144736,
           "is_bot": false
         },
         {
@@ -5060,7 +6095,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388757,
+          "last_seen": 1793594396.144737,
           "is_bot": false
         },
         {
@@ -5070,7 +6105,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388757,
+          "last_seen": 1793594396.144738,
           "is_bot": false
         },
         {
@@ -5080,7 +6115,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388758,
+          "last_seen": 1793594396.1447392,
           "is_bot": false
         },
         {
@@ -5090,7 +6125,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3887591,
+          "last_seen": 1793594396.14474,
           "is_bot": false
         }
       ],
@@ -5188,7 +6223,10 @@ export const fixtures = [
             "value": "3",
             "suit": "\u2660",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "AC:1",
@@ -5198,7 +6236,10 @@ export const fixtures = [
             "value": "A",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "AD:0",
@@ -5208,7 +6249,10 @@ export const fixtures = [
             "value": "A",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9C:0",
@@ -5218,7 +6262,10 @@ export const fixtures = [
             "value": "9",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "KD:0",
@@ -5228,7 +6275,10 @@ export const fixtures = [
             "value": "K",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "JH:0",
@@ -5238,7 +6288,10 @@ export const fixtures = [
             "value": "J",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9C:1",
@@ -5248,7 +6301,10 @@ export const fixtures = [
             "value": "9",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "AD:1",
@@ -5258,7 +6314,10 @@ export const fixtures = [
             "value": "A",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8C:1",
@@ -5268,7 +6327,10 @@ export const fixtures = [
             "value": "8",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6H:1",
@@ -5278,7 +6340,10 @@ export const fixtures = [
             "value": "6",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8D:1",
@@ -5288,7 +6353,10 @@ export const fixtures = [
             "value": "8",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "JD:0",
@@ -5298,7 +6366,10 @@ export const fixtures = [
             "value": "J",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3H:0",
@@ -5308,7 +6379,10 @@ export const fixtures = [
             "value": "3",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [
@@ -5320,7 +6394,10 @@ export const fixtures = [
             "value": "3",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": {
@@ -5331,7 +6408,10 @@ export const fixtures = [
           "value": "7",
           "suit": "\u2660",
           "colors": [],
-          "effect": ""
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
         },
         "drawn": null,
         "draw_count": 26,
@@ -5432,7 +6512,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.38886,
+          "last_seen": 1793594396.144843,
           "is_bot": false
         },
         {
@@ -5442,7 +6522,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388861,
+          "last_seen": 1793594396.144845,
           "is_bot": false
         }
       ],
@@ -5601,7 +6681,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388938,
+          "last_seen": 1793594396.144921,
           "is_bot": false
         },
         {
@@ -5611,7 +6691,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388939,
+          "last_seen": 1793594396.144922,
           "is_bot": false
         },
         {
@@ -5621,7 +6701,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.38894,
+          "last_seen": 1793594396.144923,
           "is_bot": false
         },
         {
@@ -5631,7 +6711,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388941,
+          "last_seen": 1793594396.144924,
           "is_bot": false
         },
         {
@@ -5641,7 +6721,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388941,
+          "last_seen": 1793594396.1449249,
           "is_bot": false
         },
         {
@@ -5651,7 +6731,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.388942,
+          "last_seen": 1793594396.144926,
           "is_bot": false
         }
       ],
@@ -5843,7 +6923,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389069,
+          "last_seen": 1793594396.14505,
           "is_bot": false
         }
       ],
@@ -5933,7 +7013,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389188,
+          "last_seen": 1793594396.1451688,
           "is_bot": false
         },
         {
@@ -5943,7 +7023,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389189,
+          "last_seen": 1793594396.14517,
           "is_bot": false
         },
         {
@@ -5953,7 +7033,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.38919,
+          "last_seen": 1793594396.145171,
           "is_bot": false
         },
         {
@@ -5963,7 +7043,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389191,
+          "last_seen": 1793594396.1451719,
           "is_bot": false
         },
         {
@@ -5973,7 +7053,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389191,
+          "last_seen": 1793594396.145173,
           "is_bot": false
         },
         {
@@ -5983,7 +7063,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3891919,
+          "last_seen": 1793594396.145174,
           "is_bot": false
         },
         {
@@ -5993,7 +7073,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389193,
+          "last_seen": 1793594396.145174,
           "is_bot": false
         }
       ],
@@ -6161,7 +7241,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.38929,
+          "last_seen": 1793594396.147039,
           "is_bot": false
         },
         {
@@ -6171,7 +7251,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389291,
+          "last_seen": 1793594396.14704,
           "is_bot": false
         }
       ],
@@ -6244,7 +7324,10 @@ export const fixtures = [
           "value": "4",
           "suit": "",
           "colors": [],
-          "effect": ""
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
         },
         "drawn": null,
         "draw_count": 125,
@@ -6517,7 +7600,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389431,
+          "last_seen": 1793594396.14717,
           "is_bot": false
         },
         {
@@ -6527,7 +7610,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389432,
+          "last_seen": 1793594396.147171,
           "is_bot": false
         },
         {
@@ -6537,7 +7620,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3894331,
+          "last_seen": 1793594396.1471722,
           "is_bot": false
         },
         {
@@ -6547,7 +7630,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389434,
+          "last_seen": 1793594396.1471722,
           "is_bot": false
         },
         {
@@ -6557,7 +7640,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3894348,
+          "last_seen": 1793594396.1471732,
           "is_bot": false
         },
         {
@@ -6567,7 +7650,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3894348,
+          "last_seen": 1793594396.147174,
           "is_bot": false
         },
         {
@@ -6577,7 +7660,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389436,
+          "last_seen": 1793594396.1471748,
           "is_bot": false
         },
         {
@@ -6587,7 +7670,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389437,
+          "last_seen": 1793594396.1471748,
           "is_bot": false
         }
       ],
@@ -6816,7 +7899,10 @@ export const fixtures = [
           "value": "6",
           "suit": "",
           "colors": [],
-          "effect": ""
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
         },
         "drawn": null,
         "draw_count": 53,
@@ -7089,7 +8175,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.389552,
+          "last_seen": 1793594396.1472828,
           "is_bot": false
         }
       ],
@@ -8640,7 +9726,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.391243,
+          "last_seen": 1793594396.147566,
           "is_bot": false
         }
       ],
@@ -10191,7 +11277,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.391497,
+          "last_seen": 1793594396.147891,
           "is_bot": false
         },
         {
@@ -10201,7 +11287,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.391498,
+          "last_seen": 1793594396.147892,
           "is_bot": false
         }
       ],
@@ -10248,7 +11334,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -10258,7 +11347,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -10268,7 +11360,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -10278,7 +11373,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -10288,7 +11386,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -10298,7 +11399,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -10308,7 +11412,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -10318,7 +11425,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -10328,7 +11438,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -10338,7 +11451,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -10348,7 +11464,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -10358,7 +11477,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -10368,7 +11490,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -10378,7 +11503,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "14",
@@ -10388,7 +11516,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "15",
@@ -10398,7 +11529,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "16",
@@ -10408,7 +11542,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "17",
@@ -10418,7 +11555,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "18",
@@ -10428,7 +11568,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "19",
@@ -10438,7 +11581,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "20",
@@ -10448,7 +11594,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "21",
@@ -10458,7 +11607,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "22",
@@ -10468,7 +11620,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "23",
@@ -10478,7 +11633,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "24",
@@ -10488,7 +11646,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "25",
@@ -10498,7 +11659,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "26",
@@ -10508,7 +11672,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "27",
@@ -10518,7 +11685,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "28",
@@ -10528,7 +11698,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "29",
@@ -10538,7 +11711,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "30",
@@ -10548,7 +11724,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "31",
@@ -10558,7 +11737,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "32",
@@ -10568,7 +11750,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "33",
@@ -10578,7 +11763,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "34",
@@ -10588,7 +11776,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "35",
@@ -10598,7 +11789,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "36",
@@ -10608,7 +11802,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "37",
@@ -10618,7 +11815,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "38",
@@ -10628,7 +11828,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "39",
@@ -10638,7 +11841,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "40",
@@ -10648,7 +11854,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "41",
@@ -10658,7 +11867,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -10840,7 +12052,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.391608,
+          "last_seen": 1793594396.148032,
           "is_bot": false
         },
         {
@@ -10850,7 +12062,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3916092,
+          "last_seen": 1793594396.1480331,
           "is_bot": false
         }
       ],
@@ -10897,7 +12109,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -10907,7 +12122,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -10917,7 +12135,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -10927,7 +12148,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -10937,7 +12161,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -10947,7 +12174,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -10957,7 +12187,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -10967,7 +12200,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -10977,7 +12213,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -10987,7 +12226,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -10997,7 +12239,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -11007,7 +12252,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -11017,7 +12265,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -11027,7 +12278,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "14",
@@ -11037,7 +12291,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "15",
@@ -11047,7 +12304,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "16",
@@ -11057,7 +12317,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "17",
@@ -11067,7 +12330,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "18",
@@ -11077,7 +12343,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "19",
@@ -11087,7 +12356,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "20",
@@ -11097,7 +12369,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "21",
@@ -11107,7 +12382,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "22",
@@ -11117,7 +12395,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "23",
@@ -11127,7 +12408,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "24",
@@ -11137,7 +12421,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "25",
@@ -11147,7 +12434,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "26",
@@ -11157,7 +12447,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "27",
@@ -11167,7 +12460,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "28",
@@ -11177,7 +12473,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "29",
@@ -11187,7 +12486,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "30",
@@ -11197,7 +12499,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "31",
@@ -11207,7 +12512,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "32",
@@ -11217,7 +12525,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "33",
@@ -11227,7 +12538,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "34",
@@ -11237,7 +12551,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "35",
@@ -11247,7 +12564,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "36",
@@ -11257,7 +12577,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "37",
@@ -11267,7 +12590,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "38",
@@ -11277,7 +12603,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "39",
@@ -11287,7 +12616,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "40",
@@ -11297,7 +12629,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "41",
@@ -11307,7 +12642,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -11489,7 +12827,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.391707,
+          "last_seen": 1793594396.14815,
           "is_bot": false
         },
         {
@@ -11499,7 +12837,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.391708,
+          "last_seen": 1793594396.148151,
           "is_bot": false
         }
       ],
@@ -11546,7 +12884,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -11556,7 +12897,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -11566,7 +12910,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -11576,7 +12923,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -11586,7 +12936,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -11596,7 +12949,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -11606,7 +12962,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -11616,7 +12975,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -11626,7 +12988,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -11636,7 +13001,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -11646,7 +13014,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -11656,7 +13027,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -11666,7 +13040,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -11676,7 +13053,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "14",
@@ -11686,7 +13066,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "15",
@@ -11696,7 +13079,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "16",
@@ -11706,7 +13092,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "17",
@@ -11716,7 +13105,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "18",
@@ -11726,7 +13118,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "19",
@@ -11736,7 +13131,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "20",
@@ -11746,7 +13144,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "21",
@@ -11756,7 +13157,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "22",
@@ -11766,7 +13170,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "23",
@@ -11776,7 +13183,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "24",
@@ -11786,7 +13196,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "25",
@@ -11796,7 +13209,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "26",
@@ -11806,7 +13222,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "27",
@@ -11816,7 +13235,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "28",
@@ -11826,7 +13248,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "29",
@@ -11836,7 +13261,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "30",
@@ -11846,7 +13274,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "31",
@@ -11856,7 +13287,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "32",
@@ -11866,7 +13300,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "33",
@@ -11876,7 +13313,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "34",
@@ -11886,7 +13326,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "35",
@@ -11896,7 +13339,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "36",
@@ -11906,7 +13352,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "37",
@@ -11916,7 +13365,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "38",
@@ -11926,7 +13378,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "39",
@@ -11936,7 +13391,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "40",
@@ -11946,7 +13404,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "41",
@@ -11956,7 +13417,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "42",
@@ -11966,7 +13430,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "43",
@@ -11976,7 +13443,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "44",
@@ -11986,7 +13456,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "45",
@@ -11996,7 +13469,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "46",
@@ -12006,7 +13482,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "47",
@@ -12016,7 +13495,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "48",
@@ -12026,7 +13508,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "49",
@@ -12036,7 +13521,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "50",
@@ -12046,7 +13534,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "51",
@@ -12056,7 +13547,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "52",
@@ -12066,7 +13560,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "53",
@@ -12076,7 +13573,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "54",
@@ -12086,7 +13586,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "55",
@@ -12096,7 +13599,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "56",
@@ -12106,7 +13612,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "57",
@@ -12116,7 +13625,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "58",
@@ -12126,7 +13638,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "59",
@@ -12136,7 +13651,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "60",
@@ -12146,7 +13664,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "61",
@@ -12156,7 +13677,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "62",
@@ -12166,7 +13690,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "63",
@@ -12176,7 +13703,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -12301,7 +13831,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3918972,
+          "last_seen": 1793594396.148366,
           "is_bot": false
         },
         {
@@ -12311,7 +13841,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3918982,
+          "last_seen": 1793594396.1483672,
           "is_bot": false
         }
       ],
@@ -12358,7 +13888,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -12368,7 +13901,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -12378,7 +13914,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -12388,7 +13927,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -12398,7 +13940,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -12408,7 +13953,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -12418,7 +13966,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -12428,7 +13979,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -12438,7 +13992,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -12448,7 +14005,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -12458,7 +14018,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -12468,7 +14031,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -12478,7 +14044,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -12488,7 +14057,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "14",
@@ -12498,7 +14070,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "15",
@@ -12508,7 +14083,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "16",
@@ -12518,7 +14096,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "17",
@@ -12528,7 +14109,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "18",
@@ -12538,7 +14122,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "19",
@@ -12548,7 +14135,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "20",
@@ -12558,7 +14148,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "21",
@@ -12568,7 +14161,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "22",
@@ -12578,7 +14174,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "23",
@@ -12588,7 +14187,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "24",
@@ -12598,7 +14200,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "25",
@@ -12608,7 +14213,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "26",
@@ -12618,7 +14226,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "27",
@@ -12628,7 +14239,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "28",
@@ -12638,7 +14252,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "29",
@@ -12648,7 +14265,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "30",
@@ -12658,7 +14278,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "31",
@@ -12668,7 +14291,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "32",
@@ -12678,7 +14304,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "33",
@@ -12688,7 +14317,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "34",
@@ -12698,7 +14330,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "35",
@@ -12708,7 +14343,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "36",
@@ -12718,7 +14356,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "37",
@@ -12728,7 +14369,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "38",
@@ -12738,7 +14382,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "39",
@@ -12748,7 +14395,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "40",
@@ -12758,7 +14408,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "41",
@@ -12768,7 +14421,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "42",
@@ -12778,7 +14434,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "43",
@@ -12788,7 +14447,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "44",
@@ -12798,7 +14460,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "45",
@@ -12808,7 +14473,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "46",
@@ -12818,7 +14486,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "47",
@@ -12828,7 +14499,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "48",
@@ -12838,7 +14512,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "49",
@@ -12848,7 +14525,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "50",
@@ -12858,7 +14538,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "51",
@@ -12868,7 +14551,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "52",
@@ -12878,7 +14564,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "53",
@@ -12888,7 +14577,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "54",
@@ -12898,7 +14590,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "55",
@@ -12908,7 +14603,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "56",
@@ -12918,7 +14616,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "57",
@@ -12928,7 +14629,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "58",
@@ -12938,7 +14642,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "59",
@@ -12948,7 +14655,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "60",
@@ -12958,7 +14668,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "61",
@@ -12968,7 +14681,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "62",
@@ -12978,7 +14694,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "63",
@@ -12988,7 +14707,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -13113,7 +14835,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392127,
+          "last_seen": 1793594396.148622,
           "is_bot": false
         },
         {
@@ -13123,7 +14845,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392129,
+          "last_seen": 1793594396.148623,
           "is_bot": false
         },
         {
@@ -13133,7 +14855,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3921301,
+          "last_seen": 1793594396.148624,
           "is_bot": false
         },
         {
@@ -13143,7 +14865,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3921301,
+          "last_seen": 1793594396.148625,
           "is_bot": false
         }
       ],
@@ -13216,7 +14938,10 @@ export const fixtures = [
             "value": "Island",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -13226,7 +14951,10 @@ export const fixtures = [
             "value": "Puzzle",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -13236,7 +14964,10 @@ export const fixtures = [
             "value": "Cave",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -13246,7 +14977,10 @@ export const fixtures = [
             "value": "Tea",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -13256,7 +14990,10 @@ export const fixtures = [
             "value": "Sky",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -13266,7 +15003,10 @@ export const fixtures = [
             "value": "Bone",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -13276,7 +15016,10 @@ export const fixtures = [
             "value": "Honey",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -13286,7 +15029,10 @@ export const fixtures = [
             "value": "Magnet",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -13296,7 +15042,10 @@ export const fixtures = [
             "value": "Branch",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -13306,7 +15055,10 @@ export const fixtures = [
             "value": "Pilot",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -13316,7 +15068,10 @@ export const fixtures = [
             "value": "Paint",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -13326,7 +15081,10 @@ export const fixtures = [
             "value": "Winter",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -13336,7 +15094,10 @@ export const fixtures = [
             "value": "Sand",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -13346,7 +15107,10 @@ export const fixtures = [
             "value": "Coast",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "14",
@@ -13356,7 +15120,10 @@ export const fixtures = [
             "value": "Stone",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "15",
@@ -13366,7 +15133,10 @@ export const fixtures = [
             "value": "Wheel",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "16",
@@ -13376,7 +15146,10 @@ export const fixtures = [
             "value": "Wave",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "17",
@@ -13386,7 +15159,10 @@ export const fixtures = [
             "value": "Jazz",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "18",
@@ -13396,7 +15172,10 @@ export const fixtures = [
             "value": "Atlas",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "19",
@@ -13406,7 +15185,10 @@ export const fixtures = [
             "value": "Moon",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "20",
@@ -13416,7 +15198,10 @@ export const fixtures = [
             "value": "Lantern",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "21",
@@ -13426,7 +15211,10 @@ export const fixtures = [
             "value": "Rocket",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "22",
@@ -13436,7 +15224,10 @@ export const fixtures = [
             "value": "Bicycle",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "23",
@@ -13446,7 +15237,10 @@ export const fixtures = [
             "value": "Tomato",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "24",
@@ -13456,7 +15250,10 @@ export const fixtures = [
             "value": "Kite",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -13519,7 +15316,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392253,
+          "last_seen": 1793594396.1487591,
           "is_bot": false
         },
         {
@@ -13529,7 +15326,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3922539,
+          "last_seen": 1793594396.14876,
           "is_bot": false
         },
         {
@@ -13539,7 +15336,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392255,
+          "last_seen": 1793594396.148761,
           "is_bot": false
         },
         {
@@ -13549,7 +15346,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392256,
+          "last_seen": 1793594396.1487622,
           "is_bot": false
         },
         {
@@ -13559,7 +15356,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392257,
+          "last_seen": 1793594396.148763,
           "is_bot": false
         },
         {
@@ -13569,7 +15366,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392258,
+          "last_seen": 1793594396.148764,
           "is_bot": false
         },
         {
@@ -13579,7 +15376,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392258,
+          "last_seen": 1793594396.1487648,
           "is_bot": false
         },
         {
@@ -13589,7 +15386,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3922591,
+          "last_seen": 1793594396.1487648,
           "is_bot": false
         },
         {
@@ -13599,7 +15396,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.39226,
+          "last_seen": 1793594396.148766,
           "is_bot": false
         },
         {
@@ -13609,7 +15406,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392261,
+          "last_seen": 1793594396.148767,
           "is_bot": false
         }
       ],
@@ -13760,7 +15557,10 @@ export const fixtures = [
             "value": "Island",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -13770,7 +15570,10 @@ export const fixtures = [
             "value": "Puzzle",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -13780,7 +15583,10 @@ export const fixtures = [
             "value": "Cave",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -13790,7 +15596,10 @@ export const fixtures = [
             "value": "Tea",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -13800,7 +15609,10 @@ export const fixtures = [
             "value": "Sky",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -13810,7 +15622,10 @@ export const fixtures = [
             "value": "Bone",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -13820,7 +15635,10 @@ export const fixtures = [
             "value": "Honey",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -13830,7 +15648,10 @@ export const fixtures = [
             "value": "Magnet",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -13840,7 +15661,10 @@ export const fixtures = [
             "value": "Branch",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -13850,7 +15674,10 @@ export const fixtures = [
             "value": "Pilot",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -13860,7 +15687,10 @@ export const fixtures = [
             "value": "Paint",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -13870,7 +15700,10 @@ export const fixtures = [
             "value": "Winter",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -13880,7 +15713,10 @@ export const fixtures = [
             "value": "Sand",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -13890,7 +15726,10 @@ export const fixtures = [
             "value": "Coast",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "14",
@@ -13900,7 +15739,10 @@ export const fixtures = [
             "value": "Stone",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "15",
@@ -13910,7 +15752,10 @@ export const fixtures = [
             "value": "Wheel",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "16",
@@ -13920,7 +15765,10 @@ export const fixtures = [
             "value": "Wave",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "17",
@@ -13930,7 +15778,10 @@ export const fixtures = [
             "value": "Jazz",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "18",
@@ -13940,7 +15791,10 @@ export const fixtures = [
             "value": "Atlas",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "19",
@@ -13950,7 +15804,10 @@ export const fixtures = [
             "value": "Moon",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "20",
@@ -13960,7 +15817,10 @@ export const fixtures = [
             "value": "Lantern",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "21",
@@ -13970,7 +15830,10 @@ export const fixtures = [
             "value": "Rocket",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "22",
@@ -13980,7 +15843,10 @@ export const fixtures = [
             "value": "Bicycle",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "23",
@@ -13990,7 +15856,10 @@ export const fixtures = [
             "value": "Tomato",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "24",
@@ -14000,7 +15869,10 @@ export const fixtures = [
             "value": "Kite",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -14069,7 +15941,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392394,
+          "last_seen": 1793594396.1489012,
           "is_bot": false
         },
         {
@@ -14079,7 +15951,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392396,
+          "last_seen": 1793594396.148902,
           "is_bot": false
         }
       ],
@@ -14132,7 +16004,10 @@ export const fixtures = [
             "value": "0",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-1-emerald-2",
@@ -14142,7 +16017,10 @@ export const fixtures = [
             "value": "0",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-1-ruby-3",
@@ -14152,7 +16030,10 @@ export const fixtures = [
             "value": "1",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-1-ruby-7",
@@ -14162,7 +16043,10 @@ export const fixtures = [
             "value": "1",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-2-ruby-4",
@@ -14172,7 +16056,10 @@ export const fixtures = [
             "value": "3",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-2-onyx-3",
@@ -14182,7 +16069,10 @@ export const fixtures = [
             "value": "2",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-2-ruby-3",
@@ -14192,7 +16082,10 @@ export const fixtures = [
             "value": "2",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-2-emerald-2",
@@ -14202,7 +16095,10 @@ export const fixtures = [
             "value": "3",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-3-pearl-2",
@@ -14212,7 +16108,10 @@ export const fixtures = [
             "value": "4",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-3-ruby-0",
@@ -14222,7 +16121,10 @@ export const fixtures = [
             "value": "4",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-3-sapphire-2",
@@ -14232,7 +16134,10 @@ export const fixtures = [
             "value": "4",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-3-sapphire-0",
@@ -14242,7 +16147,10 @@ export const fixtures = [
             "value": "4",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "patron-4",
@@ -14252,7 +16160,10 @@ export const fixtures = [
             "value": "3",
             "suit": "patron",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "patron-7",
@@ -14262,7 +16173,10 @@ export const fixtures = [
             "value": "3",
             "suit": "patron",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "patron-0",
@@ -14272,7 +16186,10 @@ export const fixtures = [
             "value": "3",
             "suit": "patron",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -14897,17 +16814,24 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-1-ruby-3": {
+            "gem-1-ruby-7": {
               "tier": 1,
               "cost": {
-                "ruby": 1,
-                "emerald": 1,
-                "onyx": 1,
-                "pearl": 1,
-                "sapphire": 1
+                "onyx": 4
               },
               "bonus": "ruby",
               "points": 1
+            },
+            "gem-3-sapphire-2": {
+              "tier": 3,
+              "cost": {
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 3
+              },
+              "bonus": "sapphire",
+              "points": 4
             },
             "gem-2-onyx-3": {
               "tier": 2,
@@ -14920,25 +16844,23 @@ export const fixtures = [
               "bonus": "onyx",
               "points": 2
             },
-            "gem-2-ruby-3": {
-              "tier": 2,
+            "gem-1-emerald-2": {
+              "tier": 1,
               "cost": {
-                "ruby": 2,
-                "emerald": 2,
-                "onyx": 2,
-                "pearl": 2
-              },
-              "bonus": "ruby",
-              "points": 2
-            },
-            "gem-2-ruby-4": {
-              "tier": 2,
-              "cost": {
-                "emerald": 4,
                 "onyx": 2,
                 "sapphire": 2
               },
-              "bonus": "ruby",
+              "bonus": "emerald",
+              "points": 0
+            },
+            "gem-2-emerald-2": {
+              "tier": 2,
+              "cost": {
+                "onyx": 3,
+                "sapphire": 3,
+                "ruby": 2
+              },
+              "bonus": "emerald",
               "points": 3
             },
             "gem-3-pearl-2": {
@@ -14952,25 +16874,16 @@ export const fixtures = [
               "bonus": "pearl",
               "points": 4
             },
-            "gem-2-emerald-2": {
+            "gem-2-ruby-3": {
               "tier": 2,
               "cost": {
-                "onyx": 3,
-                "sapphire": 3,
-                "ruby": 2
-              },
-              "bonus": "emerald",
-              "points": 3
-            },
-            "gem-3-ruby-0": {
-              "tier": 3,
-              "cost": {
-                "emerald": 3,
-                "onyx": 3,
-                "pearl": 5
+                "ruby": 2,
+                "emerald": 2,
+                "onyx": 2,
+                "pearl": 2
               },
               "bonus": "ruby",
-              "points": 4
+              "points": 2
             },
             "gem-3-sapphire-0": {
               "tier": 3,
@@ -14982,25 +16895,17 @@ export const fixtures = [
               "bonus": "sapphire",
               "points": 4
             },
-            "gem-1-emerald-2": {
+            "gem-1-ruby-3": {
               "tier": 1,
               "cost": {
-                "onyx": 2,
-                "sapphire": 2
+                "ruby": 1,
+                "emerald": 1,
+                "onyx": 1,
+                "pearl": 1,
+                "sapphire": 1
               },
-              "bonus": "emerald",
-              "points": 0
-            },
-            "gem-3-sapphire-2": {
-              "tier": 3,
-              "cost": {
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 3
-              },
-              "bonus": "sapphire",
-              "points": 4
+              "bonus": "ruby",
+              "points": 1
             },
             "gem-1-onyx-1": {
               "tier": 1,
@@ -15012,13 +16917,25 @@ export const fixtures = [
               "bonus": "onyx",
               "points": 0
             },
-            "gem-1-ruby-7": {
-              "tier": 1,
+            "gem-2-ruby-4": {
+              "tier": 2,
               "cost": {
-                "onyx": 4
+                "emerald": 4,
+                "onyx": 2,
+                "sapphire": 2
               },
               "bonus": "ruby",
-              "points": 1
+              "points": 3
+            },
+            "gem-3-ruby-0": {
+              "tier": 3,
+              "cost": {
+                "emerald": 3,
+                "onyx": 3,
+                "pearl": 5
+              },
+              "bonus": "ruby",
+              "points": 4
             }
           },
           "patron_costs": {
@@ -15072,7 +16989,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392868,
+          "last_seen": 1793594396.1492522,
           "is_bot": false
         },
         {
@@ -15082,7 +16999,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392874,
+          "last_seen": 1793594396.1492538,
           "is_bot": false
         },
         {
@@ -15092,7 +17009,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392875,
+          "last_seen": 1793594396.1492548,
           "is_bot": false
         },
         {
@@ -15102,7 +17019,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.392877,
+          "last_seen": 1793594396.149256,
           "is_bot": false
         }
       ],
@@ -15187,7 +17104,10 @@ export const fixtures = [
             "value": "0",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-1-emerald-2",
@@ -15197,7 +17117,10 @@ export const fixtures = [
             "value": "0",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-1-ruby-3",
@@ -15207,7 +17130,10 @@ export const fixtures = [
             "value": "1",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-1-ruby-7",
@@ -15217,7 +17143,10 @@ export const fixtures = [
             "value": "1",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-2-ruby-4",
@@ -15227,7 +17156,10 @@ export const fixtures = [
             "value": "3",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-2-onyx-3",
@@ -15237,7 +17169,10 @@ export const fixtures = [
             "value": "2",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-2-ruby-3",
@@ -15247,7 +17182,10 @@ export const fixtures = [
             "value": "2",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-2-emerald-2",
@@ -15257,7 +17195,10 @@ export const fixtures = [
             "value": "3",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-3-pearl-2",
@@ -15267,7 +17208,10 @@ export const fixtures = [
             "value": "4",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-3-ruby-0",
@@ -15277,7 +17221,10 @@ export const fixtures = [
             "value": "4",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-3-sapphire-2",
@@ -15287,7 +17234,10 @@ export const fixtures = [
             "value": "4",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "gem-3-sapphire-0",
@@ -15297,7 +17247,10 @@ export const fixtures = [
             "value": "4",
             "suit": "development",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "patron-4",
@@ -15307,7 +17260,10 @@ export const fixtures = [
             "value": "3",
             "suit": "patron",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "patron-7",
@@ -15317,7 +17273,10 @@ export const fixtures = [
             "value": "3",
             "suit": "patron",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "patron-0",
@@ -15327,7 +17286,10 @@ export const fixtures = [
             "value": "3",
             "suit": "patron",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "patron-5",
@@ -15337,7 +17299,10 @@ export const fixtures = [
             "value": "3",
             "suit": "patron",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "patron-1",
@@ -15347,7 +17312,10 @@ export const fixtures = [
             "value": "3",
             "suit": "patron",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -16002,17 +17970,24 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-1-ruby-3": {
+            "gem-1-ruby-7": {
               "tier": 1,
               "cost": {
-                "ruby": 1,
-                "emerald": 1,
-                "onyx": 1,
-                "pearl": 1,
-                "sapphire": 1
+                "onyx": 4
               },
               "bonus": "ruby",
               "points": 1
+            },
+            "gem-3-sapphire-2": {
+              "tier": 3,
+              "cost": {
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 3
+              },
+              "bonus": "sapphire",
+              "points": 4
             },
             "gem-2-onyx-3": {
               "tier": 2,
@@ -16025,25 +18000,23 @@ export const fixtures = [
               "bonus": "onyx",
               "points": 2
             },
-            "gem-2-ruby-3": {
-              "tier": 2,
+            "gem-1-emerald-2": {
+              "tier": 1,
               "cost": {
-                "ruby": 2,
-                "emerald": 2,
-                "onyx": 2,
-                "pearl": 2
-              },
-              "bonus": "ruby",
-              "points": 2
-            },
-            "gem-2-ruby-4": {
-              "tier": 2,
-              "cost": {
-                "emerald": 4,
                 "onyx": 2,
                 "sapphire": 2
               },
-              "bonus": "ruby",
+              "bonus": "emerald",
+              "points": 0
+            },
+            "gem-2-emerald-2": {
+              "tier": 2,
+              "cost": {
+                "onyx": 3,
+                "sapphire": 3,
+                "ruby": 2
+              },
+              "bonus": "emerald",
               "points": 3
             },
             "gem-3-pearl-2": {
@@ -16057,25 +18030,16 @@ export const fixtures = [
               "bonus": "pearl",
               "points": 4
             },
-            "gem-2-emerald-2": {
+            "gem-2-ruby-3": {
               "tier": 2,
               "cost": {
-                "onyx": 3,
-                "sapphire": 3,
-                "ruby": 2
-              },
-              "bonus": "emerald",
-              "points": 3
-            },
-            "gem-3-ruby-0": {
-              "tier": 3,
-              "cost": {
-                "emerald": 3,
-                "onyx": 3,
-                "pearl": 5
+                "ruby": 2,
+                "emerald": 2,
+                "onyx": 2,
+                "pearl": 2
               },
               "bonus": "ruby",
-              "points": 4
+              "points": 2
             },
             "gem-3-sapphire-0": {
               "tier": 3,
@@ -16087,25 +18051,17 @@ export const fixtures = [
               "bonus": "sapphire",
               "points": 4
             },
-            "gem-1-emerald-2": {
+            "gem-1-ruby-3": {
               "tier": 1,
               "cost": {
-                "onyx": 2,
-                "sapphire": 2
+                "ruby": 1,
+                "emerald": 1,
+                "onyx": 1,
+                "pearl": 1,
+                "sapphire": 1
               },
-              "bonus": "emerald",
-              "points": 0
-            },
-            "gem-3-sapphire-2": {
-              "tier": 3,
-              "cost": {
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 3
-              },
-              "bonus": "sapphire",
-              "points": 4
+              "bonus": "ruby",
+              "points": 1
             },
             "gem-1-onyx-1": {
               "tier": 1,
@@ -16117,13 +18073,25 @@ export const fixtures = [
               "bonus": "onyx",
               "points": 0
             },
-            "gem-1-ruby-7": {
-              "tier": 1,
+            "gem-2-ruby-4": {
+              "tier": 2,
               "cost": {
-                "onyx": 4
+                "emerald": 4,
+                "onyx": 2,
+                "sapphire": 2
               },
               "bonus": "ruby",
-              "points": 1
+              "points": 3
+            },
+            "gem-3-ruby-0": {
+              "tier": 3,
+              "cost": {
+                "emerald": 3,
+                "onyx": 3,
+                "pearl": 5
+              },
+              "bonus": "ruby",
+              "points": 4
             }
           },
           "patron_costs": {
@@ -16187,7 +18155,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.393234,
+          "last_seen": 1793594396.149577,
           "is_bot": false
         },
         {
@@ -16197,7 +18165,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.393236,
+          "last_seen": 1793594396.149578,
           "is_bot": false
         }
       ],
@@ -16244,7 +18212,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -16254,7 +18225,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -16264,7 +18238,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -16274,7 +18251,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -16284,7 +18264,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -16294,7 +18277,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -16304,7 +18290,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -16314,7 +18303,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -16324,7 +18316,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -16334,7 +18329,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -16344,7 +18342,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -16354,7 +18355,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -16364,7 +18368,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -16374,7 +18381,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "14",
@@ -16384,7 +18394,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "15",
@@ -16394,7 +18407,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "16",
@@ -16404,7 +18420,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "17",
@@ -16414,7 +18433,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "18",
@@ -16424,7 +18446,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "19",
@@ -16434,7 +18459,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "20",
@@ -16444,7 +18472,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "21",
@@ -16454,7 +18485,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "22",
@@ -16464,7 +18498,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "23",
@@ -16474,7 +18511,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "24",
@@ -16484,7 +18524,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "25",
@@ -16494,7 +18537,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "26",
@@ -16504,7 +18550,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "27",
@@ -16514,7 +18563,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "28",
@@ -16524,7 +18576,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "29",
@@ -16534,7 +18589,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "30",
@@ -16544,7 +18602,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "31",
@@ -16554,7 +18615,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "32",
@@ -16564,7 +18628,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "33",
@@ -16574,7 +18641,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "34",
@@ -16584,7 +18654,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "35",
@@ -16594,7 +18667,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "36",
@@ -16604,7 +18680,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "37",
@@ -16614,7 +18693,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "38",
@@ -16624,7 +18706,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "39",
@@ -16634,7 +18719,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "40",
@@ -16644,7 +18732,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "41",
@@ -16654,7 +18745,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "42",
@@ -16664,7 +18758,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "43",
@@ -16674,7 +18771,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "44",
@@ -16684,7 +18784,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "45",
@@ -16694,7 +18797,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "46",
@@ -16704,7 +18810,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "47",
@@ -16714,7 +18823,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "48",
@@ -16724,7 +18836,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "49",
@@ -16734,7 +18849,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "50",
@@ -16744,7 +18862,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "51",
@@ -16754,7 +18875,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "52",
@@ -16764,7 +18888,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "53",
@@ -16774,7 +18901,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "54",
@@ -16784,7 +18914,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "55",
@@ -16794,7 +18927,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "56",
@@ -16804,7 +18940,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "57",
@@ -16814,7 +18953,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "58",
@@ -16824,7 +18966,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "59",
@@ -16834,7 +18979,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "60",
@@ -16844,7 +18992,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "61",
@@ -16854,7 +19005,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "62",
@@ -16864,7 +19018,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "63",
@@ -16874,7 +19031,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -17056,7 +19216,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3934278,
+          "last_seen": 1793594396.149899,
           "is_bot": false
         },
         {
@@ -17066,7 +19226,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.39343,
+          "last_seen": 1793594396.1499,
           "is_bot": false
         }
       ],
@@ -17113,7 +19273,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -17123,7 +19286,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -17133,7 +19299,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -17143,7 +19312,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -17153,7 +19325,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -17163,7 +19338,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -17173,7 +19351,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -17183,7 +19364,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -17193,7 +19377,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -17203,7 +19390,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -17213,7 +19403,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -17223,7 +19416,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -17233,7 +19429,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -17243,7 +19442,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "14",
@@ -17253,7 +19455,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "15",
@@ -17263,7 +19468,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "16",
@@ -17273,7 +19481,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "17",
@@ -17283,7 +19494,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "18",
@@ -17293,7 +19507,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "19",
@@ -17303,7 +19520,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "20",
@@ -17313,7 +19533,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "21",
@@ -17323,7 +19546,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "22",
@@ -17333,7 +19559,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "23",
@@ -17343,7 +19572,10 @@ export const fixtures = [
             "value": "2",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "24",
@@ -17353,7 +19585,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "25",
@@ -17363,7 +19598,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "26",
@@ -17373,7 +19611,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "27",
@@ -17383,7 +19624,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "28",
@@ -17393,7 +19637,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "29",
@@ -17403,7 +19650,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "30",
@@ -17413,7 +19663,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "31",
@@ -17423,7 +19676,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "32",
@@ -17433,7 +19689,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "33",
@@ -17443,7 +19702,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "34",
@@ -17453,7 +19715,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "35",
@@ -17463,7 +19728,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "36",
@@ -17473,7 +19741,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "37",
@@ -17483,7 +19754,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "38",
@@ -17493,7 +19767,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "39",
@@ -17503,7 +19780,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "40",
@@ -17513,7 +19793,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "41",
@@ -17523,7 +19806,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "42",
@@ -17533,7 +19819,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "43",
@@ -17543,7 +19832,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "44",
@@ -17553,7 +19845,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "45",
@@ -17563,7 +19858,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "46",
@@ -17573,7 +19871,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "47",
@@ -17583,7 +19884,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "48",
@@ -17593,7 +19897,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "49",
@@ -17603,7 +19910,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "50",
@@ -17613,7 +19923,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "51",
@@ -17623,7 +19936,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "52",
@@ -17633,7 +19949,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "53",
@@ -17643,7 +19962,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "54",
@@ -17653,7 +19975,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "55",
@@ -17663,7 +19988,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "56",
@@ -17673,7 +20001,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "57",
@@ -17683,7 +20014,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "58",
@@ -17693,7 +20027,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "59",
@@ -17703,7 +20040,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "60",
@@ -17713,7 +20053,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "61",
@@ -17723,7 +20066,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "62",
@@ -17733,7 +20079,10 @@ export const fixtures = [
             "value": "1",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "63",
@@ -17743,7 +20092,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -17925,7 +20277,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.393591,
+          "last_seen": 1793594396.1500978,
           "is_bot": false
         },
         {
@@ -17935,7 +20287,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3935921,
+          "last_seen": 1793594396.150099,
           "is_bot": false
         }
       ],
@@ -17982,7 +20334,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -17992,7 +20347,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -18002,7 +20360,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -18012,7 +20373,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -18022,7 +20386,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -18032,7 +20399,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -18042,7 +20412,10 @@ export const fixtures = [
             "value": "0",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -18052,7 +20425,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -18062,7 +20438,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -18072,7 +20451,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -18082,7 +20464,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -18092,7 +20477,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -18102,7 +20490,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -18112,7 +20503,10 @@ export const fixtures = [
             "value": "0",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -18273,7 +20667,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.393672,
+          "last_seen": 1793594396.1501849,
           "is_bot": false
         },
         {
@@ -18283,7 +20677,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.393673,
+          "last_seen": 1793594396.150186,
           "is_bot": false
         }
       ],
@@ -18330,7 +20724,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -18340,7 +20737,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -18350,7 +20750,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -18360,7 +20763,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -18370,7 +20776,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -18380,7 +20789,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -18390,7 +20802,10 @@ export const fixtures = [
             "value": "0",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -18400,7 +20815,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -18410,7 +20828,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -18420,7 +20841,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -18430,7 +20854,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -18440,7 +20867,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -18450,7 +20880,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -18460,7 +20893,10 @@ export const fixtures = [
             "value": "0",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -18621,7 +21057,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.393805,
+          "last_seen": 1793594396.150344,
           "is_bot": false
         },
         {
@@ -18631,7 +21067,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.393806,
+          "last_seen": 1793594396.150346,
           "is_bot": false
         },
         {
@@ -18641,7 +21077,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3938072,
+          "last_seen": 1793594396.150347,
           "is_bot": false
         }
       ],
@@ -18669,7 +21105,10 @@ export const fixtures = [
                 "value": "11",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -18693,7 +21132,10 @@ export const fixtures = [
                 "value": "10",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -18717,7 +21159,10 @@ export const fixtures = [
                 "value": "9",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -18820,7 +21265,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.393955,
+          "last_seen": 1793594396.150507,
           "is_bot": false
         },
         {
@@ -18830,7 +21275,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3939562,
+          "last_seen": 1793594396.150508,
           "is_bot": false
         },
         {
@@ -18840,7 +21285,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3939571,
+          "last_seen": 1793594396.150509,
           "is_bot": false
         },
         {
@@ -18850,7 +21295,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3939579,
+          "last_seen": 1793594396.15051,
           "is_bot": false
         },
         {
@@ -18860,7 +21305,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3939579,
+          "last_seen": 1793594396.150511,
           "is_bot": false
         },
         {
@@ -18870,7 +21315,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3939588,
+          "last_seen": 1793594396.150511,
           "is_bot": false
         },
         {
@@ -18880,7 +21325,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.39396,
+          "last_seen": 1793594396.1505122,
           "is_bot": false
         },
         {
@@ -18890,7 +21335,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.393961,
+          "last_seen": 1793594396.150513,
           "is_bot": false
         },
         {
@@ -18900,7 +21345,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.393962,
+          "last_seen": 1793594396.150514,
           "is_bot": false
         },
         {
@@ -18910,7 +21355,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.393963,
+          "last_seen": 1793594396.1505148,
           "is_bot": false
         }
       ],
@@ -18938,7 +21383,10 @@ export const fixtures = [
                 "value": "11",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -18962,7 +21410,10 @@ export const fixtures = [
                 "value": "10",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -18986,7 +21437,10 @@ export const fixtures = [
                 "value": "9",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -19010,7 +21464,10 @@ export const fixtures = [
                 "value": "10",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -19034,7 +21491,10 @@ export const fixtures = [
                 "value": "9",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -19058,7 +21518,10 @@ export const fixtures = [
                 "value": "7",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -19082,7 +21545,10 @@ export const fixtures = [
                 "value": "12",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -19106,7 +21572,10 @@ export const fixtures = [
                 "value": "\u00d72",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -19130,7 +21599,10 @@ export const fixtures = [
                 "value": "8",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -19154,7 +21626,10 @@ export const fixtures = [
                 "value": "5",
                 "suit": "\u2726",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             "bank": [],
@@ -19271,7 +21746,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394089,
+          "last_seen": 1793594396.150644,
           "is_bot": false
         },
         {
@@ -19281,7 +21756,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.39409,
+          "last_seen": 1793594396.150647,
           "is_bot": false
         },
         {
@@ -19291,7 +21766,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394091,
+          "last_seen": 1793594396.150647,
           "is_bot": false
         }
       ],
@@ -19350,7 +21825,10 @@ export const fixtures = [
             "value": "2",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-7-1",
@@ -19360,7 +21838,10 @@ export const fixtures = [
             "value": "7",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-7-0",
@@ -19370,7 +21851,10 @@ export const fixtures = [
             "value": "7",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-8-2",
@@ -19380,7 +21864,10 @@ export const fixtures = [
             "value": "8",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-8-1",
@@ -19390,7 +21877,10 @@ export const fixtures = [
             "value": "8",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-9-2",
@@ -19400,7 +21890,10 @@ export const fixtures = [
             "value": "9",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-9-0",
@@ -19410,7 +21903,10 @@ export const fixtures = [
             "value": "9",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-10-1",
@@ -19420,7 +21916,10 @@ export const fixtures = [
             "value": "10",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-12-0",
@@ -19430,7 +21929,10 @@ export const fixtures = [
             "value": "12",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [
@@ -19442,7 +21944,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-1",
@@ -19452,7 +21957,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-2",
@@ -19462,7 +21970,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-3",
@@ -19472,7 +21983,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-4",
@@ -19482,7 +21996,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-5",
@@ -19492,7 +22009,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-6",
@@ -19502,7 +22022,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-7",
@@ -19512,7 +22035,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-8",
@@ -19522,7 +22048,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -19854,7 +22383,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394239,
+          "last_seen": 1793594396.150805,
           "is_bot": false
         },
         {
@@ -19864,7 +22393,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394241,
+          "last_seen": 1793594396.1508071,
           "is_bot": false
         },
         {
@@ -19874,7 +22403,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394241,
+          "last_seen": 1793594396.150808,
           "is_bot": false
         },
         {
@@ -19884,7 +22413,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394242,
+          "last_seen": 1793594396.150809,
           "is_bot": false
         },
         {
@@ -19894,7 +22423,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394243,
+          "last_seen": 1793594396.15081,
           "is_bot": false
         },
         {
@@ -19904,7 +22433,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3942442,
+          "last_seen": 1793594396.15081,
           "is_bot": false
         }
       ],
@@ -20002,7 +22531,10 @@ export const fixtures = [
             "value": "7",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-7-0",
@@ -20012,7 +22544,10 @@ export const fixtures = [
             "value": "7",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-8-2",
@@ -20022,7 +22557,10 @@ export const fixtures = [
             "value": "8",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-9-2",
@@ -20032,7 +22570,10 @@ export const fixtures = [
             "value": "9",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "trio-12-0",
@@ -20042,7 +22583,10 @@ export const fixtures = [
             "value": "12",
             "suit": "\u2726",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [
@@ -20054,7 +22598,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-1",
@@ -20064,7 +22611,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-2",
@@ -20074,7 +22624,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-3",
@@ -20084,7 +22637,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-4",
@@ -20094,7 +22650,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "table-slot-5",
@@ -20104,7 +22663,10 @@ export const fixtures = [
             "value": "?",
             "suit": "hidden",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -20493,7 +23055,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394399,
+          "last_seen": 1793594396.150976,
           "is_bot": false
         },
         {
@@ -20503,7 +23065,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3944,
+          "last_seen": 1793594396.1509771,
           "is_bot": false
         }
       ],
@@ -21022,7 +23584,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3945868,
+          "last_seen": 1793594396.151602,
           "is_bot": false
         },
         {
@@ -21032,7 +23594,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394588,
+          "last_seen": 1793594396.151625,
           "is_bot": false
         },
         {
@@ -21042,7 +23604,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394589,
+          "last_seen": 1793594396.151629,
           "is_bot": false
         },
         {
@@ -21052,7 +23614,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.39459,
+          "last_seen": 1793594396.1516302,
           "is_bot": false
         }
       ],
@@ -21939,7 +24501,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394827,
+          "last_seen": 1793594396.1520839,
           "is_bot": false
         },
         {
@@ -21949,7 +24511,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394829,
+          "last_seen": 1793594396.152087,
           "is_bot": false
         },
         {
@@ -21959,7 +24521,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394829,
+          "last_seen": 1793594396.1520882,
           "is_bot": false
         }
       ],
@@ -22120,7 +24682,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3949142,
+          "last_seen": 1793594396.152184,
           "is_bot": false
         },
         {
@@ -22130,7 +24692,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394915,
+          "last_seen": 1793594396.1521852,
           "is_bot": false
         },
         {
@@ -22140,7 +24702,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394916,
+          "last_seen": 1793594396.1521862,
           "is_bot": false
         },
         {
@@ -22150,7 +24712,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394917,
+          "last_seen": 1793594396.1521869,
           "is_bot": false
         },
         {
@@ -22160,7 +24722,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394918,
+          "last_seen": 1793594396.1521878,
           "is_bot": false
         },
         {
@@ -22170,7 +24732,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394918,
+          "last_seen": 1793594396.152189,
           "is_bot": false
         },
         {
@@ -22180,7 +24742,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394919,
+          "last_seen": 1793594396.15219,
           "is_bot": false
         },
         {
@@ -22190,7 +24752,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3949199,
+          "last_seen": 1793594396.152191,
           "is_bot": false
         },
         {
@@ -22200,7 +24762,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394921,
+          "last_seen": 1793594396.152191,
           "is_bot": false
         },
         {
@@ -22210,7 +24772,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394922,
+          "last_seen": 1793594396.152192,
           "is_bot": false
         }
       ],
@@ -22462,7 +25024,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3949928,
+          "last_seen": 1793594396.152273,
           "is_bot": false
         },
         {
@@ -22472,7 +25034,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394994,
+          "last_seen": 1793594396.152274,
           "is_bot": false
         },
         {
@@ -22482,7 +25044,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.394995,
+          "last_seen": 1793594396.1522748,
           "is_bot": false
         }
       ],
@@ -22643,7 +25205,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3950698,
+          "last_seen": 1793594396.1523561,
           "is_bot": false
         },
         {
@@ -22653,7 +25215,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395071,
+          "last_seen": 1793594396.152357,
           "is_bot": false
         },
         {
@@ -22663,7 +25225,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395071,
+          "last_seen": 1793594396.1523578,
           "is_bot": false
         },
         {
@@ -22673,7 +25235,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395072,
+          "last_seen": 1793594396.152359,
           "is_bot": false
         },
         {
@@ -22683,7 +25245,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395073,
+          "last_seen": 1793594396.15236,
           "is_bot": false
         },
         {
@@ -22693,7 +25255,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3950741,
+          "last_seen": 1793594396.152361,
           "is_bot": false
         },
         {
@@ -22703,7 +25265,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395075,
+          "last_seen": 1793594396.1523619,
           "is_bot": false
         },
         {
@@ -22713,7 +25275,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395076,
+          "last_seen": 1793594396.152363,
           "is_bot": false
         },
         {
@@ -22723,7 +25285,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3950772,
+          "last_seen": 1793594396.152364,
           "is_bot": false
         },
         {
@@ -22733,7 +25295,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3950772,
+          "last_seen": 1793594396.152364,
           "is_bot": false
         }
       ],
@@ -23118,7 +25680,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3951712,
+          "last_seen": 1793594396.1524649,
           "is_bot": false
         },
         {
@@ -23128,7 +25690,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395172,
+          "last_seen": 1793594396.1524658,
           "is_bot": false
         },
         {
@@ -23138,7 +25700,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395173,
+          "last_seen": 1793594396.152467,
           "is_bot": false
         }
       ],
@@ -23302,7 +25864,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395246,
+          "last_seen": 1793594396.152545,
           "is_bot": false
         },
         {
@@ -23312,7 +25874,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3952472,
+          "last_seen": 1793594396.152546,
           "is_bot": false
         },
         {
@@ -23322,7 +25884,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3952472,
+          "last_seen": 1793594396.1525471,
           "is_bot": false
         },
         {
@@ -23332,7 +25894,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3952482,
+          "last_seen": 1793594396.152548,
           "is_bot": false
         },
         {
@@ -23342,7 +25904,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395249,
+          "last_seen": 1793594396.152549,
           "is_bot": false
         },
         {
@@ -23352,7 +25914,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3952498,
+          "last_seen": 1793594396.15255,
           "is_bot": false
         },
         {
@@ -23362,7 +25924,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395251,
+          "last_seen": 1793594396.152551,
           "is_bot": false
         },
         {
@@ -23372,7 +25934,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395252,
+          "last_seen": 1793594396.152552,
           "is_bot": false
         },
         {
@@ -23382,7 +25944,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395252,
+          "last_seen": 1793594396.152552,
           "is_bot": false
         },
         {
@@ -23392,7 +25954,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395253,
+          "last_seen": 1793594396.1525528,
           "is_bot": false
         }
       ],
@@ -23647,7 +26209,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395338,
+          "last_seen": 1793594396.152648,
           "is_bot": false
         },
         {
@@ -23657,7 +26219,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395339,
+          "last_seen": 1793594396.152649,
           "is_bot": false
         },
         {
@@ -23667,7 +26229,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.39534,
+          "last_seen": 1793594396.1526499,
           "is_bot": false
         }
       ],
@@ -23735,7 +26297,10 @@ export const fixtures = [
             "value": "J",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "AC:0",
@@ -23745,7 +26310,10 @@ export const fixtures = [
             "value": "A",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -23868,7 +26436,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395521,
+          "last_seen": 1793594396.152755,
           "is_bot": false
         },
         {
@@ -23878,7 +26446,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395522,
+          "last_seen": 1793594396.152756,
           "is_bot": false
         },
         {
@@ -23888,7 +26456,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395523,
+          "last_seen": 1793594396.152757,
           "is_bot": false
         },
         {
@@ -23898,7 +26466,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395524,
+          "last_seen": 1793594396.1527581,
           "is_bot": false
         },
         {
@@ -23908,7 +26476,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3955252,
+          "last_seen": 1793594396.152759,
           "is_bot": false
         },
         {
@@ -23918,7 +26486,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395526,
+          "last_seen": 1793594396.15276,
           "is_bot": false
         }
       ],
@@ -24034,7 +26602,10 @@ export const fixtures = [
             "value": "J",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "AC:0",
@@ -24044,7 +26615,10 @@ export const fixtures = [
             "value": "A",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -24230,7 +26804,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395639,
+          "last_seen": 1793594396.152868,
           "is_bot": false
         },
         {
@@ -24240,7 +26814,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395641,
+          "last_seen": 1793594396.1528692,
           "is_bot": false
         }
       ],
@@ -24286,7 +26860,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-36",
@@ -24296,7 +26873,10 @@ export const fixtures = [
             "value": "36",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-39",
@@ -24306,7 +26886,10 @@ export const fixtures = [
             "value": "39",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-40",
@@ -24316,7 +26899,10 @@ export const fixtures = [
             "value": "40",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-53",
@@ -24326,7 +26912,10 @@ export const fixtures = [
             "value": "53",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-54",
@@ -24336,7 +26925,10 @@ export const fixtures = [
             "value": "54",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-58",
@@ -24346,7 +26938,10 @@ export const fixtures = [
             "value": "58",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-81",
@@ -24356,7 +26951,10 @@ export const fixtures = [
             "value": "81",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-97",
@@ -24366,7 +26964,10 @@ export const fixtures = [
             "value": "97",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-98",
@@ -24376,7 +26977,10 @@ export const fixtures = [
             "value": "98",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -24591,7 +27195,10 @@ export const fixtures = [
                 "value": "5",
                 "suit": "",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             [
@@ -24603,7 +27210,10 @@ export const fixtures = [
                 "value": "84",
                 "suit": "",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             [
@@ -24615,7 +27225,10 @@ export const fixtures = [
                 "value": "47",
                 "suit": "",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             [
@@ -24627,7 +27240,10 @@ export const fixtures = [
                 "value": "45",
                 "suit": "",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ]
           ],
@@ -24688,7 +27304,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395823,
+          "last_seen": 1793594396.153054,
           "is_bot": false
         },
         {
@@ -24698,7 +27314,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3958242,
+          "last_seen": 1793594396.153056,
           "is_bot": false
         },
         {
@@ -24708,7 +27324,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395825,
+          "last_seen": 1793594396.153057,
           "is_bot": false
         },
         {
@@ -24718,7 +27334,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3958259,
+          "last_seen": 1793594396.153057,
           "is_bot": false
         },
         {
@@ -24728,7 +27344,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395827,
+          "last_seen": 1793594396.153058,
           "is_bot": false
         },
         {
@@ -24738,7 +27354,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395828,
+          "last_seen": 1793594396.1531541,
           "is_bot": false
         },
         {
@@ -24748,7 +27364,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395829,
+          "last_seen": 1793594396.153155,
           "is_bot": false
         },
         {
@@ -24758,7 +27374,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.39583,
+          "last_seen": 1793594396.153156,
           "is_bot": false
         },
         {
@@ -24768,7 +27384,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.39583,
+          "last_seen": 1793594396.1531572,
           "is_bot": false
         },
         {
@@ -24778,7 +27394,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.395831,
+          "last_seen": 1793594396.153158,
           "is_bot": false
         }
       ],
@@ -24928,7 +27544,10 @@ export const fixtures = [
             "value": "4",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-36",
@@ -24938,7 +27557,10 @@ export const fixtures = [
             "value": "36",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-39",
@@ -24948,7 +27570,10 @@ export const fixtures = [
             "value": "39",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-40",
@@ -24958,7 +27583,10 @@ export const fixtures = [
             "value": "40",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-53",
@@ -24968,7 +27596,10 @@ export const fixtures = [
             "value": "53",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-54",
@@ -24978,7 +27609,10 @@ export const fixtures = [
             "value": "54",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-58",
@@ -24988,7 +27622,10 @@ export const fixtures = [
             "value": "58",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-81",
@@ -24998,7 +27635,10 @@ export const fixtures = [
             "value": "81",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-97",
@@ -25008,7 +27648,10 @@ export const fixtures = [
             "value": "97",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "number-98",
@@ -25018,7 +27661,10 @@ export const fixtures = [
             "value": "98",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -25233,7 +27879,10 @@ export const fixtures = [
                 "value": "42",
                 "suit": "",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             [
@@ -25245,7 +27894,10 @@ export const fixtures = [
                 "value": "52",
                 "suit": "",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             [
@@ -25257,7 +27909,10 @@ export const fixtures = [
                 "value": "77",
                 "suit": "",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ],
             [
@@ -25269,7 +27924,10 @@ export const fixtures = [
                 "value": "11",
                 "suit": "",
                 "colors": [],
-                "effect": ""
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
               }
             ]
           ],
@@ -25354,7 +28012,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3960052,
+          "last_seen": 1793594396.153332,
           "is_bot": false
         },
         {
@@ -25364,7 +28022,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3960059,
+          "last_seen": 1793594396.153333,
           "is_bot": false
         }
       ],
@@ -25486,7 +28144,10 @@ export const fixtures = [
               "value": "Octopus",
               "suit": "octopus",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "paper-captain-peach-0",
@@ -25496,7 +28157,10 @@ export const fixtures = [
               "value": "Captain",
               "suit": "captain",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "private_options": [],
@@ -25537,7 +28201,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.396132,
+          "last_seen": 1793594396.153485,
           "is_bot": false
         },
         {
@@ -25547,7 +28211,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3961332,
+          "last_seen": 1793594396.153486,
           "is_bot": false
         },
         {
@@ -25557,7 +28221,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.396134,
+          "last_seen": 1793594396.1534872,
           "is_bot": false
         },
         {
@@ -25567,7 +28231,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3961349,
+          "last_seen": 1793594396.153488,
           "is_bot": false
         }
       ],
@@ -25715,7 +28379,10 @@ export const fixtures = [
               "value": "Octopus",
               "suit": "octopus",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             },
             {
               "id": "paper-captain-peach-0",
@@ -25725,7 +28392,10 @@ export const fixtures = [
               "value": "Captain",
               "suit": "captain",
               "colors": [],
-              "effect": ""
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
             }
           ],
           "private_options": [],
@@ -25766,7 +28436,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.396205,
+          "last_seen": 1793594396.153567,
           "is_bot": false
         },
         {
@@ -25776,7 +28446,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3962061,
+          "last_seen": 1793594396.153568,
           "is_bot": false
         }
       ],
@@ -25823,7 +28493,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -25833,7 +28506,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -25843,7 +28519,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -25853,7 +28532,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -25863,7 +28545,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -25873,7 +28558,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -25883,7 +28571,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -25893,7 +28584,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -25903,7 +28597,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -25913,7 +28610,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -25923,7 +28623,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -25933,7 +28636,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -25943,7 +28649,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -25953,7 +28662,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "14",
@@ -25963,7 +28675,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "15",
@@ -25973,7 +28688,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "16",
@@ -25983,7 +28701,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "17",
@@ -25993,7 +28714,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "18",
@@ -26003,7 +28727,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "19",
@@ -26013,7 +28740,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "20",
@@ -26023,7 +28753,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "21",
@@ -26033,7 +28766,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "22",
@@ -26043,7 +28779,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "23",
@@ -26053,7 +28792,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "24",
@@ -26063,7 +28805,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "25",
@@ -26073,7 +28818,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "26",
@@ -26083,7 +28831,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "27",
@@ -26093,7 +28844,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "28",
@@ -26103,7 +28857,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "29",
@@ -26113,7 +28870,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "30",
@@ -26123,7 +28883,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "31",
@@ -26133,7 +28896,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "32",
@@ -26143,7 +28909,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "33",
@@ -26153,7 +28922,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "34",
@@ -26163,7 +28935,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "35",
@@ -26173,7 +28948,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -26923,7 +29701,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.396419,
+          "last_seen": 1793594396.1538,
           "is_bot": false
         },
         {
@@ -26933,7 +29711,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.39642,
+          "last_seen": 1793594396.153801,
           "is_bot": false
         }
       ],
@@ -26980,7 +29758,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "1",
@@ -26990,7 +29771,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "2",
@@ -27000,7 +29784,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3",
@@ -27010,7 +29797,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "4",
@@ -27020,7 +29810,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5",
@@ -27030,7 +29823,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6",
@@ -27040,7 +29836,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "7",
@@ -27050,7 +29849,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8",
@@ -27060,7 +29862,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9",
@@ -27070,7 +29875,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "10",
@@ -27080,7 +29888,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "11",
@@ -27090,7 +29901,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "12",
@@ -27100,7 +29914,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "13",
@@ -27110,7 +29927,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "14",
@@ -27120,7 +29940,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "15",
@@ -27130,7 +29953,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "16",
@@ -27140,7 +29966,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "17",
@@ -27150,7 +29979,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "18",
@@ -27160,7 +29992,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "19",
@@ -27170,7 +30005,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "20",
@@ -27180,7 +30018,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "21",
@@ -27190,7 +30031,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "22",
@@ -27200,7 +30044,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "23",
@@ -27210,7 +30057,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "24",
@@ -27220,7 +30070,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "25",
@@ -27230,7 +30083,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "26",
@@ -27240,7 +30096,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "27",
@@ -27250,7 +30109,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "28",
@@ -27260,7 +30122,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "29",
@@ -27270,7 +30135,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "30",
@@ -27280,7 +30148,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "31",
@@ -27290,7 +30161,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "32",
@@ -27300,7 +30174,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "33",
@@ -27310,7 +30187,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "34",
@@ -27320,7 +30200,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "35",
@@ -27330,7 +30213,10 @@ export const fixtures = [
             "value": "",
             "suit": "",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "discard": null,
@@ -28080,7 +30966,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.396652,
+          "last_seen": 1793594396.154057,
           "is_bot": false
         },
         {
@@ -28090,7 +30976,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.396653,
+          "last_seen": 1793594396.154058,
           "is_bot": false
         }
       ],
@@ -28136,7 +31022,10 @@ export const fixtures = [
             "value": "8",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "TD:0",
@@ -28146,7 +31035,10 @@ export const fixtures = [
             "value": "10",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5C:0",
@@ -28156,7 +31048,10 @@ export const fixtures = [
             "value": "5",
             "suit": "\u2663",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "6H:0",
@@ -28166,7 +31061,10 @@ export const fixtures = [
             "value": "6",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9S:0",
@@ -28176,7 +31074,10 @@ export const fixtures = [
             "value": "9",
             "suit": "\u2660",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "3S:0",
@@ -28186,7 +31087,10 @@ export const fixtures = [
             "value": "3",
             "suit": "\u2660",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],
@@ -28289,7 +31193,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.39675,
+          "last_seen": 1793594396.154161,
           "is_bot": false
         },
         {
@@ -28299,7 +31203,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3967512,
+          "last_seen": 1793594396.154162,
           "is_bot": false
         },
         {
@@ -28309,7 +31213,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3967519,
+          "last_seen": 1793594396.154163,
           "is_bot": false
         },
         {
@@ -28319,7 +31223,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.3967528,
+          "last_seen": 1793594396.154164,
           "is_bot": false
         },
         {
@@ -28329,7 +31233,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793550747.396754,
+          "last_seen": 1793594396.154165,
           "is_bot": false
         }
       ],
@@ -28414,7 +31318,10 @@ export const fixtures = [
             "value": "5",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "8D:0",
@@ -28424,7 +31331,10 @@ export const fixtures = [
             "value": "8",
             "suit": "\u2666",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "9H:0",
@@ -28434,7 +31344,10 @@ export const fixtures = [
             "value": "9",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "AH:0",
@@ -28444,7 +31357,10 @@ export const fixtures = [
             "value": "A",
             "suit": "\u2665",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "TS:0",
@@ -28454,7 +31370,10 @@ export const fixtures = [
             "value": "10",
             "suit": "\u2660",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           },
           {
             "id": "5S:0",
@@ -28464,7 +31383,10 @@ export const fixtures = [
             "value": "5",
             "suit": "\u2660",
             "colors": [],
-            "effect": ""
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
           }
         ],
         "community": [],

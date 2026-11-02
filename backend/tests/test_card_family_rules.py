@@ -1,16 +1,18 @@
 """Independent rule examples and inventory invariants for the two card families."""
 
+import hashlib
+import json
 import random
 from collections import Counter
 from copy import deepcopy
 
 import pytest
 
-from app.core.contracts import Action, RuleError
-from app.games.deal.deck import RENTS, make_deck
+from app.core.contracts import Action, CardView, RuleError
+from app.games.deal.deck import RENTS, make_deck, property_groups
 from app.games.deal.effects import issue_debt
 from app.games.deal.engine import DealEngine
-from app.games.deal.table import assets, draw_cards, place
+from app.games.deal.table import assets, draw_cards, groups_for, place, rent
 from app.games.uno.deck import COLORS, deck
 from app.games.uno.engine import UnoEngine
 
@@ -138,11 +140,254 @@ def test_deal_face_metadata_does_not_expose_hidden_cards_or_randomness(mercy):
         assert face.colors == list(canonical.colors)
         assert face.effect == canonical.action
         assert set(face.model_dump()) == {
-            "id", "label", "color", "subtitle", "value", "suit", "colors", "effect"
+            "id", "label", "color", "subtitle", "value", "suit", "colors", "effect",
+            "set_name", "set_size", "rent_ladder",
         }
     assert '"seed"' not in view.model_dump_json()
     assert '"deck"' not in view.model_dump_json()
     assert state == before
+
+
+@pytest.mark.parametrize("mercy", [False, True])
+def test_deal_named_property_faces_match_us_sets_and_rent_schedules(mercy):
+    expected = [
+        ("brown", "Brown", [1, 2], ["Mediterranean Avenue", "Baltic Avenue"]),
+        ("sky", "Light blue", [1, 2, 3], ["Oriental Avenue", "Vermont Avenue", "Connecticut Avenue"]),
+        ("pink", "Pink", [1, 2, 4], ["St. Charles Place", "States Avenue", "Virginia Avenue"]),
+        ("orange", "Orange", [1, 3, 5], ["St. James Place", "Tennessee Avenue", "New York Avenue"]),
+        ("red", "Red", [2, 3, 6], ["Kentucky Avenue", "Indiana Avenue", "Illinois Avenue"]),
+        ("yellow", "Yellow", [2, 4, 6], ["Atlantic Avenue", "Ventnor Avenue", "Marvin Gardens"]),
+        ("green", "Green", [2, 4, 7], ["Pacific Avenue", "North Carolina Avenue", "Pennsylvania Avenue"]),
+        ("blue", "Dark blue", [3, 8], ["Park Place", "Boardwalk"]),
+        ("rail", "Railroads", [1, 2, 3, 4], ["Reading Railroad", "Pennsylvania Railroad", "B&O Railroad", "Short Line"]),
+        ("utility", "Utilities", [1, 2], ["Electric Company", "Water Works"]),
+    ]
+    cards = make_deck(mercy)
+    ordinary = [c for c in cards.values() if c.kind == "property" and len(c.colors) == 1]
+    assert len({card.view().label for card in ordinary}) == 28
+    for color, set_name, rents, names in expected:
+        faces = [c.view() for c in ordinary if c.colors == (color,)]
+        assert [face.label for face in faces] == names
+        assert all(face.set_name == set_name for face in faces)
+        assert all(face.set_size == len(rents) and face.rent_ladder == rents for face in faces)
+    assert property_groups() == [
+        {"color": color, "name": name, "set_size": len(rents), "rent_ladder": rents,
+         "properties": names}
+        for color, name, rents, names in expected
+    ]
+
+
+@pytest.mark.parametrize("mercy,expected", [
+    (False, "15fcc20993a3ff031ef5a2243851dbbce7b3fa19b6243c0d98de6392c71af782"),
+    (True, "bfcb10728bb76f9d3ab77580517d8799ca03cfabcf8fce00fa6e48f815dc0a6c"),
+])
+def test_named_deal_cards_preserve_saved_physical_ids_and_mechanical_inventory(mercy, expected):
+    # Recorded before adding names: every physical ID/order/value/effect stays compatible.
+    mechanical = [(c.id, c.kind, c.value, c.colors, c.action) for c in make_deck(mercy).values()]
+    assert hashlib.sha256(json.dumps(mechanical, separators=(",", ":")).encode()).hexdigest() == expected
+
+
+@pytest.mark.parametrize("mercy,boardwalk,wild", [(False, "d041", "d053"), (True, "d039", "d051")])
+def test_old_id_only_match_restores_named_faces_and_current_wild_orientation(mercy, boardwalk, wild):
+    engine, saved = deal_case(mercy, count=2)
+    saved["deck"].remove(boardwalk)
+    saved["deck"].remove(wild)
+    saved["hands"]["p0"] = [boardwalk]
+    saved["properties"]["p1"] = {"blue:0": [wild]}
+    # Database state stores IDs and pile keys, not new presentation fields.
+    restored = json.loads(json.dumps(saved))
+    view = DealEngine(mercy).project_view(restored, "p0")
+    assert view.hand[0].id == boardwalk and view.hand[0].label == "Boardwalk"
+    face = view.players[1].properties["blue:0"][0]
+    assert (face.label, face.color, face.colors) == ("Wild property", "blue", ["green", "blue"])
+    assert (face.set_name, face.set_size, face.rent_ladder) == ("Dark blue", 2, [3, 8])
+    assert restored == saved
+
+
+def test_set_metadata_defaults_and_returned_lists_do_not_mutate_deck_rules():
+    face = CardView(id="other-family", label="Other card")
+    assert face.set_name is None and face.set_size is None and face.rent_ladder == []
+    wild = next(c for c in make_deck(False).values() if c.colors == ("green", "blue"))
+    oriented = wild.view("blue")
+    oriented.rent_ladder.append(99)
+    catalogue = property_groups()
+    catalogue[0]["rent_ladder"].append(99)
+    catalogue[0]["properties"].append("Not a real property")
+    assert wild.view("blue").rent_ladder == [3, 8]
+    assert property_groups()[0]["rent_ladder"] == [1, 2]
+    assert len(property_groups()[0]["properties"]) == 2
+
+
+@pytest.mark.parametrize("mercy", [False, True])
+def test_deal_explicit_placement_chooses_existing_or_new_collection_and_rejects_forgery(mercy):
+    engine, state = deal_case(mercy)
+    first = deal_card(engine, state, "p0", kind="property", color="brown", zone="properties")
+    second = deal_card(engine, state, "p0", kind="property", color="brown")
+    options = [o.action for o in engine.legal_actions(state, "p0") if o.action.card == second]
+    assert {o.choice for o in options} == {"brown:0", "brown:1"}
+    before = deepcopy(state)
+    for color, destination in [("brown", "brown:99"), ("blue", "brown:0"), ("brown", "blue:0")]:
+        with pytest.raises(RuleError):
+            engine.apply_action(state, "p0", Action(type="property", card=second, color=color, choice=destination))
+    assert state == before
+    chosen = engine.apply_action(state, "p0", Action(type="property", card=second, color="brown", choice="brown:1"))
+    assert chosen["properties"]["p0"] == {"brown:0": [first], "brown:1": [second]}
+    assert chosen["moves"] == 2 and chosen["scores"]["p0"] == 0
+    legacy = engine.apply_action(state, "p0", Action(type="property", card=second, color="brown"))
+    assert legacy["properties"]["p0"] == {"brown:0": [first, second]}
+    assert legacy["scores"]["p0"] == 1
+    assert_inventory(engine, chosen)
+    assert_inventory(engine, legacy)
+
+
+@pytest.mark.parametrize("mercy", [False, True])
+def test_deal_moves_standard_properties_between_same_color_piles_without_spending_a_play(mercy):
+    engine, state = deal_case(mercy)
+    first = deal_card(engine, state, "p0", kind="property", color="brown", zone="properties")
+    second = deal_card(engine, state, "p0", kind="property", color="brown", zone="properties")
+    state = engine.apply_action(state, "p0", Action(type="rearrange", card=second, color="brown", choice="brown:1"))
+    assert state["properties"]["p0"] == {"brown:0": [first], "brown:1": [second]}
+    assert state["scores"]["p0"] == 0 and state["moves"] == 3
+    state = engine.apply_action(state, "p0", Action(type="rearrange", card=second, color="brown", choice="brown:0"))
+    assert state["properties"]["p0"]["brown:0"] == [first, second]
+    assert state["scores"]["p0"] == 1 and state["moves"] == 3
+    with pytest.raises(RuleError):
+        engine.apply_action(state, "p1", Action(type="rearrange", card=first, color="brown", choice="brown:1"))
+    with pytest.raises(RuleError):
+        engine.apply_action(state, "p0", Action(type="rearrange", card=first, color="sky", choice="sky:0"))
+    assert_inventory(engine, state)
+
+
+def test_repeated_deal_pile_moves_reuse_empty_slots_and_never_overfill_a_set():
+    engine, state = deal_case()
+    card = deal_card(engine, state, "p0", kind="property", color="brown", zone="properties")
+    for _ in range(200):
+        move = next(o.action for o in engine.legal_actions(state, "p0") if o.action.type == "rearrange")
+        state = engine.apply_action(state, "p0", move)
+    assert len(state["properties"]["p0"]) == 2 and state["moves"] == 3
+    second = deal_card(engine, state, "p0", kind="property", color="brown")
+    key = next(k for k, group in state["properties"]["p0"].items() if card in group)
+    state = engine.apply_action(state, "p0", Action(type="property", card=second, color="brown", choice=key))
+    assert key not in groups_for(state, "p0", "brown", engine.cards)
+    with pytest.raises(RuleError):
+        place(state, "p0", card, engine.cards, "brown", key)
+    assert_inventory(engine, state)
+
+
+def test_legacy_wild_rearrangement_and_built_collection_keep_state_and_rent_consistent():
+    engine, state = deal_case()
+    brown = deal_card(engine, state, "p0", kind="property", color="brown", zone="properties")
+    wild = next(c.id for c in engine.cards.values() if c.colors == ("brown", "sky"))
+    state["deck"].remove(wild)
+    place(state, "p0", wild, engine.cards, "brown")
+    house = deal_card(engine, state, "p0", action="house")
+    hotel = deal_card(engine, state, "p0", action="hotel")
+    state = engine.apply_action(state, "p0", Action(type="play", card=house, color="brown:0"))
+    state = engine.apply_action(state, "p0", Action(type="play", card=hotel, color="brown:0"))
+    assert engine.project_view(state, "p0").detail["collections"] == [{
+        "player": "p0", "key": "brown:0", "color": "brown", "count": 2,
+        "set_size": 2, "complete": True, "rent": 9,
+    }]
+    state["links"][house] = state["links"][hotel] = wild
+    state = engine.apply_action(state, "p0", Action(type="rearrange", card=wild, color="sky"))
+    assert state["properties"]["p0"]["brown:0"] == [brown, house, hotel]
+    assert state["links"][house] == state["links"][hotel] == brown
+    collections = engine.project_view(state, "p0").detail["collections"]
+    assert collections[0]["complete"] is False and collections[0]["rent"] == 1
+    state = engine.apply_action(state, "p0", Action(type="rearrange", card=wild, color="brown", choice="brown:0"))
+    assert engine.project_view(state, "p0").detail["collections"][0]["rent"] == 9
+    assert state["moves"] == 1
+    assert_inventory(engine, state)
+
+
+@pytest.mark.parametrize("stage,flags", [
+    ("counter", {}), ("select", {"select": True}), ("payment", {"payment": True}),
+    ("distribution", {"distribution": True}),
+])
+def test_deal_pending_context_is_public_minimal_and_does_not_reveal_event_choices(stage, flags):
+    engine, state = deal_case()
+    state["queue"] = [{
+        "kind": "bill", "actor": "p0", "target": "p1", "responder": "p1",
+        "amount": 5, "blocked": True, "take": "hidden-card", "give": "hidden-card",
+        "choice": "private-choice", **flags,
+    }]
+    for player in state["order"]:
+        pending = engine.project_view(state, player).detail["pending_action"]
+        assert pending == {"kind": "bill", "actor": "p0", "target": "p1", "responder": "p1",
+                           "amount": 5, "blocked": True, "stage": stage}
+    state["queue"] = []
+    assert engine.project_view(state, "p0").detail["pending_action"] is None
+
+
+@pytest.mark.parametrize("mercy,effect,amount", [(False, "debt", 5), (True, "yoink", 10)])
+def test_real_deal_counter_payment_and_cancellation_project_numeric_public_context(mercy, effect, amount):
+    engine, state = deal_case(mercy)
+    card = deal_card(engine, state, "p0", action=effect)
+    money = deal_card(engine, state, "p1", kind="money", zone="banks")
+    no = deal_card(engine, state, "p1", action="no")
+    state = engine.apply_action(state, "p0", Action(type="play", card=card, target="p1"))
+    counter = engine.project_view(state, "p1").detail["pending_action"]
+    assert counter["stage"] == "counter" and type(counter["amount"]) is int
+    assert counter["amount"] == amount
+    cancelled = engine.apply_action(state, "p1", Action(type="no", card=no))
+    assert engine.project_view(cancelled, "p0").detail["pending_action"]["blocked"] is True
+    cancelled = engine.apply_action(cancelled, "p0", Action(type="accept"))
+    assert engine.project_view(cancelled, "p0").detail["pending_action"] is None
+    payment = engine.apply_action(state, "p1", Action(type="accept"))
+    context = engine.project_view(payment, "p1").detail["pending_action"]
+    assert context["stage"] == "payment" and type(context["amount"]) is int
+    assert engine.project_view(payment, "p1").detail["payment_amount"] == amount
+    paid = engine.apply_action(payment, "p1", Action(type="pay", cards=[money]))
+    assert engine.project_view(paid, "p1").detail["pending_action"] is None
+    assert_inventory(engine, cancelled)
+    assert_inventory(engine, paid)
+
+
+def test_deal_non_bill_context_uses_null_amount_and_building_only_collection_has_zero_rent():
+    engine, state = deal_case()
+    house = deal_card(engine, state, "p0", action="house")
+    state["hands"]["p0"].remove(house)
+    state["properties"]["p0"] = {"brown:0": [house], "sky:0": []}
+    state["queue"] = [{"kind": "forced_debt", "actor": "p0", "target": "p1",
+                       "responder": "p1", "blocked": False}]
+    view = engine.project_view(state, "p1")
+    assert view.detail["pending_action"]["amount"] is None
+    assert view.detail["collections"] == [{"player": "p0", "key": "brown:0", "color": "brown",
+                                           "count": 0, "set_size": 2, "complete": False, "rent": 0}]
+    assert_inventory(engine, state)
+
+
+@pytest.mark.parametrize("mercy,buildings", [(False, []), (False, ["house", "hotel"]),
+                                           (True, []), (True, ["shack"])])
+def test_deal_zero_value_wilds_cannot_collect_rent_even_with_inactive_buildings(mercy, buildings):
+    engine, state = deal_case(mercy)
+    wilds = [c.id for c in engine.cards.values() if c.kind == "property" and c.value == 0]
+    for card in wilds:
+        state["deck"].remove(card)
+        place(state, "p0", card, engine.cards, "brown")
+    for kind in buildings:
+        building = deal_card(engine, state, "p0", action=kind)
+        state["hands"]["p0"].remove(building)
+        state["properties"]["p0"]["brown:0"].append(building)
+        state["links"][building] = wilds[0]
+    rent_card = deal_card(engine, state, "p0", action="rent")
+    assert rent(state, "p0", "brown:0", engine.cards) == 0
+    collection = engine.project_view(state, "p0").detail["collections"][0]
+    assert collection["count"] == 2 and collection["complete"] is False and collection["rent"] == 0
+    assert not any(o.action.card == rent_card and o.action.type == "play"
+                   for o in engine.legal_actions(state, "p0"))
+    assert_inventory(engine, state)
+
+
+@pytest.mark.parametrize("mercy,building", [(False, "house"), (True, "shack")])
+def test_deal_building_only_collection_has_no_rent_base(mercy, building):
+    engine, state = deal_case(mercy)
+    card = deal_card(engine, state, "p0", action=building)
+    state["hands"]["p0"].remove(card)
+    state["properties"]["p0"]["brown:0"] = [card]
+    assert rent(state, "p0", "brown:0", engine.cards) == 0
+    assert engine.project_view(state, "p0").detail["collections"][0]["rent"] == 0
+    assert_inventory(engine, state)
 
 
 @pytest.mark.parametrize("mercy", [False, True])

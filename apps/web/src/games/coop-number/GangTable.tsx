@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { LockKeyhole, Siren, Star } from 'lucide-react';
 import { Button, PlayingCard } from '@games/ui';
 import { gangDetails } from '@games/api-client';
@@ -27,7 +27,7 @@ export function GangTable(props: TableProps) {
   const giveBack = match.actions.find((o) => o.value.type === 'return_chip');
   const simultaneous = match.phase === 'chips';
   const instruction = !chosen
-    ? 'Choose a chip for your estimate. One star is weakest.'
+    ? 'Choose the chip that matches your hand.'
     : owner
       ? `This takes ${playerName(room, owner)}’s chip; they will need another.`
       : closesStreet
@@ -78,8 +78,8 @@ export function GangTable(props: TableProps) {
         <section className="gang-private" aria-label="Your private pocket cards">
           <div>
             <p className="eyebrow">Your pocket cards</p>
-            <h3>{data.own_hand_name || 'Estimate your relative strength'}</h3>
-            <p className="small muted">Keep your hand private. Let the chips do the talking.</p>
+            {data.own_hand_name ? <h3>{data.own_hand_name}</h3> : null}
+            <p className="small muted">Only you can see these cards.</p>
           </div>
           <div className="gang-pocket-cards">
             {match.hand.map((card) => (
@@ -96,7 +96,15 @@ export function GangTable(props: TableProps) {
                 taken
               </span>
             </div>
-            <div className="gang-chip-rack" data-chip-color={colors[data.street]}>
+            <div className="gang-rank-scale" aria-hidden="true">
+              <span>Weakest</span>
+              <span>Strongest</span>
+            </div>
+            <div
+              className="gang-chip-rack"
+              data-chip-color={colors[data.street]}
+              style={{ '--gang-players': match.players.length } as CSSProperties}
+            >
               {match.players.map((_, i) => {
                 const rank = i + 1;
                 const holder = match.players.find((p) => data.chips[p.id] === rank)?.id;

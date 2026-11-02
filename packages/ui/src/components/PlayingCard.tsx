@@ -30,11 +30,7 @@ import {
   CloudLightning,
   Scale,
   Magnet,
-  TrainFront,
-  Zap,
-  Droplets,
 } from 'lucide-react';
-import { GemDistrictArt } from './GemDistrictArt';
 
 export interface CardPresentation {
   id: string;
@@ -45,6 +41,12 @@ export interface CardPresentation {
   suit: string;
   colors?: readonly string[];
   effect?: string;
+  setName?: string | null;
+  setSize?: number | null;
+  rentLadder?: readonly number[];
+  set_name?: string | null;
+  set_size?: number | null;
+  rent_ladder?: readonly number[];
 }
 interface PlayingCardProps {
   card?: CardPresentation;
@@ -56,6 +58,7 @@ interface PlayingCardProps {
   disabled?: boolean;
   className?: string;
   label?: string;
+  playable?: boolean;
 }
 
 const propertyNames: Record<string, string> = {
@@ -76,16 +79,6 @@ const shortPropertyNames: Record<string, string> = {
   blue: 'Blue',
   rail: 'Rail',
   utility: 'Utility',
-};
-const districtScenes: Record<string, [string, number]> = {
-  brown: ['ruby', 1],
-  sky: ['sapphire', 1],
-  pink: ['ruby', 2],
-  orange: ['pearl', 2],
-  red: ['ruby', 3],
-  yellow: ['pearl', 3],
-  green: ['emerald', 2],
-  blue: ['sapphire', 3],
 };
 const effectIcons = {
   pass_go: ArrowRight,
@@ -113,28 +106,6 @@ const effectIcons = {
   unfair: Scale,
   yoink: Magnet,
 };
-function PropertyScene({ color }: { color: string }) {
-  if (color === 'rail')
-    return (
-      <span className="property-infrastructure" data-property-scene="rail">
-        <TrainFront />
-        <span className="property-track" />
-      </span>
-    );
-  if (color === 'utility')
-    return (
-      <span className="property-infrastructure property-utilities" data-property-scene="utility">
-        <Zap />
-        <Droplets />
-      </span>
-    );
-  const [gem, tier] = districtScenes[color] || districtScenes.brown;
-  return (
-    <span className="property-district" data-property-scene={color}>
-      <GemDistrictArt color={gem} tier={tier} />
-    </span>
-  );
-}
 function PropertyBands({ colors, active }: { colors: readonly string[]; active?: string }) {
   return (
     <span className="property-band" aria-hidden="true">
@@ -144,35 +115,55 @@ function PropertyBands({ colors, active }: { colors: readonly string[]; active?:
     </span>
   );
 }
+const dealInstructions: Record<string, string> = {
+  pass_go: 'Draw 2 cards.',
+  no: 'Cancel an action against you. Counter a counter, too.',
+  debt: 'Collect 5M from one player.',
+  birthday: 'Collect 2M from every other player.',
+  sly: 'Take one property from an incomplete set.',
+  forced: 'Swap a property with another player. Complete sets are protected.',
+  breaker: 'Take an entire complete property set.',
+  house: 'Add to a complete street set. Rent +3M.',
+  hotel: 'Add after a house. Rent +4M.',
+  double: 'Play with a Rent card to double the bill.',
+  rent: 'Charge rent on one matching property set.',
+  rent_double: 'Charge double rent on a matching set.',
+  forced_debt: 'Give one player a debt chip.',
+  go_again: 'End this turn, then take another.',
+  heist: 'Take one bank card from each opponent.',
+  crash: 'Take one property from each opponent.',
+  fill: 'Draw until you have 7 cards.',
+  repossession: 'One player keeps a property and gives the rest away.',
+  shack: 'Attach to a property set. Rent +5M.',
+  super_sly: 'Take every property of one chosen colour.',
+  tax: 'One player keeps a bank card and gives the rest away.',
+  tough: 'Take all money, action or property cards from one player’s hand.',
+  unfair: 'Swap your entire bank with another player’s bank.',
+  yoink: 'Collect 10M from one player.',
+};
 function DealFace({ card }: { card: CardPresentation }) {
   const colors = card.colors?.length ? card.colors : card.suit === 'property' ? [card.color] : [];
-  const wild = card.suit === 'property' && colors.length > 1;
+  const property = card.suit === 'property';
+  const wild = property && colors.length > 1;
   const money = card.subtitle === 'MONEY';
   const effect = card.effect || '';
   const Icon = effectIcons[effect as keyof typeof effectIcons] || HandCoins;
+  const ladder = card.rentLadder || card.rent_ladder || [];
+  const setSize = card.setSize || card.set_size;
   const colorLabel =
     colors.length === 10
       ? 'Any colour'
-      : colors.map((color) => shortPropertyNames[color] || color).join(' / ');
+      : colors.map((color) => propertyNames[color] || color).join(' / ');
   return (
     <>
       <PropertyBands colors={colors} active={wild ? card.color : undefined} />
-      <span className="property-value">{card.value}</span>
-      <span
-        className="property-symbol"
-        data-design={
-          money
-            ? 'money'
-            : card.suit === 'property'
-              ? wild
-                ? 'wild-property'
-                : 'property'
-              : effect || 'legacy-action'
-        }
-        aria-hidden="true"
-      >
+      <span className="deal-card-meta">
+        <span>{money ? 'BANK' : property ? (wild ? 'WILD' : 'PROPERTY') : 'ACTION'}</span>
+        <span className="property-value">{card.value}</span>
+      </span>
+      <span className="deal-card-body">
         {money ? (
-          <span className="money-art">
+          <span className="money-art" aria-hidden="true">
             <svg viewBox="0 0 80 60">
               <ellipse cx="40" cy="30" rx="36" ry="26" />
               <ellipse cx="40" cy="30" rx="30" ry="22" />
@@ -180,37 +171,51 @@ function DealFace({ card }: { card: CardPresentation }) {
             </svg>
             <strong>{card.value}</strong>
           </span>
-        ) : card.suit === 'property' ? (
-          <span className="property-scene" data-wild={wild}>
-            {(wild ? (colors.length === 10 ? [card.color] : colors) : [card.color]).map((color) => (
-              <PropertyScene key={color} color={color} />
-            ))}
-          </span>
         ) : (
-          <span className="deal-action-art" data-effect={effect || 'legacy'}>
-            <span className="deal-action-orbit" />
-            <Icon />
-            {effect === 'rent_double' || effect === 'double' ? <b>×2</b> : null}
-            {['forced', 'unfair'].includes(effect) ? <span className="deal-action-cards" /> : null}
-          </span>
+          <>
+            {!property ? (
+              <span
+                className="deal-action-art"
+                data-effect={effect || 'legacy-action'}
+                aria-hidden="true"
+              >
+                <Icon />
+                {effect === 'rent_double' || effect === 'double' ? <b>×2</b> : null}
+              </span>
+            ) : null}
+            <span className="property-name">{card.label}</span>
+            {wild || (colors.length > 0 && !property) ? (
+              <span className="property-color-label">{colorLabel}</span>
+            ) : null}
+            {wild ? (
+              <span className="property-active-label">
+                {propertyNames[card.color] || card.color} active
+              </span>
+            ) : null}
+            {!property ? (
+              <span className="deal-card-instruction">
+                {dealInstructions[effect] || card.subtitle}
+              </span>
+            ) : null}
+          </>
         )}
       </span>
-      <span className="property-footer">
-        <span className="property-name">
-          {money
-            ? 'Money'
-            : card.suit === 'property'
-              ? wild
-                ? 'Wild property'
-                : propertyNames[card.color] || card.label
-              : card.label}
-        </span>
-        {colors.length > 1 ? <span className="property-color-label">{colorLabel}</span> : null}
-        {wild ? (
-          <span className="property-active-label">
-            {shortPropertyNames[card.color] || card.color} active
-          </span>
-        ) : null}
+      <span className="deal-card-foot">
+        {property && ladder.length ? (
+          <>
+            <span className="deal-rent-label">RENT · {setSize} TO COMPLETE</span>
+            <span className="deal-rent-ladder">
+              {ladder.map((rent, index) => (
+                <span key={index}>
+                  <small>{index + 1}</small>
+                  <b>{rent}M</b>
+                </span>
+              ))}
+            </span>
+          </>
+        ) : (
+          <span>{money ? 'Money' : 'Play it or bank it'}</span>
+        )}
       </span>
     </>
   );
@@ -348,6 +353,7 @@ export function PlayingCard(props: PlayingCardProps) {
     disabled,
     className,
     label,
+    playable,
   } = props;
   const reduced = useReducedMotion();
   const classes = cn(
@@ -361,6 +367,7 @@ export function PlayingCard(props: PlayingCardProps) {
   const content = <CardContents {...props} family={family} />;
   const appearance = {
     className: classes,
+    'data-playable': playable,
     'data-color': !faceDown && card ? card.color : 'neutral',
     'data-effect': !faceDown && family === 'property' ? card?.effect : undefined,
     'data-card-kind':

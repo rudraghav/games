@@ -1,4 +1,6 @@
 'use client';
+import { useRef } from 'react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button, AzulTileArt } from '@games/ui';
 import { azulDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
@@ -16,12 +18,21 @@ function Tile({ color, ghost = false }: { color: string; ghost?: boolean }) {
 export function AzulTable(props: TableProps) {
   const { match, room, selfId, pending, onAction } = props;
   const data = azulDetails(match.detail);
+  const factories = useRef<HTMLDivElement>(null);
   const blocked = pending || room.paused;
+  function scrollFactories(direction: number) {
+    const rail = factories.current;
+    if (!rail) return;
+    rail.scrollBy({
+      left: direction * rail.clientWidth,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    });
+  }
   const next = match.actions.find((o) => o.value.type === 'next_round');
   function offer(tiles: string[], source: string) {
     return (
       <section
-        className="azul-factory"
+        className={`azul-factory${source === 'center' ? ' azul-factory--center' : ''}`}
         key={source}
         aria-label={source === 'center' ? 'Center offer' : `Factory ${Number(source) + 1}`}
       >
@@ -30,6 +41,14 @@ export function AzulTable(props: TableProps) {
           {source === 'center' && data.marker ? ' · first player' : ''}
         </span>
         <div className="azul-factory-colors">
+          {source === 'center' && data.marker ? (
+            <span
+              className="azul-center-marker"
+              title="First player next round; goes on your floor"
+            >
+              <Tile color="first" />
+            </span>
+          ) : null}
           {colors
             .filter((color) => tiles.includes(color))
             .map((color) => {
@@ -54,7 +73,9 @@ export function AzulTable(props: TableProps) {
                 </button>
               );
             })}
-          {!tiles.length ? <span className="azul-empty-offer">—</span> : null}
+          {!tiles.length && !(source === 'center' && data.marker) ? (
+            <span className="azul-empty-offer">Empty</span>
+          ) : null}
         </div>
       </section>
     );
@@ -77,9 +98,32 @@ export function AzulTable(props: TableProps) {
               : `${playerName(room, data.starter)} starts next`}
           </span>
         </div>
-        <div className="azul-factories">
-          {data.factories.map((f, i) => offer(f, String(i)))}
+        <div className="azul-supply">
           {offer(data.center, 'center')}
+          <div className="azul-factory-navigation">
+            <h3>{data.factories.length} factories</h3>
+            <div>
+              <Button
+                variant="secondary"
+                size="icon"
+                aria-label="Previous factories"
+                onClick={() => scrollFactories(-1)}
+              >
+                <ArrowLeft size={18} aria-hidden="true" />
+              </Button>
+              <Button
+                variant="secondary"
+                size="icon"
+                aria-label="Next factories"
+                onClick={() => scrollFactories(1)}
+              >
+                <ArrowRight size={18} aria-hidden="true" />
+              </Button>
+            </div>
+          </div>
+          <div className="azul-factories" ref={factories}>
+            {data.factories.map((f, i) => offer(f, String(i)))}
+          </div>
         </div>
         {match.phase === 'placing' ? (
           <div className="azul-draft-preview">
@@ -125,7 +169,7 @@ export function AzulTable(props: TableProps) {
                         type="button"
                         className="azul-pattern-line"
                         key={row}
-                        aria-label={`Place on pattern line ${row + 1}`}
+                        aria-label={`Place on pattern line ${row + 1}, ${row + 1 - line.length} spaces available`}
                         disabled={blocked || !option}
                         onClick={() => option && onAction(option.value)}
                       >

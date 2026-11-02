@@ -235,6 +235,17 @@ def test_deal_payment_amount_is_public_only_during_payment_selection():
     assert e.project_view(s, "b").detail["payment_amount"] == 0
 
 
+def test_deal_bot_chooses_the_specific_pile_that_completes_a_set():
+    e = DealEngine()
+    s = e.setup(["a", "b"], {}, seed=3)
+    brown = [c.id for c in e.cards.values() if c.kind == "property" and c.colors == ("brown",)]
+    s["hands"]["a"] = [brown[1]]
+    s["properties"]["a"] = {"brown:0": [brown[0]]}
+    for step in range(10):
+        decision = choose_action(e.project_view(s, "a"), "a", {"step": step})
+        assert decision.action.type == "property" and decision.action.choice == "brown:0"
+
+
 def test_boop_finishes_a_public_three_adult_line():
     e = BoopEngine()
     s = e.setup(["a", "b"], {})

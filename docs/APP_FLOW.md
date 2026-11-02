@@ -50,6 +50,15 @@ without exposing internal state. Realtime loss shows reconnecting and enables
 bounded polling; snapshots are fetched on reconnect and refocus. Chat stays in a
 side panel on desktop and a sheet on phones. Forms and card controls work without dragging.
 
+Deal's play area runs opponents → stock/latest move → own bank/property sets →
+hand and contextual moves. Select a card, choose an exact destination/target,
+then confirm the move. A banked action cannot be played later, so banking has a
+separate confirmation. Bills keep the table visible and let the payer choose
+bank/property assets; the total and any overpayment stay visible before payment.
+Just Say No and counter-counteractions show the affected players and amount.
+Printed property names, set progress and server-calculated rent remain visible;
+set details expose the complete printed group without disclosing hidden cards.
+
 Party decisions use select → lock → wait for friends → reveal → next prompt.
 Concurrent submissions can conflict; a fresh snapshot preserves the locked
 choices already committed and lets the remaining player submit deliberately.
