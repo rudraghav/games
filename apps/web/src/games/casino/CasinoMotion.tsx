@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useMemo, useState, type RefObject, type ReactNode } from 'react';
 import { motion } from 'motion/react';
-import { PlayingCard, TokenArt } from '@games/ui';
+import { PlayingCard, TokenArt, HorizontalRail } from '@games/ui';
 import type { Card } from '@games/api-client';
 import { cardMotionKey, type CasinoTransition } from './casino-transitions';
 import { useMediaQuery } from '@/shared/use-media-query';
@@ -66,31 +66,28 @@ export function CasinoCardRow({
   className?: string;
   hand?: boolean;
 }) {
-  const row = (
-    <div className={hand ? 'card-hand casino-card-row' : 'casino-card-row'}>
-      {cards.map((card, index) => (
-        <CasinoCard
-          key={card?.id || `hidden-${index}`}
-          card={card}
-          compact={compact}
-          group={group}
-          index={index}
-          event={event}
-        />
-      ))}
-    </div>
-  );
+  const contents = cards.map((card, index) => (
+    <CasinoCard
+      key={card?.id || `hidden-${index}`}
+      card={card}
+      compact={compact}
+      group={group}
+      index={index}
+      event={event}
+    />
+  ));
   return hand ? (
-    <div
-      className={`hand-scroll casino-hand-scroll ${compact ? 'hand-scroll--compact' : ''} ${className}`}
-      role="group"
-      aria-label={label}
+    <HorizontalRail
+      className={`hand-rail casino-hand-rail ${className}`}
+      viewportClassName={`hand-scroll casino-hand-scroll ${compact ? 'hand-scroll--compact' : ''}`}
+      contentClassName="card-hand casino-card-row"
+      label={label}
     >
-      {row}
-    </div>
+      {contents}
+    </HorizontalRail>
   ) : (
     <div className={className} role="group" aria-label={label}>
-      {row}
+      <div className="casino-card-row">{contents}</div>
     </div>
   );
 }

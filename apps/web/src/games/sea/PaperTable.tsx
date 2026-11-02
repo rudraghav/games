@@ -90,7 +90,11 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
               {match.phase === 'choosing' ? 'Choose a card to keep' : 'Choose a discard card'}
             </h3>
             <p className="small muted">Only you can see these choices.</p>
-            <div className="paper-card-row">
+            <HorizontalRail
+              className="paper-choice-rail"
+              label={match.phase === 'choosing' ? 'Cards to keep' : 'Discard cards to choose'}
+              contentClassName="paper-card-row"
+            >
               {data.private_options.map((card) => (
                 <PaperPlayingCard
                   key={card.id}
@@ -101,7 +105,7 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
                   onClick={() => setSelected(selected[0] === card.id ? [] : [card.id])}
                 />
               ))}
-            </div>
+            </HorizontalRail>
             <div className="paper-choice-information" aria-live="polite">
               {choiceCard ? (
                 <>

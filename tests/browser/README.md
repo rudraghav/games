@@ -2,6 +2,21 @@
 
 Routine `pnpm test:browser` checks independent sessions and responsive controls.
 
+The four `crowded-*.spec.ts` suites cover all 27 experiences at 320/390/768/1440px
+using natural legal midgame projections and separately labelled controlled Deal
+density probes. They measure card contents inside player areas, multirow overlap,
+expanded collections, final-item reachability, exact action callbacks and relevant
+pending/paused gates. Rummy's grouped-hand check samples overflow stability across
+animation frames. A source/fixture render is distinct from saved-room acceptance;
+per-game counts and limitations are retained in the crowded-actions evidence.
+`crowded-actions-saved.spec.ts` separately exercises six affected games through
+real rooms: both Deal editions, Blackjack, Sea Salt & Paper, Word Agents and
+Boop. Four independent guests reuse one room per device, with exact versioned
+UI commits, public-state comparison and reload; two guests leave before Boop.
+The test also runs against an explicit hosted origin, closes its own room and
+keeps private traces/screenshots off. Natural deals do not guarantee a crowded
+production hand; extreme density remains separately labelled fixture evidence.
+
 `board-accessibility.spec.ts` checks the actual accessibility tree of legal
 Four/Mancala projections, including every static position, owner labels, keyboard
 activation and read-only overview focus. `board-accessibility-saved.spec.ts`

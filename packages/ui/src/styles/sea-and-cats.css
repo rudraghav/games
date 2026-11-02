@@ -238,6 +238,16 @@
     border-radius: 14px;
     min-width: 0;
   }
+  .paper-collections .paper-card-row {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+  .paper-choice-rail .horizontal-rail-content.paper-card-row {
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
+    overflow: visible;
+  }
   .paper-collections summary {
     cursor: pointer;
     font-size: 13px;
@@ -287,6 +297,18 @@
     font-size: 12px;
     gap: 4px;
     text-align: left;
+  }
+  .boop-bed-rail {
+    width: 100%;
+    max-width: 500px;
+    margin-inline: auto;
+  }
+  .boop-bed-rail > .horizontal-rail-viewport {
+    padding-bottom: 10px;
+  }
+  .boop-bed-rail .boop-bed {
+    width: 100%;
+    min-width: 320px;
   }
   .boop-bed {
     display: grid;

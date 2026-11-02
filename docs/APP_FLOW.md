@@ -71,6 +71,14 @@ Just Say No and counter-counteractions show the affected players and amount.
 Printed property names, set progress and server-calculated rent remain visible;
 set details expose the complete printed group without disclosing hidden cards. Complex choices open a modeless move panel; View table / Resume move preserves choices while revealing the board. Escape closes it and restores focus. Public swap previews identify the actual take/give cards, and rent includes any committed multiplier.
 
+Crowded public collections in Deal, Gem Market and Sea Salt & Paper wrap into rows
+inside their existing player areas. Deal's pending transfer shows the actual
+public cards and names the confirmation Allow transfer (or Keep action blocked).
+Large public casino hands expose a bounded preview and an explicit inspector;
+private hands and Paper's keep choices retain keyboard/touch rail navigation.
+Word Agents and Boop preserve readable board cells with navigation below when
+needed. Grouping a Rummy hand cannot make its navigation arrows oscillate.
+
 Party decisions use select → lock → wait for friends → reveal → next prompt.
 Concurrent submissions can conflict; a fresh snapshot preserves the locked
 choices already committed and lets the remaining player submit deliberately.

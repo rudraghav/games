@@ -45,3 +45,24 @@ unit checks compare rendered helper quotes with actual engine transfers. Browser
 evidence covers linked-building payments, pending swaps, inspector focus,
 phone overflow, disconnected-control gating and fresh mounts; this is local
 projection evidence, separate from live room/reconnect acceptance.
+
+## Crowded collections and response previews
+
+Own and inspected public collections wrap into rows inside their existing scroll
+areas. Card rows also wrap, so a large collection cannot create a second hidden
+horizontal strip. The board, action bar and private hand retain their stable
+layout; overflow belongs to the player's collection, not the page.
+
+Pending public transfers show the exact projected card faces and orientation,
+with the existing information control and source/destination. An unblocked
+transfer is confirmed with **Allow transfer**; accepting a blocked transfer says
+**Keep action blocked**. These labels submit the same server-enumerated actions.
+
+The exporter adds five explicitly controlled density probes: both editions with
+13 distinct piles and ten bank cards, their public opponent views, and a pending
+wild-card steal. Real deck inventory and privacy guards still apply; these are
+not naturally reached matches. All 21 targeted fixtures coexist with the natural
+midgame suite. `crowded-deal.spec.ts` exercises row bounds, final-set inspection,
+keyboard/focus, actual transfer previews, both responses and paused/pending gates
+at 320, 390, 768 and 1440px. Current coverage lives in
+`docs/evidence/crowded-actions-2026-11-02`.

@@ -240,6 +240,10 @@
     margin-bottom: 16px;
     color: var(--color-ink-muted);
   }
+  .word-board-rail .word-board {
+    width: 100%;
+    min-width: 440px;
+  }
   .word-board {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -262,7 +266,7 @@
     text-transform: uppercase;
   }
   .word-tile strong {
-    font-size: clamp(10px, 1.2vw, 17px);
+    font-size: clamp(12px, 1.2vw, 17px);
     letter-spacing: 0.03em;
     max-width: 100%;
   }
@@ -574,7 +578,7 @@
       border-radius: 7px;
     }
     .word-tile strong {
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 0;
     }
     .word-tile > span {
@@ -830,7 +834,7 @@
 @layer components {
   .gem-bought-cards {
     display: flex;
-    overflow-x: auto;
+    flex-wrap: wrap;
     gap: 8px;
   }
   .gem-bought-cards .playing-card.development-card {

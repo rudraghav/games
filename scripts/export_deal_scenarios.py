@@ -208,6 +208,36 @@ def generate():
                            if o.action.type == "no")
             record("third-play-counter", "Deal · counter after your third ordinary play", engine,
                    state, viewer=viewer, actions=[("Counter for no ordinary play", counter)])
+    # Controlled density probes, not naturally reached games. Every card is
+    # moved out of this edition's real deck; room_view checks inventory/privacy.
+    for mercy in [False, True]:
+        engine, state = opening(mercy)
+        edition = "no-mercy" if mercy else "classic"
+        for color in RENTS:
+            take(engine, state, PLAYERS[0], kind="property", colors=(color,), zone="properties")
+        for color in ["brown", "blue"]:
+            take(engine, state, PLAYERS[0], kind="property", colors=(color,),
+                 zone="properties", destination=f"{color}:1")
+        for _ in range(10):
+            take(engine, state, PLAYERS[0], kind="money", zone="banks")
+        wild = take(engine, state, PLAYERS[0], kind="property", colors=("green", "blue"),
+                    zone="properties", destination="green:1")
+        take(engine, state, PLAYERS[0], effect="no")
+        assert len(state["properties"][PLAYERS[0]]) == 13
+        record(f"crowded-{edition}", f"{engine.manifest.name} · 13 sets and ten bank cards",
+               engine, state)
+        record(f"crowded-opponent-{edition}", f"{engine.manifest.name} · inspect 13 public sets",
+               engine, state, viewer=PLAYERS[1])
+        if not mercy:
+            sly = take(engine, state, PLAYERS[1], effect="sly")
+            state["turn"] = 1
+            attack = next(option.action for option in engine.legal_actions(state, PLAYERS[1])
+                          if option.action.card == sly and option.action.type == "play"
+                          and option.action.target == PLAYERS[0] and option.action.choice == wild)
+            state = engine.apply_action(state, PLAYERS[1], attack)
+            responses = [(option.label, option.action) for option in engine.legal_actions(state, PLAYERS[0])]
+            record("crowded-sly-response", "Deal · review a wild-card steal on a crowded board",
+                   engine, state, actions=responses)
     return cases
 
 

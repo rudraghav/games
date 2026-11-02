@@ -210,3 +210,19 @@ token holdings use authorized projections. Gang/Paper completed rounds compact
 their existing docks without moving live-phase choices. The per-game interaction
 checklist and verification limits are recorded in
 `docs/evidence/game-info-2026-11-02/README.md`.
+
+## Crowded assets and decision-state coverage
+
+Public Deal, Gem Market and Sea Salt & Paper collections wrap into readable rows.
+Casino seat previews are bounded to three actual projected cards; larger public
+hands open the shared inspector. Private casino hands and Paper's keep/crab
+choices use the shared rail. Rail card spacing stays identical before and after
+navigation appears, preventing overflow controls from oscillating as Rummy groups
+change. No hidden identities are supplied to public inspectors.
+
+Word Agents and Boop use the same rail with navigation below their board, keeping
+readable words and full-size squares without consuming horizontal card space.
+Boop reserves the extended decision area before graduation. Cleared Trio slots
+are named static elements. Current per-game checks and remaining limits are in
+`docs/evidence/crowded-actions-2026-11-02`; this evidence does not claim exhaustive
+coverage of every possible game state.

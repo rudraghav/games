@@ -1,3 +1,65 @@
+## 2026-11-03 — Crowded-state local release gates passed
+
+- Named report verify-f8963850568e421c89ccd20975b4c91f passes frontend,
+  contracts and all 88 desktop/phone browser cases: types/lint, 134 unit tests,
+  production build, OpenAPI/card parity, 21 Deal and 259 natural fixtures.
+- All 27 games have bounded per-game evidence at four widths (1,036 renders).
+  Shared overflow measurement now occurs before paint; the unchanged Word
+  Agents geometry regression and related navigation checks pass. No assertions
+  weakened. Independent evidence review corrected fixture-versus-live wording
+  and kept classic-only transfer probes separate from No Mercy coverage.
+- All 461 runtime inputs match fingerprint
+  75f8936af1e8c4539aa61be2bd12bc7a3a1e122ba3882d85ece76b09eb91c220.
+  Personal Git identity and remote baseline cdb8b1f are freshly verified.
+- State: local verified. Next: push one application commit, deploy once, verify
+  hosted saved flows, source/alias, owner preservation, logs and QA closure.
+
+## 2026-11-03 — Crowded-state fixes ready for final verification
+
+- Fresh rendered review covers all 27 games with 259 naturally reached fixtures
+  at 320/390/768/1440 (1,036 fixture/width renders). Five additional controlled
+  Deal probes cover 13 piles, ten bank cards and a pending wild-card steal, with
+  real deck inventory/privacy guards. Historical reports remain preserved.
+- Confirmed/fixed: clipped Deal/Gem/Paper public collections, overflowing casino
+  seat cards, inaccessible long private choices, narrow Word Agents text/Boop
+  squares, hidden Trio cleared-slot semantics, and Rummy rail oscillation caused
+  by overflow-dependent card spacing. Deal transfer previews now show exact
+  public cards with Allow transfer / Keep action blocked labels. Single blackjack
+  hands use available width; split hands retain their separate navigation.
+- Focused family checks pass. New saved-room suite passes both devices through
+  six affected games with exact UI payload/version, public agreement and refresh;
+  all test rooms closed with every member read404. No provider calls/state injection.
+- Initial named type gate caught nullable projected casino faces passed to static
+  Hand; actual faces are now explicitly filtered, anonymous backs unchanged.
+  Full app/package and browser type checks pass after correction. The combined
+  gate passed frontend/contracts and 87/88 browser cases, exposing a 52px mobile
+  Word Agents dock shift from late overflow measurement. The shared rail now
+  measures before paint; the unchanged regression reproduced twice in ten runs
+  before the fix and passed ten of ten afterward. Eight related rail/board cases
+  also pass. The final combined gate is next; no release claimed yet.
+- Personal cloud target/auth/pooler, no-op schema upgrade/drift and private grants
+  pass. Permanent owner before-state retained; rollback deployment is
+  dpl_Cp8cvJar2tCk49vqNrg7GKuqQHmk. Current code has no API/schema/rule changes.
+
+## 2026-11-02 — Crowded collections and action-state review kickoff
+
+- User requests broader assurance after examples of a pending Deal steal and
+  a player owning multiple rows of properties. Those screenshots are references;
+  current Games must be inspected directly. Prior checks are substantial but do
+  not establish every possible state in every game.
+- Outcome: audit all 27 registered experiences for crowded player areas and
+  decision clarity, fix reproducible gaps, and publish a precise scenario matrix.
+- Acceptance: visible and reachable assets/controls across 320/390/768/1440 widths;
+  no overlapping rows or page overflow; exact action consequences and deliberate
+  selections; clear/cancel, keyboard, pending/paused and refresh behavior where
+  applicable. Distinguish legal fixtures from saved matches and untested branches.
+- Constraints: preserve shared primitives, server legality, hidden-state boundaries,
+  original art and user work. No new game rules/schema/provider calls planned.
+  Task-owned output: output/playwright/crowded-actions-20261102. Existing web3217,
+  API8217 and database retained; source starts clean at cdb8b1f.
+- Next: fresh rendered review in family groups, reproduce failures before edits,
+  run affected named checks and hosted acceptance, push one verified release.
+
 ## 2026-11-02 — Trio and Party pushed and live verified
 
 - Application d3328b60cee31c8876bf3428603e557b4c4d16be is pushed to main.

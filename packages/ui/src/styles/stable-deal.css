@@ -169,6 +169,21 @@
   .deal-board-scroll .deal-collections {
     align-items: start;
   }
+  .deal-board-scroll .deal-collections,
+  .opponent-panel-inspection .deal-collections {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+  .deal-board-scroll .deal-collection,
+  .opponent-panel-inspection .deal-collection {
+    min-width: min(175px, 100%);
+    max-width: 100%;
+  }
+  .deal-board-scroll .deal-collection-cards,
+  .opponent-panel-inspection .deal-collection-cards {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
   .deal-board-scroll .deal-collection {
     border: 0;
     border-top: 3px solid var(--property-ink);
@@ -314,6 +329,15 @@
     flex-wrap: wrap;
     gap: 5px;
     font-size: 10px;
+  }
+  .deal-transfer-card {
+    display: grid;
+    justify-items: center;
+    gap: 4px;
+    max-width: 100%;
+  }
+  .deal-transfer-card > .button {
+    white-space: normal;
   }
   .deal-target-preview > span {
     display: inline-flex;

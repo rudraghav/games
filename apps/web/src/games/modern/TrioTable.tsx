@@ -42,7 +42,7 @@ export function TrioTable(props: TableProps) {
             return (
               <div className="trio-table-slot" key={`slot-${index}`}>
                 {card.suit === 'empty' ? (
-                  <div className="trio-empty" key={card.id} aria-label={card.label} />
+                  <div className="trio-empty" key={card.id} role="img" aria-label={card.label} />
                 ) : (
                   <PlayingCard
                     key={`slot-${index}`}

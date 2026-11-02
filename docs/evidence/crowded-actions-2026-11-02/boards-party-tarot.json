@@ -1,0 +1,406 @@
+{
+  "scope": "Ten registered experiences; legal authorized projections, no saved-room or AI/provider operations",
+  "renderedProjections": 58,
+  "renderedViews": 232,
+  "beforeFix": {
+    "wordAgents": "Labels overpaint neighboring tiles:6 affected scenario-width pairs at320/390",
+    "boop": "Enabled bed squares under44px at320 in6 placement projections; compact graduation dock initially hides all choices"
+  },
+  "changes": [
+    "Words and Boop reuse shared HorizontalRail with navigation below board",
+    "Parent shared CSS preserves readable word cells and full-size boop squares",
+    "Boop decision dock uses fixed extended size across phases"
+  ],
+  "browserSpec": "tests/browser/crowded-board-party.spec.ts",
+  "browserCases": 4,
+  "typeCheck": "passed",
+  "perGame": [
+    {
+      "game": "four-in-a-row",
+      "legalProjections": 6,
+      "fixtureIds": [
+        "four-in-a-row-2-17-2",
+        "four-in-a-row-2-17-8",
+        "four-in-a-row-2-17-16",
+        "four-in-a-row-2-31-2",
+        "four-in-a-row-2-31-8",
+        "four-in-a-row-2-31-16"
+      ],
+      "seatCounts": [
+        2
+      ],
+      "phases": [
+        "playing"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderChecks": [
+        "No horizontal page overflow",
+        "Enabled controls at least43.5px rendered size (44px target tolerance)",
+        "Word/choice text contained by its own cell"
+      ],
+      "interactionChecks": [
+        "All 42 public squares and seven full-size drop controls",
+        "Keyboard legal column move",
+        "Pending and paused drop disabled"
+      ],
+      "limitations": [
+        "Every possible occupied board and terminal winning line is not exhausted"
+      ]
+    },
+    {
+      "game": "reversi",
+      "legalProjections": 6,
+      "fixtureIds": [
+        "reversi-2-17-2",
+        "reversi-2-17-8",
+        "reversi-2-17-16",
+        "reversi-2-31-2",
+        "reversi-2-31-8",
+        "reversi-2-31-16"
+      ],
+      "seatCounts": [
+        2
+      ],
+      "phases": [
+        "playing"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderChecks": [
+        "No horizontal page overflow",
+        "Enabled controls at least43.5px rendered size (44px target tolerance)",
+        "Word/choice text contained by its own cell"
+      ],
+      "interactionChecks": [
+        "All 64 positions and active legal targets",
+        "Keyboard legal placement",
+        "Pending and paused placement disabled"
+      ],
+      "limitations": [
+        "Forced pass and every endgame board are not newly exercised"
+      ]
+    },
+    {
+      "game": "checkers",
+      "legalProjections": 8,
+      "fixtureIds": [
+        "checkers-2-17-2",
+        "checkers-2-17-3",
+        "checkers-2-17-25",
+        "checkers-2-17-26",
+        "checkers-2-31-2",
+        "checkers-2-31-3",
+        "checkers-2-31-45",
+        "checkers-2-31-107"
+      ],
+      "seatCounts": [
+        2
+      ],
+      "phases": [
+        "playing"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderChecks": [
+        "No horizontal page overflow",
+        "Enabled controls at least43.5px rendered size (44px target tolerance)",
+        "Word/choice text contained by its own cell"
+      ],
+      "interactionChecks": [
+        "Public board, mandatory jump and crowned-piece projections",
+        "Keyboard source select, second-select clear, destination commit"
+      ],
+      "limitations": [
+        "Every multi-jump continuation and forced-draw termination is not exhausted"
+      ]
+    },
+    {
+      "game": "mancala",
+      "legalProjections": 6,
+      "fixtureIds": [
+        "mancala-2-17-2",
+        "mancala-2-17-8",
+        "mancala-2-17-16",
+        "mancala-2-31-2",
+        "mancala-2-31-8",
+        "mancala-2-31-16"
+      ],
+      "seatCounts": [
+        2
+      ],
+      "phases": [
+        "playing"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderChecks": [
+        "No horizontal page overflow",
+        "Enabled controls at least43.5px rendered size (44px target tolerance)",
+        "Word/choice text contained by its own cell"
+      ],
+      "interactionChecks": [
+        "Both pit rows and stores with public counts",
+        "Keyboard legal sow",
+        "Pending and paused sow disabled"
+      ],
+      "limitations": [
+        "Every seed distribution, capture and final sweep is not exhausted"
+      ]
+    },
+    {
+      "game": "boop",
+      "legalProjections": 10,
+      "fixtureIds": [
+        "boop-2-17-2",
+        "boop-2-17-8",
+        "boop-2-17-9",
+        "boop-2-17-16",
+        "boop-2-17-18",
+        "boop-2-31-2",
+        "boop-2-31-8",
+        "boop-2-31-9",
+        "boop-2-31-16",
+        "boop-2-31-18"
+      ],
+      "seatCounts": [
+        2
+      ],
+      "phases": [
+        "graduating",
+        "placing"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderChecks": [
+        "No horizontal page overflow",
+        "Enabled controls at least43.5px rendered size (44px target tolerance)",
+        "Word/choice text contained by its own cell"
+      ],
+      "interactionChecks": [
+        "All 36 bed positions with mixed piece pools",
+        "Full-size 320px targets and rightmost-column keyboard reveal",
+        "Graduation preview, clear and explicit confirm",
+        "Pending and paused graduation disabled"
+      ],
+      "limitations": [
+        "Fixtures contain one graduation option per graduating state; overlapping graduation alternatives and eight-cat win remain separate evidence"
+      ]
+    },
+    {
+      "game": "word-agents",
+      "legalProjections": 4,
+      "fixtureIds": [
+        "word-agents-4-17-2",
+        "word-agents-4-17-6",
+        "word-agents-10-31-2",
+        "word-agents-10-31-6"
+      ],
+      "seatCounts": [
+        4,
+        10
+      ],
+      "phases": [
+        "clue",
+        "guess"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderChecks": [
+        "No horizontal page overflow",
+        "Enabled controls at least43.5px rendered size (44px target tolerance)",
+        "Word/choice text contained by its own cell"
+      ],
+      "interactionChecks": [
+        "Four- and ten-seat operative and spymaster projections",
+        "Long board words stay within their cells",
+        "Bounded board navigation with keyboard reveal",
+        "Keyboard clue, guess selection, second-select clear and explicit confirmation",
+        "Pending and paused clue/guess disabled"
+      ],
+      "limitations": [
+        "Arbitrary user-entered clues and all25-word combinations are not exhausted; no new bot competence certification"
+      ]
+    },
+    {
+      "game": "spill-or-chill",
+      "legalProjections": 4,
+      "fixtureIds": [
+        "spill-or-chill-3-17-2",
+        "spill-or-chill-3-17-3",
+        "spill-or-chill-10-31-2",
+        "spill-or-chill-10-31-3"
+      ],
+      "seatCounts": [
+        3,
+        10
+      ],
+      "phases": [
+        "answer",
+        "reveal"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderChecks": [
+        "No horizontal page overflow",
+        "Enabled controls at least43.5px rendered size (44px target tolerance)",
+        "Word/choice text contained by its own cell"
+      ],
+      "interactionChecks": [
+        "Three- and ten-seat answer/reveal projections",
+        "Keyboard last choice and explicit lock",
+        "Pending and paused choices/lock disabled"
+      ],
+      "limitations": [
+        "Original prompt catalogue not exhaustively reviewed; saved cross-tab behavior retains the prior recovery suite"
+      ]
+    },
+    {
+      "game": "most-likely",
+      "legalProjections": 4,
+      "fixtureIds": [
+        "most-likely-3-17-2",
+        "most-likely-3-17-4",
+        "most-likely-10-31-2",
+        "most-likely-10-31-11"
+      ],
+      "seatCounts": [
+        3,
+        10
+      ],
+      "phases": [
+        "reveal",
+        "vote"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderChecks": [
+        "No horizontal page overflow",
+        "Enabled controls at least43.5px rendered size (44px target tolerance)",
+        "Word/choice text contained by its own cell"
+      ],
+      "interactionChecks": [
+        "Three- and ten-seat multirow candidate grids and reveals",
+        "Keyboard last candidate choice and explicit lock",
+        "Pending and paused choices/lock disabled"
+      ],
+      "limitations": [
+        "Current long names wrap within candidate buttons; all possible long-name combinations not exhausted"
+      ]
+    },
+    {
+      "game": "hot-seat",
+      "legalProjections": 6,
+      "fixtureIds": [
+        "hot-seat-3-17-2",
+        "hot-seat-3-17-4",
+        "hot-seat-3-17-6",
+        "hot-seat-10-31-2",
+        "hot-seat-10-31-11",
+        "hot-seat-10-31-13"
+      ],
+      "seatCounts": [
+        3,
+        10
+      ],
+      "phases": [
+        "predict",
+        "reveal"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderChecks": [
+        "No horizontal page overflow",
+        "Enabled controls at least43.5px rendered size (44px target tolerance)",
+        "Word/choice text contained by its own cell"
+      ],
+      "interactionChecks": [
+        "Three- and ten-seat prediction/reveal projections",
+        "Keyboard final choice and explicit lock",
+        "Pending and paused choices/lock disabled"
+      ],
+      "limitations": [
+        "All original prompt wording and every reveal tie combination not exhausted"
+      ]
+    },
+    {
+      "game": "tarot",
+      "legalProjections": 4,
+      "fixtureIds": [
+        "tarot-1-17-2",
+        "tarot-1-17-3",
+        "tarot-1-31-2",
+        "tarot-1-31-3"
+      ],
+      "seatCounts": [
+        1
+      ],
+      "phases": [
+        "choosing"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderChecks": [
+        "No horizontal page overflow",
+        "Enabled controls at least43.5px rendered size (44px target tolerance)",
+        "Word/choice text contained by its own cell"
+      ],
+      "interactionChecks": [
+        "Legally reached partial three-card spreads and 76/77-choice deck",
+        "Keyboard last deck option and exact pick payload",
+        "Pending and paused pick disabled",
+        "Explore all78 and Major22 filter; Escape restores focus without provider calls"
+      ],
+      "limitations": [
+        "No AI generation or provider call; full reading and astrology forms retain their existing separate evidence"
+      ]
+    }
+  ],
+  "universalCoverageClaim": false,
+  "browserStatus": "passed:4 desktop/phone checks,232 render projections,exact actions and geometry",
+  "checksCompletedAt": "2026-11-02T18:14:36.127214+00:00",
+  "finalBoop320": {
+    "boardWidth": 320,
+    "squareWidth": 47.5
+  }
+}

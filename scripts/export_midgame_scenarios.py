@@ -15,7 +15,7 @@ from app.games.registry import ENGINES
 from app.rooms.schemas import MemberView, RoomView
 
 TARGET = ROOT / "apps/web/src/stories/generated/midgame-scenarios.ts"
-REPORT = ROOT / "docs/evidence/stable-play-2026-11-02/midgame-coverage.json"
+REPORT = ROOT / "docs/evidence/crowded-actions-2026-11-02/midgame-coverage.json"
 NAMES = ["Alexandra with a rather long name", "Dev", "Mira", "Sam", "Noor", "Alex", "Jules", "Kai", "Robin", "Ari"]
 INTERESTING = {"pay", "no", "choose", "keep", "give", "settle_debt", "rearrange", "challenge",
                "split", "double", "sideshow", "accept", "declare", "graduate", "promote", "capture",
@@ -146,6 +146,7 @@ def generate():
         initial = inventory(game, state)
         memory = {p: {"seed": f"midgame:{seed}:{p}"} for p in players}
         exercised = set()
+        density_case, density_peak = None, 0
         seen, phases, action_types, offered_types, captured, peak = set(), set(), set(), set(), [], 0
         for step in range(1, 4001):
             if state["phase"] == "finished" or game == "tarot" and state["phase"] == "reading":
@@ -212,6 +213,29 @@ def generate():
             after = engine.apply_action(state, actor, action)
             if initial is not None:
                 assert inventory(game, after) == initial, f"Physical inventory drift: {game}/{seed}/{step}"
+            # Retain a real crowded checkpoint in addition to phase-first cases.
+            # The score reads only the current actor's authorized projection.
+            density = 0
+            if game == "trio":
+                density = sum(card.suit == "empty" for card in view.community)
+            elif game == "flip-7":
+                density = max((len(player.cards) for player in view.players), default=0)
+            elif game == "sea-salt-paper":
+                density = max(len(view.hand), *(len(player.cards) for player in view.players))
+            elif game == "gem-market":
+                density = max((sum(len(cards) for cards in player.properties.values())
+                               for player in view.players), default=0)
+            if density > density_peak:
+                density_peak = density
+                key = f"{game}-{seats}-{seed}-{step}-crowded"
+                density_case = {
+                    "id": key, "game": game, "seats": seats, "seed": seed, "step": step,
+                    "label": f"{engine.manifest.name} · {seats} players · {view.phase.replace('_', ' ')} · crowded {density}",
+                    "selfId": actor, "focusCard": action.card if any(card.id == action.card for card in view.hand) else None,
+                    "reachedBy": "legal engine actions from setup; peak visible collection checkpoint",
+                    "room": room(engine, state, actor, players, key, step),
+                    "next": {"action": action.model_dump(mode="json"), "game": project(engine, after, actor, players).model_dump(mode="json")},
+                }
             limit = 18 if game.startswith("deal") else 3 if stress and game == "uno" else 6 if stress else 8
             worth_recording = step > 1 and signature not in seen and len(captured) < limit
             if stress:
@@ -243,6 +267,9 @@ def generate():
         if not supplemental and not stress:
             assert captured, f"No reached mid-game scenario for {game}/{seats}"
             assert state["phase"] in {"finished", "reading"}, f"Unfinished scenario trajectory: {game}"
+        if density_case:
+            cases.append(density_case)
+            captured.append(density_case["id"])
         runs.append({"game": game, "seats": seats, "seed": seed, "supplemental": supplemental,
                      "stress": stress, "steps": step - 1, "phases": sorted(phases),
                      "chosenActionTypes": sorted(action_types), "peakPrivateHand": peak,
@@ -253,6 +280,53 @@ def generate():
         runs[-1]["capturedPhases"] = sorted({case["room"]["game"]["phase"] for case in recorded})
         runs[-1]["capturedActionTypes"] = sorted({case["next"]["action"]["type"] for case in recorded})
         return bool(captured)
+
+    def crowded_cards(game, seats, seed, minimum):
+        """Bounded legal policies reach dense hands without rearranging the deck."""
+        engine = ENGINES[game]
+        players = [str(uuid5(NAMESPACE_DNS, f"midgame-player-{i}")) for i in range(seats)]
+        state = engine.setup(players, {s.key: s.default for s in engine.manifest.settings}, seed=seed)
+        initial = inventory(game, state)
+        memory = {p: {"seed": f"density:{seed}:{p}"} for p in players}
+        actions, phases = set(), set()
+        for step in range(1, 601):
+            if state["phase"] == "finished":
+                break
+            actor = actor_for(engine, state, players)
+            view = project(engine, state, actor, players)
+            decision = choose_action(view, actor, memory[actor])
+            memory[actor] = decision.memory
+            action = decision.action
+            if game == "blackjack":
+                action = next((o.action for o in view.actions if o.action.type == "split"),
+                              next((o.action for o in view.actions if o.action.type == "hit"), action))
+                size = max((len(hand["cards"]) for hand in view.detail["hands"]), default=0)
+            else:
+                if actor == players[0]:
+                    action = next((o.action for o in view.actions if o.action.type == "pickup"), action)
+                size = len(view.hand)
+            actions.add(action.type)
+            phases.add(view.phase)
+            after = engine.apply_action(state, actor, action)
+            assert inventory(game, after) == initial, f"Crowded inventory drift: {game}/{seed}/{step}"
+            if size >= minimum:
+                key = f"{game}-{seats}-{seed}-{step}-crowded"
+                cases.append({
+                    "id": key, "game": game, "seats": seats, "seed": seed, "step": step,
+                    "label": f"{engine.manifest.name} · {seats} players · {view.phase} · crowded {size}",
+                    "selfId": actor, "focusCard": action.card if any(card.id == action.card for card in view.hand) else None,
+                    "reachedBy": "legal engine actions from setup; bounded public-action density policy",
+                    "room": room(engine, state, actor, players, key, step),
+                    "next": {"action": action.model_dump(mode="json"), "game": project(engine, after, actor, players).model_dump(mode="json")},
+                })
+                runs.append({"game": game, "seats": seats, "seed": seed, "supplemental": True,
+                             "stress": True, "steps": step, "phases": sorted(phases),
+                             "chosenActionTypes": sorted(actions), "peakVisibleHand": size,
+                             "captured": 1, "finished": False, "physicalInventoryChecked": True,
+                             "capturedPhases": [view.phase], "capturedActionTypes": [action.type]})
+                return
+            state = after
+        raise AssertionError(f"Crowded legal trajectory failed its bounded target: {game}/{seats}/{seed}")
 
     for game, engine in ENGINES.items():
         for maximum in (False, True):
@@ -272,6 +346,11 @@ def generate():
             raise AssertionError("No legal Blackjack insurance decision found in the seed search")
     trajectory("uno", 2, 11, stress=True)
     trajectory("uno-no-mercy", 2, 11, stress=True)
+    # Seeds found by a bounded 1..80 search with the same public-only policies.
+    # Pin the known trajectories so ordinary verification does not repeat a search.
+    for game, seats, seed, minimum in [("blackjack", 1, 11, 5), ("blackjack", 7, 5, 5),
+                                       ("shithead", 2, 1, 20), ("shithead", 5, 1, 20)]:
+        crowded_cards(game, seats, seed, minimum)
     coverage = {"kind": "Legally reached engine projections, not saved API rooms", "games": len(ENGINES),
                 "scenarios": len(cases), "runs": runs,
                 "limits": ["Only generated legal trajectories are claimed; no guarantee that every rare action appears.",

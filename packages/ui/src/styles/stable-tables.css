@@ -227,6 +227,13 @@
     flex: 0 0 180px;
     width: 180px;
   }
+  .blackjack-hands-row:has(> .blackjack-hand:only-child) {
+    width: 100%;
+  }
+  .blackjack-hands-row > .blackjack-hand:only-child {
+    flex: 1 1 auto;
+    width: 100%;
+  }
   .casino-own-cards .casino-hand-placeholder {
     display: flex;
     align-items: center;

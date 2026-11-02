@@ -1,7 +1,7 @@
 'use client';
-import { useEffect, useId, useRef, type CSSProperties } from 'react';
+import { useEffect, useId, useRef, useState, type CSSProperties } from 'react';
 import { LayoutGroup, MotionConfig, motion } from 'motion/react';
-import { Seat, TokenArt, HorizontalRail } from '@games/ui';
+import { Button, Hand, Modal, Seat, TokenArt, HorizontalRail } from '@games/ui';
 import { blackjackDetails, holdemDetails, teenPattiDetails } from '@games/api-client';
 import { ActionPanel } from '../shared/ActionPanel';
 import { playerName, type TableProps } from '../types';
@@ -31,9 +31,9 @@ const crowdedSeats: Record<number, [number, number][]> = {
   7: [
     [35, 85],
     [8, 52],
-    [20, 18],
+    [22, 18],
     [50, 18],
-    [80, 18],
+    [78, 18],
     [92, 52],
     [65, 85],
   ],
@@ -62,6 +62,9 @@ const crowdedSeats: Record<number, [number, number][]> = {
 
 export function CasinoTable(props: TableProps) {
   const { match, room, selfId } = props;
+  const [inspectedPlayer, setInspectedPlayer] = useState<string | null>(null);
+  const inspected = match.players.find((player) => player.id === inspectedPlayer);
+  const inspectedCards = inspected?.cards.filter((card) => card !== null) ?? [];
   const instance = useId();
   const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
   const event = useCasinoMotion(room, match, selfId, reduced);
@@ -197,8 +200,9 @@ export function CasinoTable(props: TableProps) {
                   48 + 37 * Math.sin(angle),
                 ];
                 const style = { '--seat-x': `${x}%`, '--seat-y': `${y}%` } as CSSProperties;
+                const publicCards = player.cards.filter((card) => card !== null);
                 const cards =
-                  player.id === selfId && !player.cards.length ? match.hand : player.cards;
+                  player.id === selfId && !player.cards.length ? match.hand : publicCards;
                 const current = match.phase !== 'finished' && match.currentPlayer === player.id;
                 const winner = match.phase === 'finished' && match.winners.includes(player.id);
                 return (
@@ -247,7 +251,9 @@ export function CasinoTable(props: TableProps) {
                     (cards.length > 0 || player.count > 0) ? (
                       <CasinoCardRow
                         cards={
-                          cards.length ? cards : Array.from({ length: player.count }, () => null)
+                          cards.length
+                            ? cards.slice(0, 3)
+                            : Array.from({ length: player.count }, () => null)
                         }
                         group={`seat-${player.id}`}
                         event={event}
@@ -255,6 +261,17 @@ export function CasinoTable(props: TableProps) {
                         compact
                         className="seat-cards"
                       />
+                    ) : null}
+                    {player.id !== selfId && cards.length > 3 ? (
+                      <Button
+                        className="casino-public-cards-trigger"
+                        size="sm"
+                        variant="secondary"
+                        aria-label={`Inspect ${playerName(room, player.id)}'s ${cards.length} public cards`}
+                        onClick={() => setInspectedPlayer(player.id)}
+                      >
+                        {cards.length} cards · Inspect
+                      </Button>
                     ) : null}
                     {player.bet > 0 ? (
                       <motion.span
@@ -323,6 +340,7 @@ export function CasinoTable(props: TableProps) {
                 <div ref={hands}>
                   <HorizontalRail
                     label="Your blackjack hands"
+                    navigationPosition="below"
                     navigationLabel="blackjack hands"
                     viewportClassName="blackjack-hands"
                     contentClassName="blackjack-hands-row"
@@ -395,6 +413,18 @@ export function CasinoTable(props: TableProps) {
             </details>
           ) : null}
           <CasinoChipFlights event={event} canvas={canvas} pot={pot} seats={seats} />
+          <Modal
+            open={Boolean(inspected)}
+            onOpenChange={(open) => !open && setInspectedPlayer(null)}
+            title={`${inspected ? playerName(room, inspected.id) : 'Player'} · public cards`}
+          >
+            {inspected ? (
+              <Hand
+                cards={inspectedCards}
+                label={`${playerName(room, inspected.id)}'s public cards`}
+              />
+            ) : null}
+          </Modal>
         </div>
       </LayoutGroup>
     </MotionConfig>

@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { BoopPiece, Button, DecisionDock } from '@games/ui';
+import { BoopPiece, Button, DecisionDock, HorizontalRail } from '@games/ui';
 import { boopDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
@@ -56,7 +56,13 @@ function Bed({ match, room, selfId, pending, onAction }: TableProps) {
           ))}
         </div>
       ) : null}
-      <div className="boop-bed" role="group" aria-label="Six by six boop bed">
+      <HorizontalRail
+        label="Six by six boop bed"
+        navigationLabel="boop columns"
+        navigationPosition="below"
+        className="boop-bed-rail"
+        contentClassName="boop-bed"
+      >
         {match.community.map((cell, slot) => {
           const move = placements.get(String(slot)) || returns.get(String(slot));
           const occupied = cell.value === 'kitten' || cell.value === 'cat';
@@ -97,8 +103,8 @@ function Bed({ match, room, selfId, pending, onAction }: TableProps) {
             </button>
           );
         })}
-      </div>
-      <DecisionDock className="boop-graduation" size="compact" label="Graduation choices">
+      </HorizontalRail>
+      <DecisionDock className="boop-graduation" size="extended" label="Graduation choices">
         {match.phase === 'graduating' && match.currentPlayer === selfId ? (
           <>
             <h3>Choose a graduation</h3>

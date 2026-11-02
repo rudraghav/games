@@ -10,8 +10,10 @@ accessible name. They never include an unrevealed rank. Existing keyboard
 activation submits the exact server-enumerated request; pending, paused and
 review states retain their disabled controls. Browser checks cover three- and
 six-seat projections and actual saved three-seat games on desktop and phone,
-including public reveal agreement after refresh. Cleared table-slot semantics
-and native screen-reader studies are separate from this evidence.
+including public reveal agreement after refresh. Naturally reached collection
+checkpoints expose cleared table positions as named static images; their slot
+numbers remain stable and they never become reveal controls. Native screen-reader
+studies remain separate from these browser checks.
 
 ## Azul decision information
 

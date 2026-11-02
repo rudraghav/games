@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useLayoutEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useReducedMotion } from 'motion/react';
 import { cn } from '../lib/cn';
@@ -11,6 +11,7 @@ interface HorizontalRailProps {
   viewportClassName?: string;
   contentClassName?: string;
   navigationLabel?: string;
+  navigationPosition?: 'sides' | 'below';
 }
 
 /** Native touch scrolling with separate controls that never cover the content. */
@@ -21,6 +22,7 @@ export function HorizontalRail({
   viewportClassName,
   contentClassName,
   navigationLabel,
+  navigationPosition = 'sides',
 }: HorizontalRailProps) {
   const root = useRef<HTMLDivElement>(null);
   const viewport = useRef<HTMLDivElement>(null);
@@ -46,14 +48,16 @@ export function HorizontalRail({
         : next,
     );
   }, []);
-  useEffect(() => {
+  // Measure before paint: below-board controls reserve height, so a late
+  // overflow update must not move the decision dock on the first selection.
+  useLayoutEffect(() => {
     const observer = new ResizeObserver(measure);
     if (root.current) observer.observe(root.current);
     if (content.current) observer.observe(content.current);
     measure();
     return () => observer.disconnect();
   }, [measure]);
-  useEffect(() => measure(), [position.overflow, children, measure]);
+  useLayoutEffect(() => measure(), [position.overflow, children, measure]);
 
   function scroll(direction: number) {
     const frame = viewport.current;
@@ -65,7 +69,12 @@ export function HorizontalRail({
   }
 
   return (
-    <div ref={root} className={cn('horizontal-rail', className)} data-overflow={position.overflow}>
+    <div
+      ref={root}
+      className={cn('horizontal-rail', className)}
+      data-overflow={position.overflow}
+      data-navigation={navigationPosition}
+    >
       {position.overflow ? (
         <button
           type="button"

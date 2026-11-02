@@ -1,0 +1,333 @@
+{
+  "checkedAt": "2026-11-02T18:16:11.390063+00:00",
+  "state": "local_passed",
+  "basis": "Actual Chromium rendered legal engine projections with inventory/privacy-checked generator; no invented engine state",
+  "sourceBaseline": "cdb8b1f281dab9084ae66e6487a6086066b3f330",
+  "totalGames": 7,
+  "legalFixtures": 69,
+  "fixtureWidthRenders": 276,
+  "focusedBrowserCasesPassed": 6,
+  "browserTypeCheck": "passed",
+  "scopedProductLint": "passed",
+  "reactReview": "Shared primitive reused; no new fetches, effects, persistence or inferred legality",
+  "harnessCorrection": "Card detail includes color: Boat \u00b7 Black; expectation corrected before final6/6 pass",
+  "games": [
+    {
+      "game": "flip-7",
+      "fixtureCount": 8,
+      "fixtureIds": [
+        "flip-7-3-17-2",
+        "flip-7-3-17-9",
+        "flip-7-3-17-43",
+        "flip-7-3-17-20-crowded",
+        "flip-7-10-31-2",
+        "flip-7-10-31-4",
+        "flip-7-10-31-27",
+        "flip-7-10-31-57-crowded"
+      ],
+      "seatCounts": [
+        3,
+        10
+      ],
+      "phases": [
+        "playing",
+        "round_over",
+        "target"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "freshChecks": [
+        "All legal fixtures rendered with every player disclosure expanded",
+        "No document-width overflow",
+        "Enabled buttons and summaries meet44px bounds"
+      ],
+      "maxPrivateHand": 0,
+      "maxOnePlayerPublicCardsOrCollection": 7,
+      "gaps": [
+        "Only generated legal trajectories are covered; no exhaustive claim",
+        "This batch is local projection evidence, not new saved-room/full-match certification"
+      ],
+      "fix": "No product change needed for observed states"
+    },
+    {
+      "game": "trio",
+      "fixtureCount": 6,
+      "fixtureIds": [
+        "trio-3-17-2",
+        "trio-3-17-3",
+        "trio-3-17-51-crowded",
+        "trio-6-31-2",
+        "trio-6-31-3",
+        "trio-6-31-24-crowded"
+      ],
+      "seatCounts": [
+        3,
+        6
+      ],
+      "phases": [
+        "revealing",
+        "review"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "freshChecks": [
+        "All legal fixtures rendered with every player disclosure expanded",
+        "No document-width overflow",
+        "Enabled buttons and summaries meet44px bounds",
+        "Naturally cleared table positions: seven at3seats and one at6seats are present in accessibility tree",
+        "Cleared cells remain static, never reveal controls"
+      ],
+      "maxPrivateHand": 9,
+      "maxOnePlayerPublicCardsOrCollection": 6,
+      "gaps": [
+        "Only generated legal trajectories are covered; no exhaustive claim",
+        "This batch is local projection evidence, not new saved-room/full-match certification"
+      ],
+      "fix": "Named image semantics for existing empty-position placeholder",
+      "beforeEvidence": {
+        "visualClearedSlots": 7,
+        "namedAccessibilityTreeSlots": 0
+      }
+    },
+    {
+      "game": "azul",
+      "fixtureCount": 10,
+      "fixtureIds": [
+        "azul-2-17-2",
+        "azul-2-17-3",
+        "azul-2-17-6",
+        "azul-2-17-7",
+        "azul-2-17-23",
+        "azul-4-31-2",
+        "azul-4-31-3",
+        "azul-4-31-16",
+        "azul-4-31-17",
+        "azul-4-31-31"
+      ],
+      "seatCounts": [
+        2,
+        4
+      ],
+      "phases": [
+        "drafting",
+        "placing",
+        "round_over"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "freshChecks": [
+        "All legal fixtures rendered with every player disclosure expanded",
+        "No document-width overflow",
+        "Enabled buttons and summaries meet44px bounds"
+      ],
+      "maxPrivateHand": 4,
+      "maxOnePlayerPublicCardsOrCollection": 0,
+      "gaps": [
+        "Only generated legal trajectories are covered; no exhaustive claim",
+        "This batch is local projection evidence, not new saved-room/full-match certification"
+      ],
+      "fix": "No product change needed for observed states"
+    },
+    {
+      "game": "gem-market",
+      "fixtureCount": 7,
+      "fixtureIds": [
+        "gem-market-2-17-2",
+        "gem-market-2-17-40",
+        "gem-market-2-17-41-crowded",
+        "gem-market-4-31-2",
+        "gem-market-4-31-53",
+        "gem-market-4-31-94",
+        "gem-market-4-31-99-crowded"
+      ],
+      "seatCounts": [
+        2,
+        4
+      ],
+      "phases": [
+        "patron",
+        "playing",
+        "return_tokens"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "freshChecks": [
+        "All legal fixtures rendered with every player disclosure expanded",
+        "No document-width overflow",
+        "Enabled buttons and summaries meet44px bounds",
+        "Every expanded public collection card fits within wrapping rows with no overlap"
+      ],
+      "maxPrivateHand": 0,
+      "maxOnePlayerPublicCardsOrCollection": 17,
+      "gaps": [
+        "Only generated legal trajectories are covered; no exhaustive claim",
+        "This batch is local projection evidence, not new saved-room/full-match certification"
+      ],
+      "fix": "Public purchased developments/patrons wrap using existing card dimensions"
+    },
+    {
+      "game": "sea-salt-paper",
+      "fixtureCount": 18,
+      "fixtureIds": [
+        "sea-salt-paper-2-17-2",
+        "sea-salt-paper-2-17-3",
+        "sea-salt-paper-2-17-4",
+        "sea-salt-paper-2-17-28",
+        "sea-salt-paper-2-17-29",
+        "sea-salt-paper-2-17-50",
+        "sea-salt-paper-2-17-51",
+        "sea-salt-paper-2-17-52",
+        "sea-salt-paper-2-17-238-crowded",
+        "sea-salt-paper-4-31-2",
+        "sea-salt-paper-4-31-3",
+        "sea-salt-paper-4-31-4",
+        "sea-salt-paper-4-31-48",
+        "sea-salt-paper-4-31-62",
+        "sea-salt-paper-4-31-63",
+        "sea-salt-paper-4-31-72",
+        "sea-salt-paper-4-31-73",
+        "sea-salt-paper-4-31-136-crowded"
+      ],
+      "seatCounts": [
+        2,
+        4
+      ],
+      "phases": [
+        "choosing",
+        "crab_card",
+        "crab_pile",
+        "draw",
+        "playing",
+        "round_over",
+        "steal"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "freshChecks": [
+        "All legal fixtures rendered with every player disclosure expanded",
+        "No document-width overflow",
+        "Enabled buttons and summaries meet44px bounds",
+        "Every expanded public collection card fits within wrapping rows with no overlap",
+        "Six private discard choices: explicit previous/next keyboard navigation reaches tail",
+        "Selection shows printed rule; clear changes only draft",
+        "Pending/paused controls disabled; exact server take action submitted with Enter"
+      ],
+      "maxPrivateHand": 7,
+      "maxOnePlayerPublicCardsOrCollection": 11,
+      "gaps": [
+        "Only generated legal trajectories are covered; no exhaustive claim",
+        "This batch is local projection evidence, not new saved-room/full-match certification"
+      ],
+      "fix": "Public collections wrap; private choices use shared HorizontalRail navigation"
+    },
+    {
+      "game": "the-gang",
+      "fixtureCount": 12,
+      "fixtureIds": [
+        "the-gang-3-17-2",
+        "the-gang-3-17-4",
+        "the-gang-3-17-7",
+        "the-gang-3-17-10",
+        "the-gang-3-17-13",
+        "the-gang-3-17-16",
+        "the-gang-6-31-2",
+        "the-gang-6-31-7",
+        "the-gang-6-31-13",
+        "the-gang-6-31-19",
+        "the-gang-6-31-25",
+        "the-gang-6-31-31"
+      ],
+      "seatCounts": [
+        3,
+        6
+      ],
+      "phases": [
+        "chips",
+        "heist_review",
+        "showdown"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "freshChecks": [
+        "All legal fixtures rendered with every player disclosure expanded",
+        "No document-width overflow",
+        "Enabled buttons and summaries meet44px bounds"
+      ],
+      "maxPrivateHand": 2,
+      "maxOnePlayerPublicCardsOrCollection": 2,
+      "gaps": [
+        "Only generated legal trajectories are covered; no exhaustive claim",
+        "This batch is local projection evidence, not new saved-room/full-match certification"
+      ],
+      "fix": "No product change needed for observed states"
+    },
+    {
+      "game": "six-nimmt",
+      "fixtureCount": 8,
+      "fixtureIds": [
+        "six-nimmt-2-17-2",
+        "six-nimmt-2-17-3",
+        "six-nimmt-2-17-21",
+        "six-nimmt-2-17-34",
+        "six-nimmt-10-31-2",
+        "six-nimmt-10-31-11",
+        "six-nimmt-10-31-33",
+        "six-nimmt-10-31-117"
+      ],
+      "seatCounts": [
+        2,
+        10
+      ],
+      "phases": [
+        "review",
+        "round_over",
+        "selecting",
+        "take_row"
+      ],
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "freshChecks": [
+        "All legal fixtures rendered with every player disclosure expanded",
+        "No document-width overflow",
+        "Enabled buttons and summaries meet44px bounds"
+      ],
+      "maxPrivateHand": 10,
+      "maxOnePlayerPublicCardsOrCollection": 0,
+      "gaps": [
+        "Only generated legal trajectories are covered; no exhaustive claim",
+        "This batch is local projection evidence, not new saved-room/full-match certification"
+      ],
+      "fix": "No product change needed for observed states"
+    }
+  ],
+  "retainedCaptures": "output/playwright/crowded-actions-20261102/modern",
+  "nativeScreenReaderStudy": false
+}

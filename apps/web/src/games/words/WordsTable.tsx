@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Button, WordTile, DecisionDock } from '@games/ui';
+import { Button, WordTile, DecisionDock, HorizontalRail } from '@games/ui';
 import { wordsDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import type { TableProps } from '../types';
@@ -58,7 +58,13 @@ export function WordsTable(props: TableProps) {
             Your spymaster key · Operatives cannot see these colours.
           </p>
         ) : null}
-        <div className="word-board">
+        <HorizontalRail
+          label="Word Agents grid"
+          navigationLabel="word columns"
+          navigationPosition="below"
+          className="word-board-rail"
+          contentClassName="word-board"
+        >
           {match.community.map((card) => (
             <WordTile
               key={card.id}
@@ -74,7 +80,7 @@ export function WordsTable(props: TableProps) {
               disabled={blocked || !guesses.has(card.id)}
             />
           ))}
-        </div>
+        </HorizontalRail>
         <DecisionDock
           className="word-action-dock"
           size="standard"

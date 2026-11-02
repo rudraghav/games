@@ -1,6 +1,6 @@
 'use client';
 import { useRef, useState } from 'react';
-import { Hand, Button, CardPile, DecisionDock, TableDecisionPanel } from '@games/ui';
+import { Hand, Button, CardPile, DecisionDock, PlayingCard, TableDecisionPanel } from '@games/ui';
 import { dealDetails, type ActionOption } from '@games/api-client';
 import { ArrowRight, CircleHelp, Info, ShieldCheck, SlidersHorizontal, X } from 'lucide-react';
 import { playerName, type TableProps } from '../types';
@@ -322,10 +322,13 @@ export function DealTable(props: TableProps) {
                     {transfer.cards.map((id) => {
                       const asset = publicCards.find((item) => item.id === id);
                       return asset ? (
-                        <Button key={id} variant="ghost" size="sm" onClick={() => inspect(id)}>
-                          {asset.label} · {asset.value}
-                          <Info size={14} />
-                        </Button>
+                        <div key={id} className="deal-transfer-card">
+                          <PlayingCard card={asset} family="property" />
+                          <Button variant="ghost" size="sm" onClick={() => inspect(id)}>
+                            {asset.label} · {asset.value}
+                            <Info size={14} />
+                          </Button>
+                        </div>
                       ) : null;
                     })}
                   </div>
@@ -407,7 +410,11 @@ export function DealTable(props: TableProps) {
                         disabled={pending || room.paused}
                         onClick={() => commit(option.value)}
                       >
-                        {option.label}
+                        {option.value.type === 'accept' && effect?.transfers.length
+                          ? effect.blocked
+                            ? 'Keep action blocked'
+                            : 'Allow transfer'
+                          : option.label}
                       </Button>
                     ))}
                 </div>

@@ -1,0 +1,78 @@
+{
+  "games": [
+    {
+      "game": "deal",
+      "naturalFixtures": 34,
+      "naturalViewportRenders": 136,
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "seatCounts": [
+        2,
+        5
+      ],
+      "phases": [
+        "playing"
+      ],
+      "controlledStress": {
+        "propertyPiles": 13,
+        "bankCards": 10,
+        "ownAndOpponentViews": true,
+        "naturalTrajectory": false,
+        "inventoryAndPrivacyGuards": true
+      },
+      "checks": [
+        "Every own collection fits without sideways clipping or overlapping rows",
+        "Final public set can be inspected by keyboard and focus returns",
+        "Pending wild-card theft previews exact public card and active color",
+        "Allow transfer and Just say no send authoritative legal actions",
+        "Saving/paused states disable consequential responses"
+      ],
+      "limits": [
+        "Not every possible asset distribution, counter chain or No Mercy distribution is enumerated",
+        "Crowded probes are controlled engine projections, not persisted multiplayer rooms"
+      ]
+    },
+    {
+      "game": "deal-no-mercy",
+      "naturalFixtures": 36,
+      "naturalViewportRenders": 144,
+      "widths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "seatCounts": [
+        2,
+        5
+      ],
+      "phases": [
+        "playing"
+      ],
+      "controlledStress": {
+        "propertyPiles": 13,
+        "bankCards": 10,
+        "ownAndOpponentViews": true,
+        "naturalTrajectory": false,
+        "inventoryAndPrivacyGuards": true
+      },
+      "checks": [
+        "Every own collection fits without sideways clipping or overlapping rows",
+        "Final public set can be inspected by keyboard and focus returns"
+      ],
+      "limits": [
+        "Not every possible asset distribution, counter chain or No Mercy distribution is enumerated",
+        "Crowded probes are controlled engine projections, not persisted multiplayer rooms"
+      ],
+      "sharedRendererEvidence": "The pending wild-card preview and response controls use the shared Deal renderer; the dedicated pending-steal scenario was exercised in classic only."
+    }
+  ],
+  "naturalFixtures": 70,
+  "controlledFixtures": 5,
+  "state": "local_named_verification_passed",
+  "namedReport": "verify-f8963850568e421c89ccd20975b4c91f"
+}

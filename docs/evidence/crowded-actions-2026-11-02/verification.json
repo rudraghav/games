@@ -1,0 +1,63 @@
+{
+  "state": "local_verified_not_yet_released",
+  "checkedAt": "2026-11-02T18:47:59.465021+00:00",
+  "namedReport": "verify-f8963850568e421c89ccd20975b4c91f",
+  "groups": [
+    "frontend",
+    "contracts",
+    "browser"
+  ],
+  "frontend": {
+    "types": "passed",
+    "lint": "passed",
+    "unitTestsPassed": 134,
+    "productionBuild": "passed"
+  },
+  "contracts": {
+    "openApi": "passed",
+    "cardAssets": "passed",
+    "dealFixtures": 21,
+    "naturalMidgameFixtures": 259,
+    "generatedParity": "passed"
+  },
+  "browser": {
+    "casesPassed": 88,
+    "devices": [
+      "desktop",
+      "phone"
+    ],
+    "games": 27,
+    "naturalProjections": 259,
+    "widths": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "naturalViewportRenders": 1036,
+    "additionalControlledDealProbes": 5,
+    "savedRoomGames": [
+      "deal",
+      "deal-no-mercy",
+      "blackjack",
+      "sea-salt-paper",
+      "word-agents",
+      "boop"
+    ]
+  },
+  "regressions": {
+    "initialCombinedGate": "frontend/contracts passed; browser87/88 exposed first-selection52px Word Agents dock shift",
+    "rootFix": "Shared rail measures overflow before paint; unchanged regression failed2/10 before and passed10/10 after",
+    "assertionsWeakened": false
+  },
+  "runtime": {
+    "files": 461,
+    "fingerprint": "75f8936af1e8c4539aa61be2bd12bc7a3a1e122ba3882d85ece76b09eb91c220"
+  },
+  "limits": [
+    "Bounded scenario and action matrix, not every possible combination",
+    "Density fixtures are distinguished from ordinary saved multiplayer flows",
+    "No native screen-reader user study",
+    "Server rules/API/schema unchanged; backend suites not newly certified by this UI batch"
+  ]
+}

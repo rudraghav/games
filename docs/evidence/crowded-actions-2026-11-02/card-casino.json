@@ -1,0 +1,426 @@
+{
+  "kind": "Local Chromium rendering and interaction against legally reached viewer projections; no real-user rooms or provider calls",
+  "state": "passed",
+  "sourceBaseline": "cdb8b1f281dab9084ae66e6487a6086066b3f330",
+  "games": [
+    {
+      "game": "uno",
+      "scenarioCount": 7,
+      "scenarioIds": [
+        "uno-2-17-2",
+        "uno-10-31-2",
+        "uno-10-31-18",
+        "uno-10-31-22",
+        "uno-2-11-31",
+        "uno-2-11-56",
+        "uno-2-11-87"
+      ],
+      "seatLimits": [
+        2,
+        10
+      ],
+      "phases": [
+        "playing"
+      ],
+      "maximumOwnHand": 41,
+      "offeredActionTypes": [
+        "accept",
+        "challenge",
+        "draw",
+        "end_turn",
+        "play"
+      ],
+      "viewportWidths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderedChecks": [
+        "no horizontal page overflow",
+        "every visible enabled control meets44px target"
+      ],
+      "freshInteractions": [
+        "41-card hand first/last reachability using explicit rail buttons",
+        "pending and disconnected block card moves"
+      ],
+      "limits": [
+        "No enumeration of all draw/penalty/colour combinations or physical maximum hand"
+      ]
+    },
+    {
+      "game": "uno-no-mercy",
+      "scenarioCount": 5,
+      "scenarioIds": [
+        "uno-no-mercy-2-17-2",
+        "uno-no-mercy-2-17-31",
+        "uno-no-mercy-6-31-2",
+        "uno-no-mercy-6-31-16",
+        "uno-no-mercy-2-11-17"
+      ],
+      "seatLimits": [
+        2,
+        6
+      ],
+      "phases": [
+        "playing"
+      ],
+      "maximumOwnHand": 24,
+      "offeredActionTypes": [
+        "choose",
+        "play"
+      ],
+      "viewportWidths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderedChecks": [
+        "no horizontal page overflow",
+        "every visible enabled control meets44px target"
+      ],
+      "freshInteractions": [
+        "24-card hand first/last reachability using explicit rail buttons",
+        "pending and disconnected block card moves"
+      ],
+      "limits": [
+        "24-card legally reached projection tested; elimination itself relies on existing engine/workflow coverage"
+      ]
+    },
+    {
+      "game": "rummy",
+      "scenarioCount": 6,
+      "scenarioIds": [
+        "rummy-2-17-2",
+        "rummy-2-17-3",
+        "rummy-2-17-8",
+        "rummy-6-31-2",
+        "rummy-6-31-3",
+        "rummy-6-31-32"
+      ],
+      "seatLimits": [
+        2,
+        6
+      ],
+      "phases": [
+        "discard",
+        "draw"
+      ],
+      "maximumOwnHand": 14,
+      "offeredActionTypes": [
+        "declare",
+        "discard",
+        "draw_discard",
+        "draw_stock",
+        "fold"
+      ],
+      "viewportWidths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderedChecks": [
+        "no horizontal page overflow",
+        "every visible enabled control meets44px target"
+      ],
+      "freshInteractions": [
+        "14 cards arranged across all five groups, no row overlap or lost cards",
+        "all groups first/last reachability",
+        "overflow navigation stable across12 animation frames",
+        "pending and disconnected block card/group moves"
+      ],
+      "limits": [
+        "No new saved-room natural declaration or scoring certification"
+      ]
+    },
+    {
+      "game": "skyjo",
+      "scenarioCount": 16,
+      "scenarioIds": [
+        "skyjo-2-17-2",
+        "skyjo-2-17-5",
+        "skyjo-2-17-6",
+        "skyjo-2-17-9",
+        "skyjo-2-17-60",
+        "skyjo-2-17-62",
+        "skyjo-2-17-63",
+        "skyjo-2-17-193",
+        "skyjo-8-31-2",
+        "skyjo-8-31-17",
+        "skyjo-8-31-18",
+        "skyjo-8-31-25",
+        "skyjo-8-31-230",
+        "skyjo-8-31-232",
+        "skyjo-8-31-234",
+        "skyjo-8-31-249"
+      ],
+      "seatLimits": [
+        2,
+        8
+      ],
+      "phases": [
+        "between_rounds",
+        "opening",
+        "playing",
+        "reveal"
+      ],
+      "maximumOwnHand": 0,
+      "offeredActionTypes": [
+        "discard",
+        "draw_discard",
+        "draw_stock",
+        "next_round",
+        "reveal",
+        "swap"
+      ],
+      "viewportWidths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderedChecks": [
+        "no horizontal page overflow",
+        "every visible enabled control meets44px target"
+      ],
+      "freshInteractions": [],
+      "limits": [
+        "No fresh action execution in this density spec; 16 legal projections rendered"
+      ]
+    },
+    {
+      "game": "shithead",
+      "scenarioCount": 6,
+      "scenarioIds": [
+        "shithead-2-17-2",
+        "shithead-2-17-3",
+        "shithead-5-31-2",
+        "shithead-5-31-6",
+        "shithead-2-1-32-crowded",
+        "shithead-5-1-62-crowded"
+      ],
+      "seatLimits": [
+        2,
+        5
+      ],
+      "phases": [
+        "playing",
+        "setup"
+      ],
+      "maximumOwnHand": 22,
+      "offeredActionTypes": [
+        "arrange",
+        "pickup",
+        "play"
+      ],
+      "viewportWidths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderedChecks": [
+        "no horizontal page overflow",
+        "every visible enabled control meets44px target"
+      ],
+      "freshInteractions": [
+        "legal20-card picked-up hand first/last reachability using rail buttons",
+        "additional22-card5-seat legal projection included in density sweep",
+        "pending and disconnected block card moves"
+      ],
+      "limits": [
+        "20/22-card picked-up hands cover high density, not every reachable pile/hand partition"
+      ]
+    },
+    {
+      "game": "holdem",
+      "scenarioCount": 8,
+      "scenarioIds": [
+        "holdem-2-17-2",
+        "holdem-2-17-3",
+        "holdem-2-17-5",
+        "holdem-2-17-7",
+        "holdem-9-31-2",
+        "holdem-9-31-10",
+        "holdem-9-31-19",
+        "holdem-9-31-28"
+      ],
+      "seatLimits": [
+        2,
+        9
+      ],
+      "phases": [
+        "flop",
+        "preflop",
+        "river",
+        "turn"
+      ],
+      "maximumOwnHand": 2,
+      "offeredActionTypes": [
+        "all_in",
+        "call",
+        "check",
+        "fold",
+        "raise"
+      ],
+      "viewportWidths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderedChecks": [
+        "no horizontal page overflow",
+        "every visible enabled control meets44px target",
+        "public casino card previews stay inside owning seat",
+        "casino seat rectangles do not intersect"
+      ],
+      "freshInteractions": [],
+      "limits": [
+        "All four betting streets rendered; no fresh side-pot, all-in ledger or outcome certification"
+      ]
+    },
+    {
+      "game": "teen-patti",
+      "scenarioCount": 6,
+      "scenarioIds": [
+        "teen-patti-2-17-2",
+        "teen-patti-2-17-3",
+        "teen-patti-6-31-2",
+        "teen-patti-6-31-3",
+        "teen-patti-6-31-10",
+        "teen-patti-6-31-26"
+      ],
+      "seatLimits": [
+        2,
+        6
+      ],
+      "phases": [
+        "playing"
+      ],
+      "maximumOwnHand": 3,
+      "offeredActionTypes": [
+        "accept",
+        "bet",
+        "decline",
+        "fold",
+        "peek",
+        "show",
+        "sideshow"
+      ],
+      "viewportWidths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderedChecks": [
+        "no horizontal page overflow",
+        "every visible enabled control meets44px target",
+        "public casino card previews stay inside owning seat",
+        "casino seat rectangles do not intersect"
+      ],
+      "freshInteractions": [],
+      "limits": [
+        "Blind, seen and sideshow views rendered; no fresh wager/sideshow commit in this density spec"
+      ]
+    },
+    {
+      "game": "blackjack",
+      "scenarioCount": 8,
+      "scenarioIds": [
+        "blackjack-1-17-2",
+        "blackjack-7-31-2",
+        "blackjack-7-31-8",
+        "blackjack-7-31-11",
+        "blackjack-7-31-18",
+        "blackjack-1-8-2",
+        "blackjack-1-11-5-crowded",
+        "blackjack-7-5-13-crowded"
+      ],
+      "seatLimits": [
+        1,
+        7
+      ],
+      "phases": [
+        "betting",
+        "insurance",
+        "playing"
+      ],
+      "maximumOwnHand": 5,
+      "offeredActionTypes": [
+        "accept",
+        "bet",
+        "decline",
+        "double",
+        "hit",
+        "split",
+        "stand"
+      ],
+      "viewportWidths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "renderedChecks": [
+        "no horizontal page overflow",
+        "every visible enabled control meets44px target",
+        "public casino card previews stay inside owning seat",
+        "casino seat rectangles do not intersect"
+      ],
+      "freshInteractions": [
+        "legal five-card hand first/last reachability using explicit rail buttons",
+        "public-card modal contains every projected face and no move buttons",
+        "Escape restores exact opener",
+        "public inspection remains read-only during pending and disconnected states",
+        "Single five-card hand fills available rail width at320/390/768/1440 pixels",
+        "Recorded legal split retains separate180px hands and correct active-hand action context",
+        "Both split hands and below-rail navigation remain horizontally and vertically reachable at all four widths"
+      ],
+      "limits": [
+        "Five-card hand and prior split continuation coverage, not every four-way split/card-count combination",
+        "Opponent inspection preserves available flattened public cards; it does not invent unavailable split-hand grouping"
+      ]
+    }
+  ],
+  "scenarioCount": 62,
+  "renderedViewportCases": 248,
+  "browserTestsPassed": 8,
+  "additionalFocusedChecks": "Rummy overflow-state stability, static public-card inspection, and single/split hand sizing each pass desktop and phone after the full8-case run",
+  "exporter": {
+    "scenarios": 259,
+    "preexistingCasesPreserved": 247,
+    "newCases": 12,
+    "regenerationDriftCheck": "passed",
+    "physicalInventoryAndProjectionPrivacy": "passed",
+    "historicalCoverageReport": "preserved unchanged",
+    "currentReport": "midgame-coverage.json"
+  },
+  "confirmedFixes": [
+    {
+      "problem": "Three or more public casino cards could extend beyond narrow seats; larger Blackjack rows overlapped neighboring hands",
+      "solution": "Two-column narrow grid, bounded three-face public preview and read-only full public-card inspector; own-hand rails expose navigation"
+    },
+    {
+      "problem": "Seven-seat ring inspector made two diagonal seat boxes overlap slightly",
+      "solution": "Move top corner centers inward from20/80percent to22/78percent; same seat layout retained"
+    },
+    {
+      "problem": "Rummy10-card remainder caused overflow arrows to oscillate after grouping14cards across5groups",
+      "evidence": "30-frame readings switched content width936/878 across890px rail boundary because overflow-state styling changed intrinsic dimensions",
+      "solution": "Shared hand gap/padding stay constant across overflow states"
+    },
+    {
+      "problem": "One Blackjack hand used a narrow180px frame; two split hands could never fully fit the174px viewport left by side arrows on a320px screen",
+      "solution": "Single hand fills available space; split hands retain180px frames with below-rail controls reachable inside the own-card scroll area"
+    }
+  ],
+  "notClaimed": [
+    "Every possible deal, inventory, action sequence or viewport",
+    "New saved-room or live-release proof",
+    "Native screen-reader user study or every browser/zoom combination"
+  ]
+}

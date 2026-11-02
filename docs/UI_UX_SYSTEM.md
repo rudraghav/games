@@ -17,6 +17,14 @@ Party choices remain selected during same-round updates from other players;
 new prompts start unselected, including advancement from another tab. The server's
 locked state takes precedence over a transient local draft.
 
+Crowded public assets wrap within the player's collection; inspectable casino
+previews stay bounded. Do not validate only an outer seat's rectangle: verify its
+painted card contents and neighbouring rows. Rails keep intrinsic card spacing
+constant when overflow navigation appears. Full boards can use the typed
+`navigationPosition="below"` variant to keep controls outside the board canvas.
+The current per-game density/action matrix is in
+`evidence/crowded-actions-2026-11-02`.
+
 Warm ivory lounge; dark ink, muted sage and terracotta accents. Cards combine
 large readable ranks/actions, documented SVG playing-card faces and original
 illustration atlases. Casino tables use
