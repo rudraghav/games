@@ -1,0 +1,50 @@
+{
+  "state": "local_checks_passed",
+  "baseline": "99fe5ad2ff6647936e36dfc8925fc4dfe8103045",
+  "frontend": {
+    "types": "passed",
+    "lint": "passed",
+    "tests": 134,
+    "productionBuild": "passed"
+  },
+  "browser": {
+    "types": "passed",
+    "casesPassed": 18,
+    "devices": [
+      "desktop",
+      "phone"
+    ],
+    "specs": [
+      "trio-accessibility",
+      "trio-accessibility-saved",
+      "party-recovery",
+      "party",
+      "modern"
+    ]
+  },
+  "report": "verify-c47502e8726b4b1d8878c3c4de7af25b",
+  "runtimeFingerprint": "e84c620bcce475be0e521a7e60ce8deb4f1187297dc985de2b38731632845402",
+  "runtimeFiles": 461,
+  "cloudPreflight": {
+    "targetAuthAndPooler": "passed",
+    "schemaUpgrade": "no-op",
+    "drift": "none",
+    "privateRlsGrants": "passed",
+    "schemaHead": "a6e442b15d80"
+  },
+  "regressionProof": {
+    "beforeFix": "Actual saved Hot Seat round two retained one prior-round choice; expected zero",
+    "afterFix": "Same-round drafts persist, remote own commits lock, new rounds require explicit selection in all three modes; saved reload agrees"
+  },
+  "harnessCorrections": [
+    "Most Likely label locator excludes decorative avatar initials",
+    "Next-prompt actor follows public spotlight; Spill reaches the host through legal turns after rotated match starts"
+  ],
+  "scope": "Two UI renderers; no server rules/API/schema/dependency changes",
+  "review": "Independent review found no substantive correctness or privacy issues",
+  "notRerun": "Unchanged backend/multiplayer/load suites retain prior release evidence",
+  "limits": [
+    "No native screen-reader user study",
+    "Cleared Trio table slots are outside current legal fixtures"
+  ]
+}

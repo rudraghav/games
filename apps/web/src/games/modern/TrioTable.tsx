@@ -104,6 +104,7 @@ export function TrioTable(props: TableProps) {
                       key={edge}
                       size="sm"
                       variant="secondary"
+                      aria-label={`${edge === 'low' ? 'Lowest' : 'Highest'} card · ${playerName(room, player.id)}`}
                       disabled={blocked || !option}
                       onClick={() => option && onAction(option.value)}
                     >

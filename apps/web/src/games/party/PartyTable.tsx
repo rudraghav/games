@@ -12,7 +12,9 @@ import { PlayerStrip } from '../shared/PlayerStrip';
 export function PartyTable(props: TableProps) {
   const { match, room, selfId, pending, onAction } = props;
   const data = partyDetails(match.detail);
-  const [selected, setSelected] = useState<string | null>(null);
+  const roundKey = `${room.matchId}:${data.mode}:${data.round}:${selfId}`;
+  const [selection, setSelection] = useState<{ key: string; value: string } | null>(null);
+  const selected = selection?.key === roundKey ? selection.value : null;
   const spotlight = room.members.find((member) => member.id === data.spotlight);
   const next = match.actions.find((option) => option.value.type === 'next_prompt');
   const decisions = match.actions.filter((option) => option.value.type !== 'next_prompt');
@@ -157,7 +159,7 @@ export function PartyTable(props: TableProps) {
               {next ? (
                 <Button
                   onClick={() => {
-                    setSelected(null);
+                    setSelection(null);
                     onAction(next.value);
                   }}
                   disabled={blocked}
@@ -194,7 +196,7 @@ export function PartyTable(props: TableProps) {
                         className="party-choice"
                         aria-pressed={selected === key(option)}
                         disabled={blocked}
-                        onClick={() => setSelected(key(option))}
+                        onClick={() => setSelection({ key: roundKey, value: key(option) })}
                       >
                         {option.value.target ? (
                           <Avatar
@@ -217,7 +219,7 @@ export function PartyTable(props: TableProps) {
                     onClick={() => {
                       if (selectedOption) {
                         onAction(selectedOption.value);
-                        setSelected(null);
+                        setSelection(null);
                       }
                     }}
                   >

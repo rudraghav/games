@@ -3,6 +3,16 @@
 Azul, Trio and Flip 7 consume authorized projections and server-enumerated actions.
 Rules, inventory and score calculation remain in their independent backend modules.
 
+## Trio hand-end requests
+
+Lowest/Highest controls include the public target player's name in their
+accessible name. They never include an unrevealed rank. Existing keyboard
+activation submits the exact server-enumerated request; pending, paused and
+review states retain their disabled controls. Browser checks cover three- and
+six-seat projections and actual saved three-seat games on desktop and phone,
+including public reveal agreement after refresh. Cleared table-slot semantics
+and native screen-reader studies are separate from this evidence.
+
 ## Azul decision information
 
 Tile art is decorative; named semantic objects expose the public state needed

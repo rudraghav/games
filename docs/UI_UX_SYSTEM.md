@@ -11,6 +11,12 @@ labels. Empty floor positions distinguish potential penalties from the current
 score. The centre/floor first-player marker has an explicit identity. Tile art
 remains decorative; static descriptions never become extra move controls.
 
+Trio keeps its concise visible Lowest/Highest text and adds the public target
+player to each control's accessible name. Unrevealed ranks stay private.
+Party choices remain selected during same-round updates from other players;
+new prompts start unselected, including advancement from another tab. The server's
+locked state takes precedence over a transient local draft.
+
 Warm ivory lounge; dark ink, muted sage and terracotta accents. Cards combine
 large readable ranks/actions, documented SVG playing-card faces and original
 illustration atlases. Casino tables use

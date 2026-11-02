@@ -1,3 +1,41 @@
+## 2026-11-02 — Trio and Party local release checks pass
+
+- Confirmed a saved Hot Seat defect: a draft from round one remained selected
+  in round two after another tab submitted and advanced. Drafts now belong to
+  the match, mode, round and player; same-round friend updates preserve them.
+  Cross-tab locking, new-round reset and saved refresh pass in all three modes.
+- Trio Lowest/Highest controls now identify the public target player, without
+  revealing ranks or changing visible layout or legal actions. Three/six-seat
+  projections and saved three-seat keyboard/public-reveal flows pass.
+- Named report verify-c47502e8726b4b1d8878c3c4de7af25b passes types/lint,
+  134 frontend tests, production build, browser types and 18 desktop/phone cases.
+  Independent review found no substantive issues. Test harness corrections use
+  the actual choice label and public spotlight; no product checks were weakened.
+- Cloud preflight, no-op schema upgrade/drift and private grants pass at
+  a6e442b15d80. Owner before-state and rollback dpl_CMa9LCRpxhp62PsgYukdCQ3gce7n
+  retained. All 461 runtime files match fingerprint
+  e84c620bcce475be0e521a7e60ce8deb4f1187297dc985de2b38731632845402.
+- State: local verification complete. Next: push, one deployment, hosted saved
+  flows, owner/log readback and task-owned cleanup. No backend rules/API/schema
+  changes; native screen-reader study and cleared Trio-slot coverage are separate.
+
+## 2026-11-02 — Next task: Trio targets and party draft recovery
+
+- Outcome: make Trio hand-end requests identify their public target, and
+  investigate the recorded risk that an uncommitted party selection can survive
+  another tab completing that identity's turn and advancing the prompt.
+- Acceptance: Trio's Lowest/Highest controls identify the intended player without
+  exposing an unrevealed rank, and keyboard requests preserve exact legal actions.
+  Reproduce party behavior first; if confirmed, bind drafts to the decision round
+  while preserving a current draft when another player submits. Remote own commits,
+  next prompts, saved refresh, privacy and exact QA-room closure must pass.
+- Scope: existing Trio/Party renderers, real-browser regressions and owning docs;
+  no game-rule/API/schema/dependency change. Preserve visible layout and original
+  prompts. Native screen-reader studies remain separate from browser evidence.
+- Task trio-party-recovery-20261102. Existing web3217/API8217 retained; test output
+  under output/playwright/trio-party-recovery. Next: confirm the recovery defect,
+  implement the smallest fix, run named checks, then push/verify one rollout.
+
 ## 2026-11-02 — Azul accessibility pushed and live verified
 
 - Application 3acd70d21d24acdf743cf7f0f76e1d545cd3410e pushed to main; one production

@@ -11,6 +11,10 @@ wall position and floor contents including the first-player marker. Drafting
 and placement retain the same server-owned actions; exact public tile state
 survives saved refresh and appears consistently to the other seats.
 
+Trio's Lowest/Highest requests identify the target player in their accessible
+names without including hidden ranks. Keyboard moves retain the server's legal
+request and saved public reveals agree across all seats after refresh.
+
 - `/`: public, server-rendered lounge with 26 multiplayer games and Pop Tarot; search/category/group-size discovery, create/join and member-only room shortcuts.
 - `/rooms/[id]`: authenticated membership-only lobby, live table, results and room chat.
 - `/join/[token]`: guest identity and explicit join; navigate to the stable room URL after joining.
@@ -70,6 +74,10 @@ set details expose the complete printed group without disclosing hidden cards. C
 Party decisions use select → lock → wait for friends → reveal → next prompt.
 Concurrent submissions can conflict; a fresh snapshot preserves the locked
 choices already committed and lets the remaining player submit deliberately.
+Uncommitted choices survive another player's same-prompt update. They are scoped
+to the current match, mode, round and player: a submission or next prompt from
+another tab cannot make an old choice the next round's selected answer. Reload
+restores committed state and requires a fresh choice for an uncommitted turn.
 Optional sip prompts are set before starting; every mode always permits Pass.
 Tarot offers Explore the deck with major/suit filters, independent of the saved
 three-card spread. Fresh reading sections show The grounded read, The plot twist

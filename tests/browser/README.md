@@ -15,6 +15,14 @@ check draft, lines, wall and floor in the actual accessibility tree;
 with independent guests. The saved-room test also supports an explicit hosted
 origin, closes its own rooms and records no private traces or screenshots.
 
+`trio-accessibility.spec.ts` checks public target names, exact legal actions and
+disabled states in three- and six-seat projections. Its saved-room counterpart
+checks keyboard requests, public reveal ownership, refresh and all-seat agreement.
+`party-recovery.spec.ts` shares a host identity across two tabs and verifies all
+three party modes: same-round draft preservation, remote commit locking, clean
+next prompts and saved refresh. Both saved-room specs support an explicit hosted
+origin, close only their own rooms and disable private traces/screenshots.
+
 `deal-workspace.spec.ts` also checks the local-only `/design/deal` review harness.
 Its twelve synthetic scenarios and paired outcomes come from real Deal engine
 actions and authorized projections, with conservation/privacy assertions in
