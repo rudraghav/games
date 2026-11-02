@@ -1,7 +1,7 @@
 # Application flow
 
 Public board positions remain inspectable through the accessibility tree:
-Four in a Row exposes all42 squares and occupants; Mancala exposes both owners'
+Four in a Row exposes all 42 squares and occupants; Mancala exposes both owners'
 pits/stores and seed counts. Whole-board overviews remain read-only and Escape
 returns focus to the opener. Keyboard activation submits only the existing
 full-size legal move controls.

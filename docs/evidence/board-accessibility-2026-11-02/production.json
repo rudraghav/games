@@ -1,0 +1,80 @@
+{
+  "state": "pushed_deployed_live_verified",
+  "verifiedAt": "2026-11-02T13:07:44.607510+00:00",
+  "applicationCommit": "dc78bcb11bb2405aa2d29111979711d759396e4b",
+  "branch": "main",
+  "deployment": {
+    "id": "dpl_HdDUpQfY58ewQ13HzrHDm57qusJP",
+    "target": "production",
+    "readyState": "READY",
+    "regions": [
+      "bom1"
+    ],
+    "alias": "https://games-seven-black.vercel.app",
+    "bothSourceMetadataFieldsMatch": true
+  },
+  "rollbackDeployment": "dpl_FRh4dLZ1kfEiuChjUcQ1QFn8X1v5",
+  "deployments": 1,
+  "hosted": {
+    "casesPassed": 2,
+    "devices": [
+      "desktop",
+      "phone"
+    ],
+    "games": [
+      "four-in-a-row",
+      "mancala"
+    ],
+    "checks": [
+      "Keyboard activation submits exactly the authoritative action",
+      "Exactly one committed version increment and changed public board",
+      "Exact saved board after refresh and in the other seat",
+      "All 42 Four cells and 14 Mancala overview positions named",
+      "Mancala stores and controls expose public owners",
+      "Read-only overview does not mutate match and restores focus on Escape"
+    ],
+    "httpBoundariesPassed": 5
+  },
+  "logs": {
+    "start": "2026-11-02T13:03:03.197352+00:00",
+    "end": "2026-11-02T13:06:09+00:00",
+    "warningsErrorsFatals": 0,
+    "http500Plus": 0,
+    "hasMore": false,
+    "excludedIntervals": []
+  },
+  "ownerPreservation": {
+    "accountProfileRoomsMembershipsIdentities": "all five fingerprints unchanged",
+    "existingOwnerRooms": 5
+  },
+  "qaReadback": {
+    "checkedAt": "2026-11-02T13:06:10.874522+00:00",
+    "closedRooms": 2,
+    "activeMemberships": 0,
+    "preservedMatches": 4,
+    "preservedMoveReceipts": 4,
+    "readOnly": true
+  },
+  "runtime": {
+    "files": 461,
+    "fingerprint": "120531183f482f4e17963a19c49f5493d1f9acbb5668fe96e40e6de587852565",
+    "allFilesMatchTestedAndDeployedSource": true
+  },
+  "cleanup": {
+    "checkedAt": "2026-11-02T13:06:49.734464+00:00",
+    "localHealth": {
+      "web": 200,
+      "api": 200
+    },
+    "qaOutputFiles": 3,
+    "qaOutputBytes": 135,
+    "removedBytes": 0,
+    "reason": "Only three concise passing status receipts; no screenshots/traces or disposable trial files created",
+    "protected": "Source, original art, history, databases, owner state, rollback records, dependencies, branches and requested services preserved"
+  },
+  "limits": [
+    "Browser accessibility-tree and keyboard checks; no human native screen-reader study",
+    "Unchanged server rules were not retested as part of this UI-only batch"
+  ],
+  "closure": "Following release commit changes only docs/evidence; no duplicate deployment needed."
+}

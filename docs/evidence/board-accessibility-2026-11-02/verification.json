@@ -1,5 +1,5 @@
 {
-  "state": "locally_verified_before_push",
+  "state": "local_checks_passed_and_production_verified",
   "baseline": "3a37997dd85ccad69812e6425cd166a4e8f23466",
   "frontend": {
     "types": "passed",
@@ -33,5 +33,9 @@
   },
   "scope": "Three UI components only; no server rules/API/schema/dependency changes",
   "notRerun": "Unchanged backend/multiplayer/load suites retain their prior audit release evidence; no new backend claim",
-  "limit": "Accessibility-tree and keyboard checks do not certify native screen-reader usability"
+  "limit": "Accessibility-tree and keyboard checks do not certify native screen-reader usability",
+  "release": {
+    "applicationCommit": "dc78bcb11bb2405aa2d29111979711d759396e4b",
+    "productionReceipt": "production.json"
+  }
 }

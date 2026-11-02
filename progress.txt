@@ -1,3 +1,28 @@
+## 2026-11-02 — Board accessibility pushed and live verified
+
+- Application dc78bcb11bb2405aa2d29111979711d759396e4b pushed to main; one production
+  deployment dpl_HdDUpQfY58ewQ13HzrHDm57qusJP is READY in bom1. Canonical Games
+  alias and both source metadata fields agree. Prior dpl_FRh4dLZ1kfEiuChjUcQ1QFn8X1v5
+  retained for rollback. Schema/auth/provider settings unchanged.
+- Two actual hosted desktop/phone saved-room cases pass: Four and Mancala keyboard
+  moves commit once, public state agrees across seats and survives refresh, all
+  positions are named in the accessibility tree, overview remains read-only and
+  Escape restores focus. Five public/auth/design boundaries pass. All 461 runtime
+  files match the tested fingerprint; local types/lint/134tests/build/20browser
+  checks remain the named verification evidence, not a new backend certification.
+- Deployment logs from 2026-11-02T13:03:03.197352+00:00 to 2026-11-02T13:06:09+00:00
+  contain zero warnings/errors/fatals and zero HTTP500+ records; complete result
+  pagination, no exclusions. Owner account/profile/five rooms/memberships/Google
+  identity fingerprints unchanged. Fresh read-only QA proof confirms both rooms
+  closed, zero active memberships, four preserved matches and four move receipts.
+- Cleanup: only three passing status receipts totalling 135 bytes retained in this
+  task's browser outputs; no screenshots/traces, disposable trial files or new
+  services/worktrees. Existing web 3217/API 8217 still return 200. Source, original
+  art, history, databases, credentials, recovery records and branches preserved.
+- Evidence: docs/evidence/board-accessibility-2026-11-02/production.json. Closure
+  changes docs only, so no duplicate deployment. Native screen-reader usability
+  remains a distinct human study, not a claim made by these automated checks.
+
 ## 2026-11-02 — Board accessibility local release checks pass
 
 - Three UI components now expose every Four cell and both owners' Mancala
