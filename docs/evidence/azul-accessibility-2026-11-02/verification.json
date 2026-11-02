@@ -1,0 +1,46 @@
+{
+  "state": "locally_verified_before_push",
+  "baseline": "de34c840d798de568d652f73981342742af1ddcc",
+  "frontend": {
+    "types": "passed",
+    "lint": "passed",
+    "tests": 134,
+    "productionBuild": "passed"
+  },
+  "browser": {
+    "types": "passed",
+    "casesPassed": 26,
+    "devices": [
+      "desktop",
+      "phone"
+    ],
+    "widths": [
+      320,
+      390,
+      1440
+    ],
+    "specs": [
+      "azul-accessibility",
+      "azul-accessibility-saved",
+      "azul-information",
+      "stable-game-tables"
+    ]
+  },
+  "report": "verify-218308ec1e3641af9fb1d94e72cdc4f1",
+  "runtimeFingerprint": "971cf5a2e6af055db6b0471c55505c262726b1fe362b46b7dac09c4bf573f29f",
+  "runtimeFiles": 461,
+  "cloudPreflight": {
+    "targetAuthAndPooler": "passed",
+    "schemaUpgrade": "no-op",
+    "drift": "none",
+    "privateRlsGrants": "passed",
+    "schemaHead": "a6e442b15d80"
+  },
+  "scope": "One UI renderer; no server rules/API/schema/dependency changes",
+  "harnessCorrection": "Initial draft-wrapper visibility expectation replaced by exact rendered tile visibility and actual tree assertions; final six cases pass",
+  "notRerun": "Unchanged backend/multiplayer/load suites retain prior release evidence",
+  "limits": [
+    "No native screen-reader user study",
+    "Occupied scored-wall states use legal-projection fixtures; saved-room proof covers drafting, pattern placement, center marker and floor"
+  ]
+}

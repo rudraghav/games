@@ -5,6 +5,12 @@ containers. Four in a Row exposes every square and occupant as a named image.
 Mancala labels include the public owner, pit/store and seed count on both the
 main board and overview. These do not add focus stops or move controls.
 
+Azul exposes draft colours/counts, pattern-line contents and fit/overflow,
+wall row/column/colour/occupancy, and floor contents/penalties through semantic
+labels. Empty floor positions distinguish potential penalties from the current
+score. The centre/floor first-player marker has an explicit identity. Tile art
+remains decorative; static descriptions never become extra move controls.
+
 Warm ivory lounge; dark ink, muted sage and terracotta accents. Cards combine
 large readable ranks/actions, documented SVG playing-card faces and original
 illustration atlases. Casino tables use

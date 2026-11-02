@@ -8,9 +8,30 @@ import { playerName, type TableProps } from '../types';
 
 const colors = ['blue', 'yellow', 'red', 'black', 'white'] as const;
 const floorPenalties = [1, 1, 2, 2, 2, 3, 3];
-function Tile({ color, ghost = false }: { color: string; ghost?: boolean }) {
+function Tile({
+  color,
+  ghost = false,
+  label,
+  decorative = false,
+}: {
+  color: string;
+  ghost?: boolean;
+  label?: string;
+  decorative?: boolean;
+}) {
   return (
-    <span className="azul-tile" data-color={color} data-ghost={ghost} aria-label={`${color} tile`}>
+    <span
+      className="azul-tile"
+      data-color={color}
+      data-ghost={ghost}
+      role={decorative ? undefined : 'img'}
+      aria-hidden={decorative || undefined}
+      aria-label={
+        decorative
+          ? undefined
+          : label || (color === 'first' ? 'First-player marker' : `${color} tile`)
+      }
+    >
       <AzulTileArt color={color} />
     </span>
   );
@@ -137,7 +158,7 @@ export function AzulTable(props: TableProps) {
         <DecisionDock className="azul-draft-preview" size="compact" label="Your drafted tiles">
           {match.phase === 'placing' ? (
             <>
-              <div>
+              <div role="group" aria-label="Drafted tiles">
                 {data.draft.map((color, index) => (
                   <Tile key={index} color={color} />
                 ))}
@@ -187,12 +208,13 @@ export function AzulTable(props: TableProps) {
                     const consequence = option
                       ? `${fits} fit${overflow ? ` · ${overflow} to floor` : ' · no overflow'}`
                       : `${spaces} ${spaces === 1 ? 'space' : 'spaces'} open`;
+                    const contents = line.length ? `${line.length} ${line[0]} tiles` : 'empty';
                     return (
                       <button
                         type="button"
                         className="azul-pattern-line"
                         key={row}
-                        aria-label={`Place on pattern line ${row + 1}, ${spaces} spaces available${option ? `; ${fits} tiles fit, ${overflow} go to floor` : ''}`}
+                        aria-label={`Place on pattern line ${row + 1}, ${spaces} spaces available; ${contents}${option ? `; ${fits} tiles fit, ${overflow} go to floor` : ''}`}
                         disabled={blocked || !option}
                         onClick={() => option && onAction(option.value)}
                       >
@@ -218,13 +240,14 @@ export function AzulTable(props: TableProps) {
                     );
                   })}
                 </div>
-                <div className="azul-wall" aria-label="Wall">
+                <div className="azul-wall" role="group" aria-label="Wall">
                   {data.walls[player.id].flatMap((row, r) =>
                     row.map((color, col) => (
                       <Tile
                         key={`${r}-${col}`}
                         color={color || colors[(col - r + 5) % 5]}
                         ghost={!color}
+                        label={`Row ${r + 1}, column ${col + 1}: ${color ? `${color} tile` : `empty ${colors[(col - r + 5) % 5]} space`}`}
                       />
                     )),
                   )}
@@ -239,16 +262,27 @@ export function AzulTable(props: TableProps) {
                   points
                 </span>
                 <div>
-                  {Array.from({ length: 7 }, (_, i) => (
-                    <span key={i} className="azul-floor-cell">
-                      {data.floors[player.id][i] ? (
-                        <Tile color={data.floors[player.id][i]} />
-                      ) : (
-                        <span className="azul-floor-empty" aria-hidden="true" />
-                      )}
-                      <small>−{floorPenalties[i]}</small>
-                    </span>
-                  ))}
+                  {Array.from({ length: 7 }, (_, i) => {
+                    const color = data.floors[player.id][i];
+                    const contents =
+                      color === 'first' ? 'first-player marker' : color ? `${color} tile` : 'empty';
+                    const penalty = `${floorPenalties[i]} penalty ${floorPenalties[i] === 1 ? 'point' : 'points'}`;
+                    return (
+                      <span
+                        key={i}
+                        className="azul-floor-cell"
+                        role="img"
+                        aria-label={`Floor slot ${i + 1}: ${contents}, ${penalty}${color ? '' : ' when filled'}`}
+                      >
+                        {color ? (
+                          <Tile color={color} decorative />
+                        ) : (
+                          <span className="azul-floor-empty" aria-hidden="true" />
+                        )}
+                        <small aria-hidden="true">−{floorPenalties[i]}</small>
+                      </span>
+                    );
+                  })}
                 </div>
                 {player.id === selfId ? (
                   <Button

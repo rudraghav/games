@@ -6,6 +6,11 @@ pits/stores and seed counts. Whole-board overviews remain read-only and Escape
 returns focus to the opener. Keyboard activation submits only the existing
 full-size legal move controls.
 
+Azul's accessible view describes drafted tiles, existing pattern lines, every
+wall position and floor contents including the first-player marker. Drafting
+and placement retain the same server-owned actions; exact public tile state
+survives saved refresh and appears consistently to the other seats.
+
 - `/`: public, server-rendered lounge with 26 multiplayer games and Pop Tarot; search/category/group-size discovery, create/join and member-only room shortcuts.
 - `/rooms/[id]`: authenticated membership-only lobby, live table, results and room chat.
 - `/join/[token]`: guest identity and explicit join; navigate to the stable room URL after joining.

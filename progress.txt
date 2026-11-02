@@ -1,3 +1,43 @@
+## 2026-11-02 — Azul accessibility local release checks pass
+
+- The existing Azul renderer exposes draft tiles, pattern-line contents,
+  25 wall positions and seven floor slots without adding move/focus controls.
+  Floor labels distinguish current from potential penalties. Rules, APIs,
+  inventory, schema, dependencies and visual layout are unchanged.
+- Named report verify-218308ec1e3641af9fb1d94e72cdc4f1 passes types/lint,
+  134 frontend tests, production build, browser types and26 desktop/phone cases.
+  Six focused cases assert actual tree output at320/390/1440; two saved-room
+  cases exercise keyboard factory draft, pattern placement, centre marker and
+  floor placement, exact refresh and other-seat agreement. Existing fit/overflow,
+  fixed-layout and other game workspace checks pass in the same run.
+- Initial fixture test incorrectly treated a zero-height flex wrapper as a
+  visible tile; it now asserts actual image visibility/count/tree. No product
+  change or disabled test was needed. Superseded five QA files545,149bytes were
+  removed after exact-path/hash/open-file checks; passing evidence retained.
+- Personal cloud preflight and no-op Alembic/schema drift/private grants pass;
+  owner before-state retained. All461 runtime inputs match fingerprint
+  971cf5a2e6af055db6b0471c55505c262726b1fe362b46b7dac09c4bf573f29f.
+  Prior dc78bcb/dpl_HdDUpQfY58ewQ13HzrHDm57qusJP is rollback reference.
+- State: local verification complete; next push, one production deployment and
+  actual hosted saved-game checks, log/owner readback and cleanup closure.
+
+## 2026-11-02 — Next task: Azul decision accessibility
+
+- Outcome: expose authorized tile/board information required to choose a move.
+  Fresh local Chromium evidence shows a three-yellow draft missing from the
+  accessibility tree, filled pattern lines without color, floor marker without
+  identity, and a scored board's entire25-cell wall absent from the tree.
+- Acceptance: draft color/count, every pattern line's contents/space, all25 wall
+  coordinates with color and occupied/empty state, and all7 floor contents and
+  penalties are accessible on phone/desktop. Exact existing draft/place actions,
+  keyboard activation, saved refresh and other-seat public agreement still pass.
+- Scope: existing Azul renderer and browser regressions/docs; no API, rules,
+  schema, inventory, dependency or hidden-state change. Preserve visual layout
+  and existing shared components. Native screen-reader user studies stay distinct.
+- Task azul-accessibility-20261102; QA outputs under output/playwright/azul-accessibility.
+  Next: implement the confirmed semantics, focused real-browser and saved-room
+  evidence, named checks, then scoped push/deploy/live verification.
+
 ## 2026-11-02 — Board accessibility pushed and live verified
 
 - Application dc78bcb11bb2405aa2d29111979711d759396e4b pushed to main; one production

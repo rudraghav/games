@@ -9,6 +9,12 @@ checks real saved-room moves and refresh on desktop/phone; it also runs against
 an explicitly selected hosted origin, closes only its own rooms and preserves
 history. No native screen-reader study is implied by these browser checks.
 
+The Azul accessibility pair uses the same distinction: legal-projection tests
+check draft, lines, wall and floor in the actual accessibility tree;
+`azul-accessibility-saved.spec.ts` checks keyboard moves and saved public state
+with independent guests. The saved-room test also supports an explicit hosted
+origin, closes its own rooms and records no private traces or screenshots.
+
 `deal-workspace.spec.ts` also checks the local-only `/design/deal` review harness.
 Its twelve synthetic scenarios and paired outcomes come from real Deal engine
 actions and authorized projections, with conservation/privacy assertions in
