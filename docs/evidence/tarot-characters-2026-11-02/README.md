@@ -29,5 +29,23 @@ Geet/Rancho, and manually focused Miguel/Chihiro/Bunny crops when automatic
 attention chose a bright prop or background instead. Rani's source watermark stays
 visible. No external image request is made while writing a reading.
 
-Production deployment and fresh live verification are pending. Prior serving
-source 02ff603 / deployment dpl_JB1s7UJpd8qxvK8P4a65phGGSb96 is the recovery reference.
+## Production verified
+
+[Games](https://games-seven-black.vercel.app) serves application
+`8758cd6844f24e8ecf0a8bc09ef7523573557457` from READY production deployment
+`dpl_25avkf3PTgecMZxJLoeG7gLAaivs` in Mumbai. Both provider SHA fields and the public alias match.
+One deployment was used; later evidence-only commits preserve all 402 runtime inputs.
+
+- Fresh real-AI readings completed on desktop (19.3s) and phone (13.3s). Every selected
+  character image decoded; normal/quirky/character sections, saved refresh,
+  history, results, rematch and group retention pass. Both QA rooms closed.
+- [121 hosted paths](hosted-http.json) pass, including all 48 new character-file
+  checksums and existing card/Tarot artwork plus private/auth/dev boundaries.
+- [Final log scans](observability.json) have complete pagination, no excluded
+  intervals, zero runtime errors/warnings and zero request 5xx during live checks.
+- [Protected account readback](owner-preservation.json) confirms the account,
+  profile, Google identity, five rooms and memberships are unchanged.
+
+No AI prompt, engine, API wire, auth, environment or schema change was needed.
+The prior source 02ff603 / deployment dpl_JB1s7UJpd8qxvK8P4a65phGGSb96 remains the
+recovery reference. Artwork source rights are recorded, not advertised as a free kit.

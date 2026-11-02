@@ -1,0 +1,12 @@
+{
+  "applicationCommit": "8758cd6844f24e8ecf0a8bc09ef7523573557457",
+  "checkedPaths": 121,
+  "actualCharacterArtFiles": 48,
+  "checksumsVerified": true,
+  "oldActorPathsRequested": false,
+  "authBoundaries": {
+    "/design": 404,
+    "/api/backend/v1/me": 401,
+    "/api/dev-session": 404
+  }
+}

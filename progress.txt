@@ -1522,3 +1522,28 @@
   account/profile/Google identity/five rooms/memberships. Source02ff603 and
   deploymentdpl_JB1s7UJpd8qxvK8P4a65phGGSb96 retained as recovery point.
   Local only so far; main push, one production rollout and live checks follow.
+
+2026-11-02 — Actual-character Tarot production verification and cleanup
+- Pushed application8758cd6844f24e8ecf0a8bc09ef7523573557457 to main and used
+  the single verified personal Vercel production path. READY deployment
+  dpl_25avkf3PTgecMZxJLoeG7gLAaivs serves the public Games alias in bom1.
+  Provider GitHub/source metadata match; all 402 application-input hashes match.
+- All 48 new actual-character file checksums pass on production alongside the
+  existing artwork/catalogue/auth boundaries (121 paths). Fresh real-AI Tarot
+  matches pass desktop19.3s and phone13.3s: all selected images decoded, each
+  reading layer, unchanged refresh, results/history/profile/rematch/group switch.
+  Both QA rooms closed successfully. The 78-card art, rules and prompt are unchanged.
+- Final serving-window scans through03:46:27Z show zero runtime errors/warnings
+  and zero request5xx, with complete pagination/no excluded intervals. Fresh owner
+  readback preserves the account/profile/Google identity/five rooms/memberships;
+  schema remains a6e442b15d80. Production proof is in the dated character evidence.
+- Required cleanup closed only the owned browser session and Storybook6112.
+  Removed 9.63MB duplicate PNG captures after compact evidence retention, plus
+  9.57MB unselected source candidates. All 48 selected original downloads, active
+  delivery images, old photo archive, source/license ledgers and concise evidence
+  remain. Credentials, dependencies, databases and the user's browser are intact.
+- Existing requested local web3217/API8217 were not listening during final audit;
+  their dedicated Postgres was healthy. Restarted their existing development
+  commands without configuration changes. Final local/production health readback
+  follows; evidence-only closure will not redeploy unchanged application bytes.
+- Final restored development web3217/API8217 and production home all return200.

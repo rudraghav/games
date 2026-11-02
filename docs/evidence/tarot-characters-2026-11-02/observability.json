@@ -1,0 +1,27 @@
+{
+  "deployment": "dpl_25avkf3PTgecMZxJLoeG7gLAaivs",
+  "scans": [
+    {
+      "source": "runtime",
+      "query": "level:error OR level:warn OR level:fatal",
+      "records": 0,
+      "window": {
+        "start": "2026-11-02T03:42:47.700Z",
+        "end": "2026-11-02T03:46:27.878Z"
+      },
+      "fullyPaginated": true,
+      "excludedIntervals": []
+    },
+    {
+      "source": "requests",
+      "query": "httpStatus >= 500",
+      "records": 0,
+      "window": {
+        "start": "2026-11-02T03:42:47.000Z",
+        "end": "2026-11-02T03:46:27.000Z"
+      },
+      "fullyPaginated": true,
+      "excludedIntervals": []
+    }
+  ]
+}

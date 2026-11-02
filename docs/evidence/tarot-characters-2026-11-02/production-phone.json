@@ -1,0 +1,41 @@
+{
+  "startedAt": "2026-11-02T03:43:54.245Z",
+  "origin": "https://games-seven-black.vercel.app",
+  "checkoutSha": "8758cd6844f24e8ecf0a8bc09ef7523573557457",
+  "applicationSourceSha": "8758cd6844f24e8ecf0a8bc09ef7523573557457",
+  "workspaceDirty": true,
+  "sourceState": "explicit serving revision",
+  "hosted": true,
+  "project": "phone",
+  "selectedGames": [
+    "tarot"
+  ],
+  "selectedSeats": "limits",
+  "aiEnabled": true,
+  "complete": true,
+  "active": null,
+  "omitted": [],
+  "transport": {
+    "retryAttempts": 0,
+    "recovered": 0,
+    "failed": 0
+  },
+  "cleanup": {
+    "guestLeaveStatuses": [],
+    "roomClosed": true,
+    "failed": false,
+    "abandonStatus": 200,
+    "hostLeaveStatus": 200
+  },
+  "cases": [
+    {
+      "game": "tarot",
+      "seats": 1,
+      "moves": 3,
+      "profileHistoryVerified": true,
+      "rematch": true
+    }
+  ],
+  "decisions": "Authorized API projections; rendered result/rematch/change-game browser controls.",
+  "rummyScenario": "Legal drops; declaration/sequences are independently engine-tested."
+}
