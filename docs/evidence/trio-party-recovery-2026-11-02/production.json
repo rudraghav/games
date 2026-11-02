@@ -1,0 +1,91 @@
+{
+  "state": "pushed_deployed_live_verified",
+  "verifiedAt": "2026-11-02T13:51:28.523763+00:00",
+  "applicationCommit": "d3328b60cee31c8876bf3428603e557b4c4d16be",
+  "branch": "main",
+  "deployment": {
+    "id": "dpl_Cp8cvJar2tCk49vqNrg7GKuqQHmk",
+    "target": "production",
+    "readyState": "READY",
+    "regions": [
+      "bom1"
+    ],
+    "alias": "https://games-seven-black.vercel.app",
+    "bothSourceMetadataFieldsMatch": true
+  },
+  "rollbackDeployment": "dpl_CMa9LCRpxhp62PsgYukdCQ3gce7n",
+  "deployments": 1,
+  "gitIntegration": false,
+  "hosted": {
+    "casesPassed": 4,
+    "devices": [
+      "desktop",
+      "phone"
+    ],
+    "checks": [
+      "Party drafts survive same-round updates, remote commits lock and new prompts require a fresh choice in all three modes",
+      "Spotlight rotation and committed-state reload preserve authoritative state",
+      "Trio keyboard requests target the named player using exact legal actions",
+      "Public Trio reveals survive refresh and agree across all three seats"
+    ],
+    "httpBoundariesPassed": 5,
+    "catalogueGames": 27
+  },
+  "logs": {
+    "start": "2026-11-02T13:46:49.088704+00:00",
+    "end": "2026-11-02T13:50:13+00:00",
+    "warningsErrorsFatals": 0,
+    "http500Plus": 0,
+    "hasMore": false,
+    "excludedIntervals": []
+  },
+  "ownerPreservation": {
+    "accountProfileRoomsMembershipsIdentities": "all five fingerprints unchanged",
+    "existingOwnerRooms": 5
+  },
+  "qaReadback": {
+    "checkedAt": "2026-11-02T13:50:14.212902+00:00",
+    "closedRooms": 4,
+    "activeMemberships": 0,
+    "preservedMatches": 8,
+    "preservedMoveReceipts": 44,
+    "readOnly": true
+  },
+  "runtime": {
+    "files": 461,
+    "fingerprint": "e84c620bcce475be0e521a7e60ce8deb4f1187297dc985de2b38731632845402",
+    "allFilesMatchTestedAndDeployedSource": true
+  },
+  "cleanup": {
+    "checkedAt": "2026-11-02T13:51:28.523929+00:00",
+    "removedFiles": 22,
+    "removedBytes": 3496914,
+    "removed": "Five superseded Party snapshots, twelve successful modern-game captures and five completed helper/help copies",
+    "interruptedLocalRoom": {
+      "strictLocalTarget": true,
+      "exactCreatedAt": "2026-11-02T13:34:58.639900Z",
+      "closedInterruptedRooms": 1,
+      "activeMembersAfter": 0,
+      "allThreeMemberReads": 404,
+      "retainedProfiles": 3,
+      "preserved": {
+        "matches": 2,
+        "receipts": 5
+      },
+      "mutationMethod": "authorized abandon/leave; database reads only",
+      "checkedAt": "2026-11-02T13:45:21.964083+00:00"
+    },
+    "localHealth": {
+      "web": 200,
+      "api": 200
+    },
+    "newServicesOrWorktrees": 0,
+    "preserved": "Passing statuses, named report, safe regression and cleanup receipts, private before/after/rollback records; source/art/history/databases/credentials/branches/dependencies and requested services"
+  },
+  "limits": [
+    "Browser accessibility-tree and keyboard checks; no native screen-reader user study",
+    "Cleared Trio table slots are outside the legal fixtures exercised",
+    "Server rules were unchanged and are not newly certified by this UI-only batch"
+  ],
+  "closure": "Subsequent commit updates docs/evidence only; no duplicate deployment."
+}

@@ -21,5 +21,8 @@ No rules, APIs, schema, dependencies or visible composition changed. Automated
 accessibility-tree checks do not certify native screen-reader usability, and
 cleared Trio table slots are outside the fixtures exercised by this change.
 The [local receipt](verification.json) records 134 frontend tests and 18 browser
-cases passing, with types, lint and production build. Production verification is
-recorded separately after release.
+cases passing, with types, lint and production build. The [production receipt](production.json) records application
+`d3328b60cee31c8876bf3428603e557b4c4d16be` serving at
+<https://games-seven-black.vercel.app>, all four hosted saved-room cases passing,
+clean logs and unchanged owner state. Four hosted QA rooms are closed with their
+history retained. Cleanup removed 3,496,914 bytes of task-owned disposable files.

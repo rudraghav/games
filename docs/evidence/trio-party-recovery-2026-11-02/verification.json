@@ -1,5 +1,5 @@
 {
-  "state": "local_checks_passed",
+  "state": "local_checks_passed_and_production_verified",
   "baseline": "99fe5ad2ff6647936e36dfc8925fc4dfe8103045",
   "frontend": {
     "types": "passed",
@@ -46,5 +46,9 @@
   "limits": [
     "No native screen-reader user study",
     "Cleared Trio table slots are outside current legal fixtures"
-  ]
+  ],
+  "release": {
+    "applicationCommit": "d3328b60cee31c8876bf3428603e557b4c4d16be",
+    "productionReceipt": "production.json"
+  }
 }

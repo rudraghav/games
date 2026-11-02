@@ -1,3 +1,34 @@
+## 2026-11-02 — Trio and Party pushed and live verified
+
+- Application d3328b60cee31c8876bf3428603e557b4c4d16be is pushed to main.
+  Production deployment dpl_Cp8cvJar2tCk49vqNrg7GKuqQHmk is READY in bom1;
+  canonical Games alias and both source metadata fields match. One deployment;
+  Git integration absent. Prior dpl_CMa9LCRpxhp62PsgYukdCQ3gce7n remains rollback.
+- All four hosted desktop/phone cases pass. Each Party case covers all three
+  modes, same-round draft preservation, remote own locking, new-round reset,
+  legal spotlight rotation and committed-state refresh. Trio keyboard requests
+  identify the target, commit exact legal actions and preserve public reveals
+  after refresh with agreement across three seats. Five HTTP/auth/design checks
+  pass; catalogue remains 27 games. Local types/lint/build, 134 unit tests and
+  18 browser cases remain the named verification evidence.
+- Production logs from 2026-11-02T13:46:49.088704+00:00 through
+  2026-11-02T13:50:13+00:00 have zero warnings/errors/fatals and zero HTTP500+
+  records, with complete pagination/no excluded intervals. All five owner
+  fingerprints are unchanged, including five existing rooms. Read-only QA
+  readback confirms four closed rooms, zero active memberships, eight retained
+  matches and 44 move receipts. All 461 runtime files match tested/deployed source.
+- Cleanup removed 22 task-owned disposable files (3,496,914 bytes), retaining
+  concise checks and safe regression/closure receipts. One older interrupted
+  local test room was closed through authorized abandon/leave, with all three
+  reads returning404; its two matches/five receipts/three profiles remain.
+  Exact identity/timestamp excluded current runs. No new services/worktrees;
+  requested local web3217/API8217 return200. Source, art, history, databases,
+  credentials, branches, dependencies and private rollback evidence preserved.
+- This closure changes docs/evidence only and requires no second deployment.
+  Native screen-reader study and cleared Trio-slot coverage remain separate;
+  unchanged server-rule suites are not newly certified by this UI batch.
+- Evidence: docs/evidence/trio-party-recovery-2026-11-02/production.json.
+
 ## 2026-11-02 — Trio and Party local release checks pass
 
 - Confirmed a saved Hot Seat defect: a draft from round one remained selected
