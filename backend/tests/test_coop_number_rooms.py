@@ -1,5 +1,6 @@
 """Cooperative defeat and private simultaneous selections survive persistence."""
 
+import json
 from concurrent.futures import ThreadPoolExecutor
 from uuid import uuid4
 
@@ -12,6 +13,7 @@ from app.db import sessions
 from app.games.registry import ENGINES
 from app.main import app
 from app.models import Match, Receipt
+from app.rooms.schemas import PublicMoveView
 
 
 @pytest.fixture
@@ -113,6 +115,17 @@ def test_six_private_simultaneous_choices_conflict_retry_restart_and_reveal(clie
     assert public["phase"] == "selecting" and public["community"] == []
     assert public["detail"]["selected_players"] == [ids[committed]]
     assert public["detail"]["own_selection"] is None
+    early = PublicMoveView.model_validate(waiting.json()["activity"][0])
+    assert early.model_dump() == {
+        "version": 2, "actor_id": ids[committed], "type": "select_number",
+        "label": "Locked a number", "targets": [], "amount": None,
+        "cards": [], "destination": None, "count": 1,
+    }
+    with sessions()() as session:
+        receipt = session.get(Receipt, (room["match_id"], bodies[committed]["action_id"]))
+        assert set(receipt.response) == {"committedVersion", "public_move"}
+        assert receipt.response["public_move"] == early.model_dump()
+        assert all(choice["card"] not in json.dumps(receipt.response) for choice in choices)
     assert f'"{choices[committed]["card"]}"' not in waiting.text
     for private_key in ('"hands"', '"selected"', '"deck"', '"seed"', '"pending"'):
         assert private_key not in waiting.text
@@ -146,4 +159,16 @@ def test_six_private_simultaneous_choices_conflict_retry_restart_and_reveal(clie
             session.scalars(select(Receipt).where(Receipt.match_id == room["match_id"]))
         )
         assert saved.version == 4 and len(receipts) == 3
-        assert all(set(receipt.response) == {"committedVersion"} for receipt in receipts)
+        assert {receipt.response["committedVersion"] for receipt in receipts} == {2, 3, 4}
+        for receipt in receipts:
+            assert set(receipt.response) == {"committedVersion", "public_move"}
+            event = PublicMoveView.model_validate(receipt.response["public_move"])
+            assert event.version == receipt.response["committedVersion"]
+            assert event.type == "select_number" and event.targets == []
+            assert event.amount is None and event.destination is None
+            if event.version < 4:
+                assert event.cards == [] and event.count == 1 and event.label == "Locked a number"
+                assert all(choice["card"] not in json.dumps(receipt.response) for choice in choices)
+            else:
+                assert {card.id for card in event.cards} == {choice["card"] for choice in choices}
+                assert event.count == 3 and event.label == "Everyone’s numbers were revealed"

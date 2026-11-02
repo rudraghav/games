@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { CircleMinus, LockKeyhole } from 'lucide-react';
-import { Button, PlayingCard } from '@games/ui';
+import { Button, PlayingCard, HorizontalRail } from '@games/ui';
 import { sixNimmtDetails, type Card } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
@@ -50,7 +50,7 @@ export function SixNimmtTable(props: TableProps) {
   const next = match.actions.find((o) => ['next_selection', 'next_round'].includes(o.value.type));
   const simultaneous = match.phase === 'selecting';
   return (
-    <div className="table-layout coop-number-game six-game">
+    <div className="table-layout stable-game-table coop-number-game six-game">
       <PlayerStrip
         {...props}
         match={simultaneous ? { ...match, currentPlayer: null } : match}
@@ -128,7 +128,11 @@ export function SixNimmtTable(props: TableProps) {
               </div>
             ) : (
               <>
-                <div className="six-hand">
+                <HorizontalRail
+                  label="Your number cards"
+                  viewportClassName="six-hand-viewport"
+                  contentClassName="six-hand"
+                >
                   {match.hand.map((card) => (
                     <NumberCard
                       key={card.id}
@@ -138,7 +142,7 @@ export function SixNimmtTable(props: TableProps) {
                       onClick={() => setSelection({ key: selectionKey, card: card.id })}
                     />
                   ))}
-                </div>
+                </HorizontalRail>
                 <p className="small muted">
                   Cards reveal together, then resolve from lowest to highest.
                 </p>

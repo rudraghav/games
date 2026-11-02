@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { BoopPiece, Button } from '@games/ui';
+import { BoopPiece, Button, DecisionDock } from '@games/ui';
 import { boopDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
@@ -86,31 +86,39 @@ function Bed({ match, room, selfId, pending, onAction }: TableProps) {
           );
         })}
       </div>
-      {match.phase === 'graduating' && match.currentPlayer === selfId ? (
-        <section className="boop-graduation" aria-label="Graduation choices">
-          <h3>Choose a graduation</h3>
+      <DecisionDock className="boop-graduation" size="compact" label="Graduation choices">
+        {match.phase === 'graduating' && match.currentPlayer === selfId ? (
+          <>
+            <h3>Choose a graduation</h3>
+            <p className="small muted">
+              Choose one line to graduate.
+              {returns.size ? ' Or tap one piece on the bed to bring it back.' : ''}
+            </p>
+            <div className="paper-actions">
+              {graduations.map((option) => (
+                <Button
+                  key={option.value.choice}
+                  variant="secondary"
+                  disabled={blocked}
+                  onMouseEnter={() => setHighlight(option.value.choice)}
+                  onMouseLeave={() => setHighlight('')}
+                  onFocus={() => setHighlight(option.value.choice)}
+                  onBlur={() => setHighlight('')}
+                  onClick={() => onAction(option.value)}
+                >
+                  {option.label}
+                </Button>
+              ))}
+            </div>
+          </>
+        ) : (
           <p className="small muted">
-            Choose one line to graduate.
-            {returns.size ? ' Or tap one piece on the bed to bring it back.' : ''}
+            {match.phase === 'graduating'
+              ? `${playerName(room, match.currentPlayer || '')} is choosing a graduation.`
+              : 'Choose an available kitten or cat, then a marked square.'}
           </p>
-          <div className="paper-actions">
-            {graduations.map((option) => (
-              <Button
-                key={option.value.choice}
-                variant="secondary"
-                disabled={blocked}
-                onMouseEnter={() => setHighlight(option.value.choice)}
-                onMouseLeave={() => setHighlight('')}
-                onFocus={() => setHighlight(option.value.choice)}
-                onBlur={() => setHighlight('')}
-                onClick={() => onAction(option.value)}
-              >
-                {option.label}
-              </Button>
-            ))}
-          </div>
-        </section>
-      ) : null}
+        )}
+      </DecisionDock>
     </>
   );
 }
@@ -119,7 +127,7 @@ export function BoopTable(props: TableProps) {
   const { match, room } = props;
   const data = boopDetails(match.detail);
   return (
-    <div className="table-layout sea-cats-game">
+    <div className="table-layout stable-game-table sea-cats-game">
       <PlayerStrip
         {...props}
         playerCaption={(p) => `${data.retired[p.id]} cats · ${8 - data.retired[p.id]} kittens`}

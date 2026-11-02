@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Button, PaperPlayingCard } from '@games/ui';
+import { Button, PaperPlayingCard, DecisionDock, HorizontalRail } from '@games/ui';
 import { paperDetails, type Action } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
@@ -27,132 +27,119 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
   }
   return (
     <>
-      {match.phase === 'draw' ? (
-        <section className="paper-draw" aria-label="Draw a card">
-          <div className="paper-stock">
-            <span className="eyebrow">Draw pile</span>
-            <strong>{match.drawCount}</strong>
-            <Button
-              disabled={blocked || !action('take_stock')}
-              onClick={() => action('take_stock') && send(action('take_stock')!.value)}
-            >
-              Draw two · keep one
-            </Button>
-          </div>
-          {data.discard_tops.map((card, index) => {
-            const move = options.find(
-              (o) => o.value.type === 'take_discard' && o.value.choice === String(index),
-            );
-            return (
-              <div className="paper-discard" key={index}>
-                <span className="small muted">
-                  Discard {index + 1} · {data.pile_counts[index]}
-                </span>
-                {card ? (
-                  <PaperPlayingCard
-                    card={card}
-                    compact
-                    label={`Take discard ${index + 1}: ${card.label}`}
-                    onClick={move ? () => send(move.value) : undefined}
-                    disabled={blocked || !move}
-                  />
-                ) : (
-                  <div className="paper-empty-pile">Empty</div>
-                )}
-              </div>
-            );
-          })}
-        </section>
-      ) : null}
-      {['choosing', 'crab_card'].includes(match.phase) && data.private_options.length ? (
-        <section className="paper-private-choice" aria-label="Your private card choice">
-          <h3>{match.phase === 'choosing' ? 'Choose a card to keep' : 'Choose a discard card'}</h3>
-          <p className="small muted">Only you can see these choices.</p>
-          <div className="paper-card-row">
-            {data.private_options.map((card) => {
+      <DecisionDock
+        className="paper-source-dock"
+        size="extended"
+        label="Draw and card choices"
+        pending={pending}
+      >
+        {match.phase === 'draw' ? (
+          <section className="paper-draw" aria-label="Draw a card">
+            <div className="paper-stock">
+              <span className="eyebrow">Draw pile</span>
+              <strong>{match.drawCount}</strong>
+              <Button
+                disabled={blocked || !action('take_stock')}
+                onClick={() => action('take_stock') && send(action('take_stock')!.value)}
+              >
+                Draw two · keep one
+              </Button>
+            </div>
+            {data.discard_tops.map((card, index) => {
               const move = options.find(
-                (o) => o.value.type === 'take_inspected' && o.value.card === card.id,
+                (o) => o.value.type === 'take_discard' && o.value.choice === String(index),
               );
               return (
-                <PaperPlayingCard
-                  key={card.id}
-                  card={card}
-                  selected={selected.includes(card.id)}
-                  disabled={blocked}
-                  onClick={() => (move ? send(move.value) : setSelected([card.id]))}
-                />
+                <div className="paper-discard" key={index}>
+                  <span className="small muted">
+                    Discard {index + 1} · {data.pile_counts[index]}
+                  </span>
+                  {card ? (
+                    <PaperPlayingCard
+                      card={card}
+                      compact
+                      label={`Take discard ${index + 1}: ${card.label}`}
+                      onClick={move ? () => send(move.value) : undefined}
+                      disabled={blocked || !move}
+                    />
+                  ) : (
+                    <div className="paper-empty-pile">Empty</div>
+                  )}
+                </div>
               );
             })}
-          </div>
-          {match.phase === 'choosing' ? (
-            <div className="paper-actions">
-              {options
-                .filter((o) => o.value.type === 'keep' && o.value.card === selected[0])
-                .map((o) => (
-                  <Button key={o.value.choice} disabled={blocked} onClick={() => send(o.value)}>
-                    Keep selected · discard other to pile {Number(o.value.choice) + 1}
-                  </Button>
-                ))}
-            </div>
-          ) : null}
-        </section>
-      ) : null}
-      {match.phase === 'crab_pile' && options.length ? (
-        <section className="paper-private-choice">
-          <h3>Choose a discard pile</h3>
-          <div className="paper-actions">
-            {options.map((o) => (
-              <Button
-                key={o.value.choice}
-                variant="secondary"
-                disabled={blocked}
-                onClick={() => send(o.value)}
-              >
-                {o.label} · {data.pile_counts[Number(o.value.choice)]} cards
-              </Button>
-            ))}
-          </div>
-        </section>
-      ) : null}
-      {match.phase === 'steal' && options.length ? (
-        <section className="paper-private-choice">
-          <h3>Choose a player to steal from</h3>
-          <div className="paper-actions">
-            {options.map((o) => (
-              <Button
-                key={o.value.target}
-                variant="secondary"
-                disabled={blocked}
-                onClick={() => send(o.value)}
-              >
-                {playerName(room, o.value.target)} · random card
-              </Button>
-            ))}
-          </div>
-        </section>
-      ) : null}
-      <section className="paper-hand" aria-label="Your private hand">
-        <div className="paper-heading">
-          <h3>Your hand</h3>
-          <span className="small muted">
-            {data.own_points} card points · {data.own_bonus} color bonus
-          </span>
-        </div>
-        {pairs.length ? (
-          <p className="small muted">Select two matching duo cards to play their effect.</p>
+          </section>
         ) : null}
-        <div className="paper-card-row">
-          {match.hand.map((card) => (
-            <PaperPlayingCard
-              key={card.id}
-              card={card}
-              selected={selected.includes(card.id)}
-              onClick={eligible.has(card.id) ? () => select(card.id) : undefined}
-              disabled={blocked || !eligible.has(card.id)}
-            />
-          ))}
-        </div>
-        {!match.hand.length ? <p className="muted small">No cards yet.</p> : null}
+        {['choosing', 'crab_card'].includes(match.phase) && data.private_options.length ? (
+          <section className="paper-private-choice" aria-label="Your private card choice">
+            <h3>
+              {match.phase === 'choosing' ? 'Choose a card to keep' : 'Choose a discard card'}
+            </h3>
+            <p className="small muted">Only you can see these choices.</p>
+            <div className="paper-card-row">
+              {data.private_options.map((card) => {
+                const move = options.find(
+                  (o) => o.value.type === 'take_inspected' && o.value.card === card.id,
+                );
+                return (
+                  <PaperPlayingCard
+                    key={card.id}
+                    card={card}
+                    compact
+                    selected={selected.includes(card.id)}
+                    disabled={blocked}
+                    onClick={() => (move ? send(move.value) : setSelected([card.id]))}
+                  />
+                );
+              })}
+            </div>
+            {match.phase === 'choosing' ? (
+              <div className="paper-actions">
+                {options
+                  .filter((o) => o.value.type === 'keep' && o.value.card === selected[0])
+                  .map((o) => (
+                    <Button key={o.value.choice} disabled={blocked} onClick={() => send(o.value)}>
+                      Keep selected · discard to pile {Number(o.value.choice) + 1}
+                    </Button>
+                  ))}
+              </div>
+            ) : null}
+          </section>
+        ) : null}
+        {match.phase === 'crab_pile' && options.length ? (
+          <section className="paper-private-choice">
+            <h3>Choose a discard pile</h3>
+            <div className="paper-actions">
+              {options.map((o) => (
+                <Button
+                  key={o.value.choice}
+                  variant="secondary"
+                  disabled={blocked}
+                  onClick={() => send(o.value)}
+                >
+                  {o.label} · {data.pile_counts[Number(o.value.choice)]} cards
+                </Button>
+              ))}
+            </div>
+          </section>
+        ) : null}
+        {match.phase === 'steal' && options.length ? (
+          <section className="paper-private-choice">
+            <h3>Choose a player to steal from</h3>
+            <div className="paper-actions">
+              {options.map((o) => (
+                <Button
+                  key={o.value.target}
+                  variant="secondary"
+                  disabled={blocked}
+                  onClick={() => send(o.value)}
+                >
+                  {playerName(room, o.value.target)} · random card
+                </Button>
+              ))}
+            </div>
+          </section>
+        ) : null}
         {match.currentPlayer === selfId ? (
           <div className="paper-actions" aria-label="Your turn choices">
             {pairs.length ? (
@@ -182,6 +169,31 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
               ))}
           </div>
         ) : null}
+      </DecisionDock>
+      <section className="paper-hand" aria-label="Your private hand">
+        <div className="paper-heading">
+          <h3>Your hand</h3>
+          <span className="small muted">
+            {data.own_points} card points · {data.own_bonus} color bonus
+          </span>
+        </div>
+        <p className="small muted paper-hand-instruction" aria-hidden={!pairs.length}>
+          {pairs.length ? 'Select two matching duo cards to play their effect.' : '\u00a0'}
+        </p>
+        <HorizontalRail label="Your Sea Salt and Paper hand" contentClassName="paper-card-row">
+          {match.hand.map((card) => (
+            <PaperPlayingCard
+              key={card.id}
+              card={card}
+              selected={selected.includes(card.id)}
+              onClick={eligible.has(card.id) ? () => select(card.id) : undefined}
+              disabled={blocked || !eligible.has(card.id)}
+            />
+          ))}
+        </HorizontalRail>
+        <p className="muted small paper-empty-status" aria-hidden={Boolean(match.hand.length)}>
+          {match.hand.length ? '\u00a0' : 'No cards yet.'}
+        </p>
       </section>
     </>
   );
@@ -191,7 +203,7 @@ export function PaperTable(props: TableProps) {
   const { match, room, selfId } = props;
   const data = paperDetails(match.detail);
   return (
-    <div className="table-layout sea-cats-game">
+    <div className="table-layout stable-game-table sea-cats-game">
       <PlayerStrip {...props} playerCaption={(p) => `${p.score} points · ${p.count} in hand`} />
       <section className="sea-cat-table paper-table" aria-label="Sea Salt and Paper table">
         <div className="paper-heading">
@@ -208,7 +220,7 @@ export function PaperTable(props: TableProps) {
         <PaperDecision key={`${room.matchId}:${room.matchVersion}`} {...props} />
         <div className="paper-collections" aria-label="Played and revealed cards">
           {match.players.map((player) => (
-            <details key={player.id} open={player.id === selfId || player.cards.length > 0}>
+            <details key={player.id} open={player.id === selfId}>
               <summary>
                 {playerName(room, player.id)}
                 {player.id === selfId ? ' · you' : ''}

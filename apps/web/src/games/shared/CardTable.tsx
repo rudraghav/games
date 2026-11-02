@@ -39,7 +39,7 @@ export function CardTable(props: TableProps) {
                 ? `${draw.label}.`
                 : undefined;
   return (
-    <div className="table-layout card-game-layout uno-workspace">
+    <div className="table-layout stable-game-table card-game-layout uno-workspace">
       <PlayerStrip {...props} />
       <div className="card-table felt-table">
         <span className="table-watermark">g.</span>

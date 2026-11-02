@@ -1,6 +1,7 @@
 """Named, local verification entry point. Unavailable checks fail explicitly."""
 
 import argparse
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -13,7 +14,7 @@ GROUPS = {
     "backend": ("Python lint/types and deterministic engine tests", [
         [PYTHON, "-m", "ruff", "check", "backend/app", "backend/tests"],
         [PYTHON, "-m", "mypy", "--config-file", "backend/pyproject.toml", "backend/app"],
-        [PYTHON, "-m", "pytest", "backend/tests/test_engines.py", "backend/tests/test_uno_edges.py", "backend/tests/test_playthroughs.py", "backend/tests/test_tarot.py", "backend/tests/test_gemini.py", "backend/tests/test_auth.py", "backend/tests/test_cloud_config.py", "backend/tests/test_expansion.py", "backend/tests/test_gem_market_edges.py", "backend/tests/test_card_family_rules.py", "backend/tests/test_table_rules.py", "backend/tests/test_new_boards.py", "backend/tests/test_modern_games.py", "backend/tests/test_party_games.py", "backend/tests/test_coop_number_games.py", "backend/tests/test_sea_cats.py", "backend/tests/test_shithead.py", "backend/tests/test_public_actions.py", "backend/tests/test_tarot_characters.py", "backend/tests/test_bot_policies.py", "-q"]]),
+        [PYTHON, "-m", "pytest", "backend/tests/test_engines.py", "backend/tests/test_uno_edges.py", "backend/tests/test_playthroughs.py", "backend/tests/test_tarot.py", "backend/tests/test_gemini.py", "backend/tests/test_auth.py", "backend/tests/test_cloud_config.py", "backend/tests/test_expansion.py", "backend/tests/test_gem_market_edges.py", "backend/tests/test_card_family_rules.py", "backend/tests/test_table_rules.py", "backend/tests/test_new_boards.py", "backend/tests/test_modern_games.py", "backend/tests/test_party_games.py", "backend/tests/test_coop_number_games.py", "backend/tests/test_sea_cats.py", "backend/tests/test_shithead.py", "backend/tests/test_public_actions.py", "backend/tests/test_public_history.py", "backend/tests/test_tarot_characters.py", "backend/tests/test_bot_policies.py", "-q"]]),
     "contracts": ("Generated OpenAPI/catalogue/wire-type drift", [[PYTHON, "scripts/check_contracts.py"]]),
     "migrations": ("Fresh local schema upgrade, drift and privacy grants", [
         [PYTHON, "scripts/isolated_backend.py", "tests/test_migrations.py", "-q"]]),
@@ -27,16 +28,44 @@ GROUPS = {
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("groups", nargs="*", choices=tuple(GROUPS))
 parser.add_argument("--list", action="store_true")
+parser.add_argument("--task", help="Attach actual selected checks to this chat's active task")
+parser.add_argument("--json", action="store_true", help="Emit one structured report; check output goes to stderr")
 args = parser.parse_args()
 if args.list:
     for name, (description, _) in GROUPS.items():
         print(f"{name:14} {description}")
     raise SystemExit(0)
 selected = args.groups or list(GROUPS)
+report = None
+if args.task:
+    from verification_report import VerificationReport
+    report = VerificationReport(ROOT, args.task, selected, GROUPS)
+elif args.json:
+    parser.error("--json requires --task so an actual report can be retained")
+code = 0
 for name in selected:
-    print(f"Checking {name}: {GROUPS[name][0]}", flush=True)
+    print(f"Checking {name}: {GROUPS[name][0]}", file=sys.stderr if args.json else sys.stdout, flush=True)
     for command in GROUPS[name][1]:
-        result = subprocess.run(command, cwd=ROOT)
-        if result.returncode:
-            raise SystemExit(result.returncode)
-    print(f"PASS {name}", flush=True)
+        if report:
+            report.start()
+        try:
+            result = subprocess.run(command, cwd=ROOT, stdout=sys.stderr if args.json else None)
+            command_code = result.returncode
+        except FileNotFoundError:
+            print("Required check executable is unavailable", file=sys.stderr)
+            command_code = 127
+        except KeyboardInterrupt:
+            print("Verification interrupted", file=sys.stderr)
+            command_code = 130
+        if report:
+            report.record(command_code)
+        if command_code:
+            code = command_code
+            break
+    if code:
+        break
+    print(f"PASS {name}", file=sys.stderr if args.json else sys.stdout, flush=True)
+if report:
+    code = report.finish(code)
+    print(json.dumps({**report.report, "report_path": str(report.path)}) if args.json else f"{report.report['status'].upper()}: task checks retained in {report.path}")
+raise SystemExit(code)

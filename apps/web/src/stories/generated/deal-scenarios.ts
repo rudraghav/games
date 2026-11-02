@@ -305,6 +305,7 @@ export const dealScenarios: DealScenario[] = [
         "winners": [],
         "detail": {
           "moves": 3,
+          "rent_multiplier": 1,
           "debts": {
             "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
             "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -480,7 +481,8 @@ export const dealScenarios: DealScenario[] = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     },
     "transitions": [
       {
@@ -776,6 +778,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -951,7 +954,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       },
       {
@@ -1287,6 +1291,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -1471,7 +1476,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       }
     ]
@@ -1742,6 +1748,7 @@ export const dealScenarios: DealScenario[] = [
         "winners": [],
         "detail": {
           "moves": 3,
+          "rent_multiplier": 1,
           "debts": {
             "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
             "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -1926,7 +1933,8 @@ export const dealScenarios: DealScenario[] = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     },
     "transitions": [
       {
@@ -2163,6 +2171,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 3,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -2338,7 +2347,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       }
     ]
@@ -2733,6 +2743,7 @@ export const dealScenarios: DealScenario[] = [
         "winners": [],
         "detail": {
           "moves": 3,
+          "rent_multiplier": 1,
           "debts": {
             "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
             "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -2935,7 +2946,8 @@ export const dealScenarios: DealScenario[] = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     },
     "transitions": [
       {
@@ -3175,6 +3187,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -3385,7 +3398,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       },
       {
@@ -3625,6 +3639,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -3835,7 +3850,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       },
       {
@@ -4075,6 +4091,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -4285,7 +4302,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       },
       {
@@ -4525,6 +4543,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -4735,7 +4754,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       }
     ]
@@ -4961,6 +4981,7 @@ export const dealScenarios: DealScenario[] = [
         "winners": [],
         "detail": {
           "moves": 2,
+          "rent_multiplier": 1,
           "debts": {
             "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
             "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -5134,7 +5155,8 @@ export const dealScenarios: DealScenario[] = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     },
     "transitions": [
       {
@@ -5314,6 +5336,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -5487,7 +5510,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       },
       {
@@ -5702,6 +5726,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -5875,7 +5900,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       }
     ]
@@ -6088,6 +6114,7 @@ export const dealScenarios: DealScenario[] = [
         "winners": [],
         "detail": {
           "moves": 2,
+          "rent_multiplier": 1,
           "debts": {
             "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
             "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -6261,7 +6288,8 @@ export const dealScenarios: DealScenario[] = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     },
     "transitions": [
       {
@@ -6427,6 +6455,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 1,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -6600,7 +6629,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       },
       {
@@ -6819,6 +6849,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -6984,7 +7015,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       }
     ]
@@ -7224,6 +7256,7 @@ export const dealScenarios: DealScenario[] = [
         "winners": [],
         "detail": {
           "moves": 2,
+          "rent_multiplier": 1,
           "debts": {
             "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
             "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -7407,7 +7440,8 @@ export const dealScenarios: DealScenario[] = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     },
     "transitions": [
       {
@@ -7633,6 +7667,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -7808,7 +7843,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       }
     ]
@@ -8062,6 +8098,7 @@ export const dealScenarios: DealScenario[] = [
         "winners": [],
         "detail": {
           "moves": 2,
+          "rent_multiplier": 1,
           "debts": {
             "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
             "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -8245,7 +8282,8 @@ export const dealScenarios: DealScenario[] = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     },
     "transitions": [
       {
@@ -8485,6 +8523,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -8660,7 +8699,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       },
       {
@@ -8900,6 +8940,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -9075,7 +9116,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       },
       {
@@ -9314,6 +9356,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -9489,7 +9532,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       }
     ]
@@ -9734,6 +9778,7 @@ export const dealScenarios: DealScenario[] = [
         "winners": [],
         "detail": {
           "moves": 2,
+          "rent_multiplier": 1,
           "debts": {
             "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
             "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -9917,7 +9962,8 @@ export const dealScenarios: DealScenario[] = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     },
     "transitions": [
       {
@@ -10151,6 +10197,7 @@ export const dealScenarios: DealScenario[] = [
             "winners": [],
             "detail": {
               "moves": 2,
+              "rent_multiplier": 1,
               "debts": {
                 "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
                 "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -10335,7 +10382,8 @@ export const dealScenarios: DealScenario[] = [
           "invite_token": null,
           "bot_pending": false,
           "bot_due_at": null,
-          "last_action": null
+          "last_action": null,
+          "activity": []
         }
       }
     ]
@@ -10631,6 +10679,7 @@ export const dealScenarios: DealScenario[] = [
         "winners": [],
         "detail": {
           "moves": 1,
+          "rent_multiplier": 1,
           "debts": {
             "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
             "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -10815,7 +10864,8 @@ export const dealScenarios: DealScenario[] = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     },
     "transitions": []
   },
@@ -11084,6 +11134,7 @@ export const dealScenarios: DealScenario[] = [
         "winners": [],
         "detail": {
           "moves": 3,
+          "rent_multiplier": 1,
           "debts": {
             "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
             "baf691ac-60ab-5cf4-b394-02f24342044e": [],
@@ -11268,8 +11319,892 @@ export const dealScenarios: DealScenario[] = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     },
     "transitions": []
+  },
+  {
+    "id": "doubled-rent",
+    "label": "Deal \u00b7 preview doubled rent",
+    "selfId": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+    "focusCard": "d059",
+    "room": {
+      "id": "7f69d8a6-4f66-57ee-a689-a16ccc3750c5",
+      "name": "Synthetic Deal workspace",
+      "code": "DESIGN1",
+      "game_id": "deal",
+      "owner_id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+      "capacity": 4,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "d3391333-a308-5af1-a83e-4dd79452c690",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "deal",
+        "phase": "playing",
+        "current_player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+        "players": [
+          {
+            "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+            "count": 3,
+            "score": 1,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {
+              "brown:0": [
+                {
+                  "id": "d020",
+                  "label": "Mediterranean Avenue",
+                  "color": "brown",
+                  "subtitle": "Mediterranean Avenue",
+                  "value": "1M",
+                  "suit": "property",
+                  "colors": [
+                    "brown"
+                  ],
+                  "effect": "",
+                  "set_name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ]
+                },
+                {
+                  "id": "d021",
+                  "label": "Baltic Avenue",
+                  "color": "brown",
+                  "subtitle": "Baltic Avenue",
+                  "value": "1M",
+                  "suit": "property",
+                  "colors": [
+                    "brown"
+                  ],
+                  "effect": "",
+                  "set_name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ]
+                },
+                {
+                  "id": "d099",
+                  "label": "House",
+                  "color": "brown",
+                  "subtitle": "House",
+                  "value": "3M",
+                  "suit": "action",
+                  "colors": [],
+                  "effect": "house",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
+                },
+                {
+                  "id": "d102",
+                  "label": "Hotel",
+                  "color": "brown",
+                  "subtitle": "Hotel",
+                  "value": "4M",
+                  "suit": "action",
+                  "colors": [],
+                  "effect": "hotel",
+                  "set_name": null,
+                  "set_size": null,
+                  "rent_ladder": []
+                }
+              ]
+            }
+          },
+          {
+            "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+            "count": 3,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+            "count": 3,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+            "count": 3,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [
+          {
+            "id": "d059",
+            "label": "Rent",
+            "color": "brown",
+            "subtitle": "Rent",
+            "value": "1M",
+            "suit": "action",
+            "colors": [
+              "brown",
+              "sky"
+            ],
+            "effect": "rent",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          },
+          {
+            "id": "d096",
+            "label": "Forced deal",
+            "color": "neutral",
+            "subtitle": "Forced deal",
+            "value": "3M",
+            "suit": "action",
+            "colors": [],
+            "effect": "forced",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          },
+          {
+            "id": "d095",
+            "label": "Forced deal",
+            "color": "neutral",
+            "subtitle": "Forced deal",
+            "value": "3M",
+            "suit": "action",
+            "colors": [],
+            "effect": "forced",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          }
+        ],
+        "community": [],
+        "discard": {
+          "id": "d104",
+          "label": "Double the rent",
+          "color": "neutral",
+          "subtitle": "Double the rent",
+          "value": "1M",
+          "suit": "action",
+          "colors": [],
+          "effect": "double",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
+        },
+        "drawn": null,
+        "draw_count": 89,
+        "pot": 0,
+        "message": "Played Double the rent.",
+        "actions": [
+          {
+            "label": "Rent \u00b7 brown",
+            "action": {
+              "type": "play",
+              "card": "d059",
+              "target": "",
+              "color": "brown:0",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "moves": 2,
+          "rent_multiplier": 2,
+          "debts": {
+            "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
+            "baf691ac-60ab-5cf4-b394-02f24342044e": [],
+            "29420896-d26f-5a05-9f4c-8daf0c6adb27": [],
+            "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117": []
+          },
+          "pending": null,
+          "payment_amount": 0,
+          "property_groups": [
+            {
+              "color": "brown",
+              "name": "Brown",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Mediterranean Avenue",
+                "Baltic Avenue"
+              ]
+            },
+            {
+              "color": "sky",
+              "name": "Light blue",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                3
+              ],
+              "properties": [
+                "Oriental Avenue",
+                "Vermont Avenue",
+                "Connecticut Avenue"
+              ]
+            },
+            {
+              "color": "pink",
+              "name": "Pink",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                4
+              ],
+              "properties": [
+                "St. Charles Place",
+                "States Avenue",
+                "Virginia Avenue"
+              ]
+            },
+            {
+              "color": "orange",
+              "name": "Orange",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                3,
+                5
+              ],
+              "properties": [
+                "St. James Place",
+                "Tennessee Avenue",
+                "New York Avenue"
+              ]
+            },
+            {
+              "color": "red",
+              "name": "Red",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                3,
+                6
+              ],
+              "properties": [
+                "Kentucky Avenue",
+                "Indiana Avenue",
+                "Illinois Avenue"
+              ]
+            },
+            {
+              "color": "yellow",
+              "name": "Yellow",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                6
+              ],
+              "properties": [
+                "Atlantic Avenue",
+                "Ventnor Avenue",
+                "Marvin Gardens"
+              ]
+            },
+            {
+              "color": "green",
+              "name": "Green",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                7
+              ],
+              "properties": [
+                "Pacific Avenue",
+                "North Carolina Avenue",
+                "Pennsylvania Avenue"
+              ]
+            },
+            {
+              "color": "blue",
+              "name": "Dark blue",
+              "set_size": 2,
+              "rent_ladder": [
+                3,
+                8
+              ],
+              "properties": [
+                "Park Place",
+                "Boardwalk"
+              ]
+            },
+            {
+              "color": "rail",
+              "name": "Railroads",
+              "set_size": 4,
+              "rent_ladder": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "properties": [
+                "Reading Railroad",
+                "Pennsylvania Railroad",
+                "B&O Railroad",
+                "Short Line"
+              ]
+            },
+            {
+              "color": "utility",
+              "name": "Utilities",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Electric Company",
+                "Water Works"
+              ]
+            }
+          ],
+          "collections": [
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "brown:0",
+              "color": "brown",
+              "count": 2,
+              "set_size": 2,
+              "complete": true,
+              "rent": 9
+            }
+          ],
+          "pending_action": null
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null,
+      "last_action": null,
+      "activity": []
+    },
+    "transitions": [
+      {
+        "label": "Charge doubled Brown rent",
+        "action": {
+          "type": "play",
+          "card": "d059",
+          "target": "",
+          "color": "brown:0",
+          "choice": "",
+          "amount": 0,
+          "slot": 0,
+          "cards": [],
+          "groups": []
+        },
+        "room": {
+          "id": "7f69d8a6-4f66-57ee-a689-a16ccc3750c5",
+          "name": "Synthetic Deal workspace",
+          "code": "DESIGN1",
+          "game_id": "deal",
+          "owner_id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+          "capacity": 4,
+          "settings": {},
+          "status": "playing",
+          "revision": 2,
+          "match_id": "d3391333-a308-5af1-a83e-4dd79452c690",
+          "match_version": 2,
+          "members": [
+            {
+              "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "name": "Alexandra with a rather long name",
+              "avatar": 0,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+              "name": "Dev",
+              "avatar": 1,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+              "name": "Mira",
+              "avatar": 2,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+              "name": "Sam",
+              "avatar": 3,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            }
+          ],
+          "messages": [],
+          "game": {
+            "game_id": "deal",
+            "phase": "playing",
+            "current_player": "baf691ac-60ab-5cf4-b394-02f24342044e",
+            "players": [
+              {
+                "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                "count": 2,
+                "score": 1,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {
+                  "brown:0": [
+                    {
+                      "id": "d020",
+                      "label": "Mediterranean Avenue",
+                      "color": "brown",
+                      "subtitle": "Mediterranean Avenue",
+                      "value": "1M",
+                      "suit": "property",
+                      "colors": [
+                        "brown"
+                      ],
+                      "effect": "",
+                      "set_name": "Brown",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        1,
+                        2
+                      ]
+                    },
+                    {
+                      "id": "d021",
+                      "label": "Baltic Avenue",
+                      "color": "brown",
+                      "subtitle": "Baltic Avenue",
+                      "value": "1M",
+                      "suit": "property",
+                      "colors": [
+                        "brown"
+                      ],
+                      "effect": "",
+                      "set_name": "Brown",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        1,
+                        2
+                      ]
+                    },
+                    {
+                      "id": "d099",
+                      "label": "House",
+                      "color": "brown",
+                      "subtitle": "House",
+                      "value": "3M",
+                      "suit": "action",
+                      "colors": [],
+                      "effect": "house",
+                      "set_name": null,
+                      "set_size": null,
+                      "rent_ladder": []
+                    },
+                    {
+                      "id": "d102",
+                      "label": "Hotel",
+                      "color": "brown",
+                      "subtitle": "Hotel",
+                      "value": "4M",
+                      "suit": "action",
+                      "colors": [],
+                      "effect": "hotel",
+                      "set_name": null,
+                      "set_size": null,
+                      "rent_ladder": []
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                "count": 3,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              },
+              {
+                "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+                "count": 3,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              },
+              {
+                "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+                "count": 3,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              }
+            ],
+            "hand": [
+              {
+                "id": "d096",
+                "label": "Forced deal",
+                "color": "neutral",
+                "subtitle": "Forced deal",
+                "value": "3M",
+                "suit": "action",
+                "colors": [],
+                "effect": "forced",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d095",
+                "label": "Forced deal",
+                "color": "neutral",
+                "subtitle": "Forced deal",
+                "value": "3M",
+                "suit": "action",
+                "colors": [],
+                "effect": "forced",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              }
+            ],
+            "community": [],
+            "discard": {
+              "id": "d059",
+              "label": "Rent",
+              "color": "brown",
+              "subtitle": "Rent",
+              "value": "1M",
+              "suit": "action",
+              "colors": [
+                "brown",
+                "sky"
+              ],
+              "effect": "rent",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            },
+            "drawn": null,
+            "draw_count": 89,
+            "pot": 0,
+            "message": "Played Rent.",
+            "actions": [],
+            "winners": [],
+            "detail": {
+              "moves": 1,
+              "rent_multiplier": 1,
+              "debts": {
+                "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
+                "baf691ac-60ab-5cf4-b394-02f24342044e": [],
+                "29420896-d26f-5a05-9f4c-8daf0c6adb27": [],
+                "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117": []
+              },
+              "pending": "bill",
+              "payment_amount": 0,
+              "property_groups": [
+                {
+                  "color": "brown",
+                  "name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ],
+                  "properties": [
+                    "Mediterranean Avenue",
+                    "Baltic Avenue"
+                  ]
+                },
+                {
+                  "color": "sky",
+                  "name": "Light blue",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "properties": [
+                    "Oriental Avenue",
+                    "Vermont Avenue",
+                    "Connecticut Avenue"
+                  ]
+                },
+                {
+                  "color": "pink",
+                  "name": "Pink",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    4
+                  ],
+                  "properties": [
+                    "St. Charles Place",
+                    "States Avenue",
+                    "Virginia Avenue"
+                  ]
+                },
+                {
+                  "color": "orange",
+                  "name": "Orange",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    3,
+                    5
+                  ],
+                  "properties": [
+                    "St. James Place",
+                    "Tennessee Avenue",
+                    "New York Avenue"
+                  ]
+                },
+                {
+                  "color": "red",
+                  "name": "Red",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    3,
+                    6
+                  ],
+                  "properties": [
+                    "Kentucky Avenue",
+                    "Indiana Avenue",
+                    "Illinois Avenue"
+                  ]
+                },
+                {
+                  "color": "yellow",
+                  "name": "Yellow",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    6
+                  ],
+                  "properties": [
+                    "Atlantic Avenue",
+                    "Ventnor Avenue",
+                    "Marvin Gardens"
+                  ]
+                },
+                {
+                  "color": "green",
+                  "name": "Green",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    7
+                  ],
+                  "properties": [
+                    "Pacific Avenue",
+                    "North Carolina Avenue",
+                    "Pennsylvania Avenue"
+                  ]
+                },
+                {
+                  "color": "blue",
+                  "name": "Dark blue",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    3,
+                    8
+                  ],
+                  "properties": [
+                    "Park Place",
+                    "Boardwalk"
+                  ]
+                },
+                {
+                  "color": "rail",
+                  "name": "Railroads",
+                  "set_size": 4,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3,
+                    4
+                  ],
+                  "properties": [
+                    "Reading Railroad",
+                    "Pennsylvania Railroad",
+                    "B&O Railroad",
+                    "Short Line"
+                  ]
+                },
+                {
+                  "color": "utility",
+                  "name": "Utilities",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ],
+                  "properties": [
+                    "Electric Company",
+                    "Water Works"
+                  ]
+                }
+              ],
+              "collections": [
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "brown:0",
+                  "color": "brown",
+                  "count": 2,
+                  "set_size": 2,
+                  "complete": true,
+                  "rent": 9
+                }
+              ],
+              "pending_action": {
+                "kind": "bill",
+                "actor": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                "target": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                "responder": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                "amount": 18,
+                "blocked": false,
+                "stage": "counter"
+              }
+            }
+          },
+          "paused": false,
+          "missing_players": [],
+          "invite_token": null,
+          "bot_pending": false,
+          "bot_due_at": null,
+          "last_action": null,
+          "activity": []
+        }
+      }
+    ]
   }
 ];

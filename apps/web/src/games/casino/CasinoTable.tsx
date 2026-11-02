@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useId, useRef, type CSSProperties } from 'react';
 import { LayoutGroup, MotionConfig, motion } from 'motion/react';
-import { Seat, TokenArt } from '@games/ui';
+import { Seat, TokenArt, HorizontalRail } from '@games/ui';
 import { blackjackDetails } from '@games/api-client';
 import { ActionPanel } from '../shared/ActionPanel';
 import { playerName, type TableProps } from '../types';
@@ -83,7 +83,7 @@ export function CasinoTable(props: TableProps) {
   const spring =
     event && !reduced ? { type: 'spring' as const, stiffness: 380, damping: 34 } : { duration: 0 };
   useEffect(() => {
-    const row = hands.current;
+    const row = hands.current?.querySelector<HTMLElement>('.blackjack-hands');
     const active = row?.querySelector<HTMLElement>('[data-active="true"]');
     if (!row || !active) return;
     const viewport = row.getBoundingClientRect();
@@ -98,7 +98,7 @@ export function CasinoTable(props: TableProps) {
     <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
       <LayoutGroup id={`casino-${instance}`}>
         <div
-          className="table-layout casino-layout"
+          className="table-layout stable-game-table casino-layout"
           data-phase={match.phase}
           data-casino-version={room.matchVersion}
           ref={canvas}
@@ -267,13 +267,24 @@ export function CasinoTable(props: TableProps) {
             </div>
           </div>
           <div className="casino-controls">
-            {showOwnHand ? (
-              <div className="private-hand">
-                <div className="hand-heading">
-                  <h3>{blackjack ? 'Your hands' : 'Your cards'}</h3>
-                </div>
-                {blackjack ? (
-                  <div className="blackjack-hands" ref={hands}>
+            <div className="private-hand casino-own-cards" data-empty={!showOwnHand}>
+              <div className="hand-heading">
+                <h3>{blackjack ? 'Your hands' : 'Your cards'}</h3>
+              </div>
+              {!showOwnHand ? (
+                <p className="small muted casino-hand-placeholder">
+                  {match.phase === 'finished'
+                    ? 'This hand is complete.'
+                    : 'Your cards will appear here after betting.'}
+                </p>
+              ) : blackjack ? (
+                <div ref={hands}>
+                  <HorizontalRail
+                    label="Your blackjack hands"
+                    navigationLabel="blackjack hands"
+                    viewportClassName="blackjack-hands"
+                    contentClassName="blackjack-hands-row"
+                  >
                     {blackjack.hands.map((hand, index) => (
                       <motion.section
                         className="blackjack-hand"
@@ -300,20 +311,20 @@ export function CasinoTable(props: TableProps) {
                         />
                       </motion.section>
                     ))}
-                  </div>
-                ) : (
-                  <CasinoCardRow
-                    cards={match.hand}
-                    group="own"
-                    event={event}
-                    label="Your hand"
-                    hand
-                  />
-                )}
-              </div>
-            ) : null}
+                  </HorizontalRail>
+                </div>
+              ) : (
+                <CasinoCardRow
+                  cards={match.hand}
+                  group="own"
+                  event={event}
+                  label="Your hand"
+                  hand
+                />
+              )}
+            </div>
             <div className="casino-decision-shell">
-              <ActionPanel {...props} />
+              <ActionPanel {...props} dockSize="extended" />
             </div>
           </div>
           <CasinoChipFlights event={event} canvas={canvas} pot={pot} seats={seats} />

@@ -25,6 +25,8 @@ test('every game finishes at both seat limits, renders results, rematches and ke
   baseURL,
 }) => {
   test.setTimeout(40 * 60 * 1000);
+  // A long match must not turn an obscured UI control into a forty-minute wait.
+  page.setDefaultTimeout(15000);
   const contexts = [];
   const players: Page[] = [page];
   let roomId: string | undefined;
@@ -36,6 +38,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
     moves: number;
     profileHistoryVerified: boolean;
     rematch: boolean;
+    midgameChecks: { phase: string; action: string; version: number; selectionStable: boolean }[];
   }[] = [];
   const filter = process.env.GAMES_FULL_MATCH_GAME?.split(',').filter(Boolean);
   const seatFilter = process.env.GAMES_FULL_MATCH_SEATS?.split(',').map(Number);
@@ -101,7 +104,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           cleanup,
           cases: summaries,
           decisions:
-            'Authorized API projections; rendered result/rematch/change-game browser controls.',
+            'Authorized API projections; rendered result/rematch/change-game controls; optional GAMES_MIDGAME=1 adds refreshed mid-game layout/selection checks.',
           rummyScenario: 'Legal drops; declaration/sequences are independently engine-tested.',
         },
         null,
@@ -130,13 +133,18 @@ test('every game finishes at both seat limits, renders results, rematches and ke
     const catalogue: components['schemas']['GameManifest'][] = await checked(page, 'games', 'GET');
     if (filter?.some((id) => !catalogue.some((game) => game.id === id)))
       throw new Error('The full-match filter contains an unavailable game.');
-    // Start with the selected game supporting the largest group, so focused
-    // solo checks need one guest rather than an unnecessary multiplayer lobby.
+    // Create only the identities required by the selected acceptance cases.
     const selected = catalogue.filter((game) => !filter || filter.includes(game.id));
-    const initialGame = selected.reduce((largest, game) =>
-      game.max_players > largest.max_players ? game : largest,
+    const requiredSeats = selected.flatMap((game) =>
+      [...new Set([game.min_players, game.max_players])].filter(
+        (seats) => !seatFilter || seatFilter.includes(seats),
+      ),
     );
-    const maxSeats = initialGame.max_players;
+    if (!requiredSeats.length) throw new Error('No selected seat-limit case can run.');
+    const maxSeats = Math.max(...requiredSeats);
+    const initialGame = selected.find(
+      (game) => game.min_players <= maxSeats && game.max_players >= maxSeats,
+    )!;
     await page
       .getByRole('button', { name: `Create ${initialGame.name} room`, exact: true })
       .click();
@@ -151,6 +159,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
     const code = maxSeats > 1 ? await page.locator('.room-code').innerText() : '';
     for (let seat = 1; seat < maxSeats; seat++) {
       const context = await browser.newContext({ baseURL, viewport: page.viewportSize()! });
+      context.setDefaultTimeout(15000);
       contexts.push(context);
       const friend = await context.newPage();
       friend.setDefaultNavigationTimeout(30000);
@@ -200,6 +209,13 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           await page.reload();
           await expect(page.locator('.table-announcement')).toBeVisible();
           let moves = 0;
+          const midgameChecks: {
+            phase: string;
+            action: string;
+            version: number;
+            selectionStable: boolean;
+          }[] = [];
+          const sampled = new Set<string>();
           let tarotReadingText: string | undefined;
           while (snapshot.status === 'playing' && moves < 3000) {
             if (Date.now() - heartbeatAt > 10000) await heartbeats();
@@ -253,11 +269,109 @@ test('every game finishes at both seat limits, renders results, rematches and ke
             const wait = 365 - (Date.now() - (lastMove.get(actor) || 0));
             if (wait > 0) await new Promise((resolve) => setTimeout(resolve, wait));
             const view = await roomAs(actor, roomId!);
+            let selectedAction = choose(view.game!);
+            // The ordinary acceptance driver eventually drops in Rummy. First
+            // exercise saved draw/discard turns and the fourteen-card workspace.
+            if (process.env.GAMES_MIDGAME === '1' && game.id === 'rummy' && moves < seats * 2) {
+              selectedAction =
+                view.game!.actions.find((option) =>
+                  ['draw_stock', 'discard'].includes(option.action.type),
+                )?.action || selectedAction;
+            }
+            const critical = new Set([
+              'pay',
+              'no',
+              'split',
+              'double',
+              'insurance',
+              'sideshow',
+              'swap',
+              'declare',
+              'graduate',
+              'promote',
+              'place',
+              'choose',
+              'steal',
+            ]);
+            const sampleKey = critical.has(selectedAction.type)
+              ? `${view.game!.phase}:${selectedAction.type}`
+              : view.game!.phase;
+            if (
+              process.env.GAMES_MIDGAME === '1' &&
+              moves >= 2 &&
+              !sampled.has(sampleKey) &&
+              midgameChecks.length < 8
+            ) {
+              sampled.add(sampleKey);
+              await actor.reload();
+              await expect(actor.locator('.table-layout,.tarot-table').first()).toBeVisible();
+              await actor.evaluate(() => document.fonts.ready);
+              expect(
+                await actor.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+              ).toBe(true);
+              let selectionStable = false;
+              if (
+                [
+                  'uno',
+                  'uno-no-mercy',
+                  'deal',
+                  'deal-no-mercy',
+                  'rummy',
+                  'shithead',
+                  'six-nimmt',
+                ].includes(game.id)
+              ) {
+                const selectable = actor.locator('.card-hand > button:not(:disabled)').first();
+                if (await selectable.count()) {
+                  const handPosition = () =>
+                    selectable.evaluate((node) => {
+                      const rail = node.closest('.hand-rail,.hand-scroll')!;
+                      const table = node.closest('.table-layout')!;
+                      return {
+                        hand: rail.getBoundingClientRect().top + scrollY,
+                        table: table.getBoundingClientRect().top + scrollY,
+                      };
+                    });
+                  const before = await handPosition();
+                  await selectable.focus();
+                  await selectable.press('Space');
+                  await expect(selectable).toHaveAttribute('aria-pressed', 'true');
+                  const after = await handPosition();
+                  expect(
+                    Math.abs(after.hand - before.hand),
+                    `${game.name}: selection must keep its hand in place`,
+                  ).toBeLessThanOrEqual(2);
+                  expect(
+                    Math.abs(after.table - before.table),
+                    `${game.name}: selection must keep its table in place`,
+                  ).toBeLessThanOrEqual(2);
+                  selectionStable = true;
+                  // The modeless move panel can cover the phone command bar.
+                  // Dismiss it through the same keyboard control a player uses
+                  // before clearing this temporary inspection selection.
+                  const movePanel = actor.locator('.table-decision-panel');
+                  if (await movePanel.count()) {
+                    await actor.keyboard.press('Escape');
+                    await expect(movePanel).toHaveCount(0);
+                  }
+                  const clear = actor
+                    .getByRole('button', { name: /^(Clear card selection|Clear selection)$/ })
+                    .first();
+                  if (await clear.count()) await clear.click();
+                }
+              }
+              midgameChecks.push({
+                phase: view.game!.phase,
+                action: selectedAction.type,
+                version: view.match_version!,
+                selectionStable,
+              });
+            }
             snapshot = await checked(actor, `rooms/${roomId}/actions`, 'POST', {
               match_id: view.match_id,
               action_id: randomUUID(),
               expected_version: view.match_version,
-              action: choose(view.game!),
+              action: selectedAction,
             });
             lastMove.set(actor, Date.now());
             moves++;
@@ -371,6 +485,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
             moves,
             profileHistoryVerified: true,
             rematch: true,
+            midgameChecks,
           });
           active = null;
           await record();

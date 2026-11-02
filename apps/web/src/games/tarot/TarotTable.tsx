@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Sparkles, ArrowRight } from 'lucide-react';
-import { Button, ChoiceGroup, Modal, TarotCard, tarotArtwork } from '@games/ui';
+import { Button, ChoiceGroup, Modal, HorizontalRail, TarotCard, tarotArtwork } from '@games/ui';
 import { ApiError } from '@games/api-client';
 import { api } from '@/lib/session';
 import { keys } from '@/shared/query-keys';
@@ -35,7 +35,7 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
   const reading = saved.data?.reading;
   const writing = generate.isPending || saved.data?.status === 'generating';
   return (
-    <div className="tarot-table" data-phase={match.phase}>
+    <div className="tarot-table stable-tarot-table" data-phase={match.phase}>
       <div className="tarot-intro">
         <p className="eyebrow">Three-card reading</p>
         <h2>
@@ -67,9 +67,9 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
               name={match.community[i]?.label}
               imageLoader={imageLoader}
             />
-            {match.community[i] ? (
-              <p className="tarot-card-meaning">{match.community[i].subtitle}</p>
-            ) : null}
+            <p className="tarot-card-meaning" aria-hidden={!match.community[i]}>
+              {match.community[i]?.subtitle || '\u00a0'}
+            </p>
           </div>
         ))}
       </div>
@@ -79,10 +79,12 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
             <h3>Choose card {match.community.length + 1} of 3</h3>
             <p className="small muted">Select a face-down card.</p>
           </div>
-          <div
-            className="tarot-deck"
-            role="group"
-            aria-label="Choose from your shuffled 78-card deck"
+          <HorizontalRail
+            label="Choose from your shuffled 78-card deck"
+            navigationLabel="tarot cards"
+            className="tarot-deck-rail"
+            viewportClassName="tarot-deck"
+            contentClassName="tarot-deck-content"
           >
             {match.actions.map((option) => (
               <TarotCard
@@ -93,8 +95,8 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
                 disabled={pending || room.paused}
               />
             ))}
-          </div>
-          <p className="small muted">Scroll to see more cards.</p>
+          </HorizontalRail>
+          <p className="small muted">Use the arrows or scroll to see more cards.</p>
         </section>
       ) : reading ? (
         <TarotReading reading={reading} cards={match.community} />

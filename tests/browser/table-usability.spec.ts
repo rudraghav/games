@@ -18,7 +18,12 @@ test('table decisions stay near the hand and explain direct grid actions', async
   await firstCard.focus();
   await firstCard.press('Enter');
   await expect(firstCard).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByRole('region', { name: 'Selected card' })).toBeVisible();
+  const actions = page.getByRole('region', { name: 'Your actions', exact: true });
+  const selectedName = (await firstCard.getAttribute('aria-label'))!.split(',')[0];
+  await expect(actions.getByText(selectedName, { exact: true })).toBeVisible();
+  await expect(
+    actions.getByRole('button', { name: 'Choose move options', exact: true }),
+  ).toBeEnabled();
   await page.getByRole('button', { name: 'Clear card selection' }).click();
   await expect(firstCard).toHaveAttribute('aria-pressed', 'false');
   await scenario.selectOption({ label: 'Skyjo · maximum seats' });
@@ -82,7 +87,13 @@ test('rummy rank sorting and keyboard grouping retain card identity', async ({ p
   await expect(
     page.getByRole('group', { name: 'Group 1', exact: true }).getByRole('button'),
   ).toHaveAttribute('aria-label', label!);
-  await expect(page.locator('.rummy-groups button')).toHaveCount(13);
+  const groupedCards = page.locator('.rummy-groups .card-hand > button');
+  await expect(groupedCards).toHaveCount(13);
+  expect(
+    await groupedCards.evaluateAll((elements) =>
+      elements.map((element) => element.getAttribute('aria-label')!).sort(),
+    ),
+  ).toEqual([...labels].sort());
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   expect(await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(
     true,

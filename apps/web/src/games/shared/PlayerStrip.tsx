@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { Seat } from '@games/ui';
+import { Seat, HorizontalRail } from '@games/ui';
 import type { Player } from '@games/api-client';
 import type { TableProps } from '../types';
 import { pendingPlayerIds } from './turn-state';
@@ -14,9 +14,9 @@ export function PlayerStrip({
   const pendingPlayers = pendingPlayerIds(match);
   const focusId = pendingPlayers?.includes(selfId) ? selfId : match.currentPlayer;
   useEffect(() => {
-    const strip = stripRef.current;
+    const strip = stripRef.current?.querySelector<HTMLElement>('.player-strip');
     if (!strip || strip.scrollWidth <= strip.clientWidth) return;
-    const seat = Array.from(strip.children).find(
+    const seat = Array.from(strip.querySelectorAll('[data-player]')).find(
       (child) => child.getAttribute('data-player') === focusId,
     );
     if (!seat) return;
@@ -26,39 +26,46 @@ export function PlayerStrip({
       strip.scrollTo({ left: strip.scrollLeft + target.left - frame.left - 3, behavior: 'auto' });
   }, [focusId]);
   return (
-    <div className="player-strip" ref={stripRef} role="group" aria-label="Players at the table">
-      {match.players.map((player) => {
-        const member = room.members.find((member) => member.id === player.id);
-        return (
-          <div className="player-strip-seat" data-player={player.id} key={player.id}>
-            <Seat
-              name={member?.name || 'Player'}
-              you={player.id === selfId}
-              avatar={member?.avatar}
-              bot={member?.isBot}
-              compact
-              active={
-                pendingPlayers
-                  ? pendingPlayers.includes(player.id)
-                  : match.currentPlayer === player.id
-              }
-              activeLabel={pendingPlayers ? 'Decision pending' : 'Current turn'}
-              connected={member?.connected ?? false}
-              caption={
-                playerCaption
-                  ? playerCaption(player)
-                  : player.eliminated
-                    ? 'Eliminated'
-                    : player.folded
-                      ? 'Folded'
-                      : player.chips != null
-                        ? `${player.chips} chips${player.bet ? ` · ${player.bet} bet` : ''}`
-                        : `${player.count} cards${player.score ? ` · ${player.score} points` : ''}`
-              }
-            />
-          </div>
-        );
-      })}
+    <div className="player-strip-rail" ref={stripRef}>
+      <HorizontalRail
+        label="Players at the table"
+        navigationLabel="players"
+        viewportClassName="player-strip"
+        contentClassName="player-strip-content"
+      >
+        {match.players.map((player) => {
+          const member = room.members.find((member) => member.id === player.id);
+          return (
+            <div className="player-strip-seat" data-player={player.id} key={player.id}>
+              <Seat
+                name={member?.name || 'Player'}
+                you={player.id === selfId}
+                avatar={member?.avatar}
+                bot={member?.isBot}
+                compact
+                active={
+                  pendingPlayers
+                    ? pendingPlayers.includes(player.id)
+                    : match.currentPlayer === player.id
+                }
+                activeLabel={pendingPlayers ? 'Decision pending' : 'Current turn'}
+                connected={member?.connected ?? false}
+                caption={
+                  playerCaption
+                    ? playerCaption(player)
+                    : player.eliminated
+                      ? 'Eliminated'
+                      : player.folded
+                        ? 'Folded'
+                        : player.chips != null
+                          ? `${player.chips} chips${player.bet ? ` · ${player.bet} bet` : ''}`
+                          : `${player.count} cards${player.score ? ` · ${player.score} points` : ''}`
+                }
+              />
+            </div>
+          );
+        })}
+      </HorizontalRail>
     </div>
   );
 }

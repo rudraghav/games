@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Button, WordTile } from '@games/ui';
+import { Button, WordTile, DecisionDock } from '@games/ui';
 import { wordsDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import type { TableProps } from '../types';
@@ -21,7 +21,7 @@ export function WordsTable(props: TableProps) {
   const selectedOption = selected ? guesses.get(selected) : null;
   const blocked = pending || room.paused;
   return (
-    <div className="table-layout">
+    <div className="table-layout stable-game-table">
       <PlayerStrip
         {...props}
         playerCaption={(player) =>
@@ -43,11 +43,15 @@ export function WordsTable(props: TableProps) {
             {data.clue || 'Waiting for a clue'}
             {data.clue ? <span>{data.clueCount}</span> : null}
           </h2>
-          {match.phase === 'guess' ? (
-            <p className="small muted">
-              Up to {data.guessesLeft} more {data.guessesLeft === 1 ? 'guess' : 'guesses'}
-            </p>
-          ) : null}
+          <p className="small muted word-guess-status" aria-hidden={match.phase !== 'guess'}>
+            {match.phase === 'guess' ? (
+              <>
+                Up to {data.guessesLeft} more {data.guessesLeft === 1 ? 'guess' : 'guesses'}
+              </>
+            ) : (
+              '\u00a0'
+            )}
+          </p>
         </div>
         {data.role === 'spymaster' && match.phase !== 'finished' ? (
           <p className="small word-key-note">
@@ -71,86 +75,102 @@ export function WordsTable(props: TableProps) {
             />
           ))}
         </div>
-        {clues.length ? (
-          <form
-            className="clue-form"
-            onSubmit={(event) => {
-              event.preventDefault();
-              const option = clues.find((option) => option.value.amount === count);
-              if (option) {
-                onAction({ ...option.value, choice: clue.trim() });
-                setClue('');
-              }
-            }}
-          >
-            <label className="field">
-              Your one-word clue
-              <input
-                className="input"
-                maxLength={32}
-                value={clue}
-                onChange={(event) => setClue(event.target.value)}
-                placeholder="Enter one word"
-                disabled={blocked}
-                required
-              />
-            </label>
-            <label className="field">
-              Words
-              <select
-                className="input"
-                value={count}
-                onChange={(event) => setCount(Number(event.target.value))}
-                disabled={blocked}
-              >
-                {clues.map((option) => (
-                  <option key={option.value.amount} value={option.value.amount}>
-                    {option.value.amount}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <Button
-              type="submit"
-              disabled={blocked || !/^[A-Za-z][A-Za-z'-]{0,31}$/.test(clue.trim())}
-            >
-              Give clue
-            </Button>
-          </form>
-        ) : null}
-        {room.members.some((member) => member.isBot) && match.phase !== 'finished' ? (
-          <p className="small muted">
-            Bots understand category clues such as animals, music and travel.
-          </p>
-        ) : null}
-        {data.role === 'operative' &&
-        match.phase === 'guess' &&
-        data.teams[selfId] === data.activeTeam ? (
-          <div className="word-decisions">
-            <Button
-              disabled={blocked || !selectedOption}
-              onClick={() => {
-                if (selectedOption) onAction(selectedOption.value);
-                setSelected(null);
+        <DecisionDock
+          className="word-action-dock"
+          size="standard"
+          label="Word Agents decisions"
+          pending={pending}
+        >
+          {clues.length ? (
+            <form
+              className="clue-form"
+              onSubmit={(event) => {
+                event.preventDefault();
+                const option = clues.find((option) => option.value.amount === count);
+                if (option) {
+                  onAction({ ...option.value, choice: clue.trim() });
+                  setClue('');
+                }
               }}
             >
-              Confirm{' '}
-              {selected ? match.community.find((card) => card.id === selected)?.label : 'a word'}
-            </Button>
-            {end ? (
+              <label className="field">
+                Your one-word clue
+                <input
+                  className="input"
+                  maxLength={32}
+                  value={clue}
+                  onChange={(event) => setClue(event.target.value)}
+                  placeholder="Enter one word"
+                  disabled={blocked}
+                  required
+                />
+              </label>
+              <label className="field">
+                Words
+                <select
+                  className="input"
+                  value={count}
+                  onChange={(event) => setCount(Number(event.target.value))}
+                  disabled={blocked}
+                >
+                  {clues.map((option) => (
+                    <option key={option.value.amount} value={option.value.amount}>
+                      {option.value.amount}
+                    </option>
+                  ))}
+                </select>
+              </label>
               <Button
-                variant="secondary"
-                disabled={blocked}
+                type="submit"
+                disabled={blocked || !/^[A-Za-z][A-Za-z'-]{0,31}$/.test(clue.trim())}
+              >
+                Give clue
+              </Button>
+            </form>
+          ) : null}
+          {room.members.some((member) => member.isBot) && match.phase !== 'finished' ? (
+            <p className="small muted">
+              Bots understand category clues such as animals, music and travel.
+            </p>
+          ) : null}
+          {data.role === 'operative' &&
+          match.phase === 'guess' &&
+          data.teams[selfId] === data.activeTeam ? (
+            <div className="word-decisions">
+              <Button
+                disabled={blocked || !selectedOption}
                 onClick={() => {
-                  onAction(end.value);
+                  if (selectedOption) onAction(selectedOption.value);
                   setSelected(null);
                 }}
               >
-                End guesses
+                Confirm{' '}
+                {selected ? match.community.find((card) => card.id === selected)?.label : 'a word'}
               </Button>
-            ) : null}
-          </div>
-        ) : null}
+              {end ? (
+                <Button
+                  variant="secondary"
+                  disabled={blocked}
+                  onClick={() => {
+                    onAction(end.value);
+                    setSelected(null);
+                  }}
+                >
+                  End guesses
+                </Button>
+              ) : null}
+            </div>
+          ) : null}
+          {!clues.length && !selectedOption && !end ? (
+            <p className="small muted">
+              {match.phase === 'finished'
+                ? 'Game complete.'
+                : data.role === 'operative'
+                  ? 'Choose an available word when your team is guessing.'
+                  : 'Your team is using the clue.'}
+            </p>
+          ) : null}
+        </DecisionDock>
       </section>
     </div>
   );

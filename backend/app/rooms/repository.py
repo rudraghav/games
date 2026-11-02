@@ -25,6 +25,19 @@ class Repository:
         ).limit(1))
         return response.get("public_action") if isinstance(response, dict) else None
 
+    def public_activity(self, match_id: str) -> list[dict]:
+        from app.rooms.public_history import HISTORY_LIMIT
+
+        responses = self.session.scalars(
+            select(Receipt.response)
+            .where(Receipt.match_id == match_id,
+                   Receipt.response["public_move"].is_not(None))
+            .order_by(Receipt.response["committedVersion"].as_integer().desc())
+            .limit(HISTORY_LIMIT)
+        ).all()
+        return [response["public_move"] for response in reversed(responses)
+                if isinstance(response, dict) and isinstance(response.get("public_move"), dict)]
+
     def save_profile(self, user_id: str, name: str, avatar: int) -> Profile:
         profile = self.profile(user_id)
         if profile is None:

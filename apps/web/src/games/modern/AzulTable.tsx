@@ -1,7 +1,7 @@
 'use client';
 import { useRef } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { Button, AzulTileArt } from '@games/ui';
+import { Button, DecisionDock, AzulTileArt } from '@games/ui';
 import { azulDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
@@ -29,6 +29,9 @@ export function AzulTable(props: TableProps) {
     });
   }
   const next = match.actions.find((o) => o.value.type === 'next_round');
+  const floorOption = match.actions.find(
+    (option) => option.value.type === 'place_tiles' && option.value.choice === 'floor',
+  );
   function offer(tiles: string[], source: string) {
     return (
       <section
@@ -84,7 +87,7 @@ export function AzulTable(props: TableProps) {
     (a, b) => Number(b.id === selfId) - Number(a.id === selfId),
   );
   return (
-    <div className="table-layout modern-game">
+    <div className="table-layout stable-game-table modern-game">
       <PlayerStrip {...props} playerCaption={(p) => `${p.score} points`} />
       <section className="azul-table" data-phase={match.phase} aria-label="Azul tile table">
         <div className="modern-game-heading">
@@ -125,20 +128,24 @@ export function AzulTable(props: TableProps) {
             {data.factories.map((f, i) => offer(f, String(i)))}
           </div>
         </div>
-        {match.phase === 'placing' ? (
-          <div className="azul-draft-preview">
-            <div>
-              {data.draft.map((color, index) => (
-                <Tile key={index} color={color} />
-              ))}
-            </div>
-            <p>
-              {match.currentPlayer === selfId
-                ? 'Choose one pattern line on your board, or the floor.'
-                : `${playerName(room, match.currentPlayer!)} is placing tiles.`}
-            </p>
-          </div>
-        ) : null}
+        <DecisionDock className="azul-draft-preview" size="compact" label="Your drafted tiles">
+          {match.phase === 'placing' ? (
+            <>
+              <div>
+                {data.draft.map((color, index) => (
+                  <Tile key={index} color={color} />
+                ))}
+              </div>
+              <p>
+                {match.currentPlayer === selfId
+                  ? 'Choose one pattern line on your board, or the floor.'
+                  : `${playerName(room, match.currentPlayer!)} is placing tiles.`}
+              </p>
+            </>
+          ) : (
+            <p>Choose one colour from a factory or the centre. Your drafted tiles appear here.</p>
+          )}
+        </DecisionDock>
         <div className="azul-player-boards">
           {orderedPlayers.map((player) => (
             <details
@@ -154,6 +161,10 @@ export function AzulTable(props: TableProps) {
                   {player.id === selfId ? ' · you' : ''}
                 </strong>
                 <b>{player.score} pts</b>
+                <span className="azul-public-progress">
+                  {data.walls[player.id].flat().filter(Boolean).length} wall tiles ·{' '}
+                  {data.floors[player.id].length} on floor
+                </span>
               </summary>
               <div className="azul-board-body">
                 <div className="azul-pattern-lines" aria-label="Pattern lines">
@@ -212,12 +223,11 @@ export function AzulTable(props: TableProps) {
                     </span>
                   ))}
                 </div>
-                {player.id === selfId &&
-                match.actions.some((o) => o.value.type === 'place_tiles') ? (
+                {player.id === selfId ? (
                   <Button
                     size="sm"
                     variant="secondary"
-                    disabled={blocked}
+                    disabled={blocked || !floorOption}
                     onClick={() => {
                       const option = match.actions.find(
                         (o) => o.value.type === 'place_tiles' && o.value.choice === 'floor',

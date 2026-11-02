@@ -278,7 +278,8 @@
         "invite_token": null,
         "bot_pending": false,
         "bot_due_at": null,
-        "last_action": null
+        "last_action": null,
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -561,7 +562,8 @@
           "actor_id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
           "type": "raise",
           "amount": 4
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -844,7 +846,8 @@
           "actor_id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
           "type": "fold",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -1127,7 +1130,8 @@
           "actor_id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
           "type": "call",
           "amount": 4
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -1410,7 +1414,8 @@
           "actor_id": "535fe5de-0a87-5604-b2db-01481edb7e36",
           "type": "call",
           "amount": 4
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -1693,7 +1698,8 @@
           "actor_id": "1f3502e1-c188-5796-8522-085306a0f049",
           "type": "call",
           "amount": 4
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -2053,7 +2059,8 @@
           "actor_id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
           "type": "call",
           "amount": 4
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -2336,7 +2343,8 @@
           "actor_id": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
           "type": "call",
           "amount": 4
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -2619,7 +2627,8 @@
           "actor_id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
           "type": "call",
           "amount": 3
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -2942,7 +2951,8 @@
           "actor_id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
           "type": "call",
           "amount": 2
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -3265,7 +3275,8 @@
           "actor_id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -3588,7 +3599,8 @@
           "actor_id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -3911,7 +3923,8 @@
           "actor_id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -4234,7 +4247,8 @@
           "actor_id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -4557,7 +4571,8 @@
           "actor_id": "535fe5de-0a87-5604-b2db-01481edb7e36",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -4880,7 +4895,8 @@
           "actor_id": "1f3502e1-c188-5796-8522-085306a0f049",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -5280,7 +5296,8 @@
           "actor_id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -5616,7 +5633,8 @@
           "actor_id": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -5952,7 +5970,8 @@
           "actor_id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -6288,7 +6307,8 @@
           "actor_id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -6624,7 +6644,8 @@
           "actor_id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -6960,7 +6981,8 @@
           "actor_id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -7296,7 +7318,8 @@
           "actor_id": "535fe5de-0a87-5604-b2db-01481edb7e36",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -7632,7 +7655,8 @@
           "actor_id": "1f3502e1-c188-5796-8522-085306a0f049",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -8045,7 +8069,8 @@
           "actor_id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -8394,7 +8419,8 @@
           "actor_id": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -8743,7 +8769,8 @@
           "actor_id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -9092,7 +9119,8 @@
           "actor_id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -9441,7 +9469,8 @@
           "actor_id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -9790,7 +9819,8 @@
           "actor_id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -10139,7 +10169,8 @@
           "actor_id": "535fe5de-0a87-5604-b2db-01481edb7e36",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -10488,7 +10519,8 @@
           "actor_id": "1f3502e1-c188-5796-8522-085306a0f049",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -10914,7 +10946,8 @@
           "actor_id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "d65c7e83-91a0-5214-948d-0bc694c5caf7",
@@ -11488,7 +11521,8 @@
           "actor_id": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
           "type": "check",
           "amount": null
-        }
+        },
+        "activity": []
       }
     ]
   },
@@ -11662,7 +11696,8 @@
         "invite_token": null,
         "bot_pending": false,
         "bot_due_at": null,
-        "last_action": null
+        "last_action": null,
+        "activity": []
       },
       {
         "id": "66a5859a-5d37-5a17-a1e1-69e8abddfe7d",
@@ -11857,7 +11892,8 @@
           "actor_id": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
           "type": "peek",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "66a5859a-5d37-5a17-a1e1-69e8abddfe7d",
@@ -12013,7 +12049,8 @@
           "actor_id": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
           "type": "bet",
           "amount": 2
-        }
+        },
+        "activity": []
       },
       {
         "id": "66a5859a-5d37-5a17-a1e1-69e8abddfe7d",
@@ -12169,7 +12206,8 @@
           "actor_id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
           "type": "peek",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "66a5859a-5d37-5a17-a1e1-69e8abddfe7d",
@@ -12325,7 +12363,8 @@
           "actor_id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
           "type": "bet",
           "amount": 2
-        }
+        },
+        "activity": []
       },
       {
         "id": "66a5859a-5d37-5a17-a1e1-69e8abddfe7d",
@@ -12481,7 +12520,8 @@
           "actor_id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
           "type": "peek",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "66a5859a-5d37-5a17-a1e1-69e8abddfe7d",
@@ -12695,7 +12735,8 @@
           "actor_id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
           "type": "bet",
           "amount": 2
-        }
+        },
+        "activity": []
       },
       {
         "id": "66a5859a-5d37-5a17-a1e1-69e8abddfe7d",
@@ -12851,7 +12892,8 @@
           "actor_id": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
           "type": "bet",
           "amount": 2
-        }
+        },
+        "activity": []
       },
       {
         "id": "66a5859a-5d37-5a17-a1e1-69e8abddfe7d",
@@ -13007,7 +13049,8 @@
           "actor_id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
           "type": "fold",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "66a5859a-5d37-5a17-a1e1-69e8abddfe7d",
@@ -13245,7 +13288,8 @@
           "actor_id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
           "type": "show",
           "amount": 2
-        }
+        },
+        "activity": []
       }
     ]
   },
@@ -13336,7 +13380,8 @@
         "invite_token": null,
         "bot_pending": false,
         "bot_due_at": null,
-        "last_action": null
+        "last_action": null,
+        "activity": []
       },
       {
         "id": "f855ff8f-7ffe-5907-8391-7d01319b6780",
@@ -13584,7 +13629,8 @@
           "actor_id": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
           "type": "bet",
           "amount": 10
-        }
+        },
+        "activity": []
       },
       {
         "id": "f855ff8f-7ffe-5907-8391-7d01319b6780",
@@ -13870,7 +13916,8 @@
           "actor_id": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
           "type": "split",
           "amount": 10
-        }
+        },
+        "activity": []
       },
       {
         "id": "f855ff8f-7ffe-5907-8391-7d01319b6780",
@@ -14182,7 +14229,8 @@
           "actor_id": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
           "type": "hit",
           "amount": null
-        }
+        },
+        "activity": []
       },
       {
         "id": "f855ff8f-7ffe-5907-8391-7d01319b6780",
@@ -14488,7 +14536,8 @@
           "actor_id": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
           "type": "hit",
           "amount": null
-        }
+        },
+        "activity": []
       }
     ]
   }

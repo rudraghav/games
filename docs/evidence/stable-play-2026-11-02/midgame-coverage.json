@@ -1,0 +1,2288 @@
+{
+  "games": 27,
+  "kind": "Legally reached engine projections, not saved API rooms",
+  "limits": [
+    "Only generated legal trajectories are claimed; no guarantee that every rare action appears.",
+    "Existing targeted Deal scenarios separately cover forced swaps and counter-counter chains.",
+    "Saved HTTP rooms and refresh are checked by fullmatches.spec.ts with GAMES_MIDGAME=1."
+  ],
+  "runs": [
+    {
+      "captured": 1,
+      "capturedActionTypes": [
+        "play"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "draw",
+        "play",
+        "uno"
+      ],
+      "finished": true,
+      "game": "uno",
+      "offeredActionTypes": [
+        "draw",
+        "play",
+        "uno"
+      ],
+      "peakPrivateHand": 7,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 14,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "accept",
+        "challenge",
+        "play"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "accept",
+        "challenge",
+        "draw",
+        "play",
+        "uno"
+      ],
+      "finished": true,
+      "game": "uno",
+      "offeredActionTypes": [
+        "accept",
+        "challenge",
+        "draw",
+        "end_turn",
+        "play",
+        "uno"
+      ],
+      "peakPrivateHand": 11,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 10,
+      "seed": 31,
+      "steps": 54,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "choose",
+        "play"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "choose",
+        "draw",
+        "play",
+        "uno"
+      ],
+      "finished": true,
+      "game": "uno-no-mercy",
+      "offeredActionTypes": [
+        "choose",
+        "draw",
+        "play",
+        "uno"
+      ],
+      "peakPrivateHand": 23,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 96,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "choose",
+        "play"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "choose",
+        "draw",
+        "play",
+        "uno"
+      ],
+      "finished": true,
+      "game": "uno-no-mercy",
+      "offeredActionTypes": [
+        "choose",
+        "draw",
+        "play",
+        "uno"
+      ],
+      "peakPrivateHand": 18,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 6,
+      "seed": 31,
+      "steps": 97,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 16,
+      "capturedActionTypes": [
+        "accept",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "accept",
+        "bank",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange"
+      ],
+      "finished": true,
+      "game": "deal",
+      "offeredActionTypes": [
+        "accept",
+        "bank",
+        "end_turn",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange"
+      ],
+      "peakPrivateHand": 7,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 76,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 18,
+      "capturedActionTypes": [
+        "accept",
+        "bank",
+        "no",
+        "pay",
+        "play",
+        "rearrange"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "accept",
+        "bank",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange"
+      ],
+      "finished": true,
+      "game": "deal",
+      "offeredActionTypes": [
+        "accept",
+        "bank",
+        "end_turn",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange"
+      ],
+      "peakPrivateHand": 9,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 5,
+      "seed": 31,
+      "steps": 176,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 18,
+      "capturedActionTypes": [
+        "accept",
+        "choose",
+        "give",
+        "keep",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "accept",
+        "bank",
+        "choose",
+        "give",
+        "keep",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange"
+      ],
+      "finished": true,
+      "game": "deal-no-mercy",
+      "offeredActionTypes": [
+        "accept",
+        "bank",
+        "choose",
+        "end_turn",
+        "give",
+        "keep",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange"
+      ],
+      "peakPrivateHand": 7,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 56,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 18,
+      "capturedActionTypes": [
+        "accept",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange",
+        "settle_debt"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "accept",
+        "bank",
+        "choose",
+        "give",
+        "keep",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange",
+        "settle_debt"
+      ],
+      "finished": true,
+      "game": "deal-no-mercy",
+      "offeredActionTypes": [
+        "accept",
+        "bank",
+        "choose",
+        "end_turn",
+        "give",
+        "keep",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange",
+        "settle_debt"
+      ],
+      "peakPrivateHand": 8,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 5,
+      "seed": 31,
+      "steps": 212,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 4,
+      "capturedActionTypes": [
+        "check"
+      ],
+      "capturedPhases": [
+        "flop",
+        "preflop",
+        "river",
+        "turn"
+      ],
+      "chosenActionTypes": [
+        "call",
+        "check"
+      ],
+      "finished": true,
+      "game": "holdem",
+      "offeredActionTypes": [
+        "all_in",
+        "call",
+        "check",
+        "fold",
+        "raise"
+      ],
+      "peakPrivateHand": 2,
+      "phases": [
+        "flop",
+        "preflop",
+        "river",
+        "turn"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 8,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 4,
+      "capturedActionTypes": [
+        "call",
+        "check"
+      ],
+      "capturedPhases": [
+        "flop",
+        "preflop",
+        "river",
+        "turn"
+      ],
+      "chosenActionTypes": [
+        "call",
+        "check"
+      ],
+      "finished": true,
+      "game": "holdem",
+      "offeredActionTypes": [
+        "all_in",
+        "call",
+        "check",
+        "fold",
+        "raise"
+      ],
+      "peakPrivateHand": 2,
+      "phases": [
+        "flop",
+        "preflop",
+        "river",
+        "turn"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 9,
+      "seed": 31,
+      "steps": 36,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "declare",
+        "discard",
+        "draw_stock"
+      ],
+      "capturedPhases": [
+        "discard",
+        "draw"
+      ],
+      "chosenActionTypes": [
+        "declare",
+        "discard",
+        "draw_discard",
+        "draw_stock"
+      ],
+      "finished": true,
+      "game": "rummy",
+      "offeredActionTypes": [
+        "declare",
+        "discard",
+        "draw_discard",
+        "draw_stock",
+        "fold"
+      ],
+      "peakPrivateHand": 14,
+      "phases": [
+        "discard",
+        "draw"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 8,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "declare",
+        "discard",
+        "draw_stock"
+      ],
+      "capturedPhases": [
+        "discard",
+        "draw"
+      ],
+      "chosenActionTypes": [
+        "declare",
+        "discard",
+        "draw_discard",
+        "draw_stock"
+      ],
+      "finished": true,
+      "game": "rummy",
+      "offeredActionTypes": [
+        "declare",
+        "discard",
+        "draw_discard",
+        "draw_stock",
+        "fold"
+      ],
+      "peakPrivateHand": 14,
+      "phases": [
+        "discard",
+        "draw"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 6,
+      "seed": 31,
+      "steps": 32,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 1,
+      "capturedActionTypes": [
+        "bet"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "bet",
+        "peek",
+        "show"
+      ],
+      "finished": true,
+      "game": "teen-patti",
+      "offeredActionTypes": [
+        "bet",
+        "fold",
+        "peek",
+        "show"
+      ],
+      "peakPrivateHand": 3,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 4,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "accept",
+        "bet",
+        "sideshow"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "accept",
+        "bet",
+        "decline",
+        "fold",
+        "peek",
+        "show",
+        "sideshow"
+      ],
+      "finished": true,
+      "game": "teen-patti",
+      "offeredActionTypes": [
+        "accept",
+        "bet",
+        "decline",
+        "fold",
+        "peek",
+        "show",
+        "sideshow"
+      ],
+      "peakPrivateHand": 3,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 6,
+      "seed": 31,
+      "steps": 28,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 1,
+      "capturedActionTypes": [
+        "hit"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "bet",
+        "hit"
+      ],
+      "finished": true,
+      "game": "blackjack",
+      "offeredActionTypes": [
+        "bet",
+        "double",
+        "hit",
+        "stand"
+      ],
+      "peakPrivateHand": 3,
+      "phases": [
+        "betting",
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 1,
+      "seed": 17,
+      "steps": 3,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 4,
+      "capturedActionTypes": [
+        "bet",
+        "double",
+        "hit",
+        "split"
+      ],
+      "capturedPhases": [
+        "betting",
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "bet",
+        "double",
+        "hit",
+        "split",
+        "stand"
+      ],
+      "finished": true,
+      "game": "blackjack",
+      "offeredActionTypes": [
+        "bet",
+        "double",
+        "hit",
+        "split",
+        "stand"
+      ],
+      "peakPrivateHand": 3,
+      "phases": [
+        "betting",
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 7,
+      "seed": 31,
+      "steps": 18,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 5,
+      "capturedActionTypes": [
+        "draw_discard",
+        "next_round",
+        "reveal",
+        "swap"
+      ],
+      "capturedPhases": [
+        "between_rounds",
+        "opening",
+        "playing",
+        "reveal"
+      ],
+      "chosenActionTypes": [
+        "discard",
+        "draw_discard",
+        "draw_stock",
+        "next_round",
+        "reveal",
+        "swap"
+      ],
+      "finished": true,
+      "game": "skyjo",
+      "offeredActionTypes": [
+        "discard",
+        "draw_discard",
+        "draw_stock",
+        "next_round",
+        "reveal",
+        "swap"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "between_rounds",
+        "opening",
+        "playing",
+        "reveal"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 223,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 5,
+      "capturedActionTypes": [
+        "draw_discard",
+        "next_round",
+        "reveal",
+        "swap"
+      ],
+      "capturedPhases": [
+        "between_rounds",
+        "opening",
+        "playing",
+        "reveal"
+      ],
+      "chosenActionTypes": [
+        "discard",
+        "draw_discard",
+        "draw_stock",
+        "next_round",
+        "reveal",
+        "swap"
+      ],
+      "finished": true,
+      "game": "skyjo",
+      "offeredActionTypes": [
+        "discard",
+        "draw_discard",
+        "draw_stock",
+        "next_round",
+        "reveal",
+        "swap"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "between_rounds",
+        "opening",
+        "playing",
+        "reveal"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 8,
+      "seed": 31,
+      "steps": 484,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "pick"
+      ],
+      "capturedPhases": [
+        "choosing"
+      ],
+      "chosenActionTypes": [
+        "pick"
+      ],
+      "finished": true,
+      "game": "tarot",
+      "offeredActionTypes": [
+        "pick"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "choosing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 1,
+      "seed": 17,
+      "steps": 3,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "pick"
+      ],
+      "capturedPhases": [
+        "choosing"
+      ],
+      "chosenActionTypes": [
+        "pick"
+      ],
+      "finished": true,
+      "game": "tarot",
+      "offeredActionTypes": [
+        "pick"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "choosing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 1,
+      "seed": 31,
+      "steps": 3,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "drop"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "drop"
+      ],
+      "finished": true,
+      "game": "four-in-a-row",
+      "offeredActionTypes": [
+        "drop"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 17,
+      "steps": 41,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "drop"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "drop"
+      ],
+      "finished": true,
+      "game": "four-in-a-row",
+      "offeredActionTypes": [
+        "drop"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 31,
+      "steps": 32,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "place"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "place"
+      ],
+      "finished": true,
+      "game": "reversi",
+      "offeredActionTypes": [
+        "place"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 17,
+      "steps": 60,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "place"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "place"
+      ],
+      "finished": true,
+      "game": "reversi",
+      "offeredActionTypes": [
+        "place"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 31,
+      "steps": 60,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "clue",
+        "guess"
+      ],
+      "capturedPhases": [
+        "clue",
+        "guess"
+      ],
+      "chosenActionTypes": [
+        "clue",
+        "end_guesses",
+        "guess"
+      ],
+      "finished": true,
+      "game": "word-agents",
+      "offeredActionTypes": [
+        "clue",
+        "end_guesses",
+        "guess"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "clue",
+        "guess"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 4,
+      "seed": 17,
+      "steps": 35,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "clue",
+        "guess"
+      ],
+      "capturedPhases": [
+        "clue",
+        "guess"
+      ],
+      "chosenActionTypes": [
+        "clue",
+        "end_guesses",
+        "guess"
+      ],
+      "finished": true,
+      "game": "word-agents",
+      "offeredActionTypes": [
+        "clue",
+        "end_guesses",
+        "guess"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "clue",
+        "guess"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 10,
+      "seed": 31,
+      "steps": 35,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "patron",
+        "take"
+      ],
+      "capturedPhases": [
+        "patron",
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "buy",
+        "patron",
+        "take",
+        "take_pair"
+      ],
+      "finished": true,
+      "game": "gem-market",
+      "offeredActionTypes": [
+        "buy",
+        "patron",
+        "reserve",
+        "reserve_blind",
+        "take",
+        "take_pair"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "patron",
+        "playing"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 17,
+      "steps": 41,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "patron",
+        "return",
+        "take"
+      ],
+      "capturedPhases": [
+        "patron",
+        "playing",
+        "return_tokens"
+      ],
+      "chosenActionTypes": [
+        "buy",
+        "patron",
+        "return",
+        "take",
+        "take_pair"
+      ],
+      "finished": true,
+      "game": "gem-market",
+      "offeredActionTypes": [
+        "buy",
+        "patron",
+        "reserve",
+        "reserve_blind",
+        "return",
+        "take",
+        "take_pair"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "patron",
+        "playing",
+        "return_tokens"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 4,
+      "seed": 31,
+      "steps": 101,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 4,
+      "capturedActionTypes": [
+        "move"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "move"
+      ],
+      "finished": true,
+      "game": "checkers",
+      "offeredActionTypes": [
+        "move"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 17,
+      "steps": 126,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 4,
+      "capturedActionTypes": [
+        "move"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "move"
+      ],
+      "finished": true,
+      "game": "checkers",
+      "offeredActionTypes": [
+        "move"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 31,
+      "steps": 166,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "sow"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "sow"
+      ],
+      "finished": true,
+      "game": "mancala",
+      "offeredActionTypes": [
+        "sow"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 17,
+      "steps": 50,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "sow"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "sow"
+      ],
+      "finished": true,
+      "game": "mancala",
+      "offeredActionTypes": [
+        "sow"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 31,
+      "steps": 46,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "hit",
+        "next_round",
+        "target_effect"
+      ],
+      "capturedPhases": [
+        "playing",
+        "round_over",
+        "target"
+      ],
+      "chosenActionTypes": [
+        "hit",
+        "next_round",
+        "stay",
+        "target_effect"
+      ],
+      "finished": true,
+      "game": "flip-7",
+      "offeredActionTypes": [
+        "hit",
+        "next_round",
+        "stay",
+        "target_effect"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "playing",
+        "round_over",
+        "target"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 3,
+      "seed": 17,
+      "steps": 84,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "hit",
+        "next_round",
+        "target_effect"
+      ],
+      "capturedPhases": [
+        "playing",
+        "round_over",
+        "target"
+      ],
+      "chosenActionTypes": [
+        "hit",
+        "next_round",
+        "stay",
+        "target_effect"
+      ],
+      "finished": true,
+      "game": "flip-7",
+      "offeredActionTypes": [
+        "hit",
+        "next_round",
+        "stay",
+        "target_effect"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "playing",
+        "round_over",
+        "target"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 10,
+      "seed": 31,
+      "steps": 241,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "continue",
+        "reveal_table"
+      ],
+      "capturedPhases": [
+        "revealing",
+        "review"
+      ],
+      "chosenActionTypes": [
+        "continue",
+        "reveal_hand",
+        "reveal_table"
+      ],
+      "finished": true,
+      "game": "trio",
+      "offeredActionTypes": [
+        "continue",
+        "reveal_hand",
+        "reveal_table"
+      ],
+      "peakPrivateHand": 9,
+      "phases": [
+        "revealing",
+        "review"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 3,
+      "seed": 17,
+      "steps": 53,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "continue",
+        "reveal_table"
+      ],
+      "capturedPhases": [
+        "revealing",
+        "review"
+      ],
+      "chosenActionTypes": [
+        "continue",
+        "reveal_hand",
+        "reveal_table"
+      ],
+      "finished": true,
+      "game": "trio",
+      "offeredActionTypes": [
+        "continue",
+        "reveal_hand",
+        "reveal_table"
+      ],
+      "peakPrivateHand": 5,
+      "phases": [
+        "revealing",
+        "review"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 6,
+      "seed": 31,
+      "steps": 37,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "draft_tiles",
+        "next_round",
+        "place_tiles"
+      ],
+      "capturedPhases": [
+        "drafting",
+        "placing",
+        "round_over"
+      ],
+      "chosenActionTypes": [
+        "draft_tiles",
+        "next_round",
+        "place_tiles"
+      ],
+      "finished": true,
+      "game": "azul",
+      "offeredActionTypes": [
+        "draft_tiles",
+        "next_round",
+        "place_tiles"
+      ],
+      "peakPrivateHand": 4,
+      "phases": [
+        "drafting",
+        "placing",
+        "round_over"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 112,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "draft_tiles",
+        "next_round",
+        "place_tiles"
+      ],
+      "capturedPhases": [
+        "drafting",
+        "placing",
+        "round_over"
+      ],
+      "chosenActionTypes": [
+        "draft_tiles",
+        "next_round",
+        "place_tiles"
+      ],
+      "finished": true,
+      "game": "azul",
+      "offeredActionTypes": [
+        "draft_tiles",
+        "next_round",
+        "place_tiles"
+      ],
+      "peakPrivateHand": 5,
+      "phases": [
+        "drafting",
+        "placing",
+        "round_over"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 4,
+      "seed": 31,
+      "steps": 178,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "next_prompt",
+        "respond"
+      ],
+      "capturedPhases": [
+        "answer",
+        "reveal"
+      ],
+      "chosenActionTypes": [
+        "next_prompt",
+        "respond"
+      ],
+      "finished": true,
+      "game": "spill-or-chill",
+      "offeredActionTypes": [
+        "next_prompt",
+        "respond"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "answer",
+        "reveal"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 3,
+      "seed": 17,
+      "steps": 12,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "next_prompt",
+        "respond"
+      ],
+      "capturedPhases": [
+        "answer",
+        "reveal"
+      ],
+      "chosenActionTypes": [
+        "next_prompt",
+        "respond"
+      ],
+      "finished": true,
+      "game": "spill-or-chill",
+      "offeredActionTypes": [
+        "next_prompt",
+        "respond"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "answer",
+        "reveal"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 10,
+      "seed": 31,
+      "steps": 40,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "next_prompt",
+        "vote"
+      ],
+      "capturedPhases": [
+        "reveal",
+        "vote"
+      ],
+      "chosenActionTypes": [
+        "next_prompt",
+        "vote"
+      ],
+      "finished": true,
+      "game": "most-likely",
+      "offeredActionTypes": [
+        "next_prompt",
+        "vote"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "reveal",
+        "vote"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 3,
+      "seed": 17,
+      "steps": 24,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "next_prompt",
+        "vote"
+      ],
+      "capturedPhases": [
+        "reveal",
+        "vote"
+      ],
+      "chosenActionTypes": [
+        "next_prompt",
+        "vote"
+      ],
+      "finished": true,
+      "game": "most-likely",
+      "offeredActionTypes": [
+        "next_prompt",
+        "vote"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "reveal",
+        "vote"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 10,
+      "seed": 31,
+      "steps": 220,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "choose",
+        "next_prompt",
+        "predict"
+      ],
+      "capturedPhases": [
+        "predict",
+        "reveal"
+      ],
+      "chosenActionTypes": [
+        "choose",
+        "next_prompt",
+        "predict"
+      ],
+      "finished": true,
+      "game": "hot-seat",
+      "offeredActionTypes": [
+        "choose",
+        "next_prompt",
+        "predict"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "predict",
+        "reveal"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 3,
+      "seed": 17,
+      "steps": 24,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "choose",
+        "next_prompt",
+        "predict"
+      ],
+      "capturedPhases": [
+        "predict",
+        "reveal"
+      ],
+      "chosenActionTypes": [
+        "choose",
+        "next_prompt",
+        "predict"
+      ],
+      "finished": true,
+      "game": "hot-seat",
+      "offeredActionTypes": [
+        "choose",
+        "next_prompt",
+        "predict"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "predict",
+        "reveal"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 10,
+      "seed": 31,
+      "steps": 220,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 6,
+      "capturedActionTypes": [
+        "claim_chip",
+        "next_heist",
+        "reveal_hand"
+      ],
+      "capturedPhases": [
+        "chips",
+        "heist_review",
+        "showdown"
+      ],
+      "chosenActionTypes": [
+        "claim_chip",
+        "next_heist",
+        "reveal_hand"
+      ],
+      "finished": true,
+      "game": "the-gang",
+      "offeredActionTypes": [
+        "claim_chip",
+        "next_heist",
+        "reveal_hand"
+      ],
+      "peakPrivateHand": 2,
+      "phases": [
+        "chips",
+        "heist_review",
+        "showdown"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 3,
+      "seed": 17,
+      "steps": 63,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 6,
+      "capturedActionTypes": [
+        "claim_chip",
+        "next_heist",
+        "reveal_hand"
+      ],
+      "capturedPhases": [
+        "chips",
+        "heist_review",
+        "showdown"
+      ],
+      "chosenActionTypes": [
+        "claim_chip",
+        "next_heist",
+        "reveal_hand"
+      ],
+      "finished": true,
+      "game": "the-gang",
+      "offeredActionTypes": [
+        "claim_chip",
+        "next_heist",
+        "reveal_hand"
+      ],
+      "peakPrivateHand": 2,
+      "phases": [
+        "chips",
+        "heist_review",
+        "showdown"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 6,
+      "seed": 31,
+      "steps": 92,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 4,
+      "capturedActionTypes": [
+        "next_round",
+        "next_selection",
+        "select_number",
+        "take_row"
+      ],
+      "capturedPhases": [
+        "review",
+        "round_over",
+        "selecting",
+        "take_row"
+      ],
+      "chosenActionTypes": [
+        "next_round",
+        "next_selection",
+        "select_number",
+        "take_row"
+      ],
+      "finished": true,
+      "game": "six-nimmt",
+      "offeredActionTypes": [
+        "next_round",
+        "next_selection",
+        "select_number",
+        "take_row"
+      ],
+      "peakPrivateHand": 10,
+      "phases": [
+        "review",
+        "round_over",
+        "selecting",
+        "take_row"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 17,
+      "steps": 160,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 4,
+      "capturedActionTypes": [
+        "next_round",
+        "next_selection",
+        "select_number",
+        "take_row"
+      ],
+      "capturedPhases": [
+        "review",
+        "round_over",
+        "selecting",
+        "take_row"
+      ],
+      "chosenActionTypes": [
+        "next_round",
+        "next_selection",
+        "select_number",
+        "take_row"
+      ],
+      "finished": true,
+      "game": "six-nimmt",
+      "offeredActionTypes": [
+        "next_round",
+        "next_selection",
+        "select_number",
+        "take_row"
+      ],
+      "peakPrivateHand": 10,
+      "phases": [
+        "review",
+        "round_over",
+        "selecting",
+        "take_row"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 10,
+      "seed": 31,
+      "steps": 345,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 8,
+      "capturedActionTypes": [
+        "end_turn",
+        "inspect",
+        "keep",
+        "next_round",
+        "steal",
+        "stop",
+        "take_inspected",
+        "take_stock"
+      ],
+      "capturedPhases": [
+        "choosing",
+        "crab_card",
+        "crab_pile",
+        "draw",
+        "playing",
+        "round_over",
+        "steal"
+      ],
+      "chosenActionTypes": [
+        "end_turn",
+        "inspect",
+        "keep",
+        "next_round",
+        "pair",
+        "steal",
+        "stop",
+        "take_discard",
+        "take_inspected",
+        "take_stock"
+      ],
+      "finished": true,
+      "game": "sea-salt-paper",
+      "offeredActionTypes": [
+        "end_turn",
+        "inspect",
+        "keep",
+        "last_chance",
+        "next_round",
+        "pair",
+        "steal",
+        "stop",
+        "take_discard",
+        "take_inspected",
+        "take_stock"
+      ],
+      "peakPrivateHand": 7,
+      "phases": [
+        "choosing",
+        "crab_card",
+        "crab_pile",
+        "draw",
+        "playing",
+        "round_over",
+        "steal"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 281,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 8,
+      "capturedActionTypes": [
+        "end_turn",
+        "inspect",
+        "keep",
+        "next_round",
+        "steal",
+        "stop",
+        "take_inspected",
+        "take_stock"
+      ],
+      "capturedPhases": [
+        "choosing",
+        "crab_card",
+        "crab_pile",
+        "draw",
+        "playing",
+        "round_over",
+        "steal"
+      ],
+      "chosenActionTypes": [
+        "end_turn",
+        "inspect",
+        "keep",
+        "next_round",
+        "pair",
+        "steal",
+        "stop",
+        "take_discard",
+        "take_inspected",
+        "take_stock"
+      ],
+      "finished": true,
+      "game": "sea-salt-paper",
+      "offeredActionTypes": [
+        "end_turn",
+        "inspect",
+        "keep",
+        "last_chance",
+        "next_round",
+        "pair",
+        "steal",
+        "stop",
+        "take_discard",
+        "take_inspected",
+        "take_stock"
+      ],
+      "peakPrivateHand": 5,
+      "phases": [
+        "choosing",
+        "crab_card",
+        "crab_pile",
+        "draw",
+        "playing",
+        "round_over",
+        "steal"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 4,
+      "seed": 31,
+      "steps": 423,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 5,
+      "capturedActionTypes": [
+        "graduate",
+        "place"
+      ],
+      "capturedPhases": [
+        "graduating",
+        "placing"
+      ],
+      "chosenActionTypes": [
+        "graduate",
+        "place"
+      ],
+      "finished": true,
+      "game": "boop",
+      "offeredActionTypes": [
+        "graduate",
+        "place"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "graduating",
+        "placing"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 17,
+      "steps": 45,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 5,
+      "capturedActionTypes": [
+        "graduate",
+        "place"
+      ],
+      "capturedPhases": [
+        "graduating",
+        "placing"
+      ],
+      "chosenActionTypes": [
+        "graduate",
+        "place"
+      ],
+      "finished": true,
+      "game": "boop",
+      "offeredActionTypes": [
+        "graduate",
+        "place",
+        "return_piece"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "graduating",
+        "placing"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 31,
+      "steps": 69,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "arrange",
+        "play"
+      ],
+      "capturedPhases": [
+        "playing",
+        "setup"
+      ],
+      "chosenActionTypes": [
+        "arrange",
+        "flip",
+        "pickup",
+        "play"
+      ],
+      "finished": true,
+      "game": "shithead",
+      "offeredActionTypes": [
+        "arrange",
+        "flip",
+        "pickup",
+        "play"
+      ],
+      "peakPrivateHand": 19,
+      "phases": [
+        "playing",
+        "setup"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 73,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 2,
+      "capturedActionTypes": [
+        "arrange",
+        "play"
+      ],
+      "capturedPhases": [
+        "playing",
+        "setup"
+      ],
+      "chosenActionTypes": [
+        "arrange",
+        "flip",
+        "pickup",
+        "play"
+      ],
+      "finished": true,
+      "game": "shithead",
+      "offeredActionTypes": [
+        "arrange",
+        "flip",
+        "pickup",
+        "play"
+      ],
+      "peakPrivateHand": 25,
+      "phases": [
+        "playing",
+        "setup"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 5,
+      "seed": 31,
+      "steps": 306,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 0,
+      "capturedActionTypes": [],
+      "capturedPhases": [],
+      "chosenActionTypes": [
+        "bet",
+        "double"
+      ],
+      "finished": true,
+      "game": "blackjack",
+      "offeredActionTypes": [
+        "bet",
+        "double",
+        "hit",
+        "stand"
+      ],
+      "peakPrivateHand": 2,
+      "phases": [
+        "betting",
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 1,
+      "seed": 1,
+      "steps": 2,
+      "stress": false,
+      "supplemental": true
+    },
+    {
+      "captured": 0,
+      "capturedActionTypes": [],
+      "capturedPhases": [],
+      "chosenActionTypes": [
+        "bet",
+        "double"
+      ],
+      "finished": true,
+      "game": "blackjack",
+      "offeredActionTypes": [
+        "bet",
+        "double",
+        "hit",
+        "stand"
+      ],
+      "peakPrivateHand": 2,
+      "phases": [
+        "betting",
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 1,
+      "seed": 2,
+      "steps": 2,
+      "stress": false,
+      "supplemental": true
+    },
+    {
+      "captured": 0,
+      "capturedActionTypes": [],
+      "capturedPhases": [],
+      "chosenActionTypes": [
+        "bet",
+        "double"
+      ],
+      "finished": true,
+      "game": "blackjack",
+      "offeredActionTypes": [
+        "bet",
+        "double",
+        "hit",
+        "stand"
+      ],
+      "peakPrivateHand": 2,
+      "phases": [
+        "betting",
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 1,
+      "seed": 3,
+      "steps": 2,
+      "stress": false,
+      "supplemental": true
+    },
+    {
+      "captured": 0,
+      "capturedActionTypes": [],
+      "capturedPhases": [],
+      "chosenActionTypes": [
+        "bet",
+        "double"
+      ],
+      "finished": true,
+      "game": "blackjack",
+      "offeredActionTypes": [
+        "bet",
+        "double",
+        "hit",
+        "stand"
+      ],
+      "peakPrivateHand": 2,
+      "phases": [
+        "betting",
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 1,
+      "seed": 4,
+      "steps": 2,
+      "stress": false,
+      "supplemental": true
+    },
+    {
+      "captured": 0,
+      "capturedActionTypes": [],
+      "capturedPhases": [],
+      "chosenActionTypes": [
+        "bet",
+        "stand"
+      ],
+      "finished": true,
+      "game": "blackjack",
+      "offeredActionTypes": [
+        "bet",
+        "double",
+        "hit",
+        "stand"
+      ],
+      "peakPrivateHand": 2,
+      "phases": [
+        "betting",
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 1,
+      "seed": 5,
+      "steps": 2,
+      "stress": false,
+      "supplemental": true
+    },
+    {
+      "captured": 0,
+      "capturedActionTypes": [],
+      "capturedPhases": [],
+      "chosenActionTypes": [
+        "bet",
+        "hit",
+        "stand"
+      ],
+      "finished": true,
+      "game": "blackjack",
+      "offeredActionTypes": [
+        "bet",
+        "double",
+        "hit",
+        "stand"
+      ],
+      "peakPrivateHand": 4,
+      "phases": [
+        "betting",
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 1,
+      "seed": 6,
+      "steps": 4,
+      "stress": false,
+      "supplemental": true
+    },
+    {
+      "captured": 0,
+      "capturedActionTypes": [],
+      "capturedPhases": [],
+      "chosenActionTypes": [
+        "bet"
+      ],
+      "finished": true,
+      "game": "blackjack",
+      "offeredActionTypes": [
+        "bet"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "betting"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 1,
+      "seed": 7,
+      "steps": 1,
+      "stress": false,
+      "supplemental": true
+    },
+    {
+      "captured": 1,
+      "capturedActionTypes": [
+        "decline"
+      ],
+      "capturedPhases": [
+        "insurance"
+      ],
+      "chosenActionTypes": [
+        "bet",
+        "decline"
+      ],
+      "finished": true,
+      "game": "blackjack",
+      "offeredActionTypes": [
+        "accept",
+        "bet",
+        "decline"
+      ],
+      "peakPrivateHand": 2,
+      "phases": [
+        "betting",
+        "insurance"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 1,
+      "seed": 8,
+      "steps": 1,
+      "stress": false,
+      "supplemental": true
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "draw",
+        "play"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "accept",
+        "challenge",
+        "draw",
+        "play"
+      ],
+      "finished": false,
+      "game": "uno",
+      "offeredActionTypes": [
+        "accept",
+        "challenge",
+        "draw",
+        "end_turn",
+        "play"
+      ],
+      "peakPrivateHand": 41,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 11,
+      "steps": 86,
+      "stress": true,
+      "supplemental": false
+    },
+    {
+      "captured": 1,
+      "capturedActionTypes": [
+        "play"
+      ],
+      "capturedPhases": [
+        "playing"
+      ],
+      "chosenActionTypes": [
+        "choose",
+        "draw",
+        "play"
+      ],
+      "finished": false,
+      "game": "uno-no-mercy",
+      "offeredActionTypes": [
+        "choose",
+        "draw",
+        "play"
+      ],
+      "peakPrivateHand": 24,
+      "phases": [
+        "playing"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 11,
+      "steps": 16,
+      "stress": true,
+      "supplemental": false
+    }
+  ],
+  "scenarios": 235
+}

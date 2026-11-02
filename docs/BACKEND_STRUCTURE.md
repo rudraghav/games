@@ -26,6 +26,20 @@ enter this cue. Durable receipts let a fresh process produce the same cue withou
 adding a second event store or migration. Clients animate only contiguous live
 versions, and never replay a cue on mount, refresh, reconnect or a version gap.
 
+The separate `RoomView.activity` timeline now covers every game. Up to 80 newest
+current-match public events are read in committed-version order from the same
+private receipts; older receipts without an event are omitted. Events contain
+only an allowlisted description, public participants/amount/destination and at
+most 12 genuinely public card faces, with the larger affected-card count when
+needed. The builder intersects explicit public zones across all participant
+projections. It never copies private hands, raw actions, arbitrary detail, private
+or uncommitted text, engine messages or randomness. A published Word Agents clue
+is recorded only when every participant projection agrees. Waiting nonparticipants see no timeline.
+Retries, rejected moves and stale requests cannot append events; fresh services
+read the same durable history. See `backend/app/rooms/README.md` for the wire
+shape, public reveal paths and privacy boundaries. Casino `last_action` retains
+its existing narrow contract and animation behavior.
+
 Private state is not available through Supabase's public Data API. A safe room
 revision notification is broadcast transactionally. Channel policies check room
 membership. Clients fetch a fresh viewer projection; raw state never enters

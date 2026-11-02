@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Button, PlayingCard } from '@games/ui';
+import { Button, PlayingCard, DecisionDock } from '@games/ui';
 import type { Action, ActionOption, Card } from '@games/api-client';
 import { playerName, type TableProps } from '../types';
 import { turnState } from './turn-state';
@@ -100,12 +100,14 @@ export function ActionPanel({
   cardSelectionRequired = false,
   instruction,
   pinSelection = false,
+  dockSize = 'standard',
 }: TableProps & {
   selected?: string | null;
   clear?: () => void;
   cardSelectionRequired?: boolean;
   instruction?: string;
   pinSelection?: boolean;
+  dockSize?: 'compact' | 'standard' | 'extended';
 }) {
   const own = match.players.find((player) => player.id === selfId);
   const assets = own ? [...own.bank, ...Object.values(own.properties).flat()] : [];
@@ -120,10 +122,11 @@ export function ActionPanel({
   if (match.phase === 'finished' && !match.actions.length) return null;
   const turn = turnState(match, room, selfId);
   return (
-    <section
+    <DecisionDock
       className={`action-panel${pinSelection && selected ? ' action-panel--pinned' : ''}`}
-      aria-label="Your actions"
-      aria-busy={pending}
+      label="Your actions"
+      size={dockSize}
+      pending={pending}
     >
       <div className="action-context">
         <strong>{turn.label}</strong>
@@ -140,8 +143,14 @@ export function ActionPanel({
                     ? 'Select a card to see its moves.'
                     : match.phase.replaceAll('_', ' ')}
         </span>
-        {selected ? (
-          <button className="text-button" onClick={clear}>
+        {clear ? (
+          <button
+            className="text-button action-clear"
+            data-empty={!selected}
+            disabled={!selected}
+            tabIndex={selected ? 0 : -1}
+            onClick={clear}
+          >
             Clear selection
           </button>
         ) : null}
@@ -173,6 +182,6 @@ export function ActionPanel({
           </span>
         ) : null}
       </div>
-    </section>
+    </DecisionDock>
   );
 }

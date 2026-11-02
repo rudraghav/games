@@ -22,7 +22,12 @@ describe('Shithead public and private zones', () => {
     const p = props();
     const html = renderToStaticMarkup(<ShitheadTable {...p} />);
     expect(p.match.hand).toHaveLength(6);
-    expect(html.match(/playing-card--back/g) || []).toHaveLength(6);
+    // Own anonymous slots stay on the board; opponents use a public summary
+    // until their explicit inspector opens. No hidden identities are mounted.
+    expect(html.match(/playing-card--back/g) || []).toHaveLength(3);
+    const opponent = p.room.members.find((member) => member.id !== p.selfId)!;
+    expect(html).toContain(`aria-label="Inspect ${opponent.name}"`);
+    expect(html).toContain('3 hidden table cards');
     expect(html).toContain('Choose your table cards');
     expect(html).toContain('Not chosen yet');
     expect(html).toContain('Keep selected three face-up');

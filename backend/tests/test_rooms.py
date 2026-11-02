@@ -1,4 +1,5 @@
 import hashlib
+import json
 import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
@@ -8,12 +9,14 @@ import httpx
 import pytest
 from fastapi.testclient import TestClient
 from room_helpers import create, player, require_isolated, seated_room
+from sqlalchemy import select
 from test_tarot import example_reading
 
 from app.db import sessions
 from app.games.registry import ENGINES
 from app.main import app
 from app.models import Match, Member, RateBucket, Receipt, TarotReading
+from app.rooms.schemas import PublicMoveView
 from app.settings import settings
 
 
@@ -77,6 +80,11 @@ def test_simultaneous_actions_retry_staleness_and_restart(client):
     actor_headers = headers[actor_index]
     actor_room = client.get(path, headers=actor_headers).json()
     action = actor_room["game"]["actions"][0]["action"]
+    private_ids = {
+        card["id"]
+        for header in headers
+        for card in client.get(path, headers=header).json()["game"]["hand"]
+    } - {action["card"]}
     body = {
         "match_id": room["match_id"],
         "expected_version": room["match_version"],
@@ -109,9 +117,17 @@ def test_simultaneous_actions_retry_staleness_and_restart(client):
         == 409
     )
     with sessions()() as session:
-        receipt = session.get(Receipt, (room["match_id"], body["action_id"]))
-        if receipt:
-            assert set(receipt.response) == {"committedVersion"}
+        receipts = list(session.scalars(select(Receipt).where(Receipt.match_id == room["match_id"])))
+        assert len(receipts) == 1  # Rejected and retried moves never append history.
+        receipt = receipts[0]
+        assert set(receipt.response) == {"committedVersion", "public_move"}
+        event = PublicMoveView.model_validate(receipt.response["public_move"])
+        assert event.version == receipt.response["committedVersion"] == winner["match_version"]
+        assert event.actor_id == room["game"]["current_player"]
+        assert {card.id for card in event.cards} <= {action["card"]}
+        assert all(private_id not in json.dumps(receipt.response) for private_id in private_ids)
+        assert "deck" not in receipt.response and "hand" not in receipt.response
+        assert winner["activity"] == [event.model_dump()]
 
 
 def test_reconnect_host_takeover_invite_revocation_and_membership(client):

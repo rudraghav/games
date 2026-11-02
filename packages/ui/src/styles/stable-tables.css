@@ -1,0 +1,510 @@
+@layer components {
+  .stable-game-table {
+    min-inline-size: 0;
+  }
+  .stable-game-table summary {
+    min-block-size: 44px;
+  }
+  .stable-game-table .button {
+    min-block-size: 44px;
+    min-inline-size: 44px;
+  }
+  .action-panel.decision-dock {
+    position: relative;
+    inset: auto;
+    align-items: start;
+    gap: 12px;
+    box-shadow: none;
+  }
+  .action-panel.decision-dock .action-choices {
+    max-height: none;
+    overflow: visible;
+    min-width: 0;
+    align-content: start;
+    padding-bottom: 4px;
+  }
+  .action-panel.decision-dock .action-context {
+    flex: 0 0 180px;
+    min-width: 0;
+  }
+  .action-panel.decision-dock .action-clear[data-empty='true'] {
+    visibility: hidden;
+  }
+  .action-panel.decision-dock .action-choices:empty {
+    min-height: 44px;
+  }
+  .rummy-group-controls.decision-dock {
+    --decision-height: 96px;
+    margin-top: 10px;
+    padding: 8px 0;
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    border-radius: 0;
+  }
+  .rummy-group-controls > .small {
+    display: block;
+    min-height: 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .uno-workspace .hand-heading {
+    block-size: 28px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+  .uno-workspace .hand-heading > .small {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .player-strip-rail {
+    min-width: 0;
+  }
+  .card-game-layout > .player-strip-rail {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-width: 0;
+  }
+  .player-strip-rail .player-strip {
+    display: block;
+    margin: 0;
+    padding: 3px 3px 8px;
+  }
+  .player-strip-content {
+    display: flex;
+    width: max-content;
+    min-width: 100%;
+    gap: 9px;
+    align-items: stretch;
+    justify-content: center;
+  }
+  .player-strip-content > .player-strip-seat {
+    flex: 1 0 145px;
+    min-width: 0;
+    max-width: 190px;
+  }
+  .player-strip-content .seat {
+    min-height: 58px;
+    width: 100%;
+    height: 100%;
+  }
+  .opponent-panel {
+    min-width: 0;
+    padding: 9px;
+    border: 1px solid var(--color-border);
+    border-radius: 13px;
+    background: var(--color-surface);
+  }
+  .opponent-panel[data-active='true'] {
+    border-top: 3px solid var(--color-sage);
+    padding-top: 7px;
+  }
+  .opponent-panel[data-highlighted='true'] {
+    outline: 2px solid var(--color-focus);
+    outline-offset: -2px;
+  }
+  .opponent-panel > .seat {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .opponent-panel .seat-action {
+    flex: none;
+  }
+  .opponent-panel > .seat .avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+  }
+  .opponent-panel > .seat .turn-light {
+    right: 47px;
+  }
+  .opponent-panel-summary {
+    margin-top: 8px;
+    min-width: 0;
+  }
+  .opponent-facts {
+    display: block;
+    font-size: 10px;
+    color: var(--color-ink-muted);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .opponent-panel-inspection {
+    min-width: 0;
+    overflow-x: auto;
+  }
+  .skyjo-workspace .skyjo-players {
+    display: block;
+  }
+  .skyjo-workspace .skyjo-player[data-own='true'] {
+    width: min(100%, 420px);
+    margin-inline: auto;
+  }
+  .skyjo-opponents {
+    margin-top: 12px;
+  }
+  .skyjo-opponent-row {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    width: max-content;
+    min-width: 100%;
+  }
+  .skyjo-opponent-row > .opponent-panel {
+    flex: 0 0 210px;
+    width: 210px;
+  }
+  .skyjo-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .skyjo-mini-grid > span {
+    display: grid;
+    place-items: center;
+    min-height: 25px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    background: var(--color-ochre-light);
+    color: var(--color-ink);
+  }
+  .skyjo-mini-grid > span[data-hidden='true'] {
+    background: var(--color-sage-light);
+    color: var(--color-sage);
+  }
+  .skyjo-mini-grid > span[data-removed='true'] {
+    background: transparent;
+    border: 1px dashed var(--color-border);
+  }
+  .opponent-panel-inspection .skyjo-grid {
+    width: min(100%, 360px);
+    margin: 10px auto;
+  }
+  .opponent-panel-inspection .skyjo-grid .playing-card {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2/3;
+  }
+  .opponent-panel-inspection .skyjo-grid .grid-card-value {
+    font-size: 28px;
+  }
+  .casino-layout .casino-own-cards {
+    block-size: 180px;
+    min-block-size: 180px;
+    max-block-size: 180px;
+    overflow: auto;
+  }
+  .casino-layout .casino-decision-shell .action-context {
+    flex: 0 0 auto;
+    min-height: 44px;
+  }
+  .casino-own-cards .blackjack-hands {
+    display: block;
+  }
+  .blackjack-hands-row {
+    display: flex;
+    gap: 8px;
+    width: max-content;
+    min-width: 100%;
+  }
+  .blackjack-hands-row > .blackjack-hand {
+    flex: 0 0 180px;
+    width: 180px;
+  }
+  .casino-own-cards .casino-hand-placeholder {
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+    padding: 12px;
+  }
+  .casino-layout .casino-decision-shell .action-panel.decision-dock {
+    justify-content: flex-start;
+    --decision-height: 192px;
+  }
+  .gem-supply-choice > small {
+    min-height: 14px;
+  }
+  .gem-clear[data-empty='true'] {
+    visibility: hidden;
+  }
+  .gem-engine-summary {
+    display: flex;
+    gap: 5px;
+    flex-basis: 100%;
+    padding-top: 7px;
+  }
+  .gem-engine-summary .resource-token {
+    min-height: 26px;
+  }
+  .stable-game-table .trio-reveals {
+    block-size: 140px;
+    min-block-size: 140px;
+    max-block-size: 140px;
+    overflow: auto;
+    align-items: center;
+  }
+  .stable-game-table .trio-reveals[data-empty='true'] {
+    min-height: 140px;
+  }
+  .stable-game-table .trio-review.decision-dock {
+    margin-top: 10px;
+  }
+  .stable-game-table .word-action-dock {
+    margin-top: 14px;
+    padding: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-surface);
+  }
+  .word-guess-status {
+    min-height: 20px;
+  }
+  .stable-game-table .azul-draft-preview.decision-dock {
+    --decision-height: 72px;
+    margin: 0;
+    padding: 8px;
+  }
+  .stable-game-table .azul-draft-preview > div {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+  .azul-public-progress {
+    flex-basis: 100%;
+    font-size: 10px;
+    color: var(--color-ink-muted);
+  }
+  .stable-game-table .azul-table[data-phase='placing'] .azul-supply {
+    order: initial;
+    margin-top: 0;
+  }
+  .stable-game-table .azul-table .azul-board-name {
+    flex-wrap: wrap;
+    gap: 5px 12px;
+  }
+  .stable-game-table .azul-factory {
+    block-size: 148px;
+    min-block-size: 148px;
+    overflow: auto;
+  }
+  .stable-game-table .azul-factory--center {
+    block-size: 116px;
+    min-block-size: 116px;
+  }
+  .stable-game-table .azul-factory--center > span {
+    max-width: 70px;
+  }
+  .stable-game-table .party-decision-workspace {
+    --decision-height: 320px;
+    padding: 0;
+  }
+  .party-decision-workspace .party-reveal,
+  .party-decision-workspace .party-decisions {
+    margin-top: 0;
+  }
+  .stable-game-table.gang-game .gang-community {
+    display: flex;
+    min-height: 100px;
+  }
+  .stable-game-table .gang-turn-dock {
+    --decision-height: 300px;
+  }
+  .gang-turn-dock .gang-decision {
+    padding-top: 0;
+  }
+  .gang-turn-dock .gang-decision-note {
+    min-height: 44px;
+    margin-block: 8px;
+  }
+  .stable-game-table .six-hand-viewport {
+    padding-block: 14px 5px;
+  }
+  .stable-game-table .six-hand {
+    flex-wrap: nowrap;
+    width: max-content;
+    min-width: 100%;
+    overflow: visible;
+    margin-block: 0;
+    padding-block: 5px;
+  }
+  .stable-game-table .flip-card-row {
+    flex-wrap: nowrap;
+    width: max-content;
+    min-width: 100%;
+    overflow: visible;
+    min-height: 104px;
+  }
+  .stable-game-table .paper-source-dock {
+    --decision-height: 270px;
+  }
+  .paper-source-dock .paper-draw {
+    margin: 0;
+  }
+  .paper-source-dock .paper-private-choice {
+    margin-top: 0;
+  }
+  .paper-source-dock .paper-private-choice > .paper-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    gap: 8px;
+    padding-block: 6px;
+    background: var(--color-surface);
+  }
+  .paper-source-dock .paper-card-row {
+    padding-block: 10px 16px;
+  }
+  .paper-hand .horizontal-rail-content.paper-card-row {
+    flex-wrap: nowrap;
+    width: max-content;
+    min-width: 100%;
+    overflow: visible;
+    padding-top: 20px;
+  }
+  .paper-hand-instruction {
+    min-height: 20px;
+  }
+  .paper-hand > .horizontal-rail {
+    min-height: 214px;
+  }
+  .paper-empty-status {
+    min-height: 20px;
+  }
+  .shithead-private-cards {
+    min-height: 160px;
+  }
+  .stable-game-table .shithead-actions.decision-dock {
+    margin-top: 10px;
+    align-content: start;
+    align-items: start;
+    padding: 10px 0;
+  }
+  .stable-game-table .shithead-opponents {
+    display: block;
+  }
+  .shithead-opponent-row {
+    display: flex;
+    gap: 10px;
+    align-items: start;
+    width: max-content;
+    min-width: 100%;
+  }
+  .shithead-opponent-row > .opponent-panel {
+    width: 230px;
+    flex: 0 0 230px;
+  }
+  .opponent-public-cards {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 7px;
+    min-height: 78px;
+  }
+  .opponent-public-cards > .playing-card {
+    width: 54px;
+    height: 77px;
+  }
+  .stable-tarot-table .tarot-card-meaning {
+    min-height: 40px;
+  }
+  .stable-tarot-table[data-phase='choosing'] .tarot-card-meaning {
+    min-height: 40px;
+  }
+  .tarot-deck-content {
+    display: flex;
+    width: max-content;
+    min-width: 100%;
+    align-items: center;
+    gap: 10px;
+  }
+  .tarot-deck-rail .tarot-deck {
+    display: block;
+  }
+  .stable-game-table .modern-review.decision-dock,
+  .stable-game-table .boop-graduation.decision-dock,
+  .stable-game-table .paper-actions.decision-dock {
+    padding: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-surface);
+  }
+  @media (max-width: 700px) {
+    .casino-layout .casino-decision-shell .action-panel.decision-dock {
+      --decision-height: 252px;
+    }
+    .stable-game-table .gang-turn-dock {
+      --decision-height: 340px;
+    }
+    .stable-game-table .party-decision-workspace {
+      --decision-height: 360px;
+    }
+    .stable-game-table .paper-source-dock {
+      --decision-height: 310px;
+    }
+    .action-panel.decision-dock {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .action-panel.decision-dock .action-context {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;
+      width: 100%;
+    }
+    .action-panel.decision-dock .action-context > .small {
+      flex-basis: 100%;
+      min-height: 18px;
+      order: 2;
+    }
+    .action-panel.decision-dock .action-clear {
+      margin-left: auto;
+      order: 1;
+    }
+    .uno-workspace .action-panel .action-choices {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .uno-workspace .action-panel .decision-control:only-child {
+      grid-column: 1/-1;
+    }
+    .player-strip-content {
+      justify-content: flex-start;
+      gap: 7px;
+    }
+    .player-strip-content > .player-strip-seat {
+      flex: 0 0 155px;
+      max-width: 155px;
+    }
+    .skyjo-opponent-row > .opponent-panel {
+      flex-basis: 190px;
+      width: 190px;
+    }
+  }
+  @container (min-width: 601px) {
+    .casino-layout .casino-controls {
+      grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+    }
+  }
+  @media (min-width: 1001px) {
+    .stable-game-table .azul-table > .azul-draft-preview {
+      grid-column: 1/-1;
+      grid-row: 2;
+    }
+    .stable-game-table .azul-table .azul-supply,
+    .stable-game-table .azul-table[data-phase='placing'] .azul-supply {
+      grid-column: 1;
+      grid-row: 3;
+    }
+    .stable-game-table .azul-table .azul-player-boards,
+    .stable-game-table .azul-table[data-phase='placing'] .azul-player-boards {
+      grid-column: 2;
+      grid-row: 3;
+    }
+  }
+}

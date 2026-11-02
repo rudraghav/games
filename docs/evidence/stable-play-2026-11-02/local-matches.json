@@ -1,0 +1,4497 @@
+{
+  "aggregatedAt": "2026-11-02T06:25:11.644732+00:00",
+  "kind": "Local completed full-match case aggregation; individual parent runs may be incomplete",
+  "hosted": false,
+  "sourceState": "uncommitted local runtime; no immutable applicationSourceSha in inputs",
+  "applicationSourceSha": null,
+  "runtimeFingerprint": "f9e064b36396189bc8a7cc3a195b7a41b6fb138eafb87e57e39a886d734752c9",
+  "runtimeFingerprintKind": "SHA-256 runtime file inventory, not a Git commit SHA",
+  "runtimeBeforeAfterCurrentMatch": true,
+  "runtimeFiles": 424,
+  "runtimeEvidenceFiles": [
+    "stable-release-runtime-before.json",
+    "stable-release-runtime-after.json"
+  ],
+  "sourceProvenanceLimit": "Input reports have no immutable serving commit or per-case runtime digest. Matching frozen runtime snapshots and current readback provide local source context; this is not hosted revision proof.",
+  "selectionPolicy": "Latest successful recorded case wins per project/game/seats by source-run startedAt; only cases appended after every full-match harness assertion are admitted.",
+  "catalogueSha256": "5f6f7bad0a160191491fd56024b4f5ecc1e117f7273221b1b8997e204ddcbf5d",
+  "harnessSha256": "3efb6634c77597da6fc87bd783e88771871ee4165c458006f9c88e72d723c9c5",
+  "excludedGames": [
+    {
+      "id": "tarot",
+      "reason": "AI-reading flow is verified separately; this catalogue matrix excludes Tarot."
+    }
+  ],
+  "expectedGames": 26,
+  "expectedCasesPerWidth": 47,
+  "expectedCasesTotal": 94,
+  "observedCases": 94,
+  "rawCompletedCaseRecords": 108,
+  "supersededCompletedCaseRecords": 14,
+  "totalMoves": 9008,
+  "midgameChecks": 231,
+  "verifiedStableSelections": 50,
+  "selectionFalseMeaning": "No applicable selectable Hand control was exercised in that snapshot; false is not a recorded layout failure. The current record does not distinguish unsupported family from an unavailable selectable card.",
+  "allNaturalResultsVerifiedByCompletedHarnessStep": true,
+  "allProfileHistoryVerified": true,
+  "allRematchesVerified": true,
+  "allSameGroupSwitchesVerifiedByCompletedHarnessStep": true,
+  "allParentRunsPassed": false,
+  "parentRuns": [
+    {
+      "file": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sha256": "0f98292951e20b16699746e03929a797739b3300d40b8352da747b7690e21169",
+      "project": "desktop",
+      "startedAt": "2026-11-02T05:35:48.706Z",
+      "parentComplete": false,
+      "completedCaseCount": 37,
+      "failureType": "Error",
+      "cleanupReportedClosed": false,
+      "cleanupFailed": true,
+      "contributedLatestCases": 30
+    },
+    {
+      "file": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sha256": "07652e1f3c8bfef69d96398dd386c00e3b6e2e05b0a4b948ba759f1283831307",
+      "project": "phone",
+      "startedAt": "2026-11-02T05:35:48.706Z",
+      "parentComplete": false,
+      "completedCaseCount": 37,
+      "failureType": "Error",
+      "cleanupReportedClosed": false,
+      "cleanupFailed": true,
+      "contributedLatestCases": 30
+    },
+    {
+      "file": "stable-fullmatches-interrupted-desktop.json",
+      "sha256": "1d6449b200553daa91f99ced3f348848c51142ebe4eddd80aafbc4f5a7f5b53d",
+      "project": "desktop",
+      "startedAt": "2026-11-02T06:01:52.217Z",
+      "parentComplete": false,
+      "completedCaseCount": 12,
+      "failureType": "TestTransportError",
+      "cleanupReportedClosed": false,
+      "cleanupFailed": true,
+      "contributedLatestCases": 12
+    },
+    {
+      "file": "fullmatches-desktop-sea-salt-paper_boop_shithead.json",
+      "sha256": "5b296ded8f51c608d017bf18f8190443b87682264850238bad12ffa7ae4da98b",
+      "project": "desktop",
+      "startedAt": "2026-11-02T06:10:06.513Z",
+      "parentComplete": true,
+      "completedCaseCount": 5,
+      "failureType": null,
+      "cleanupReportedClosed": true,
+      "cleanupFailed": false,
+      "contributedLatestCases": 5
+    },
+    {
+      "file": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sha256": "4a1664e5d8a0baa801f7336a3d9166448e74af710d8a96c62319bc00a803df8e",
+      "project": "phone",
+      "startedAt": "2026-11-02T06:10:04.877Z",
+      "parentComplete": true,
+      "completedCaseCount": 17,
+      "failureType": null,
+      "cleanupReportedClosed": true,
+      "cleanupFailed": false,
+      "contributedLatestCases": 17
+    }
+  ],
+  "projects": {
+    "desktop": {
+      "cases": 47,
+      "games": 26,
+      "moves": 4652,
+      "midgameChecks": 116,
+      "selectionStableVerified": 25,
+      "casesWithMidgameChecks": 45,
+      "casesWithVerifiedSelection": 12,
+      "allProfileHistoryVerified": true,
+      "allRematchVerified": true,
+      "phases": {
+        "answer": 2,
+        "betting": 1,
+        "between_rounds": 1,
+        "chips": 2,
+        "choosing": 2,
+        "clue": 2,
+        "crab_card": 2,
+        "crab_pile": 2,
+        "discard": 2,
+        "drafting": 2,
+        "draw": 4,
+        "flop": 2,
+        "graduating": 2,
+        "guess": 2,
+        "heist_review": 2,
+        "opening": 2,
+        "patron": 2,
+        "placing": 3,
+        "playing": 34,
+        "predict": 4,
+        "preflop": 1,
+        "return_tokens": 1,
+        "reveal": 8,
+        "revealing": 2,
+        "review": 4,
+        "river": 2,
+        "round_over": 8,
+        "selecting": 2,
+        "setup": 1,
+        "showdown": 2,
+        "steal": 2,
+        "take_row": 2,
+        "target": 2,
+        "turn": 2,
+        "vote": 2
+      },
+      "actions": {
+        "arrange": 1,
+        "bank": 1,
+        "bet": 1,
+        "call": 1,
+        "check": 6,
+        "choose": 6,
+        "claim_chip": 2,
+        "clue": 2,
+        "continue": 2,
+        "discard": 2,
+        "draft_tiles": 2,
+        "draw": 1,
+        "draw_stock": 4,
+        "drop": 1,
+        "end_turn": 2,
+        "graduate": 1,
+        "guess": 2,
+        "hit": 2,
+        "inspect": 2,
+        "keep": 2,
+        "move": 1,
+        "next_heist": 2,
+        "next_prompt": 6,
+        "next_round": 9,
+        "next_selection": 2,
+        "no": 2,
+        "patron": 2,
+        "pay": 4,
+        "peek": 1,
+        "place": 2,
+        "place_tiles": 2,
+        "play": 6,
+        "predict": 2,
+        "property": 2,
+        "respond": 2,
+        "return": 1,
+        "return_piece": 1,
+        "reveal": 4,
+        "reveal_hand": 2,
+        "reveal_table": 2,
+        "select_number": 2,
+        "sow": 1,
+        "stand": 1,
+        "steal": 2,
+        "take": 2,
+        "take_inspected": 2,
+        "take_row": 2,
+        "take_stock": 2,
+        "target_effect": 2,
+        "vote": 2
+      }
+    },
+    "phone": {
+      "cases": 47,
+      "games": 26,
+      "moves": 4356,
+      "midgameChecks": 115,
+      "selectionStableVerified": 25,
+      "casesWithMidgameChecks": 45,
+      "casesWithVerifiedSelection": 12,
+      "allProfileHistoryVerified": true,
+      "allRematchVerified": true,
+      "phases": {
+        "answer": 2,
+        "betting": 1,
+        "chips": 2,
+        "choosing": 2,
+        "clue": 2,
+        "crab_card": 2,
+        "crab_pile": 2,
+        "discard": 2,
+        "drafting": 2,
+        "draw": 4,
+        "flop": 2,
+        "graduating": 2,
+        "guess": 2,
+        "heist_review": 2,
+        "opening": 2,
+        "patron": 2,
+        "placing": 3,
+        "playing": 34,
+        "predict": 4,
+        "preflop": 1,
+        "return_tokens": 1,
+        "reveal": 8,
+        "revealing": 2,
+        "review": 4,
+        "river": 2,
+        "round_over": 8,
+        "selecting": 2,
+        "setup": 1,
+        "showdown": 2,
+        "steal": 2,
+        "take_row": 2,
+        "target": 2,
+        "turn": 2,
+        "vote": 2
+      },
+      "actions": {
+        "arrange": 1,
+        "bank": 1,
+        "bet": 1,
+        "call": 1,
+        "check": 6,
+        "choose": 5,
+        "claim_chip": 2,
+        "clue": 2,
+        "continue": 2,
+        "discard": 2,
+        "draft_tiles": 2,
+        "draw_stock": 4,
+        "drop": 1,
+        "end_turn": 2,
+        "graduate": 1,
+        "guess": 2,
+        "hit": 2,
+        "inspect": 2,
+        "keep": 2,
+        "move": 1,
+        "next_heist": 2,
+        "next_prompt": 6,
+        "next_round": 8,
+        "next_selection": 2,
+        "no": 3,
+        "patron": 2,
+        "pay": 4,
+        "peek": 1,
+        "place": 2,
+        "place_tiles": 2,
+        "play": 8,
+        "predict": 2,
+        "property": 1,
+        "respond": 2,
+        "return": 1,
+        "return_piece": 1,
+        "reveal": 4,
+        "reveal_hand": 2,
+        "reveal_table": 2,
+        "select_number": 2,
+        "sow": 1,
+        "stand": 1,
+        "steal": 2,
+        "take": 2,
+        "take_inspected": 2,
+        "take_row": 2,
+        "take_stock": 2,
+        "target_effect": 2,
+        "vote": 2
+      }
+    }
+  },
+  "gameCoverage": [
+    {
+      "game": "uno",
+      "name": "Uno",
+      "expectedSeatCounts": [
+        2,
+        10
+      ],
+      "caseCount": 4,
+      "moves": 376,
+      "midgameChecks": 4,
+      "selectionStableVerified": 4,
+      "phases": {
+        "playing": 4
+      },
+      "actions": {
+        "draw": 1,
+        "play": 3
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 36,
+          "midgameChecks": 1,
+          "selectionStableVerified": 1
+        },
+        {
+          "project": "desktop",
+          "seats": 10,
+          "moves": 173,
+          "midgameChecks": 1,
+          "selectionStableVerified": 1
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 49,
+          "midgameChecks": 1,
+          "selectionStableVerified": 1
+        },
+        {
+          "project": "phone",
+          "seats": 10,
+          "moves": 118,
+          "midgameChecks": 1,
+          "selectionStableVerified": 1
+        }
+      ]
+    },
+    {
+      "game": "uno-no-mercy",
+      "name": "Uno No Mercy",
+      "expectedSeatCounts": [
+        2,
+        6
+      ],
+      "caseCount": 4,
+      "moves": 167,
+      "midgameChecks": 8,
+      "selectionStableVerified": 8,
+      "phases": {
+        "playing": 8
+      },
+      "actions": {
+        "choose": 4,
+        "play": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 21,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        },
+        {
+          "project": "desktop",
+          "seats": 6,
+          "moves": 79,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 18,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        },
+        {
+          "project": "phone",
+          "seats": 6,
+          "moves": 49,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        }
+      ]
+    },
+    {
+      "game": "deal",
+      "name": "Monopoly Deal",
+      "expectedSeatCounts": [
+        2,
+        5
+      ],
+      "caseCount": 4,
+      "moves": 230,
+      "midgameChecks": 9,
+      "selectionStableVerified": 9,
+      "phases": {
+        "playing": 9
+      },
+      "actions": {
+        "bank": 1,
+        "no": 1,
+        "pay": 4,
+        "play": 1,
+        "property": 2
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 68,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        },
+        {
+          "project": "desktop",
+          "seats": 5,
+          "moves": 45,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 26,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        },
+        {
+          "project": "phone",
+          "seats": 5,
+          "moves": 91,
+          "midgameChecks": 3,
+          "selectionStableVerified": 3
+        }
+      ]
+    },
+    {
+      "game": "deal-no-mercy",
+      "name": "Monopoly Deal No Mercy",
+      "expectedSeatCounts": [
+        2,
+        5
+      ],
+      "caseCount": 4,
+      "moves": 405,
+      "midgameChecks": 15,
+      "selectionStableVerified": 15,
+      "phases": {
+        "playing": 15
+      },
+      "actions": {
+        "bank": 1,
+        "choose": 3,
+        "no": 4,
+        "pay": 4,
+        "play": 2,
+        "property": 1
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 109,
+          "midgameChecks": 4,
+          "selectionStableVerified": 4
+        },
+        {
+          "project": "desktop",
+          "seats": 5,
+          "moves": 110,
+          "midgameChecks": 4,
+          "selectionStableVerified": 4
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 88,
+          "midgameChecks": 3,
+          "selectionStableVerified": 3
+        },
+        {
+          "project": "phone",
+          "seats": 5,
+          "moves": 98,
+          "midgameChecks": 4,
+          "selectionStableVerified": 4
+        }
+      ]
+    },
+    {
+      "game": "holdem",
+      "name": "Texas Hold\u2019em",
+      "expectedSeatCounts": [
+        2,
+        9
+      ],
+      "caseCount": 4,
+      "moves": 88,
+      "midgameChecks": 14,
+      "selectionStableVerified": 0,
+      "phases": {
+        "flop": 4,
+        "preflop": 2,
+        "river": 4,
+        "turn": 4
+      },
+      "actions": {
+        "call": 2,
+        "check": 12
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 8,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 9,
+          "moves": 36,
+          "midgameChecks": 4,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 8,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 9,
+          "moves": 36,
+          "midgameChecks": 4,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "rummy",
+      "name": "Rummy",
+      "expectedSeatCounts": [
+        2,
+        6
+      ],
+      "caseCount": 4,
+      "moves": 44,
+      "midgameChecks": 8,
+      "selectionStableVerified": 8,
+      "phases": {
+        "discard": 4,
+        "draw": 4
+      },
+      "actions": {
+        "discard": 4,
+        "draw_stock": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 5,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        },
+        {
+          "project": "desktop",
+          "seats": 6,
+          "moves": 17,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 5,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        },
+        {
+          "project": "phone",
+          "seats": 6,
+          "moves": 17,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        }
+      ]
+    },
+    {
+      "game": "teen-patti",
+      "name": "Teen Patti",
+      "expectedSeatCounts": [
+        2,
+        6
+      ],
+      "caseCount": 4,
+      "moves": 26,
+      "midgameChecks": 2,
+      "selectionStableVerified": 0,
+      "phases": {
+        "playing": 2
+      },
+      "actions": {
+        "peek": 2
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 1,
+          "midgameChecks": 0,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 6,
+          "moves": 12,
+          "midgameChecks": 1,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 1,
+          "midgameChecks": 0,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 6,
+          "moves": 12,
+          "midgameChecks": 1,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "blackjack",
+      "name": "Blackjack",
+      "expectedSeatCounts": [
+        1,
+        7
+      ],
+      "caseCount": 4,
+      "moves": 28,
+      "midgameChecks": 4,
+      "selectionStableVerified": 0,
+      "phases": {
+        "betting": 2,
+        "playing": 2
+      },
+      "actions": {
+        "bet": 2,
+        "stand": 2
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 1,
+          "moves": 2,
+          "midgameChecks": 0,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 7,
+          "moves": 14,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 1,
+          "moves": 1,
+          "midgameChecks": 0,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 7,
+          "moves": 11,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "skyjo",
+      "name": "Skyjo",
+      "expectedSeatCounts": [
+        2,
+        8
+      ],
+      "caseCount": 4,
+      "moves": 705,
+      "midgameChecks": 13,
+      "selectionStableVerified": 0,
+      "phases": {
+        "between_rounds": 1,
+        "opening": 4,
+        "playing": 4,
+        "reveal": 4
+      },
+      "actions": {
+        "draw_stock": 4,
+        "next_round": 1,
+        "reveal": 8
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 129,
+          "midgameChecks": 4,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 8,
+          "moves": 256,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 64,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 8,
+          "moves": 256,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "four-in-a-row",
+      "name": "Four in a Row",
+      "expectedSeatCounts": [
+        2
+      ],
+      "caseCount": 2,
+      "moves": 56,
+      "midgameChecks": 2,
+      "selectionStableVerified": 0,
+      "phases": {
+        "playing": 2
+      },
+      "actions": {
+        "drop": 2
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 28,
+          "midgameChecks": 1,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 28,
+          "midgameChecks": 1,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "reversi",
+      "name": "Reversi",
+      "expectedSeatCounts": [
+        2
+      ],
+      "caseCount": 2,
+      "moves": 120,
+      "midgameChecks": 2,
+      "selectionStableVerified": 0,
+      "phases": {
+        "playing": 2
+      },
+      "actions": {
+        "place": 2
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 60,
+          "midgameChecks": 1,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 60,
+          "midgameChecks": 1,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "word-agents",
+      "name": "Word Agents",
+      "expectedSeatCounts": [
+        4,
+        10
+      ],
+      "caseCount": 4,
+      "moves": 71,
+      "midgameChecks": 8,
+      "selectionStableVerified": 0,
+      "phases": {
+        "clue": 4,
+        "guess": 4
+      },
+      "actions": {
+        "clue": 4,
+        "guess": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 4,
+          "moves": 26,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 10,
+          "moves": 13,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 4,
+          "moves": 8,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 10,
+          "moves": 24,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "gem-market",
+      "name": "Gem Market",
+      "expectedSeatCounts": [
+        2,
+        4
+      ],
+      "caseCount": 4,
+      "moves": 274,
+      "midgameChecks": 10,
+      "selectionStableVerified": 0,
+      "phases": {
+        "patron": 4,
+        "playing": 4,
+        "return_tokens": 2
+      },
+      "actions": {
+        "patron": 4,
+        "return": 2,
+        "take": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 43,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 4,
+          "moves": 90,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 51,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 4,
+          "moves": 90,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "checkers",
+      "name": "Checkers",
+      "expectedSeatCounts": [
+        2
+      ],
+      "caseCount": 2,
+      "moves": 322,
+      "midgameChecks": 2,
+      "selectionStableVerified": 0,
+      "phases": {
+        "playing": 2
+      },
+      "actions": {
+        "move": 2
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 161,
+          "midgameChecks": 1,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 161,
+          "midgameChecks": 1,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "mancala",
+      "name": "Mancala",
+      "expectedSeatCounts": [
+        2
+      ],
+      "caseCount": 2,
+      "moves": 118,
+      "midgameChecks": 2,
+      "selectionStableVerified": 0,
+      "phases": {
+        "playing": 2
+      },
+      "actions": {
+        "sow": 2
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 59,
+          "midgameChecks": 1,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 59,
+          "midgameChecks": 1,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "flip-7",
+      "name": "Flip 7",
+      "expectedSeatCounts": [
+        3,
+        10
+      ],
+      "caseCount": 4,
+      "moves": 658,
+      "midgameChecks": 12,
+      "selectionStableVerified": 0,
+      "phases": {
+        "playing": 4,
+        "round_over": 4,
+        "target": 4
+      },
+      "actions": {
+        "hit": 4,
+        "next_round": 4,
+        "target_effect": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 3,
+          "moves": 99,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 10,
+          "moves": 222,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 3,
+          "moves": 90,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 10,
+          "moves": 247,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "trio",
+      "name": "Trio",
+      "expectedSeatCounts": [
+        3,
+        6
+      ],
+      "caseCount": 4,
+      "moves": 204,
+      "midgameChecks": 8,
+      "selectionStableVerified": 0,
+      "phases": {
+        "revealing": 4,
+        "review": 4
+      },
+      "actions": {
+        "continue": 4,
+        "reveal_table": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 3,
+          "moves": 40,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 6,
+          "moves": 63,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 3,
+          "moves": 35,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 6,
+          "moves": 66,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "azul",
+      "name": "Azul",
+      "expectedSeatCounts": [
+        2,
+        4
+      ],
+      "caseCount": 4,
+      "moves": 538,
+      "midgameChecks": 12,
+      "selectionStableVerified": 0,
+      "phases": {
+        "drafting": 4,
+        "placing": 4,
+        "round_over": 4
+      },
+      "actions": {
+        "draft_tiles": 4,
+        "next_round": 4,
+        "place_tiles": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 110,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 4,
+          "moves": 148,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 114,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 4,
+          "moves": 166,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "spill-or-chill",
+      "name": "Spill or Chill",
+      "expectedSeatCounts": [
+        3,
+        10
+      ],
+      "caseCount": 4,
+      "moves": 104,
+      "midgameChecks": 8,
+      "selectionStableVerified": 0,
+      "phases": {
+        "answer": 4,
+        "reveal": 4
+      },
+      "actions": {
+        "next_prompt": 4,
+        "respond": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 3,
+          "moves": 12,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 10,
+          "moves": 40,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 3,
+          "moves": 12,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 10,
+          "moves": 40,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "most-likely",
+      "name": "Most Likely",
+      "expectedSeatCounts": [
+        3,
+        10
+      ],
+      "caseCount": 4,
+      "moves": 488,
+      "midgameChecks": 8,
+      "selectionStableVerified": 0,
+      "phases": {
+        "reveal": 4,
+        "vote": 4
+      },
+      "actions": {
+        "next_prompt": 4,
+        "vote": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 3,
+          "moves": 24,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 10,
+          "moves": 220,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 3,
+          "moves": 24,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 10,
+          "moves": 220,
+          "midgameChecks": 2,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "hot-seat",
+      "name": "Hot Seat",
+      "expectedSeatCounts": [
+        3,
+        10
+      ],
+      "caseCount": 4,
+      "moves": 488,
+      "midgameChecks": 12,
+      "selectionStableVerified": 0,
+      "phases": {
+        "predict": 8,
+        "reveal": 4
+      },
+      "actions": {
+        "choose": 4,
+        "next_prompt": 4,
+        "predict": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 3,
+          "moves": 24,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 10,
+          "moves": 220,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 3,
+          "moves": 24,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 10,
+          "moves": 220,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "the-gang",
+      "name": "The Gang",
+      "expectedSeatCounts": [
+        3,
+        6
+      ],
+      "caseCount": 4,
+      "moves": 294,
+      "midgameChecks": 12,
+      "selectionStableVerified": 0,
+      "phases": {
+        "chips": 4,
+        "heist_review": 4,
+        "showdown": 4
+      },
+      "actions": {
+        "claim_chip": 4,
+        "next_heist": 4,
+        "reveal_hand": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 3,
+          "moves": 63,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 6,
+          "moves": 92,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 3,
+          "moves": 47,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 6,
+          "moves": 92,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "six-nimmt",
+      "name": "6 nimmt!",
+      "expectedSeatCounts": [
+        2,
+        10
+      ],
+      "caseCount": 4,
+      "moves": 1223,
+      "midgameChecks": 16,
+      "selectionStableVerified": 0,
+      "phases": {
+        "review": 4,
+        "round_over": 4,
+        "selecting": 4,
+        "take_row": 4
+      },
+      "actions": {
+        "next_round": 4,
+        "next_selection": 4,
+        "select_number": 4,
+        "take_row": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 339,
+          "midgameChecks": 4,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 10,
+          "moves": 356,
+          "midgameChecks": 4,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 173,
+          "midgameChecks": 4,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 10,
+          "moves": 355,
+          "midgameChecks": 4,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "sea-salt-paper",
+      "name": "Sea Salt & Paper",
+      "expectedSeatCounts": [
+        2,
+        4
+      ],
+      "caseCount": 4,
+      "moves": 1344,
+      "midgameChecks": 28,
+      "selectionStableVerified": 0,
+      "phases": {
+        "choosing": 4,
+        "crab_card": 4,
+        "crab_pile": 4,
+        "draw": 4,
+        "playing": 4,
+        "round_over": 4,
+        "steal": 4
+      },
+      "actions": {
+        "end_turn": 4,
+        "inspect": 4,
+        "keep": 4,
+        "next_round": 4,
+        "steal": 4,
+        "take_inspected": 4,
+        "take_stock": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 229,
+          "midgameChecks": 7,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "desktop",
+          "seats": 4,
+          "moves": 407,
+          "midgameChecks": 7,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 338,
+          "midgameChecks": 7,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 4,
+          "moves": 370,
+          "midgameChecks": 7,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "boop",
+      "name": "boop.",
+      "expectedSeatCounts": [
+        2
+      ],
+      "caseCount": 2,
+      "moves": 160,
+      "midgameChecks": 6,
+      "selectionStableVerified": 0,
+      "phases": {
+        "graduating": 4,
+        "placing": 2
+      },
+      "actions": {
+        "graduate": 2,
+        "place": 2,
+        "return_piece": 2
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 80,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 80,
+          "midgameChecks": 3,
+          "selectionStableVerified": 0
+        }
+      ]
+    },
+    {
+      "game": "shithead",
+      "name": "Shithead",
+      "expectedSeatCounts": [
+        2,
+        5
+      ],
+      "caseCount": 4,
+      "moves": 477,
+      "midgameChecks": 6,
+      "selectionStableVerified": 6,
+      "phases": {
+        "playing": 4,
+        "setup": 2
+      },
+      "actions": {
+        "arrange": 2,
+        "play": 4
+      },
+      "cases": [
+        {
+          "project": "desktop",
+          "seats": 2,
+          "moves": 91,
+          "midgameChecks": 1,
+          "selectionStableVerified": 1
+        },
+        {
+          "project": "desktop",
+          "seats": 5,
+          "moves": 172,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        },
+        {
+          "project": "phone",
+          "seats": 2,
+          "moves": 83,
+          "midgameChecks": 1,
+          "selectionStableVerified": 1
+        },
+        {
+          "project": "phone",
+          "seats": 5,
+          "moves": 131,
+          "midgameChecks": 2,
+          "selectionStableVerified": 2
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "project": "desktop",
+      "game": "azul",
+      "seats": 2,
+      "moves": 110,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "drafting",
+          "action": "draft_tiles",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "placing",
+          "action": "place_tiles",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 23,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "azul",
+      "seats": 4,
+      "moves": 148,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "drafting",
+          "action": "draft_tiles",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "placing",
+          "action": "place_tiles",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 31,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "blackjack",
+      "seats": 1,
+      "moves": 2,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "blackjack",
+      "seats": 7,
+      "moves": 14,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "betting",
+          "action": "bet",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "playing",
+          "action": "stand",
+          "version": 8,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "boop",
+      "seats": 2,
+      "moves": 80,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "placing",
+          "action": "place",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "graduating",
+          "action": "graduate",
+          "version": 18,
+          "selectionStable": false
+        },
+        {
+          "phase": "graduating",
+          "action": "return_piece",
+          "version": 51,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:06.513Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "desktop",
+      "game": "checkers",
+      "seats": 2,
+      "moves": 161,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "move",
+          "version": 3,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "deal",
+      "seats": 2,
+      "moves": 68,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "property",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "pay",
+          "version": 29,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "deal",
+      "seats": 5,
+      "moves": 45,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "bank",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "pay",
+          "version": 22,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "deal-no-mercy",
+      "seats": 2,
+      "moves": 109,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "property",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "choose",
+          "version": 13,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "no",
+          "version": 14,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "pay",
+          "version": 26,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "deal-no-mercy",
+      "seats": 5,
+      "moves": 110,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "no",
+          "version": 4,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "pay",
+          "version": 61,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "choose",
+          "version": 79,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "flip-7",
+      "seats": 3,
+      "moves": 99,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "hit",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "target",
+          "action": "target_effect",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 6,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "flip-7",
+      "seats": 10,
+      "moves": 222,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "hit",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 16,
+          "selectionStable": false
+        },
+        {
+          "phase": "target",
+          "action": "target_effect",
+          "version": 17,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "four-in-a-row",
+      "seats": 2,
+      "moves": 28,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "drop",
+          "version": 3,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "gem-market",
+      "seats": 2,
+      "moves": 43,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "take",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "patron",
+          "action": "patron",
+          "version": 43,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "gem-market",
+      "seats": 4,
+      "moves": 90,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "take",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "return_tokens",
+          "action": "return",
+          "version": 45,
+          "selectionStable": false
+        },
+        {
+          "phase": "patron",
+          "action": "patron",
+          "version": 89,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "holdem",
+      "seats": 2,
+      "moves": 8,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "flop",
+          "action": "check",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "turn",
+          "action": "check",
+          "version": 5,
+          "selectionStable": false
+        },
+        {
+          "phase": "river",
+          "action": "check",
+          "version": 7,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "holdem",
+      "seats": 9,
+      "moves": 36,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "preflop",
+          "action": "call",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "flop",
+          "action": "check",
+          "version": 10,
+          "selectionStable": false
+        },
+        {
+          "phase": "turn",
+          "action": "check",
+          "version": 19,
+          "selectionStable": false
+        },
+        {
+          "phase": "river",
+          "action": "check",
+          "version": 28,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "hot-seat",
+      "seats": 3,
+      "moves": 24,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "predict",
+          "action": "predict",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "predict",
+          "action": "choose",
+          "version": 6,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "hot-seat",
+      "seats": 10,
+      "moves": 220,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "predict",
+          "action": "predict",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 11,
+          "selectionStable": false
+        },
+        {
+          "phase": "predict",
+          "action": "choose",
+          "version": 13,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "mancala",
+      "seats": 2,
+      "moves": 59,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "sow",
+          "version": 3,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "most-likely",
+      "seats": 3,
+      "moves": 24,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "vote",
+          "action": "vote",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "most-likely",
+      "seats": 10,
+      "moves": 220,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "vote",
+          "action": "vote",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 11,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "reversi",
+      "seats": 2,
+      "moves": 60,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "place",
+          "version": 3,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "rummy",
+      "seats": 2,
+      "moves": 5,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "draw",
+          "action": "draw_stock",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "discard",
+          "action": "discard",
+          "version": 4,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "rummy",
+      "seats": 6,
+      "moves": 17,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "draw",
+          "action": "draw_stock",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "discard",
+          "action": "discard",
+          "version": 4,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "sea-salt-paper",
+      "seats": 2,
+      "moves": 229,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "end_turn",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "draw",
+          "action": "take_stock",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "choosing",
+          "action": "keep",
+          "version": 5,
+          "selectionStable": false
+        },
+        {
+          "phase": "crab_pile",
+          "action": "inspect",
+          "version": 21,
+          "selectionStable": false
+        },
+        {
+          "phase": "crab_card",
+          "action": "take_inspected",
+          "version": 22,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 32,
+          "selectionStable": false
+        },
+        {
+          "phase": "steal",
+          "action": "steal",
+          "version": 56,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:06.513Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "desktop",
+      "game": "sea-salt-paper",
+      "seats": 4,
+      "moves": 407,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "end_turn",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "draw",
+          "action": "take_stock",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "choosing",
+          "action": "keep",
+          "version": 5,
+          "selectionStable": false
+        },
+        {
+          "phase": "crab_pile",
+          "action": "inspect",
+          "version": 44,
+          "selectionStable": false
+        },
+        {
+          "phase": "crab_card",
+          "action": "take_inspected",
+          "version": 45,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 59,
+          "selectionStable": false
+        },
+        {
+          "phase": "steal",
+          "action": "steal",
+          "version": 271,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:06.513Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "desktop",
+      "game": "shithead",
+      "seats": 2,
+      "moves": 91,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:06.513Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "desktop",
+      "game": "shithead",
+      "seats": 5,
+      "moves": 172,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "setup",
+          "action": "arrange",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 6,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:06.513Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "desktop",
+      "game": "six-nimmt",
+      "seats": 2,
+      "moves": 339,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "take_row",
+          "action": "take_row",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "review",
+          "action": "next_selection",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "selecting",
+          "action": "select_number",
+          "version": 5,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 35,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "six-nimmt",
+      "seats": 10,
+      "moves": 356,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "selecting",
+          "action": "select_number",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "take_row",
+          "action": "take_row",
+          "version": 11,
+          "selectionStable": false
+        },
+        {
+          "phase": "review",
+          "action": "next_selection",
+          "version": 12,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 120,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "skyjo",
+      "seats": 2,
+      "moves": 129,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "opening",
+          "action": "reveal",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "playing",
+          "action": "draw_stock",
+          "version": 5,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "reveal",
+          "version": 7,
+          "selectionStable": false
+        },
+        {
+          "phase": "between_rounds",
+          "action": "next_round",
+          "version": 65,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "skyjo",
+      "seats": 8,
+      "moves": 256,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "opening",
+          "action": "reveal",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "playing",
+          "action": "draw_stock",
+          "version": 17,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "reveal",
+          "version": 19,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "spill-or-chill",
+      "seats": 3,
+      "moves": 12,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "answer",
+          "action": "respond",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "spill-or-chill",
+      "seats": 10,
+      "moves": 40,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "answer",
+          "action": "respond",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "teen-patti",
+      "seats": 2,
+      "moves": 1,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "teen-patti",
+      "seats": 6,
+      "moves": 12,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "peek",
+          "version": 3,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "stable-fullmatches-interrupted-desktop.json",
+      "sourceRunStartedAt": "2026-11-02T06:01:52.217Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "the-gang",
+      "seats": 3,
+      "moves": 63,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "chips",
+          "action": "claim_chip",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "showdown",
+          "action": "reveal_hand",
+          "version": 13,
+          "selectionStable": false
+        },
+        {
+          "phase": "heist_review",
+          "action": "next_heist",
+          "version": 16,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "the-gang",
+      "seats": 6,
+      "moves": 92,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "chips",
+          "action": "claim_chip",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "showdown",
+          "action": "reveal_hand",
+          "version": 25,
+          "selectionStable": false
+        },
+        {
+          "phase": "heist_review",
+          "action": "next_heist",
+          "version": 31,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "trio",
+      "seats": 3,
+      "moves": 40,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "review",
+          "action": "continue",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "revealing",
+          "action": "reveal_table",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "trio",
+      "seats": 6,
+      "moves": 63,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "revealing",
+          "action": "reveal_table",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "review",
+          "action": "continue",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "uno",
+      "seats": 2,
+      "moves": 36,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "draw",
+          "version": 3,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "uno",
+      "seats": 10,
+      "moves": 173,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "uno-no-mercy",
+      "seats": 2,
+      "moves": 21,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "choose",
+          "version": 21,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "uno-no-mercy",
+      "seats": 6,
+      "moves": 79,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "choose",
+          "version": 12,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "word-agents",
+      "seats": 4,
+      "moves": 26,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "guess",
+          "action": "guess",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "clue",
+          "action": "clue",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "desktop",
+      "game": "word-agents",
+      "seats": 10,
+      "moves": 13,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "clue",
+          "action": "clue",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "guess",
+          "action": "guess",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-desktop-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "azul",
+      "seats": 2,
+      "moves": 114,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "drafting",
+          "action": "draft_tiles",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "placing",
+          "action": "place_tiles",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 19,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "azul",
+      "seats": 4,
+      "moves": 166,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "drafting",
+          "action": "draft_tiles",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "placing",
+          "action": "place_tiles",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 33,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "blackjack",
+      "seats": 1,
+      "moves": 1,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "blackjack",
+      "seats": 7,
+      "moves": 11,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "betting",
+          "action": "bet",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "playing",
+          "action": "stand",
+          "version": 8,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "boop",
+      "seats": 2,
+      "moves": 80,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "placing",
+          "action": "place",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "graduating",
+          "action": "graduate",
+          "version": 18,
+          "selectionStable": false
+        },
+        {
+          "phase": "graduating",
+          "action": "return_piece",
+          "version": 51,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "checkers",
+      "seats": 2,
+      "moves": 161,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "move",
+          "version": 3,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "deal",
+      "seats": 2,
+      "moves": 26,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "property",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "pay",
+          "version": 26,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "deal",
+      "seats": 5,
+      "moves": 91,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "no",
+          "version": 20,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "pay",
+          "version": 25,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "deal-no-mercy",
+      "seats": 2,
+      "moves": 88,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "bank",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "pay",
+          "version": 18,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "no",
+          "version": 36,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "deal-no-mercy",
+      "seats": 5,
+      "moves": 98,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "pay",
+          "version": 11,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "no",
+          "version": 14,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "choose",
+          "version": 63,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "flip-7",
+      "seats": 3,
+      "moves": 90,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "hit",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 7,
+          "selectionStable": false
+        },
+        {
+          "phase": "target",
+          "action": "target_effect",
+          "version": 8,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "flip-7",
+      "seats": 10,
+      "moves": 247,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "hit",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 18,
+          "selectionStable": false
+        },
+        {
+          "phase": "target",
+          "action": "target_effect",
+          "version": 19,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "four-in-a-row",
+      "seats": 2,
+      "moves": 28,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "drop",
+          "version": 3,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "gem-market",
+      "seats": 2,
+      "moves": 51,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "take",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "return_tokens",
+          "action": "return",
+          "version": 8,
+          "selectionStable": false
+        },
+        {
+          "phase": "patron",
+          "action": "patron",
+          "version": 46,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "gem-market",
+      "seats": 4,
+      "moves": 90,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "take",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "patron",
+          "action": "patron",
+          "version": 78,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "holdem",
+      "seats": 2,
+      "moves": 8,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "flop",
+          "action": "check",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "turn",
+          "action": "check",
+          "version": 5,
+          "selectionStable": false
+        },
+        {
+          "phase": "river",
+          "action": "check",
+          "version": 7,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "holdem",
+      "seats": 9,
+      "moves": 36,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "preflop",
+          "action": "call",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "flop",
+          "action": "check",
+          "version": 10,
+          "selectionStable": false
+        },
+        {
+          "phase": "turn",
+          "action": "check",
+          "version": 19,
+          "selectionStable": false
+        },
+        {
+          "phase": "river",
+          "action": "check",
+          "version": 28,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "hot-seat",
+      "seats": 3,
+      "moves": 24,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "predict",
+          "action": "predict",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "predict",
+          "action": "choose",
+          "version": 6,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "hot-seat",
+      "seats": 10,
+      "moves": 220,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "predict",
+          "action": "predict",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 11,
+          "selectionStable": false
+        },
+        {
+          "phase": "predict",
+          "action": "choose",
+          "version": 13,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "mancala",
+      "seats": 2,
+      "moves": 59,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "sow",
+          "version": 3,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "most-likely",
+      "seats": 3,
+      "moves": 24,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "vote",
+          "action": "vote",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "most-likely",
+      "seats": 10,
+      "moves": 220,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "vote",
+          "action": "vote",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 11,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "reversi",
+      "seats": 2,
+      "moves": 60,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "place",
+          "version": 3,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "rummy",
+      "seats": 2,
+      "moves": 5,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "draw",
+          "action": "draw_stock",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "discard",
+          "action": "discard",
+          "version": 4,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "rummy",
+      "seats": 6,
+      "moves": 17,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "draw",
+          "action": "draw_stock",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "discard",
+          "action": "discard",
+          "version": 4,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "sea-salt-paper",
+      "seats": 2,
+      "moves": 338,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "end_turn",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "draw",
+          "action": "take_stock",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "choosing",
+          "action": "keep",
+          "version": 5,
+          "selectionStable": false
+        },
+        {
+          "phase": "steal",
+          "action": "steal",
+          "version": 40,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 48,
+          "selectionStable": false
+        },
+        {
+          "phase": "crab_pile",
+          "action": "inspect",
+          "version": 114,
+          "selectionStable": false
+        },
+        {
+          "phase": "crab_card",
+          "action": "take_inspected",
+          "version": 115,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "sea-salt-paper",
+      "seats": 4,
+      "moves": 370,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "end_turn",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "draw",
+          "action": "take_stock",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "choosing",
+          "action": "keep",
+          "version": 5,
+          "selectionStable": false
+        },
+        {
+          "phase": "crab_pile",
+          "action": "inspect",
+          "version": 33,
+          "selectionStable": false
+        },
+        {
+          "phase": "crab_card",
+          "action": "take_inspected",
+          "version": 34,
+          "selectionStable": false
+        },
+        {
+          "phase": "steal",
+          "action": "steal",
+          "version": 50,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 89,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "shithead",
+      "seats": 2,
+      "moves": 83,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "shithead",
+      "seats": 5,
+      "moves": 131,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "setup",
+          "action": "arrange",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 6,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "six-nimmt",
+      "seats": 2,
+      "moves": 173,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "take_row",
+          "action": "take_row",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "review",
+          "action": "next_selection",
+          "version": 4,
+          "selectionStable": false
+        },
+        {
+          "phase": "selecting",
+          "action": "select_number",
+          "version": 5,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 33,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "six-nimmt",
+      "seats": 10,
+      "moves": 355,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "selecting",
+          "action": "select_number",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "review",
+          "action": "next_selection",
+          "version": 11,
+          "selectionStable": false
+        },
+        {
+          "phase": "take_row",
+          "action": "take_row",
+          "version": 33,
+          "selectionStable": false
+        },
+        {
+          "phase": "round_over",
+          "action": "next_round",
+          "version": 118,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "skyjo",
+      "seats": 2,
+      "moves": 64,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "opening",
+          "action": "reveal",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "playing",
+          "action": "draw_stock",
+          "version": 5,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "reveal",
+          "version": 7,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "skyjo",
+      "seats": 8,
+      "moves": 256,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "opening",
+          "action": "reveal",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "playing",
+          "action": "draw_stock",
+          "version": 17,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "reveal",
+          "version": 19,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "spill-or-chill",
+      "seats": 3,
+      "moves": 12,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "answer",
+          "action": "respond",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "spill-or-chill",
+      "seats": 10,
+      "moves": 40,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "answer",
+          "action": "respond",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "reveal",
+          "action": "next_prompt",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "teen-patti",
+      "seats": 2,
+      "moves": 1,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "teen-patti",
+      "seats": 6,
+      "moves": 12,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "peek",
+          "version": 3,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-deal_deal-no-mercy_holdem_teen-patti_blackjack_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T06:10:04.877Z",
+      "sourceParentComplete": true
+    },
+    {
+      "project": "phone",
+      "game": "the-gang",
+      "seats": 3,
+      "moves": 47,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "chips",
+          "action": "claim_chip",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "showdown",
+          "action": "reveal_hand",
+          "version": 13,
+          "selectionStable": false
+        },
+        {
+          "phase": "heist_review",
+          "action": "next_heist",
+          "version": 16,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "the-gang",
+      "seats": 6,
+      "moves": 92,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "chips",
+          "action": "claim_chip",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "showdown",
+          "action": "reveal_hand",
+          "version": 25,
+          "selectionStable": false
+        },
+        {
+          "phase": "heist_review",
+          "action": "next_heist",
+          "version": 31,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "trio",
+      "seats": 3,
+      "moves": 35,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "review",
+          "action": "continue",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "revealing",
+          "action": "reveal_table",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "trio",
+      "seats": 6,
+      "moves": 66,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "review",
+          "action": "continue",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "revealing",
+          "action": "reveal_table",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "uno",
+      "seats": 2,
+      "moves": 49,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "uno",
+      "seats": 10,
+      "moves": 118,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "uno-no-mercy",
+      "seats": 2,
+      "moves": 18,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "choose",
+          "version": 10,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "uno-no-mercy",
+      "seats": 6,
+      "moves": 49,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "playing",
+          "action": "play",
+          "version": 3,
+          "selectionStable": true
+        },
+        {
+          "phase": "playing",
+          "action": "choose",
+          "version": 33,
+          "selectionStable": true
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "word-agents",
+      "seats": 4,
+      "moves": 8,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "clue",
+          "action": "clue",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "guess",
+          "action": "guess",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    },
+    {
+      "project": "phone",
+      "game": "word-agents",
+      "seats": 10,
+      "moves": 24,
+      "profileHistoryVerified": true,
+      "rematch": true,
+      "naturalResultVerifiedByCompletedHarnessStep": true,
+      "savedHistoryAndRenderedResultsVerifiedByCompletedHarnessStep": true,
+      "sameGroupGameSwitchVerifiedByCompletedHarnessStep": true,
+      "midgameChecks": [
+        {
+          "phase": "clue",
+          "action": "clue",
+          "version": 3,
+          "selectionStable": false
+        },
+        {
+          "phase": "guess",
+          "action": "guess",
+          "version": 4,
+          "selectionStable": false
+        }
+      ],
+      "sourceFile": "fullmatches-phone-uno_uno-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop_shithead.json",
+      "sourceRunStartedAt": "2026-11-02T05:35:48.706Z",
+      "sourceParentComplete": false
+    }
+  ],
+  "cleanup": {
+    "evidenceFiles": [
+      "stable-local-cleanup-before.json",
+      "stable-local-cleanup-after.json",
+      "stable-local-crew-trace.json",
+      "stable-local-crew-before.json",
+      "stable-local-crew-after.json"
+    ],
+    "staleTaskRoomsClosed": 7,
+    "membershipsDeactivated": 43,
+    "allTargetMembershipsInactive": true,
+    "profilesPreserved": 61,
+    "matchHistoryRowsPreserved": 179,
+    "receiptRowsPreserved": 7432,
+    "completedResultsPreserved": true,
+    "standardApiOnly": true,
+    "directDatabaseWritesOrDeletes": false,
+    "currentRerunRoomsExcluded": true,
+    "scopeNote": "Six interrupted full-match rooms plus one separately trace-identified interrupted Crew test room. Cleanup is separate from pass/fail of parent runs."
+  },
+  "limits": [
+    "Full-match moves are selected from authorized API projections, with refreshed browser mid-game/result/profile/rematch/switch controls. This is not a claim that every move was clicked through the table UI.",
+    "Per-game phase/action lists describe reached mid-game snapshots, not exhaustive rule branches. Dedicated engine and scenario suites cover additional branches.",
+    "The Rummy online driver draws/discards before legal drops; a complete online declaration is not claimed by this driver.",
+    "Interrupted parent runs retain completed case steps; incomplete active steps are omitted, and their stale local rooms were closed separately.",
+    "No production or live multiplayer acceptance is claimed by this aggregate.",
+    "Four minimum-seat cases finished naturally in one or two moves before mid-game sampling: Blackjack solo and Teen Patti two-player on each width. Their longer decision states are covered by the separate legal-scenario browser suite."
+  ],
+  "casesWithoutMidgameSnapshots": [
+    {
+      "project": "desktop",
+      "game": "blackjack",
+      "seats": 1,
+      "moves": 2,
+      "reason": "Natural match finished before the third-move mid-game sampling threshold."
+    },
+    {
+      "project": "desktop",
+      "game": "teen-patti",
+      "seats": 2,
+      "moves": 1,
+      "reason": "Natural match finished before the third-move mid-game sampling threshold."
+    },
+    {
+      "project": "phone",
+      "game": "blackjack",
+      "seats": 1,
+      "moves": 1,
+      "reason": "Natural match finished before the third-move mid-game sampling threshold."
+    },
+    {
+      "project": "phone",
+      "game": "teen-patti",
+      "seats": 2,
+      "moves": 1,
+      "reason": "Natural match finished before the third-move mid-game sampling threshold."
+    }
+  ]
+}

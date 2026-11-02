@@ -77,7 +77,8 @@ patron choice opens its collection. Azul shares six patterned ceramic pieces,
 keeps the viewer's board open and opponent boards expandable. Its center and
 first-player marker remain outside the horizontal phone factory rail; previous/
 next controls provide a click and keyboard alternative to swiping. Reduced motion
-uses immediate scrolling. Placement brings the player's board before factories.
+uses immediate scrolling. The supply and own board retain their positions when a
+draft becomes a placement; a reserved preview shows the chosen tiles.
 
 Flip 7 places the viewer's live cards/risk directly before hit/stay decisions;
 opponent summaries retain scores and status with native keyboard disclosures for
@@ -102,8 +103,9 @@ Original TokenArt variants decorate public board discs and casino wagers; Mancal
 composes the same marble art with independent exact seed counts. AtlasArt clips
 each selected cell explicitly before meet framing so neighboring source cells
 cannot appear in letterbox space. Classic boards preserve all 44px squares at a
-390px viewport; smaller canvases retain an internal board scroller. Skyjo uses
-three desktop columns and a full-width interactive own grid on phones. See the
+390px viewport; smaller canvases retain an internal board scroller. Skyjo keeps
+the own grid first and shows opponents as compact public miniature grids with
+explicit inspection controls. See the
 26-game matrix and retained inspected images in the table-refresh evidence.
 
 
@@ -158,3 +160,41 @@ cannot replay an earlier payment or reveal. The opt-in mounted regression in
 `tests/browser/casino-motion.spec.ts` uses `GAMES_STORYBOOK_URL` and covers both
 widths without creating rooms. Blackjack's total is labeled hand bets because
 the projected main/split/double sum excludes the separate insurance stake.
+
+
+## Stable decision workspaces
+
+`ActionPanel` composes the shared `DecisionDock`; selecting or clearing a card
+changes the contents of a fixed action area rather than inserting rows before
+the hand. The compact, standard and extended variants use bounded internal
+scrolling. Selection never switches a dock's size. The clear-control footprint
+stays reserved, and board squares, factories and card piles remain in place.
+
+Family compositions reserve the controls that can appear later in a turn:
+Rummy's grouping lane, Trio's reveal/review lane, Azul's tile preview and own
+floor action, Boop's graduation choices, Word Agents' clue/guess controls,
+Sea Salt & Paper's draw/keep/steal choices, and party voting/reveal states.
+Private keep choices use compact card art and visible confirmation buttons.
+Casino tables retain the own-card well before dealing and between hands, while
+existing authoritative chip/card transitions keep their DOM anchors. Casino
+controls use a fixed 192px desktop / 252px phone area; their context does not
+inherit the wider horizontal-panel flex basis. Every legal control remains
+scroll-reachable, and the first action starts inside the visible area. Split
+blackjack hands use explicit previous/next controls and preserve active-hand
+reveal. Tarot
+spread meanings reserve their line before a reveal.
+
+`PlayerStrip` and custom card rows use `HorizontalRail` for bounded scrolling
+with external 44px previous/next controls. Focus reveals only the relevant
+horizontal item. Skyjo and Shithead share `OpponentPanel`: a public seat and
+summary remain visible, while an explicit Inspect button opens the full public
+assets. Hidden cards remain anonymous; inspection never receives unprojected
+ranks, other hands or deck order. Gem Market and Azul always show public
+progress in their expandable-player summaries.
+
+`tests/browser/stable-game-tables.spec.ts` checks phone and desktop bounds before
+and after private selection, exact public-target previews, grouping, clearing
+and a committed legal Azul draft. It also checks anonymous opponent inspections.
+The local midgame review adds legally reached phases at both seat limits; it
+changes local projections only and cannot write rooms. Evidence and practical
+limits are recorded in `docs/evidence/stable-play-2026-11-02/non-deal`.

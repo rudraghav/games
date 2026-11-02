@@ -3,7 +3,7 @@
 Routine `pnpm test:browser` checks independent sessions and responsive controls.
 
 `deal-workspace.spec.ts` also checks the local-only `/design/deal` review harness.
-Its ten synthetic scenarios and paired outcomes come from real Deal engine
+Its eleven synthetic scenarios and paired outcomes come from real Deal engine
 actions and authorized projections, with conservation/privacy assertions in
 `scripts/export_deal_scenarios.py`. Only public views and visible test identifiers
 are exported. `--check` participates in the contracts gate. The review page
@@ -17,12 +17,20 @@ callbacks are compared with engine-produced actions and known next projections.
 This verifies the mounted decision UI; independent real-room HTTP/full-match
 tests remain required for persistence, multiplayer and authorization proof.
 
-Run with `pnpm exec playwright test tests/browser/deal-workspace.spec.ts
+Run with `pnpm exec playwright test tests/browser/deal-workspace.spec.ts tests/browser/stable-deal.spec.ts
 --output=output/playwright/deal-workspace-results`; screenshots are retained in
 `output/playwright/deal-workspace/` for visual review. Regenerate fixtures with
 `backend/.venv/bin/python scripts/export_deal_scenarios.py` after producer changes.
 Long acceptance and cloud checks are explicit opt-ins so normal verification does
 not silently consume guest-signup quotas or AI calls. No test persists auth state.
+
+`stable-deal.spec.ts` measures the public table, bank, action bar and hand before
+and after selections, target changes, existing/new set choices, banking, payment
+toggles, table peeking and public inspection. It checks focus restoration,
+unbroken property words, full collection visibility in portalled inspection,
+and public Take/Give previews at phone and desktop sizes. The doubled-rent fixture
+plays a house, hotel and Double the Rent through the engine, then compares the
+18M preview with the committed bill. Captures are in `output/playwright/stable-deal/`.
 
 ## Complete matches
 

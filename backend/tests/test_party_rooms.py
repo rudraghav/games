@@ -11,6 +11,7 @@ from sqlalchemy import select
 from app.db import sessions
 from app.main import app
 from app.models import Match, Receipt
+from app.rooms.schemas import PublicMoveView
 
 
 @pytest.fixture
@@ -51,6 +52,17 @@ def test_simultaneous_private_choices_retries_and_lifespan_restart(client, game_
     assert hidden["detail"]["result"] is None and hidden["detail"]["own_choice"] is None
     assert len(hidden["detail"]["submitted"]) == 1
     assert all(p["score"] == 0 for p in hidden["players"])
+    # Durable history describes the lock, never its private target or answer.
+    event = PublicMoveView.model_validate(waiting.json()["activity"][0])
+    assert event.actor_id == ids[actors[committed]] and event.version == 2
+    assert event.type == actions[committed]["type"]
+    assert event.targets == [] and event.cards == []
+    assert event.amount is None and event.destination is None and event.count is None
+    assert event.label in {"Locked a choice", "Locked a prediction"}
+    with sessions()() as session:
+        receipt = session.get(Receipt, (room["match_id"], bodies[committed]["action_id"]))
+        assert set(receipt.response) == {"committedVersion", "public_move"}
+        assert receipt.response["public_move"] == event.model_dump()
     for forbidden in ('"decisions"', '"choices"', '"deck"', '"history"', '"seed"'):
         assert forbidden not in waiting.text
     outsider = player(client)
@@ -89,4 +101,12 @@ def test_simultaneous_private_choices_retries_and_lifespan_restart(client, game_
         assert saved.version == 4 and saved.state["phase"] == "reveal"
         receipts = list(session.scalars(select(Receipt).where(Receipt.match_id == room["match_id"])))
         assert len(receipts) == 3
-        assert all(set(receipt.response) == {"committedVersion"} for receipt in receipts)
+        assert {receipt.response["committedVersion"] for receipt in receipts} == {2, 3, 4}
+        for receipt in receipts:
+            assert set(receipt.response) == {"committedVersion", "public_move"}
+            public = PublicMoveView.model_validate(receipt.response["public_move"])
+            assert public.version == receipt.response["committedVersion"]
+            assert public.type in {"vote", "choose", "predict"}
+            assert public.label in {"Locked a choice", "Locked a prediction"}
+            assert public.targets == [] and public.cards == []
+            assert public.amount is None and public.destination is None and public.count is None

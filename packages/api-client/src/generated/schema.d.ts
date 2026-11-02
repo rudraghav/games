@@ -813,6 +813,30 @@ export interface components {
             /** Amount */
             amount?: number | null;
         };
+        /**
+         * PublicMoveView
+         * @description A committed public description, never a stored submitted action.
+         */
+        PublicMoveView: {
+            /** Version */
+            version: number;
+            /** Actor Id */
+            actor_id: string;
+            /** Type */
+            type: string;
+            /** Label */
+            label: string;
+            /** Targets */
+            targets?: string[];
+            /** Amount */
+            amount?: number | null;
+            /** Cards */
+            cards?: components["schemas"]["CardView"][];
+            /** Destination */
+            destination?: string | null;
+            /** Count */
+            count?: number | null;
+        };
         /** Reading */
         Reading: {
             /** Title */
@@ -931,6 +955,8 @@ export interface components {
             /** Bot Due At */
             bot_due_at?: number | null;
             last_action?: components["schemas"]["PublicActionView"] | null;
+            /** Activity */
+            activity?: components["schemas"]["PublicMoveView"][];
         };
         /**
          * Section

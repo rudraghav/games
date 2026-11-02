@@ -16,7 +16,7 @@ export function BoardTable(props: TableProps) {
   const sources = new Set(match.actions.map((option) => option.value.choice.split(':')[0]));
   const blocked = pending || room.paused;
   return (
-    <div className="table-layout">
+    <div className="table-layout stable-game-table">
       <PlayerStrip
         {...props}
         playerCaption={(player) =>

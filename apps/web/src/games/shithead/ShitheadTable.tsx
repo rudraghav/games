@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { Flame, Layers, ShieldCheck } from 'lucide-react';
-import { Button, Hand, PlayingCard } from '@games/ui';
+import { Button, Hand, PlayingCard, DecisionDock, HorizontalRail } from '@games/ui';
+import { OpponentPanel } from '../shared/OpponentPanel';
 import { shitheadDetails, type Card } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
@@ -165,23 +166,32 @@ function ShitheadDecision(props: TableProps) {
           <p className="small muted">
             {myTurn || ownStage === 'out' ? instruction : 'Waiting for the current player.'}
           </p>
-          {match.hand.length ? (
-            <Hand
-              cards={sortedHand}
-              disabled={blocked}
-              selectedIds={selected}
-              onSelect={!blocked ? (id) => select(match.hand.find((c) => c.id === id)!) : undefined}
-            />
-          ) : (
-            <p className="small muted">
-              {ownStage === 'face_down'
-                ? 'Your hidden cards are ready.'
-                : ownStage === 'face_up'
-                  ? 'Play from your table below.'
-                  : 'Hand cleared.'}
-            </p>
-          )}
-          <div className="shithead-actions" aria-label="Your Shithead actions">
+          <div className="shithead-private-cards">
+            {match.hand.length ? (
+              <Hand
+                cards={sortedHand}
+                disabled={blocked}
+                selectedIds={selected}
+                onSelect={
+                  !blocked ? (id) => select(match.hand.find((c) => c.id === id)!) : undefined
+                }
+              />
+            ) : (
+              <p className="small muted">
+                {ownStage === 'face_down'
+                  ? 'Your hidden cards are ready.'
+                  : ownStage === 'face_up'
+                    ? 'Play from your table below.'
+                    : 'Hand cleared.'}
+              </p>
+            )}
+          </div>
+          <DecisionDock
+            className="shithead-actions"
+            label="Your Shithead actions"
+            size="standard"
+            pending={pending}
+          >
             {arrange ? (
               <Button
                 disabled={blocked || selected.length !== 3}
@@ -215,17 +225,45 @@ function ShitheadDecision(props: TableProps) {
                 Clear selection
               </Button>
             ) : null}
-          </div>
+          </DecisionDock>
         </section>
         {faceRow(selfId)}
       </div>
-      <div className="shithead-opponents">
+      <HorizontalRail
+        label="Other Shithead players"
+        navigationLabel="Shithead players"
+        className="shithead-opponents"
+        contentClassName="shithead-opponent-row"
+      >
         {match.players
           .filter((p) => p.id !== selfId)
           .map((p) => (
-            <div key={p.id}>{faceRow(p.id)}</div>
+            <OpponentPanel
+              key={p.id}
+              player={p}
+              room={room}
+              active={match.currentPlayer === p.id}
+              caption={data.stages[p.id] === 'out' ? 'Safe' : `${p.count} cards remaining`}
+              summary={
+                <>
+                  <div className="opponent-public-cards">
+                    {p.cards
+                      .filter((c): c is Card => c !== null)
+                      .map((card) => (
+                        <PlayingCard key={card.id} card={card} compact />
+                      ))}
+                  </div>
+                  <span className="opponent-facts">
+                    {data.hidden_slots[p.id]?.filter(Boolean).length ?? 0} hidden table cards ·{' '}
+                    {data.stages[p.id].replaceAll('_', ' ')}
+                  </span>
+                </>
+              }
+            >
+              {faceRow(p.id)}
+            </OpponentPanel>
           ))}
-      </div>
+      </HorizontalRail>
     </>
   );
 }
@@ -240,7 +278,7 @@ export function ShitheadTable(props: TableProps) {
         ? 'Seven or lower'
         : `Match or beat ${data.comparison_rank}`;
   return (
-    <div className="table-layout shithead-game">
+    <div className="table-layout stable-game-table shithead-game">
       <PlayerStrip
         {...props}
         playerCaption={(p) => (data.stages[p.id] === 'out' ? 'Safe' : `${p.count} cards remaining`)}

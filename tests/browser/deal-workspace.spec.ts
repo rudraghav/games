@@ -8,6 +8,8 @@ const captureDir = 'output/playwright/deal-workspace';
 const fixture = (id: string) => dealScenarios.find((item) => item.id === id)!;
 const own = (page: Page) => page.locator('.deal-player[data-own="true"]');
 const hand = (page: Page) => page.getByRole('group', { name: 'Your hand', exact: true });
+const panel = (page: Page) => page.locator('.table-decision-panel');
+const command = (page: Page) => page.locator('.deal-command-dock');
 
 async function selectScenario(page: Page, id: string) {
   await page.getByRole('combobox', { name: 'Deal scenario', exact: true }).selectOption(id);
@@ -21,9 +23,10 @@ async function submitted(page: Page) {
 }
 async function capture(page: Page, id: string) {
   await mkdir(captureDir, { recursive: true });
-  await page
-    .locator('.deal-workspace')
-    .screenshot({ path: `${captureDir}/${test.info().project.name}-${id}.png` });
+  await page.screenshot({
+    path: `${captureDir}/${test.info().project.name}-${id}.png`,
+    fullPage: true,
+  });
 }
 
 test.beforeEach(async ({ page }) => {
@@ -113,7 +116,7 @@ test('changing swap target or canceling bank mode cannot submit an earlier hidde
   await hand(page)
     .getByRole('button', { name: /^Forced deal, bank value 3M/ })
     .click();
-  const play = page.getByRole('button', { name: 'Play Forced deal', exact: true });
+  const play = panel(page).getByRole('button', { name: 'Play Forced deal', exact: true });
   const player = page.getByRole('combobox', { name: 'Player', exact: true });
   const move = page.getByLabel('Card move', { exact: true });
   await expect(play).toBeDisabled();
@@ -150,6 +153,7 @@ test('countering and counter-countering show the bill, current block and permitt
   );
   await page.getByRole('button', { name: 'Just say no', exact: true }).click();
   expect(await submitted(page)).toMatchObject({ type: 'no' });
+  await page.getByRole('button', { name: 'Choose move options', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Action blocked', exact: true })).toBeVisible();
   await selectScenario(page, 'counter-chain');
   await expect(page.getByRole('heading', { name: 'Action blocked', exact: true })).toBeVisible();
@@ -163,37 +167,40 @@ test('payment requires the bill or every payable asset and makes overpayment exp
   page,
 }) => {
   await selectScenario(page, 'payment-bank');
-  await expect(page.getByRole('button', { name: 'Pay 0M', exact: true })).toBeDisabled();
+  await panel(page).getByRole('button', { name: 'Close move options', exact: true }).click();
+  await expect(command(page).getByRole('button', { name: 'Pay 0M', exact: true })).toBeDisabled();
   await page.getByRole('button', { name: '2M, bank value 2M', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Pay 2M', exact: true })).toBeDisabled();
+  await expect(command(page).getByRole('button', { name: 'Pay 2M', exact: true })).toBeDisabled();
   await page.getByRole('button', { name: '4M, bank value 4M', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Pay 6M', exact: true })).toBeEnabled();
+  await expect(command(page).getByRole('button', { name: 'Pay 6M', exact: true })).toBeEnabled();
+  await page.getByRole('button', { name: 'Choose move options', exact: true }).click();
   await expect(page.locator('.deal-payment-total')).toContainText('1M overpayment');
   await expect(own(page).locator('.deal-collection footer')).toContainText('Rent 0M');
   await expect(
     page.getByText('Choose bank cards or properties below. No change is given.', { exact: true }),
   ).toBeVisible();
   await capture(page, 'payment');
-  await page.getByRole('button', { name: 'Pay 6M', exact: true }).click();
+  await panel(page).getByRole('button', { name: 'Pay 6M', exact: true }).click();
   expect(await submitted(page)).toEqual(fixture('payment-bank').transitions[0].action);
   await selectScenario(page, 'payment-exact');
   await page.getByRole('button', { name: 'Select bank money', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Pay 5M', exact: true })).toBeEnabled();
-  await page.getByRole('button', { name: 'Pay 5M', exact: true }).click();
+  await expect(panel(page).getByRole('button', { name: 'Pay 5M', exact: true })).toBeEnabled();
+  await panel(page).getByRole('button', { name: 'Pay 5M', exact: true }).click();
   expect(await submitted(page)).toEqual(
     fixture('payment-exact').transitions.find((item) => item.label === 'Pay exactly')!.action,
   );
   await selectScenario(page, 'payment-insolvent');
   await page.getByRole('button', { name: 'Select bank money', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Pay 1M', exact: true })).toBeDisabled();
+  await expect(panel(page).getByRole('button', { name: 'Pay 1M', exact: true })).toBeDisabled();
+  await panel(page).getByRole('button', { name: 'Close move options', exact: true }).click();
   await own(page)
     .getByRole('button', { name: /^Mediterranean Avenue, bank value 1M/ })
     .click();
-  await expect(page.getByRole('button', { name: 'Pay 2M', exact: true })).toBeEnabled();
+  await expect(command(page).getByRole('button', { name: 'Pay 2M', exact: true })).toBeEnabled();
   await expect(own(page).getByRole('button', { name: /^Wild property, not bankable/ })).toHaveCount(
     0,
   );
-  await page.getByRole('button', { name: 'Pay 2M', exact: true }).click();
+  await command(page).getByRole('button', { name: 'Pay 2M', exact: true }).click();
   expect(await submitted(page)).toEqual(fixture('payment-insolvent').transitions[0].action);
 });
 

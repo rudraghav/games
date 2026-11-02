@@ -65,7 +65,11 @@ test('number rows expose capacity before committing a private number', async ({ 
       await row.locator('.six-row-cards').evaluate((el) => el.scrollWidth <= el.clientWidth),
     ).toBe(true);
   }
-  await hand.getByRole('button').first().click();
+  await hand
+    .getByRole('group', { name: 'Your number cards', exact: true })
+    .getByRole('button')
+    .first()
+    .click();
   await expect(page.getByRole('button', { name: 'Lock my number', exact: true })).toBeEnabled();
   await page.getByLabel('Saving a move').check();
   await expect(page.getByRole('button', { name: 'Lock my number', exact: true })).toBeDisabled();

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import type { Card } from '@games/api-client';
-import { Button, Hand } from '@games/ui';
+import { Button, Hand, DecisionDock } from '@games/ui';
 import type { TableProps } from '../types';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { ActionPanel } from '../shared/ActionPanel';
@@ -34,7 +34,7 @@ export function RummyTable(props: TableProps) {
         });
   }
   return (
-    <div className="table-layout card-game-layout rummy-layout">
+    <div className="table-layout stable-game-table card-game-layout rummy-layout">
       <PlayerStrip {...props} />
       <div className="card-table felt-table">
         <span className="table-watermark">g.</span>
@@ -78,30 +78,37 @@ export function RummyTable(props: TableProps) {
             </label>
           </div>
         </div>
-        {selectedCard ? (
-          <div
-            className="rummy-group-controls"
-            role="group"
-            aria-label={`Move ${selectedCard.label} to a group`}
-          >
-            <span className="small">Group {selectedCard.label}</span>
-            <div>
-              {buckets.map((label, bucket) => (
-                <Button
-                  key={label}
-                  size="sm"
-                  variant={(groups[selectedCard.id] ?? 0) === bucket ? 'primary' : 'secondary'}
-                  aria-pressed={(groups[selectedCard.id] ?? 0) === bucket}
-                  onClick={() =>
-                    setGroups((previous) => ({ ...previous, [selectedCard.id]: bucket }))
-                  }
-                >
-                  {label}
-                </Button>
-              ))}
-            </div>
+        <DecisionDock
+          className="rummy-group-controls"
+          size="compact"
+          role="group"
+          label={selectedCard ? `Move ${selectedCard.label} to a group` : 'Arrange card groups'}
+        >
+          <span className="small">
+            {selectedCard ? `Group ${selectedCard.label}` : 'Select a card to arrange your groups.'}
+          </span>
+          <div>
+            {buckets.map((label, bucket) => (
+              <Button
+                key={label}
+                size="sm"
+                variant={
+                  selectedCard && (groups[selectedCard.id] ?? 0) === bucket
+                    ? 'primary'
+                    : 'secondary'
+                }
+                aria-pressed={Boolean(selectedCard && (groups[selectedCard.id] ?? 0) === bucket)}
+                disabled={!selectedCard || pending || room.paused}
+                onClick={() =>
+                  selectedCard &&
+                  setGroups((previous) => ({ ...previous, [selectedCard.id]: bucket }))
+                }
+              >
+                {label}
+              </Button>
+            ))}
           </div>
-        ) : null}
+        </DecisionDock>
         <div className="rummy-groups">
           {buckets.map((label, bucket) => {
             const cards = arranged(match.hand.filter((card) => (groups[card.id] ?? 0) === bucket));

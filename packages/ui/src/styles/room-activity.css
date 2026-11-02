@@ -1,0 +1,129 @@
+@layer components {
+  .room-panel {
+    display: flex;
+    flex-direction: column;
+    height: calc(100dvh - 64px);
+    position: sticky;
+    top: 0;
+  }
+  .room-panel-switch {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .room-panel-switch .choice-group {
+    width: 100%;
+  }
+  .room-panel-switch .choice-group > button {
+    flex: 1;
+    min-height: 44px;
+  }
+  .room-panel > .chat {
+    flex: 1;
+    min-height: 0;
+    height: auto;
+  }
+  .room-activity {
+    padding: 16px;
+    min-height: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    flex: 1;
+    scrollbar-width: thin;
+  }
+  .room-activity > header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+  .room-activity > header h2 {
+    font-size: 15px;
+  }
+  .activity-empty {
+    color: var(--color-ink-muted);
+    font-size: 12px;
+    padding-block: 20px;
+  }
+  .activity-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .activity-list > li {
+    display: grid;
+    grid-template-columns: 25px minmax(0, 1fr);
+    gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .activity-version {
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink-muted);
+    padding-top: 3px;
+  }
+  .activity-list p {
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+  .activity-list .activity-targets,
+  .activity-list .activity-destination,
+  .activity-list .activity-count {
+    font-size: 11px;
+    color: var(--color-ink-muted);
+  }
+  .activity-amount {
+    color: var(--color-sage);
+    font-weight: 750;
+  }
+  .activity-card-names {
+    color: var(--color-ink);
+    font-weight: 550;
+    margin-block: 3px;
+  }
+  .room-activity > .button {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+  }
+  .activity-piece {
+    display: grid;
+    gap: 5px;
+    flex: 0 0 90px;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    background: var(--color-sage-light);
+  }
+  .activity-piece strong {
+    font-size: 20px;
+  }
+  .activity-piece span {
+    font-size: 10px;
+  }
+  .activity-cards > summary {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    width: fit-content;
+    list-style: none;
+    cursor: pointer;
+    font-size: 11px;
+  }
+  .activity-cards > div {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 4px 2px 10px;
+  }
+  @media (max-width: 1099px) {
+    .room-panel {
+      position: static;
+      height: min(72dvh, 720px);
+    }
+  }
+}

@@ -111,7 +111,6 @@ participant; cooperative loss is a team defeat, not a tie.
 Saved profile history uses the same declared outcome semantics and score units:
 team defeat/victory, penalty points, net chips, or an unscored match label.
 
-
 Table density follows the player's next decision. Casino private cards and
 controls share a dock after the public table. Crowded seats use separated bands;
 the canvas itself, rather than
@@ -123,10 +122,9 @@ New original district and ceramic atlases use the existing AtlasArt primitive.
 GemDistrictArt selects one of 15 color/tier scenes or a patron crest; AzulTileArt
 selects six distinct patterns. Whole illustration cells use proportional meet
 alignment. Text, cost tokens and interaction states remain accessible UI outside
-the decorative art. Gem opponent engines and Azul opponent boards are expandable;
+the decorative art. Gem opponent engines and Azul opponent boards retain public summaries with optional Inspect views;
 required patron/placement decisions stay exposed. Felt, wood and plum material
 variants reuse one three-strip atlas without replacing card labels or controls.
-
 
 AtlasArt clips the exact source cell before proportional meet alignment. The clip
 prevents neighboring illustrations from painting into a rectangular letterbox;
@@ -186,7 +184,6 @@ lazy loading and alt text. The root image-optimization URL returned 404 in the
 production Vercel Services arrangement despite direct originals returning 200;
 real hosted image decoding is a release check, alongside the asset hash check.
 
-
 Uno and Deal consume canonical metadata in one shared renderer. Deal has all28
 US property names, ten rent schedules and24distinct action effects; wild/rent
 bands print both names and orientation stays separate. Full cards use126×178px
@@ -221,3 +218,9 @@ Shithead keeps own zones together and preserves sorting across match revisions.
 Yellow Uno text uses measured 4.5:1-or-better ink in both card sizes. Complete
 281-face paired sheets and focused behavior/visual evidence are retained in
 `docs/evidence/card-workspaces-2026-11-02`.
+
+Stable gameplay uses shared DecisionDock variants with bounded internal scrolling and a persistent clear/status slot. Deal has a 96px command bar, a fixed-height hand, compact public opponent summaries and a scrollable owned bank/collection area. On phones, owned properties use named 44px deed rows; full faces remain in the hand and Inspect views. Complex Deal decisions use TableDecisionPanel, a modeless Radix dialog with an explicit peek toggle, Escape/focus restoration and no blocking overlay. Portalled inspectors use their own viewport rules.
+
+HorizontalRail owns overflow detection, external 44px arrows, native touch scrolling and reduced-motion navigation. It reveals focused cards horizontally without moving the page vertically. OpponentPanel owns the public summary/Inspect vocabulary; features provide only authorized public children. RoomActivity displays the latest 80 durable, server-redacted moves with optional public card details. The same sidebar tabs serve chat/activity on desktop and phone.
+
+Current stable-play evidence lives in `evidence/stable-play-2026-11-02`: 235 legally reached projections across all 27 games, critical interaction/geometry checks, and inspected phone/desktop captures. This fixture review is distinct from real saved-room full matches and hosted release checks in the journal.

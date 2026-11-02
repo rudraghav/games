@@ -1,5 +1,5 @@
 'use client';
-import { PlayingCard } from '@games/ui';
+import { PlayingCard, HorizontalRail } from '@games/ui';
 import { flipSevenDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { ActionPanel } from '../shared/ActionPanel';
@@ -44,7 +44,10 @@ export function FlipSevenTable(props: TableProps) {
             <b>{score}</b> {scoreLabel}
           </span>
         </summary>
-        <div className="flip-card-row">
+        <HorizontalRail
+          label={`${playerName(room, player.id)} public cards`}
+          contentClassName="flip-card-row"
+        >
           {player.cards.map((card, index) =>
             card ? (
               <PlayingCard
@@ -59,12 +62,12 @@ export function FlipSevenTable(props: TableProps) {
             ),
           )}
           {!player.cards.length ? <span className="small muted">No cards yet</span> : null}
-        </div>
+        </HorizontalRail>
       </details>
     );
   }
   return (
-    <div className="table-layout modern-game">
+    <div className="table-layout stable-game-table modern-game">
       <PlayerStrip {...props} playerCaption={(p) => `${p.score} / 200 points`} />
       <section className="flip-seven-table" aria-label="Flip 7 table">
         <div className="modern-game-heading">

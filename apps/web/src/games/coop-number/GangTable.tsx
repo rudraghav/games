@@ -1,7 +1,7 @@
 'use client';
 import { useState, type CSSProperties } from 'react';
 import { LockKeyhole, Siren, Star } from 'lucide-react';
-import { Button, PlayingCard } from '@games/ui';
+import { Button, PlayingCard, DecisionDock } from '@games/ui';
 import { gangDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
@@ -39,7 +39,7 @@ export function GangTable(props: TableProps) {
           : 'Take this chip to show your estimate.';
 
   return (
-    <div className="table-layout coop-number-game gang-game">
+    <div className="table-layout stable-game-table coop-number-game gang-game">
       <PlayerStrip
         {...props}
         match={simultaneous ? { ...match, currentPlayer: null } : match}
@@ -87,96 +87,103 @@ export function GangTable(props: TableProps) {
             ))}
           </div>
         </section>
-        {simultaneous ? (
-          <section className="gang-decision" aria-label="Choose your ranking chip">
-            <div className="coop-number-heading">
-              <h3>Everyone can choose</h3>
-              <span className="small muted">
-                {match.players.length - data.pending_players.length}/{match.players.length} chips
-                taken
-              </span>
-            </div>
-            <div className="gang-rank-scale" aria-hidden="true">
-              <span>Weakest</span>
-              <span>Strongest</span>
-            </div>
-            <div
-              className="gang-chip-rack"
-              data-chip-color={colors[data.street]}
-              style={{ '--gang-players': match.players.length } as CSSProperties}
-            >
-              {match.players.map((_, i) => {
-                const rank = i + 1;
-                const holder = match.players.find((p) => data.chips[p.id] === rank)?.id;
-                const available = match.actions.some(
-                  (o) => o.value.type === 'claim_chip' && o.value.amount === rank,
-                );
-                return (
-                  <button
-                    key={rank}
-                    type="button"
-                    className="gang-chip-choice"
-                    aria-label={`${rank}-star chip${holder ? ` held by ${playerName(room, holder)}` : ' in the center'}`}
-                    aria-pressed={chosen === rank}
-                    disabled={blocked || !available}
-                    onClick={() => setSelection({ key: roundKey, rank })}
-                  >
-                    <span className="gang-rank-chip">
-                      <Star size={15} aria-hidden="true" />
-                      {rank}
-                    </span>
-                    <small>
-                      {holder ? (holder === selfId ? 'You' : playerName(room, holder)) : 'Center'}
-                    </small>
-                  </button>
-                );
-              })}
-            </div>
-            <p className="gang-decision-note" aria-live="polite">
-              {instruction}
-            </p>
-            <div className="coop-number-actions">
-              <Button
-                disabled={blocked || !option}
-                onClick={() => {
-                  if (option) {
-                    setSelection(null);
-                    onAction(option.value);
-                  }
-                }}
+        <DecisionDock
+          className="gang-turn-dock"
+          size="extended"
+          label="Ranking and reveal decisions"
+          pending={pending}
+        >
+          {simultaneous ? (
+            <section className="gang-decision" aria-label="Choose your ranking chip">
+              <div className="coop-number-heading">
+                <h3>Everyone can choose</h3>
+                <span className="small muted">
+                  {match.players.length - data.pending_players.length}/{match.players.length} chips
+                  taken
+                </span>
+              </div>
+              <div className="gang-rank-scale" aria-hidden="true">
+                <span>Weakest</span>
+                <span>Strongest</span>
+              </div>
+              <div
+                className="gang-chip-rack"
+                data-chip-color={colors[data.street]}
+                style={{ '--gang-players': match.players.length } as CSSProperties}
               >
-                {chosen ? `Take ${chosen}-star chip` : 'Choose a chip'}
-              </Button>
-              {giveBack ? (
+                {match.players.map((_, i) => {
+                  const rank = i + 1;
+                  const holder = match.players.find((p) => data.chips[p.id] === rank)?.id;
+                  const available = match.actions.some(
+                    (o) => o.value.type === 'claim_chip' && o.value.amount === rank,
+                  );
+                  return (
+                    <button
+                      key={rank}
+                      type="button"
+                      className="gang-chip-choice"
+                      aria-label={`${rank}-star chip${holder ? ` held by ${playerName(room, holder)}` : ' in the center'}`}
+                      aria-pressed={chosen === rank}
+                      disabled={blocked || !available}
+                      onClick={() => setSelection({ key: roundKey, rank })}
+                    >
+                      <span className="gang-rank-chip">
+                        <Star size={15} aria-hidden="true" />
+                        {rank}
+                      </span>
+                      <small>
+                        {holder ? (holder === selfId ? 'You' : playerName(room, holder)) : 'Center'}
+                      </small>
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="gang-decision-note" aria-live="polite">
+                {instruction}
+              </p>
+              <div className="coop-number-actions">
                 <Button
-                  variant="ghost"
-                  disabled={blocked}
+                  disabled={blocked || !option}
                   onClick={() => {
-                    setSelection(null);
-                    onAction(giveBack.value);
+                    if (option) {
+                      setSelection(null);
+                      onAction(option.value);
+                    }
                   }}
                 >
-                  Return my chip
+                  {chosen ? `Take ${chosen}-star chip` : 'Choose a chip'}
+                </Button>
+                {giveBack ? (
+                  <Button
+                    variant="ghost"
+                    disabled={blocked}
+                    onClick={() => {
+                      setSelection(null);
+                      onAction(giveBack.value);
+                    }}
+                  >
+                    Return my chip
+                  </Button>
+                ) : null}
+              </div>
+            </section>
+          ) : null}
+          {match.phase === 'showdown' ? (
+            <section className="gang-showdown" aria-live="polite">
+              <h3>Showdown · weakest chip first</h3>
+              <p>
+                {reveal
+                  ? 'Your chip is next. Reveal your pocket cards to the crew.'
+                  : `Waiting for ${playerName(room, match.currentPlayer || '')} to reveal.`}
+              </p>
+              {reveal ? (
+                <Button disabled={blocked} onClick={() => onAction(reveal.value)}>
+                  Reveal my hand
                 </Button>
               ) : null}
-            </div>
-          </section>
-        ) : null}
-        {match.phase === 'showdown' ? (
-          <section className="gang-showdown" aria-live="polite">
-            <h3>Showdown · weakest chip first</h3>
-            <p>
-              {reveal
-                ? 'Your chip is next. Reveal your pocket cards to the crew.'
-                : `Waiting for ${playerName(room, match.currentPlayer || '')} to reveal.`}
-            </p>
-            {reveal ? (
-              <Button disabled={blocked} onClick={() => onAction(reveal.value)}>
-                Reveal my hand
-              </Button>
-            ) : null}
-          </section>
-        ) : null}
+            </section>
+          ) : null}
+        </DecisionDock>
         {data.revealed.length ? (
           <div className="gang-revealed" aria-label="Revealed crew hands">
             {data.revealed.map((id) => (

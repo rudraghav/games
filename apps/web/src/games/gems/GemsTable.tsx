@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { Button, DevelopmentCard, ResourceToken, gemColors } from '@games/ui';
 import { gemsDetails, type Card } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
@@ -9,6 +9,7 @@ import { playerName, type TableProps } from '../types';
 export function GemsTable(props: TableProps) {
   const { match, selfId, pending, room, onAction } = props;
   const data = gemsDetails(match.detail);
+  const supplyDescriptionId = useId();
   const [selected, setSelected] = useState<string | null>(null);
   const [chosen, setChosen] = useState<Record<string, number>>({});
   const [marketTier, setMarketTier] = useState(1);
@@ -44,7 +45,7 @@ export function GemsTable(props: TableProps) {
     );
   }
   return (
-    <div className="table-layout gem-layout">
+    <div className="table-layout stable-game-table gem-layout">
       <PlayerStrip
         {...props}
         playerCaption={(player) => `${player.score} prestige · ${player.count} reserved`}
@@ -101,6 +102,7 @@ export function GemsTable(props: TableProps) {
                 className="gem-supply-choice"
                 aria-label={`Select ${color}`}
                 aria-pressed={Boolean(chosen[color])}
+                aria-describedby={chosen[color] ? `${supplyDescriptionId}-${color}` : undefined}
                 disabled={pending || room.paused || !canTake || !data.bank[color]}
                 onClick={() =>
                   setChosen((previous) => ({
@@ -117,7 +119,10 @@ export function GemsTable(props: TableProps) {
                 }
               >
                 <ResourceToken color={color} count={data.bank[color]} />
-                {chosen[color] ? <small>{chosen[color]} selected</small> : null}
+                <small aria-hidden="true">{chosen[color] ? `×${chosen[color]}` : '\u00a0'}</small>
+                <span className="sr-only" id={`${supplyDescriptionId}-${color}`}>
+                  {chosen[color] ? `${chosen[color]} selected` : 'None selected'}
+                </span>
               </button>
             ),
           )}
@@ -131,11 +136,15 @@ export function GemsTable(props: TableProps) {
             >
               Take selected gems
             </Button>
-            {chosenColors.length ? (
-              <button className="text-button" onClick={() => setChosen({})}>
-                Clear
-              </button>
-            ) : null}
+            <button
+              className="text-button gem-clear"
+              data-empty={!chosenColors.length}
+              disabled={!chosenColors.length}
+              tabIndex={chosenColors.length ? 0 : -1}
+              onClick={() => setChosen({})}
+            >
+              Clear
+            </button>
           </div>
         ) : null}
         {match.actions.some((option) => option.value.type === 'reserve_blind') ? (
@@ -214,6 +223,20 @@ export function GemsTable(props: TableProps) {
               <span>
                 {player.score} prestige · {player.properties.Patrons?.length || 0} patrons
               </span>
+              {player.id !== selfId ? (
+                <span className="gem-engine-summary" aria-label="Public permanent discounts">
+                  {gemColors
+                    .filter((color) => color !== 'gold')
+                    .map((color) => (
+                      <ResourceToken
+                        key={color}
+                        color={color}
+                        count={data.bonuses[player.id]?.[color] || 0}
+                        compact
+                      />
+                    ))}
+                </span>
+              ) : null}
             </summary>
             <div className="gem-discounts">
               {gemColors

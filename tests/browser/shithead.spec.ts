@@ -10,10 +10,20 @@ test('Shithead tables keep setup, public and blind cards distinct at both seat l
     await page.getByLabel('Table scenario').selectOption({ label: `Shithead · ${limit} seats` });
     await expect(page.locator('.shithead-game')).toBeVisible();
     await expect(page.locator('.shithead-workspace .playing-card')).toHaveCount(6);
-    await expect(page.locator('.shithead-player-table')).toHaveCount(limit === 'minimum' ? 2 : 5);
-    await expect(page.locator('.shithead-player-table .playing-card--back')).toHaveCount(
-      (limit === 'minimum' ? 2 : 5) * 3,
-    );
+    const ownTable = page.getByRole('region', { name: 'Your table cards', exact: true });
+    await expect(ownTable).toHaveCount(1);
+    await expect(ownTable.locator('.playing-card--back')).toHaveCount(3);
+    const opponents = page.getByRole('group', { name: 'Other Shithead players', exact: true });
+    await expect(opponents.locator('.opponent-panel')).toHaveCount(limit === 'minimum' ? 1 : 4);
+    for (const summary of await opponents.locator('.opponent-panel-summary').all())
+      await expect(summary).toContainText('3 hidden table cards');
+    await opponents.getByRole('button', { name: 'Inspect Dev', exact: true }).click();
+    const inspector = page.getByRole('dialog', { name: 'Dev · public table', exact: true });
+    await expect(inspector.getByRole('img', { name: /^Hidden card [123]$/ })).toHaveCount(3);
+    await expect(inspector.locator('button.playing-card')).toHaveCount(0);
+    await expect(inspector.getByText('Not chosen yet', { exact: true })).toBeVisible();
+    await inspector.getByRole('button', { name: 'Close dialog', exact: true }).click();
+    await expect(ownTable).toBeVisible();
     await expect(page.getByRole('button', { name: /Keep selected three face-up/ })).toBeDisabled();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,

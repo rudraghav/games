@@ -37,6 +37,22 @@ export function actionLabel(option: ActionOption, match: Match, room: Room, grou
   return parts.join(' · ') || option.label;
 }
 
+/** Preview only already-public assets; private cards never enter a target picker. */
+export function transferPreview(option: ActionOption | null, match: Match) {
+  if (!option || option.value.type !== 'play') return [];
+  const publicCards = match.players.flatMap((player) => [
+    ...player.bank,
+    ...Object.values(player.properties).flat(),
+  ]);
+  return [
+    { role: 'Take', id: option.value.choice },
+    ...(option.value.cards || []).map((id) => ({ role: 'Give', id })),
+  ].flatMap(({ role, id }) => {
+    const card = publicCards.find((item) => item.id === id);
+    return card ? [{ role, card }] : [];
+  });
+}
+
 /** Pick bank cards with the least overpayment. Never auto-select property. */
 export function suggestBankPayment(bank: Card[], eligible: string[], due: number): string[] {
   const candidates = bank.filter((card) => eligible.includes(card.id));

@@ -2233,6 +2233,90 @@
         ],
         "title": "PublicActionView"
       },
+      "PublicMoveView": {
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 2.0,
+            "title": "Version"
+          },
+          "actor_id": {
+            "type": "string",
+            "title": "Actor Id"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "targets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 10,
+            "title": "Targets"
+          },
+          "amount": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Amount"
+          },
+          "cards": {
+            "items": {
+              "$ref": "#/components/schemas/CardView"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Cards"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination"
+          },
+          "count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version",
+          "actor_id",
+          "type",
+          "label"
+        ],
+        "title": "PublicMoveView",
+        "description": "A committed public description, never a stored submitted action."
+      },
       "Reading": {
         "properties": {
           "title": {
@@ -2550,6 +2634,14 @@
                 "type": "null"
               }
             ]
+          },
+          "activity": {
+            "items": {
+              "$ref": "#/components/schemas/PublicMoveView"
+            },
+            "type": "array",
+            "maxItems": 80,
+            "title": "Activity"
           }
         },
         "type": "object",

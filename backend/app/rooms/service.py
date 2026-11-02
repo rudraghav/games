@@ -28,6 +28,7 @@ from app.games.tarot.reading import (
 from app.models import Match, Member, Message, Profile, Receipt, Room, TarotReading
 from app.rooms.bots import BOT_DELAY_SECONDS, BOT_NAMES, next_bot_view
 from app.rooms.public_actions import PUBLIC_ACTIONS, public_action
+from app.rooms.public_history import public_move
 from app.rooms.repository import Repository
 from app.rooms.schemas import (
     AddBots,
@@ -143,14 +144,17 @@ class RoomService:
         fingerprint: str,
     ) -> None:
         engine = ENGINES[match.game_id]
+        before_views = {p: engine.project_view(match.state, p) for p in match.participants}
         cue = (
-            public_action(engine.project_view(match.state, player_id), player_id, action, match.version + 1)
+            public_action(before_views[player_id], player_id, action, match.version + 1)
             if match.game_id in PUBLIC_ACTIONS else None
         )
         try:
             match.state = engine.apply_action(match.state, player_id, action)
         except RuleError as error:
             raise HTTPException(422, str(error)) from error
+        after_views = {p: engine.project_view(match.state, p) for p in match.participants}
+        event = public_move(before_views, after_views, player_id, action, match.version + 1)
         observing_bots = (
             [
                 member
@@ -165,7 +169,7 @@ class RoomService:
 
             memories = dict(match.bot_memory)
             for member in observing_bots:
-                view = engine.project_view(match.state, member.user_id)
+                view = after_views[member.user_id]
                 memory = observe_view(view, member.user_id, self._bot_memory(match, member.user_id))
                 if len(json.dumps(memory, allow_nan=False)) > 16384:
                     raise HTTPException(
@@ -177,7 +181,7 @@ class RoomService:
         match.bot_due_at = time.time() + BOT_DELAY_SECONDS
         room.revision += 1
         if match.state["phase"] == "finished":
-            view = engine.project_view(match.state, player_id)
+            view = after_views[player_id]
             match.result = {
                 "winners": view.winners,
                 "scores": {p.id: p.score for p in view.players},
@@ -189,7 +193,9 @@ class RoomService:
                 action_id=action_id,
                 actor_id=player_id,
                 fingerprint=fingerprint,
-                response={"committedVersion": match.version, **({"public_action": cue} if cue else {})},
+                response={"committedVersion": match.version,
+                          **({"public_action": cue} if cue else {}),
+                          **({"public_move": event.model_dump()} if event else {})},
             )
         )
         self.repo.flush()

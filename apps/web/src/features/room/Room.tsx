@@ -13,8 +13,9 @@ import {
   Link2,
   Flag,
   LogOut,
+  History,
 } from 'lucide-react';
-import { Button, Modal, Wordmark, TurnNotice } from '@games/ui';
+import { Button, Modal, Wordmark, TurnNotice, ChoiceGroup } from '@games/ui';
 import { gameById } from '@games/api-client/catalog';
 import { api } from '@/lib/session';
 import { RoomDialog } from '@/shared/RoomDialog';
@@ -23,6 +24,7 @@ import { optimizeCardArt } from '@/shared/card-art';
 import { turnState } from '@/games/shared/turn-state';
 import { useRoom } from './useRoom';
 import { Chat } from './Chat';
+import { RoomActivity } from './RoomActivity';
 import { Lobby } from './Lobby';
 import { RoomResults } from './RoomResults';
 import { useMediaQuery } from '@/shared/use-media-query';
@@ -30,7 +32,9 @@ import { useMediaQuery } from '@/shared/use-media-query';
 export function RoomScreen({ id }: { id: string }) {
   const { room: query, me, live, mutation, move, botError, retryBots } = useRoom(id);
   const desktop = useMediaQuery('(min-width: 1100px)');
-  const [panel, setPanel] = useState<'chat' | 'rules' | 'menu' | 'configure' | null>(null);
+  const [panel, setPanel] = useState<'chat' | 'activity' | 'rules' | 'menu' | 'configure' | null>(
+    null,
+  );
   const [confirmAbandon, setConfirmAbandon] = useState(false);
   const router = useRouter();
   const room = query.data;
@@ -86,6 +90,22 @@ export function RoomScreen({ id }: { id: string }) {
       }}
     />
   );
+  const tablePanel = (
+    <div className="room-panel">
+      <div className="room-panel-switch">
+        <ChoiceGroup
+          label="Table panel"
+          value={panel === 'activity' ? 'activity' : 'chat'}
+          options={[
+            { value: 'chat', label: 'Chat' },
+            { value: 'activity', label: 'Activity' },
+          ]}
+          onChange={setPanel}
+        />
+      </div>
+      {panel === 'activity' ? <RoomActivity key={room.matchId} room={room} /> : chat}
+    </div>
+  );
   return (
     <div className="room-page">
       <header className="room-header">
@@ -131,9 +151,23 @@ export function RoomScreen({ id }: { id: string }) {
           >
             <MoreVertical size={21} />
           </Button>
+          {desktop ? (
+            <Button
+              size="icon"
+              variant="ghost"
+              aria-label={panel === 'activity' ? 'Close game activity' : 'Open game activity'}
+              aria-expanded={panel === 'activity'}
+              onClick={() => setPanel(panel === 'activity' ? null : 'activity')}
+            >
+              <History size={19} />
+            </Button>
+          ) : null}
         </div>
       </header>
-      <main className="room-content" data-chat-open={desktop && panel === 'chat'}>
+      <main
+        className="room-content"
+        data-chat-open={desktop && (panel === 'chat' || panel === 'activity')}
+      >
         <div className="room-main">
           {query.isError ? (
             <div className="connection-banner" role="status">
@@ -208,16 +242,18 @@ export function RoomScreen({ id }: { id: string }) {
             </p>
           ) : null}
         </div>
-        {desktop && panel === 'chat' ? <aside className="desktop-chat">{chat}</aside> : null}
+        {desktop && (panel === 'chat' || panel === 'activity') ? (
+          <aside className="desktop-chat">{tablePanel}</aside>
+        ) : null}
       </main>
       <Modal
-        open={!desktop && panel === 'chat'}
+        open={!desktop && (panel === 'chat' || panel === 'activity')}
         onOpenChange={(open) => {
           if (!open) setPanel(null);
         }}
         title="At the table"
       >
-        {chat}
+        {tablePanel}
       </Modal>
       <Modal
         open={panel === 'rules'}
@@ -250,6 +286,10 @@ export function RoomScreen({ id }: { id: string }) {
         description="Manage this room or leave the table."
       >
         <div className="menu-actions">
+          <Button variant="secondary" onClick={() => setPanel('activity')}>
+            <History size={17} />
+            Game activity
+          </Button>
           {host ? (
             <section className="room-options-group" aria-label="Host controls">
               <Button

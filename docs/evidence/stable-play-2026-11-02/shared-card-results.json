@@ -1,0 +1,96 @@
+{
+  "checked_at_utc": "2026-11-02T06:09:24.123214+00:00",
+  "build": "Storybook10.6.5 static build succeeded",
+  "card_and_motion_tests": {
+    "startTime": "2026-11-02T06:05:00.546Z",
+    "duration": 4839.749000000001,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "canonical_faces": 281,
+  "faces_by_game": {
+    "uno": 54,
+    "uno_no_mercy": 68,
+    "deal": 74,
+    "deal_no_mercy": 85
+  },
+  "card_frames": [
+    "normal",
+    "compact"
+  ],
+  "card_and_motion_viewports": [
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 390,
+      "height": 664
+    }
+  ],
+  "compact_property_font_computed": "8px",
+  "stable_story_smoke": {
+    "stories": 7,
+    "cases_passed": 14,
+    "widths": [
+      1440,
+      390
+    ],
+    "phone_height": 844,
+    "runtime_exceptions": 0,
+    "page_overflow": 0,
+    "peek_reopen_and_focus": "passed"
+  },
+  "compiled_css_sha256": "d351a9de09fc3358addced51e301d9727a16d3d959c1e8742cea10d415bc3e70",
+  "source_edits_during_check": false,
+  "tests": [
+    {
+      "file": "card-inventory.spec.ts",
+      "name": "yellow card ranks, corners and action labels keep readable contrast in both frames",
+      "project": "desktop",
+      "passed": true
+    },
+    {
+      "file": "card-inventory.spec.ts",
+      "name": "every canonical card face has readable normal and compact interiors",
+      "project": "desktop",
+      "passed": true
+    },
+    {
+      "file": "card-inventory.spec.ts",
+      "name": "yellow card ranks, corners and action labels keep readable contrast in both frames",
+      "project": "phone",
+      "passed": true
+    },
+    {
+      "file": "card-inventory.spec.ts",
+      "name": "every canonical card face has readable normal and compact interiors",
+      "project": "phone",
+      "passed": true
+    },
+    {
+      "file": "casino-motion.spec.ts",
+      "name": "restoring motion never replays the canceled current payment or card reveal",
+      "project": "desktop",
+      "passed": true
+    },
+    {
+      "file": "casino-motion.spec.ts",
+      "name": "restoring motion never replays the canceled current payment or card reveal",
+      "project": "phone",
+      "passed": true
+    }
+  ],
+  "cleanup": {
+    "owned_static_server_closed": true,
+    "owned_browser_closed": true,
+    "owned_build_removed": true,
+    "reclaimed_mib": 71.3
+  },
+  "preserved_services": {
+    "http://127.0.0.1:3217": 200,
+    "http://127.0.0.1:8217/health": 200
+  }
+}

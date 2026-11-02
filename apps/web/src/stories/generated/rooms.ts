@@ -23,7 +23,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.142735,
+          "last_seen": 1793597224.62274,
           "is_bot": false
         },
         {
@@ -33,7 +33,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.142739,
+          "last_seen": 1793597224.622747,
           "is_bot": false
         }
       ],
@@ -328,7 +328,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -354,7 +355,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.142978,
+          "last_seen": 1793597224.6229792,
           "is_bot": false
         },
         {
@@ -364,7 +365,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.14298,
+          "last_seen": 1793597224.622981,
           "is_bot": false
         },
         {
@@ -374,7 +375,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.142981,
+          "last_seen": 1793597224.622983,
           "is_bot": false
         },
         {
@@ -384,7 +385,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.142982,
+          "last_seen": 1793597224.622984,
           "is_bot": false
         },
         {
@@ -394,7 +395,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.142983,
+          "last_seen": 1793597224.622985,
           "is_bot": false
         },
         {
@@ -404,7 +405,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.142983,
+          "last_seen": 1793597224.622986,
           "is_bot": false
         },
         {
@@ -414,7 +415,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.142984,
+          "last_seen": 1793597224.622988,
           "is_bot": false
         },
         {
@@ -424,7 +425,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1429849,
+          "last_seen": 1793597224.622989,
           "is_bot": false
         },
         {
@@ -434,7 +435,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.142986,
+          "last_seen": 1793597224.622991,
           "is_bot": false
         },
         {
@@ -444,7 +445,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.142987,
+          "last_seen": 1793597224.6229918,
           "is_bot": false
         }
       ],
@@ -1716,7 +1717,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -1742,7 +1744,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1433191,
+          "last_seen": 1793597224.623466,
           "is_bot": false
         },
         {
@@ -1752,7 +1754,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.143321,
+          "last_seen": 1793597224.623469,
           "is_bot": false
         }
       ],
@@ -2047,7 +2049,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -2073,7 +2076,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1434822,
+          "last_seen": 1793597224.623668,
           "is_bot": false
         },
         {
@@ -2083,7 +2086,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1434839,
+          "last_seen": 1793597224.623669,
           "is_bot": false
         },
         {
@@ -2093,7 +2096,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1434848,
+          "last_seen": 1793597224.62367,
           "is_bot": false
         },
         {
@@ -2103,7 +2106,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1434848,
+          "last_seen": 1793597224.623671,
           "is_bot": false
         },
         {
@@ -2113,7 +2116,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.143486,
+          "last_seen": 1793597224.623672,
           "is_bot": false
         },
         {
@@ -2123,7 +2126,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.143487,
+          "last_seen": 1793597224.6236732,
           "is_bot": false
         }
       ],
@@ -2881,7 +2884,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -2907,7 +2911,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.143683,
+          "last_seen": 1793597224.62388,
           "is_bot": false
         },
         {
@@ -2917,7 +2921,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1436841,
+          "last_seen": 1793597224.6238809,
           "is_bot": false
         }
       ],
@@ -3261,6 +3265,7 @@ export const fixtures = [
         "winners": [],
         "detail": {
           "moves": 3,
+          "rent_multiplier": 1,
           "debts": {
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [],
             "b34c747c-f55f-5ca1-a9f1-9a962b463165": []
@@ -3424,7 +3429,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -3450,7 +3456,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.143876,
+          "last_seen": 1793597224.624088,
           "is_bot": false
         },
         {
@@ -3460,7 +3466,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.143877,
+          "last_seen": 1793597224.6240902,
           "is_bot": false
         },
         {
@@ -3470,7 +3476,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.143878,
+          "last_seen": 1793597224.624091,
           "is_bot": false
         },
         {
@@ -3480,7 +3486,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.143879,
+          "last_seen": 1793597224.6240919,
           "is_bot": false
         },
         {
@@ -3490,7 +3496,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.14388,
+          "last_seen": 1793597224.6240928,
           "is_bot": false
         }
       ],
@@ -3862,6 +3868,7 @@ export const fixtures = [
         "winners": [],
         "detail": {
           "moves": 3,
+          "rent_multiplier": 1,
           "debts": {
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [],
             "b34c747c-f55f-5ca1-a9f1-9a962b463165": [],
@@ -4028,7 +4035,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -4054,7 +4062,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.14405,
+          "last_seen": 1793597224.6242719,
           "is_bot": false
         },
         {
@@ -4064,7 +4072,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1440508,
+          "last_seen": 1793597224.624274,
           "is_bot": false
         }
       ],
@@ -4427,6 +4435,7 @@ export const fixtures = [
         "winners": [],
         "detail": {
           "moves": 3,
+          "rent_multiplier": 1,
           "debts": {
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [],
             "b34c747c-f55f-5ca1-a9f1-9a962b463165": []
@@ -4590,7 +4599,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -4616,7 +4626,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144222,
+          "last_seen": 1793597224.624455,
           "is_bot": false
         },
         {
@@ -4626,7 +4636,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144223,
+          "last_seen": 1793597224.624456,
           "is_bot": false
         },
         {
@@ -4636,7 +4646,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144224,
+          "last_seen": 1793597224.624457,
           "is_bot": false
         },
         {
@@ -4646,7 +4656,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1442251,
+          "last_seen": 1793597224.624458,
           "is_bot": false
         },
         {
@@ -4656,7 +4666,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1442251,
+          "last_seen": 1793597224.624459,
           "is_bot": false
         }
       ],
@@ -5058,6 +5068,7 @@ export const fixtures = [
         "winners": [],
         "detail": {
           "moves": 3,
+          "rent_multiplier": 1,
           "debts": {
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [],
             "b34c747c-f55f-5ca1-a9f1-9a962b463165": [],
@@ -5224,7 +5235,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -5250,7 +5262,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144402,
+          "last_seen": 1793597224.627373,
           "is_bot": false
         },
         {
@@ -5260,7 +5272,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144403,
+          "last_seen": 1793597224.627383,
           "is_bot": false
         }
       ],
@@ -5422,7 +5434,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -5448,7 +5461,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144508,
+          "last_seen": 1793597224.627674,
           "is_bot": false
         },
         {
@@ -5458,7 +5471,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1445088,
+          "last_seen": 1793597224.62768,
           "is_bot": false
         },
         {
@@ -5468,7 +5481,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144511,
+          "last_seen": 1793597224.6276832,
           "is_bot": false
         },
         {
@@ -5478,7 +5491,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144512,
+          "last_seen": 1793597224.627685,
           "is_bot": false
         },
         {
@@ -5488,7 +5501,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1445131,
+          "last_seen": 1793597224.627687,
           "is_bot": false
         },
         {
@@ -5498,7 +5511,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144514,
+          "last_seen": 1793597224.627689,
           "is_bot": false
         },
         {
@@ -5508,7 +5521,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144515,
+          "last_seen": 1793597224.627691,
           "is_bot": false
         },
         {
@@ -5518,7 +5531,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144516,
+          "last_seen": 1793597224.627693,
           "is_bot": false
         },
         {
@@ -5528,7 +5541,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1445172,
+          "last_seen": 1793597224.627695,
           "is_bot": false
         }
       ],
@@ -5704,7 +5717,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -5730,7 +5744,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144619,
+          "last_seen": 1793597224.6279402,
           "is_bot": false
         },
         {
@@ -5740,7 +5754,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.14462,
+          "last_seen": 1793597224.627944,
           "is_bot": false
         }
       ],
@@ -6049,7 +6063,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -6075,7 +6090,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1447349,
+          "last_seen": 1793597224.6284711,
           "is_bot": false
         },
         {
@@ -6085,7 +6100,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144736,
+          "last_seen": 1793597224.628489,
           "is_bot": false
         },
         {
@@ -6095,7 +6110,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144737,
+          "last_seen": 1793597224.628491,
           "is_bot": false
         },
         {
@@ -6105,7 +6120,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144738,
+          "last_seen": 1793597224.628493,
           "is_bot": false
         },
         {
@@ -6115,7 +6130,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1447392,
+          "last_seen": 1793597224.628494,
           "is_bot": false
         },
         {
@@ -6125,7 +6140,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.14474,
+          "last_seen": 1793597224.628528,
           "is_bot": false
         }
       ],
@@ -6486,7 +6501,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -6512,7 +6528,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144843,
+          "last_seen": 1793597224.6289039,
           "is_bot": false
         },
         {
@@ -6522,7 +6538,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144845,
+          "last_seen": 1793597224.628913,
           "is_bot": false
         }
       ],
@@ -6655,7 +6671,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -6681,7 +6698,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144921,
+          "last_seen": 1793597224.6291468,
           "is_bot": false
         },
         {
@@ -6691,7 +6708,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144922,
+          "last_seen": 1793597224.6291509,
           "is_bot": false
         },
         {
@@ -6701,7 +6718,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144923,
+          "last_seen": 1793597224.629153,
           "is_bot": false
         },
         {
@@ -6711,7 +6728,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144924,
+          "last_seen": 1793597224.6291552,
           "is_bot": false
         },
         {
@@ -6721,7 +6738,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1449249,
+          "last_seen": 1793597224.6291578,
           "is_bot": false
         },
         {
@@ -6731,7 +6748,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.144926,
+          "last_seen": 1793597224.62916,
           "is_bot": false
         }
       ],
@@ -6897,7 +6914,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -6923,7 +6941,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.14505,
+          "last_seen": 1793597224.6294558,
           "is_bot": false
         }
       ],
@@ -6987,7 +7005,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -7013,7 +7032,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1451688,
+          "last_seen": 1793597224.6297028,
           "is_bot": false
         },
         {
@@ -7023,7 +7042,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.14517,
+          "last_seen": 1793597224.629706,
           "is_bot": false
         },
         {
@@ -7033,7 +7052,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.145171,
+          "last_seen": 1793597224.629708,
           "is_bot": false
         },
         {
@@ -7043,7 +7062,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1451719,
+          "last_seen": 1793597224.6297102,
           "is_bot": false
         },
         {
@@ -7053,7 +7072,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.145173,
+          "last_seen": 1793597224.6297119,
           "is_bot": false
         },
         {
@@ -7063,7 +7082,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.145174,
+          "last_seen": 1793597224.629714,
           "is_bot": false
         },
         {
@@ -7073,7 +7092,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.145174,
+          "last_seen": 1793597224.629715,
           "is_bot": false
         }
       ],
@@ -7215,7 +7234,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -7241,7 +7261,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.147039,
+          "last_seen": 1793597224.629916,
           "is_bot": false
         },
         {
@@ -7251,7 +7271,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.14704,
+          "last_seen": 1793597224.629919,
           "is_bot": false
         }
       ],
@@ -7574,7 +7594,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -7600,7 +7621,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.14717,
+          "last_seen": 1793597224.630222,
           "is_bot": false
         },
         {
@@ -7610,7 +7631,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.147171,
+          "last_seen": 1793597224.630225,
           "is_bot": false
         },
         {
@@ -7620,7 +7641,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1471722,
+          "last_seen": 1793597224.6302269,
           "is_bot": false
         },
         {
@@ -7630,7 +7651,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1471722,
+          "last_seen": 1793597224.630229,
           "is_bot": false
         },
         {
@@ -7640,7 +7661,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1471732,
+          "last_seen": 1793597224.6302311,
           "is_bot": false
         },
         {
@@ -7650,7 +7671,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.147174,
+          "last_seen": 1793597224.630233,
           "is_bot": false
         },
         {
@@ -7660,7 +7681,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1471748,
+          "last_seen": 1793597224.630235,
           "is_bot": false
         },
         {
@@ -7670,7 +7691,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1471748,
+          "last_seen": 1793597224.6302369,
           "is_bot": false
         }
       ],
@@ -8149,7 +8170,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -8175,7 +8197,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1472828,
+          "last_seen": 1793597224.630483,
           "is_bot": false
         }
       ],
@@ -9700,7 +9722,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -9726,7 +9749,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.147566,
+          "last_seen": 1793597224.6311638,
           "is_bot": false
         }
       ],
@@ -11251,7 +11274,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -11277,7 +11301,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.147891,
+          "last_seen": 1793597224.631944,
           "is_bot": false
         },
         {
@@ -11287,7 +11311,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.147892,
+          "last_seen": 1793597224.631948,
           "is_bot": false
         }
       ],
@@ -12026,7 +12050,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -12052,7 +12077,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148032,
+          "last_seen": 1793597224.632368,
           "is_bot": false
         },
         {
@@ -12062,7 +12087,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1480331,
+          "last_seen": 1793597224.632374,
           "is_bot": false
         }
       ],
@@ -12801,7 +12826,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -12827,7 +12853,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.14815,
+          "last_seen": 1793597224.632705,
           "is_bot": false
         },
         {
@@ -12837,7 +12863,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148151,
+          "last_seen": 1793597224.632709,
           "is_bot": false
         }
       ],
@@ -13805,7 +13831,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -13831,7 +13858,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148366,
+          "last_seen": 1793597224.633247,
           "is_bot": false
         },
         {
@@ -13841,7 +13868,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1483672,
+          "last_seen": 1793597224.633249,
           "is_bot": false
         }
       ],
@@ -14809,7 +14836,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -14835,7 +14863,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148622,
+          "last_seen": 1793597224.6336,
           "is_bot": false
         },
         {
@@ -14845,7 +14873,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148623,
+          "last_seen": 1793597224.6336021,
           "is_bot": false
         },
         {
@@ -14855,7 +14883,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148624,
+          "last_seen": 1793597224.633603,
           "is_bot": false
         },
         {
@@ -14865,7 +14893,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148625,
+          "last_seen": 1793597224.633604,
           "is_bot": false
         }
       ],
@@ -15290,7 +15318,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -15316,7 +15345,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1487591,
+          "last_seen": 1793597224.633756,
           "is_bot": false
         },
         {
@@ -15326,7 +15355,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.14876,
+          "last_seen": 1793597224.633758,
           "is_bot": false
         },
         {
@@ -15336,7 +15365,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148761,
+          "last_seen": 1793597224.633759,
           "is_bot": false
         },
         {
@@ -15346,7 +15375,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1487622,
+          "last_seen": 1793597224.63376,
           "is_bot": false
         },
         {
@@ -15356,7 +15385,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148763,
+          "last_seen": 1793597224.63376,
           "is_bot": false
         },
         {
@@ -15366,7 +15395,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148764,
+          "last_seen": 1793597224.633761,
           "is_bot": false
         },
         {
@@ -15376,7 +15405,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1487648,
+          "last_seen": 1793597224.6337621,
           "is_bot": false
         },
         {
@@ -15386,7 +15415,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1487648,
+          "last_seen": 1793597224.633763,
           "is_bot": false
         },
         {
@@ -15396,7 +15425,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148766,
+          "last_seen": 1793597224.633764,
           "is_bot": false
         },
         {
@@ -15406,7 +15435,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148767,
+          "last_seen": 1793597224.6337652,
           "is_bot": false
         }
       ],
@@ -15915,7 +15944,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -15941,7 +15971,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1489012,
+          "last_seen": 1793597224.633919,
           "is_bot": false
         },
         {
@@ -15951,7 +15981,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.148902,
+          "last_seen": 1793597224.633921,
           "is_bot": false
         }
       ],
@@ -16814,10 +16844,36 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-1-ruby-7": {
+            "gem-2-onyx-3": {
+              "tier": 2,
+              "cost": {
+                "onyx": 2,
+                "pearl": 2,
+                "sapphire": 2,
+                "ruby": 2
+              },
+              "bonus": "onyx",
+              "points": 2
+            },
+            "gem-3-pearl-2": {
+              "tier": 3,
+              "cost": {
+                "pearl": 3,
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3
+              },
+              "bonus": "pearl",
+              "points": 4
+            },
+            "gem-1-ruby-3": {
               "tier": 1,
               "cost": {
-                "onyx": 4
+                "ruby": 1,
+                "emerald": 1,
+                "onyx": 1,
+                "pearl": 1,
+                "sapphire": 1
               },
               "bonus": "ruby",
               "points": 1
@@ -16833,25 +16889,23 @@ export const fixtures = [
               "bonus": "sapphire",
               "points": 4
             },
-            "gem-2-onyx-3": {
-              "tier": 2,
+            "gem-3-sapphire-0": {
+              "tier": 3,
               "cost": {
-                "onyx": 2,
-                "pearl": 2,
-                "sapphire": 2,
-                "ruby": 2
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 5
               },
-              "bonus": "onyx",
-              "points": 2
+              "bonus": "sapphire",
+              "points": 4
             },
-            "gem-1-emerald-2": {
+            "gem-1-ruby-7": {
               "tier": 1,
               "cost": {
-                "onyx": 2,
-                "sapphire": 2
+                "onyx": 4
               },
-              "bonus": "emerald",
-              "points": 0
+              "bonus": "ruby",
+              "points": 1
             },
             "gem-2-emerald-2": {
               "tier": 2,
@@ -16863,16 +16917,15 @@ export const fixtures = [
               "bonus": "emerald",
               "points": 3
             },
-            "gem-3-pearl-2": {
-              "tier": 3,
+            "gem-1-onyx-1": {
+              "tier": 1,
               "cost": {
-                "pearl": 3,
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3
+                "sapphire": 2,
+                "ruby": 1,
+                "emerald": 1
               },
-              "bonus": "pearl",
-              "points": 4
+              "bonus": "onyx",
+              "points": 0
             },
             "gem-2-ruby-3": {
               "tier": 2,
@@ -16885,36 +16938,13 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 2
             },
-            "gem-3-sapphire-0": {
-              "tier": 3,
-              "cost": {
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 5
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
-            "gem-1-ruby-3": {
+            "gem-1-emerald-2": {
               "tier": 1,
               "cost": {
-                "ruby": 1,
-                "emerald": 1,
-                "onyx": 1,
-                "pearl": 1,
-                "sapphire": 1
+                "onyx": 2,
+                "sapphire": 2
               },
-              "bonus": "ruby",
-              "points": 1
-            },
-            "gem-1-onyx-1": {
-              "tier": 1,
-              "cost": {
-                "sapphire": 2,
-                "ruby": 1,
-                "emerald": 1
-              },
-              "bonus": "onyx",
+              "bonus": "emerald",
               "points": 0
             },
             "gem-2-ruby-4": {
@@ -16963,7 +16993,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -16989,7 +17020,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1492522,
+          "last_seen": 1793597224.634288,
           "is_bot": false
         },
         {
@@ -16999,7 +17030,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1492538,
+          "last_seen": 1793597224.63429,
           "is_bot": false
         },
         {
@@ -17009,7 +17040,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1492548,
+          "last_seen": 1793597224.634291,
           "is_bot": false
         },
         {
@@ -17019,7 +17050,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.149256,
+          "last_seen": 1793597224.634292,
           "is_bot": false
         }
       ],
@@ -17970,10 +18001,36 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-1-ruby-7": {
+            "gem-2-onyx-3": {
+              "tier": 2,
+              "cost": {
+                "onyx": 2,
+                "pearl": 2,
+                "sapphire": 2,
+                "ruby": 2
+              },
+              "bonus": "onyx",
+              "points": 2
+            },
+            "gem-3-pearl-2": {
+              "tier": 3,
+              "cost": {
+                "pearl": 3,
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3
+              },
+              "bonus": "pearl",
+              "points": 4
+            },
+            "gem-1-ruby-3": {
               "tier": 1,
               "cost": {
-                "onyx": 4
+                "ruby": 1,
+                "emerald": 1,
+                "onyx": 1,
+                "pearl": 1,
+                "sapphire": 1
               },
               "bonus": "ruby",
               "points": 1
@@ -17989,25 +18046,23 @@ export const fixtures = [
               "bonus": "sapphire",
               "points": 4
             },
-            "gem-2-onyx-3": {
-              "tier": 2,
+            "gem-3-sapphire-0": {
+              "tier": 3,
               "cost": {
-                "onyx": 2,
-                "pearl": 2,
-                "sapphire": 2,
-                "ruby": 2
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 5
               },
-              "bonus": "onyx",
-              "points": 2
+              "bonus": "sapphire",
+              "points": 4
             },
-            "gem-1-emerald-2": {
+            "gem-1-ruby-7": {
               "tier": 1,
               "cost": {
-                "onyx": 2,
-                "sapphire": 2
+                "onyx": 4
               },
-              "bonus": "emerald",
-              "points": 0
+              "bonus": "ruby",
+              "points": 1
             },
             "gem-2-emerald-2": {
               "tier": 2,
@@ -18019,16 +18074,15 @@ export const fixtures = [
               "bonus": "emerald",
               "points": 3
             },
-            "gem-3-pearl-2": {
-              "tier": 3,
+            "gem-1-onyx-1": {
+              "tier": 1,
               "cost": {
-                "pearl": 3,
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3
+                "sapphire": 2,
+                "ruby": 1,
+                "emerald": 1
               },
-              "bonus": "pearl",
-              "points": 4
+              "bonus": "onyx",
+              "points": 0
             },
             "gem-2-ruby-3": {
               "tier": 2,
@@ -18041,36 +18095,13 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 2
             },
-            "gem-3-sapphire-0": {
-              "tier": 3,
-              "cost": {
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 5
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
-            "gem-1-ruby-3": {
+            "gem-1-emerald-2": {
               "tier": 1,
               "cost": {
-                "ruby": 1,
-                "emerald": 1,
-                "onyx": 1,
-                "pearl": 1,
-                "sapphire": 1
+                "onyx": 2,
+                "sapphire": 2
               },
-              "bonus": "ruby",
-              "points": 1
-            },
-            "gem-1-onyx-1": {
-              "tier": 1,
-              "cost": {
-                "sapphire": 2,
-                "ruby": 1,
-                "emerald": 1
-              },
-              "bonus": "onyx",
+              "bonus": "emerald",
               "points": 0
             },
             "gem-2-ruby-4": {
@@ -18129,7 +18160,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -18155,7 +18187,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.149577,
+          "last_seen": 1793597224.634625,
           "is_bot": false
         },
         {
@@ -18165,7 +18197,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.149578,
+          "last_seen": 1793597224.6346262,
           "is_bot": false
         }
       ],
@@ -19190,7 +19222,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -19216,7 +19249,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.149899,
+          "last_seen": 1793597224.635356,
           "is_bot": false
         },
         {
@@ -19226,7 +19259,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1499,
+          "last_seen": 1793597224.6353621,
           "is_bot": false
         }
       ],
@@ -20251,7 +20284,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -20277,7 +20311,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1500978,
+          "last_seen": 1793597224.635811,
           "is_bot": false
         },
         {
@@ -20287,7 +20321,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150099,
+          "last_seen": 1793597224.635814,
           "is_bot": false
         }
       ],
@@ -20641,7 +20675,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -20667,7 +20702,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1501849,
+          "last_seen": 1793597224.636032,
           "is_bot": false
         },
         {
@@ -20677,7 +20712,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150186,
+          "last_seen": 1793597224.636035,
           "is_bot": false
         }
       ],
@@ -21031,7 +21066,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -21057,7 +21093,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150344,
+          "last_seen": 1793597224.6363919,
           "is_bot": false
         },
         {
@@ -21067,7 +21103,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150346,
+          "last_seen": 1793597224.636394,
           "is_bot": false
         },
         {
@@ -21077,7 +21113,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150347,
+          "last_seen": 1793597224.636395,
           "is_bot": false
         }
       ],
@@ -21239,7 +21275,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -21265,7 +21302,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150507,
+          "last_seen": 1793597224.636657,
           "is_bot": false
         },
         {
@@ -21275,7 +21312,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150508,
+          "last_seen": 1793597224.636658,
           "is_bot": false
         },
         {
@@ -21285,7 +21322,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150509,
+          "last_seen": 1793597224.636659,
           "is_bot": false
         },
         {
@@ -21295,7 +21332,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.15051,
+          "last_seen": 1793597224.6366599,
           "is_bot": false
         },
         {
@@ -21305,7 +21342,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150511,
+          "last_seen": 1793597224.636661,
           "is_bot": false
         },
         {
@@ -21315,7 +21352,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150511,
+          "last_seen": 1793597224.636662,
           "is_bot": false
         },
         {
@@ -21325,7 +21362,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1505122,
+          "last_seen": 1793597224.636663,
           "is_bot": false
         },
         {
@@ -21335,7 +21372,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150513,
+          "last_seen": 1793597224.6366642,
           "is_bot": false
         },
         {
@@ -21345,7 +21382,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150514,
+          "last_seen": 1793597224.636665,
           "is_bot": false
         },
         {
@@ -21355,7 +21392,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1505148,
+          "last_seen": 1793597224.636666,
           "is_bot": false
         }
       ],
@@ -21720,7 +21757,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -21746,7 +21784,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150644,
+          "last_seen": 1793597224.636814,
           "is_bot": false
         },
         {
@@ -21756,7 +21794,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150647,
+          "last_seen": 1793597224.636815,
           "is_bot": false
         },
         {
@@ -21766,7 +21804,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150647,
+          "last_seen": 1793597224.6368158,
           "is_bot": false
         }
       ],
@@ -22357,7 +22395,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -22383,7 +22422,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150805,
+          "last_seen": 1793597224.637085,
           "is_bot": false
         },
         {
@@ -22393,7 +22432,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1508071,
+          "last_seen": 1793597224.6370912,
           "is_bot": false
         },
         {
@@ -22403,7 +22442,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150808,
+          "last_seen": 1793597224.637105,
           "is_bot": false
         },
         {
@@ -22413,7 +22452,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150809,
+          "last_seen": 1793597224.637107,
           "is_bot": false
         },
         {
@@ -22423,7 +22462,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.15081,
+          "last_seen": 1793597224.6371078,
           "is_bot": false
         },
         {
@@ -22433,7 +22472,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.15081,
+          "last_seen": 1793597224.637109,
           "is_bot": false
         }
       ],
@@ -23029,7 +23068,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -23055,7 +23095,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.150976,
+          "last_seen": 1793597224.637328,
           "is_bot": false
         },
         {
@@ -23065,7 +23105,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1509771,
+          "last_seen": 1793597224.637337,
           "is_bot": false
         }
       ],
@@ -23558,7 +23598,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -23584,7 +23625,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.151602,
+          "last_seen": 1793597224.637577,
           "is_bot": false
         },
         {
@@ -23594,7 +23635,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.151625,
+          "last_seen": 1793597224.637579,
           "is_bot": false
         },
         {
@@ -23604,7 +23645,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.151629,
+          "last_seen": 1793597224.63758,
           "is_bot": false
         },
         {
@@ -23614,7 +23655,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1516302,
+          "last_seen": 1793597224.637581,
           "is_bot": false
         }
       ],
@@ -24475,7 +24516,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -24501,7 +24543,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1520839,
+          "last_seen": 1793597224.637965,
           "is_bot": false
         },
         {
@@ -24511,7 +24553,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152087,
+          "last_seen": 1793597224.63797,
           "is_bot": false
         },
         {
@@ -24521,7 +24563,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1520882,
+          "last_seen": 1793597224.637973,
           "is_bot": false
         }
       ],
@@ -24656,7 +24698,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -24682,7 +24725,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152184,
+          "last_seen": 1793597224.6382341,
           "is_bot": false
         },
         {
@@ -24692,7 +24735,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1521852,
+          "last_seen": 1793597224.638239,
           "is_bot": false
         },
         {
@@ -24702,7 +24745,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1521862,
+          "last_seen": 1793597224.638242,
           "is_bot": false
         },
         {
@@ -24712,7 +24755,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1521869,
+          "last_seen": 1793597224.6382442,
           "is_bot": false
         },
         {
@@ -24722,7 +24765,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1521878,
+          "last_seen": 1793597224.638247,
           "is_bot": false
         },
         {
@@ -24732,7 +24775,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152189,
+          "last_seen": 1793597224.638249,
           "is_bot": false
         },
         {
@@ -24742,7 +24785,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.15219,
+          "last_seen": 1793597224.638252,
           "is_bot": false
         },
         {
@@ -24752,7 +24795,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152191,
+          "last_seen": 1793597224.6382542,
           "is_bot": false
         },
         {
@@ -24762,7 +24805,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152191,
+          "last_seen": 1793597224.638256,
           "is_bot": false
         },
         {
@@ -24772,7 +24815,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152192,
+          "last_seen": 1793597224.638266,
           "is_bot": false
         }
       ],
@@ -24998,7 +25041,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -25024,7 +25068,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152273,
+          "last_seen": 1793597224.638484,
           "is_bot": false
         },
         {
@@ -25034,7 +25078,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152274,
+          "last_seen": 1793597224.638486,
           "is_bot": false
         },
         {
@@ -25044,7 +25088,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1522748,
+          "last_seen": 1793597224.638487,
           "is_bot": false
         }
       ],
@@ -25179,7 +25223,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -25205,7 +25250,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1523561,
+          "last_seen": 1793597224.63867,
           "is_bot": false
         },
         {
@@ -25215,7 +25260,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152357,
+          "last_seen": 1793597224.6386719,
           "is_bot": false
         },
         {
@@ -25225,7 +25270,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1523578,
+          "last_seen": 1793597224.6386728,
           "is_bot": false
         },
         {
@@ -25235,7 +25280,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152359,
+          "last_seen": 1793597224.638674,
           "is_bot": false
         },
         {
@@ -25245,7 +25290,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.15236,
+          "last_seen": 1793597224.638675,
           "is_bot": false
         },
         {
@@ -25255,7 +25300,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152361,
+          "last_seen": 1793597224.638676,
           "is_bot": false
         },
         {
@@ -25265,7 +25310,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1523619,
+          "last_seen": 1793597224.638677,
           "is_bot": false
         },
         {
@@ -25275,7 +25320,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152363,
+          "last_seen": 1793597224.638678,
           "is_bot": false
         },
         {
@@ -25285,7 +25330,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152364,
+          "last_seen": 1793597224.638679,
           "is_bot": false
         },
         {
@@ -25295,7 +25340,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152364,
+          "last_seen": 1793597224.63868,
           "is_bot": false
         }
       ],
@@ -25654,7 +25699,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -25680,7 +25726,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1524649,
+          "last_seen": 1793597224.6387908,
           "is_bot": false
         },
         {
@@ -25690,7 +25736,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1524658,
+          "last_seen": 1793597224.638792,
           "is_bot": false
         },
         {
@@ -25700,7 +25746,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152467,
+          "last_seen": 1793597224.638793,
           "is_bot": false
         }
       ],
@@ -25838,7 +25884,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -25864,7 +25911,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152545,
+          "last_seen": 1793597224.638942,
           "is_bot": false
         },
         {
@@ -25874,7 +25921,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152546,
+          "last_seen": 1793597224.638944,
           "is_bot": false
         },
         {
@@ -25884,7 +25931,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1525471,
+          "last_seen": 1793597224.638945,
           "is_bot": false
         },
         {
@@ -25894,7 +25941,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152548,
+          "last_seen": 1793597224.638946,
           "is_bot": false
         },
         {
@@ -25904,7 +25951,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152549,
+          "last_seen": 1793597224.638947,
           "is_bot": false
         },
         {
@@ -25914,7 +25961,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.15255,
+          "last_seen": 1793597224.6389482,
           "is_bot": false
         },
         {
@@ -25924,7 +25971,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152551,
+          "last_seen": 1793597224.6389482,
           "is_bot": false
         },
         {
@@ -25934,7 +25981,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152552,
+          "last_seen": 1793597224.6389492,
           "is_bot": false
         },
         {
@@ -25944,7 +25991,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152552,
+          "last_seen": 1793597224.6389499,
           "is_bot": false
         },
         {
@@ -25954,7 +26001,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1525528,
+          "last_seen": 1793597224.6389508,
           "is_bot": false
         }
       ],
@@ -26183,7 +26230,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -26209,7 +26257,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152648,
+          "last_seen": 1793597224.6390579,
           "is_bot": false
         },
         {
@@ -26219,7 +26267,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152649,
+          "last_seen": 1793597224.63906,
           "is_bot": false
         },
         {
@@ -26229,7 +26277,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1526499,
+          "last_seen": 1793597224.639061,
           "is_bot": false
         }
       ],
@@ -26410,7 +26458,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -26436,7 +26485,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152755,
+          "last_seen": 1793597224.639277,
           "is_bot": false
         },
         {
@@ -26446,7 +26495,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152756,
+          "last_seen": 1793597224.63928,
           "is_bot": false
         },
         {
@@ -26456,7 +26505,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152757,
+          "last_seen": 1793597224.6392808,
           "is_bot": false
         },
         {
@@ -26466,7 +26515,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1527581,
+          "last_seen": 1793597224.639282,
           "is_bot": false
         },
         {
@@ -26476,7 +26525,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152759,
+          "last_seen": 1793597224.639283,
           "is_bot": false
         },
         {
@@ -26486,7 +26535,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.15276,
+          "last_seen": 1793597224.639284,
           "is_bot": false
         }
       ],
@@ -26778,7 +26827,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -26804,7 +26854,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.152868,
+          "last_seen": 1793597224.639422,
           "is_bot": false
         },
         {
@@ -26814,7 +26864,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1528692,
+          "last_seen": 1793597224.639424,
           "is_bot": false
         }
       ],
@@ -27278,7 +27328,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -27304,7 +27355,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153054,
+          "last_seen": 1793597224.639835,
           "is_bot": false
         },
         {
@@ -27314,7 +27365,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153056,
+          "last_seen": 1793597224.639837,
           "is_bot": false
         },
         {
@@ -27324,7 +27375,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153057,
+          "last_seen": 1793597224.639838,
           "is_bot": false
         },
         {
@@ -27334,7 +27385,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153057,
+          "last_seen": 1793597224.639839,
           "is_bot": false
         },
         {
@@ -27344,7 +27395,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153058,
+          "last_seen": 1793597224.63984,
           "is_bot": false
         },
         {
@@ -27354,7 +27405,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1531541,
+          "last_seen": 1793597224.639841,
           "is_bot": false
         },
         {
@@ -27364,7 +27415,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153155,
+          "last_seen": 1793597224.639842,
           "is_bot": false
         },
         {
@@ -27374,7 +27425,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153156,
+          "last_seen": 1793597224.639843,
           "is_bot": false
         },
         {
@@ -27384,7 +27435,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1531572,
+          "last_seen": 1793597224.6398442,
           "is_bot": false
         },
         {
@@ -27394,7 +27445,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153158,
+          "last_seen": 1793597224.6398451,
           "is_bot": false
         }
       ],
@@ -27986,7 +28037,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -28012,7 +28064,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153332,
+          "last_seen": 1793597224.640048,
           "is_bot": false
         },
         {
@@ -28022,7 +28074,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153333,
+          "last_seen": 1793597224.64005,
           "is_bot": false
         }
       ],
@@ -28175,7 +28227,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -28201,7 +28254,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153485,
+          "last_seen": 1793597224.640206,
           "is_bot": false
         },
         {
@@ -28211,7 +28264,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153486,
+          "last_seen": 1793597224.6402078,
           "is_bot": false
         },
         {
@@ -28221,7 +28274,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1534872,
+          "last_seen": 1793597224.640209,
           "is_bot": false
         },
         {
@@ -28231,7 +28284,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153488,
+          "last_seen": 1793597224.64021,
           "is_bot": false
         }
       ],
@@ -28410,7 +28463,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -28436,7 +28490,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153567,
+          "last_seen": 1793597224.640289,
           "is_bot": false
         },
         {
@@ -28446,7 +28500,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153568,
+          "last_seen": 1793597224.64029,
           "is_bot": false
         }
       ],
@@ -29675,7 +29729,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -29701,7 +29756,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.1538,
+          "last_seen": 1793597224.6405382,
           "is_bot": false
         },
         {
@@ -29711,7 +29766,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.153801,
+          "last_seen": 1793597224.64054,
           "is_bot": false
         }
       ],
@@ -30940,7 +30995,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -30966,7 +31022,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.154057,
+          "last_seen": 1793597224.640801,
           "is_bot": false
         },
         {
@@ -30976,7 +31032,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.154058,
+          "last_seen": 1793597224.6408021,
           "is_bot": false
         }
       ],
@@ -31167,7 +31223,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   },
   {
@@ -31193,7 +31250,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.154161,
+          "last_seen": 1793597224.640913,
           "is_bot": false
         },
         {
@@ -31203,7 +31260,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.154162,
+          "last_seen": 1793597224.640915,
           "is_bot": false
         },
         {
@@ -31213,7 +31270,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.154163,
+          "last_seen": 1793597224.6409159,
           "is_bot": false
         },
         {
@@ -31223,7 +31280,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.154164,
+          "last_seen": 1793597224.640917,
           "is_bot": false
         },
         {
@@ -31233,7 +31290,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793594396.154165,
+          "last_seen": 1793597224.640918,
           "is_bot": false
         }
       ],
@@ -31484,7 +31541,8 @@ export const fixtures = [
       "invite_token": null,
       "bot_pending": false,
       "bot_due_at": null,
-      "last_action": null
+      "last_action": null,
+      "activity": []
     }
   }
 ] satisfies { label: string; selfId: string; room: components["schemas"]["RoomView"] }[];

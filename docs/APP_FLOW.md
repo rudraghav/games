@@ -34,7 +34,7 @@ full lobby replaces a bot. Bots never receive login sessions or hosting rights;
 only human presence leases pause/resume play. A connected member drives due bot
 moves through the versioned server endpoint, one paced committed action at a
 time. Bots resume from persisted schedule/memory after refresh or server restart.
-Chat is collapsed initially and opens as a desktop sidebar or phone dialog.
+Chat and Activity share a collapsed desktop sidebar or phone dialog. Activity retains the latest 80 committed public moves for match participants, including public cards, destinations and amounts. Retries never duplicate moves; hidden draws and private decisions reveal no faces. Waiting late arrivals do not receive match details.
 
 Create room is a shared dialog. Room setup includes game-specific settings from
 the engine catalogue and states invite-only privacy once. Join accepts either a
@@ -51,13 +51,13 @@ bounded polling; snapshots are fetched on reconnect and refocus. Chat stays in a
 side panel on desktop and a sheet on phones. Forms and card controls work without dragging.
 
 Deal's play area runs opponents → stock/latest move → own bank/property sets →
-hand and contextual moves. Select a card, choose an exact destination/target,
+a permanent action bar and hand. Opponent summaries keep bank value and set progress visible; Inspect opens their public assets. Card selection never inserts a row or moves the board/hand. Select a card, choose an exact destination/target,
 then confirm the move. A banked action cannot be played later, so banking has a
 separate confirmation. Bills keep the table visible and let the payer choose
 bank/property assets; the total and any overpayment stay visible before payment.
 Just Say No and counter-counteractions show the affected players and amount.
 Printed property names, set progress and server-calculated rent remain visible;
-set details expose the complete printed group without disclosing hidden cards.
+set details expose the complete printed group without disclosing hidden cards. Complex choices open a modeless move panel; View table / Resume move preserves choices while revealing the board. Escape closes it and restores focus. Public swap previews identify the actual take/give cards, and rent includes any committed multiplier.
 
 Party decisions use select → lock → wait for friends → reveal → next prompt.
 Concurrent submissions can conflict; a fresh snapshot preserves the locked
@@ -92,3 +92,5 @@ are then flipped one at a time without inspecting them. Same-rank selection
 offers Play and, when legal, Take the pile. A face-up pickup includes one chosen
 table card. Players who clear all zones are safe while the others continue;
 the final player loses. Shared results retain the group for rematch/change game.
+
+Across the catalogue, permanent decision areas preserve the table and hand while choosing. Overflowing hands have separate Previous/Next controls, touch scrolling and keyboard reveal without vertical page jumps. Public opponent summaries stay outside their optional inspectors; required own decisions remain exposed. Rummy reserves its grouping lane, Azul keeps sources/boards fixed through placement, and split blackjack hands navigate inside their own rail. `/design/midgame` is development-only and reviews reproducible legal states; it returns 404 in hosted builds.

@@ -1,0 +1,76 @@
+@layer components {
+  .horizontal-rail {
+    position: relative;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .horizontal-rail-viewport {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+  }
+  .horizontal-rail[data-overflow='true'] > .horizontal-rail-viewport {
+    margin-inline: 44px;
+  }
+  .horizontal-rail-content {
+    width: max-content;
+    min-width: 100%;
+  }
+  .rail-navigation {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: var(--color-surface);
+    color: var(--color-ink);
+    box-shadow: 0 2px 8px #1720180c;
+  }
+  .rail-navigation:disabled {
+    color: var(--color-ink-muted);
+    opacity: 0.4;
+  }
+  .rail-navigation--previous {
+    left: 0;
+  }
+  .rail-navigation--next {
+    right: 0;
+  }
+  .horizontal-rail[data-overflow='true']::before,
+  .horizontal-rail[data-overflow='true']::after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    bottom: 14px;
+    width: 8px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .horizontal-rail[data-overflow='true']::before {
+    left: 44px;
+    background: linear-gradient(90deg, var(--color-surface), transparent);
+  }
+  .horizontal-rail[data-overflow='true']::after {
+    right: 44px;
+    background: linear-gradient(-90deg, var(--color-surface), transparent);
+  }
+  .hand-rail > .hand-scroll {
+    min-width: 0;
+  }
+  .hand-rail[data-overflow='true'] > .hand-scroll {
+    padding-inline: 2px;
+  }
+  .hand-rail[data-overflow='true'] .card-hand {
+    gap: 6px;
+    padding-inline: 0;
+  }
+  .hand-rail[data-overflow='true'] .playing-card--selected {
+    outline-offset: -3px;
+  }
+}

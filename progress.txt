@@ -1735,3 +1735,165 @@
 - Closure changes are documentation/test evidence only. Runtime fingerprint
   45abb2e2d0f1c494ed0c85d1d2e877f5d856d32849e41078ea2e6d5152407342
   is unchanged across all411runtime files; do not redeploy unchanged app bytes.
+
+2026-11-02 — Stable all-game play areas and public history kickoff
+- Owner requests all five reference-derived improvements across all27games,
+  starting with Deal, then actual mid-game tests and authorized main/prod release.
+- Outcome: a coherent stable table, hand/actions anchored in predictable areas,
+  visible public opponent summaries, precise targets/previews, explicit wide-hand
+  navigation and durable public move history. Selection/target/payment choices
+  must not move the board or hand; controls stay keyboard/touch usable at390/1440.
+- Shared boundaries: UI DecisionDock/HorizontalRail; game-specific public summaries
+  and target composition. Room activity is a typed bounded80-event projection of
+  committed receipts, preserving existing casino cues and no new schema unless
+  evidence requires it. Server legality, privacy, retries, reconnects, original
+  cards/IDs, untimed turns and No Mercy house format remain enforced.
+- Never expose drawn/other-hand cards, private votes, spymaster keys, Tarot
+  questions or shuffled order through events/previews. Only publicly visible
+  cards/targets enter the persisted event. Retries must not duplicate history.
+- Acceptance: real legal mid-game states for everygame, critical branching
+  decisions, geometry before/after selection and targeted saved-room flows; all
+  affected local gates, private history authorization and hosted multiplayer proof.
+  Record coverage limits explicitly rather than treating opening screenshots as
+  complete gameplay proof. Dedicated source/story/test artifacts preserve prior
+  evidence. Read-only audits precede changes.
+- Baseline clean main060bda0; production applicationb2b242b on
+  dpl_FKHPuZnhr7guWPsa7oWteuAQcT6S is rollback reference. Three scoped agents
+  own backend history, non-Deal compositions and shared hand/mid-game coverage;
+  root owns Deal, shared dock, activity UI, integration and release.
+
+2026-11-02 — Durable public move history backend (local, producer frozen)
+- Added typed RoomView.activity: newest 80 current-match public events in
+  ascending committed-version order. Existing casino last_action remains
+  unchanged. Valid moves store public_move in the same private receipt JSON
+  transaction as state/version/result; no schema migration or second event
+  store. Retries, stale actions, invalid moves and duplicate bot drives do not
+  append events. Legacy receipts are omitted, never reconstructed.
+- Events contain display labels, public targets/amount/destination, at most
+  12 public card faces and the larger affected-card count where needed. Exact
+  public-face intersection across every participant excludes hidden hands,
+  private draws, spymaster keys, votes, Tarot cards/question/readings, deck
+  order and bot memory. Explicit public detail paths include Trio/6nimmt
+  reveals, Paper discard tops and Shithead burns/failed flips. Published clues
+  are logged only after all participant projections agree.
+- Waiting late arrivals receive no match history. Rematch selects a new empty
+  timeline while preserving old receipts. Board coordinates follow each game's
+  convention; Azul tile counts remain tile labels rather than card counts.
+- Local verification: 41 new privacy/game-family unit cases plus 9 unchanged
+  casino cue tests pass; 30 isolated real-HTTP integration cases pass across
+  all 27 games, auth, refresh/fresh services, retry/conflict/rejection, bounds,
+  late arrivals, rematch and bots. Room-module Ruff/mypy and scoped whitespace
+  checks pass. Temporary isolated databases were dropped by their own runner.
+- Module README and backend architecture updated. No app server restart, cloud
+  writes, migration, build, commit, push or deployment by this subtask. Parent
+  owns API-client integration, final server restart and release verification.
+
+2026-11-02 — Deal stable-layout independent review and receipt privacy follow-up (local)
+- Added the eleventh real-engine Deal review fixture: a completed Brown set,
+  house, hotel and committed Double the Rent. Its 9M set rent becomes an 18M
+  preview and an 18M authoritative pending bill. Generator conservation/privacy
+  checks and the paired frontend preview unit pass; generated views contain no
+  hidden opposing hands or deck order.
+- Added stable-deal browser coverage measuring opponents, shared piles, public
+  assets, the compact action bar and hand before/after selection, exact existing
+  and new set destinations, target changes, banking cancellation, payment
+  toggles, modeless table peeking and public inspection/focus restoration.
+  The previous Deal browser suite now scopes portal actions and checks the
+  visible compact bill context during server rendering.
+- Local verification: 22/22 Deal browser checks pass at desktop 1440x1000,
+  configured phone 390x664 and explicit review phone 390x844. Measured rows stay
+  within 1px across interactions, with no page overflow. Both focused unit
+  files pass (13 tests); eleven generated fixtures pass --check. Selected swap,
+  payment, inspection and 18M-rent captures are in output/playwright/stable-deal/.
+- Updated four pre-existing receipt integration assertions to the safe event
+  contract with explicit hidden-answer/target/card redaction checks, final-only
+  6nimmt reveal identities, and unchanged commit/retry/conflict receipt counts.
+  All four pass in an isolated database; scoped Ruff passes. The isolated
+  runner removed its own temporary database.
+- Visual review reported a compact desktop property-name word break
+  (Mediterranean Avenue) and a clipped public collection in phone Inspect to
+  the parent UI owner. A strengthened non-empty inspection test now requires
+  the entire collection to fit. Final visual retest follows the owner's fix. No product
+  CSS, engine, cloud configuration, server restart, commit, push or deployment
+  performed in this follow-up. Final integrated gates and rollout remain with
+  the parent task.
+- Final owner fixes verified: Mediterranean stays intact within compact cards,
+  and the portalled phone inspection stacks the bank above a fully visible
+  public property collection. Final combined browser run passes 22/22 in 29.6s;
+  affected captures were refreshed and visually inspected. Source frozen after
+  this recheck. The child-owned audit browser is closed; shared services and
+  the user's browser remain running. Scratch notes were removed; evidence kept.
+
+
+2026-11-02 — Shared hand navigation and legal mid-game review (local, frozen)
+- Added reusable HorizontalRail and integrated existing Hand without changing its
+  public props or group/card selectors. Overflow alone adds separate 44px arrows;
+  touch/native scrolling, reduced motion and horizontal-only keyboard reveal are
+  supported. Deal retains two complete 126px faces at 390px; selection is stable.
+- Added 235 reproducible legal engine projections across all 27 games at both seat
+  limits, dev-only /design/midgame, deterministic exporter/coverage report and
+  focused browser suites. Legal states include Uno 41-card / No Mercy 24-card hands,
+  betting streets, split/insurance, valid Rummy declaration, Deal payment/counters/
+  rearrangement and modern/party/co-op phases. Physical inventory is checked for
+  16 card/tile game IDs; stock, private hands, dealer hole cards, hidden grids/
+  facedown cards and shuffle keys are independently excluded from projections.
+- Extended opt-in GAMES_MIDGAME=1 full-match acceptance with up to 8 refreshed real
+  actor views per case and phase/action/version evidence. Online Rummy driver
+  draws/discards then drops; local legal declaration/control coverage is separate.
+  Synthetic projections are not claimed as saved-room or release proof.
+- Final local hand/mid-game checks 10/10 pass at 390/1440 (35.8s), including artwork
+  decoding, 44px controls, page/card bounds, stable selection and actual critical
+  controls; browser TS and independent-process exporter --check pass. Visual review
+  of 34 scenes per width found casino clipping/split overflow, fixed by its owner;
+  corrected screenshots/contact sheets and coverage limits retained in
+  docs/evidence/stable-play-2026-11-02/HAND_AND_MIDGAME.md and midgame-visuals/.
+- Source/evidence remain uncommitted local changes. No cloud writes, server
+  restarts, pushes or deployments by this subtask; root owns final release.
+
+2026-11-02 — Stable gameplay final local gate checkpoint
+- Root source-of-truth flow/design/verification docs now describe permanent docks,
+  modeless Deal decisions, explicit hand navigation and durable public activity.
+  Added seven shared Storybook variants, 235 legal mid-game projections, 11 Deal
+  scenarios and retained concise Deal/non-Deal/mid-game visual evidence.
+- Final named frontend/contracts/tooling report verify-b58d944b2e1e4d669067f3fc2763b958
+  passed:108 units, types/lint/build,281faces,48portraits,11Deal/235mid-game fixture
+  drift and boundaries. Backend/migrations/multiplayer/load report
+  verify-e304f310be6f4f39aa16699bccfe1b7e passed:804backend,162room,1migration,2load
+  cases.50human-room action p95=676ms/snapshot391ms; botdrive847ms/private502ms.
+- Final focused UI checks38/38 (22Deal+16other), hand/mid-game10/10, all281card
+  faces/motion6/6 and seven-story phone/desktop interactions14/14 passed.
+- Initial overlapping edit invalidated early broad checks; a bot wall-clock bound
+  failed under concurrent load (2.35s), then all804passed unchanged on recheck.
+  A real saved phone match exposed the test driver's Clear button obscured by a
+  pending move panel. Driver now closes it with Escape before clearing, and all
+  UI action waits are bounded15s. Successful earlier cases remain evidence; the
+  remaining cases are rerunning. No production change yet.
+- Personal Games Vercel/Supabase identity, Google/guest auth, zero schema drift,
+  reviewed RLS/grants and rollback verified read-only. Owner profile/5rooms and
+  Google identity privately fingerprinted before release. Six interrupted LOCAL
+  test rooms closed through ordinary APIs, preserving profiles/history/receipts.
+- State: local changes, main not pushed, current production unchanged. Next:
+  finish clean browser/saved-match checks, commit/push main, deploy once and
+  verify live source, behavior, privacy, logs and protected-owner fingerprints.
+
+2026-11-02 — Stable gameplay ready for main / production
+- Final owned browser gate verify-7f18261556864f4f8e2fdc54de1e24cb PASSED on stable
+  source:159passed/21optional skipped (10.8m). Earlier broad failures were an edit
+  parser window or obsolete selected-region/opponent-table/card-count/CTA
+  expectations after the deliberate shared layout changes. Corrected tests retain
+  and strengthen card identity, private-choice and public-inspection assertions.
+- Actual saved matches now cover94distinct cases (47desktop+47phone), all26
+  multiplayer games at distinct min/max seats,9,008moves,231refreshed mid-game
+  checks and50stable selections; results/profile/rematch/same-group switch pass.
+  Four naturally short soloBlackjack/2-playerTeenPatti cases finish before the
+  snapshot threshold;90cases have sampled mid-game views. Rummy uses legal drops,
+  with valid declaration tested separately in conserved engine/UI states.
+- Local case metadata is retained in docs/evidence/stable-play-2026-11-02/local-matches.json,
+  explicitly distinguishing interrupted parent reports and successful recovered
+  cases. Seven interrupted local test rooms are closed; histories/profiles and
+  receipts preserved. Final focused rerun room cleanup passed.
+- Tested runtime inventory424files=f9e064b36396189bc8a7cc3a195b7a41b6fb138eafb87e57e39a886d734752c9;
+  final before/after/current parity holds. Later changes were only test/docs.
+- Main push and one personal production CLI deployment are authorized and next.
+  Rollback reference dpl_FKHPuZnhr7guWPsa7oWteuAQcT6S; production remains unchanged
+  until the deployment completes. Dedicated schema head a6e442b15d80 unchanged.

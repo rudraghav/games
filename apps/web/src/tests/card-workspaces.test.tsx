@@ -80,8 +80,11 @@ describe('Card table decisions stay with their cards', () => {
     const p = props('skyjo');
     const selfId = p.match.players.at(-1)!.id;
     const html = renderToStaticMarkup(<SkyjoTable {...p} selfId={selfId} />);
-    expect(html.indexOf('data-own="true"')).toBeLessThan(html.indexOf('data-own="false"'));
+    expect(html.indexOf('data-own="true"')).toBeLessThan(html.indexOf('class="opponent-panel'));
     expect(html).toContain('aria-label="Your Skyjo grid"');
+    expect(html.match(/class="skyjo-grid"/g)).toHaveLength(1);
+    expect(html).toContain('aria-label="Revealed grid summary"');
+    expect(html).toContain('hidden');
   });
   it('names legal Skyjo targets by action and position, and never exposes a hidden rank', () => {
     const p = props('skyjo');

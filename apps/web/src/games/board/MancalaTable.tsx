@@ -22,7 +22,7 @@ export function MancalaTable(props: TableProps) {
     );
   }
   return (
-    <div className="table-layout">
+    <div className="table-layout stable-game-table">
       <PlayerStrip {...props} playerCaption={(player) => `${player.score} seeds stored`} />
       <section className="classic-board mancala-table" aria-label="Mancala board">
         <p className="mancala-owner">

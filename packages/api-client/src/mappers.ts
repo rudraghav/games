@@ -88,6 +88,17 @@ export function mapRoom(wire: Wire['RoomView']) {
           amount: wire.last_action.amount ?? null,
         }
       : null,
+    activity: (wire.activity || []).map((event) => ({
+      version: event.version,
+      actorId: event.actor_id,
+      type: event.type,
+      label: event.label,
+      targets: event.targets || [],
+      amount: event.amount ?? null,
+      cards: (event.cards || []).map(mapCard),
+      destination: event.destination ?? null,
+      count: event.count ?? null,
+    })),
     paused: wire.paused,
     botPending: wire.bot_pending ?? false,
     botDueAt: wire.bot_due_at ?? null,

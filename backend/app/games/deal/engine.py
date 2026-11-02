@@ -255,6 +255,7 @@ class DealEngine(BaseEngine):
             winners=s["winners"],
             detail={
                 "moves": s["moves"],
+                "rent_multiplier": s["boost"],
                 "debts": s["debts"],
                 "pending": s["queue"][0]["kind"] if s["queue"] else None,
                 "payment_amount": s["queue"][0].get("amount", 0)

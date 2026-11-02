@@ -16,6 +16,7 @@ const group = z
   }));
 const schema = z.object({
   moves: z.number().int(),
+  rent_multiplier: z.number().int().positive().default(1),
   debts: z.record(z.string(), z.array(z.string())),
   pending: z.string().nullable(),
   payment_amount: z.number().nonnegative().default(0),
@@ -53,6 +54,7 @@ export function dealDetails(detail: components['schemas']['GameView']['detail'])
   const data = schema.parse(detail);
   return {
     moves: data.moves,
+    rentMultiplier: data.rent_multiplier,
     debts: data.debts,
     pending: data.pending,
     paymentAmount: data.payment_amount,

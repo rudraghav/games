@@ -5,7 +5,7 @@ import { Button, PlayingCard } from '@games/ui';
 import type { ActionOption, Card, DealDetails } from '@games/api-client';
 import type { TableProps } from '../types';
 import { playerName } from '../types';
-import { actionLabel } from './presentation';
+import { actionLabel, transferPreview } from './presentation';
 
 export const optionKey = (option: ActionOption) => JSON.stringify(option.value);
 const moveLabels: Record<string, string> = {
@@ -26,11 +26,14 @@ interface Props extends TableProps {
   candidate: ActionOption | null;
   onCandidate: (option: ActionOption) => void;
   onResetMove: () => void;
+  target?: string;
+  onTargetChange?: (target: string) => void;
   onClear: () => void;
 }
 export function DealComposer(props: Props) {
   const { card, options, candidate, details, match, room } = props;
-  const [target, setTarget] = useState('');
+  const [localTarget, setTarget] = useState('');
+  const target = props.target ?? localTarget;
   const play = options.filter((option) => option.value.type !== 'bank');
   const bank = options.find((option) => option.value.type === 'bank');
   const targets = [...new Set(play.map((option) => option.value.target).filter(Boolean))];
@@ -38,10 +41,18 @@ export function DealComposer(props: Props) {
     targets.length > 1 ? play.filter((option) => option.value.target === target) : play;
   const banking = candidate?.value.type === 'bank';
   const blocked = props.pending || room.paused;
+  const preview = transferPreview(candidate, match);
+  const collection = details.collections.find(
+    (group) => group.player === props.selfId && group.key === candidate?.value.color,
+  );
+  const rent =
+    candidate?.value.type === 'play' && ['rent', 'rent_double'].includes(card.effect) && collection
+      ? collection.rent * details.rentMultiplier * (card.effect === 'rent_double' ? 2 : 1)
+      : null;
   return (
     <section className="deal-composer" aria-label="Selected card" aria-busy={props.pending}>
       <div className="deal-selected-preview">
-        <PlayingCard card={card} family="property" />
+        <PlayingCard card={card} family="property" compact />
         <div>
           <h3>{card.label}</h3>
           <p>
@@ -71,6 +82,7 @@ export function DealComposer(props: Props) {
               disabled={blocked}
               onChange={(event) => {
                 setTarget(event.target.value);
+                props.onTargetChange?.(event.target.value);
                 props.onResetMove();
               }}
             >
@@ -113,6 +125,25 @@ export function DealComposer(props: Props) {
           </p>
         ) : !options.length ? (
           <p className="small muted">This card has no available move.</p>
+        ) : null}
+        {preview.length || rent !== null ? (
+          <div className="deal-target-preview" aria-label="Move preview">
+            {preview.map(({ role, card: asset }) => (
+              <span key={`${role}:${asset.id}`}>
+                <b>{role}</b>
+                {asset.label}
+                <span>{asset.value}</span>
+              </span>
+            ))}
+            {rent !== null ? (
+              <span>
+                <b>{rent}M rent</b>
+                {candidate?.value.target
+                  ? `from ${playerName(room, candidate.value.target)}`
+                  : 'from each other player'}
+              </span>
+            ) : null}
+          </div>
         ) : null}
         <div className="deal-commit-actions">
           {play.length && !banking ? (

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Check, Coffee, MessageCircle, Sparkles } from 'lucide-react';
 import { partyDetails } from '@games/api-client';
-import { Avatar, Button } from '@games/ui';
+import { Avatar, Button, DecisionDock } from '@games/ui';
 import type { ActionOption } from '@games/api-client';
 import type { TableProps } from '../types';
 import { playerName } from '../types';
@@ -66,7 +66,7 @@ export function PartyTable(props: TableProps) {
   const selectedOption = decisions.find((option) => key(option) === selected);
 
   return (
-    <div className="table-layout">
+    <div className="table-layout stable-game-table">
       <PlayerStrip
         {...props}
         playerCaption={(player) =>
@@ -107,120 +107,128 @@ export function PartyTable(props: TableProps) {
             </div>
           ) : null}
         </div>
-        {data.result ? (
-          <div className="party-reveal" aria-live="polite">
-            <h3>
-              {data.mode === 'hot-seat'
-                ? data.result.answer === 'pass'
-                  ? 'The hot seat passed. No points this round.'
-                  : `The answer was ${data.result.answer?.toUpperCase()}.`
-                : data.mode === 'most-likely'
-                  ? 'Votes revealed.'
-                  : 'Round complete.'}
-            </h3>
-            <div className="party-reveal__list">
-              {match.players
-                .filter((player) => data.result!.choices[player.id])
-                .map((player) => {
-                  const member = room.members.find((member) => member.id === player.id);
-                  const points = data.result!.points[player.id];
-                  return (
-                    <div key={player.id} className="party-reveal__row">
-                      <Avatar name={member?.name || 'Player'} seed={member?.avatar} size="sm" />
-                      <span className="party-reveal__identity">
-                        <strong>{member?.name || 'Player'}</strong>
-                        <small>{choiceLabel(data.result!.choices[player.id])}</small>
-                      </span>
-                      {data.mode === 'most-likely' ? (
-                        <span className="party-tally">
-                          {data.result!.tallies[player.id]}{' '}
-                          {data.result!.tallies[player.id] === 1 ? 'vote' : 'votes'}
+        <DecisionDock
+          className="party-decision-workspace"
+          size="extended"
+          label="Party choices and reveal"
+          pending={pending}
+        >
+          {data.result ? (
+            <div className="party-reveal" aria-live="polite">
+              <h3>
+                {data.mode === 'hot-seat'
+                  ? data.result.answer === 'pass'
+                    ? 'The hot seat passed. No points this round.'
+                    : `The answer was ${data.result.answer?.toUpperCase()}.`
+                  : data.mode === 'most-likely'
+                    ? 'Votes revealed.'
+                    : 'Round complete.'}
+              </h3>
+              <div className="party-reveal__list">
+                {match.players
+                  .filter((player) => data.result!.choices[player.id])
+                  .map((player) => {
+                    const member = room.members.find((member) => member.id === player.id);
+                    const points = data.result!.points[player.id];
+                    return (
+                      <div key={player.id} className="party-reveal__row">
+                        <Avatar name={member?.name || 'Player'} seed={member?.avatar} size="sm" />
+                        <span className="party-reveal__identity">
+                          <strong>{member?.name || 'Player'}</strong>
+                          <small>{choiceLabel(data.result!.choices[player.id])}</small>
                         </span>
-                      ) : null}
-                      <b className="party-earned">{points ? `+${points}` : '—'}</b>
-                    </div>
-                  );
-                })}
-            </div>
-            {data.sipPrompts && match.phase !== 'finished' ? (
-              <p className="party-sip">
-                <Coffee size={17} aria-hidden="true" />
-                Fancy a toast? Take an optional sip of any drink, or skip it.
-              </p>
-            ) : null}
-            {next ? (
-              <Button
-                onClick={() => {
-                  setSelected(null);
-                  onAction(next.value);
-                }}
-                disabled={blocked}
-              >
-                {next.label}
-              </Button>
-            ) : match.phase !== 'finished' ? (
-              <p className="small muted">
-                {playerName(room, data.spotlight)} can reveal the next prompt.
-              </p>
-            ) : null}
-          </div>
-        ) : (
-          <div className="party-decisions">
-            <p>{data.ownChoice ? 'You’re locked in. Waiting for your friends.' : instruction}</p>
-            {data.mode !== 'spill-or-chill' ? (
-              <p className="small muted" aria-live="polite">
-                {data.submitted.length} of {match.players.length} locked in
-              </p>
-            ) : null}
-            {data.ownChoice ? (
-              <div className="party-locked">
-                <Check size={19} aria-hidden="true" />
-                <span>Your choice: {choiceLabel(data.ownChoice)}</span>
+                        {data.mode === 'most-likely' ? (
+                          <span className="party-tally">
+                            {data.result!.tallies[player.id]}{' '}
+                            {data.result!.tallies[player.id] === 1 ? 'vote' : 'votes'}
+                          </span>
+                        ) : null}
+                        <b className="party-earned">{points ? `+${points}` : '—'}</b>
+                      </div>
+                    );
+                  })}
               </div>
-            ) : null}
-            {decisions.length ? (
-              <>
-                <div className="party-choice-grid" aria-label="Your choice">
-                  {decisions.map((option) => (
-                    <Button
-                      key={key(option)}
-                      variant="secondary"
-                      className="party-choice"
-                      aria-pressed={selected === key(option)}
-                      disabled={blocked}
-                      onClick={() => setSelected(key(option))}
-                    >
-                      {option.value.target ? (
-                        <Avatar
-                          name={playerName(room, option.value.target)}
-                          seed={
-                            room.members.find((member) => member.id === option.value.target)?.avatar
-                          }
-                          size="sm"
-                        />
-                      ) : null}
-                      <span className="party-choice__label">{label(option)}</span>
-                    </Button>
-                  ))}
-                </div>
+              {data.sipPrompts && match.phase !== 'finished' ? (
+                <p className="party-sip">
+                  <Coffee size={17} aria-hidden="true" />
+                  Fancy a toast? Take an optional sip of any drink, or skip it.
+                </p>
+              ) : null}
+              {next ? (
                 <Button
-                  className="party-commit"
-                  disabled={blocked || !selectedOption}
-                  pending={pending}
                   onClick={() => {
-                    if (selectedOption) {
-                      onAction(selectedOption.value);
-                      setSelected(null);
-                    }
+                    setSelected(null);
+                    onAction(next.value);
                   }}
+                  disabled={blocked}
                 >
-                  <MessageCircle size={17} aria-hidden="true" />
-                  {selected === 'pass' ? 'Confirm pass' : 'Lock in my choice'}
+                  {next.label}
                 </Button>
-              </>
-            ) : null}
-          </div>
-        )}
+              ) : match.phase !== 'finished' ? (
+                <p className="small muted">
+                  {playerName(room, data.spotlight)} can reveal the next prompt.
+                </p>
+              ) : null}
+            </div>
+          ) : (
+            <div className="party-decisions">
+              <p>{data.ownChoice ? 'You’re locked in. Waiting for your friends.' : instruction}</p>
+              {data.mode !== 'spill-or-chill' ? (
+                <p className="small muted" aria-live="polite">
+                  {data.submitted.length} of {match.players.length} locked in
+                </p>
+              ) : null}
+              {data.ownChoice ? (
+                <div className="party-locked">
+                  <Check size={19} aria-hidden="true" />
+                  <span>Your choice: {choiceLabel(data.ownChoice)}</span>
+                </div>
+              ) : null}
+              {decisions.length ? (
+                <>
+                  <div className="party-choice-grid" aria-label="Your choice">
+                    {decisions.map((option) => (
+                      <Button
+                        key={key(option)}
+                        variant="secondary"
+                        className="party-choice"
+                        aria-pressed={selected === key(option)}
+                        disabled={blocked}
+                        onClick={() => setSelected(key(option))}
+                      >
+                        {option.value.target ? (
+                          <Avatar
+                            name={playerName(room, option.value.target)}
+                            seed={
+                              room.members.find((member) => member.id === option.value.target)
+                                ?.avatar
+                            }
+                            size="sm"
+                          />
+                        ) : null}
+                        <span className="party-choice__label">{label(option)}</span>
+                      </Button>
+                    ))}
+                  </div>
+                  <Button
+                    className="party-commit"
+                    disabled={blocked || !selectedOption}
+                    pending={pending}
+                    onClick={() => {
+                      if (selectedOption) {
+                        onAction(selectedOption.value);
+                        setSelected(null);
+                      }
+                    }}
+                  >
+                    <MessageCircle size={17} aria-hidden="true" />
+                    {selected === 'pass' ? 'Confirm pass' : 'Lock in my choice'}
+                  </Button>
+                </>
+              ) : null}
+            </div>
+          )}
+        </DecisionDock>
       </section>
     </div>
   );

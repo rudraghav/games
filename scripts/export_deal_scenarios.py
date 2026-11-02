@@ -149,6 +149,25 @@ def generate():
                 building = take(engine, state, PLAYERS[0], effect=effect)
                 state = engine.apply_action(state, PLAYERS[0], Action(type="play", card=building, color="brown:0"))
         record("no-mercy" if mercy else "collections", "No Mercy · house deck" if mercy else "Deal · named properties and rent", engine, state)
+
+    # Build the actual set, pass around the table, then commit Double the Rent.
+    # The preview and pending bill below are engine outcomes, not UI arithmetic.
+    engine, state = opening()
+    for _ in range(2):
+        take(engine, state, PLAYERS[0], kind="property", colors=("brown",), zone="properties")
+    buildings = [take(engine, state, PLAYERS[0], effect=effect) for effect in ("house", "hotel")]
+    double = take(engine, state, PLAYERS[0], effect="double")
+    rent = take(engine, state, PLAYERS[0], effect="rent", colors=("brown", "sky"))
+    for building in buildings:
+        state = engine.apply_action(state, PLAYERS[0], Action(type="play", card=building, color="brown:0"))
+    for player in PLAYERS:
+        state = engine.apply_action(state, player, Action(type="end_turn"))
+    state = engine.apply_action(state, PLAYERS[0], Action(type="play", card=double))
+    charge = next(option.action for option in engine.legal_actions(state, PLAYERS[0])
+                  if option.action.card == rent and option.action.type == "play"
+                  and option.action.color == "brown:0")
+    record("doubled-rent", "Deal · preview doubled rent", engine, state, focus=rent,
+           actions=[("Charge doubled Brown rent", charge)])
     return cases
 
 

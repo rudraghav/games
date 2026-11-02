@@ -3,7 +3,7 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-from app.core.contracts import Action, GameView
+from app.core.contracts import Action, CardView, GameView
 
 
 class Request(BaseModel):
@@ -95,6 +95,20 @@ class PublicActionView(BaseModel):
     amount: int | None = Field(default=None, ge=0)
 
 
+class PublicMoveView(BaseModel):
+    """A committed public description, never a stored submitted action."""
+
+    version: int = Field(ge=2)
+    actor_id: str
+    type: str
+    label: str = Field(min_length=1, max_length=160)
+    targets: list[str] = Field(default_factory=list, max_length=10)
+    amount: int | None = Field(default=None, ge=0)
+    cards: list[CardView] = Field(default_factory=list, max_length=12)
+    destination: str | None = Field(default=None, max_length=80)
+    count: int | None = Field(default=None, ge=0)
+
+
 class RoomView(BaseModel):
     id: str
     name: str
@@ -116,6 +130,7 @@ class RoomView(BaseModel):
     bot_pending: bool = False
     bot_due_at: float | None = None
     last_action: PublicActionView | None = None
+    activity: list[PublicMoveView] = Field(default_factory=list, max_length=80)
 
 
 class RoomSummary(BaseModel):

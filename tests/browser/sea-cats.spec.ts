@@ -108,10 +108,16 @@ test('paper choices stay private through refresh and boop pieces move with mouse
       .first()
       .click();
     await page
-      .getByRole('button', { name: /Keep selected · discard other to pile/ })
-      .first()
+      .getByRole('button', { name: 'Keep selected · discard to pile 1', exact: true })
       .click();
     await expect.poll(async () => (await roomAs(page, roomId!)).game!.hand.length).toBe(1);
+    expect((await roomAs(page, roomId)).game!.hand[0].id).toBe(choices[0].id);
+    const afterKeep = await roomAs(friend, roomId);
+    expect((afterKeep.game!.detail.discard_tops as ({ id: string } | null)[])[0]?.id).toBe(
+      choices[1].id,
+    );
+    // Only the discarded face becomes public, including the new durable activity.
+    expect(JSON.stringify(afterKeep).includes(`"${choices[0].id}"`)).toBe(false);
     await page.getByRole('button', { name: 'Finish turn', exact: true }).click();
     await expect(
       friend.getByRole('button', { name: 'Draw two · keep one', exact: true }),

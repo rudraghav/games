@@ -1,13 +1,14 @@
 import time
 
 from cryptography.fernet import Fernet
+from pydantic import ValidationError
 
 from app.games.registry import ENGINES
 from app.models import Room
 from app.rooms.bots import next_bot_view
 from app.rooms.public_actions import PUBLIC_ACTIONS
 from app.rooms.repository import Repository
-from app.rooms.schemas import MemberView, MessageView, PublicActionView, RoomView
+from app.rooms.schemas import MemberView, MessageView, PublicActionView, PublicMoveView, RoomView
 
 
 def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> RoomView:
@@ -41,6 +42,15 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
         repo.public_action(match.id, match.version)
         if match and match.game_id in PUBLIC_ACTIONS and match.version > 1 else None
     )
+    activity = []
+    if match and user_id in match.participants:
+        for value in repo.public_activity(match.id):
+            try:
+                activity.append(PublicMoveView.model_validate(value))
+            except ValidationError:
+                # Legacy receipts have no history. A malformed optional record
+                # must not expose raw data or prevent loading the saved table.
+                continue
     return RoomView(
         id=room.id,
         name=room.name,
@@ -81,4 +91,5 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
         bot_pending=pending_bot,
         bot_due_at=match.bot_due_at if match and pending_bot else None,
         last_action=PublicActionView.model_validate(cue) if cue else None,
+        activity=activity,
     )

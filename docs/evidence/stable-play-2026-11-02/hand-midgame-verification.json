@@ -1,0 +1,53 @@
+{
+  "verifiedAt": "2026-11-02T05:51:51.007107+00:00",
+  "sourceState": "uncommitted local workspace",
+  "baseCheckoutSha": "060bda0dcb02ae136e421668ae31e4c989e8fdc2",
+  "checks": [
+    {
+      "command": "pnpm exec playwright test tests/browser/midgame-workspaces.spec.ts tests/browser/hand-navigation.spec.ts --workers=2 --trace=off",
+      "exitCode": 0,
+      "passed": 10,
+      "durationSeconds": 35.8,
+      "widths": [
+        390,
+        1440
+      ],
+      "scenarioCount": 235
+    },
+    {
+      "command": "backend/.venv/bin/python scripts/export_midgame_scenarios.py --check",
+      "exitCode": 0,
+      "scenarios": 235,
+      "games": 27,
+      "physicalInventoryGameIds": 16,
+      "canonicalSerialization": true,
+      "hiddenCardCanaries": true
+    },
+    {
+      "command": "pnpm exec tsc -p tests/tsconfig.json",
+      "exitCode": 0
+    },
+    {
+      "command": "scoped web ESLint and UI/web type checks",
+      "exitCode": 0,
+      "note": "Earlier scoped checks; full release verification is owned by the parent task."
+    }
+  ],
+  "sourceSha256": {
+    "packages/ui/src/components/HorizontalRail.tsx": "cef9481198be3cd700e4a2376966d024939c0f966d7c9a1787f21739a99cc540",
+    "packages/ui/src/components/Hand.tsx": "a31919a4f573d1dde641c4707247a31c2249c3053ae58cdd3771631c27c49940",
+    "packages/ui/src/styles/hand-navigation.css": "ebcb62aaca83939736c618a1534f6adca2fd6540e87063fe71968753bdeefb83",
+    "apps/web/src/features/design/MidgameWorkspaceReview.tsx": "e545b1bd11e172b46ccbdc4f84471c5ab1cc8c64545c5fc03a12049a525e4f3e",
+    "apps/web/src/app/design/midgame/page.tsx": "db718e0df01eacfd406b3bc17333dde58b62cd09e103290762ab632faf7aa197",
+    "scripts/export_midgame_scenarios.py": "b3ec1fca36cdfd797cb8f9699844a6ec5ad2debb327459848549094b2f1f680c",
+    "apps/web/src/stories/generated/midgame-scenarios.ts": "69f0505b596f5749316e8f795fe0f25fc2ed137de70dd3a67e90ab851d486cb1",
+    "tests/browser/hand-navigation.spec.ts": "a8d90ff0221abcbf28c39290b02655b0f498cc1eecec76decca20a8a6bb272a1",
+    "tests/browser/midgame-workspaces.spec.ts": "403a0cdd59458455ea7fbaec42dc3a006e922139f3a3a20195eea0021dfdd9cf",
+    "tests/browser/fullmatches.spec.ts": "259914bb953ce24fc3c17e2b2b558c12e4a872eb8048c6d2d2c7f31a55987a0e"
+  },
+  "limits": [
+    "Local projection and UI checks are separate from saved-room/full-match acceptance.",
+    "No hosted verification or deployment is claimed by this subtask.",
+    "Rummy online driver draws/discards then drops; legal declarations are independently exercised in the local engine projection/UI."
+  ]
+}

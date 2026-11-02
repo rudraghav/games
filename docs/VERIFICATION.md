@@ -8,14 +8,14 @@ complete minimum/maximum Deal matches, actual browser bot-driver matches and
 the 50-room local load check. Historical release evidence below remains history;
 the newest pushed/deployed source and hosted checks belong to `progress.txt`.
 
-Use `python3 scripts/verify.py --list` for the named check groups. The runner fails
+Use `python3 scripts/verify.py --list` for the named check groups. For owned work, run `python3 scripts/verify.py --task TASK_ID GROUP...`; actual results and before/after source fingerprints attach privately to that task. `--json` emits a metadata-only report, while raw check output stays on stderr. Changed or incomplete source fingerprints make the result inconclusive; reports do not fingerprint secrets, dependencies or external services and never replace hosted proof. The runner fails
 on a missing prerequisite; it never substitutes a tooling PASS for product proof.
 
 | Group       | Coverage                                                                                                                                   |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | frontend    | TypeScript, lint, frontend contract/card checks, Next production build                                                                     |
 | backend     | Python lint/types, engines, special cards, complete legal scenarios, Tarot adapter                                                         |
-| contracts   | Actual OpenAPI/catalogue, generated wire types, canonical card faces, Tarot characters and deterministic casino playback fixture drift    |
+| contracts   | Actual OpenAPI/catalogue, generated wire types, canonical card faces, Tarot characters and deterministic casino playback fixture drift     |
 | migrations  | Fresh isolated local database upgrade, drift, RLS/public grants                                                                            |
 | multiplayer | Room membership, hidden hands, simultaneous moves, retries, reconnect, hosting, invites, saved readings, bot lifecycle/concurrency/restart |
 | browser     | Independent guest sessions, chat, move/refresh/game switch; phone/desktop; 52 min/max table scenarios; Tarot picks and expansion controls  |
@@ -73,7 +73,9 @@ rooms committed and synchronized through private Broadcast; action p95 was
 denial and the original owner's account/room preservation passed. See
 `docs/evidence/release-2026-11-01/production.json` for exact source and per-game proof.
 
-Complete matches are an explicit long-running acceptance run:
+Complete matches are an explicit long-running acceptance run. Add `GAMES_MIDGAME=1` to inspect up to eight refreshed actor views per game/seat case, recording distinct phases/critical actions and applicable stable hand selection. `selectionStable: false` means that check was not applicable or not sampled, not a failed geometry assertion. Local `/design/midgame` separately covers 235 conserved authorized projections and critical clicks, including a legal Rummy declaration; browser full-match Rummy still draws/discards then drops.
+
+Complete-match command:
 
 ```sh
 GAMES_FULL_MATCHES=1 GAMES_TEST_AI=1 pnpm exec playwright test tests/browser/fullmatches.spec.ts --output=output/playwright/fullmatches

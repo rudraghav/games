@@ -2,6 +2,7 @@
 import { Check, ChevronDown, Landmark, Plus, House } from 'lucide-react';
 import { Seat, PlayingCard } from '@games/ui';
 import type { ActionOption, Card, DealDetails, Player } from '@games/api-client';
+import { OpponentPanel } from '../shared/OpponentPanel';
 import type { TableProps } from '../types';
 import { bankValue, pileName } from './presentation';
 
@@ -15,6 +16,10 @@ interface Props extends TableProps {
   candidate: ActionOption | null;
   onSelect: (id: string) => void;
   onDestination: (option: ActionOption) => void;
+  previewIds?: string[];
+  targeted?: string;
+  targetable?: string[];
+  onTarget?: (id: string) => void;
 }
 export function DealPlayer(props: Props) {
   const { player, room, selfId, match, details, placements, selected, candidate } = props;
@@ -34,6 +39,7 @@ export function DealPlayer(props: Props) {
       card={card}
       family="property"
       compact
+      className={props.previewIds?.includes(card.id) ? 'deal-preview-card' : undefined}
       selected={isSelected(card.id)}
       disabled={props.pending || room.paused}
       onClick={selectable(card) ? () => props.onSelect(card.id) : undefined}
@@ -105,6 +111,11 @@ export function DealPlayer(props: Props) {
                   {info?.count ?? cards.filter((card) => card.suit === 'property').length}/
                   {info?.setSize ?? reference?.setSize ?? '?'}
                 </span>
+                {info ? (
+                  <b className="deal-summary-rent" aria-label={`Rent ${info.rent}M`}>
+                    {info.rent}M
+                  </b>
+                ) : null}
                 {info?.complete ? <Check size={14} aria-label="Complete set" /> : null}
               </header>
               <div className="deal-collection-cards">
@@ -205,6 +216,51 @@ export function DealPlayer(props: Props) {
       </div>
     </div>
   );
+  if (!own)
+    return (
+      <OpponentPanel
+        player={player}
+        room={room}
+        active={match.currentPlayer === player.id}
+        caption={`${player.count} card${player.count === 1 ? '' : 's'} · ${player.score}/3 sets`}
+        className="deal-opponent"
+        highlighted={props.targeted === player.id}
+        onTarget={
+          props.targetable?.includes(player.id) ? () => props.onTarget?.(player.id) : undefined
+        }
+        targetLabel={`Choose ${member?.name || 'player'}`}
+        targetDisabled={props.pending || room.paused}
+        summary={
+          <>
+            <span className="deal-summary-bank">
+              <Landmark size={12} />
+              {player.bank.reduce((sum, card) => sum + bankValue(card), 0)}M
+            </span>
+            <div className="deal-summary-sets">
+              {details.collections
+                .filter((group) => group.player === player.id)
+                .map((group) => (
+                  <span
+                    key={group.key}
+                    data-property-color={group.color}
+                    data-complete={group.complete}
+                    title={`${pileName(group.key, details.propertyGroups)} · rent ${group.rent}M`}
+                  >
+                    <i />
+                    <span>
+                      {group.count}/{group.setSize}
+                    </span>
+                    {group.complete ? <Check size={10} aria-label="Complete set" /> : null}
+                  </span>
+                ))}
+              {!groups.length ? <span className="muted">No sets yet</span> : null}
+            </div>
+          </>
+        }
+      >
+        {board}
+      </OpponentPanel>
+    );
   return (
     <article
       className="deal-player"

@@ -1,0 +1,379 @@
+{
+  "date": "2026-11-02",
+  "sourceState": "uncommitted local workspace",
+  "source": "Legally reached engine projections through production table renderers; no saved room mutations",
+  "capture": {
+    "scenes": 34,
+    "images": 68,
+    "widths": [
+      390,
+      1440
+    ],
+    "reducedMotion": true,
+    "vectorArtworkDecoded": true
+  },
+  "reviewedAllScenes": true,
+  "retained": [
+    "contact-390-1.jpg",
+    "contact-390-2.jpg",
+    "contact-390-3.jpg",
+    "contact-1440-1.jpg",
+    "contact-1440-2.jpg",
+    "contact-1440-3.jpg",
+    "blackjack-7-31-11-1440.webp",
+    "blackjack-7-31-11-390.webp",
+    "blackjack-1-8-2-1440.webp",
+    "deal-2-17-11-390.webp",
+    "deal-no-mercy-2-17-18-1440.webp",
+    "rummy-6-31-32-390.webp",
+    "uno-2-11-87-390.webp",
+    "tarot-1-17-3-390.webp"
+  ],
+  "limits": [
+    "Contact sheets use representative scenes; the full235scene browser matrix is separately recorded.",
+    "Blackjack split scene applies its recorded legal split continuation before capture.",
+    "No hosted gameplay or AI reading proof is claimed by these local captures."
+  ],
+  "cases": [
+    {
+      "id": "uno-2-11-87",
+      "width": 390,
+      "label": "Uno · 2 players · playing · hand-4"
+    },
+    {
+      "id": "uno-no-mercy-2-11-17",
+      "width": 390,
+      "label": "Uno No Mercy · 2 players · playing · hand-24"
+    },
+    {
+      "id": "deal-5-31-62",
+      "width": 390,
+      "label": "Monopoly Deal · 5 players · playing · accept:forced:blocked"
+    },
+    {
+      "id": "deal-no-mercy-5-31-49",
+      "width": 390,
+      "label": "Monopoly Deal No Mercy · 5 players · playing · decision:tax"
+    },
+    {
+      "id": "holdem-2-17-7",
+      "width": 390,
+      "label": "Texas Hold’em · 2 players · river · decision"
+    },
+    {
+      "id": "rummy-2-17-2",
+      "width": 390,
+      "label": "Rummy · 2 players · discard · decision"
+    },
+    {
+      "id": "teen-patti-2-17-2",
+      "width": 390,
+      "label": "Teen Patti · 2 players · playing · decision"
+    },
+    {
+      "id": "blackjack-1-17-2",
+      "width": 390,
+      "label": "Blackjack · 1 players · playing · decision"
+    },
+    {
+      "id": "skyjo-2-17-9",
+      "width": 390,
+      "label": "Skyjo · 2 players · reveal · reveal"
+    },
+    {
+      "id": "tarot-1-17-3",
+      "width": 390,
+      "label": "Pop Tarot · 1 players · choosing · spread-2"
+    },
+    {
+      "id": "four-in-a-row-2-17-2",
+      "width": 390,
+      "label": "Four in a Row · 2 players · playing · decision:early"
+    },
+    {
+      "id": "reversi-2-17-2",
+      "width": 390,
+      "label": "Reversi · 2 players · playing · place:early"
+    },
+    {
+      "id": "word-agents-4-17-2",
+      "width": 390,
+      "label": "Word Agents · 4 players · guess · decision"
+    },
+    {
+      "id": "gem-market-4-31-94",
+      "width": 390,
+      "label": "Gem Market · 4 players · patron · decision"
+    },
+    {
+      "id": "checkers-2-17-2",
+      "width": 390,
+      "label": "Checkers · 2 players · playing · decision:move"
+    },
+    {
+      "id": "mancala-2-17-2",
+      "width": 390,
+      "label": "Mancala · 2 players · playing · decision:early"
+    },
+    {
+      "id": "flip-7-3-17-2",
+      "width": 390,
+      "label": "Flip 7 · 3 players · playing · decision"
+    },
+    {
+      "id": "trio-3-17-3",
+      "width": 390,
+      "label": "Trio · 3 players · review · decision"
+    },
+    {
+      "id": "azul-4-31-2",
+      "width": 390,
+      "label": "Azul · 4 players · placing · decision"
+    },
+    {
+      "id": "spill-or-chill-3-17-2",
+      "width": 390,
+      "label": "Spill or Chill · 3 players · reveal · decision"
+    },
+    {
+      "id": "most-likely-3-17-4",
+      "width": 390,
+      "label": "Most Likely · 3 players · reveal · decision"
+    },
+    {
+      "id": "hot-seat-3-17-4",
+      "width": 390,
+      "label": "Hot Seat · 3 players · reveal · decision"
+    },
+    {
+      "id": "the-gang-3-17-13",
+      "width": 390,
+      "label": "The Gang · 3 players · showdown · decision:3"
+    },
+    {
+      "id": "six-nimmt-10-31-11",
+      "width": 390,
+      "label": "6 nimmt! · 10 players · review · decision"
+    },
+    {
+      "id": "sea-salt-paper-2-17-50",
+      "width": 390,
+      "label": "Sea Salt & Paper · 2 players · steal · steal"
+    },
+    {
+      "id": "boop-2-17-2",
+      "width": 390,
+      "label": "boop. · 2 players · placing · place:early"
+    },
+    {
+      "id": "shithead-2-17-2",
+      "width": 390,
+      "label": "Shithead · 2 players · setup · decision"
+    },
+    {
+      "id": "blackjack-7-31-11",
+      "width": 390,
+      "label": "Blackjack · 7 players · playing · split"
+    },
+    {
+      "id": "blackjack-1-8-2",
+      "width": 390,
+      "label": "Blackjack · 1 players · insurance · decision"
+    },
+    {
+      "id": "rummy-6-31-32",
+      "width": 390,
+      "label": "Rummy · 6 players · discard · declare"
+    },
+    {
+      "id": "uno-10-31-18",
+      "width": 390,
+      "label": "Uno · 10 players · playing · challenge:challenge-available"
+    },
+    {
+      "id": "deal-2-17-11",
+      "width": 390,
+      "label": "Monopoly Deal · 2 players · playing · pay:bill"
+    },
+    {
+      "id": "deal-no-mercy-2-17-18",
+      "width": 390,
+      "label": "Monopoly Deal No Mercy · 2 players · playing · give:repossession"
+    },
+    {
+      "id": "checkers-2-31-107",
+      "width": 390,
+      "label": "Checkers · 2 players · playing · decision:capture:king"
+    },
+    {
+      "id": "uno-2-11-87",
+      "width": 1440,
+      "label": "Uno · 2 players · playing · hand-4"
+    },
+    {
+      "id": "uno-no-mercy-2-11-17",
+      "width": 1440,
+      "label": "Uno No Mercy · 2 players · playing · hand-24"
+    },
+    {
+      "id": "deal-5-31-62",
+      "width": 1440,
+      "label": "Monopoly Deal · 5 players · playing · accept:forced:blocked"
+    },
+    {
+      "id": "deal-no-mercy-5-31-49",
+      "width": 1440,
+      "label": "Monopoly Deal No Mercy · 5 players · playing · decision:tax"
+    },
+    {
+      "id": "holdem-2-17-7",
+      "width": 1440,
+      "label": "Texas Hold’em · 2 players · river · decision"
+    },
+    {
+      "id": "rummy-2-17-2",
+      "width": 1440,
+      "label": "Rummy · 2 players · discard · decision"
+    },
+    {
+      "id": "teen-patti-2-17-2",
+      "width": 1440,
+      "label": "Teen Patti · 2 players · playing · decision"
+    },
+    {
+      "id": "blackjack-1-17-2",
+      "width": 1440,
+      "label": "Blackjack · 1 players · playing · decision"
+    },
+    {
+      "id": "skyjo-2-17-9",
+      "width": 1440,
+      "label": "Skyjo · 2 players · reveal · reveal"
+    },
+    {
+      "id": "tarot-1-17-3",
+      "width": 1440,
+      "label": "Pop Tarot · 1 players · choosing · spread-2"
+    },
+    {
+      "id": "four-in-a-row-2-17-2",
+      "width": 1440,
+      "label": "Four in a Row · 2 players · playing · decision:early"
+    },
+    {
+      "id": "reversi-2-17-2",
+      "width": 1440,
+      "label": "Reversi · 2 players · playing · place:early"
+    },
+    {
+      "id": "word-agents-4-17-2",
+      "width": 1440,
+      "label": "Word Agents · 4 players · guess · decision"
+    },
+    {
+      "id": "gem-market-4-31-94",
+      "width": 1440,
+      "label": "Gem Market · 4 players · patron · decision"
+    },
+    {
+      "id": "checkers-2-17-2",
+      "width": 1440,
+      "label": "Checkers · 2 players · playing · decision:move"
+    },
+    {
+      "id": "mancala-2-17-2",
+      "width": 1440,
+      "label": "Mancala · 2 players · playing · decision:early"
+    },
+    {
+      "id": "flip-7-3-17-2",
+      "width": 1440,
+      "label": "Flip 7 · 3 players · playing · decision"
+    },
+    {
+      "id": "trio-3-17-3",
+      "width": 1440,
+      "label": "Trio · 3 players · review · decision"
+    },
+    {
+      "id": "azul-4-31-2",
+      "width": 1440,
+      "label": "Azul · 4 players · placing · decision"
+    },
+    {
+      "id": "spill-or-chill-3-17-2",
+      "width": 1440,
+      "label": "Spill or Chill · 3 players · reveal · decision"
+    },
+    {
+      "id": "most-likely-3-17-4",
+      "width": 1440,
+      "label": "Most Likely · 3 players · reveal · decision"
+    },
+    {
+      "id": "hot-seat-3-17-4",
+      "width": 1440,
+      "label": "Hot Seat · 3 players · reveal · decision"
+    },
+    {
+      "id": "the-gang-3-17-13",
+      "width": 1440,
+      "label": "The Gang · 3 players · showdown · decision:3"
+    },
+    {
+      "id": "six-nimmt-10-31-11",
+      "width": 1440,
+      "label": "6 nimmt! · 10 players · review · decision"
+    },
+    {
+      "id": "sea-salt-paper-2-17-50",
+      "width": 1440,
+      "label": "Sea Salt & Paper · 2 players · steal · steal"
+    },
+    {
+      "id": "boop-2-17-2",
+      "width": 1440,
+      "label": "boop. · 2 players · placing · place:early"
+    },
+    {
+      "id": "shithead-2-17-2",
+      "width": 1440,
+      "label": "Shithead · 2 players · setup · decision"
+    },
+    {
+      "id": "blackjack-7-31-11",
+      "width": 1440,
+      "label": "Blackjack · 7 players · playing · split"
+    },
+    {
+      "id": "blackjack-1-8-2",
+      "width": 1440,
+      "label": "Blackjack · 1 players · insurance · decision"
+    },
+    {
+      "id": "rummy-6-31-32",
+      "width": 1440,
+      "label": "Rummy · 6 players · discard · declare"
+    },
+    {
+      "id": "uno-10-31-18",
+      "width": 1440,
+      "label": "Uno · 10 players · playing · challenge:challenge-available"
+    },
+    {
+      "id": "deal-2-17-11",
+      "width": 1440,
+      "label": "Monopoly Deal · 2 players · playing · pay:bill"
+    },
+    {
+      "id": "deal-no-mercy-2-17-18",
+      "width": 1440,
+      "label": "Monopoly Deal No Mercy · 2 players · playing · give:repossession"
+    },
+    {
+      "id": "checkers-2-31-107",
+      "width": 1440,
+      "label": "Checkers · 2 players · playing · decision:capture:king"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 'use client';
-import { CardPile, PlayingCard, Seat } from '@games/ui';
+import { CardPile, PlayingCard, Seat, HorizontalRail } from '@games/ui';
+import { OpponentPanel } from '../shared/OpponentPanel';
 import { ActionPanel } from '../shared/ActionPanel';
 import { TablePile } from '../shared/TablePile';
 import type { TableProps } from '../types';
@@ -13,8 +14,49 @@ export function SkyjoTable(props: TableProps) {
       : [...match.players.slice(viewer), ...match.players.slice(0, viewer)];
   const stockAction = match.actions.find((option) => option.value.type === 'draw_stock');
   const discardAction = match.actions.find((option) => option.value.type === 'draw_discard');
+  function grid(playerId: string, own: boolean) {
+    const player = players.find((item) => item.id === playerId)!;
+    const member = room.members.find((item) => item.id === playerId);
+    return (
+      <div
+        className="skyjo-grid"
+        role="group"
+        aria-label={own ? 'Your Skyjo grid' : `${member?.name || 'Player'}’s Skyjo grid`}
+      >
+        {player.cards.map((card, slot) => {
+          if (player.removedSlots.includes(slot))
+            return (
+              <div
+                className="grid-card-empty"
+                key={slot}
+                aria-label={`Removed card, row ${Math.floor(slot / 4) + 1}, column ${(slot % 4) + 1}`}
+              />
+            );
+          const action = own
+            ? match.actions.find(
+                (option) =>
+                  ['reveal', 'swap'].includes(option.value.type) && option.value.slot === slot,
+              )
+            : undefined;
+          return (
+            <PlayingCard
+              key={slot}
+              card={card || undefined}
+              faceDown={!card}
+              family="grid"
+              compact
+              playable={!!action}
+              label={`${action ? (action.value.type === 'swap' ? 'Replace' : 'Reveal') : card?.label || 'Face-down card'}, row ${Math.floor(slot / 4) + 1}, column ${(slot % 4) + 1}${action && card ? `, ${card.label}` : ''}`}
+              onClick={action ? () => onAction(action.value) : undefined}
+              disabled={pending || room.paused}
+            />
+          );
+        })}
+      </div>
+    );
+  }
   return (
-    <div className="table-layout skyjo-workspace">
+    <div className="table-layout stable-game-table skyjo-workspace">
       <div className="skyjo-table">
         <div className="skyjo-piles">
           <TablePile
@@ -42,6 +84,7 @@ export function SkyjoTable(props: TableProps) {
         </div>
         <ActionPanel
           {...props}
+          dockSize="compact"
           instruction={
             match.currentPlayer === selfId &&
             match.actions.some((option) => ['reveal', 'swap'].includes(option.value.type))
@@ -61,65 +104,78 @@ export function SkyjoTable(props: TableProps) {
           }}
         />
         <div className="skyjo-players">
-          {players.map((player) => {
-            const member = room.members.find((m) => m.id === player.id);
-            return (
-              <article className="skyjo-player" key={player.id} data-own={player.id === selfId}>
-                <Seat
-                  compact
-                  name={member?.name || 'Player'}
-                  you={player.id === selfId}
-                  avatar={member?.avatar}
-                  bot={member?.isBot}
+          {players
+            .filter((player) => player.id === selfId)
+            .map((player) => {
+              const member = room.members.find((m) => m.id === player.id);
+              return (
+                <article className="skyjo-player" key={player.id} data-own="true">
+                  <Seat
+                    compact
+                    name={member?.name || 'Player'}
+                    you
+                    avatar={member?.avatar}
+                    bot={member?.isBot}
+                    active={match.currentPlayer === player.id}
+                    caption={`${player.score} total points`}
+                    connected={member?.connected ?? false}
+                  />
+                  {grid(player.id, true)}
+                </article>
+              );
+            })}
+        </div>
+        <HorizontalRail
+          label="Other Skyjo players"
+          navigationLabel="Skyjo players"
+          className="skyjo-opponents"
+          contentClassName="skyjo-opponent-row"
+        >
+          {players
+            .filter((player) => player.id !== selfId)
+            .map((player) => {
+              const revealed = player.cards.filter(
+                (card, slot) => card && !player.removedSlots.includes(slot),
+              );
+              const hidden = player.cards.filter(
+                (card, slot) => !card && !player.removedSlots.includes(slot),
+              ).length;
+              return (
+                <OpponentPanel
+                  key={player.id}
+                  player={player}
+                  room={room}
                   active={match.currentPlayer === player.id}
                   caption={`${player.score} total points`}
-                  connected={member?.connected ?? false}
-                />
-                <div
-                  className="skyjo-grid"
-                  role="group"
-                  aria-label={
-                    player.id === selfId
-                      ? 'Your Skyjo grid'
-                      : `${member?.name || 'Player'}’s Skyjo grid`
+                  summary={
+                    <>
+                      <span className="opponent-facts">
+                        {revealed.length} revealed · {hidden} hidden
+                      </span>
+                      <div className="skyjo-mini-grid" aria-label="Revealed grid summary">
+                        {player.cards.map((card, slot) => (
+                          <span
+                            key={slot}
+                            data-hidden={!card}
+                            data-removed={player.removedSlots.includes(slot)}
+                            aria-label={
+                              player.removedSlots.includes(slot)
+                                ? 'Removed slot'
+                                : card?.label || 'Face-down card'
+                            }
+                          >
+                            {player.removedSlots.includes(slot) ? '–' : card?.value || '•'}
+                          </span>
+                        ))}
+                      </div>
+                    </>
                   }
                 >
-                  {player.cards.map((card, slot) => {
-                    if (player.removedSlots.includes(slot))
-                      return (
-                        <div
-                          className="grid-card-empty"
-                          key={slot}
-                          aria-label={`Removed card, row ${Math.floor(slot / 4) + 1}, column ${(slot % 4) + 1}`}
-                        />
-                      );
-                    const action =
-                      player.id === selfId
-                        ? match.actions.find(
-                            (option) =>
-                              ['reveal', 'swap'].includes(option.value.type) &&
-                              option.value.slot === slot,
-                          )
-                        : undefined;
-                    return (
-                      <PlayingCard
-                        key={slot}
-                        card={card || undefined}
-                        faceDown={!card}
-                        family="grid"
-                        compact
-                        playable={!!action}
-                        label={`${action ? (action.value.type === 'swap' ? 'Replace' : 'Reveal') : card?.label || 'Face-down card'}, row ${Math.floor(slot / 4) + 1}, column ${(slot % 4) + 1}${action && card ? `, ${card.label}` : ''}`}
-                        onClick={action ? () => onAction(action.value) : undefined}
-                        disabled={pending || room.paused}
-                      />
-                    );
-                  })}
-                </div>
-              </article>
-            );
-          })}
-        </div>
+                  {grid(player.id, false)}
+                </OpponentPanel>
+              );
+            })}
+        </HorizontalRail>
       </div>
       <p className="small muted table-help">
         Three matching cards in a column disappear, including during the final reveal.

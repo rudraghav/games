@@ -1,0 +1,483 @@
+@layer components {
+  .deal-stage-container {
+    container-type: inline-size;
+    min-width: 0;
+  }
+  .deal-workspace.deal-workspace {
+    display: grid;
+    height: clamp(680px, calc(100dvh - 172px), 980px);
+    grid-template-rows: 82px 74px minmax(160px, 1fr) 96px 236px 44px;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: #f7f5ec;
+    overflow: hidden;
+  }
+  .deal-workspace > * {
+    min-width: 0;
+    min-height: 0;
+  }
+  .deal-workspace .deal-opponents {
+    padding: 4px 6px;
+    align-items: stretch;
+    gap: 8px;
+    margin: 0;
+  }
+  .deal-opponents > .deal-opponent {
+    flex: 1 0 238px;
+    max-width: 360px;
+    min-width: 0;
+    position: relative;
+  }
+  .deal-opponents > .deal-opponent {
+    padding: 0 4px;
+    gap: 0;
+    border-radius: 9px;
+  }
+  .deal-opponent > .seat {
+    padding: 0;
+    gap: 6px;
+  }
+  .deal-opponent .seat-copy > span {
+    font-size: 9px;
+    margin-top: 2px;
+  }
+  .deal-opponent .seat-copy strong {
+    font-size: 11px;
+  }
+  .deal-opponent .seat .button {
+    width: 44px;
+    height: 44px;
+  }
+  .deal-opponent > .button {
+    position: absolute;
+    right: 8px;
+    bottom: 4px;
+    min-height: 44px;
+    max-width: 140px;
+    font-size: 11px;
+  }
+  .deal-opponent:has(> .button) .opponent-panel-summary {
+    padding-right: 135px;
+  }
+  .deal-opponent .seat {
+    background: transparent;
+    box-shadow: none;
+    border: 0;
+  }
+  .deal-opponent .seat .avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+  }
+  .deal-opponent .opponent-panel-summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 20px;
+  }
+  .deal-summary-bank {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .deal-summary-sets {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+    overflow-x: auto;
+    font-size: 10px;
+  }
+  .deal-summary-sets > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    white-space: nowrap;
+  }
+  .deal-summary-sets i {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 2px;
+    background: var(--property-ink);
+  }
+  .deal-summary-sets [data-complete='true'] {
+    font-weight: 750;
+  }
+  .deal-summary-rent {
+    color: var(--color-sage);
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .playing-card.playing-card--property.playing-card--compact .property-name {
+    font-size: 8px;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+  .deal-workspace .deal-center {
+    padding: 5px 16px;
+    gap: 20px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .deal-workspace .deal-stock {
+    gap: 14px;
+  }
+  .deal-workspace .deal-stock .pile-shadow {
+    width: 54px;
+    height: 77px;
+  }
+  .deal-workspace .deal-stock .playing-card {
+    transform: scale(0.675);
+    transform-origin: top left;
+    margin-right: -26px;
+    margin-bottom: -37px;
+  }
+  .deal-workspace .deal-stock .card-pile > span {
+    font-size: 9px;
+  }
+  .deal-workspace .deal-last-move p {
+    margin: 3px 0;
+    font-size: 12px;
+  }
+  .deal-board-scroll {
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-gutter: stable;
+  }
+  .deal-board-scroll > .deal-player {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+  .deal-board-scroll .deal-player-heading {
+    padding: 7px 12px 2px;
+  }
+  .deal-board-scroll .deal-player-heading .seat .avatar {
+    width: 25px;
+    height: 25px;
+  }
+  .deal-board-scroll .deal-assets {
+    padding: 7px 12px;
+    grid-template-columns: minmax(90px, 150px) minmax(0, 1fr);
+  }
+  .deal-board-scroll .deal-collections {
+    align-items: start;
+  }
+  .deal-board-scroll .deal-collection {
+    border: 0;
+    border-top: 3px solid var(--property-ink);
+    border-radius: 6px;
+    padding: 5px;
+    background: #fffdf7;
+  }
+  .deal-board-scroll .deal-collection-cards {
+    padding: 4px 2px;
+  }
+  .deal-board-scroll .deal-collection > header {
+    margin-bottom: 2px;
+  }
+  .deal-board-scroll .deal-collection > footer {
+    min-height: 44px;
+  }
+  .deal-workspace > .deal-command-dock {
+    --decision-height: 96px;
+    padding: 0;
+    border-block: 1px solid var(--color-border);
+    border-radius: 0;
+    background: #f7f5ec;
+  }
+  .deal-command-dock > .deal-composer,
+  .deal-command-dock > .deal-resolution {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 10px 14px;
+    min-height: 100%;
+  }
+  .deal-command-dock .deal-composer {
+    grid-template-columns: minmax(180px, 0.8fr) minmax(0, 1.2fr);
+    gap: 16px;
+  }
+  .deal-command-dock .deal-selected-preview {
+    align-items: center;
+    gap: 10px;
+  }
+  .deal-command-dock .deal-selected-preview h3 {
+    font-size: 19px;
+    margin-bottom: 5px;
+  }
+  .deal-command-dock .deal-selected-preview p {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+  .deal-command-dock .deal-move-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: center;
+    gap: 6px 10px;
+  }
+  .deal-command-dock .deal-move-form > label {
+    min-width: 0;
+  }
+  .deal-command-dock .deal-move-summary,
+  .deal-command-dock .deal-commit-actions,
+  .deal-target-preview {
+    grid-column: 1 / -1;
+  }
+  .deal-command-dock .deal-commit-actions > .button {
+    min-height: 44px;
+  }
+  .deal-command-dock .deal-resolution {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+    align-content: center;
+  }
+  .deal-command-dock .deal-resolution > div:first-child {
+    grid-row: 1 / 3;
+  }
+  .deal-command-dock .deal-resolution > p {
+    font-size: 11px;
+  }
+  .deal-command-dock .deal-resolution-actions {
+    grid-column: 2;
+  }
+  .deal-idle-command {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    padding: 14px 18px;
+  }
+  .deal-idle-command > strong {
+    font-size: 16px;
+    font-family: var(--font-display);
+  }
+  .deal-idle-command p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+    max-width: 480px;
+  }
+  .deal-workspace > .deal-hand-dock {
+    border: 0;
+    border-radius: 0;
+    background: #fffdf7;
+    overflow: hidden;
+  }
+  .deal-workspace .deal-hand-dock .hand-scroll {
+    padding-block: 20px 8px;
+  }
+  .deal-command-title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 44px;
+    padding-inline: 10px;
+  }
+  .deal-command-title > strong {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+  .deal-command-primary {
+    padding: 0 10px 6px;
+  }
+  .deal-command-primary > .button {
+    min-height: 44px;
+    width: 100%;
+  }
+  .deal-command-primary > p {
+    line-height: 1.5;
+  }
+  .deal-workspace > .deal-quick-rules {
+    padding-inline: 14px;
+    border-top: 1px solid var(--color-border);
+    overflow: auto;
+  }
+  .deal-preview-card {
+    outline: 2px solid var(--color-sky);
+    outline-offset: 1px;
+  }
+  .deal-target-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-size: 10px;
+  }
+  .deal-target-preview > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+    padding: 4px 6px;
+    background: #fffdf7;
+    border: 1px solid var(--color-border);
+  }
+  .deal-target-preview > span > b {
+    color: var(--color-sage);
+  }
+  /* Inspect is portalled outside the table's container-query boundary. */
+  @media (max-width: 700px) {
+    .opponent-panel-inspection .deal-assets {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 8px 0;
+    }
+    .opponent-panel-inspection .deal-collection {
+      max-width: 100%;
+    }
+    .opponent-panel-inspection .deal-collection-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 80px);
+    }
+  }
+  @container (max-width: 700px) {
+    .deal-workspace.deal-workspace {
+      grid-template-rows: 82px 64px minmax(160px, 1fr) 96px 236px 44px;
+    }
+    .deal-workspace .deal-center {
+      flex-wrap: nowrap;
+      gap: 12px;
+      padding: 5px 10px;
+    }
+    .deal-workspace .deal-last-move {
+      display: none;
+    }
+    .deal-workspace .deal-stock {
+      gap: 12px;
+    }
+    .deal-board-scroll .deal-assets {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr);
+      gap: 10px;
+    }
+    .deal-board-scroll .deal-collection-cards {
+      display: flex;
+    }
+    .deal-board-scroll .deal-bank-notes {
+      flex-direction: column;
+      max-height: none;
+      overflow: visible;
+    }
+    .deal-board-scroll .deal-bank-note {
+      flex: 0 0 auto;
+      width: 100%;
+    }
+    .deal-board-scroll .deal-player-heading .seat-copy > span {
+      display: none;
+    }
+    .deal-workspace > .deal-command-dock {
+      --decision-height: 96px;
+    }
+    .deal-command-dock .deal-composer {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 6px;
+    }
+    .deal-command-dock .deal-selected-preview {
+      align-items: start;
+    }
+    .deal-command-dock .deal-selected-preview p {
+      display: none;
+    }
+    .deal-command-dock .deal-selected-preview h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+    .deal-command-dock .deal-selected-preview .icon-button {
+      margin-top: -8px;
+      margin-bottom: -8px;
+    }
+    .deal-command-dock .deal-move-form {
+      gap: 5px 8px;
+    }
+    .deal-command-dock .deal-move-summary {
+      font-size: 10px;
+      line-height: 1.3;
+    }
+    .deal-command-dock .deal-commit-actions {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .deal-command-dock .deal-commit-actions > .button {
+      flex: 1 0 100%;
+      font-size: 12px;
+      min-height: 44px;
+    }
+    .deal-command-dock .deal-resolution {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 6px;
+    }
+    .deal-command-dock .deal-resolution > div:first-child {
+      grid-row: auto;
+    }
+    .deal-command-dock .deal-resolution-actions {
+      grid-column: 1;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .deal-command-dock .deal-resolution-actions > .button {
+      flex: 1 0 100%;
+      min-height: 44px;
+    }
+    .deal-board-scroll .playing-card.playing-card--property.playing-card--compact {
+      --card-width: 148px;
+      --card-height: 44px;
+      display: flex;
+      align-items: center;
+      padding: 5px 30px 4px 7px;
+      border-radius: 5px;
+    }
+    .deal-board-scroll .playing-card--property .property-band {
+      height: 3px;
+    }
+    .deal-board-scroll .deal-card-meta > span:first-child,
+    .deal-board-scroll .deal-card-foot {
+      display: none;
+    }
+    .deal-board-scroll .playing-card--property .property-value {
+      position: absolute;
+      top: 8px;
+      right: 5px;
+      font-size: 10px;
+    }
+    .deal-board-scroll .deal-card-body {
+      gap: 1px;
+    }
+    .deal-board-scroll .deal-collection-cards {
+      flex-direction: column;
+    }
+    .deal-board-scroll .deal-collection {
+      min-width: 160px;
+    }
+    .deal-board-scroll .deal-collection > footer > span {
+      display: none;
+    }
+    .deal-board-scroll .deal-collection > footer {
+      justify-content: end;
+    }
+    .deal-board-scroll .playing-card.playing-card--property.playing-card--compact .property-name {
+      font-size: 10px;
+    }
+    .deal-workspace .deal-stock .pile-shadow {
+      width: 40px;
+      height: 57px;
+    }
+    .deal-workspace .deal-stock .playing-card {
+      transform: scale(0.5);
+      margin-right: -40px;
+      margin-bottom: -57px;
+    }
+  }
+}

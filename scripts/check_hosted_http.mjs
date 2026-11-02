@@ -30,6 +30,7 @@ for (const path of [
   ...portraits.map((portrait) => portrait.image),
   '/design',
   '/design/deal',
+  '/design/midgame',
   '/api/backend/v1/me',
   '/api/dev-session',
 ]) {
@@ -72,7 +73,7 @@ for (const path of [
   console.log(summary);
   const expected = path.endsWith('/me')
     ? 401
-    : ['/api/dev-session', '/design', '/design/deal'].includes(path)
+    : ['/api/dev-session', '/design', '/design/deal', '/design/midgame'].includes(path)
       ? 404
       : 200;
   if (response.status !== expected) throw new Error(`Unexpected status at ${path}`);

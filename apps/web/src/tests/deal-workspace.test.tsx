@@ -160,7 +160,9 @@ describe('Engine-projected Deal workspace', () => {
     expect(dealDetails(payment.match.detail).pendingAction?.amount).toBe(
       dealDetails(payment.match.detail).paymentAmount,
     );
-    expect(renderToStaticMarkup(<DealTable {...payment} />)).toContain('No change is given.');
+    const paymentHtml = renderToStaticMarkup(<DealTable {...payment} />);
+    expect(paymentHtml).toContain('Pay 5M · 0M selected');
+    expect(paymentHtml).toContain('Choose move options');
   });
 
   it('blocks an already selected card move while saving or disconnected', () => {

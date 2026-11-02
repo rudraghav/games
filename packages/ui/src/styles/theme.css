@@ -14,6 +14,11 @@
 @import './shithead.css';
 @import './card-workspaces.css';
 @import './deal-workspace.css';
+@import './decision-dock.css';
+@import './stable-deal.css';
+@import './room-activity.css';
+@import './stable-tables.css';
+@import './hand-navigation.css';
 @theme static {
   --color-canvas: #f6f3ed;
   --color-surface: #fffcf7;

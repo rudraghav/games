@@ -1,5 +1,5 @@
 'use client';
-import { Button, PlayingCard } from '@games/ui';
+import { Button, PlayingCard, DecisionDock } from '@games/ui';
 import { trioDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
@@ -13,7 +13,7 @@ export function TrioTable(props: TableProps) {
     match.actions.filter((o) => o.value.type === 'reveal_table').map((o) => [o.value.choice, o]),
   );
   return (
-    <div className="table-layout modern-game">
+    <div className="table-layout stable-game-table modern-game">
       <PlayerStrip
         {...props}
         playerCaption={(p) => `${p.score} ${p.score === 1 ? 'trio' : 'trios'} · ${p.count} cards`}
@@ -127,14 +127,18 @@ export function TrioTable(props: TableProps) {
             </section>
           ))}
         </div>
-        {review ? (
-          <div className="modern-review">
-            <p>{data.failed ? 'Cards return after this turn.' : 'Trio collected.'}</p>
-            <Button disabled={blocked} onClick={() => onAction(review.value)}>
-              Continue
-            </Button>
-          </div>
-        ) : null}
+        <DecisionDock className="modern-review trio-review" size="compact" label="Trio turn review">
+          {review ? (
+            <>
+              <p>{data.failed ? 'Cards return after this turn.' : 'Trio collected.'}</p>
+              <Button disabled={blocked} onClick={() => onAction(review.value)}>
+                Continue
+              </Button>
+            </>
+          ) : (
+            <p className="small muted">Reveal a table position or request an available hand end.</p>
+          )}
+        </DecisionDock>
       </section>
     </div>
   );
