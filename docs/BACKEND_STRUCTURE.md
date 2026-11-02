@@ -134,3 +134,23 @@ only its authorized view and stores at most 64 own/public rank signatures to
 vary legal choices when a pickup cycle repeats. There is no forced turn limit,
 hidden-state search or model request. An unscored outcome lists all escaped
 players as winners and the final remaining player as the loser.
+
+## Optional Tarot astrology
+
+`app.astrology` owns canonical city resolution, historical timezone validation,
+and deterministic astronomical/chart calculations. It performs no room SQL.
+The room service checks active membership and current solo Tarot participation
+before place search/preview. External geocoding and generation happen outside
+transactional locks; the current match/lease is rechecked before reserving the
+one combined reading request. Location queries are bounded and rate-limited.
+
+Western tropical and Vedic True Chitrapaksha charts use whole-sign houses with
+explicit source/convention/precision labels. AI interprets computed positions;
+it cannot create or change chart data. Birth date/time/place are not included in
+provider context, database reading payloads, action receipts or public history.
+Only a computed draft/chart and the private reading persist in the existing
+Tarot JSON payload. A failed generation can resume that draft explicitly;
+ordinary opt-out clears it. This requires no schema migration. The normal
+reading lease, daily attempt budget, private no-store responses, legacy parser
+and failure/retry behavior remain in force. See `backend/app/astrology/README.md`
+for models and independent numerical references.

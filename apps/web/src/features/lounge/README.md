@@ -23,6 +23,7 @@ original shared illustration assets; no second component or token system exists.
 
 Room setup stays on one focused screen. Optional avatar colours and room name /
 game rules appear on demand; Friends/Bots and seat count remain immediate. The
-header Games link reveals its panel. Focused browser checks exercise tab keys,
+home brand reveals the Games panel; there is no duplicate top-level Games item
+on home. Inner pages retain their navigation. Focused browser checks exercise tab keys,
 filter retention, no-account browsing, member-only shortcuts, errors/retry and
 phone first-fold spacing. Current captures: `docs/evidence/dashboard-tabs-2026-11-02`.

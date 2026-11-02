@@ -6,6 +6,7 @@ const routes: [RegExp, readonly string[]][] = [
   [/^v1\/rooms\/join$/, ['POST']],
   [/^v1\/rooms\/[\da-f-]{36}$/, ['GET']],
   [/^v1\/rooms\/[\da-f-]{36}\/reading$/, ['GET', 'POST']],
+  [/^v1\/rooms\/[\da-f-]{36}\/astrology\/(places|chart)$/, ['POST']],
   [
     /^v1\/rooms\/[\da-f-]{36}\/(heartbeat|start|actions|chat|claim-host|invite|abandon|leave)$/,
     ['POST'],

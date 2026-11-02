@@ -1,0 +1,892 @@
+{
+  "scope": "Local UI information review. No production mutation, provider call or saved-room write.",
+  "games": 27,
+  "legalScenarios": 247,
+  "currentScreenCaptures": 54,
+  "reviewedContactSheets": 6,
+  "checks": {
+    "focusedUnits": {
+      "passed": 20,
+      "files": 4
+    },
+    "combinedInformationDealAndStable": {
+      "passed": 60,
+      "widths": [
+        390,
+        1440
+      ],
+      "scenarioInventory": 243,
+      "note": "Before the subsequent Gang/Paper completed-round density adjustment."
+    },
+    "afterCompletedRoundDensity": {
+      "passed": 40,
+      "widths": [
+        390,
+        1440
+      ],
+      "scenarioInventory": 243,
+      "note": "Includes new height/proximity assertions, existing Gang/Paper controls and stable tables."
+    },
+    "finalScenarioSweep": {
+      "passed": 6,
+      "widths": [
+        390,
+        1440
+      ],
+      "scenarioInventory": 247
+    },
+    "webTypes": "passed",
+    "scopedWebLint": "passed",
+    "dealScenarios": 12
+  },
+  "limits": [
+    "The overlapping browser run counts are not summed as unique tests.",
+    "Sampled legal states do not cover every rare interaction or rule ordering.",
+    "Storybook additions were type-checked; root formal Storybook verification is separate.",
+    "Saved-room and production release proof remain separate from local design routes."
+  ],
+  "perGame": [
+    {
+      "game": "uno",
+      "scenarios": 7,
+      "seatCounts": [
+        2,
+        10
+      ],
+      "phases": [
+        "playing"
+      ],
+      "sampledContinuationTypes": [
+        "accept",
+        "challenge",
+        "draw",
+        "play"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "uno-10-31-22",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-1.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "uno-10-31-22",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-1.webp"
+        }
+      ]
+    },
+    {
+      "game": "uno-no-mercy",
+      "scenarios": 5,
+      "seatCounts": [
+        2,
+        6
+      ],
+      "phases": [
+        "playing"
+      ],
+      "sampledContinuationTypes": [
+        "choose",
+        "play"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "uno-no-mercy-6-31-16",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-1.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "uno-no-mercy-6-31-16",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-1.webp"
+        }
+      ]
+    },
+    {
+      "game": "deal",
+      "scenarios": 34,
+      "seatCounts": [
+        2,
+        5
+      ],
+      "phases": [
+        "playing"
+      ],
+      "sampledContinuationTypes": [
+        "accept",
+        "bank",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "deal-5-31-62",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-1.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "deal-5-31-62",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-1.webp"
+        }
+      ]
+    },
+    {
+      "game": "deal-no-mercy",
+      "scenarios": 36,
+      "seatCounts": [
+        2,
+        5
+      ],
+      "phases": [
+        "playing"
+      ],
+      "sampledContinuationTypes": [
+        "accept",
+        "choose",
+        "give",
+        "keep",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange",
+        "settle_debt"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "deal-no-mercy-5-31-49",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-1.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "deal-no-mercy-5-31-49",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-1.webp"
+        }
+      ]
+    },
+    {
+      "game": "holdem",
+      "scenarios": 8,
+      "seatCounts": [
+        2,
+        9
+      ],
+      "phases": [
+        "flop",
+        "preflop",
+        "river",
+        "turn"
+      ],
+      "sampledContinuationTypes": [
+        "call",
+        "check"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "holdem-9-31-28",
+          "phase": "river",
+          "contactSheet": "catalogue/desktop-1.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "holdem-9-31-28",
+          "phase": "river",
+          "contactSheet": "catalogue/phone-1.webp"
+        }
+      ]
+    },
+    {
+      "game": "rummy",
+      "scenarios": 6,
+      "seatCounts": [
+        2,
+        6
+      ],
+      "phases": [
+        "discard",
+        "draw"
+      ],
+      "sampledContinuationTypes": [
+        "declare",
+        "discard",
+        "draw_stock"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "rummy-6-31-32",
+          "phase": "discard",
+          "contactSheet": "catalogue/desktop-1.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "rummy-6-31-32",
+          "phase": "discard",
+          "contactSheet": "catalogue/phone-1.webp"
+        }
+      ]
+    },
+    {
+      "game": "teen-patti",
+      "scenarios": 6,
+      "seatCounts": [
+        2,
+        6
+      ],
+      "phases": [
+        "playing"
+      ],
+      "sampledContinuationTypes": [
+        "accept",
+        "bet",
+        "peek",
+        "sideshow"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "teen-patti-6-31-3",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-1.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "teen-patti-6-31-3",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-1.webp"
+        }
+      ]
+    },
+    {
+      "game": "blackjack",
+      "scenarios": 6,
+      "seatCounts": [
+        1,
+        7
+      ],
+      "phases": [
+        "betting",
+        "insurance",
+        "playing"
+      ],
+      "sampledContinuationTypes": [
+        "bet",
+        "decline",
+        "double",
+        "hit",
+        "split"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "blackjack-7-31-11",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-1.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "blackjack-7-31-11",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-1.webp"
+        }
+      ]
+    },
+    {
+      "game": "skyjo",
+      "scenarios": 16,
+      "seatCounts": [
+        2,
+        8
+      ],
+      "phases": [
+        "between_rounds",
+        "opening",
+        "playing",
+        "reveal"
+      ],
+      "sampledContinuationTypes": [
+        "draw_discard",
+        "draw_stock",
+        "next_round",
+        "reveal",
+        "swap"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "skyjo-8-31-228",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-1.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "skyjo-8-31-228",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-1.webp"
+        }
+      ]
+    },
+    {
+      "game": "tarot",
+      "scenarios": 4,
+      "seatCounts": [
+        1
+      ],
+      "phases": [
+        "choosing"
+      ],
+      "sampledContinuationTypes": [
+        "pick"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "tarot-1-17-3",
+          "phase": "choosing",
+          "contactSheet": "catalogue/desktop-2.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "tarot-1-17-3",
+          "phase": "choosing",
+          "contactSheet": "catalogue/phone-2.webp"
+        }
+      ]
+    },
+    {
+      "game": "four-in-a-row",
+      "scenarios": 6,
+      "seatCounts": [
+        2
+      ],
+      "phases": [
+        "playing"
+      ],
+      "sampledContinuationTypes": [
+        "drop"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "four-in-a-row-2-17-16",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-2.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "four-in-a-row-2-17-16",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-2.webp"
+        }
+      ]
+    },
+    {
+      "game": "reversi",
+      "scenarios": 6,
+      "seatCounts": [
+        2
+      ],
+      "phases": [
+        "playing"
+      ],
+      "sampledContinuationTypes": [
+        "place"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "reversi-2-17-16",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-2.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "reversi-2-17-16",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-2.webp"
+        }
+      ]
+    },
+    {
+      "game": "word-agents",
+      "scenarios": 4,
+      "seatCounts": [
+        4,
+        10
+      ],
+      "phases": [
+        "clue",
+        "guess"
+      ],
+      "sampledContinuationTypes": [
+        "clue",
+        "guess"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "word-agents-10-31-6",
+          "phase": "clue",
+          "contactSheet": "catalogue/desktop-2.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "word-agents-10-31-6",
+          "phase": "clue",
+          "contactSheet": "catalogue/phone-2.webp"
+        }
+      ]
+    },
+    {
+      "game": "gem-market",
+      "scenarios": 5,
+      "seatCounts": [
+        2,
+        4
+      ],
+      "phases": [
+        "patron",
+        "playing",
+        "return_tokens"
+      ],
+      "sampledContinuationTypes": [
+        "patron",
+        "return",
+        "take"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "gem-market-4-31-53",
+          "phase": "return_tokens",
+          "contactSheet": "catalogue/desktop-2.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "gem-market-4-31-53",
+          "phase": "return_tokens",
+          "contactSheet": "catalogue/phone-2.webp"
+        }
+      ]
+    },
+    {
+      "game": "checkers",
+      "scenarios": 8,
+      "seatCounts": [
+        2
+      ],
+      "phases": [
+        "playing"
+      ],
+      "sampledContinuationTypes": [
+        "move"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "checkers-2-31-107",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-2.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "checkers-2-31-107",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-2.webp"
+        }
+      ]
+    },
+    {
+      "game": "mancala",
+      "scenarios": 6,
+      "seatCounts": [
+        2
+      ],
+      "phases": [
+        "playing"
+      ],
+      "sampledContinuationTypes": [
+        "sow"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "mancala-2-17-16",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-2.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "mancala-2-17-16",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-2.webp"
+        }
+      ]
+    },
+    {
+      "game": "flip-7",
+      "scenarios": 6,
+      "seatCounts": [
+        3,
+        10
+      ],
+      "phases": [
+        "playing",
+        "round_over",
+        "target"
+      ],
+      "sampledContinuationTypes": [
+        "hit",
+        "next_round",
+        "target_effect"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "flip-7-10-31-4",
+          "phase": "target",
+          "contactSheet": "catalogue/desktop-2.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "flip-7-10-31-4",
+          "phase": "target",
+          "contactSheet": "catalogue/phone-2.webp"
+        }
+      ]
+    },
+    {
+      "game": "trio",
+      "scenarios": 4,
+      "seatCounts": [
+        3,
+        6
+      ],
+      "phases": [
+        "revealing",
+        "review"
+      ],
+      "sampledContinuationTypes": [
+        "continue",
+        "reveal_table"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "trio-6-31-3",
+          "phase": "review",
+          "contactSheet": "catalogue/desktop-2.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "trio-6-31-3",
+          "phase": "review",
+          "contactSheet": "catalogue/phone-2.webp"
+        }
+      ]
+    },
+    {
+      "game": "azul",
+      "scenarios": 10,
+      "seatCounts": [
+        2,
+        4
+      ],
+      "phases": [
+        "drafting",
+        "placing",
+        "round_over"
+      ],
+      "sampledContinuationTypes": [
+        "draft_tiles",
+        "next_round",
+        "place_tiles"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "azul-2-17-6",
+          "phase": "placing",
+          "contactSheet": "catalogue/desktop-3.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "azul-2-17-6",
+          "phase": "placing",
+          "contactSheet": "catalogue/phone-3.webp"
+        }
+      ]
+    },
+    {
+      "game": "spill-or-chill",
+      "scenarios": 4,
+      "seatCounts": [
+        3,
+        10
+      ],
+      "phases": [
+        "answer",
+        "reveal"
+      ],
+      "sampledContinuationTypes": [
+        "next_prompt",
+        "respond"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "spill-or-chill-10-31-3",
+          "phase": "answer",
+          "contactSheet": "catalogue/desktop-3.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "spill-or-chill-10-31-3",
+          "phase": "answer",
+          "contactSheet": "catalogue/phone-3.webp"
+        }
+      ]
+    },
+    {
+      "game": "most-likely",
+      "scenarios": 4,
+      "seatCounts": [
+        3,
+        10
+      ],
+      "phases": [
+        "reveal",
+        "vote"
+      ],
+      "sampledContinuationTypes": [
+        "next_prompt",
+        "vote"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "most-likely-10-31-11",
+          "phase": "reveal",
+          "contactSheet": "catalogue/desktop-3.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "most-likely-10-31-11",
+          "phase": "reveal",
+          "contactSheet": "catalogue/phone-3.webp"
+        }
+      ]
+    },
+    {
+      "game": "hot-seat",
+      "scenarios": 6,
+      "seatCounts": [
+        3,
+        10
+      ],
+      "phases": [
+        "predict",
+        "reveal"
+      ],
+      "sampledContinuationTypes": [
+        "choose",
+        "next_prompt",
+        "predict"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "hot-seat-10-31-13",
+          "phase": "predict",
+          "contactSheet": "catalogue/desktop-3.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "hot-seat-10-31-13",
+          "phase": "predict",
+          "contactSheet": "catalogue/phone-3.webp"
+        }
+      ]
+    },
+    {
+      "game": "the-gang",
+      "scenarios": 12,
+      "seatCounts": [
+        3,
+        6
+      ],
+      "phases": [
+        "chips",
+        "heist_review",
+        "showdown"
+      ],
+      "sampledContinuationTypes": [
+        "claim_chip",
+        "next_heist",
+        "reveal_hand"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "the-gang-6-31-31",
+          "phase": "heist_review",
+          "contactSheet": "catalogue/desktop-3.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "the-gang-6-31-31",
+          "phase": "heist_review",
+          "contactSheet": "catalogue/phone-3.webp"
+        }
+      ]
+    },
+    {
+      "game": "six-nimmt",
+      "scenarios": 8,
+      "seatCounts": [
+        2,
+        10
+      ],
+      "phases": [
+        "review",
+        "round_over",
+        "selecting",
+        "take_row"
+      ],
+      "sampledContinuationTypes": [
+        "next_round",
+        "next_selection",
+        "select_number",
+        "take_row"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "six-nimmt-10-31-117",
+          "phase": "round_over",
+          "contactSheet": "catalogue/desktop-3.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "six-nimmt-10-31-117",
+          "phase": "round_over",
+          "contactSheet": "catalogue/phone-3.webp"
+        }
+      ]
+    },
+    {
+      "game": "sea-salt-paper",
+      "scenarios": 16,
+      "seatCounts": [
+        2,
+        4
+      ],
+      "phases": [
+        "choosing",
+        "crab_card",
+        "crab_pile",
+        "draw",
+        "playing",
+        "round_over",
+        "steal"
+      ],
+      "sampledContinuationTypes": [
+        "end_turn",
+        "inspect",
+        "keep",
+        "next_round",
+        "steal",
+        "stop",
+        "take_inspected",
+        "take_stock"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "sea-salt-paper-4-31-73",
+          "phase": "round_over",
+          "contactSheet": "catalogue/desktop-3.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "sea-salt-paper-4-31-73",
+          "phase": "round_over",
+          "contactSheet": "catalogue/phone-3.webp"
+        }
+      ]
+    },
+    {
+      "game": "boop",
+      "scenarios": 10,
+      "seatCounts": [
+        2
+      ],
+      "phases": [
+        "graduating",
+        "placing"
+      ],
+      "sampledContinuationTypes": [
+        "graduate",
+        "place"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "boop-2-17-18",
+          "phase": "graduating",
+          "contactSheet": "catalogue/desktop-3.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "boop-2-17-18",
+          "phase": "graduating",
+          "contactSheet": "catalogue/phone-3.webp"
+        }
+      ]
+    },
+    {
+      "game": "shithead",
+      "scenarios": 4,
+      "seatCounts": [
+        2,
+        5
+      ],
+      "phases": [
+        "playing",
+        "setup"
+      ],
+      "sampledContinuationTypes": [
+        "arrange",
+        "play"
+      ],
+      "currentCaptures": [
+        {
+          "width": 1440,
+          "scenario": "shithead-5-31-6",
+          "phase": "playing",
+          "contactSheet": "catalogue/desktop-3.webp"
+        },
+        {
+          "width": 390,
+          "scenario": "shithead-5-31-6",
+          "phase": "playing",
+          "contactSheet": "catalogue/phone-3.webp"
+        }
+      ]
+    }
+  ]
+}

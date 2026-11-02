@@ -26,3 +26,4 @@ export { WordTile } from './components/WordTile';
 export { DevelopmentCard, ResourceToken, gemColors } from './components/DevelopmentCard';
 
 export { SegmentedTabs } from './components/SegmentedTabs';
+export { dealPropertyNames, dealCardInstructions } from './lib/deal-card-info';

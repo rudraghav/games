@@ -225,8 +225,24 @@ Current stable-play evidence lives in `evidence/stable-play-2026-11-02`: 235 leg
 
 SegmentedTabs owns labelled tab/tabpanel relationships, one roving tab stop and
 Left/Right/Home/End activation. Inactive panels stay mounted but hidden, retaining
-search/filter state. The header Games link reveals the Games panel. ChoiceGroup
+search/filter state. Home omits the redundant Games navigation item; its Games
+home brand reveals the Games panel. Inner pages retain their Games link. ChoiceGroup
 adds a typed segmented variant for form choices. Modal forwards an optional
 Escape handler so nested optional controls can close before their parent dialog.
 The shared font tokens have valid sans/serif fallbacks when Next font variables
 are absent in Storybook; the app keeps its existing DM Sans/Fraunces faces.
+
+Decision-information review is tracked per game in
+`evidence/game-info-2026-11-02/README.md`, including layout and unverified branches.
+Deal keeps inspection separate from playing: Info opens a readable dialog for a
+hand card or public set, including both printed wild groups, set completion and
+labelled rent tiers. The table stays in place and nested inspection returns focus
+to the exact opener. Azul shows legal-line fit/overflow before placement and keeps
+floor penalties visible under occupied slots; the server remains the move judge.
+
+Optional Tarot astrology reuses ChoiceGroup, SegmentedTabs, Button and the existing
+private reading flow. Western uses an interactive wheel, Vedic a North Indian
+house diagram. Both include accessible selection and placement/house/aspect tables.
+The frontend draws only server-calculated positions and names the calculation
+convention. The birth form invalidates previews when inputs change and never
+persists raw birth details in browser storage.

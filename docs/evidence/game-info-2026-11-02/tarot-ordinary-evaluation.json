@@ -1,0 +1,56 @@
+{
+  "fixture": "Public J2000 reference; synthetic question; no personal birth input",
+  "mode": "ordinary",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "pop-tarot-5",
+  "seconds": 3.97,
+  "reading": {
+    "title": "A Creative Leap",
+    "introduction": "Welcome to your personal tarot reflection. If you are wondering how to carve out space for a new creative hobby, let us look at where you stand, what is shifting, and what your next move might be using three simple cards.",
+    "next_step": "Take five minutes today to write down a single idea you want to explore without judging whether it is good or practical.",
+    "cards": [
+      {
+        "card_id": "major-00",
+        "position": "Where you are",
+        "title": "The Fool",
+        "interpretation": "You find yourself standing at the edge of something entirely new, feeling a blend of curiosity and hesitation about starting a creative hobby. This is a moment of fresh beginnings, where your natural wonder invites you to take a thoughtful leap into uncharted territory without needing to know the final destination.",
+        "quirky_interpretation": "You are like someone nervously tiptoed to the edge of a diving board, staring down at the pool while holding a paintbrush and wearing very serious socks, ready to plunge into the unknown.",
+        "characters": [
+          {
+            "name": "Ted Lasso",
+            "source": "Ted Lasso",
+            "connection": "Ted approaches unfamiliar challenges with an open heart and a willingness to look foolish while learning, embodying the fresh beginner energy of this card."
+          }
+        ]
+      },
+      {
+        "card_id": "wands-01",
+        "position": "What is shifting",
+        "title": "Ace of Wands",
+        "interpretation": "A vibrant creative spark is beginning to demand your attention, urging you to try a small first experiment rather than waiting for ideal conditions. Your inner enthusiasm is bubbling up and looking for a healthy outlet in your daily routine.",
+        "quirky_interpretation": "Your inspiration is like an overly caffeinated squirrel suddenly discovering a trampoline made of pure electricity, bouncing wildly and demanding immediate artistic expression.",
+        "characters": [
+          {
+            "name": "Tony Stark",
+            "source": "Iron Man",
+            "connection": "Tony constantly chases sudden technological and creative sparks, diving headfirst into frantic tinkering sessions to bring his wild ideas to life."
+          }
+        ]
+      },
+      {
+        "card_id": "major-08",
+        "position": "Your next move",
+        "title": "Strength",
+        "interpretation": "When facing obstacles or the inner critic that tells you there is no time, meet the difficulty with patient courage rather than brute force. Gentle consistency will help you carve out space for your hobby more effectively than rigid discipline.",
+        "quirky_interpretation": "Channel the serene composure of someone quietly convincing a very stubborn toaster to cooperate using only kind words and steady breathing.",
+        "characters": [
+          {
+            "name": "Hermione Granger",
+            "source": "Harry Potter",
+            "connection": "Hermione applies steady patience, quiet resolve, and immense inner courage to overcome daunting hurdles through careful, consistent effort."
+          }
+        ]
+      }
+    ]
+  }
+}

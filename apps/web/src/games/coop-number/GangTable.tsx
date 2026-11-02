@@ -26,6 +26,7 @@ export function GangTable(props: TableProps) {
   const next = match.actions.find((o) => o.value.type === 'next_heist');
   const giveBack = match.actions.find((o) => o.value.type === 'return_chip');
   const simultaneous = match.phase === 'chips';
+  const roundComplete = ['heist_review', 'finished'].includes(match.phase);
   const instruction = !chosen
     ? 'Choose the chip that matches your hand.'
     : owner
@@ -47,7 +48,7 @@ export function GangTable(props: TableProps) {
           data.chips[p.id] ? `${data.chips[p.id]}-star estimate` : 'Choosing a chip'
         }
       />
-      <section className="gang-table" aria-label="The Gang table">
+      <section className="gang-table" aria-label="The Gang table" data-phase={match.phase}>
         <header className="coop-number-heading">
           <div>
             <p className="eyebrow">Heist {data.heist} · Basic game</p>
@@ -89,7 +90,7 @@ export function GangTable(props: TableProps) {
         </section>
         <DecisionDock
           className="gang-turn-dock"
-          size="extended"
+          size={roundComplete ? 'compact' : 'extended'}
           label="Ranking and reveal decisions"
           pending={pending}
         >
@@ -183,6 +184,22 @@ export function GangTable(props: TableProps) {
               ) : null}
             </section>
           ) : null}
+          {roundComplete ? (
+            <div className="coop-number-review">
+              <p>
+                {next
+                  ? data.last_success
+                    ? 'The crew got the order right.'
+                    : 'An alarm, not the end. Try a new hand together.'
+                  : match.message}
+              </p>
+              {next ? (
+                <Button disabled={blocked} onClick={() => onAction(next.value)}>
+                  Next heist
+                </Button>
+              ) : null}
+            </div>
+          ) : null}
         </DecisionDock>
         {data.revealed.length ? (
           <div className="gang-revealed" aria-label="Revealed crew hands">
@@ -229,18 +246,6 @@ export function GangTable(props: TableProps) {
               ))}
             </div>
           </section>
-        ) : null}
-        {next ? (
-          <div className="coop-number-review">
-            <p>
-              {data.last_success
-                ? 'The crew got the order right.'
-                : 'An alarm, not the end. Try a new hand together.'}
-            </p>
-            <Button disabled={blocked} onClick={() => onAction(next.value)}>
-              Next heist
-            </Button>
-          </div>
         ) : null}
       </section>
     </div>

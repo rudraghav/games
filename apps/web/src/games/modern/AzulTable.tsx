@@ -7,6 +7,7 @@ import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
 
 const colors = ['blue', 'yellow', 'red', 'black', 'white'] as const;
+const floorPenalties = [1, 1, 2, 2, 2, 3, 3];
 function Tile({ color, ghost = false }: { color: string; ghost?: boolean }) {
   return (
     <span className="azul-tile" data-color={color} data-ghost={ghost} aria-label={`${color} tile`}>
@@ -103,6 +104,11 @@ export function AzulTable(props: TableProps) {
         </div>
         <div className="azul-supply">
           {offer(data.center, 'center')}
+          {data.marker ? (
+            <p className="small muted azul-marker-note">
+              First from the centre: start next round and add the marker to your floor.
+            </p>
+          ) : null}
           <div className="azul-factory-navigation">
             <h3>{data.factories.length} factories</h3>
             <div>
@@ -169,30 +175,44 @@ export function AzulTable(props: TableProps) {
               <div className="azul-board-body">
                 <div className="azul-pattern-lines" aria-label="Pattern lines">
                   {data.lines[player.id].map((line, row) => {
+                    const spaces = row + 1 - line.length;
                     const option =
                       player.id === selfId
                         ? match.actions.find(
                             (o) => o.value.type === 'place_tiles' && o.value.choice === String(row),
                           )
                         : undefined;
+                    const fits = Math.min(spaces, data.draft.length);
+                    const overflow = Math.max(0, data.draft.length - spaces);
+                    const consequence = option
+                      ? `${fits} fit${overflow ? ` · ${overflow} to floor` : ' · no overflow'}`
+                      : `${spaces} ${spaces === 1 ? 'space' : 'spaces'} open`;
                     return (
                       <button
                         type="button"
                         className="azul-pattern-line"
                         key={row}
-                        aria-label={`Place on pattern line ${row + 1}, ${row + 1 - line.length} spaces available`}
+                        aria-label={`Place on pattern line ${row + 1}, ${spaces} spaces available${option ? `; ${fits} tiles fit, ${overflow} go to floor` : ''}`}
                         disabled={blocked || !option}
                         onClick={() => option && onAction(option.value)}
                       >
                         <small>{row + 1}</small>
-                        <span>
-                          {Array.from({ length: row + 1 }, (_, col) =>
-                            col < row + 1 - line.length ? (
-                              <span key={col} className="azul-tile azul-tile--empty" />
-                            ) : (
-                              <Tile key={col} color={line[col - (row + 1 - line.length)]} />
-                            ),
-                          )}
+                        <span className="azul-pattern-choice">
+                          <span className="azul-pattern-tiles">
+                            {Array.from({ length: row + 1 }, (_, col) =>
+                              col < row + 1 - line.length ? (
+                                <span key={col} className="azul-tile azul-tile--empty" />
+                              ) : (
+                                <Tile key={col} color={line[col - (row + 1 - line.length)]} />
+                              ),
+                            )}
+                          </span>
+                          <small
+                            className="azul-pattern-consequence"
+                            data-overflow={!!option && overflow > 0}
+                          >
+                            {consequence}
+                          </small>
                         </span>
                       </button>
                     );
@@ -211,15 +231,22 @@ export function AzulTable(props: TableProps) {
                 </div>
               </div>
               <div className="azul-floor">
-                <span className="small muted">Floor</span>
+                <span className="small muted">
+                  Floor · −
+                  {floorPenalties
+                    .slice(0, data.floors[player.id].length)
+                    .reduce((sum, value) => sum + value, 0)}{' '}
+                  points
+                </span>
                 <div>
                   {Array.from({ length: 7 }, (_, i) => (
                     <span key={i} className="azul-floor-cell">
                       {data.floors[player.id][i] ? (
                         <Tile color={data.floors[player.id][i]} />
                       ) : (
-                        <small>−{[1, 1, 2, 2, 2, 3, 3][i]}</small>
+                        <span className="azul-floor-empty" aria-hidden="true" />
                       )}
+                      <small>−{floorPenalties[i]}</small>
                     </span>
                   ))}
                 </div>

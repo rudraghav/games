@@ -3,7 +3,7 @@
 Routine `pnpm test:browser` checks independent sessions and responsive controls.
 
 `deal-workspace.spec.ts` also checks the local-only `/design/deal` review harness.
-Its eleven synthetic scenarios and paired outcomes come from real Deal engine
+Its twelve synthetic scenarios and paired outcomes come from real Deal engine
 actions and authorized projections, with conservation/privacy assertions in
 `scripts/export_deal_scenarios.py`. Only public views and visible test identifiers
 are exported. `--check` participates in the contracts gate. The review page

@@ -1,6 +1,8 @@
 /* Shared navigation and room setup variants. */
 @import './dashboard-tabs.css';
 @import './room-setup.css';
+@import './game-info.css';
+@import './tarot-astrology.css';
 @import './tables.css';
 @import './tarot.css';
 @import './expansion.css';

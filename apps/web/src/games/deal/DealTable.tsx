@@ -1,16 +1,26 @@
 'use client';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Hand, Button, CardPile, DecisionDock, TableDecisionPanel } from '@games/ui';
 import { dealDetails, type ActionOption } from '@games/api-client';
-import { ArrowRight, CircleHelp, ShieldCheck, SlidersHorizontal, X } from 'lucide-react';
+import { ArrowRight, CircleHelp, Info, ShieldCheck, SlidersHorizontal, X } from 'lucide-react';
 import { playerName, type TableProps } from '../types';
 import { DealPlayer } from './DealPlayer';
 import { DealComposer, optionKey } from './DealComposer';
 import { bankValue, suggestBankPayment } from './presentation';
+import { DealCardInformation } from './DealCardInformation';
+import { dealInfoEntries } from './information';
 
 export function DealTable(props: TableProps) {
   const { match, room, selfId, pending } = props;
   const details = dealDetails(match.detail);
+  const informationCards = dealInfoEntries(match, room, selfId, details);
+  const [inspected, setInspected] = useState<string | null>(null);
+  const infoOpener = useRef<HTMLElement | null>(null);
+  const inspect = (id: string) => {
+    infoOpener.current =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setInspected(id);
+  };
   const resolutionKey = details.pending
     ? `${room.matchVersion}:${details.pendingAction?.stage || details.pending}`
     : null;
@@ -94,6 +104,7 @@ export function DealTable(props: TableProps) {
     placements,
     candidate,
     onSelect: select,
+    onInspect: inspect,
     onDestination: choose,
     previewIds: candidate
       ? [candidate.value.choice, ...(candidate.value.cards || [])].filter(Boolean)
@@ -174,6 +185,16 @@ export function DealTable(props: TableProps) {
             </strong>
             {card || details.pending ? (
               <>
+                {card ? (
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    aria-label={`Info about ${card.label}`}
+                    onClick={() => inspect(card.id)}
+                  >
+                    <Info size={17} />
+                  </Button>
+                ) : null}
                 <Button
                   size="icon"
                   variant="ghost"
@@ -352,15 +373,16 @@ export function DealTable(props: TableProps) {
             <h3>
               Your hand <span className="muted">{match.hand.length}</span>
             </h3>
-            <span className="small muted">
-              {match.phase === 'discard'
-                ? 'Discard down to 7'
-                : pending
-                  ? 'Saving…'
-                  : match.hand.length
-                    ? 'Select a card to play'
-                    : 'No cards in hand'}
-            </span>
+            <Button
+              className="deal-hand-info"
+              size="sm"
+              variant="ghost"
+              disabled={!informationCards.length}
+              onClick={() => inspect(selected || match.hand[0]?.id || informationCards[0].card.id)}
+            >
+              <Info size={16} />
+              Card info
+            </Button>
           </div>
           <Hand
             cards={match.hand}
@@ -391,6 +413,16 @@ export function DealTable(props: TableProps) {
           ) : null}
         </details>
       </div>
+      {inspected ? (
+        <DealCardInformation
+          {...props}
+          details={details}
+          cardId={inspected}
+          onCardChange={setInspected}
+          onClose={() => setInspected(null)}
+          restoreFocus={() => infoOpener.current?.focus({ preventScroll: true })}
+        />
+      ) : null}
     </div>
   );
 }

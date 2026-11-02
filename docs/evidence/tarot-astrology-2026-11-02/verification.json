@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-02",
+  "state": "local-verified-not-released-by-child",
+  "unitCases": 13,
+  "actualRoomBrowserCases": 12,
+  "actualRoomBrowserSeconds": 34.5,
+  "focusedDstCases": 2,
+  "focusedDstSeconds": 6.6,
+  "storybookCases": 28,
+  "storybookWidths": [320, 390, 768, 1440],
+  "storybookReducedMotion": true,
+  "realGeocoderCalculatorCases": 2,
+  "realGeocoderCalculatorSeconds": 6.8,
+  "childGeminiRequests": 0,
+  "checks": [
+    "web-types",
+    "scoped-lint",
+    "storybook-build",
+    "no-page-overflow",
+    "native-controls-at-least44px",
+    "every-western-body-pointer-at320",
+    "keyboard-planet-selection",
+    "stale-search-and-chart-rejected",
+    "birth-fields-absent-urls-storage",
+    "off-body-omits-astrology-and-reuse",
+    "owned-rooms-closed-get404"
+  ],
+  "productionDeployment": "parent-task-owned"
+}

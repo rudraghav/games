@@ -9,6 +9,13 @@ export function FlipSevenTable(props: TableProps) {
   const { match, room, selfId } = props;
   const data = flipSevenDetails(match.detail);
   const review = ['round_over', 'finished'].includes(match.phase);
+  const pendingEffects: Record<string, string> = {
+    Freeze: 'Freeze banks the chosen player’s round points.',
+    'Flip Three':
+      'Flip Three makes the chosen player draw up to three cards; a duplicate can bust them.',
+    'Second Chance': 'Second Chance protects the chosen player from one duplicate number.',
+  };
+  const pendingEffect = pendingEffects[data.pending_card];
   const players = [...match.players].sort(
     (a, b) => Number(b.id === selfId) - Number(a.id === selfId),
   );
@@ -82,10 +89,10 @@ export function FlipSevenTable(props: TableProps) {
           {...props}
           instruction={
             data.pending_card
-              ? `Choose an active player for ${data.pending_card}.`
+              ? `${pendingEffect || data.pending_card} Choose an eligible player.`
               : review
                 ? 'Round complete.'
-                : 'Seven different numbers ends the round.'
+                : 'A duplicate busts. Seven different numbers end the round with a 15-point bonus.'
           }
         />
         <div className="flip-player-grid" aria-label="Other players’ cards and round scores">

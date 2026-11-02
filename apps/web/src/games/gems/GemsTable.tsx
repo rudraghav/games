@@ -129,7 +129,9 @@ export function GemsTable(props: TableProps) {
         </div>
         {canTake ? (
           <div className="gem-take-controls">
-            <p className="small muted">Choose three different gems, or tap one colour twice.</p>
+            <p className="small muted">
+              Choose three different gems, or tap one colour twice when at least four remain.
+            </p>
             <Button
               disabled={!take || pending || room.paused}
               onClick={() => take && submit(take.value)}
@@ -238,6 +240,21 @@ export function GemsTable(props: TableProps) {
                 </span>
               ) : null}
             </summary>
+            {player.id !== selfId ? (
+              <div
+                className="gem-discounts"
+                aria-label={`${playerName(room, player.id)} public tokens`}
+              >
+                {gemColors.map((color) => (
+                  <ResourceToken
+                    key={color}
+                    color={color}
+                    count={data.tokens[player.id]?.[color] || 0}
+                    compact
+                  />
+                ))}
+              </div>
+            ) : null}
             <div className="gem-discounts">
               {gemColors
                 .filter((color) => color !== 'gold')

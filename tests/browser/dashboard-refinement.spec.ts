@@ -232,11 +232,10 @@ test('Games and Rooms use keyboard tabs, preserve filters and never create a bro
   await expect(games).toBeFocused();
   await games.press('ArrowLeft');
   await expect(rooms).toBeFocused();
-  const homeLink = page
-    .getByRole('navigation', { name: 'Main navigation', exact: true })
-    .getByRole('link', { name: 'Games', exact: true });
-  if (await homeLink.isVisible()) await homeLink.click();
-  else await games.click();
+  await expect(page.getByRole('navigation', { name: 'Main navigation', exact: true })).toHaveCount(
+    0,
+  );
+  await page.getByRole('link', { name: 'Games home', exact: true }).click();
   await expect(games).toHaveAttribute('aria-selected', 'true');
   await expect(search).toHaveValue('uno');
   await expect(page.getByRole('combobox', { name: 'Players', exact: true })).toHaveValue('2');

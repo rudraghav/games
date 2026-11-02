@@ -12,8 +12,9 @@ Selections and optional values survive mode changes; game changes clamp capacity
 and reset only game-specific rules. Remembered name/avatar and saved profile
 remain the defaults.
 
-`SiteHeader` accepts an optional Games navigation callback so the lounge can
-reveal its mounted Games panel before following its existing hash link. Shared
+`SiteHeader` hides its Games navigation item on the lounge, which already has
+Games/Rooms tabs. The Games home brand reveals the mounted Games panel while
+preserving search and filters. Inner pages retain the Games navigation link. Shared
 UI primitives and semantic tokens remain in `@games/ui`, not in feature modules.
 
 Focused coverage lives in library-browsing, dashboard-refinement and dashboard-live

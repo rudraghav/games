@@ -1,0 +1,708 @@
+{
+  "fixture": "Public J2000 reference; synthetic question; no personal birth input",
+  "mode": "both",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "pop-tarot-6",
+  "seconds": 5.96,
+  "reading": {
+    "title": "Creative Beginnings Tarot Spread",
+    "introduction": "Making room for a creative hobby requires stepping into new territory with curiosity and patience. Here is a three-card reflection to help you explore your starting point, current shifts, and steady next moves.",
+    "next_step": "Dedicate just ten uninterrupted minutes today to start your small creative experiment without judging the outcome.",
+    "cards": [
+      {
+        "card_id": "major-00",
+        "position": "Where you are",
+        "title": "The Fool: Fresh Beginnings",
+        "interpretation": "You stand at the threshold of a new creative journey, feeling a mix of curiosity and hesitation about carving out time for a hobby. This position invites you to embrace beginner's mind, acknowledging that starting small is enough when making space for your passions.",
+        "quirky_interpretation": "You are currently hovering on the edge of a cliff like a enthusiastic toddler wearing a cape made of expired coupons, ready to dive headfirst into watercolor paints despite owning zero brushes.",
+        "characters": [
+          {
+            "name": "Ted Lasso",
+            "source": "Ted Lasso",
+            "connection": "Like Ted approaching unfamiliar cultural norms with boundless optimism and curiosity, you are stepping into a new creative hobby with an open heart and a willingness to learn."
+          }
+        ]
+      },
+      {
+        "card_id": "wands-01",
+        "position": "What is shifting",
+        "title": "Ace of Wands: The Spark",
+        "interpretation": "A fresh creative spark is demanding attention right now, asking for a small first experiment to vent your growing enthusiasm. Your internal landscape is shifting away from routine and toward energetic self-expression.",
+        "quirky_interpretation": "An invisible match is currently striking underneath your daily routine, threatening to turn your neatly organized afternoon schedule into an enthusiastic bonfire of colorful sticky notes and half-finished clay sculptures.",
+        "characters": [
+          {
+            "name": "Tony Stark",
+            "source": "Iron Man",
+            "connection": "Much like Tony tinkering away in his workshop to bring a sudden flash of inspiration into reality, you are experiencing an energetic shift that demands a tangible creative outlet."
+          }
+        ]
+      },
+      {
+        "card_id": "major-08",
+        "position": "Your next move",
+        "title": "Strength: Patient Courage",
+        "interpretation": "When facing the practical difficulties of carving out time and managing self-doubt, meet the challenge with patient courage rather than harsh force. Gentle persistence will sustain your new hobby far better than rigid discipline.",
+        "quirky_interpretation": "Your next move is to gently herd your stray creative impulses like a very patient librarian trying to convince a pride of wild lions to sit quietly and knit scarves.",
+        "characters": [
+          {
+            "name": "Hermione Granger",
+            "source": "Harry Potter",
+            "connection": "Channeling Hermione's steady dedication and unwavering focus, you can patiently balance your daily responsibilities while nurturing your new creative pursuits."
+          }
+        ]
+      }
+    ],
+    "astrology": {
+      "chart": {
+        "charts": [
+          {
+            "system": "western",
+            "label": "Western \u00b7 tropical",
+            "zodiac": "tropical",
+            "house_system": "whole_sign",
+            "ascendant": {
+              "id": "ascendant",
+              "name": "Ascendant",
+              "longitude": 24.266132807000766,
+              "sign": "Aries",
+              "sign_index": 0,
+              "degree": 24.266132807000766,
+              "house": 1,
+              "retrograde": false
+            },
+            "midheaven": {
+              "id": "midheaven",
+              "name": "Midheaven",
+              "longitude": 279.6110618554224,
+              "sign": "Capricorn",
+              "sign_index": 9,
+              "degree": 9.611061855422406,
+              "house": 10,
+              "retrograde": false
+            },
+            "placements": [
+              {
+                "id": "sun",
+                "name": "Sun",
+                "longitude": 280.3687386398185,
+                "sign": "Capricorn",
+                "sign_index": 9,
+                "degree": 10.368738639818503,
+                "house": 10,
+                "retrograde": false
+              },
+              {
+                "id": "moon",
+                "name": "Moon",
+                "longitude": 223.32389112747416,
+                "sign": "Scorpio",
+                "sign_index": 7,
+                "degree": 13.323891127474155,
+                "house": 8,
+                "retrograde": false
+              },
+              {
+                "id": "mercury",
+                "name": "Mercury",
+                "longitude": 271.8889120664631,
+                "sign": "Capricorn",
+                "sign_index": 9,
+                "degree": 1.8889120664630923,
+                "house": 10,
+                "retrograde": false
+              },
+              {
+                "id": "venus",
+                "name": "Venus",
+                "longitude": 241.56523294036205,
+                "sign": "Sagittarius",
+                "sign_index": 8,
+                "degree": 1.5652329403620513,
+                "house": 9,
+                "retrograde": false
+              },
+              {
+                "id": "mars",
+                "name": "Mars",
+                "longitude": 327.96389907790274,
+                "sign": "Aquarius",
+                "sign_index": 10,
+                "degree": 27.963899077902738,
+                "house": 11,
+                "retrograde": false
+              },
+              {
+                "id": "jupiter",
+                "name": "Jupiter",
+                "longitude": 25.25419984487423,
+                "sign": "Aries",
+                "sign_index": 0,
+                "degree": 25.25419984487423,
+                "house": 1,
+                "retrograde": false
+              },
+              {
+                "id": "saturn",
+                "name": "Saturn",
+                "longitude": 40.39612413717841,
+                "sign": "Taurus",
+                "sign_index": 1,
+                "degree": 10.396124137178411,
+                "house": 2,
+                "retrograde": true
+              },
+              {
+                "id": "uranus",
+                "name": "Uranus",
+                "longitude": 314.8061046271607,
+                "sign": "Aquarius",
+                "sign_index": 10,
+                "degree": 14.806104627160721,
+                "house": 11,
+                "retrograde": false
+              },
+              {
+                "id": "neptune",
+                "name": "Neptune",
+                "longitude": 303.19544205947335,
+                "sign": "Aquarius",
+                "sign_index": 10,
+                "degree": 3.1954420594733506,
+                "house": 11,
+                "retrograde": false
+              },
+              {
+                "id": "pluto",
+                "name": "Pluto",
+                "longitude": 251.45473515991364,
+                "sign": "Sagittarius",
+                "sign_index": 8,
+                "degree": 11.454735159913639,
+                "house": 9,
+                "retrograde": false
+              },
+              {
+                "id": "north_node",
+                "name": "North Node",
+                "longitude": 125.04061828308531,
+                "sign": "Leo",
+                "sign_index": 4,
+                "degree": 5.040618283085308,
+                "house": 5,
+                "retrograde": true
+              },
+              {
+                "id": "south_node",
+                "name": "South Node",
+                "longitude": 305.04061828308534,
+                "sign": "Aquarius",
+                "sign_index": 10,
+                "degree": 5.040618283085337,
+                "house": 11,
+                "retrograde": true
+              }
+            ],
+            "houses": [
+              {
+                "number": 1,
+                "sign": "Aries",
+                "sign_index": 0,
+                "start_longitude": 0.0
+              },
+              {
+                "number": 2,
+                "sign": "Taurus",
+                "sign_index": 1,
+                "start_longitude": 30.0
+              },
+              {
+                "number": 3,
+                "sign": "Gemini",
+                "sign_index": 2,
+                "start_longitude": 60.0
+              },
+              {
+                "number": 4,
+                "sign": "Cancer",
+                "sign_index": 3,
+                "start_longitude": 90.0
+              },
+              {
+                "number": 5,
+                "sign": "Leo",
+                "sign_index": 4,
+                "start_longitude": 120.0
+              },
+              {
+                "number": 6,
+                "sign": "Virgo",
+                "sign_index": 5,
+                "start_longitude": 150.0
+              },
+              {
+                "number": 7,
+                "sign": "Libra",
+                "sign_index": 6,
+                "start_longitude": 180.0
+              },
+              {
+                "number": 8,
+                "sign": "Scorpio",
+                "sign_index": 7,
+                "start_longitude": 210.0
+              },
+              {
+                "number": 9,
+                "sign": "Sagittarius",
+                "sign_index": 8,
+                "start_longitude": 240.0
+              },
+              {
+                "number": 10,
+                "sign": "Capricorn",
+                "sign_index": 9,
+                "start_longitude": 270.0
+              },
+              {
+                "number": 11,
+                "sign": "Aquarius",
+                "sign_index": 10,
+                "start_longitude": 300.0
+              },
+              {
+                "number": 12,
+                "sign": "Pisces",
+                "sign_index": 11,
+                "start_longitude": 330.0
+              }
+            ],
+            "aspects": [
+              {
+                "from_id": "north_node",
+                "to_id": "south_node",
+                "name": "opposition",
+                "angle": 180,
+                "orb": 0.0
+              },
+              {
+                "from_id": "sun",
+                "to_id": "saturn",
+                "name": "trine",
+                "angle": 120,
+                "orb": 0.0274
+              },
+              {
+                "from_id": "moon",
+                "to_id": "uranus",
+                "name": "square",
+                "angle": 90,
+                "orb": 1.4822
+              },
+              {
+                "from_id": "venus",
+                "to_id": "neptune",
+                "name": "sextile",
+                "angle": 60,
+                "orb": 1.6302
+              },
+              {
+                "from_id": "neptune",
+                "to_id": "north_node",
+                "name": "opposition",
+                "angle": 180,
+                "orb": 1.8452
+              },
+              {
+                "from_id": "neptune",
+                "to_id": "south_node",
+                "name": "conjunction",
+                "angle": 0,
+                "orb": 1.8452
+              },
+              {
+                "from_id": "mars",
+                "to_id": "jupiter",
+                "name": "sextile",
+                "angle": 60,
+                "orb": 2.7097
+              },
+              {
+                "from_id": "moon",
+                "to_id": "saturn",
+                "name": "opposition",
+                "angle": 180,
+                "orb": 2.9278
+              },
+              {
+                "from_id": "sun",
+                "to_id": "moon",
+                "name": "sextile",
+                "angle": 60,
+                "orb": 2.9552
+              },
+              {
+                "from_id": "uranus",
+                "to_id": "pluto",
+                "name": "sextile",
+                "angle": 60,
+                "orb": 3.3514
+              },
+              {
+                "from_id": "venus",
+                "to_id": "north_node",
+                "name": "trine",
+                "angle": 120,
+                "orb": 3.4754
+              },
+              {
+                "from_id": "venus",
+                "to_id": "south_node",
+                "name": "sextile",
+                "angle": 60,
+                "orb": 3.4754
+              },
+              {
+                "from_id": "venus",
+                "to_id": "mars",
+                "name": "square",
+                "angle": 90,
+                "orb": 3.6013
+              },
+              {
+                "from_id": "mercury",
+                "to_id": "mars",
+                "name": "sextile",
+                "angle": 60,
+                "orb": 3.925
+              },
+              {
+                "from_id": "saturn",
+                "to_id": "uranus",
+                "name": "square",
+                "angle": 90,
+                "orb": 4.41
+              },
+              {
+                "from_id": "saturn",
+                "to_id": "north_node",
+                "name": "square",
+                "angle": 90,
+                "orb": 5.3555
+              },
+              {
+                "from_id": "saturn",
+                "to_id": "south_node",
+                "name": "square",
+                "angle": 90,
+                "orb": 5.3555
+              }
+            ],
+            "aspect_model": "Geometric major aspects; not classical Jyotish graha drishti."
+          },
+          {
+            "system": "vedic",
+            "label": "Vedic \u00b7 True Chitrapaksha",
+            "zodiac": "sidereal",
+            "ayanamsa_name": "True Chitrapaksha (Spica at 180\u00b0)",
+            "ayanamsa_degrees": 23.83745778256025,
+            "house_system": "whole_sign",
+            "ascendant": {
+              "id": "ascendant",
+              "name": "Ascendant",
+              "longitude": 0.42867502444051553,
+              "sign": "Aries",
+              "sign_index": 0,
+              "degree": 0.42867502444051553,
+              "house": 1,
+              "retrograde": false
+            },
+            "midheaven": {
+              "id": "midheaven",
+              "name": "Midheaven",
+              "longitude": 255.77360407286216,
+              "sign": "Sagittarius",
+              "sign_index": 8,
+              "degree": 15.773604072862156,
+              "house": 9,
+              "retrograde": false
+            },
+            "placements": [
+              {
+                "id": "sun",
+                "name": "Sun",
+                "longitude": 256.53128085725825,
+                "sign": "Sagittarius",
+                "sign_index": 8,
+                "degree": 16.531280857258253,
+                "house": 9,
+                "retrograde": false
+              },
+              {
+                "id": "moon",
+                "name": "Moon",
+                "longitude": 199.4864333449139,
+                "sign": "Libra",
+                "sign_index": 6,
+                "degree": 19.486433344913905,
+                "house": 7,
+                "retrograde": false
+              },
+              {
+                "id": "mercury",
+                "name": "Mercury",
+                "longitude": 248.05145428390284,
+                "sign": "Sagittarius",
+                "sign_index": 8,
+                "degree": 8.051454283902842,
+                "house": 9,
+                "retrograde": false
+              },
+              {
+                "id": "venus",
+                "name": "Venus",
+                "longitude": 217.7277751578018,
+                "sign": "Scorpio",
+                "sign_index": 7,
+                "degree": 7.727775157801801,
+                "house": 8,
+                "retrograde": false
+              },
+              {
+                "id": "mars",
+                "name": "Mars",
+                "longitude": 304.1264412953425,
+                "sign": "Aquarius",
+                "sign_index": 10,
+                "degree": 4.126441295342488,
+                "house": 11,
+                "retrograde": false
+              },
+              {
+                "id": "jupiter",
+                "name": "Jupiter",
+                "longitude": 1.416742062313979,
+                "sign": "Aries",
+                "sign_index": 0,
+                "degree": 1.416742062313979,
+                "house": 1,
+                "retrograde": false
+              },
+              {
+                "id": "saturn",
+                "name": "Saturn",
+                "longitude": 16.55866635461816,
+                "sign": "Aries",
+                "sign_index": 0,
+                "degree": 16.55866635461816,
+                "house": 1,
+                "retrograde": true
+              },
+              {
+                "id": "north_node",
+                "name": "Rahu (mean node)",
+                "longitude": 101.20316050052506,
+                "sign": "Cancer",
+                "sign_index": 3,
+                "degree": 11.203160500525058,
+                "house": 4,
+                "retrograde": true
+              },
+              {
+                "id": "south_node",
+                "name": "Ketu (mean node)",
+                "longitude": 281.2031605005251,
+                "sign": "Capricorn",
+                "sign_index": 9,
+                "degree": 11.203160500525087,
+                "house": 10,
+                "retrograde": true
+              }
+            ],
+            "houses": [
+              {
+                "number": 1,
+                "sign": "Aries",
+                "sign_index": 0,
+                "start_longitude": 0.0
+              },
+              {
+                "number": 2,
+                "sign": "Taurus",
+                "sign_index": 1,
+                "start_longitude": 30.0
+              },
+              {
+                "number": 3,
+                "sign": "Gemini",
+                "sign_index": 2,
+                "start_longitude": 60.0
+              },
+              {
+                "number": 4,
+                "sign": "Cancer",
+                "sign_index": 3,
+                "start_longitude": 90.0
+              },
+              {
+                "number": 5,
+                "sign": "Leo",
+                "sign_index": 4,
+                "start_longitude": 120.0
+              },
+              {
+                "number": 6,
+                "sign": "Virgo",
+                "sign_index": 5,
+                "start_longitude": 150.0
+              },
+              {
+                "number": 7,
+                "sign": "Libra",
+                "sign_index": 6,
+                "start_longitude": 180.0
+              },
+              {
+                "number": 8,
+                "sign": "Scorpio",
+                "sign_index": 7,
+                "start_longitude": 210.0
+              },
+              {
+                "number": 9,
+                "sign": "Sagittarius",
+                "sign_index": 8,
+                "start_longitude": 240.0
+              },
+              {
+                "number": 10,
+                "sign": "Capricorn",
+                "sign_index": 9,
+                "start_longitude": 270.0
+              },
+              {
+                "number": 11,
+                "sign": "Aquarius",
+                "sign_index": 10,
+                "start_longitude": 300.0
+              },
+              {
+                "number": 12,
+                "sign": "Pisces",
+                "sign_index": 11,
+                "start_longitude": 330.0
+              }
+            ],
+            "aspects": [
+              {
+                "from_id": "north_node",
+                "to_id": "south_node",
+                "name": "opposition",
+                "angle": 180,
+                "orb": 0.0
+              },
+              {
+                "from_id": "sun",
+                "to_id": "saturn",
+                "name": "trine",
+                "angle": 120,
+                "orb": 0.0274
+              },
+              {
+                "from_id": "mars",
+                "to_id": "jupiter",
+                "name": "sextile",
+                "angle": 60,
+                "orb": 2.7097
+              },
+              {
+                "from_id": "moon",
+                "to_id": "saturn",
+                "name": "opposition",
+                "angle": 180,
+                "orb": 2.9278
+              },
+              {
+                "from_id": "sun",
+                "to_id": "moon",
+                "name": "sextile",
+                "angle": 60,
+                "orb": 2.9552
+              },
+              {
+                "from_id": "venus",
+                "to_id": "north_node",
+                "name": "trine",
+                "angle": 120,
+                "orb": 3.4754
+              },
+              {
+                "from_id": "venus",
+                "to_id": "south_node",
+                "name": "sextile",
+                "angle": 60,
+                "orb": 3.4754
+              },
+              {
+                "from_id": "venus",
+                "to_id": "mars",
+                "name": "square",
+                "angle": 90,
+                "orb": 3.6013
+              },
+              {
+                "from_id": "mercury",
+                "to_id": "mars",
+                "name": "sextile",
+                "angle": 60,
+                "orb": 3.925
+              },
+              {
+                "from_id": "saturn",
+                "to_id": "north_node",
+                "name": "square",
+                "angle": 90,
+                "orb": 5.3555
+              },
+              {
+                "from_id": "saturn",
+                "to_id": "south_node",
+                "name": "square",
+                "angle": 90,
+                "orb": 5.3555
+              }
+            ],
+            "aspect_model": "Geometric major aspects; not classical Jyotish graha drishti.",
+            "moon_nakshatra": {
+              "name": "Swati",
+              "index": 14,
+              "pada": 4
+            }
+          }
+        ],
+        "calculation_version": "games-astro-1",
+        "source": "Astronomy Engine 2.1.19",
+        "precision_note": "Geocentric positions; city-centre horizon, whole-sign houses. Vedic uses a fixed-J2000 Spica True Chitrapaksha anchor, not Lahiri; arcminute precision, not identical to every ephemeris convention. Birth-time accuracy matters. Astrology is a reflection, not a prediction."
+      },
+      "interpretation": {
+        "western": {
+          "focus_points": [
+            "sun",
+            "mercury"
+          ],
+          "normal": "Your Sun in Capricorn in house 10 highlights a practical drive toward accomplishment, while Mercury in Capricorn in house 10 encourages structured thinking about your long-term goals. Together, these placements ground your creative ambitions in realistic planning.",
+          "quirky": "Your Capricorn placements in house 10 act like an internal board of directors holding a very serious meeting about whether finger-painting counts as a professional milestone."
+        },
+        "vedic": {
+          "focus_points": [
+            "sun",
+            "mercury"
+          ],
+          "normal": "Your sidereal Sun in Sagittarius in house 9 inspires an expansive search for meaning, supported by Mercury in Sagittarius in house 9 which brings philosophical curiosity to your daily learning and hobbies.",
+          "quirky": "Your Sagittarius placements in house 9 behave like an enthusiastic philosophy professor who suddenly abandons the lecture notes to go build an elaborate treehouse."
+        },
+        "tarot_connection": "These astrological placements mirror your Tarot spread by balancing fiery creative impulses with the grounding patience needed to build a sustainable hobby.",
+        "next_step": "Take a quiet moment to reflect on your daily routines and choose one small boundary to protect your creative time."
+      }
+    }
+  }
+}

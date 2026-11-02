@@ -1,6 +1,6 @@
 'use client';
-import { Check, ChevronDown, Landmark, Plus, House } from 'lucide-react';
-import { Seat, PlayingCard } from '@games/ui';
+import { Check, ChevronDown, Info, Landmark, Plus, House } from 'lucide-react';
+import { Seat, PlayingCard, Button } from '@games/ui';
 import type { ActionOption, Card, DealDetails, Player } from '@games/api-client';
 import { OpponentPanel } from '../shared/OpponentPanel';
 import type { TableProps } from '../types';
@@ -15,6 +15,7 @@ interface Props extends TableProps {
   placements: ActionOption[];
   candidate: ActionOption | null;
   onSelect: (id: string) => void;
+  onInspect: (id: string) => void;
   onDestination: (option: ActionOption) => void;
   previewIds?: string[];
   targeted?: string;
@@ -95,7 +96,6 @@ export function DealPlayer(props: Props) {
             (group) => group.color === key.split(':')[0],
           );
           const placement = destination(key);
-          const owned = new Set(cards.map((card) => card.label));
           return (
             <section
               className="deal-collection"
@@ -153,25 +153,16 @@ export function DealPlayer(props: Props) {
                 <span>
                   Rent <b>{info ? `${info.rent}M` : '—'}</b>
                 </span>
-                <details className="deal-set-reference">
-                  <summary aria-label={`Inspect ${pileName(key, details.propertyGroups)}`}>
-                    Details <ChevronDown size={12} />
-                  </summary>
-                  <div>
-                    <strong>{reference?.name} properties</strong>
-                    <ul>
-                      {reference?.properties.map((name) => (
-                        <li key={name} data-owned={owned.has(name)}>
-                          {owned.has(name) ? '✓' : '○'} {name}
-                        </li>
-                      ))}
-                    </ul>
-                    {cards.some((card) => (card.colors?.length || 0) > 1) ? (
-                      <p>Wilds count toward completion.</p>
-                    ) : null}
-                    <p>Rent: {reference?.rentLadder.map((value) => `${value}M`).join(' / ')}</p>
-                  </div>
-                </details>
+                <Button
+                  className="deal-set-info"
+                  variant="ghost"
+                  size="sm"
+                  aria-label={`Inspect ${pileName(key, details.propertyGroups)}`}
+                  onClick={() => props.onInspect(cards[0].id)}
+                >
+                  <Info size={14} />
+                  Info
+                </Button>
               </footer>
               {placement ? (
                 <button

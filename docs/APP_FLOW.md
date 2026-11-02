@@ -25,7 +25,7 @@ human and starts automatically. If auto-start or the fresh identity read fails,
 the already-created room remains the destination; the form never repeats creation.
 One-person discovery includes supported bot games. Search uses exact aliases
 first and a bounded Fuse.js typo fallback, intersected with category/player filters.
-Games and Rooms are separate segmented tabs. Games is the default catalogue; Rooms groups the player's in-progress/waiting and finished rooms. Switching tabs preserves game search and filters. Membership shortcuts never appear in the Games panel and have no public discovery feed. Browsing alone creates no guest identity.
+Games and Rooms are separate segmented tabs. Games is the default catalogue; Rooms groups the player's in-progress/waiting and finished rooms. Switching tabs preserves game search and filters. Home omits the duplicate Games top-navigation item; the Games home brand returns to the Games panel with those choices preserved. Inner pages retain their Games link. Membership shortcuts never appear in the Games panel and have no public discovery feed. Browsing alone creates no guest identity.
 
 The host can add/fill/remove labeled bot seats in the lobby. A human joining a
 full lobby replaces a bot. Bots never receive login sessions or hosting rights;
@@ -91,3 +91,14 @@ table card. Players who clear all zones are safe while the others continue;
 the final player loses. Shared results retain the group for rematch/change game.
 
 Across the catalogue, permanent decision areas preserve the table and hand while choosing. Overflowing hands have separate Previous/Next controls, touch scrolling and keyboard reveal without vertical page jumps. Public opponent summaries stay outside their optional inspectors; required own decisions remain exposed. Rummy reserves its grouping lane, Azul keeps sources/boards fixed through placement, and split blackjack hands navigate inside their own rail. `/design/midgame` is development-only and reviews reproducible legal states; it returns 404 in hosted builds.
+
+Tarot astrology is off by default. Opting in offers Both, Western or Vedic, then
+birth date, local time and a city search with an explicit place selection. The
+server resolves the historical timezone and asks which occurrence was intended
+when clocks repeat a time; nonexistent local times cannot generate a chart.
+Preview shows the calculated chart before submission. Birth fields stay in this
+component session; Gemini receives only computed placements with the Tarot
+question/cards. The saved private reading includes the chart and interpretation.
+A failed generation retains only the computed chart draft for explicit retry;
+turning astrology off omits it from the next reading. Earlier saved Tarot readings
+remain readable. See `backend/app/astrology/README.md` for the named conventions.

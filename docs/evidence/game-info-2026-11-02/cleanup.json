@@ -1,0 +1,33 @@
+{
+  "scope": "Only verified public_history-owned game-info-review local QA intermediates",
+  "retained": "Selected WebP/contact sheets, exact coverage, source and synthetic fixtures in docs/evidence/game-info-2026-11-02; concise final logs in .vercel/game-info-review",
+  "removedCategories": [
+    "resolved failing selector trial screenshots and test folders",
+    "superseded successful browser output folders",
+    "raw duplicate catalogue screenshots after retaining reviewed contact sheets and selected originals as WebP",
+    "one-off capture scripts and formatting trial logs"
+  ],
+  "scratchBytesBefore": 17088216,
+  "scratchBytesAfter": 29838,
+  "preserved": [
+    "all source and generated fixtures",
+    "root and other-agent evidence",
+    "all rooms/memberships and user data",
+    "credentials and dependencies",
+    "existing app/API services and browser sessions"
+  ],
+  "createdServers": 0,
+  "createdDatabaseRooms": 0,
+  "providerCalls": 0,
+  "childOwnedBrowserRuns": "completed and closed; no browser server retained",
+  "remainingScratchFiles": [
+    "capture-manifest.json",
+    "combined-current.log",
+    "density-final.log",
+    "final-247.log",
+    "lint-final.log",
+    "scenario-export.log",
+    "types-final.log",
+    "units.log"
+  ]
+}

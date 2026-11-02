@@ -2,15 +2,27 @@ import createClient from 'openapi-fetch';
 import { z } from 'zod';
 import type { paths } from './generated/schema';
 import { mapMe, mapRoom, type Action } from './mappers';
+import type { AstrologyInput } from './astrology';
 export type { Room, Match, Card, Player, Action, ActionOption, Me, ReadingView } from './mappers';
 export { boardDetails, wordsDetails, gemsDetails } from './game-details';
 export { trioDetails, flipSevenDetails, azulDetails } from './modern-details';
 export { partyDetails } from './party-details';
 export { gangDetails, sixNimmtDetails } from './coop-number-details';
 export { paperDetails, boopDetails } from './sea-cats-details';
-export { blackjackDetails } from './casino-details';
+export { blackjackDetails, holdemDetails, skyjoDetails } from './casino-details';
 export { shitheadDetails } from './shithead-details';
 export { dealDetails, type DealGroup, type DealDetails } from './deal-details';
+export type {
+  AstrologyInput,
+  AstrologyPlace,
+  AstrologyPlaces,
+  AstrologyChart,
+  AstrologyPreview,
+  AstrologySystemChart,
+  AstrologyPoint,
+  AstrologyReading,
+  AstrologyIssue,
+} from './astrology';
 
 export class ApiError extends Error {
   constructor(
@@ -101,11 +113,38 @@ export function createApi(accessToken?: () => Promise<string | null>) {
     async reading(id: string) {
       return unwrap(await client.GET('/v1/rooms/{room_id}/reading', { params: params(id) }));
     },
-    async generateReading(id: string, matchId: string, question: string) {
+    async generateReading(
+      id: string,
+      matchId: string,
+      question: string,
+      astrology?: AstrologyInput,
+      reuseSavedAstrology?: boolean,
+    ) {
       return unwrap(
         await client.POST('/v1/rooms/{room_id}/reading', {
           params: params(id),
-          body: { match_id: matchId, question },
+          body: {
+            match_id: matchId,
+            question,
+            ...(astrology ? { astrology } : {}),
+            ...(reuseSavedAstrology ? { reuse_saved_astrology: true } : {}),
+          },
+        }),
+      );
+    },
+    async astrologyPlaces(id: string, matchId: string, query: string) {
+      return unwrap(
+        await client.POST('/v1/rooms/{room_id}/astrology/places', {
+          params: params(id),
+          body: { match_id: matchId, query },
+        }),
+      );
+    },
+    async astrologyChart(id: string, matchId: string, astrology: AstrologyInput) {
+      return unwrap(
+        await client.POST('/v1/rooms/{room_id}/astrology/chart', {
+          params: params(id),
+          body: { match_id: matchId, astrology },
         }),
       );
     },

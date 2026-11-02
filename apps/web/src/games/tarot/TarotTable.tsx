@@ -3,15 +3,19 @@ import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { Button, ChoiceGroup, Modal, HorizontalRail, TarotCard, tarotArtwork } from '@games/ui';
-import { ApiError } from '@games/api-client';
+import { ApiError, type AstrologyInput, type AstrologyChart as ChartData } from '@games/api-client';
 import { api } from '@/lib/session';
 import { keys } from '@/shared/query-keys';
 import type { TableProps } from '../types';
 import { TarotReading } from './TarotReading';
+import { AstrologyForm } from './AstrologyForm';
 
 const positions = ['Where you are', 'What is shifting', 'Your next move'];
 export function TarotTable({ match, room, onAction, pending, imageLoader }: TableProps) {
   const [question, setQuestion] = useState('');
+  const [astrology, setAstrology] = useState<AstrologyInput>();
+  const [astrologyChoice, setAstrologyChoice] = useState<'auto' | 'off' | 'new'>('auto');
+  const [chart, setChart] = useState<ChartData | null>(null);
   const [exploreDeck, setExploreDeck] = useState(false);
   const [deckSuit, setDeckSuit] = useState('all');
   const cache = useQueryClient();
@@ -22,9 +26,15 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
     enabled: match.community.length === 3,
     refetchInterval: (query) => (query.state.data?.status === 'generating' ? 3000 : false),
   });
+  const reuseSavedAstrology =
+    astrologyChoice === 'auto' && !astrology && !!saved.data?.astrology_chart;
   const generate = useMutation({
-    mutationFn: () => api.generateReading(room.id, room.matchId!, question),
+    mutationFn: () =>
+      api.generateReading(room.id, room.matchId!, question, astrology, reuseSavedAstrology),
     onSuccess: (result) => {
+      setAstrology(undefined);
+      setAstrologyChoice('auto');
+      setChart(null);
       cache.setQueryData(queryKey, result);
       void cache.invalidateQueries({ queryKey: keys.room(room.id) });
     },
@@ -105,6 +115,7 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
           className="tarot-question"
           onSubmit={(event) => {
             event.preventDefault();
+            if (astrology && !chart) return;
             generate.mutate();
           }}
         >
@@ -121,8 +132,28 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
               disabled={writing}
             />
           </label>
+          <AstrologyForm
+            searchPlaces={(query) => api.astrologyPlaces(room.id, room.matchId!, query)}
+            calculateChart={(input) => api.astrologyChart(room.id, room.matchId!, input)}
+            value={astrology}
+            onChange={(next) => {
+              setAstrology(next);
+              setAstrologyChoice(next ? 'new' : 'off');
+            }}
+            chart={chart}
+            onChartChange={setChart}
+            disabled={writing}
+            savedChart={saved.data?.astrology_chart || null}
+            reuseSaved={reuseSavedAstrology}
+            onUseSaved={() => {
+              setAstrology(undefined);
+              setChart(null);
+              setAstrologyChoice('auto');
+            }}
+          />
           <p className="small muted" id="tarot-data-use">
-            Your question and chosen cards are sent to Google Gemini to write this reading.
+            Your question, chosen cards and any included calculated chart are sent to Google Gemini
+            to write this reading.
             {saved.data?.api_tier === 'free'
               ? ' This version uses the free tier: Google may use questions and readings to improve its products. Keep your question non-sensitive.'
               : null}
@@ -131,7 +162,7 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
             type="submit"
             size="lg"
             pending={writing}
-            disabled={!saved.data || saved.data.status === 'unavailable'}
+            disabled={!saved.data || saved.data.status === 'unavailable' || (!!astrology && !chart)}
           >
             <Sparkles size={17} />
             {writing ? 'Writing your personal reading…' : 'Read my cards'}

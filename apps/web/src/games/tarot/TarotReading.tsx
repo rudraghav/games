@@ -2,6 +2,7 @@ import { Sparkles } from 'lucide-react';
 import type { ReadingView } from '@games/api-client';
 import { tarotCharacter } from '@games/api-client/characters';
 import { TarotCharacterImage } from './TarotCharacterImage';
+import { AstrologyReading } from './AstrologyReading';
 
 type Reading = NonNullable<ReadingView['reading']>;
 
@@ -119,6 +120,7 @@ export function TarotReading({
           </ul>
         </details>
       ) : null}
+      {reading.astrology ? <AstrologyReading astrology={reading.astrology} /> : null}
       <div className="tarot-next-step">
         <span className="eyebrow">Your next small move</span>
         <p>{reading.next_step}</p>

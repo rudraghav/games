@@ -9,6 +9,7 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
   const [selected, setSelected] = useState<string[]>([]);
   const data = paperDetails(match.detail);
   const blocked = pending || room.paused;
+  const roundComplete = ['round_over', 'finished'].includes(match.phase);
   const options = match.actions;
   const action = (type: string) => options.find((option) => option.value.type === type);
   const send = (move: Action) => {
@@ -29,10 +30,11 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
     <>
       <DecisionDock
         className="paper-source-dock"
-        size="extended"
+        size={roundComplete ? 'compact' : 'extended'}
         label="Draw and card choices"
         pending={pending}
       >
+        {roundComplete ? <p className="small">{match.message}</p> : null}
         {match.phase === 'draw' ? (
           <section className="paper-draw" aria-label="Draw a card">
             <div className="paper-stock">
@@ -205,7 +207,11 @@ export function PaperTable(props: TableProps) {
   return (
     <div className="table-layout stable-game-table sea-cats-game">
       <PlayerStrip {...props} playerCaption={(p) => `${p.score} points · ${p.count} in hand`} />
-      <section className="sea-cat-table paper-table" aria-label="Sea Salt and Paper table">
+      <section
+        className="sea-cat-table paper-table"
+        aria-label="Sea Salt and Paper table"
+        data-phase={match.phase}
+      >
         <div className="paper-heading">
           <div>
             <p className="eyebrow">Round {data.round}</p>

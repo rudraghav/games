@@ -93,3 +93,22 @@ files require checking the creator's specific licence before importing assets.
 - Shared variants own card/seat/action appearance; game modules own composition.
 - Tarot is an original modern pop-art deck, with cinematic reveal and a quiet,
   readable result layout. Reading metaphors connect to actual card meanings.
+
+## Decision-information review — 2 November 2026
+
+The owner's five Playdeal table/selection/payment screenshots and supplied
+changelog are the primary interaction reference for this review. The useful
+principles are stable public/own/action/hand zones, exact card/set targets,
+amount and payment previews, clear blocked/response states, readable public
+player progress, board access during a prompt, and rich details available by
+both touch and keyboard. These are evaluated game by game rather than applying
+Deal's arrangement to every board. The review does not adopt the reference's
+turn clocks: Games deliberately has untimed turns and its own reconnect lease.
+
+The current [Playdeal landing page](https://playdeal.io/) was rechecked; its
+changelog URL was unavailable to the text browser, so the supplied changelog
+remains the evidence for those specific changes. The published
+[Zynga Poker listing](https://apps.apple.com/us/app/zynga-poker-texas-holdem/id354902315)
+remains the casino composition reference. Current rendered findings, fixes,
+per-game interaction inventories and verification limits are recorded in
+`evidence/game-info-2026-11-02/README.md`.

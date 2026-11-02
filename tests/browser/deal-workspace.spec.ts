@@ -54,9 +54,11 @@ test('all complex Deal decisions fit the viewport and preserve hand privacy and 
         'Rent 9M',
       );
       await own(page).getByLabel('Inspect Brown · set 1', { exact: true }).click();
-      await expect(own(page).getByText('✓ Mediterranean Avenue', { exact: true })).toBeVisible();
-      await expect(own(page).getByText('✓ Baltic Avenue', { exact: true })).toBeVisible();
+      const info = page.getByRole('dialog', { name: 'Card info', exact: true });
+      await expect(info.getByText('✓ Mediterranean Avenue', { exact: true })).toBeVisible();
+      await expect(info.getByText('✓ Baltic Avenue', { exact: true })).toBeVisible();
       await capture(page, 'collections');
+      await page.keyboard.press('Escape');
     }
     if (item.id === 'no-mercy') {
       await page.locator('.deal-quick-rules summary').click();

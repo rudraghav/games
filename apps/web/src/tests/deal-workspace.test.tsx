@@ -49,7 +49,7 @@ describe('Engine-projected Deal workspace', () => {
     expect(html).toContain('Baltic Avenue');
     expect(html).toContain('aria-label="Complete set"');
     expect(html).toContain('<b>9M</b>');
-    expect(html).toContain('Rent: 1M / 2M');
+    expect(html).toContain('aria-label="Inspect Brown · set 1"');
     expect(html).not.toContain('castle');
     expect(
       dealDetails(props.match.detail).collections.find((group) => group.key === 'brown:0')?.rent,

@@ -1,0 +1,328 @@
+@layer components {
+  .astrology-option {
+    margin-block: 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+    padding: 14px;
+  }
+  .astrology-option-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    font-weight: 650;
+    cursor: pointer;
+  }
+  .astrology-option-toggle input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-plum);
+  }
+  .astrology-fields {
+    display: grid;
+    gap: 14px;
+    margin-top: 16px;
+    min-width: 0;
+  }
+  .astrology-date-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    min-width: 0;
+  }
+  .astrology-fields .field,
+  .astrology-fields .input {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+  .astrology-place-search {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: end;
+  }
+  .astrology-validation {
+    color: var(--color-danger);
+    font-size: 13px;
+  }
+  .astrology-preview-state {
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 14px;
+    display: grid;
+    gap: 10px;
+  }
+  .astrology-preview-state .choice-group > button {
+    max-width: 100%;
+    white-space: normal;
+    text-align: left;
+  }
+  .astrology-chart {
+    min-width: 0;
+    margin-top: 18px;
+    text-align: left;
+  }
+  .astrology-chart .segmented-tabs-list {
+    margin-inline: auto;
+  }
+  .astrology-chart-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
+    gap: 18px;
+    align-items: start;
+  }
+  .astrology-figure {
+    min-width: 0;
+    margin: 0;
+  }
+  .astrology-figure > svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 520px;
+    margin: auto;
+    overflow: visible;
+  }
+  .astrology-figure figcaption {
+    font-size: 12px;
+    color: var(--color-ink-muted);
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+  .astro-zodiac-ring {
+    fill: var(--color-plum-light);
+    stroke: var(--color-plum);
+    stroke-width: 1;
+  }
+  .astro-inner-ring {
+    fill: var(--color-surface);
+    stroke: var(--color-border);
+    stroke-width: 1;
+  }
+  .astro-house-line,
+  .astro-planet-leader {
+    stroke: var(--color-ink-muted);
+    stroke-width: 0.8;
+    opacity: 0.6;
+  }
+  .astro-house-number {
+    text-anchor: middle;
+    font-size: 11px;
+    fill: var(--color-ink-muted);
+  }
+  .astro-sign {
+    text-anchor: middle;
+    font-size: 23px;
+    fill: var(--color-plum);
+  }
+  .astro-position-dot {
+    fill: var(--color-plum);
+  }
+  .astro-planet-disc {
+    fill: var(--color-surface);
+    stroke: var(--color-border);
+  }
+  .astro-hit-area {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 44px;
+  }
+  .astro-planet-target {
+    cursor: pointer;
+  }
+  .astro-planet-target[aria-pressed='true'] .astro-planet-disc,
+  .astro-planet-target:focus-visible .astro-planet-disc {
+    fill: var(--color-plum-light);
+    stroke: var(--color-plum);
+    stroke-width: 3;
+  }
+  .astro-planet-symbol {
+    text-anchor: middle;
+    font-size: 22px;
+    fill: var(--color-ink);
+    pointer-events: none;
+  }
+  .astro-angle-label {
+    font-size: 12px;
+    font-weight: 700;
+    fill: var(--color-plum);
+  }
+  .astro-centre-label {
+    text-anchor: middle;
+    font-size: 13px;
+    fill: var(--color-ink-muted);
+  }
+  .astro-aspect {
+    stroke: var(--color-plum);
+    stroke-width: 1.3;
+    opacity: 0.5;
+  }
+  .astro-aspect[data-kind='square'],
+  .astro-aspect[data-kind='opposition'] {
+    stroke-dasharray: 5 4;
+  }
+  .astro-vedic-house {
+    cursor: pointer;
+  }
+  .astro-vedic-house polygon {
+    fill: var(--color-surface);
+    stroke: var(--color-plum);
+    stroke-width: 1.2;
+  }
+  .astro-vedic-house[aria-pressed='true'] polygon,
+  .astro-vedic-house:focus-visible polygon {
+    fill: var(--color-plum-light);
+    stroke-width: 2.5;
+  }
+  .astro-vedic-sign {
+    text-anchor: middle;
+    font-size: 14px;
+    font-weight: 650;
+    fill: var(--color-plum);
+    pointer-events: none;
+  }
+  .astro-vedic-planets {
+    text-anchor: middle;
+    font-size: 20px;
+    fill: var(--color-ink);
+    pointer-events: none;
+  }
+  .astrology-chart-details {
+    display: grid;
+    gap: 12px;
+    min-width: 0;
+  }
+  .astrology-inspection {
+    min-height: 90px;
+    background: var(--color-plum-light);
+    padding: 12px;
+    border-radius: 12px;
+  }
+  .astrology-inspection h4 {
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .astrology-inspection p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .astrology-angles {
+    display: grid;
+    gap: 10px;
+  }
+  .astrology-angles dt {
+    color: var(--color-ink-muted);
+    font-size: 12px;
+  }
+  .astrology-angles dd {
+    font-size: 14px;
+    margin-top: 3px;
+  }
+  .astrology-data {
+    border-top: 1px solid var(--color-border);
+    min-width: 0;
+  }
+  .astrology-data summary {
+    min-height: 44px;
+    padding-block: 12px;
+    cursor: pointer;
+    font-weight: 650;
+    font-size: 14px;
+  }
+  .astrology-data table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+  .astrology-data caption {
+    text-align: left;
+    font-weight: 650;
+    margin-block: 8px;
+  }
+  .astrology-data th,
+  .astrology-data td {
+    text-align: left;
+    vertical-align: top;
+    padding: 8px 4px;
+    border-bottom: 1px solid var(--color-border);
+    overflow-wrap: break-word;
+  }
+  .astrology-data th small {
+    display: block;
+    font-weight: 400;
+    font-size: 10px;
+  }
+  .astrology-calculation-note {
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+  .astrology-saved {
+    margin-block: 24px;
+    padding: 18px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+  }
+  .astrology-saved-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .astrology-saved-heading h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+  }
+  .astrology-interpretations {
+    display: grid;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .astrology-interpretation h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .astrology-interpretation h5 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-plum);
+    margin-bottom: 8px;
+  }
+  .astrology-interpretation p {
+    line-height: 1.65;
+  }
+  .astrology-reading-anchors {
+    font-size: 13px;
+    color: var(--color-ink-muted);
+  }
+  .astrology-interpretation .tarot-perspectives {
+    margin-top: 8px;
+  }
+  @media (max-width: 800px) {
+    .astrology-chart-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 480px) {
+    .astrology-date-fields,
+    .astrology-place-search {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .astrology-option,
+    .astrology-saved {
+      padding: 12px;
+    }
+    .astrology-saved-heading {
+      align-items: start;
+    }
+    .astrology-saved-heading h3 {
+      font-size: 22px;
+    }
+  }
+}

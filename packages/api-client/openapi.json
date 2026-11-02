@@ -447,6 +447,136 @@
         }
       }
     },
+    "/v1/rooms/{room_id}/astrology/places": {
+      "post": {
+        "summary": "Astrology Places",
+        "operationId": "astrology_places_v1_rooms__room_id__astrology_places_post",
+        "parameters": [
+          {
+            "name": "room_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Room Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AstrologyPlaceSearch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstrologyPlaces"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/rooms/{room_id}/astrology/chart": {
+      "post": {
+        "summary": "Astrology Chart",
+        "operationId": "astrology_chart_v1_rooms__room_id__astrology_chart_post",
+        "parameters": [
+          {
+            "name": "room_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Room Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AstrologyPreviewInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AstrologyPreview"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/rooms/{room_id}/ready": {
       "put": {
         "summary": "Ready",
@@ -1319,6 +1449,675 @@
         "additionalProperties": false,
         "type": "object",
         "title": "AddBots"
+      },
+      "AstrologyAspect": {
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "title": "From Id"
+          },
+          "to_id": {
+            "type": "string",
+            "title": "To Id"
+          },
+          "name": {
+            "type": "string",
+            "enum": [
+              "conjunction",
+              "sextile",
+              "square",
+              "trine",
+              "opposition"
+            ],
+            "title": "Name"
+          },
+          "angle": {
+            "type": "integer",
+            "title": "Angle"
+          },
+          "orb": {
+            "type": "number",
+            "maximum": 8.0,
+            "minimum": 0.0,
+            "title": "Orb"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "from_id",
+          "to_id",
+          "name",
+          "angle",
+          "orb"
+        ],
+        "title": "AstrologyAspect"
+      },
+      "AstrologyChart": {
+        "properties": {
+          "charts": {
+            "items": {
+              "$ref": "#/components/schemas/AstrologySystemChart"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Charts"
+          },
+          "calculation_version": {
+            "type": "string",
+            "title": "Calculation Version",
+            "default": "games-astro-1"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "default": "Astronomy Engine 2.1.19"
+          },
+          "precision_note": {
+            "type": "string",
+            "title": "Precision Note",
+            "default": "Geocentric positions; city-centre horizon, whole-sign houses. Vedic uses a fixed-J2000 Spica True Chitrapaksha anchor, not Lahiri; arcminute precision, not identical to every ephemeris convention. Birth-time accuracy matters. Astrology is a reflection, not a prediction."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "charts"
+        ],
+        "title": "AstrologyChart"
+      },
+      "AstrologyHouse": {
+        "properties": {
+          "number": {
+            "type": "integer",
+            "maximum": 12.0,
+            "minimum": 1.0,
+            "title": "Number"
+          },
+          "sign": {
+            "type": "string",
+            "title": "Sign"
+          },
+          "sign_index": {
+            "type": "integer",
+            "maximum": 11.0,
+            "minimum": 0.0,
+            "title": "Sign Index"
+          },
+          "start_longitude": {
+            "type": "number",
+            "exclusiveMaximum": 360.0,
+            "minimum": 0.0,
+            "title": "Start Longitude"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "number",
+          "sign",
+          "sign_index",
+          "start_longitude"
+        ],
+        "title": "AstrologyHouse"
+      },
+      "AstrologyInput": {
+        "properties": {
+          "system": {
+            "type": "string",
+            "enum": [
+              "western",
+              "vedic",
+              "both"
+            ],
+            "title": "System",
+            "default": "both"
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Birth Date"
+          },
+          "birth_time": {
+            "type": "string",
+            "maxLength": 5,
+            "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$",
+            "title": "Birth Time"
+          },
+          "place_id": {
+            "type": "string",
+            "maxLength": 14,
+            "pattern": "^geo:[1-9]\\d{0,9}$",
+            "title": "Place Id"
+          },
+          "fold": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "enum": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fold"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "birth_date",
+          "birth_time",
+          "place_id"
+        ],
+        "title": "AstrologyInput"
+      },
+      "AstrologyInterpretation": {
+        "properties": {
+          "western": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AstrologyInterpretationSection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "vedic": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AstrologyInterpretationSection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "tarot_connection": {
+            "type": "string",
+            "maxLength": 650,
+            "minLength": 40,
+            "title": "Tarot Connection"
+          },
+          "next_step": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 15,
+            "title": "Next Step"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "tarot_connection",
+          "next_step"
+        ],
+        "title": "AstrologyInterpretation"
+      },
+      "AstrologyInterpretationSection": {
+        "properties": {
+          "focus_points": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 2,
+            "title": "Focus Points"
+          },
+          "normal": {
+            "type": "string",
+            "maxLength": 650,
+            "minLength": 40,
+            "title": "Normal"
+          },
+          "quirky": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 40,
+            "title": "Quirky"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "focus_points",
+          "normal",
+          "quirky"
+        ],
+        "title": "AstrologyInterpretationSection"
+      },
+      "AstrologyIssue": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "ambiguous_local_time",
+              "nonexistent_local_time",
+              "unsupported_location"
+            ],
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "choices": {
+            "items": {
+              "$ref": "#/components/schemas/AstrologyTimeChoice"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "title": "Choices"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "AstrologyIssue"
+      },
+      "AstrologyNakshatra": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "index": {
+            "type": "integer",
+            "maximum": 26.0,
+            "minimum": 0.0,
+            "title": "Index"
+          },
+          "pada": {
+            "type": "integer",
+            "maximum": 4.0,
+            "minimum": 1.0,
+            "title": "Pada"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "index",
+          "pada"
+        ],
+        "title": "AstrologyNakshatra"
+      },
+      "AstrologyPlace": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "latitude": {
+            "type": "number",
+            "maximum": 90.0,
+            "minimum": -90.0,
+            "title": "Latitude"
+          },
+          "longitude": {
+            "type": "number",
+            "maximum": 180.0,
+            "minimum": -180.0,
+            "title": "Longitude"
+          },
+          "timezone": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Timezone"
+          },
+          "country_code": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$",
+            "title": "Country Code"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "latitude",
+          "longitude",
+          "timezone",
+          "country_code"
+        ],
+        "title": "AstrologyPlace"
+      },
+      "AstrologyPlaceSearch": {
+        "properties": {
+          "match_id": {
+            "type": "string",
+            "maxLength": 36,
+            "minLength": 36,
+            "title": "Match Id"
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Query"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "match_id",
+          "query"
+        ],
+        "title": "AstrologyPlaceSearch"
+      },
+      "AstrologyPlaces": {
+        "properties": {
+          "places": {
+            "items": {
+              "$ref": "#/components/schemas/AstrologyPlace"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "title": "Places"
+          },
+          "attribution": {
+            "type": "string",
+            "title": "Attribution",
+            "default": "Location data: GeoNames via Open-Meteo (CC BY 4.0)."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "places"
+        ],
+        "title": "AstrologyPlaces"
+      },
+      "AstrologyPoint": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "longitude": {
+            "type": "number",
+            "exclusiveMaximum": 360.0,
+            "minimum": 0.0,
+            "title": "Longitude"
+          },
+          "sign": {
+            "type": "string",
+            "title": "Sign"
+          },
+          "sign_index": {
+            "type": "integer",
+            "maximum": 11.0,
+            "minimum": 0.0,
+            "title": "Sign Index"
+          },
+          "degree": {
+            "type": "number",
+            "exclusiveMaximum": 30.0,
+            "minimum": 0.0,
+            "title": "Degree"
+          },
+          "house": {
+            "type": "integer",
+            "maximum": 12.0,
+            "minimum": 1.0,
+            "title": "House"
+          },
+          "retrograde": {
+            "type": "boolean",
+            "title": "Retrograde",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "longitude",
+          "sign",
+          "sign_index",
+          "degree",
+          "house"
+        ],
+        "title": "AstrologyPoint"
+      },
+      "AstrologyPreview": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "needs_time_choice",
+              "invalid_time"
+            ],
+            "title": "Status"
+          },
+          "chart": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AstrologyChart"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "issue": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AstrologyIssue"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "AstrologyPreview"
+      },
+      "AstrologyPreviewInput": {
+        "properties": {
+          "match_id": {
+            "type": "string",
+            "maxLength": 36,
+            "minLength": 36,
+            "title": "Match Id"
+          },
+          "astrology": {
+            "$ref": "#/components/schemas/AstrologyInput"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "match_id",
+          "astrology"
+        ],
+        "title": "AstrologyPreviewInput"
+      },
+      "AstrologyReading": {
+        "properties": {
+          "chart": {
+            "$ref": "#/components/schemas/AstrologyChart"
+          },
+          "interpretation": {
+            "$ref": "#/components/schemas/AstrologyInterpretation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "chart",
+          "interpretation"
+        ],
+        "title": "AstrologyReading"
+      },
+      "AstrologySystemChart": {
+        "properties": {
+          "system": {
+            "type": "string",
+            "enum": [
+              "western",
+              "vedic"
+            ],
+            "title": "System"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "zodiac": {
+            "type": "string",
+            "enum": [
+              "tropical",
+              "sidereal"
+            ],
+            "title": "Zodiac"
+          },
+          "ayanamsa_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ayanamsa Name"
+          },
+          "ayanamsa_degrees": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ayanamsa Degrees"
+          },
+          "house_system": {
+            "type": "string",
+            "const": "whole_sign",
+            "title": "House System",
+            "default": "whole_sign"
+          },
+          "ascendant": {
+            "$ref": "#/components/schemas/AstrologyPoint"
+          },
+          "midheaven": {
+            "$ref": "#/components/schemas/AstrologyPoint"
+          },
+          "placements": {
+            "items": {
+              "$ref": "#/components/schemas/AstrologyPoint"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 9,
+            "title": "Placements"
+          },
+          "houses": {
+            "items": {
+              "$ref": "#/components/schemas/AstrologyHouse"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 12,
+            "title": "Houses"
+          },
+          "aspects": {
+            "items": {
+              "$ref": "#/components/schemas/AstrologyAspect"
+            },
+            "type": "array",
+            "maxItems": 70,
+            "title": "Aspects"
+          },
+          "aspect_model": {
+            "type": "string",
+            "title": "Aspect Model",
+            "default": "Geometric major aspects; not classical Jyotish graha drishti."
+          },
+          "moon_nakshatra": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AstrologyNakshatra"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "system",
+          "label",
+          "zodiac",
+          "ascendant",
+          "midheaven",
+          "placements",
+          "houses",
+          "aspects"
+        ],
+        "title": "AstrologySystemChart"
+      },
+      "AstrologyTimeChoice": {
+        "properties": {
+          "fold": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "title": "Fold"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "utc_offset": {
+            "type": "string",
+            "title": "Utc Offset"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "fold",
+          "label",
+          "utc_offset"
+        ],
+        "title": "AstrologyTimeChoice"
       },
       "CardView": {
         "properties": {
@@ -2345,6 +3144,16 @@
             "maxItems": 3,
             "minItems": 3,
             "title": "Cards"
+          },
+          "astrology": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AstrologyReading"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false,
@@ -2370,6 +3179,27 @@
             "maxLength": 400,
             "title": "Question",
             "default": ""
+          },
+          "astrology": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AstrologyInput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reuse_saved_astrology": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reuse Saved Astrology"
           }
         },
         "additionalProperties": false,
@@ -2412,6 +3242,16 @@
             "type": "string",
             "title": "Message",
             "default": ""
+          },
+          "astrology_chart": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AstrologyChart"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",

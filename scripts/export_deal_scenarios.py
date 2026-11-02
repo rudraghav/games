@@ -168,6 +168,21 @@ def generate():
                   and option.action.color == "brown:0")
     record("doubled-rent", "Deal · preview doubled rent", engine, state, focus=rent,
            actions=[("Charge doubled Brown rent", charge)])
+
+    # Reach a large hand through ordinary setup and legal draw-two actions.
+    # No extra cards or hidden identities are injected into this scenario.
+    for seed in range(1000):
+        engine = DealEngine()
+        state = engine.setup(PLAYERS, {}, seed=seed)
+        passes = [card for card in state["hands"][PLAYERS[0]] if engine.cards[card].action == "pass_go"]
+        if len(passes) >= 2:
+            for card in passes[:2]:
+                state = engine.apply_action(state, PLAYERS[0], Action(type="play", card=card))
+            assert len(state["hands"][PLAYERS[0]]) >= 9
+            record("information-hand", "Deal · inspect a natural large hand", engine, state)
+            break
+    else:
+        raise AssertionError("Expected a reproducible large-hand setup seed")
     return cases
 
 

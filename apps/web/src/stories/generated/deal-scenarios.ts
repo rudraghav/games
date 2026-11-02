@@ -12206,5 +12206,848 @@ export const dealScenarios: DealScenario[] = [
         }
       }
     ]
+  },
+  {
+    "id": "information-hand",
+    "label": "Deal \u00b7 inspect a natural large hand",
+    "selfId": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+    "focusCard": null,
+    "room": {
+      "id": "e812695f-9242-5ab4-8fca-648d25757a90",
+      "name": "Synthetic Deal workspace",
+      "code": "DESIGN1",
+      "game_id": "deal",
+      "owner_id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+      "capacity": 4,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "fb556d55-20ed-5fc0-9075-415709feea85",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "deal",
+        "phase": "playing",
+        "current_player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+        "players": [
+          {
+            "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+            "count": 9,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+            "count": 5,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+            "count": 5,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+            "count": 5,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [
+          {
+            "id": "d017",
+            "label": "5M",
+            "color": "neutral",
+            "subtitle": "MONEY",
+            "value": "5M",
+            "suit": "",
+            "colors": [],
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          },
+          {
+            "id": "d031",
+            "label": "Kentucky Avenue",
+            "color": "red",
+            "subtitle": "Kentucky Avenue",
+            "value": "3M",
+            "suit": "property",
+            "colors": [
+              "red"
+            ],
+            "effect": "",
+            "set_name": "Red",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              3,
+              6
+            ]
+          },
+          {
+            "id": "d003",
+            "label": "1M",
+            "color": "neutral",
+            "subtitle": "MONEY",
+            "value": "1M",
+            "suit": "",
+            "colors": [],
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          },
+          {
+            "id": "d057",
+            "label": "Wild property",
+            "color": "brown",
+            "subtitle": "Wild property",
+            "value": "\u2727",
+            "suit": "property",
+            "colors": [
+              "brown",
+              "sky",
+              "pink",
+              "orange",
+              "red",
+              "yellow",
+              "green",
+              "blue",
+              "rail",
+              "utility"
+            ],
+            "effect": "",
+            "set_name": "Brown",
+            "set_size": 2,
+            "rent_ladder": [
+              1,
+              2
+            ]
+          },
+          {
+            "id": "d091",
+            "label": "Sly deal",
+            "color": "neutral",
+            "subtitle": "Sly deal",
+            "value": "3M",
+            "suit": "action",
+            "colors": [],
+            "effect": "sly",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          },
+          {
+            "id": "d002",
+            "label": "1M",
+            "color": "neutral",
+            "subtitle": "MONEY",
+            "value": "1M",
+            "suit": "",
+            "colors": [],
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          },
+          {
+            "id": "d075",
+            "label": "Pass Go",
+            "color": "neutral",
+            "subtitle": "Pass Go",
+            "value": "1M",
+            "suit": "action",
+            "colors": [],
+            "effect": "pass_go",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          },
+          {
+            "id": "d033",
+            "label": "Illinois Avenue",
+            "color": "red",
+            "subtitle": "Illinois Avenue",
+            "value": "3M",
+            "suit": "property",
+            "colors": [
+              "red"
+            ],
+            "effect": "",
+            "set_name": "Red",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              3,
+              6
+            ]
+          },
+          {
+            "id": "d039",
+            "label": "Pennsylvania Avenue",
+            "color": "green",
+            "subtitle": "Pennsylvania Avenue",
+            "value": "4M",
+            "suit": "property",
+            "colors": [
+              "green"
+            ],
+            "effect": "",
+            "set_name": "Green",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              4,
+              7
+            ]
+          }
+        ],
+        "community": [],
+        "discard": {
+          "id": "d073",
+          "label": "Pass Go",
+          "color": "neutral",
+          "subtitle": "Pass Go",
+          "value": "1M",
+          "suit": "action",
+          "colors": [],
+          "effect": "pass_go",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
+        },
+        "drawn": null,
+        "draw_count": 80,
+        "pot": 0,
+        "message": "Played Pass Go.",
+        "actions": [
+          {
+            "label": "End turn",
+            "action": {
+              "type": "end_turn",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Bank 5M",
+            "action": {
+              "type": "bank",
+              "card": "d017",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Red",
+            "action": {
+              "type": "property",
+              "card": "d031",
+              "target": "",
+              "color": "red",
+              "choice": "red:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Bank 1M",
+            "action": {
+              "type": "bank",
+              "card": "d003",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Brown",
+            "action": {
+              "type": "property",
+              "card": "d057",
+              "target": "",
+              "color": "brown",
+              "choice": "brown:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Light blue",
+            "action": {
+              "type": "property",
+              "card": "d057",
+              "target": "",
+              "color": "sky",
+              "choice": "sky:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Pink",
+            "action": {
+              "type": "property",
+              "card": "d057",
+              "target": "",
+              "color": "pink",
+              "choice": "pink:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Orange",
+            "action": {
+              "type": "property",
+              "card": "d057",
+              "target": "",
+              "color": "orange",
+              "choice": "orange:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Red",
+            "action": {
+              "type": "property",
+              "card": "d057",
+              "target": "",
+              "color": "red",
+              "choice": "red:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Yellow",
+            "action": {
+              "type": "property",
+              "card": "d057",
+              "target": "",
+              "color": "yellow",
+              "choice": "yellow:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Green",
+            "action": {
+              "type": "property",
+              "card": "d057",
+              "target": "",
+              "color": "green",
+              "choice": "green:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Dark blue",
+            "action": {
+              "type": "property",
+              "card": "d057",
+              "target": "",
+              "color": "blue",
+              "choice": "blue:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Railroads",
+            "action": {
+              "type": "property",
+              "card": "d057",
+              "target": "",
+              "color": "rail",
+              "choice": "rail:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Utilities",
+            "action": {
+              "type": "property",
+              "card": "d057",
+              "target": "",
+              "color": "utility",
+              "choice": "utility:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Bank 3M",
+            "action": {
+              "type": "bank",
+              "card": "d091",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Bank 1M",
+            "action": {
+              "type": "bank",
+              "card": "d002",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Bank 1M",
+            "action": {
+              "type": "bank",
+              "card": "d075",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Pass Go",
+            "action": {
+              "type": "play",
+              "card": "d075",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Red",
+            "action": {
+              "type": "property",
+              "card": "d033",
+              "target": "",
+              "color": "red",
+              "choice": "red:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Place \u00b7 Green",
+            "action": {
+              "type": "property",
+              "card": "d039",
+              "target": "",
+              "color": "green",
+              "choice": "green:0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "moves": 1,
+          "rent_multiplier": 1,
+          "debts": {
+            "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
+            "baf691ac-60ab-5cf4-b394-02f24342044e": [],
+            "29420896-d26f-5a05-9f4c-8daf0c6adb27": [],
+            "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117": []
+          },
+          "pending": null,
+          "payment_amount": 0,
+          "property_groups": [
+            {
+              "color": "brown",
+              "name": "Brown",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Mediterranean Avenue",
+                "Baltic Avenue"
+              ]
+            },
+            {
+              "color": "sky",
+              "name": "Light blue",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                3
+              ],
+              "properties": [
+                "Oriental Avenue",
+                "Vermont Avenue",
+                "Connecticut Avenue"
+              ]
+            },
+            {
+              "color": "pink",
+              "name": "Pink",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                4
+              ],
+              "properties": [
+                "St. Charles Place",
+                "States Avenue",
+                "Virginia Avenue"
+              ]
+            },
+            {
+              "color": "orange",
+              "name": "Orange",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                3,
+                5
+              ],
+              "properties": [
+                "St. James Place",
+                "Tennessee Avenue",
+                "New York Avenue"
+              ]
+            },
+            {
+              "color": "red",
+              "name": "Red",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                3,
+                6
+              ],
+              "properties": [
+                "Kentucky Avenue",
+                "Indiana Avenue",
+                "Illinois Avenue"
+              ]
+            },
+            {
+              "color": "yellow",
+              "name": "Yellow",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                6
+              ],
+              "properties": [
+                "Atlantic Avenue",
+                "Ventnor Avenue",
+                "Marvin Gardens"
+              ]
+            },
+            {
+              "color": "green",
+              "name": "Green",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                7
+              ],
+              "properties": [
+                "Pacific Avenue",
+                "North Carolina Avenue",
+                "Pennsylvania Avenue"
+              ]
+            },
+            {
+              "color": "blue",
+              "name": "Dark blue",
+              "set_size": 2,
+              "rent_ladder": [
+                3,
+                8
+              ],
+              "properties": [
+                "Park Place",
+                "Boardwalk"
+              ]
+            },
+            {
+              "color": "rail",
+              "name": "Railroads",
+              "set_size": 4,
+              "rent_ladder": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "properties": [
+                "Reading Railroad",
+                "Pennsylvania Railroad",
+                "B&O Railroad",
+                "Short Line"
+              ]
+            },
+            {
+              "color": "utility",
+              "name": "Utilities",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Electric Company",
+                "Water Works"
+              ]
+            }
+          ],
+          "collections": [],
+          "pending_action": null
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null,
+      "last_action": null,
+      "activity": []
+    },
+    "transitions": []
   }
 ];

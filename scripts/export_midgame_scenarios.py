@@ -182,6 +182,12 @@ def generate():
             classification = action.type if action.type in INTERESTING else "decision"
             if game == "tarot":
                 classification = f"spread-{len(view.community)}"
+            if game == "teen-patti":
+                classification += ":blind" if view.detail.get("blind") else ":seen"
+            if game == "skyjo" and view.detail.get("finisher") and phase != "between_rounds":
+                classification += ":final-turn"
+            if game == "azul" and any(view.detail.get("floors", {}).values()):
+                classification += ":occupied-floor"
             if any(option.action.type == "challenge" for option in view.actions):
                 classification += ":challenge-available"
             if game == "the-gang":

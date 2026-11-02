@@ -2015,3 +2015,112 @@
 - This closure changes documentation only. The verified runtime contains 427
   files with fingerprint 3da0b5f4da151ed9deb1e778ee4481e4df8a4256be93c9670334b80d92d8026b.
   No additional deployment is required for the documentation closure.
+
+2026-11-02 — Game information / optional Tarot astrology kickoff
+- User requests discoverable Deal set sizes/rent ladders and an all-game audit of
+  decision information, removal of the redundant home Games navigation item, and
+  optional Tarot birth charts/readings using birth date, time and birthplace.
+- Outcome: required information is visible or inspectable through mouse, keyboard
+  and touch without destabilizing the table. Home relies on its Games/Rooms tabs.
+  Astrology is off by default; opting in collects birth details, computes the
+  chart deterministically, and adds chart interpretation to the saved reading.
+- Constraints: reuse the shared UI and authoritative private reading flow. Never
+  infer astronomical placements with an LLM or disclose birth details in room
+  activity/logs. Ordinary Tarot and older saved readings remain compatible.
+  Astrology tradition preference asked asynchronously; default Western tropical
+  whole-sign if unanswered. Validate dates, locations, historical zones and DST.
+- Acceptance: Deal metadata/effects/set/rent visibility and complete catalogue
+  information matrix; accessible touch/keyboard inspection; optional-chart form,
+  deterministic position/angle/house scenarios and invalid-time handling; privacy,
+  saved refresh, off/on generation and provider failures; phone/desktop checks.
+- State: clean main 5fee04b at kickoff, current production application 56be1ec.
+  No provider configuration or resource changes are requested. Existing main/prod
+  publication authorization persists; local checks precede any release.
+
+2026-11-02 — Information review and astrology checkpoint
+- User chose both astrology traditions and expanded the review to each game's
+  rules, decisions, cards, player information and screen layout against the
+  supplied Playdeal screenshots/changelog and casino references. Astrology stays
+  optional/off by default; Both is the default after opting in. Western uses
+  tropical whole-sign houses; Vedic uses explicitly labeled Spica-anchored True
+  Chitrapaksha whole-sign houses rather than silently claiming Lahiri.
+- The first chart implementation matches independent NASA/JPL longitudes and
+  test-only Swiss Ephemeris angle/node references within the documented tolerance.
+  Only MIT Astronomy Engine and pinned IANA timezone data enter runtime dependencies.
+- Deal's printed metadata exists but compact cards hid required information;
+  dedicated touch/keyboard information controls now expose set sizes, rent tiers,
+  exact card effects, printed properties and both wild-card groups. Shared modal
+  focus handling supports an information dialog inside an opponent inspector.
+- Home no longer duplicates its Games/Rooms tabs with a Games navigation item.
+  The home brand reveals the Games panel without clearing filters. Inner pages
+  retain navigation. Focused home keyboard checks passed at both widths.
+- Independent Azul review found hidden occupied-slot penalties and no pre-move
+  overflow description. Legal pattern lines now show fit/overflow, all floor
+  slots retain their penalties and the floor total, and the first-player marker
+  consequence is visible without hover. Reachable overflow browser checks passed
+  on phone/desktop (2/2). The first test attempt used the wrong label selector;
+  the corrected test uses the rendered combobox's accessible name.
+- A real synthetic Both reading returned valid Tarot/astrology output in 4.58s;
+  ordinary Tarot regression passed in 3.97s. The astrology prose was too generic
+  despite schema validity, so the contract is being tightened to named computed
+  placement anchors before final evaluation. These samples are not release proof.
+- Read-only personal Supabase preflight passed: Google/anonymous auth enabled,
+  eight private RLS tables, reviewed grants/policies, schema head a6e442b15d80 and
+  zero drift. Scoped before fingerprints preserve the owner's permanent Google
+  identity/profile and five rooms/memberships. No cloud setting or schema changed.
+- State: local source only; original production/rollback remains dpl_8ShysJixe58HGHwpVA1Qe7VXGxuA.
+
+2026-11-02 — End-to-end information and reading verification checkpoint
+- The new same-origin astrology paths were missing from the frontend proxy
+  allowlist. Real browser requests exposed the 404; the proxy now permits only
+  the two member-authenticated POST paths, with positive/negative boundary tests.
+  Both actual geocoder/calculator browser cases then passed through the proxy.
+- Final grounded synthetic Both evaluation passed in5.96s with pop-tarot-6.
+  Each interpretation identifies validated computed body/sign/house anchors.
+  An actual saved-room browser run passed in15.5s: two independent guests, real
+  Both and ordinary Gemini readings, exact chart/readback after refresh, two
+  authenticated cross-room reading denials,320/390/1440 bounds, seven real Deal
+  card inspections without a version change, and three closed QA rooms.
+- Concurrent retry/rematch tests found the older Tarot service reusing identity-
+  map objects after releasing transactions. Rechecks now refresh those objects
+  before locking/reserving or saving, preventing stale generation from winning.
+  Final focused backend bundles passed178pure and73isolated room checks; normal
+  Tarot, privacy, generation budgets, lease replacement and rematch are covered.
+- The current game review has243legal projections after adding previously absent
+  blind Teen Patti and Skyjo-final-turn milestones. A combined two-width review
+  passed60cases before a small completed-phase density follow-up. The review
+  inventory records concrete per-game interaction/layout checks and rare-branch
+  limits; it does not equate source/screenshots with exhaustive match coverage.
+- Root independently inspected the six current game contact sheets. Completed
+  Gang/Paper screens retained excessive empty decision wells; those phases now
+  use compact wells, with Gang's result/Next heist before public history. Live
+  selection footprints remain stable. Additional nonempty Azul-floor evidence
+  is being added before final release checks.
+- The initial root live test timed out waiting for the missing proxy route and
+  could not finish teardown. Its exact local QA room was freshly identified by
+  ID/name/creation timestamp and closed through authorized service endpoints;
+  inactive membership was verified and history preserved. The harness now uses
+  bounded action waits and retains cleanup failures. No production rooms changed.
+- State: local only. Scoped cloud preflight and before-state remain retained;
+  no push or new deployment yet.
+
+2026-11-02 — Information/astrology local release gates passed
+- Final named frontend report verify-ab1122945894433592e742e30b5ad650 passed:
+  types/lint,120tests and production build. Named backend/contracts/migrations/
+  multiplayer/tooling report verify-a7b75ded83b94f7db77d2c453eccddd4 passed:
+  857pure tests,169isolated multiplayer tests, fresh schema/privacy checks,
+  generated-contract/fixture parity and import boundaries. Existing SQLAlchemy
+  deprecation warnings remain unrelated to this change.
+- Browser report verify-3787b1a775404864a51f569d9662287e passed122cases across
+  15affected specs, with current Storybook endpoints enabled for full card and
+  casino-motion checks. It includes247legal projection layouts atbothseatlimits.
+  Two preceding gates stopped at browser type-check; only test defaults/optional
+  wire accesses changed afterward. Browser types then passed before the run.
+- All445runtime inputs still match bec06e6070b22a0d825e06a9a1949d5cfe345c84285bf32743f91d3418abc3a9.
+  Source/data privacy pattern scan found no provider/access tokens in Git-visible
+  files. Personal cloud schema/auth and owner fingerprints passed before release.
+- Fresh GitHub fetch found unrelated workflow/tooling commits onmain (0a8d18b)
+  after our5fee04b baseline. Commit this verified feature, merge those changes
+  without losing either journal, adapt affected verification metadata and run
+  the combined tooling/contract gates before publication. No force push or
+  production change has occurred.

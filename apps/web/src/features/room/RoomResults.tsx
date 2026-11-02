@@ -1,5 +1,6 @@
 import type { Room } from '@games/api-client';
 import type { Game } from '@games/api-client/catalog';
+import { CasinoSettlement } from '@/games/casino/CasinoSettlement';
 
 /** Results follow the server's winners and each game's declared score units. */
 export function RoomResults({ room, game }: { room: Room; game: Game }) {
@@ -59,6 +60,7 @@ export function RoomResults({ room, game }: { room: Room; game: Game }) {
           </div>
         ))}
       </div>
+      <CasinoSettlement room={room} />
     </section>
   );
 }

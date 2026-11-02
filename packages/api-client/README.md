@@ -9,6 +9,12 @@ into frontend domain names. `index.ts` owns authenticated HTTP calls and safe
 error messages. Legal action inputs include server-owned amount steps and payable
 card IDs. Frontend modules render those choices without duplicating game rules.
 
+`astrology.ts` exports only generated wire aliases. Authenticated place search,
+chart preview and reading calls stay under the current solo Tarot room/match.
+Ordinary readings omit both astrology request fields; an explicit saved-chart
+retry sends `reuse_saved_astrology: true`. Casino/Skyjo detail parsers expose
+server-supplied bets, pot settlements, refunds and round closure at this boundary.
+
 The `@games/api-client/characters` entry exports the public Tarot reference cast
 and a discriminated artwork type. Active artwork comes from
 `apps/web/public/characters/character-art-v2/manifest.json`; regenerate it with

@@ -244,3 +244,30 @@ quirky read and 1–2 explained named-character links per card. Small real-provi
 samples and hosted saved-reading verification remain distinct from deterministic
 contract/failure tests. Counts, source/deployment and local/hosted completion are
 recorded in progress.txt and owning evidence folders.
+
+## Decision information and optional astrology — 2 November 2026
+
+Use the named frontend/backend/contracts/multiplayer/tooling groups for this
+change, plus the affected browser files recorded in its task report. New
+`azul-information.spec.ts` uses a legally reached overflow projection to check
+visible fit/overflow and occupied floor penalties before committing. Deal's
+information review covers hand selection, public-set inspection, both wild
+colours, rent ladders, nested focus return and unchanged play-area bounds.
+The all-catalogue mid-game sweep remains a projection/layout check, distinct from
+actual saved rooms, complete rule coverage or a live deployment.
+
+Astrology numerical tests compare J2000 planetary longitudes to NASA/JPL and
+angles/nodes to independent test-only Swiss Ephemeris numeric references; Swiss
+is not a runtime dependency. Timezone tests include missing/repeated times and
+historical offsets. Mocked-provider and isolated-room tests cover inputs,
+authorization, raw-birth privacy, generation leases, saved drafts, retry and
+opt-out. Frontend tests cover both chart systems, selection, stale responses,
+recovery and phone/desktop bounds. Record exact results in the task/evidence.
+
+`backend/.venv/bin/python scripts/eval_astrology.py --output PATH` performs one
+bounded real Gemini evaluation with the public J2000 reference instant and a
+synthetic question. `--ordinary` checks the normal Tarot regression. Existing
+outputs are never overwritten. Validate both the structured output and its
+usefulness: syntactically valid generic astrology text is insufficient. Fresh
+interpretations identify two or three computed body/sign/house anchors per
+selected system. Provider reliability is not established by a small live sample.

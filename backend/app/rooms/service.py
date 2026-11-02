@@ -13,6 +13,15 @@ from fastapi import HTTPException
 from pydantic import ValidationError
 from sqlalchemy.orm import Session
 
+from app.astrology.chart import calculate_chart
+from app.astrology.geocoder import GeocoderUnavailable, resolve_place, search_places
+from app.astrology.models import (
+    AstrologyChart,
+    AstrologyPlaces,
+    AstrologyPlaceSearch,
+    AstrologyPreview,
+    AstrologyPreviewInput,
+)
 from app.auth import Identity
 from app.core.contracts import Action, RuleError
 from app.games.registry import ENGINES
@@ -438,6 +447,38 @@ class RoomService:
             self.repo.flush()
             return room_view(self.repo, room, actor.id, self.cipher)
 
+    def _astrology_match(self, actor: Identity, room_id: str, match_id: str) -> None:
+        with self.session.begin():
+            room = self._room(room_id, actor)
+            match = self.repo.match(room.match_id)
+            if not match or match.game_id != "tarot" or match.participants != [actor.id]:
+                raise HTTPException(404, "Your Tarot spread is unavailable.")
+            if match.id != match_id:
+                raise HTTPException(409, "This spread has changed. Open your current spread.")
+
+    def astrology_places(
+        self, actor: Identity, room_id: str, data: AstrologyPlaceSearch
+    ) -> AstrologyPlaces:
+        self._rate(actor, "astrology-places", 20)
+        self._astrology_match(actor, room_id, data.match_id)
+        try:
+            return search_places(data.query)
+        except GeocoderUnavailable:
+            raise HTTPException(503, "City search is temporarily unavailable. Please try again.") from None
+
+    def astrology_preview(
+        self, actor: Identity, room_id: str, data: AstrologyPreviewInput
+    ) -> AstrologyPreview:
+        self._rate(actor, "astrology-chart", 10)
+        self._astrology_match(actor, room_id, data.match_id)
+        # Canonical place lookup and chart calculations occur after authorization
+        # has committed and released its transaction; no external I/O holds a lock.
+        try:
+            place = resolve_place(data.astrology.place_id)
+        except GeocoderUnavailable:
+            raise HTTPException(503, "City lookup is temporarily unavailable. Please try again.") from None
+        return calculate_chart(data.astrology, place)
+
     def reading(
         self, actor: Identity, room_id: str, data: ReadingInput | None = None
     ) -> ReadingView:
@@ -462,6 +503,7 @@ class RoomService:
                     status="generating",
                     question=saved.question,
                     message="Your personal reading is being written.",
+                    astrology_chart=self._saved_astrology_chart(saved),
                 )
             if not data:
                 return ReadingView(
@@ -469,20 +511,53 @@ class RoomService:
                     message="Personal readings are not configured yet."
                     if not settings().gemini_api_key
                     else "",
+                    question=saved.question if saved else "",
+                    astrology_chart=self._saved_astrology_chart(saved),
                 )
             if not settings().gemini_api_key:
                 raise HTTPException(
                     503, "Personal readings are not configured yet. Your cards are saved."
                 )
-            attempt, match_id = str(uuid4()), match.id
+            match_id = match.id
+            cards = [match.state["deck"][i] for i in match.state["picks"]]
+            question = data.question.strip()
+            astrology_chart = self._saved_astrology_chart(saved) if data.reuse_saved_astrology else None
+            if data.reuse_saved_astrology and astrology_chart is None:
+                raise HTTPException(422, "No saved chart is available. Enter your birth details.")
+
+        if data.astrology is not None:
+            preview = self.astrology_preview(actor, room_id, AstrologyPreviewInput(
+                match_id=match_id, astrology=data.astrology
+            ))
+            if preview.chart is None:
+                raise HTTPException(422, preview.issue.model_dump() if preview.issue else "Check your birth details.")
+            astrology_chart = preview.chart
+
+        # Lookup/calculation completed without a lock. Recheck the exact match
+        # and lease before reserving one combined Tarot/astrology generation.
+        # Sessions retain objects across commits, so discard the earlier snapshot
+        # before locking again; another request may have rematched or retried.
+        self.session.expire_all()
+        with self.session.begin():
+            room = self._room(room_id, actor, lock=True)
+            if room.match_id != match_id:
+                raise HTTPException(409, "This spread has changed. Open your current spread.")
+            saved = self.repo.reading(match_id)
+            if saved and saved.status == "complete":
+                return ReadingView(status="complete", question=saved.question,
+                                   reading=Reading.model_validate(saved.payload))
+            if saved and saved.status == "generating" and saved.lease_until > time.time():
+                return ReadingView(status="generating", question=saved.question,
+                                   message="Your personal reading is being written.",
+                                   astrology_chart=self._saved_astrology_chart(saved))
+            attempt = str(uuid4())
             if saved is None:
                 saved = TarotReading(match_id=match_id)
                 self.repo.add(saved)
-            saved.status, saved.question = "generating", data.question.strip()
+            saved.status, saved.question = "generating", question
             saved.attempt_id, saved.lease_until = attempt, time.time() + 120
             saved.prompt_version = PROMPT_VERSION
-            cards = [match.state["deck"][i] for i in match.state["picks"]]
-            question = saved.question
+            saved.payload = {"astrology_draft": astrology_chart.model_dump(mode="json")} if astrology_chart else None
 
         # The provider call deliberately runs without a database transaction or row lock.
         def reserve_attempt() -> None:
@@ -492,7 +567,11 @@ class RoomService:
                 raise ReadingLimitError("The daily reading budget is exhausted.")
 
         try:
-            result = generate_reading(cards, question, before_attempt=reserve_attempt)
+            if astrology_chart:
+                result = generate_reading(cards, question, before_attempt=reserve_attempt,
+                                          astrology_chart=astrology_chart)
+            else:
+                result = generate_reading(cards, question, before_attempt=reserve_attempt)
         except Exception as error:
             logging.getLogger("uvicorn.error").warning(
                 "games.ai.failure model=%s error_type=%s validation_errors=%s",
@@ -504,6 +583,7 @@ class RoomService:
                 if isinstance(error, ReadingOutputError)
                 else 0,
             )
+            self.session.expire_all()
             with self.session.begin():
                 self._room(room_id, actor, lock=True)
                 saved = self.repo.reading(match_id)
@@ -516,6 +596,7 @@ class RoomService:
             raise HTTPException(
                 502, "Your reading could not be completed. Your cards are saved; please retry."
             ) from None
+        self.session.expire_all()
         with self.session.begin():
             room = self._room(room_id, actor, lock=True)
             match = self.repo.match(match_id)
@@ -533,6 +614,12 @@ class RoomService:
             match.result = {"winners": [], "scores": {actor.id: 0}}
             room.status, room.revision = "finished", room.revision + 1
             return ReadingView(status="complete", question=question, reading=result)
+
+    @staticmethod
+    def _saved_astrology_chart(saved: TarotReading | None) -> AstrologyChart | None:
+        if saved and isinstance(saved.payload, dict) and saved.payload.get("astrology_draft"):
+            return AstrologyChart.model_validate(saved.payload["astrology_draft"])
+        return None
 
     def manage(
         self, actor: Identity, room_id: str, action: str, target: str | None = None

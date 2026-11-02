@@ -15,6 +15,16 @@ Readings are AI-written around the selected cards and an optional personal
 question, with playful pop-culture analogies. The card system and AI contract
 remain reusable. No fabricated reading is shown when AI is unavailable.
 
+Astrology is optional and off by default. Enabling it offers Western, Vedic or
+both (Both selected initially), using birth date, local time and a selected city.
+The server calculates planetary positions, angles, whole-sign houses and aspects
+before AI interpretation. Western is tropical; Vedic explicitly uses the
+Spica-anchored True Chitrapaksha convention. The saved private reading includes
+the chart and separate normal/quirky interpretations for the selected systems.
+Birth inputs are neither persisted with the reading nor sent to Gemini; only
+computed placements are sent. Repeated/nonexistent local times require
+resolution rather than an invented chart. The experience remains reflective.
+
 Guests choose a name/avatar and play immediately. Optional Google or email accounts retain
 identity and results. Room chips have no monetary value. Multiplayer opponents are
 human by default; optional rule-based bot seats now let one person play any

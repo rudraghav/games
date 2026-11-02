@@ -3,21 +3,23 @@ import { Wordmark } from '@games/ui';
 import { AccountNav } from './AccountNav';
 export function SiteHeader({
   children,
-  onGamesClick,
+  onHomeClick,
+  showGamesLink = true,
 }: {
   children?: React.ReactNode;
-  onGamesClick?: () => void;
+  onHomeClick?: () => void;
+  showGamesLink?: boolean;
 }) {
   return (
     <header className="site-header page-width">
-      <Link href="/" aria-label="Games home">
+      <Link href="/" aria-label="Games home" onClick={onHomeClick}>
         <Wordmark />
       </Link>
-      <nav className="header-nav" aria-label="Main navigation">
-        <Link href="/#games" onClick={onGamesClick}>
-          Games
-        </Link>
-      </nav>
+      {showGamesLink ? (
+        <nav className="header-nav" aria-label="Main navigation">
+          <Link href="/#games">Games</Link>
+        </nav>
+      ) : null}
       <div className="header-actions">
         <AccountNav />
         {children}

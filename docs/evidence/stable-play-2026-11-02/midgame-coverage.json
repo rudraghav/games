@@ -496,9 +496,10 @@
       "supplemental": false
     },
     {
-      "captured": 1,
+      "captured": 2,
       "capturedActionTypes": [
-        "bet"
+        "bet",
+        "peek"
       ],
       "capturedPhases": [
         "playing"
@@ -528,10 +529,11 @@
       "supplemental": false
     },
     {
-      "captured": 3,
+      "captured": 4,
       "capturedActionTypes": [
         "accept",
         "bet",
+        "peek",
         "sideshow"
       ],
       "capturedPhases": [
@@ -641,9 +643,10 @@
       "supplemental": false
     },
     {
-      "captured": 5,
+      "captured": 8,
       "capturedActionTypes": [
         "draw_discard",
+        "draw_stock",
         "next_round",
         "reveal",
         "swap"
@@ -687,9 +690,10 @@
       "supplemental": false
     },
     {
-      "captured": 5,
+      "captured": 8,
       "capturedActionTypes": [
         "draw_discard",
+        "draw_stock",
         "next_round",
         "reveal",
         "swap"
@@ -1298,7 +1302,7 @@
       "supplemental": false
     },
     {
-      "captured": 3,
+      "captured": 5,
       "capturedActionTypes": [
         "draft_tiles",
         "next_round",
@@ -1335,7 +1339,7 @@
       "supplemental": false
     },
     {
-      "captured": 3,
+      "captured": 5,
       "capturedActionTypes": [
         "draft_tiles",
         "next_round",
@@ -2284,5 +2288,5 @@
       "supplemental": false
     }
   ],
-  "scenarios": 235
+  "scenarios": 247
 }

@@ -87,7 +87,7 @@ export function Lounge() {
   const me = useQuery({ queryKey: keys.me, queryFn: () => api.me(), enabled: played });
   return (
     <>
-      <SiteHeader onGamesClick={() => setTab('games')}>
+      <SiteHeader showGamesLink={false} onHomeClick={() => setTab('games')}>
         <Button
           size="sm"
           className="lounge-create"

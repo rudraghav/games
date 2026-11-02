@@ -5,6 +5,7 @@ import { gameById } from '@games/api-client/catalog';
 import type { TableProps } from '../types';
 import { ActionPanel } from './ActionPanel';
 import { PlayerStrip } from './PlayerStrip';
+import { sheddingCardInformation } from './card-information';
 
 export function CardTable(props: TableProps) {
   const { match, room, pending } = props;
@@ -20,9 +21,14 @@ export function CardTable(props: TableProps) {
   const instruction = choosingColour
     ? 'Choose the colour for the next play.'
     : challenging
-      ? 'Accept the draw or challenge the wild +4.'
+      ? 'Accept four cards, or challenge: an illegal play makes them draw four; a failed challenge makes you draw six.'
       : selectedCard
-        ? undefined
+        ? sheddingCardInformation(
+            selectedCard,
+            match.id === 'uno-no-mercy',
+            room.settings,
+            match.players.filter((player) => !player.eliminated).length,
+          ) || undefined
         : penalty > 0
           ? canPlay
             ? `Draw ${penalty} cards or stack an allowed draw card.`

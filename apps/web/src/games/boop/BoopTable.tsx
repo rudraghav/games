@@ -137,7 +137,9 @@ export function BoopTable(props: TableProps) {
           <div>
             <p className="eyebrow">Your pieces</p>
           </div>
-          <span className="small muted">Three cats in a row wins</span>
+          <span className="small muted">
+            Win with three cats in a row, or eight cats on the bed.
+          </span>
         </div>
         <Bed key={`${room.matchId}:${room.matchVersion}`} {...props} />
         <div className="boop-progress" aria-label="Cat graduation progress">

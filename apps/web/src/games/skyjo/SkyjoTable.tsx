@@ -4,9 +4,12 @@ import { OpponentPanel } from '../shared/OpponentPanel';
 import { ActionPanel } from '../shared/ActionPanel';
 import { TablePile } from '../shared/TablePile';
 import type { TableProps } from '../types';
+import { skyjoDetails } from '@games/api-client';
+import { playerName } from '../types';
 
 export function SkyjoTable(props: TableProps) {
   const { match, room, selfId, onAction, pending } = props;
+  const data = skyjoDetails(match.detail);
   const viewer = match.players.findIndex((player) => player.id === selfId);
   const players =
     viewer < 0
@@ -80,20 +83,22 @@ export function SkyjoTable(props: TableProps) {
           {match.drawn ? (
             <CardPile label="Your drawn card" family="grid" card={match.drawn} />
           ) : null}
-          <span className="eyebrow">Round {String(match.detail.round ?? 1)}</span>
+          <span className="eyebrow">Round {data.round}</span>
         </div>
         <ActionPanel
           {...props}
           dockSize="compact"
           instruction={
-            match.currentPlayer === selfId &&
-            match.actions.some((option) => ['reveal', 'swap'].includes(option.value.type))
-              ? match.actions.some((option) => option.value.type === 'swap')
-                ? 'Choose a card in your grid to replace.'
-                : 'Choose a face-down card in your grid to reveal.'
-              : stockAction || discardAction
-                ? 'Choose either pile, then replace a card in your grid.'
-                : undefined
+            data.finisher && !['between_rounds', 'finished'].includes(match.phase)
+              ? `${playerName(room, data.finisher)} closed the round. Everyone else gets one final turn.`
+              : match.currentPlayer === selfId &&
+                  match.actions.some((option) => ['reveal', 'swap'].includes(option.value.type))
+                ? match.actions.some((option) => option.value.type === 'swap')
+                  ? 'Choose a card in your grid to replace.'
+                  : 'Choose a face-down card in your grid to reveal.'
+                : stockAction || discardAction
+                  ? 'Choose either pile, then replace a card in your grid.'
+                  : undefined
           }
           match={{
             ...match,
@@ -178,7 +183,9 @@ export function SkyjoTable(props: TableProps) {
         </HorizontalRail>
       </div>
       <p className="small muted table-help">
-        Three matching cards in a column disappear, including during the final reveal.
+        Three matching cards in a column disappear, including during the final reveal. Lowest total
+        wins; the game ends when anyone reaches 100. A closer with a positive round score doubles it
+        unless it is strictly lowest.
       </p>
     </div>
   );

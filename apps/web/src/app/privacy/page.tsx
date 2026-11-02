@@ -8,7 +8,7 @@ export default function Page() {
     <>
       <SiteHeader />
       <main className="page-width privacy-page">
-        <p className="eyebrow">Updated 1 November 2026</p>
+        <p className="eyebrow">Updated 2 November 2026</p>
         <h1 className="hero-title">Privacy, plainly.</h1>
         <p className="muted">Games is a private game-night app. Here is what gets saved and why.</p>
         <section>
@@ -41,6 +41,22 @@ export default function Page() {
             tier is used, Google may use submitted content to improve its products; the reading form
             shows the active notice before you submit. Please keep questions free of information you
             would not want processed this way.
+          </p>
+        </section>
+        <section>
+          <h2>Optional astrology</h2>
+          <p>
+            Astrology is off unless you choose it. Your birth date, local birth time and selected
+            birthplace are used to calculate a Western chart, a Vedic chart or both. Place searches
+            send only the city or town you enter to Open-Meteo, using GeoNames location data.
+          </p>
+          <p>
+            Games sends the calculated chart placements to Gemini for interpretation, together with
+            your Tarot question and cards. Your birth date, time and birthplace are not sent to
+            Gemini or saved with the reading. The calculated chart and interpretation are saved
+            privately so you can return to them. A chart can remain saved after a failed reading so
+            you can retry without entering birth details again. Turning astrology off excludes it
+            from the next reading.
           </p>
         </section>
         <section>

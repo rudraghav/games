@@ -3,6 +3,10 @@ import { motion, useReducedMotion } from 'motion/react';
 import { cn } from '../lib/cn';
 import { standardCardAsset } from '../lib/standard-card-art';
 import {
+  dealPropertyNames as propertyNames,
+  dealCardInstructions as dealInstructions,
+} from '../lib/deal-card-info';
+import {
   Ban,
   Repeat2,
   Layers,
@@ -61,18 +65,6 @@ interface PlayingCardProps {
   playable?: boolean;
 }
 
-const propertyNames: Record<string, string> = {
-  brown: 'Brown',
-  sky: 'Light blue',
-  pink: 'Pink',
-  orange: 'Orange',
-  red: 'Red',
-  yellow: 'Yellow',
-  green: 'Green',
-  blue: 'Dark blue',
-  rail: 'Railroad',
-  utility: 'Utilities',
-};
 const shortPropertyNames: Record<string, string> = {
   ...propertyNames,
   sky: 'Sky',
@@ -115,32 +107,7 @@ function PropertyBands({ colors, active }: { colors: readonly string[]; active?:
     </span>
   );
 }
-const dealInstructions: Record<string, string> = {
-  pass_go: 'Draw 2 cards.',
-  no: 'Cancel an action against you. Counter a counter, too.',
-  debt: 'Collect 5M from one player.',
-  birthday: 'Collect 2M from every other player.',
-  sly: 'Take one property from an incomplete set.',
-  forced: 'Swap a property with another player. Complete sets are protected.',
-  breaker: 'Take an entire complete property set.',
-  house: 'Add to a complete street set. Rent +3M.',
-  hotel: 'Add after a house. Rent +4M.',
-  double: 'Play with a Rent card to double the bill.',
-  rent: 'Charge rent on one matching property set.',
-  rent_double: 'Charge double rent on a matching set.',
-  forced_debt: 'Give one player a debt chip.',
-  go_again: 'End this turn, then take another.',
-  heist: 'Take one bank card from each opponent.',
-  crash: 'Take one property from each opponent.',
-  fill: 'Draw until you have 7 cards.',
-  repossession: 'One player keeps a property and gives the rest away.',
-  shack: 'Attach to a property set. Rent +5M.',
-  super_sly: 'Take every property of one chosen colour.',
-  tax: 'One player keeps a bank card and gives the rest away.',
-  tough: 'Take all money, action or property cards from one player’s hand.',
-  unfair: 'Swap your entire bank with another player’s bank.',
-  yoink: 'Collect 10M from one player.',
-};
+
 function DealFace({ card }: { card: CardPresentation }) {
   const colors = card.colors?.length ? card.colors : card.suit === 'property' ? [card.color] : [];
   const property = card.suit === 'property';

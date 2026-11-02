@@ -2,12 +2,13 @@
 import { useEffect, useId, useRef, type CSSProperties } from 'react';
 import { LayoutGroup, MotionConfig, motion } from 'motion/react';
 import { Seat, TokenArt, HorizontalRail } from '@games/ui';
-import { blackjackDetails } from '@games/api-client';
+import { blackjackDetails, holdemDetails } from '@games/api-client';
 import { ActionPanel } from '../shared/ActionPanel';
 import { playerName, type TableProps } from '../types';
 import { CasinoActionCue, CasinoCardRow, CasinoChipFlights } from './CasinoMotion';
 import { casinoActionLabel, casinoPhaseLabel } from './casino-transitions';
 import { useCasinoMotion } from './useCasinoMotion';
+import { blackjackValueLabel } from './hand-value';
 import { useMediaQuery } from '@/shared/use-media-query';
 
 // Crowded tables need distinct top, side and bottom bands, not equal ellipse angles.
@@ -69,6 +70,10 @@ export function CasinoTable(props: TableProps) {
   const seats = useRef<Record<string, HTMLDivElement | null>>({});
   const hands = useRef<HTMLDivElement>(null);
   const blackjack = match.id === 'blackjack' ? blackjackDetails(match.detail) : null;
+  const holdem = match.id === 'holdem' ? holdemDetails(match.detail) : null;
+  const own = match.players.find((player) => player.id === selfId);
+  const callAmount =
+    holdem && own ? Math.min(Math.max(0, holdem.currentBet - own.bet), own.chips || 0) : 0;
   const activeHand = match.phase === 'finished' ? null : blackjack?.activeHand;
   const showOwnHand = blackjack ? blackjack.hands.length > 0 : match.hand.length > 0;
   const viewer = Math.max(
@@ -114,6 +119,12 @@ export function CasinoTable(props: TableProps) {
                 </span>
                 {match.id === 'blackjack' ? (
                   <span className="casino-payout-note">Blackjack pays 3:2</span>
+                ) : null}
+                {blackjack && match.community.length ? (
+                  <span className="casino-payout-note">
+                    {blackjack.dealerHidden ? 'Visible dealer total' : 'Dealer total'}{' '}
+                    {blackjackValueLabel(match.community)}
+                  </span>
                 ) : null}
               </div>
               {match.community.length || match.detail.dealer_hidden ? (
@@ -270,12 +281,28 @@ export function CasinoTable(props: TableProps) {
             <div className="private-hand casino-own-cards" data-empty={!showOwnHand}>
               <div className="hand-heading">
                 <h3>{blackjack ? 'Your hands' : 'Your cards'}</h3>
+                {holdem && match.phase !== 'finished' ? (
+                  <span className="small muted">
+                    Bet {holdem.currentBet}
+                    {match.actions.some((option) => option.value.type === 'call')
+                      ? ` · Call ${callAmount}`
+                      : ''}{' '}
+                    chips
+                  </span>
+                ) : null}
+                {match.id === 'teen-patti' && match.phase !== 'finished' ? (
+                  <span className="small muted">
+                    {match.detail.blind ? 'Blind' : 'Seen'} · Stake {String(match.detail.stake)}
+                  </span>
+                ) : null}
               </div>
               {!showOwnHand ? (
                 <p className="small muted casino-hand-placeholder">
                   {match.phase === 'finished'
                     ? 'This hand is complete.'
-                    : 'Your cards will appear here after betting.'}
+                    : match.id === 'teen-patti' && match.detail.blind
+                      ? 'Playing blind. Your cards stay hidden until you choose to look.'
+                      : 'Your cards will appear here after betting.'}
                 </p>
               ) : blackjack ? (
                 <div ref={hands}>
@@ -300,6 +327,9 @@ export function CasinoTable(props: TableProps) {
                             {activeHand === index ? ' · active' : ''}
                           </strong>
                           <span>{hand.bet} chips bet</span>
+                        </p>
+                        <p className="blackjack-hand-value">
+                          Total {blackjackValueLabel(hand.cards)}
                         </p>
                         <CasinoCardRow
                           cards={hand.cards}

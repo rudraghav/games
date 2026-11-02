@@ -3,6 +3,12 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends
 
+from app.astrology.models import (
+    AstrologyPlaces,
+    AstrologyPlaceSearch,
+    AstrologyPreview,
+    AstrologyPreviewInput,
+)
 from app.auth import Identity, identity
 from app.db import sessions
 from app.games.tarot.reading import ReadingInput, ReadingView
@@ -72,6 +78,20 @@ def reading(room_id: str, actor: Actor, svc: Service) -> ReadingView:
 @router.post("/rooms/{room_id}/reading", response_model=ReadingView)
 def generate(room_id: str, data: ReadingInput, actor: Actor, svc: Service) -> ReadingView:
     return svc.reading(actor, room_id, data)
+
+
+@router.post("/rooms/{room_id}/astrology/places", response_model=AstrologyPlaces)
+def astrology_places(
+    room_id: str, data: AstrologyPlaceSearch, actor: Actor, svc: Service
+) -> AstrologyPlaces:
+    return svc.astrology_places(actor, room_id, data)
+
+
+@router.post("/rooms/{room_id}/astrology/chart", response_model=AstrologyPreview)
+def astrology_chart(
+    room_id: str, data: AstrologyPreviewInput, actor: Actor, svc: Service
+) -> AstrologyPreview:
+    return svc.astrology_preview(actor, room_id, data)
 
 
 @router.put("/rooms/{room_id}/ready", response_model=RoomView)

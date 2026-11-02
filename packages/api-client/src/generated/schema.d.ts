@@ -124,6 +124,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/rooms/{room_id}/astrology/places": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Astrology Places */
+        post: operations["astrology_places_v1_rooms__room_id__astrology_places_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/rooms/{room_id}/astrology/chart": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Astrology Chart */
+        post: operations["astrology_chart_v1_rooms__room_id__astrology_chart_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/rooms/{room_id}/ready": {
         parameters: {
             query?: never;
@@ -429,6 +463,238 @@ export interface components {
              * @default 1
              */
             count: number;
+        };
+        /** AstrologyAspect */
+        AstrologyAspect: {
+            /** From Id */
+            from_id: string;
+            /** To Id */
+            to_id: string;
+            /**
+             * Name
+             * @enum {string}
+             */
+            name: "conjunction" | "sextile" | "square" | "trine" | "opposition";
+            /** Angle */
+            angle: number;
+            /** Orb */
+            orb: number;
+        };
+        /** AstrologyChart */
+        AstrologyChart: {
+            /** Charts */
+            charts: components["schemas"]["AstrologySystemChart"][];
+            /**
+             * Calculation Version
+             * @default games-astro-1
+             */
+            calculation_version: string;
+            /**
+             * Source
+             * @default Astronomy Engine 2.1.19
+             */
+            source: string;
+            /**
+             * Precision Note
+             * @default Geocentric positions; city-centre horizon, whole-sign houses. Vedic uses a fixed-J2000 Spica True Chitrapaksha anchor, not Lahiri; arcminute precision, not identical to every ephemeris convention. Birth-time accuracy matters. Astrology is a reflection, not a prediction.
+             */
+            precision_note: string;
+        };
+        /** AstrologyHouse */
+        AstrologyHouse: {
+            /** Number */
+            number: number;
+            /** Sign */
+            sign: string;
+            /** Sign Index */
+            sign_index: number;
+            /** Start Longitude */
+            start_longitude: number;
+        };
+        /** AstrologyInput */
+        AstrologyInput: {
+            /**
+             * System
+             * @default both
+             * @enum {string}
+             */
+            system: "western" | "vedic" | "both";
+            /**
+             * Birth Date
+             * Format: date
+             */
+            birth_date: string;
+            /** Birth Time */
+            birth_time: string;
+            /** Place Id */
+            place_id: string;
+            /** Fold */
+            fold?: (0 | 1) | null;
+        };
+        /** AstrologyInterpretation */
+        AstrologyInterpretation: {
+            western?: components["schemas"]["AstrologyInterpretationSection"] | null;
+            vedic?: components["schemas"]["AstrologyInterpretationSection"] | null;
+            /** Tarot Connection */
+            tarot_connection: string;
+            /** Next Step */
+            next_step: string;
+        };
+        /** AstrologyInterpretationSection */
+        AstrologyInterpretationSection: {
+            /** Focus Points */
+            focus_points: string[];
+            /** Normal */
+            normal: string;
+            /** Quirky */
+            quirky: string;
+        };
+        /** AstrologyIssue */
+        AstrologyIssue: {
+            /**
+             * Code
+             * @enum {string}
+             */
+            code: "ambiguous_local_time" | "nonexistent_local_time" | "unsupported_location";
+            /** Message */
+            message: string;
+            /** Choices */
+            choices?: components["schemas"]["AstrologyTimeChoice"][];
+        };
+        /** AstrologyNakshatra */
+        AstrologyNakshatra: {
+            /** Name */
+            name: string;
+            /** Index */
+            index: number;
+            /** Pada */
+            pada: number;
+        };
+        /** AstrologyPlace */
+        AstrologyPlace: {
+            /** Id */
+            id: string;
+            /** Label */
+            label: string;
+            /** Latitude */
+            latitude: number;
+            /** Longitude */
+            longitude: number;
+            /** Timezone */
+            timezone: string;
+            /** Country Code */
+            country_code: string;
+        };
+        /** AstrologyPlaceSearch */
+        AstrologyPlaceSearch: {
+            /** Match Id */
+            match_id: string;
+            /** Query */
+            query: string;
+        };
+        /** AstrologyPlaces */
+        AstrologyPlaces: {
+            /** Places */
+            places: components["schemas"]["AstrologyPlace"][];
+            /**
+             * Attribution
+             * @default Location data: GeoNames via Open-Meteo (CC BY 4.0).
+             */
+            attribution: string;
+        };
+        /** AstrologyPoint */
+        AstrologyPoint: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Longitude */
+            longitude: number;
+            /** Sign */
+            sign: string;
+            /** Sign Index */
+            sign_index: number;
+            /** Degree */
+            degree: number;
+            /** House */
+            house: number;
+            /**
+             * Retrograde
+             * @default false
+             */
+            retrograde: boolean;
+        };
+        /** AstrologyPreview */
+        AstrologyPreview: {
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "ready" | "needs_time_choice" | "invalid_time";
+            chart?: components["schemas"]["AstrologyChart"] | null;
+            issue?: components["schemas"]["AstrologyIssue"] | null;
+        };
+        /** AstrologyPreviewInput */
+        AstrologyPreviewInput: {
+            /** Match Id */
+            match_id: string;
+            astrology: components["schemas"]["AstrologyInput"];
+        };
+        /** AstrologyReading */
+        AstrologyReading: {
+            chart: components["schemas"]["AstrologyChart"];
+            interpretation: components["schemas"]["AstrologyInterpretation"];
+        };
+        /** AstrologySystemChart */
+        AstrologySystemChart: {
+            /**
+             * System
+             * @enum {string}
+             */
+            system: "western" | "vedic";
+            /** Label */
+            label: string;
+            /**
+             * Zodiac
+             * @enum {string}
+             */
+            zodiac: "tropical" | "sidereal";
+            /** Ayanamsa Name */
+            ayanamsa_name?: string | null;
+            /** Ayanamsa Degrees */
+            ayanamsa_degrees?: number | null;
+            /**
+             * House System
+             * @default whole_sign
+             * @constant
+             */
+            house_system: "whole_sign";
+            ascendant: components["schemas"]["AstrologyPoint"];
+            midheaven: components["schemas"]["AstrologyPoint"];
+            /** Placements */
+            placements: components["schemas"]["AstrologyPoint"][];
+            /** Houses */
+            houses: components["schemas"]["AstrologyHouse"][];
+            /** Aspects */
+            aspects: components["schemas"]["AstrologyAspect"][];
+            /**
+             * Aspect Model
+             * @default Geometric major aspects; not classical Jyotish graha drishti.
+             */
+            aspect_model: string;
+            moon_nakshatra?: components["schemas"]["AstrologyNakshatra"] | null;
+        };
+        /** AstrologyTimeChoice */
+        AstrologyTimeChoice: {
+            /**
+             * Fold
+             * @enum {integer}
+             */
+            fold: 0 | 1;
+            /** Label */
+            label: string;
+            /** Utc Offset */
+            utc_offset: string;
         };
         /** CardView */
         CardView: {
@@ -847,6 +1113,7 @@ export interface components {
             next_step: string;
             /** Cards */
             cards: components["schemas"]["Section"][];
+            astrology?: components["schemas"]["AstrologyReading"] | null;
         };
         /** ReadingInput */
         ReadingInput: {
@@ -857,6 +1124,9 @@ export interface components {
              * @default
              */
             question: string;
+            astrology?: components["schemas"]["AstrologyInput"] | null;
+            /** Reuse Saved Astrology */
+            reuse_saved_astrology?: boolean | null;
         };
         /** ReadingView */
         ReadingView: {
@@ -878,6 +1148,7 @@ export interface components {
              * @default
              */
             message: string;
+            astrology_chart?: components["schemas"]["AstrologyChart"] | null;
         };
         /** Ready */
         Ready: {
@@ -1273,6 +1544,80 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ReadingView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    astrology_places_v1_rooms__room_id__astrology_places_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                room_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AstrologyPlaceSearch"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AstrologyPlaces"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    astrology_chart_v1_rooms__room_id__astrology_chart_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                room_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AstrologyPreviewInput"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AstrologyPreview"];
                 };
             };
             /** @description Validation Error */

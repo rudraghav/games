@@ -1,5 +1,21 @@
 # Pop Tarot
 
+## Optional birth charts — 2 November 2026
+
+Astrology is off by default. A participant may preview Western tropical,
+Vedic True Chitrapaksha, or both whole-sign charts before the same Tarot request.
+The server calculates all placements; the reading adds separate normal and
+quirky interpretations grounded in named body/sign/house anchors. The Vedic
+convention is explicitly True Chitrapaksha, not Lahiri. See the
+[calculation, privacy and verification contract](../../astrology/README.md).
+
+Birth date, time and place stay out of saved readings and provider prompts.
+Only the computed chart is saved privately, including during a pending/failed
+request so refresh and explicit retry can reuse it. Turning astrology off omits
+it from the next request and clears an earlier failed chart draft. Ordinary and
+legacy readings remain unchanged. The `pop-tarot-6` optional contract makes one
+combined provider call, with no automatic astrology retry or substitute reading.
+
 ## Reading expansion acceptance — 1 November 2026
 
 New readings must give every selected card a grounded interpretation, a separate

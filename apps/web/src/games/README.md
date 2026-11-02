@@ -198,3 +198,15 @@ and a committed legal Azul draft. It also checks anonymous opponent inspections.
 The local midgame review adds legally reached phases at both seat limits; it
 changes local projections only and cannot write rooms. Evidence and practical
 limits are recorded in `docs/evidence/stable-play-2026-11-02/non-deal`.
+
+
+## Decision information
+
+Deal card/set inspection has separate keyboard/touch controls, labelled rent
+ladders, completion, current buildings/rent and exact legal rent previews; see
+`deal/README.md`. Selected Uno effects, blackjack visible totals, Teen Patti
+blind/stake state, actual Hold’em settlement, Skyjo final turns and public Gem
+token holdings use authorized projections. Gang/Paper completed rounds compact
+their existing docks without moving live-phase choices. The per-game interaction
+checklist and verification limits are recorded in
+`docs/evidence/game-info-2026-11-02/README.md`.

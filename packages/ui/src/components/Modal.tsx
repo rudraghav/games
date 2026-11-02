@@ -13,6 +13,7 @@ interface ModalProps {
   wide?: boolean;
   stickyHeader?: boolean;
   onEscapeKeyDown?: (event: KeyboardEvent) => void;
+  onCloseAutoFocus?: (event: Event) => void;
 }
 export function Modal({
   open,
@@ -23,6 +24,7 @@ export function Modal({
   wide,
   stickyHeader,
   onEscapeKeyDown,
+  onCloseAutoFocus,
 }: ModalProps) {
   const opener = useRef<HTMLElement | null>(null);
   return (
@@ -37,6 +39,8 @@ export function Modal({
               document.activeElement instanceof HTMLElement ? document.activeElement : null;
           }}
           onCloseAutoFocus={(event) => {
+            onCloseAutoFocus?.(event);
+            if (event.defaultPrevented) return;
             // These controlled dialogs do not use Dialog.Trigger. Restore their
             // actual opener, unless another dialog has just taken its place.
             event.preventDefault();
