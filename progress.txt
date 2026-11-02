@@ -1,3 +1,32 @@
+## 2026-11-02 — Azul accessibility pushed and live verified
+
+- Application 3acd70d21d24acdf743cf7f0f76e1d545cd3410e pushed to main; one production
+  deployment dpl_CMa9LCRpxhp62PsgYukdCQ3gce7n is READY in bom1. Canonical Games
+  alias and both source metadata fields agree. Prior dpl_HdDUpQfY58ewQ13HzrHDm57qusJP
+  retained for rollback; Git integration remains absent. No cloud settings changed.
+- Two hosted desktop/phone cases passed: keyboard factory draft and pattern
+  placement, centre marker then floor placement, exact version increments,
+  accessible identities, saved refresh and other-seat public agreement. Five
+  health/catalogue/auth/design boundaries pass. Local named checks remain
+  134 frontend tests, types/lint/build and 26 affected browser cases.
+- Logs from 2026-11-02T13:23:30.600033+00:00 to 2026-11-02T13:26:18+00:00
+  contain zero warnings/errors/fatals and zero HTTP500+ records, with complete
+  pagination/no exclusions. All five owner fingerprints are unchanged, including
+  five existing rooms. Read-only QA readback confirms both rooms closed, zero
+  active memberships, two preserved matches and eight preserved move receipts.
+- All 461 runtime files match the tested fingerprint. This closure updates only
+  docs/evidence and needs no second deployment. Native screen-reader study and
+  naturally saved scored-wall coverage remain distinct from the proven checks.
+- Cleanup: removed five superseded harness captures (545,149 bytes) after exact
+  path/hash/symlink/open-file checks. Three passing status files total 135 bytes;
+  private before/after/rollback records and named reports retained. No new
+  services/worktrees; requested web3217/API8217 still return200. Source, original
+  art, history, databases, credentials and branches preserved.
+- Evidence: docs/evidence/azul-accessibility-2026-11-02/production.json.
+- Next candidates: player-qualified Trio reveal control names; reproduce the
+  separate Party selection-across-tabs concern before deciding whether it is a
+  defect. Neither changes this Azul release's completed acceptance.
+
 ## 2026-11-02 — Azul accessibility local release checks pass
 
 - The existing Azul renderer exposes draft tiles, pattern-line contents,

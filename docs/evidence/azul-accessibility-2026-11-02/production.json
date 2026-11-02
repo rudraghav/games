@@ -1,0 +1,81 @@
+{
+  "state": "pushed_deployed_live_verified",
+  "verifiedAt": "2026-11-02T13:28:07.602789+00:00",
+  "applicationCommit": "3acd70d21d24acdf743cf7f0f76e1d545cd3410e",
+  "branch": "main",
+  "deployment": {
+    "id": "dpl_CMa9LCRpxhp62PsgYukdCQ3gce7n",
+    "target": "production",
+    "readyState": "READY",
+    "regions": [
+      "bom1"
+    ],
+    "alias": "https://games-seven-black.vercel.app",
+    "bothSourceMetadataFieldsMatch": true
+  },
+  "rollbackDeployment": "dpl_HdDUpQfY58ewQ13HzrHDm57qusJP",
+  "deployments": 1,
+  "gitIntegration": false,
+  "hosted": {
+    "casesPassed": 2,
+    "devices": [
+      "desktop",
+      "phone"
+    ],
+    "checks": [
+      "Keyboard factory draft and pattern placement submit exact authoritative actions",
+      "Center draft acquires first-player marker, then explicit floor placement",
+      "One committed version increment per action",
+      "Draft, line, wall and floor accessible identities",
+      "Saved refresh and other-seat public state agree"
+    ],
+    "httpBoundariesPassed": 5
+  },
+  "logs": {
+    "start": "2026-11-02T13:23:30.600033+00:00",
+    "end": "2026-11-02T13:26:18+00:00",
+    "warningsErrorsFatals": 0,
+    "http500Plus": 0,
+    "hasMore": false,
+    "excludedIntervals": []
+  },
+  "ownerPreservation": {
+    "accountProfileRoomsMembershipsIdentities": "all five fingerprints unchanged",
+    "existingOwnerRooms": 5
+  },
+  "qaReadback": {
+    "checkedAt": "2026-11-02T13:26:20.352577+00:00",
+    "closedRooms": 2,
+    "activeMemberships": 0,
+    "preservedMatches": 2,
+    "preservedMoveReceipts": 8,
+    "readOnly": true
+  },
+  "runtime": {
+    "files": 461,
+    "fingerprint": "971cf5a2e6af055db6b0471c55505c262726b1fe362b46b7dac09c4bf573f29f",
+    "allFilesMatchTestedAndDeployedSource": true
+  },
+  "cleanup": {
+    "checkedAt": "2026-11-02T13:21:39.555760+00:00",
+    "removedDirectory": "output/playwright/azul-accessibility-20261102",
+    "removedFiles": 5,
+    "removedBytes": 545149,
+    "reason": "Superseded fixture harness captures; final actual-tile assertions passed separately",
+    "preserved": "Final status receipts, named reports, original art/source, history, databases, credentials, owner state, rollback evidence, branches and requested services",
+    "finalCheckedAt": "2026-11-02T13:27:08.577727+00:00",
+    "retainedStatusFiles": 3,
+    "retainedStatusBytes": 135,
+    "localHealth": {
+      "web": 200,
+      "api": 200
+    },
+    "newServicesOrWorktrees": 0
+  },
+  "limits": [
+    "Browser accessibility-tree and keyboard checks; no native screen-reader user study",
+    "Scored occupied-wall state is covered by legal-projection fixtures; saved rooms cover the actual draft/place/marker/floor flows",
+    "Server rules were unchanged and are not newly certified by this UI-only batch"
+  ],
+  "closure": "Subsequent commit updates docs/evidence only; no duplicate deployment."
+}

@@ -1,5 +1,5 @@
 {
-  "state": "locally_verified_before_push",
+  "state": "local_checks_passed_and_production_verified",
   "baseline": "de34c840d798de568d652f73981342742af1ddcc",
   "frontend": {
     "types": "passed",
@@ -42,5 +42,9 @@
   "limits": [
     "No native screen-reader user study",
     "Occupied scored-wall states use legal-projection fixtures; saved-room proof covers drafting, pattern placement, center marker and floor"
-  ]
+  ],
+  "release": {
+    "applicationCommit": "3acd70d21d24acdf743cf7f0f76e1d545cd3410e",
+    "productionReceipt": "production.json"
+  }
 }
