@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import logging
 import sys
 import time
 from datetime import UTC, datetime
@@ -17,7 +18,11 @@ from app.settings import settings
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--output", type=Path, required=True)
 parser.add_argument("--ordinary", action="store_true", help="Evaluate the ordinary Tarot regression instead")
+parser.add_argument("--system", choices=("western", "vedic", "both"), default="both")
+parser.add_argument("--cards", nargs=3, default=["major-00", "wands-01", "major-08"],
+                    help="Three canonical cards; only synthetic evaluation spreads")
 args = parser.parse_args()
+logging.basicConfig(level=logging.INFO)
 if args.output.exists():
     parser.error("Preserve existing evidence; choose a new output path.")
 if not settings().gemini_api_key:
@@ -26,13 +31,13 @@ if not settings().gemini_api_key:
 # Public J2000 astronomical reference instant and Greenwich observatory, not a person.
 chart = None
 if not args.ordinary:
-    preview = chart_at(datetime(2000, 1, 1, 12, tzinfo=UTC), 51.4779, 0, "both")
+    preview = chart_at(datetime(2000, 1, 1, 12, tzinfo=UTC), 51.4779, 0, args.system)
     assert preview.chart is not None
     chart = preview.chart
 started = time.monotonic()
 try:
     reading = generate_reading(
-        ["major-00", "wands-01", "major-08"],
+        args.cards,
         "How can I make room for a creative hobby?",
         astrology_chart=chart,
     )
@@ -43,13 +48,14 @@ assert len(reading.cards) == 3
 assert all(section.quirky_interpretation and section.characters for section in reading.cards)
 if chart:
     assert reading.astrology is not None
-    assert reading.astrology.interpretation.western and reading.astrology.interpretation.vedic
+    for system in ("western", "vedic") if args.system == "both" else (args.system,):
+        assert getattr(reading.astrology.interpretation, system)
     assert reading.astrology.chart == chart
 else:
     assert reading.astrology is None
 result = {
     "fixture": "Public J2000 reference; synthetic question; no personal birth input",
-    "mode": "ordinary" if args.ordinary else "both",
+    "mode": "ordinary" if args.ordinary else args.system,
     "model": settings().tarot_model,
     "prompt_version": PROMPT_VERSION,
     "seconds": round(time.monotonic() - started, 2),

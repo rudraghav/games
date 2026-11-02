@@ -51,3 +51,11 @@ The shared turn message is neutral about the viewer; the room notice names the
 actual actor. Bed squares have coordinate labels and native keyboard activation.
 Kitten/adult art, available counts and selected-piece state remain explicit;
 the same selection and placement flow works through touch, mouse or keyboard.
+
+Graduation and the eight-piece return now use select, preview and confirm: a tap
+or keyboard activation highlights the chosen coordinates and explains the cats
+returned to the pool without submitting. Clear restores an unselected choice;
+Confirm is the only commit control for this phase. The engine projects either
+`three-cats` and the winning line or `eight-cats` and all eight winning coordinates,
+which the result view highlights and explains. Older saves without this metadata
+keep their existing result message.

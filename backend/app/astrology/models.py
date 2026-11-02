@@ -123,10 +123,18 @@ class AstrologyChart(PrivateModel):
     )
 
 
+class AstrologyTimeResolution(PrivateModel):
+    timezone: str = Field(min_length=1, max_length=80)
+    utc_offset: str = Field(pattern=r"^[+-]\d{2}:\d{2}(?::\d{2})?$", max_length=9)
+
+
 class AstrologyPreview(PrivateModel):
     status: Literal["ready", "needs_time_choice", "invalid_time"]
     chart: AstrologyChart | None = None
     issue: AstrologyIssue | None = None
+    time_resolution: AstrologyTimeResolution | None = Field(
+        default=None, description="Ephemeral resolved civil-time context; never saved with the chart."
+    )
 
 
 class AstrologyInterpretationSection(PrivateModel):

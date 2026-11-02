@@ -14,6 +14,7 @@ from app.core.contracts import (
     legal,
     validate_action,
 )
+from app.core.poker_explanation import explain_poker_hand
 
 STREETS = ("Preflop", "Flop", "Turn", "River")
 HAND_NAMES = ("High card", "Pair", "Two pair", "Three of a kind", "Straight", "Flush",
@@ -128,6 +129,9 @@ class GangEngine(BaseEngine):
 
     def project_view(self, s: State, player: str) -> GameView:
         own = s["hands"].get(player, [])
+        complete = s["phase"] in ("heist_review", "finished")
+        declared = sorted(s["order"], key=lambda p: s["chips"][p]) if complete else []
+        ranks = {p: poker_rank(s["hands"][p] + s["board"]) for p in declared}
         return GameView(
             game_id=self.manifest.id, phase=s["phase"],
             current_player=None if s["phase"] == "finished" else s["order"][s["turn"]],
@@ -142,5 +146,12 @@ class GangEngine(BaseEngine):
                     "own_hand_name": hand_name(own + s["board"]) if own and len(s["board"]) >= 3 else None,
                     "decision_mode": "simultaneous" if s["phase"] == "chips" else "turn",
                     "pending_players": [p for p in s["order"] if s["chips"][p] is None] if s["phase"] == "chips" else [],
-                    "hand_names": {p: hand_name(s["hands"][p] + s["board"]) for p in s["revealed"]}},
+                    "hand_names": {p: hand_name(s["hands"][p] + s["board"]) for p in s["revealed"]},
+                    "hand_evaluations": {p: explain_poker_hand(s["hands"][p] + s["board"])
+                                         for p in s["revealed"]},
+                    "declared_order": declared,
+                    "evaluated_order": sorted(declared, key=lambda p: ranks[p]),
+                    "inversions": [{"earlier": a, "later": b}
+                                   for a, b in zip(declared, declared[1:], strict=False)
+                                   if ranks[a] > ranks[b]]},
         )

@@ -49,3 +49,12 @@ Verification lives in `test_public_history.py` (all 27 games and secrecy
 canaries), `test_public_actions.py` (unchanged casino amounts) and
 `test_public_actions_rooms.py` (real HTTP moves, durable readback, membership,
 waiting guests, retries, conflicts, rejected moves, bounds, rematch and bots).
+
+## Match-participant boundary and recovery
+
+Waiting members receive lobby/membership metadata, but no game, public activity,
+last-action casino cue or bot-driving indicator/due time from the active match.
+Only participants receive those match projections; outsiders still receive 404.
+The frontend applies one revision acceptance rule to normal GET, action,
+heartbeat and bot responses. Lower room revisions are rejected even across a
+rematch; equal revisions may refresh presence. No schema or transaction changes.

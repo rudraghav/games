@@ -3,6 +3,8 @@
 from itertools import combinations
 from random import Random
 
+from pydantic import JsonValue
+
 from app.core.contracts import (
     Action,
     BaseEngine,
@@ -29,12 +31,13 @@ class PaperEngine(BaseEngine):
         super().__init__(GameManifest(
             id="sea-salt-paper", name="Sea Salt & Paper", subtitle="Collect sets and play card pairs",
             family="paper", min_players=2, max_players=4, minutes="15–25", icon="sailboat",
-            color="sky", rules_version="base-58-1", rules=[
+            color="sky", rules_version="base58-exhaust-1", rules=[
                 "58-card base edition. Take a discard top, or draw two, keep one and discard the other.",
                 "Play duos: crabs search one discard, boats repeat your turn, fish draw, shark+swimmer steal.",
                 "Played and unplayed cards both score. At 7+ points, choose Stop or bet on Last Chance.",
                 "Last Chance reveals/protects hands. A successful caller scores cards+color; others color only. Failed caller scores color only.",
-                "Stock exhaustion at turn end scores nothing. Targets 40/35/30 at 2/3/4 seats; all four mermaids win instantly.",
+                "Games exhaustion convention: an empty stock at turn end cancels scoring, including unfinished Last Chance. Stop scores immediately.",
+                "Targets 40/35/30 at 2/3/4 seats; all four mermaids win instantly.",
             ],
         ))
 
@@ -195,7 +198,8 @@ class PaperEngine(BaseEngine):
             s["protected"] = [player]
             order = s["order"][s["turn"] + 1:] + s["order"][:s["turn"]]
             s["turn"] = s["order"].index(order[0])
-            s.update(final_queue=order[1:], phase="draw", message="Last Chance! Everyone else has one final turn.")
+            s.update(final_queue=order[1:], phase="draw",
+                     message="Last Chance! Final turns may end early if the stock runs out.")
         else:
             self._end_turn(s)
         return s
@@ -207,6 +211,24 @@ class PaperEngine(BaseEngine):
                 private = s["draft"]
             elif s["phase"] == "crab_card":
                 private = list(reversed(s["piles"][s["crab_pile"]]))
+        endings: dict[str, JsonValue] = {
+            "stop": "Score each player's card points now.",
+            "last_chance": (
+                "Stock empty: opponents may take discards, but the first finished final turn "
+                "ends the round with no points. Four mermaids still win immediately."
+                if not s["deck"] else
+                "Each opponent gets a final turn. If stock runs out at a turn's end, "
+                "the unfinished round scores no points."
+            ),
+            "end_turn": (
+                "Stock empty: finishing ends this round with no points for anyone."
+                if not s["deck"] else
+                "Protect your hand and continue the final turns."
+                if s["caller"] and s["final_queue"] else
+                "Protect your hand and score the Last Chance result."
+                if s["caller"] else "Pass play to the next player."
+            ),
+        }
         return GameView(
             game_id=self.manifest.id, phase=s["phase"],
             current_player=None if s["phase"] == "finished" else s["order"][s["turn"]],
@@ -221,5 +243,6 @@ class PaperEngine(BaseEngine):
                     "private_options": [BY_ID[c].view().model_dump() for c in private],
                     "own_points": card_points(self._all(s, player)) if player in s["order"] else 0,
                     "own_bonus": color_bonus(self._all(s, player)) if player in s["order"] else 0,
-                    "round_result": s["round_result"], "instant_mermaids": s["instant_mermaids"]},
+                    "round_result": s["round_result"], "instant_mermaids": s["instant_mermaids"],
+                    "ending_consequences": endings},
         )

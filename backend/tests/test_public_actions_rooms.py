@@ -53,6 +53,14 @@ def test_public_action_is_durable_membership_scoped_versioned_and_retry_safe():
         })
         assert rejected.status_code == 422
         assert len(client.get(path, headers=actor).json()["activity"]) == 1
+        waiting = player(client)
+        joined = client.post("/v1/rooms/join", headers=waiting,
+                             json={"invite": room["code"], "name": "Waiting guest"})
+        assert joined.status_code == 200
+        for view in (joined.json(), client.get(path, headers=waiting).json()):
+            assert view["game"] is None and view["activity"] == []
+            assert view["last_action"] is None
+            assert not view["bot_pending"] and view["bot_due_at"] is None
         # Fresh service/session reconstructs the event from committed receipts.
         with TestClient(app) as fresh:
             assert fresh.get(path, headers=actor).json()["last_action"] == cue
@@ -159,6 +167,14 @@ def test_bot_commits_share_public_history_and_duplicate_drives_do_not_replay_eve
             assert moved.status_code == 200
             current = moved.json()
         assert current["game"]["current_player"].startswith("bot:")
+        waiting = player(client)
+        joined = client.post("/v1/rooms/join", headers=waiting,
+                             json={"invite": current["code"], "name": "Waiting guest"})
+        assert joined.status_code == 200
+        assert current["bot_pending"]
+        assert not joined.json()["bot_pending"]
+        assert joined.json()["bot_due_at"] is None
+        assert joined.json()["last_action"] is None
         with sessions()() as session, session.begin():
             session.get(Match, current["match_id"]).bot_due_at = 0
         payload = {"match_id": current["match_id"], "expected_version": current["match_version"]}

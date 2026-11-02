@@ -20,6 +20,14 @@ const schema = z.object({
   debts: z.record(z.string(), z.array(z.string())),
   pending: z.string().nullable(),
   payment_amount: z.number().nonnegative().default(0),
+  payment_bundles: z
+    .array(
+      z.object({
+        card: z.string(),
+        transfers: z.array(z.object({ id: z.string(), value: z.number().int().nonnegative() })),
+      }),
+    )
+    .default([]),
   property_groups: z.array(group).default([]),
   collections: z
     .array(
@@ -45,6 +53,19 @@ const schema = z.object({
       amount: z.number().nullable(),
       blocked: z.boolean(),
       stage: z.enum(['select', 'counter', 'payment', 'distribution']),
+      transfers: z
+        .array(
+          z.object({
+            source: z.string(),
+            target: z.string(),
+            cards: z.array(z.string()),
+          }),
+        )
+        .default([]),
+      collection: z.string().nullable().default(null),
+      category: z.enum(['money', 'property', 'action']).nullable().default(null),
+      source_collection: z.string().nullable().default(null),
+      multiplier: z.number().int().positive().default(1),
     })
     .nullable()
     .default(null),
@@ -58,6 +79,7 @@ export function dealDetails(detail: components['schemas']['GameView']['detail'])
     debts: data.debts,
     pending: data.pending,
     paymentAmount: data.payment_amount,
+    paymentBundles: data.payment_bundles,
     propertyGroups: data.property_groups,
     pendingAction: data.pending_action,
     collections: data.collections,

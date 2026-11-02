@@ -158,3 +158,14 @@ WebPs use direct public delivery because the initial production Services image
 optimizer URL returned 404. The final source 02ff603 corrects only that delivery;
 provider transport failures remain honest saved-spread retry states. See
 `docs/evidence/lounge-tables-2026-11-01/README.md` for exact revisions and limits.
+
+## Audit evaluation, 2 November 2026
+
+Four bounded, nonpersonal live evaluations cover ordinary, Western, Vedic and
+Both modes across four distinct spreads, including difficult cards. Production
+prompt `pop-tarot-6`, provider/model, token caps, validation and storage contracts
+are unchanged. Safe semantic/usage summary is in
+`docs/evidence/audit-fixes-2026-11-02/shared-tarot.md`; complete outputs remain in
+ignored local evidence. The user elected to retain the existing character images
+and accurate credits; that decision does not alter recorded usage categories or
+claim that permission was granted.

@@ -102,3 +102,14 @@ question/cards. The saved private reading includes the chart and interpretation.
 A failed generation retains only the computed chart draft for explicit retry;
 turning astrology off omits it from the next reading. Earlier saved Tarot readings
 remain readable. See `backend/app/astrology/README.md` for the named conventions.
+
+Audit refinement: failed Tarot reading refresh restores the saved question and
+computed chart. An explicit edit/clear takes precedence until rematch. Pre-1970
+birth dates show historical local-time uncertainty next to the input.
+
+Consequential game choices now disclose server-calculated payment, declaration,
+purchase and outcome details. Deal pending swaps name give/take assets; Rummy
+organization is explicitly nonbinding and declaration guidance follows the chosen
+discard; casino/Skyjo/Gang results explain score changes. Paper inspection and
+boop graduation preview are separate from confirmation. Narrow boards expose
+panning and a read-only whole-board overview; Uno colour choices occupy two columns.

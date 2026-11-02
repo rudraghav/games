@@ -19,6 +19,12 @@ def birth_zone(name: str) -> ZoneInfo:
         raise ZoneInfoNotFoundError from None
 
 
+def format_utc_offset(instant: datetime) -> str:
+    """Keep historical offset seconds as well as modern hours and minutes."""
+    offset = instant.strftime("%z")
+    return offset[:3] + ":" + offset[3:5] + (":" + offset[5:] if len(offset) > 5 else "")
+
+
 def resolve_birth_time(data: AstrologyInput, zone_name: str) -> datetime | AstrologyIssue:
     naive = datetime.fromisoformat(f"{data.birth_date.isoformat()}T{data.birth_time}")
     zone = birth_zone(zone_name)
@@ -37,10 +43,7 @@ def resolve_birth_time(data: AstrologyInput, zone_name: str) -> datetime | Astro
     if len(candidates) == 2 and data.fold is None:
         choices = []
         for fold, utc in candidates:
-            offset = utc.astimezone(zone).strftime("%z")
-            formatted = offset[:3] + ":" + offset[3:5] + (
-                ":" + offset[5:] if len(offset) > 5 else ""
-            )
+            formatted = format_utc_offset(utc.astimezone(zone))
             choices.append(AstrologyTimeChoice(fold=0 if fold == 0 else 1, utc_offset=formatted,
                                                label=f"{'First' if fold == 0 else 'Second'} occurrence (UTC{formatted})"))
         return AstrologyIssue(code="ambiguous_local_time",

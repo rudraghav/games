@@ -1,0 +1,2381 @@
+{
+  "scope": "Fresh local saved-match execution; no provider generation; runtime source unchanged",
+  "runs": [
+    {
+      "label": "card",
+      "project": "desktop",
+      "sourceReceipt": ".vercel/fullmatches-desktop-uno_uno-no-mercy_deal_deal-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_shithead.json",
+      "complete": true,
+      "active": null,
+      "transport": {
+        "retryAttempts": 0,
+        "recovered": 0,
+        "failed": 0
+      },
+      "cleanup": {
+        "guestLeaveStatuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "roomClosed": true,
+        "failed": false,
+        "abandonStatus": 200,
+        "hostLeaveStatus": 200
+      },
+      "cases": [
+        {
+          "game": "uno",
+          "seats": 2,
+          "moves": 13,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 3,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "uno",
+          "seats": 10,
+          "moves": 152,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 3,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "uno-no-mercy",
+          "seats": 2,
+          "moves": 12,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 3,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "uno-no-mercy",
+          "seats": 6,
+          "moves": 78,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "choose",
+              "version": 40,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "deal",
+          "seats": 2,
+          "moves": 44,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "property",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "pay",
+              "version": 14,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "deal",
+          "seats": 5,
+          "moves": 75,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "bank",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "pay",
+              "version": 14,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "deal-no-mercy",
+          "seats": 2,
+          "moves": 91,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "choose",
+              "version": 11,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "pay",
+              "version": 22,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "deal-no-mercy",
+          "seats": 5,
+          "moves": 72,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "property",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "choose",
+              "version": 17,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "pay",
+              "version": 28,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "no",
+              "version": 36,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "holdem",
+          "seats": 2,
+          "moves": 8,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "flop",
+              "action": "check",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "turn",
+              "action": "check",
+              "version": 5,
+              "selectionStable": false
+            },
+            {
+              "phase": "river",
+              "action": "check",
+              "version": 7,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "holdem",
+          "seats": 9,
+          "moves": 36,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "preflop",
+              "action": "call",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "flop",
+              "action": "check",
+              "version": 10,
+              "selectionStable": false
+            },
+            {
+              "phase": "turn",
+              "action": "check",
+              "version": 19,
+              "selectionStable": false
+            },
+            {
+              "phase": "river",
+              "action": "check",
+              "version": 28,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "rummy",
+          "seats": 2,
+          "moves": 5,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "draw",
+              "action": "draw_stock",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "discard",
+              "action": "discard",
+              "version": 4,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "rummy",
+          "seats": 6,
+          "moves": 17,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "draw",
+              "action": "draw_stock",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "discard",
+              "action": "discard",
+              "version": 4,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "teen-patti",
+          "seats": 2,
+          "moves": 1,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": []
+        },
+        {
+          "game": "teen-patti",
+          "seats": 6,
+          "moves": 12,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "peek",
+              "version": 3,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "blackjack",
+          "seats": 1,
+          "moves": 2,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": []
+        },
+        {
+          "game": "blackjack",
+          "seats": 7,
+          "moves": 13,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "betting",
+              "action": "bet",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "playing",
+              "action": "stand",
+              "version": 8,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "skyjo",
+          "seats": 2,
+          "moves": 129,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "opening",
+              "action": "reveal",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "playing",
+              "action": "draw_stock",
+              "version": 5,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "reveal",
+              "version": 7,
+              "selectionStable": false
+            },
+            {
+              "phase": "between_rounds",
+              "action": "next_round",
+              "version": 65,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "skyjo",
+          "seats": 8,
+          "moves": 256,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "opening",
+              "action": "reveal",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "playing",
+              "action": "draw_stock",
+              "version": 17,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "reveal",
+              "version": 19,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "shithead",
+          "seats": 2,
+          "moves": 59,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 3,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "shithead",
+          "seats": 5,
+          "moves": 93,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "setup",
+              "action": "arrange",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 6,
+              "selectionStable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "card",
+      "project": "phone",
+      "sourceReceipt": ".vercel/fullmatches-phone-uno_uno-no-mercy_deal_deal-no-mercy_holdem_rummy_teen-patti_blackjack_skyjo_shithead.json",
+      "complete": true,
+      "active": null,
+      "transport": {
+        "retryAttempts": 1,
+        "recovered": 1,
+        "failed": 0
+      },
+      "cleanup": {
+        "guestLeaveStatuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "roomClosed": true,
+        "failed": false,
+        "abandonStatus": 200,
+        "hostLeaveStatus": 200
+      },
+      "cases": [
+        {
+          "game": "uno",
+          "seats": 2,
+          "moves": 72,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "accept",
+              "version": 3,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "uno",
+          "seats": 10,
+          "moves": 140,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 3,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "uno-no-mercy",
+          "seats": 2,
+          "moves": 21,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "choose",
+              "version": 7,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "uno-no-mercy",
+          "seats": 6,
+          "moves": 97,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "choose",
+              "version": 4,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "deal",
+          "seats": 2,
+          "moves": 48,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "bank",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "pay",
+              "version": 11,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "no",
+              "version": 14,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "deal",
+          "seats": 5,
+          "moves": 92,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "property",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "pay",
+              "version": 8,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "deal-no-mercy",
+          "seats": 2,
+          "moves": 76,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "property",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "pay",
+              "version": 8,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "choose",
+              "version": 27,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "deal-no-mercy",
+          "seats": 5,
+          "moves": 88,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "property",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "pay",
+              "version": 29,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "holdem",
+          "seats": 2,
+          "moves": 8,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "flop",
+              "action": "check",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "turn",
+              "action": "check",
+              "version": 5,
+              "selectionStable": false
+            },
+            {
+              "phase": "river",
+              "action": "check",
+              "version": 7,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "holdem",
+          "seats": 9,
+          "moves": 36,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "preflop",
+              "action": "call",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "flop",
+              "action": "check",
+              "version": 10,
+              "selectionStable": false
+            },
+            {
+              "phase": "turn",
+              "action": "check",
+              "version": 19,
+              "selectionStable": false
+            },
+            {
+              "phase": "river",
+              "action": "check",
+              "version": 28,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "rummy",
+          "seats": 2,
+          "moves": 5,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "draw",
+              "action": "draw_stock",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "discard",
+              "action": "discard",
+              "version": 4,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "rummy",
+          "seats": 6,
+          "moves": 17,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "draw",
+              "action": "draw_stock",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "discard",
+              "action": "discard",
+              "version": 4,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "teen-patti",
+          "seats": 2,
+          "moves": 1,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": []
+        },
+        {
+          "game": "teen-patti",
+          "seats": 6,
+          "moves": 12,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "peek",
+              "version": 3,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "blackjack",
+          "seats": 1,
+          "moves": 1,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": []
+        },
+        {
+          "game": "blackjack",
+          "seats": 7,
+          "moves": 14,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "betting",
+              "action": "bet",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "playing",
+              "action": "stand",
+              "version": 8,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "skyjo",
+          "seats": 2,
+          "moves": 64,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "opening",
+              "action": "reveal",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "playing",
+              "action": "draw_stock",
+              "version": 5,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "reveal",
+              "version": 7,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "skyjo",
+          "seats": 8,
+          "moves": 256,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "opening",
+              "action": "reveal",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "playing",
+              "action": "draw_stock",
+              "version": 17,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "reveal",
+              "version": 19,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "shithead",
+          "seats": 2,
+          "moves": 76,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 3,
+              "selectionStable": true
+            }
+          ]
+        },
+        {
+          "game": "shithead",
+          "seats": 5,
+          "moves": 143,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "setup",
+              "action": "arrange",
+              "version": 3,
+              "selectionStable": true
+            },
+            {
+              "phase": "playing",
+              "action": "play",
+              "version": 6,
+              "selectionStable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "modern",
+      "project": "desktop",
+      "sourceReceipt": ".vercel/fullmatches-desktop-four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop.json",
+      "complete": true,
+      "active": null,
+      "transport": {
+        "retryAttempts": 1,
+        "recovered": 1,
+        "failed": 0
+      },
+      "cleanup": {
+        "guestLeaveStatuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "roomClosed": true,
+        "failed": false,
+        "abandonStatus": 200,
+        "hostLeaveStatus": 200
+      },
+      "cases": [
+        {
+          "game": "four-in-a-row",
+          "seats": 2,
+          "moves": 28,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "drop",
+              "version": 3,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "reversi",
+          "seats": 2,
+          "moves": 60,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "place",
+              "version": 3,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "word-agents",
+          "seats": 4,
+          "moves": 2,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": []
+        },
+        {
+          "game": "word-agents",
+          "seats": 10,
+          "moves": 11,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "guess",
+              "action": "guess",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "clue",
+              "action": "clue",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "gem-market",
+          "seats": 2,
+          "moves": 49,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "buy",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "patron",
+              "action": "patron",
+              "version": 49,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "gem-market",
+          "seats": 4,
+          "moves": 86,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "take",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "patron",
+              "action": "patron",
+              "version": 79,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "checkers",
+          "seats": 2,
+          "moves": 161,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "move",
+              "version": 3,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "mancala",
+          "seats": 2,
+          "moves": 59,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "sow",
+              "version": 3,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "flip-7",
+          "seats": 3,
+          "moves": 77,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "hit",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 6,
+              "selectionStable": false
+            },
+            {
+              "phase": "target",
+              "action": "target_effect",
+              "version": 20,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "flip-7",
+          "seats": 10,
+          "moves": 256,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "hit",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 17,
+              "selectionStable": false
+            },
+            {
+              "phase": "target",
+              "action": "target_effect",
+              "version": 32,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "trio",
+          "seats": 3,
+          "moves": 35,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "revealing",
+              "action": "reveal_hand",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "review",
+              "action": "continue",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "trio",
+          "seats": 6,
+          "moves": 55,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "review",
+              "action": "continue",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "revealing",
+              "action": "reveal_table",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "azul",
+          "seats": 2,
+          "moves": 112,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "drafting",
+              "action": "draft_tiles",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "placing",
+              "action": "place_tiles",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 23,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "azul",
+          "seats": 4,
+          "moves": 154,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "drafting",
+              "action": "draft_tiles",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "placing",
+              "action": "place_tiles",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 33,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "spill-or-chill",
+          "seats": 3,
+          "moves": 12,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "answer",
+              "action": "respond",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "spill-or-chill",
+          "seats": 10,
+          "moves": 40,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "answer",
+              "action": "respond",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "most-likely",
+          "seats": 3,
+          "moves": 24,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "vote",
+              "action": "vote",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "most-likely",
+          "seats": 10,
+          "moves": 220,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "vote",
+              "action": "vote",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 11,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "hot-seat",
+          "seats": 3,
+          "moves": 24,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "predict",
+              "action": "predict",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "predict",
+              "action": "choose",
+              "version": 6,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "hot-seat",
+          "seats": 10,
+          "moves": 220,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "predict",
+              "action": "predict",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 11,
+              "selectionStable": false
+            },
+            {
+              "phase": "predict",
+              "action": "choose",
+              "version": 13,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "the-gang",
+          "seats": 3,
+          "moves": 47,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "chips",
+              "action": "claim_chip",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "showdown",
+              "action": "reveal_hand",
+              "version": 13,
+              "selectionStable": false
+            },
+            {
+              "phase": "heist_review",
+              "action": "next_heist",
+              "version": 16,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "the-gang",
+          "seats": 6,
+          "moves": 92,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "chips",
+              "action": "claim_chip",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "showdown",
+              "action": "reveal_hand",
+              "version": 25,
+              "selectionStable": false
+            },
+            {
+              "phase": "heist_review",
+              "action": "next_heist",
+              "version": 31,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "six-nimmt",
+          "seats": 2,
+          "moves": 239,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "take_row",
+              "action": "take_row",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "review",
+              "action": "next_selection",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "selecting",
+              "action": "select_number",
+              "version": 5,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 34,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "six-nimmt",
+          "seats": 10,
+          "moves": 355,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "selecting",
+              "action": "select_number",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "take_row",
+              "action": "take_row",
+              "version": 11,
+              "selectionStable": false
+            },
+            {
+              "phase": "review",
+              "action": "next_selection",
+              "version": 12,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 118,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "sea-salt-paper",
+          "seats": 2,
+          "moves": 301,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "end_turn",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "draw",
+              "action": "take_stock",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "choosing",
+              "action": "keep",
+              "version": 5,
+              "selectionStable": false
+            },
+            {
+              "phase": "crab_pile",
+              "action": "inspect",
+              "version": 23,
+              "selectionStable": false
+            },
+            {
+              "phase": "crab_card",
+              "action": "take_inspected",
+              "version": 24,
+              "selectionStable": false
+            },
+            {
+              "phase": "steal",
+              "action": "steal",
+              "version": 38,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 40,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "sea-salt-paper",
+          "seats": 4,
+          "moves": 348,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "end_turn",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "draw",
+              "action": "take_stock",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "choosing",
+              "action": "keep",
+              "version": 5,
+              "selectionStable": false
+            },
+            {
+              "phase": "crab_pile",
+              "action": "inspect",
+              "version": 22,
+              "selectionStable": false
+            },
+            {
+              "phase": "crab_card",
+              "action": "take_inspected",
+              "version": 23,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 60,
+              "selectionStable": false
+            },
+            {
+              "phase": "steal",
+              "action": "steal",
+              "version": 117,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "boop",
+          "seats": 2,
+          "moves": 80,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "placing",
+              "action": "place",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "graduating",
+              "action": "graduate",
+              "version": 18,
+              "selectionStable": false
+            },
+            {
+              "phase": "graduating",
+              "action": "return_piece",
+              "version": 51,
+              "selectionStable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "modern",
+      "project": "phone",
+      "sourceReceipt": ".vercel/fullmatches-phone-four-in-a-row_reversi_word-agents_gem-market_checkers_mancala_flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop.json",
+      "complete": false,
+      "active": {
+        "game": "flip-7",
+        "seats": 10
+      },
+      "transport": {
+        "retryAttempts": 0,
+        "recovered": 0,
+        "failed": 0
+      },
+      "cleanup": {
+        "guestLeaveStatuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "roomClosed": true,
+        "failed": false,
+        "abandonStatus": 200,
+        "hostLeaveStatus": 200
+      },
+      "cases": [
+        {
+          "game": "four-in-a-row",
+          "seats": 2,
+          "moves": 28,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "drop",
+              "version": 3,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "reversi",
+          "seats": 2,
+          "moves": 60,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "place",
+              "version": 3,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "word-agents",
+          "seats": 4,
+          "moves": 33,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "clue",
+              "action": "clue",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "guess",
+              "action": "guess",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "word-agents",
+          "seats": 10,
+          "moves": 30,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "guess",
+              "action": "guess",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "clue",
+              "action": "clue",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "gem-market",
+          "seats": 2,
+          "moves": 46,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "buy",
+              "version": 3,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "gem-market",
+          "seats": 4,
+          "moves": 93,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "take",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "return_tokens",
+              "action": "return",
+              "version": 16,
+              "selectionStable": false
+            },
+            {
+              "phase": "patron",
+              "action": "patron",
+              "version": 85,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "checkers",
+          "seats": 2,
+          "moves": 161,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "move",
+              "version": 3,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "mancala",
+          "seats": 2,
+          "moves": 59,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "sow",
+              "version": 3,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "flip-7",
+          "seats": 3,
+          "moves": 102,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "hit",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "target",
+              "action": "target_effect",
+              "version": 6,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 7,
+              "selectionStable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "phone-continuation",
+      "project": "phone",
+      "sourceReceipt": ".vercel/fullmatches-phone-flip-7_trio_azul_spill-or-chill_most-likely_hot-seat_the-gang_six-nimmt_sea-salt-paper_boop.json",
+      "complete": true,
+      "active": null,
+      "transport": {
+        "retryAttempts": 0,
+        "recovered": 0,
+        "failed": 0
+      },
+      "cleanup": {
+        "guestLeaveStatuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "roomClosed": true,
+        "failed": false,
+        "abandonStatus": 200,
+        "hostLeaveStatus": 200
+      },
+      "cases": [
+        {
+          "game": "flip-7",
+          "seats": 3,
+          "moves": 98,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "hit",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 5,
+              "selectionStable": false
+            },
+            {
+              "phase": "target",
+              "action": "target_effect",
+              "version": 18,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "flip-7",
+          "seats": 10,
+          "moves": 232,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "hit",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 17,
+              "selectionStable": false
+            },
+            {
+              "phase": "target",
+              "action": "target_effect",
+              "version": 22,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "trio",
+          "seats": 3,
+          "moves": 51,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "review",
+              "action": "continue",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "revealing",
+              "action": "reveal_table",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "trio",
+          "seats": 6,
+          "moves": 55,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "review",
+              "action": "continue",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "revealing",
+              "action": "reveal_table",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "azul",
+          "seats": 2,
+          "moves": 106,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "drafting",
+              "action": "draft_tiles",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "placing",
+              "action": "place_tiles",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 21,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "azul",
+          "seats": 4,
+          "moves": 158,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "drafting",
+              "action": "draft_tiles",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "placing",
+              "action": "place_tiles",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 33,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "spill-or-chill",
+          "seats": 3,
+          "moves": 12,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "answer",
+              "action": "respond",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "spill-or-chill",
+          "seats": 10,
+          "moves": 40,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "answer",
+              "action": "respond",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "most-likely",
+          "seats": 3,
+          "moves": 24,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "vote",
+              "action": "vote",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 4,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "most-likely",
+          "seats": 10,
+          "moves": 220,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "vote",
+              "action": "vote",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 11,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "hot-seat",
+          "seats": 3,
+          "moves": 24,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "predict",
+              "action": "predict",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "predict",
+              "action": "choose",
+              "version": 6,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "hot-seat",
+          "seats": 10,
+          "moves": 220,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "predict",
+              "action": "predict",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "reveal",
+              "action": "next_prompt",
+              "version": 11,
+              "selectionStable": false
+            },
+            {
+              "phase": "predict",
+              "action": "choose",
+              "version": 13,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "the-gang",
+          "seats": 3,
+          "moves": 63,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "chips",
+              "action": "claim_chip",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "showdown",
+              "action": "reveal_hand",
+              "version": 13,
+              "selectionStable": false
+            },
+            {
+              "phase": "heist_review",
+              "action": "next_heist",
+              "version": 16,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "the-gang",
+          "seats": 6,
+          "moves": 92,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "chips",
+              "action": "claim_chip",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "showdown",
+              "action": "reveal_hand",
+              "version": 25,
+              "selectionStable": false
+            },
+            {
+              "phase": "heist_review",
+              "action": "next_heist",
+              "version": 31,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "six-nimmt",
+          "seats": 2,
+          "moves": 308,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "take_row",
+              "action": "take_row",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "review",
+              "action": "next_selection",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "selecting",
+              "action": "select_number",
+              "version": 5,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 36,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "six-nimmt",
+          "seats": 10,
+          "moves": 475,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "selecting",
+              "action": "select_number",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "review",
+              "action": "next_selection",
+              "version": 11,
+              "selectionStable": false
+            },
+            {
+              "phase": "take_row",
+              "action": "take_row",
+              "version": 22,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 118,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "sea-salt-paper",
+          "seats": 2,
+          "moves": 303,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "end_turn",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "draw",
+              "action": "take_stock",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "choosing",
+              "action": "keep",
+              "version": 5,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 45,
+              "selectionStable": false
+            },
+            {
+              "phase": "crab_pile",
+              "action": "inspect",
+              "version": 57,
+              "selectionStable": false
+            },
+            {
+              "phase": "crab_card",
+              "action": "take_inspected",
+              "version": 58,
+              "selectionStable": false
+            },
+            {
+              "phase": "steal",
+              "action": "steal",
+              "version": 78,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "sea-salt-paper",
+          "seats": 4,
+          "moves": 370,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "playing",
+              "action": "end_turn",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "draw",
+              "action": "take_stock",
+              "version": 4,
+              "selectionStable": false
+            },
+            {
+              "phase": "choosing",
+              "action": "keep",
+              "version": 5,
+              "selectionStable": false
+            },
+            {
+              "phase": "round_over",
+              "action": "next_round",
+              "version": 51,
+              "selectionStable": false
+            },
+            {
+              "phase": "steal",
+              "action": "steal",
+              "version": 66,
+              "selectionStable": false
+            },
+            {
+              "phase": "crab_pile",
+              "action": "inspect",
+              "version": 87,
+              "selectionStable": false
+            },
+            {
+              "phase": "crab_card",
+              "action": "take_inspected",
+              "version": 88,
+              "selectionStable": false
+            }
+          ]
+        },
+        {
+          "game": "boop",
+          "seats": 2,
+          "moves": 80,
+          "profileHistoryVerified": true,
+          "rematch": true,
+          "midgameChecks": [
+            {
+              "phase": "placing",
+              "action": "place",
+              "version": 3,
+              "selectionStable": false
+            },
+            {
+              "phase": "graduating",
+              "action": "graduate",
+              "version": 18,
+              "selectionStable": false
+            },
+            {
+              "phase": "graduating",
+              "action": "return_piece",
+              "version": 51,
+              "selectionStable": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "completedCaseExecutions": 95,
+  "distinctProjectGameSeatCases": 94,
+  "distinctGames": 26,
+  "completedMovesIncludingRepeatedFlip7Min": 9125,
+  "byProject": {
+    "desktop": 47,
+    "phone": 47
+  },
+  "failedAttempt": "modern phone heartbeat HTTP503;9 cases complete before failure; room closed; remaining19cases including repeated Flip7minimum completed sequentially",
+  "rummy": "Browser matches use legal drops; pure natural declarations are separate evidence",
+  "midgameSelectionStableNote": "false indicates this action lacked the optional selection-stability exercise, not a detected movement failure; inspect test branch",
+  "allRunCleanupClosed": true
+}

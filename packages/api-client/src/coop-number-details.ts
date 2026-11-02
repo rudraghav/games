@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { cardSchema as card } from './card-schema';
 import type { components } from './generated/schema';
+import { pokerEvaluation } from './casino-details';
 
 type Detail = components['schemas']['GameView']['detail'];
 const nonnegative = z.number().int().nonnegative();
@@ -20,6 +21,10 @@ const gang = z.object({
   decision_mode: mode,
   pending_players: z.array(z.string()),
   hand_names: z.record(z.string(), z.string()),
+  hand_evaluations: z.record(z.string(), pokerEvaluation).default({}),
+  declared_order: z.array(z.string()).default([]),
+  evaluated_order: z.array(z.string()).default([]),
+  inversions: z.array(z.object({ earlier: z.string(), later: z.string() })).default([]),
 });
 const six = z.object({
   round: z.number().int().positive(),

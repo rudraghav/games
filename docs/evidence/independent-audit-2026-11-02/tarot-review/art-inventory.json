@@ -1,0 +1,1099 @@
+[
+  {
+    "id": "major-00",
+    "name": "The Fool",
+    "source": "apps/web/public/tarot/major-01.png",
+    "rect": {
+      "left": 1,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "9983e0fbe8247f9ae7ae3b48c6187bad901abf58dfd53d525f54e460c0cc4378",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-01",
+    "name": "The Magician",
+    "source": "apps/web/public/tarot/major-01.png",
+    "rect": {
+      "left": 419,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "9983e0fbe8247f9ae7ae3b48c6187bad901abf58dfd53d525f54e460c0cc4378",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-02",
+    "name": "The High Priestess",
+    "source": "apps/web/public/tarot/major-01.png",
+    "rect": {
+      "left": 837,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "9983e0fbe8247f9ae7ae3b48c6187bad901abf58dfd53d525f54e460c0cc4378",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-03",
+    "name": "The Empress",
+    "source": "apps/web/public/tarot/major-01.png",
+    "rect": {
+      "left": 1,
+      "top": 628,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "9983e0fbe8247f9ae7ae3b48c6187bad901abf58dfd53d525f54e460c0cc4378",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-04",
+    "name": "The Emperor",
+    "source": "apps/web/public/tarot/major-01.png",
+    "rect": {
+      "left": 419,
+      "top": 628,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "9983e0fbe8247f9ae7ae3b48c6187bad901abf58dfd53d525f54e460c0cc4378",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-05",
+    "name": "The Hierophant",
+    "source": "apps/web/public/tarot/major-01.png",
+    "rect": {
+      "left": 837,
+      "top": 628,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "9983e0fbe8247f9ae7ae3b48c6187bad901abf58dfd53d525f54e460c0cc4378",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-06",
+    "name": "The Lovers",
+    "source": "apps/web/public/tarot/major-02.png",
+    "rect": {
+      "left": 1,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "bff3623f15de01ce45bd871047951661b786e5756860afa8082455164c2c600b",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-07",
+    "name": "The Chariot",
+    "source": "apps/web/public/tarot/major-02.png",
+    "rect": {
+      "left": 419,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "bff3623f15de01ce45bd871047951661b786e5756860afa8082455164c2c600b",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-08",
+    "name": "Strength",
+    "source": "apps/web/public/tarot/major-02.png",
+    "rect": {
+      "left": 837,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "bff3623f15de01ce45bd871047951661b786e5756860afa8082455164c2c600b",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-09",
+    "name": "The Hermit",
+    "source": "apps/web/public/tarot/major-02.png",
+    "rect": {
+      "left": 1,
+      "top": 628,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "bff3623f15de01ce45bd871047951661b786e5756860afa8082455164c2c600b",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-10",
+    "name": "Wheel of Fortune",
+    "source": "apps/web/public/tarot/major-02.png",
+    "rect": {
+      "left": 419,
+      "top": 628,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "bff3623f15de01ce45bd871047951661b786e5756860afa8082455164c2c600b",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-11",
+    "name": "Justice",
+    "source": "apps/web/public/tarot/major-02.png",
+    "rect": {
+      "left": 837,
+      "top": 628,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "bff3623f15de01ce45bd871047951661b786e5756860afa8082455164c2c600b",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-12",
+    "name": "The Hanged Man",
+    "source": "apps/web/public/tarot/major-03.png",
+    "rect": {
+      "left": 1,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "32798ca7fa49a372bbc02db263af4b2cdd35002f9796e2f105a5466824bb39c3",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-13",
+    "name": "Death",
+    "source": "apps/web/public/tarot/major-03.png",
+    "rect": {
+      "left": 419,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "32798ca7fa49a372bbc02db263af4b2cdd35002f9796e2f105a5466824bb39c3",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-14",
+    "name": "Temperance",
+    "source": "apps/web/public/tarot/major-03.png",
+    "rect": {
+      "left": 837,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "32798ca7fa49a372bbc02db263af4b2cdd35002f9796e2f105a5466824bb39c3",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-15",
+    "name": "The Devil",
+    "source": "apps/web/public/tarot/major-03.png",
+    "rect": {
+      "left": 1,
+      "top": 628,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "32798ca7fa49a372bbc02db263af4b2cdd35002f9796e2f105a5466824bb39c3",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-16",
+    "name": "The Tower",
+    "source": "apps/web/public/tarot/major-03.png",
+    "rect": {
+      "left": 419,
+      "top": 628,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "32798ca7fa49a372bbc02db263af4b2cdd35002f9796e2f105a5466824bb39c3",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-17",
+    "name": "The Star",
+    "source": "apps/web/public/tarot/major-03.png",
+    "rect": {
+      "left": 837,
+      "top": 628,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "32798ca7fa49a372bbc02db263af4b2cdd35002f9796e2f105a5466824bb39c3",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-18",
+    "name": "The Moon",
+    "source": "apps/web/public/tarot/major-04.png",
+    "rect": {
+      "left": 1,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "9ee1a08c40c39c0945a307881c07eafa59fc7cf2e165d8f97e2b3a0786047728",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-19",
+    "name": "The Sun",
+    "source": "apps/web/public/tarot/major-04.png",
+    "rect": {
+      "left": 419,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "9ee1a08c40c39c0945a307881c07eafa59fc7cf2e165d8f97e2b3a0786047728",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-20",
+    "name": "Judgement",
+    "source": "apps/web/public/tarot/major-04.png",
+    "rect": {
+      "left": 837,
+      "top": 1,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "9ee1a08c40c39c0945a307881c07eafa59fc7cf2e165d8f97e2b3a0786047728",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "major-21",
+    "name": "The World",
+    "source": "apps/web/public/tarot/major-04.png",
+    "rect": {
+      "left": 1,
+      "top": 628,
+      "width": 416,
+      "height": 625
+    },
+    "sourceSha256": "9ee1a08c40c39c0945a307881c07eafa59fc7cf2e165d8f97e2b3a0786047728",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-01",
+    "name": "Ace of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 1,
+      "width": 254,
+      "height": 339
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-02",
+    "name": "Two of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 1,
+      "width": 254,
+      "height": 339
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-03",
+    "name": "Three of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 1,
+      "width": 254,
+      "height": 339
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-04",
+    "name": "Four of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 1,
+      "width": 254,
+      "height": 339
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-05",
+    "name": "Five of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 342,
+      "width": 254,
+      "height": 323
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-06",
+    "name": "Six of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 342,
+      "width": 254,
+      "height": 323
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-07",
+    "name": "Seven of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 342,
+      "width": 254,
+      "height": 323
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-08",
+    "name": "Eight of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 342,
+      "width": 254,
+      "height": 323
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-09",
+    "name": "Nine of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 667,
+      "width": 254,
+      "height": 347
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-10",
+    "name": "Ten of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 667,
+      "width": 254,
+      "height": 347
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-11",
+    "name": "Page of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 667,
+      "width": 254,
+      "height": 347
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-12",
+    "name": "Knight of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 667,
+      "width": 254,
+      "height": 347
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-13",
+    "name": "Queen of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 1016,
+      "width": 254,
+      "height": 519
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "wands-14",
+    "name": "King of wands",
+    "source": "apps/web/public/tarot/minor-wands-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 1016,
+      "width": 254,
+      "height": 519
+    },
+    "sourceSha256": "a2ab31f5bc9b1ce3c99ee6a5d74c5a90745cd7dcdd6e517f189d919f2c091c2c",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-01",
+    "name": "Ace of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 1,
+      "width": 254,
+      "height": 339
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-02",
+    "name": "Two of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 1,
+      "width": 254,
+      "height": 339
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "symbolismFollowup": "Full source shows two shared cups plus an extra table cup; numeric symbolism is inconsistent.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-03",
+    "name": "Three of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 1,
+      "width": 254,
+      "height": 339
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-04",
+    "name": "Four of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 1,
+      "width": 254,
+      "height": 339
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-05",
+    "name": "Five of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 342,
+      "width": 254,
+      "height": 276
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-06",
+    "name": "Six of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 342,
+      "width": 254,
+      "height": 276
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "symbolismFollowup": "Full source shows one exchanged flower cup and four foreground flower cups; numeric symbolism is inconsistent.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-07",
+    "name": "Seven of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 342,
+      "width": 254,
+      "height": 276
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-08",
+    "name": "Eight of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 342,
+      "width": 254,
+      "height": 276
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "symbolismFollowup": "Full source depicts departure but only five cups; numeric symbolism is inconsistent.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-09",
+    "name": "Nine of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 620,
+      "width": 254,
+      "height": 322
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-10",
+    "name": "Ten of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 620,
+      "width": 254,
+      "height": 322
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-11",
+    "name": "Page of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 620,
+      "width": 254,
+      "height": 322
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-12",
+    "name": "Knight of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 620,
+      "width": 254,
+      "height": 322
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-13",
+    "name": "Queen of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 944,
+      "width": 254,
+      "height": 591
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "cups-14",
+    "name": "King of cups",
+    "source": "apps/web/public/tarot/minor-cups-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 944,
+      "width": 254,
+      "height": 591
+    },
+    "sourceSha256": "7eee08f5a8916449d666938e2bbef0ae84e093a52e1ddb20059ebc1e511ecd61",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-01",
+    "name": "Ace of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 1,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-02",
+    "name": "Two of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 1,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-03",
+    "name": "Three of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 1,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-04",
+    "name": "Four of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 1,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-05",
+    "name": "Five of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 385,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-06",
+    "name": "Six of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 385,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-07",
+    "name": "Seven of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 385,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-08",
+    "name": "Eight of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 385,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-09",
+    "name": "Nine of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 769,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-10",
+    "name": "Ten of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 769,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-11",
+    "name": "Page of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 769,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-12",
+    "name": "Knight of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 769,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-13",
+    "name": "Queen of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 1153,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "swords-14",
+    "name": "King of swords",
+    "source": "apps/web/public/tarot/minor-swords-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 1153,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "57f16a06656ead470743a25b3e9c76bcb0b9c70de5fccc899e1f79660201b750",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-01",
+    "name": "Ace of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 1,
+      "width": 254,
+      "height": 383
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-02",
+    "name": "Two of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 1,
+      "width": 254,
+      "height": 383
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-03",
+    "name": "Three of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 1,
+      "width": 254,
+      "height": 383
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-04",
+    "name": "Four of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 1,
+      "width": 254,
+      "height": 383
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-05",
+    "name": "Five of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 386,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-06",
+    "name": "Six of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 386,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-07",
+    "name": "Seven of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 386,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-08",
+    "name": "Eight of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 386,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "symbolismFollowup": "Full source shows one worked coin and six bench coins, seven prominent coins for Eight.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-09",
+    "name": "Nine of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 770,
+      "width": 254,
+      "height": 381
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "symbolismFollowup": "Full source has a single prominent pentacle; independence/falcon scene is recognizable but rank symbolism is absent.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-10",
+    "name": "Ten of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 770,
+      "width": 254,
+      "height": 381
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-11",
+    "name": "Page of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 513,
+      "top": 770,
+      "width": 254,
+      "height": 381
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-12",
+    "name": "Knight of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 769,
+      "top": 770,
+      "width": 254,
+      "height": 381
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-13",
+    "name": "Queen of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 1,
+      "top": 1153,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  },
+  {
+    "id": "pentacles-14",
+    "name": "King of pentacles",
+    "source": "apps/web/public/tarot/minor-pentacles-v1.png",
+    "rect": {
+      "left": 257,
+      "top": 1153,
+      "width": 254,
+      "height": 382
+    },
+    "sourceSha256": "ccd2fe0d5ff2a7ffc27b08a1509a40a30d9dc68020dc826d027076e83f1042cf",
+    "review": "Individually visually inspected in fresh source-cell contact sheet; recognizable distinct scene and consistent palette.",
+    "evidenceType": "current source asset crop; analytical composition, not browser screenshot"
+  }
+]

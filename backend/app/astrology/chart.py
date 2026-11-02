@@ -17,8 +17,9 @@ from app.astrology.models import (
     AstrologyPoint,
     AstrologyPreview,
     AstrologySystemChart,
+    AstrologyTimeResolution,
 )
-from app.astrology.timezones import resolve_birth_time
+from app.astrology.timezones import birth_zone, format_utc_offset, resolve_birth_time
 
 SIGNS = ("Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio",
          "Sagittarius", "Capricorn", "Aquarius", "Pisces")
@@ -134,7 +135,13 @@ def calculate_chart(data: AstrologyInput, place: AstrologyPlace) -> AstrologyPre
     instant = resolve_birth_time(data, place.timezone)
     if isinstance(instant, AstrologyIssue):
         return AstrologyPreview(status="needs_time_choice" if instant.choices else "invalid_time", issue=instant)
-    return chart_at(instant, place.latitude, place.longitude, data.system)
+    preview = chart_at(instant, place.latitude, place.longitude, data.system)
+    if preview.status == "ready":
+        preview.time_resolution = AstrologyTimeResolution(
+            timezone=place.timezone,
+            utc_offset=format_utc_offset(instant.astimezone(birth_zone(place.timezone))),
+        )
+    return preview
 
 
 def chart_at(instant: datetime, latitude: float, longitude: float, system: str) -> AstrologyPreview:

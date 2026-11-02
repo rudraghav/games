@@ -88,3 +88,16 @@ and leave endpoints, reporting cleanup counts. It disconnects its own Realtime
 clients and writes only aggregate latency/status metadata to ignored `.vercel`.
 It reads the exact personal Games publishable configuration from `.env.cloud.local`
 and refuses other deployment origins. It never uses a database/service-role key.
+
+## Audit-fix verification additions
+
+The backend group includes game-specific explanation/privacy tests; multiplayer
+includes natural2/6seat Rummy declaration HTTP persistence. `shared-audit-fixes`
+covers all four Uno choices, all78Tarot mappings/five corrected frames and one
+bounded8room/192request local workload. New casino and modern-board browser specs
+cover authoritative explanation/inspection/confirmation, saved Blackjack refresh
+and narrow board overview. Tarot retry tests preserve nonempty/edited/cleared
+questions and historical-time labeling. `transportTelemetry` now counts HTTP
+failures separately and aggregates only normalized endpoint/status/duration.
+`eval_astrology.py --system western|vedic|both` and `--ordinary` support a bounded
+nonpersonal reading matrix; use a new ignored output path, never overwrite evidence.

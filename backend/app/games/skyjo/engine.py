@@ -86,6 +86,8 @@ class SkyjoEngine(BaseEngine):
             source=None,
             finisher=None,
             remaining=[],
+            round_scores={},
+            round_ledger={},
             round=s["round"] + 1,
             message="Turn over two cards to begin.",
         )
@@ -132,7 +134,8 @@ class SkyjoEngine(BaseEngine):
             and not s["finisher"]
         ):
             s["finisher"] = player
-            s["remaining"] = [p for p in s["order"] if p != player]
+            closing = s["order"].index(player)
+            s["remaining"] = s["order"][closing + 1:] + s["order"][:closing]
         elif s["finisher"] and player in s["remaining"]:
             s["remaining"].remove(player)
         if s["finisher"] and not s["remaining"]:
@@ -140,6 +143,7 @@ class SkyjoEngine(BaseEngine):
                 s["revealed"][p] = [True] * 12
                 self._columns(s, p)
             totals = {p: sum(int(c.split(":")[1]) for c in s["grids"][p] if c) for p in s["order"]}
+            grid_totals = dict(totals)
             finisher = s["finisher"]
             if totals[finisher] > 0 and any(
                 totals[p] <= totals[finisher] for p in s["order"] if p != finisher
@@ -149,6 +153,13 @@ class SkyjoEngine(BaseEngine):
                 s["scores"][p] += totals[p]
                 s["revealed"][p] = [True] * 12
             s["round_scores"] = totals
+            s["round_ledger"] = {
+                p: {"grid_total": grid_totals[p],
+                    "removed_columns": sum(c is None for c in s["grids"][p]) // 3,
+                    "multiplier": 2 if totals[p] != grid_totals[p] else 1,
+                    "round_points": totals[p], "total_points": s["scores"][p]}
+                for p in s["order"]
+            }
             s["phase"] = "between_rounds"
             s["turn"] = s["order"].index(finisher)
             if max(s["scores"].values()) >= 100:
@@ -225,5 +236,8 @@ class SkyjoEngine(BaseEngine):
             actions=self.legal_actions(s, player),
             message=s["message"],
             winners=s["winners"],
-            detail={"round": s["round"], "finisher": s["finisher"]},
+            detail={"round": s["round"], "finisher": s["finisher"],
+                    "remaining": s["remaining"],
+                    "round_ledger": s.get("round_ledger", {})
+                    if s["phase"] in ("between_rounds", "finished") else {}},
         )

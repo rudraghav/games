@@ -14,6 +14,28 @@ from app.core.contracts import (
 )
 
 
+def hand_settlement(hand: dict, dealer: list[str]) -> dict:
+    total = blackjack_total(hand["cards"])[0]
+    dealer_total = blackjack_total(dealer)[0]
+    natural = len(dealer) == 2 and dealer_total == 21
+    player_natural = total == 21 and len(hand["cards"]) == 2 and not hand["split"]
+    payout, outcome, reason = 0, "loss", "Dealer's total is higher"
+    if total > 21:
+        reason = "Hand busts"
+    elif natural:
+        payout = hand["bet"] if player_natural else 0
+        outcome, reason = ("push", "Both have natural blackjack") if player_natural else ("loss", "Dealer has natural blackjack")
+    elif player_natural:
+        payout, outcome, reason = hand["bet"] * 5 // 2, "blackjack", "Natural blackjack pays 3:2"
+    elif dealer_total > 21 or total > dealer_total:
+        payout, outcome = hand["bet"] * 2, "win"
+        reason = "Dealer busts" if dealer_total > 21 else "Hand beats dealer"
+    elif total == dealer_total:
+        payout, outcome, reason = hand["bet"], "push", "Equal totals return the stake"
+    return {"outcome": outcome, "reason": reason, "payout": payout,
+            "net": payout - hand["bet"], "natural": player_natural}
+
+
 class BlackjackEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(
@@ -128,19 +150,7 @@ class BlackjackEngine(BaseEngine):
             if natural:
                 p["chips"] += 3 * p["insurance"]
             for hand in p["hands"]:
-                total = blackjack_total(hand["cards"])[0]
-                player_natural = total == 21 and len(hand["cards"]) == 2 and not hand["split"]
-                payout = 0
-                if total <= 21:
-                    if natural:
-                        payout = hand["bet"] if player_natural else 0
-                    elif player_natural:
-                        payout = hand["bet"] * 5 // 2
-                    elif dealer_total > 21 or total > dealer_total:
-                        payout = hand["bet"] * 2
-                    elif total == dealer_total:
-                        payout = hand["bet"]
-                p["chips"] += payout
+                p["chips"] += hand_settlement(hand, s["dealer"])["payout"]
             p["profit"] = p["chips"] - 200
         s["phase"] = "finished"
         s["winners"] = [pid for pid, p in s["players"].items() if p["profit"] > 0]
@@ -204,6 +214,19 @@ class BlackjackEngine(BaseEngine):
         return s
 
     def project_view(self, s: State, player: str) -> GameView:
+        finished = s["phase"] == "finished"
+        dealer_natural = finished and len(s["dealer"]) == 2 and blackjack_total(s["dealer"])[0] == 21
+
+        def projected_hand(h: dict) -> dict:
+            total, soft = blackjack_total(h["cards"])
+            return {"cards": [card_view(c).model_dump() for c in h["cards"]], "bet": h["bet"],
+                    "total": total, "soft": soft, "done": h["done"], "split": h["split"],
+                    "settlement": hand_settlement(h, s["dealer"]) if finished else None}
+
+        def insurance(stake: int) -> dict:
+            payout = stake * 3 if dealer_natural else 0
+            return {"stake": stake, "payout": payout if finished else None,
+                    "net": payout - stake if finished else None}
         people = [
             PlayerView(
                 id=pid,
@@ -235,9 +258,13 @@ class BlackjackEngine(BaseEngine):
             detail={
                 "dealer_hidden": bool(s["dealer"]) and s["phase"] != "finished",
                 "hand_index": s["hand_index"],
-                "hands": [
-                    {"cards": [card_view(c).model_dump() for c in h["cards"]], "bet": h["bet"]}
-                    for h in own["hands"]
-                ],
+                "active_hand_index": s["hand_index"] if s["phase"] == "playing"
+                and s["order"][s["turn"]] == player else None,
+                "hands": [projected_hand(h) for h in own["hands"]],
+                "insurance": insurance(own.get("insurance", 0)),
+                "dealer_natural": bool(dealer_natural) if finished else None,
+                "settlements": {pid: {"hands": [projected_hand(h) for h in p["hands"]],
+                                      "insurance": insurance(p["insurance"]), "net": p["profit"]}
+                                for pid, p in s["players"].items()} if finished else {},
             },
         )

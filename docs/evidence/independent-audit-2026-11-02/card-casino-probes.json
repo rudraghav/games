@@ -1,0 +1,92 @@
+{
+  "provenance": "Controlled conserved engine fixtures, no room/database writes. Current source HEAD 4233d6c.",
+  "checks": [
+    {
+      "game": "deal",
+      "probe": "unselected building carried with property payment",
+      "bill": 2,
+      "selected_value": 2,
+      "transferred_value": 5,
+      "selected": [
+        "Mediterranean Avenue",
+        "1M"
+      ],
+      "transferred": [
+        "1M",
+        "Mediterranean Avenue",
+        "House"
+      ],
+      "attachment_projected": false,
+      "result": "reproduced"
+    },
+    {
+      "game": "deal-no-mercy",
+      "probe": "unselected building carried with property payment",
+      "bill": 2,
+      "selected_value": 2,
+      "transferred_value": 5,
+      "selected": [
+        "Mediterranean Avenue",
+        "1M"
+      ],
+      "transferred": [
+        "1M",
+        "Mediterranean Avenue",
+        "Shack"
+      ],
+      "attachment_projected": false,
+      "result": "reproduced"
+    },
+    {
+      "game": "deal",
+      "probe": "reaction projected target card",
+      "pending": {
+        "kind": "sly",
+        "actor": "p0",
+        "target": "p1",
+        "responder": "p1",
+        "amount": null,
+        "blocked": false,
+        "stage": "counter"
+      },
+      "target_property_present_in_pending": false,
+      "target_property_public": true,
+      "result": "public asset exists but current decision omits its identity; activity can retain prior play"
+    },
+    {
+      "game": "holdem",
+      "probe": "unequal-stack live eligibility",
+      "fixture_warning": "unequal starting stacks cannot be reached through the current equal-200 one-hand room setup",
+      "phase": "flop",
+      "live_pot": 120,
+      "projected_pots": [],
+      "lifetime_contributions_projected": false,
+      "result": "missing projection confirmed; not demonstrated reachable from normal setup"
+    },
+    {
+      "game": "teen-patti",
+      "probe": "sideshow decision actor and target",
+      "request_action": {
+        "type": "sideshow",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      },
+      "request_label": "Request sideshow \u00b7 2",
+      "response_detail": {
+        "stake": 1,
+        "blind": false
+      },
+      "response_actions": [
+        "Accept sideshow",
+        "Decline sideshow"
+      ],
+      "result": "target absent before request; requester absent from current response detail; inspect room activity for fallback"
+    }
+  ]
+}

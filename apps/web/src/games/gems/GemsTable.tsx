@@ -13,6 +13,13 @@ export function GemsTable(props: TableProps) {
   const [selected, setSelected] = useState<string | null>(null);
   const [chosen, setChosen] = useState<Record<string, number>>({});
   const [marketTier, setMarketTier] = useState(1);
+  const selectedCard = [...match.community, ...match.hand].find((card) => card.id === selected);
+  const quote = selected ? data.purchaseQuotes[selected] : undefined;
+  const describe = (counts: Record<string, number>) =>
+    Object.entries(counts)
+      .filter(([, count]) => count > 0)
+      .map(([color, count]) => `${count} ${color}`)
+      .join(', ') || 'none';
   const canTake = match.actions.some((option) => ['take', 'take_pair'].includes(option.value.type));
   const chosenColors = Object.keys(chosen).filter((color) => chosen[color]);
   const take = match.actions.find((option) =>
@@ -81,9 +88,56 @@ export function GemsTable(props: TableProps) {
         }}
         pinSelection
         instruction={
-          selected
-            ? `${[...match.community, ...match.hand].find((card) => card.id === selected)?.label || 'Card'} selected.`
-            : 'Select a development to buy or reserve.'
+          match.phase === 'return_tokens'
+            ? `Return ${data.returnCount} ${data.returnCount === 1 ? 'gem' : 'gems'} to hold ten.`
+            : match.phase === 'patron'
+              ? 'Choose one patron whose required discounts you have.'
+              : selectedCard
+                ? `${selectedCard.label} selected.`
+                : 'Select a development to buy or reserve.'
+        }
+        selectionDetails={
+          match.phase === 'playing' && quote ? (
+            <div className="gem-purchase-quote" aria-label="Purchase payment" aria-live="polite">
+              <dl>
+                <div>
+                  <dt>Printed cost</dt>
+                  <dd>{describe(quote.cost)}</dd>
+                </div>
+                <div>
+                  <dt>Discount</dt>
+                  <dd>{describe(quote.discount)}</dd>
+                </div>
+                {quote.affordable ? (
+                  <>
+                    <div>
+                      <dt>You pay</dt>
+                      <dd>{describe(quote.spend)}</dd>
+                    </div>
+                    <div>
+                      <dt>Wallet after</dt>
+                      <dd>{describe(quote.after || {})}</dd>
+                    </div>
+                  </>
+                ) : (
+                  <div>
+                    <dt>Still needed</dt>
+                    <dd>
+                      {quote.shortfall} matching gems or gold. Missing colours before gold:{' '}
+                      {describe(quote.missing_colors)}.
+                    </dd>
+                  </div>
+                )}
+              </dl>
+              {data.reservationLimit && !match.hand.some((card) => card.id === selected) ? (
+                <p className="small">Reserve unavailable: you already have three reserved cards.</p>
+              ) : null}
+            </div>
+          ) : selectedCard?.suit === 'patron' ? (
+            <p className="small">
+              Required discounts: {describe(data.patronCosts[selectedCard.id] || {})}.
+            </p>
+          ) : undefined
         }
         cardSelectionRequired
         selected={selected}
@@ -187,24 +241,25 @@ export function GemsTable(props: TableProps) {
             </Button>
           ))}
         </div>
-        {[1, 2, 3].map((tier) => (
-          <section
-            className="gem-tier"
-            key={tier}
-            data-active={marketTier === tier}
-            aria-label={`Tier ${tier} developments`}
-          >
-            <div className="gem-tier-heading">
-              <span className="eyebrow">Tier {tier}</span>
-              <small className="muted">4 cards</small>
-            </div>
-            <div className="gem-card-row">
-              {match.community
-                .filter((card) => data.cardInfo[card.id]?.tier === tier)
-                .map((card) => development(card))}
-            </div>
-          </section>
-        ))}
+        {[1, 2, 3].map((tier) => {
+          const cards = match.community.filter((card) => data.cardInfo[card.id]?.tier === tier);
+          return (
+            <section
+              className="gem-tier"
+              key={tier}
+              data-active={marketTier === tier}
+              aria-label={`Tier ${tier} developments`}
+            >
+              <div className="gem-tier-heading">
+                <span className="eyebrow">Tier {tier}</span>
+                <small className="muted">
+                  {cards.length} {cards.length === 1 ? 'card' : 'cards'}
+                </small>
+              </div>
+              <div className="gem-card-row">{cards.map((card) => development(card))}</div>
+            </section>
+          );
+        })}
         <details className="gem-patrons" open={match.phase === 'patron' || undefined}>
           <summary>Patrons · 3 prestige each</summary>
           <div className="patron-row" aria-label="Patrons">

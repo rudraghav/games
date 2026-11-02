@@ -633,6 +633,8 @@ export interface components {
             status: "ready" | "needs_time_choice" | "invalid_time";
             chart?: components["schemas"]["AstrologyChart"] | null;
             issue?: components["schemas"]["AstrologyIssue"] | null;
+            /** @description Ephemeral resolved civil-time context; never saved with the chart. */
+            time_resolution?: components["schemas"]["AstrologyTimeResolution"] | null;
         };
         /** AstrologyPreviewInput */
         AstrologyPreviewInput: {
@@ -693,6 +695,13 @@ export interface components {
             fold: 0 | 1;
             /** Label */
             label: string;
+            /** Utc Offset */
+            utc_offset: string;
+        };
+        /** AstrologyTimeResolution */
+        AstrologyTimeResolution: {
+            /** Timezone */
+            timezone: string;
             /** Utc Offset */
             utc_offset: string;
         };

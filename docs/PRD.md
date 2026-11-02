@@ -94,3 +94,16 @@ Shithead extends the catalogue to 27 experiences, including Pop Tarot. Its
 optional seven-low and transparent-three toggles off by default. All escaped
 players win and the last remaining player loses; no score is invented. Human
 and bot seats use the same authoritative legal actions and room lifecycle.
+
+## Audit implementation, 2 November 2026
+
+The independent audit is followed by exact server-authored choice consequences,
+monotonic refresh recovery, saved Tarot question hydration, game-specific score
+explanations and accessible inspection/board navigation. Classic Deal uses the
+Hasbro FAQ953 zero-play Just Say No contract (`b0965-faq-2`); current attached-building
+transfer remains an explicit Games convention. Deal No Mercy retains its approved
+house deck and own-turn counter convention. Sea Salt & Paper pins existing stock
+exhaustion behavior as `base58-exhaust-1`, explaining its difference from the
+licensed online implementation. No timers, real-money features, public matchmaking,
+new identities or hidden-state exposure are added. Source details and per-ticket
+acceptance are retained in `evidence/audit-fixes-2026-11-02/README.md`.

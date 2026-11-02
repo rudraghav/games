@@ -12,7 +12,7 @@ import { AstrologyForm } from './AstrologyForm';
 
 const positions = ['Where you are', 'What is shifting', 'Your next move'];
 export function TarotTable({ match, room, onAction, pending, imageLoader }: TableProps) {
-  const [question, setQuestion] = useState('');
+  const [questionDraft, setQuestion] = useState<string>();
   const [astrology, setAstrology] = useState<AstrologyInput>();
   const [astrologyChoice, setAstrologyChoice] = useState<'auto' | 'off' | 'new'>('auto');
   const [chart, setChart] = useState<ChartData | null>(null);
@@ -26,6 +26,8 @@ export function TarotTable({ match, room, onAction, pending, imageLoader }: Tabl
     enabled: match.community.length === 3,
     refetchInterval: (query) => (query.state.data?.status === 'generating' ? 3000 : false),
   });
+  // An explicit empty draft is a user's edit; a missing draft restores the saved question.
+  const question = questionDraft ?? saved.data?.question ?? '';
   const reuseSavedAstrology =
     astrologyChoice === 'auto' && !astrology && !!saved.data?.astrology_chart;
   const generate = useMutation({

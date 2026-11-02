@@ -1,0 +1,1947 @@
+[
+  {
+    "game": "uno",
+    "width": 390,
+    "scenario": "uno-10-31-22",
+    "rect": {
+      "bottom": 1129.59375,
+      "height": 650.5,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/uno-390.webp",
+    "tableFile": "accepted-tables/uno-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "uno-no-mercy",
+    "width": 390,
+    "scenario": "uno-no-mercy-6-31-16",
+    "rect": {
+      "bottom": 1129.59375,
+      "height": 650.5,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/uno-no-mercy-390.webp",
+    "tableFile": "accepted-tables/uno-no-mercy-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "deal",
+    "width": 390,
+    "scenario": "deal-5-31-62",
+    "rect": {
+      "bottom": 1459.09375,
+      "height": 980,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/deal-390.webp",
+    "tableFile": "accepted-tables/deal-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "deal-no-mercy",
+    "width": 390,
+    "scenario": "deal-no-mercy-5-31-49",
+    "rect": {
+      "bottom": 1459.09375,
+      "height": 980,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/deal-no-mercy-390.webp",
+    "tableFile": "accepted-tables/deal-no-mercy-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "holdem",
+    "width": 390,
+    "scenario": "holdem-9-31-28",
+    "rect": {
+      "bottom": 1535.09375,
+      "height": 1056,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/holdem-390.webp",
+    "tableFile": "accepted-tables/holdem-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "rummy",
+    "width": 390,
+    "scenario": "rummy-6-31-32",
+    "rect": {
+      "bottom": 1406.1875,
+      "height": 927.09375,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/rummy-390.webp",
+    "tableFile": "accepted-tables/rummy-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "teen-patti",
+    "width": 390,
+    "scenario": "teen-patti-6-31-3",
+    "rect": {
+      "bottom": 1327.59375,
+      "height": 848.5,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/teen-patti-390.webp",
+    "tableFile": "accepted-tables/teen-patti-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "blackjack",
+    "width": 390,
+    "scenario": "blackjack-7-31-11",
+    "rect": {
+      "bottom": 1612.34375,
+      "height": 1133.25,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/blackjack-390.webp",
+    "tableFile": "accepted-tables/blackjack-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "skyjo",
+    "width": 390,
+    "scenario": "skyjo-8-31-228",
+    "rect": {
+      "bottom": 1557.5625,
+      "height": 1078.46875,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/skyjo-390.webp",
+    "tableFile": "accepted-tables/skyjo-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "tarot",
+    "width": 390,
+    "scenario": "tarot-1-17-3",
+    "rect": {
+      "bottom": 1316.390625,
+      "height": 837.296875,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/tarot-390.webp",
+    "tableFile": "accepted-tables/tarot-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "four-in-a-row",
+    "width": 390,
+    "scenario": "four-in-a-row-2-17-16",
+    "rect": {
+      "bottom": 963.203125,
+      "height": 484.109375,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/four-in-a-row-390.webp",
+    "tableFile": "accepted-tables/four-in-a-row-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "reversi",
+    "width": 390,
+    "scenario": "reversi-2-17-16",
+    "rect": {
+      "bottom": 958.890625,
+      "height": 479.796875,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/reversi-390.webp",
+    "tableFile": "accepted-tables/reversi-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "word-agents",
+    "width": 390,
+    "scenario": "word-agents-10-31-6",
+    "rect": {
+      "bottom": 1297.484375,
+      "height": 818.390625,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/word-agents-390.webp",
+    "tableFile": "accepted-tables/word-agents-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "gem-market",
+    "width": 390,
+    "scenario": "gem-market-4-31-53",
+    "rect": {
+      "bottom": 1968.6875,
+      "height": 1489.59375,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/gem-market-390.webp",
+    "tableFile": "accepted-tables/gem-market-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "checkers",
+    "width": 390,
+    "scenario": "checkers-2-31-107",
+    "rect": {
+      "bottom": 976.890625,
+      "height": 497.796875,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/checkers-390.webp",
+    "tableFile": "accepted-tables/checkers-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "mancala",
+    "width": 390,
+    "scenario": "mancala-2-17-16",
+    "rect": {
+      "bottom": 913.890625,
+      "height": 434.796875,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/mancala-390.webp",
+    "tableFile": "accepted-tables/mancala-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "flip-7",
+    "width": 390,
+    "scenario": "flip-7-10-31-4",
+    "rect": {
+      "bottom": 1667.390625,
+      "height": 1188.296875,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/flip-7-390.webp",
+    "tableFile": "accepted-tables/flip-7-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "trio",
+    "width": 390,
+    "scenario": "trio-6-31-3",
+    "rect": {
+      "bottom": 1784.1875,
+      "height": 1305.09375,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/trio-390.webp",
+    "tableFile": "accepted-tables/trio-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "azul",
+    "width": 390,
+    "scenario": "azul-2-17-6",
+    "rect": {
+      "bottom": 1629.1875,
+      "height": 1150.09375,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/azul-390.webp",
+    "tableFile": "accepted-tables/azul-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "spill-or-chill",
+    "width": 390,
+    "scenario": "spill-or-chill-10-31-3",
+    "rect": {
+      "bottom": 1206,
+      "height": 726.90625,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/spill-or-chill-390.webp",
+    "tableFile": "accepted-tables/spill-or-chill-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "most-likely",
+    "width": 390,
+    "scenario": "most-likely-10-31-11",
+    "rect": {
+      "bottom": 1187.40625,
+      "height": 708.3125,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/most-likely-390.webp",
+    "tableFile": "accepted-tables/most-likely-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "hot-seat",
+    "width": 390,
+    "scenario": "hot-seat-10-31-13",
+    "rect": {
+      "bottom": 1149.375,
+      "height": 670.28125,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/hot-seat-390.webp",
+    "tableFile": "accepted-tables/hot-seat-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "the-gang",
+    "width": 390,
+    "scenario": "the-gang-6-31-31",
+    "rect": {
+      "bottom": 2015.4375,
+      "height": 1536.34375,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/the-gang-390.webp",
+    "tableFile": "accepted-tables/the-gang-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "six-nimmt",
+    "width": 390,
+    "scenario": "six-nimmt-10-31-117",
+    "rect": {
+      "bottom": 1364.453125,
+      "height": 885.359375,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/six-nimmt-390.webp",
+    "tableFile": "accepted-tables/six-nimmt-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "sea-salt-paper",
+    "width": 390,
+    "scenario": "sea-salt-paper-4-31-73",
+    "rect": {
+      "bottom": 1762.5625,
+      "height": 1283.46875,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/sea-salt-paper-390.webp",
+    "tableFile": "accepted-tables/sea-salt-paper-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "boop",
+    "width": 390,
+    "scenario": "boop-2-17-18",
+    "rect": {
+      "bottom": 1238.421875,
+      "height": 759.328125,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/boop-390.webp",
+    "tableFile": "accepted-tables/boop-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "shithead",
+    "width": 390,
+    "scenario": "shithead-5-31-6",
+    "rect": {
+      "bottom": 1601.390625,
+      "height": 1122.296875,
+      "left": 18,
+      "right": 372,
+      "top": 479.09375,
+      "width": 354,
+      "x": 18,
+      "y": 479.09375
+    },
+    "file": "accepted-tables/shithead-390.webp",
+    "tableFile": "accepted-tables/shithead-390.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "uno",
+    "width": 320,
+    "scenario": "uno-10-31-22",
+    "rect": {
+      "bottom": 1170.09375,
+      "height": 650.5,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/uno-320.webp",
+    "tableFile": "accepted-tables/uno-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "uno-no-mercy",
+    "width": 320,
+    "scenario": "uno-no-mercy-6-31-16",
+    "rect": {
+      "bottom": 1170.09375,
+      "height": 650.5,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/uno-no-mercy-320.webp",
+    "tableFile": "accepted-tables/uno-no-mercy-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "deal",
+    "width": 320,
+    "scenario": "deal-5-31-62",
+    "rect": {
+      "bottom": 1499.59375,
+      "height": 980,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/deal-320.webp",
+    "tableFile": "accepted-tables/deal-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "deal-no-mercy",
+    "width": 320,
+    "scenario": "deal-no-mercy-5-31-49",
+    "rect": {
+      "bottom": 1499.59375,
+      "height": 980,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/deal-no-mercy-320.webp",
+    "tableFile": "accepted-tables/deal-no-mercy-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "holdem",
+    "width": 320,
+    "scenario": "holdem-9-31-28",
+    "rect": {
+      "bottom": 1575.59375,
+      "height": 1056,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/holdem-320.webp",
+    "tableFile": "accepted-tables/holdem-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "rummy",
+    "width": 320,
+    "scenario": "rummy-6-31-32",
+    "rect": {
+      "bottom": 1467.484375,
+      "height": 947.890625,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/rummy-320.webp",
+    "tableFile": "accepted-tables/rummy-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "teen-patti",
+    "width": 320,
+    "scenario": "teen-patti-6-31-3",
+    "rect": {
+      "bottom": 1368.09375,
+      "height": 848.5,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/teen-patti-320.webp",
+    "tableFile": "accepted-tables/teen-patti-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "blackjack",
+    "width": 320,
+    "scenario": "blackjack-7-31-11",
+    "rect": {
+      "bottom": 1672.84375,
+      "height": 1153.25,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/blackjack-320.webp",
+    "tableFile": "accepted-tables/blackjack-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "skyjo",
+    "width": 320,
+    "scenario": "skyjo-8-31-228",
+    "rect": {
+      "bottom": 1571.609375,
+      "height": 1052.015625,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/skyjo-320.webp",
+    "tableFile": "accepted-tables/skyjo-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "tarot",
+    "width": 320,
+    "scenario": "tarot-1-17-3",
+    "rect": {
+      "bottom": 1379.171875,
+      "height": 859.578125,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/tarot-320.webp",
+    "tableFile": "accepted-tables/tarot-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence",
+    "exception": "Incomplete Wheel paint; use screenshots/tarot320-recheck.jpg for artwork proof"
+  },
+  {
+    "game": "four-in-a-row",
+    "width": 320,
+    "scenario": "four-in-a-row-2-17-16",
+    "rect": {
+      "bottom": 993.390625,
+      "height": 473.796875,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/four-in-a-row-320.webp",
+    "tableFile": "accepted-tables/four-in-a-row-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "reversi",
+    "width": 320,
+    "scenario": "reversi-2-17-16",
+    "rect": {
+      "bottom": 999.390625,
+      "height": 479.796875,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/reversi-320.webp",
+    "tableFile": "accepted-tables/reversi-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "word-agents",
+    "width": 320,
+    "scenario": "word-agents-10-31-6",
+    "rect": {
+      "bottom": 1337.984375,
+      "height": 818.390625,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/word-agents-320.webp",
+    "tableFile": "accepted-tables/word-agents-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "gem-market",
+    "width": 320,
+    "scenario": "gem-market-4-31-53",
+    "rect": {
+      "bottom": 2075.875,
+      "height": 1556.28125,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/gem-market-320.webp",
+    "tableFile": "accepted-tables/gem-market-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "checkers",
+    "width": 320,
+    "scenario": "checkers-2-31-107",
+    "rect": {
+      "bottom": 1017.390625,
+      "height": 497.796875,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/checkers-320.webp",
+    "tableFile": "accepted-tables/checkers-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "mancala",
+    "width": 320,
+    "scenario": "mancala-2-17-16",
+    "rect": {
+      "bottom": 954.390625,
+      "height": 434.796875,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/mancala-320.webp",
+    "tableFile": "accepted-tables/mancala-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "flip-7",
+    "width": 320,
+    "scenario": "flip-7-10-31-4",
+    "rect": {
+      "bottom": 1723.390625,
+      "height": 1203.796875,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/flip-7-320.webp",
+    "tableFile": "accepted-tables/flip-7-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "trio",
+    "width": 320,
+    "scenario": "trio-6-31-3",
+    "rect": {
+      "bottom": 1824.6875,
+      "height": 1305.09375,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/trio-320.webp",
+    "tableFile": "accepted-tables/trio-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "azul",
+    "width": 320,
+    "scenario": "azul-2-17-6",
+    "rect": {
+      "bottom": 1740.28125,
+      "height": 1220.6875,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/azul-320.webp",
+    "tableFile": "accepted-tables/azul-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "spill-or-chill",
+    "width": 320,
+    "scenario": "spill-or-chill-10-31-3",
+    "rect": {
+      "bottom": 1274.8125,
+      "height": 755.21875,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/spill-or-chill-320.webp",
+    "tableFile": "accepted-tables/spill-or-chill-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "most-likely",
+    "width": 320,
+    "scenario": "most-likely-10-31-11",
+    "rect": {
+      "bottom": 1256.21875,
+      "height": 736.625,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/most-likely-320.webp",
+    "tableFile": "accepted-tables/most-likely-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "hot-seat",
+    "width": 320,
+    "scenario": "hot-seat-10-31-13",
+    "rect": {
+      "bottom": 1189.875,
+      "height": 670.28125,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/hot-seat-320.webp",
+    "tableFile": "accepted-tables/hot-seat-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "the-gang",
+    "width": 320,
+    "scenario": "the-gang-6-31-31",
+    "rect": {
+      "bottom": 2442.546875,
+      "height": 1922.953125,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/the-gang-320.webp",
+    "tableFile": "accepted-tables/the-gang-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "six-nimmt",
+    "width": 320,
+    "scenario": "six-nimmt-10-31-117",
+    "rect": {
+      "bottom": 1468.953125,
+      "height": 949.359375,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/six-nimmt-320.webp",
+    "tableFile": "accepted-tables/six-nimmt-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "sea-salt-paper",
+    "width": 320,
+    "scenario": "sea-salt-paper-4-31-73",
+    "rect": {
+      "bottom": 1869.15625,
+      "height": 1349.5625,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/sea-salt-paper-320.webp",
+    "tableFile": "accepted-tables/sea-salt-paper-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "boop",
+    "width": 320,
+    "scenario": "boop-2-17-18",
+    "rect": {
+      "bottom": 1247.6875,
+      "height": 728.09375,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/boop-320.webp",
+    "tableFile": "accepted-tables/boop-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "shithead",
+    "width": 320,
+    "scenario": "shithead-5-31-6",
+    "rect": {
+      "bottom": 1662.6875,
+      "height": 1143.09375,
+      "left": 18,
+      "right": 302,
+      "top": 519.59375,
+      "width": 284,
+      "x": 18,
+      "y": 519.59375
+    },
+    "file": "accepted-tables/shithead-320.webp",
+    "tableFile": "accepted-tables/shithead-320.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "uno",
+    "width": 768,
+    "scenario": "uno-10-31-22",
+    "rect": {
+      "bottom": 732.296875,
+      "height": 451,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/uno-768.webp",
+    "tableFile": "accepted-tables/uno-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "uno-no-mercy",
+    "width": 768,
+    "scenario": "uno-no-mercy-6-31-16",
+    "rect": {
+      "bottom": 732.296875,
+      "height": 451,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/uno-no-mercy-768.webp",
+    "tableFile": "accepted-tables/uno-no-mercy-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "deal",
+    "width": 768,
+    "scenario": "deal-5-31-62",
+    "rect": {
+      "bottom": 1261.296875,
+      "height": 980,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/deal-768.webp",
+    "tableFile": "accepted-tables/deal-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "deal-no-mercy",
+    "width": 768,
+    "scenario": "deal-no-mercy-5-31-49",
+    "rect": {
+      "bottom": 1261.296875,
+      "height": 980,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/deal-no-mercy-768.webp",
+    "tableFile": "accepted-tables/deal-no-mercy-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "holdem",
+    "width": 768,
+    "scenario": "holdem-9-31-28",
+    "rect": {
+      "bottom": 1189.96875,
+      "height": 908.671875,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/holdem-768.webp",
+    "tableFile": "accepted-tables/holdem-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "rummy",
+    "width": 768,
+    "scenario": "rummy-6-31-32",
+    "rect": {
+      "bottom": 961.09375,
+      "height": 679.796875,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/rummy-768.webp",
+    "tableFile": "accepted-tables/rummy-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "teen-patti",
+    "width": 768,
+    "scenario": "teen-patti-6-31-3",
+    "rect": {
+      "bottom": 935.578125,
+      "height": 654.28125,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/teen-patti-768.webp",
+    "tableFile": "accepted-tables/teen-patti-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "blackjack",
+    "width": 768,
+    "scenario": "blackjack-7-31-11",
+    "rect": {
+      "bottom": 1267.21875,
+      "height": 985.921875,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/blackjack-768.webp",
+    "tableFile": "accepted-tables/blackjack-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "skyjo",
+    "width": 768,
+    "scenario": "skyjo-8-31-228",
+    "rect": {
+      "bottom": 1275.75,
+      "height": 994.453125,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/skyjo-768.webp",
+    "tableFile": "accepted-tables/skyjo-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "tarot",
+    "width": 768,
+    "scenario": "tarot-1-17-3",
+    "rect": {
+      "bottom": 1120.71875,
+      "height": 839.421875,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/tarot-768.webp",
+    "tableFile": "accepted-tables/tarot-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "four-in-a-row",
+    "width": 768,
+    "scenario": "four-in-a-row-2-17-16",
+    "rect": {
+      "bottom": 938.5625,
+      "height": 657.265625,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/four-in-a-row-768.webp",
+    "tableFile": "accepted-tables/four-in-a-row-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "reversi",
+    "width": 768,
+    "scenario": "reversi-2-17-16",
+    "rect": {
+      "bottom": 961.09375,
+      "height": 679.796875,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/reversi-768.webp",
+    "tableFile": "accepted-tables/reversi-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "word-agents",
+    "width": 768,
+    "scenario": "word-agents-10-31-6",
+    "rect": {
+      "bottom": 1142.453125,
+      "height": 861.15625,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/word-agents-768.webp",
+    "tableFile": "accepted-tables/word-agents-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "gem-market",
+    "width": 768,
+    "scenario": "gem-market-4-31-53",
+    "rect": {
+      "bottom": 1880.796875,
+      "height": 1599.5,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/gem-market-768.webp",
+    "tableFile": "accepted-tables/gem-market-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "checkers",
+    "width": 768,
+    "scenario": "checkers-2-31-107",
+    "rect": {
+      "bottom": 961.09375,
+      "height": 679.796875,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/checkers-768.webp",
+    "tableFile": "accepted-tables/checkers-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "mancala",
+    "width": 768,
+    "scenario": "mancala-2-17-16",
+    "rect": {
+      "bottom": 750.09375,
+      "height": 468.796875,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/mancala-768.webp",
+    "tableFile": "accepted-tables/mancala-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "flip-7",
+    "width": 768,
+    "scenario": "flip-7-10-31-4",
+    "rect": {
+      "bottom": 1319.6875,
+      "height": 1038.390625,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/flip-7-768.webp",
+    "tableFile": "accepted-tables/flip-7-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "trio",
+    "width": 768,
+    "scenario": "trio-6-31-3",
+    "rect": {
+      "bottom": 1360.984375,
+      "height": 1079.6875,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/trio-768.webp",
+    "tableFile": "accepted-tables/trio-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "azul",
+    "width": 768,
+    "scenario": "azul-2-17-6",
+    "rect": {
+      "bottom": 1493.1875,
+      "height": 1211.890625,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/azul-768.webp",
+    "tableFile": "accepted-tables/azul-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "spill-or-chill",
+    "width": 768,
+    "scenario": "spill-or-chill-10-31-3",
+    "rect": {
+      "bottom": 929.3125,
+      "height": 648.015625,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/spill-or-chill-768.webp",
+    "tableFile": "accepted-tables/spill-or-chill-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "most-likely",
+    "width": 768,
+    "scenario": "most-likely-10-31-11",
+    "rect": {
+      "bottom": 929.3125,
+      "height": 648.015625,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/most-likely-768.webp",
+    "tableFile": "accepted-tables/most-likely-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "hot-seat",
+    "width": 768,
+    "scenario": "hot-seat-10-31-13",
+    "rect": {
+      "bottom": 912.796875,
+      "height": 631.5,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/hot-seat-768.webp",
+    "tableFile": "accepted-tables/hot-seat-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "the-gang",
+    "width": 768,
+    "scenario": "the-gang-6-31-31",
+    "rect": {
+      "bottom": 1527.890625,
+      "height": 1246.59375,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/the-gang-768.webp",
+    "tableFile": "accepted-tables/the-gang-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "six-nimmt",
+    "width": 768,
+    "scenario": "six-nimmt-10-31-117",
+    "rect": {
+      "bottom": 1121.375,
+      "height": 840.078125,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/six-nimmt-768.webp",
+    "tableFile": "accepted-tables/six-nimmt-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "sea-salt-paper",
+    "width": 768,
+    "scenario": "sea-salt-paper-4-31-73",
+    "rect": {
+      "bottom": 1412.546875,
+      "height": 1131.25,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/sea-salt-paper-768.webp",
+    "tableFile": "accepted-tables/sea-salt-paper-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "boop",
+    "width": 768,
+    "scenario": "boop-2-17-18",
+    "rect": {
+      "bottom": 1177.15625,
+      "height": 895.859375,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/boop-768.webp",
+    "tableFile": "accepted-tables/boop-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "shithead",
+    "width": 768,
+    "scenario": "shithead-5-31-6",
+    "rect": {
+      "bottom": 1401.390625,
+      "height": 1120.09375,
+      "left": 24,
+      "right": 744,
+      "top": 281.296875,
+      "width": 720,
+      "x": 24,
+      "y": 281.296875
+    },
+    "file": "accepted-tables/shithead-768.webp",
+    "tableFile": "accepted-tables/shithead-768.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "uno",
+    "width": 1440,
+    "scenario": "uno-10-31-22",
+    "rect": {
+      "bottom": 696.296875,
+      "height": 451,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/uno-1440.webp",
+    "tableFile": "accepted-tables/uno-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "uno-no-mercy",
+    "width": 1440,
+    "scenario": "uno-no-mercy-6-31-16",
+    "rect": {
+      "bottom": 696.296875,
+      "height": 451,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/uno-no-mercy-1440.webp",
+    "tableFile": "accepted-tables/uno-no-mercy-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "deal",
+    "width": 1440,
+    "scenario": "deal-5-31-62",
+    "rect": {
+      "bottom": 1225.296875,
+      "height": 980,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/deal-1440.webp",
+    "tableFile": "accepted-tables/deal-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "deal-no-mercy",
+    "width": 1440,
+    "scenario": "deal-no-mercy-5-31-49",
+    "rect": {
+      "bottom": 1225.296875,
+      "height": 980,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/deal-no-mercy-1440.webp",
+    "tableFile": "accepted-tables/deal-no-mercy-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "holdem",
+    "width": 1440,
+    "scenario": "holdem-9-31-28",
+    "rect": {
+      "bottom": 969.296875,
+      "height": 724,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/holdem-1440.webp",
+    "tableFile": "accepted-tables/holdem-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "rummy",
+    "width": 1440,
+    "scenario": "rummy-6-31-32",
+    "rect": {
+      "bottom": 925.09375,
+      "height": 679.796875,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/rummy-1440.webp",
+    "tableFile": "accepted-tables/rummy-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "teen-patti",
+    "width": 1440,
+    "scenario": "teen-patti-6-31-3",
+    "rect": {
+      "bottom": 969.296875,
+      "height": 724,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/teen-patti-1440.webp",
+    "tableFile": "accepted-tables/teen-patti-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "blackjack",
+    "width": 1440,
+    "scenario": "blackjack-7-31-11",
+    "rect": {
+      "bottom": 969.296875,
+      "height": 724,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/blackjack-1440.webp",
+    "tableFile": "accepted-tables/blackjack-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "skyjo",
+    "width": 1440,
+    "scenario": "skyjo-8-31-228",
+    "rect": {
+      "bottom": 1239.75,
+      "height": 994.453125,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/skyjo-1440.webp",
+    "tableFile": "accepted-tables/skyjo-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "tarot",
+    "width": 1440,
+    "scenario": "tarot-1-17-3",
+    "rect": {
+      "bottom": 1090.421875,
+      "height": 845.125,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/tarot-1440.webp",
+    "tableFile": "accepted-tables/tarot-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "four-in-a-row",
+    "width": 1440,
+    "scenario": "four-in-a-row-2-17-16",
+    "rect": {
+      "bottom": 902.5625,
+      "height": 657.265625,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/four-in-a-row-1440.webp",
+    "tableFile": "accepted-tables/four-in-a-row-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "reversi",
+    "width": 1440,
+    "scenario": "reversi-2-17-16",
+    "rect": {
+      "bottom": 925.09375,
+      "height": 679.796875,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/reversi-1440.webp",
+    "tableFile": "accepted-tables/reversi-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "word-agents",
+    "width": 1440,
+    "scenario": "word-agents-10-31-6",
+    "rect": {
+      "bottom": 1119.890625,
+      "height": 874.59375,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/word-agents-1440.webp",
+    "tableFile": "accepted-tables/word-agents-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "gem-market",
+    "width": 1440,
+    "scenario": "gem-market-4-31-53",
+    "rect": {
+      "bottom": 1814.296875,
+      "height": 1569,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/gem-market-1440.webp",
+    "tableFile": "accepted-tables/gem-market-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "checkers",
+    "width": 1440,
+    "scenario": "checkers-2-31-107",
+    "rect": {
+      "bottom": 925.09375,
+      "height": 679.796875,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/checkers-1440.webp",
+    "tableFile": "accepted-tables/checkers-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "mancala",
+    "width": 1440,
+    "scenario": "mancala-2-17-16",
+    "rect": {
+      "bottom": 744.09375,
+      "height": 498.796875,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/mancala-1440.webp",
+    "tableFile": "accepted-tables/mancala-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "flip-7",
+    "width": 1440,
+    "scenario": "flip-7-10-31-4",
+    "rect": {
+      "bottom": 1268.1875,
+      "height": 1022.890625,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/flip-7-1440.webp",
+    "tableFile": "accepted-tables/flip-7-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "trio",
+    "width": 1440,
+    "scenario": "trio-6-31-3",
+    "rect": {
+      "bottom": 1307.1875,
+      "height": 1061.890625,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/trio-1440.webp",
+    "tableFile": "accepted-tables/trio-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "azul",
+    "width": 1440,
+    "scenario": "azul-2-17-6",
+    "rect": {
+      "bottom": 1012.1875,
+      "height": 766.890625,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/azul-1440.webp",
+    "tableFile": "accepted-tables/azul-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "spill-or-chill",
+    "width": 1440,
+    "scenario": "spill-or-chill-10-31-3",
+    "rect": {
+      "bottom": 922.5,
+      "height": 677.203125,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/spill-or-chill-1440.webp",
+    "tableFile": "accepted-tables/spill-or-chill-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "most-likely",
+    "width": 1440,
+    "scenario": "most-likely-10-31-11",
+    "rect": {
+      "bottom": 922.5,
+      "height": 677.203125,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/most-likely-1440.webp",
+    "tableFile": "accepted-tables/most-likely-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "hot-seat",
+    "width": 1440,
+    "scenario": "hot-seat-10-31-13",
+    "rect": {
+      "bottom": 896.671875,
+      "height": 651.375,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/hot-seat-1440.webp",
+    "tableFile": "accepted-tables/hot-seat-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "the-gang",
+    "width": 1440,
+    "scenario": "the-gang-6-31-31",
+    "rect": {
+      "bottom": 1475.390625,
+      "height": 1230.09375,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/the-gang-1440.webp",
+    "tableFile": "accepted-tables/the-gang-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "six-nimmt",
+    "width": 1440,
+    "scenario": "six-nimmt-10-31-117",
+    "rect": {
+      "bottom": 885.375,
+      "height": 640.078125,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/six-nimmt-1440.webp",
+    "tableFile": "accepted-tables/six-nimmt-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "sea-salt-paper",
+    "width": 1440,
+    "scenario": "sea-salt-paper-4-31-73",
+    "rect": {
+      "bottom": 1386.484375,
+      "height": 1141.1875,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/sea-salt-paper-1440.webp",
+    "tableFile": "accepted-tables/sea-salt-paper-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "boop",
+    "width": 1440,
+    "scenario": "boop-2-17-18",
+    "rect": {
+      "bottom": 1151.09375,
+      "height": 905.796875,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/boop-1440.webp",
+    "tableFile": "accepted-tables/boop-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  },
+  {
+    "game": "shithead",
+    "width": 1440,
+    "scenario": "shithead-5-31-6",
+    "rect": {
+      "bottom": 1099.390625,
+      "height": 854.09375,
+      "left": 130,
+      "right": 1310,
+      "top": 245.296875,
+      "width": 1180,
+      "x": 130,
+      "y": 245.296875
+    },
+    "file": "accepted-tables/shithead-1440.webp",
+    "tableFile": "accepted-tables/shithead-1440.webp",
+    "captureMethod": "3300px viewport, exact table crop; not first-fold evidence"
+  }
+]

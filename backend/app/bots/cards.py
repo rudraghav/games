@@ -7,6 +7,7 @@ from typing import Any
 from app.bots.context import Context
 from app.core.contracts import Action, CardView
 from app.games.deal.deck import RENTS
+from app.games.deal.payments import combine_payment_bundles
 from app.games.rummy.melds import is_joker, meld_options, points
 
 
@@ -74,7 +75,6 @@ def _payment(ctx: Context) -> Action:
     required = int(ctx.detail.get("payment_amount", 0))
     if required <= 0:
         raise ValueError("A public payment amount is required for bot payment selection.")
-    assets = _asset_map(ctx)
     own = ctx.own
     assert own is not None
     bank = {c.id for c in own.bank}
@@ -85,16 +85,19 @@ def _payment(ctx: Context) -> Action:
         for c in group
     }
     choices: dict[int, tuple[float, list[str]]] = {0: (0, [])}
+    bundles = ctx.detail["payment_bundles"]
     for ident in option.eligible_cards:
-        card = assets[ident]
-        amount = int(_number(card, 0))
-        if amount <= 0:
-            continue
-        cost = amount + 0.01 + (0 if ident in bank else 100) + (1000 if ident in protected else 0)
-        for total, (old_cost, ids) in list(choices.items()):
-            new = total + amount
-            if new not in choices or choices[new][0] > old_cost + cost:
-                choices[new] = (old_cost + cost, [*ids, ident])
+        for _, ids in list(choices.values()):
+            selected = [*ids, ident]
+            quoted = combine_payment_bundles(bundles, selected)
+            total = sum(quoted.values())
+            cost = sum(
+                amount + 0.01 + (0 if card in bank else 100)
+                + (1000 if card in protected else 0)
+                for card, amount in quoted.items()
+            )
+            if total not in choices or choices[total][0] > cost:
+                choices[total] = (cost, selected)
     sufficient = [(cost, total, ids) for total, (cost, ids) in choices.items() if total >= required]
     action = option.action.model_copy(deep=True)
     action.cards = min(sufficient)[2] if sufficient else list(option.eligible_cards)

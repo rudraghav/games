@@ -1,0 +1,359 @@
+{
+  "scope": "ten card/casino editions; see card-casino-review.md for inventories and interpretation",
+  "application_changes": false,
+  "database_or_production_mutations_by_this_reviewer": false,
+  "parent_status_at_handoff": "Parent reports 40 fresh fullmatch browser cases for these ten games across min/max seats and phone/desktop, including saved result/profile/rematch/switch. Parent owns logs and final verification; Rummy browser outcomes still drops. Not counted as this reviewer execution.",
+  "games": [
+    {
+      "game": "deal",
+      "rules_version": "1",
+      "player_limits": [
+        2,
+        5
+      ],
+      "source_reviewed": true,
+      "independent_rules_research": true,
+      "historical_legal_projections": 34,
+      "historical_sampled_phases": [
+        "playing"
+      ],
+      "historical_sampled_continuations": [
+        "accept",
+        "bank",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange"
+      ],
+      "fresh_screenshot_widths_inspected_by_this_reviewer": [
+        390,
+        1440
+      ],
+      "fresh_screenshots_are": "current design-harness renders of legal projections, not saved rooms",
+      "finding_ids": [
+        "CC-01",
+        "CC-02",
+        "CC-04"
+      ],
+      "unchecked": [
+        "current saved/API exact collateral replay",
+        "all-player and third-play counter chain",
+        "exact edition building rule",
+        "every orientation/destination at every width"
+      ]
+    },
+    {
+      "game": "deal-no-mercy",
+      "rules_version": "house-deck-1",
+      "player_limits": [
+        2,
+        5
+      ],
+      "source_reviewed": true,
+      "independent_rules_research": true,
+      "historical_legal_projections": 36,
+      "historical_sampled_phases": [
+        "playing"
+      ],
+      "historical_sampled_continuations": [
+        "accept",
+        "choose",
+        "give",
+        "keep",
+        "no",
+        "pay",
+        "play",
+        "property",
+        "rearrange",
+        "settle_debt"
+      ],
+      "fresh_screenshot_widths_inspected_by_this_reviewer": [
+        390
+      ],
+      "fresh_screenshots_are": "current design-harness renders of legal projections, not saved rooms",
+      "finding_ids": [
+        "CC-01",
+        "CC-04"
+      ],
+      "unchecked": [
+        "debt cap and all immediate gift branches across clients",
+        "repossession distribution and win during gift",
+        "rare counter-chain recovery",
+        "boxed G3071 money multiplicities intentionally unverified"
+      ]
+    },
+    {
+      "game": "uno",
+      "rules_version": "1",
+      "player_limits": [
+        2,
+        10
+      ],
+      "source_reviewed": true,
+      "independent_rules_research": true,
+      "historical_legal_projections": 7,
+      "historical_sampled_phases": [
+        "playing"
+      ],
+      "historical_sampled_continuations": [
+        "accept",
+        "challenge",
+        "draw",
+        "play"
+      ],
+      "fresh_screenshot_widths_inspected_by_this_reviewer": [
+        390
+      ],
+      "fresh_screenshots_are": "current design-harness renders of legal projections, not saved rooms",
+      "finding_ids": [
+        "CC-05"
+      ],
+      "unchecked": [
+        "all optional rule combinations across clients",
+        "last-card +4 refresh and challenge",
+        "UNO catch timing"
+      ]
+    },
+    {
+      "game": "uno-no-mercy",
+      "rules_version": "1",
+      "player_limits": [
+        2,
+        6
+      ],
+      "source_reviewed": true,
+      "independent_rules_research": true,
+      "historical_legal_projections": 5,
+      "historical_sampled_phases": [
+        "playing"
+      ],
+      "historical_sampled_continuations": [
+        "choose",
+        "play"
+      ],
+      "fresh_screenshot_widths_inspected_by_this_reviewer": [
+        390
+      ],
+      "fresh_screenshots_are": "current design-harness renders of legal projections, not saved rooms",
+      "finding_ids": [
+        "CC-05"
+      ],
+      "unchecked": [
+        "roulette crossing 25 across clients",
+        "elimination and pending draw-chain ordering",
+        "last-card swap/rotation and stock exhaustion"
+      ]
+    },
+    {
+      "game": "holdem",
+      "rules_version": "1",
+      "player_limits": [
+        2,
+        9
+      ],
+      "source_reviewed": true,
+      "independent_rules_research": true,
+      "historical_legal_projections": 8,
+      "historical_sampled_phases": [
+        "flop",
+        "preflop",
+        "river",
+        "turn"
+      ],
+      "historical_sampled_continuations": [
+        "call",
+        "check"
+      ],
+      "fresh_screenshot_widths_inspected_by_this_reviewer": [
+        390
+      ],
+      "fresh_screenshots_are": "current design-harness renders of legal projections, not saved rooms",
+      "finding_ids": [
+        "CC-09"
+      ],
+      "unchecked": [
+        "all rare raise reopening and odd-chip outcomes in browser",
+        "unequal-stack natural room state is not current product format",
+        "winning-hand and award explanation"
+      ]
+    },
+    {
+      "game": "teen-patti",
+      "rules_version": "1",
+      "player_limits": [
+        2,
+        6
+      ],
+      "source_reviewed": true,
+      "independent_rules_research": true,
+      "historical_legal_projections": 6,
+      "historical_sampled_phases": [
+        "playing"
+      ],
+      "historical_sampled_continuations": [
+        "accept",
+        "bet",
+        "peek",
+        "sideshow"
+      ],
+      "fresh_screenshot_widths_inspected_by_this_reviewer": [
+        390
+      ],
+      "fresh_screenshots_are": "current design-harness renders of legal projections, not saved rooms",
+      "finding_ids": [
+        "CC-07"
+      ],
+      "unchecked": [
+        "actual mixed seen/blind sideshow request/reject/tie clients",
+        "pot-cap crossing during sideshow",
+        "pending response refresh"
+      ]
+    },
+    {
+      "game": "blackjack",
+      "rules_version": "1",
+      "player_limits": [
+        1,
+        7
+      ],
+      "source_reviewed": true,
+      "independent_rules_research": true,
+      "historical_legal_projections": 6,
+      "historical_sampled_phases": [
+        "betting",
+        "insurance",
+        "playing"
+      ],
+      "historical_sampled_continuations": [
+        "bet",
+        "decline",
+        "double",
+        "hit",
+        "split"
+      ],
+      "fresh_screenshot_widths_inspected_by_this_reviewer": [
+        390,
+        1440
+      ],
+      "fresh_screenshots_are": "current design-harness renders of legal projections, not saved rooms",
+      "finding_ids": [
+        "CC-08"
+      ],
+      "unchecked": [
+        "insured natural and four-hand resplit browser states",
+        "nonacting viewer active-hand label",
+        "split-ace and double outcome ledger"
+      ]
+    },
+    {
+      "game": "rummy",
+      "rules_version": "1",
+      "player_limits": [
+        2,
+        6
+      ],
+      "source_reviewed": true,
+      "independent_rules_research": true,
+      "historical_legal_projections": 6,
+      "historical_sampled_phases": [
+        "discard",
+        "draw"
+      ],
+      "historical_sampled_continuations": [
+        "declare",
+        "discard",
+        "draw_stock"
+      ],
+      "fresh_screenshot_widths_inspected_by_this_reviewer": [
+        390,
+        1440
+      ],
+      "fresh_screenshots_are": "current design-harness renders of legal projections, not saved rooms",
+      "finding_ids": [
+        "CC-03"
+      ],
+      "unchecked": [
+        "natural saved/API/browser declaration victory (root fresh matches still drops)",
+        "group recovery and accepted partition UI",
+        "invalid-declare diagnostic and capped score explanation"
+      ]
+    },
+    {
+      "game": "skyjo",
+      "rules_version": "1",
+      "player_limits": [
+        2,
+        8
+      ],
+      "source_reviewed": true,
+      "independent_rules_research": true,
+      "historical_legal_projections": 16,
+      "historical_sampled_phases": [
+        "between_rounds",
+        "opening",
+        "playing",
+        "reveal"
+      ],
+      "historical_sampled_continuations": [
+        "draw_discard",
+        "draw_stock",
+        "next_round",
+        "reveal",
+        "swap"
+      ],
+      "fresh_screenshot_widths_inspected_by_this_reviewer": [
+        390,
+        1440
+      ],
+      "fresh_screenshots_are": "current design-harness renders of legal projections, not saved rooms",
+      "finding_ids": [
+        "CC-06"
+      ],
+      "unchecked": [
+        "actual two-client remaining-final-queue recovery",
+        "final-reveal column removal animation",
+        "closer multiplier and cumulative tie ledger"
+      ]
+    },
+    {
+      "game": "shithead",
+      "rules_version": "palace-1",
+      "player_limits": [
+        2,
+        5
+      ],
+      "source_reviewed": true,
+      "independent_rules_research": true,
+      "historical_legal_projections": 4,
+      "historical_sampled_phases": [
+        "playing",
+        "setup"
+      ],
+      "historical_sampled_continuations": [
+        "arrange",
+        "play"
+      ],
+      "fresh_screenshot_widths_inspected_by_this_reviewer": [
+        390
+      ],
+      "fresh_screenshots_are": "current design-harness renders of legal projections, not saved rooms",
+      "finding_ids": [
+        "CC-10"
+      ],
+      "unchecked": [
+        "populated three-equal pile tail in current browser",
+        "joint optional 3/7 with large hand",
+        "blind failure and last-card burn client recovery"
+      ]
+    }
+  ],
+  "fresh_pure_evidence": [
+    "card-casino-probes.json",
+    "card-casino-legal-payment-deal.json",
+    "card-casino-legal-payment-deal-no-mercy.json",
+    "card-casino-legal-third-counter.json",
+    "card-casino-natural-rummy.json"
+  ],
+  "broad_tests": "Run by parent; this reviewer did not duplicate broad suite."
+}

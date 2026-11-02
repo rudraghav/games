@@ -5,6 +5,7 @@ import { Button, TokenArt, type TokenKind } from '@games/ui';
 import { boardDetails } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
+import { BoardViewport } from './BoardViewport';
 
 export function BoardTable(props: TableProps) {
   const { match, room, onAction, pending } = props;
@@ -15,6 +16,9 @@ export function BoardTable(props: TableProps) {
   const options = new Map(match.actions.map((option) => [option.value.choice, option]));
   const sources = new Set(match.actions.map((option) => option.value.choice.split(':')[0]));
   const blocked = pending || room.paused;
+  const boardLabel = `${four ? 'Four in a Row' : checkers ? 'Checkers' : 'Reversi'} board`;
+  const cellLabel = (cell: (typeof match.community)[number]) =>
+    `${cell.label}: ${cell.value ? `${cell.subtitle === 'King' ? 'king, ' : ''}${playerName(room, match.players[Number(cell.value) - 1].id)}` : 'empty'}`;
   return (
     <div className="table-layout stable-game-table">
       <PlayerStrip
@@ -29,9 +33,38 @@ export function BoardTable(props: TableProps) {
       />
       <section
         className={`classic-board classic-board--${four ? 'four' : checkers ? 'checkers' : 'reversi'}`}
-        aria-label={`${four ? 'Four in a Row' : checkers ? 'Checkers' : 'Reversi'} board`}
+        aria-label={boardLabel}
       >
-        <div className="board-scroll">
+        <BoardViewport
+          label={boardLabel}
+          overview={
+            <div
+              className="board-overview-grid"
+              style={{ '--board-columns': board.columns } as CSSProperties}
+              role="group"
+              aria-label="All board squares"
+            >
+              {match.community.map((cell, index) => (
+                <span
+                  key={cell.id}
+                  role="img"
+                  aria-label={cellLabel(cell)}
+                  className="board-overview-square"
+                  data-dark={
+                    (Math.floor(index / board.columns) + (index % board.columns)) % 2 === 1
+                  }
+                  data-winning={board.winningCells.includes(index)}
+                >
+                  {cell.value ? (
+                    <span className="board-disc" data-color={cell.color}>
+                      {cell.subtitle === 'King' ? <Crown size={15} aria-hidden="true" /> : null}
+                    </span>
+                  ) : null}
+                </span>
+              ))}
+            </div>
+          }
+        >
           <div
             className="board-surface"
             style={{ '--board-columns': board.columns } as CSSProperties}
@@ -59,7 +92,7 @@ export function BoardTable(props: TableProps) {
               {match.community.map((cell, index) => {
                 const option = options.get(checkers ? `${selected}:${cell.id}` : cell.id);
                 const selectable = checkers && sources.has(cell.id);
-                const label = `${cell.label}: ${cell.value ? `${cell.subtitle === 'King' ? 'king, ' : ''}${playerName(room, match.players[Number(cell.value) - 1].id)}` : 'empty'}`;
+                const label = cellLabel(cell);
                 const content = (
                   <span className="board-disc" data-color={cell.color}>
                     {cell.value && ['coral', 'gold', 'ivory', 'ink'].includes(cell.color) ? (
@@ -74,6 +107,7 @@ export function BoardTable(props: TableProps) {
                     className="board-square"
                     aria-label={label}
                     data-last={board.lastMove === index}
+                    data-winning={board.winningCells.includes(index)}
                   >
                     {content}
                   </div>
@@ -108,19 +142,21 @@ export function BoardTable(props: TableProps) {
               })}
             </div>
           </div>
-        </div>
+        </BoardViewport>
         <p className="small muted board-help">
-          {board.draw
-            ? 'Draw.'
-            : match.phase === 'finished'
-              ? 'Match complete.'
-              : four
-                ? 'Choose a column to drop a disc.'
-                : checkers
-                  ? selected
-                    ? 'Choose a marked diagonal. Jumps are compulsory.'
-                    : 'Choose a piece, then its destination.'
-                  : 'Choose a marked square to flip the line.'}
+          {match.phase === 'finished' && board.outcomeReason
+            ? match.message
+            : board.draw
+              ? 'Draw.'
+              : match.phase === 'finished'
+                ? 'Match complete.'
+                : four
+                  ? 'Choose a column to drop a disc.'
+                  : checkers
+                    ? selected
+                      ? 'Choose a marked diagonal. Jumps are compulsory.'
+                      : 'Choose a piece, then its destination.'
+                    : 'Choose a marked square to flip the line.'}
         </p>
       </section>
     </div>

@@ -101,3 +101,23 @@ Subsequent live production acceptance passes the samefour min/max/viewport cases
 against application `c1169d2`: all natural results, profile/history/rematches and
 final group closures. The evidence retains production summaries separately from
 the earlier dirty-source local runs; no runtime change was made by acceptance.
+
+## Public pile inspection — 2 November 2026
+
+The table now offers **View pile**, a shared decision panel containing the
+engine's already-public last twelve pile cards in oldest-to-newest order. This
+lets a player see consecutive equal top cards and transparent-three context
+without disclosing stock or hidden table cards. Comparison/low constraints still
+come from the authoritative engine. Inspection is available to waiting players,
+cannot submit a move, and Escape returns focus to the opener. An empty pile
+keeps the same disabled control so the table does not shift when it becomes
+inspectable. No state, rule, schema or saved-data change was required.
+
+The phone spacing follow-up removes an empty action dock only when the viewer
+has no setup/play/pickup controls. The flag derives from server action availability,
+never card selection, so selecting/clearing cards retains the full fixed dock
+when decisions are available. Waiting and blind-slot-only views no longer reserve
+208px for nonexistent controls. At 390×844 the measured waiting workspace falls
+from 474.8px to 256.8px; the visible hand keeps its 160px footprint. Two- and
+five-seat setup/playing selection checks show zero movement of pile, hand,
+own table or opponent positions, with 44px touch controls and no page overflow.

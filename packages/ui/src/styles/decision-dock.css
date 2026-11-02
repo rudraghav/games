@@ -95,6 +95,15 @@
     overscroll-behavior: contain;
     scrollbar-width: thin;
     scrollbar-gutter: stable;
+    /* Scroll shadows disappear at each edge and signal clipped alternatives.
+       Local white covers move with the content; the edge shadows stay put. */
+    background:
+      linear-gradient(var(--color-surface) 30%, transparent) top / 100% 24px local,
+      linear-gradient(transparent, var(--color-surface) 70%) bottom / 100% 24px local,
+      radial-gradient(farthest-side at 50% 0, #202f2440, transparent) top / 100% 10px scroll,
+      radial-gradient(farthest-side at 50% 100%, #202f2440, transparent) bottom / 100% 10px scroll;
+    background-repeat: no-repeat;
+    background-color: var(--color-surface);
   }
   .decision-dock[data-size='compact'] {
     --decision-height: 96px;

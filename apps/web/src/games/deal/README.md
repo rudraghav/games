@@ -28,3 +28,20 @@ and a naturally reached nine-card hand. `deal-information.spec.ts` checks touch,
 keyboard, nested focus restoration, public-only zones and unchanged table/hand
 geometry at 390px and 1440px. The broader catalogue decision audit and its
 remaining limits are in `docs/evidence/game-info-2026-11-02/README.md`.
+
+The 2 November audit follow-up adds explicit payment consequences and pending
+exchange targets. `paymentSelection` unions server-projected bundles, counts
+carried buildings once, and shows every card leaving the table, its total and
+overpayment. A clear-payment control resets only that selection. Bundles are
+part of the selection signature so a new authoritative quote invalidates stale
+choices. The payment action stays disabled if the projection has no usable
+quote. Public transfer previews identify both sides and open the existing card
+inspector without changing the move. Classic's free counter rule and No Mercy's
+different house convention are identified in quick rules.
+
+The exporter now contains sixteen scenarios, including the three original
+natural audit trajectories and a recipient's pending Forced Deal view. Focused
+unit checks compare rendered helper quotes with actual engine transfers. Browser
+evidence covers linked-building payments, pending swaps, inspector focus,
+phone overflow, disconnected-control gating and fresh mounts; this is local
+projection evidence, separate from live room/reconnect acceptance.

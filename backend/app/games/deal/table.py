@@ -63,6 +63,19 @@ def locate(s: State, player: str, ident: str) -> str | None:
     return next((key for key, group in s["properties"][player].items() if ident in group), None)
 
 
+def transfer_cards(s: State, source: str, ident: str) -> list[str]:
+    """The public cards that leave with one asset, in transfer order."""
+    if ident in s["banks"][source]:
+        return [ident]
+    key = locate(s, source, ident)
+    if key is None:
+        return []
+    return [ident, *[
+        card for card, anchor in s["links"].items()
+        if anchor == ident and card in s["properties"][source][key]
+    ]]
+
+
 def transfer(s: State, source: str, target: str, ident: str, cards: dict[str, DealCard]) -> None:
     if ident in s["banks"][source]:
         s["banks"][source].remove(ident)
@@ -71,11 +84,9 @@ def transfer(s: State, source: str, target: str, ident: str, cards: dict[str, De
     key = locate(s, source, ident)
     if key is None:
         return
+    attached = transfer_cards(s, source, ident)[1:]
     s["properties"][source][key].remove(ident)
     place(s, target, ident, cards, key.split(":")[0] if cards[ident].kind == "property" else None)
-    attached = [
-        c for c, prop in s["links"].items() if prop == ident and c in s["properties"][source][key]
-    ]
     for building in attached:
         s["properties"][source][key].remove(building)
         destination = locate(s, target, ident)

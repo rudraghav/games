@@ -6,6 +6,7 @@ export interface TarotArtwork {
   atlasWidth: number;
   atlasHeight: number;
   alignment: 'xMidYMid' | 'xMidYMin';
+  fit?: 'meet' | 'slice';
 }
 const majorNames = [
   'The Fool',
@@ -55,6 +56,7 @@ const suitRows = {
   swords: [0, 384, 768, 1152, 1536],
   pentacles: [0, 385, 769, 1152, 1536],
 } as const;
+const correctedCards = new Set(['cups-02', 'cups-06', 'cups-08', 'pentacles-08', 'pentacles-09']);
 export const tarotArtwork: Readonly<Record<string, TarotArtwork>> = Object.fromEntries([
   ...majorNames.map((name, number) => [
     `major-${String(number).padStart(2, '0')}`,
@@ -70,14 +72,23 @@ export const tarotArtwork: Readonly<Record<string, TarotArtwork>> = Object.fromE
   ...Object.entries(suitRows).flatMap(([suit, rows]) =>
     ranks.map((rank, index) => {
       const row = Math.floor(index / 4);
+      const id = `${suit}-${String(index + 1).padStart(2, '0')}`;
+      const corrected = correctedCards.has(id);
       return [
-        `${suit}-${String(index + 1).padStart(2, '0')}`,
+        id,
         {
           name: `${rank} of ${suit[0].toUpperCase()}${suit.slice(1)}`,
           path: `/tarot/minor-${suit}-v1.png`,
           viewBox: `${(index % 4) * 256 + 1} ${rows[row] + 1} 254 ${rows[row + 1] - rows[row] - 2}`,
           atlasWidth: 1024,
           atlasHeight: 1536,
+          ...(corrected
+            ? {
+                path: `/tarot/minor-${id}-v2.png`,
+                viewBox: '0 0 1024 1536',
+                fit: 'meet',
+              }
+            : {}),
           alignment: index >= 12 && (suit === 'wands' || suit === 'cups') ? 'xMidYMin' : 'xMidYMid',
         },
       ];

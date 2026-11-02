@@ -90,7 +90,7 @@ export function SkyjoTable(props: TableProps) {
           dockSize="compact"
           instruction={
             data.finisher && !['between_rounds', 'finished'].includes(match.phase)
-              ? `${playerName(room, data.finisher)} closed the round. Everyone else gets one final turn.`
+              ? `${playerName(room, data.finisher)} closed the round. Final turns: ${data.remaining.map((id) => playerName(room, id)).join(' → ') || 'completing the round'}.`
               : match.currentPlayer === selfId &&
                   match.actions.some((option) => ['reveal', 'swap'].includes(option.value.type))
                 ? match.actions.some((option) => option.value.type === 'swap')
@@ -182,6 +182,27 @@ export function SkyjoTable(props: TableProps) {
             })}
         </HorizontalRail>
       </div>
+      {Object.keys(data.round_ledger).length ? (
+        <section className="game-information-settlement" aria-label="Skyjo round score explanation">
+          <h3>Round {data.round} scores</h3>
+          <ul>
+            {Object.entries(data.round_ledger).map(([id, score]) => (
+              <li key={id}>
+                <strong>
+                  {playerName(room, id)}: {score.round_points} round points · {score.total_points}{' '}
+                  total
+                </strong>
+                <span>
+                  {score.grid_total} on the grid after {score.removed_columns} removed columns.
+                  {score.multiplier === 2
+                    ? ' Doubled: the closer’s positive score was not strictly lowest.'
+                    : ' No doubling.'}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
       <p className="small muted table-help">
         Three matching cards in a column disappear, including during the final reveal. Lowest total
         wins; the game ends when anyone reaches 100. A closer with a positive round score doubles it

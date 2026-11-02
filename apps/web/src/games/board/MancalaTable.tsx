@@ -2,6 +2,7 @@
 import { MancalaPit } from '@games/ui';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
+import { BoardViewport } from './BoardViewport';
 
 export function MancalaTable(props: TableProps) {
   const { match, room, selfId, onAction, pending } = props;
@@ -29,14 +30,45 @@ export function MancalaTable(props: TableProps) {
           {playerName(room, match.players[1].id)}
           {match.players[1].id === selfId ? ' · your side' : ''}
         </p>
-        <div className="mancala-board">
-          {pit(13)}
-          <div className="mancala-rows">
-            <div>{[12, 11, 10, 9, 8, 7].map(pit)}</div>
-            <div>{[0, 1, 2, 3, 4, 5].map(pit)}</div>
+        <BoardViewport
+          label="Mancala board"
+          overview={
+            <div className="mancala-overview" role="group" aria-label="All pits and stores">
+              <span aria-label={`${match.community[13].label}: ${match.community[13].value} seeds`}>
+                {match.community[13].value}
+              </span>
+              <div>
+                {[
+                  [12, 11, 10, 9, 8, 7],
+                  [0, 1, 2, 3, 4, 5],
+                ].map((row, index) => (
+                  <div key={index}>
+                    {row.map((slot) => (
+                      <span
+                        key={slot}
+                        aria-label={`${match.community[slot].label}: ${match.community[slot].value} seeds`}
+                      >
+                        {match.community[slot].value}
+                      </span>
+                    ))}
+                  </div>
+                ))}
+              </div>
+              <span aria-label={`${match.community[6].label}: ${match.community[6].value} seeds`}>
+                {match.community[6].value}
+              </span>
+            </div>
+          }
+        >
+          <div className="mancala-board">
+            {pit(13)}
+            <div className="mancala-rows">
+              <div>{[12, 11, 10, 9, 8, 7].map(pit)}</div>
+              <div>{[0, 1, 2, 3, 4, 5].map(pit)}</div>
+            </div>
+            {pit(6)}
           </div>
-          {pit(6)}
-        </div>
+        </BoardViewport>
         <p className="mancala-owner">
           {playerName(room, match.players[0].id)}
           {match.players[0].id === selfId ? ' · your side' : ''}

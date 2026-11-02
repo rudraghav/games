@@ -119,3 +119,24 @@ Primary references reviewed 2 November 2026:
 - [Open-Meteo geocoding API](https://open-meteo.com/en/docs/geocoding-api),
   [free-service terms](https://open-meteo.com/en/pricing) and
   [GeoNames data attribution](https://www.geonames.org/export/).
+
+## Historical reference extension
+
+The 15 independently obtained NASA/JPL apparent-geocentric samples from the
+2 November audit are now pinned in `tests/fixtures/astrology_horizons.json` and
+regression-tested at 1900/1950/2026 for Sun, Moon, Mercury, Saturn and Pluto with a
+one-arcminute tolerance. Existing independent J2000 angles/whole-sign cusps,
+mean-node/sidereal checks and IANA gap/fold tests remain. This is selected reference
+coverage, not an all-date precision claim. The form warns before 1970 that local
+civil-time records can be incomplete and asks users to inspect the calculated UTC
+offset; no historical exception is guessed or silently corrected.
+
+Successful private previews expose an ephemeral `time_resolution` containing the
+canonical IANA timezone and the UTC offset used for the resolved birth instant.
+The form displays it beside the chart and clears it when inputs change; seconds
+are preserved (for example Kolkata in 1900, `+05:21:10`). Selected DST occurrences
+produce their actual distinct offsets. This context is outside `AstrologyChart`:
+it is never added to the saved chart, draft, reading or provider payload, and no
+raw date/time/place is added to persistence. Invalid or unresolved times have no
+resolved context. Numeric, private HTTP persistence and browser presentation
+checks cover the offset and its removal on edits.

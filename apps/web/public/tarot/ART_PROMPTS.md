@@ -79,3 +79,22 @@ Knight: grounded rider on still dark horse above fertile farmland. Queen:
 generous queen on leafy throne with rabbit. King: calm prosperous king on
 bull-patterned throne in vineyard. Spare cells: navy pentacle constellation;
 coral pentacle sunburst.
+
+## Focused corrections — 2 November 2026
+
+Five built-in ImageGen edits used the existing Cups/Pentacles atlas as the target
+and style reference. One 2:3 portrait per call; preserve diverse people, cobalt,
+navy, coral, cream, gold, black ink and silkscreen texture. No text, labels,
+numbers, border, watermark or additional accidental cup/coin motifs. All counted
+objects must remain distinct and safely inside the frame. Selected outputs are
+versioned PNG masters alongside the intact v1 atlases, with reproducible WebP derivatives.
+
+- `minor-cups-02-v2`: same two facing adults, one held cup each; winged lion and caduceus above, warm connection; no extra cup on a table.
+- `minor-cups-06-v2`: courtyard flower gift, one offered flower cup and five on the foreground ledge; warm nostalgia, arch and roses.
+- `minor-cups-08-v2`: moonlit mountain departure, red-cloaked traveller; exactly five cups below three above, all eight fully visible.
+- `minor-pentacles-08-v2`: focused craftsperson; one carved disc on the bench and seven on a rack (four plus three), one five-point star on each.
+- `minor-pentacles-09-v2`: independent woman, falcon on glove and sunny villa garden; nine vine pentacles in three groups of three, no coin on lap or extra jewellery motif.
+
+Acceptance: manually counted source objects and inspected rendered phone card
+frames; all 78 canonical IDs still map uniquely. Generated-image provenance is
+retained by this chat; build commands never modify the selected PNG masters.

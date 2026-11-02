@@ -50,6 +50,28 @@ describe('Shithead public and private zones', () => {
     ).toBe(true);
     expect(data.loser).toBeNull();
   });
+  it('reserves decision space only for available controls, not waiting or blind-card phases', () => {
+    const p = props();
+    const active = renderToStaticMarkup(<ShitheadTable {...p} />);
+    expect(active).toContain('aria-label="Your Shithead actions"');
+    for (const stage of ['hand', 'face_down', 'out']) {
+      const html = renderToStaticMarkup(
+        <ShitheadTable
+          {...p}
+          match={{
+            ...p.match,
+            actions: [],
+            detail: {
+              ...p.match.detail,
+              stages: { ...shitheadDetails(p.match.detail).stages, [p.selfId]: stage },
+            },
+          }}
+        />,
+      );
+      expect(html).not.toContain('aria-label="Your Shithead actions"');
+      expect(html).toContain('aria-label="Your table cards"');
+    }
+  });
   it('labels the last player rather than inventing points or a first-place winner', () => {
     const p = props();
     const loser = p.match.players[1].id;

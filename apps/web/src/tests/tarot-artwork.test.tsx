@@ -29,7 +29,7 @@ describe('Complete original Tarot artwork', () => {
       expect(existsSync(master.replace('.png', '.webp'))).toBe(true);
       const html = renderToStaticMarkup(<TarotCard id={id} />);
       expect(html).toContain(`<image href="${art.path}"`);
-      expect(html).toContain(`preserveAspectRatio="${art.alignment} slice"`);
+      expect(html).toContain(`preserveAspectRatio="${art.alignment} ${art.fit ?? 'slice'}"`);
       expect(html).toContain(art.name);
       expect(html).not.toContain('Artwork unavailable');
       expect(html).not.toContain('tarot-pips');

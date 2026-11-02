@@ -317,6 +317,12 @@ class UnoEngine(BaseEngine):
         return s
 
     def project_view(self, s: State, player: str) -> GameView:
+        following = next((
+            s["order"][(s["turn"] + distance * s["direction"]) % len(s["order"])]
+            for distance in range(1, len(s["order"]) + 1)
+            if s["order"][(s["turn"] + distance * s["direction"]) % len(s["order"])]
+            not in s["eliminated"]
+        ), None)
         return GameView(
             game_id=self.manifest.id,
             phase=s["phase"],
@@ -336,5 +342,10 @@ class UnoEngine(BaseEngine):
             message=s["message"],
             actions=self.legal_actions(s, player),
             winners=s["winners"],
-            detail={"color": s["color"], "penalty": s["penalty"], "direction": s["direction"]},
+            detail={
+                "color": s["color"], "penalty": s["penalty"], "direction": s["direction"],
+                "pending_kind": s["pending"]["type"] if s["pending"] else None,
+                "next_player": following,
+                "elimination_limit": 25 if self.mercy else None,
+            },
         )

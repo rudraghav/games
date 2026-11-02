@@ -246,3 +246,11 @@ house diagram. Both include accessible selection and placement/house/aspect tabl
 The frontend draws only server-calculated positions and names the calculation
 convention. The birth form invalidates previews when inputs change and never
 persists raw birth details in browser storage.
+
+Audit refinement retains stable decision footprints. Uno uses two-column colour
+choices at every width with a 180px desktop / 244px phone dock; long docks have
+scroll-edge shadows. Four/Reversi/checkers/Mancala share BoardViewport using existing
+HorizontalRail/Modal primitives, with a read-only overview and full-size move targets.
+Boop graduation requires preview/confirm; Paper public inspection never takes a
+card. Five corrected Tarot cards opt into full-frame SVG fitting. Acceptance
+uses normal-height browser frames, not only tall catalogue captures.

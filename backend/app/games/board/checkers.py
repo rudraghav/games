@@ -65,7 +65,8 @@ class CheckersEngine(BaseEngine):
                  for r in range(8) for c in range(8)]
         s: State = {"order": players, "turn": 0, "phase": "playing", "board": board,
                     "forced": None, "quiet": 0, "positions": {}, "winners": [],
-                    "last_move": None, "message": "Coral moves first. Choose a piece."}
+                    "last_move": None, "outcome_reason": None,
+                    "message": "Coral moves first. Choose a piece."}
         s["positions"][position(s)] = 1
         return s
 
@@ -96,12 +97,19 @@ class CheckersEngine(BaseEngine):
         s["forced"] = None
         s["turn"] = 1 - s["turn"]
         if not moves(s, s["turn"]):
-            s.update(phase="finished", winners=[player], message="No moves left. A well-played win!")
+            remaining = any(v is not None and v % 2 == s["turn"] for v in s["board"])
+            s.update(phase="finished", winners=[player],
+                     outcome_reason="no-legal-move" if remaining else "no-pieces",
+                     message="The opponent has no legal move." if remaining else
+                     "All opposing pieces were captured.")
         else:
             key = position(s)
             s["positions"][key] = s["positions"].get(key, 0) + 1
             if s["quiet"] >= 80 or s["positions"][key] >= 3:
-                s.update(phase="finished", draw=True, message="An evenly matched board. It’s a draw.")
+                s.update(phase="finished", draw=True,
+                         outcome_reason="quiet-limit" if s["quiet"] >= 80 else "threefold",
+                         message="Draw: 40 moves each without a capture or man move."
+                         if s["quiet"] >= 80 else "Draw: the same position occurred three times.")
             else:
                 s["message"] = "A new king joins the board." if crowned else "Look for the next diagonal."
         return s
@@ -118,5 +126,7 @@ class CheckersEngine(BaseEngine):
                                 color="empty" if v is None else "coral" if v % 2 == 0 else "ivory",
                                 subtitle="King" if v is not None and v >= 2 else "")
                        for i, v in enumerate(s["board"])],
-            detail={"rows": 8, "columns": 8, "draw": s.get("draw", False), "last_move": s["last_move"]},
+            detail={"rows": 8, "columns": 8, "draw": s.get("draw", False),
+                    "last_move": s["last_move"], "outcome_reason": s.get("outcome_reason"),
+                    "winning_cells": []},
         )

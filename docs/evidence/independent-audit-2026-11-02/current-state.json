@@ -1,0 +1,47 @@
+{
+  "url": "https://games-seven-black.vercel.app",
+  "observedDeploymentIdsInPublicHtml": [],
+  "catalogueCount": 27,
+  "catalogueEqualsLocal": true,
+  "head": "4233d6c9da9269de1bf19165c8ba38afa869c15b",
+  "recordedRelease": "9627e530be1c79abaf1c4b10b27b0037c8677ed8",
+  "runtimeDiffFromRecordedRelease": [],
+  "deploymentManagementRead": "connector and existing CLI returned 403; current control-plane alias/SHA cannot be independently certified",
+  "http": [
+    {
+      "path": "/",
+      "status": 200,
+      "cacheControl": "public, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "cacheControl": "public, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/api/backend/v1/games",
+      "status": 200,
+      "cacheControl": "private, no-store"
+    },
+    {
+      "path": "/api/backend/v1/me",
+      "status": 401,
+      "cacheControl": "public, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/design",
+      "status": 404,
+      "cacheControl": "public, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/design/deal",
+      "status": 404,
+      "cacheControl": "public, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/design/midgame",
+      "status": 404,
+      "cacheControl": "public, max-age=0, must-revalidate"
+    }
+  ]
+}

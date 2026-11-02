@@ -270,7 +270,44 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 2,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 0,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 2,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 0,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 0,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 0,
+              "1f3502e1-c188-5796-8522-085306a0f049": 0,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 0
+            },
+            "live_pots": [
+              {
+                "amount": 2,
+                "contributors": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d"
+                ],
+                "eligible": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 1,
+                "contributors": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d"
+                ],
+                "eligible": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d"
+                ],
+                "refund_to": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d"
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -549,7 +586,58 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 4,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 0,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 2,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 0,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 0,
+              "1f3502e1-c188-5796-8522-085306a0f049": 0,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 0
+            },
+            "live_pots": [
+              {
+                "amount": 3,
+                "contributors": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "eligible": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 2,
+                "contributors": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "eligible": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 2,
+                "contributors": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "eligible": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "refund_to": "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -833,7 +921,58 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 4,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 0,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 2,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 0,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 0,
+              "1f3502e1-c188-5796-8522-085306a0f049": 0,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 0
+            },
+            "live_pots": [
+              {
+                "amount": 3,
+                "contributors": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "eligible": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 2,
+                "contributors": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "eligible": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 2,
+                "contributors": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "eligible": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                ],
+                "refund_to": "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -1117,7 +1256,64 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 4,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 0,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 2,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 0,
+              "1f3502e1-c188-5796-8522-085306a0f049": 0,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 0
+            },
+            "live_pots": [
+              {
+                "amount": 4,
+                "contributors": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
+                ],
+                "eligible": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 3,
+                "contributors": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
+                ],
+                "eligible": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 4,
+                "contributors": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
+                ],
+                "eligible": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -1401,7 +1597,70 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 4,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 0,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 2,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 0,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 0
+            },
+            "live_pots": [
+              {
+                "amount": 5,
+                "contributors": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36"
+                ],
+                "eligible": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 4,
+                "contributors": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36"
+                ],
+                "eligible": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 6,
+                "contributors": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36"
+                ],
+                "eligible": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -1685,7 +1944,76 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 4,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 0,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 2,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 0
+            },
+            "live_pots": [
+              {
+                "amount": 6,
+                "contributors": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049"
+                ],
+                "eligible": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 5,
+                "contributors": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049"
+                ],
+                "eligible": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 8,
+                "contributors": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049"
+                ],
+                "eligible": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -2046,7 +2374,82 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 4,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 0,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 2,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 7,
+                "contributors": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 6,
+                "contributors": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 10,
+                "contributors": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -2330,7 +2733,88 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 4,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 2,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 8,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 7,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 12,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -2614,7 +3098,68 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 4,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 2,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 16,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              },
+              {
+                "amount": 14,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -2938,7 +3483,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -3262,7 +3846,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -3586,7 +4209,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -3910,7 +4572,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -4234,7 +4935,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -4558,7 +5298,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -4882,7 +5661,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -5283,7 +6101,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -5620,7 +6477,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -5957,7 +6853,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -6294,7 +7229,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -6631,7 +7605,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -6968,7 +7981,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -7305,7 +8357,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -7642,7 +8733,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -8056,7 +9186,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -8406,7 +9575,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -8756,7 +9964,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -9106,7 +10353,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -9456,7 +10742,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -9806,7 +11131,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -10156,7 +11520,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -10506,7 +11909,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -10933,7 +12375,46 @@
             "button": "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
             "current_bet": 0,
             "pots": [],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [
+              {
+                "amount": 32,
+                "contributors": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "refund_to": null
+              }
+            ],
+            "hand_evaluations": {},
+            "settlement_reason": null
           }
         },
         "paused": false,
@@ -11505,10 +12986,654 @@
                 "amount": 32,
                 "winners": [
                   "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
-                ]
+                ],
+                "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
+                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
+                ],
+                "awards": {
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 32
+                },
+                "odd_chips": []
               }
             ],
-            "refunds": {}
+            "refunds": {},
+            "contributions": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 4,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 4,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 4,
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": 4,
+              "8d2c9931-c076-52e0-a572-a351ff5da59f": 0,
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": 4,
+              "535fe5de-0a87-5604-b2db-01481edb7e36": 4,
+              "1f3502e1-c188-5796-8522-085306a0f049": 4,
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": 4
+            },
+            "live_pots": [],
+            "hand_evaluations": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": {
+                "category": "Pair",
+                "comparison": [
+                  6,
+                  14,
+                  10,
+                  9
+                ],
+                "description": "Pair of 6s; kickers ace, 10, 9",
+                "cards": [
+                  {
+                    "id": "9D:0",
+                    "label": "9 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "9",
+                    "suit": "\u2666",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "TS:0",
+                    "label": "10 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "10",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6S:0",
+                    "label": "6 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "AC:0",
+                    "label": "A \u2663",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "A",
+                    "suit": "\u2663",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2666",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ]
+              },
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": {
+                "category": "Pair",
+                "comparison": [
+                  6,
+                  14,
+                  12,
+                  10
+                ],
+                "description": "Pair of 6s; kickers ace, queen, 10",
+                "cards": [
+                  {
+                    "id": "QH:0",
+                    "label": "Q \u2665",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "Q",
+                    "suit": "\u2665",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "TS:0",
+                    "label": "10 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "10",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6S:0",
+                    "label": "6 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "AC:0",
+                    "label": "A \u2663",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "A",
+                    "suit": "\u2663",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2666",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ]
+              },
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": {
+                "category": "Pair",
+                "comparison": [
+                  6,
+                  14,
+                  13,
+                  10
+                ],
+                "description": "Pair of 6s; kickers ace, king, 10",
+                "cards": [
+                  {
+                    "id": "KS:0",
+                    "label": "K \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "K",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "TS:0",
+                    "label": "10 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "10",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6S:0",
+                    "label": "6 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "AC:0",
+                    "label": "A \u2663",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "A",
+                    "suit": "\u2663",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2666",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ]
+              },
+              "3f9bd094-039a-58f9-a557-781d6ca49cb4": {
+                "category": "Two pair",
+                "comparison": [
+                  10,
+                  6,
+                  14
+                ],
+                "description": "Pairs of 10s and 6s; kicker ace",
+                "cards": [
+                  {
+                    "id": "TD:0",
+                    "label": "10 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "10",
+                    "suit": "\u2666",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "TS:0",
+                    "label": "10 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "10",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6S:0",
+                    "label": "6 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "AC:0",
+                    "label": "A \u2663",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "A",
+                    "suit": "\u2663",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2666",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ]
+              },
+              "e981e0fe-a803-5439-8ce0-fc64067e9f6a": {
+                "category": "Flush",
+                "comparison": [
+                  10,
+                  9,
+                  6,
+                  5,
+                  3
+                ],
+                "description": "Flush; comparison order 10, 9, 6, 5, 3",
+                "cards": [
+                  {
+                    "id": "9S:0",
+                    "label": "9 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "9",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "3S:0",
+                    "label": "3 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "3",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "TS:0",
+                    "label": "10 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "10",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "5S:0",
+                    "label": "5 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "5",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6S:0",
+                    "label": "6 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ]
+              },
+              "535fe5de-0a87-5604-b2db-01481edb7e36": {
+                "category": "Pair",
+                "comparison": [
+                  6,
+                  14,
+                  13,
+                  10
+                ],
+                "description": "Pair of 6s; kickers ace, king, 10",
+                "cards": [
+                  {
+                    "id": "KH:0",
+                    "label": "K \u2665",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "K",
+                    "suit": "\u2665",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "TS:0",
+                    "label": "10 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "10",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6S:0",
+                    "label": "6 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "AC:0",
+                    "label": "A \u2663",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "A",
+                    "suit": "\u2663",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2666",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ]
+              },
+              "1f3502e1-c188-5796-8522-085306a0f049": {
+                "category": "Two pair",
+                "comparison": [
+                  6,
+                  5,
+                  14
+                ],
+                "description": "Pairs of 6s and 5s; kicker ace",
+                "cards": [
+                  {
+                    "id": "5H:0",
+                    "label": "5 \u2665",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "5",
+                    "suit": "\u2665",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "5S:0",
+                    "label": "5 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "5",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6S:0",
+                    "label": "6 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "AC:0",
+                    "label": "A \u2663",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "A",
+                    "suit": "\u2663",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2666",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ]
+              },
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": {
+                "category": "Pair",
+                "comparison": [
+                  6,
+                  14,
+                  10,
+                  9
+                ],
+                "description": "Pair of 6s; kickers ace, 10, 9",
+                "cards": [
+                  {
+                    "id": "9H:0",
+                    "label": "9 \u2665",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "9",
+                    "suit": "\u2665",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "TS:0",
+                    "label": "10 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "10",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6S:0",
+                    "label": "6 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "AC:0",
+                    "label": "A \u2663",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "A",
+                    "suit": "\u2663",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2666",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ]
+              }
+            },
+            "settlement_reason": "showdown"
           }
         },
         "paused": false,
@@ -11688,7 +13813,15 @@
           "winners": [],
           "detail": {
             "stake": 1,
-            "blind": true
+            "blind": true,
+            "seen": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": false,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": false,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": false
+            },
+            "sideshow": null,
+            "sideshow_target": null,
+            "sideshow_cost": null
           }
         },
         "paused": false,
@@ -11879,7 +14012,15 @@
           "winners": [],
           "detail": {
             "stake": 1,
-            "blind": false
+            "blind": false,
+            "seen": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": true,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": false,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": false
+            },
+            "sideshow": null,
+            "sideshow_target": null,
+            "sideshow_cost": 2
           }
         },
         "paused": false,
@@ -12036,7 +14177,15 @@
           "winners": [],
           "detail": {
             "stake": 1,
-            "blind": false
+            "blind": false,
+            "seen": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": true,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": false,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": false
+            },
+            "sideshow": null,
+            "sideshow_target": null,
+            "sideshow_cost": 2
           }
         },
         "paused": false,
@@ -12193,7 +14342,15 @@
           "winners": [],
           "detail": {
             "stake": 1,
-            "blind": false
+            "blind": false,
+            "seen": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": true,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": true,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": false
+            },
+            "sideshow": null,
+            "sideshow_target": null,
+            "sideshow_cost": 2
           }
         },
         "paused": false,
@@ -12350,7 +14507,15 @@
           "winners": [],
           "detail": {
             "stake": 1,
-            "blind": false
+            "blind": false,
+            "seen": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": true,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": true,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": false
+            },
+            "sideshow": null,
+            "sideshow_target": null,
+            "sideshow_cost": 2
           }
         },
         "paused": false,
@@ -12507,7 +14672,15 @@
           "winners": [],
           "detail": {
             "stake": 1,
-            "blind": false
+            "blind": false,
+            "seen": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": true,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": true,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": true
+            },
+            "sideshow": null,
+            "sideshow_target": null,
+            "sideshow_cost": 2
           }
         },
         "paused": false,
@@ -12722,7 +14895,15 @@
           "winners": [],
           "detail": {
             "stake": 1,
-            "blind": false
+            "blind": false,
+            "seen": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": true,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": true,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": true
+            },
+            "sideshow": null,
+            "sideshow_target": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+            "sideshow_cost": 2
           }
         },
         "paused": false,
@@ -12879,7 +15060,15 @@
           "winners": [],
           "detail": {
             "stake": 1,
-            "blind": false
+            "blind": false,
+            "seen": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": true,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": true,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": true
+            },
+            "sideshow": null,
+            "sideshow_target": null,
+            "sideshow_cost": 2
           }
         },
         "paused": false,
@@ -13036,7 +15225,15 @@
           "winners": [],
           "detail": {
             "stake": 1,
-            "blind": false
+            "blind": false,
+            "seen": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": true,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": true,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": true
+            },
+            "sideshow": null,
+            "sideshow_target": null,
+            "sideshow_cost": 2
           }
         },
         "paused": false,
@@ -13275,7 +15472,15 @@
           ],
           "detail": {
             "stake": 1,
-            "blind": false
+            "blind": false,
+            "seen": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": true,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": true,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": true
+            },
+            "sideshow": null,
+            "sideshow_target": null,
+            "sideshow_cost": 2
           }
         },
         "paused": false,
@@ -13372,7 +15577,15 @@
           "detail": {
             "dealer_hidden": false,
             "hand_index": 0,
-            "hands": []
+            "active_hand_index": null,
+            "hands": [],
+            "insurance": {
+              "stake": 0,
+              "payout": null,
+              "net": null
+            },
+            "dealer_natural": null,
+            "settlements": {}
           }
         },
         "paused": false,
@@ -13584,6 +15797,7 @@
           "detail": {
             "dealer_hidden": true,
             "hand_index": 0,
+            "active_hand_index": 0,
             "hands": [
               {
                 "cards": [
@@ -13614,9 +15828,21 @@
                     "rent_ladder": []
                   }
                 ],
-                "bet": 10
+                "bet": 10,
+                "total": 20,
+                "soft": false,
+                "done": false,
+                "split": false,
+                "settlement": null
               }
-            ]
+            ],
+            "insurance": {
+              "stake": 0,
+              "payout": null,
+              "net": null
+            },
+            "dealer_natural": null,
+            "settlements": {}
           }
         },
         "paused": false,
@@ -13840,6 +16066,7 @@
           "detail": {
             "dealer_hidden": true,
             "hand_index": 0,
+            "active_hand_index": 0,
             "hands": [
               {
                 "cards": [
@@ -13870,7 +16097,12 @@
                     "rent_ladder": []
                   }
                 ],
-                "bet": 10
+                "bet": 10,
+                "total": 20,
+                "soft": false,
+                "done": false,
+                "split": true,
+                "settlement": null
               },
               {
                 "cards": [
@@ -13901,9 +16133,21 @@
                     "rent_ladder": []
                   }
                 ],
-                "bet": 10
+                "bet": 10,
+                "total": 12,
+                "soft": false,
+                "done": false,
+                "split": true,
+                "settlement": null
               }
-            ]
+            ],
+            "insurance": {
+              "stake": 0,
+              "payout": null,
+              "net": null
+            },
+            "dealer_natural": null,
+            "settlements": {}
           }
         },
         "paused": false,
@@ -14140,6 +16384,7 @@
           "detail": {
             "dealer_hidden": true,
             "hand_index": 1,
+            "active_hand_index": 1,
             "hands": [
               {
                 "cards": [
@@ -14183,7 +16428,12 @@
                     "rent_ladder": []
                   }
                 ],
-                "bet": 10
+                "bet": 10,
+                "total": 27,
+                "soft": false,
+                "done": true,
+                "split": true,
+                "settlement": null
               },
               {
                 "cards": [
@@ -14214,9 +16464,21 @@
                     "rent_ladder": []
                   }
                 ],
-                "bet": 10
+                "bet": 10,
+                "total": 12,
+                "soft": false,
+                "done": false,
+                "split": true,
+                "settlement": null
               }
-            ]
+            ],
+            "insurance": {
+              "stake": 0,
+              "payout": null,
+              "net": null
+            },
+            "dealer_natural": null,
+            "settlements": {}
           }
         },
         "paused": false,
@@ -14434,6 +16696,7 @@
           "detail": {
             "dealer_hidden": false,
             "hand_index": 1,
+            "active_hand_index": null,
             "hands": [
               {
                 "cards": [
@@ -14477,7 +16740,18 @@
                     "rent_ladder": []
                   }
                 ],
-                "bet": 10
+                "bet": 10,
+                "total": 27,
+                "soft": false,
+                "done": true,
+                "split": true,
+                "settlement": {
+                  "outcome": "loss",
+                  "reason": "Hand busts",
+                  "payout": 0,
+                  "net": -10,
+                  "natural": false
+                }
               },
               {
                 "cards": [
@@ -14521,9 +16795,148 @@
                     "rent_ladder": []
                   }
                 ],
-                "bet": 10
+                "bet": 10,
+                "total": 22,
+                "soft": false,
+                "done": true,
+                "split": true,
+                "settlement": {
+                  "outcome": "loss",
+                  "reason": "Hand busts",
+                  "payout": 0,
+                  "net": -10,
+                  "natural": false
+                }
               }
-            ]
+            ],
+            "insurance": {
+              "stake": 0,
+              "payout": 0,
+              "net": 0
+            },
+            "dealer_natural": false,
+            "settlements": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": {
+                "hands": [
+                  {
+                    "cards": [
+                      {
+                        "id": "QS:5",
+                        "label": "Q \u2660",
+                        "color": "ink",
+                        "subtitle": "",
+                        "value": "Q",
+                        "suit": "\u2660",
+                        "colors": [],
+                        "effect": "",
+                        "set_name": null,
+                        "set_size": null,
+                        "rent_ladder": []
+                      },
+                      {
+                        "id": "TH:1",
+                        "label": "10 \u2665",
+                        "color": "red",
+                        "subtitle": "",
+                        "value": "10",
+                        "suit": "\u2665",
+                        "colors": [],
+                        "effect": "",
+                        "set_name": null,
+                        "set_size": null,
+                        "rent_ladder": []
+                      },
+                      {
+                        "id": "7S:0",
+                        "label": "7 \u2660",
+                        "color": "ink",
+                        "subtitle": "",
+                        "value": "7",
+                        "suit": "\u2660",
+                        "colors": [],
+                        "effect": "",
+                        "set_name": null,
+                        "set_size": null,
+                        "rent_ladder": []
+                      }
+                    ],
+                    "bet": 10,
+                    "total": 27,
+                    "soft": false,
+                    "done": true,
+                    "split": true,
+                    "settlement": {
+                      "outcome": "loss",
+                      "reason": "Hand busts",
+                      "payout": 0,
+                      "net": -10,
+                      "natural": false
+                    }
+                  },
+                  {
+                    "cards": [
+                      {
+                        "id": "QH:3",
+                        "label": "Q \u2665",
+                        "color": "red",
+                        "subtitle": "",
+                        "value": "Q",
+                        "suit": "\u2665",
+                        "colors": [],
+                        "effect": "",
+                        "set_name": null,
+                        "set_size": null,
+                        "rent_ladder": []
+                      },
+                      {
+                        "id": "2C:3",
+                        "label": "2 \u2663",
+                        "color": "ink",
+                        "subtitle": "",
+                        "value": "2",
+                        "suit": "\u2663",
+                        "colors": [],
+                        "effect": "",
+                        "set_name": null,
+                        "set_size": null,
+                        "rent_ladder": []
+                      },
+                      {
+                        "id": "JD:3",
+                        "label": "J \u2666",
+                        "color": "red",
+                        "subtitle": "",
+                        "value": "J",
+                        "suit": "\u2666",
+                        "colors": [],
+                        "effect": "",
+                        "set_name": null,
+                        "set_size": null,
+                        "rent_ladder": []
+                      }
+                    ],
+                    "bet": 10,
+                    "total": 22,
+                    "soft": false,
+                    "done": true,
+                    "split": true,
+                    "settlement": {
+                      "outcome": "loss",
+                      "reason": "Hand busts",
+                      "payout": 0,
+                      "net": -10,
+                      "natural": false
+                    }
+                  }
+                ],
+                "insurance": {
+                  "stake": 0,
+                  "payout": 0,
+                  "net": 0
+                },
+                "net": -20
+              }
+            }
           }
         },
         "paused": false,

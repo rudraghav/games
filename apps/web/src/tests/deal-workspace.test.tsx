@@ -4,7 +4,12 @@ import { mapRoom } from '@games/api-client/mappers';
 import { dealDetails } from '@games/api-client';
 import { DealTable } from '@/games/deal/DealTable';
 import { DealComposer } from '@/games/deal/DealComposer';
-import { actionLabel, bankValue, suggestBankPayment } from '@/games/deal/presentation';
+import {
+  actionLabel,
+  bankValue,
+  paymentSelection,
+  suggestBankPayment,
+} from '@/games/deal/presentation';
 import { dealScenarios } from '@/stories/generated/deal-scenarios';
 
 function scenario(id: string) {
@@ -21,6 +26,53 @@ function scenario(id: string) {
 }
 
 describe('Engine-projected Deal workspace', () => {
+  it.each(['linked-payment-classic', 'linked-payment-no-mercy'])(
+    'quotes every actual carried asset once before the conserved %s transfer',
+    (id) => {
+      const props = scenario(id);
+      const detail = dealDetails(props.match.detail);
+      const transition = props.fixture.transitions[0];
+      const selected = transition.action.cards || [];
+      const quote = paymentSelection(detail.paymentBundles, selected);
+      expect(quote.valid).toBe(true);
+      expect(quote.amount).toBe(id === 'linked-payment-classic' ? 9 : 6);
+      expect(quote.carried.length).toBe(id === 'linked-payment-classic' ? 2 : 1);
+      const ownAssets = (match: typeof props.match) => {
+        const own = match.players.find((player) => player.id === props.selfId)!;
+        return [...own.bank, ...Object.values(own.properties).flat()].map((card) => card.id);
+      };
+      const after = ownAssets(mapRoom(transition.room).game!);
+      expect(
+        ownAssets(props.match)
+          .filter((card) => !after.includes(card))
+          .sort(),
+      ).toEqual(quote.ids.sort());
+      const explicit = paymentSelection(detail.paymentBundles, [...quote.carried, ...selected]);
+      expect(explicit.amount).toBe(quote.amount);
+      expect(explicit.ids.sort()).toEqual(quote.ids.sort());
+      expect(paymentSelection(detail.paymentBundles, [...selected, selected[0]]).valid).toBe(false);
+      expect(paymentSelection(detail.paymentBundles, ['hidden-card-canary']).valid).toBe(false);
+    },
+  );
+
+  it('keeps both publicly committed exchange sides available to the responding player', () => {
+    const props = scenario('forced-pending');
+    const pending = dealDetails(props.match.detail).pendingAction!;
+    expect(pending.transfers).toHaveLength(2);
+    const first = pending.transfers[0],
+      second = pending.transfers[1];
+    expect(first.source).toBe(second.target);
+    expect(first.target).toBe(second.source);
+    const visible = props.match.players.flatMap((player) =>
+      Object.values(player.properties).flat(),
+    );
+    expect(
+      pending.transfers
+        .flatMap((transfer) => transfer.cards)
+        .every((id) => visible.some((card) => card.id === id)),
+    ).toBe(true);
+    expect(pending.category).toBeNull();
+  });
   it('maps every synthetic decision without exposing internal engine state or opposing hands', () => {
     for (const fixture of dealScenarios) {
       for (const wire of [fixture.room, ...fixture.transitions.map((item) => item.room)]) {

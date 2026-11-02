@@ -166,7 +166,8 @@ class TeenPattiEngine(BaseEngine):
                 if s["pot"] >= 1024:
                     self._finish(s, True)
                     return s
-                s["pending"] = {"actor": player, "target": self._previous(s, player)}
+                s["pending"] = {"actor": player, "target": self._previous(s, player),
+                                "cost": s["stake"] * 2}
                 return s
             active = self._active(s)
             other = next(q for q in active if q != player)
@@ -209,5 +210,13 @@ class TeenPattiEngine(BaseEngine):
             actions=self.legal_actions(s, player),
             winners=s["winners"],
             message=s["message"],
-            detail={"stake": s["stake"], "blind": bool(own and not own["seen"])},
+            detail={"stake": s["stake"], "blind": bool(own and not own["seen"]),
+                    "seen": {p: bool(v["seen"]) for p, v in s["players"].items()},
+                    "sideshow": {"actor": s["pending"]["actor"], "target": s["pending"]["target"],
+                                 "cost": s["pending"].get("cost", s["stake"] * 2)}
+                    if s["pending"] else None,
+                    "sideshow_target": self._previous(s, player)
+                    if own and any(a.action.type == "sideshow" for a in self.legal_actions(s, player))
+                    else None,
+                    "sideshow_cost": s["stake"] * 2 if own and own["seen"] else None},
         )

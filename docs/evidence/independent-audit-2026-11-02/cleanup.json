@@ -1,0 +1,626 @@
+{
+  "removed": [
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/uno-390-viewport.jpg",
+      "bytes": 67934,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/uno-no-mercy-390-viewport.jpg",
+      "bytes": 68926,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/deal-390-viewport.jpg",
+      "bytes": 68353,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/deal-no-mercy-390-viewport.jpg",
+      "bytes": 61914,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/holdem-390-viewport.jpg",
+      "bytes": 87960,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/rummy-390-viewport.jpg",
+      "bytes": 76188,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/teen-patti-390-viewport.jpg",
+      "bytes": 74791,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/blackjack-390-viewport.jpg",
+      "bytes": 84266,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/skyjo-390-viewport.jpg",
+      "bytes": 86845,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/tarot-390-viewport.jpg",
+      "bytes": 83555,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/four-in-a-row-390-viewport.jpg",
+      "bytes": 60533,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/reversi-390-viewport.jpg",
+      "bytes": 53514,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/word-agents-390-viewport.jpg",
+      "bytes": 78770,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/gem-market-390-viewport.jpg",
+      "bytes": 101501,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/checkers-390-viewport.jpg",
+      "bytes": 54604,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/mancala-390-viewport.jpg",
+      "bytes": 63035,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/flip-7-390-viewport.jpg",
+      "bytes": 80940,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/trio-390-viewport.jpg",
+      "bytes": 85650,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/azul-390-viewport.jpg",
+      "bytes": 75492,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/spill-or-chill-390-viewport.jpg",
+      "bytes": 62354,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/most-likely-390-viewport.jpg",
+      "bytes": 62893,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/hot-seat-390-viewport.jpg",
+      "bytes": 54977,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/the-gang-390-viewport.jpg",
+      "bytes": 95490,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/six-nimmt-390-viewport.jpg",
+      "bytes": 77069,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/sea-salt-paper-390-viewport.jpg",
+      "bytes": 87350,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/boop-390-viewport.jpg",
+      "bytes": 76514,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/shithead-390-viewport.jpg",
+      "bytes": 75964,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/uno-320-viewport.jpg",
+      "bytes": 59774,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/uno-no-mercy-320-viewport.jpg",
+      "bytes": 60749,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/deal-320-viewport.jpg",
+      "bytes": 58953,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/deal-no-mercy-320-viewport.jpg",
+      "bytes": 55946,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/holdem-320-viewport.jpg",
+      "bytes": 80291,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/rummy-320-viewport.jpg",
+      "bytes": 66557,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/teen-patti-320-viewport.jpg",
+      "bytes": 69181,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/blackjack-320-viewport.jpg",
+      "bytes": 77556,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/skyjo-320-viewport.jpg",
+      "bytes": 75391,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/tarot-320-viewport.jpg",
+      "bytes": 67884,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/four-in-a-row-320-viewport.jpg",
+      "bytes": 53956,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/reversi-320-viewport.jpg",
+      "bytes": 49815,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/word-agents-320-viewport.jpg",
+      "bytes": 72240,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/gem-market-320-viewport.jpg",
+      "bytes": 95808,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/checkers-320-viewport.jpg",
+      "bytes": 48959,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/mancala-320-viewport.jpg",
+      "bytes": 54736,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/flip-7-320-viewport.jpg",
+      "bytes": 73963,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/trio-320-viewport.jpg",
+      "bytes": 81431,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/azul-320-viewport.jpg",
+      "bytes": 68540,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/spill-or-chill-320-viewport.jpg",
+      "bytes": 58003,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/most-likely-320-viewport.jpg",
+      "bytes": 58312,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/hot-seat-320-viewport.jpg",
+      "bytes": 50931,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/the-gang-320-viewport.jpg",
+      "bytes": 90766,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/six-nimmt-320-viewport.jpg",
+      "bytes": 67184,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/sea-salt-paper-320-viewport.jpg",
+      "bytes": 76503,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/boop-320-viewport.jpg",
+      "bytes": 66693,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/shithead-320-viewport.jpg",
+      "bytes": 70870,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/uno-768-viewport.jpg",
+      "bytes": 81032,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/uno-no-mercy-768-viewport.jpg",
+      "bytes": 78779,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/deal-768-viewport.jpg",
+      "bytes": 94304,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/deal-no-mercy-768-viewport.jpg",
+      "bytes": 90308,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/holdem-768-viewport.jpg",
+      "bytes": 123839,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/rummy-768-viewport.jpg",
+      "bytes": 91879,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/teen-patti-768-viewport.jpg",
+      "bytes": 100077,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/blackjack-768-viewport.jpg",
+      "bytes": 113703,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/skyjo-768-viewport.jpg",
+      "bytes": 102593,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/tarot-768-viewport.jpg",
+      "bytes": 110509,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/four-in-a-row-768-viewport.jpg",
+      "bytes": 97050,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/reversi-768-viewport.jpg",
+      "bytes": 87307,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/word-agents-768-viewport.jpg",
+      "bytes": 109522,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/gem-market-768-viewport.jpg",
+      "bytes": 179417,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/checkers-768-viewport.jpg",
+      "bytes": 82481,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/mancala-768-viewport.jpg",
+      "bytes": 84587,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/flip-7-768-viewport.jpg",
+      "bytes": 101328,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/trio-768-viewport.jpg",
+      "bytes": 101971,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/azul-768-viewport.jpg",
+      "bytes": 103029,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/spill-or-chill-768-viewport.jpg",
+      "bytes": 78118,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/most-likely-768-viewport.jpg",
+      "bytes": 78340,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/hot-seat-768-viewport.jpg",
+      "bytes": 70685,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/the-gang-768-viewport.jpg",
+      "bytes": 122573,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/six-nimmt-768-viewport.jpg",
+      "bytes": 103124,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/sea-salt-paper-768-viewport.jpg",
+      "bytes": 103448,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/boop-768-viewport.jpg",
+      "bytes": 102797,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/shithead-768-viewport.jpg",
+      "bytes": 117702,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/uno-1440-viewport.jpg",
+      "bytes": 101590,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/uno-no-mercy-1440-viewport.jpg",
+      "bytes": 96448,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/deal-1440-viewport.jpg",
+      "bytes": 118441,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/deal-no-mercy-1440-viewport.jpg",
+      "bytes": 120650,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/holdem-1440-viewport.jpg",
+      "bytes": 144480,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/rummy-1440-viewport.jpg",
+      "bytes": 123848,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/teen-patti-1440-viewport.jpg",
+      "bytes": 130992,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/blackjack-1440-viewport.jpg",
+      "bytes": 136152,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/skyjo-1440-viewport.jpg",
+      "bytes": 133083,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/tarot-1440-viewport.jpg",
+      "bytes": 137076,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/four-in-a-row-1440-viewport.jpg",
+      "bytes": 121513,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/reversi-1440-viewport.jpg",
+      "bytes": 109821,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/word-agents-1440-viewport.jpg",
+      "bytes": 147609,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/gem-market-1440-viewport.jpg",
+      "bytes": 227486,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/checkers-1440-viewport.jpg",
+      "bytes": 105102,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/mancala-1440-viewport.jpg",
+      "bytes": 111061,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/flip-7-1440-viewport.jpg",
+      "bytes": 134141,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/trio-1440-viewport.jpg",
+      "bytes": 125448,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/azul-1440-viewport.jpg",
+      "bytes": 116729,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/spill-or-chill-1440-viewport.jpg",
+      "bytes": 102778,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/most-likely-1440-viewport.jpg",
+      "bytes": 102106,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/hot-seat-1440-viewport.jpg",
+      "bytes": 93436,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/the-gang-1440-viewport.jpg",
+      "bytes": 147280,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/six-nimmt-1440-viewport.jpg",
+      "bytes": 124427,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/sea-salt-paper-1440-viewport.jpg",
+      "bytes": 124112,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/boop-1440-viewport.jpg",
+      "bytes": 118154,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/accepted-tables/shithead-1440-viewport.jpg",
+      "bytes": 150892,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-768-1.webp",
+      "bytes": 182600,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-390-1.webp",
+      "bytes": 175866,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-1440-1.webp",
+      "bytes": 87216,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-320-1.webp",
+      "bytes": 159780,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-1440-2.webp",
+      "bytes": 110616,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-320-2.webp",
+      "bytes": 120572,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-320-3.webp",
+      "bytes": 135510,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-1440-3.webp",
+      "bytes": 88978,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-390-3.webp",
+      "bytes": 155742,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-768-3.webp",
+      "bytes": 166380,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-768-2.webp",
+      "bytes": 167274,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/sheets/tables-390-2.webp",
+      "bytes": 148948,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/screenshots/01-home-390.jpg",
+      "bytes": 6691,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "docs/evidence/independent-audit-2026-11-02/screenshots/reference-zynga.jpg",
+      "bytes": 114199,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "output/playwright/independent-audit-20261102/board-tall.jpg",
+      "bytes": 57708,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    },
+    {
+      "path": "output/playwright/independent-audit-20261102/vercel-alias.json",
+      "bytes": 0,
+      "reason": "task-owned superseded capture/intermediate; retained corrected tables, normal-height geometry and reference-ready image"
+    }
+  ],
+  "bytesReclaimed": 11811811,
+  "protected": "No source, masters, databases, sessions, existing services, dependencies or historical evidence removed"
+}

@@ -209,3 +209,45 @@ ladder. It now returns zero unless the collection contains a property with a
 monetary value; inactive buildings cannot supply that missing base. Both
 editions, all-zero-wild groups with/without buildings and building-only groups
 have direct regressions, and the public UI fixture asserts the same zero quote.
+
+## Audit fixes — 2 November 2026
+
+Classic now declares `b0965-faq-2`: the B0965 deck plus Hasbro's current
+[Just Say No FAQ 953](https://hasbro-new.custhelp.com/app/answers/detail/a_id/953/).
+Just Say No uses no ordinary play, including when countering after the third
+ordinary card. Counter chains finish before the normal end-of-turn progression.
+No Mercy retains `house-deck-1`, its approved money inventory, and its existing
+own-turn counter cost as an explicitly stated Games house convention. This
+choice does not claim the classic FAQ establishes a G3071 counter rule.
+
+The existing Games **building transfer convention** is now explicit: buildings
+linked to a property travel with it. Their values count in the payment total,
+including when only the property was selected. This carry convention is not
+presented as a verified publisher payment rule. A building selected alone goes
+to the creditor's bank. Property-plus-building selections resolve property first
+so input order cannot change where an attached building ends up.
+
+`transfer_cards` owns that transfer closure. `payment_bundles` projects one
+public bundle per eligible asset only to the current payer. A bundle contains
+its selected `card` and all `transfers: [{id, value}]`; it does not enumerate
+subsets. The pure `combine_payment_bundles` unions IDs, rejects duplicates or
+ineligible selections, and supplies the same actual value to payment validation,
+No Mercy debt issuance and bot loss estimates. Insolvency tests the full union
+against every payable asset. No change is returned for overpayment. The UI
+unions these server-authored bundles and identifies unselected carried buildings
+before confirmation; it never derives hidden engine links.
+
+`pending_action.transfers` lists committed public cards with source/recipient
+for swaps, steals, set taking and bank exchange, including carried buildings.
+`collection`, `category`, `source_collection` and `multiplier` expose only allowed
+public set/category/rent context. Arbitrary event fields, opposing hand choices,
+stock order and private card identities are still excluded. Old saved events
+without the added public rent context remain readable.
+
+Regression evidence includes the original unchanged-seed audit trajectories:
+classic 114 actions reaches a 2M face selection that actually transfers 9M;
+No Mercy 99 actions reaches a 3M property that transfers 6M with its Shack;
+classic seed 12 reaches the third-play counter window in four legal actions.
+All now assert exact quotes, actual transferred IDs, card conservation and input
+immutability. Controlled cases additionally cover selection order/deduplication,
+bank/building-only payment, insolvency, hidden canaries and bot loss valuation.

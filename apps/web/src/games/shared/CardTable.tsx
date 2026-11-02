@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import { CardPile, Hand } from '@games/ui';
 import { gameById } from '@games/api-client/catalog';
-import type { TableProps } from '../types';
+import { sheddingDetails } from '@games/api-client';
+import { playerName, type TableProps } from '../types';
 import { ActionPanel } from './ActionPanel';
 import { PlayerStrip } from './PlayerStrip';
 import { sheddingCardInformation } from './card-information';
@@ -11,15 +12,18 @@ export function CardTable(props: TableProps) {
   const { match, room, pending } = props;
   const [selected, setSelected] = useState<string | null>(null);
   const family = gameById(match.id).family === 'shedding' ? 'shedding' : 'standard';
+  const details = family === 'shedding' ? sheddingDetails(match.detail) : null;
   const selectedCard = match.hand.find((card) => card.id === selected);
   const choosingColour = match.actions.some((option) => option.value.type === 'choose');
   const challenging = match.actions.some((option) => option.value.type === 'challenge');
   const draw = match.actions.find((option) => option.value.type === 'draw');
   const canPlay = match.actions.some((option) => option.value.type === 'play');
   const canPass = match.actions.some((option) => option.value.type === 'end_turn');
-  const penalty = Number(match.detail.penalty ?? 0);
+  const penalty = details?.penalty ?? 0;
   const instruction = choosingColour
-    ? 'Choose the colour for the next play.'
+    ? details?.pendingKind === 'roulette'
+      ? `Choose the colour you will draw until. Wild cards do not stop the draw.${details.eliminationLimit ? ` At ${details.eliminationLimit} cards you are out.` : ''}`
+      : 'Choose the colour for the next play.'
     : challenging
       ? 'Accept four cards, or challenge: an illegal play makes them draw four; a failed challenge makes you draw six.'
       : selectedCard
@@ -53,11 +57,22 @@ export function CardTable(props: TableProps) {
           <CardPile label="Draw pile" count={match.drawCount} family={family} />
           <CardPile label="Discard" card={match.discard} family={family} />
         </div>
-        {match.detail.color ? (
-          <span className="table-detail uno-current-colour" data-color={String(match.detail.color)}>
-            <i aria-hidden="true" /> {String(match.detail.color)}
+        {details?.color ? (
+          <span className="table-detail uno-current-colour" data-color={details.color}>
+            <i aria-hidden="true" /> {details.color}
             <span className="sr-only"> is the current colour</span>
           </span>
+        ) : null}
+        {details ? (
+          <p className="table-detail" aria-label="Play direction">
+            {details.direction === 1 ? 'Clockwise' : 'Counterclockwise'}
+            {details.nextPlayer
+              ? ` · Next in direction: ${playerName(room, details.nextPlayer)}`
+              : ''}
+            {details.eliminationLimit && details.pendingKind !== 'roulette'
+              ? ` · Out at ${details.eliminationLimit} cards`
+              : ''}
+          </p>
         ) : null}
         {match.detail.wild_rank ? (
           <span className="table-detail">Wild rank: {String(match.detail.wild_rank)}</span>

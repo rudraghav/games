@@ -1,0 +1,60 @@
+{
+  "state": "locally_verified_before_push",
+  "frontend": {
+    "tests": 134,
+    "types": "passed",
+    "lint": "passed",
+    "production_build": "passed",
+    "report": "verify-b56bfb810ddc4ed4941963f94ac797be"
+  },
+  "backend": {
+    "tests": 898,
+    "lint": "passed",
+    "types": "passed"
+  },
+  "multiplayer": {
+    "tests": 171,
+    "isolated_database": "created_and_dropped"
+  },
+  "migrations": {
+    "tests": 1,
+    "drift": "none"
+  },
+  "load": {
+    "tests": 2,
+    "rooms": 50,
+    "action_p95_ms": 633,
+    "snapshot_p95_ms": 422,
+    "bot_drive_p95_ms": 749,
+    "bot_snapshot_p95_ms": 441
+  },
+  "tooling": {
+    "tests": 44,
+    "boundaries": "passed"
+  },
+  "backend_and_platform_report": "verify-7730a909ad1e4f03a067152801cb02d3",
+  "contracts": {
+    "status": "passed",
+    "card_faces": 281,
+    "characters": 48,
+    "deal_scenarios": 16,
+    "midgame_scenarios": 247
+  },
+  "browser": {
+    "broad_run_passed": 229,
+    "broad_run_failed": 4,
+    "opt_in_skips": 25,
+    "failures": "Gang reveal spacing and boop confirmation test flow; both corrected",
+    "affected_rerun_passed": 58,
+    "final_report": "verify-53aa86b94328454892ec5c88fa52aad4",
+    "distinct_applicable_cases_covered": 233
+  },
+  "cloud_preflight": {
+    "account_project": "verified",
+    "git_integration": false,
+    "schema_head": "a6e442b15d80",
+    "schema_drift": "none",
+    "private_rls_grants": "passed"
+  },
+  "release": "Push, serving revision and hosted behavior must be recorded separately."
+}

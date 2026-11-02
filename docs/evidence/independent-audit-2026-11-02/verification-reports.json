@@ -1,0 +1,280 @@
+{
+  "reports": [
+    {
+      "id": "verify-2af0af1e580b4b3d863b815941c403b4",
+      "started_at": "2026-11-02T09:46:53.098609+00:00",
+      "finished_at": "2026-11-02T09:49:25.258553+00:00",
+      "status": "inconclusive",
+      "groups": [
+        "backend",
+        "contracts",
+        "multiplayer"
+      ],
+      "coverage": "Selected local commands only; unchecked behavior and release state are not certified",
+      "source_stable": false,
+      "checks": [
+        {
+          "group": "backend",
+          "index": 0,
+          "sequence": 0,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 0.128,
+          "reason": ""
+        },
+        {
+          "group": "backend",
+          "index": 1,
+          "sequence": 1,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 0.395,
+          "reason": ""
+        },
+        {
+          "group": "backend",
+          "index": 2,
+          "sequence": 2,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 37.725,
+          "reason": ""
+        },
+        {
+          "group": "contracts",
+          "index": 0,
+          "sequence": 3,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 15.192,
+          "reason": ""
+        },
+        {
+          "group": "multiplayer",
+          "index": 0,
+          "sequence": 4,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 98.593,
+          "reason": ""
+        }
+      ],
+      "reason": "Source changed during verification; rerun affected checks for the final source"
+    },
+    {
+      "id": "verify-98fcd621e9e943149574766903b21078",
+      "started_at": "2026-11-02T09:52:03.047640+00:00",
+      "finished_at": "2026-11-02T09:53:53.802767+00:00",
+      "status": "inconclusive",
+      "groups": [
+        "browser"
+      ],
+      "coverage": "Selected local commands only; unchecked behavior and release state are not certified",
+      "source_stable": false,
+      "checks": [
+        {
+          "group": "browser",
+          "index": 0,
+          "sequence": 0,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 3.601,
+          "reason": ""
+        },
+        {
+          "group": "browser",
+          "index": 1,
+          "sequence": 1,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 107.02,
+          "reason": ""
+        }
+      ],
+      "reason": "Source changed during verification; rerun affected checks for the final source"
+    },
+    {
+      "id": "verify-86a4a73384a84039b48030bf03748ace",
+      "started_at": "2026-11-02T10:43:06.791024+00:00",
+      "finished_at": "2026-11-02T10:43:56.110654+00:00",
+      "status": "failed",
+      "groups": [
+        "backend",
+        "contracts",
+        "multiplayer",
+        "browser",
+        "tooling"
+      ],
+      "coverage": "Selected local commands only; unchecked behavior and release state are not certified",
+      "source_stable": true,
+      "checks": [
+        {
+          "group": "backend",
+          "index": 0,
+          "sequence": 0,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 0.135,
+          "reason": ""
+        },
+        {
+          "group": "backend",
+          "index": 1,
+          "sequence": 1,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 0.447,
+          "reason": ""
+        },
+        {
+          "group": "backend",
+          "index": 2,
+          "sequence": 2,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 32.999,
+          "reason": ""
+        },
+        {
+          "group": "contracts",
+          "index": 0,
+          "sequence": 3,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 15.108,
+          "reason": ""
+        },
+        {
+          "group": "multiplayer",
+          "index": 0,
+          "sequence": 4,
+          "cwd": ".",
+          "status": "failed",
+          "exit_code": 1,
+          "seconds": 0.46,
+          "reason": ""
+        },
+        {
+          "group": "browser",
+          "index": 0,
+          "sequence": 5,
+          "cwd": ".",
+          "status": "not_run",
+          "exit_code": null,
+          "seconds": 0.0,
+          "reason": "Not reached; selected checks stop at the first blocker or failure"
+        },
+        {
+          "group": "browser",
+          "index": 1,
+          "sequence": 6,
+          "cwd": ".",
+          "status": "not_run",
+          "exit_code": null,
+          "seconds": 0.0,
+          "reason": "Not reached; selected checks stop at the first blocker or failure"
+        },
+        {
+          "group": "tooling",
+          "index": 0,
+          "sequence": 7,
+          "cwd": ".",
+          "status": "not_run",
+          "exit_code": null,
+          "seconds": 0.0,
+          "reason": "Not reached; selected checks stop at the first blocker or failure"
+        },
+        {
+          "group": "tooling",
+          "index": 1,
+          "sequence": 8,
+          "cwd": ".",
+          "status": "not_run",
+          "exit_code": null,
+          "seconds": 0.0,
+          "reason": "Not reached; selected checks stop at the first blocker or failure"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "verify-7b152f8be0c847be934f7e3f8655900a",
+      "started_at": "2026-11-02T10:45:44.735828+00:00",
+      "finished_at": "2026-11-02T10:49:33.818620+00:00",
+      "status": "passed",
+      "groups": [
+        "multiplayer",
+        "browser",
+        "tooling"
+      ],
+      "coverage": "Selected local commands only; unchecked behavior and release state are not certified",
+      "source_stable": true,
+      "checks": [
+        {
+          "group": "multiplayer",
+          "index": 0,
+          "sequence": 0,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 97.857,
+          "reason": ""
+        },
+        {
+          "group": "browser",
+          "index": 0,
+          "sequence": 1,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 3.628,
+          "reason": ""
+        },
+        {
+          "group": "browser",
+          "index": 1,
+          "sequence": 2,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 116.447,
+          "reason": ""
+        },
+        {
+          "group": "tooling",
+          "index": 0,
+          "sequence": 3,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 0.075,
+          "reason": ""
+        },
+        {
+          "group": "tooling",
+          "index": 1,
+          "sequence": 4,
+          "cwd": ".",
+          "status": "passed",
+          "exit_code": 0,
+          "seconds": 10.885,
+          "reason": ""
+        }
+      ],
+      "reason": null
+    }
+  ],
+  "head": "4233d6c9da9269de1bf19165c8ba38afa869c15b",
+  "closure": "Report-only closure and restoration of two generated Next development-type imports after checks; runtime/application diff empty. Frontend type check repeated after restore."
+}

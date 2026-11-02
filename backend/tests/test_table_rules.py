@@ -69,7 +69,8 @@ def test_holdem_uncalled_refund_is_not_a_winning_side_pot():
     state["players"]["b"].update(cards=["KS:0", "KH:0"], total=100, chips=100)
     engine._settle(state, True)
     assert state["winners"] == ["a"]
-    assert state["pots"] == [{"amount": 40, "winners": ["a"]}]
+    assert state["pots"] == [{"amount": 40, "winners": ["a"], "eligible": ["a", "b"],
+                              "awards": {"a": 40}, "odd_chips": []}]
     assert state["refunds"] == {"b": 80}
     assert [state["players"][p]["chips"] for p in ["a", "b"]] == [220, 180]
     assert engine.project_view(state, "a").pot == 40

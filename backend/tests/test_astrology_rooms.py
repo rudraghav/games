@@ -97,6 +97,8 @@ def test_preview_and_city_search_are_private_current_solo_match_only(client, pri
     preview = client.post(path + "/astrology/chart", headers=owner, json=chart_body)
     assert preview.status_code == 200 and preview.json()["status"] == "ready"
     assert len(preview.json()["chart"]["charts"]) == 2
+    assert preview.json()["time_resolution"] == {"timezone": "Europe/London", "utc_offset": "+01:00"}
+    assert "utc_offset" not in json.dumps(preview.json()["chart"])
     assert preview.headers["cache-control"] == "private, no-store"
     assert client.get(path + "/astrology/places?query=not-supported", headers=owner).status_code == 405
     lookup_count = private_services["lookups"]
@@ -130,7 +132,8 @@ def test_astrology_generation_saves_only_computed_chart_and_refresh_is_idempoten
         stored = json.dumps(saved.payload)
         assert saved.status == "complete"
     public = client.get(path, headers=owner).text
-    for secret in [ASTRO["birth_date"], ASTRO["birth_time"], CITY.label, CITY.timezone, "place_id", "birth_date"]:
+    for secret in [ASTRO["birth_date"], ASTRO["birth_time"], CITY.label, CITY.timezone,
+                   "place_id", "birth_date", "utc_offset", "time_resolution"]:
         assert secret not in stored and secret not in public and secret not in caplog.text
     assert client.get(path + "/reading", headers=player(client)).status_code == 404
 

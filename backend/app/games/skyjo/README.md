@@ -17,3 +17,11 @@ checks this final-reveal case, exactly one final turn per opponent, positive-onl
 doubling on ties, next-round starter, full matches at 2/8 seats and conservation
 of all 150 unique cards through draws, swaps, removals and reshuffles. Opening
 sum ties use first seat order as the explicit app tie-break.
+
+Final-turn detail lists the actual remaining turn order clockwise after the
+closer, shrinking once per completed turn. Round-end detail records each final
+grid total after removed columns, removed-column count, applied multiplier,
+round points and cumulative points. The UI displays that server ledger during
+round review/results; hidden-grid totals are never sent during play.
+`test_casino_explanations.py` checks the queue at 2/8 seats and ledger parity;
+existing final-reveal and positive/zero/negative doubling tests remain in force.

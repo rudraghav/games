@@ -25,7 +25,8 @@ class FourEngine(BaseEngine):
         self.require_players(players)
         return {"order": players, "turn": 0, "phase": "playing", "board": [None] * 42,
                 "rows": 6, "columns": 7, "scores": dict.fromkeys(players, 0), "winners": [],
-                "message": "Drop your first disc into a column.", "last_move": None}
+                "message": "Drop your first disc into a column.", "last_move": None,
+                "outcome_reason": None, "winning_cells": []}
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
         if s["phase"] == "finished" or player != s["order"][s["turn"]]:
@@ -42,18 +43,23 @@ class FourEngine(BaseEngine):
         s["board"][row * 7 + column] = seat
         s["last_move"] = row * 7 + column
         for dr, dc in ((1, 0), (0, 1), (1, 1), (1, -1)):
-            count = 1
+            line = [row * 7 + column]
             for direction in (-1, 1):
                 r, c = row + dr * direction, column + dc * direction
                 while 0 <= r < 6 and 0 <= c < 7 and s["board"][r * 7 + c] == seat:
-                    count += 1
+                    if direction < 0:
+                        line.insert(0, r * 7 + c)
+                    else:
+                        line.append(r * 7 + c)
                     r, c = r + dr * direction, c + dc * direction
-            if count >= 4:
-                s.update(phase="finished", winners=[player], message="Four in a row!")
+            if len(line) >= 4:
+                s.update(phase="finished", winners=[player], message="Four in a row!",
+                         outcome_reason="four-in-a-row", winning_cells=line[:4])
                 s["scores"][player] = 1
                 return s
         if all(cell is not None for cell in s["board"]):
-            s.update(phase="finished", draw=True, message="An evenly matched board. It’s a draw.")
+            s.update(phase="finished", draw=True, outcome_reason="board-full",
+                     message="The board is full without a line of four. It’s a draw.")
         else:
             s["turn"] = 1 - seat
             s["message"] = "Find your next connection."

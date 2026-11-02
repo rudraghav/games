@@ -1,0 +1,67 @@
+{
+  "ancestors": [
+    {
+      "classes": "classic-board classic-board--four",
+      "overflow": "visible",
+      "width": "284px"
+    },
+    {
+      "classes": "table-layout stable-game-table",
+      "overflow": "visible",
+      "width": "284px"
+    },
+    {
+      "classes": "midgame-review-table",
+      "overflow": "visible",
+      "width": "284px"
+    }
+  ],
+  "buttons": [
+    {
+      "left": 20,
+      "name": "Drop in column 1",
+      "right": 64
+    },
+    {
+      "left": 69,
+      "name": "Drop in column 2",
+      "right": 113
+    },
+    {
+      "left": 118,
+      "name": "Drop in column 3",
+      "right": 162
+    },
+    {
+      "left": 167,
+      "name": "Drop in column 4",
+      "right": 211
+    },
+    {
+      "left": 216,
+      "name": "Drop in column 5",
+      "right": 260
+    },
+    {
+      "left": 265,
+      "name": "Drop in column 6",
+      "right": 309
+    },
+    {
+      "left": 314,
+      "name": "Drop in column 7",
+      "right": 358
+    }
+  ],
+  "region": {
+    "bottom": 993.390625,
+    "height": 404.796875,
+    "left": 18,
+    "right": 302,
+    "top": 588.59375,
+    "width": 284,
+    "x": 18,
+    "y": 588.59375
+  },
+  "viewport": 320
+}

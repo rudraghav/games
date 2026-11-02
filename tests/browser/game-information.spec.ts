@@ -39,7 +39,7 @@ test('blind play and final Skyjo turns explain the actual current decision', asy
     (item) => item.game === 'teen-patti' && item.room.game!.detail?.blind,
   )!;
   await scenario(page, blind.id);
-  await expect(page.getByText('Blind · Stake 1', { exact: true })).toBeVisible();
+  await expect(page.getByText(/^Blind · Stake 1 · Wager/)).toBeVisible();
   await expect(
     page.getByText('Playing blind. Your cards stay hidden until you choose to look.', {
       exact: true,
@@ -55,9 +55,7 @@ test('blind play and final Skyjo turns explain the actual current decision', asy
       item.room.game!.phase === 'playing',
   )!;
   await scenario(page, final.id);
-  await expect(
-    page.getByText(/closed the round. Everyone else gets one final turn./),
-  ).toBeVisible();
+  await expect(page.getByText(/closed the round. Final turns:/)).toBeVisible();
   await expect(
     page.getByText(/positive round score doubles it unless it is strictly lowest/),
   ).toBeVisible();

@@ -1,0 +1,1718 @@
+[
+  {
+    "game": "deal",
+    "seed": 12,
+    "player": "p0",
+    "replay": [
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d060"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d067"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d085",
+          "target": "p2"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "no",
+          "card": "d082"
+        }
+      }
+    ]
+  },
+  {
+    "game": "deal",
+    "seed": 2,
+    "player": "p1",
+    "replay": [
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d020",
+          "color": "brown",
+          "choice": "brown:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d021",
+          "color": "brown",
+          "choice": "brown:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d046",
+          "color": "utility",
+          "choice": "utility:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d039",
+          "color": "green",
+          "choice": "green:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d032",
+          "color": "red",
+          "choice": "red:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d050",
+          "color": "orange",
+          "choice": "orange:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d027",
+          "color": "pink",
+          "choice": "pink:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d047",
+          "color": "utility",
+          "choice": "utility:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d096",
+          "target": "p0",
+          "choice": "d046",
+          "cards": [
+            "d047"
+          ]
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d056",
+          "color": "utility",
+          "choice": "utility:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d055",
+          "color": "green",
+          "choice": "green:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d069",
+          "target": "p2",
+          "color": "green:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d027"
+          ]
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d034",
+          "color": "yellow",
+          "choice": "yellow:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d094",
+          "target": "p0",
+          "choice": "d027",
+          "cards": [
+            "d039"
+          ]
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d081"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d074"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d040",
+          "color": "blue",
+          "choice": "blue:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d048",
+          "color": "brown",
+          "choice": "brown:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d054",
+          "color": "sky",
+          "choice": "sky:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d067",
+          "color": "utility:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d050"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d046"
+          ]
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d011"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d093",
+          "target": "p0",
+          "choice": "d054"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d077"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d022",
+          "color": "sky",
+          "choice": "sky:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d029",
+          "color": "orange",
+          "choice": "orange:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d079"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d041",
+          "color": "blue",
+          "choice": "blue:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d066",
+          "color": "green:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d054"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d040"
+          ]
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d017"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d010"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d097",
+          "target": "p0",
+          "color": "brown:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d030",
+          "color": "orange",
+          "choice": "orange:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d071",
+          "target": "p0",
+          "color": "orange:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d010"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d023",
+          "color": "sky",
+          "choice": "sky:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d070",
+          "target": "p1",
+          "color": "orange:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d010"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d087",
+          "target": "p1"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d032",
+            "d030"
+          ]
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d035",
+          "color": "yellow",
+          "choice": "yellow:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d043",
+          "color": "rail",
+          "choice": "rail:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d007"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d028",
+          "color": "orange",
+          "choice": "orange:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d104"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d062",
+          "color": "pink:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d007"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d010"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d091",
+          "target": "p0",
+          "choice": "d040"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d026",
+          "color": "pink",
+          "choice": "pink:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d059",
+          "color": "sky:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d011"
+          ]
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d007"
+          ]
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d037",
+          "color": "green",
+          "choice": "green:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d033",
+          "color": "red",
+          "choice": "red:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d075"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d085",
+          "target": "p0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "no",
+          "card": "d082"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d064",
+          "color": "yellow:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d017"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d007"
+          ]
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d089"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d050"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d011"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d025",
+          "color": "pink",
+          "choice": "pink:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d061",
+          "color": "pink:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d046"
+          ]
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d010"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d065",
+          "color": "blue:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d035",
+            "d043",
+            "d033"
+          ]
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d017",
+            "d011"
+          ]
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d049",
+          "color": "orange",
+          "choice": "orange:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d051",
+          "color": "red",
+          "choice": "red:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d086",
+          "target": "p1"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d007",
+            "d034"
+          ]
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d031",
+          "color": "red",
+          "choice": "red:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d101",
+          "color": "brown:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d103",
+          "color": "brown:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d038",
+          "color": "green",
+          "choice": "green:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d063",
+          "color": "yellow:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d007"
+          ]
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      }
+    ],
+    "selected": [
+      "d020",
+      "d022"
+    ],
+    "total": 9
+  },
+  {
+    "game": "deal-no-mercy",
+    "seed": 1,
+    "player": "p1",
+    "replay": [
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d026",
+          "color": "orange",
+          "choice": "orange:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d108",
+          "target": "p1",
+          "choice": "money"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d072",
+          "color": "orange:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "settle_debt",
+          "card": "d062",
+          "target": "p0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d062"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d032",
+          "color": "yellow",
+          "choice": "yellow:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "bank",
+          "card": "d003"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "settle_debt",
+          "card": "d060",
+          "target": "p0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d060",
+          "color": "orange:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d032"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "settle_debt",
+          "card": "d057",
+          "target": "p0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d057"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d048",
+          "color": "pink",
+          "choice": "pink:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d077",
+          "target": "p2"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d102",
+          "color": "pink"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d017"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d110",
+          "target": "p0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d104",
+          "color": "yellow"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "bank",
+          "card": "d063"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "settle_debt",
+          "card": "d100",
+          "target": "p0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d100"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d055",
+          "color": "green",
+          "choice": "green:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d029",
+          "color": "red",
+          "choice": "red:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d097",
+          "target": "p2"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "keep",
+          "card": "d029"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "give",
+          "card": "d055",
+          "target": "p0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d015"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d012"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d040",
+          "color": "rail",
+          "choice": "rail:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d096"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d027",
+          "color": "orange",
+          "choice": "orange:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d049",
+          "color": "red",
+          "choice": "red:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d054",
+          "color": "utility",
+          "choice": "utility:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d034",
+          "color": "yellow",
+          "choice": "yellow:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d028",
+          "color": "orange",
+          "choice": "orange:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d067",
+          "color": "pink:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "no",
+          "card": "d089"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d054"
+          ]
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d013"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "property",
+          "card": "d056",
+          "color": "rail",
+          "choice": "rail:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d106",
+          "target": "p0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "keep",
+          "card": "d015"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "give",
+          "card": "d003",
+          "target": "p1"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "give",
+          "card": "d100",
+          "target": "p2"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "give",
+          "card": "d012",
+          "target": "p1"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "give",
+          "card": "d013",
+          "target": "p2"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d069",
+          "color": "yellow:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d015"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d100"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d070",
+          "color": "yellow:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d026",
+            "d028"
+          ]
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d012"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d082"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "choose",
+          "card": "d017"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d083"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "choose",
+          "card": "d015"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d044",
+          "color": "utility",
+          "choice": "utility:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d071",
+          "color": "pink:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "pay",
+          "cards": [
+            "d062",
+            "d057"
+          ]
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "no",
+          "card": "d088"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "bank",
+          "card": "d008"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d074",
+          "target": "p0",
+          "color": "utility:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d101",
+          "color": "yellow:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "play",
+          "card": "d084"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "choose",
+          "card": "d008"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "choose",
+          "card": "d017"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d053",
+          "color": "green",
+          "choice": "green:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "property",
+          "card": "d037",
+          "color": "green",
+          "choice": "green:0"
+        }
+      },
+      {
+        "actor": "p2",
+        "action": {
+          "type": "play",
+          "card": "d111",
+          "target": "p1"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d075",
+          "target": "p1",
+          "color": "utility:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "property",
+          "card": "d035",
+          "color": "green",
+          "choice": "green:0"
+        }
+      },
+      {
+        "actor": "p0",
+        "action": {
+          "type": "play",
+          "card": "d059",
+          "color": "pink:0"
+        }
+      },
+      {
+        "actor": "p1",
+        "action": {
+          "type": "accept"
+        }
+      }
+    ],
+    "selected": [
+      "d032"
+    ],
+    "total": 6
+  }
+]

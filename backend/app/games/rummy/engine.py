@@ -1,3 +1,5 @@
+from pydantic import JsonValue
+
 from app.core.cards import card_view, draw, rng, standard_deck
 from app.core.contracts import (
     Action,
@@ -10,7 +12,7 @@ from app.core.contracts import (
     legal,
     validate_action,
 )
-from app.games.rummy.melds import deadwood, is_joker, valid_declaration
+from app.games.rummy.melds import deadwood, hand_analysis, is_joker, valid_declaration
 
 
 class RummyEngine(BaseEngine):
@@ -79,14 +81,15 @@ class RummyEngine(BaseEngine):
             ]
         ]
 
-    def _finish(self, s: State, winner: str) -> None:
+    def _finish(self, s: State, winner: str, declared: bool = False) -> None:
         for p in s["order"]:
             if p != winner:
                 loss = s["dropped"].get(p)
                 s["scores"][p] = -(loss if loss is not None else deadwood(s["hands"][p], s["wild"]))
         s["scores"][winner] = -sum(s["scores"][p] for p in s["order"] if p != winner)
         s["winners"], s["phase"] = [winner], "finished"
-        s["message"] = "The deal is complete. Points settled."
+        s["finish_reason"] = "valid_declaration" if declared else "last_active_player"
+        s["message"] = "Valid declaration. Points settled." if declared else "Last active player wins. Points settled."
 
     def apply_action(self, state: State, player: str, action: Action) -> State:
         validate_action(self.legal_actions(state, player), action)
@@ -106,7 +109,7 @@ class RummyEngine(BaseEngine):
             s["open_pickup"] = None
             if action.type == "declare":
                 if valid_declaration(s["hands"][player], s["wild"]):
-                    self._finish(s, player)
+                    self._finish(s, player, declared=True)
                     return s
                 s["dropped"][player] = 80
                 s["message"] = "Invalid declaration: 80 points."
@@ -123,6 +126,13 @@ class RummyEngine(BaseEngine):
         return s
 
     def project_view(self, s: State, player: str) -> GameView:
+        own = s["hands"].get(player, [])
+        analysis = hand_analysis(own, s["wild"]) if own else None
+        discards: dict[str, JsonValue] = {
+            c: hand_analysis(own, s["wild"], omit=i)
+            for i, c in enumerate(own)
+            if len(own) == 14 and c != s.get("open_pickup")
+        }
         return GameView(
             game_id="rummy",
             phase=s["phase"],
@@ -144,5 +154,14 @@ class RummyEngine(BaseEngine):
             actions=self.legal_actions(s, player),
             winners=s["winners"],
             message=s["message"],
-            detail={"wild_rank": s["wild"]},
+            detail={
+                "wild_rank": s["wild"], "analysis": analysis, "discard_analyses": discards,
+                "drop_cost": 20 if player not in s["played"] else 40,
+                "finish_reason": s.get("finish_reason"),
+                "settlements": {
+                    p: {"analysis": hand_analysis(s["hands"][p], s["wild"]),
+                        "penalty": s["dropped"].get(p), "score": s["scores"][p]}
+                    for p in s["order"]
+                } if s["phase"] == "finished" else {},
+            },
         )

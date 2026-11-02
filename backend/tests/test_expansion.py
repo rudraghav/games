@@ -21,6 +21,9 @@ def test_four_gravity_lines_and_immutability(columns):
         assert json.dumps(state) == before
         state = result
     assert state["winners"] == ["a"] and state["phase"] == "finished"
+    detail = engine.project_view(state, "b").detail
+    assert detail["outcome_reason"] == "four-in-a-row"
+    assert set(detail["winning_cells"]) == ({35, 36, 37, 38} if columns[1] == 0 else {14, 21, 28, 35})
     assert not engine.legal_actions(state, "b")
 
 
@@ -30,7 +33,9 @@ def test_four_diagonal_full_column_and_draw():
     for row, column, seat in [(5, 0, 0), (5, 1, 1), (4, 1, 0), (5, 2, 1), (4, 2, 1),
                               (3, 2, 0), (5, 3, 1), (4, 3, 0), (3, 3, 1), (5, 6, 0)]:
         state["board"][row * 7 + column] = seat
-    assert engine.apply_action(state, "a", Action(type="drop", choice="3"))["winners"] == ["a"]
+    won = engine.apply_action(state, "a", Action(type="drop", choice="3"))
+    assert won["winners"] == ["a"]
+    assert set(engine.project_view(won, "b").detail["winning_cells"]) == {35, 29, 23, 17}
     state = engine.setup(["a", "b"], {})
     for row in range(6):
         state["board"][row * 7] = row % 2
@@ -40,6 +45,7 @@ def test_four_diagonal_full_column_and_draw():
     state["board"][2], state["turn"] = None, 1
     result = engine.apply_action(state, "b", Action(type="drop", choice="2"))
     assert result["draw"] and not result["winners"] and result["phase"] == "finished"
+    assert engine.project_view(result, "a").detail["outcome_reason"] == "board-full"
 
 
 def test_reversi_opening_and_eight_directions():

@@ -16,3 +16,10 @@ Persistence regression: `test_coop_number_rooms.py` fixes only the ordinary setu
 shuffle (seed 0), then performs all 79 legal moves through HTTP. Its two-vault,
 three-alarm defeat must finish the room, save an empty winner list with shared
 scores in every participant's history, and survive a new application lifespan.
+
+After a pocket-hand reveal, the viewer's privacy caption changes to public and
+that hand gains a best-five/category/kicker explanation using the core poker
+evaluator. Hidden crew hands receive no explanation. Completed heists show the
+chip order, evaluated order and each adjacent inversion that failed the heist;
+exact ties are explicitly allowed. `test_casino_explanations.py` verifies staged
+reveal boundaries, public best-five identities and the inverted-order explanation.

@@ -11,6 +11,7 @@ from app.core.contracts import (
 )
 from app.games.deal import effects, options
 from app.games.deal.deck import make_deck, property_groups
+from app.games.deal.payments import payment_bundles
 from app.games.deal.table import collection_details, draw_cards, finish, locate, place, rent
 
 
@@ -30,13 +31,16 @@ class DealEngine(BaseEngine):
                 minutes="15–25",
                 icon="building",
                 color="plum" if mercy else "sage",
-                rules_version="house-deck-1" if mercy else "1",
+                rules_version="house-deck-1" if mercy else "b0965-faq-2",
                 rules=[
                     "Collect three complete property sets in different colours.",
                     "Draw two and play up to three cards per turn. Keep at most seven.",
                     "Debt must be settled before your own plays. Nothing is safe."
                     if mercy
                     else "Bank money to pay rent. Counter attacks with Just Say No.",
+                    "Own-turn Just Say No uses a play in this No Mercy house format."
+                    if mercy else "Just Say No never uses one of your three ordinary plays.",
+                    "Games building convention: linked buildings travel with their property; their full value counts toward payment.",
                     *([
                         "Games house deck: 18 money cards — 5×1M, 4×2M, 3×3M, 2×4M, 2×5M, 1×10M, 1×15M. Printed action effects; money copy counts are a house convention."
                     ] if mercy else []),
@@ -135,7 +139,12 @@ class DealEngine(BaseEngine):
                 else 10
             )
             for target in [action.target] if action.target else others:
-                effects.queue(s, player, target, "bill", amount=amount)
+                effects.queue(
+                    s, player, target, "bill", amount=amount,
+                    source_collection=action.color if kind in ("rent", "rent_double") else None,
+                    multiplier=(2 if kind == "rent_double" else s["boost"])
+                    if kind in ("rent", "rent_double") else 1,
+                )
             s["boost"] = 1
         elif kind in ("sly", "forced"):
             effects.queue(
@@ -216,6 +225,15 @@ class DealEngine(BaseEngine):
                 "blocked": e["blocked"],
                 "stage": "select" if e.get("select") else "payment" if e.get("payment")
                 else "distribution" if e.get("distribution") else "counter",
+                "transfers": effects.public_transfers(s, e, self.cards),
+                "collection": e.get("color") if e["kind"] == "breaker"
+                and e.get("color") in s["properties"][e["target"]] else None,
+                "category": e.get("choice") if e["kind"] == "tough"
+                and e.get("choice") in ("money", "property", "action") else None,
+                "source_collection": e.get("source_collection")
+                if e["kind"] == "bill"
+                and e.get("source_collection") in s["properties"][e["actor"]] else None,
+                "multiplier": e.get("multiplier", 1) if e["kind"] == "bill" else 1,
             }
             current = (
                 e["actor"]
@@ -263,5 +281,8 @@ class DealEngine(BaseEngine):
                 "property_groups": property_groups(),
                 "collections": collection_details(s, self.cards),
                 "pending_action": pending,
+                "payment_bundles": [bundle for bundle in payment_bundles(s, player, self.cards)]
+                if s["queue"] and s["queue"][0].get("payment")
+                and s["queue"][0]["target"] == player else [],
             },
         )

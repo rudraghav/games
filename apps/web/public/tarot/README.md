@@ -46,3 +46,13 @@ review caught that centered cropping removed their heads despite valid source
 rectangles. Four specific focal alignments now preserve faces/crowns; a browser
 geometry regression checks pinned head centers in both viewport sizes. Focused
 before/after captures distinguish actual production evidence from local fixes.
+
+## Five focused corrections, 2 November 2026
+
+Only Two/Six/Eight of Cups and Eight/Nine of Pentacles use new single-card `-v2`
+masters. The previous atlases remain intact. Source review and actual browser
+frames at 320/390/1440 confirm respectively 2, 6, 8 cups and 8, 9 pentacles,
+with their relationship, nostalgia, departure, craft and independent-garden
+motifs. Full-frame `meet` preserves every symbol and face; other 73 card mappings
+remain unchanged. Delivery derivatives are 512px WebP; PNG masters remain 1024×1536.
+This original deck art is distinct from the separately credited character portraits.

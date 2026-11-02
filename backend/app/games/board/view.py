@@ -13,5 +13,6 @@ def board_view(game_id: str, s: State, actions: list[LegalAction]) -> GameView:
                             color="empty" if cell is None else colors[cell])
                    for i, cell in enumerate(s["board"])],
         detail={"rows": s["rows"], "columns": s["columns"], "draw": s.get("draw", False),
-                "last_move": s.get("last_move")},
+                "last_move": s.get("last_move"), "outcome_reason": s.get("outcome_reason"),
+                "winning_cells": s.get("winning_cells", [])},
     )

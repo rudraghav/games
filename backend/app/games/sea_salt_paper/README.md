@@ -60,6 +60,28 @@ at end of a turn voids scoring. If an explicit STOP is called before ending the
 turn, it resolves immediately; an uncompleted final-turn stock exhaustion voids
 the round. Round starter passes left of the caller, or exhaustion-turn actor.
 
+### Explicit Games exhaustion convention
+
+Rules version `base58-exhaust-1` retains the existing interpretation of the
+publisher's “End of the Round” rule: stock exhaustion at the end of any turn
+cancels scoring, including an unfinished Last Chance. Stop resolves immediately
+before that turn-ending check. Four mermaids still wins immediately. The linked
+Bombyx rulebook states the exhaustion rule without an exception for Last Chance;
+the licensed BGA developer's pinned
+[NextPlayer.php](https://github.com/thoun/seasaltpaper/blob/b17c1b0c7f5ec55c8c5bce573501e8af6f68141f/modules/php/States/NextPlayer.php#L32)
+instead exempts an announced ending from ordinary exhaustion. These are distinct
+conventions; this release preserves the already documented Games behavior rather
+than treating the licensed implementation as a publisher erratum. Card inventory,
+score targets and all other edition choices remain unchanged.
+
+Stock count remains visible through every phase. The server projects the exact
+consequence beside Stop, Last Chance and End turn. With no stock, Last Chance
+warns that the first completed final turn cancels scoring; a discard draw or boat
+continuation remains legal. Inspection of a public discard is a separate modal
+that cannot take the card. Private stock/crab choices show their full rule when
+selected and require a distinct Keep/Take action. Closing the public inspector
+returns keyboard focus to its opener.
+
 After a target is reached, highest total wins; tied totals compare most recent
 round points, with an exact tie shared. Public round review precedes reshuffle.
 Discard interiors are only visible during that actor's crab inspection; deck,

@@ -209,7 +209,10 @@ def test_deal_pays_bank_first_without_breaking_property_sets():
                 eligible_cards=["cash2", "cash3", "prop1", "prop2"],
             )
         ],
-        detail={"payment_amount": 5},
+        detail={"payment_amount": 5, "payment_bundles": [
+            {"card": ident, "transfers": [{"id": ident, "value": value}]}
+            for ident, value in [("cash2", 2), ("cash3", 3), ("prop1", 1), ("prop2", 1)]
+        ]},
     )
     assert set(choose_action(view, "a").action.cards) == {"cash2", "cash3"}
 

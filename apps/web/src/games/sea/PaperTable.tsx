@@ -1,12 +1,13 @@
 'use client';
 import { useState } from 'react';
-import { Button, PaperPlayingCard, DecisionDock, HorizontalRail } from '@games/ui';
-import { paperDetails, type Action } from '@games/api-client';
+import { Button, PaperPlayingCard, DecisionDock, HorizontalRail, Modal } from '@games/ui';
+import { paperDetails, type Action, type Card } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { playerName, type TableProps } from '../types';
 
 function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
   const [selected, setSelected] = useState<string[]>([]);
+  const [inspected, setInspected] = useState<Card | null>(null);
   const data = paperDetails(match.detail);
   const blocked = pending || room.paused;
   const roundComplete = ['round_over', 'finished'].includes(match.phase);
@@ -21,6 +22,7 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
     (o) => selected.length === 2 && o.value.cards?.every((id) => selected.includes(id)),
   );
   const eligible = new Set(pairs.flatMap((o) => o.value.cards || []));
+  const choiceCard = data.private_options.find((card) => card.id === selected[0]);
   function select(id: string) {
     setSelected((old) =>
       old.includes(id) ? old.filter((card) => card !== id) : [...old.slice(-1), id],
@@ -44,7 +46,7 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
                 disabled={blocked || !action('take_stock')}
                 onClick={() => action('take_stock') && send(action('take_stock')!.value)}
               >
-                Draw two · keep one
+                {match.drawCount === 1 ? 'Take last stock card' : 'Draw two · keep one'}
               </Button>
             </div>
             {data.discard_tops.map((card, index) => {
@@ -60,13 +62,23 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
                     <PaperPlayingCard
                       card={card}
                       compact
-                      label={`Take discard ${index + 1}: ${card.label}`}
+                      label={`Take discard ${index + 1}: ${card.label}. ${card.subtitle}`}
                       onClick={move ? () => send(move.value) : undefined}
                       disabled={blocked || !move}
                     />
                   ) : (
                     <div className="paper-empty-pile">Empty</div>
                   )}
+                  {card ? (
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => setInspected(card)}
+                      aria-label={`Inspect discard ${index + 1}: ${card.label}`}
+                    >
+                      Inspect
+                    </Button>
+                  ) : null}
                 </div>
               );
             })}
@@ -79,31 +91,45 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
             </h3>
             <p className="small muted">Only you can see these choices.</p>
             <div className="paper-card-row">
-              {data.private_options.map((card) => {
-                const move = options.find(
-                  (o) => o.value.type === 'take_inspected' && o.value.card === card.id,
-                );
-                return (
-                  <PaperPlayingCard
-                    key={card.id}
-                    card={card}
-                    compact
-                    selected={selected.includes(card.id)}
-                    disabled={blocked}
-                    onClick={() => (move ? send(move.value) : setSelected([card.id]))}
-                  />
-                );
-              })}
+              {data.private_options.map((card) => (
+                <PaperPlayingCard
+                  key={card.id}
+                  card={card}
+                  compact
+                  selected={selected.includes(card.id)}
+                  disabled={blocked}
+                  onClick={() => setSelected(selected[0] === card.id ? [] : [card.id])}
+                />
+              ))}
             </div>
-            {match.phase === 'choosing' ? (
+            <div className="paper-choice-information" aria-live="polite">
+              {choiceCard ? (
+                <>
+                  <strong>{choiceCard.label}</strong>
+                  <p>{choiceCard.subtitle}</p>
+                </>
+              ) : (
+                <p className="small muted">Select a card to inspect its rule before taking it.</p>
+              )}
+            </div>
+            {choiceCard ? (
               <div className="paper-actions">
                 {options
-                  .filter((o) => o.value.type === 'keep' && o.value.card === selected[0])
+                  .filter(
+                    (o) =>
+                      ['keep', 'take_inspected'].includes(o.value.type) &&
+                      o.value.card === selected[0],
+                  )
                   .map((o) => (
                     <Button key={o.value.choice} disabled={blocked} onClick={() => send(o.value)}>
-                      Keep selected · discard to pile {Number(o.value.choice) + 1}
+                      {o.value.type === 'keep'
+                        ? `Keep selected · discard to pile ${Number(o.value.choice) + 1}`
+                        : `Take selected ${choiceCard.value}`}
                     </Button>
                   ))}
+                <Button variant="secondary" disabled={blocked} onClick={() => setSelected([])}>
+                  Clear selection
+                </Button>
               </div>
             ) : null}
           </section>
@@ -160,18 +186,35 @@ function PaperDecision({ match, room, selfId, pending, onAction }: TableProps) {
                 ),
               )
               .map((o) => (
-                <Button
-                  key={o.value.type}
-                  variant={o.value.type === 'last_chance' ? 'secondary' : 'primary'}
-                  disabled={blocked}
-                  onClick={() => send(o.value)}
-                >
-                  {o.label}
-                </Button>
+                <div className="paper-ending-choice" key={o.value.type}>
+                  <Button
+                    variant={o.value.type === 'last_chance' ? 'secondary' : 'primary'}
+                    disabled={blocked}
+                    onClick={() => send(o.value)}
+                  >
+                    {o.label}
+                  </Button>
+                  {data.ending_consequences[o.value.type] ? (
+                    <p className="small muted">{data.ending_consequences[o.value.type]}</p>
+                  ) : null}
+                </div>
               ))}
           </div>
         ) : null}
       </DecisionDock>
+      <Modal
+        open={Boolean(inspected)}
+        onOpenChange={(open) => !open && setInspected(null)}
+        title={inspected?.label || 'Card information'}
+        description="Inspecting does not take the card."
+      >
+        {inspected ? (
+          <div className="paper-inspector">
+            <PaperPlayingCard card={inspected} />
+            <p>{inspected.subtitle}</p>
+          </div>
+        ) : null}
+      </Modal>
       <section className="paper-hand" aria-label="Your private hand">
         <div className="paper-heading">
           <h3>Your hand</h3>
@@ -216,7 +259,9 @@ export function PaperTable(props: TableProps) {
           <div>
             <p className="eyebrow">Round {data.round}</p>
           </div>
-          <span className="small muted">First to {data.target} points</span>
+          <span className="small muted">
+            Stock {match.drawCount} · First to {data.target} points
+          </span>
         </div>
         {data.caller ? (
           <p className="paper-last-chance" role="status">

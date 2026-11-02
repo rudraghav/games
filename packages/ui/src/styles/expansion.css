@@ -10,6 +10,111 @@
   .board-scroll {
     overflow-x: auto;
   }
+  .board-rail-content {
+    width: 100%;
+  }
+  .board-rail.horizontal-rail[data-overflow='true'] {
+    padding-bottom: 52px;
+  }
+  .board-rail.horizontal-rail[data-overflow='true'] > .horizontal-rail-viewport {
+    margin-inline: 0;
+  }
+  .board-rail > .rail-navigation {
+    top: auto;
+    bottom: 0;
+    translate: none;
+  }
+  .board-rail.horizontal-rail::before {
+    left: 0;
+    bottom: 52px;
+  }
+  .board-rail.horizontal-rail::after {
+    right: 0;
+    bottom: 52px;
+  }
+  .board-overview-tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 10px 0;
+  }
+  .board-viewport:has(.board-rail[data-overflow='false']) .board-pan-hint {
+    display: none;
+  }
+  .board-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--board-columns), minmax(0, 1fr));
+    width: min(100%, 420px);
+    margin: auto;
+    gap: 2px;
+    padding: 4px;
+    border-radius: 8px;
+    background: var(--color-sage);
+  }
+  .board-overview-square {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    min-width: 0;
+    padding: 4px;
+    background: var(--color-surface);
+  }
+  .board-overview-square[data-dark='true'] {
+    background: var(--color-sage-light);
+  }
+  .board-square[data-winning='true'],
+  .board-overview-square[data-winning='true'] {
+    outline: 3px solid var(--color-focus);
+    outline-offset: -3px;
+  }
+  .board-overview-square .board-disc {
+    display: grid;
+    place-items: center;
+    color: var(--color-ink);
+  }
+  .classic-board.mancala-table {
+    overflow: visible;
+    min-width: 0;
+  }
+  .mancala-overview {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr) 26px;
+    gap: 5px;
+    align-items: center;
+  }
+  .mancala-overview > div {
+    display: grid;
+    gap: 10px;
+  }
+  .mancala-overview > div > div {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 3px;
+  }
+  .mancala-overview span {
+    display: grid;
+    place-items: center;
+    min-height: 30px;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: var(--color-sage-light);
+    font-weight: 650;
+  }
+  .gem-purchase-quote {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .gem-purchase-quote dl > div {
+    display: grid;
+    gap: 2px;
+    margin-bottom: 6px;
+  }
+  .gem-purchase-quote dt {
+    font-weight: 650;
+  }
   .board-surface {
     width: min(100%, 540px);
     min-width: calc(14px + var(--board-columns) * 44px + (var(--board-columns) - 1) * 3px);

@@ -1,0 +1,4096 @@
+{
+  "game": "deal",
+  "seed": 2,
+  "seats": 3,
+  "step": 114,
+  "reachedBy": "seeded setup followed only by engine-validated actions; no state injection",
+  "selfId": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+  "room": {
+    "id": "a9e836d8-f54a-5af7-ab6a-ef25c537ef47",
+    "name": "Synthetic legal mid-game",
+    "code": "MIDGAME1",
+    "game_id": "deal",
+    "owner_id": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+    "capacity": 3,
+    "settings": {},
+    "status": "playing",
+    "revision": 114,
+    "match_id": "12ac2f4d-2cdc-540f-9755-65ccfb3d7a97",
+    "match_version": 114,
+    "members": [
+      {
+        "id": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+        "name": "Alexandra with a rather long name",
+        "avatar": 0,
+        "ready": true,
+        "seated": true,
+        "connected": true,
+        "last_seen": 0.0,
+        "is_bot": false
+      },
+      {
+        "id": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+        "name": "Dev",
+        "avatar": 1,
+        "ready": true,
+        "seated": true,
+        "connected": true,
+        "last_seen": 0.0,
+        "is_bot": false
+      },
+      {
+        "id": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+        "name": "Mira",
+        "avatar": 2,
+        "ready": true,
+        "seated": true,
+        "connected": true,
+        "last_seen": 0.0,
+        "is_bot": false
+      }
+    ],
+    "messages": [],
+    "game": {
+      "game_id": "deal",
+      "phase": "playing",
+      "current_player": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "players": [
+        {
+          "id": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+          "count": 2,
+          "score": 2,
+          "chips": null,
+          "bet": 0,
+          "folded": false,
+          "eliminated": false,
+          "removed_slots": [],
+          "cards": [],
+          "bank": [],
+          "properties": {
+            "utility:0": [
+              {
+                "id": "d047",
+                "label": "Water Works",
+                "color": "utility",
+                "subtitle": "Water Works",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "utility"
+                ],
+                "effect": "",
+                "set_name": "Utilities",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "id": "d056",
+                "label": "Wild property",
+                "color": "utility",
+                "subtitle": "Wild property",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "rail",
+                  "utility"
+                ],
+                "effect": "",
+                "set_name": "Utilities",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              }
+            ],
+            "green:0": [
+              {
+                "id": "d055",
+                "label": "Wild property",
+                "color": "green",
+                "subtitle": "Wild property",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "green",
+                  "rail"
+                ],
+                "effect": "",
+                "set_name": "Green",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  7
+                ]
+              },
+              {
+                "id": "d039",
+                "label": "Pennsylvania Avenue",
+                "color": "green",
+                "subtitle": "Pennsylvania Avenue",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "green"
+                ],
+                "effect": "",
+                "set_name": "Green",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  7
+                ]
+              },
+              {
+                "id": "d037",
+                "label": "Pacific Avenue",
+                "color": "green",
+                "subtitle": "Pacific Avenue",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "green"
+                ],
+                "effect": "",
+                "set_name": "Green",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  7
+                ]
+              }
+            ],
+            "sky:0": [
+              {
+                "id": "d054",
+                "label": "Wild property",
+                "color": "sky",
+                "subtitle": "Wild property",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "sky",
+                  "rail"
+                ],
+                "effect": "",
+                "set_name": "Light blue",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            ],
+            "orange:0": [
+              {
+                "id": "d049",
+                "label": "Wild property",
+                "color": "orange",
+                "subtitle": "Wild property",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "pink",
+                  "orange"
+                ],
+                "effect": "",
+                "set_name": "Orange",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  3,
+                  5
+                ]
+              }
+            ],
+            "yellow:0": [
+              {
+                "id": "d034",
+                "label": "Atlantic Avenue",
+                "color": "yellow",
+                "subtitle": "Atlantic Avenue",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "yellow"
+                ],
+                "effect": "",
+                "set_name": "Yellow",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  6
+                ]
+              }
+            ],
+            "red:0": [
+              {
+                "id": "d051",
+                "label": "Wild property",
+                "color": "red",
+                "subtitle": "Wild property",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "red",
+                  "yellow"
+                ],
+                "effect": "",
+                "set_name": "Red",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  3,
+                  6
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+          "count": 2,
+          "score": 1,
+          "chips": null,
+          "bet": 0,
+          "folded": false,
+          "eliminated": false,
+          "removed_slots": [],
+          "cards": [],
+          "bank": [],
+          "properties": {
+            "red:0": [
+              {
+                "id": "d031",
+                "label": "Kentucky Avenue",
+                "color": "red",
+                "subtitle": "Kentucky Avenue",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "red"
+                ],
+                "effect": "",
+                "set_name": "Red",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  3,
+                  6
+                ]
+              }
+            ],
+            "orange:0": [
+              {
+                "id": "d028",
+                "label": "St. James Place",
+                "color": "orange",
+                "subtitle": "St. James Place",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "orange"
+                ],
+                "effect": "",
+                "set_name": "Orange",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  3,
+                  5
+                ]
+              },
+              {
+                "id": "d050",
+                "label": "Wild property",
+                "color": "orange",
+                "subtitle": "Wild property",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "pink",
+                  "orange"
+                ],
+                "effect": "",
+                "set_name": "Orange",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  3,
+                  5
+                ]
+              }
+            ],
+            "pink:0": [
+              {
+                "id": "d027",
+                "label": "Virginia Avenue",
+                "color": "pink",
+                "subtitle": "Virginia Avenue",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "pink"
+                ],
+                "effect": "",
+                "set_name": "Pink",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  4
+                ]
+              }
+            ],
+            "sky:0": [
+              {
+                "id": "d022",
+                "label": "Oriental Avenue",
+                "color": "sky",
+                "subtitle": "Oriental Avenue",
+                "value": "1M",
+                "suit": "property",
+                "colors": [
+                  "sky"
+                ],
+                "effect": "",
+                "set_name": "Light blue",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            ],
+            "brown:0": [
+              {
+                "id": "d020",
+                "label": "Mediterranean Avenue",
+                "color": "brown",
+                "subtitle": "Mediterranean Avenue",
+                "value": "1M",
+                "suit": "property",
+                "colors": [
+                  "brown"
+                ],
+                "effect": "",
+                "set_name": "Brown",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "id": "d021",
+                "label": "Baltic Avenue",
+                "color": "brown",
+                "subtitle": "Baltic Avenue",
+                "value": "1M",
+                "suit": "property",
+                "colors": [
+                  "brown"
+                ],
+                "effect": "",
+                "set_name": "Brown",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "id": "d101",
+                "label": "House",
+                "color": "brown",
+                "subtitle": "House",
+                "value": "3M",
+                "suit": "action",
+                "colors": [],
+                "effect": "house",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d103",
+                "label": "Hotel",
+                "color": "brown",
+                "subtitle": "Hotel",
+                "value": "4M",
+                "suit": "action",
+                "colors": [],
+                "effect": "hotel",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              }
+            ]
+          }
+        },
+        {
+          "id": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+          "count": 3,
+          "score": 1,
+          "chips": null,
+          "bet": 0,
+          "folded": false,
+          "eliminated": false,
+          "removed_slots": [],
+          "cards": [],
+          "bank": [
+            {
+              "id": "d010",
+              "label": "2M",
+              "color": "neutral",
+              "subtitle": "MONEY",
+              "value": "2M",
+              "suit": "",
+              "colors": [],
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            },
+            {
+              "id": "d017",
+              "label": "5M",
+              "color": "neutral",
+              "subtitle": "MONEY",
+              "value": "5M",
+              "suit": "",
+              "colors": [],
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            },
+            {
+              "id": "d011",
+              "label": "3M",
+              "color": "neutral",
+              "subtitle": "MONEY",
+              "value": "3M",
+              "suit": "",
+              "colors": [],
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            },
+            {
+              "id": "d007",
+              "label": "2M",
+              "color": "neutral",
+              "subtitle": "MONEY",
+              "value": "2M",
+              "suit": "",
+              "colors": [],
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            }
+          ],
+          "properties": {
+            "pink:0": [
+              {
+                "id": "d026",
+                "label": "States Avenue",
+                "color": "pink",
+                "subtitle": "States Avenue",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "pink"
+                ],
+                "effect": "",
+                "set_name": "Pink",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  4
+                ]
+              },
+              {
+                "id": "d025",
+                "label": "St. Charles Place",
+                "color": "pink",
+                "subtitle": "St. Charles Place",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "pink"
+                ],
+                "effect": "",
+                "set_name": "Pink",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  4
+                ]
+              }
+            ],
+            "utility:0": [
+              {
+                "id": "d046",
+                "label": "Electric Company",
+                "color": "utility",
+                "subtitle": "Electric Company",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "utility"
+                ],
+                "effect": "",
+                "set_name": "Utilities",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              }
+            ],
+            "blue:0": [
+              {
+                "id": "d041",
+                "label": "Boardwalk",
+                "color": "blue",
+                "subtitle": "Boardwalk",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "blue"
+                ],
+                "effect": "",
+                "set_name": "Dark blue",
+                "set_size": 2,
+                "rent_ladder": [
+                  3,
+                  8
+                ]
+              },
+              {
+                "id": "d040",
+                "label": "Park Place",
+                "color": "blue",
+                "subtitle": "Park Place",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "blue"
+                ],
+                "effect": "",
+                "set_name": "Dark blue",
+                "set_size": 2,
+                "rent_ladder": [
+                  3,
+                  8
+                ]
+              }
+            ],
+            "brown:0": [
+              {
+                "id": "d048",
+                "label": "Wild property",
+                "color": "brown",
+                "subtitle": "Wild property",
+                "value": "1M",
+                "suit": "property",
+                "colors": [
+                  "brown",
+                  "sky"
+                ],
+                "effect": "",
+                "set_name": "Brown",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              }
+            ],
+            "orange:0": [
+              {
+                "id": "d029",
+                "label": "Tennessee Avenue",
+                "color": "orange",
+                "subtitle": "Tennessee Avenue",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "orange"
+                ],
+                "effect": "",
+                "set_name": "Orange",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  3,
+                  5
+                ]
+              },
+              {
+                "id": "d030",
+                "label": "New York Avenue",
+                "color": "orange",
+                "subtitle": "New York Avenue",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "orange"
+                ],
+                "effect": "",
+                "set_name": "Orange",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  3,
+                  5
+                ]
+              }
+            ],
+            "sky:0": [
+              {
+                "id": "d023",
+                "label": "Vermont Avenue",
+                "color": "sky",
+                "subtitle": "Vermont Avenue",
+                "value": "1M",
+                "suit": "property",
+                "colors": [
+                  "sky"
+                ],
+                "effect": "",
+                "set_name": "Light blue",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            ],
+            "red:0": [
+              {
+                "id": "d032",
+                "label": "Indiana Avenue",
+                "color": "red",
+                "subtitle": "Indiana Avenue",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "red"
+                ],
+                "effect": "",
+                "set_name": "Red",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  3,
+                  6
+                ]
+              },
+              {
+                "id": "d033",
+                "label": "Illinois Avenue",
+                "color": "red",
+                "subtitle": "Illinois Avenue",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "red"
+                ],
+                "effect": "",
+                "set_name": "Red",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  3,
+                  6
+                ]
+              }
+            ],
+            "yellow:0": [
+              {
+                "id": "d035",
+                "label": "Ventnor Avenue",
+                "color": "yellow",
+                "subtitle": "Ventnor Avenue",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "yellow"
+                ],
+                "effect": "",
+                "set_name": "Yellow",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  6
+                ]
+              }
+            ],
+            "rail:0": [
+              {
+                "id": "d043",
+                "label": "Pennsylvania Railroad",
+                "color": "rail",
+                "subtitle": "Pennsylvania Railroad",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "rail"
+                ],
+                "effect": "",
+                "set_name": "Railroads",
+                "set_size": 4,
+                "rent_ladder": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              }
+            ],
+            "green:0": [
+              {
+                "id": "d038",
+                "label": "North Carolina Avenue",
+                "color": "green",
+                "subtitle": "North Carolina Avenue",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "green"
+                ],
+                "effect": "",
+                "set_name": "Green",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  7
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "hand": [
+        {
+          "id": "d003",
+          "label": "1M",
+          "color": "neutral",
+          "subtitle": "MONEY",
+          "value": "1M",
+          "suit": "",
+          "colors": [],
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
+        },
+        {
+          "id": "d015",
+          "label": "4M",
+          "color": "neutral",
+          "subtitle": "MONEY",
+          "value": "4M",
+          "suit": "",
+          "colors": [],
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
+        }
+      ],
+      "community": [],
+      "discard": {
+        "id": "d063",
+        "label": "Rent",
+        "color": "red",
+        "subtitle": "Rent",
+        "value": "1M",
+        "suit": "action",
+        "colors": [
+          "red",
+          "yellow"
+        ],
+        "effect": "rent",
+        "set_name": null,
+        "set_size": null,
+        "rent_ladder": []
+      },
+      "drawn": null,
+      "draw_count": 36,
+      "pot": 0,
+      "message": "Played Rent.",
+      "actions": [
+        {
+          "label": "Pay 2M \u00b7 select bank/property cards",
+          "action": {
+            "type": "pay",
+            "card": "",
+            "target": "",
+            "color": "",
+            "choice": "",
+            "amount": 0,
+            "slot": 0,
+            "cards": [],
+            "groups": []
+          },
+          "input": "cards",
+          "minimum": null,
+          "maximum": null,
+          "step": 1,
+          "eligible_cards": [
+            "d031",
+            "d028",
+            "d050",
+            "d027",
+            "d022",
+            "d020",
+            "d021",
+            "d101",
+            "d103"
+          ]
+        }
+      ],
+      "winners": [],
+      "detail": {
+        "moves": 1,
+        "rent_multiplier": 1,
+        "debts": {
+          "df42021e-9e11-5f8c-977e-8ecb18a74b15": [],
+          "94a0ff18-0bd1-585e-84ec-9a152f9d9feb": [],
+          "44cce748-cf86-5e6e-a1b9-10089e13691d": []
+        },
+        "pending": "bill",
+        "payment_amount": 2,
+        "property_groups": [
+          {
+            "color": "brown",
+            "name": "Brown",
+            "set_size": 2,
+            "rent_ladder": [
+              1,
+              2
+            ],
+            "properties": [
+              "Mediterranean Avenue",
+              "Baltic Avenue"
+            ]
+          },
+          {
+            "color": "sky",
+            "name": "Light blue",
+            "set_size": 3,
+            "rent_ladder": [
+              1,
+              2,
+              3
+            ],
+            "properties": [
+              "Oriental Avenue",
+              "Vermont Avenue",
+              "Connecticut Avenue"
+            ]
+          },
+          {
+            "color": "pink",
+            "name": "Pink",
+            "set_size": 3,
+            "rent_ladder": [
+              1,
+              2,
+              4
+            ],
+            "properties": [
+              "St. Charles Place",
+              "States Avenue",
+              "Virginia Avenue"
+            ]
+          },
+          {
+            "color": "orange",
+            "name": "Orange",
+            "set_size": 3,
+            "rent_ladder": [
+              1,
+              3,
+              5
+            ],
+            "properties": [
+              "St. James Place",
+              "Tennessee Avenue",
+              "New York Avenue"
+            ]
+          },
+          {
+            "color": "red",
+            "name": "Red",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              3,
+              6
+            ],
+            "properties": [
+              "Kentucky Avenue",
+              "Indiana Avenue",
+              "Illinois Avenue"
+            ]
+          },
+          {
+            "color": "yellow",
+            "name": "Yellow",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              4,
+              6
+            ],
+            "properties": [
+              "Atlantic Avenue",
+              "Ventnor Avenue",
+              "Marvin Gardens"
+            ]
+          },
+          {
+            "color": "green",
+            "name": "Green",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              4,
+              7
+            ],
+            "properties": [
+              "Pacific Avenue",
+              "North Carolina Avenue",
+              "Pennsylvania Avenue"
+            ]
+          },
+          {
+            "color": "blue",
+            "name": "Dark blue",
+            "set_size": 2,
+            "rent_ladder": [
+              3,
+              8
+            ],
+            "properties": [
+              "Park Place",
+              "Boardwalk"
+            ]
+          },
+          {
+            "color": "rail",
+            "name": "Railroads",
+            "set_size": 4,
+            "rent_ladder": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "properties": [
+              "Reading Railroad",
+              "Pennsylvania Railroad",
+              "B&O Railroad",
+              "Short Line"
+            ]
+          },
+          {
+            "color": "utility",
+            "name": "Utilities",
+            "set_size": 2,
+            "rent_ladder": [
+              1,
+              2
+            ],
+            "properties": [
+              "Electric Company",
+              "Water Works"
+            ]
+          }
+        ],
+        "collections": [
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "utility:0",
+            "color": "utility",
+            "count": 2,
+            "set_size": 2,
+            "complete": true,
+            "rent": 2
+          },
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "green:0",
+            "color": "green",
+            "count": 3,
+            "set_size": 3,
+            "complete": true,
+            "rent": 7
+          },
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "sky:0",
+            "color": "sky",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "orange:0",
+            "color": "orange",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "yellow:0",
+            "color": "yellow",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          },
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "red:0",
+            "color": "red",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          },
+          {
+            "player": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+            "key": "red:0",
+            "color": "red",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          },
+          {
+            "player": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+            "key": "orange:0",
+            "color": "orange",
+            "count": 2,
+            "set_size": 3,
+            "complete": false,
+            "rent": 3
+          },
+          {
+            "player": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+            "key": "pink:0",
+            "color": "pink",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+            "key": "sky:0",
+            "color": "sky",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+            "key": "brown:0",
+            "color": "brown",
+            "count": 2,
+            "set_size": 2,
+            "complete": true,
+            "rent": 9
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "pink:0",
+            "color": "pink",
+            "count": 2,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "utility:0",
+            "color": "utility",
+            "count": 1,
+            "set_size": 2,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "blue:0",
+            "color": "blue",
+            "count": 2,
+            "set_size": 2,
+            "complete": true,
+            "rent": 8
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "brown:0",
+            "color": "brown",
+            "count": 1,
+            "set_size": 2,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "orange:0",
+            "color": "orange",
+            "count": 2,
+            "set_size": 3,
+            "complete": false,
+            "rent": 3
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "sky:0",
+            "color": "sky",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "red:0",
+            "color": "red",
+            "count": 2,
+            "set_size": 3,
+            "complete": false,
+            "rent": 3
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "yellow:0",
+            "color": "yellow",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "rail:0",
+            "color": "rail",
+            "count": 1,
+            "set_size": 4,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "green:0",
+            "color": "green",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          }
+        ],
+        "pending_action": {
+          "kind": "bill",
+          "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+          "target": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+          "responder": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+          "amount": 2,
+          "blocked": false,
+          "stage": "payment"
+        }
+      }
+    },
+    "paused": false,
+    "missing_players": [],
+    "invite_token": null,
+    "bot_pending": false,
+    "bot_due_at": null,
+    "last_action": null,
+    "activity": []
+  },
+  "action": {
+    "type": "pay",
+    "card": "",
+    "target": "",
+    "color": "",
+    "choice": "",
+    "amount": 0,
+    "slot": 0,
+    "cards": [
+      "d020",
+      "d022"
+    ],
+    "groups": []
+  },
+  "after": {
+    "id": "a9e836d8-f54a-5af7-ab6a-ef25c537ef47",
+    "name": "Synthetic legal mid-game",
+    "code": "MIDGAME1",
+    "game_id": "deal",
+    "owner_id": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+    "capacity": 3,
+    "settings": {},
+    "status": "playing",
+    "revision": 115,
+    "match_id": "12ac2f4d-2cdc-540f-9755-65ccfb3d7a97",
+    "match_version": 115,
+    "members": [
+      {
+        "id": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+        "name": "Alexandra with a rather long name",
+        "avatar": 0,
+        "ready": true,
+        "seated": true,
+        "connected": true,
+        "last_seen": 0.0,
+        "is_bot": false
+      },
+      {
+        "id": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+        "name": "Dev",
+        "avatar": 1,
+        "ready": true,
+        "seated": true,
+        "connected": true,
+        "last_seen": 0.0,
+        "is_bot": false
+      },
+      {
+        "id": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+        "name": "Mira",
+        "avatar": 2,
+        "ready": true,
+        "seated": true,
+        "connected": true,
+        "last_seen": 0.0,
+        "is_bot": false
+      }
+    ],
+    "messages": [],
+    "game": {
+      "game_id": "deal",
+      "phase": "playing",
+      "current_player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "players": [
+        {
+          "id": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+          "count": 2,
+          "score": 2,
+          "chips": null,
+          "bet": 0,
+          "folded": false,
+          "eliminated": false,
+          "removed_slots": [],
+          "cards": [],
+          "bank": [],
+          "properties": {
+            "utility:0": [
+              {
+                "id": "d047",
+                "label": "Water Works",
+                "color": "utility",
+                "subtitle": "Water Works",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "utility"
+                ],
+                "effect": "",
+                "set_name": "Utilities",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "id": "d056",
+                "label": "Wild property",
+                "color": "utility",
+                "subtitle": "Wild property",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "rail",
+                  "utility"
+                ],
+                "effect": "",
+                "set_name": "Utilities",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              }
+            ],
+            "green:0": [
+              {
+                "id": "d055",
+                "label": "Wild property",
+                "color": "green",
+                "subtitle": "Wild property",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "green",
+                  "rail"
+                ],
+                "effect": "",
+                "set_name": "Green",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  7
+                ]
+              },
+              {
+                "id": "d039",
+                "label": "Pennsylvania Avenue",
+                "color": "green",
+                "subtitle": "Pennsylvania Avenue",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "green"
+                ],
+                "effect": "",
+                "set_name": "Green",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  7
+                ]
+              },
+              {
+                "id": "d037",
+                "label": "Pacific Avenue",
+                "color": "green",
+                "subtitle": "Pacific Avenue",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "green"
+                ],
+                "effect": "",
+                "set_name": "Green",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  7
+                ]
+              }
+            ],
+            "sky:0": [
+              {
+                "id": "d054",
+                "label": "Wild property",
+                "color": "sky",
+                "subtitle": "Wild property",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "sky",
+                  "rail"
+                ],
+                "effect": "",
+                "set_name": "Light blue",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            ],
+            "orange:0": [
+              {
+                "id": "d049",
+                "label": "Wild property",
+                "color": "orange",
+                "subtitle": "Wild property",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "pink",
+                  "orange"
+                ],
+                "effect": "",
+                "set_name": "Orange",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  3,
+                  5
+                ]
+              }
+            ],
+            "yellow:0": [
+              {
+                "id": "d034",
+                "label": "Atlantic Avenue",
+                "color": "yellow",
+                "subtitle": "Atlantic Avenue",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "yellow"
+                ],
+                "effect": "",
+                "set_name": "Yellow",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  6
+                ]
+              }
+            ],
+            "red:0": [
+              {
+                "id": "d051",
+                "label": "Wild property",
+                "color": "red",
+                "subtitle": "Wild property",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "red",
+                  "yellow"
+                ],
+                "effect": "",
+                "set_name": "Red",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  3,
+                  6
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+          "count": 2,
+          "score": 0,
+          "chips": null,
+          "bet": 0,
+          "folded": false,
+          "eliminated": false,
+          "removed_slots": [],
+          "cards": [],
+          "bank": [],
+          "properties": {
+            "red:0": [
+              {
+                "id": "d031",
+                "label": "Kentucky Avenue",
+                "color": "red",
+                "subtitle": "Kentucky Avenue",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "red"
+                ],
+                "effect": "",
+                "set_name": "Red",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  3,
+                  6
+                ]
+              }
+            ],
+            "orange:0": [
+              {
+                "id": "d028",
+                "label": "St. James Place",
+                "color": "orange",
+                "subtitle": "St. James Place",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "orange"
+                ],
+                "effect": "",
+                "set_name": "Orange",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  3,
+                  5
+                ]
+              },
+              {
+                "id": "d050",
+                "label": "Wild property",
+                "color": "orange",
+                "subtitle": "Wild property",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "pink",
+                  "orange"
+                ],
+                "effect": "",
+                "set_name": "Orange",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  3,
+                  5
+                ]
+              }
+            ],
+            "pink:0": [
+              {
+                "id": "d027",
+                "label": "Virginia Avenue",
+                "color": "pink",
+                "subtitle": "Virginia Avenue",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "pink"
+                ],
+                "effect": "",
+                "set_name": "Pink",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  4
+                ]
+              }
+            ],
+            "brown:0": [
+              {
+                "id": "d021",
+                "label": "Baltic Avenue",
+                "color": "brown",
+                "subtitle": "Baltic Avenue",
+                "value": "1M",
+                "suit": "property",
+                "colors": [
+                  "brown"
+                ],
+                "effect": "",
+                "set_name": "Brown",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+          "count": 3,
+          "score": 2,
+          "chips": null,
+          "bet": 0,
+          "folded": false,
+          "eliminated": false,
+          "removed_slots": [],
+          "cards": [],
+          "bank": [
+            {
+              "id": "d010",
+              "label": "2M",
+              "color": "neutral",
+              "subtitle": "MONEY",
+              "value": "2M",
+              "suit": "",
+              "colors": [],
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            },
+            {
+              "id": "d017",
+              "label": "5M",
+              "color": "neutral",
+              "subtitle": "MONEY",
+              "value": "5M",
+              "suit": "",
+              "colors": [],
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            },
+            {
+              "id": "d011",
+              "label": "3M",
+              "color": "neutral",
+              "subtitle": "MONEY",
+              "value": "3M",
+              "suit": "",
+              "colors": [],
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            },
+            {
+              "id": "d007",
+              "label": "2M",
+              "color": "neutral",
+              "subtitle": "MONEY",
+              "value": "2M",
+              "suit": "",
+              "colors": [],
+              "effect": "",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            }
+          ],
+          "properties": {
+            "pink:0": [
+              {
+                "id": "d026",
+                "label": "States Avenue",
+                "color": "pink",
+                "subtitle": "States Avenue",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "pink"
+                ],
+                "effect": "",
+                "set_name": "Pink",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  4
+                ]
+              },
+              {
+                "id": "d025",
+                "label": "St. Charles Place",
+                "color": "pink",
+                "subtitle": "St. Charles Place",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "pink"
+                ],
+                "effect": "",
+                "set_name": "Pink",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  4
+                ]
+              }
+            ],
+            "utility:0": [
+              {
+                "id": "d046",
+                "label": "Electric Company",
+                "color": "utility",
+                "subtitle": "Electric Company",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "utility"
+                ],
+                "effect": "",
+                "set_name": "Utilities",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              }
+            ],
+            "blue:0": [
+              {
+                "id": "d041",
+                "label": "Boardwalk",
+                "color": "blue",
+                "subtitle": "Boardwalk",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "blue"
+                ],
+                "effect": "",
+                "set_name": "Dark blue",
+                "set_size": 2,
+                "rent_ladder": [
+                  3,
+                  8
+                ]
+              },
+              {
+                "id": "d040",
+                "label": "Park Place",
+                "color": "blue",
+                "subtitle": "Park Place",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "blue"
+                ],
+                "effect": "",
+                "set_name": "Dark blue",
+                "set_size": 2,
+                "rent_ladder": [
+                  3,
+                  8
+                ]
+              }
+            ],
+            "brown:0": [
+              {
+                "id": "d048",
+                "label": "Wild property",
+                "color": "brown",
+                "subtitle": "Wild property",
+                "value": "1M",
+                "suit": "property",
+                "colors": [
+                  "brown",
+                  "sky"
+                ],
+                "effect": "",
+                "set_name": "Brown",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "id": "d020",
+                "label": "Mediterranean Avenue",
+                "color": "brown",
+                "subtitle": "Mediterranean Avenue",
+                "value": "1M",
+                "suit": "property",
+                "colors": [
+                  "brown"
+                ],
+                "effect": "",
+                "set_name": "Brown",
+                "set_size": 2,
+                "rent_ladder": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "id": "d101",
+                "label": "House",
+                "color": "brown",
+                "subtitle": "House",
+                "value": "3M",
+                "suit": "action",
+                "colors": [],
+                "effect": "house",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d103",
+                "label": "Hotel",
+                "color": "brown",
+                "subtitle": "Hotel",
+                "value": "4M",
+                "suit": "action",
+                "colors": [],
+                "effect": "hotel",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              }
+            ],
+            "orange:0": [
+              {
+                "id": "d029",
+                "label": "Tennessee Avenue",
+                "color": "orange",
+                "subtitle": "Tennessee Avenue",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "orange"
+                ],
+                "effect": "",
+                "set_name": "Orange",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  3,
+                  5
+                ]
+              },
+              {
+                "id": "d030",
+                "label": "New York Avenue",
+                "color": "orange",
+                "subtitle": "New York Avenue",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "orange"
+                ],
+                "effect": "",
+                "set_name": "Orange",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  3,
+                  5
+                ]
+              }
+            ],
+            "sky:0": [
+              {
+                "id": "d023",
+                "label": "Vermont Avenue",
+                "color": "sky",
+                "subtitle": "Vermont Avenue",
+                "value": "1M",
+                "suit": "property",
+                "colors": [
+                  "sky"
+                ],
+                "effect": "",
+                "set_name": "Light blue",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  3
+                ]
+              },
+              {
+                "id": "d022",
+                "label": "Oriental Avenue",
+                "color": "sky",
+                "subtitle": "Oriental Avenue",
+                "value": "1M",
+                "suit": "property",
+                "colors": [
+                  "sky"
+                ],
+                "effect": "",
+                "set_name": "Light blue",
+                "set_size": 3,
+                "rent_ladder": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            ],
+            "red:0": [
+              {
+                "id": "d032",
+                "label": "Indiana Avenue",
+                "color": "red",
+                "subtitle": "Indiana Avenue",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "red"
+                ],
+                "effect": "",
+                "set_name": "Red",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  3,
+                  6
+                ]
+              },
+              {
+                "id": "d033",
+                "label": "Illinois Avenue",
+                "color": "red",
+                "subtitle": "Illinois Avenue",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "red"
+                ],
+                "effect": "",
+                "set_name": "Red",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  3,
+                  6
+                ]
+              }
+            ],
+            "yellow:0": [
+              {
+                "id": "d035",
+                "label": "Ventnor Avenue",
+                "color": "yellow",
+                "subtitle": "Ventnor Avenue",
+                "value": "3M",
+                "suit": "property",
+                "colors": [
+                  "yellow"
+                ],
+                "effect": "",
+                "set_name": "Yellow",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  6
+                ]
+              }
+            ],
+            "rail:0": [
+              {
+                "id": "d043",
+                "label": "Pennsylvania Railroad",
+                "color": "rail",
+                "subtitle": "Pennsylvania Railroad",
+                "value": "2M",
+                "suit": "property",
+                "colors": [
+                  "rail"
+                ],
+                "effect": "",
+                "set_name": "Railroads",
+                "set_size": 4,
+                "rent_ladder": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              }
+            ],
+            "green:0": [
+              {
+                "id": "d038",
+                "label": "North Carolina Avenue",
+                "color": "green",
+                "subtitle": "North Carolina Avenue",
+                "value": "4M",
+                "suit": "property",
+                "colors": [
+                  "green"
+                ],
+                "effect": "",
+                "set_name": "Green",
+                "set_size": 3,
+                "rent_ladder": [
+                  2,
+                  4,
+                  7
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "hand": [
+        {
+          "id": "d003",
+          "label": "1M",
+          "color": "neutral",
+          "subtitle": "MONEY",
+          "value": "1M",
+          "suit": "",
+          "colors": [],
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
+        },
+        {
+          "id": "d015",
+          "label": "4M",
+          "color": "neutral",
+          "subtitle": "MONEY",
+          "value": "4M",
+          "suit": "",
+          "colors": [],
+          "effect": "",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
+        }
+      ],
+      "community": [],
+      "discard": {
+        "id": "d063",
+        "label": "Rent",
+        "color": "red",
+        "subtitle": "Rent",
+        "value": "1M",
+        "suit": "action",
+        "colors": [
+          "red",
+          "yellow"
+        ],
+        "effect": "rent",
+        "set_name": null,
+        "set_size": null,
+        "rent_ladder": []
+      },
+      "drawn": null,
+      "draw_count": 36,
+      "pot": 0,
+      "message": "Played Rent.",
+      "actions": [],
+      "winners": [],
+      "detail": {
+        "moves": 1,
+        "rent_multiplier": 1,
+        "debts": {
+          "df42021e-9e11-5f8c-977e-8ecb18a74b15": [],
+          "94a0ff18-0bd1-585e-84ec-9a152f9d9feb": [],
+          "44cce748-cf86-5e6e-a1b9-10089e13691d": []
+        },
+        "pending": null,
+        "payment_amount": 0,
+        "property_groups": [
+          {
+            "color": "brown",
+            "name": "Brown",
+            "set_size": 2,
+            "rent_ladder": [
+              1,
+              2
+            ],
+            "properties": [
+              "Mediterranean Avenue",
+              "Baltic Avenue"
+            ]
+          },
+          {
+            "color": "sky",
+            "name": "Light blue",
+            "set_size": 3,
+            "rent_ladder": [
+              1,
+              2,
+              3
+            ],
+            "properties": [
+              "Oriental Avenue",
+              "Vermont Avenue",
+              "Connecticut Avenue"
+            ]
+          },
+          {
+            "color": "pink",
+            "name": "Pink",
+            "set_size": 3,
+            "rent_ladder": [
+              1,
+              2,
+              4
+            ],
+            "properties": [
+              "St. Charles Place",
+              "States Avenue",
+              "Virginia Avenue"
+            ]
+          },
+          {
+            "color": "orange",
+            "name": "Orange",
+            "set_size": 3,
+            "rent_ladder": [
+              1,
+              3,
+              5
+            ],
+            "properties": [
+              "St. James Place",
+              "Tennessee Avenue",
+              "New York Avenue"
+            ]
+          },
+          {
+            "color": "red",
+            "name": "Red",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              3,
+              6
+            ],
+            "properties": [
+              "Kentucky Avenue",
+              "Indiana Avenue",
+              "Illinois Avenue"
+            ]
+          },
+          {
+            "color": "yellow",
+            "name": "Yellow",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              4,
+              6
+            ],
+            "properties": [
+              "Atlantic Avenue",
+              "Ventnor Avenue",
+              "Marvin Gardens"
+            ]
+          },
+          {
+            "color": "green",
+            "name": "Green",
+            "set_size": 3,
+            "rent_ladder": [
+              2,
+              4,
+              7
+            ],
+            "properties": [
+              "Pacific Avenue",
+              "North Carolina Avenue",
+              "Pennsylvania Avenue"
+            ]
+          },
+          {
+            "color": "blue",
+            "name": "Dark blue",
+            "set_size": 2,
+            "rent_ladder": [
+              3,
+              8
+            ],
+            "properties": [
+              "Park Place",
+              "Boardwalk"
+            ]
+          },
+          {
+            "color": "rail",
+            "name": "Railroads",
+            "set_size": 4,
+            "rent_ladder": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "properties": [
+              "Reading Railroad",
+              "Pennsylvania Railroad",
+              "B&O Railroad",
+              "Short Line"
+            ]
+          },
+          {
+            "color": "utility",
+            "name": "Utilities",
+            "set_size": 2,
+            "rent_ladder": [
+              1,
+              2
+            ],
+            "properties": [
+              "Electric Company",
+              "Water Works"
+            ]
+          }
+        ],
+        "collections": [
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "utility:0",
+            "color": "utility",
+            "count": 2,
+            "set_size": 2,
+            "complete": true,
+            "rent": 2
+          },
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "green:0",
+            "color": "green",
+            "count": 3,
+            "set_size": 3,
+            "complete": true,
+            "rent": 7
+          },
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "sky:0",
+            "color": "sky",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "orange:0",
+            "color": "orange",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "yellow:0",
+            "color": "yellow",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          },
+          {
+            "player": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+            "key": "red:0",
+            "color": "red",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          },
+          {
+            "player": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+            "key": "red:0",
+            "color": "red",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          },
+          {
+            "player": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+            "key": "orange:0",
+            "color": "orange",
+            "count": 2,
+            "set_size": 3,
+            "complete": false,
+            "rent": 3
+          },
+          {
+            "player": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+            "key": "pink:0",
+            "color": "pink",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+            "key": "brown:0",
+            "color": "brown",
+            "count": 1,
+            "set_size": 2,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "pink:0",
+            "color": "pink",
+            "count": 2,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "utility:0",
+            "color": "utility",
+            "count": 1,
+            "set_size": 2,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "blue:0",
+            "color": "blue",
+            "count": 2,
+            "set_size": 2,
+            "complete": true,
+            "rent": 8
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "brown:0",
+            "color": "brown",
+            "count": 2,
+            "set_size": 2,
+            "complete": true,
+            "rent": 9
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "orange:0",
+            "color": "orange",
+            "count": 2,
+            "set_size": 3,
+            "complete": false,
+            "rent": 3
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "sky:0",
+            "color": "sky",
+            "count": 2,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "red:0",
+            "color": "red",
+            "count": 2,
+            "set_size": 3,
+            "complete": false,
+            "rent": 3
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "yellow:0",
+            "color": "yellow",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "rail:0",
+            "color": "rail",
+            "count": 1,
+            "set_size": 4,
+            "complete": false,
+            "rent": 1
+          },
+          {
+            "player": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+            "key": "green:0",
+            "color": "green",
+            "count": 1,
+            "set_size": 3,
+            "complete": false,
+            "rent": 2
+          }
+        ],
+        "pending_action": null
+      }
+    },
+    "paused": false,
+    "missing_players": [],
+    "invite_token": null,
+    "bot_pending": false,
+    "bot_due_at": null,
+    "last_action": null,
+    "activity": []
+  },
+  "selectedValue": 2,
+  "transferredValue": 9,
+  "unselectedTransferred": [
+    "House",
+    "Hotel"
+  ],
+  "replay": [
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d020",
+        "target": "",
+        "color": "brown",
+        "choice": "brown:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d021",
+        "target": "",
+        "color": "brown",
+        "choice": "brown:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d046",
+        "target": "",
+        "color": "utility",
+        "choice": "utility:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "property",
+        "card": "d039",
+        "target": "",
+        "color": "green",
+        "choice": "green:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "property",
+        "card": "d032",
+        "target": "",
+        "color": "red",
+        "choice": "red:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "property",
+        "card": "d050",
+        "target": "",
+        "color": "orange",
+        "choice": "orange:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "property",
+        "card": "d027",
+        "target": "",
+        "color": "pink",
+        "choice": "pink:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "property",
+        "card": "d047",
+        "target": "",
+        "color": "utility",
+        "choice": "utility:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "play",
+        "card": "d096",
+        "target": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+        "color": "",
+        "choice": "d046",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d047"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d056",
+        "target": "",
+        "color": "utility",
+        "choice": "utility:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d055",
+        "target": "",
+        "color": "green",
+        "choice": "green:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "play",
+        "card": "d069",
+        "target": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+        "color": "green:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d027"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "property",
+        "card": "d034",
+        "target": "",
+        "color": "yellow",
+        "choice": "yellow:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d094",
+        "target": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+        "color": "",
+        "choice": "d027",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d039"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d081",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "play",
+        "card": "d074",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "property",
+        "card": "d040",
+        "target": "",
+        "color": "blue",
+        "choice": "blue:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "property",
+        "card": "d048",
+        "target": "",
+        "color": "brown",
+        "choice": "brown:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d054",
+        "target": "",
+        "color": "sky",
+        "choice": "sky:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "play",
+        "card": "d067",
+        "target": "",
+        "color": "utility:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d050"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d046"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "bank",
+        "card": "d011",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d093",
+        "target": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+        "color": "",
+        "choice": "d054",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d077",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "property",
+        "card": "d022",
+        "target": "",
+        "color": "sky",
+        "choice": "sky:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "property",
+        "card": "d029",
+        "target": "",
+        "color": "orange",
+        "choice": "orange:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "play",
+        "card": "d079",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "property",
+        "card": "d041",
+        "target": "",
+        "color": "blue",
+        "choice": "blue:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "play",
+        "card": "d066",
+        "target": "",
+        "color": "green:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d054"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d040"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "bank",
+        "card": "d017",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "bank",
+        "card": "d010",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d097",
+        "target": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+        "color": "brown:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "property",
+        "card": "d030",
+        "target": "",
+        "color": "orange",
+        "choice": "orange:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d071",
+        "target": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+        "color": "orange:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d010"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "property",
+        "card": "d023",
+        "target": "",
+        "color": "sky",
+        "choice": "sky:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "play",
+        "card": "d070",
+        "target": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+        "color": "orange:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d010"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "play",
+        "card": "d087",
+        "target": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d032",
+          "d030"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d035",
+        "target": "",
+        "color": "yellow",
+        "choice": "yellow:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d043",
+        "target": "",
+        "color": "rail",
+        "choice": "rail:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "bank",
+        "card": "d007",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "property",
+        "card": "d028",
+        "target": "",
+        "color": "orange",
+        "choice": "orange:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d104",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d062",
+        "target": "",
+        "color": "pink:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d007"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d010"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "play",
+        "card": "d091",
+        "target": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+        "color": "",
+        "choice": "d040",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "property",
+        "card": "d026",
+        "target": "",
+        "color": "pink",
+        "choice": "pink:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "play",
+        "card": "d059",
+        "target": "",
+        "color": "sky:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d011"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d007"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d037",
+        "target": "",
+        "color": "green",
+        "choice": "green:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d033",
+        "target": "",
+        "color": "red",
+        "choice": "red:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "play",
+        "card": "d075",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d085",
+        "target": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "no",
+        "card": "d082",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d064",
+        "target": "",
+        "color": "yellow:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d017"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d007"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d089",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d050"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d011"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "property",
+        "card": "d025",
+        "target": "",
+        "color": "pink",
+        "choice": "pink:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "play",
+        "card": "d061",
+        "target": "",
+        "color": "pink:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d046"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d010"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "play",
+        "card": "d065",
+        "target": "",
+        "color": "blue:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d035",
+          "d043",
+          "d033"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d017",
+          "d011"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d049",
+        "target": "",
+        "color": "orange",
+        "choice": "orange:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "property",
+        "card": "d051",
+        "target": "",
+        "color": "red",
+        "choice": "red:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "play",
+        "card": "d086",
+        "target": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d007",
+          "d034"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "property",
+        "card": "d031",
+        "target": "",
+        "color": "red",
+        "choice": "red:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d101",
+        "target": "",
+        "color": "brown:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "play",
+        "card": "d103",
+        "target": "",
+        "color": "brown:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "property",
+        "card": "d038",
+        "target": "",
+        "color": "green",
+        "choice": "green:0",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "44cce748-cf86-5e6e-a1b9-10089e13691d",
+      "action": {
+        "type": "play",
+        "card": "d063",
+        "target": "",
+        "color": "yellow:0",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    },
+    {
+      "actor": "df42021e-9e11-5f8c-977e-8ecb18a74b15",
+      "action": {
+        "type": "pay",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [
+          "d007"
+        ],
+        "groups": []
+      }
+    },
+    {
+      "actor": "94a0ff18-0bd1-585e-84ec-9a152f9d9feb",
+      "action": {
+        "type": "accept",
+        "card": "",
+        "target": "",
+        "color": "",
+        "choice": "",
+        "amount": 0,
+        "slot": 0,
+        "cards": [],
+        "groups": []
+      }
+    }
+  ]
+}

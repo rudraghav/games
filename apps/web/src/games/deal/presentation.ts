@@ -1,4 +1,4 @@
-import type { ActionOption, Card, DealGroup, Match, Room } from '@games/api-client';
+import type { ActionOption, Card, DealDetails, DealGroup, Match, Room } from '@games/api-client';
 import { playerName } from '../types';
 
 export const bankValue = (card: Card) => Number.parseInt(card.value, 10) || 0;
@@ -6,6 +6,22 @@ export const groupName = (key: string, groups: DealGroup[]) =>
   groups.find((group) => group.color === key.split(':')[0])?.name || key.split(':')[0];
 export const pileName = (key: string, groups: DealGroup[]) =>
   `${groupName(key, groups)}${key.includes(':') ? ` · set ${Number(key.split(':')[1]) + 1}` : ''}`;
+
+/** Union server-authored consequences. The browser never infers building links. */
+export function paymentSelection(bundles: DealDetails['paymentBundles'], selected: string[]) {
+  const byCard = new Map(bundles.map((bundle) => [bundle.card, bundle]));
+  const quoted = new Map(
+    selected.flatMap((id) =>
+      (byCard.get(id)?.transfers || []).map((card) => [card.id, card.value] as const),
+    ),
+  );
+  return {
+    valid: new Set(selected).size === selected.length && selected.every((id) => byCard.has(id)),
+    ids: [...quoted.keys()],
+    amount: [...quoted.values()].reduce((sum, value) => sum + value, 0),
+    carried: [...quoted.keys()].filter((id) => !selected.includes(id)),
+  };
+}
 
 export function actionLabel(option: ActionOption, match: Match, room: Room, groups: DealGroup[]) {
   const action = option.value;

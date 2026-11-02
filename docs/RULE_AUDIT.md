@@ -53,3 +53,15 @@ identical minimum and maximum. Tarot generation is explicitly opt-in.
 Exact latest test counts, production source and hosted results belong in
 `progress.txt` and the release evidence. This audit is scoped regression evidence,
 not a proof of every possible strategy or an untested edition's printed inventory.
+
+## 2 November 2026 implementation follow-through
+
+The independent evidence and decisions are preserved in
+`evidence/independent-audit-2026-11-02/` and the implementation receipts in
+`evidence/audit-fixes-2026-11-02/`. Classic Deal's FAQ953 Just Say No rule is applied
+without consuming an ordinary play, including after a third play. Building
+carry remains explicitly a Games convention and its full transfer is quoted.
+No Mercy keeps its documented house conventions. Sea Salt keeps publisher-literal
+stock exhaustion under a named version, with exact consequences visible before
+ending decisions. Every new result explanation is produced by its engine and
+validated at the client boundary; the browser never determines winners.

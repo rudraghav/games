@@ -9,7 +9,14 @@ export { trioDetails, flipSevenDetails, azulDetails } from './modern-details';
 export { partyDetails } from './party-details';
 export { gangDetails, sixNimmtDetails } from './coop-number-details';
 export { paperDetails, boopDetails } from './sea-cats-details';
-export { blackjackDetails, holdemDetails, skyjoDetails } from './casino-details';
+export {
+  blackjackDetails,
+  holdemDetails,
+  skyjoDetails,
+  rummyDetails,
+  teenPattiDetails,
+} from './casino-details';
+export { sheddingDetails } from './shedding-details';
 export { shitheadDetails } from './shithead-details';
 export { dealDetails, type DealGroup, type DealDetails } from './deal-details';
 export type {

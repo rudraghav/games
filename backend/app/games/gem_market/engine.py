@@ -24,14 +24,26 @@ def score(s: State, player: str) -> int:
     return sum(CARDS[c].points for c in s["bought"][player]) + 3 * len(s["claimed"][player])
 
 
-def payment(s: State, player: str, card: str) -> dict[str, int] | None:
+def purchase_quote(s: State, player: str, card: str) -> dict[str, Any]:
+    """Explain the same matching-gems-first payment used when committing a buy."""
     discount, held = bonuses(s, player), s["tokens"][player]
     result = dict.fromkeys(ALL_COLORS, 0)
+    applied, missing = {}, {}
     for color, cost in CARDS[card].cost.items():
-        needed = max(0, cost - discount[color])
+        applied[color] = min(cost, discount[color])
+        needed = cost - applied[color]
         result[color] = min(held[color], needed)
-        result["gold"] += needed - result[color]
-    return result if result["gold"] <= held["gold"] else None
+        missing[color] = needed - result[color]
+        result["gold"] += missing[color]
+    shortfall = max(0, result["gold"] - held["gold"])
+    return {"cost": dict(CARDS[card].cost), "discount": applied, "spend": result,
+            "missing_colors": missing, "shortfall": shortfall, "affordable": shortfall == 0,
+            "after": {c: held[c] - result[c] for c in ALL_COLORS} if not shortfall else None}
+
+
+def payment(s: State, player: str, card: str) -> dict[str, int] | None:
+    quote = purchase_quote(s, player, card)
+    return quote["spend"] if quote["affordable"] else None
 
 
 class GemMarketEngine(BaseEngine):
@@ -163,6 +175,11 @@ class GemMarketEngine(BaseEngine):
             "bank": s["bank"], "tokens": s["tokens"],
             "bonuses": {p: bonuses(s, p) for p in s["order"]}, "card_info": card_info,
             "patron_costs": {c: PATRONS[c] for c in s["patrons"]}, "final_round": s["final_round"],
+            "purchase_quotes": {c: purchase_quote(s, player, c)
+                                for c in [*market, *s["reserved"].get(player, [])]}
+            if player in s["order"] else {},
+            "return_count": max(0, sum(s["tokens"].get(player, {}).values()) - 10),
+            "reservation_limit": len(s["reserved"].get(player, [])) >= 3,
         }
         return GameView(
             game_id=self.manifest.id, phase=s["phase"], message=s["message"],

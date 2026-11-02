@@ -1,0 +1,30 @@
+{
+  "run_date": "2026-11-02",
+  "read_only": true,
+  "cases": [
+    {
+      "id": "late-room-get",
+      "method": "Actual installed @tanstack/react-query QueryClient, synthetic room query with delayed resolve and current useRoom setQueryData pattern",
+      "initial_revision": 10,
+      "mutation_revision": 12,
+      "late_get_revision": 11,
+      "observed_final_revision": 11,
+      "result": "confirmed client cache regression; no server mutation loss inferred",
+      "owner": "apps/web/src/features/room/useRoom.ts:12"
+    },
+    {
+      "id": "waiting-casino-cue",
+      "method": "Actual room_view and real Holdem engine with synthetic in-memory Repository, public-action receipt stub",
+      "waiting_game": null,
+      "waiting_activity": [],
+      "waiting_last_action": {
+        "version": 2,
+        "actor_id": "audit-a",
+        "type": "raise",
+        "amount": 100
+      },
+      "result": "confirmed public cue delivered to waiting member; documents disagree on intended visibility, not a concealed-hand leak",
+      "owner": "backend/app/rooms/views.py:41"
+    }
+  ]
+}

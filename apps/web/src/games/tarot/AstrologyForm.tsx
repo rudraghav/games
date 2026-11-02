@@ -45,6 +45,7 @@ export function AstrologyForm({
   const [attribution, setAttribution] = useState('');
   const [searched, setSearched] = useState(false);
   const [issue, setIssue] = useState<AstrologyIssue | null>(null);
+  const [timeResolution, setTimeResolution] = useState<AstrologyPreview['time_resolution']>(null);
   const [validation, setValidation] = useState('');
   const findPlaces = useMutation({
     mutationFn: async () => ({
@@ -69,6 +70,7 @@ export function AstrologyForm({
       if (version !== chartVersion.current) return;
       onChartChange(result.status === 'ready' ? result.chart || null : null);
       setIssue(result.issue || null);
+      setTimeResolution(result.status === 'ready' ? (result.time_resolution ?? null) : null);
     },
   });
   function invalidate() {
@@ -76,6 +78,7 @@ export function AstrologyForm({
     preview.reset();
     onChartChange(null);
     setIssue(null);
+    setTimeResolution(null);
     setValidation('');
   }
   function patch(next: Partial<AstrologyInput>) {
@@ -199,6 +202,13 @@ export function AstrologyForm({
                 </span>
               </label>
             </div>
+            {value.birth_date && value.birth_date < '1970-01-01' ? (
+              <p className="small muted" role="note">
+                Historical local-time records before 1970 can be incomplete. Check the calculated
+                UTC offset against your birth record; uncertain time can change the Ascendant and
+                houses.
+              </p>
+            ) : null}
             <div className="astrology-place-search">
               <label className="field">
                 Birthplace
@@ -258,7 +268,9 @@ export function AstrologyForm({
                 </select>
               </label>
             ) : null}
-            {place ? <p className="small muted">Time zone: {place.timezone}</p> : null}
+            {place && !timeResolution ? (
+              <p className="small muted">Time zone: {place.timezone}</p>
+            ) : null}
             {findPlaces.isPending ? (
               <p className="small muted" role="status">
                 Finding places…
@@ -319,7 +331,14 @@ export function AstrologyForm({
               </p>
             ) : null}
             {chart ? (
-              <AstrologyChart chart={chart} />
+              <>
+                {timeResolution ? (
+                  <p className="small muted" role="status" aria-label="Calculated time zone">
+                    Calculated using {timeResolution.timezone} · UTC{timeResolution.utc_offset}
+                  </p>
+                ) : null}
+                <AstrologyChart chart={chart} />
+              </>
             ) : (
               <p className="small muted">Preview your chart before including it in the reading.</p>
             )}

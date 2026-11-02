@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Button, PlayingCard, DecisionDock } from '@games/ui';
 import type { Action, ActionOption, Card } from '@games/api-client';
 import { playerName, type TableProps } from '../types';
@@ -99,6 +99,7 @@ export function ActionPanel({
   clear,
   cardSelectionRequired = false,
   instruction,
+  selectionDetails,
   pinSelection = false,
   dockSize = 'standard',
 }: TableProps & {
@@ -106,6 +107,7 @@ export function ActionPanel({
   clear?: () => void;
   cardSelectionRequired?: boolean;
   instruction?: string;
+  selectionDetails?: ReactNode;
   pinSelection?: boolean;
   dockSize?: 'compact' | 'standard' | 'extended';
 }) {
@@ -143,6 +145,7 @@ export function ActionPanel({
                     ? 'Select a card to see its moves.'
                     : match.phase.replaceAll('_', ' ')}
         </span>
+        {selectionDetails}
         {clear ? (
           <button
             className="text-button action-clear"

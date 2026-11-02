@@ -76,11 +76,22 @@ export function GangTable(props: TableProps) {
             ),
           )}
         </div>
-        <section className="gang-private" aria-label="Your private pocket cards">
+        <section
+          className="gang-private"
+          aria-label={
+            data.revealed.includes(selfId)
+              ? 'Your revealed pocket cards'
+              : 'Your private pocket cards'
+          }
+        >
           <div>
             <p className="eyebrow">Your pocket cards</p>
             {data.own_hand_name ? <h3>{data.own_hand_name}</h3> : null}
-            <p className="small muted">Only you can see these cards.</p>
+            <p className="small muted">
+              {data.revealed.includes(selfId)
+                ? 'These cards are now visible to the crew.'
+                : 'Only you can see these cards.'}
+            </p>
           </div>
           <div className="gang-pocket-cards">
             {match.hand.map((card) => (
@@ -206,7 +217,9 @@ export function GangTable(props: TableProps) {
             {data.revealed.map((id) => (
               <section key={id}>
                 <strong>{playerName(room, id)}</strong>
-                <span className="small muted">{data.hand_names[id]}</span>
+                <span className="small muted">
+                  {data.hand_evaluations[id]?.description ?? data.hand_names[id]}
+                </span>
                 <div>
                   {match.players
                     .find((p) => p.id === id)
@@ -218,9 +231,49 @@ export function GangTable(props: TableProps) {
                       ),
                     )}
                 </div>
+                {data.hand_evaluations[id] ? (
+                  <details>
+                    <summary className="small">Best five cards</summary>
+                    <div>
+                      {data.hand_evaluations[id].cards.map((card) => (
+                        <PlayingCard key={card.id} card={card} compact />
+                      ))}
+                    </div>
+                  </details>
+                ) : null}
               </section>
             ))}
           </div>
+        ) : null}
+        {roundComplete && data.declared_order.length ? (
+          <section className="game-information-settlement" aria-label="Heist ranking explanation">
+            <h3>Weakest to strongest</h3>
+            <p className="small">
+              Chip order: {data.declared_order.map((id) => playerName(room, id)).join(' → ')}
+            </p>
+            <p className="small">
+              Hand order: {data.evaluated_order.map((id) => playerName(room, id)).join(' → ')}.
+              Equal hands can appear in either order.
+            </p>
+            {data.inversions.length ? (
+              <ul>
+                {data.inversions.map(({ earlier, later }) => (
+                  <li key={`${earlier}:${later}`}>
+                    <strong>
+                      {playerName(room, earlier)} ranked below {playerName(room, later)}, but had
+                      the stronger hand.
+                    </strong>
+                    <span>
+                      {data.hand_evaluations[earlier]?.description} beats{' '}
+                      {data.hand_evaluations[later]?.description}.
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="small">Every hand is at least as strong as the hand before it.</p>
+            )}
+          </section>
         ) : null}
         {data.history.length ? (
           <section className="gang-history" aria-label="Previous chip estimates">

@@ -1,0 +1,25 @@
+{
+  "tarot": {
+    "reviewed": 78,
+    "uniqueIds": 78,
+    "contactSheets": 5,
+    "meaningfulSymbolismFollowups": [
+      "cups-02",
+      "cups-06",
+      "cups-08",
+      "pentacles-08",
+      "pentacles-09"
+    ]
+  },
+  "characters": {
+    "reviewed": 48,
+    "integrityFailures": [],
+    "rights": {
+      "copyright-reference": 44,
+      "public-domain": 3,
+      "licensed": 1
+    },
+    "visualResult": "Current assets depict characters, not the preserved performer/cosplay archive. Identity recognition checked visually; permission grants not established by attribution alone."
+  },
+  "scope": "Read-only asset audit; no source/asset replacements; no provider request"
+}

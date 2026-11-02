@@ -27,3 +27,13 @@ A failed or interrupted reading can return `astrology_chart`, containing only th
 `astrology-presentation.test.tsx` covers angle formatting, crowded-label anchor conservation, calculated data tables and legacy reading compatibility. Seven Storybook stories cover each chart, both charts, optional-off, saved, recovered and pending states.
 
 Fixtures are synthetic: J2000 noon at Greenwich and a New York daylight-saving calculation. Positions were produced by the backend calculator. Interpretation layout examples explicitly say “Synthetic layout example”; they are not a production fallback. Retained visual and verification evidence is in `docs/evidence/tarot-astrology-2026-11-02`.
+
+## Audit recovery and art refinement
+
+A missing local question draft derives from the saved reading response. Once
+edited, even an explicitly empty question remains the user's choice during
+background refresh. Room's match-ID key resets drafts on rematch. Raw birth input
+remains ephemeral; a pre-1970 note distinguishes uncertain historical civil time
+from calculated celestial precision. Five corrected card artworks use full-frame
+fitting without changing the other mappings. Desktop/phone recovery tests cover
+ordinary/chart retries and edits, with no provider call for a saved read.

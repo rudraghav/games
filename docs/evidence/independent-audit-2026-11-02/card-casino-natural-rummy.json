@@ -1,0 +1,26 @@
+[
+  {
+    "game": "rummy",
+    "seats": 2,
+    "seed": 31,
+    "steps": 38,
+    "terminal_action": "declare",
+    "winner_has_valid_declaration": true,
+    "drops": 0,
+    "zero_sum": true,
+    "seconds": 1.36,
+    "evidence_level": "pure seeded engine match, authorized bot views; no database/API/browser"
+  },
+  {
+    "game": "rummy",
+    "seats": 6,
+    "seed": 31,
+    "steps": 44,
+    "terminal_action": "declare",
+    "winner_has_valid_declaration": true,
+    "drops": 0,
+    "zero_sum": true,
+    "seconds": 1.55,
+    "evidence_level": "pure seeded engine match, authorized bot views; no database/API/browser"
+  }
+]

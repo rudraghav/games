@@ -1,6 +1,40 @@
 from app.core.contracts import Action, RuleError, State
 from app.games.deal.deck import DealCard
-from app.games.deal.table import assets, locate, transfer
+from app.games.deal.payments import combine_payment_bundles, payment_bundles
+from app.games.deal.table import assets, locate, transfer, transfer_cards
+
+
+def public_transfers(s: State, effect: dict, cards: dict[str, DealCard]) -> list[dict]:
+    """Preview only committed, public assets; never copy private event payloads."""
+    actor, target, kind = effect["actor"], effect["target"], effect["kind"]
+    transfers = []
+
+    def add(source: str, recipient: str, selected: list[str]) -> None:
+        public = set(s["banks"][source]) | {
+            c for group in s["properties"][source].values() for c in group
+        }
+        ids = list(dict.fromkeys(
+            carried for ident in selected if ident in public
+            for carried in transfer_cards(s, source, ident)
+        ))
+        if ids:
+            transfers.append({"source": source, "target": recipient, "cards": ids})
+
+    if kind in ("sly", "forced", "crash", "heist") and not effect.get("select"):
+        add(target, actor, [effect.get("take", "")])
+        if kind == "forced":
+            add(actor, target, [effect.get("give", "")])
+    elif kind == "breaker":
+        add(target, actor, s["properties"][target].get(effect.get("color"), []))
+    elif kind == "super_sly":
+        add(target, actor, [
+            c for group in s["properties"][target].values() for c in group
+            if cards[c].kind == "property" and effect.get("color") in cards[c].colors
+        ])
+    elif kind == "unfair":
+        add(actor, target, s["banks"][actor])
+        add(target, actor, s["banks"][target])
+    return transfers
 
 
 def queue(s: State, actor: str, target: str, kind: str, **kwargs: object) -> None:
@@ -68,19 +102,20 @@ def act(s: State, player: str, action: Action, cards: dict[str, DealCard], mercy
     if action.type == "no":
         s["hands"][player].remove(action.card)
         s["discard"].append(action.card)
-        if player == s["order"][s["turn"]]:
+        if mercy and player == s["order"][s["turn"]]:
             s["moves"] -= 1
         effect["blocked"] = not effect["blocked"]
         effect["responder"] = actor if player == target else target
         return
     if action.type == "pay":
         available = assets(s, target, cards)
-        if len(set(action.cards)) != len(action.cards) or not set(action.cards) <= set(available):
-            raise RuleError("Choose only payable cards in your bank or collection.")
-        value = sum(cards[c].value for c in action.cards)
-        if value < effect["amount"] and set(action.cards) != set(available):
+        quoted = combine_payment_bundles(payment_bundles(s, target, cards), action.cards)
+        value = sum(quoted.values())
+        if value < effect["amount"] and set(quoted) != set(available):
             raise RuleError("Pay the full bill, or give every payable asset if you cannot.")
-        for c in action.cards:
+        # Properties carry their buildings before an explicitly selected copy of
+        # the same building is visited. Selection order cannot change its zone.
+        for c in sorted(action.cards, key=lambda ident: cards[ident].kind != "property"):
             transfer(s, target, actor, c, cards)
         if value < effect["amount"] and mercy:
             issue_debt(s, target, actor)

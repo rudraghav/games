@@ -7,8 +7,16 @@ import astronomy
 import pytest
 from pydantic import ValidationError
 
-from app.astrology.chart import angles, chart_at, mean_node, nakshatra, normalize, spica_longitude
-from app.astrology.models import AstrologyInput, AstrologyIssue
+from app.astrology.chart import (
+    angles,
+    calculate_chart,
+    chart_at,
+    mean_node,
+    nakshatra,
+    normalize,
+    spica_longitude,
+)
+from app.astrology.models import AstrologyInput, AstrologyIssue, AstrologyPlace
 from app.astrology.timezones import birth_zone, resolve_birth_time
 
 J2000 = datetime(2000, 1, 1, 12, tzinfo=UTC)
@@ -121,6 +129,33 @@ def test_historical_iana_offsets_are_used_including_seconds_and_wartime():
         chart_at(datetime(2000, 1, 1), 0, 0, "both")
 
 
+@pytest.mark.parametrize("day,offset", [("1900-01-01", "+05:21:10"),
+                                       ("1943-01-01", "+06:30"),
+                                       ("2000-01-01", "+05:30")])
+def test_ready_preview_exposes_resolved_historical_offset_only_outside_saved_chart(day, offset):
+    place = AstrologyPlace(id="geo:1275004", label="Kolkata synthetic reference", country_code="IN",
+                           latitude=22.5626, longitude=88.363, timezone="Asia/Kolkata")
+    preview = calculate_chart(data(day), place)
+    assert preview.status == "ready"
+    assert preview.time_resolution.model_dump() == {"timezone": "Asia/Kolkata", "utc_offset": offset}
+    serialized = preview.chart.model_dump_json()
+    assert "time_resolution" not in serialized and "utc_offset" not in serialized
+    assert "Asia/Kolkata" not in serialized and day not in serialized
+
+
+def test_ready_preview_uses_chosen_fold_offset_and_gap_has_no_resolution():
+    place = AstrologyPlace(id="geo:5128581", label="New York synthetic reference", country_code="US",
+                           latitude=40.7143, longitude=-74.006, timezone="America/New_York")
+    unresolved = calculate_chart(data("2000-10-29", "01:30"), place)
+    assert unresolved.status == "needs_time_choice" and unresolved.time_resolution is None
+    for fold, offset in [(0, "-04:00"), (1, "-05:00")]:
+        preview = calculate_chart(data("2000-10-29", "01:30", fold=fold), place)
+        assert preview.time_resolution.utc_offset == offset
+        assert preview.time_resolution.timezone == place.timezone
+    gap = calculate_chart(data("2000-04-02", "02:30"), place)
+    assert gap.status == "invalid_time" and gap.time_resolution is None
+
+
 @pytest.mark.parametrize("extra", [{"birth_date": "1899-12-31"}, {"birth_date": "2500-01-01"},
                                     {"birth_date": "2000-02-30"}, {"birth_time": "24:00"},
                                     {"birth_time": "12:60"}, {"birth_time": "12:00Z"},
@@ -131,3 +166,15 @@ def test_birth_input_is_bounded_and_never_accepts_arbitrary_timezones_or_coordin
         AstrologyInput.model_validate({**base, **extra})
     with pytest.raises(ValidationError):
         AstrologyInput.model_validate({**base, "longitude": 0})
+
+
+def test_independent_horizons_samples_across_historical_and_modern_epochs():
+    import json
+    from pathlib import Path
+
+    fixture = json.loads((Path(__file__).parent / "fixtures/astrology_horizons.json").read_text())
+    for sample in fixture["results"]:
+        chart = chart_at(datetime.fromisoformat(sample["instant_utc"]), 51.4779, 0, "western").chart
+        point = next(p for p in chart.charts[0].placements if p.id == sample["body"])
+        delta = abs((point.longitude - sample["jpl_longitude"] + 180) % 360 - 180)
+        assert delta * 60 < fixture["tolerance_arcminutes"], sample

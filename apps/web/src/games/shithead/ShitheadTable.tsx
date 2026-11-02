@@ -2,7 +2,14 @@
 
 import { useState } from 'react';
 import { Flame, Layers, ShieldCheck } from 'lucide-react';
-import { Button, Hand, PlayingCard, DecisionDock, HorizontalRail } from '@games/ui';
+import {
+  Button,
+  Hand,
+  PlayingCard,
+  DecisionDock,
+  HorizontalRail,
+  TableDecisionPanel,
+} from '@games/ui';
 import { OpponentPanel } from '../shared/OpponentPanel';
 import { shitheadDetails, type Card } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
@@ -42,6 +49,10 @@ function ShitheadDecision(props: TableProps) {
       o.value.type === 'pickup' &&
       (ownStage !== 'face_up' || (selected.length === 1 && o.value.card === selected[0])),
   );
+  // Reserve a stable choice area only while this viewer has controls to use.
+  // Selection does not affect this flag, so Clear selection cannot shift cards.
+  const hasPickup = match.actions.some((option) => option.value.type === 'pickup');
+  const hasDecision = Boolean(arrange || options.length || hasPickup);
   const instruction =
     ownStage === 'setup'
       ? 'Choose three cards to keep face-up.'
@@ -186,46 +197,48 @@ function ShitheadDecision(props: TableProps) {
               </p>
             )}
           </div>
-          <DecisionDock
-            className="shithead-actions"
-            label="Your Shithead actions"
-            size="standard"
-            pending={pending}
-          >
-            {arrange ? (
-              <Button
-                disabled={blocked || selected.length !== 3}
-                onClick={() => onAction({ ...arrange.value, cards: selected })}
-              >
-                Keep selected three face-up · {selected.length}/3
-              </Button>
-            ) : null}
-            {options.length ? (
-              <Button disabled={blocked || !play} onClick={() => play && onAction(play.value)}>
-                Play selected{selected.length ? ` · ${selected.length}` : ''}
-              </Button>
-            ) : null}
-            {match.actions.some((o) => o.value.type === 'pickup') ? (
-              <Button
-                variant="secondary"
-                disabled={blocked || !pickup}
-                onClick={() => pickup && onAction(pickup.value)}
-              >
-                {ownStage === 'face_up'
-                  ? 'Take pile with selected card'
-                  : `Take pile · ${data.pile_count} cards`}
-              </Button>
-            ) : null}
-            {selected.length ? (
-              <Button
-                variant="ghost"
-                onClick={() => setSelection({ version: room.matchVersion, cards: [] })}
-                disabled={pending}
-              >
-                Clear selection
-              </Button>
-            ) : null}
-          </DecisionDock>
+          {hasDecision ? (
+            <DecisionDock
+              className="shithead-actions"
+              label="Your Shithead actions"
+              size="standard"
+              pending={pending}
+            >
+              {arrange ? (
+                <Button
+                  disabled={blocked || selected.length !== 3}
+                  onClick={() => onAction({ ...arrange.value, cards: selected })}
+                >
+                  Keep selected three face-up · {selected.length}/3
+                </Button>
+              ) : null}
+              {options.length ? (
+                <Button disabled={blocked || !play} onClick={() => play && onAction(play.value)}>
+                  Play selected{selected.length ? ` · ${selected.length}` : ''}
+                </Button>
+              ) : null}
+              {hasPickup ? (
+                <Button
+                  variant="secondary"
+                  disabled={blocked || !pickup}
+                  onClick={() => pickup && onAction(pickup.value)}
+                >
+                  {ownStage === 'face_up'
+                    ? 'Take pile with selected card'
+                    : `Take pile · ${data.pile_count} cards`}
+                </Button>
+              ) : null}
+              {selected.length ? (
+                <Button
+                  variant="ghost"
+                  onClick={() => setSelection({ version: room.matchVersion, cards: [] })}
+                  disabled={pending}
+                >
+                  Clear selection
+                </Button>
+              ) : null}
+            </DecisionDock>
+          ) : null}
         </section>
         {faceRow(selfId)}
       </div>
@@ -271,6 +284,7 @@ function ShitheadDecision(props: TableProps) {
 export function ShitheadTable(props: TableProps) {
   const { match, room } = props;
   const data = shitheadDetails(match.detail);
+  const [pileOpen, setPileOpen] = useState(false);
   const comparison =
     data.comparison_rank === '2' || !data.comparison_rank
       ? 'Any rank'
@@ -298,6 +312,14 @@ export function ShitheadTable(props: TableProps) {
           <div>
             <strong>{comparison}</strong>
             <p className="small">{data.pile_count} in pile</p>
+            <Button
+              size="sm"
+              variant="secondary"
+              disabled={!match.community.length}
+              onClick={() => setPileOpen(true)}
+            >
+              View pile
+            </Button>
           </div>
         </div>
         <div className="shithead-stock">
@@ -306,6 +328,21 @@ export function ShitheadTable(props: TableProps) {
           <span className="small">Burned</span>
         </div>
       </section>
+      <TableDecisionPanel open={pileOpen} onOpenChange={setPileOpen} title="Public pile">
+        <p className="small muted">
+          Last {match.community.length} {match.community.length === 1 ? 'card' : 'cards'}, oldest to
+          newest. Four equal top cards burn the pile.
+        </p>
+        <HorizontalRail
+          label="Public pile, oldest to newest"
+          navigationLabel="Pile cards"
+          contentClassName="opponent-public-cards"
+        >
+          {match.community.map((card) => (
+            <PlayingCard key={card.id} card={card} compact />
+          ))}
+        </HorizontalRail>
+      </TableDecisionPanel>
       <div className="shithead-rule-row" aria-label="Active special cards">
         <span>2 · reset</span>
         <span>10 · burn</span>

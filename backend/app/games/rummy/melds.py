@@ -1,5 +1,7 @@
+from collections.abc import Callable
 from functools import lru_cache
 from itertools import combinations
+from typing import Any, NamedTuple
 
 from app.core.cards import RANKS
 
@@ -52,6 +54,88 @@ def meld_options(cards: list[str], wild: str) -> list[tuple[int, bool, bool]]:
     return options
 
 
+class Partition(NamedTuple):
+    sequences: int
+    pure: bool
+    unmatched: int
+    groups: tuple[int, ...]
+
+
+@lru_cache(maxsize=128)
+def _partitions(cards: tuple[str, ...], wild: str) -> Callable[[int], tuple[Partition, ...]]:
+    """A bounded pure search, shared by discard previews and adjudication.
+
+    Each card is visited once as unmatched or in a meld. Anchoring the search
+    on the first remaining card avoids enumerating permutations of the same
+    partition. All candidate discards reuse this hand's options and subproblems.
+    """
+    options = meld_options(list(cards), wild)
+    by_card = [[o for o in options if o[0] & (1 << i)] for i in range(len(cards))]
+    values = [points(c, wild) for c in cards]
+
+    def cost(mask: int) -> tuple[int, int]:
+        return sum(v for i, v in enumerate(values) if mask & (1 << i)), mask.bit_count()
+
+    @lru_cache(None)
+    def visit(mask: int) -> tuple[Partition, ...]:
+        if not mask:
+            return (Partition(0, False, 0, ()),)
+        first = (mask & -mask).bit_length() - 1
+        results: dict[tuple[int, bool], Partition] = {}
+
+        def keep(item: Partition) -> None:
+            key = (item.sequences, item.pure)
+            existing = results.get(key)
+            if existing is None or cost(item.unmatched) < cost(existing.unmatched):
+                results[key] = item
+
+        for rest in visit(mask ^ (1 << first)):
+            keep(rest._replace(unmatched=rest.unmatched | (1 << first)))
+        for bits, sequence, pure in by_card[first]:
+            if bits & mask == bits:
+                for rest in visit(mask ^ bits):
+                    keep(Partition(min(2, rest.sequences + sequence), rest.pure or pure,
+                                   rest.unmatched, (bits, *rest.groups)))
+        return tuple(results.values())
+
+    return visit
+
+
+def hand_analysis(cards: list[str], wild: str, omit: int | None = None) -> dict[str, Any]:
+    """Explain the optimal legal partition, optionally after one discard.
+
+    Returned IDs belong exclusively to the supplied authorized hand. There is
+    no inference from opponents, the stock, or a shuffle seed.
+    """
+    mask = (1 << len(cards)) - 1
+    if omit is not None:
+        mask ^= 1 << omit
+    values = [points(c, wild) for c in cards]
+    raw = sum(v for i, v in enumerate(values) if mask & (1 << i))
+
+    def loss(item: Partition) -> int:
+        return min(80, sum(v for i, v in enumerate(values) if item.unmatched & (1 << i))
+                   if item.pure and item.sequences >= 2 else raw)
+
+    best = min(_partitions(tuple(cards), wild)(mask), key=lambda item: (
+        not (mask.bit_count() == 13 and not item.unmatched and item.pure and item.sequences >= 2),
+        loss(item), item.unmatched.bit_count(), not item.pure, -item.sequences,
+    ))
+    groups = [[c for i, c in enumerate(cards) if bits & (1 << i)] for bits in best.groups]
+    types = [meld_type(group, wild) for group in groups]
+    return {
+        "valid": mask.bit_count() == 13 and not best.unmatched and best.pure and best.sequences >= 2,
+        "deadwood": loss(best), "raw_points": min(80, raw),
+        "scoring_gate": best.pure and best.sequences >= 2,
+        "sequence_count": sum(bool(t and t[0]) for t in types),
+        "pure_sequence_count": sum(bool(t and t[1]) for t in types),
+        "melds": [{"cards": group, "kind": "pure_sequence" if kind and kind[1]
+                   else "sequence" if kind and kind[0] else "set"}
+                  for group, kind in zip(groups, types, strict=True)],
+        "unmatched": [c for i, c in enumerate(cards) if best.unmatched & (1 << i)],
+    }
+
+
 def valid_declaration(cards: list[str], wild: str, groups: list[list[str]] | None = None) -> bool:
     if len(cards) != 13:
         return False
@@ -65,36 +149,8 @@ def valid_declaration(cards: list[str], wild: str, groups: list[list[str]] | Non
             and sum(bool(t and t[0]) for t in types) >= 2
             and any(t and t[1] for t in types)
         )
-    options = meld_options(cards, wild)
-
-    @lru_cache(None)
-    def visit(mask: int, sequences: int, pure: bool) -> bool:
-        if mask == (1 << len(cards)) - 1:
-            return sequences >= 2 and pure
-        first = next(i for i in range(len(cards)) if not mask & (1 << i))
-        return any(
-            visit(mask | bits, min(2, sequences + sequence), pure or is_pure)
-            for bits, sequence, is_pure in options
-            if bits & (1 << first) and not bits & mask
-        )
-
-    return visit(0, 0, False)
+    return bool(hand_analysis(cards, wild)["valid"])
 
 
 def deadwood(cards: list[str], wild: str) -> int:
-    values = [points(c, wild) for c in cards]
-    options = meld_options(cards, wild)
-    full = sum(values)
-
-    @lru_cache(None)
-    def visit(mask: int, sequences: int, pure: bool) -> int:
-        total = (
-            full - sum(values[i] for i in range(len(cards)) if mask & (1 << i))
-            if pure and sequences >= 2 else full
-        )
-        for bits, sequence, is_pure in options:
-            if not bits & mask:
-                total = min(total, visit(mask | bits, min(2, sequences + sequence), pure or is_pure))
-        return total
-
-    return min(80, visit(0, 0, False))
+    return int(hand_analysis(cards, wild)["deadwood"])

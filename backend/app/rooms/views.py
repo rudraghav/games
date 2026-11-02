@@ -14,6 +14,7 @@ from app.rooms.schemas import MemberView, MessageView, PublicActionView, PublicM
 def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> RoomView:
     members = repo.members(room.id)
     match = repo.match(room.match_id)
+    participant = bool(match and user_id in match.participants)
     now = time.time()
     missing = (
         [
@@ -26,7 +27,7 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
     )
     game = (
         ENGINES[match.game_id].project_view(match.state, user_id)
-        if match and user_id in match.participants
+        if match and participant
         else None
     )
     bots = [
@@ -34,16 +35,17 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
     ]
     pending_bot = bool(
         match
+        and participant
         and room.status == "playing"
         and not missing
         and next_bot_view(ENGINES[match.game_id], match.state, bots)
     )
     cue = (
         repo.public_action(match.id, match.version)
-        if match and match.game_id in PUBLIC_ACTIONS and match.version > 1 else None
+        if match and participant and match.game_id in PUBLIC_ACTIONS and match.version > 1 else None
     )
     activity = []
-    if match and user_id in match.participants:
+    if match and participant:
         for value in repo.public_activity(match.id):
             try:
                 activity.append(PublicMoveView.model_validate(value))

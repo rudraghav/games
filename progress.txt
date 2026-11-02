@@ -1,3 +1,109 @@
+## 2026-11-02 — Audit improvements locally verified for release
+
+- Implemented all 17 audit-backlog dispositions; details and evidence in
+  docs/evidence/audit-fixes-2026-11-02/. Preserved historical audit and masters.
+- Final frontend: types, lint, 134 tests and production build pass. Backend:
+  lint/types and 898 tests pass. Contracts: 281 faces, 48 character portraits,
+  16 Deal scenarios and 247 legal mid-game scenarios match their producers.
+- Isolated multiplayer 171 tests; migration/privacy 1; load 2; tooling 44 pass.
+  Local 50-room action/snapshot p95=633/422ms; bot-drive/snapshot p95=749/441ms.
+- Broad browser run: 229 passed, 25 explicit opt-ins skipped, 4 failures across
+  2 cases. Fixed Gang's revealed-card placement and updated boop's old immediate
+  submit expectation. Affected final 6-spec rerun: 58 passed on desktop/phone,
+  covering all 233 applicable cases across the broad run and scoped corrections.
+  A stale Blackjack layout test now supplies playing phase/active-hand metadata;
+  its final type/test gate passes. No check was disabled or weakened.
+- Final ephemeral astrology preview exposes resolved timezone/UTC offset, including
+  historical seconds, without saved/provider birth input. Root docs and code
+  reviewed; no new dependencies or schema migrations. Four bounded live AI
+  evaluations and selected visual inspections retained separately from mocks.
+- Cloud preflight: verified personal Games account/project; Git integration
+  absent, so one explicit deploy follows push. Reviewed Alembic upgrade is a
+  no-op at a6e442b15d80; schema drift/private RLS grants pass. Owner state
+  fingerprint retained privately. Runtime fingerprint ec82aa6fa276b65d0d9fef6d3e259d43feafec7cfdad5dcd088a10b996aea405.
+- State at this entry: local checks complete, release push/deploy still pending.
+
+## 2026-11-02 — Audit improvements implementation kickoff
+
+- Outcome: implement the independent audit's actionable fixes and improvements,
+  verify complete affected flows locally, then commit and push the completed
+  changes. User authorized implementation, testing and push in this chat.
+- Acceptance: exact Deal transfers/quotes and chosen edition rules; authoritative
+  Rummy/market/pending/result explanations; monotonic room recovery; saved Tarot
+  question; responsive board/action inspection; selective Tarot art corrections;
+  reference-backed astrology labels; safe concurrency evidence. Every ticket in
+  the audit backlog gets a concrete disposition and verification evidence.
+- Preserve private/untimed rooms, approved No Mercy house deck, original game
+  identities, hidden information, existing data and unrelated work. Extend current
+  primitives/contracts; no parallel rules engine or speculative rewrite.
+- The user explicitly chose to retain current character imagery without seeking
+  further permissions. Preserve accurate copyright-reference/source credits; do
+  not relabel assets as licensed or claim a permission grant.
+- Baseline main4233d6c and previous audit evidence preserved. Implementation task
+  audit-fixes-20261102 owns affected paths; root integrates generated contracts,
+  shared styles/docs and release verification. Work is local until later receipt.
+
+- Implementation integrated on codex/game-audit-improvements-20261102. Receipts
+  in docs/evidence/audit-fixes-2026-11-02/ resolve all17backlog items, with
+  explicit fixture/live distinctions and remaining study limits. Independent
+  review found no new regression across96Rummy/100poker/100Blackjack probes.
+- Focused checks pass for all delegated game families, natural2/6seat Rummy
+  HTTP declarations and saved Blackjack browser reload. Shared delayed-query
+  tests and38Tarot/transport browsers pass. Eight-room concurrent workload:
+  192GET/heartbeat responses,0HTTP failures/retries, alltaskroomsclosed.
+- Four nonpersonal real reading calls (ordinary/Western/Vedic/Both) succeeded
+  firstattempt;5885input/3703outputtokens. Full outputs ignored, safe semantic
+  summary committed. Five corrected Tarot cards counted in real browser frames.
+- Personal Vercel account/project and dedicated Games database preflight pass.
+  Prior servingdpl_3taMzfVFgv7uwgoXzHNhn517h9e7/source9627e530 is rollback
+  reference; project Gitlink null. Owner5rooms/profile/memberships/Googleidentity
+  fingerprinted privately before release. No cloud settings or schema change.
+- Next: freeze final offset-preview addition; named frontend/backend/contracts/
+  multiplayer/browser/load/tooling checks, then fast-forwardmain/push and one
+  production deployment with actual source/health/privacy/browser verification.
+  Current implementation remains local until explicit release receipt below.
+
+## 2026-11-02 — Independent Games audit and implementation plan (local only)
+
+- Outcome/acceptance: independently review all27 experiences, rules/decisions,
+  four requested widths, Tarot/astrology and multiplayer boundaries; produce
+  evidence-graded findings, unchecked branches and an implementation-ready plan.
+  Audit only: no application code, runtime setting or production data changed.
+- Deliverables: docs/evidence/independent-audit-2026-11-02/README.md,
+  coverage.md, layout-proposals.md, implementation-backlog.md, verification.md
+  and focused rule/art/numerical/saved-match evidence. Separate editions and the
+  approved Deal No Mercy house money deck/original game identities are retained.
+- Confirmed priorities: Deal selected payment omits attached assets actually
+  transferred; shared room GET can regress a newer cache snapshot; Rummy lacks
+  declaration/deadwood guidance; Tarot refresh/retry loses saved question.
+  Classic counter and Sea Salt stock-ending conventions need explicit reference
+  decisions; no hidden-hand leak or incorrect Hold'em payout established.
+- Fresh evidence:108 manual game/width observations;95 completed local saved
+  case executions (94 unique phone/desktop/min/max combinations across26 games),
+  9,125 completed moves; natural pure-engine Rummy declarations at2/6 seats;
+  all78 Tarot illustrations/48 character assets;15 JPL positions within1arcminute.
+  One parallel phone heartbeat503 remains an availability observation despite
+  successful sequential completion. All five fullmatch cleanup receipts closed.
+- Checks before final frozen rerun:120 frontend tests/types;6 card/motion browser
+  cases passed. Initial857 backend,169 isolated multiplayer, contracts and82
+  browser commands passed, but named reports were inconclusive because audit
+  documents changed during execution. Stable final backend/contracts commands
+  passed in verify-86a4a73384a84039b48030bf03748ace before a stopped local DB
+  blocked continuation. After restoring the existing Docker/container/web/API,
+  verify-7b152f8be0c847be934f7e3f8655900a passed169 multiplayer,82 browser,
+  types, boundaries and44 tooling tests. No application fixes were made.
+- State: local main4233d6c; runtime matches recorded release9627e53. Public
+  catalogue matches all27; management reads403 prevent fresh deployed-SHA/config
+  certification. No commit, push or deployment; no new Gemini generation.
+- Cleanup:124 task-owned superseded captures/intermediates removed (11.8MB);
+  corrected evidence retained below500MB. Existing source, data, credentials,
+  recovery history preserved. Restored existing local web/API both return200;
+  same database volume retained. Next's two generated dev-type imports were
+  restored to baseline; all three workspace type checks passed afterward.
+  Final app diff empty; audit links/JSON and diff check pass. Retained evidence
+  approximately18.9MB. Closure health recorded in verification.md. Review
+  task:independent-audit-20261102.
+
 ## 2026-11-02 — Active-scope workflow release
 
 - Refreshed verification after upstream integration: 44 workflow tests passed; report verify-3939fd1a702f419a971f0d9785d98c4d. Product checks remain owned by their existing release.

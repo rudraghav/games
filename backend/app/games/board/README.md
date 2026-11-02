@@ -21,6 +21,17 @@ and rematches use the existing shared service. Acceptance includes out-of-turn
 rejection, full columns/non-capturing squares, directional wins/flips, passes,
 draws, immutable input state and bounded complete matches.
 
+Terminal projections explain Four in a Row's winning line or full-board draw and
+checkers' no-pieces/no-legal-move win, threefold repetition or 40-moves-each quiet
+draw. The engine provides the reason and decisive Four cells; the client does not
+recompute either. Missing result metadata in older saved states remains readable.
+
+At narrow widths, Four, Reversi, checkers and Mancala retain full-size move targets
+in the shared horizontal rail. Visible pan controls and a swipe cue make the
+remaining columns discoverable. Keyboard focus scrolls only the rail to reveal
+the selected action. A separate read-only whole-board overview fits the screen;
+closing it restores focus without submitting a move.
+
 Audit: `test_expansion.py` independently checks gravity, all winning directions,
 full-column rejection, Reversi eight-direction captures, forced passes and
 terminal counts. `test_table_rules.py` additionally completes both games at their

@@ -212,6 +212,57 @@ def test_paper_stop_gate_exhaustion_and_instant_mermaid_win():
 
 
 @pytest.mark.parametrize("seats", [2, 4])
+def test_paper_named_exhaustion_convention_explains_stop_and_last_chance(seats):
+    hands = {str(i): ids("shell", 6) if i == 0 else [] for i in range(seats)}
+    engine, state = paper_state(hands)
+    state["piles"][0].extend(state["deck"])
+    state["deck"] = []
+    initial = engine.copy(state)
+    view = engine.project_view(state, "0")
+    assert engine.manifest.rules_version == "base58-exhaust-1"
+    assert "no points" in view.detail["ending_consequences"]["end_turn"]
+    assert "first finished final turn" in view.detail["ending_consequences"]["last_chance"]
+    assert "card points now" in view.detail["ending_consequences"]["stop"]
+    stopped = engine.apply_action(state, "0", Action(type="stop"))
+    assert stopped["scores"]["0"] == 10
+    final = engine.apply_action(state, "0", Action(type="last_chance"))
+    final = engine.apply_action(final, "1", Action(type="take_discard", choice="0"))
+    final = engine.apply_action(final, "1", Action(type="end_turn"))
+    assert final["phase"] == "round_over" and not any(final["scores"].values())
+    assert paper_inventory(final) == paper_inventory(initial)
+    assert state == initial
+
+
+@pytest.mark.parametrize("seats", [2, 4])
+@pytest.mark.parametrize("draw", ["stock", "fish"])
+def test_paper_last_stock_card_and_fish_exhaustion_still_allow_mermaid_override(seats, draw):
+    mermaids = ids("mermaid", 4)
+    hands = {str(i): [] for i in range(seats)}
+    hands["0"] = ids("shell", 6)
+    hands["1"] = mermaids[:3] + ids("fish", 2)
+    engine, state = paper_state(hands)
+    state["deck"].remove(mermaids[3])
+    state["piles"][0].extend(state["deck"])
+    state["deck"] = [mermaids[3]]
+    state = engine.apply_action(state, "0", Action(type="last_chance"))
+    if draw == "stock":
+        state = engine.apply_action(state, "1", Action(type="take_stock"))
+    else:
+        state = engine.apply_action(state, "1", Action(type="take_discard", choice="0"))
+        state = engine.apply_action(state, "1", Action(type="pair", cards=ids("fish", 2)))
+    assert state["phase"] == "playing" and not state["deck"]
+    before = engine.copy(state)
+    finished = engine.apply_action(state, "1", Action(type="end_turn"))
+    assert finished["phase"] == "round_over" and not any(finished["scores"].values())
+    assert finished["starter"] == 2 % seats and finished["final_queue"] == []
+    assert set(finished["protected"]) == set(hands)
+    won = engine.apply_action(state, "1", Action(type="reveal_mermaids"))
+    assert won["phase"] == "finished" and won["winners"] == ["1"]
+    assert paper_inventory(won) == paper_inventory(finished) == Counter(BY_ID.keys())
+    assert state == before
+
+
+@pytest.mark.parametrize("seats", [2, 4])
 def test_paper_complete_standard_target_match(seats):
     e = PaperEngine()
     players = [f"p{i}" for i in range(seats)]
@@ -296,6 +347,8 @@ def test_boop_checks_only_active_player_and_checks_after_pushes():
     # The opponent's existing line survives their next placement and wins then.
     s = e.apply_action(s, "b", Action(type="place", color="kitten", choice="30"))
     assert s["winners"] == ["b"]
+    assert e.project_view(s, "a").detail["outcome_reason"] == "three-cats"
+    assert e.project_view(s, "a").detail["winning_cells"] == [0, 1, 2]
     e, s = boop_state([(0, "a", "cat"), (1, "a", "cat"), (2, "a", "cat")])
     s = e.apply_action(s, "a", Action(type="place", color="kitten", choice="35"))
     assert s["winners"] == ["a"] and not e.legal_actions(s, "a")
@@ -314,6 +367,8 @@ def test_boop_eight_adults_win_and_invalid_moves_rejected():
         e.apply_action(s, "a", Action(type="place", color="cat", choice="0"))
     s = e.apply_action(s, "a", Action(type="place", color="cat", choice="35"))
     assert s["winners"] == ["a"]
+    assert e.project_view(s, "b").detail["outcome_reason"] == "eight-cats"
+    assert e.project_view(s, "b").detail["winning_cells"] == positions + [35]
     assert_boop_counts(s)
 
 

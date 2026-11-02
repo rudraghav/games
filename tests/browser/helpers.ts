@@ -18,9 +18,16 @@ const TRANSIENT_REASONS = [
   'EAI_AGAIN',
 ] as const;
 type TransportReason = (typeof TRANSIENT_REASONS)[number] | 'OTHER' | 'COOKIE_SESSION';
-const transportCounts = { retryAttempts: 0, recovered: 0, failed: 0 };
+const transportCounts = {
+  retryAttempts: 0,
+  recovered: 0,
+  failed: 0,
+  httpRequests: 0,
+  httpFailures: 0,
+};
+const httpOperations = new Map<string, { count: number; totalMs: number; maxMs: number }>();
 export function transportTelemetry() {
-  return { ...transportCounts };
+  return { ...transportCounts, httpOperations: Object.fromEntries(httpOperations) };
 }
 
 export class TestTransportError extends Error {
@@ -61,6 +68,7 @@ export async function requestAs(page: Page, path: string, method = 'GET', data?:
     method === 'GET' || (method === 'POST' && /^rooms\/[^/]+\/heartbeat$/.test(path));
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
+      const started = performance.now();
       const response = await page.request.fetch(`/api/backend/v1/${path}`, {
         method,
         data,
@@ -71,6 +79,19 @@ export async function requestAs(page: Page, path: string, method = 'GET', data?:
             : {}),
         },
       });
+      const duration = Math.round(performance.now() - started);
+      const endpoint = path
+        .replace(/(rooms\/)(?!join(?:\/|$))[^/]+/, '$1:room')
+        .replace(/(members\/)[^/]+/, '$1:member');
+      const key = `${method} ${endpoint} ${response.status()}`;
+      const total = httpOperations.get(key) || { count: 0, totalMs: 0, maxMs: 0 };
+      httpOperations.set(key, {
+        count: total.count + 1,
+        totalMs: total.totalMs + duration,
+        maxMs: Math.max(total.maxMs, duration),
+      });
+      transportCounts.httpRequests++;
+      if (response.status() >= 400) transportCounts.httpFailures++;
       if (attempt) transportCounts.recovered++;
       return response; // HTTP errors are returned untouched and never retried.
     } catch (error) {

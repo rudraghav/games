@@ -16,3 +16,12 @@ double-down's single card, both soft-17 settings and min/max complete rounds wit
 all 312 card identities conserved. A split 21 ends automatically and pays as an
 ordinary hand. Insurance is offered only when affordable. House rules above
 resolve options that vary between casinos; they are not universal casino rules.
+
+The active-hand projection is now viewer-specific and present only during that
+player's playing turn. Split-hand controls name the affected hand. At settlement,
+the server exposes each hand's outcome, reason, returned chips and net result,
+plus a separate insurance stake/return/net ledger. Settlement and explanation
+share one pure hand calculation, so natural 3:2 and ordinary split-21 payouts
+cannot diverge. Dealer natural/settlement information remains absent until the
+hole card is publicly revealed. `test_casino_explanations.py` checks these
+boundaries and reconciles hand plus insurance totals against saved profit.

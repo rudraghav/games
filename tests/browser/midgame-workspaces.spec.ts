@@ -174,6 +174,10 @@ test('legal split, insurance, declaration, challenge and round-closing continuat
       const index = item!.room.game!.hand.findIndex((card) => card.id === item!.next.action.card);
       await page.locator('.rummy-groups .card-hand > button').nth(index).click();
       await page.getByRole('button', { name: move.label, exact: true }).click();
+    } else if (game === 'boop') {
+      await page.getByRole('button', { name: move.label, exact: true }).click();
+      await expect(page.getByLabel('Submitted action')).toHaveText('No action submitted');
+      await page.getByRole('button', { name: 'Confirm graduation', exact: true }).click();
     } else if (game === 'sea-salt-paper') {
       const target = item!.room.members.find((member) => member.id === item!.next.action.target)!;
       await page.getByRole('button', { name: `${target.name} · random card`, exact: true }).click();

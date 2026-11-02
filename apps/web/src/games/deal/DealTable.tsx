@@ -6,7 +6,7 @@ import { ArrowRight, CircleHelp, Info, ShieldCheck, SlidersHorizontal, X } from 
 import { playerName, type TableProps } from '../types';
 import { DealPlayer } from './DealPlayer';
 import { DealComposer, optionKey } from './DealComposer';
-import { bankValue, suggestBankPayment } from './presentation';
+import { paymentSelection, pileName, suggestBankPayment } from './presentation';
 import { DealCardInformation } from './DealCardInformation';
 import { dealInfoEntries } from './information';
 
@@ -35,15 +35,21 @@ export function DealTable(props: TableProps) {
   });
   const own = match.players.find((player) => player.id === selfId);
   const pay = match.actions.find((option) => option.value.type === 'pay');
-  const signature = JSON.stringify([pay?.eligibleCards, details.pendingAction, room.matchVersion]);
+  const signature = JSON.stringify([
+    pay?.eligibleCards,
+    details.pendingAction,
+    details.paymentBundles,
+    room.matchVersion,
+  ]);
   const paid = payment.signature === signature ? payment.cards : [];
   const assets = own ? [...own.bank, ...Object.values(own.properties).flat()] : [];
-  const paidValue = assets
-    .filter((card) => paid.includes(card.id))
-    .reduce((sum, card) => sum + bankValue(card), 0);
+  const quote = paymentSelection(details.paymentBundles, paid);
+  const paidValue = quote.amount;
   const paymentValid =
     pay &&
-    (paidValue >= details.paymentAmount || pay.eligibleCards.every((id) => paid.includes(id)));
+    quote.valid &&
+    details.paymentBundles.length > 0 &&
+    (paidValue >= details.paymentAmount || pay.eligibleCards.every((id) => quote.ids.includes(id)));
   const card = [
     ...match.hand,
     ...match.players.flatMap((player) => [
@@ -91,6 +97,10 @@ export function DealTable(props: TableProps) {
   const end = match.actions.find((option) => option.value.type === 'end_turn');
   const counter = match.actions.filter((option) => ['accept', 'no'].includes(option.value.type));
   const effect = details.pendingAction;
+  const publicCards = match.players.flatMap((player) => [
+    ...player.bank,
+    ...Object.values(player.properties).flat(),
+  ]);
   const bank = options.find((option) => option.value.type === 'bank');
   const placements = options.filter((option) =>
     ['property', 'rearrange'].includes(option.value.type),
@@ -106,10 +116,14 @@ export function DealTable(props: TableProps) {
     onSelect: select,
     onInspect: inspect,
     onDestination: choose,
-    previewIds: candidate
-      ? [candidate.value.choice, ...(candidate.value.cards || [])].filter(Boolean)
-      : [],
-    targeted: candidate?.value.target || target,
+    previewIds: [
+      ...(candidate
+        ? [candidate.value.choice, ...(candidate.value.cards || [])].filter(Boolean)
+        : []),
+      ...(effect?.transfers.flatMap((transfer) => transfer.cards) || []),
+      ...quote.carried,
+    ],
+    targeted: candidate?.value.target || target || effect?.target,
     targetable: [...new Set(options.map((option) => option.value.target).filter(Boolean))],
     onTarget: (id: string) => {
       setTarget(id);
@@ -286,8 +300,37 @@ export function DealTable(props: TableProps) {
                       ? `${playerName(room, effect.actor)} → ${playerName(room, effect.target)}${effect.amount ? ` · ${effect.amount}M` : ''}`
                       : match.message}
                   </p>
+                  {effect?.source_collection ? (
+                    <p className="small">
+                      Rent from {pileName(effect.source_collection, details.propertyGroups)}
+                      {effect.multiplier > 1 ? ` · ${effect.multiplier}× rent` : ''}
+                    </p>
+                  ) : null}
+                  {effect?.category ? <p>Take {effect.category} cards from their hand.</p> : null}
                 </div>
               </div>
+              {effect?.transfers.map((transfer, index) => (
+                <div key={`${transfer.source}:${index}`}>
+                  <p className="small">
+                    {effect.blocked ? 'If restored: ' : ''}
+                    {playerName(room, transfer.source)} → {playerName(room, transfer.target)}
+                    {effect.collection
+                      ? ` · ${pileName(effect.collection, details.propertyGroups)}`
+                      : ''}
+                  </p>
+                  <div className="deal-resolution-actions">
+                    {transfer.cards.map((id) => {
+                      const asset = publicCards.find((item) => item.id === id);
+                      return asset ? (
+                        <Button key={id} variant="ghost" size="sm" onClick={() => inspect(id)}>
+                          {asset.label} · {asset.value}
+                          <Info size={14} />
+                        </Button>
+                      ) : null;
+                    })}
+                  </div>
+                </div>
+              ))}
               {pay ? (
                 <>
                   <p>Choose bank cards or properties below. No change is given.</p>
@@ -299,7 +342,33 @@ export function DealTable(props: TableProps) {
                         : `${Math.max(0, details.paymentAmount - paidValue)}M remaining`}
                     </span>
                   </div>
+                  {quote.ids.length ? (
+                    <div aria-label="Payment transfer preview">
+                      <p className="small">{paidValue}M will leave your table:</p>
+                      <div className="deal-resolution-actions">
+                        {quote.ids.map((id) => {
+                          const asset = assets.find((item) => item.id === id);
+                          return asset ? (
+                            <Button key={id} variant="ghost" size="sm" onClick={() => inspect(id)}>
+                              {asset.label} · {asset.value}
+                              {quote.carried.includes(id) ? ' · attached' : ''}
+                              <Info size={14} />
+                            </Button>
+                          ) : null;
+                        })}
+                      </div>
+                    </div>
+                  ) : null}
                   <div className="deal-resolution-actions">
+                    {paid.length ? (
+                      <Button
+                        variant="ghost"
+                        disabled={pending}
+                        onClick={() => setPayment({ signature, cards: [] })}
+                      >
+                        Clear payment
+                      </Button>
+                    ) : null}
                     <Button
                       variant="secondary"
                       disabled={pending || room.paused}
@@ -404,6 +473,13 @@ export function DealTable(props: TableProps) {
             Draw two at the start of your turn. Play up to three cards. Build three complete sets in
             different colours to win. Pay bills from your bank and properties, never your hand. A
             banked action is money for the rest of the game.
+          </p>
+          <p>
+            Linked buildings leave with their property and count toward payment. This is the Games
+            building convention; review every transferred card before paying.
+            {match.id === 'deal'
+              ? ' Just Say No never uses an ordinary play.'
+              : ' In this No Mercy house format, an own-turn Just Say No uses a play.'}
           </p>
           {match.id === 'deal-no-mercy' ? (
             <p>

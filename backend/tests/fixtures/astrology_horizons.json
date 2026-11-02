@@ -1,0 +1,121 @@
+{
+  "scope": "fresh NASA/JPL Horizons public synthetic epochs",
+  "source": "https://ssd.jpl.nasa.gov/api/horizons.api",
+  "manual": "https://ssd.jpl.nasa.gov/horizons/manual.html",
+  "parameters": {
+    "center": "500@399",
+    "quantities": "31",
+    "ephem_type": "OBSERVER"
+  },
+  "first_attempt": "15 separate queries in 3-worker pool interrupted by external HTTP503; no scientific result inferred",
+  "tolerance_arcminutes": 1,
+  "results": [
+    {
+      "instant_utc": "1900-01-01T12:00:00+00:00",
+      "body": "sun",
+      "jpl_longitude": 280.6632209,
+      "app_longitude": 280.6633675096912,
+      "error_arcminutes": 0.008796581473689002
+    },
+    {
+      "instant_utc": "1950-01-01T12:00:00+00:00",
+      "body": "sun",
+      "jpl_longitude": 280.5143619,
+      "app_longitude": 280.5142149865402,
+      "error_arcminutes": 0.00881480758721409
+    },
+    {
+      "instant_utc": "2026-01-01T12:00:00+00:00",
+      "body": "sun",
+      "jpl_longitude": 281.0780104,
+      "app_longitude": 281.0781211685975,
+      "error_arcminutes": 0.0066461158496622375
+    },
+    {
+      "instant_utc": "1900-01-01T12:00:00+00:00",
+      "body": "moon",
+      "jpl_longitude": 279.6163189,
+      "app_longitude": 279.61700771685025,
+      "error_arcminutes": 0.041329011014568096
+    },
+    {
+      "instant_utc": "1950-01-01T12:00:00+00:00",
+      "body": "moon",
+      "jpl_longitude": 67.5445015,
+      "app_longitude": 67.5445052884186,
+      "error_arcminutes": 0.00022730511659574404
+    },
+    {
+      "instant_utc": "2026-01-01T12:00:00+00:00",
+      "body": "moon",
+      "jpl_longitude": 74.2252887,
+      "app_longitude": 74.22634361697492,
+      "error_arcminutes": 0.06329501849450025
+    },
+    {
+      "instant_utc": "1900-01-01T12:00:00+00:00",
+      "body": "mercury",
+      "jpl_longitude": 259.6392831,
+      "app_longitude": 259.63930098602583,
+      "error_arcminutes": 0.0010731615498116298
+    },
+    {
+      "instant_utc": "1950-01-01T12:00:00+00:00",
+      "body": "mercury",
+      "jpl_longitude": 299.971989,
+      "app_longitude": 299.9715489655922,
+      "error_arcminutes": 0.026402064468129538
+    },
+    {
+      "instant_utc": "2026-01-01T12:00:00+00:00",
+      "body": "mercury",
+      "jpl_longitude": 269.4150605,
+      "app_longitude": 269.414656608295,
+      "error_arcminutes": 0.024233502299466636
+    },
+    {
+      "instant_utc": "1900-01-01T12:00:00+00:00",
+      "body": "saturn",
+      "jpl_longitude": 267.7748827,
+      "app_longitude": 267.77314213746337,
+      "error_arcminutes": 0.1044337521966554
+    },
+    {
+      "instant_utc": "1950-01-01T12:00:00+00:00",
+      "body": "saturn",
+      "jpl_longitude": 169.4355254,
+      "app_longitude": 169.43505649317123,
+      "error_arcminutes": 0.028134409725453224
+    },
+    {
+      "instant_utc": "2026-01-01T12:00:00+00:00",
+      "body": "saturn",
+      "jpl_longitude": 356.196588,
+      "app_longitude": 356.19443976471086,
+      "error_arcminutes": 0.12889411734931855
+    },
+    {
+      "instant_utc": "1900-01-01T12:00:00+00:00",
+      "body": "pluto",
+      "jpl_longitude": 75.2427825,
+      "app_longitude": 75.24379389669086,
+      "error_arcminutes": 0.06068380145052288
+    },
+    {
+      "instant_utc": "1950-01-01T12:00:00+00:00",
+      "body": "pluto",
+      "jpl_longitude": 137.7894116,
+      "app_longitude": 137.78979823401377,
+      "error_arcminutes": 0.023198040826741817
+    },
+    {
+      "instant_utc": "2026-01-01T12:00:00+00:00",
+      "body": "pluto",
+      "jpl_longitude": 302.7337045,
+      "app_longitude": 302.7333565537819,
+      "error_arcminutes": 0.02087677308509228
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

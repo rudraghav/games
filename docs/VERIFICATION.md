@@ -271,3 +271,16 @@ outputs are never overwritten. Validate both the structured output and its
 usefulness: syntactically valid generic astrology text is insufficient. Fresh
 interpretations identify two or three computed body/sign/house anchors per
 selected system. Provider reliability is not established by a small live sample.
+
+## Audit-fix verification additions
+
+The backend group includes game-specific explanation/privacy tests; multiplayer
+includes natural2/6seat Rummy declaration HTTP persistence. `shared-audit-fixes`
+covers all four Uno choices, all78Tarot mappings/five corrected frames and one
+bounded8room/192request local workload. New casino and modern-board browser specs
+cover authoritative explanation/inspection/confirmation, saved Blackjack refresh
+and narrow board overview. Tarot retry tests preserve nonempty/edited/cleared
+questions and historical-time labeling. `transportTelemetry` now counts HTTP
+failures separately and aggregates only normalized endpoint/status/duration.
+`eval_astrology.py --system western|vedic|both` and `--ordinary` support a bounded
+nonpersonal reading matrix; use a new ignored output path, never overwrite evidence.

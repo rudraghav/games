@@ -21,6 +21,7 @@ const paper = z.object({
     z.string(),
     z.object({ card_points: count, color_bonus: count, award: count }),
   ),
+  ending_consequences: z.record(z.string(), z.string()).default({}),
 });
 const boop = z.object({
   pools: z.record(z.string(), z.object({ kitten: count.max(8), cat: count.max(8) })),
@@ -36,6 +37,8 @@ const boop = z.object({
       kind: z.enum(['kitten', 'cat']),
     }),
   ),
+  outcome_reason: z.enum(['three-cats', 'eight-cats']).nullable().default(null),
+  winning_cells: z.array(z.number().int().min(0).max(35)).default([]),
 });
 export const paperDetails = (detail: Detail) => paper.parse(detail);
 export const boopDetails = (detail: Detail) => boop.parse(detail);

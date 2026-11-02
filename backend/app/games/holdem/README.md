@@ -19,3 +19,13 @@ cumulative short all-ins, odd-chip order and min/max complete matches with exact
 card/chip conservation. Uncalled excess is refunded separately, never counted
 as a winning side pot; a lone funded player cannot raise against only all-ins.
 Existing side-pot fixtures verify unequal stacks and folded-hand redaction.
+
+The projection exposes public total contributions and the same contribution
+layers used by settlement, including eligible players and currently unmatched
+wagers. Settled pots record exact awards and odd-chip recipients; refunds remain
+separate. Publicly shown hands include best-five cards and category/kicker
+comparison text from the existing poker evaluator. Folded and uncontested
+unshown hands never acquire explanations. The UI uses these server fields rather
+than recomputing winners. The unequal-commitment tests in
+`test_casino_explanations.py` are explicitly synthetic capability fixtures: they
+do not claim naturally reached unequal-stack rooms in a 200-chip reset format.

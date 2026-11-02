@@ -1,0 +1,63 @@
+{
+  "rooms": 8,
+  "concurrentRequests": 16,
+  "readAndHeartbeatResponses": 192,
+  "httpFailures": 0,
+  "transportFailures": 0,
+  "retries": 0,
+  "httpOperations": {
+    "POST rooms 201": {
+      "count": 8,
+      "totalMs": 944,
+      "maxMs": 124
+    },
+    "PUT rooms/:room/ready 200": {
+      "count": 8,
+      "totalMs": 607,
+      "maxMs": 86
+    },
+    "POST rooms/:room/start 200": {
+      "count": 8,
+      "totalMs": 573,
+      "maxMs": 77
+    },
+    "GET rooms/:room 200": {
+      "count": 96,
+      "totalMs": 9205,
+      "maxMs": 207
+    },
+    "POST rooms/:room/heartbeat 200": {
+      "count": 96,
+      "totalMs": 10375,
+      "maxMs": 209
+    },
+    "POST rooms/:room/abandon 200": {
+      "count": 8,
+      "totalMs": 253,
+      "maxMs": 34
+    },
+    "POST rooms/:room/leave 200": {
+      "count": 8,
+      "totalMs": 249,
+      "maxMs": 34
+    }
+  },
+  "cleanup": [
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200
+  ]
+}

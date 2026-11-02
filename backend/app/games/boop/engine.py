@@ -55,6 +55,7 @@ class BoopEngine(BaseEngine):
                 "pools": {p: {"kitten": 8, "cat": 0} for p in players},
                 "retired": dict.fromkeys(players, 0), "reserve": dict.fromkeys(players, 8),
                 "winners": [], "last_move": None, "last_pushes": [], "moves": 0,
+                "outcome_reason": None, "winning_cells": [],
                 "message": "A cozy bed. Pick a square for your first kitten."}
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
@@ -120,8 +121,14 @@ class BoopEngine(BaseEngine):
             pushes.append({"from": source, "to": destination, **piece})
         s.update(last_move=index, last_pushes=pushes, moves=s["moves"] + 1)
         own = [piece for piece in s["board"] if piece and piece["owner"] == player]
-        if lines(s["board"], player, adult_only=True) or len(own) == 8 and all(p["kind"] == "cat" for p in own):
-            s.update(phase="finished", winners=[player], message="A perfect cat nap. You win!")
+        adult_lines = lines(s["board"], player, adult_only=True)
+        if adult_lines or len(own) == 8 and all(p["kind"] == "cat" for p in own):
+            s.update(phase="finished", winners=[player],
+                     outcome_reason="three-cats" if adult_lines else "eight-cats",
+                     winning_cells=list(adult_lines[0]) if adult_lines else
+                     [i for i, p in enumerate(s["board"]) if p and p["owner"] == player],
+                     message="Three adult cats in a line win!" if adult_lines else
+                     "All eight adult cats are on the bed. You win!")
         elif lines(s["board"], player) or len(own) == 8:
             s.update(phase="graduating", message="Choose one line to graduate, or bring a piece back if all eight are down.")
         else:
@@ -140,5 +147,7 @@ class BoopEngine(BaseEngine):
                        for i, piece in enumerate(s["board"])],
             actions=self.legal_actions(s, player), winners=s["winners"], message=s["message"],
             detail={"pools": s["pools"], "retired": s["retired"], "reserve": s["reserve"],
-                    "last_move": s["last_move"], "last_pushes": s["last_pushes"], "moves": s["moves"]},
+                    "last_move": s["last_move"], "last_pushes": s["last_pushes"], "moves": s["moves"],
+                    "outcome_reason": s.get("outcome_reason"),
+                    "winning_cells": s.get("winning_cells", [])},
         )

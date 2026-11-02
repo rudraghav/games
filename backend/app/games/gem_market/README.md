@@ -19,6 +19,15 @@ This edition spends matching chips before gold automatically. Excess chips above
 ten are returned by explicit choice before ending the turn. Then choose one
 eligible patron, worth three prestige, if any. Tokens/chips are room-only play pieces.
 
+The actor's projection includes a purchase quote for every visible development
+and their own reserved cards: printed cost, applied discounts, matching/gold
+spend, missing colors and remaining chips. The same pure quote calculation owns
+purchase payment. Unaffordable quotes give a shortfall and no fictitious resulting
+wallet; opponents' reserved identities never enter the quote map. The decision
+area shows the selected quote, and prioritizes required chip returns or patron
+selection over the ordinary turn choices. Market headings count the cards
+actually remaining in that tier, including zero after depletion.
+
 At fifteen prestige, finish the current seating round. Most prestige wins, then
 fewest purchased cards; a remaining tie is shared. If every player has no legal
 action and passes consecutively, settle using the same ranking. Cards from market

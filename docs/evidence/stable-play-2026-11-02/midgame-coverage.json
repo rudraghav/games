@@ -338,7 +338,7 @@
       "physicalInventoryChecked": true,
       "seats": 5,
       "seed": 31,
-      "steps": 212,
+      "steps": 147,
       "stress": false,
       "supplemental": false
     },
@@ -685,7 +685,7 @@
       "physicalInventoryChecked": true,
       "seats": 2,
       "seed": 17,
-      "steps": 223,
+      "steps": 306,
       "stress": false,
       "supplemental": false
     },
@@ -732,7 +732,7 @@
       "physicalInventoryChecked": true,
       "seats": 8,
       "seed": 31,
-      "steps": 484,
+      "steps": 750,
       "stress": false,
       "supplemental": false
     },

@@ -49,12 +49,14 @@ def test_checkers_blocked_opponent_win_and_quiet_draw():
     s = checkers_position({42: 0, 35: 1})
     end = engine.apply_action(s, "a", Action(type="move", choice="42:28"))
     assert end["phase"] == "finished" and end["winners"] == ["a"]
+    assert engine.project_view(end, "a").detail["outcome_reason"] == "no-pieces"
     with pytest.raises(RuleError):
         engine.apply_action(end, "a", Action(type="move", choice="28:19"))
     s = checkers_position({56: 2, 7: 3})
     s["quiet"] = 79
     end = engine.apply_action(s, "a", Action(type="move", choice="56:49"))
     assert end["phase"] == "finished" and end["draw"] and not end["winners"]
+    assert engine.project_view(end, "b").detail["outcome_reason"] == "quiet-limit"
 
 
 def test_checkers_third_repetition_counts_initial_position_and_side_to_move():
@@ -73,6 +75,7 @@ def test_checkers_third_repetition_counts_initial_position_and_side_to_move():
         s = engine.apply_action(s, player, Action(type="move", choice=move))
     assert s["phase"] == "finished" and s["draw"] and not s["winners"]
     assert s["positions"][key] == 3
+    assert engine.project_view(s, "a").detail["outcome_reason"] == "threefold"
     assert not engine.legal_actions(s, "a") and not engine.legal_actions(s, "b")
 
 

@@ -68,12 +68,14 @@
     "play_mode": "competitive",
     "score_label": "Points",
     "score_order": "high",
-    "rules_version": "1",
+    "rules_version": "b0965-faq-2",
     "settings": [],
     "rules": [
       "Collect three complete property sets in different colours.",
       "Draw two and play up to three cards per turn. Keep at most seven.",
-      "Bank money to pay rent. Counter attacks with Just Say No."
+      "Bank money to pay rent. Counter attacks with Just Say No.",
+      "Just Say No never uses one of your three ordinary plays.",
+      "Games building convention: linked buildings travel with their property; their full value counts toward payment."
     ]
   },
   {
@@ -96,6 +98,8 @@
       "Collect three complete property sets in different colours.",
       "Draw two and play up to three cards per turn. Keep at most seven.",
       "Debt must be settled before your own plays. Nothing is safe.",
+      "Own-turn Just Say No uses a play in this No Mercy house format.",
+      "Games building convention: linked buildings travel with their property; their full value counts toward payment.",
       "Games house deck: 18 money cards \u2014 5\u00d71M, 4\u00d72M, 3\u00d73M, 2\u00d74M, 2\u00d75M, 1\u00d710M, 1\u00d715M. Printed action effects; money copy counts are a house convention."
     ]
   },
@@ -607,14 +611,15 @@
     "play_mode": "competitive",
     "score_label": "Points",
     "score_order": "high",
-    "rules_version": "base-58-1",
+    "rules_version": "base58-exhaust-1",
     "settings": [],
     "rules": [
       "58-card base edition. Take a discard top, or draw two, keep one and discard the other.",
       "Play duos: crabs search one discard, boats repeat your turn, fish draw, shark+swimmer steal.",
       "Played and unplayed cards both score. At 7+ points, choose Stop or bet on Last Chance.",
       "Last Chance reveals/protects hands. A successful caller scores cards+color; others color only. Failed caller scores color only.",
-      "Stock exhaustion at turn end scores nothing. Targets 40/35/30 at 2/3/4 seats; all four mermaids win instantly."
+      "Games exhaustion convention: an empty stock at turn end cancels scoring, including unfinished Last Chance. Stop scores immediately.",
+      "Targets 40/35/30 at 2/3/4 seats; all four mermaids win instantly."
     ]
   },
   {

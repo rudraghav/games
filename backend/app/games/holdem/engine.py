@@ -1,3 +1,5 @@
+from pydantic import JsonValue
+
 from app.core.cards import card_view, draw, poker_rank, rng, standard_deck
 from app.core.contracts import (
     Action,
@@ -10,6 +12,7 @@ from app.core.contracts import (
     legal,
     validate_action,
 )
+from app.core.poker_explanation import explain_poker_hand
 
 
 class HoldemEngine(BaseEngine):
@@ -83,6 +86,20 @@ class HoldemEngine(BaseEngine):
     def _active(self, s: State) -> list[str]:
         return [p for p in s["order"] if not s["players"][p]["folded"]]
 
+    def _pot_layers(self, s: State) -> list[dict]:
+        """The same public contribution layers drive preview and settlement."""
+        previous = 0
+        layers = []
+        active = self._active(s)
+        for level in sorted({p["total"] for p in s["players"].values() if p["total"]}):
+            contributors = [p for p in s["order"] if s["players"][p]["total"] >= level]
+            eligible = [p for p in active if s["players"][p]["total"] >= level] or active
+            layers.append({"amount": (level - previous) * len(contributors),
+                           "contributors": contributors, "eligible": eligible,
+                           "refund_to": contributors[0] if len(contributors) == 1 else None})
+            previous = level
+        return layers
+
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
         if s["phase"] == "finished" or s["order"][s["turn"]] != player:
             return []
@@ -120,32 +137,27 @@ class HoldemEngine(BaseEngine):
             if showdown
             else {}
         )
-        previous = 0
         winners = set()
-        levels = sorted({p["total"] for p in s["players"].values() if p["total"]})
-        for level in levels:
-            contributors = [p for p in s["order"] if s["players"][p]["total"] >= level]
-            amount = (level - previous) * len(contributors)
-            if len(contributors) == 1:
+        for layer in self._pot_layers(s):
+            amount = layer["amount"]
+            if layer["refund_to"] is not None:
                 # Returning an unmatched wager is not winning a side pot.
-                p = contributors[0]
+                p = layer["refund_to"]
                 s["players"][p]["chips"] += amount
                 s.setdefault("refunds", {})[p] = amount
-                previous = level
                 continue
-            eligible = [p for p in active if s["players"][p]["total"] >= level]
-            if not eligible:
-                # Folded chips cannot win; a sole surviving hand receives dead money.
-                eligible = active
+            eligible = layer["eligible"]
             best = max(ranks.get(p, (0,)) for p in eligible)
             won = [p for p in eligible if ranks.get(p, (0,)) == best]
             clockwise = s["order"][s["button"] + 1 :] + s["order"][: s["button"] + 1]
             won.sort(key=clockwise.index)
-            for i, p in enumerate(won):
-                s["players"][p]["chips"] += amount // len(won) + (1 if i < amount % len(won) else 0)
+            awards = {p: amount // len(won) + (1 if i < amount % len(won) else 0)
+                      for i, p in enumerate(won)}
+            for p in won:
+                s["players"][p]["chips"] += awards[p]
                 winners.add(p)
-            s["pots"].append({"amount": amount, "winners": won})
-            previous = level
+            s["pots"].append({"amount": amount, "winners": won, "eligible": eligible,
+                              "awards": awards, "odd_chips": won[:amount % len(won)]})
         s["winners"] = [p for p in s["order"] if p in winners]
         s["phase"] = "finished"
         s["message"] = "Showdown. Pots settled." if showdown else "Everyone else folded."
@@ -210,6 +222,7 @@ class HoldemEngine(BaseEngine):
         return s
 
     def project_view(self, s: State, player: str) -> GameView:
+        live_pots: list[JsonValue] = list(self._pot_layers(s)) if s["phase"] != "finished" else []
         return GameView(
             game_id="holdem",
             phase=s["phase"],
@@ -241,5 +254,13 @@ class HoldemEngine(BaseEngine):
                 "current_bet": s["current_bet"],
                 "pots": s["pots"],
                 "refunds": s.get("refunds", {}),
+                "contributions": {p: v["total"] for p, v in s["players"].items()},
+                "live_pots": live_pots,
+                "hand_evaluations": {
+                    p: explain_poker_hand(s["players"][p]["cards"] + s["board"])
+                    for p in s["shown"] if len(s["board"]) == 5
+                },
+                "settlement_reason": ("showdown" if s["shown"] else "uncontested")
+                if s["phase"] == "finished" else None,
             },
         )

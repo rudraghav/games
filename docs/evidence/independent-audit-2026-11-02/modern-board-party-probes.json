@@ -1,0 +1,1054 @@
+{
+  "evidence_type": "fresh local legal engine sequences; no saved match or production actions",
+  "paper": [
+    {
+      "seats": 2,
+      "seed": 0,
+      "branch": "ordinary_finish",
+      "prefix_actions": 83,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 0.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 1,
+        "stock_count": 0,
+        "own_points": 12,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 1,
+          "phase": "playing",
+          "legal_action_index": 7,
+          "action_type": "end_turn"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 10,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 10,
+            "color_bonus": 2,
+            "award": 0
+          },
+          "qa-1": {
+            "card_points": 12,
+            "color_bonus": 4,
+            "award": 0
+          }
+        },
+        "message": "The stock ran out. This tide scores no points."
+      }
+    },
+    {
+      "seats": 2,
+      "seed": 0,
+      "branch": "immediate_stop",
+      "prefix_actions": 83,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 0.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 1,
+        "stock_count": 0,
+        "own_points": 12,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 1,
+          "phase": "playing",
+          "legal_action_index": 5,
+          "action_type": "stop"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 10,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 10,
+          "qa-1": 12
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 10,
+            "color_bonus": 2,
+            "award": 10
+          },
+          "qa-1": {
+            "card_points": 12,
+            "color_bonus": 4,
+            "award": 12
+          }
+        },
+        "message": "Round scored. Take a look before the next tide."
+      }
+    },
+    {
+      "seats": 2,
+      "seed": 0,
+      "branch": "last_chance",
+      "prefix_actions": 83,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 0.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 1,
+        "stock_count": 0,
+        "own_points": 12,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 1,
+          "phase": "playing",
+          "legal_action_index": 6,
+          "action_type": "last_chance"
+        },
+        {
+          "actor_seat": 0,
+          "phase": "draw",
+          "legal_action_index": 0,
+          "action_type": "take_discard"
+        },
+        {
+          "actor_seat": 0,
+          "phase": "playing",
+          "legal_action_index": 5,
+          "action_type": "end_turn"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 1,
+        "stock_count": 0,
+        "own_points": 12,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 11,
+            "color_bonus": 3,
+            "award": 0
+          },
+          "qa-1": {
+            "card_points": 12,
+            "color_bonus": 4,
+            "award": 0
+          }
+        },
+        "message": "The stock ran out. This tide scores no points."
+      },
+      "after_special_action": {
+        "phase": "draw",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 10,
+        "legal_action_types": [
+          "take_discard"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {},
+        "message": "Last Chance! Everyone else has one final turn."
+      }
+    },
+    {
+      "seats": 2,
+      "seed": 0,
+      "branch": "boat_then_finish",
+      "prefix_actions": 83,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 0.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 1,
+        "stock_count": 0,
+        "own_points": 12,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 1,
+          "phase": "playing",
+          "legal_action_index": 0,
+          "action_type": "pair"
+        },
+        {
+          "actor_seat": 1,
+          "phase": "draw",
+          "legal_action_index": 0,
+          "action_type": "take_discard"
+        },
+        {
+          "actor_seat": 1,
+          "phase": "playing",
+          "legal_action_index": 9,
+          "action_type": "end_turn"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 10,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 10,
+            "color_bonus": 2,
+            "award": 0
+          },
+          "qa-1": {
+            "card_points": 13,
+            "color_bonus": 4,
+            "award": 0
+          }
+        },
+        "message": "The stock ran out. This tide scores no points."
+      },
+      "after_special_action": {
+        "phase": "draw",
+        "actor_seat": 1,
+        "stock_count": 0,
+        "own_points": 12,
+        "legal_action_types": [
+          "take_discard"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {},
+        "message": "A boat duo is on the table."
+      }
+    },
+    {
+      "seats": 2,
+      "seed": 0,
+      "branch": "boat_then_stop",
+      "prefix_actions": 83,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 0.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 1,
+        "stock_count": 0,
+        "own_points": 12,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 1,
+          "phase": "playing",
+          "legal_action_index": 0,
+          "action_type": "pair"
+        },
+        {
+          "actor_seat": 1,
+          "phase": "draw",
+          "legal_action_index": 0,
+          "action_type": "take_discard"
+        },
+        {
+          "actor_seat": 1,
+          "phase": "playing",
+          "legal_action_index": 7,
+          "action_type": "stop"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 10,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 10,
+          "qa-1": 13
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 10,
+            "color_bonus": 2,
+            "award": 10
+          },
+          "qa-1": {
+            "card_points": 13,
+            "color_bonus": 4,
+            "award": 13
+          }
+        },
+        "message": "Round scored. Take a look before the next tide."
+      },
+      "after_special_action": {
+        "phase": "draw",
+        "actor_seat": 1,
+        "stock_count": 0,
+        "own_points": 12,
+        "legal_action_types": [
+          "take_discard"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {},
+        "message": "A boat duo is on the table."
+      }
+    },
+    {
+      "seats": 2,
+      "seed": 0,
+      "branch": "stock_exhausted_during_final_turn",
+      "prefix_actions": 80,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 2.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 0,
+        "stock_count": 2,
+        "own_points": 10,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 0,
+          "phase": "playing",
+          "legal_action_index": 6,
+          "action_type": "last_chance"
+        },
+        {
+          "actor_seat": 1,
+          "phase": "draw",
+          "legal_action_index": 0,
+          "action_type": "take_stock"
+        },
+        {
+          "actor_seat": 1,
+          "phase": "choosing",
+          "legal_action_index": 0,
+          "action_type": "keep"
+        },
+        {
+          "actor_seat": 1,
+          "phase": "playing",
+          "legal_action_index": 5,
+          "action_type": "end_turn"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 10,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 10,
+            "color_bonus": 2,
+            "award": 0
+          },
+          "qa-1": {
+            "card_points": 12,
+            "color_bonus": 4,
+            "award": 0
+          }
+        },
+        "message": "The stock ran out. This tide scores no points."
+      }
+    },
+    {
+      "seats": 4,
+      "seed": 45,
+      "branch": "ordinary_finish",
+      "prefix_actions": 83,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 0.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 3,
+        "stock_count": 0,
+        "own_points": 9,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 3,
+          "phase": "playing",
+          "legal_action_index": 3,
+          "action_type": "end_turn"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 4,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 4,
+            "color_bonus": 3,
+            "award": 0
+          },
+          "qa-1": {
+            "card_points": 4,
+            "color_bonus": 3,
+            "award": 0
+          },
+          "qa-2": {
+            "card_points": 0,
+            "color_bonus": 2,
+            "award": 0
+          },
+          "qa-3": {
+            "card_points": 9,
+            "color_bonus": 2,
+            "award": 0
+          }
+        },
+        "message": "The stock ran out. This tide scores no points."
+      }
+    },
+    {
+      "seats": 4,
+      "seed": 45,
+      "branch": "immediate_stop",
+      "prefix_actions": 83,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 0.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 3,
+        "stock_count": 0,
+        "own_points": 9,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 3,
+          "phase": "playing",
+          "legal_action_index": 1,
+          "action_type": "stop"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 4,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 4,
+          "qa-1": 4,
+          "qa-2": 0,
+          "qa-3": 9
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 4,
+            "color_bonus": 3,
+            "award": 4
+          },
+          "qa-1": {
+            "card_points": 4,
+            "color_bonus": 3,
+            "award": 4
+          },
+          "qa-2": {
+            "card_points": 0,
+            "color_bonus": 2,
+            "award": 0
+          },
+          "qa-3": {
+            "card_points": 9,
+            "color_bonus": 2,
+            "award": 9
+          }
+        },
+        "message": "Round scored. Take a look before the next tide."
+      }
+    },
+    {
+      "seats": 4,
+      "seed": 45,
+      "branch": "last_chance",
+      "prefix_actions": 83,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 0.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 3,
+        "stock_count": 0,
+        "own_points": 9,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 3,
+          "phase": "playing",
+          "legal_action_index": 2,
+          "action_type": "last_chance"
+        },
+        {
+          "actor_seat": 0,
+          "phase": "draw",
+          "legal_action_index": 0,
+          "action_type": "take_discard"
+        },
+        {
+          "actor_seat": 0,
+          "phase": "playing",
+          "legal_action_index": 1,
+          "action_type": "end_turn"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 1,
+        "stock_count": 0,
+        "own_points": 4,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 6,
+            "color_bonus": 3,
+            "award": 0
+          },
+          "qa-1": {
+            "card_points": 4,
+            "color_bonus": 3,
+            "award": 0
+          },
+          "qa-2": {
+            "card_points": 0,
+            "color_bonus": 2,
+            "award": 0
+          },
+          "qa-3": {
+            "card_points": 9,
+            "color_bonus": 2,
+            "award": 0
+          }
+        },
+        "message": "The stock ran out. This tide scores no points."
+      },
+      "after_special_action": {
+        "phase": "draw",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 4,
+        "legal_action_types": [
+          "take_discard"
+        ],
+        "remaining_final_turns": 2,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {},
+        "message": "Last Chance! Everyone else has one final turn."
+      }
+    },
+    {
+      "seats": 4,
+      "seed": 45,
+      "branch": "boat_then_finish",
+      "prefix_actions": 83,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 0.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 3,
+        "stock_count": 0,
+        "own_points": 9,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 3,
+          "phase": "playing",
+          "legal_action_index": 0,
+          "action_type": "pair"
+        },
+        {
+          "actor_seat": 3,
+          "phase": "draw",
+          "legal_action_index": 0,
+          "action_type": "take_discard"
+        },
+        {
+          "actor_seat": 3,
+          "phase": "playing",
+          "legal_action_index": 2,
+          "action_type": "end_turn"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 4,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 4,
+            "color_bonus": 3,
+            "award": 0
+          },
+          "qa-1": {
+            "card_points": 4,
+            "color_bonus": 3,
+            "award": 0
+          },
+          "qa-2": {
+            "card_points": 0,
+            "color_bonus": 2,
+            "award": 0
+          },
+          "qa-3": {
+            "card_points": 11,
+            "color_bonus": 2,
+            "award": 0
+          }
+        },
+        "message": "The stock ran out. This tide scores no points."
+      },
+      "after_special_action": {
+        "phase": "draw",
+        "actor_seat": 3,
+        "stock_count": 0,
+        "own_points": 9,
+        "legal_action_types": [
+          "take_discard"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {},
+        "message": "A boat duo is on the table."
+      }
+    },
+    {
+      "seats": 4,
+      "seed": 45,
+      "branch": "boat_then_stop",
+      "prefix_actions": 83,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 0.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 3,
+        "stock_count": 0,
+        "own_points": 9,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 3,
+          "phase": "playing",
+          "legal_action_index": 0,
+          "action_type": "pair"
+        },
+        {
+          "actor_seat": 3,
+          "phase": "draw",
+          "legal_action_index": 0,
+          "action_type": "take_discard"
+        },
+        {
+          "actor_seat": 3,
+          "phase": "playing",
+          "legal_action_index": 0,
+          "action_type": "stop"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 4,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 4,
+          "qa-1": 4,
+          "qa-2": 0,
+          "qa-3": 11
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 4,
+            "color_bonus": 3,
+            "award": 4
+          },
+          "qa-1": {
+            "card_points": 4,
+            "color_bonus": 3,
+            "award": 4
+          },
+          "qa-2": {
+            "card_points": 0,
+            "color_bonus": 2,
+            "award": 0
+          },
+          "qa-3": {
+            "card_points": 11,
+            "color_bonus": 2,
+            "award": 11
+          }
+        },
+        "message": "Round scored. Take a look before the next tide."
+      },
+      "after_special_action": {
+        "phase": "draw",
+        "actor_seat": 3,
+        "stock_count": 0,
+        "own_points": 9,
+        "legal_action_types": [
+          "take_discard"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {},
+        "message": "A boat duo is on the table."
+      }
+    },
+    {
+      "seats": 4,
+      "seed": 117,
+      "branch": "stock_exhausted_during_final_turn",
+      "prefix_actions": 80,
+      "prefix_recipe": "First legal take_stock, keep, or end_turn for the phase; stop at playing with stock 2.",
+      "initial": {
+        "phase": "playing",
+        "actor_seat": 2,
+        "stock_count": 2,
+        "own_points": 8,
+        "legal_action_types": [
+          "end_turn",
+          "last_chance",
+          "pair",
+          "stop"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {},
+        "message": "Card kept. You can play an available duo or finish your turn."
+      },
+      "branch_trace": [
+        {
+          "actor_seat": 2,
+          "phase": "playing",
+          "legal_action_index": 2,
+          "action_type": "last_chance"
+        },
+        {
+          "actor_seat": 3,
+          "phase": "draw",
+          "legal_action_index": 0,
+          "action_type": "take_stock"
+        },
+        {
+          "actor_seat": 3,
+          "phase": "choosing",
+          "legal_action_index": 0,
+          "action_type": "keep"
+        },
+        {
+          "actor_seat": 3,
+          "phase": "playing",
+          "legal_action_index": 0,
+          "action_type": "end_turn"
+        }
+      ],
+      "final": {
+        "phase": "round_over",
+        "actor_seat": 0,
+        "stock_count": 0,
+        "own_points": 1,
+        "legal_action_types": [
+          "next_round"
+        ],
+        "remaining_final_turns": 0,
+        "scores": {
+          "qa-0": 0,
+          "qa-1": 0,
+          "qa-2": 0,
+          "qa-3": 0
+        },
+        "round_result": {
+          "qa-0": {
+            "card_points": 1,
+            "color_bonus": 4,
+            "award": 0
+          },
+          "qa-1": {
+            "card_points": 4,
+            "color_bonus": 2,
+            "award": 0
+          },
+          "qa-2": {
+            "card_points": 8,
+            "color_bonus": 3,
+            "award": 0
+          },
+          "qa-3": {
+            "card_points": 2,
+            "color_bonus": 2,
+            "award": 0
+          }
+        },
+        "message": "The stock ran out. This tide scores no points."
+      }
+    }
+  ],
+  "four_in_a_row": {
+    "columns_zero_indexed": [
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    "phase": "finished",
+    "message": "Four in a row!",
+    "winners": [
+      "qa-0"
+    ],
+    "projected_detail": {
+      "rows": 6,
+      "columns": 7,
+      "draw": false,
+      "last_move": 14
+    },
+    "observation": "Projection identifies last_move, but not the winning four cells or win direction."
+  }
+}

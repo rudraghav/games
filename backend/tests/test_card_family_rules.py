@@ -5,6 +5,7 @@ import json
 import random
 from collections import Counter
 from copy import deepcopy
+from pathlib import Path
 
 import pytest
 
@@ -12,6 +13,7 @@ from app.core.contracts import Action, CardView, RuleError
 from app.games.deal.deck import RENTS, make_deck, property_groups
 from app.games.deal.effects import issue_debt
 from app.games.deal.engine import DealEngine
+from app.games.deal.payments import combine_payment_bundles, payment_bundles
 from app.games.deal.table import assets, draw_cards, groups_for, place, rent
 from app.games.uno.deck import COLORS, deck
 from app.games.uno.engine import UnoEngine
@@ -74,6 +76,161 @@ def assert_inventory(engine, state):
     else:
         expected = deck(engine.mercy)
     assert Counter(cards) == Counter(expected)
+
+
+@pytest.mark.parametrize("case", json.loads(
+    (Path(__file__).parent / "fixtures/deal_audit_replays.json").read_text()
+))
+def test_audited_natural_deal_trajectories_now_quote_actual_losses_and_allow_third_play_counter(case):
+    engine = DealEngine(case["game"] == "deal-no-mercy")
+    state = engine.setup(["p0", "p1", "p2"], {}, seed=case["seed"])
+    for step in case["replay"]:
+        state = engine.apply_action(state, step["actor"], Action.model_validate(step["action"]))
+        assert_inventory(engine, state)
+    player = case["player"]
+    before = deepcopy(state)
+    if "selected" in case:
+        bundles = engine.project_view(state, player).detail["payment_bundles"]
+        quote = combine_payment_bundles(bundles, case["selected"])
+        assert sum(quote.values()) == case["total"]
+        after = engine.apply_action(state, player, Action(type="pay", cards=case["selected"]))
+        assert set(assets(state, player, engine.cards)) - set(assets(after, player, engine.cards)) == set(quote)
+        assert_inventory(engine, after)
+    else:
+        assert state["moves"] == 0
+        counter = next(o.action for o in engine.legal_actions(state, player) if o.action.type == "no")
+        after = engine.apply_action(state, player, counter)
+        assert after["moves"] == 0 and not after["queue"][0]["blocked"]
+        responder = after["queue"][0]["responder"]
+        after = engine.apply_action(after, responder, Action(type="accept"))
+        assert after["turn"] == 1 and after["moves"] == 3
+        assert_inventory(engine, after)
+    assert state == before
+
+
+def linked_payment_case(mercy=False, amount=5):
+    """Inventory-conserving boundary: one linked building bundle plus other assets."""
+    engine, state = deal_case(mercy)
+    anchor = deal_card(engine, state, "p1", kind="property", color="red", zone="properties")
+    for _ in range(2):
+        deal_card(engine, state, "p1", kind="property", color="red", zone="properties")
+    buildings = []
+    for effect in (["shack"] if mercy else ["house", "hotel"]):
+        card = deal_card(engine, state, "p1", action=effect)
+        state["hands"]["p1"].remove(card)
+        state["properties"]["p1"]["red:0"].append(card)
+        state["links"][card] = anchor
+        buildings.append(card)
+    money = deal_card(engine, state, "p1", kind="money", zone="banks")
+    state["queue"] = [{
+        "kind": "bill", "actor": "p0", "target": "p1", "responder": "p1",
+        "amount": amount, "blocked": False, "payment": True,
+    }]
+    return engine, state, anchor, buildings, money
+
+
+@pytest.mark.parametrize("mercy", [False, True])
+@pytest.mark.parametrize("selection", ["anchor", "buildings_first", "anchor_first"])
+def test_payment_quote_and_commit_union_linked_buildings_independent_of_selection_order(mercy, selection):
+    engine, state, anchor, buildings, _ = linked_payment_case(mercy)
+    selected = [anchor] if selection == "anchor" else (
+        buildings + [anchor] if selection == "buildings_first" else [anchor] + buildings
+    )
+    view = engine.project_view(state, "p1")
+    before = deepcopy(state)
+    bundles = view.detail["payment_bundles"]
+    assert len(bundles) == len(assets(state, "p1", engine.cards))
+    assert all(engine.project_view(state, p).detail["payment_bundles"] == [] for p in ("p0", "p2"))
+    quote = combine_payment_bundles(bundles, selected)
+    assert set(quote) == {anchor, *buildings}
+    assert sum(quote.values()) == (6 if mercy else 10)
+    after = engine.apply_action(state, "p1", Action(type="pay", cards=selected))
+    assert set(assets(state, "p1", engine.cards)) - set(assets(after, "p1", engine.cards)) == set(quote)
+    assert after["properties"]["p0"]["red:0"] == [anchor, *buildings]
+    assert not after["banks"]["p0"]  # Explicitly selecting a carried building cannot bank it instead.
+    assert not after["debts"]["p1"] and not after["queue"]
+    assert state == before
+    assert_inventory(engine, after)
+
+
+@pytest.mark.parametrize("mercy", [False, True])
+def test_payment_bank_only_building_only_insolvency_duplicate_and_nonpayable_boundaries(mercy):
+    engine, state, anchor, buildings, money = linked_payment_case(mercy, amount=1)
+    for selected in ([money], [buildings[0]]):
+        quote = combine_payment_bundles(payment_bundles(state, "p1", engine.cards), selected)
+        after = engine.apply_action(state, "p1", Action(type="pay", cards=selected))
+        assert list(quote) == selected and after["banks"]["p0"] == selected
+        assert anchor in after["properties"]["p1"]["red:0"]
+        assert_inventory(engine, after)
+    for selected in ([anchor, anchor], [state["deck"][0]]):
+        with pytest.raises(RuleError):
+            engine.apply_action(state, "p1", Action(type="pay", cards=selected))
+    state["queue"][0]["amount"] = 99
+    with pytest.raises(RuleError):
+        engine.apply_action(state, "p1", Action(type="pay", cards=[anchor]))
+    selected = [c for c in assets(state, "p1", engine.cards) if c not in buildings]
+    after = engine.apply_action(state, "p1", Action(type="pay", cards=selected))
+    assert not assets(after, "p1", engine.cards)
+    assert after["debts"]["p1"] == (["p0"] if mercy else [])
+    assert_inventory(engine, after)
+
+
+@pytest.mark.parametrize("mercy", [False, True])
+def test_payment_bot_values_actual_carried_assets_using_only_its_projection(mercy):
+    from app.bots.cards import _payment
+    from app.bots.context import Context
+
+    engine, state, anchor, buildings, money = linked_payment_case(mercy)
+    # A previously complete collection can be made incomplete by a free move.
+    # Its remaining anchor still carries the building, even without a rent bonus.
+    for card in list(state["properties"]["p1"]["red:0"]):
+        if card not in [anchor, *buildings]:
+            state["properties"]["p1"]["red:0"].remove(card)
+            state["deck"].append(card)
+    state["banks"]["p1"].remove(money)
+    state["deck"].append(money)
+    money = next(c.id for c in engine.cards.values() if c.kind == "money" and c.value == 2)
+    state["deck"].remove(money)
+    state["banks"]["p1"].append(money)
+    action = _payment(Context(engine.project_view(state, "p1"), "p1", None))
+    quote = combine_payment_bundles(payment_bundles(state, "p1", engine.cards), action.cards)
+    # Face values tie the 3M anchor with its building. Actual losses preserve the anchor.
+    assert set(action.cards) == {money, buildings[0]}
+    assert set(quote) == {money, buildings[0]} and sum(quote.values()) == 5
+    assert_inventory(engine, engine.apply_action(state, "p1", action))
+
+
+def test_forced_deal_pending_preview_names_both_public_sides_and_never_a_hidden_canary():
+    engine, state = deal_case()
+    effect = deal_card(engine, state, "p0", action="forced")
+    give = deal_card(engine, state, "p0", kind="property", color="brown", zone="properties")
+    take = deal_card(engine, state, "p1", kind="property", color="red", zone="properties")
+    hidden = deal_card(engine, state, "p1", kind="property", color="blue")
+    state = engine.apply_action(state, "p0", Action(type="play", card=effect, target="p1", choice=take, cards=[give]))
+    for player in state["order"]:
+        pending = engine.project_view(state, player).detail["pending_action"]
+        assert pending["transfers"] == [
+            {"source": "p1", "target": "p0", "cards": [take]},
+            {"source": "p0", "target": "p1", "cards": [give]},
+        ]
+    state["queue"][0]["take"] = hidden
+    assert engine.project_view(state, "p2").detail["pending_action"]["transfers"] == [
+        {"source": "p0", "target": "p1", "cards": [give]},
+    ]
+
+
+def test_uno_pending_cause_direction_recipient_and_elimination_are_public_without_challenge_secret():
+    engine, state = uno_case(True, count=4)
+    state.update(direction=-1, eliminated=["p3"], pending={"type": "roulette"})
+    for player in state["order"]:
+        detail = engine.project_view(state, player).detail
+        assert detail == {"color": "red", "penalty": 0, "direction": -1,
+                          "pending_kind": "roulette", "next_player": "p2", "elimination_limit": 25}
+    classic, state = uno_case()
+    state["pending"] = {"type": "challenge", "actor": "p2", "illegal": True}
+    detail = classic.project_view(state, "p0").detail
+    assert detail["pending_kind"] == "challenge" and detail["elimination_limit"] is None
+    assert "illegal" not in detail and "actor" not in detail
 
 
 def test_classic_deck_matches_publisher_inventory():
@@ -314,7 +471,9 @@ def test_deal_pending_context_is_public_minimal_and_does_not_reveal_event_choice
     for player in state["order"]:
         pending = engine.project_view(state, player).detail["pending_action"]
         assert pending == {"kind": "bill", "actor": "p0", "target": "p1", "responder": "p1",
-                           "amount": 5, "blocked": True, "stage": stage}
+                           "amount": 5, "blocked": True, "stage": stage, "transfers": [],
+                           "collection": None, "category": None,
+                           "source_collection": None, "multiplier": 1}
     state["queue"] = []
     assert engine.project_view(state, "p0").detail["pending_action"] is None
 
@@ -534,7 +693,7 @@ def test_partial_payment_requires_all_assets_never_hand_and_issues_one_debt(merc
 
 
 @pytest.mark.parametrize("mercy", [False, True])
-def test_counter_counter_action_resolves_original_bill_and_counts_actor_play(mercy):
+def test_counter_counter_action_resolves_bill_with_edition_specific_play_cost(mercy):
     engine, state = deal_case(mercy)
     bill = deal_card(engine, state, "p0", action="yoink" if mercy else "debt")
     first_no = deal_card(engine, state, "p1", action="no")
@@ -543,7 +702,7 @@ def test_counter_counter_action_resolves_original_bill_and_counts_actor_play(mer
     state = engine.apply_action(state, "p1", Action(type="no", card=first_no))
     state = engine.apply_action(state, "p0", Action(type="no", card=second_no))
     state = engine.apply_action(state, "p1", Action(type="accept"))
-    assert not state["queue"] and state["moves"] == 1
+    assert not state["queue"] and state["moves"] == (1 if mercy else 2)
     assert state["debts"]["p1"] == (["p0"] if mercy else [])
     assert_inventory(engine, state)
 

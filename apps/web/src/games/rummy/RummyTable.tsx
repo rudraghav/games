@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
-import type { Card } from '@games/api-client';
-import { Button, Hand, DecisionDock } from '@games/ui';
-import type { TableProps } from '../types';
+import { rummyDetails, type Action, type Card } from '@games/api-client';
+import { Button, Hand, DecisionDock, Modal } from '@games/ui';
+import { playerName, type TableProps } from '../types';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { ActionPanel } from '../shared/ActionPanel';
 import { TablePile } from '../shared/TablePile';
@@ -14,7 +14,14 @@ export function RummyTable(props: TableProps) {
   const [selected, setSelected] = useState<string | null>(null);
   const [groups, setGroups] = useState<Record<string, number>>({});
   const [sort, setSort] = useState('dealt');
+  const [declaration, setDeclaration] = useState<{ action: Action; version: number | null } | null>(
+    null,
+  );
+  const data = rummyDetails(match.detail);
   const selectedCard = match.hand.find((card) => card.id === selected);
+  const preview = selectedCard ? data.discard_analyses[selectedCard.id] : undefined;
+  const analysis = preview ?? data.analysis;
+  const cardName = (id: string) => match.hand.find((card) => card.id === id)?.label ?? id;
   const drawStock = match.actions.find((option) => option.value.type === 'draw_stock');
   const drawDiscard = match.actions.find((option) => option.value.type === 'draw_discard');
   const decisionMatch = {
@@ -109,6 +116,10 @@ export function RummyTable(props: TableProps) {
             ))}
           </div>
         </DecisionDock>
+        <p className="small muted">
+          Groups are a visual aid for this visit and reset after refresh. The server checks the best
+          valid arrangement, regardless of your groups.
+        </p>
         <div className="rummy-groups">
           {buckets.map((label, bucket) => {
             const cards = arranged(match.hand.filter((card) => (groups[card.id] ?? 0) === bucket));
@@ -126,6 +137,34 @@ export function RummyTable(props: TableProps) {
             ) : null;
           })}
         </div>
+        {analysis ? (
+          <details className="game-information-settlement">
+            <summary>
+              {preview ? `After discarding ${selectedCard?.label}: ` : 'Your hand: '}
+              {analysis.valid ? 'valid declaration' : `${analysis.deadwood} loss points`}
+            </summary>
+            <p className="small">
+              {analysis.sequence_count} sequences, {analysis.pure_sequence_count} pure.{' '}
+              {analysis.scoring_gate
+                ? 'The sequence requirement is met; only unmatched cards count toward loss points.'
+                : 'Until you have two sequences including one pure sequence, all non-joker cards count (maximum 80).'}
+            </p>
+            <ul>
+              {analysis.melds.map((meld, i) => (
+                <li key={i}>
+                  <strong>{meld.kind.replaceAll('_', ' ')}</strong>
+                  <span>{meld.cards.map(cardName).join(', ')}</span>
+                </li>
+              ))}
+              {analysis.unmatched.length ? (
+                <li>
+                  <strong>Unmatched</strong>
+                  <span>{analysis.unmatched.map(cardName).join(', ')}</span>
+                </li>
+              ) : null}
+            </ul>
+          </details>
+        ) : null}
       </section>
       <ActionPanel
         {...props}
@@ -133,6 +172,15 @@ export function RummyTable(props: TableProps) {
         selected={selectedCard?.id}
         cardSelectionRequired
         pinSelection
+        selectionDetails={
+          preview ? (
+            <span className="small">
+              {preview.valid
+                ? 'This discard leaves a valid declaration.'
+                : `This discard leaves an invalid declaration. Declaring costs 80 points; discarding continues play.`}
+            </span>
+          ) : undefined
+        }
         instruction={
           match.actions.length
             ? match.phase === 'draw'
@@ -144,13 +192,72 @@ export function RummyTable(props: TableProps) {
         }
         clear={() => setSelected(null)}
         onAction={(action) => {
+          if (action.type === 'declare' && !preview?.valid) {
+            setDeclaration({ action, version: room.matchVersion });
+            return;
+          }
           props.onAction(action);
           setSelected(null);
         }}
       />
       <p className="small muted table-help">
         Two sequences, including one pure sequence. A false declaration costs 80 points.
+        {match.actions.some((option) => option.value.type === 'fold')
+          ? ` Dropping now costs ${data.drop_cost} points.`
+          : ''}
       </p>
+      {Object.keys(data.settlements).length ? (
+        <section className="game-information-settlement" aria-label="Rummy score explanation">
+          <h3>
+            {data.finish_reason === 'valid_declaration'
+              ? 'Valid declaration'
+              : data.finish_reason === 'last_active_player'
+                ? 'Last active player wins'
+                : 'Points settled'}
+          </h3>
+          <ul>
+            {Object.entries(data.settlements).map(([id, result]) => (
+              <li key={id}>
+                <strong>
+                  {playerName(room, id)}: {result.score} points
+                </strong>
+                <span>
+                  {match.winners.includes(id)
+                    ? 'Winner collects the opponents’ loss points.'
+                    : result.penalty !== null
+                      ? `Fixed ${result.penalty}-point drop or false-declaration penalty.`
+                      : result.analysis.scoring_gate
+                        ? 'Unmatched cards, capped at 80.'
+                        : 'Sequence requirement not met; full hand points, capped at 80.'}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+      <Modal
+        open={Boolean(declaration && declaration.version === room.matchVersion)}
+        onOpenChange={(open) => {
+          if (!open) setDeclaration(null);
+        }}
+        title="Declare an invalid hand?"
+        description="The remaining cards do not form a valid declaration. This will end your participation with an 80-point penalty."
+      >
+        <Button variant="secondary" onClick={() => setDeclaration(null)}>
+          Keep playing
+        </Button>
+        <Button
+          disabled={pending || room.paused}
+          onClick={() => {
+            if (declaration && declaration.version === room.matchVersion)
+              onAction(declaration.action);
+            setDeclaration(null);
+            setSelected(null);
+          }}
+        >
+          Declare for 80 points
+        </Button>
+      </Modal>
     </div>
   );
 }

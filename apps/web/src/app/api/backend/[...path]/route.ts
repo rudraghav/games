@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
+import { proxyFailure } from '@/lib/proxy-diagnostics';
 import { isBackendRoute } from '@/lib/backend-routes';
 
 async function proxy(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
@@ -26,6 +27,7 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
     return new Response('Session required', { status: 401 });
   const headers = new Headers({ 'Content-Type': 'application/json' });
   if (authorization || dev) headers.set('Authorization', authorization || `Bearer ${dev}`);
+  const started = performance.now();
   try {
     const response = await fetch(
       new URL(`/${path}`, process.env.BACKEND_INTERNAL_URL || 'http://127.0.0.1:8217'),
@@ -37,15 +39,14 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
         signal: AbortSignal.timeout(path.endsWith('/reading') ? 75000 : 15000),
       },
     );
+    if (response.status >= 500)
+      console.error('[games/proxy]', proxyFailure(path, request.method, started, response.status));
     return new Response(response.body, {
       status: response.status,
       headers: { 'Content-Type': 'application/json', 'Cache-Control': 'private, no-store' },
     });
   } catch (error) {
-    console.error(
-      '[games/proxy] Backend request failed',
-      error instanceof Error ? error.name : 'Unknown',
-    );
+    console.error('[games/proxy]', proxyFailure(path, request.method, started, 503, error));
     return Response.json(
       { detail: 'The table is temporarily unreachable. Please reconnect.' },
       { status: 503 },

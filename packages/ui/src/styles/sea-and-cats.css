@@ -140,6 +140,40 @@
   .paper-actions .button {
     white-space: normal;
   }
+  .paper-ending-choice {
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    flex: 1 1 180px;
+  }
+  .paper-ending-choice .button {
+    width: 100%;
+  }
+  .paper-choice-information {
+    min-height: 65px;
+    padding-block: 8px;
+    line-height: 1.5;
+  }
+  .paper-inspector {
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+  }
+  .paper-inspector p {
+    line-height: 1.6;
+  }
+  .boop-selection {
+    min-height: 42px;
+    margin-top: 12px;
+  }
+  .boop-square[data-winning='true'] {
+    outline: 3px solid var(--color-focus);
+    outline-offset: -3px;
+  }
+  .boop-result {
+    margin-block: 14px;
+    line-height: 1.5;
+  }
   .paper-draw {
     display: grid;
     grid-template-columns: minmax(120px, 1fr) auto auto;

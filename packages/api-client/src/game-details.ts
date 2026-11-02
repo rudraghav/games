@@ -8,6 +8,11 @@ const boardSchema = z.object({
   columns: z.number().int().min(1).max(8),
   draw: z.boolean(),
   last_move: z.number().int().nullable(),
+  outcome_reason: z
+    .enum(['four-in-a-row', 'board-full', 'no-pieces', 'no-legal-move', 'quiet-limit', 'threefold'])
+    .nullable()
+    .default(null),
+  winning_cells: z.array(z.number().int().min(0).max(63)).default([]),
 });
 const wordsSchema = z.object({
   active_team: z.number().int().min(0).max(1),
@@ -34,11 +39,31 @@ const gemsSchema = z.object({
   ),
   patron_costs: z.record(z.string(), counts),
   final_round: z.boolean(),
+  purchase_quotes: z
+    .record(z.string(), z.object({
+      cost: counts,
+      discount: counts,
+      spend: counts,
+      missing_colors: counts,
+      shortfall: z.number().int().nonnegative(),
+      affordable: z.boolean(),
+      after: counts.nullable(),
+    }))
+    .default({}),
+  return_count: z.number().int().nonnegative().default(0),
+  reservation_limit: z.boolean().default(false),
 });
 
 export function boardDetails(detail: Detail) {
   const data = boardSchema.parse(detail);
-  return { rows: data.rows, columns: data.columns, draw: data.draw, lastMove: data.last_move };
+  return {
+    rows: data.rows,
+    columns: data.columns,
+    draw: data.draw,
+    lastMove: data.last_move,
+    outcomeReason: data.outcome_reason,
+    winningCells: data.winning_cells,
+  };
 }
 export function wordsDetails(detail: Detail) {
   const data = wordsSchema.parse(detail);
@@ -62,5 +87,8 @@ export function gemsDetails(detail: Detail) {
     cardInfo: data.card_info,
     patronCosts: data.patron_costs,
     finalRound: data.final_round,
+    purchaseQuotes: data.purchase_quotes,
+    returnCount: data.return_count,
+    reservationLimit: data.reservation_limit,
   };
 }

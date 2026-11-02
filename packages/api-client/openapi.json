@@ -1933,6 +1933,17 @@
                 "type": "null"
               }
             ]
+          },
+          "time_resolution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AstrologyTimeResolution"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Ephemeral resolved civil-time context; never saved with the chart."
           }
         },
         "additionalProperties": false,
@@ -2118,6 +2129,29 @@
           "utc_offset"
         ],
         "title": "AstrologyTimeChoice"
+      },
+      "AstrologyTimeResolution": {
+        "properties": {
+          "timezone": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Timezone"
+          },
+          "utc_offset": {
+            "type": "string",
+            "maxLength": 9,
+            "pattern": "^[+-]\\d{2}:\\d{2}(?::\\d{2})?$",
+            "title": "Utc Offset"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "timezone",
+          "utc_offset"
+        ],
+        "title": "AstrologyTimeResolution"
       },
       "CardView": {
         "properties": {

@@ -41,10 +41,20 @@ describe('Compact complete table presentation', () => {
         {...p}
         match={{
           ...p.match,
+          phase: 'playing',
+          actions: [
+            {
+              ...p.match.actions[0],
+              label: 'Hit',
+              input: null,
+              value: { ...p.match.actions[0].value, type: 'hit', amount: 0 },
+            },
+          ],
           detail: {
             ...p.match.detail,
             dealer_hidden: true,
             hand_index: 1,
+            active_hand_index: 1,
             hands: [
               { cards: [cards[0]], bet: 2 },
               { cards: [cards[1]], bet: 4 },

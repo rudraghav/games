@@ -2,7 +2,7 @@
 import { useEffect, useId, useRef, type CSSProperties } from 'react';
 import { LayoutGroup, MotionConfig, motion } from 'motion/react';
 import { Seat, TokenArt, HorizontalRail } from '@games/ui';
-import { blackjackDetails, holdemDetails } from '@games/api-client';
+import { blackjackDetails, holdemDetails, teenPattiDetails } from '@games/api-client';
 import { ActionPanel } from '../shared/ActionPanel';
 import { playerName, type TableProps } from '../types';
 import { CasinoActionCue, CasinoCardRow, CasinoChipFlights } from './CasinoMotion';
@@ -71,10 +71,22 @@ export function CasinoTable(props: TableProps) {
   const hands = useRef<HTMLDivElement>(null);
   const blackjack = match.id === 'blackjack' ? blackjackDetails(match.detail) : null;
   const holdem = match.id === 'holdem' ? holdemDetails(match.detail) : null;
+  const teenPatti = match.id === 'teen-patti' ? teenPattiDetails(match.detail) : null;
   const own = match.players.find((player) => player.id === selfId);
   const callAmount =
     holdem && own ? Math.min(Math.max(0, holdem.currentBet - own.bet), own.chips || 0) : 0;
-  const activeHand = match.phase === 'finished' ? null : blackjack?.activeHand;
+  const activeHand =
+    match.phase === 'playing' && match.currentPlayer === selfId ? blackjack?.activeHand : null;
+  const wager = teenPatti ? match.actions.find((option) => option.value.type === 'bet') : undefined;
+  const instruction = teenPatti?.sideshow
+    ? `${playerName(room, teenPatti.sideshow.actor)} paid ${teenPatti.sideshow.cost} chips to request a sideshow with ${playerName(room, teenPatti.sideshow.target)}. Accept compares these two hands privately; the weaker hand folds. Decline continues play.`
+    : teenPatti?.sideshow_target
+      ? `Sideshow with ${playerName(room, teenPatti.sideshow_target)} costs ${teenPatti.sideshow_cost} chips. They may accept or decline.`
+      : blackjack && activeHand !== null && activeHand !== undefined
+        ? `Playing hand ${activeHand + 1} of ${blackjack.hands.length}. Hit, stand or double applies to this hand.`
+        : match.phase === 'insurance' && blackjack
+          ? 'Insurance is a separate wager. It pays 2:1 if the dealer has blackjack; your hand wager is settled separately.'
+          : undefined;
   const showOwnHand = blackjack ? blackjack.hands.length > 0 : match.hand.length > 0;
   const viewer = Math.max(
     0,
@@ -222,7 +234,7 @@ export function CasinoTable(props: TableProps) {
                         compact
                         connected={member?.connected ?? false}
                         active={current}
-                        caption={`${winner ? 'Won · ' : ''}${player.folded ? 'Folded' : `${player.chips ?? 0} chips`}`}
+                        caption={`${winner ? 'Won · ' : ''}${player.folded ? 'Folded' : `${teenPatti && player.id in teenPatti.seen ? `${teenPatti.seen[player.id] ? 'Seen' : 'Blind'} · ` : ''}${player.chips ?? 0} chips`}`}
                       />
                       {match.id === 'holdem' && match.detail.button === player.id ? (
                         <span className="casino-dealer-button" aria-label="Dealer button">
@@ -290,9 +302,12 @@ export function CasinoTable(props: TableProps) {
                     chips
                   </span>
                 ) : null}
-                {match.id === 'teen-patti' && match.phase !== 'finished' ? (
+                {teenPatti && match.phase !== 'finished' ? (
                   <span className="small muted">
-                    {match.detail.blind ? 'Blind' : 'Seen'} · Stake {String(match.detail.stake)}
+                    {teenPatti.blind ? 'Blind' : 'Seen'} · Stake {teenPatti.stake}
+                    {wager
+                      ? ` · Wager ${wager.minimum}–${wager.maximum} chips${teenPatti.blind ? '' : ', even amounts'}`
+                      : ''}
                   </span>
                 ) : null}
               </div>
@@ -354,9 +369,31 @@ export function CasinoTable(props: TableProps) {
               )}
             </div>
             <div className="casino-decision-shell">
-              <ActionPanel {...props} dockSize="extended" />
+              <ActionPanel {...props} dockSize="extended" instruction={instruction} />
             </div>
           </div>
+          {holdem && match.phase !== 'finished' && holdem.livePots.length ? (
+            <details className="game-information-settlement">
+              <summary>Contributions and pot eligibility</summary>
+              <p className="small">
+                {Object.entries(holdem.contributions)
+                  .map(([id, amount]) => `${playerName(room, id)} ${amount}`)
+                  .join(' · ')}
+              </p>
+              <ul>
+                {holdem.livePots.map((layer, i) => (
+                  <li key={i}>
+                    <strong>{layer.amount} chips</strong>
+                    <span>
+                      {layer.refund_to
+                        ? `Unmatched so far: ${playerName(room, layer.refund_to)}`
+                        : `Eligible: ${layer.eligible.map((id) => playerName(room, id)).join(', ')}`}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : null}
           <CasinoChipFlights event={event} canvas={canvas} pot={pot} seats={seats} />
         </div>
       </LayoutGroup>

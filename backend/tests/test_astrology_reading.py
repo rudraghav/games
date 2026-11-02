@@ -71,6 +71,7 @@ def test_combined_reading_is_one_bounded_request_with_only_computed_placements(m
     assert {c["system"] for c in context["astrology"]} == {c.system for c in chart.charts}
     serialized = json.dumps(context)
     for forbidden in ["birth_date", "birth_time", "place_id", "latitude", "longitude", "timezone",
+                      "utc_offset", "time_resolution",
                       "2000-01-01", "12:00", "Greenwich", "London"]:
         assert forbidden not in serialized
         assert forbidden not in caplog.text

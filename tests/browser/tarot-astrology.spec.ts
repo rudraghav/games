@@ -196,6 +196,10 @@ test('both calculated charts are inspectable, saved and hideable without regener
     );
     expect(chartInputs).toHaveLength(0);
     await details(page);
+    await page.getByLabel('Birth date', { exact: true }).fill('1900-01-01');
+    await expect(page.getByRole('note')).toContainText('Historical local-time records before 1970');
+    await page.getByLabel('Birth date', { exact: true }).fill('2000-01-01');
+    await expect(page.getByRole('note')).toHaveCount(0);
     await page.getByRole('button', { name: 'Preview chart', exact: true }).click();
     const charts = page.getByRole('region', { name: 'Calculated birth charts', exact: true });
     await expect(charts).toBeVisible();
@@ -308,6 +312,39 @@ test('changed inputs reject stale places and chart previews; opting out omits bi
   });
 });
 
+test('historical preview shows resolved offset seconds and clears them when details change', async ({
+  page,
+}) => {
+  await withReading(page, async ({ setChart, setPlaces }) => {
+    setPlaces(async () => ({
+      places: [
+        {
+          ...syntheticPlace,
+          label: 'Kolkata · synthetic historical fixture',
+          timezone: 'Asia/Kolkata',
+        },
+      ],
+      attribution: 'Synthetic historical presentation fixture.',
+    }));
+    setChart(async () => ({
+      status: 'ready',
+      chart: syntheticChart,
+      time_resolution: { timezone: 'Asia/Kolkata', utc_offset: '+05:21:10' },
+    }));
+    await page.getByRole('checkbox', { name: 'Include astrology' }).check();
+    await details(page);
+    await page.getByLabel('Birth date', { exact: true }).fill('1900-01-01');
+    await page.getByRole('button', { name: 'Preview chart', exact: true }).click();
+    const resolution = page.getByRole('status', { name: 'Calculated time zone', exact: true });
+    await expect(resolution).toHaveText('Calculated using Asia/Kolkata · UTC+05:21:10');
+    await expect(page.getByRole('note')).toContainText('Check the calculated UTC offset');
+    await noOverflow(page);
+    await page.getByLabel('Birth time', { exact: true }).fill('12:01');
+    await expect(resolution).toHaveCount(0);
+    await expect(page.getByRole('region', { name: 'Calculated birth charts' })).toHaveCount(0);
+  });
+});
+
 test('ambiguous local time requires an explicit occurrence and nonexistent times remain blocked', async ({
   page,
 }) => {
@@ -382,7 +419,7 @@ for (const off of [false, true])
         status: 'failed',
         reading: null,
         api_tier: 'paid',
-        question: '',
+        question: 'How can I make time for drawing?',
         message: 'Synthetic provider failure; your chart is saved.',
         astrology_chart: syntheticChart,
       });
@@ -392,16 +429,48 @@ for (const off of [false, true])
       ).toBeVisible();
       await expect(page.getByLabel('Birth date', { exact: true })).toHaveCount(0);
       await expect(page.getByRole('checkbox', { name: 'Include astrology' })).toBeChecked();
+      await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue(
+        'How can I make time for drawing?',
+      );
       await capture(page, 'recovered-chart');
       if (off) await page.getByRole('checkbox', { name: 'Include astrology' }).uncheck();
       await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
       await expect(page.locator('.tarot-reading')).toBeVisible();
+      expect(requests[0].question).toBe('How can I make time for drawing?');
       expect(requests[0]).not.toHaveProperty('astrology');
       if (off) expect(requests[0]).not.toHaveProperty('reuse_saved_astrology');
       else expect(requests[0].reuse_saved_astrology).toBe(true);
       await expect(page.getByRole('region', { name: 'Saved astrology reading' })).toHaveCount(
         off ? 0 : 1,
       );
+    });
+  });
+
+for (const draft of [undefined, '', 'A deliberate revised question'])
+  test(`ordinary failed question recovers and respects draft ${JSON.stringify(draft)}`, async ({
+    page,
+  }) => {
+    await withReading(page, async ({ requests, setView }) => {
+      setView({
+        status: 'failed',
+        reading: null,
+        api_tier: 'paid',
+        question: 'How can I make time for drawing?',
+        message: 'Synthetic failure.',
+      });
+      await page.reload();
+      const question = page.getByRole('textbox', { name: 'What’s on your mind?' });
+      await expect(question).toHaveValue('How can I make time for drawing?');
+      if (draft !== undefined) {
+        await question.fill(draft);
+        // A background refresh must not clobber an explicit edit, including empty.
+        await page.evaluate(() => window.dispatchEvent(new Event('focus')));
+        await expect(question).toHaveValue(draft);
+      }
+      await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
+      await expect(page.locator('.tarot-reading')).toBeVisible();
+      expect(requests[0].question).toBe(draft ?? 'How can I make time for drawing?');
+      expect(requests[0]).not.toHaveProperty('astrology');
     });
   });
 

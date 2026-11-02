@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { requestAs, TestTransportError } from './helpers';
+import { requestAs, TestTransportError, transportTelemetry } from './helpers';
 
 for (const source of ['fetch', 'cookie'] as const) {
   test(`${source} failures conceal authenticated request details`, async () => {
@@ -90,6 +90,7 @@ for (const operation of ['rooms', 'rooms/example/actions', 'rooms/example/start'
 }
 
 test('HTTP errors are never retried', async () => {
+  const before = transportTelemetry();
   let calls = 0;
   const page = {
     context: () => ({ cookies: async () => [] }),
@@ -102,4 +103,8 @@ test('HTTP errors are never retried', async () => {
   } as unknown as Page;
   expect((await requestAs(page, 'rooms/11111111-1111-4111-8111-111111111111')).status()).toBe(503);
   expect(calls).toBe(1);
+  const after = transportTelemetry();
+  expect(after.httpFailures - before.httpFailures).toBe(1);
+  expect(after.retryAttempts - before.retryAttempts).toBe(0);
+  expect(JSON.stringify(after.httpOperations)).not.toContain('11111111');
 });

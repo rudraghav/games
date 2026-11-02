@@ -147,7 +147,7 @@ def card_options(
     return options
 
 
-def effect_options(s: State, player: str, cards: dict[str, DealCard]) -> list[LegalAction]:
+def effect_options(s: State, player: str, cards: dict[str, DealCard], mercy: bool) -> list[LegalAction]:
     effect = s["queue"][0]
     actor, target = effect["actor"], effect["target"]
     if effect.get("select"):
@@ -202,7 +202,7 @@ def effect_options(s: State, player: str, cards: dict[str, DealCard]) -> list[Le
     if effect["responder"] != player:
         return []
     options = [legal("Let it stand" if effect["blocked"] else "Continue", "accept")]
-    if player != s["order"][s["turn"]] or s["moves"] > 0:
+    if not mercy or player != s["order"][s["turn"]] or s["moves"] > 0:
         options += [
             legal("Just say no", "no", card=c)
             for c in s["hands"][player]
@@ -217,7 +217,7 @@ def legal_actions(
     if s["phase"] == "finished":
         return []
     if s["queue"]:
-        return effect_options(s, player, cards)
+        return effect_options(s, player, cards, mercy)
     if s["gift"]:
         return (
             card_options(s, player, s["gift"]["card"], cards, mercy, gift=True)

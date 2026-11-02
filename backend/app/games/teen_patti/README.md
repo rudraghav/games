@@ -18,3 +18,11 @@ choices rather than a claim of one universal edition. `test_table_rules.py`
 checks seen stake parity, blind privacy, show eligibility, sideshow consent/ties,
 requester-loses showdown ties, min/max full matches and chip conservation.
 The pot cap settles immediately, even when a sideshow payment crosses it.
+
+Blind/Seen status is public for every seat. Sideshow detail identifies the
+requester, responding neighbour and paid cost, and the eligible request names its
+target before commitment. The UI explains accept/decline consequences and the
+server-offered wager range/parity. This exposes no pocket cards: a private
+sideshow comparison still does not add either hand to the public reveal list.
+`test_casino_explanations.py` drives peek/bet/request/decline legally and verifies
+public parties/status while each participant sees only their own pocket cards.

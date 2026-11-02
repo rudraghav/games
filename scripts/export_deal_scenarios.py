@@ -61,11 +61,11 @@ def room_view(engine, state, viewer, ident, version=1):
     return RoomView(
         id=str(uuid5(NAMESPACE_DNS, f"deal-workspace-{ident}")),
         name="Synthetic Deal workspace", code="DESIGN1", game_id=engine.manifest.id,
-        owner_id=PLAYERS[0], capacity=4, settings={}, status="playing", revision=version,
+        owner_id=state["order"][0], capacity=len(state["order"]), settings={}, status="playing", revision=version,
         match_id=str(uuid5(NAMESPACE_DNS, f"deal-workspace-match-{ident}")),
         match_version=version, paused=False, missing_players=[], messages=[],
         members=[MemberView(id=p, name=NAMES[i], avatar=i, ready=True, seated=True,
-                            connected=True, last_seen=0) for i, p in enumerate(PLAYERS)],
+                            connected=True, last_seen=0) for i, p in enumerate(state["order"])],
         game=view,
     ).model_dump(mode="json")
 
@@ -103,6 +103,10 @@ def generate():
     forced = [(f"Swap {i}", option.action) for i, option in enumerate(engine.legal_actions(state, PLAYERS[0]))
               if option.action.card == card and option.action.type == "play"]
     record("forced", "Deal · targeted property swap", engine, state, focus=card, actions=forced)
+    chosen = forced[0][1]
+    record("forced-pending", "Deal · review both sides of a pending swap", engine,
+           engine.apply_action(state, PLAYERS[0], chosen), viewer=chosen.target,
+           actions=[("Accept the exchange", Action(type="accept"))])
 
     engine, state = opening()
     debt = take(engine, state, PLAYERS[0], effect="debt")
@@ -183,6 +187,27 @@ def generate():
             break
     else:
         raise AssertionError("Expected a reproducible large-hand setup seed")
+    # Preserve the original legal audit trajectories as reviewable regressions.
+    # These public actions, including attached-building payments, replay from seed.
+    for case in json.loads((ROOT / "backend/tests/fixtures/deal_audit_replays.json").read_text()):
+        engine = DealEngine(case["game"] == "deal-no-mercy")
+        names = {f"p{i}": p for i, p in enumerate(PLAYERS[:3])}
+        state = engine.setup(list(names.values()), {}, seed=case["seed"])
+        for step in case["replay"]:
+            values = {key: names.get(value, value) if isinstance(value, str) else value
+                      for key, value in step["action"].items()}
+            state = engine.apply_action(state, names[step["actor"]], Action.model_validate(values))
+        viewer = names[case["player"]]
+        if "selected" in case:
+            ident = "linked-payment-no-mercy" if engine.mercy else "linked-payment-classic"
+            record(ident, f"{engine.manifest.name} · payment carries buildings", engine, state,
+                   viewer=viewer, focus=case["selected"][0],
+                   actions=[("Pay with linked assets", Action(type="pay", cards=case["selected"]))])
+        else:
+            counter = next(o.action for o in engine.legal_actions(state, viewer)
+                           if o.action.type == "no")
+            record("third-play-counter", "Deal · counter after your third ordinary play", engine,
+                   state, viewer=viewer, actions=[("Counter for no ordinary play", counter)])
     return cases
 
 

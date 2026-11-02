@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ApiError, type Action, type Room } from '@games/api-client';
 import { api, ensureSession, supabase } from '@/lib/session';
 import { keys } from '@/shared/query-keys';
+import { acceptRoomSnapshot } from './room-snapshot';
 
 export function useRoom(id: string) {
   const cache = useQueryClient();
@@ -12,6 +13,8 @@ export function useRoom(id: string) {
   const room = useQuery({
     queryKey: keys.room(id),
     queryFn: () => api.room(id),
+    structuralSharing: (current, incoming) =>
+      acceptRoomSnapshot(current as Room | undefined, incoming as Room),
     refetchInterval: live ? 15000 : 4000,
     refetchOnWindowFocus: 'always',
     refetchOnReconnect: 'always',
@@ -26,7 +29,7 @@ export function useRoom(id: string) {
         .then((snapshot) => {
           if (!cancelled)
             cache.setQueryData<Room>(keys.room(id), (current) =>
-              !current || current.revision <= snapshot.revision ? snapshot : current,
+              acceptRoomSnapshot(current, snapshot),
             );
         })
         .catch(() => {
@@ -70,9 +73,7 @@ export function useRoom(id: string) {
   const mutation = useMutation({
     mutationFn: (operation: () => Promise<Room>) => operation(),
     onSuccess: (snapshot) => {
-      cache.setQueryData<Room>(keys.room(id), (current) =>
-        !current || current.revision <= snapshot.revision ? snapshot : current,
-      );
+      cache.setQueryData<Room>(keys.room(id), (current) => acceptRoomSnapshot(current, snapshot));
     },
     onError: () => {
       void cache.invalidateQueries({ queryKey: keys.room(id) });
@@ -91,9 +92,7 @@ export function useRoom(id: string) {
     mutationFn: ({ matchId, version }: { matchId: string; version: number }) =>
       api.driveBots(id, matchId, version),
     onSuccess: (snapshot) =>
-      cache.setQueryData<Room>(keys.room(id), (current) =>
-        !current || current.revision <= snapshot.revision ? snapshot : current,
-      ),
+      cache.setQueryData<Room>(keys.room(id), (current) => acceptRoomSnapshot(current, snapshot)),
     onError: () => void cache.invalidateQueries({ queryKey: keys.room(id) }),
     retry: (count, error) => count < 1 && (!(error instanceof ApiError) || error.status >= 500),
     retryDelay: 1500,

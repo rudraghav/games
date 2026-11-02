@@ -20,7 +20,7 @@ fingerprint, avoiding a second copy of private hands or chat in every receipt.
 Casino receipts also store an allowlisted public action cue: committed version,
 actor, action type and public payment amount. It is computed from the actor's
 authorized pre-move view and saved in the same transaction. Only the current
-version's cue is projected to members as `last_action`; older receipts without a
+version's cue is projected to match participants as `last_action`; older receipts without a
 cue return null. No card identities, targets, choices, deck order or random state
 enter this cue. Durable receipts let a fresh process produce the same cue without
 adding a second event store or migration. Clients animate only contiguous live
@@ -154,3 +154,11 @@ ordinary opt-out clears it. This requires no schema migration. The normal
 reading lease, daily attempt budget, private no-store responses, legacy parser
 and failure/retry behavior remain in force. See `backend/app/astrology/README.md`
 for models and independent numerical references.
+
+Room cache ingestion is monotonic for every response source, including normal
+query success. Room revision spans rematches; equal revisions permit presence
+updates. Waiting members receive no last-action cue or bot-driving metadata.
+Proxy failure diagnostics include only normalized route, method, HTTP status,
+duration and allowlisted failure class; request bodies, identifiers, URLs and
+credentials are excluded. HTTP failures are measured separately from transport
+retries and no game mutation gains an automatic retry.

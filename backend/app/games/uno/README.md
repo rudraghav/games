@@ -48,3 +48,16 @@ the resulting empty-hand check. Regression examples cover challenge penalties,
 discard-all ordering, skip-everyone, opening actions and final draw scoring.
 Three seeded complete matches per edition at both player limits preserve every
 unique physical card after every action, including elimination and recycling.
+
+## Public decision context — 2 November 2026
+
+The projection adds `pending_kind` (`roulette`, `opening_color`, `challenge`, or
+null), `next_player` in the current direction skipping eliminated seats, and
+the No Mercy `elimination_limit` of 25 (null in classic). This supplements the
+existing color, penalty and direction. The UI distinguishes choosing the colour
+to draw until during Roulette from a normal colour declaration, explains that
+wild cards do not end that draw, and shows the elimination consequence. Direction
+and the next seat remain visible during ordinary play. `next_player` means the
+next active seat in the current direction, not a prediction of a future action's
+skip/reverse effect. Challenge legality and hidden hands are never projected.
+The validated API adapter drops unknown fields and rejects unknown pending kinds.
