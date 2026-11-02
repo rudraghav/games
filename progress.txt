@@ -1706,3 +1706,32 @@
   Vercel Gitlink remainsnull; use one explicit production deploy after push.
 - Current state: locally verified, not yet pushed/deployed. Previous production
   dpl_25avkf3PTgecMZxJLoeG7gLAaivs/source8758cd6 remains rollback reference.
+
+2026-11-02 — Deal/table redesign pushed, production deployed and live verified
+- Application commitb2b242b7ae067aa8490a0eb295fb3ef8da0c1689 pushed to
+  personalrudraghav/gamesmain. One explicit production deploy:
+  dpl_FKHPuZnhr7guWPsa7oWteuAQcT6S, READY, bom1, public alias
+  https://games-seven-black.vercel.app. Provider releaseSourceSha and
+  githubCommitSha both match the application commit. No parallel Git deploy.
+- Hosted catalogue desktop/phone passes all27create/start/move/retry/stale409/
+  refresh paths, plus chat. Four hosted complete Deal matches (both editions,
+  2seats,bothwidths) pass results/history/rematch/group switching. Local8full
+  matches cover both2/5seatlimits; four localactualbot-driver matches pass.
+- Resolved a test-only phone assertion: compact header deliberately hides its
+  connected label. Test now checks subscription-state attachment; independent
+  hosted test verifies actual private Broadcast delivery to a member, live chat
+  and nonmember subscription/read denial. Phone catalogue recheck passed.
+- All122HTTP/artwork/auth checks pass, including all48character images,
+  privateAPI401, local-only/designand/design/deal404 and disabled dev auth.
+  No new Tarot AI generation requested by this UI release.
+- Final provider logs through04:49:19UTC: zero runtime error/fatal records and
+  zero HTTP500+ records, complete query windows. Protected owner account,
+  profile,5rooms,memberships/Googleidentity match private before fingerprints;
+  schema remainsa6e442b15d80. No production migration/config/billing changes.
+- Cleanup: closed task browsers/Storybook, removed superseded captures and
+  resolved failure context; concise evidence retained. Web3217/API8217fresh200;
+  user browser/database/credentials/dependencies untouched. Requested API service
+  remains running with final source.
+- Closure changes are documentation/test evidence only. Runtime fingerprint
+  45abb2e2d0f1c494ed0c85d1d2e877f5d856d32849e41078ea2e6d5152407342
+  is unchanged across all411runtime files; do not redeploy unchanged app bytes.

@@ -189,7 +189,10 @@ test('personal cloud: all games, private views, revisions and a saved reading', 
         (message: { body: string }) => message.body === 'Cloud verification complete.',
       ),
     ).toBe(true);
-    await expect(page.getByTitle('Live updates connected')).toBeVisible();
+    // The compact phone header intentionally hides the status label. Its title
+    // still follows the live subscription; realtime.spec verifies actual frames
+    // and cross-player delivery independently of that visual treatment.
+    await expect(page.getByTitle('Live updates connected')).toBeAttached();
   } finally {
     if (id) {
       const current = await roomAs(page, id);

@@ -1,0 +1,42 @@
+{
+  "applicationSource": "b2b242b7ae067aa8490a0eb295fb3ef8da0c1689",
+  "deploymentId": "dpl_FKHPuZnhr7guWPsa7oWteuAQcT6S",
+  "target": "production",
+  "region": "bom1",
+  "url": "https://games-seven-black.vercel.app",
+  "rollbackDeployment": "dpl_25avkf3PTgecMZxJLoeG7gLAaivs",
+  "local": {
+    "frontendTests": 104,
+    "backendTests": 763,
+    "multiplayerTests": 133,
+    "dealFullMatches": 8,
+    "dealSoloBotMatches": 4,
+    "namedAndSpecialFaces": 281,
+    "initialGameLayoutsReviewed": 27,
+    "loadRooms": 50,
+    "build": "passed",
+    "contracts": "passed",
+    "migrations": "passed"
+  },
+  "hosted": {
+    "catalogue": "27 games on desktop and phone: create/start/move/retry/stale-conflict/refresh passed",
+    "dealFullMatches": 4,
+    "dealSeatCount": 2,
+    "resultsHistoryRematchSwitch": "passed",
+    "httpArtworkAndAuthPaths": 122,
+    "privateBroadcastMemberDelivery": "passed",
+    "nonmemberBroadcastAndRoomDenial": "passed",
+    "runtimeErrors": 0,
+    "serverFailures": 0
+  },
+  "ownerData": "five owned rooms/account/profile/memberships/Google identity fingerprints unchanged; private snapshots retained locally",
+  "schemaHead": "a6e442b15d80",
+  "limitations": [
+    "No Mercy retains approved Games house deck",
+    "Hosted Deal complete matches used2seats; local complete matches cover2and5seats",
+    "Initial27-game screenshots do not prove every possible UI state",
+    "Tarot generation unchanged; no new AI evaluation in this UI release"
+  ],
+  "resolvedTestIssue": "Phone compact header hides status label; connection-state assertion now checks attachment and actual Broadcast frames/delivery are verified separately",
+  "logWindowEnd": "2026-11-02T04:49:19Z"
+}
