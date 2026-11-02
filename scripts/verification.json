@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "project": "games",
+  "instruction_chains": [
+    [
+      "AGENTS.md"
+    ],
+    [
+      "AGENTS.md",
+      "apps/web/AGENTS.md"
+    ]
+  ],
+  "required_paths": [
+    "scripts/task.py",
+    "scripts/workflow_store.py",
+    "scripts/workflow_tasks.py",
+    "scripts/workflow_reporting.py",
+    "scripts/tests/workflow_fixture.py",
+    "docs/WORKFLOW_VERIFICATION.md",
+    "progress.txt",
+    "scripts/workflow_verify.py",
+    "scripts/verification_report.py",
+    "scripts/check_boundaries.py"
+  ],
+  "groups": {
+    "tooling": [
+      {
+        "cwd": ".",
+        "argv": [
+          "python3",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "scripts/tests",
+          "-p",
+          "test_workflow*.py"
+        ],
+        "timeout": 900
+      }
+    ]
+  }
+}

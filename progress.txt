@@ -1,3 +1,28 @@
+## 2026-11-02 — Active-scope workflow release
+
+- Scope: this is one of eight active repositories selected by the owner. Anoū,
+  the public Mission SOAR website, Shikha Alliance, the separate department
+  website and LMS Nagaland are excluded. Original working copies are preserved.
+- Verified: 43 workflow regression cases and the existing applicable
+  tooling safeguards passed locally. Check report: verify-01f49060b5f640d19fd39870133df1bc.
+- Normal branch protections, production/migration/security gates and scheduled
+  maintenance are retained. Hosted Actions were not used as passing evidence;
+  no account, payment, billing or runner permission setting was changed.
+- Publication: prepared for main from fdb8b6d0047b. Code/manifest inputs
+  are unchanged by this journal-only closure; exact pushed revision and remote
+  state are recorded separately in the private release receipt.
+
+## 2026-11-02 — Scoped workflow adapters
+
+- Outcome: explicit task ownership, accepted handoffs and bounded local check
+  reports, preserving the existing product-specific commands and release gates.
+- Scope: shared scripts/tests, this journal, the workflow guide and instruction
+  pointer; no product data, runtime routes, credentials or provider settings.
+- Acceptance: portable ownership/reporting regression tests pass; current-source
+  plans validate; scoped commits preserve unrelated work and normal branch rules.
+- Verification: local tooling and plan checks passed; publication follows the
+  normal branch rules. Billing is unchanged.
+
 ## 2026-10-31 — Tarot, shared tables and account setup
 
 - Owner selected AI-written personal Tarot readings and then supplied their
