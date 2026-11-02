@@ -1,0 +1,136 @@
+{
+  "state": "pushed_deployed_live_verified",
+  "verifiedAt": "2026-11-02T12:48:19.550838+00:00",
+  "applicationCommit": "cfd990ac7491fc82e4eff7354f93e0ef7fc1c12f",
+  "branch": "main",
+  "url": "https://games-seven-black.vercel.app",
+  "deployment": {
+    "id": "dpl_FRh4dLZ1kfEiuChjUcQ1QFn8X1v5",
+    "projectId": "prj_ktWnIpFSa7waRIO8gm7dQrkAB6Za",
+    "readyState": "READY",
+    "target": "production",
+    "alias": [
+      "games-seven-black.vercel.app",
+      "games-rudraghavs-projects.vercel.app"
+    ],
+    "regions": [
+      "bom1"
+    ],
+    "releaseSourceSha": "cfd990ac7491fc82e4eff7354f93e0ef7fc1c12f"
+  },
+  "rollbackDeployment": "dpl_3taMzfVFgv7uwgoXzHNhn517h9e7",
+  "gitIntegration": false,
+  "deploymentCount": 1,
+  "schema": {
+    "head": "a6e442b15d80",
+    "change": "none",
+    "drift": "none",
+    "privateRlsGrants": "passed"
+  },
+  "hosted": {
+    "browserCasesPassed": 6,
+    "catalogueAndPrivateRealtime": {
+      "cases": 4,
+      "games": 27,
+      "devices": [
+        "desktop",
+        "phone"
+      ]
+    },
+    "readingsChartsAndDealInspection": {
+      "cases": 1,
+      "counts": {
+        "providerCalls": 2,
+        "chartSystems": 2,
+        "privateDenials": 2,
+        "savedRefreshes": 1,
+        "inspectedCards": 7,
+        "widths": [
+          320,
+          390,
+          1440
+        ],
+        "roomsClosed": 3
+      },
+      "syntheticInputsOnly": true,
+      "complete": true,
+      "cleanupFailures": []
+    },
+    "correctedTarotArtwork": {
+      "cases": 1,
+      "cards": 5,
+      "deckCards": 78,
+      "widths": [
+        320,
+        390,
+        1440
+      ],
+      "format": "WebP",
+      "containment": "xMidYMid meet",
+      "symbolCounts": "Manually reviewed in the delivered 390px card frames",
+      "pngAndWebpByteMatches": 10
+    },
+    "publicAssetsAndRouteBoundaries": {
+      "checksPassed": 123,
+      "privateProfileStatus": 401,
+      "devAndDesignStatus": 404
+    }
+  },
+  "logs": {
+    "start": "2026-11-02T12:20:00Z",
+    "end": "2026-11-02T12:44:07+00:00",
+    "runtimeWarningsErrorsFatals": 0,
+    "http500Plus": 0,
+    "hasMore": false,
+    "excludedIntervals": []
+  },
+  "ownerPreservation": {
+    "permanentGoogleAccount": true,
+    "profile": 1,
+    "ownedRooms": 5,
+    "memberships": 5,
+    "identities": 1,
+    "allFiveFingerprints": "unchanged"
+  },
+  "qaReadback": {
+    "start": "2026-11-02T12:20:00Z",
+    "checkedAt": "2026-11-02T12:46:03.797561+00:00",
+    "rooms": 8,
+    "closedRooms": 8,
+    "activeMemberships": 0,
+    "preservedMatches": 58,
+    "completeReadings": 2,
+    "readOnly": true
+  },
+  "runtime": {
+    "fileCount": 461,
+    "fingerprint": "ec82aa6fa276b65d0d9fef6d3e259d43feafec7cfdad5dcd088a10b996aea405",
+    "allFilesMatchVerifiedApplication": true
+  },
+  "cleanup": {
+    "checkedAt": "2026-11-02T12:47:12.160629+00:00",
+    "directories": [
+      "output/playwright/audit-fixes-art",
+      "output/playwright/audit-fixes-tarot"
+    ],
+    "removedFiles": 33,
+    "reclaimedBytes": 20892675,
+    "reason": "Superseded task-owned QA captures; curated evidence and current production frames retained",
+    "preserved": [
+      "source and original art",
+      "historical audit and verification reports",
+      "private before/after/rollback records",
+      "databases and identities",
+      "primary checkout and branches",
+      "dependencies and retained web/API services"
+    ]
+  },
+  "limits": [
+    "No native screen-reader or human novice study",
+    "Native browser zoom was not certified; layout checks include CSS scaling",
+    "Unequal-stack Holdem capability evidence is synthetic",
+    "The original isolated 503 was not reproduced; bounded concurrency and error classification added",
+    "Character imagery retained at user request; source credits do not assert licence clearance"
+  ],
+  "closure": "Documentation, hosted artwork regression test and a diagnostic wording correction only; runtime is unchanged, so no duplicate deploy."
+}

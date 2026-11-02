@@ -1,5 +1,5 @@
 {
-  "state": "locally_verified_before_push",
+  "state": "local_checks_passed_and_production_verified",
   "frontend": {
     "tests": 134,
     "types": "passed",
@@ -56,5 +56,9 @@
     "schema_drift": "none",
     "private_rls_grants": "passed"
   },
-  "release": "Push, serving revision and hosted behavior must be recorded separately."
+  "release": {
+    "applicationCommit": "cfd990ac7491fc82e4eff7354f93e0ef7fc1c12f",
+    "productionReceipt": "production.json",
+    "state": "pushed_deployed_live_verified"
+  }
 }

@@ -89,7 +89,7 @@ for (const path of [
       bytes.length !== portrait.bytes ||
       createHash('sha256').update(bytes).digest('hex') !== portrait.sha256
     )
-      throw new Error(`Serving portrait differs from the licensed release asset at ${path}`);
+      throw new Error(`Serving portrait differs from the attributed release asset at ${path}`);
   }
   if (!response.bodyUsed) await response.body?.cancel();
 }

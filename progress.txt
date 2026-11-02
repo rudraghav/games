@@ -1,3 +1,38 @@
+## 2026-11-02 — Audit improvements pushed and production verified
+
+- Application cfd990ac7491fc82e4eff7354f93e0ef7fc1c12f is pushed to main and
+  serving in READY production dpl_FRh4dLZ1kfEiuChjUcQ1QFn8X1v5, bom1.
+  Both source metadata fields and games-seven-black.vercel.app agree. One explicit
+  deployment; Git integration remains absent. Prior dpl_3taMzfVFgv7uwgoXzHNhn517h9e7
+  is the rollback reference. Schema/auth/provider settings are unchanged.
+- Six hosted browser cases pass: all27 games plus private realtime on desktop
+  and phone; actual ordinary/Both readings, private denials, exact saved chart
+  refresh, seven Deal inspections; five corrected Tarot WebP frames at320/390/1440.
+  The delivered390px frames were manually counted. All10 PNG/WebP files match
+  local bytes. All123 public asset/auth/design-route HTTP checks passed.
+- Scoped deployment logs12:20:00–12:44:07UTC contain zero runtime warnings,
+  errors/fatals or HTTP500+ records, with complete pagination/no exclusions.
+  Owner account/profile/five rooms/memberships/Google identity fingerprints are
+  unchanged. Read-only QA readback confirms all8 test rooms closed, zero active
+  memberships, and preserved58matches/two complete readings.
+- Local gates remain the prior134 frontend,898 backend,171 multiplayer tests,
+  generated contracts, migration/privacy,50-room load and44tooling checks. Browser
+  coverage remains229 broad passes plus58 affected rerun passes, covering233
+  distinct applicable cases; initial failures and25opt-in skips remain recorded.
+- Closure adds the durable hosted artwork regression test, accurate attributed-
+  asset diagnostic wording and release evidence. Browser TypeScript, formatting,
+  script syntax and diff checks pass. All461 runtime inputs match the tested
+  ec82aa6fa276b65d0d9fef6d3e259d43feafec7cfdad5dcd088a10b996aea405 fingerprint;
+  this documentation/test/tooling closure requires no second deployment.
+- Cleanup: after exact-path/hash/symlink/open-file checks, removed33 superseded
+  task-owned QA files (20,892,675bytes). Curated evidence/current live frames,
+  original art, private rollback/before/after records, reports, databases,
+  dependencies, primary checkout/branches and retained web/API services remain.
+  Ordinary Playwright outputs are90MB; no cleanup blocker remains.
+- Evidence: docs/evidence/audit-fixes-2026-11-02/production.json and verification.json.
+  Study/rare-branch limits and unreproduced original503 remain explicit; current
+  character imagery/accurate credits follow the user's recorded decision.
+
 ## 2026-11-02 — Audit improvements locally verified for release
 
 - Implemented all 17 audit-backlog dispositions; details and evidence in

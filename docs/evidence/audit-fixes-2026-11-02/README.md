@@ -34,5 +34,9 @@ Selected evidence is retained here. Full synthetic provider outputs and bulk
 browser diagnostics stay ignored locally. No native screen-reader study, human
 novice study, universal rule certification or all-date astronomical precision is
 claimed. Unequal-stack Hold'em remains an explicitly synthetic capability case.
-Local checks, pushed SHA and deployed/live-verified status are separate facts in
-the release journal; this document does not imply a successful deployment.
+Local checks, pushed SHA and deployed/live-verified status are separate facts.
+The [local verification receipt](verification.json) and [production receipt](production.json)
+record the completed release: application commit `cfd990ac7491fc82e4eff7354f93e0ef7fc1c12f`
+is serving at <https://games-seven-black.vercel.app>. All six hosted browser cases
+passed, including catalogue/realtime on both device profiles, saved live readings
+and corrected artwork. The later closure changes only evidence, tests and tooling.
