@@ -1,0 +1,108 @@
+{
+  "checkedAt": "2026-11-02T09:16:03.710391+00:00",
+  "state": "production-verified",
+  "deployment": {
+    "checkedAt": "2026-11-02T09:08:03.049124+00:00",
+    "id": "dpl_3taMzfVFgv7uwgoXzHNhn517h9e7",
+    "url": "games-meg81coja-rudraghavs-projects.vercel.app",
+    "projectId": "prj_ktWnIpFSa7waRIO8gm7dQrkAB6Za",
+    "target": "production",
+    "readyState": "READY",
+    "regions": [
+      "bom1"
+    ],
+    "alias": "games-seven-black.vercel.app",
+    "aliasDeploymentId": "dpl_3taMzfVFgv7uwgoXzHNhn517h9e7",
+    "githubCommitSha": "9627e530be1c79abaf1c4b10b27b0037c8677ed8",
+    "releaseSourceSha": "9627e530be1c79abaf1c4b10b27b0037c8677ed8",
+    "branch": "main"
+  },
+  "local": {
+    "frontendTests": 120,
+    "backendTests": 857,
+    "multiplayerTests": 169,
+    "browserCases": 122,
+    "browserSpecs": 15,
+    "legalScenarios": 247,
+    "gamesReviewed": 27,
+    "workflowTests": 44,
+    "migrations": "fresh schema/privacy passed; no application migration in this release",
+    "contracts": "OpenAPI,281card faces,48character images,12Deal fixtures and247midgame scenarios match",
+    "reports": [
+      "verify-ab1122945894433592e742e30b5ad650",
+      "verify-a7b75ded83b94f7db77d2c453eccddd4",
+      "verify-3787b1a775404864a51f569d9662287e",
+      "verify-4916f333976a4827ae8e68c459fa07b5"
+    ]
+  },
+  "hosted": {
+    "startedAt": "2026-11-02T09:08:04.349Z",
+    "completedAt": "2026-11-02T09:08:32.898Z",
+    "counts": {
+      "providerCalls": 2,
+      "chartSystems": 2,
+      "privateDenials": 2,
+      "savedRefreshes": 1,
+      "inspectedCards": 7,
+      "widths": [
+        320,
+        390,
+        1440
+      ],
+      "roomsClosed": 3
+    },
+    "syntheticInputsOnly": true,
+    "savedChartEqualsCalculatedPreview": true,
+    "ordinaryOptOutOmitsAstrologyFields": true,
+    "httpChecks": 9,
+    "designRoutes404": true,
+    "databaseReadback": {
+      "source": "9627e530be1c79abaf1c4b10b27b0037c8677ed8",
+      "readOnly": true,
+      "roomsClosed": 3,
+      "activeMemberships": 0,
+      "profilesPreserved": 2,
+      "matchesPreserved": 3,
+      "receiptsPreserved": 6,
+      "completeReadings": 2,
+      "astrologyReadings": 1,
+      "rawBirthFieldsAbsent": true
+    }
+  },
+  "ownerPreservation": {
+    "fingerprintsMatch": true,
+    "permanentGoogleIdentityPreserved": true,
+    "counts": {
+      "profile": 1,
+      "ownedRooms": 5,
+      "memberships": 5,
+      "identities": 1
+    },
+    "schemaHead": "a6e442b15d80"
+  },
+  "observability": {
+    "since": "2026-11-02T09:07:40Z",
+    "until": "2026-11-02T09:10:13.158910+00:00",
+    "runtimeErrorsOrFatals": 0,
+    "http500Plus": 0,
+    "paginationComplete": true,
+    "excludedIntervals": []
+  },
+  "cleanup": {
+    "rootRemovedPaths": 14,
+    "rootBytesReclaimed": 8565,
+    "temporaryStorybookClosed": true,
+    "primaryCheckoutAndRequestedServicesPreserved": true,
+    "childReceipts": [
+      "cleanup.json",
+      "../tarot-astrology-2026-11-02/verification.json"
+    ],
+    "blockers": []
+  },
+  "runtimeFingerprint": "bec06e6070b22a0d825e06a9a1949d5cfe345c84285bf32743f91d3418abc3a9",
+  "limits": [
+    "All27games received source and representative phone/desktop review;247legally reached states do not exhaust every possible branch.",
+    "The hosted check covers two fresh saved readings and actual Deal inspection; historical complete-match/load proof is identified separately in the audit.",
+    "Two live generations do not guarantee provider reliability."
+  ]
+}

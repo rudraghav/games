@@ -118,8 +118,10 @@ Historical saved-room proof remains
 stable selections. It predates these information changes. It does not replace
 new source/type/browser checks or prove a new production rollout.
 
-This information pass is **local** until the root release records its commit,
-deployment and live verification. The Gang/Paper follow-up also ran four local saved-room regressions; fresh
+This information pass shipped in source `9627e530be1c79abaf1c4b10b27b0037c8677ed8`,
+production `dpl_3taMzfVFgv7uwgoXzHNhn517h9e7`. The parent verified live saved
+readings, private access and Deal inspection; full evidence and the distinction
+between local/historical/hosted checks are in [`production.json`](production.json). The Gang/Paper follow-up also ran four local saved-room regressions; fresh
 readback confirms all four closed with zero active memberships, preserving ten
 profiles, eight matches and56receipts. Fixture capture itself writes no rooms.
 No schema, engine rules, hidden projection, production account or provider

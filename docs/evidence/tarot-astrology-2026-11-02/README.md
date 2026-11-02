@@ -37,3 +37,14 @@ Initial direct local browser requests found the Next.js route allowlist did not 
 ## Cleanup
 
 The task-owned Storybook server on 6106 and the isolated `tarot-astrology` browser were closed. Superseded builds and raw test artifacts were removed after retaining these compact screenshots and the verification receipt (about 254 MiB reclaimed). The requested web/API services on 3217/8217, the existing Storybook service on 6105, user browser sessions, source, dependencies and credentials were preserved. Web/API health readbacks both returned 200.
+
+## Parent production verification
+
+Source `9627e530be1c79abaf1c4b10b27b0037c8677ed8` is deployed to the public Games
+production alias. A two-guest live run generated and saved Both and ordinary
+readings, compared the saved chart with its real calculated preview, checked
+private access and unchanged refresh, and reviewed320/390/1440 bounds. Raw birth
+fields are absent from saved payloads. All three hosted QA rooms are closed;
+records remain. See [`production evidence`](../game-info-2026-11-02/production.json).
+The parent later started its own6105Storybook for the final gate and closed it
+afterward; requested3217/8217 services remain healthy.

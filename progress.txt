@@ -2172,3 +2172,37 @@
 - Next: push the combined main, deploy once to the personal production project,
   then verify source/alias, real private readings and Deal info, logs, owner
   preservation and cleanup before calling the release complete.
+
+2026-11-02 — Information/astrology production verified and cleaned
+- Pushed combined main9627e530be1c79abaf1c4b10b27b0037c8677ed8; deployed once to
+  READY production dpl_3taMzfVFgv7uwgoXzHNhn517h9e7 inbom1. Public alias,
+  githubCommitSha and releaseSourceSha all agree. Prior dpl_8ShysJixe58HGHwpVA1Qe7VXGxuA
+  remains the rollback reference. No production schema/provider/auth setting changed.
+- Actual hosted two-guest check passed in28.8s: real Both and ordinary Gemini
+  readings, exact saved/calculated chart equality, private cross-room denials,
+  saved refresh and320/390/1440 layouts, and seven actual Deal hand-card inspections
+  with no committed move. All three QA rooms closed. Read-only database proof
+  retained two profiles, three matches, six receipts and two complete readings;
+  one includes astrology. Zero active QA memberships and no raw birth fields.
+- Nine public/auth/design-route checks passed. The owner's permanent Google
+  identity/profile and five rooms/memberships match before fingerprints. Log
+  queries scoped to this deployment from09:07:40–09:10:13UTC show zero runtime
+  errors/fatals and zero HTTP500+ records, complete pagination and no exclusions.
+- All27games have a per-game information/interaction/layout checklist and current
+  phone/desktop captures;247legal states,120frontend tests,857backend tests,
+  169multiplayer tests and122browser cases passed. Combined native workflow and
+  contract gates passed44workflow cases plus generated parity. Rare branches and
+  historical full-match/load evidence remain distinguished in the audit.
+- Cleanup: root closed only its temporary6105Storybook. A fresh exact-path,
+  symlink/open-file check removed14superseded QA paths (8,565bytes); child receipts
+  record their own duplicate captures/builds removed. Two interrupted local Tarot
+  test rooms were explicitly closed, with history preserved. All four Gang/Paper
+  follow-up rooms were already closed after their suites. No databases, profiles,
+  history, credentials, dependencies, primary checkout or normal browser were removed.
+  The only worktree is the retained primary Games checkout. Web3217, API8217 and
+  public production return200; no cleanup blocker remains.
+- Evidence: docs/evidence/game-info-2026-11-02/production.json and the owning
+  game/Tarot audit folders. Private rollback/owner/readback/cleanup receipts remain
+  under .vercel. This closure changes documentation only; all445runtime files
+  match bec06e6070b22a0d825e06a9a1949d5cfe345c84285bf32743f91d3418abc3a9,
+  so no duplicate deployment is needed.
