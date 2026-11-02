@@ -37,11 +37,11 @@ actual member screenshots use the browser defaults: 1440×1000 and 390×664.
 
 ## Inspected captures
 
-| State | Desktop | Phone |
-| --- | --- | --- |
-| Before: public home | [1440px](before-1440.webp) | [390px](before-390.webp) |
-| After: Games | [1440px](after-games-1440.webp) | [390px](after-games-390.webp), [320px](after-games-320.webp) |
-| After: actual local member | [1440px](member-rooms-desktop.webp) | [390px](member-rooms-phone.webp) |
+| State                      | Desktop                             | Phone                                                        |
+| -------------------------- | ----------------------------------- | ------------------------------------------------------------ |
+| Before: public home        | [1440px](before-1440.webp)          | [390px](before-390.webp)                                     |
+| After: Games               | [1440px](after-games-1440.webp)     | [390px](after-games-390.webp), [320px](after-games-320.webp) |
+| After: actual local member | [1440px](member-rooms-desktop.webp) | [390px](member-rooms-phone.webp)                             |
 
 The [public empty Rooms view](after-empty-rooms-390.webp) is the actual development
 page. The cropped [loading](story-loading-rooms-320.webp) and
@@ -53,3 +53,16 @@ Phone navigation uses the visible Games tab; desktop also exercises the header
 Games link. A focused real member check removes only the remembered-player flag,
 loads the profile, returns through Next navigation, and verifies the same owned
 room and identity with no additional session/profile request while browsing.
+
+## Production
+
+The complete follow-up is live at https://games-seven-black.vercel.app from
+application commit `56be1ec0a27a5f0886f9c50c756a9bc85b5aea5d`. [Release proof](production.json)
+records 81 setup inspections across 320/390/1440, real private invitations, saved
+optional settings and a browser-driven bot reply, using two guests and no AI
+requests. Both test rooms closed. HTTP/artwork checks all passed (123), the owner and five
+existing rooms are unchanged, and scoped runtime/HTTP500+ log counts are zero.
+
+Backend/game-table/API/deployment inputs match the preceding fully verified
+stable-gameplay release; its full-match and50-room Broadcast evidence is retained
+separately. The final documentation closure does not redeploy unchanged runtime.

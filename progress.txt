@@ -1978,3 +1978,40 @@
   (backend/API/game tables/controllers/dependencies/hosting)match firstrelease.
 - Next: commit/pushmain, deployonce, then test the new UI live usingexactly2actors
   reusedacrossallviewports andconfirmHTTP,logs,source/alias andownerpreservation.
+
+2026-11-02 — Dashboard/setup follow-up deployed, verified and cleaned
+- Pushed main 56be1ec0a27a5f0886f9c50c756a9bc85b5aea5d and deployed once to READY
+  production dpl_8ShysJixe58HGHwpVA1Qe7VXGxuA (bom1). The public Games alias,
+  githubCommitSha and releaseSourceSha agree. The prior fdb8b6d deployment is the
+  rollback reference.
+- The exact committed dashboard workflow passed once in 64 seconds, with no
+  retries and two guests: 81 game dialogs at three widths; saved avatar/rule/name
+  choices; full invite join; two authenticated pre-join denials; eight filter and
+  shortcut checks; an automatically started Hold'em bot room; one human move and
+  one observed browser-driven bot reply. Fresh database readback retained three
+  receipts (one human, two bot). Both rooms closed and all four memberships,
+  including the bot, are inactive. Profiles, match history and receipts remain.
+  There were no AI calls.
+- Final HTTP checks: 123 passed, including 117 artwork responses and 48 portrait
+  hashes. The owner's profile, five rooms/memberships and permanent Google
+  identity match the before fingerprints. Deployment-scoped logs from 07:24 to
+  07:30:59 UTC show zero runtime errors/fatals and zero HTTP 500+ responses;
+  pagination is complete.
+- Final proof: docs/evidence/dashboard-tabs-2026-11-02/production.json. Shared
+  font, 281-card, motion and story checks pass. Earlier gameplay, security and
+  50-room load evidence remains applicable because 140 protected runtime files
+  match; the new setup was independently tested live.
+- Cleanup followed the updated policy. Fresh ownership, symlink, open-file and
+  reference checks preceded removal of 50 exact task-created paths: 13,181,150
+  bytes of resolved traces, duplicate captures, trials and two tool bytecodes.
+  Concise WebP/JSON evidence remains in docs. Private recovery/owner records and
+  credentials are preserved. Agents removed only their own temporary Storybook
+  browsers, builds and servers at checkpoints. No active or unmerged checkout
+  was removed; the sole worktree is the retained primary Games checkout.
+- Requested development services (web 3217, API 8217) return 200. Active Next
+  outputs/types, dependencies, virtual environment, Postgres data/volume, normal
+  Chrome session, source/history and rollback records are preserved. No cleanup
+  blocker remains. Receipt: .vercel/games-task-cleanup-20261102.json.
+- This closure changes documentation only. The verified runtime contains 427
+  files with fingerprint 3da0b5f4da151ed9deb1e778ee4481e4df8a4256be93c9670334b80d92d8026b.
+  No additional deployment is required for the documentation closure.
