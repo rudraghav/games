@@ -36,14 +36,29 @@ parser.add_argument("--all", action="store_true", help="Run every existing produ
 parser.add_argument("--timeout", type=int, default=1800, help="Per-command seconds, from 1 to 3600")
 parser.add_argument("--task", help="Attach actual selected checks to this chat's active task")
 parser.add_argument("--json", action="store_true", help="Emit one structured report; check output goes to stderr")
+parser.add_argument("--browser-file", action="append", default=[],
+                    help="Select a browser spec under tests/browser; repeat for affected flows")
 args = parser.parse_args()
 if set(args.groups) - set(GROUPS) or not 1 <= args.timeout <= 3600 or (args.all and args.groups):
     parser.error("Choose known groups or --all, and a timeout from 1 to 3600 seconds")
+if args.browser_file:
+    if args.groups and "browser" not in args.groups:
+        parser.error("--browser-file requires the browser group")
+    for name in args.browser_file:
+        path = Path(name)
+        if (path.is_absolute() or ".." in path.parts or path.parent != Path("tests/browser")
+                or not path.name.endswith(".spec.ts") or not (ROOT / path).is_file()
+                or (ROOT / path).resolve().parent != (ROOT / "tests/browser").resolve()):
+            parser.error("Browser files must be existing tests/browser/*.spec.ts paths")
+    GROUPS["browser"] = (f"Browser types and {len(args.browser_file)} selected responsive specs", [
+        ["pnpm", "exec", "tsc", "-p", "tests/tsconfig.json"],
+        ["pnpm", "exec", "playwright", "test", *args.browser_file, "--workers=2"],
+    ])
 if args.list:
     for name, (description, _) in GROUPS.items():
         print(f"{name:14} {description}")
     raise SystemExit(0)
-selected = list(GROUPS) if args.all else list(dict.fromkeys(args.groups or ["tooling"]))
+selected = list(GROUPS) if args.all else list(dict.fromkeys(args.groups or (["browser"] if args.browser_file else ["tooling"])))
 if args.plan:
     plan = {"mode": "plan", "status": "not_run", "groups": selected,
             "checks": [{"group": group, "argv": command} for group in selected for command in GROUPS[group][1]]}

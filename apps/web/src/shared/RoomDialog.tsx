@@ -1,8 +1,8 @@
 'use client';
-import { useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { ArrowRight, Link2 } from 'lucide-react';
+import { ArrowRight, ChevronDown, Link2 } from 'lucide-react';
 import { Avatar, Button, Modal, ChoiceGroup } from '@games/ui';
 import { games, gameById } from '@games/api-client/catalog';
 import { api } from '@/lib/session';
@@ -29,6 +29,8 @@ export function RoomDialog({
   roomId,
   withBots = false,
 }: RoomDialogProps) {
+  const avatarPicker = useRef<HTMLDetailsElement>(null);
+  const avatarOpener = useRef<HTMLElement>(null);
   const router = useRouter();
   const cache = useQueryClient();
   const me = useQuery({ queryKey: keys.me, queryFn: () => api.me(), enabled: open });
@@ -47,7 +49,7 @@ export function RoomDialog({
   const game = gameById(selectedGame);
   const displayName =
     name ?? me.data?.profile?.name ?? (open ? rememberedPlayer()?.name : '') ?? '';
-  const chosenAvatar = avatar ?? me.data?.profile?.avatar ?? 0;
+  const chosenAvatar = avatar ?? me.data?.profile?.avatar ?? rememberedPlayer()?.avatar ?? 0;
   async function submit(event: FormEvent) {
     event.preventDefault();
     setPending(true);
@@ -96,6 +98,13 @@ export function RoomDialog({
     <Modal
       open={open}
       onOpenChange={onOpenChange}
+      onEscapeKeyDown={(event) => {
+        if (avatarPicker.current?.open) {
+          event.preventDefault();
+          avatarPicker.current.open = false;
+          avatarOpener.current?.focus();
+        }
+      }}
       title={mode === 'join' ? 'Join room' : mode === 'configure' ? 'Room settings' : 'Create room'}
       description={
         mode === 'join'
@@ -105,51 +114,7 @@ export function RoomDialog({
             : 'Invite-only. Share a link or room code to add friends.'
       }
     >
-      <form className="room-setup-form" onSubmit={submit}>
-        {mode !== 'configure' ? (
-          <>
-            <label className="field">
-              Your name
-              <input
-                className="input"
-                value={displayName}
-                onChange={(event) => setName(event.target.value)}
-                placeholder="What should we call you?"
-                required
-                maxLength={30}
-                autoComplete="nickname"
-              />
-            </label>
-            {mode === 'create' && game.botsSupported ? (
-              <ChoiceGroup
-                label="Play with"
-                options={[
-                  { value: 'friends', label: 'Friends' },
-                  { value: 'bots', label: 'Bots' },
-                ]}
-                value={playWith}
-                onChange={(value) => {
-                  setPlayWith(value);
-                  if (value === 'bots') setCapacity(game.minPlayers);
-                }}
-              />
-            ) : null}
-            <div className="avatar-options" role="group" aria-label="Choose your avatar colour">
-              {Array.from({ length: 8 }, (_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  className="avatar-option"
-                  aria-label={`Avatar colour ${i + 1}`}
-                  aria-pressed={chosenAvatar === i}
-                  onClick={() => setAvatar(i)}
-                >
-                  <Avatar name={displayName || 'You'} seed={i} size="sm" />
-                </button>
-              ))}
-            </div>
-          </>
-        ) : null}
+      <form className="room-setup-form room-setup-form--simple" onSubmit={submit}>
         {mode === 'join' ? (
           <label className="field">
             <span>
@@ -179,15 +144,33 @@ export function RoomDialog({
                   setSettings({});
                 }}
               >
-                {games.map((game) => (
-                  <option key={game.id} value={game.id}>
-                    {game.name}
+                {games.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
                   </option>
                 ))}
               </select>
             </label>
-            <div className="form-grid">
-              <label className="field">
+            <div className="room-play-options" data-solo={game.maxPlayers === 1}>
+              {mode === 'create' && game.botsSupported ? (
+                <div className="room-play-mode">
+                  <span className="field-label">Play with</span>
+                  <ChoiceGroup
+                    label="Play with"
+                    variant="segmented"
+                    options={[
+                      { value: 'friends', label: 'Friends' },
+                      { value: 'bots', label: 'Bots' },
+                    ]}
+                    value={playWith}
+                    onChange={(value) => {
+                      setPlayWith(value);
+                      if (value === 'bots') setCapacity(game.minPlayers);
+                    }}
+                  />
+                </div>
+              ) : null}
+              <label className="field room-seat-field">
                 Seats
                 <select
                   className="input"
@@ -199,11 +182,62 @@ export function RoomDialog({
                     (_, i) => game.minPlayers + i,
                   ).map((count) => (
                     <option value={count} key={count}>
-                      {count} players
+                      {playWith === 'bots' && game.botsSupported && mode === 'create'
+                        ? `You + ${count - 1} ${count === 2 ? 'bot' : 'bots'}`
+                        : `${count} ${count === 1 ? 'player' : 'players'}`}
                     </option>
                   ))}
                 </select>
               </label>
+            </div>
+          </>
+        )}
+        {mode !== 'configure' ? (
+          <div className="room-player-fields">
+            <label className="field">
+              Your name
+              <input
+                className="input"
+                value={displayName}
+                onChange={(event) => setName(event.target.value)}
+                placeholder="Your name"
+                required
+                maxLength={30}
+                autoComplete="nickname"
+              />
+            </label>
+            <details className="room-avatar-picker" ref={avatarPicker}>
+              <summary ref={avatarOpener} aria-label="Change avatar" title="Change avatar">
+                <Avatar name={displayName || 'You'} seed={chosenAvatar} size="sm" />
+              </summary>
+              <div className="avatar-options" role="group" aria-label="Choose your avatar colour">
+                {Array.from({ length: 8 }, (_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    className="avatar-option"
+                    aria-label={`Avatar colour ${i + 1}`}
+                    aria-pressed={chosenAvatar === i}
+                    onClick={() => {
+                      setAvatar(i);
+                      if (avatarPicker.current) avatarPicker.current.open = false;
+                      avatarOpener.current?.focus();
+                    }}
+                  >
+                    <Avatar name={displayName || 'You'} seed={i} size="sm" />
+                  </button>
+                ))}
+              </div>
+            </details>
+          </div>
+        ) : null}
+        {mode !== 'join' && (mode === 'create' || game.settings.length > 0) ? (
+          <details className="room-extra-options">
+            <summary>
+              {mode === 'create' ? 'Room options' : 'Game rules'}
+              <ChevronDown size={16} aria-hidden="true" />
+            </summary>
+            <div className="room-extra-fields">
               {mode === 'create' ? (
                 <label className="field">
                   Room name
@@ -216,21 +250,21 @@ export function RoomDialog({
                   />
                 </label>
               ) : null}
+              {game.settings.map((setting) => (
+                <label className="toggle-row" key={setting.key}>
+                  <input
+                    type="checkbox"
+                    checked={settings[setting.key] ?? setting.default}
+                    onChange={(event) =>
+                      setSettings({ ...settings, [setting.key]: event.target.checked })
+                    }
+                  />
+                  {setting.label}
+                </label>
+              ))}
             </div>
-            {game.settings.map((setting) => (
-              <label className="toggle-row" key={setting.key}>
-                <input
-                  type="checkbox"
-                  checked={settings[setting.key] ?? setting.default}
-                  onChange={(event) =>
-                    setSettings({ ...settings, [setting.key]: event.target.checked })
-                  }
-                />
-                {setting.label}
-              </label>
-            ))}
-          </>
-        )}
+          </details>
+        ) : null}
         {error ? (
           <p className="error-note" role="alert">
             {error}

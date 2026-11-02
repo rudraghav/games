@@ -1,0 +1,152 @@
+@layer components {
+  .choice-group[data-variant='segmented'] {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 3px;
+    padding: 3px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-surface-muted);
+  }
+  .choice-group[data-variant='segmented'] > button {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    padding: 9px 12px;
+    border: 0;
+    border-radius: 9px;
+    color: var(--color-ink-muted);
+  }
+  .choice-group[data-variant='segmented'] > button[aria-pressed='true'] {
+    color: var(--color-ink);
+    background: var(--color-surface);
+    box-shadow: 0 1px 4px #202f2414;
+  }
+  .room-setup-form--simple {
+    display: grid;
+    gap: 18px;
+  }
+  .room-setup-form--simple > .field,
+  .room-setup-form--simple .room-player-fields > .field,
+  .room-setup-form--simple .room-play-options .field {
+    margin: 0;
+  }
+  .room-setup-form--simple .input {
+    min-height: 48px;
+    width: 100%;
+  }
+  .room-play-options {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(100px, 135px);
+    align-items: end;
+    gap: 14px;
+  }
+  .room-play-options:not(:has(.room-play-mode)) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .room-play-options:empty {
+    display: none;
+  }
+  .room-play-mode {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+  }
+  .room-play-mode .field-label {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .room-player-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px;
+    gap: 12px;
+    align-items: end;
+    min-width: 0;
+    position: relative;
+  }
+  .room-avatar-picker {
+    position: relative;
+  }
+  .room-avatar-picker > summary {
+    display: grid;
+    place-items: center;
+    list-style: none;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: var(--color-surface);
+  }
+  .room-avatar-picker > summary::-webkit-details-marker,
+  .room-extra-options > summary::-webkit-details-marker {
+    display: none;
+  }
+  .room-avatar-picker > summary:hover {
+    background: var(--color-surface-muted);
+  }
+  .room-setup-form--simple .room-avatar-picker .avatar-options {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 4;
+    grid-template-columns: repeat(4, 44px);
+    width: max-content;
+    padding: 8px;
+    margin: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+  }
+  .room-extra-options {
+    border-top: 1px solid var(--color-border);
+    min-width: 0;
+  }
+  .room-extra-options > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    min-height: 44px;
+    font-size: 13px;
+    color: var(--color-ink-muted);
+    cursor: pointer;
+  }
+  .room-extra-options[open] > summary > svg {
+    transform: rotate(180deg);
+  }
+  .room-extra-fields {
+    padding-top: 6px;
+  }
+  .room-extra-fields .field {
+    margin: 0 0 8px;
+  }
+  .room-setup-form--simple .form-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    margin-top: 0;
+  }
+  .room-setup-form--simple .form-footer > .button {
+    width: 100%;
+    min-height: 44px;
+  }
+  .room-setup-form--simple .form-footer > .button[type='submit'] {
+    order: -1;
+  }
+  .room-setup-form--simple .error-note {
+    margin: 0;
+  }
+  @media (max-width: 600px) {
+    .room-play-options {
+      gap: 10px;
+      grid-template-columns: minmax(0, 1fr) 110px;
+    }
+    .room-setup-form.room-setup-form--simple .form-footer {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

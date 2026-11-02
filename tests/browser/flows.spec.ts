@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { requestAs } from './helpers';
+import { requestAs, openRoomOptions } from './helpers';
 import gameCatalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 test('the complete catalogue and every table scenario fit the viewport', async ({ page }) => {
@@ -56,6 +56,7 @@ test('independent guests create, join, chat, play, refresh and switch games', as
     const setup = page.getByRole('dialog');
     await setup.getByRole('textbox', { name: 'Your name', exact: true }).fill('Browser Host');
     await setup.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
+    await openRoomOptions(setup);
     await setup
       .getByRole('textbox', { name: 'Room name', exact: true })
       .fill('Browser verification table');

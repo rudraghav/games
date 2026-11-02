@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { expect, type Locator, type Page } from '@playwright/test';
 import type { components } from '../../packages/api-client/src/generated/schema';
 
 // FastAPI emits response defaults, although OpenAPI marks defaulted fields optional.
@@ -106,5 +106,14 @@ export async function attachPreviewAccess(page: Page) {
         },
       }),
     );
+  }
+}
+
+/** Room setup progressively discloses optional names and game rules. */
+export async function openRoomOptions(page: Page | Locator) {
+  const options = page.locator('.room-extra-options');
+  if (await options.count()) {
+    if ((await options.getAttribute('open')) === null)
+      await options.locator(':scope > summary').click();
   }
 }

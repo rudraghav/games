@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { mkdir } from 'node:fs/promises';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 test('browsing filters intersect, reset deliberately and keep keyboard focus', async ({ page }) => {
@@ -131,54 +132,116 @@ test('new catalogue illustrations and complete numeric symbols fit their mobile 
 test('room setup groups profile and game fields with full phone action rows', async ({
   page,
 }, testInfo) => {
+  test.skip(Boolean(process.env.GAMES_TEST_URL), 'Setup review uses local sessions only.');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  if (testInfo.project.name === 'phone') await page.setViewportSize({ width: 320, height: 844 });
-  for (const mode of ['create', 'join'] as const) {
-    await page
-      .getByRole('button', {
-        name: mode === 'create' ? 'Create room' : 'Join a room',
-        exact: true,
-      })
-      .click();
-    const dialog = page.getByRole('dialog');
-    const form = dialog.locator('form');
-    const primary = form.getByRole('button', {
-      name: mode === 'create' ? 'Create room' : 'Join the room',
-      exact: true,
-    });
-    const cancel = form.getByRole('button', { name: 'Cancel', exact: true });
-    await dialog.getByRole('button', { name: 'Avatar colour 8', exact: true }).click();
-    await expect(
-      dialog.getByRole('button', { name: 'Avatar colour 8', exact: true }),
-    ).toHaveAttribute('aria-pressed', 'true');
-    if (testInfo.project.name === 'phone') {
-      await primary.scrollIntoViewIfNeeded();
-      const formBox = await form.boundingBox();
-      const primaryBox = await primary.boundingBox();
-      const cancelBox = await cancel.boundingBox();
-      expect(primaryBox!.width).toBeCloseTo(formBox!.width, 0);
-      expect(cancelBox!.width).toBeCloseTo(formBox!.width, 0);
-      expect(cancelBox!.y).toBeGreaterThanOrEqual(primaryBox!.y + primaryBox!.height);
-      if (mode === 'create') {
-        const seats = await dialog
-          .getByRole('combobox', { name: 'Seats', exact: true })
-          .boundingBox();
-        const roomName = await dialog
-          .getByRole('textbox', { name: 'Room name', exact: true })
-          .boundingBox();
-        expect(roomName!.y).toBeGreaterThanOrEqual(seats!.y + seats!.height);
-        expect(roomName!.width).toBeCloseTo(formBox!.width, 0);
+  const dir = '.vercel/room-setup-review';
+  await mkdir(dir, { recursive: true });
+  const widths = testInfo.project.name === 'phone' ? [320, 390] : [1440];
+  let roomWrites = 0;
+  page.on('request', (request) => {
+    if (request.method() === 'POST' && /\/api\/backend\/v1\/rooms(?:\/join)?$/.test(request.url()))
+      roomWrites += 1;
+  });
+  for (const width of widths) {
+    await page.setViewportSize({ width, height: width > 700 ? 1000 : 844 });
+    for (const mode of ['create', 'join'] as const) {
+      await page
+        .getByRole('button', {
+          name: mode === 'create' ? 'Create room' : 'Join a room',
+          exact: true,
+        })
+        .click();
+      const dialog = page.getByRole('dialog');
+      const form = dialog.locator('form');
+      const primary = form.locator('button[type="submit"]');
+      const cancel = form.getByRole('button', { name: 'Cancel', exact: true });
+      const palette = dialog.locator('.avatar-options');
+      const avatar = dialog.locator('summary[aria-label="Change avatar"]');
+      await dialog.getByRole('textbox', { name: 'Your name', exact: true }).fill('Setup Guest');
+      await expect(palette).toBeHidden();
+      async function fit() {
+        expect(await dialog.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(
+          true,
+        );
+        expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+          true,
+        );
+        await primary.scrollIntoViewIfNeeded();
+        const formBox = await form.boundingBox();
+        const primaryBox = await primary.boundingBox();
+        const cancelBox = await cancel.boundingBox();
+        expect(primaryBox!.width).toBeCloseTo(formBox!.width, 0);
+        expect(cancelBox!.width).toBeCloseTo(formBox!.width, 0);
+        expect(primaryBox!.height).toBeGreaterThanOrEqual(44);
+        expect(cancelBox!.height).toBeGreaterThanOrEqual(44);
+        expect(cancelBox!.y).toBeGreaterThanOrEqual(primaryBox!.y + primaryBox!.height);
+        await expect(primary).toBeInViewport({ ratio: 1 });
       }
+      if (mode === 'create') {
+        await expect(dialog.getByRole('combobox', { name: 'The game', exact: true })).toHaveValue(
+          'uno',
+        );
+        await expect(dialog.getByRole('button', { name: 'Friends', exact: true })).toHaveAttribute(
+          'aria-pressed',
+          'true',
+        );
+        await expect(
+          dialog.getByRole('textbox', { name: 'Room name', exact: true, includeHidden: true }),
+        ).toBeHidden();
+        for (const checkbox of await dialog.getByRole('checkbox', { includeHidden: true }).all())
+          await expect(checkbox).toBeHidden();
+      }
+      await fit();
+      await dialog.screenshot({ path: `${dir}/${mode}-${width}-base.png` });
+      await avatar.click();
+      await expect(palette).toBeVisible();
+      await expect(palette.getByRole('button')).toHaveCount(8);
+      const dialogBox = await dialog.boundingBox();
+      const paletteBox = await palette.boundingBox();
+      expect(paletteBox!.x).toBeGreaterThanOrEqual(dialogBox!.x);
+      expect(paletteBox!.x + paletteBox!.width).toBeLessThanOrEqual(
+        dialogBox!.x + dialogBox!.width,
+      );
+      await dialog.screenshot({ path: `${dir}/${mode}-${width}-avatar.png` });
+      await palette.getByRole('button', { name: 'Avatar colour 8', exact: true }).click();
+      await expect(palette).toBeHidden();
+      await expect(avatar).toBeFocused();
+      await avatar.click();
+      const selectedAvatar = palette.getByRole('button', { name: 'Avatar colour 8', exact: true });
+      await expect(selectedAvatar).toHaveAttribute('aria-pressed', 'true');
+      await selectedAvatar.focus();
+      await page.keyboard.press('Escape');
+      await expect(palette).toBeHidden();
+      await expect(dialog).toBeVisible();
+      await expect(avatar).toBeFocused();
+      if (mode === 'create') {
+        await dialog.getByText('Room options', { exact: true }).click();
+        const roomName = dialog.getByRole('textbox', { name: 'Room name', exact: true });
+        await expect(roomName).toBeVisible();
+        await roomName.fill('Friday table');
+        const rules = dialog.getByRole('checkbox');
+        expect(await rules.count()).toBeGreaterThan(0);
+        const firstRule = rules.first();
+        const toggled = !(await firstRule.isChecked());
+        await firstRule.setChecked(toggled);
+        await dialog.getByRole('button', { name: 'Bots', exact: true }).click();
+        await expect(primary).toHaveText('Play game');
+        await expect(dialog.getByRole('combobox', { name: 'Seats', exact: true })).toHaveValue('2');
+        await expect(roomName).toHaveValue('Friday table');
+        await expect(firstRule).toBeChecked({ checked: toggled });
+        await fit();
+        await dialog.screenshot({ path: `${dir}/create-${width}-bots-options.png` });
+        await dialog.getByRole('button', { name: 'Friends', exact: true }).click();
+        await expect(primary).toHaveText('Create room');
+        await expect(roomName).toHaveValue('Friday table');
+        await expect(firstRule).toBeChecked({ checked: toggled });
+        await fit();
+        await dialog.screenshot({ path: `${dir}/create-${width}-options.png` });
+      }
+      await cancel.click();
+      await expect(dialog).toBeHidden();
     }
-    expect(await dialog.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(
-      true,
-    );
-    await dialog.screenshot({ path: testInfo.outputPath(`${mode}-setup.png`) });
-    if (testInfo.project.name === 'phone') {
-      await form.locator('.form-footer').scrollIntoViewIfNeeded();
-      await dialog.screenshot({ path: testInfo.outputPath(`${mode}-actions.png`) });
-    }
-    await cancel.click();
-    await expect(dialog).not.toBeVisible();
   }
+  expect(roomWrites).toBe(0);
 });

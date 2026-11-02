@@ -12,6 +12,7 @@ interface ModalProps {
   children: ReactNode;
   wide?: boolean;
   stickyHeader?: boolean;
+  onEscapeKeyDown?: (event: KeyboardEvent) => void;
 }
 export function Modal({
   open,
@@ -21,6 +22,7 @@ export function Modal({
   children,
   wide,
   stickyHeader,
+  onEscapeKeyDown,
 }: ModalProps) {
   const opener = useRef<HTMLElement | null>(null);
   return (
@@ -29,6 +31,7 @@ export function Modal({
         <Dialog.Overlay className="modal-overlay" />
         <Dialog.Content
           className={cn('modal', wide && 'modal--wide', stickyHeader && 'modal--sticky-heading')}
+          onEscapeKeyDown={onEscapeKeyDown}
           onOpenAutoFocus={() => {
             opener.current =
               document.activeElement instanceof HTMLElement ? document.activeElement : null;

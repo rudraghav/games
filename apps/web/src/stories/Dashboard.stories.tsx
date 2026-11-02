@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { GameLibrary } from '@/features/lounge/GameLibrary';
 import { RoomShortcut } from '@/features/lounge/RoomShortcut';
-import { GameTile } from '@games/ui';
+import { GameTile, SegmentedTabs } from '@games/ui';
+import { LoungeRooms } from '@/features/lounge/Lounge';
 import { gameById } from '@games/api-client/catalog';
 import { GameArt } from '@/shared/GameArt';
 
@@ -56,4 +58,54 @@ export const MemberRoomShortcuts: Story = {
       />
     </div>
   ),
+};
+
+const memberRooms = [
+  { id: 'preview-one', name: 'Friday table', gameId: 'uno', status: 'playing', players: 4 },
+  { id: 'preview-two', name: 'Azul with friends', gameId: 'azul', status: 'lobby', players: 2 },
+  { id: 'preview-three', name: 'Last game', gameId: 'holdem', status: 'finished', players: 3 },
+];
+function TabbedDashboard({
+  state = 'member',
+  initial = 'games',
+}: {
+  state?: 'member' | 'empty' | 'loading' | 'error';
+  initial?: 'games' | 'rooms';
+}) {
+  const [tab, setTab] = useState<'games' | 'rooms'>(initial);
+  return (
+    <div style={{ maxWidth: 1120 }}>
+      <SegmentedTabs
+        label="Browse"
+        value={tab}
+        onValueChange={setTab}
+        items={[
+          { value: 'games', label: 'Games', content: <GameLibrary onChoose={() => undefined} /> },
+          {
+            value: 'rooms',
+            label: 'Rooms',
+            content: (
+              <LoungeRooms
+                rooms={state === 'member' ? memberRooms : []}
+                loading={state === 'loading'}
+                error={state === 'error'}
+                onRetry={() => undefined}
+              />
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
+export const GamesAndRooms: Story = { render: () => <TabbedDashboard /> };
+export const MemberRooms: Story = { render: () => <TabbedDashboard initial="rooms" /> };
+export const EmptyRooms: Story = {
+  render: () => <TabbedDashboard initial="rooms" state="empty" />,
+};
+export const LoadingRooms: Story = {
+  render: () => <TabbedDashboard initial="rooms" state="loading" />,
+};
+export const RoomsUnavailable: Story = {
+  render: () => <TabbedDashboard initial="rooms" state="error" />,
 };

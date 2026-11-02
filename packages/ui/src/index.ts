@@ -24,3 +24,5 @@ export { TarotCard } from './components/TarotCard';
 export { tarotArtwork } from './lib/tarot-artwork';
 export { WordTile } from './components/WordTile';
 export { DevelopmentCard, ResourceToken, gemColors } from './components/DevelopmentCard';
+
+export { SegmentedTabs } from './components/SegmentedTabs';

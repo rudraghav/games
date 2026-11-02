@@ -8,7 +8,7 @@ complete minimum/maximum Deal matches, actual browser bot-driver matches and
 the 50-room local load check. Historical release evidence below remains history;
 the newest pushed/deployed source and hosted checks belong to `progress.txt`.
 
-Use `python3 scripts/verify.py --list` for the named check groups. For owned work, run `python3 scripts/verify.py --task TASK_ID GROUP...`; actual results and before/after source fingerprints attach privately to that task. `--json` emits a metadata-only report, while raw check output stays on stderr. Changed or incomplete source fingerprints make the result inconclusive; reports do not fingerprint secrets, dependencies or external services and never replace hosted proof. The runner fails
+Use `python3 scripts/verify.py --list` for the named check groups. For owned work, run `python3 scripts/verify.py --task TASK_ID GROUP...`; actual results and before/after source fingerprints attach privately to that task. `--json` emits a metadata-only report, while raw check output stays on stderr. Changed or incomplete source fingerprints make the result inconclusive; reports do not fingerprint secrets, dependencies or external services and never replace hosted proof. Repeat `--browser-file tests/browser/NAME.spec.ts` to scope the browser group to affected workflows; paths are validated and the exact selection enters the retained command manifest. Without explicit groups this option selects browser only. The runner fails
 on a missing prerequisite; it never substitutes a tooling PASS for product proof.
 
 | Group       | Coverage                                                                                                                                   |

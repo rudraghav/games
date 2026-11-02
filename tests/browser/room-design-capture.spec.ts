@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
-import { requestAs, roomAs } from './helpers';
+import { requestAs, roomAs, openRoomOptions } from './helpers';
 
 const captureOnly = process.env.GAMES_DESIGN_CAPTURE === '1';
 test.skip(!captureOnly, 'Capture-only design audit, explicitly opt in.');
@@ -81,6 +81,7 @@ test('capture production lobby and representative human game tables', async ({
     await page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill('Audit Host with a long name');
+    await openRoomOptions(page);
     await page
       .getByRole('textbox', { name: 'Room name', exact: true })
       .fill('Design audit private room');
@@ -232,12 +233,10 @@ test('capture a natural local result and rematch arrangement', async ({
       ['phone', 390, 844],
     ] as const) {
       await page.setViewportSize({ width, height });
-      await page
-        .locator('.room-main')
-        .screenshot({
-          path: `${dir}/result-${viewport}.png`,
-          mask: [page.locator('.invite-panel')],
-        });
+      await page.locator('.room-main').screenshot({
+        path: `${dir}/result-${viewport}.png`,
+        mask: [page.locator('.invite-panel')],
+      });
     }
   } finally {
     if (id) {

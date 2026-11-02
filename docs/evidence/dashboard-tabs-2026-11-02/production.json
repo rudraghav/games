@@ -1,0 +1,125 @@
+{
+  "verifiedAt": "2026-11-02T07:36:28.765828+00:00",
+  "url": "https://games-seven-black.vercel.app",
+  "applicationSourceSha": "56be1ec0a27a5f0886f9c50c756a9bc85b5aea5d",
+  "deploymentId": "dpl_8ShysJixe58HGHwpVA1Qe7VXGxuA",
+  "regions": ["bom1"],
+  "productionReady": "READY",
+  "localVerification": {
+    "frontendUnits": 108,
+    "frontendTypesLintBuild": "passed",
+    "contractAndFixtureDrift": "passed",
+    "moduleBoundaries": "passed",
+    "focusedBrowserPassed": 42,
+    "intentionalBrowserSkips": 2,
+    "viewportWidths": [320, 390, 1440],
+    "reports": [
+      "verify-e7ae237c2d1e46818619d631a318db33",
+      "verify-8454a184411c466c82751b66b8fc7136"
+    ]
+  },
+  "sharedStorybook": {
+    "canonicalCardFaces": 281,
+    "cardAndMotionCasesPassed": 6,
+    "setupAndNavigationStoryCasesPassed": 22,
+    "networkWrites": 0,
+    "fontFallback": "Helvetica Neue / Arial / sans-serif"
+  },
+  "liveWorkflow": {
+    "passed": true,
+    "executions": 1,
+    "retries": 0,
+    "actors": 2,
+    "counts": {
+      "inspectedGameDialogs": 81,
+      "inspectedWidths": [320, 390, 1440],
+      "roomSubmissions": 2,
+      "blockedAIRequests": 0,
+      "authenticatedPreJoinDenials": 2,
+      "filterRetentionChecks": 8,
+      "membershipShortcutChecks": 8,
+      "friendJoins": 1,
+      "optionalAvatarAndRulesSaved": true,
+      "botRoomsAutostarted": 1,
+      "humanLegalActions": 1,
+      "clientBotDriveRequests": 1,
+      "committedClientBotReplies": 1,
+      "savedBotStateRefreshed": true,
+      "cleanupClosedRooms": 2,
+      "cleanupActorDenials": 4,
+      "cleanupEmptyMemberResponses": 2
+    },
+    "cleanup": {
+      "roomsClosed": 2,
+      "inactiveMemberships": 4,
+      "botMembershipsInactive": 1,
+      "guestProfilesPreserved": 2,
+      "botProfilesPreserved": 1,
+      "savedMatchRowsPreserved": 1,
+      "savedReceiptRowsPreserved": 3,
+      "verifiedByFreshReadOnlyDatabaseReadback": true
+    },
+    "noAIRequests": true,
+    "clientObservationNote": "Captured successful browser bot responses are a lower bound: a later bot action can commit while navigation cancels its response. Saved receipt counts independently verify the exact persisted human/bot commits."
+  },
+  "http": {
+    "checkedAt": "2026-11-02T07:29:12.032970+00:00",
+    "url": "https://games-seven-black.vercel.app",
+    "sourceSha": "56be1ec0a27a5f0886f9c50c756a9bc85b5aea5d",
+    "checks": 123,
+    "statuses": {
+      "200": 118,
+      "404": 4,
+      "401": 1
+    },
+    "imageResponses": 117,
+    "catalogueGames": 27,
+    "botGames": 26,
+    "portraitHashes": "all matched release manifest",
+    "anonymousProfileRead": 401,
+    "developmentSessionAndDesignRoutes": 404,
+    "guestSignups": 0
+  },
+  "protectedOwner": {
+    "fingerprintsUnchanged": true,
+    "counts": {
+      "profile": 1,
+      "ownedRooms": 5,
+      "memberships": 5,
+      "identities": 1
+    },
+    "permanentGoogleAccount": true,
+    "alembicHead": "a6e442b15d80"
+  },
+  "logs": {
+    "since": "2026-11-02T07:24:00Z",
+    "until": "2026-11-02T07:30:59.125164Z",
+    "runtimeErrorFatal": 0,
+    "requests500Plus": 0,
+    "paginationComplete": true
+  },
+  "reusedGameplayEvidence": {
+    "baseApplicationSourceSha": "fdb8b6d0047b8e3d13d95b4b953109c9d8954679",
+    "protectedRuntimeMatchingFiles": 140,
+    "protectedRuntimeSha256": "1afdce219a88115169723728705116509b8b2164ffa4302610a7c604278bce7a",
+    "scope": "Backend, API wire/proxy/session, all game tables and room controller, dependencies and deployment config; shared UI and lounge/setup intentionally changed",
+    "engineTests": 804,
+    "multiplayerTests": 162,
+    "localFullMatchCases": 94,
+    "localAuthoritativeMoves": 9008,
+    "localMidgameSnapshots": 231,
+    "hostedCatalogueChecks": 54,
+    "hostedCompleteMatches": 6,
+    "privateBroadcastLoadRooms": 50,
+    "detail": "../stable-play-2026-11-02/production.json",
+    "limits": "Rummy browser full matches use legal drops; declaration has separate rule and engine-derived UI coverage. Four naturally short initial matches finished before the mid-game snapshot threshold."
+  },
+  "cleanup": {
+    "rootRemovedPaths": 50,
+    "rootBytesReclaimed": 13181150,
+    "skipped": [],
+    "sourceAndIndexPreserved": true,
+    "retainedServices": "Web3217/API8217 healthy; user browser, database, credentials, dependencies, recovery and source preserved",
+    "worktrees": "Only primary Games checkout exists; retained, no linked worktree retirement"
+  }
+}

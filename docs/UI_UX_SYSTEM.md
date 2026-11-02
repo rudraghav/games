@@ -36,8 +36,7 @@ Clear search and Escape preserve the category/group, while Reset filters restore
 all choices and returns focus to search. One live result count follows the
 controls. Phone hero actions occupy full rows, and tile subtitles remain readable
 so unfamiliar games can be understood before opening room setup.
-Room setup uses a scoped avatar grid with 44px pressed-state choices, stacked
-phone fields, and full-width submit/cancel rows. Form changes preserve the same
+Room setup uses a compact profile row with an optional 44px avatar picker, a segmented Friends/Bots choice and a seat selector. Room-name and rule controls are inside Room options. Submit and Cancel occupy separate full rows, with the primary action first, at every width. Form changes preserve the same
 shared create/join/configure behavior and are documented with inspected captures
 in `evidence/browsing-2026-11-01`.
 
@@ -135,8 +134,7 @@ live with the owning board rules so late imports cannot hide columns or counts.
 The complete 52-scenario phone/desktop audit and inspected samples are recorded
 in `docs/evidence/table-refresh-2026-11-01`.
 
-The home starts with a compact title/action row. Active member-room shortcuts
-precede the catalogue; finished rooms follow it. Search and Players share one
+The home starts with a compact title/action row and shared SegmentedTabs for Games / Rooms. Games shows the catalogue alone. Rooms groups active/waiting and finished memberships with empty, loading and retry states. Search and Players share one
 control row; category pills scroll beside a fixed, labeled Reset control. The
 announced result count stays visually hidden to give games more first-fold space.
 At 320px the secondary header Create action uses its labeled icon, while the
@@ -224,3 +222,11 @@ Stable gameplay uses shared DecisionDock variants with bounded internal scrollin
 HorizontalRail owns overflow detection, external 44px arrows, native touch scrolling and reduced-motion navigation. It reveals focused cards horizontally without moving the page vertically. OpponentPanel owns the public summary/Inspect vocabulary; features provide only authorized public children. RoomActivity displays the latest 80 durable, server-redacted moves with optional public card details. The same sidebar tabs serve chat/activity on desktop and phone.
 
 Current stable-play evidence lives in `evidence/stable-play-2026-11-02`: 235 legally reached projections across all 27 games, critical interaction/geometry checks, and inspected phone/desktop captures. This fixture review is distinct from real saved-room full matches and hosted release checks in the journal.
+
+SegmentedTabs owns labelled tab/tabpanel relationships, one roving tab stop and
+Left/Right/Home/End activation. Inactive panels stay mounted but hidden, retaining
+search/filter state. The header Games link reveals the Games panel. ChoiceGroup
+adds a typed segmented variant for form choices. Modal forwards an optional
+Escape handler so nested optional controls can close before their parent dialog.
+The shared font tokens have valid sans/serif fallbacks when Next font variables
+are absent in Storybook; the app keeps its existing DM Sans/Fraunces faces.

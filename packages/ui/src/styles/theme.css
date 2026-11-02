@@ -1,3 +1,6 @@
+/* Shared navigation and room setup variants. */
+@import './dashboard-tabs.css';
+@import './room-setup.css';
 @import './tables.css';
 @import './tarot.css';
 @import './expansion.css';
@@ -50,8 +53,8 @@
   --color-danger: #a93835;
   --color-focus: #af7535;
   --color-overlay: #17201880;
-  --font-sans: var(--font-body), 'Helvetica Neue', Arial, sans-serif;
-  --font-display: var(--font-heading), Georgia, serif;
+  --font-sans: var(--font-body, 'Helvetica Neue'), Arial, sans-serif;
+  --font-display: var(--font-heading, Georgia), serif;
   --radius-control: 12px;
   --radius-card: 20px;
   --radius-panel: 28px;

@@ -44,3 +44,20 @@ class GameAdapterTests(WorkflowFixture):
         self.assertIn("multiplayer", json.loads(full.stdout)["groups"])
         self.assertIn("migrations", json.loads(full.stdout)["groups"])
         self.assertFalse((self.root / ".git/codex-workflow").exists())
+
+    def test_browser_selection_preserves_focused_plan_and_path_validation(self):
+        shutil.copyfile(SCRIPTS / "verify.py", self.root / "scripts/games_verify.py")
+        shutil.copyfile(SCRIPTS / "workflow_verify.py", self.root / "scripts/workflow_verify.py")
+        browser = self.root / "tests/browser"
+        browser.mkdir(parents=True)
+        (browser / "selected.spec.ts").write_text("// Plan fixture; never executed.\n")
+        selected = self.cli("games_verify.py", "--browser-file", "tests/browser/selected.spec.ts",
+                            "--plan", "--json")
+        self.assertEqual(selected.returncode, 0, selected.stderr)
+        plan = json.loads(selected.stdout)
+        self.assertEqual(plan["groups"], ["browser"])
+        self.assertEqual(plan["checks"][-1]["argv"],
+                         ["pnpm", "exec", "playwright", "test", "tests/browser/selected.spec.ts", "--workers=2"])
+        rejected = self.cli("games_verify.py", "--browser-file", "../selected.spec.ts", "--plan")
+        self.assertEqual(rejected.returncode, 2)
+        self.assertFalse((self.root / ".git/codex-workflow").exists())

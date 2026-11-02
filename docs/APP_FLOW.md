@@ -25,9 +25,7 @@ human and starts automatically. If auto-start or the fresh identity read fails,
 the already-created room remains the destination; the form never repeats creation.
 One-person discovery includes supported bot games. Search uses exact aliases
 first and a bounded Fuse.js typo fallback, intersected with category/player filters.
-Returning members see their in-progress and waiting rooms above the catalogue;
-finished rooms follow it. These shortcuts come only from the signed-in actor's
-active memberships. Rooms are invite-only and have no public discovery feed.
+Games and Rooms are separate segmented tabs. Games is the default catalogue; Rooms groups the player's in-progress/waiting and finished rooms. Switching tabs preserves game search and filters. Membership shortcuts never appear in the Games panel and have no public discovery feed. Browsing alone creates no guest identity.
 
 The host can add/fill/remove labeled bot seats in the lobby. A human joining a
 full lobby replaces a bot. Bots never receive login sessions or hosting rights;
@@ -36,8 +34,7 @@ moves through the versioned server endpoint, one paced committed action at a
 time. Bots resume from persisted schedule/memory after refresh or server restart.
 Chat and Activity share a collapsed desktop sidebar or phone dialog. Activity retains the latest 80 committed public moves for match participants, including public cards, destinations and amounts. Retries never duplicate moves; hidden draws and private decisions reveal no faces. Waiting late arrivals do not receive match details.
 
-Create room is a shared dialog. Room setup includes game-specific settings from
-the engine catalogue and states invite-only privacy once. Join accepts either a
+Create room is one focused shared dialog: game, Friends/Bots, seats and name. The current avatar opens an optional colour picker; Room options reveals the room name and game rules. Defaults work without opening either control. Join and Configure use the same flow. Avatar choice, room name and rule choices survive changing Friends/Bots. Escape closes the palette before closing the parent dialog; selection restores focus to the avatar opener. Setup states invite-only privacy once. Join accepts either a
 room code or a complete shared invite link; it extracts the capability locally
 and submits to the normal membership-checked join endpoint. Copy link/code is
 available in the lobby. Start validates

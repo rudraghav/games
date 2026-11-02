@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { requestAs, roomAs } from './helpers';
+import { requestAs, roomAs, openRoomOptions } from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off' });
 
@@ -75,6 +75,7 @@ test('private room shortcuts and pasted invite links stay membership-scoped', as
     await page.goto('/');
     await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Dashboard Host');
+    await openRoomOptions(page);
     await page.getByRole('textbox', { name: 'Room name', exact: true }).fill('Dashboard table');
     await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
@@ -83,15 +84,17 @@ test('private room shortcuts and pasted invite links stay membership-scoped', as
     const room = await roomAs(page, id);
     expect(room.invite_token).toBeTruthy();
     await page.goto('/');
+    await expect(page.locator('.room-shortcut:visible')).toHaveCount(0);
+    await page.getByRole('tab', { name: 'Rooms', exact: true }).click();
     const rooms = page.getByRole('region', { name: 'Your rooms', exact: true });
     await expect(
       rooms.getByRole('link', { name: 'Open Dashboard table, Uno', exact: true }),
     ).toBeVisible();
-    expect((await rooms.boundingBox())!.y).toBeLessThan(
-      (await page.locator('.library-controls').boundingBox())!.y,
-    );
+    await expect(page.getByRole('tabpanel', { name: 'Games', exact: true })).toHaveCount(0);
     await friend.goto('/');
-    await expect(friend.getByRole('region', { name: 'Your rooms', exact: true })).toHaveCount(0);
+    await friend.getByRole('tab', { name: 'Rooms', exact: true }).click();
+    await expect(friend.getByRole('heading', { name: 'No rooms yet', exact: true })).toBeVisible();
+    await expect(friend.locator('.room-shortcut:visible')).toHaveCount(0);
     await friend.getByRole('button', { name: 'Join a room', exact: true }).click();
     await friend.getByRole('textbox', { name: 'Your name', exact: true }).fill('Dashboard Friend');
     await friend
@@ -102,6 +105,7 @@ test('private room shortcuts and pasted invite links stay membership-scoped', as
     friendJoined = true;
     expect((await roomAs(friend, id)).members).toHaveLength(2);
     await friend.goto('/');
+    await friend.getByRole('tab', { name: 'Rooms', exact: true }).click();
     await expect(
       friend
         .getByRole('region', { name: 'Your rooms', exact: true })
@@ -113,7 +117,11 @@ test('private room shortcuts and pasted invite links stay membership-scoped', as
     await expect.poll(async () => (await requestAs(outsider, 'me')).status()).toBe(200);
     await outsider.getByRole('button', { name: 'Cancel', exact: true }).click();
     expect((await requestAs(outsider, `rooms/${id}`)).status()).toBe(404);
-    await expect(outsider.getByRole('region', { name: 'Your rooms', exact: true })).toHaveCount(0);
+    await outsider.getByRole('tab', { name: 'Rooms', exact: true }).click();
+    await expect(
+      outsider.getByRole('heading', { name: 'No rooms yet', exact: true }),
+    ).toBeVisible();
+    await expect(outsider.locator('.room-shortcut:visible')).toHaveCount(0);
     await page.screenshot({ path: test.info().outputPath('member-dashboard.png') });
   } finally {
     if (id) {
@@ -155,6 +163,7 @@ test('canonical board covers keep every cell in lobby and member thumbnails', as
       await page.goto('/');
       await page.getByRole('button', { name: `Create ${name} room`, exact: true }).click();
       await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Board Cover QA');
+      await openRoomOptions(page);
       await page.getByRole('textbox', { name: 'Room name', exact: true }).fill('Cover table');
       await page.getByRole('button', { name: 'Create room', exact: true }).click();
       await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
@@ -163,6 +172,7 @@ test('canonical board covers keep every cell in lobby and member thumbnails', as
       await expect(lobby.locator('.game-art > span')).toHaveCount(count);
       expect(await inside(lobby, '.game-art > span')).toBe(true);
       await page.goto('/');
+      await page.getByRole('tab', { name: 'Rooms', exact: true }).click();
       const room = page.getByRole('link', { name: `Open Cover table, ${name}`, exact: true });
       await expect(room).toBeVisible();
       await expect(room.locator('.game-art > span')).toHaveCount(count);
@@ -172,6 +182,199 @@ test('canonical board covers keep every cell in lobby and member thumbnails', as
         expect((await requestAs(page, `rooms/${id}/leave`, 'POST')).status()).toBe(200);
         expect((await requestAs(page, `rooms/${id}`)).status()).toBe(404);
       }
+    }
+  }
+});
+
+test('Games and Rooms use keyboard tabs, preserve filters and never create a browsing identity', async ({
+  page,
+}, info) => {
+  const sessionRequests: string[] = [];
+  page.on('request', (request) => {
+    const path = new URL(request.url()).pathname;
+    if (path === '/api/dev-session' || path.endsWith('/v1/me') || path.endsWith('/auth/v1/signup'))
+      sessionRequests.push(path);
+  });
+  await page.setViewportSize({ width: info.project.name === 'phone' ? 320 : 1440, height: 844 });
+  await page.goto('/');
+  const games = page.getByRole('tab', { name: 'Games', exact: true });
+  const rooms = page.getByRole('tab', { name: 'Rooms', exact: true });
+  await expect(games).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('[role="tabpanel"]')).toHaveCount(2);
+  for (const tab of [games, rooms]) {
+    const box = await tab.boundingBox();
+    expect(box!.width).toBeGreaterThanOrEqual(44);
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+  }
+  const search = page.getByRole('searchbox', { name: 'Search games', exact: true });
+  await search.fill('uno');
+  await page.getByRole('combobox', { name: 'Players', exact: true }).selectOption('2');
+  await page.getByRole('button', { name: 'Cards', exact: true }).click();
+  const tiles = await page.locator('.game-tile').allTextContents();
+  await games.focus();
+  await games.press('ArrowRight');
+  await expect(rooms).toBeFocused();
+  await expect(rooms).toHaveAttribute('aria-selected', 'true');
+  await expect(rooms).toHaveAttribute('tabindex', '0');
+  await expect(games).toHaveAttribute('tabindex', '-1');
+  const panel = page.getByRole('tabpanel', { name: 'Rooms', exact: true });
+  await expect(panel).toHaveAttribute('id', (await rooms.getAttribute('aria-controls'))!);
+  await expect(panel).toHaveAttribute('aria-labelledby', (await rooms.getAttribute('id'))!);
+  await expect(panel.getByRole('heading', { name: 'No rooms yet', exact: true })).toBeVisible();
+  await expect(page.locator('.game-tile:visible')).toHaveCount(0);
+  await rooms.press('ArrowRight');
+  await expect(games).toBeFocused();
+  await games.press('End');
+  await expect(rooms).toBeFocused();
+  await rooms.press('Home');
+  await expect(games).toBeFocused();
+  await games.press('ArrowLeft');
+  await expect(rooms).toBeFocused();
+  const homeLink = page
+    .getByRole('navigation', { name: 'Main navigation', exact: true })
+    .getByRole('link', { name: 'Games', exact: true });
+  if (await homeLink.isVisible()) await homeLink.click();
+  else await games.click();
+  await expect(games).toHaveAttribute('aria-selected', 'true');
+  await expect(search).toHaveValue('uno');
+  await expect(page.getByRole('combobox', { name: 'Players', exact: true })).toHaveValue('2');
+  await expect(page.getByRole('button', { name: 'Cards', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  expect(await page.locator('.game-tile').allTextContents()).toEqual(tiles);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(await page.evaluate(() => localStorage.getItem('games:player:v1'))).toBeNull();
+  expect(sessionRequests).toEqual([]);
+});
+
+test('Rooms loading, retry and membership groups leave Games clear', async ({ page }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem('games:player:v1', JSON.stringify({ name: 'Preview member', avatar: 0 })),
+  );
+  await page.route('**/api/dev-session', (route) => route.fulfill({ status: 200, body: '{}' }));
+  let release: () => void = () => undefined;
+  const waiting = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  let state: 'waiting' | 'error' | 'ready' = 'waiting';
+  await page.route('**/api/backend/v1/me', async (route) => {
+    if (state === 'waiting') await waiting;
+    await route.fulfill(
+      state === 'ready'
+        ? {
+            status: 200,
+            contentType: 'application/json',
+            body: JSON.stringify({
+              profile: null,
+              anonymous: true,
+              history: [],
+              rooms: [
+                {
+                  id: '11111111-1111-4111-8111-111111111111',
+                  name: 'Waiting table',
+                  game_id: 'azul',
+                  status: 'lobby',
+                  players: 2,
+                },
+                {
+                  id: '22222222-2222-4222-8222-222222222222',
+                  name: 'Friday table',
+                  game_id: 'uno',
+                  status: 'playing',
+                  players: 3,
+                },
+                {
+                  id: '33333333-3333-4333-8333-333333333333',
+                  name: 'Last game',
+                  game_id: 'holdem',
+                  status: 'finished',
+                  players: 2,
+                },
+              ],
+            }),
+          }
+        : {
+            status: 503,
+            contentType: 'application/json',
+            body: JSON.stringify({ detail: 'Unavailable' }),
+          },
+    );
+  });
+  await page.goto('/');
+  await expect(page.locator('.room-shortcut:visible')).toHaveCount(0);
+  await page.getByRole('tab', { name: 'Rooms', exact: true }).click();
+  await expect(page.getByText('Loading your rooms…', { exact: true })).toBeVisible();
+  state = 'error';
+  release();
+  await expect(
+    page.getByRole('heading', { name: 'Could not load rooms', exact: true }),
+  ).toBeVisible();
+  state = 'ready';
+  await page.getByRole('button', { name: 'Try again', exact: true }).click();
+  const active = page.getByRole('region', { name: 'In progress and waiting', exact: true });
+  await expect(active.getByRole('link')).toHaveCount(2);
+  await expect(active.getByRole('link').first()).toHaveAttribute(
+    'href',
+    '/rooms/22222222-2222-4222-8222-222222222222',
+  );
+  const finished = page.getByRole('region', { name: 'Finished rooms', exact: true });
+  await expect(
+    finished.getByRole('link', { name: 'Open Last game, Texas Hold’em', exact: true }),
+  ).toBeVisible();
+  await page.getByRole('tab', { name: 'Games', exact: true }).click();
+  await expect(page.locator('.room-shortcut:visible')).toHaveCount(0);
+  await expect(page.getByRole('tabpanel', { name: 'Games', exact: true })).toBeVisible();
+});
+
+test('a profile-loaded member keeps owned Rooms without a remembered-player flag', async ({
+  page,
+}) => {
+  let id: string | undefined;
+  try {
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
+    await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Cache Member');
+    await openRoomOptions(page);
+    await page.getByRole('textbox', { name: 'Room name', exact: true }).fill('Cached table');
+    await page.getByRole('button', { name: 'Create room', exact: true }).click();
+    await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
+    id = new URL(page.url()).pathname.split('/').at(-1)!;
+    const original = await (await requestAs(page, 'me')).json();
+    await page.evaluate(() => localStorage.removeItem('games:player:v1'));
+    await page.goto('/profile');
+    await expect(page.getByRole('textbox', { name: 'Your name', exact: true })).toHaveValue(
+      'Cache Member',
+    );
+    const requests: string[] = [];
+    page.on('request', (request) => {
+      const path = new URL(request.url()).pathname;
+      if (
+        path === '/api/dev-session' ||
+        path.endsWith('/v1/me') ||
+        path.endsWith('/auth/v1/signup')
+      )
+        requests.push(path);
+    });
+    await page.getByRole('link', { name: 'Games home', exact: true }).click();
+    await expect(page.getByRole('tab', { name: 'Games', exact: true })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
+    await page.getByRole('tab', { name: 'Rooms', exact: true }).click();
+    await expect(
+      page.getByRole('link', { name: 'Open Cached table, Uno', exact: true }),
+    ).toBeVisible();
+    expect(await page.evaluate(() => localStorage.getItem('games:player:v1'))).toBeNull();
+    expect(requests).toEqual([]);
+    const current = await (await requestAs(page, 'me')).json();
+    expect(current.profile.id).toBe(original.profile.id);
+  } finally {
+    if (id) {
+      expect((await requestAs(page, `rooms/${id}/leave`, 'POST')).status()).toBe(200);
+      expect((await requestAs(page, `rooms/${id}`)).status()).toBe(404);
     }
   }
 });
