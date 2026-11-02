@@ -24,6 +24,15 @@ snapshots, membership, chat and match versions belong to TanStack Query. No
 hidden hand information is persisted in browser storage. Room changes invalidate
 and refetch snapshots; private Broadcast payloads carry revision information only.
 
+Tarot character references render only verified `character` or `illustration`
+artwork from the generated public catalogue. Matching checks the character name
+and source; actor and cosplay entries never become a fallback. Images use the
+same centered 4:5 frame, intrinsic dimensions and direct local WebP delivery.
+Character/source text stays beside the image without performer captions.
+The shared credits disclosure deduplicates by character, preserves real source
+and rights notes, and links a license only when one is actually supplied. Older
+unknown references remain readable text; no saved reading is rewritten.
+
 Synthetic minimum/maximum seat and hand scenarios are generated with
 `scripts/export_fixtures.py` and exposed in Storybook and local-only `/design`.
 The design gallery returns 404 in production. Browser workflow checks live in

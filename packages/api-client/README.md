@@ -8,3 +8,17 @@ then generates TypeScript wire types. Do not hand-edit `src/generated`.
 into frontend domain names. `index.ts` owns authenticated HTTP calls and safe
 error messages. Legal action inputs include server-owned amount steps and payable
 card IDs. Frontend modules render those choices without duplicating game rules.
+
+The `@games/api-client/characters` entry exports the public Tarot reference cast
+and a discriminated artwork type. Active artwork comes from
+`apps/web/public/characters/character-art-v2/manifest.json`; regenerate it with
+`backend/.venv/bin/python scripts/export_tarot_characters.py`. The default export
+requires the complete character-image manifest and never falls back to the
+original performer/cosplay manifest, which remains an explicitly checked archive.
+
+Versioned character images use local 4:5 WebPs, a character-specific alt, an origin
+and reviewed credit/source metadata. Sourced images distinguish copyrighted
+references, licensed files and public-domain files. A copyrighted reference has
+an explanatory rights note and cannot claim a reusable image license. Generated
+illustrations form a separate variant. Asset dimensions, bytes, hashes, canonical
+paths, provenance and full cast coverage are checked before registry generation.

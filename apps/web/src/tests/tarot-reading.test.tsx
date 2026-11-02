@@ -1,8 +1,45 @@
 import { renderToStaticMarkup } from 'react-dom/server';
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { TarotReading } from '@/games/tarot/TarotReading';
 import { tarotReadingCards, tarotReadingExample } from '@/stories/fixtures/tarot-reading';
-import { tarotCharacter } from '@games/api-client/characters';
+import * as characterCatalogue from '@games/api-client/characters';
+import type { TarotCharacter } from '@games/api-client/characters';
+
+const originalCharacterLookup = characterCatalogue.tarotCharacter;
+
+function referenceIdentity(character: TarotCharacter) {
+  const { id, name, source, lane, aliases, sourceAliases } = character;
+  return { id, name, source, lane, aliases, sourceAliases };
+}
+
+function sourcedArtwork(character: TarotCharacter) {
+  return {
+    ...referenceIdentity(character),
+    imageType: 'character',
+    origin: 'sourced',
+    artworkVersion: 'character-art-v2',
+    image: `/characters/character-art-v2/${character.id}.webp`,
+    alt: `Character image of ${character.name} from ${character.source}`,
+    width: 400,
+    height: 500,
+    bytes: 4000,
+    sha256: '0'.repeat(64),
+    credit: 'Character studio',
+    sourcePage: `https://example.org/characters/${character.id}`,
+    filePage: `https://example.org/characters/${character.id}#image`,
+    remoteImage: `https://example.org/images/${character.id}.png`,
+    rights: 'copyright-reference',
+    rightsNote: 'Copyrighted character reference; no reuse license is asserted.',
+  } satisfies TarotCharacter;
+}
+
+beforeEach(() => {
+  vi.spyOn(characterCatalogue, 'tarotCharacter').mockImplementation((name, source) => {
+    const character = originalCharacterLookup(name, source);
+    return character ? sourcedArtwork(character) : undefined;
+  });
+});
+afterEach(() => vi.restoreAllMocks());
 
 describe('saved Tarot reading presentation', () => {
   it('shows all three perspectives and explained character connections for each selected card', () => {
@@ -57,8 +94,8 @@ describe('saved Tarot reading presentation', () => {
     expect(html).not.toContain('Image credits');
   });
 
-  it('identifies a local licensed performer portrait and exposes its source and license', () => {
-    const portrait = tarotCharacter('Chihiro', 'Spirited Away')!;
+  it('shows the character with source credit without inventing a license or performer caption', () => {
+    const portrait = sourcedArtwork(originalCharacterLookup('Chihiro', 'Spirited Away')!);
     const reading = {
       ...tarotReadingExample,
       cards: [
@@ -74,19 +111,42 @@ describe('saved Tarot reading presentation', () => {
     expect(html.includes(portrait.image) || html.includes(encodeURIComponent(portrait.image))).toBe(
       true,
     );
-    expect(html).toContain('alt="Portrait of Daveigh Chase"');
-    expect(html).toContain('English voice by Daveigh Chase');
+    expect(html).toContain('alt="Character image of Chihiro Ogino from Spirited Away"');
+    expect(html).not.toContain('Daveigh Chase');
+    expect(html).not.toContain('<figcaption>');
     expect(html).toContain('Image credits');
     expect(html).toContain(portrait.filePage.replaceAll('&', '&amp;'));
-    expect(html).toContain(portrait.licenseUrl);
-    expect(html).toContain(portrait.license);
+    expect(html).toContain(portrait.rightsNote);
+    expect(html).not.toContain('creativecommons.org');
     expect(html).toContain(portrait.credit.replaceAll('&', '&amp;'));
     expect(html).toContain('rel="noopener noreferrer"');
-    expect(html).toContain('resized and converted to WebP');
+    expect(html).toContain('framed to 4:5 and converted to WebP');
     expect(html).not.toContain(portrait.remoteImage);
   });
 
-  it('labels cosplay as cosplay rather than a performer or an official character still', () => {
+  it('uses generated character art with the character alt and plain credits when there is no external source', () => {
+    const link = originalCharacterLookup('Link', 'The Legend of Zelda')!;
+    const illustration = {
+      ...referenceIdentity(link),
+      imageType: 'illustration',
+      origin: 'generated',
+      artworkVersion: 'illustrated-v1',
+      image: '/characters/illustrated-v1/link.webp',
+      alt: 'Illustration of Link',
+      width: 400,
+      height: 500,
+      bytes: 4000,
+      sha256: '0'.repeat(64),
+      credit: 'Games character illustration',
+    } satisfies TarotCharacter;
+    vi.mocked(characterCatalogue.tarotCharacter).mockImplementation((name, source) => {
+      const character = originalCharacterLookup(name, source);
+      return character?.id === 'link'
+        ? illustration
+        : character
+          ? sourcedArtwork(character)
+          : undefined;
+    });
     const reading = {
       ...tarotReadingExample,
       cards: [
@@ -104,12 +164,67 @@ describe('saved Tarot reading presentation', () => {
       ],
     };
     const html = renderToStaticMarkup(<TarotReading reading={reading} cards={tarotReadingCards} />);
-    expect(html).toContain('alt="Cosplay depiction of Link"');
-    expect(html).toContain('alt="Cosplay depiction of Princess Peach"');
-    expect(html.match(/<figcaption>Cosplay photo<\/figcaption>/g)).toHaveLength(2);
-    expect(html).not.toContain('Portrait of Cosplayer');
+    expect(html).toContain('alt="Illustration of Link"');
+    expect(html).toContain('alt="Character image of Princess Peach from Super Mario"');
+    expect(html).not.toContain('Cosplay');
+    expect(html).not.toContain('Portrait of');
+    expect(html).toContain('Link: Games character illustration');
     expect(html).toContain('Link:');
     expect(html).toContain('Princess Peach:');
+  });
+
+  it('retains genuine source licenses when character artwork includes one', () => {
+    vi.mocked(characterCatalogue.tarotCharacter).mockImplementation((name, source) => {
+      const character = originalCharacterLookup(name, source);
+      return character
+        ? {
+            ...sourcedArtwork(character),
+            rights: 'licensed',
+            rightsNote: undefined,
+            license: 'CC BY 4.0',
+            licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+          }
+        : undefined;
+    });
+    const html = renderToStaticMarkup(
+      <TarotReading reading={tarotReadingExample} cards={tarotReadingCards} />,
+    );
+    expect(html).toContain('CC BY 4.0');
+    expect(html).toContain('href="https://creativecommons.org/licenses/by/4.0/"');
+    expect(html).not.toContain('no reuse license is asserted');
+  });
+
+  it('never falls back to an actor or cosplay photo for a recognized character', () => {
+    vi.mocked(characterCatalogue.tarotCharacter).mockImplementation((name, source) => {
+      const character = originalCharacterLookup(name, source);
+      return character
+        ? {
+            ...referenceIdentity(character),
+            imageType: 'performer',
+            image: `/characters/${character.id}.webp`,
+            width: 400,
+            height: 500,
+            bytes: 4000,
+            sha256: '0'.repeat(64),
+            credit: 'Photo creator',
+            performer: 'A performer',
+            performerLabel: 'Portrayed by',
+            license: 'CC BY 4.0',
+            licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+            sourcePage: 'https://example.org/performer',
+            filePage: 'https://example.org/performer#image',
+            remoteImage: 'https://example.org/images/performer.png',
+          }
+        : undefined;
+    });
+    const html = renderToStaticMarkup(
+      <TarotReading reading={tarotReadingExample} cards={tarotReadingCards} />,
+    );
+    expect(html.match(/data-has-portrait="false"/g)).toHaveLength(3);
+    expect(html).not.toContain('<img');
+    expect(html).not.toContain('A performer');
+    expect(html).not.toContain('Image credits');
+    expect(html).toContain(tarotReadingExample.cards[0].characters[0].connection);
   });
 
   it('preserves unrecognized or mismatched saved references without attaching another face', () => {
@@ -141,7 +256,7 @@ describe('saved Tarot reading presentation', () => {
     expect(html).not.toContain('Image credits');
   });
 
-  it('credits distinct characters sharing a performer while deduplicating repeated character credits', () => {
+  it('keeps distinct character artwork while deduplicating repeated character credits', () => {
     const characters = [
       { name: 'Joy', source: 'Inside Out', connection: 'Leave room for a little delight.' },
       {
@@ -156,9 +271,10 @@ describe('saved Tarot reading presentation', () => {
       cards: tarotReadingExample.cards.map((card, i) => ({ ...card, characters: [characters[i]] })),
     };
     const html = renderToStaticMarkup(<TarotReading reading={reading} cards={tarotReadingCards} />);
-    expect(html.match(/alt="Portrait of Amy Poehler"/g)).toHaveLength(3);
-    expect(html.match(/Voiced by Amy Poehler/g)).toHaveLength(2);
-    expect(html).toContain('Portrayed by Amy Poehler');
+    expect(html.match(/alt="Character image of Joy from Inside Out"/g)).toHaveLength(2);
+    expect(html).toContain('alt="Character image of Leslie Knope from Parks and Recreation"');
+    expect(html).toContain('/character-art-v2/joy.webp');
+    expect(html).toContain('/character-art-v2/leslie-knope.webp');
     const credits = html.slice(html.indexOf('<details'), html.indexOf('</details>'));
     expect(credits.match(/Joy:/g)).toHaveLength(1);
     expect(credits.match(/Leslie Knope:/g)).toHaveLength(1);

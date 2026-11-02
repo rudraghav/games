@@ -1,9 +1,17 @@
 import { Sparkles } from 'lucide-react';
 import type { ReadingView } from '@games/api-client';
-import Image from 'next/image';
 import { tarotCharacter } from '@games/api-client/characters';
+import { TarotCharacterImage } from './TarotCharacterImage';
 
 type Reading = NonNullable<ReadingView['reading']>;
+
+function characterArtwork(name: string, source: string) {
+  const artwork = tarotCharacter(name, source);
+  return artwork?.imageType === 'character' || artwork?.imageType === 'illustration'
+    ? artwork
+    : undefined;
+}
+
 export function TarotReading({
   reading,
   cards,
@@ -17,7 +25,7 @@ export function TarotReading({
       reading.cards
         .flatMap((card) => card.characters || [])
         .flatMap((c) => {
-          const portrait = tarotCharacter(c.name, c.source);
+          const portrait = characterArtwork(c.name, c.source);
           return portrait ? [[portrait.id, portrait] as const] : [];
         }),
     ).values(),
@@ -55,33 +63,13 @@ export function TarotReading({
               <h4>Your character energy</h4>
               <ul>
                 {card.characters.map((character) => {
-                  const portrait = tarotCharacter(character.name, character.source);
+                  const portrait = characterArtwork(character.name, character.source);
                   return (
                     <li
                       key={`${character.name}-${character.source}`}
                       data-has-portrait={!!portrait}
                     >
-                      {portrait ? (
-                        <figure className="tarot-character-portrait">
-                          <Image
-                            src={portrait.image}
-                            unoptimized
-                            width={portrait.width}
-                            height={portrait.height}
-                            sizes="(max-width: 600px) 88px, 112px"
-                            alt={
-                              portrait.imageType === 'cosplay'
-                                ? `Cosplay depiction of ${character.name}`
-                                : `Portrait of ${portrait.performer}`
-                            }
-                          />
-                          <figcaption>
-                            {portrait.imageType === 'cosplay'
-                              ? 'Cosplay photo'
-                              : `${portrait.performerLabel} ${portrait.performer}`}
-                          </figcaption>
-                        </figure>
-                      ) : null}
+                      {portrait ? <TarotCharacterImage character={portrait} /> : null}
                       <div className="tarot-character-copy">
                         <p className="tarot-character-name">
                           {character.name} <span>{character.source}</span>
@@ -107,14 +95,25 @@ export function TarotReading({
           <ul>
             {portraits.map((p) => (
               <li key={p.id}>
-                <a href={p.filePage} target="_blank" rel="noopener noreferrer">
-                  {p.name}: {p.credit}
-                </a>
-                {' · '}
-                <a href={p.licenseUrl} target="_blank" rel="noopener noreferrer">
-                  {p.license}
-                </a>
-                {' · resized and converted to WebP'}
+                {p.filePage || p.sourcePage ? (
+                  <a href={p.filePage || p.sourcePage} target="_blank" rel="noopener noreferrer">
+                    {p.name}: {p.credit}
+                  </a>
+                ) : (
+                  <span>
+                    {p.name}: {p.credit}
+                  </span>
+                )}
+                {p.licenseUrl && p.license ? (
+                  <>
+                    {' · '}
+                    <a href={p.licenseUrl} target="_blank" rel="noopener noreferrer">
+                      {p.license}
+                    </a>
+                  </>
+                ) : null}
+                {p.rightsNote ? <> · {p.rightsNote}</> : null}
+                {' · framed to 4:5 and converted to WebP'}
               </li>
             ))}
           </ul>

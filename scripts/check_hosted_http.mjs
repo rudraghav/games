@@ -1,7 +1,7 @@
 /** Scoped deployment HTTP checks. Tokens stay in memory and never enter output. */
 import catalogue from '../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 import faces from '../apps/web/public/playing-cards/SOURCE.json' with { type: 'json' };
-import portraits from '../apps/web/public/characters/manifest.json' with { type: 'json' };
+import portraits from '../apps/web/public/characters/character-art-v2/manifest.json' with { type: 'json' };
 import { createHash } from 'node:crypto';
 const target = new URL(process.env.GAMES_TEST_URL || 'http://invalid.local');
 if (

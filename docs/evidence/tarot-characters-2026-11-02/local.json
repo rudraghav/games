@@ -1,0 +1,44 @@
+{
+  "characters": 48,
+  "imageTypes": {
+    "character": 48
+  },
+  "rights": {
+    "copyright-reference": 44,
+    "public-domain": 3,
+    "licensed": 1
+  },
+  "bytes": 1031340,
+  "dimensions": [
+    400,
+    500
+  ],
+  "actorOrCosplayFallbacks": 0,
+  "allSubjectsVisuallyReviewed": true,
+  "deliveryVersion": "character-art-v2",
+  "existingTarotCardIllustrations": 78,
+  "savedReadingTextChanged": false,
+  "backendRulesOrPromptChanged": false,
+  "checks": {
+    "focusedTarotBackendCases": 125,
+    "allFrontendUnits": 86,
+    "contracts": true,
+    "typescript": true,
+    "lint": true,
+    "productionBuild": true,
+    "storybookBuild": true
+  },
+  "browser": {
+    "widths": [
+      320,
+      390,
+      1440
+    ],
+    "galleryDecodedPerWidth": 48,
+    "galleryPageOverflow": false,
+    "readingImagesDecodedPerWidth": 4,
+    "readingPageOverflow": false,
+    "legacyCaptions": false,
+    "keyboardCredits": true
+  }
+}

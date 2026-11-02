@@ -68,13 +68,15 @@ Readings compose a shared pure presentation component: normal and quirky panels,
 then explained character connections; phones stack these in reading order.
 Storybook includes all 78 cards, each suit, legacy/fresh readings and pending states.
 
-Character connections pair each recognized reference with a local licensed
-performer or explicitly labeled cosplay photograph. Captions state the role;
-expandable source/license credits deduplicate by character, preserving distinct
-characters played by the same performer. Unknown or mismatched saved references
-stay text-only. Portrait/copy columns and long names fit320/390/1440 with keyboard
-accessible credits; inspected examples and checks live in
-`docs/evidence/tarot-portraits-2026-11-01`.
+Character connections use actual character artwork or in-character film/TV
+images. The active 48-image `character-art-v2` registry excludes performer
+headshots and cosplay. A shared `TarotCharacterImage` owns the consistent 4:5
+frame, character alt text and direct local WebP delivery. Source credits are
+expandable and distinguish copyrighted references from CC/public-domain images;
+attribution never implies an open license. Unknown saved references remain text.
+Both readings and the complete-cast Storybook review use the same image frame.
+The former photo assets and their provenance remain archived, outside the active
+registry. Current review lives in `docs/evidence/tarot-characters-2026-11-02`.
 
 Room presentation uses the personalized legal actions and simultaneous-decision
 metadata to distinguish Your turn, Your decision, locked choice, paused and
@@ -176,7 +178,7 @@ is needed. Dashboard stories cover discovery, solo tiles and member shortcuts;
 phone/desktop screenshots and private-entry checks live in
 `docs/evidence/dashboard-2026-11-01`.
 
-Tarot reference photos are already bounded 400×500 WebPs. Deliver their local
+Tarot character images are bounded 400×500 WebPs. Deliver their local
 public paths directly (`Image unoptimized`), retaining intrinsic dimensions,
 lazy loading and alt text. The root image-optimization URL returned 404 in the
 production Vercel Services arrangement despite direct originals returning 200;

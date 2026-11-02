@@ -57,9 +57,10 @@ Optional sip prompts are set before starting; every mode always permits Pass.
 Tarot offers Explore the deck with major/suit filters, independent of the saved
 three-card spread. Fresh reading sections show The grounded read, The plot twist
 and Character energy; previously saved readings retain their original content.
-Fresh character connections include local licensed performer/cosplay photos,
-accurate captions and an expandable credits list. Unknown historical references
-remain text; the UI never substitutes an unrelated portrait.
+Character connections include actual character art or in-character stills in a
+consistent frame, with an expandable source/rights credit list. Performer
+headshots and cosplay are excluded from the active registry. Unknown historical
+references remain text; the UI never substitutes an unrelated portrait.
 
 On phones, the room title and compact toolbar share a row above the table, and
 inviting, readying, starting and shared move controls each use a complete row.

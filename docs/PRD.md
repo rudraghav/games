@@ -58,6 +58,10 @@ A canonical deck browser reveals artwork without exposing the shuffled game deck
 Fresh readings include a grounded and separate quirky interpretation plus one
 or two named character connections per card. Distinct minor-card meanings guide
 the model. Older saved output remains readable without invented new sections.
+The active character imagery shows the fictional characters themselves: official
+character art, in-character stills or character illustrations, with consistent
+frames and accurate source credits. Performer headshots and voice-actor/cosplay
+substitutes do not satisfy this requirement.
 
 ## Release gate
 

@@ -1450,3 +1450,75 @@
   Source, art/masters/license ledger, evidence, credentials, dependencies, DB,
   user browser and requested dev services retained. Local3217, API8217 health
   and production home all return200 after cleanup. No further runtime work remains.
+
+2026-11-02 — Actual-character Tarot imagery kickoff
+- Outcome: replace performer/voice-actor and cosplay photos in Tarot references
+  with recognizable images of the actual fictional characters in a consistent
+  illustrated treatment. All48 reference identities remain; all78 existing Tarot
+  card illustrations and saved reading text remain unchanged.
+- Acceptance: no performer/cosplay image remains in the active registry; every
+  active character image is visually reviewed, locally bundled and consistently
+  framed; provenance retained; 48-ID/hash/dimension checks and rendered image,
+  caption, attribution, phone/desktop and production delivery checks pass.
+- Starting point: clean main32133ac, production application02ff603. Historical
+  licensed assets/provenance remain preserved while a new active version is added.
+
+2026-11-02 — Tarot character artwork contract (local; asset collection pending)
+- Added typed sourced-character/generated-illustration variants to the public
+  API-client registry boundary. Character art requires character-specific alt,
+  versioned local paths, provenance and no performer/voice-actor metadata.
+- Default artwork export now requires character-art-v2/manifest.json, with no
+  fallback to archived performer/cosplay photos. Existing manifest/files remain
+  intact and have a separate explicit integrity check. New assets must use the
+  common 4:5 frame within400x500, matching byte/hash/header dimensions.
+- Source rights are explicit: copyrighted reference, licensed or public domain.
+  Copyrighted references require a rights note and cannot masquerade as CC or
+  another reuse license. Actual licenses need their supporting HTTPS URL.
+-88 focused metadata/identity/legacy tests pass; one all48-active-assets case is
+  intentionally pending the parent's complete new manifest and codegen. API-client
+  TypeScript, scoped Ruff/format and diff checks pass. No codegen, downloads,
+  active asset edits, provider calls, cloud writes, commits or deployment here.
+
+2026-11-02 — Tarot character-only presentation (local integration)
+- Reading UI accepts actual character artwork/stills and illustrations only;
+  performer/cosplay entries cannot render as substitutes. Character alt text,
+  centered existing4:5 frames and direct WebP loading replace performer captions.
+  Source/rights credits stay in one deduplicated disclosure; licenses link only
+  when genuine metadata is supplied. Saved unknown/older reading text is intact.
+- Nine focused frontend contracts pass: character imagery, generated/plain
+  credits, genuine source licenses, no performer fallback, unknown references,
+  distinct images/deduplicated credits, legacy sections and escaped text. Web
+  TypeScript, scoped ESLint and whitespace checks pass. Story label now uses
+  Characters and long names. Asset activation and browser/release checks remain
+  with parent; no cast JSON, backend, auth, deployment or persistence changed here.
+- Indian7 source ledger and selected raw images are in ignored .vercel paths;
+  each was visually reviewed as the actual film character. Poo and Geet use
+  distinct film looks. Copyright-reference metadata explicitly makes no open
+  license claim, and source watermarks remain. Parent owns delivery normalization
+  and provenance integration. No asset masters or user work removed.
+
+2026-11-02 — Actual-character Tarot images implemented and locally verified
+- All 48 active images now depict actual fictional characters: character art,
+  in-character stills or character illustrations. Performer/voice-actor headshots
+  and cosplay are excluded, with no silent fallback. Original photo files and
+  provenance remain archived. The 78-card original deck and saved reading text
+  are unchanged; no engine, AI prompt, auth, API wire or schema change.
+- One built-in Mulan illustration was rejected by image moderation. Switched
+  to online character sources, without another provider or altered bypass prompt.
+  Rights are recorded accurately: 44 copyright references, one CC-licensed
+  illustration and three public-domain images. No blanket free-license claim.
+- New versioned 400x500 WebPs total 1,031,340 bytes. All 48 subjects and crops
+  visually reviewed; fixed Link collage, Miguel/Chihiro/Bunny focal selection and
+  sourced clean Geet/Rancho film stills. Source watermarks remain visible.
+- Shared TarotCharacterImage serves readings and the complete-cast story. Typed
+  artwork variants/exporter validate all IDs, local paths, hashes, dimensions and
+  real provenance; active manifest cannot fall back to performer/cosplay data.
+- 125 focused backend Tarot/provider/asset tests and 86 frontend units pass;
+  types, lint, contracts, import boundaries, Next and Storybook builds pass.
+  Browser reviewed all48 at320/390/1440 and expanded readings at all three widths:
+  no page overflow, all images decoded, no actor captions, keyboard credits work.
+  One screenshot raced Storybook hot reload; repeat after fonts/DOM settled passed.
+- Personal Games cloud/account scope verified. Before-state protects the owner's
+  account/profile/Google identity/five rooms/memberships. Source02ff603 and
+  deploymentdpl_JB1s7UJpd8qxvK8P4a65phGGSb96 retained as recovery point.
+  Local only so far; main push, one production rollout and live checks follow.

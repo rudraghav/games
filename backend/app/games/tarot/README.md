@@ -28,10 +28,12 @@ without another provider call or retaining a user's earlier readings. Humour
 targets situations rather than mocking hardship or feelings.
 References to films and characters are written analogies; dialogue and lyrics
 are not bundled. Fresh v4 readings choose from a documented 48-reference cast.
-Each reference has a local, licensed performer portrait (46) or clearly labeled
-cosplay photo (2), with credit, license and source links. A performer photo is
-captioned as a performer, never represented as a film still or original character
-illustration. Historical references outside this cast remain readable as text.
+Each reference now has a local image of the actual character: character artwork,
+an in-character film/TV still or a character illustration. The complete v2 cast
+uses one reviewed 4:5 frame; performer headshots and cosplay cannot enter the
+active registry. Sources and rights categories are recorded accurately, without
+representing copyright references as freely licensed art. The original photo
+archive remains preserved. Historical references outside this cast remain text.
 
 After three picks, the player explicitly requests a personal AI reading.
 `reading.py` owns the compact prompt, schema and provider adapter; engines never

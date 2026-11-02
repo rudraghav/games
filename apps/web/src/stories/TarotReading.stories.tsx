@@ -54,7 +54,7 @@ export const SavedEarlierReading: Story = {
     },
   },
 };
-export const CosplayAndLongNames: Story = {
+export const CharactersAndLongNames: Story = {
   args: {
     reading: {
       ...tarotReadingExample,
