@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
-import { requestAs, roomAs } from './helpers';
+import { requestAs, roomAs, openRoomOptions } from './helpers';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import gameCatalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
@@ -22,7 +22,13 @@ test('personal cloud: all games, private views, revisions and a saved reading', 
   );
   const players = [page, ...(await Promise.all(others.map((context) => context.newPage())))];
   let id: string | undefined;
+  let lastStartAt = 0;
   async function checked(player: Page, path: string, method = 'POST', data?: unknown) {
+    if (method === 'POST' && path.endsWith('/start')) {
+      const delay = Math.max(0, 3300 - (Date.now() - lastStartAt));
+      if (delay) await new Promise((resolve) => setTimeout(resolve, delay));
+      lastStartAt = Date.now();
+    }
     const response = await requestAs(player, path, method, data);
     expect(response.ok(), `${method} ${path.split('/').at(-1)} status ${response.status()}`).toBe(
       true,
@@ -47,6 +53,7 @@ test('personal cloud: all games, private views, revisions and a saved reading', 
     );
     await page.getByRole('button', { name: 'Create Word Agents room', exact: true }).click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Cloud Test Host');
+    await openRoomOptions(page);
     await page
       .getByRole('textbox', { name: 'Room name', exact: true })
       .fill('Automated preview verification');

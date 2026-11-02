@@ -1,0 +1,392 @@
+{
+  "verifiedAt": "2026-11-02T06:56:31.784843+00:00",
+  "kind": "First production release verification; metadata only",
+  "productionVerified": true,
+  "applicationSourceSha": "fdb8b6d0047b8e3d13d95b4b953109c9d8954679",
+  "deploymentId": "dpl_HuV8gzHrmupeKf1igUGXQCs6codA",
+  "publicUrl": "https://games-seven-black.vercel.app",
+  "rollout": {
+    "checkedAt": "2026-11-02T06:52:49.144101+00:00",
+    "deployment": "dpl_HuV8gzHrmupeKf1igUGXQCs6codA",
+    "projectId": "prj_ktWnIpFSa7waRIO8gm7dQrkAB6Za",
+    "teamId": "team_3SVRBIvDOjg54g3Ghezn1uWE",
+    "url": "games-b8r4wd126-rudraghavs-projects.vercel.app",
+    "publicAlias": "https://games-seven-black.vercel.app",
+    "aliases": [
+      "games-seven-black.vercel.app",
+      "games-rudraghavs-projects.vercel.app"
+    ],
+    "readyState": "READY",
+    "target": "production",
+    "source": "cli",
+    "githubCommitSha": "fdb8b6d0047b8e3d13d95b4b953109c9d8954679",
+    "releaseSourceSha": "fdb8b6d0047b8e3d13d95b4b953109c9d8954679",
+    "githubCommitRef": "main",
+    "regions": [
+      "bom1"
+    ],
+    "aliasResolvesToExpectedDeployment": true,
+    "sourceShaUnchanged": true,
+    "localSourceStateNote": "New local dashboard/UI steering is not included in this deployment proof."
+  },
+  "catalogueAndActivity": {
+    "games": 27,
+    "tableChecks": {
+      "desktop": 27,
+      "phone": 27
+    },
+    "activityChecks": {
+      "desktop": "passed",
+      "phone": "passed"
+    },
+    "persistedPublicMoveEvents": 85,
+    "freshSavedAIReadings": 2,
+    "privateBroadcastAuthorizationPhone": "passed; member delivered, nonmember channel denied and room GET 404",
+    "cleanup": {
+      "rooms": 6,
+      "closedRooms": 6,
+      "activeMemberships": 0,
+      "inactiveMemberships": 18
+    },
+    "sourceEvidence": ".vercel/stable-hosted-public-history-20261102-summary.json"
+  },
+  "rateLimitObservation": {
+    "initialDesktopCompletedGames": 23,
+    "status": 429,
+    "classification": "Intentional per-player start rate limit; not an HTTP500 or runtime error",
+    "resolved": true,
+    "resolution": "3.3s pacing with unchanged assertions; AI disabled on repeat",
+    "sameAssertionsAfterImportNormalization": true,
+    "repeatAIGenerationEnabled": false,
+    "sourceProof": {
+      "sameTestSourceAfterImportNormalization": true,
+      "sourceSha256": "71a04d3a0b93ad96400aa0e231c4fe1fee6d4696d6a1a365fa4f26a7af5f35d1",
+      "trackedSource": "tests/browser/hosted.spec.ts",
+      "executedCopy": ".vercel/stable-hosted-public-history-20261102-paced.spec.ts",
+      "onlyDifference": "Relative import roots required by private file location",
+      "aiCallsEnabled": false,
+      "additionalGuestIdentities": 4
+    }
+  },
+  "productionFullMatches": {
+    "completedCases": 6,
+    "games": [
+      "deal",
+      "holdem",
+      "blackjack"
+    ],
+    "casesByWidth": {
+      "desktop": 3,
+      "phone": 3
+    },
+    "exactPairsPerWidth": [
+      {
+        "game": "deal",
+        "seats": 2
+      },
+      {
+        "game": "holdem",
+        "seats": 2
+      },
+      {
+        "game": "blackjack",
+        "seats": 1
+      }
+    ],
+    "authoritativeMoves": 129,
+    "refreshedMidgameChecks": 10,
+    "verifiedStableSelections": 4,
+    "allNaturalResultsSavedHistoryResultsRematchAndSameGroupSwitchVerified": true,
+    "parentRunsComplete": true,
+    "taskRoomsClosed": 2,
+    "parentCleanupPassed": true,
+    "cases": [
+      {
+        "project": "desktop",
+        "game": "deal",
+        "seats": 2,
+        "moves": 50,
+        "naturalResultVerifiedByCompletedHarnessStep": true,
+        "savedAndRenderedHistoryVerified": true,
+        "renderedResultsVerified": true,
+        "rematchVerified": true,
+        "sameGroupSwitchVerifiedByCompletedHarnessStep": true,
+        "midgameChecks": [
+          {
+            "phase": "playing",
+            "action": "property",
+            "version": 3,
+            "selectionStable": true
+          },
+          {
+            "phase": "playing",
+            "action": "pay",
+            "version": 16,
+            "selectionStable": true
+          }
+        ]
+      },
+      {
+        "project": "desktop",
+        "game": "holdem",
+        "seats": 2,
+        "moves": 8,
+        "naturalResultVerifiedByCompletedHarnessStep": true,
+        "savedAndRenderedHistoryVerified": true,
+        "renderedResultsVerified": true,
+        "rematchVerified": true,
+        "sameGroupSwitchVerifiedByCompletedHarnessStep": true,
+        "midgameChecks": [
+          {
+            "phase": "flop",
+            "action": "check",
+            "version": 3,
+            "selectionStable": false
+          },
+          {
+            "phase": "turn",
+            "action": "check",
+            "version": 5,
+            "selectionStable": false
+          },
+          {
+            "phase": "river",
+            "action": "check",
+            "version": 7,
+            "selectionStable": false
+          }
+        ]
+      },
+      {
+        "project": "desktop",
+        "game": "blackjack",
+        "seats": 1,
+        "moves": 2,
+        "naturalResultVerifiedByCompletedHarnessStep": true,
+        "savedAndRenderedHistoryVerified": true,
+        "renderedResultsVerified": true,
+        "rematchVerified": true,
+        "sameGroupSwitchVerifiedByCompletedHarnessStep": true,
+        "midgameChecks": []
+      },
+      {
+        "project": "phone",
+        "game": "deal",
+        "seats": 2,
+        "moves": 59,
+        "naturalResultVerifiedByCompletedHarnessStep": true,
+        "savedAndRenderedHistoryVerified": true,
+        "renderedResultsVerified": true,
+        "rematchVerified": true,
+        "sameGroupSwitchVerifiedByCompletedHarnessStep": true,
+        "midgameChecks": [
+          {
+            "phase": "playing",
+            "action": "bank",
+            "version": 3,
+            "selectionStable": true
+          },
+          {
+            "phase": "playing",
+            "action": "pay",
+            "version": 8,
+            "selectionStable": true
+          }
+        ]
+      },
+      {
+        "project": "phone",
+        "game": "holdem",
+        "seats": 2,
+        "moves": 8,
+        "naturalResultVerifiedByCompletedHarnessStep": true,
+        "savedAndRenderedHistoryVerified": true,
+        "renderedResultsVerified": true,
+        "rematchVerified": true,
+        "sameGroupSwitchVerifiedByCompletedHarnessStep": true,
+        "midgameChecks": [
+          {
+            "phase": "flop",
+            "action": "check",
+            "version": 3,
+            "selectionStable": false
+          },
+          {
+            "phase": "turn",
+            "action": "check",
+            "version": 5,
+            "selectionStable": false
+          },
+          {
+            "phase": "river",
+            "action": "check",
+            "version": 7,
+            "selectionStable": false
+          }
+        ]
+      },
+      {
+        "project": "phone",
+        "game": "blackjack",
+        "seats": 1,
+        "moves": 2,
+        "naturalResultVerifiedByCompletedHarnessStep": true,
+        "savedAndRenderedHistoryVerified": true,
+        "renderedResultsVerified": true,
+        "rematchVerified": true,
+        "sameGroupSwitchVerifiedByCompletedHarnessStep": true,
+        "midgameChecks": []
+      }
+    ],
+    "sourceEvidence": [
+      ".vercel/fullmatches-desktop-deal_holdem_blackjack-seats1_2.json",
+      ".vercel/fullmatches-phone-deal_holdem_blackjack-seats1_2.json"
+    ]
+  },
+  "publicHttp": {
+    "passed": true,
+    "requests": 123,
+    "statuses": {
+      "200": 118,
+      "404": 4,
+      "401": 1
+    },
+    "artworkImagesAvailable": 117,
+    "portraitHashAndByteChecks": 48,
+    "standardCardImagesAvailable": 54,
+    "catalogueGames": 27,
+    "designRoutes404": [
+      "/design",
+      "/design/deal",
+      "/design/midgame"
+    ],
+    "unauthenticatedMe401": true,
+    "developmentSession404": true,
+    "publicWithoutOidcBypass": true
+  },
+  "privateBroadcastLoad": {
+    "checkedAt": "2026-11-02T06:41:43.541906+00:00",
+    "origin": "https://games-seven-black.vercel.app",
+    "applicationSha": "fdb8b6d0047b8e3d13d95b4b953109c9d8954679",
+    "deploymentId": "dpl_HuV8gzHrmupeKf1igUGXQCs6codA",
+    "region": "bom1",
+    "passed": true,
+    "mode": "private Supabase Realtime Broadcast",
+    "pollingFallbackUsed": false,
+    "rooms": 50,
+    "anonymousIdentitiesCreated": 5,
+    "committedActions": 50,
+    "privateBroadcastArrivals": 50,
+    "authorizedObserverSnapshots": 50,
+    "actionResponseMs": {
+      "median": 533,
+      "p95": 2652,
+      "max": 2827
+    },
+    "privateBroadcastArrivalMs": {
+      "median": 431,
+      "p95": 2639,
+      "max": 2825
+    },
+    "authorizedSnapshotMs": {
+      "median": 633,
+      "p95": 2771,
+      "max": 2950
+    },
+    "latencySemantics": "Milliseconds from action submission to committed HTTP response, private state_changed Broadcast, and its authorized snapshot fetch. Broadcast mode has no polling interval.",
+    "cleanup": {
+      "roomsClosed": 50,
+      "membershipsInactive": 100,
+      "profilesPreserved": 5,
+      "matchRowsPreserved": 50,
+      "receiptRowsPreserved": 50,
+      "preexistingLoadRoomsUnchanged": true,
+      "verifiedByReadOnlyDatabaseReadback": true
+    },
+    "outcomeEvidenceFile": ".vercel/hosted-load-broadcast-2026-11-02T06-39-33-625Z-37880f02.json",
+    "privateCleanupEvidenceFile": ".vercel/stable-production-load-fdb8b6d-cleanup-private.json",
+    "log": ".vercel/stable-production-load-fdb8b6d.log",
+    "scriptSha256": "54e54c56caedb6ecf13ffbcf73840d14ed5a65fe880ff7cffe6d53a3da8629de",
+    "scopeLimit": "One committed Blackjack opening action per private room; this is not a full-match/rules or all-game concurrency check. Existing user protection checks are separately owned by the release task."
+  },
+  "protectedOwner": {
+    "fingerprintsUnchanged": true,
+    "permanentGoogleAccountPreserved": true,
+    "counts": {
+      "profile": 1,
+      "ownedRooms": 5,
+      "memberships": 5,
+      "identities": 1
+    },
+    "schemaHeadUnchanged": true,
+    "alembicHead": "a6e442b15d80",
+    "beforeEvidence": ".vercel/stable-release-owner-before.json",
+    "afterEvidence": ".vercel/stable-release-owner-after.json"
+  },
+  "deploymentLogs": {
+    "deployment": "dpl_HuV8gzHrmupeKf1igUGXQCs6codA",
+    "since": "2026-11-02T06:32:00Z",
+    "until": "2026-11-02T06:52:45.623116Z",
+    "runtimeErrorOrFatalRecords": 0,
+    "requestHttp500OrGreaterRecords": 0,
+    "completePagination": true,
+    "excludedIntervals": [],
+    "queries": [
+      {
+        "source": "runtime",
+        "query": "level:error OR level:fatal",
+        "recordsReturned": 0,
+        "timeRange": {
+          "start": "2026-11-02T06:32:00.000Z",
+          "end": "2026-11-02T06:52:45.623Z"
+        },
+        "hasNextPage": false,
+        "excludedIntervals": [],
+        "evidence": ".vercel/stable-production-fdb8b6d-runtime-errors.jsonl"
+      },
+      {
+        "source": "requests",
+        "query": "httpStatus >= 500",
+        "recordsReturned": 0,
+        "timeRange": {
+          "start": "2026-11-02T06:32:00.000Z",
+          "end": "2026-11-02T06:52:45.000Z"
+        },
+        "hasNextPage": false,
+        "excludedIntervals": [],
+        "evidence": ".vercel/stable-production-fdb8b6d-requests-errors.jsonl"
+      }
+    ]
+  },
+  "localWorkspace": {
+    "checkoutAtCloseout": "fdb8b6d0047b8e3d13d95b4b953109c9d8954679",
+    "dirty": true,
+    "newDashboardUiWorkIncludedInThisDeployment": false,
+    "note": "New dashboard/UI steering is being implemented locally after this release. This proof covers only immutable deployed source fdb8b6d and does not describe those undeployed changes."
+  },
+  "inputEvidenceSha256": {
+    ".vercel/stable-production-fdb8b6d-rollout-final.json": "11a4b7a49071ab13443fd3b50a0a6dbffb8de85cff4fe088d2aced60e684ef45",
+    ".vercel/stable-production-http-fdb8b6d.json": "c488d511197d1d31a46fbb2a3f21f2d381f7c588674b10962201cf336869ec15",
+    ".vercel/stable-production-load-fdb8b6d-summary.json": "e175e49fff35d4e3652160be31ca16682682e20fadc0b210f5afcb4af89264cb",
+    ".vercel/stable-hosted-public-history-20261102-summary.json": "9e1774620b76931351cc3ea92f98a727c20844267d381b8998d25031a9458461",
+    ".vercel/stable-release-owner-before.json": "7660d93e3a5e7b2b6277712515743271e190704634acb835fe0bcbbe767cc5db",
+    ".vercel/stable-release-owner-after.json": "e9b9e7db481ab0e2ca6af85ebc7616163f372ca63ed983c9ba236901a5a6c043",
+    ".vercel/stable-production-fdb8b6d-log-counts.json": "acfad6b6e5bcf84b56ae876c6e8c20e56db3c4136fa873cde41e7f9d4b18b9b9",
+    ".vercel/fullmatches-desktop-deal_holdem_blackjack-seats1_2.json": "8b15b8a5fc1bc97f9022797ecf7771b1b141404e5f93cfe3ff0be2de3748a059",
+    ".vercel/fullmatches-phone-deal_holdem_blackjack-seats1_2.json": "1c8cad01bf28f7beecf53d62beedc5890f458dd3feb5a1373b2af76240313f2d"
+  },
+  "limits": [
+    "Production natural full-match smoke covers Deal with 2 players, Holdem with 2 players and Blackjack with 1 player on phone and desktop; this does not claim every catalogue game completed a production match.",
+    "All 26 non-Tarot games at distinct minimum/maximum seats have separate local 94-case acceptance evidence, which is not relabeled as hosted proof here.",
+    "The 50-room Broadcast check measures one committed Blackjack opening action per room; no polling fallback was used.",
+    "Logs prove the finite 06:32\u201306:52:45 UTC deployment window shown above, not future operation.",
+    "No private card values, hands, deck order, room IDs, invitation codes, questions, readings, provider payloads or credentials are included."
+  ],
+  "closeoutActions": {
+    "newGuestIdentitiesCreated": 0,
+    "sourceEdits": false,
+    "docsEdits": false,
+    "schemaOrEnvironmentChanges": false,
+    "commitsPushesOrDeployments": false
+  }
+}

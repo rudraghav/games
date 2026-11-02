@@ -10,6 +10,7 @@ import {
   TestTransportError,
   transportTelemetry,
   type RoomView,
+  openRoomOptions,
 } from './helpers';
 import { matchPlayer } from './fullmatch-player';
 
@@ -149,6 +150,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
       .getByRole('button', { name: `Create ${initialGame.name} room`, exact: true })
       .click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Full Match Host');
+    await openRoomOptions(page);
     await page
       .getByRole('textbox', { name: 'Room name', exact: true })
       .fill('Acceptance full matches');

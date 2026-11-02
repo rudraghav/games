@@ -34,6 +34,7 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string, withBots: boo
             <input
               ref={search}
               type="search"
+              aria-label="Search games"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search games"

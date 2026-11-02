@@ -1,5 +1,5 @@
 import { expect, test, type BrowserContext, type Page } from '@playwright/test';
-import { requestAs, roomAs } from './helpers';
+import { requestAs, roomAs, openRoomOptions } from './helpers';
 
 type OwnedRoom = { id?: string; actors: Page[]; contexts: BrowserContext[] };
 const cleanup = new WeakMap<Page, OwnedRoom>();
@@ -61,6 +61,7 @@ test('room controls, turn notices and a natural result stay clear on narrow layo
   await page.goto('/');
   await page.getByRole('button', { name: 'Create Four in a Row room', exact: true }).click();
   await page.getByRole('textbox', { name: 'Your name', exact: true }).fill(hostName);
+  await openRoomOptions(page);
   await page
     .getByRole('textbox', { name: 'Room name', exact: true })
     .fill('A good night with friends');

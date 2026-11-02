@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { requestAs, roomAs, type RoomView } from './helpers';
+import { requestAs, roomAs, type RoomView, openRoomOptions } from './helpers';
 
 test('modern covers and every modern table fit with readable touch controls', async ({ page }) => {
   await page.goto('/');
@@ -51,6 +51,7 @@ test('friends click modern game decisions and refresh the saved table', async ({
     await page.goto('/');
     await page.getByRole('button', { name: 'Create Flip 7 room', exact: true }).click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Modern Host');
+    await openRoomOptions(page);
     await page
       .getByRole('textbox', { name: 'Room name', exact: true })
       .fill('Modern controls verification');

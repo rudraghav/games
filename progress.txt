@@ -1897,3 +1897,84 @@
 - Main push and one personal production CLI deployment are authorized and next.
   Rollback reference dpl_FKHPuZnhr7guWPsa7oWteuAQcT6S; production remains unchanged
   until the deployment completes. Dedicated schema head a6e442b15d80 unchanged.
+
+2026-11-02 — Simplified setup / Games and Rooms navigation kickoff
+- User added room-creation simplification and separate segmented Games/Rooms
+  browsing while first release fdb8b6d is live and hosted verification continues.
+- Outcome: default Games shows the catalogue alone; Rooms has member-only active
+  and recent groups, with clear empty/loading/error states. Switching preserves
+  filters and supports keyboard navigation without creating a guest identity.
+- Setup uses one focused screen with game, Friends/Bots, seat count and name.
+  Optional avatar colours and room-name/rule settings are progressively disclosed;
+  join/configure reuse the same form and original transactional entry path.
+- Acceptance:320/390/1440 widths,44px targets, compact firstfold, keyboard/focus,
+  optional settings preserved across changes, actual friend/bot creation/join and
+  account/membership boundaries; complete relevant local gates before the next
+  main push/one production deployment. Existing card art stays shared/canonical;
+  new image generation is available when a concrete missing asset warrants it.
+- Scope: shared UI and lounge/setup/browser stories/docs only. Backend/rules and
+  persistence remain the already-verified fdb8b6d runtime while this is developed.
+
+2026-11-02 — First stable-gameplay release deployed and verified
+- Pushed main fdb8b6d0047b8e3d13d95b4b953109c9d8954679 and deployed once to personal
+  production dpl_HuV8gzHrmupeKf1igUGXQCs6codA; publicalias
+  https://games-seven-black.vercel.app targets that READY/bom1 deployment.
+  githubCommitSha and releaseSourceSha agree. No automatic Git deployment path.
+- Live27-game smoke passed at both widths, activity/retry/stale/refresh/public-card
+  checks passed, private Broadcast reached members and denied outsiders. Two real
+  Tarot readings completed and persisted. Initial desktop start429 was the
+  intentional20/minute limit; identical>=3.3s-paced checks passed without another
+  AI call. Owning hosted spec now retains this pacing.
+- Six natural hosted matches (Deal2/Holdem2/Blackjack1 atbothwidths),129moves,
+  saved/profile results, rematch and same-group switch passed; short Blackjack
+  cases did not reach the mid-game sample threshold. All hosted test rooms closed.
+- HTTP123/artwork117/48portrait hashes passed; design/dev routes404 and auth401.
+  Fifty concurrent private rooms committed and synchronized via private Broadcast
+  without polling fallback. Action p95=2652ms, Broadcast2639ms, authorized snapshot
+  2771ms. Exact50loadrooms closed/100memberships inactive, history retained.
+- Owner profile,5rooms/memberships and permanent Google identity fingerprints
+  unchanged. Deployment-specific06:32–06:52:45UTC logs:0runtimeerror/fatal,0HTTP500+.
+  Metadata-only proof: docs/evidence/stable-play-2026-11-02/production.json.
+- Subsequent local dashboard/setup work is separate and not yet deployed.
+
+2026-11-02 — Dashboard/setup follow-up source freeze
+- Added typed accessible SegmentedTabs with mounted hidden panels, keyboard
+  activation and preserved discovery state. Games is default and contains no room
+  cards; Rooms groups member-only active/waiting and finished rooms. Header Games
+  navigation reveals the correct panel. Known authorized cached memberships remain
+  visible even if remembered-player storage is absent; browsing creates no guest.
+- RoomDialog now has one focused game/mode/seats/name form. Avatar colours and
+  room-name/rules are optional; values persist through mode changes. Friends/Bots
+  uses shared ChoiceGroup segmented variant. Full-row primary precedes Cancel at
+  all widths. Modal Escape handling closes the avatar palette before its parent.
+- Strict workflow checks found and fixed the searchbox accessible name changing
+  when Clear appeared. Shared font token fallbacks now work without Next font
+  variables in Storybook; live app DM Sans/Fraunces are unchanged.
+- Focused local checks passed:12dashboard,2setup cases over320/390/1440,10dashboard
+  story views,12setup story views, and one two-actor workflow with81setup surveys,
+  private invite/404 boundaries,8filter/shortcut checks, saved options, and actual
+  browser-driven bot reply. All its rooms closed; no production guests added.
+- Matching protected runtime inventory proves backend, API wire/session/proxy,
+  game tables/controller, dependencies and hosting config unchanged from verified
+  fdb8b6d. Reuse its804backend/162multiplayer/94complete-match/live50-room proof.
+- Extended verify entry point with validated repeatable --browser-file selection;
+  no-argument default groups remain intact, optional selection means browser only.
+  All source/docs are ready for final frontend/contracts/tooling and focused
+  browser gates. Next: main push and one production rollout of this follow-up,
+  then two-actor live setup/rooms/bot proof and HTTP/log/owner checks.
+
+2026-11-02 — Dashboard/setup follow-up ready for production
+- Final named frontend/contracts/tooling gate verify-e7ae237c2d1e46818619d631a318db33
+  passed on stable source:108units,types/lint/build,generatedcontracts/fixtures and
+  module boundaries. Focused browser gate verify-8454a184411c466c82751b66b8fc7136
+  passed42cases/2intentional skips over7affected specs; exactselection retained.
+- Separate Storybook proof passed281normal/compactfaces andmotion6/6,12setup+
+  10navigation story cases, valid sans fallback, zero API writes and no actionable
+  React-review issue. New2-actorworkflow inspected81forms at320/390/1440, joined
+  viafullinvite, verifiedprivate404s/filterretention, andobservedactualbotreply.
+  All local test memberships closed; no extra production accounts were created.
+- First production fdb8b6d remains serving and fullyverified. Follow-up changes
+  affectsharednavigation/setup/style+verification only;140protectedruntime files
+  (backend/API/game tables/controllers/dependencies/hosting)match firstrelease.
+- Next: commit/pushmain, deployonce, then test the new UI live usingexactly2actors
+  reusedacrossallviewports andconfirmHTTP,logs,source/alias andownerpreservation.
