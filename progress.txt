@@ -1,3 +1,24 @@
+## 2026-11-04 — All-games review pushed and live verified
+
+- Application 0840f8b7208397fe635153057de623ef39e54933 is pushed to main and
+  deployed once: dpl_PXue8sGehJHii1PAa93MzTVKv7qi, production, bom1, READY;
+  games-seven-black.vercel.app serves it and both source metadata fields match.
+- Final local source: frontend, backend, contracts, tooling, multiplayer,
+  migrations and browser (297 passed) all passed; no migration in this release.
+- Hosted: HTTP/auth/design-404 checks pass; new art assets serve; saved-room
+  flows passed live (crowded Deal/No Mercy moves with refresh, room layout and
+  rematch, boards, Uno, party games, Gem Market, Reversi, Word Agents). One
+  batch first hit the auth provider's anonymous sign-in limit and passed after
+  a cooldown. The core flow passed through create, join, ready, start and a
+  refreshed 7-card hand, then stopped where the test reads the API without the
+  browser session ("Session required"); its later move/switch steps were not
+  verified live by that test.
+- Runtime fingerprint and owner fingerprints unchanged across the deploy;
+  runtime and 5xx request logs since release start returned zero records.
+  Live QA rooms: 15 closed, 0 active memberships. Local QA rooms: 128 closed
+  through the normal leave path.
+- State: released.
+
 ## 2026-11-03 — All-games fixes verified locally
 
 - The first fix run was stopped mid-way at the owner's request; 13 owners then
