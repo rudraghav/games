@@ -51,6 +51,23 @@ previous bot before it ever gets an opportunity to announce its last card.
 Announcements and catches remain ordinary versioned engine actions; a human
 can still commit a legal catch before the scheduled bot announcement.
 
+## Pacing
+
+`app/rooms/bots.py` sets each match's `bot_due_at` after every committed move;
+the room page drives the due bot at that time. An ordinary bot move waits
+`BOT_DELAY_SECONDS` (0.8s). When the bot due next can only advance past a review
+or reveal, it waits long enough for people to read it first: Trio `continue`
+5s, 6 nimmt! `next_selection` 4s, party `next_prompt` 6s, and `next_round` /
+`next_heist` round summaries 8s. A person who holds that review advances it
+whenever they choose. When the due bot could catch a person who has just
+reached one card without calling UNO, it waits `BOT_CATCH_GRACE_SECONDS` (3s)
+so the person has a fair chance to call it; a bot's own announcement keeps the
+ordinary pace. Pacing never changes which bot acts, its policy or the legal
+actions: after the pause the same catch or advance is still taken.
+`test_bot_pacing.py` covers every review action and the UNO window on engine
+states; `test_bots_rooms.py` checks the published due time, early no-op drives
+and the eventual move through HTTP.
+
 Tarot is already solo and has no opponent bot. Word Agents bots understand the
 finite original category lexicon and a weak spelling fallback for unfamiliar
 human clues; they do not have unrestricted language understanding. Casino

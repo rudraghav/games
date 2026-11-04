@@ -7,7 +7,7 @@ from test_table_rules import blackjack_scenario
 
 from app.core.cards import poker_rank
 from app.core.contracts import Action
-from app.core.poker_explanation import explain_poker_hand
+from app.core.poker_explanation import explain_poker_hand, explain_teen_hand, teen_comparison
 from app.games.blackjack.engine import BlackjackEngine
 from app.games.holdem.engine import HoldemEngine
 from app.games.rummy.engine import RummyEngine
@@ -89,6 +89,27 @@ def test_blackjack_ledger_reconciles_natural_and_split_twenty_one(split):
     assert all(h['settlement']['outcome'] == ('win' if split else 'blackjack') for h in ledger['hands'])
 
 
+def test_blackjack_public_hands_group_every_seat_without_the_hole_card():
+    engine = BlackjackEngine()
+    state = engine.setup(['a', 'b'], {}, seed=31)
+    state.update(phase='playing', dealer=['TS:0', '7H:0'], hand_index=0)
+    state['players']['a']['hands'] = [
+        {'cards': ['8S:0', '4H:0'], 'bet': 10, 'done': True, 'split': True},
+        {'cards': ['8H:0', '4D:0', 'KS:0'], 'bet': 20, 'done': True, 'split': True}]
+    state['players']['b']['hands'] = [{'cards': ['3S:0', '4C:0'], 'bet': 10, 'done': False,
+                                       'split': False}]
+    state['turn'] = 1
+    view = engine.project_view(state, 'b')
+    assert view.detail['public_hands']['a'] == [
+        {'size': 2, 'bet': 10, 'total': 12, 'soft': False, 'done': True, 'split': True},
+        {'size': 3, 'bet': 20, 'total': 22, 'soft': False, 'done': True, 'split': True}]
+    assert [card.id for card in view.players[0].cards] == ['8S:0', '4H:0', '8H:0', '4D:0', 'KS:0']
+    assert '7H:0' not in str(view.detail) and view.message == 'Your hand is 7: hit, stand or double.'
+    changed = deepcopy(state)
+    changed['dealer'][1] = 'AH:0'
+    assert engine.project_view(changed, 'b') == view
+
+
 def test_blackjack_insurance_is_separate_from_the_natural_push():
     engine, state = blackjack_scenario(['AS:0', 'KH:0'], ['AH:0', 'KD:0'])
     state = engine.apply_action(state, 'a', Action(type='accept'))
@@ -108,12 +129,21 @@ def test_holdem_unequal_stack_capability_fixture_explains_pots_refund_and_folded
     state['players']['b'].update(cards=['KS:0', 'KH:0'], total=100, chips=100)
     state['players']['c'].update(total=60, chips=140, folded=True)
     before = engine.project_view(state, 'a').detail
+    # While betting, nobody is all in, so the table shows one pot both live players can win.
     assert before['live_pots'] == [
-        {'amount': 60, 'contributors': ['a', 'b', 'c'], 'eligible': ['a', 'b'], 'refund_to': None},
-        {'amount': 80, 'contributors': ['b', 'c'], 'eligible': ['b'], 'refund_to': None},
-        {'amount': 40, 'contributors': ['b'], 'eligible': ['b'], 'refund_to': 'b'},
+        {'amount': 180, 'contributors': ['a', 'b', 'c'], 'eligible': ['a', 'b'], 'refund_to': None,
+         'all_in': []},
     ]
     assert before['hand_evaluations'] == {}
+    # Once a is all in, the pot splits at a's total and only b can win the side pot.
+    all_in = deepcopy(state)
+    all_in['players']['a'].update(chips=0)
+    assert engine.project_view(all_in, 'b').detail['live_pots'] == [
+        {'amount': 60, 'contributors': ['a', 'b', 'c'], 'eligible': ['a', 'b'], 'refund_to': None,
+         'all_in': ['a']},
+        {'amount': 120, 'contributors': ['b', 'c'], 'eligible': ['b'], 'refund_to': None,
+         'all_in': []},
+    ]
     engine._settle(state, True)
     view = engine.project_view(state, 'a')
     data = view.detail
@@ -122,6 +152,34 @@ def test_holdem_unequal_stack_capability_fixture_explains_pots_refund_and_folded
     assert set(data['hand_evaluations']) == {'a', 'b'} and not view.players[2].cards
     assert data['hand_evaluations']['a']['description'] == '5-high straight'
     assert sum(p['chips'] for p in state['players'].values()) == 600
+    # Different winners of the main and side pot are explained without names.
+    assert view.message == 'Showdown: different hands won the main and side pots.'
+
+
+def test_holdem_prompt_is_the_actors_instruction_and_the_result_names_the_hand():
+    engine = HoldemEngine()
+    state = engine.setup(['a', 'b', 'c'], {}, seed=31)
+    assert engine.project_view(state, 'b').message == 'Call 2 to stay in, raise to 4 or more, or fold.'
+    state = engine.apply_action(state, 'a', Action(type='raise', amount=10))
+    state = engine.apply_action(state, 'b', Action(type='fold'))
+    state = engine.apply_action(state, 'c', Action(type='raise', amount=24))
+    # The instruction is for the next actor, never a replay of the last action type.
+    assert engine.project_view(state, 'a').message == 'Call 14 to stay in, raise to 38 or more, or fold.'
+    state = engine.apply_action(state, 'a', Action(type='call'))
+    assert engine.project_view(state, 'c').message == 'Check, or bet 2 or more.'
+    short = engine.setup(['a', 'b'], {}, seed=31)
+    short['players']['b'].update(chips=1)
+    short['turn'] = 1
+    short['current_bet'], short['players']['a']['bet'] = 50, 50
+    assert engine._prompt(short) == 'Call all in for 1, or fold.'
+    state['board'] = ['2S:0', '3H:0', '4D:0', '9C:0', 'TH:0']
+    state['players']['a']['cards'] = ['AS:0', '5S:0']
+    state['players']['c']['cards'] = ['KS:0', 'KH:0']
+    engine._settle(state, True)
+    assert engine.project_view(state, 'b').message == 'Won at showdown with a straight.'
+    folded = engine.setup(['a', 'b'], {}, seed=31)
+    folded = engine.apply_action(folded, 'a', Action(type='fold'))
+    assert engine.project_view(folded, 'a').message == 'Everyone else folded.'
 
 
 def test_holdem_tie_ledger_records_exact_awards_and_clockwise_odd_chip():
@@ -141,9 +199,42 @@ def test_poker_explanation_uses_evaluator_for_wheel_and_kicker():
     value = explain_poker_hand(cards)
     assert value['comparison'] == [5] and value['description'] == '5-high straight'
     assert poker_rank([card['id'] for card in value['cards']]) == poker_rank(cards)
+    # The wheel reads from its 5 down to the ace.
+    assert [card['value'] for card in value['cards']] == ['5', '4', '3', '2', 'A']
     paired = explain_poker_hand(['AS:0', 'AH:0', 'KS:0', 'QD:0', 'JC:0', '9C:0', '2H:0'])
     assert paired['comparison'] == [14, 13, 12, 11]
     assert 'kickers king, queen, jack' in paired['description']
+    assert paired['short'] == 'Pair of aces'
+
+
+def test_poker_explanation_names_every_category_and_orders_the_best_five():
+    full = explain_poker_hand(['KS:0', '6H:0', 'KD:0', 'KC:0', '6S:0', '2C:0', '3D:0'])
+    assert full['description'] == 'Full house, kings over 6s' and full['short'] == 'Full house'
+    assert [card['value'] for card in full['cards']] == ['K', 'K', 'K', '6', '6']
+    two = explain_poker_hand(['KS:0', '6H:0', 'KD:0', '8C:0', '6S:0', '2C:0', '3D:0'])
+    assert two['description'] == 'Two pair, kings and 6s; kicker 8'
+    assert [card['value'] for card in two['cards']] == ['K', 'K', '6', '6', '8']
+    high = explain_poker_hand(['AS:0', 'QH:0', 'TD:0', '9C:0', '4S:0', '2C:0', '3D:0'])
+    assert high['description'] == 'Ace high; then queen, 10, 9, 4' and high['short'] == 'Ace high'
+    flush = explain_poker_hand(['KH:0', 'JH:0', 'TH:0', '8H:0', '4H:0', '2C:0', '3D:0'])
+    assert flush['description'].startswith('Flush, king high')
+    royal = explain_poker_hand(['AS:0', 'KS:0', 'QS:0', 'JS:0', 'TS:0', '2C:0', '3D:0'])
+    assert royal['category'] == royal['description'] == royal['short'] == 'Royal flush'
+
+
+def test_teen_explanations_name_the_category_and_why_one_hand_beat_another():
+    winner = explain_teen_hand(['AS:0', 'JC:0', 'TH:0'])
+    loser = explain_teen_hand(['AC:0', 'JH:0', '2S:0'])
+    assert winner['category'] == loser['category'] == 'High card'
+    assert winner['description'] == 'Ace high (A-J-10)'
+    assert teen_comparison(winner['rank'], loser['rank']) == 'Both hands are high card; the third card decides'
+    colour = explain_teen_hand(['9H:0', 'KH:0', '5H:0'])
+    pair = explain_teen_hand(['7S:0', '7H:0', 'KD:0'])
+    assert colour['description'] == 'Colour, king high (K-9-5)'
+    assert pair['short'] == 'Pair of 7s'
+    assert teen_comparison(colour['rank'], pair['rank']) == 'Colour beats pair'
+    assert explain_teen_hand(['AS:0', '2S:0', '3S:0'])['description'] == 'Pure sequence A-2-3'
+    assert explain_teen_hand(['QS:0', 'QH:0', 'QD:0'])['short'] == 'Trail'
 
 
 def test_teen_patti_seen_and_sideshow_context_are_public_but_cards_are_not():
@@ -162,6 +253,40 @@ def test_teen_patti_seen_and_sideshow_context_are_public_but_cards_are_not():
         assert len(view.hand) == 3
     state = engine.apply_action(state, 'c', Action(type='decline'))
     assert engine.project_view(state, 'a').detail['sideshow'] is None
+    assert engine.project_view(state, 'b').detail['sideshow_result'] == {
+        'requester': 'a', 'target': 'c', 'accepted': False, 'loser': None}
+
+
+def test_teen_patti_sideshow_and_show_outcomes_are_public_without_revealing_cards():
+    engine = TeenPattiEngine()
+    state = engine.setup(['a', 'b', 'c'], {}, seed=31)
+    assert engine.project_view(state, 'a').message == 'Bet blind 1–2, see your cards or pack.'
+    for p in state['order']:
+        state = engine.apply_action(state, p, Action(type='peek'))
+        state = engine.apply_action(state, p, Action(type='bet', amount=2))
+    state = engine.apply_action(state, 'a', Action(type='sideshow'))
+    assert engine.project_view(state, 'c').message.startswith('Accept to compare hands privately')
+    state = engine.apply_action(state, 'c', Action(type='accept'))
+    result = engine.project_view(state, 'b').detail['sideshow_result']
+    loser = result['loser']
+    assert result == {'requester': 'a', 'target': 'c', 'accepted': True, 'loser': loser}
+    assert loser in {'a', 'c'} and state['players'][loser]['folded']
+    for p in ['a', 'b', 'c']:
+        view = engine.project_view(state, p)
+        # Who lost is public; neither compared hand is.
+        assert view.detail['out_reasons'] == {loser: 'lost_sideshow'}
+        assert not any(person.cards for person in view.players)
+        assert view.detail['hand_evaluations'] == {}
+        assert (view.detail['own_evaluation'] is not None) == (len(view.hand) == 3)
+    assert engine.project_view(state, 'b').detail['paid'] == {'a': 5, 'b': 3, 'c': 3}
+    actor = engine.project_view(state, 'a').current_player
+    state = engine.apply_action(state, actor, Action(type='show'))
+    view = engine.project_view(state, loser)
+    assert view.phase == 'finished' and view.detail['finish_reason'] == 'show'
+    assert set(view.detail['hand_evaluations']) == set(state['shown'])
+    assert view.message.startswith('Show: ')
+    assert loser not in view.detail['hand_evaluations']
+    assert not next(p for p in view.players if p.id == loser).cards
 
 
 @pytest.mark.parametrize('count', [2, 8])

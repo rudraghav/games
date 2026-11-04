@@ -68,3 +68,9 @@ tests, six independent-session click workflows and twelve full-match cases
 results, saved scores/history, rematch and same-group game switching. See
 `docs/evidence/modern-party-2026-11-01/PARTY.md`; production verification is a
 separate release step.
+
+Messages (3 November 2026): the collection-phase message is the instruction for
+players still choosing and does not change when others lock in (it used to read
+"Decision locked" to undecided players). Spill or Chill's instruction states the
+scoring (+1 for Spill or Chill, nothing for Pass).
+

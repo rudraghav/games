@@ -1,14 +1,34 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ApiError, type Action, type Room } from '@games/api-client';
 import { api, ensureSession, supabase } from '@/lib/session';
 import { keys } from '@/shared/query-keys';
 import { acceptRoomSnapshot } from './room-snapshot';
 
+function subscribeToNetwork(notify: () => void) {
+  window.addEventListener('online', notify);
+  window.addEventListener('offline', notify);
+  return () => {
+    window.removeEventListener('online', notify);
+    window.removeEventListener('offline', notify);
+  };
+}
+
+/**
+ * How this tab is talking to the table: `offline` (no network), `reconnecting`
+ * (the server is unreachable), `live` (realtime updates) or `connected` (polling).
+ */
+export type RoomConnection = 'offline' | 'reconnecting' | 'live' | 'connected';
+
 export function useRoom(id: string) {
   const cache = useQueryClient();
   const [live, setLive] = useState(false);
+  const online = useSyncExternalStore(
+    subscribeToNetwork,
+    () => navigator.onLine,
+    () => true,
+  );
   const me = useQuery({ queryKey: keys.me, queryFn: () => api.me() });
   const room = useQuery({
     queryKey: keys.room(id),
@@ -106,6 +126,7 @@ export function useRoom(id: string) {
   useEffect(() => {
     if (
       !selfId ||
+      !online ||
       !botPending ||
       paused ||
       !matchId ||
@@ -121,6 +142,7 @@ export function useRoom(id: string) {
     return () => window.clearTimeout(timeout);
   }, [
     selfId,
+    online,
     botPending,
     paused,
     matchId,
@@ -136,5 +158,14 @@ export function useRoom(id: string) {
     const actionId = crypto.randomUUID();
     mutation.mutate(() => api.move(id, current.matchId!, current.matchVersion!, action, actionId));
   }
-  return { room, me, live, mutation, move, botError, retryBots };
+  // Room reads retry and refresh every few seconds, so a failing read is the
+  // reliable sign that the server cannot be reached.
+  const connection: RoomConnection = !online
+    ? 'offline'
+    : room.isError
+      ? 'reconnecting'
+      : live
+        ? 'live'
+        : 'connected';
+  return { room, me, live, connection, mutation, move, botError, retryBots };
 }

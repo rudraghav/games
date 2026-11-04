@@ -98,3 +98,35 @@ Turn guidance follows the current draw/keep/play phase and never names a private
 drawn card in the shared message. The two-card choice survives refresh; another
 member receives neither its options nor its hidden card IDs. Mouse/touch selection
 has explicit keep/discard actions, and phone turn actions occupy complete rows.
+
+## Table messages and projections (2026-11-03)
+
+Shared messages are instructions for the seat that can act (the room banner shows
+them only to that seat; others see who they are waiting for and an attributed
+“Last move” from public history). They never name a private card.
+
+Projection additions, none of which reveal hidden information:
+
+- `ending_consequences` states the viewer's own stakes with numbers: Stop scores
+  everyone's card points now; Last Chance says what the caller scores if nobody
+  ends with more card points (card points + color bonus, others color bonus only)
+  and otherwise (color bonus only, others card points).
+- `protected_points`: card points of protected (revealed) hands, which are public.
+- `crab_pile`: which discard pile a crab duo is searching (its contents stay private).
+- `last_round`: the outcome (`stopped`, `caller_won`, `caller_lost`, `exhausted`,
+  `mermaids`), caller/stopper and per-player results; it persists into the next
+  round so the result stays readable after a quick restart.
+- `private_events`: per-seat notices. The thief and fish/crab actor get the card;
+  the steal victim gets only the card's name (its ID now sits in another private
+  hand). Nobody else receives anything. A seat's notices clear when it next draws
+  and at each new round.
+
+Public history labels: “Drew from the stock”, “Kept one and discarded the other”,
+“Took the top discard”, “Searched a discard pile”, “Took a card from the searched
+pile” (no card for an interior take), “Stole a random card”.
+
+Discard history decision: every discarded face was public at the moment it was
+discarded, so the activity list can reconstruct a pile's interior just as a player
+with perfect memory could at a physical table. This is kept deliberately; only the
+crab actor sees a pile all at once, and a card taken from inside a searched pile is
+never named in history.

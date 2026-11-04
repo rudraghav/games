@@ -23,3 +23,10 @@ evaluator. Hidden crew hands receive no explanation. Completed heists show the
 chip order, evaluated order and each adjacent inversion that failed the heist;
 exact ties are explicitly allowed. `test_casino_explanations.py` verifies staged
 reveal boundaries, public best-five identities and the inverted-order explanation.
+
+Table messages and projections (2026-11-03): messages instruct the seats that can
+act (“Take, swap or return chips until everyone holds one”, the street's chip
+colour, “Reveal your pocket cards…”); the attributed public “Last move” says who
+claimed what. `detail.taken_chips` records, for the current street only, whose chip
+was taken by whom (public, as the rack itself is); the entry clears when that player
+claims or returns a chip and when the street ends.

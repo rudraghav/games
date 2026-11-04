@@ -8,8 +8,9 @@ test('table decisions stay near the hand and explain direct grid actions', async
   const hand = await page.locator('.deal-hand-dock').boundingBox();
   const ownBoard = await page.locator('.deal-player[data-own="true"]').boundingBox();
   const center = await page.locator('.deal-center').boundingBox();
-  expect(center!.y + center!.height).toBeLessThanOrEqual(ownBoard!.y);
-  expect(ownBoard!.y + ownBoard!.height).toBeLessThanOrEqual(hand!.y);
+  // Reading order: shared centre, your hand and its actions, then your own bank and sets.
+  expect(center!.y + center!.height).toBeLessThanOrEqual(hand!.y);
+  expect(hand!.y + hand!.height).toBeLessThanOrEqual(ownBoard!.y);
   await expect(page.getByRole('button', { name: 'End turn' })).toBeVisible();
   const firstCard = page
     .getByRole('group', { name: 'Your hand', exact: true })
@@ -27,8 +28,9 @@ test('table decisions stay near the hand and explain direct grid actions', async
   await page.getByRole('button', { name: 'Clear card selection' }).click();
   await expect(firstCard).toHaveAttribute('aria-pressed', 'false');
   await scenario.selectOption({ label: 'Skyjo · maximum seats' });
+  // The dock repeats the server's instruction for the seat that can act.
   await expect(
-    page.getByText('Choose a face-down card in your grid to reveal.', { exact: true }),
+    actions.getByText('Turn over two of your cards to begin.', { exact: true }),
   ).toBeVisible();
   await expect(page.getByText('Waiting for the next move…', { exact: true })).toHaveCount(0);
   const ownGrid = page.locator('.skyjo-player[data-own="true"]');

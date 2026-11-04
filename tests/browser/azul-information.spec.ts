@@ -30,21 +30,44 @@ test('Azul explains fit, overflow, occupied floor penalties and the first-player
     .getByRole('combobox', { name: 'Mid-game scenario', exact: true })
     .selectOption(scenario.id);
   const own = page.locator('.azul-player-board[data-own="true"]');
+  const penalties = [1, 1, 2, 2, 2, 3, 3];
+  const floorHeld = data.floors[scenario.selfId].length;
+  const cost = (overflow: number) =>
+    penalties.slice(floorHeld, Math.min(7, floorHeld + overflow)).reduce((sum, n) => sum + n, 0);
   for (const option of scenario.room.game!.actions!.filter(
     (entry) => entry.action.type === 'place_tiles' && entry.action.choice !== 'floor',
   )) {
     const row = Number(option.action.choice);
-    const spaces = row + 1 - data.lines[scenario.selfId][row].length;
+    const held = data.lines[scenario.selfId][row].length;
+    const spaces = row + 1 - held;
+    const fits = Math.min(spaces, data.draft.length);
     const overflow = Math.max(0, data.draft.length - spaces);
     const button = own.getByRole('button', {
       name: new RegExp(`^Place on pattern line ${row + 1},`),
     });
     await expect(button).toHaveAccessibleName(
-      new RegExp(`${Math.min(spaces, data.draft.length)} tiles fit, ${overflow} go to floor`),
+      new RegExp(`${fits} tiles fit, ${overflow} go to floor`),
     );
+    // Fit, completion and the exact floor cost are on the line before the move.
     await expect(button.locator('.azul-pattern-consequence')).toHaveText(
-      `${Math.min(spaces, data.draft.length)} fit${overflow ? ` · ${overflow} to floor` : ' · no overflow'}`,
+      `${held + fits === row + 1 ? 'completes' : `${held + fits}/${row + 1} filled`}${
+        overflow ? ` ${overflow} to floor −${cost(overflow)}` : ''
+      }`,
     );
+    if (overflow)
+      await expect(button).toHaveAccessibleName(
+        new RegExp(`costing ${cost(overflow)} point${cost(overflow) === 1 ? '' : 's'}`),
+      );
+  }
+  // Single-column layouts pin every destination, with its cost, beside the drafted tiles.
+  if ((page.viewportSize()?.width ?? 0) <= 1000) {
+    const choices = page.getByRole('group', { name: 'Where the tiles go', exact: true });
+    await expect(choices.getByRole('button')).toHaveCount(6);
+    await expect(
+      choices.getByRole('button', {
+        name: new RegExp(`^Choose the floor: ${data.draft.length} tile`),
+      }),
+    ).toHaveAccessibleName(new RegExp(`costing ${cost(data.draft.length)} point|no cost`));
   }
   await expect(own.locator('.azul-floor-cell > small')).toHaveText([
     '−1',
@@ -72,7 +95,7 @@ test('Azul explains fit, overflow, occupied floor penalties and the first-player
     await expect(cell.locator('small')).toBeVisible();
     await expect(cell.locator('small')).toHaveText(/−[123]/);
   }
-  await expect(own.locator('.azul-floor')).toContainText(/Floor · −[1-9]\d* points/);
+  await expect(own.locator('.azul-floor')).toContainText(/Floor · −[1-9]\d* points?/);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.goto('/design');
   await page.getByLabel('Table scenario').selectOption({ label: 'Azul · maximum seats' });

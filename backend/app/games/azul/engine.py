@@ -18,6 +18,9 @@ from app.core.contracts import (
 COLORS = ("blue", "yellow", "red", "black", "white")
 SYMBOLS = ("◆", "✹", "✿", "✣", "❖")
 PENALTIES = (1, 1, 2, 2, 2, 3, 3)
+# Messages are instructions for the seat that can act. Every other seat sees who
+# the room is waiting for and the last public move instead.
+DRAFT_PROMPT = "Take every tile of one colour from a factory or the centre."
 
 
 def tile_color(tile: str) -> str:
@@ -86,7 +89,7 @@ class AzulEngine(BaseEngine):
                     "wall": {p: [[None] * 5 for _ in range(5)] for p in players},
                     "floor": {p: [] for p in players}, "scores": dict.fromkeys(players, 0),
                     "round": 0, "starter": 0, "marker": True, "winners": [], "draft": [],
-                    "last_scores": {}, "message": "Choose a color from a factory to begin."}
+                    "last_scores": {}, "message": "Take every tile of one colour from a factory."}
         self._offer(s)
         return s
 
@@ -113,8 +116,8 @@ class AzulEngine(BaseEngine):
         best = max((s["scores"][p], complete_rows(s["wall"][p])) for p in s["order"])
         s.update(phase="finished", winners=[p for p in s["order"]
                  if (s["scores"][p], complete_rows(s["wall"][p])) == best],
-                 message=("No tiles remain for another offer. Games exhaustion convention: normal end bonuses counted."
-                          if exhausted else "Your walls are complete. Every tile and bonus counted."))
+                 message=("No tiles remain for another offer: by the Games exhaustion convention, the game ends with normal end bonuses."
+                          if exhausted else "A wall row is complete, so the game ends. End bonuses are counted."))
         s["exhausted"] = exhausted
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
@@ -166,7 +169,8 @@ class AzulEngine(BaseEngine):
         elif not s["bag"] and not s["discard"]:
             self._finish(s, exhausted=True)
         else:
-            s.update(phase="round_over", turn=s["starter"], message="Walls scored. A fresh offer is ready when you are.")
+            s.update(phase="round_over", turn=s["starter"],
+                     message=f"Round {s['round']} is scored. Start round {s['round'] + 1} when everyone has looked.")
 
     def apply_action(self, state: State, player: str, action: Action) -> State:
         validate_action(self.legal_actions(state, player), action)
@@ -184,7 +188,9 @@ class AzulEngine(BaseEngine):
                 s.update(marker=False, starter=s["turn"])
                 if len(s["floor"][player]) < 7:
                     s["floor"][player].append("first")
-            s.update(phase="placing", message=f"Place your {len(s['draft'])} {action.color} tiles in one line.")
+            count = len(s["draft"])
+            s.update(phase="placing", message=f"Place your {count} {action.color} {'tile' if count == 1 else 'tiles'} "
+                                              "on one pattern line or the floor.")
             return s
         if action.choice == "floor":
             self._floor(s, player, s["draft"])
@@ -194,8 +200,7 @@ class AzulEngine(BaseEngine):
             capacity = row + 1 - len(line)
             line.extend(s["draft"][:capacity])
             self._floor(s, player, s["draft"][capacity:])
-        s.update(draft=[], phase="drafting", turn=(s["turn"] + 1) % len(s["order"]),
-                 message="Tiles placed. Choose the next color.")
+        s.update(draft=[], phase="drafting", turn=(s["turn"] + 1) % len(s["order"]), message=DRAFT_PROMPT)
         if not any(s["factories"]) and not s["center"]:
             self._score_round(s)
         return s

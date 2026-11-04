@@ -11,6 +11,11 @@ interface HandProps {
   compact?: boolean;
   playableIds?: string[];
   disabled?: boolean;
+  /**
+   * A card to keep in view, such as the card just drawn or the first playable
+   * card the instruction refers to. The rail scrolls itself, never the page.
+   */
+  revealId?: string | null;
 }
 export function Hand({
   cards,
@@ -21,13 +26,17 @@ export function Hand({
   compact,
   playableIds,
   disabled,
+  revealId,
 }: HandProps) {
+  const revealIndex = revealId ? cards.findIndex((card) => card.id === revealId) : -1;
   return (
     <HorizontalRail
       className="hand-rail"
       viewportClassName={cn('hand-scroll', compact && 'hand-scroll--compact')}
       contentClassName="card-hand"
       label={label}
+      revealKey={revealIndex >= 0 ? revealId : null}
+      revealIndex={revealIndex >= 0 ? revealIndex : null}
     >
       {cards.map((card) => (
         <PlayingCard

@@ -2,6 +2,9 @@
   .horizontal-rail {
     position: relative;
     min-width: 0;
+  }
+  /* Zero specificity, so a rail's own class can set a narrower cap. */
+  :where(.horizontal-rail) {
     max-width: 100%;
   }
   .horizontal-rail-viewport {
@@ -9,6 +12,7 @@
     overscroll-behavior-x: contain;
     scrollbar-width: thin;
   }
+  /* The arrows live in these gutters, beside the viewport, never over it. */
   .horizontal-rail[data-overflow='true'] > .horizontal-rail-viewport {
     margin-inline: 44px;
   }
@@ -42,23 +46,43 @@
   .rail-navigation--next {
     right: 0;
   }
-  .horizontal-rail[data-overflow='true']::before,
-  .horizontal-rail[data-overflow='true']::after {
-    content: '';
-    position: absolute;
-    top: 18px;
-    bottom: 14px;
-    width: 8px;
-    z-index: 1;
-    pointer-events: none;
+  /*
+   * More content is signalled by fading the viewport's own edge (only on the
+   * side that can still scroll), so the cue always sits at the clipped edge,
+   * whatever gutters or backgrounds a game uses.
+   */
+  :where(.horizontal-rail) > .horizontal-rail-viewport {
+    --rail-fade-start: 0px;
+    --rail-fade-end: 0px;
   }
-  .horizontal-rail[data-overflow='true']::before {
-    left: 44px;
-    background: linear-gradient(90deg, var(--color-surface), transparent);
+  :where(.horizontal-rail[data-overflow='true'][data-navigation='sides'][data-at-start='false'])
+    > .horizontal-rail-viewport {
+    --rail-fade-start: 14px;
   }
-  .horizontal-rail[data-overflow='true']::after {
-    right: 44px;
-    background: linear-gradient(-90deg, var(--color-surface), transparent);
+  :where(.horizontal-rail[data-overflow='true'][data-navigation='sides'][data-at-end='false'])
+    > .horizontal-rail-viewport {
+    --rail-fade-end: 14px;
+  }
+  .horizontal-rail[data-overflow='true'][data-navigation='sides'] > .horizontal-rail-viewport {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 var(--rail-fade-start),
+      #000 calc(100% - var(--rail-fade-end)),
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 var(--rail-fade-start),
+      #000 calc(100% - var(--rail-fade-end)),
+      transparent
+    );
+  }
+  /* Boards keep every square crisp; their arrows sit below the board. */
+  .board-rail.horizontal-rail[data-overflow] > .horizontal-rail-viewport {
+    -webkit-mask-image: none;
+    mask-image: none;
   }
   .hand-rail > .hand-scroll {
     min-width: 0;
@@ -74,10 +98,6 @@
     top: auto;
     bottom: 0;
     translate: none;
-  }
-  .horizontal-rail[data-navigation='below']::before,
-  .horizontal-rail[data-navigation='below']::after {
-    display: none;
   }
   .hand-rail .card-hand {
     gap: 6px;

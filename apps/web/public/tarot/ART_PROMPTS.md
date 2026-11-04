@@ -98,3 +98,13 @@ versioned PNG masters alongside the intact v1 atlases, with reproducible WebP de
 Acceptance: manually counted source objects and inspected rendered phone card
 frames; all 78 canonical IDs still map uniquely. Generated-image provenance is
 retained by this chat; build commands never modify the selected PNG masters.
+
+## Local symbol-count retouching — 3 November 2026
+
+No prompts and no generated imagery: twelve cells were edited from the existing
+v1 atlas pixels with local scripts (numpy/scipy patch fill and same-card symbol
+copies, composited behind or in front of existing figures). Each became a
+`minor-<id>-v2.png` single-card master at the cell's own size; the v1 atlases are
+unchanged. The per-card changes and the verified symbol count for every Ace to
+Ten are recorded in `README.md`. Any future art change must re-count the
+affected cards at the gallery frame and update that table, which a unit test checks.

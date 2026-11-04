@@ -164,10 +164,24 @@ test('natural long hands expose first and last cards through explicit rail contr
         { message: `Single hand fills its available space at ${width}px` },
       )
       .toBeLessThanOrEqual(2);
-    const cards = singleHand.locator('.casino-hand-rail');
+    // A long hand fans inside its frame: every card's rank corner is in view at once.
+    const cards = singleHand.getByRole('group', { name: /^Cards in hand / });
     await expect(cards.locator('.playing-card')).toHaveCount(5);
-    await railEnd(cards, 'Next');
-    await railEnd(cards, 'Previous');
+    expect(
+      await singleHand.evaluate((node) => {
+        const frame = node.getBoundingClientRect();
+        const faces = [...node.querySelectorAll('.playing-card')].map((card) =>
+          card.getBoundingClientRect(),
+        );
+        return faces.every(
+          (face, index) =>
+            face.left >= frame.left - 1 &&
+            face.right <= frame.right + 1 &&
+            (index === 0 || face.left - faces[index - 1].left >= 14),
+        );
+      }),
+      `All five cards readable in one hand at ${width}px`,
+    ).toBe(true);
 
     await scenario(page, split);
     const option = split.room.game!.actions!.find((item) => item.action.type === 'split')!;
@@ -176,9 +190,7 @@ test('natural long hands expose first and last cards through explicit rail contr
     await expect(hands).toHaveCount(2);
     const active = Number(split.next.game.detail!.active_hand_index);
     await expect(hands.nth(active)).toHaveAttribute('data-active', 'true');
-    await expect(page.locator('.casino-decision-shell')).toContainText(
-      `Playing hand ${active + 1} of 2`,
-    );
+    await expect(page.locator('.casino-decision-shell')).toContainText(`Hand ${active + 1} of 2`);
     for (const hand of await hands.all()) {
       expect(await hand.evaluate((node) => node.getBoundingClientRect().width)).toBeCloseTo(180, 0);
       await expect(hand.getByRole('group', { name: /^Cards in hand / })).toHaveCount(1);
@@ -301,13 +313,33 @@ test('all five rummy groups remain distinct and every card stays reachable', asy
       return [...states];
     });
   expect(overflowStates).toHaveLength(1);
+  // Groups may share a row (small melds sit side by side) but never overlap,
+  // and every card of the 14-card hand is in view without scrolling.
   const overlap = await page.locator('.rummy-groups').evaluate((root) => {
     const groups = [...root.querySelectorAll('.rummy-group')].map((node) =>
       node.getBoundingClientRect(),
     );
-    return groups.some((group, index) => index > 0 && group.top < groups[index - 1].bottom - 2);
+    return groups.some((a, i) =>
+      groups.some(
+        (b, j) =>
+          j > i &&
+          a.left < b.right - 2 &&
+          b.left < a.right - 2 &&
+          a.top < b.bottom - 2 &&
+          b.top < a.bottom - 2,
+      ),
+    );
   });
   expect(overlap).toBe(false);
+  expect(
+    await page.locator('.rummy-groups').evaluate((root) =>
+      [...root.querySelectorAll('.playing-card')].every((card) => {
+        const rect = card.getBoundingClientRect();
+        const frame = card.closest('.horizontal-rail-viewport')!.getBoundingClientRect();
+        return rect.left >= frame.left - 2 && rect.right <= frame.right + 2;
+      }),
+    ),
+  ).toBe(true);
   for (const rail of await page.locator('.rummy-group .hand-rail').all()) {
     await railEnd(rail, 'Next');
     await railEnd(rail, 'Previous');

@@ -664,3 +664,607 @@
     }
   }
 }
+
+/* The Gang: who holds which chip, who lost one, and a review ladder that explains the verdict. */
+@layer components {
+  .gang-turn-dock {
+    margin-top: 14px;
+  }
+  .gang-turn-dock .gang-decision-note {
+    min-height: 3.3em;
+    margin-block: 8px;
+  }
+  .gang-chip-taken {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-left: 4px solid var(--color-coral);
+    border-radius: 10px;
+    background: var(--color-coral-light);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .gang-chip-rack[data-attention='true'] {
+    outline: 2px dashed var(--color-coral);
+    outline-offset: 4px;
+    border-radius: 14px;
+  }
+  .gang-chip-choice small {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 12px;
+    line-height: 1.3;
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: center;
+  }
+  .gang-chip-choice[data-held='true'] small {
+    font-weight: 650;
+  }
+  /* The viewer's own chip is held, not unavailable. */
+  .gang-chip-choice[data-own='true'],
+  .gang-chip-choice[data-own='true']:disabled {
+    opacity: 1;
+    border-color: var(--color-sage);
+    background: var(--color-sage-light);
+  }
+  .gang-chip-choice[data-own='true'] small {
+    font-weight: 800;
+  }
+  .gang-chip-choice[data-own='true'] .gang-rank-chip {
+    box-shadow:
+      0 0 0 3px var(--color-surface),
+      0 0 0 5px var(--color-sage);
+  }
+  .gang-verdict {
+    display: grid;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: var(--color-coral-light);
+  }
+  .gang-verdict[data-success='true'] {
+    background: var(--color-sage-light);
+  }
+  .gang-verdict h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+  }
+  .gang-verdict p,
+  .gang-verdict ul {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .gang-verdict ul {
+    display: grid;
+    gap: 8px;
+    padding-left: 18px;
+  }
+  .gang-revealed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+    gap: 10px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .gang-revealed > li {
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+  .gang-revealed > li[data-inverted='true'] {
+    border-color: var(--color-coral);
+    background: #fff5f1;
+  }
+  .gang-revealed-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+  .gang-revealed-heading strong {
+    min-width: 0;
+    font-size: 14px;
+    overflow-wrap: break-word;
+  }
+  .gang-ladder-chip {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: 2px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #b44a34;
+    color: var(--color-white);
+    font-size: 13px;
+    font-weight: 750;
+  }
+  .gang-ladder-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 650;
+    color: var(--color-sage);
+  }
+  .gang-revealed > li[data-inverted='true'] .gang-ladder-check {
+    color: #9c3a24;
+  }
+  .gang-revealed-cards {
+    --card-width: 58px;
+    --card-height: 82px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .gang-revealed details > .gang-revealed-cards {
+    margin-top: 6px;
+  }
+  .gang-history-grid [data-chip-color] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .gang-history-grid [data-chip-color]::before {
+    content: '';
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #0003;
+    border-radius: 50%;
+    background: var(--chip-swatch);
+  }
+  .gang-history-grid [data-chip-color='white'] {
+    --chip-swatch: var(--color-surface-muted);
+  }
+  .gang-history-grid [data-chip-color='yellow'] {
+    --chip-swatch: var(--color-ochre);
+  }
+  .gang-history-grid [data-chip-color='orange'] {
+    --chip-swatch: var(--color-card-orange);
+  }
+  .gang-history-grid [data-chip-color='red'] {
+    --chip-swatch: var(--color-coral);
+  }
+  .gang-history-grid strong {
+    overflow-wrap: break-word;
+  }
+  .gang-waiting {
+    margin-top: 12px;
+  }
+  @media (max-width: 600px) {
+    .gang-history-grid > div:first-child {
+      font-size: 11px;
+    }
+    /* A list keeps every holder's full name readable at 320px. */
+    .gang-chip-rack {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 6px;
+    }
+    .gang-chip-choice {
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 12px;
+      min-height: 52px;
+      padding: 5px 10px;
+      border: 1px solid var(--color-border);
+      text-align: left;
+    }
+    .gang-chip-choice small {
+      font-size: 14px;
+      text-align: left;
+    }
+    .gang-revealed-cards {
+      --card-width: 45px;
+      --card-height: 64px;
+    }
+  }
+  @media (max-width: 380px) {
+    .gang-chip-rack {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}
+
+/* 6 nimmt!: the hand as a whole, where each card went, and what a row costs. */
+@layer components {
+  .six-number-card {
+    align-self: start;
+    height: var(--card-height);
+  }
+  .six-number-card[data-fresh='true'] .playing-card {
+    box-shadow:
+      0 0 0 2px var(--color-surface),
+      0 0 0 4px var(--color-focus);
+  }
+  .six-row-cost {
+    font-size: 12px;
+    font-weight: 650;
+  }
+  .six-row-capacity {
+    font-size: 11px;
+  }
+  .six-row[data-cheapest='true'] {
+    border-color: var(--color-sage);
+    box-shadow: inset 0 0 0 1px var(--color-sage);
+  }
+  .six-row-decision {
+    margin-top: 14px;
+  }
+  .six-hand {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-block: 12px 10px;
+    padding: 6px 2px;
+    overflow: visible;
+  }
+  .six-hand-note {
+    min-height: 1.6em;
+    margin-bottom: 10px;
+  }
+  .six-locked p {
+    font-size: 14px;
+  }
+  .six-standings,
+  .six-standings-panel {
+    margin-top: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+  .six-standings > summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 650;
+    overflow-wrap: anywhere;
+  }
+  .six-standings > .six-standings-list {
+    padding: 0 12px 10px;
+  }
+  .six-standings-panel {
+    display: grid;
+    gap: 10px;
+    padding: 14px 16px;
+    background: var(--color-sky-light, var(--color-surface-muted));
+  }
+  .six-standings-panel h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+  }
+  .six-standings-panel > .button {
+    justify-self: start;
+    min-width: 180px;
+  }
+  .six-standings-list {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .six-standings-list > li {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr) auto auto;
+    gap: 4px 10px;
+    align-items: baseline;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 13px;
+  }
+  .six-standings-list > li[data-self='true'] strong {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .six-standings-list strong {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  .six-standings-place {
+    color: var(--color-ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .six-standings-total {
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .six-revealed h3 {
+    margin-bottom: 10px;
+  }
+  .six-steps {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .six-steps > li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
+    padding: 4px 6px;
+    border-radius: 10px;
+  }
+  .six-steps > li[data-kind='sixth'],
+  .six-steps > li[data-kind='low'] {
+    background: var(--color-coral-light);
+  }
+  .six-steps > li[data-kind='waiting'] {
+    background: var(--color-ochre-light);
+  }
+  .six-steps p {
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+  }
+  @media (max-width: 600px) {
+    .six-hand {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+      margin-block: 8px 6px;
+      overflow: visible;
+    }
+    .six-hand .six-number-card {
+      --card-width: 100%;
+      --card-height: auto;
+      width: 100%;
+      height: auto;
+    }
+    .six-hand .six-number-card .playing-card {
+      height: auto;
+      aspect-ratio: 5 / 7;
+    }
+    .six-hand .six-number-card .grid-card-value {
+      font-size: 20px;
+    }
+    .six-hand .six-number-card[data-digits='3'] .grid-card-value {
+      font-size: 16px;
+    }
+    .six-hand .six-card-penalty {
+      bottom: 6px;
+      font-size: 11px;
+    }
+    /* While your number is open, the hand stays on screen as a tray. */
+    .six-hand-panel[data-tray='true'] {
+      position: sticky;
+      bottom: 0;
+      z-index: 3;
+      margin: 12px -16px 0;
+      padding: 10px 16px 12px;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 0;
+      background: var(--color-surface);
+      box-shadow: 0 -12px 18px -14px #202f2466;
+    }
+    .six-hand-panel[data-tray='true'] .six-hand-note {
+      margin-bottom: 6px;
+    }
+  }
+}
+
+@layer components {
+  /* Closed disclosures take no space and expose no stale boxes. */
+  .six-standings:not([open]) > :not(summary),
+  .gang-revealed details:not([open]) > :not(summary) {
+    display: none;
+  }
+  .six-steps {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 6px;
+  }
+  .six-steps .six-number-card {
+    --card-width: 40px;
+    --card-height: 56px;
+  }
+  .six-steps .six-number-card .grid-card-value {
+    font-size: 18px;
+    transform: translateY(-5px);
+  }
+  .six-steps .six-number-card[data-digits='3'] .grid-card-value {
+    font-size: 15px;
+  }
+  .six-steps .six-card-penalty {
+    bottom: 4px;
+    font-size: 11px;
+  }
+  .six-number-card[data-small='true'] .six-card-penalty {
+    font-size: 11px;
+  }
+  @media (max-width: 380px) {
+    .gang-community {
+      --card-width: 40px;
+      --card-height: 58px;
+      gap: 4px;
+      padding-inline: 6px;
+    }
+  }
+}
+
+@layer components {
+  .six-row > .button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+  @media (max-width: 600px) {
+    /* Row facts on one line above the cards; the cards get the full width. */
+    .six-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 6px;
+    }
+    .six-row > header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 10px;
+    }
+    .six-row > header .six-row-cost {
+      font-size: 12px;
+    }
+    .six-row-cards .six-number-card,
+    .six-row-slot {
+      --card-width: 52px;
+      --card-height: 70px;
+      flex-basis: 52px;
+      height: 70px;
+    }
+    .six-row-cards .six-number-card .grid-card-value {
+      font-size: 22px;
+    }
+    .six-row-cards .six-number-card[data-digits='3'] .grid-card-value {
+      font-size: 18px;
+    }
+  }
+  @media (max-width: 380px) {
+    .six-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .six-row-cards .six-number-card,
+    .six-row-slot {
+      --card-width: 42px;
+      --card-height: 60px;
+      flex-basis: 42px;
+      height: 60px;
+    }
+    .six-row-cards .six-number-card .grid-card-value {
+      font-size: 20px;
+    }
+    .six-row-cards .six-number-card[data-digits='3'] .grid-card-value {
+      font-size: 16px;
+    }
+  }
+}
+
+@layer components {
+  .six-steps > li[data-kind='queue'] {
+    grid-template-columns: minmax(0, 1fr);
+    grid-column: 1 / -1;
+  }
+}
+
+@layer components {
+  @media (max-width: 600px) {
+    /* A compact tray: the whole hand and Lock fit under the shared header on a 640px phone. */
+    .six-hand-panel[data-tray='true'] {
+      margin-top: 0;
+      padding-block: 8px 10px;
+    }
+    .six-hand-panel[data-tray='true'] .coop-number-heading h3 {
+      font-size: 15px;
+    }
+    .six-hand-panel[data-tray='true'] .six-hand {
+      margin-block: 6px 4px;
+    }
+    .six-hand .six-number-card .playing-card {
+      aspect-ratio: 4 / 5;
+    }
+    .six-hand .six-card-penalty {
+      bottom: 4px;
+    }
+    .six-hand .six-number-card .grid-card-value {
+      transform: translateY(-4px);
+    }
+    .six-hand-panel[data-tray='true'] .six-hand-note {
+      min-height: 0;
+      margin-bottom: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+@layer components {
+  p.six-row-decision {
+    padding: 10px 14px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  /* Cards placed by this selection: an inset ring that row scrolling cannot clip. */
+  .six-number-card[data-fresh='true'] .playing-card {
+    box-shadow: none;
+    outline: 3px solid var(--color-focus);
+    outline-offset: -3px;
+  }
+}
+
+@layer components {
+  @media (max-width: 600px) {
+    /* Room for whole words in the crew column; names break at spaces or hyphens. */
+    .gang-history-grid > div {
+      grid-template-columns: minmax(100px, 2.2fr) repeat(4, minmax(28px, 1fr));
+    }
+    .gang-history-grid strong {
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: manual;
+    }
+  }
+}
+
+@layer components {
+  .gang-history-short {
+    display: none;
+  }
+  @media (max-width: 600px) {
+    .gang-history-grid > div {
+      grid-template-columns: minmax(92px, 2fr) repeat(4, minmax(30px, 1fr));
+    }
+    .gang-history-grid [data-chip-color] {
+      gap: 3px;
+    }
+    .gang-history-grid [data-chip-color]::before {
+      width: 8px;
+      height: 8px;
+    }
+    .gang-history-long {
+      display: none;
+    }
+    .gang-history-short {
+      display: inline;
+    }
+  }
+}
+
+@layer components {
+  @media (max-width: 600px) {
+    /* Standings on phones: the full name gets the row; this round's penalties sit below it. */
+    .six-standings-list > li {
+      grid-template-columns: 22px minmax(0, 1fr) auto;
+    }
+    .six-standings-list > li > .six-standings-place {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .six-standings-list > li > strong {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .six-standings-list > li > .six-standings-total {
+      grid-column: 3;
+      grid-row: 1;
+    }
+    .six-standings-list > li > span:nth-child(3) {
+      grid-column: 2;
+      grid-row: 2;
+      color: var(--color-ink-muted);
+    }
+  }
+}

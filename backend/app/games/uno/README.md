@@ -61,3 +61,38 @@ and the next seat remain visible during ordinary play. `next_player` means the
 next active seat in the current direction, not a prediction of a future action's
 skip/reverse effect. Challenge legality and hidden hands are never projected.
 The validated API adapter drops unknown fields and rejects unknown pending kinds.
+
+## Table clarity — 3 November 2026
+
+Acceptance: on a small phone late in a crowded match a player can tell whose turn
+it is, what just happened, what they can do and whom it affects; an eliminated
+No Mercy player is told they are out instead of being asked to wait.
+
+- Messages are the next actor's instruction from public facts only ("Match Red
+  or 7, or draw a card.", "Stack +4 or higher, or draw 8 — drawing puts you out.",
+  "Take 4 cards, or challenge the Wild +4."). They never restate the last move;
+  the room's Last move line attributes it from public history. A finished match
+  says how it was won ("Last player standing after 2 eliminations.").
+- Card and action labels name the card: "Wild" (not "Wild Wild"), "Colour
+  roulette", "Play Yellow 4", "Play Wild · Red", "Choose Red", "Take 4 cards".
+  No Mercy draw buttons that eliminate say so: "Draw 22 — you’re out",
+  "Draw a card — you’re out" at 24 cards.
+- `detail.last_event` is the latest action's public outcome: type, actor, card
+  kind, colour, 7-swap/catch/challenge target, challenge outcome (only after it
+  resolves), extra Discard All count, skipped seats, `drew` counts per player and
+  players eliminated by it. UNO calls do not replace it. Drawn faces are never in
+  it; `detail.you_drew` lists only the viewer's own new cards that are still in
+  their hand. `detail.out` lists eliminated players in order with their card
+  count at elimination. The challenge `illegal` flag stays private until resolved.
+- History labels read "Dev played: Red 7 → you", "drew from the pile · 3 cards",
+  "caught a missed UNO", "challenged the Wild +4", "took 4 cards".
+
+The table (apps/web CardTable) shows the waiting penalty, challenge or roulette to
+everyone ("Mira must draw 8 or stack"), the outcome the Last move line cannot
+(challenge results, swaps, rotations, catches, eliminations, the card you drew),
+sorts the viewer's hand with playable cards first then by colour, overlaps long
+hands to their corners, offers stack/drawn-card shortcuts, colour swatches with
+hand counts, a panel for more than three swap targets, and keeps the dock pinned
+to the bottom of phones while the viewer has moves, sized to its content (at most
+216px or 42% of the screen) so the hand stays visible above it. Rules and outcomes
+are unchanged.

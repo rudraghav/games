@@ -263,7 +263,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 3,
-          "message": "Blinds are in. Your move.",
+          "message": "Call 2 to stay in, raise to 4 or more, or fold.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -284,26 +284,24 @@
             },
             "live_pots": [
               {
-                "amount": 2,
+                "amount": 3,
                 "contributors": [
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d"
                 ],
                 "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d"
+                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "8d2c9931-c076-52e0-a572-a351ff5da59f",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
-              },
-              {
-                "amount": 1,
-                "contributors": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d"
-                ],
-                "eligible": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d"
-                ],
-                "refund_to": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d"
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -579,7 +577,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 7,
-          "message": "Raise.",
+          "message": "Call 4 to stay in, raise to 6 or more, or fold.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -600,40 +598,25 @@
             },
             "live_pots": [
               {
-                "amount": 3,
+                "amount": 7,
                 "contributors": [
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
                   "3f9bd094-039a-58f9-a557-781d6ca49cb4"
                 ],
                 "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "8d2c9931-c076-52e0-a572-a351ff5da59f",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
-              },
-              {
-                "amount": 2,
-                "contributors": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
-                ],
-                "eligible": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
-                ],
-                "refund_to": null
-              },
-              {
-                "amount": 2,
-                "contributors": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
-                ],
-                "eligible": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
-                ],
-                "refund_to": "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -914,7 +897,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 7,
-          "message": "Fold.",
+          "message": "Call 4 to stay in, raise to 6 or more, or fold.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -935,40 +918,24 @@
             },
             "live_pots": [
               {
-                "amount": 3,
+                "amount": 7,
                 "contributors": [
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
                   "3f9bd094-039a-58f9-a557-781d6ca49cb4"
                 ],
                 "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
-              },
-              {
-                "amount": 2,
-                "contributors": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
-                ],
-                "eligible": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
-                ],
-                "refund_to": null
-              },
-              {
-                "amount": 2,
-                "contributors": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
-                ],
-                "eligible": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4"
-                ],
-                "refund_to": "3f9bd094-039a-58f9-a557-781d6ca49cb4"
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -1249,7 +1216,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 11,
-          "message": "Call.",
+          "message": "Call 4 to stay in, raise to 6 or more, or fold.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -1270,7 +1237,7 @@
             },
             "live_pots": [
               {
-                "amount": 4,
+                "amount": 11,
                 "contributors": [
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -1278,38 +1245,17 @@
                   "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
                 ],
                 "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
                   "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
+                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
-              },
-              {
-                "amount": 3,
-                "contributors": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
-                ],
-                "eligible": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
-                ],
-                "refund_to": null
-              },
-              {
-                "amount": 4,
-                "contributors": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
-                ],
-                "eligible": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
-                ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -1590,7 +1536,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 15,
-          "message": "Call.",
+          "message": "Call 4 to stay in, raise to 6 or more, or fold.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -1611,7 +1557,7 @@
             },
             "live_pots": [
               {
-                "amount": 5,
+                "amount": 15,
                 "contributors": [
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -1620,43 +1566,17 @@
                   "535fe5de-0a87-5604-b2db-01481edb7e36"
                 ],
                 "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
                   "3f9bd094-039a-58f9-a557-781d6ca49cb4",
                   "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36"
+                  "535fe5de-0a87-5604-b2db-01481edb7e36",
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
-              },
-              {
-                "amount": 4,
-                "contributors": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36"
-                ],
-                "eligible": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36"
-                ],
-                "refund_to": null
-              },
-              {
-                "amount": 6,
-                "contributors": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36"
-                ],
-                "eligible": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36"
-                ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -1937,7 +1857,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 19,
-          "message": "Call.",
+          "message": "Call 4 to stay in, raise to 6 or more, or fold.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -1958,7 +1878,7 @@
             },
             "live_pots": [
               {
-                "amount": 6,
+                "amount": 19,
                 "contributors": [
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -1968,48 +1888,17 @@
                   "1f3502e1-c188-5796-8522-085306a0f049"
                 ],
                 "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
                   "3f9bd094-039a-58f9-a557-781d6ca49cb4",
                   "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
                   "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049"
+                  "1f3502e1-c188-5796-8522-085306a0f049",
+                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
-              },
-              {
-                "amount": 5,
-                "contributors": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049"
-                ],
-                "eligible": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049"
-                ],
-                "refund_to": null
-              },
-              {
-                "amount": 8,
-                "contributors": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049"
-                ],
-                "eligible": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049"
-                ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -2290,7 +2179,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 23,
-          "message": "Call.",
+          "message": "Call 4 to stay in, raise to 6 or more, or fold.",
           "actions": [
             {
               "label": "Fold",
@@ -2388,7 +2277,7 @@
             },
             "live_pots": [
               {
-                "amount": 7,
+                "amount": 23,
                 "contributors": [
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -2399,6 +2288,7 @@
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
                 "eligible": [
+                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
                   "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
                   "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -2407,45 +2297,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
-              },
-              {
-                "amount": 6,
-                "contributors": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049",
-                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
-                ],
-                "eligible": [
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049",
-                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
-                ],
-                "refund_to": null
-              },
-              {
-                "amount": 10,
-                "contributors": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049",
-                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
-                ],
-                "eligible": [
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049",
-                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
-                ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -2726,7 +2579,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 27,
-          "message": "Call.",
+          "message": "Call 3 to stay in, raise to 6 or more, or fold.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -2747,7 +2600,7 @@
             },
             "live_pots": [
               {
-                "amount": 8,
+                "amount": 27,
                 "contributors": [
                   "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -2768,49 +2621,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
-              },
-              {
-                "amount": 7,
-                "contributors": [
-                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049",
-                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
-                ],
-                "eligible": [
-                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
-                  "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049",
-                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
-                ],
-                "refund_to": null
-              },
-              {
-                "amount": 12,
-                "contributors": [
-                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049",
-                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
-                ],
-                "eligible": [
-                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049",
-                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
-                ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -3091,7 +2903,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 30,
-          "message": "Call.",
+          "message": "Call 2 to stay in, raise to 6 or more, or fold.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -3112,7 +2924,7 @@
             },
             "live_pots": [
               {
-                "amount": 16,
+                "amount": 30,
                 "contributors": [
                   "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
                   "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -3133,29 +2945,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
-              },
-              {
-                "amount": 14,
-                "contributors": [
-                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
-                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049",
-                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
-                ],
-                "eligible": [
-                  "3da72cfd-0130-59a7-b2f8-7f1486e87dce",
-                  "e94b0f9a-ca10-5670-b9db-5284a6904b81",
-                  "3f9bd094-039a-58f9-a557-781d6ca49cb4",
-                  "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
-                  "535fe5de-0a87-5604-b2db-01481edb7e36",
-                  "1f3502e1-c188-5796-8522-085306a0f049",
-                  "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
-                ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -3476,7 +3267,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Call.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -3518,7 +3309,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -3839,7 +3631,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -3881,7 +3673,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -4202,7 +3995,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -4244,7 +4037,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -4565,7 +4359,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -4607,7 +4401,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -4928,7 +4723,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -4970,7 +4765,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -5291,7 +5087,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -5333,7 +5129,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -5654,7 +5451,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -5696,7 +5493,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -6017,7 +5815,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [
             {
               "label": "Fold",
@@ -6058,7 +5856,7 @@
               "eligible_cards": []
             },
             {
-              "label": "Raise to",
+              "label": "Bet",
               "action": {
                 "type": "raise",
                 "card": "",
@@ -6136,7 +5934,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -6470,7 +6269,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -6512,7 +6311,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -6846,7 +6646,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -6888,7 +6688,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -7222,7 +7023,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -7264,7 +7065,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -7598,7 +7400,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -7640,7 +7442,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -7974,7 +7777,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -8016,7 +7819,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -8350,7 +8154,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -8392,7 +8196,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -8726,7 +8531,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -8768,7 +8573,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -9102,7 +8908,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [
             {
               "label": "Fold",
@@ -9143,7 +8949,7 @@
               "eligible_cards": []
             },
             {
-              "label": "Raise to",
+              "label": "Bet",
               "action": {
                 "type": "raise",
                 "card": "",
@@ -9221,7 +9027,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -9568,7 +9375,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -9610,7 +9417,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -9957,7 +9765,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -9999,7 +9807,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -10346,7 +10155,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -10388,7 +10197,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -10735,7 +10545,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -10777,7 +10587,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -11124,7 +10935,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -11166,7 +10977,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -11513,7 +11325,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -11555,7 +11367,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -11902,7 +11715,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -11944,7 +11757,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -12291,7 +12105,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Check.",
+          "message": "Check, or bet 2 or more.",
           "actions": [
             {
               "label": "Fold",
@@ -12332,7 +12146,7 @@
               "eligible_cards": []
             },
             {
-              "label": "Raise to",
+              "label": "Bet",
               "action": {
                 "type": "raise",
                 "card": "",
@@ -12410,7 +12224,8 @@
                   "1f3502e1-c188-5796-8522-085306a0f049",
                   "000a1f52-7cf4-5a52-bc76-96b6d13aed84"
                 ],
-                "refund_to": null
+                "refund_to": null,
+                "all_in": []
               }
             ],
             "hand_evaluations": {},
@@ -12973,7 +12788,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 32,
-          "message": "Showdown. Pots settled.",
+          "message": "Won at showdown with a flush.",
           "actions": [],
           "winners": [
             "e981e0fe-a803-5439-8ce0-fc64067e9f6a"
@@ -13026,33 +12841,8 @@
                   9
                 ],
                 "description": "Pair of 6s; kickers ace, 10, 9",
+                "short": "Pair of 6s",
                 "cards": [
-                  {
-                    "id": "9D:0",
-                    "label": "9 \u2666",
-                    "color": "red",
-                    "subtitle": "",
-                    "value": "9",
-                    "suit": "\u2666",
-                    "colors": [],
-                    "effect": "",
-                    "set_name": null,
-                    "set_size": null,
-                    "rent_ladder": []
-                  },
-                  {
-                    "id": "TS:0",
-                    "label": "10 \u2660",
-                    "color": "ink",
-                    "subtitle": "",
-                    "value": "10",
-                    "suit": "\u2660",
-                    "colors": [],
-                    "effect": "",
-                    "set_name": null,
-                    "set_size": null,
-                    "rent_ladder": []
-                  },
                   {
                     "id": "6S:0",
                     "label": "6 \u2660",
@@ -13060,6 +12850,19 @@
                     "subtitle": "",
                     "value": "6",
                     "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2666",
                     "colors": [],
                     "effect": "",
                     "set_name": null,
@@ -13080,11 +12883,24 @@
                     "rent_ladder": []
                   },
                   {
-                    "id": "6D:0",
-                    "label": "6 \u2666",
+                    "id": "TS:0",
+                    "label": "10 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "10",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "9D:0",
+                    "label": "9 \u2666",
                     "color": "red",
                     "subtitle": "",
-                    "value": "6",
+                    "value": "9",
                     "suit": "\u2666",
                     "colors": [],
                     "effect": "",
@@ -13103,7 +12919,47 @@
                   10
                 ],
                 "description": "Pair of 6s; kickers ace, queen, 10",
+                "short": "Pair of 6s",
                 "cards": [
+                  {
+                    "id": "6S:0",
+                    "label": "6 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2666",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "AC:0",
+                    "label": "A \u2663",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "A",
+                    "suit": "\u2663",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
                   {
                     "id": "QH:0",
                     "label": "Q \u2665",
@@ -13129,7 +12985,20 @@
                     "set_name": null,
                     "set_size": null,
                     "rent_ladder": []
-                  },
+                  }
+                ]
+              },
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": {
+                "category": "Pair",
+                "comparison": [
+                  6,
+                  14,
+                  13,
+                  10
+                ],
+                "description": "Pair of 6s; kickers ace, king, 10",
+                "short": "Pair of 6s",
+                "cards": [
                   {
                     "id": "6S:0",
                     "label": "6 \u2660",
@@ -13137,6 +13006,19 @@
                     "subtitle": "",
                     "value": "6",
                     "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2666",
                     "colors": [],
                     "effect": "",
                     "set_name": null,
@@ -13156,31 +13038,6 @@
                     "set_size": null,
                     "rent_ladder": []
                   },
-                  {
-                    "id": "6D:0",
-                    "label": "6 \u2666",
-                    "color": "red",
-                    "subtitle": "",
-                    "value": "6",
-                    "suit": "\u2666",
-                    "colors": [],
-                    "effect": "",
-                    "set_name": null,
-                    "set_size": null,
-                    "rent_ladder": []
-                  }
-                ]
-              },
-              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": {
-                "category": "Pair",
-                "comparison": [
-                  6,
-                  14,
-                  13,
-                  10
-                ],
-                "description": "Pair of 6s; kickers ace, king, 10",
-                "cards": [
                   {
                     "id": "KS:0",
                     "label": "K \u2660",
@@ -13206,45 +13063,6 @@
                     "set_name": null,
                     "set_size": null,
                     "rent_ladder": []
-                  },
-                  {
-                    "id": "6S:0",
-                    "label": "6 \u2660",
-                    "color": "ink",
-                    "subtitle": "",
-                    "value": "6",
-                    "suit": "\u2660",
-                    "colors": [],
-                    "effect": "",
-                    "set_name": null,
-                    "set_size": null,
-                    "rent_ladder": []
-                  },
-                  {
-                    "id": "AC:0",
-                    "label": "A \u2663",
-                    "color": "ink",
-                    "subtitle": "",
-                    "value": "A",
-                    "suit": "\u2663",
-                    "colors": [],
-                    "effect": "",
-                    "set_name": null,
-                    "set_size": null,
-                    "rent_ladder": []
-                  },
-                  {
-                    "id": "6D:0",
-                    "label": "6 \u2666",
-                    "color": "red",
-                    "subtitle": "",
-                    "value": "6",
-                    "suit": "\u2666",
-                    "colors": [],
-                    "effect": "",
-                    "set_name": null,
-                    "set_size": null,
-                    "rent_ladder": []
                   }
                 ]
               },
@@ -13255,7 +13073,8 @@
                   6,
                   14
                 ],
-                "description": "Pairs of 10s and 6s; kicker ace",
+                "description": "Two pair, 10s and 6s; kicker ace",
+                "short": "Two pair",
                 "cards": [
                   {
                     "id": "TD:0",
@@ -13297,12 +13116,12 @@
                     "rent_ladder": []
                   },
                   {
-                    "id": "AC:0",
-                    "label": "A \u2663",
-                    "color": "ink",
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
                     "subtitle": "",
-                    "value": "A",
-                    "suit": "\u2663",
+                    "value": "6",
+                    "suit": "\u2666",
                     "colors": [],
                     "effect": "",
                     "set_name": null,
@@ -13310,12 +13129,12 @@
                     "rent_ladder": []
                   },
                   {
-                    "id": "6D:0",
-                    "label": "6 \u2666",
-                    "color": "red",
+                    "id": "AC:0",
+                    "label": "A \u2663",
+                    "color": "ink",
                     "subtitle": "",
-                    "value": "6",
-                    "suit": "\u2666",
+                    "value": "A",
+                    "suit": "\u2663",
                     "colors": [],
                     "effect": "",
                     "set_name": null,
@@ -13333,8 +13152,22 @@
                   5,
                   3
                 ],
-                "description": "Flush; comparison order 10, 9, 6, 5, 3",
+                "description": "Flush, 10 high; then 9, 6, 5, 3",
+                "short": "Flush",
                 "cards": [
+                  {
+                    "id": "TS:0",
+                    "label": "10 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "10",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
                   {
                     "id": "9S:0",
                     "label": "9 \u2660",
@@ -13349,24 +13182,11 @@
                     "rent_ladder": []
                   },
                   {
-                    "id": "3S:0",
-                    "label": "3 \u2660",
+                    "id": "6S:0",
+                    "label": "6 \u2660",
                     "color": "ink",
                     "subtitle": "",
-                    "value": "3",
-                    "suit": "\u2660",
-                    "colors": [],
-                    "effect": "",
-                    "set_name": null,
-                    "set_size": null,
-                    "rent_ladder": []
-                  },
-                  {
-                    "id": "TS:0",
-                    "label": "10 \u2660",
-                    "color": "ink",
-                    "subtitle": "",
-                    "value": "10",
+                    "value": "6",
                     "suit": "\u2660",
                     "colors": [],
                     "effect": "",
@@ -13388,11 +13208,11 @@
                     "rent_ladder": []
                   },
                   {
-                    "id": "6S:0",
-                    "label": "6 \u2660",
+                    "id": "3S:0",
+                    "label": "3 \u2660",
                     "color": "ink",
                     "subtitle": "",
-                    "value": "6",
+                    "value": "3",
                     "suit": "\u2660",
                     "colors": [],
                     "effect": "",
@@ -13411,7 +13231,47 @@
                   10
                 ],
                 "description": "Pair of 6s; kickers ace, king, 10",
+                "short": "Pair of 6s",
                 "cards": [
+                  {
+                    "id": "6S:0",
+                    "label": "6 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2660",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "6D:0",
+                    "label": "6 \u2666",
+                    "color": "red",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2666",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "AC:0",
+                    "label": "A \u2663",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "A",
+                    "suit": "\u2663",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
                   {
                     "id": "KH:0",
                     "label": "K \u2665",
@@ -13437,7 +13297,19 @@
                     "set_name": null,
                     "set_size": null,
                     "rent_ladder": []
-                  },
+                  }
+                ]
+              },
+              "1f3502e1-c188-5796-8522-085306a0f049": {
+                "category": "Two pair",
+                "comparison": [
+                  6,
+                  5,
+                  14
+                ],
+                "description": "Two pair, 6s and 5s; kicker ace",
+                "short": "Two pair",
+                "cards": [
                   {
                     "id": "6S:0",
                     "label": "6 \u2660",
@@ -13445,19 +13317,6 @@
                     "subtitle": "",
                     "value": "6",
                     "suit": "\u2660",
-                    "colors": [],
-                    "effect": "",
-                    "set_name": null,
-                    "set_size": null,
-                    "rent_ladder": []
-                  },
-                  {
-                    "id": "AC:0",
-                    "label": "A \u2663",
-                    "color": "ink",
-                    "subtitle": "",
-                    "value": "A",
-                    "suit": "\u2663",
                     "colors": [],
                     "effect": "",
                     "set_name": null,
@@ -13476,18 +13335,7 @@
                     "set_name": null,
                     "set_size": null,
                     "rent_ladder": []
-                  }
-                ]
-              },
-              "1f3502e1-c188-5796-8522-085306a0f049": {
-                "category": "Two pair",
-                "comparison": [
-                  6,
-                  5,
-                  14
-                ],
-                "description": "Pairs of 6s and 5s; kicker ace",
-                "cards": [
+                  },
                   {
                     "id": "5H:0",
                     "label": "5 \u2665",
@@ -13515,25 +13363,38 @@
                     "rent_ladder": []
                   },
                   {
-                    "id": "6S:0",
-                    "label": "6 \u2660",
-                    "color": "ink",
-                    "subtitle": "",
-                    "value": "6",
-                    "suit": "\u2660",
-                    "colors": [],
-                    "effect": "",
-                    "set_name": null,
-                    "set_size": null,
-                    "rent_ladder": []
-                  },
-                  {
                     "id": "AC:0",
                     "label": "A \u2663",
                     "color": "ink",
                     "subtitle": "",
                     "value": "A",
                     "suit": "\u2663",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ]
+              },
+              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": {
+                "category": "Pair",
+                "comparison": [
+                  6,
+                  14,
+                  10,
+                  9
+                ],
+                "description": "Pair of 6s; kickers ace, 10, 9",
+                "short": "Pair of 6s",
+                "cards": [
+                  {
+                    "id": "6S:0",
+                    "label": "6 \u2660",
+                    "color": "ink",
+                    "subtitle": "",
+                    "value": "6",
+                    "suit": "\u2660",
                     "colors": [],
                     "effect": "",
                     "set_name": null,
@@ -13552,26 +13413,14 @@
                     "set_name": null,
                     "set_size": null,
                     "rent_ladder": []
-                  }
-                ]
-              },
-              "000a1f52-7cf4-5a52-bc76-96b6d13aed84": {
-                "category": "Pair",
-                "comparison": [
-                  6,
-                  14,
-                  10,
-                  9
-                ],
-                "description": "Pair of 6s; kickers ace, 10, 9",
-                "cards": [
+                  },
                   {
-                    "id": "9H:0",
-                    "label": "9 \u2665",
-                    "color": "red",
+                    "id": "AC:0",
+                    "label": "A \u2663",
+                    "color": "ink",
                     "subtitle": "",
-                    "value": "9",
-                    "suit": "\u2665",
+                    "value": "A",
+                    "suit": "\u2663",
                     "colors": [],
                     "effect": "",
                     "set_name": null,
@@ -13592,38 +13441,12 @@
                     "rent_ladder": []
                   },
                   {
-                    "id": "6S:0",
-                    "label": "6 \u2660",
-                    "color": "ink",
-                    "subtitle": "",
-                    "value": "6",
-                    "suit": "\u2660",
-                    "colors": [],
-                    "effect": "",
-                    "set_name": null,
-                    "set_size": null,
-                    "rent_ladder": []
-                  },
-                  {
-                    "id": "AC:0",
-                    "label": "A \u2663",
-                    "color": "ink",
-                    "subtitle": "",
-                    "value": "A",
-                    "suit": "\u2663",
-                    "colors": [],
-                    "effect": "",
-                    "set_name": null,
-                    "set_size": null,
-                    "rent_ladder": []
-                  },
-                  {
-                    "id": "6D:0",
-                    "label": "6 \u2666",
+                    "id": "9H:0",
+                    "label": "9 \u2665",
                     "color": "red",
                     "subtitle": "",
-                    "value": "6",
-                    "suit": "\u2666",
+                    "value": "9",
+                    "suit": "\u2665",
                     "colors": [],
                     "effect": "",
                     "set_name": null,
@@ -13750,7 +13573,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 3,
-          "message": "The boot is in. Play blind or see your cards.",
+          "message": "Bet blind 1\u20132, see your cards or pack.",
           "actions": [
             {
               "label": "Pack / fold",
@@ -13791,7 +13614,7 @@
               "eligible_cards": []
             },
             {
-              "label": "Play chips",
+              "label": "Blind bet",
               "action": {
                 "type": "bet",
                 "card": "",
@@ -13821,7 +13644,17 @@
             },
             "sideshow": null,
             "sideshow_target": null,
-            "sideshow_cost": null
+            "sideshow_cost": null,
+            "paid": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 1,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 1
+            },
+            "out_reasons": {},
+            "sideshow_result": null,
+            "finish_reason": null,
+            "hand_evaluations": {},
+            "own_evaluation": null
           }
         },
         "paused": false,
@@ -13968,7 +13801,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 3,
-          "message": "The boot is in. Play blind or see your cards.",
+          "message": "Chaal 2\u20134 (even) or pack.",
           "actions": [
             {
               "label": "Pack / fold",
@@ -13990,7 +13823,7 @@
               "eligible_cards": []
             },
             {
-              "label": "Play chips",
+              "label": "Chaal",
               "action": {
                 "type": "bet",
                 "card": "",
@@ -14020,7 +13853,27 @@
             },
             "sideshow": null,
             "sideshow_target": null,
-            "sideshow_cost": 2
+            "sideshow_cost": 2,
+            "paid": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 1,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 1
+            },
+            "out_reasons": {},
+            "sideshow_result": null,
+            "finish_reason": null,
+            "hand_evaluations": {},
+            "own_evaluation": {
+              "category": "High card",
+              "rank": [
+                0,
+                9,
+                8,
+                2
+              ],
+              "description": "9 high (9-8-2)",
+              "short": "9 high"
+            }
           }
         },
         "paused": false,
@@ -14172,7 +14025,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 5,
-          "message": "The boot is in. Play blind or see your cards.",
+          "message": "Bet blind 1\u20132, see your cards or pack.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -14185,7 +14038,27 @@
             },
             "sideshow": null,
             "sideshow_target": null,
-            "sideshow_cost": 2
+            "sideshow_cost": 2,
+            "paid": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 3,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 1
+            },
+            "out_reasons": {},
+            "sideshow_result": null,
+            "finish_reason": null,
+            "hand_evaluations": {},
+            "own_evaluation": {
+              "category": "High card",
+              "rank": [
+                0,
+                9,
+                8,
+                2
+              ],
+              "description": "9 high (9-8-2)",
+              "short": "9 high"
+            }
           }
         },
         "paused": false,
@@ -14337,7 +14210,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 5,
-          "message": "The boot is in. Play blind or see your cards.",
+          "message": "Chaal 2\u20134 (even), ask for a sideshow or pack.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -14350,7 +14223,27 @@
             },
             "sideshow": null,
             "sideshow_target": null,
-            "sideshow_cost": 2
+            "sideshow_cost": 2,
+            "paid": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 3,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 1,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 1
+            },
+            "out_reasons": {},
+            "sideshow_result": null,
+            "finish_reason": null,
+            "hand_evaluations": {},
+            "own_evaluation": {
+              "category": "High card",
+              "rank": [
+                0,
+                9,
+                8,
+                2
+              ],
+              "description": "9 high (9-8-2)",
+              "short": "9 high"
+            }
           }
         },
         "paused": false,
@@ -14502,7 +14395,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 7,
-          "message": "The boot is in. Play blind or see your cards.",
+          "message": "Bet blind 1\u20132, see your cards or pack.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -14515,7 +14408,27 @@
             },
             "sideshow": null,
             "sideshow_target": null,
-            "sideshow_cost": 2
+            "sideshow_cost": 2,
+            "paid": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 3,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 3,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 1
+            },
+            "out_reasons": {},
+            "sideshow_result": null,
+            "finish_reason": null,
+            "hand_evaluations": {},
+            "own_evaluation": {
+              "category": "High card",
+              "rank": [
+                0,
+                9,
+                8,
+                2
+              ],
+              "description": "9 high (9-8-2)",
+              "short": "9 high"
+            }
           }
         },
         "paused": false,
@@ -14667,7 +14580,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 7,
-          "message": "The boot is in. Play blind or see your cards.",
+          "message": "Chaal 2\u20134 (even), ask for a sideshow or pack.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -14680,7 +14593,27 @@
             },
             "sideshow": null,
             "sideshow_target": null,
-            "sideshow_cost": 2
+            "sideshow_cost": 2,
+            "paid": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 3,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 3,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 1
+            },
+            "out_reasons": {},
+            "sideshow_result": null,
+            "finish_reason": null,
+            "hand_evaluations": {},
+            "own_evaluation": {
+              "category": "High card",
+              "rank": [
+                0,
+                9,
+                8,
+                2
+              ],
+              "description": "9 high (9-8-2)",
+              "short": "9 high"
+            }
           }
         },
         "paused": false,
@@ -14832,7 +14765,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 9,
-          "message": "The boot is in. Play blind or see your cards.",
+          "message": "Chaal 2\u20134 (even), ask for a sideshow or pack.",
           "actions": [
             {
               "label": "Pack / fold",
@@ -14854,7 +14787,7 @@
               "eligible_cards": []
             },
             {
-              "label": "Play chips",
+              "label": "Chaal",
               "action": {
                 "type": "bet",
                 "card": "",
@@ -14903,7 +14836,27 @@
             },
             "sideshow": null,
             "sideshow_target": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
-            "sideshow_cost": 2
+            "sideshow_cost": 2,
+            "paid": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 3,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 3,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 3
+            },
+            "out_reasons": {},
+            "sideshow_result": null,
+            "finish_reason": null,
+            "hand_evaluations": {},
+            "own_evaluation": {
+              "category": "High card",
+              "rank": [
+                0,
+                9,
+                8,
+                2
+              ],
+              "description": "9 high (9-8-2)",
+              "short": "9 high"
+            }
           }
         },
         "paused": false,
@@ -15055,7 +15008,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 11,
-          "message": "The boot is in. Play blind or see your cards.",
+          "message": "Chaal 2\u20134 (even), ask for a sideshow or pack.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -15068,7 +15021,27 @@
             },
             "sideshow": null,
             "sideshow_target": null,
-            "sideshow_cost": 2
+            "sideshow_cost": 2,
+            "paid": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 5,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 3,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 3
+            },
+            "out_reasons": {},
+            "sideshow_result": null,
+            "finish_reason": null,
+            "hand_evaluations": {},
+            "own_evaluation": {
+              "category": "High card",
+              "rank": [
+                0,
+                9,
+                8,
+                2
+              ],
+              "description": "9 high (9-8-2)",
+              "short": "9 high"
+            }
           }
         },
         "paused": false,
@@ -15220,7 +15193,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 11,
-          "message": "The boot is in. Play blind or see your cards.",
+          "message": "Chaal 2\u20134 (even), ask for a show or pack.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -15233,7 +15206,29 @@
             },
             "sideshow": null,
             "sideshow_target": null,
-            "sideshow_cost": 2
+            "sideshow_cost": 2,
+            "paid": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 5,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 3,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 3
+            },
+            "out_reasons": {
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": "packed"
+            },
+            "sideshow_result": null,
+            "finish_reason": null,
+            "hand_evaluations": {},
+            "own_evaluation": {
+              "category": "High card",
+              "rank": [
+                0,
+                9,
+                8,
+                2
+              ],
+              "description": "9 high (9-8-2)",
+              "short": "9 high"
+            }
           }
         },
         "paused": false,
@@ -15465,7 +15460,7 @@
           "drawn": null,
           "draw_count": 0,
           "pot": 13,
-          "message": "The pot is settled.",
+          "message": "Show: both hands are high card; the first card decides.",
           "actions": [],
           "winners": [
             "5b066c6e-ad2f-5fd1-b455-9aa1907df33d"
@@ -15480,7 +15475,53 @@
             },
             "sideshow": null,
             "sideshow_target": null,
-            "sideshow_cost": 2
+            "sideshow_cost": 2,
+            "paid": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": 5,
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": 3,
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": 5
+            },
+            "out_reasons": {
+              "e94b0f9a-ca10-5670-b9db-5284a6904b81": "packed",
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": "lost_show"
+            },
+            "sideshow_result": null,
+            "finish_reason": "show",
+            "hand_evaluations": {
+              "5b066c6e-ad2f-5fd1-b455-9aa1907df33d": {
+                "category": "High card",
+                "rank": [
+                  0,
+                  10,
+                  8,
+                  5
+                ],
+                "description": "10 high (10-8-5)",
+                "short": "10 high"
+              },
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": {
+                "category": "High card",
+                "rank": [
+                  0,
+                  9,
+                  8,
+                  2
+                ],
+                "description": "9 high (9-8-2)",
+                "short": "9 high"
+              }
+            },
+            "own_evaluation": {
+              "category": "High card",
+              "rank": [
+                0,
+                9,
+                8,
+                2
+              ],
+              "description": "9 high (9-8-2)",
+              "short": "9 high"
+            }
           }
         },
         "paused": false,
@@ -15551,7 +15592,7 @@
           "drawn": null,
           "draw_count": 312,
           "pot": 0,
-          "message": "Place your free-chip wager.",
+          "message": "Bet 2\u2013200 chips (even amounts).",
           "actions": [
             {
               "label": "Place bet",
@@ -15585,7 +15626,11 @@
               "net": null
             },
             "dealer_natural": null,
-            "settlements": {}
+            "settlements": {},
+            "public_hands": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": []
+            },
+            "insured": {}
           }
         },
         "paused": false,
@@ -15714,7 +15759,7 @@
           "drawn": null,
           "draw_count": 308,
           "pot": 0,
-          "message": "Place your free-chip wager.",
+          "message": "Your hand is 20: hit, stand, double or split.",
           "actions": [
             {
               "label": "Hit",
@@ -15842,7 +15887,20 @@
               "net": null
             },
             "dealer_natural": null,
-            "settlements": {}
+            "settlements": {},
+            "public_hands": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": [
+                {
+                  "size": 2,
+                  "bet": 10,
+                  "total": 20,
+                  "soft": false,
+                  "done": false,
+                  "split": false
+                }
+              ]
+            },
+            "insured": {}
           }
         },
         "paused": false,
@@ -16002,7 +16060,7 @@
           "drawn": null,
           "draw_count": 306,
           "pot": 0,
-          "message": "Place your free-chip wager.",
+          "message": "Hand 1 of 2 is 20: hit, stand or double.",
           "actions": [
             {
               "label": "Hit",
@@ -16147,7 +16205,28 @@
               "net": null
             },
             "dealer_natural": null,
-            "settlements": {}
+            "settlements": {},
+            "public_hands": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": [
+                {
+                  "size": 2,
+                  "bet": 10,
+                  "total": 20,
+                  "soft": false,
+                  "done": false,
+                  "split": true
+                },
+                {
+                  "size": 2,
+                  "bet": 10,
+                  "total": 12,
+                  "soft": false,
+                  "done": false,
+                  "split": true
+                }
+              ]
+            },
+            "insured": {}
           }
         },
         "paused": false,
@@ -16320,7 +16399,7 @@
           "drawn": null,
           "draw_count": 305,
           "pot": 0,
-          "message": "Place your free-chip wager.",
+          "message": "Hand 2 of 2 is 12: hit, stand or double.",
           "actions": [
             {
               "label": "Hit",
@@ -16478,7 +16557,28 @@
               "net": null
             },
             "dealer_natural": null,
-            "settlements": {}
+            "settlements": {},
+            "public_hands": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": [
+                {
+                  "size": 3,
+                  "bet": 10,
+                  "total": 27,
+                  "soft": false,
+                  "done": true,
+                  "split": true
+                },
+                {
+                  "size": 2,
+                  "bet": 10,
+                  "total": 12,
+                  "soft": false,
+                  "done": false,
+                  "split": true
+                }
+              ]
+            },
+            "insured": {}
           }
         },
         "paused": false,
@@ -16690,7 +16790,7 @@
           "drawn": null,
           "draw_count": 304,
           "pot": 0,
-          "message": "Dealer has 19. Wagers settled.",
+          "message": "Dealer stands on 19; wagers settled.",
           "actions": [],
           "winners": [],
           "detail": {
@@ -16936,7 +17036,28 @@
                 },
                 "net": -20
               }
-            }
+            },
+            "public_hands": {
+              "3da72cfd-0130-59a7-b2f8-7f1486e87dce": [
+                {
+                  "size": 3,
+                  "bet": 10,
+                  "total": 27,
+                  "soft": false,
+                  "done": true,
+                  "split": true
+                },
+                {
+                  "size": 3,
+                  "bet": 10,
+                  "total": 22,
+                  "soft": false,
+                  "done": true,
+                  "split": true
+                }
+              ]
+            },
+            "insured": {}
           }
         },
         "paused": false,

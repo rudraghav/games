@@ -965,3 +965,718 @@
     }
   }
 }
+
+/* Azul decisions: what you hold, where it can go and what it costs, in view. */
+@layer components {
+  .azul-table > .azul-draft-preview.decision-dock {
+    display: grid;
+    justify-items: stretch;
+    align-content: center;
+    gap: 8px;
+    min-block-size: 76px;
+    text-align: left;
+    background: #f6fbfd;
+  }
+  .azul-table > .azul-draft-preview[data-state='review'],
+  .azul-table > .azul-draft-preview[data-state='finished'] {
+    background: #fffdf7;
+    border-color: #c9b98f;
+  }
+  .azul-draft-preview > .azul-dock-head {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 6px 12px;
+  }
+  .azul-dock-head > p {
+    min-width: 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .azul-dock-head > .button {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .azul-dock-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: none;
+    gap: 4px;
+    min-height: 44px;
+  }
+  .azul-dock-tiles--empty > .azul-tile--empty {
+    opacity: 0.7;
+  }
+  .azul-dock-note {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .azul-draft-preview > .azul-dock-choices {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    justify-content: stretch;
+    gap: 6px;
+    padding-block: 8px;
+  }
+  .azul-choice {
+    display: grid;
+    align-content: center;
+    gap: 2px;
+    min-width: 0;
+    min-height: 52px;
+    padding: 6px;
+    border: 1px solid #b08336;
+    border-radius: 10px;
+    background: #fff3d6;
+    color: var(--color-ink);
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+  }
+  .azul-choice > span {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .azul-choice > small {
+    font-size: 12px;
+    line-height: 1.25;
+    color: #4a4538;
+  }
+  .azul-choice > small[data-cost='true'] {
+    color: #8a332b;
+    font-weight: 650;
+  }
+  .azul-choice:not(:disabled):hover {
+    border-color: var(--color-focus);
+    background: #ffe9b8;
+  }
+  .azul-choice:disabled {
+    border-color: #d9d6cd;
+    background: #f4f2ed;
+    cursor: default;
+  }
+  .azul-choice:disabled > span,
+  .azul-choice:disabled > small {
+    color: #625d52;
+    font-weight: 500;
+  }
+  .azul-draft-preview > .azul-review {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    justify-content: stretch;
+    gap: 4px 6px;
+  }
+  .azul-review > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2px 12px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    background: #f6f2e8;
+    font-size: 14px;
+  }
+  .azul-review > div > strong {
+    overflow-wrap: anywhere;
+  }
+  .azul-review > div > span {
+    grid-column: 1;
+    font-size: 12px;
+    color: var(--color-ink-muted);
+  }
+  .azul-review > div > b {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    color: var(--color-sky);
+    white-space: nowrap;
+  }
+  .azul-review > [data-winner='true'] {
+    outline: 2px solid #c79b3f;
+    outline-offset: -2px;
+  }
+  .azul-dock-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 12px;
+  }
+  .azul-dock-actions > p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-ink-muted);
+  }
+  .azul-draft-button[aria-pressed='true'] {
+    border-color: #b08336;
+    background: #fff3d6;
+    box-shadow: 0 0 0 2px #b0833659;
+  }
+  .azul-draft-button[data-moving='true'] {
+    border: 1px dashed #7d9fae;
+  }
+  .azul-factory[data-staged='true'] {
+    border-color: #b08336;
+  }
+  .azul-board-glance {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    flex-basis: 100%;
+  }
+  .azul-mini-board {
+    display: inline-flex;
+    gap: 7px;
+    padding: 4px 5px;
+    border-radius: 6px;
+    background: #f1ede3;
+  }
+  .azul-mini-lines {
+    display: grid;
+    gap: 2px;
+  }
+  .azul-mini-lines > span {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2px;
+  }
+  .azul-mini-wall {
+    display: grid;
+    grid-template-columns: repeat(5, 9px);
+    gap: 2px;
+  }
+  .azul-mini-board i {
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: #fffdf7;
+    box-shadow: inset 0 0 0 1px #bdb6a5;
+  }
+  .azul-mini-board i[data-color='blue'] {
+    background: #2b4f9e;
+    box-shadow: none;
+  }
+  .azul-mini-board i[data-color='yellow'] {
+    background: #e3a92f;
+    box-shadow: none;
+  }
+  .azul-mini-board i[data-color='red'] {
+    background: #b9452f;
+    box-shadow: none;
+  }
+  .azul-mini-board i[data-color='black'] {
+    background: #3b2846;
+    box-shadow: inset 0 0 0 2px #6fae7a;
+  }
+  .azul-mini-board i[data-color='white'] {
+    background: #f4ead2;
+    box-shadow: inset 0 0 0 2px #c0493a;
+  }
+  .azul-player-board[data-current='true'] {
+    border-color: #b08336;
+    box-shadow: 0 0 0 2px #b0833633;
+  }
+  .azul-pattern-consequence,
+  .azul-pattern-line > small {
+    font-size: 12px;
+  }
+  .azul-pattern-consequence > span {
+    display: block;
+    color: #8a332b;
+    font-weight: 650;
+  }
+  /* Your own lines keep room for a cost line, so previews never move the board. */
+  .azul-player-board[data-own='true'] .azul-pattern-consequence {
+    min-height: 2.6em;
+  }
+  .azul-player-board[data-own='true'] .azul-floor-choice > small {
+    min-width: 7em;
+  }
+  .azul-floor-total {
+    color: var(--color-ink);
+    font-size: 13px;
+  }
+  .azul-floor-cell > small {
+    font-size: 12px;
+    color: #6e5545;
+  }
+  .azul-floor-choice {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+  }
+  .azul-floor-choice > small {
+    font-size: 12px;
+    color: #8a332b;
+  }
+  @media (max-width: 1000px) {
+    /* Between rounds and at the end, the scores come straight after the heading. */
+    .azul-table[data-phase='round_over'] > .modern-game-heading,
+    .azul-table[data-phase='finished'] > .modern-game-heading {
+      order: -2;
+    }
+    .azul-table[data-phase='round_over'] > .azul-draft-preview,
+    .azul-table[data-phase='finished'] > .azul-draft-preview {
+      order: -1;
+      margin-bottom: 12px;
+    }
+    .azul-dock-head > p {
+      min-height: 2.8em;
+    }
+    .azul-choice {
+      min-height: 66px;
+    }
+    /* While you decide, the destinations stay pinned at the bottom of the screen. */
+    .azul-table > .azul-draft-preview[data-pinned='true'] {
+      position: sticky;
+      bottom: 8px;
+      z-index: 6;
+      border-color: #7d9fae;
+      box-shadow: 0 10px 34px #20344438;
+    }
+  }
+  @media (min-width: 1001px) {
+    .azul-draft-preview > .azul-dock-choices {
+      display: none;
+    }
+    .azul-table > .azul-draft-preview.decision-dock {
+      min-block-size: 76px;
+    }
+  }
+  @media (max-width: 600px) {
+    .azul-draft-preview > .azul-dock-choices {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .azul-draft-preview > .azul-dock-head {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+    .azul-dock-head > .azul-dock-tiles {
+      grid-column: 1;
+      grid-row: 1;
+      gap: 3px;
+    }
+    /* A big draft (up to nine tiles) still fits one row beside Cancel at 320px. */
+    .azul-dock-tiles > .azul-tile {
+      width: 21px;
+      height: 21px;
+      flex-basis: 21px;
+      border-radius: 4px;
+    }
+    .azul-dock-head > .button {
+      grid-column: 2;
+    }
+    .azul-dock-head > p {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      font-size: 13px;
+    }
+    /* Factories become a scannable list rather than a two-wide carousel. */
+    .azul-table .azul-factory-navigation {
+      display: block;
+      margin: 10px 0 6px;
+    }
+    .azul-table .azul-factories {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 6px;
+      overflow: visible;
+      padding-bottom: 0;
+    }
+    .stable-game-table .azul-table .azul-factory {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-block-size: 0;
+      padding: 3px 8px 3px 12px;
+      border-radius: 12px;
+    }
+    /* The section keeps its full accessible name; the list shows the number. */
+    .azul-table .azul-factory-word {
+      display: none;
+    }
+    .azul-table .azul-factory:not(.azul-factory--center) > .azul-factory-label {
+      flex: 0 0 16px;
+      color: var(--color-ink);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .azul-table .azul-factory-colors,
+    .azul-table .azul-factory--center .azul-factory-colors {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      margin: 0;
+      min-height: 44px;
+    }
+    /* An emptied factory keeps its row, so taking tiles never moves the others. */
+    .azul-table .azul-factory[data-empty='true'] .azul-empty-offer {
+      padding: 0;
+    }
+    .azul-table > .modern-game-heading > span {
+      flex-basis: 100%;
+    }
+    .stable-game-table .azul-table .azul-factory--center {
+      align-items: flex-start;
+      padding-block: 8px;
+    }
+    .azul-table .azul-factory--center > .azul-factory-label {
+      padding-top: 12px;
+    }
+  }
+}
+
+/* Flip 7: targets on the player rows, every card visible as a chip, own cards wrap (skyjo-flip7-trio). */
+@layer components {
+  .flip-seven-table .flip-player {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 10px;
+    align-content: start;
+    align-items: center;
+    padding-block: 10px;
+  }
+  .flip-seven-table .flip-player > .flip-player-details,
+  .flip-seven-table .flip-player[data-own='true'] > * {
+    grid-column: 1 / -1;
+  }
+  .flip-seven-table .flip-player > .flip-chips {
+    grid-column: 1;
+  }
+  .flip-seven-table .flip-player > .flip-target-button {
+    grid-column: 2;
+  }
+  .flip-seven-table .flip-player[data-own='true'] {
+    padding-block: 12px;
+  }
+  .flip-seven-table .flip-player[data-status='busted'] {
+    opacity: 0.85;
+  }
+  .flip-seven-table .flip-player[data-own='true'] > .flip-player-name {
+    cursor: default;
+  }
+  .flip-seven-table .flip-player[data-own='true'] > .flip-player-name::after {
+    content: none;
+  }
+  .flip-seven-table summary.flip-player-name {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 6px 10px;
+  }
+  .flip-seven-table summary.flip-player-name::after {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .flip-seven-table .flip-player-details[open] > summary.flip-player-name::after {
+    content: '−';
+  }
+  .flip-seven-table .flip-player-head {
+    display: flex;
+    grid-column: 1;
+    grid-row: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
+    font-size: 13px;
+  }
+  .flip-seven-table .flip-player-identity strong {
+    display: block;
+    overflow-wrap: anywhere;
+  }
+  .flip-seven-table .flip-player-identity small {
+    text-transform: none;
+  }
+  .flip-you {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: var(--color-sage-light);
+    color: var(--color-sage);
+    font-size: 11px;
+    font-weight: 700;
+    vertical-align: 1px;
+  }
+  .flip-effect-note {
+    justify-self: start;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: var(--color-coral-light);
+    color: #7c2a1b;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .flip-seven-table .flip-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    min-width: 0;
+  }
+  .flip-chips--empty {
+    color: var(--color-ink-muted);
+    font-size: 12px;
+  }
+  .flip-chip {
+    display: inline-grid;
+    place-items: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 5px;
+    border-radius: 5px;
+    background: #f1c55a;
+    color: #3b2a05;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .flip-chip[data-kind='modifier'] {
+    background: #346a9c;
+    color: #fff;
+  }
+  .flip-chip[data-kind='action'] {
+    background: #b5442f;
+    color: #fff;
+  }
+  .flip-chip[data-duplicate='true'],
+  .flip-seven-table .flip-number-card.flip-duplicate {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 1px;
+  }
+  .flip-seven-table .flip-player[data-own='true'] .flip-card-row {
+    flex-wrap: wrap;
+    width: auto;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 4px 2px;
+    overflow: visible;
+  }
+  .flip-seven-table .flip-target-button {
+    white-space: normal;
+  }
+  .flip-seven-table .flip-player[data-own='true'] > .flip-target-button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+  .flip-seven-table .action-panel.decision-dock .action-choices:empty {
+    display: none;
+  }
+  /* Side by side with the choices, the instruction uses the room the empty choices leave. */
+  @media (min-width: 701px) {
+    .flip-seven-table .action-panel.decision-dock .action-context {
+      flex: 1 1 240px;
+    }
+  }
+  .flip-seven-table .flip-player[data-target='true'] {
+    border-color: var(--color-sage);
+    box-shadow: 0 0 0 1px var(--color-sage);
+  }
+  .flip-seven-table:has(.flip-player[data-target='true'])
+    .flip-player:not([data-target='true']):not([data-own='true']) {
+    opacity: 0.6;
+  }
+  .flip-round-results {
+    margin: 0 0 14px;
+    padding: 12px;
+    border: 1px solid #d9c9ad;
+    border-radius: 14px;
+    background: #fffaf2;
+  }
+  .flip-round-results h3 {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .flip-round-results ol {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .flip-round-results li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: baseline;
+    column-gap: 12px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .flip-round-results li[data-own='true'] {
+    background: var(--color-sage-light);
+  }
+  .flip-round-results li[data-leader='true'] b {
+    color: #a3402c;
+  }
+  .flip-result-name {
+    overflow-wrap: anywhere;
+    font-weight: 600;
+  }
+  .flip-result-round {
+    color: var(--color-ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .flip-round-results b {
+    min-width: 3ch;
+    text-align: right;
+    font-size: 16px;
+    font-variant-numeric: tabular-nums;
+  }
+  .flip-result-gap {
+    grid-column: 1 / -1;
+    color: var(--color-ink-muted);
+    font-size: 11px;
+  }
+}
+
+/* Trio: reveals stay in view while asking, labels never cut, players beside the table when wide (skyjo-flip7-trio). */
+@layer components {
+  .trio-table {
+    container-type: inline-size;
+  }
+  .trio-layout {
+    display: block;
+  }
+  .trio-board,
+  .trio-side {
+    display: contents;
+  }
+  .trio-reveals {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+  }
+  .trio-reveal-status {
+    margin: 0;
+    padding-inline: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .trio-reveals > .trio-reveal-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: none;
+  }
+  .trio-reveal {
+    display: grid;
+    justify-items: center;
+    gap: 4px;
+    width: 84px;
+    margin: 0;
+  }
+  .trio-reveal figcaption {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  .trio-reveal-owner {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .trio-reveal-edge {
+    color: var(--color-ink-muted);
+    font-size: 11px;
+  }
+  /* While a turn is revealing, the strip follows the player down the list of hands. */
+  .trio-reveals[data-active='true'] {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin-inline: -8px;
+    padding-inline: 8px;
+    border-bottom: 1px solid #dacbdc;
+    background: #f3edf6;
+    box-shadow: 0 10px 14px -12px #3a2a4044;
+  }
+  .trio-player strong {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+  }
+  .trio-player-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .trio-table-slot > small,
+  .trio-collections small {
+    font-size: 11px;
+  }
+  .trio-you {
+    flex: none;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: var(--color-plum-light);
+    color: var(--color-plum);
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .trio-player[data-current='true'] {
+    border-color: var(--color-plum);
+    box-shadow: 0 0 0 1px var(--color-plum);
+  }
+  .trio-player[data-own='true'] {
+    background: #fbf6fc;
+  }
+  @container (max-width: 600px) {
+    .trio-reveals[data-active='true'] .playing-card {
+      width: 50px;
+      height: 71px;
+    }
+    .trio-reveal {
+      width: 76px;
+    }
+  }
+  @container (min-width: 860px) {
+    .trio-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+      gap: 18px;
+      align-items: start;
+    }
+    /* Wide tables: hand and table cards on the left; this turn's reveals sit right
+       above the hand-end controls they answer. */
+    .trio-board,
+    .trio-side {
+      display: block;
+      min-width: 0;
+    }
+    .stable-game-table .trio-side > .trio-reveals,
+    .stable-game-table .trio-side > .trio-reveals[data-empty='true'] {
+      min-block-size: 180px;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #dacbdc;
+      border-radius: 14px;
+      background: #fbf8fc;
+    }
+    .trio-reveals[data-active='true'] {
+      position: static;
+      margin-inline: 0;
+      box-shadow: none;
+    }
+    .trio-side .trio-hands {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}

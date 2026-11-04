@@ -6,7 +6,10 @@ import { CardTable } from '@/games/shared/CardTable';
 import { fixtures } from '@/stories/generated/rooms';
 
 it('explains roulette as a draw choice, displays direction, and rejects a hidden challenge answer', () => {
-  const fixture = fixtures.find((item) => item.room.game_id === 'uno-no-mercy')!;
+  // Direction only matters with three or more players still in.
+  const fixture = fixtures.find(
+    (item) => item.room.game_id === 'uno-no-mercy' && item.room.capacity > 2,
+  )!;
   const room = mapRoom(fixture.room);
   const match = {
     ...room.game!,
@@ -56,7 +59,7 @@ it('explains roulette as a draw choice, displays direction, and rejects a hidden
   expect(html).toContain('Wild cards do not stop the draw.');
   expect(html).toContain('At 25 cards you are out.');
   expect(html).toContain('Counterclockwise');
-  expect(html).toContain(`Next in direction: ${room.members[1].name}`);
+  expect(html).toContain(`Next: ${room.members[1].name}`);
   expect(html).not.toContain('Choose the colour for the next play.');
   expect(() =>
     sheddingDetails({ ...match.detail, pending_kind: 'private_internal_phase' }),

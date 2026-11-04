@@ -31,7 +31,7 @@ class TrioEngine(BaseEngine):
         super().__init__(GameManifest(
             id="trio", name="Trio", subtitle="Find three matching numbers",
             family="trio", min_players=3, max_players=6, minutes="10–15", icon="layers",
-            color="plum", rules_version="simple-1", rules=[
+            color="plum", rules_version="simple-1", score_label="Trios", rules=[
                 "Simple individual mode. Three copies each of numbers 1–12; sorted private hands.",
                 "Reveal a table card or any hand’s current lowest or highest card, including your own.",
                 "A mismatch ends your turn. Three equal numbers earn a trio.",
@@ -46,8 +46,7 @@ class TrioEngine(BaseEngine):
         count = {3: 9, 4: 7, 5: 6, 6: 5}[len(players)]
         hands = {p: sorted([deck.pop() for _ in range(count)], key=number) for p in players}
         return {"order": players, "turn": 0, "phase": "revealing", "hands": hands,
-                "table": deck, "reveals": [], "trios": {p: [] for p in players},
-                "winners": [], "message": "Find three matching numbers. Reveal a card to begin."}
+                "table": deck, "reveals": [], "trios": {p: [] for p in players}, "winners": []}
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
         if s["phase"] == "finished" or player != s["order"][s["turn"]]:
@@ -74,8 +73,7 @@ class TrioEngine(BaseEngine):
                         s["hands"][reveal["owner"]].append(reveal["card"])
                 for p in s["order"]:
                     s["hands"][p].sort(key=number)
-            s.update(reveals=[], phase="revealing", turn=(s["turn"] + 1) % len(s["order"]),
-                     message="New turn. Follow the numbers you remember.")
+            s.update(reveals=[], phase="revealing", turn=(s["turn"] + 1) % len(s["order"]))
             return s
         if action.type == "reveal_table":
             index = int(action.choice)
@@ -84,21 +82,40 @@ class TrioEngine(BaseEngine):
         else:
             index = 0 if action.choice == "low" else -1
             card = s["hands"][action.target].pop(index)
-            s["reveals"].append({"owner": action.target, "slot": -1, "card": card})
+            # Which end was asked for is public, like the request itself.
+            s["reveals"].append({"owner": action.target, "slot": -1, "card": card,
+                                 "edge": action.choice})
         values = [number(r["card"]) for r in s["reveals"]]
         if len(set(values)) > 1:
-            s.update(phase="review", failed=True, message="Different numbers. Take a look before they return.")
+            s.update(phase="review", failed=True)
         elif len(values) == 3:
             for reveal in s["reveals"]:
                 if reveal["owner"] == "table":
                     s["table"][reveal["slot"]] = None
             s["trios"][player].extend(r["card"] for r in s["reveals"])
-            s.update(phase="review", failed=False, message=f"Three {values[0]}s. A trio is yours!")
+            s.update(phase="review", failed=False)
             if values[0] == 7 or len(s["trios"][player]) >= 9:
-                s.update(phase="finished", winners=[player], message="The winning trio. Beautifully remembered!")
-        else:
-            s["message"] = f"A {values[0]}. Find another."
+                s.update(phase="finished", winners=[player])
         return s
+
+    def _message(self, s: State) -> str:
+        """The instruction for the seat that can act; it never names a private card."""
+        values = [number(r["card"]) for r in s["reveals"]]
+        if s["phase"] == "finished":
+            won = number(s["trios"][s["winners"][0]][-1]) if s["winners"] else 0
+            return "The trio of 7s wins the match." if won == 7 else "A third trio wins the match."
+        if s["phase"] == "review":
+            if s.get("failed"):
+                return ("No match. Take a good look, then continue: "
+                        "the cards go back face down and the turn passes.")
+            return f"Three {values[0]}s collected! Continue to pass the turn."
+        if not values:
+            return ("Reveal a table card, or ask any player for their lowest or highest card. "
+                    "You can ask yourself too.")
+        if len(values) == 1:
+            found = f"an {values[0]}" if values[0] in (8, 11) else f"a {values[0]}"
+            return f"You found {found}. Find another {values[0]}; a different number ends your turn."
+        return f"Two {values[0]}s! Find the third {values[0]} to collect a trio."
 
     def project_view(self, s: State, player: str) -> GameView:
         revealed_slots = {r["slot"]: r["card"] for r in s["reveals"] if r["owner"] == "table"}
@@ -114,7 +131,8 @@ class TrioEngine(BaseEngine):
             players=[PlayerView(id=p, count=len(s["hands"][p]), score=len(s["trios"][p]) // 3,
                                 bank=[face(card) for card in s["trios"][p]]) for p in s["order"]],
             hand=[face(card) for card in s["hands"].get(player, [])], community=community,
-            actions=self.legal_actions(s, player), winners=s["winners"], message=s["message"],
-            detail={"revealed": [{"owner": r["owner"], "slot": r["slot"], "card": face(r["card"]).model_dump()}
-                                  for r in s["reveals"]], "failed": s.get("failed", False)},
+            actions=self.legal_actions(s, player), winners=s["winners"], message=self._message(s),
+            detail={"revealed": [{"owner": r["owner"], "slot": r["slot"], "card": face(r["card"]).model_dump(),
+                                  "edge": r.get("edge")}
+                                 for r in s["reveals"]], "failed": s.get("failed", False)},
         )

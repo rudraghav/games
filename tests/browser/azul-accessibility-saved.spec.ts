@@ -1,44 +1,65 @@
-import { expect, test, type Locator, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page, type Response } from '@playwright/test';
 import { azulDetails } from '../../packages/api-client/src/modern-details';
 import { attachPreviewAccess, openRoomOptions, requestAs, roomAs, type RoomView } from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 type Option = NonNullable<RoomView['game']>['actions'][number];
 
-async function keyboardAction(
+/** One keyboard decision on a staged colour: the client saves the draft, then the previewed placement. */
+async function keyboardDecision(
   page: Page,
   before: RoomView,
-  option: Option,
-  control: Locator,
+  draft: Option,
+  destination: Locator,
   key: 'Enter' | 'Space',
 ) {
-  await expect(control).toBeEnabled();
-  await control.focus();
-  const response = page.waitForResponse(
-    (result) =>
-      result.url().endsWith(`/rooms/${before.id}/actions`) && result.request().method() === 'POST',
-  );
+  await expect(destination).toBeEnabled();
+  await destination.focus();
+  const moves: { action: Option['action']; room: RoomView; status: number }[] = [];
+  const saved = new Promise<void>((resolve) => {
+    const listener = async (response: Response) => {
+      if (
+        !response.url().endsWith(`/rooms/${before.id}/actions`) ||
+        response.request().method() !== 'POST'
+      )
+        return;
+      moves.push({
+        action: response.request().postDataJSON().action,
+        room: (await response.json()) as RoomView,
+        status: response.status(),
+      });
+      if (moves.length === 2) {
+        page.off('response', listener);
+        resolve();
+      }
+    };
+    page.on('response', listener);
+  });
   await page.keyboard.press(key);
-  const moved = await response;
-  expect(moved.status()).toBe(200);
-  expect(moved.request().postDataJSON().action).toEqual(option.action);
-  const room = (await moved.json()) as RoomView;
-  expect(room.match_version).toBe(before.match_version! + 1);
-  return room;
+  await saved;
+  expect(moves.map((move) => move.status)).toEqual([200, 200]);
+  expect(moves[0].action).toEqual(draft.action);
+  expect(moves[0].room.match_version).toBe(before.match_version! + 1);
+  expect(moves[1].action.type).toBe('place_tiles');
+  expect(moves[1].room.match_version).toBe(before.match_version! + 2);
+  return { drafted: moves[0].room, placed: moves[1].room, placement: moves[1].action };
 }
 
-async function verifyDraft(page: Page, view: RoomView) {
-  expect(view.game!.phase).toBe('placing');
-  const draft = azulDetails(view.game!.detail).draft;
-  expect(draft.length).toBeGreaterThan(0);
+async function verifyStaged(page: Page, view: RoomView, option: Option) {
+  const data = azulDetails(view.game!.detail);
+  const source =
+    option.action.choice === 'center' ? data.center : data.factories[Number(option.action.choice)];
+  const count = source.filter((color) => color === option.action.color).length;
+  expect(count).toBeGreaterThan(0);
   const region = page.getByRole('region', { name: 'Your drafted tiles', exact: true });
-  const group = region.getByRole('group', { name: 'Drafted tiles', exact: true });
-  await expect(group.getByRole('img')).toHaveCount(draft.length);
-  for (const color of new Set(draft))
-    await expect(group.getByRole('img', { name: `${color} tile`, exact: true })).toHaveCount(
-      draft.filter((tile) => tile === color).length,
-    );
-  expect(await group.ariaSnapshot()).toContain(`img "${draft[0]} tile"`);
+  const group = region.getByRole('group', { name: 'Selected tiles', exact: true });
+  await expect(
+    group.getByRole('img', { name: `${option.action.color} tile`, exact: true }),
+  ).toHaveCount(count);
+  await expect(group.getByRole('img', { name: 'First-player marker', exact: true })).toHaveCount(
+    option.action.choice === 'center' && data.marker ? 1 : 0,
+  );
+  expect(await group.ariaSnapshot()).toContain(`img "${option.action.color} tile"`);
 }
 
 async function verifyPlayerBoard(page: Page, view: RoomView, playerId: string) {
@@ -171,40 +192,45 @@ test('Azul keyboard drafting and placement retain named tiles and marker after r
       const sourceName =
         source === 'center' ? 'center' : `factory ${Number(choice.action.choice) + 1}`;
       const control = actor.getByRole('button', {
-        name: new RegExp(`^Take \\d+ ${choice.action.color} from ${sourceName}$`),
+        name: new RegExp(
+          `^Take \\d+ ${choice.action.color} from ${sourceName}( and the first-player marker)?$`,
+        ),
       });
-      const drafted = await keyboardAction(actor, before, choice, control, 'Enter');
-      await verifyDraft(actor, drafted);
+      // Choosing a colour is local to this tab: nothing is saved, and a refresh keeps it.
+      await expect(control).toBeEnabled();
+      await control.focus();
+      await actor.keyboard.press('Enter');
+      await expect(control).toHaveAttribute('aria-pressed', 'true');
+      await verifyStaged(actor, before, choice);
+      await actor.reload();
+      await expect(control).toHaveAttribute('aria-pressed', 'true');
+      await verifyStaged(actor, before, choice);
+      expect((await roomAs(actor, roomId)).match_version).toBe(before.match_version);
+      const own = actor.locator('.azul-player-board[data-own="true"]');
+      const destination =
+        source === 'center'
+          ? own.getByRole('button', { name: 'Place on floor', exact: true })
+          : own.locator('.azul-pattern-line:enabled').first();
+      const { drafted, placed, placement } = await keyboardDecision(
+        actor,
+        before,
+        choice,
+        destination,
+        'Space',
+      );
+      expect(drafted.game!.phase).toBe('placing');
       const placingData = azulDetails(drafted.game!.detail);
+      expect(placingData.draft.length).toBeGreaterThan(0);
       if (source === 'center') {
         expect(placingData.marker).toBe(false);
         expect(placingData.floors[playerId]).toContain('first');
-        await verifyPlayerBoard(actor, drafted, playerId);
-      }
-      const placement = drafted.game!.actions.find(
-        (option) =>
-          option.action.type === 'place_tiles' &&
-          (source === 'center'
-            ? option.action.choice === 'floor'
-            : option.action.choice !== 'floor'),
-      )!;
-      const placeControl = actor
-        .locator('.azul-player-board[data-own="true"]')
-        .getByRole('button', {
-          name:
-            source === 'center'
-              ? 'Place on floor'
-              : new RegExp(`^Place on pattern line ${Number(placement.action.choice) + 1},`),
-          exact: source === 'center',
-        });
-      const placed = await keyboardAction(actor, drafted, placement, placeControl, 'Space');
+        expect(placement.choice).toBe('floor');
+      } else expect(placement.choice).not.toBe('floor');
       const placedData = azulDetails(placed.game!.detail);
       expect(placed.game!.phase).toBe('drafting');
       expect(placedData.draft).toEqual([]);
       if (source === 'factory')
-        expect(placedData.lines[playerId][Number(placement.action.choice)].length).toBeGreaterThan(
-          0,
-        );
+        expect(placedData.lines[playerId][Number(placement.choice)].length).toBeGreaterThan(0);
       else expect(placedData.floors[playerId]).toEqual(['first', ...placingData.draft]);
       await actor.reload();
       const saved = await roomAs(actor, roomId);

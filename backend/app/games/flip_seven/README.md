@@ -27,3 +27,11 @@ shuffle state never enter a player view.
 
 Acceptance: all 94 physical IDs conserved, special-card ordering and recovery,
 illegal actions rejected, private deck excluded, complete seeded 3/10-seat matches.
+
+Projected messages instruct the seat that can act: hit or stay with the amount
+banked and the numbers a repeat would bust (or that a Second Chance saves one),
+the 15-point bonus when one new number would end the round, what Freeze or Flip
+Three does when choosing a target, passing an extra Second Chance, dealing the next
+round, and the end condition. Every resolved target choice is recorded publicly
+for the round as `detail.effects` (`card`, `by`, `to`) and cleared at each deal, so
+tables can say "Frozen by Ana". `test_skyjo_flip_trio_messages.py` covers them.

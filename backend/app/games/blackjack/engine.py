@@ -78,7 +78,7 @@ class BlackjackEngine(BaseEngine):
             "hand_index": 0,
             "settings": settings,
             "winners": [],
-            "message": "Place your free-chip wager.",
+            "message": "Bet 2 or more chips (even amounts).",
         }
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
@@ -101,6 +101,34 @@ class BlackjackEngine(BaseEngine):
             if hand["cards"][0][0] == hand["cards"][1][0] and len(p["hands"]) < 4:
                 actions.append(legal("Split pair", "split"))
         return actions
+
+    def _prompt(self, s: State) -> str:
+        """The instruction for the seat that can act, or the dealer's result for everyone."""
+        if s["phase"] == "finished":
+            total = blackjack_total(s["dealer"])[0] if s["dealer"] else 0
+            if len(s["dealer"]) == 2 and total == 21:
+                return "Dealer has blackjack; wagers settled."
+            if total > 21:
+                return f"Dealer busts with {total}; wagers settled."
+            return f"Dealer stands on {total}; wagers settled."
+        player = s["order"][s["turn"]]
+        p = s["players"][player]
+        options = {o.action.type: o for o in self.legal_actions(s, player)}
+        if s["phase"] == "betting":
+            bet = options.get("bet")
+            return f"Bet {bet.minimum}–{bet.maximum} chips (even amounts)." if bet else "Waiting for bets."
+        if s["phase"] == "insurance":
+            if "accept" in options:
+                return f"The dealer shows an ace: insure for {p['bet'] // 2} or decline."
+            return "The dealer shows an ace. Decline insurance to continue."
+        if not p["hands"] or s["hand_index"] >= len(p["hands"]):
+            return "Play your hand."
+        total, soft = blackjack_total(p["hands"][s["hand_index"]]["cards"])
+        hand = (f"Hand {s['hand_index'] + 1} of {len(p['hands'])} is" if len(p["hands"]) > 1
+                else "Your hand is")
+        choices = ["hit", "stand"] + [name for kind, name in (("double", "double"), ("split", "split"))
+                                      if kind in options]
+        return f"{hand} {'soft ' if soft else ''}{total}: {', '.join(choices[:-1])} or {choices[-1]}."
 
     def _deal(self, s: State) -> None:
         s["dealer"] = draw(s, 2)
@@ -145,7 +173,6 @@ class BlackjackEngine(BaseEngine):
                     s["dealer"].extend(draw(s))
                 else:
                     break
-        dealer_total = blackjack_total(s["dealer"])[0]
         for p in s["players"].values():
             if natural:
                 p["chips"] += 3 * p["insurance"]
@@ -154,9 +181,7 @@ class BlackjackEngine(BaseEngine):
             p["profit"] = p["chips"] - 200
         s["phase"] = "finished"
         s["winners"] = [pid for pid, p in s["players"].items() if p["profit"] > 0]
-        s["message"] = (
-            f"Dealer {'busts' if dealer_total > 21 else 'has ' + str(dealer_total)}. Wagers settled."
-        )
+        s["message"] = self._prompt(s)
 
     def apply_action(self, state: State, player: str, action: Action) -> State:
         validate_action(self.legal_actions(state, player), action)
@@ -253,7 +278,7 @@ class BlackjackEngine(BaseEngine):
             community=[card_view(c) for c in dealer],
             draw_count=len(s["deck"]),
             actions=self.legal_actions(s, player),
-            message=s["message"],
+            message=self._prompt(s),
             winners=s["winners"],
             detail={
                 "dealer_hidden": bool(s["dealer"]) and s["phase"] != "finished",
@@ -266,5 +291,14 @@ class BlackjackEngine(BaseEngine):
                 "settlements": {pid: {"hands": [projected_hand(h) for h in p["hands"]],
                                       "insurance": insurance(p["insurance"]), "net": p["profit"]}
                                 for pid, p in s["players"].items()} if finished else {},
+                # Every seat's face-up hands, grouped as dealt; card faces stay in
+                # players[].cards in the same order. Never includes the dealer.
+                "public_hands": {pid: [{"size": len(h["cards"]), "bet": h["bet"],
+                                        "total": blackjack_total(h["cards"])[0],
+                                        "soft": blackjack_total(h["cards"])[1],
+                                        "done": h["done"], "split": h["split"]}
+                                       for h in p["hands"]]
+                                 for pid, p in s["players"].items()},
+                "insured": {pid: p["insurance"] for pid, p in s["players"].items() if p["insurance"]},
             },
         )

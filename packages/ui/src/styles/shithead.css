@@ -4,7 +4,8 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 12px;
   }
-  .shithead-game > .player-strip {
+  .shithead-game > .player-strip-rail {
+    grid-column: 1 / -1;
     min-width: 0;
     width: 100%;
     max-width: 100%;
@@ -115,11 +116,29 @@
     flex: none;
   }
   .shithead-actions {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .shithead-action-buttons {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 12px;
+  }
+  .shithead-selection-note {
+    margin: 0;
+    color: var(--color-ink);
+    line-height: 1.45;
+  }
+  .shithead-instruction {
+    line-height: 1.45;
+  }
+  .shithead-hand-count {
+    color: var(--color-ink-muted);
+    font-size: 14px;
+    font-weight: 500;
   }
   .shithead-opponents {
     display: grid;
@@ -195,7 +214,7 @@
       grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
       align-items: start;
     }
-    .shithead-game > .player-strip,
+    .shithead-game > .player-strip-rail,
     .shithead-piles,
     .shithead-rule-row,
     .shithead-outcome,
@@ -225,13 +244,25 @@
       font-size: 13px;
     }
     .shithead-stock .small {
-      font-size: 10px;
+      font-size: 12px;
     }
     .shithead-stock strong {
       font-size: 18px;
     }
-    .shithead-actions > .button {
+    /* Two columns keep a reason line and every button inside the fixed dock. */
+    .shithead-action-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .shithead-action-buttons > .button {
       width: 100%;
+      min-width: 0;
+      white-space: normal;
+      line-height: 1.2;
+    }
+    .shithead-action-buttons > .button:only-child,
+    .shithead-action-buttons > .button:nth-child(3):last-child {
+      grid-column: 1 / -1;
     }
     .shithead-opponents {
       grid-template-columns: minmax(0, 1fr);
@@ -242,6 +273,126 @@
     .shithead-player-table,
     .shithead-workspace {
       padding: 12px;
+    }
+  }
+
+  /* Server-legal cards stay bright; the rest dim but remain inspectable. */
+  .shithead-game .playing-card[data-playable='false'] {
+    opacity: 0.55;
+    filter: saturate(0.4);
+  }
+  .shithead-game .playing-card[data-playable='false'].playing-card--selected {
+    opacity: 0.8;
+  }
+  /* Setup shows all six cards at once; long hands wrap into overlapped rows
+     so every rank corner stays in view instead of scrolling away. */
+  .shithead-private-cards {
+    container-type: inline-size;
+  }
+  .shithead-game .shithead-private-cards[data-density] .card-hand {
+    width: auto;
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+  .shithead-game .shithead-private-cards[data-density='setup'] .card-hand {
+    justify-content: center;
+    gap: 14px 10px;
+  }
+  .shithead-private-cards[data-density='fan'] {
+    --shithead-card-w: 82px;
+    --shithead-card-h: 116px;
+    --shithead-gaps-per-row: 15;
+    --shithead-step: clamp(
+      22px,
+      calc((100cqw - var(--shithead-card-w) - 8px) / var(--shithead-gaps-per-row)),
+      calc(var(--shithead-card-w) + 8px)
+    );
+  }
+  .shithead-game .shithead-private-cards[data-density='fan'] .card-hand {
+    justify-content: flex-start;
+    align-items: flex-end;
+    column-gap: 0;
+    row-gap: 16px;
+    padding: 13px calc(var(--shithead-card-w) - var(--shithead-step)) 0 0;
+  }
+  .shithead-game .shithead-private-cards[data-density='fan'] .card-hand > .playing-card {
+    --card-width: var(--shithead-card-w);
+    --card-height: var(--shithead-card-h);
+    width: var(--shithead-card-w);
+    height: var(--shithead-card-h);
+    margin: 0 calc(var(--shithead-step) - var(--shithead-card-w)) 0 0;
+  }
+  /* Face-up and hidden-card stages: your table cards sit in the workspace. */
+  .shithead-workspace > .shithead-player-table {
+    margin-top: 6px;
+    padding: 4px 0 0;
+    border: 0;
+    background: transparent;
+  }
+  .shithead-workspace > .shithead-player-table > .shithead-table-heading {
+    display: none;
+  }
+  /* The run of equal ranks on top of the pile, newest on top. */
+  .shithead-pile-top {
+    display: flex;
+    flex: none;
+  }
+  .shithead-pile-top > .playing-card + .playing-card {
+    margin-left: -32px;
+  }
+  .shithead-run-note {
+    margin-top: 4px;
+    color: #ffe2a8;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .shithead-pile-event {
+    max-width: 32ch;
+    margin: 4px 0 6px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .shithead-opponents .opponent-facts {
+    font-size: 12px;
+  }
+  .shithead-outcome > div {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+  }
+  .shithead-finish-order {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 16px;
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+  .shithead-finish-order > li[data-last='true'] {
+    font-weight: 700;
+  }
+  @media (min-width: 1050px) {
+    .shithead-own-zone[data-table-first='true'] {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .shithead-private-cards[data-density='fan'] {
+      --shithead-card-w: 69px;
+      --shithead-card-h: 99px;
+      --shithead-gaps-per-row: 11;
+    }
+    /* The card to beat is never smaller than an opponent's face-up card. */
+    .shithead-pile-top > .playing-card {
+      width: 54px;
+      height: 77px;
+    }
+    .shithead-pile-top > .playing-card + .playing-card {
+      margin-left: -34px;
+    }
+    .shithead-finish-order {
+      display: grid;
     }
   }
 }

@@ -40,9 +40,12 @@ describe('Card table decisions stay with their cards', () => {
     );
     expect(html.match(/data-playable="true"/g)).toHaveLength(1);
     expect(html).not.toContain('>Play this card<');
-    expect(html).toContain('Choose a card to play.');
+    expect(html).toContain('Tap a highlighted card to play it.');
     expect(html).not.toContain('or draw');
     expect(html).toContain('is the current colour');
+    // The playable card leads the hand, so the card the instruction means is in view.
+    const hand = html.slice(html.indexOf('card-hand'));
+    expect(hand.match(/<button[^>]*aria-label="([^"]+)"/)?.[1]).toBe(`${playable.label}, playable`);
   });
   it('keeps Uno colour and challenge decisions available without an unrelated card selection', () => {
     const p = props('uno');
@@ -62,7 +65,10 @@ describe('Card table decisions stay with their cards', () => {
       />,
     );
     expect(html).toContain('Choose the colour for the next play.');
-    expect(html).toContain('>Choose red<');
+    // A colour swatch keeps the server label as its name and shows the colour and count.
+    expect(html).toContain('aria-label="Choose red"');
+    expect(html).toContain('<span>Red</span>');
+    expect(html).toMatch(/\d+ in hand/);
   });
   it('puts Rummy draw moves on their piles once and blocks both while saving', () => {
     const p = props('rummy');
@@ -71,8 +77,9 @@ describe('Card table decisions stay with their cards', () => {
     expect(html.match(/aria-label="Take discard"/g)).toHaveLength(1);
     expect(html).toMatch(/aria-label="Draw from stock"[^>]*disabled=""/);
     expect(html).toMatch(/aria-label="Take discard"[^>]*disabled=""/);
+    // The dock points at the piles instead of repeating their draw buttons.
     expect(renderToStaticMarkup(<RummyTable {...p} />)).toContain(
-      'Draw from either available pile.',
+      'Draw: tap the stock or the',
     );
     expect(html).not.toContain('Move selected card');
   });

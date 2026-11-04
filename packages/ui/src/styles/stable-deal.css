@@ -1,301 +1,487 @@
 @layer components {
+  /*
+   * Deal table layout. Every region is sized by its content and the page scrolls,
+   * so nothing spills between rows and nothing hides inside a fixed window.
+   * Order: opponents, shared centre, hand, command dock, your bank and sets.
+   * Regions change size only when the server state changes; selecting, previewing
+   * and clearing a choice never moves them.
+   */
   .deal-stage-container {
     container-type: inline-size;
     min-width: 0;
   }
   .deal-workspace.deal-workspace {
     display: grid;
-    height: clamp(680px, calc(100dvh - 172px), 980px);
-    grid-template-rows: 82px 74px minmax(160px, 1fr) 96px 236px 44px;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
     border: 1px solid var(--color-border);
     border-radius: 16px;
     background: #f7f5ec;
-    overflow: hidden;
+    overflow: clip;
   }
   .deal-workspace > * {
     min-width: 0;
-    min-height: 0;
   }
+
+  /* Opponents: one card per opponent with identity, bank and every set in text. */
   .deal-workspace .deal-opponents {
-    padding: 4px 6px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 216px), 1fr));
     align-items: stretch;
     gap: 8px;
     margin: 0;
+    padding: 8px;
+    overflow: visible;
+    border-bottom: 1px solid var(--color-border);
   }
   .deal-opponents > .deal-opponent {
-    flex: 1 0 238px;
-    max-width: 360px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'seat'
+      'summary';
+    align-items: center;
+    gap: 2px;
     min-width: 0;
+    max-width: none;
+    padding: 4px 8px 8px 10px;
+    border-radius: 10px;
     position: relative;
   }
-  .deal-opponents > .deal-opponent {
-    padding: 0 4px;
-    gap: 0;
-    border-radius: 9px;
+  .deal-opponents > .deal-opponent[data-active='true'] {
+    padding-top: 2px;
   }
   .deal-opponent > .seat {
+    grid-area: seat;
+    min-width: 0;
+    min-height: 52px;
     padding: 0;
-    gap: 6px;
+    gap: 8px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
   }
-  .deal-opponent .seat-copy > span {
-    font-size: 9px;
-    margin-top: 2px;
+  .deal-opponents > .deal-opponent > .seat .avatar {
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
   }
   .deal-opponent .seat-copy strong {
+    font-size: 13px;
+    white-space: normal;
+    overflow: hidden;
+  }
+  /* Long names keep two lines; the space is reserved so a target button never moves rows. */
+  .deal-opponent .seat-name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.25;
+  }
+  .deal-opponent .seat-copy > span {
+    font-size: 12px;
+    margin-top: 2px;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .deal-opponent .seat-kind {
     font-size: 11px;
+  }
+  .deal-opponent .seat .turn-light {
+    left: 22px;
+    right: auto;
+    top: 6px;
+    box-shadow: 0 0 0 2px var(--color-surface);
   }
   .deal-opponent .seat .button {
     width: 44px;
     height: 44px;
   }
+  /*
+   * While a move needs a player, "Choose <name>" takes the name line's place, so
+   * the row never changes size and the Inspect button stays uncovered.
+   */
   .deal-opponent > .button {
     position: absolute;
-    right: 8px;
-    bottom: 4px;
+    top: 8px;
+    left: 46px;
+    right: 62px;
+    display: block;
+    height: 44px;
     min-height: 44px;
-    max-width: 140px;
-    font-size: 11px;
+    max-width: none;
+    padding: 0 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 42px;
+    text-align: left;
   }
-  .deal-opponent:has(> .button) .opponent-panel-summary {
-    padding-right: 135px;
+  .deal-opponents > .deal-opponent[data-active='true'] > .button {
+    top: 6px;
   }
-  .deal-opponent .seat {
-    background: transparent;
-    box-shadow: none;
-    border: 0;
+  .deal-opponent:has(> .button) > .seat > .seat-copy {
+    visibility: hidden;
   }
-  .deal-opponent .seat .avatar {
-    width: 28px;
-    height: 28px;
-    font-size: 10px;
-  }
-  .deal-opponent .opponent-panel-summary {
+  .deal-opponent > .opponent-panel-summary {
+    grid-area: summary;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
-    min-height: 20px;
+    gap: 5px 6px;
+    min-width: 0;
+    min-height: 26px;
+    margin: 0;
   }
   .deal-summary-bank {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    font-weight: 700;
-    white-space: nowrap;
+    flex-wrap: wrap;
+    gap: 2px 5px;
+    min-height: 26px;
+    padding: 2px 8px 2px 6px;
+    border-radius: 6px;
+    background: #eef1e4;
+    font-size: 13px;
+    line-height: 1.2;
   }
-  .deal-summary-sets {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    min-width: 0;
-    overflow-x: auto;
-    font-size: 10px;
+  .deal-summary-bank > b {
+    font-variant-numeric: tabular-nums;
   }
-  .deal-summary-sets > span {
+  .deal-summary-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #5b6055;
+  }
+  .deal-summary-notes {
+    font-size: 11px;
+    color: #5b6055;
+  }
+  .deal-summary-debt {
     display: inline-flex;
     align-items: center;
-    gap: 3px;
+    min-height: 26px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--color-coral-light);
+    color: var(--color-danger);
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .deal-summary-empty {
+    font-size: 12px;
+    color: var(--color-ink-muted);
+  }
+  .deal-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 26px;
+    padding: 2px 7px 2px 3px;
+    border: 1px solid #d6d2c4;
+    border-radius: 6px;
+    background: #fffdf7;
+    color: var(--color-ink);
+    font-size: 11px;
+    line-height: 1.2;
     white-space: nowrap;
   }
-  .deal-summary-sets i {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    border-radius: 2px;
+  .deal-chip > i {
+    align-self: stretch;
+    width: 8px;
+    min-height: 18px;
+    border-radius: 4px;
     background: var(--property-ink);
   }
-  .deal-summary-sets [data-complete='true'] {
-    font-weight: 750;
+  .deal-chip > b {
+    font-variant-numeric: tabular-nums;
   }
-  .deal-summary-rent {
+  .deal-chip[data-complete='true'] {
+    border-color: var(--property-ink);
+    box-shadow: inset 0 0 0 1px var(--property-ink);
+    font-weight: 700;
+  }
+  .deal-chip-rent {
     color: var(--color-sage);
-    font-size: 10px;
-    white-space: nowrap;
   }
-  .playing-card.playing-card--property.playing-card--compact .property-name {
-    font-size: 8px;
-    overflow-wrap: normal;
-    word-break: normal;
+  .deal-chip-building {
+    display: inline-flex;
+    color: #5b6055;
   }
+  .deal-chip[data-previewed='true'],
+  .deal-summary-bank[data-previewed='true'] {
+    outline: 2px solid var(--color-sky);
+    outline-offset: 1px;
+  }
+
+  /* Shared centre: draw count, a readable last discard, whose turn and End turn. */
   .deal-workspace .deal-center {
-    padding: 5px 16px;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    grid-template-areas: 'stock status plays end';
+    align-items: center;
+    gap: 8px 16px;
+    min-height: 64px;
+    padding: 8px 12px;
     border-bottom: 1px solid var(--color-border);
+    background: #f1efe5;
   }
   .deal-workspace .deal-stock {
-    gap: 14px;
+    grid-area: stock;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
   }
-  .deal-workspace .deal-stock .pile-shadow {
-    width: 54px;
-    height: 77px;
+  .deal-draw {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: none;
   }
-  .deal-workspace .deal-stock .playing-card {
-    transform: scale(0.675);
-    transform-origin: top left;
-    margin-right: -26px;
-    margin-bottom: -37px;
+  .deal-pile-back {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 45px;
+    border: 2px solid var(--color-white);
+    border-radius: 5px;
+    background-color: var(--color-sage);
+    background-image: repeating-linear-gradient(45deg, transparent 0 4px, #ffffff40 4px 5px);
+    box-shadow:
+      2px 2px 0 #d9d5c7,
+      3px 3px 0 #bdb8a8;
   }
-  .deal-workspace .deal-stock .card-pile > span {
-    font-size: 9px;
+  .deal-pile-back > span {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-white);
+    color: var(--color-sage);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
   }
-  .deal-workspace .deal-last-move p {
-    margin: 3px 0;
-    font-size: 12px;
+  .deal-pile-copy {
+    display: grid;
+    line-height: 1.15;
   }
-  .deal-board-scroll {
-    overflow: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
-    scrollbar-gutter: stable;
+  .deal-pile-copy > b {
+    font-size: 17px;
+    font-variant-numeric: tabular-nums;
   }
-  .deal-board-scroll > .deal-player {
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
+  .deal-pile-copy > span,
+  .deal-discard-copy > span {
+    font-size: 11px;
+    color: var(--color-ink-muted);
+  }
+  .deal-discard {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 2px 10px;
+    min-width: 0;
+    width: 196px;
+    height: 48px;
+    padding: 6px 10px 6px 18px;
+    border: 1px solid #d4cfc2;
+    border-radius: 8px;
+    background: #fffdf6;
+    color: var(--color-ink);
+    text-align: left;
+    box-shadow: 0 1px 2px #12291b1a;
+  }
+  button.deal-discard:hover {
+    border-color: var(--color-sage);
+  }
+  .deal-discard[data-empty='true'] {
+    border-style: dashed;
     background: transparent;
+    box-shadow: none;
+    padding-left: 10px;
   }
-  .deal-board-scroll .deal-player-heading {
-    padding: 7px 12px 2px;
+  .deal-discard-band {
+    position: absolute;
+    inset: 4px auto 4px 4px;
+    display: flex;
+    flex-direction: column;
+    width: 7px;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #6a5675;
   }
-  .deal-board-scroll .deal-player-heading .seat .avatar {
-    width: 25px;
-    height: 25px;
+  .deal-discard[data-card-kind='money'] .deal-discard-band {
+    background: #8c9a62;
   }
-  .deal-board-scroll .deal-assets {
-    padding: 7px 12px;
-    grid-template-columns: minmax(90px, 150px) minmax(0, 1fr);
+  .deal-discard-band > span {
+    flex: 1;
+    background: var(--property-ink);
   }
-  .deal-board-scroll .deal-collections {
-    align-items: start;
+  .deal-discard-copy {
+    display: grid;
+    min-width: 0;
+    line-height: 1.2;
   }
-  .deal-board-scroll .deal-collections,
-  .opponent-panel-inspection .deal-collections {
-    flex-wrap: wrap;
-    overflow: visible;
+  /* One line keeps the centre row's height steady from move to move; Card info has the rest. */
+  .deal-discard-copy > strong {
+    overflow: hidden;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  .deal-board-scroll .deal-collection,
-  .opponent-panel-inspection .deal-collection {
-    min-width: min(175px, 100%);
-    max-width: 100%;
+  .deal-discard-value {
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
   }
-  .deal-board-scroll .deal-collection-cards,
-  .opponent-panel-inspection .deal-collection-cards {
-    flex-wrap: wrap;
-    overflow: visible;
+  /* Two lines are reserved so a longer status never moves the hand below. */
+  .deal-turn-status {
+    grid-area: status;
+    display: flex;
+    align-items: center;
+    min-height: calc(2 * 1.35em);
+    margin: 0;
+    min-width: 0;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
   }
-  .deal-board-scroll .deal-collection {
-    border: 0;
-    border-top: 3px solid var(--property-ink);
-    border-radius: 6px;
-    padding: 5px;
-    background: #fffdf7;
+  .deal-turn-status[data-tone='active'] {
+    color: var(--color-pine);
   }
-  .deal-board-scroll .deal-collection-cards {
-    padding: 4px 2px;
+  .deal-turn-status[data-tone='complete'] {
+    font-family: var(--font-display);
+    font-size: 16px;
   }
-  .deal-board-scroll .deal-collection > header {
-    margin-bottom: 2px;
+  .deal-workspace .deal-turn-controls {
+    display: contents;
   }
-  .deal-board-scroll .deal-collection > footer {
+  .deal-plays {
+    grid-area: plays;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--color-ink-muted);
+    white-space: nowrap;
+  }
+  .deal-plays[data-empty='true'] {
+    visibility: hidden;
+    min-height: 26px;
+  }
+  .deal-plays b {
+    font-size: 17px;
+    color: var(--color-ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .deal-play-pips {
+    display: inline-flex;
+    gap: 3px;
+  }
+  .deal-play-pips > i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-sage);
+  }
+  .deal-play-pips > i[data-used='true'] {
+    background: transparent;
+    box-shadow: inset 0 0 0 1.5px #b9bdb0;
+  }
+  .deal-plays[data-mine='false'] .deal-play-pips > i:not([data-used='true']) {
+    background: #9aa395;
+  }
+  .deal-turn-controls > .button {
+    grid-area: end;
     min-height: 44px;
   }
+
+  /* Hand: full-size cards directly under the shared centre. */
+  .deal-workspace > .deal-hand-dock {
+    position: relative;
+    border: 0;
+    border-bottom: 1px solid var(--color-border);
+    border-radius: 0;
+    background: #fffdf7;
+    overflow: visible;
+  }
+  .deal-stage-container .deal-hand-dock > .hand-heading {
+    min-height: 44px;
+    padding: 0 10px 0 15px;
+  }
+  .deal-stage-container .deal-workspace .deal-hand-dock .hand-scroll {
+    padding-block: 0 12px;
+  }
+  /* Room for a selected card's 12-14px lift inside the row, so it is never clipped. */
+  .deal-stage-container .deal-workspace .deal-hand-dock .card-hand {
+    padding-top: 15px;
+  }
+  /* Rail arrows sit in the heading row, so they never cover a card. */
+  .deal-hand-dock:has(> .horizontal-rail[data-overflow='true']) > .hand-heading {
+    padding-right: 104px;
+  }
+  .deal-hand-dock > .horizontal-rail[data-overflow='true'] > .horizontal-rail-viewport {
+    margin-inline: 0;
+  }
+  .deal-hand-dock > .horizontal-rail > .rail-navigation {
+    top: -44px;
+    translate: none;
+  }
+  .deal-hand-dock > .horizontal-rail > .rail-navigation--previous {
+    left: auto;
+    right: 54px;
+  }
+  .deal-hand-dock > .horizontal-rail > .rail-navigation--next {
+    right: 6px;
+  }
+  .deal-hand-dock > .horizontal-rail[data-overflow='true']::before {
+    left: 0;
+  }
+  .deal-hand-dock > .horizontal-rail[data-overflow='true']::after {
+    right: 0;
+  }
+  .deal-hand-empty {
+    margin: 0;
+    padding: 4px 15px 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-ink-muted);
+  }
+
+  /* Command dock: a fixed footprint between the hand and your table. */
   .deal-workspace > .deal-command-dock {
-    --decision-height: 96px;
-    padding: 0;
-    border-block: 1px solid var(--color-border);
+    --decision-height: 60px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+    align-items: center;
+    gap: 0 12px;
+    padding: 0 10px 0 4px;
+    border: 0;
+    border-bottom: 1px solid var(--color-border);
     border-radius: 0;
     background: #f7f5ec;
   }
-  .deal-command-dock > .deal-composer,
-  .deal-command-dock > .deal-resolution {
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    padding: 10px 14px;
-    min-height: 100%;
-  }
-  .deal-command-dock .deal-composer {
-    grid-template-columns: minmax(180px, 0.8fr) minmax(0, 1.2fr);
-    gap: 16px;
-  }
-  .deal-command-dock .deal-selected-preview {
-    align-items: center;
-    gap: 10px;
-  }
-  .deal-command-dock .deal-selected-preview h3 {
-    font-size: 19px;
-    margin-bottom: 5px;
-  }
-  .deal-command-dock .deal-selected-preview p {
-    font-size: 11px;
-    line-height: 1.45;
-  }
-  .deal-command-dock .deal-move-form {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-content: center;
-    gap: 6px 10px;
-  }
-  .deal-command-dock .deal-move-form > label {
-    min-width: 0;
-  }
-  .deal-command-dock .deal-move-summary,
-  .deal-command-dock .deal-commit-actions,
-  .deal-target-preview {
-    grid-column: 1 / -1;
-  }
-  .deal-command-dock .deal-commit-actions > .button {
-    min-height: 44px;
-  }
-  .deal-command-dock .deal-resolution {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px 20px;
-    align-content: center;
-  }
-  .deal-command-dock .deal-resolution > div:first-child {
-    grid-row: 1 / 3;
-  }
-  .deal-command-dock .deal-resolution > p {
-    font-size: 11px;
-  }
-  .deal-command-dock .deal-resolution-actions {
-    grid-column: 2;
-  }
-  .deal-idle-command {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 7px;
-    padding: 14px 18px;
-  }
-  .deal-idle-command > strong {
-    font-size: 16px;
-    font-family: var(--font-display);
-  }
-  .deal-idle-command p {
-    font-size: 12px;
-    line-height: 1.6;
-    color: var(--color-ink-muted);
-    max-width: 480px;
-  }
-  .deal-workspace > .deal-hand-dock {
-    border: 0;
-    border-radius: 0;
-    background: #fffdf7;
-    overflow: hidden;
-  }
-  .deal-workspace .deal-hand-dock .hand-scroll {
-    padding-block: 20px 8px;
+  /* A finished match is a review table: no live turn controls. */
+  .deal-workspace > .deal-command-dock[hidden] {
+    display: none;
   }
   .deal-command-title {
     display: flex;
     align-items: center;
     gap: 4px;
+    min-width: 0;
     min-height: 44px;
-    padding-inline: 10px;
+    padding-inline: 10px 0;
   }
   .deal-command-title > strong {
     flex: 1;
@@ -306,29 +492,314 @@
     font-size: 14px;
   }
   .deal-command-primary {
-    padding: 0 10px 6px;
+    min-width: 0;
+    padding: 0;
   }
   .deal-command-primary > .button {
     min-height: 44px;
+    min-width: 200px;
+    max-width: 100%;
+  }
+  .deal-command-hint {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    margin: 0;
+    max-width: 520px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--color-ink-muted);
+  }
+
+  /* Your bank and sets grow with the match; the page scrolls, not a 160px window. */
+  .deal-workspace > .deal-board-scroll {
+    overflow: visible;
+    border-bottom: 1px solid var(--color-border);
+    background: #fbfaf4;
+  }
+  .deal-workspace > .deal-board-scroll:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: -2px;
+  }
+  .deal-board-scroll > .deal-player {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+  .deal-board-scroll .deal-player-heading {
+    padding: 8px 12px 0;
+  }
+  .deal-board-scroll .deal-player-heading .seat {
+    flex: 0 1 auto;
+  }
+  .deal-board-scroll .deal-player-heading .seat .avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+  .deal-board-scroll .deal-player-heading .seat-copy > span {
+    font-size: 12px;
+  }
+  .deal-board-scroll .deal-player-heading .seat-self {
+    font-size: 11px;
+  }
+  .deal-board-scroll .deal-player-heading .turn-light {
+    left: 21px;
+    right: auto;
+    top: 0;
+    box-shadow: 0 0 0 2px #fbfaf4;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-assets,
+  .deal-board-scroll .deal-player[data-empty='true'] > .deal-assets {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 10px;
+    padding: 8px 12px 12px;
+  }
+  .opponent-panel-inspection .deal-assets {
+    padding-inline: 0;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-bank {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-bank > header {
+    flex: none;
+    justify-content: start;
+    gap: 8px;
+    margin: 0;
+    font-size: 13px;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-bank-notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+  }
+  .deal-board-scroll .deal-player[data-empty='true'] .deal-bank-notes {
+    display: flex;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-bank-note {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 5px;
+    width: auto;
+    max-width: 180px;
+    min-height: 32px;
+    padding: 6px 10px;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) button.deal-bank-note {
+    min-height: 44px;
+    align-items: center;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-bank-note > b {
+    font-size: 15px;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-bank-note > span {
+    font-size: 12px;
+  }
+  .deal-bank-note[data-previewed='true'] {
+    outline: 2px solid var(--color-sky);
+    outline-offset: 1px;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-empty {
+    padding: 4px 0;
+    font-size: 12px;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-collections {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 176px), 1fr));
+    align-items: start;
+    gap: 10px;
+    overflow: visible;
+    padding: 0;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-collection {
+    min-width: 0;
+    max-width: none;
+    padding: 6px 8px 4px;
+    border: 1px solid #e2dfd3;
+    border-top: 4px solid var(--property-ink);
+    border-radius: 8px;
+    background: #fffdf7;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-collection[data-complete='true'] {
+    background: #f5f8ef;
+    box-shadow: inset 0 0 0 1px var(--property-ink);
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-collection > header {
+    flex-wrap: wrap;
+    gap: 2px 6px;
+    margin-bottom: 4px;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-collection > header > strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-collection > footer {
+    min-height: 44px;
+    font-size: 12px;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-buildings > :is(button, span) {
+    font-size: 12px;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-buildings > :is(button, span) > span {
+    font-size: 11px;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-collection-cards {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 5px;
+    max-width: none;
+    overflow: visible;
+    padding: 3px 0;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .deal-new-set {
+    min-height: 92px;
+    min-width: 0;
+  }
+  .deal-board-scroll .deal-empty-collection {
+    min-height: 44px;
+    padding: 4px 0;
+    font-size: 12px;
+  }
+
+  /*
+   * Set cards read as rows: colour stripe (split for wilds), name, active colour and
+   * value at 11px or more. The full card face stays one tap away in Card info.
+   */
+  :is(.deal-board-scroll, .opponent-panel-inspection)
+    .playing-card.playing-card--property.playing-card--compact:not(.playing-card--back) {
+    --card-width: 100%;
+    --card-height: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto;
+    align-items: center;
+    gap: 0 8px;
     width: 100%;
+    height: auto;
+    min-height: 44px;
+    padding: 5px 9px 5px 17px;
+    border-radius: 6px;
+    container-type: normal;
   }
-  .deal-command-primary > p {
-    line-height: 1.5;
+  :is(.deal-board-scroll, .opponent-panel-inspection) .playing-card--compact .property-band {
+    inset: 4px auto 4px 4px;
+    flex-direction: column;
+    width: 7px;
+    height: auto;
+    border-radius: 4px;
+    overflow: hidden;
   }
+  :is(.deal-board-scroll, .opponent-panel-inspection)
+    .playing-card--compact
+    .property-band:has(> [data-active='true'])
+    > span[data-active='false'] {
+    opacity: 0.35;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection)
+    .playing-card--compact
+    .property-band
+    > span::after {
+    display: none;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .playing-card--compact .deal-card-meta {
+    grid-column: 2;
+    grid-row: 1;
+    display: block;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection)
+    .playing-card--compact
+    .deal-card-meta
+    > span:first-child,
+  :is(.deal-board-scroll, .opponent-panel-inspection) .playing-card--compact .deal-card-foot {
+    display: none;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection)
+    .playing-card.playing-card--property.playing-card--compact
+    .property-value {
+    position: static;
+    display: block;
+    max-width: 58px;
+    font-size: 13px;
+    line-height: 1.15;
+    text-align: right;
+    white-space: normal;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection)
+    .playing-card.playing-card--property.playing-card--compact
+    .property-value[data-no-cash] {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .playing-card--compact .deal-card-body {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+    gap: 1px 6px;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection)
+    .playing-card.playing-card--property.playing-card--compact
+    .property-name {
+    flex: 1 0 100%;
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: left;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection)
+    .playing-card.playing-card--property.playing-card--compact
+    :is(.property-color-label, .property-active-label) {
+    display: inline;
+    font-size: 11px;
+    line-height: 1.25;
+    text-align: left;
+  }
+  :is(.deal-board-scroll, .opponent-panel-inspection) .playing-card--compact .deal-action-art {
+    display: none;
+  }
+  /* Compact names keep whole words on any remaining compact frame. */
+  .playing-card.playing-card--property.playing-card--compact .property-name {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
   .deal-workspace > .deal-quick-rules {
     padding-inline: 14px;
-    border-top: 1px solid var(--color-border);
-    overflow: auto;
+    overflow: visible;
+  }
+  /* Closed rules take no layout room at all, even in engines that keep the content laid out. */
+  .deal-workspace > .deal-quick-rules:not([open]) > :not(summary) {
+    display: none;
   }
   .deal-preview-card {
     outline: 2px solid var(--color-sky);
     outline-offset: 1px;
   }
+
+  /* Decision panel content shared with the command dock. */
   .deal-target-preview {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    font-size: 10px;
+    font-size: 11px;
+    grid-column: 1 / -1;
   }
   .deal-transfer-card {
     display: grid;
@@ -351,157 +822,94 @@
   .deal-target-preview > span > b {
     color: var(--color-sage);
   }
+
   /* Inspect is portalled outside the table's container-query boundary. */
   @media (max-width: 700px) {
-    .opponent-panel-inspection .deal-assets {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 8px 0;
-    }
-    .opponent-panel-inspection .deal-collection {
-      max-width: 100%;
-    }
-    .opponent-panel-inspection .deal-collection-cards {
-      display: grid;
-      grid-template-columns: repeat(2, 80px);
+    .opponent-panel-inspection .deal-collections {
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr));
+      gap: 8px;
     }
   }
-  @container (max-width: 700px) {
-    .deal-workspace.deal-workspace {
-      grid-template-rows: 82px 64px minmax(160px, 1fr) 96px 236px 44px;
+
+  @container (max-width: 899px) {
+    .deal-workspace .deal-center {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-template-areas:
+        'stock stock end'
+        'status status plays';
+      gap: 6px 12px;
+    }
+    .deal-discard {
+      width: auto;
+      min-width: 150px;
+      max-width: 230px;
+    }
+  }
+
+  @container (max-width: 559px) {
+    .deal-workspace .deal-opponents {
+      padding: 6px;
+      gap: 6px;
     }
     .deal-workspace .deal-center {
-      flex-wrap: nowrap;
-      gap: 12px;
-      padding: 5px 10px;
-    }
-    .deal-workspace .deal-last-move {
-      display: none;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas:
+        'stock end'
+        'status plays';
+      padding: 8px 10px;
     }
     .deal-workspace .deal-stock {
-      gap: 12px;
+      gap: 8px;
     }
-    .deal-board-scroll .deal-assets {
-      display: grid;
-      grid-template-columns: 76px minmax(0, 1fr);
-      gap: 10px;
+    .deal-discard {
+      flex: 1 1 auto;
+      min-width: 0;
+      max-width: none;
+      padding-right: 8px;
     }
-    .deal-board-scroll .deal-collection-cards {
-      display: flex;
+    .deal-discard-copy > strong {
+      font-size: 12px;
     }
-    .deal-board-scroll .deal-bank-notes {
-      flex-direction: column;
-      max-height: none;
-      overflow: visible;
+    .deal-discard-value {
+      font-size: 13px;
     }
-    .deal-board-scroll .deal-bank-note {
-      flex: 0 0 auto;
-      width: 100%;
-    }
-    .deal-board-scroll .deal-player-heading .seat-copy > span {
-      display: none;
+    .deal-plays {
+      gap: 5px;
     }
     .deal-workspace > .deal-command-dock {
       --decision-height: 96px;
-    }
-    .deal-command-dock .deal-composer {
       grid-template-columns: minmax(0, 1fr);
-      gap: 6px;
+      align-content: center;
+      gap: 0;
+      padding: 0 10px 6px 4px;
     }
-    .deal-command-dock .deal-selected-preview {
-      align-items: start;
+    .deal-command-primary {
+      padding-left: 10px;
     }
-    .deal-command-dock .deal-selected-preview p {
-      display: none;
+    .deal-command-primary > .button {
+      width: 100%;
+      min-width: 0;
     }
-    .deal-command-dock .deal-selected-preview h3 {
-      margin: 0;
-      font-size: 18px;
-    }
-    .deal-command-dock .deal-selected-preview .icon-button {
-      margin-top: -8px;
-      margin-bottom: -8px;
-    }
-    .deal-command-dock .deal-move-form {
-      gap: 5px 8px;
-    }
-    .deal-command-dock .deal-move-summary {
-      font-size: 10px;
-      line-height: 1.3;
-    }
-    .deal-command-dock .deal-commit-actions {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .deal-command-dock .deal-commit-actions > .button {
-      flex: 1 0 100%;
+    .deal-command-hint {
       font-size: 12px;
-      min-height: 44px;
     }
-    .deal-command-dock .deal-resolution {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 6px;
+    :is(.deal-board-scroll, .opponent-panel-inspection) .deal-collections {
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
+      gap: 8px;
     }
-    .deal-command-dock .deal-resolution > div:first-child {
-      grid-row: auto;
+  }
+
+  /* Small phones: the discard gets its own full line; End turn sits beside the status. */
+  @container (max-width: 359px) {
+    .deal-hand-info-label {
+      display: none;
     }
-    .deal-command-dock .deal-resolution-actions {
-      grid-column: 1;
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .deal-command-dock .deal-resolution-actions > .button {
-      flex: 1 0 100%;
-      min-height: 44px;
-    }
-    .deal-board-scroll .playing-card.playing-card--property.playing-card--compact {
-      --card-width: 148px;
-      --card-height: 44px;
-      display: flex;
+    .deal-workspace .deal-center {
+      grid-template-areas:
+        'stock stock'
+        'status end'
+        'plays end';
       align-items: center;
-      padding: 5px 30px 4px 7px;
-      border-radius: 5px;
-    }
-    .deal-board-scroll .playing-card--property .property-band {
-      height: 3px;
-    }
-    .deal-board-scroll .deal-card-meta > span:first-child,
-    .deal-board-scroll .deal-card-foot {
-      display: none;
-    }
-    .deal-board-scroll .playing-card--property .property-value {
-      position: absolute;
-      top: 8px;
-      right: 5px;
-      font-size: 10px;
-    }
-    .deal-board-scroll .deal-card-body {
-      gap: 1px;
-    }
-    .deal-board-scroll .deal-collection-cards {
-      flex-direction: column;
-    }
-    .deal-board-scroll .deal-collection {
-      min-width: 160px;
-    }
-    .deal-board-scroll .deal-collection > footer > span {
-      display: none;
-    }
-    .deal-board-scroll .deal-collection > footer {
-      justify-content: end;
-    }
-    .deal-board-scroll .playing-card.playing-card--property.playing-card--compact .property-name {
-      font-size: 10px;
-    }
-    .deal-workspace .deal-stock .pile-shadow {
-      width: 40px;
-      height: 57px;
-    }
-    .deal-workspace .deal-stock .playing-card {
-      transform: scale(0.5);
-      margin-right: -40px;
-      margin-bottom: -57px;
     }
   }
 }

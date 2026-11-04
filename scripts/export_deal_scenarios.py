@@ -230,14 +230,27 @@ def generate():
                engine, state, viewer=PLAYERS[1])
         if not mercy:
             sly = take(engine, state, PLAYERS[1], effect="sly")
+            counter = take(engine, state, PLAYERS[1], effect="no")
             state["turn"] = 1
             attack = next(option.action for option in engine.legal_actions(state, PLAYERS[1])
                           if option.action.card == sly and option.action.type == "play"
                           and option.action.target == PLAYERS[0] and option.action.choice == wild)
+            # The attacker's own composer: every target on a 13-pile board, named in full.
+            record("crowded-sly-attacker", "Deal · attacker picks a wild on a 13-pile board",
+                   engine, state, viewer=PLAYERS[1], focus=sly, actions=[("Sly Deal the wild", attack)])
             state = engine.apply_action(state, PLAYERS[1], attack)
             responses = [(option.label, option.action) for option in engine.legal_actions(state, PLAYERS[0])]
             record("crowded-sly-response", "Deal · review a wild-card steal on a crowded board",
                    engine, state, actions=responses)
+            record("crowded-sly-waiting", "Deal · attacker waits for the defender's answer",
+                   engine, state, viewer=PLAYERS[1])
+            no = next(option.action for option in engine.legal_actions(state, PLAYERS[0])
+                      if option.action.type == "no")
+            state = engine.apply_action(state, PLAYERS[0], no)
+            record("crowded-sly-blocked", "Deal · attacker answers a Just Say No",
+                   engine, state, viewer=PLAYERS[1],
+                   actions=[("Accept the block", Action(type="accept")),
+                            ("Just Say No back", Action(type="no", card=counter))])
     return cases
 
 

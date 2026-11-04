@@ -39,3 +39,22 @@ seats. It checks every participant's saved history, persisted results/receipts,
 and readback after a fresh app lifespan. This closes the earlier pure-engine-only
 natural-declaration evidence gap; no near-terminal cards or database state are
 injected. `test_casino_explanations.py` covers private witness/scoring parity.
+
+## Table clarity — 3 November 2026
+
+Engine messages are now the instruction for the seat that can act, because the
+room banner shows `match.message` only to that seat and attributes the previous
+move from public history: the drawer reads "Draw from the stock or take the 7 ♦
+from the discard" (or why a joker on the discard can't be taken), and the
+discarder reads "Discard one card, or declare with it…". The old anonymous
+"Invalid declaration: 80 points." restatement is gone; the next drawer is no
+longer told about someone else's mistake as if it were theirs.
+
+The projection adds a public `out` map, `{player: {penalty, reason}}`, where the
+reason is `drop` (20/40) or `false_declaration` (80). Drops and declarations are
+table actions, so this reveals no card; seats read "Dropped · −20" or "False
+declaration · −80" instead of "Folded", and the out player is told so. The
+manifest rules now explain the face-up cut card (its rank is wild; a printed
+joker cut makes aces wild), the joker-on-discard and open-pickup restrictions,
+and the drop/false-declaration costs. No rule, scoring or state shape changed.
+History labels read "Discarded and declared" and "Dropped out of the deal".

@@ -1,4 +1,9 @@
-"""Regenerate or check public Uno/Deal artwork inventory from canonical decks."""
+"""Regenerate or check the public card-face inventory from canonical decks.
+
+Covers every game that draws PlayingCard faces: Uno, Deal, Flip 7, Skyjo, Trio,
+6 nimmt! and the standard 52-card deck with its printed jokers. Rows hold only
+public card faces (the printed artwork), never a shuffle, a hand or a seat.
+"""
 
 import argparse
 import json
@@ -56,7 +61,87 @@ def card_faces() -> list[dict[str, object]]:
                         "card": card.view(orientation).model_dump(),
                     }
                 )
+    rows += number_faces()
+    rows += standard_faces()
     return rows
+
+
+def number_faces() -> list[dict[str, object]]:
+    """One row per printed face of the number-card games (deck order, no copies)."""
+    from app.games.flip_seven.engine import deck as flip_deck
+    from app.games.flip_seven.engine import face as flip_face
+    from app.games.six_nimmt.engine import face as six_face
+    from app.games.skyjo.engine import sky_card
+    from app.games.trio.engine import face as trio_face
+
+    rows: list[dict[str, object]] = []
+    seen_flip: set[str] = set()
+    for raw in flip_deck():
+        view = flip_face(raw)
+        if view.value in seen_flip:
+            continue
+        seen_flip.add(view.value)
+        kind = raw.split("-")[0]
+        rows.append(
+            {
+                "key": f"flip-7:{kind}:{view.value}",
+                "game": "flip-7",
+                "family": "flip",
+                "kind": {"n": "number", "plus": "modifier", "times": "modifier"}.get(
+                    kind, "action"
+                ),
+                "card": view.model_dump(),
+            }
+        )
+    for value in range(-2, 13):
+        rows.append(
+            {
+                "key": f"skyjo:{value}",
+                "game": "skyjo",
+                "family": "grid",
+                "kind": "number",
+                "card": sky_card(f"sky:{value}:0").model_dump(),
+            }
+        )
+    for value in range(1, 13):
+        rows.append(
+            {
+                "key": f"trio:{value}",
+                "game": "trio",
+                "family": "grid",
+                "kind": "number",
+                "card": trio_face(f"trio-{value}-0").model_dump(),
+            }
+        )
+    for value in range(1, 105):
+        rows.append(
+            {
+                "key": f"six-nimmt:{value}",
+                "game": "six-nimmt",
+                "family": "grid",
+                "kind": "number",
+                "card": six_face(value).model_dump(),
+            }
+        )
+    return rows
+
+
+def standard_faces() -> list[dict[str, object]]:
+    """The 52 French-suited faces plus both printed jokers, as every table sends them."""
+    from app.core.cards import card_view, standard_deck
+
+    return [
+        {
+            "key": f"standard:{raw.split(':')[0]}:{raw.split(':')[1]}"
+            if raw.startswith("JK")
+            else f"standard:{raw.split(':')[0]}",
+            "game": "standard",
+            "family": "standard",
+            "kind": "joker" if raw.startswith("JK") else "rank",
+            "card": card_view(raw).model_dump(),
+        }
+        for raw in standard_deck(1, jokers=2)
+    ]
 
 
 def main(argv: list[str] | None = None) -> None:

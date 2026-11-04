@@ -212,6 +212,36 @@ class SkyjoEngine(BaseEngine):
                 self._end_turn(s, player)
         return s
 
+    def _message(self, s: State, player: str) -> str:
+        """The instruction for the seat that can act, from the current phase.
+
+        Only the drawer's own view names a privately drawn card. The stored
+        round-start message stays untouched: saved reshuffles hash the state.
+        """
+        phase, actor = s["phase"], s["order"][s["turn"]]
+        if phase == "finished":
+            return "A total reached 100, so the match is over. The lowest total wins."
+        if phase == "between_rounds":
+            return (f"Round {s['round']} is scored. Start round {s['round'] + 1} "
+                    "when everyone has checked the scores.")
+        if phase == "opening":
+            return ("Turn over two of your cards to begin." if not any(s["revealed"][actor])
+                    else "Turn over one more of your cards.")
+        final = "Final turn. " if s["finisher"] else ""
+        if phase == "reveal":
+            return f"{final}Turn over one of your face-down cards."
+        if s["drawn"]:
+            value = sky_card(s["drawn"]).value
+            if s["source"] == "discard":
+                return f"{final}Replace one of your grid cards with the {value} you took."
+            drawn = f"the {value} you drew" if player == actor else "the drawn card"
+            return (f"{final}Replace one of your grid cards with {drawn}, "
+                    "or discard it and turn over a face-down card.")
+        if not s["discard"]:
+            return f"{final}Draw a card."
+        top = sky_card(s["discard"][-1]).value
+        return f"{final}Draw a card, or take the {top} from the discard pile."
+
     def project_view(self, s: State, player: str) -> GameView:
         return GameView(
             game_id="skyjo",
@@ -234,7 +264,7 @@ class SkyjoEngine(BaseEngine):
             drawn=sky_card(s["drawn"]) if s["drawn"] and s["order"][s["turn"]] == player else None,
             draw_count=len(s["deck"]),
             actions=self.legal_actions(s, player),
-            message=s["message"],
+            message=self._message(s, player),
             winners=s["winners"],
             detail={"round": s["round"], "finisher": s["finisher"],
                     "remaining": s["remaining"],

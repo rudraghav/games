@@ -25,6 +25,10 @@ describe('Complete illustrated game pieces', () => {
           readFileSync(`apps/web/public/game-art/${atlas}.${extension}`).length,
         ).toBeGreaterThan(1000);
     }
+    // The padded delivery atlas is derived from the preserved v1 master.
+    expect(readFileSync('apps/web/public/game-art/paper-symbols-v2.webp').length).toBeGreaterThan(
+      1000,
+    );
   });
   it('keeps card meaning accessible alongside decorative illustration in pending selection', () => {
     const html = renderToStaticMarkup(
@@ -45,6 +49,47 @@ describe('Complete illustrated game pieces', () => {
     expect(html).toContain('aria-label="Blue boat. Play two boats for an extra turn."');
     expect(html).toContain('aria-pressed="true"');
     expect(html).toContain('disabled=""');
-    expect(html).toContain('paper-symbols-v1.webp');
+    expect(html).toContain('paper-symbols-v2.webp');
+  });
+  it('paints every scoring colour into the card: band, glyph, name and re-toned art', () => {
+    const colors = [
+      'navy',
+      'turquoise',
+      'black',
+      'yellow',
+      'green',
+      'gray',
+      'purple',
+      'peach',
+      'pink',
+      'orange',
+      'white',
+    ];
+    const filters = new Set<string>();
+    for (const color of colors) {
+      const html = renderToStaticMarkup(
+        <PaperPlayingCard
+          compact
+          card={{
+            id: `shell-${color}`,
+            label: `Shell · ${color}`,
+            suit: 'shell',
+            color,
+            value: 'Shell',
+            subtitle: 'Collection',
+          }}
+        />,
+      );
+      expect(html).toContain(`data-color="${color}"`);
+      expect(html).toContain(`<span>${color}</span>`);
+      expect(html).toMatch(/class="lucide lucide-[a-z0-9-]+/);
+      expect(html).toContain(`data-tone="${color}"`);
+      filters.add(html.match(/<feFuncR type="table" tableValues="([^"]+)"/)![1]);
+    }
+    expect(filters.size).toBe(colors.length);
+    // Library art keeps its original colours: no tone, no filter.
+    const plain = renderToStaticMarkup(<PaperCardArt kind="crab" />);
+    expect(plain).not.toContain('<filter');
+    expect(plain).toContain('paper-symbols-v2.webp');
   });
 });

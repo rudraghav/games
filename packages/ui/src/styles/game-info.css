@@ -1,10 +1,4 @@
 @layer components {
-  .stable-game-table .gang-table[data-phase='heist_review'] .gang-turn-dock,
-  .stable-game-table .gang-table[data-phase='finished'] .gang-turn-dock,
-  .stable-game-table .paper-table[data-phase='round_over'] .paper-source-dock,
-  .stable-game-table .paper-table[data-phase='finished'] .paper-source-dock {
-    --decision-height: 112px;
-  }
   .gang-turn-dock .coop-number-review {
     margin-top: 0;
     padding-top: 0;
@@ -119,9 +113,6 @@
     padding-top: 0;
     min-height: 44px;
     flex-wrap: nowrap;
-  }
-  .deal-stage-container .deal-workspace .deal-hand-dock .hand-scroll {
-    padding-top: 12px;
   }
   @media (max-width: 350px) {
     .game-card-information-heading {

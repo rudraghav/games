@@ -185,7 +185,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 100,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -678,7 +678,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 100,
             "pot": 0,
-            "message": "Three sets. One winner.",
+            "message": "Play up to 2 more cards, or end your turn.",
             "actions": [
               {
                 "label": "End turn",
@@ -1154,7 +1154,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 100,
             "pot": 0,
-            "message": "Three sets. One winner.",
+            "message": "Play up to 2 more cards, or end your turn.",
             "actions": [
               {
                 "label": "End turn",
@@ -1650,7 +1650,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 101,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -2112,7 +2112,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 101,
             "pot": 0,
-            "message": "Three sets. One winner.",
+            "message": "Play up to 3 more cards, or end your turn.",
             "actions": [
               {
                 "label": "End turn",
@@ -2582,7 +2582,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 98,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -3188,7 +3188,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 98,
             "pot": 0,
-            "message": "Played Forced deal.",
+            "message": "Accept, or answer with Just Say No.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -3661,7 +3661,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 98,
             "pot": 0,
-            "message": "Played Forced deal.",
+            "message": "Accept, or answer with Just Say No.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -4134,7 +4134,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 98,
             "pot": 0,
-            "message": "Played Forced deal.",
+            "message": "Accept, or answer with Just Say No.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -4607,7 +4607,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 98,
             "pot": 0,
-            "message": "Played Forced deal.",
+            "message": "Accept, or answer with Just Say No.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -5086,7 +5086,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 98,
         "pot": 0,
-        "message": "Played Forced deal.",
+        "message": "Accept, or answer with Just Say No.",
         "actions": [
           {
             "label": "Continue",
@@ -5591,7 +5591,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 98,
             "pot": 0,
-            "message": "Played Forced deal.",
+            "message": "Play up to 2 more cards, or end your turn.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -5983,7 +5983,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 99,
         "pot": 0,
-        "message": "Played Debt collector.",
+        "message": "Accept, or answer with Just Say No.",
         "actions": [
           {
             "label": "Continue",
@@ -6383,7 +6383,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 99,
             "pot": 0,
-            "message": "Played Debt collector.",
+            "message": "Accept the block, or answer with your own Just Say No.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -6757,7 +6757,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 99,
             "pot": 0,
-            "message": "Played Debt collector.",
+            "message": "Pay 5M from your bank or properties. No change is given.",
             "actions": [
               {
                 "label": "Pay 5M \u00b7 select bank/property cards",
@@ -7144,7 +7144,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 99,
         "pot": 0,
-        "message": "Played Debt collector.",
+        "message": "Accept the block, or answer with your own Just Say No.",
         "actions": [
           {
             "label": "Let it stand",
@@ -7530,7 +7530,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 99,
             "pot": 0,
-            "message": "Played Debt collector.",
+            "message": "Accept, or answer with Just Say No.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -7891,7 +7891,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 99,
             "pot": 0,
-            "message": "Played Debt collector.",
+            "message": "Play up to 2 more cards, or end your turn.",
             "actions": [
               {
                 "label": "End turn",
@@ -8315,7 +8315,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 99,
         "pot": 0,
-        "message": "Played Debt collector.",
+        "message": "Pay 5M from your bank or properties. No change is given.",
         "actions": [
           {
             "label": "Pay 5M \u00b7 select bank/property cards",
@@ -8774,7 +8774,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 99,
             "pot": 0,
-            "message": "Played Debt collector.",
+            "message": "Play up to 2 more cards, or end your turn.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -9182,7 +9182,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 98,
         "pot": 0,
-        "message": "Played Debt collector.",
+        "message": "Pay 5M from your bank or properties. No change is given.",
         "actions": [
           {
             "label": "Pay 5M \u00b7 select bank/property cards",
@@ -9665,7 +9665,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 98,
             "pot": 0,
-            "message": "Played Debt collector.",
+            "message": "Play up to 2 more cards, or end your turn.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -10083,7 +10083,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 98,
             "pot": 0,
-            "message": "Played Debt collector.",
+            "message": "Play up to 2 more cards, or end your turn.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -10500,7 +10500,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 98,
             "pot": 0,
-            "message": "Played Debt collector.",
+            "message": "Play up to 2 more cards, or end your turn.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -10900,7 +10900,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 99,
         "pot": 0,
-        "message": "Played Debt collector.",
+        "message": "Pay 5M from your bank or properties. No change is given.",
         "actions": [
           {
             "label": "Pay 5M \u00b7 select bank/property cards",
@@ -11367,7 +11367,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 99,
             "pot": 0,
-            "message": "Played Debt collector.",
+            "message": "Play up to 2 more cards, or end your turn.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -11773,7 +11773,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 98,
         "pot": 0,
-        "message": "Played Hotel.",
+        "message": "Play up to 1 more card, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -12229,7 +12229,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 109,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -12746,7 +12746,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 89,
         "pot": 0,
-        "message": "Played Double the rent.",
+        "message": "Play a Rent card next: it charges \u00d72.",
         "actions": [
           {
             "label": "Rent \u00b7 brown",
@@ -13191,7 +13191,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 89,
             "pot": 0,
-            "message": "Played Rent.",
+            "message": "Accept, or answer with Just Say No.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -13678,7 +13678,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 80,
         "pot": 0,
-        "message": "Played Pass Go.",
+        "message": "Play up to 1 more card, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -14447,7 +14447,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 89,
         "pot": 0,
-        "message": "Played Debt collector.",
+        "message": "Accept the block, or answer with your own Just Say No.",
         "actions": [
           {
             "label": "Let it stand",
@@ -14880,7 +14880,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 89,
             "pot": 0,
-            "message": "Played Debt collector.",
+            "message": "Accept, or answer with Just Say No.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -15907,7 +15907,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 36,
         "pot": 0,
-        "message": "Played Rent.",
+        "message": "Pay 2M from your bank or properties. No change is given.",
         "actions": [
           {
             "label": "Pay 2M \u00b7 select bank/property cards",
@@ -17251,7 +17251,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 36,
             "pot": 0,
-            "message": "Played Rent.",
+            "message": "Play up to 1 more card, or end your turn.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -18272,7 +18272,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 59,
         "pot": 0,
-        "message": "Played Rent.",
+        "message": "Pay 1M from your bank or properties. No change is given.",
         "actions": [
           {
             "label": "Pay 1M \u00b7 select bank/property cards",
@@ -19320,7 +19320,7 @@ export const dealScenarios: DealScenario[] = [
             "drawn": null,
             "draw_count": 59,
             "pot": 0,
-            "message": "Played Rent.",
+            "message": "Accept, or answer with Just Say No.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -20141,7 +20141,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 79,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -21433,7 +21433,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 79,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [],
         "winners": [],
         "detail": {
@@ -21727,6 +21727,2080 @@ export const dealScenarios: DealScenario[] = [
       "activity": []
     },
     "transitions": []
+  },
+  {
+    "id": "crowded-sly-attacker",
+    "label": "Deal \u00b7 attacker picks a wild on a 13-pile board",
+    "selfId": "baf691ac-60ab-5cf4-b394-02f24342044e",
+    "focusCard": "d091",
+    "room": {
+      "id": "5ef8003c-f910-5fbe-9fbb-db6452554e1f",
+      "name": "Synthetic Deal workspace",
+      "code": "DESIGN1",
+      "game_id": "deal",
+      "owner_id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+      "capacity": 4,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "08f21ac0-640c-584c-86fe-9618966f3e23",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "deal",
+        "phase": "playing",
+        "current_player": "baf691ac-60ab-5cf4-b394-02f24342044e",
+        "players": [
+          {
+            "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [
+              {
+                "id": "d003",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d004",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d005",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d006",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d007",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d008",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d009",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d010",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d011",
+                "label": "3M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "3M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d012",
+                "label": "3M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "3M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              }
+            ],
+            "properties": {
+              "brown:0": [
+                {
+                  "id": "d020",
+                  "label": "Mediterranean Avenue",
+                  "color": "brown",
+                  "subtitle": "Mediterranean Avenue",
+                  "value": "1M",
+                  "suit": "property",
+                  "colors": [
+                    "brown"
+                  ],
+                  "effect": "",
+                  "set_name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "sky:0": [
+                {
+                  "id": "d022",
+                  "label": "Oriental Avenue",
+                  "color": "sky",
+                  "subtitle": "Oriental Avenue",
+                  "value": "1M",
+                  "suit": "property",
+                  "colors": [
+                    "sky"
+                  ],
+                  "effect": "",
+                  "set_name": "Light blue",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3
+                  ]
+                }
+              ],
+              "pink:0": [
+                {
+                  "id": "d025",
+                  "label": "St. Charles Place",
+                  "color": "pink",
+                  "subtitle": "St. Charles Place",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "pink"
+                  ],
+                  "effect": "",
+                  "set_name": "Pink",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    4
+                  ]
+                }
+              ],
+              "orange:0": [
+                {
+                  "id": "d028",
+                  "label": "St. James Place",
+                  "color": "orange",
+                  "subtitle": "St. James Place",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "orange"
+                  ],
+                  "effect": "",
+                  "set_name": "Orange",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    3,
+                    5
+                  ]
+                }
+              ],
+              "red:0": [
+                {
+                  "id": "d031",
+                  "label": "Kentucky Avenue",
+                  "color": "red",
+                  "subtitle": "Kentucky Avenue",
+                  "value": "3M",
+                  "suit": "property",
+                  "colors": [
+                    "red"
+                  ],
+                  "effect": "",
+                  "set_name": "Red",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    3,
+                    6
+                  ]
+                }
+              ],
+              "yellow:0": [
+                {
+                  "id": "d034",
+                  "label": "Atlantic Avenue",
+                  "color": "yellow",
+                  "subtitle": "Atlantic Avenue",
+                  "value": "3M",
+                  "suit": "property",
+                  "colors": [
+                    "yellow"
+                  ],
+                  "effect": "",
+                  "set_name": "Yellow",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    6
+                  ]
+                }
+              ],
+              "green:0": [
+                {
+                  "id": "d037",
+                  "label": "Pacific Avenue",
+                  "color": "green",
+                  "subtitle": "Pacific Avenue",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "green"
+                  ],
+                  "effect": "",
+                  "set_name": "Green",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    7
+                  ]
+                }
+              ],
+              "blue:0": [
+                {
+                  "id": "d040",
+                  "label": "Park Place",
+                  "color": "blue",
+                  "subtitle": "Park Place",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "blue"
+                  ],
+                  "effect": "",
+                  "set_name": "Dark blue",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    3,
+                    8
+                  ]
+                }
+              ],
+              "rail:0": [
+                {
+                  "id": "d042",
+                  "label": "Reading Railroad",
+                  "color": "rail",
+                  "subtitle": "Reading Railroad",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "rail"
+                  ],
+                  "effect": "",
+                  "set_name": "Railroads",
+                  "set_size": 4,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3,
+                    4
+                  ]
+                }
+              ],
+              "utility:0": [
+                {
+                  "id": "d046",
+                  "label": "Electric Company",
+                  "color": "utility",
+                  "subtitle": "Electric Company",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "utility"
+                  ],
+                  "effect": "",
+                  "set_name": "Utilities",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "brown:1": [
+                {
+                  "id": "d021",
+                  "label": "Baltic Avenue",
+                  "color": "brown",
+                  "subtitle": "Baltic Avenue",
+                  "value": "1M",
+                  "suit": "property",
+                  "colors": [
+                    "brown"
+                  ],
+                  "effect": "",
+                  "set_name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "blue:1": [
+                {
+                  "id": "d041",
+                  "label": "Boardwalk",
+                  "color": "blue",
+                  "subtitle": "Boardwalk",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "blue"
+                  ],
+                  "effect": "",
+                  "set_name": "Dark blue",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    3,
+                    8
+                  ]
+                }
+              ],
+              "green:1": [
+                {
+                  "id": "d053",
+                  "label": "Wild property",
+                  "color": "green",
+                  "subtitle": "Wild property",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "green",
+                    "blue"
+                  ],
+                  "effect": "",
+                  "set_name": "Green",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    7
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+            "count": 3,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [
+          {
+            "id": "d000",
+            "label": "1M",
+            "color": "neutral",
+            "subtitle": "MONEY",
+            "value": "1M",
+            "suit": "",
+            "colors": [],
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          },
+          {
+            "id": "d091",
+            "label": "Sly deal",
+            "color": "neutral",
+            "subtitle": "Sly deal",
+            "value": "3M",
+            "suit": "action",
+            "colors": [],
+            "effect": "sly",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          },
+          {
+            "id": "d083",
+            "label": "Just say no",
+            "color": "neutral",
+            "subtitle": "Just say no",
+            "value": "4M",
+            "suit": "action",
+            "colors": [],
+            "effect": "no",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          }
+        ],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 77,
+        "pot": 0,
+        "message": "Play up to 3 more cards, or end your turn.",
+        "actions": [
+          {
+            "label": "End turn",
+            "action": {
+              "type": "end_turn",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Bank 1M",
+            "action": {
+              "type": "bank",
+              "card": "d000",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Bank 3M",
+            "action": {
+              "type": "bank",
+              "card": "d091",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 Mediterranean Avenue",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d020",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 Oriental Avenue",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d022",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 St. Charles Place",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d025",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 St. James Place",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d028",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 Kentucky Avenue",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d031",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 Atlantic Avenue",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d034",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 Pacific Avenue",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d037",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 Park Place",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d040",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 Reading Railroad",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d042",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 Electric Company",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d046",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 Baltic Avenue",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d021",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 Boardwalk",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d041",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Sly deal \u00b7 Wild property",
+            "action": {
+              "type": "play",
+              "card": "d091",
+              "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "color": "",
+              "choice": "d053",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Bank 4M",
+            "action": {
+              "type": "bank",
+              "card": "d083",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "moves": 3,
+          "rent_multiplier": 1,
+          "debts": {
+            "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
+            "baf691ac-60ab-5cf4-b394-02f24342044e": [],
+            "29420896-d26f-5a05-9f4c-8daf0c6adb27": [],
+            "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117": []
+          },
+          "pending": null,
+          "payment_amount": 0,
+          "property_groups": [
+            {
+              "color": "brown",
+              "name": "Brown",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Mediterranean Avenue",
+                "Baltic Avenue"
+              ]
+            },
+            {
+              "color": "sky",
+              "name": "Light blue",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                3
+              ],
+              "properties": [
+                "Oriental Avenue",
+                "Vermont Avenue",
+                "Connecticut Avenue"
+              ]
+            },
+            {
+              "color": "pink",
+              "name": "Pink",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                4
+              ],
+              "properties": [
+                "St. Charles Place",
+                "States Avenue",
+                "Virginia Avenue"
+              ]
+            },
+            {
+              "color": "orange",
+              "name": "Orange",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                3,
+                5
+              ],
+              "properties": [
+                "St. James Place",
+                "Tennessee Avenue",
+                "New York Avenue"
+              ]
+            },
+            {
+              "color": "red",
+              "name": "Red",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                3,
+                6
+              ],
+              "properties": [
+                "Kentucky Avenue",
+                "Indiana Avenue",
+                "Illinois Avenue"
+              ]
+            },
+            {
+              "color": "yellow",
+              "name": "Yellow",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                6
+              ],
+              "properties": [
+                "Atlantic Avenue",
+                "Ventnor Avenue",
+                "Marvin Gardens"
+              ]
+            },
+            {
+              "color": "green",
+              "name": "Green",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                7
+              ],
+              "properties": [
+                "Pacific Avenue",
+                "North Carolina Avenue",
+                "Pennsylvania Avenue"
+              ]
+            },
+            {
+              "color": "blue",
+              "name": "Dark blue",
+              "set_size": 2,
+              "rent_ladder": [
+                3,
+                8
+              ],
+              "properties": [
+                "Park Place",
+                "Boardwalk"
+              ]
+            },
+            {
+              "color": "rail",
+              "name": "Railroads",
+              "set_size": 4,
+              "rent_ladder": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "properties": [
+                "Reading Railroad",
+                "Pennsylvania Railroad",
+                "B&O Railroad",
+                "Short Line"
+              ]
+            },
+            {
+              "color": "utility",
+              "name": "Utilities",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Electric Company",
+                "Water Works"
+              ]
+            }
+          ],
+          "collections": [
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "brown:0",
+              "color": "brown",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "sky:0",
+              "color": "sky",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "pink:0",
+              "color": "pink",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "orange:0",
+              "color": "orange",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "red:0",
+              "color": "red",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "yellow:0",
+              "color": "yellow",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "green:0",
+              "color": "green",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "blue:0",
+              "color": "blue",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 3
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "rail:0",
+              "color": "rail",
+              "count": 1,
+              "set_size": 4,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "utility:0",
+              "color": "utility",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "brown:1",
+              "color": "brown",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "blue:1",
+              "color": "blue",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 3
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "green:1",
+              "color": "green",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            }
+          ],
+          "pending_action": null,
+          "payment_bundles": []
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null,
+      "last_action": null,
+      "activity": []
+    },
+    "transitions": [
+      {
+        "label": "Sly Deal the wild",
+        "action": {
+          "type": "play",
+          "card": "d091",
+          "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+          "color": "",
+          "choice": "d053",
+          "amount": 0,
+          "slot": 0,
+          "cards": [],
+          "groups": []
+        },
+        "room": {
+          "id": "5ef8003c-f910-5fbe-9fbb-db6452554e1f",
+          "name": "Synthetic Deal workspace",
+          "code": "DESIGN1",
+          "game_id": "deal",
+          "owner_id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+          "capacity": 4,
+          "settings": {},
+          "status": "playing",
+          "revision": 2,
+          "match_id": "08f21ac0-640c-584c-86fe-9618966f3e23",
+          "match_version": 2,
+          "members": [
+            {
+              "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "name": "Alexandra with a rather long name",
+              "avatar": 0,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+              "name": "Dev",
+              "avatar": 1,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+              "name": "Mira",
+              "avatar": 2,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+              "name": "Sam",
+              "avatar": 3,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            }
+          ],
+          "messages": [],
+          "game": {
+            "game_id": "deal",
+            "phase": "playing",
+            "current_player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+            "players": [
+              {
+                "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                "count": 1,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [
+                  {
+                    "id": "d003",
+                    "label": "1M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "1M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d004",
+                    "label": "1M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "1M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d005",
+                    "label": "1M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "1M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d006",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d007",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d008",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d009",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d010",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d011",
+                    "label": "3M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "3M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d012",
+                    "label": "3M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "3M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ],
+                "properties": {
+                  "brown:0": [
+                    {
+                      "id": "d020",
+                      "label": "Mediterranean Avenue",
+                      "color": "brown",
+                      "subtitle": "Mediterranean Avenue",
+                      "value": "1M",
+                      "suit": "property",
+                      "colors": [
+                        "brown"
+                      ],
+                      "effect": "",
+                      "set_name": "Brown",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        1,
+                        2
+                      ]
+                    }
+                  ],
+                  "sky:0": [
+                    {
+                      "id": "d022",
+                      "label": "Oriental Avenue",
+                      "color": "sky",
+                      "subtitle": "Oriental Avenue",
+                      "value": "1M",
+                      "suit": "property",
+                      "colors": [
+                        "sky"
+                      ],
+                      "effect": "",
+                      "set_name": "Light blue",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        1,
+                        2,
+                        3
+                      ]
+                    }
+                  ],
+                  "pink:0": [
+                    {
+                      "id": "d025",
+                      "label": "St. Charles Place",
+                      "color": "pink",
+                      "subtitle": "St. Charles Place",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "pink"
+                      ],
+                      "effect": "",
+                      "set_name": "Pink",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        1,
+                        2,
+                        4
+                      ]
+                    }
+                  ],
+                  "orange:0": [
+                    {
+                      "id": "d028",
+                      "label": "St. James Place",
+                      "color": "orange",
+                      "subtitle": "St. James Place",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "orange"
+                      ],
+                      "effect": "",
+                      "set_name": "Orange",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        1,
+                        3,
+                        5
+                      ]
+                    }
+                  ],
+                  "red:0": [
+                    {
+                      "id": "d031",
+                      "label": "Kentucky Avenue",
+                      "color": "red",
+                      "subtitle": "Kentucky Avenue",
+                      "value": "3M",
+                      "suit": "property",
+                      "colors": [
+                        "red"
+                      ],
+                      "effect": "",
+                      "set_name": "Red",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        3,
+                        6
+                      ]
+                    }
+                  ],
+                  "yellow:0": [
+                    {
+                      "id": "d034",
+                      "label": "Atlantic Avenue",
+                      "color": "yellow",
+                      "subtitle": "Atlantic Avenue",
+                      "value": "3M",
+                      "suit": "property",
+                      "colors": [
+                        "yellow"
+                      ],
+                      "effect": "",
+                      "set_name": "Yellow",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        4,
+                        6
+                      ]
+                    }
+                  ],
+                  "green:0": [
+                    {
+                      "id": "d037",
+                      "label": "Pacific Avenue",
+                      "color": "green",
+                      "subtitle": "Pacific Avenue",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "green"
+                      ],
+                      "effect": "",
+                      "set_name": "Green",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        4,
+                        7
+                      ]
+                    }
+                  ],
+                  "blue:0": [
+                    {
+                      "id": "d040",
+                      "label": "Park Place",
+                      "color": "blue",
+                      "subtitle": "Park Place",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "blue"
+                      ],
+                      "effect": "",
+                      "set_name": "Dark blue",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        3,
+                        8
+                      ]
+                    }
+                  ],
+                  "rail:0": [
+                    {
+                      "id": "d042",
+                      "label": "Reading Railroad",
+                      "color": "rail",
+                      "subtitle": "Reading Railroad",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "rail"
+                      ],
+                      "effect": "",
+                      "set_name": "Railroads",
+                      "set_size": 4,
+                      "rent_ladder": [
+                        1,
+                        2,
+                        3,
+                        4
+                      ]
+                    }
+                  ],
+                  "utility:0": [
+                    {
+                      "id": "d046",
+                      "label": "Electric Company",
+                      "color": "utility",
+                      "subtitle": "Electric Company",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "utility"
+                      ],
+                      "effect": "",
+                      "set_name": "Utilities",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        1,
+                        2
+                      ]
+                    }
+                  ],
+                  "brown:1": [
+                    {
+                      "id": "d021",
+                      "label": "Baltic Avenue",
+                      "color": "brown",
+                      "subtitle": "Baltic Avenue",
+                      "value": "1M",
+                      "suit": "property",
+                      "colors": [
+                        "brown"
+                      ],
+                      "effect": "",
+                      "set_name": "Brown",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        1,
+                        2
+                      ]
+                    }
+                  ],
+                  "blue:1": [
+                    {
+                      "id": "d041",
+                      "label": "Boardwalk",
+                      "color": "blue",
+                      "subtitle": "Boardwalk",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "blue"
+                      ],
+                      "effect": "",
+                      "set_name": "Dark blue",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        3,
+                        8
+                      ]
+                    }
+                  ],
+                  "green:1": [
+                    {
+                      "id": "d053",
+                      "label": "Wild property",
+                      "color": "green",
+                      "subtitle": "Wild property",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "green",
+                        "blue"
+                      ],
+                      "effect": "",
+                      "set_name": "Green",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        4,
+                        7
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                "count": 2,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              },
+              {
+                "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+                "count": 1,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              },
+              {
+                "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+                "count": 1,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              }
+            ],
+            "hand": [
+              {
+                "id": "d000",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d083",
+                "label": "Just say no",
+                "color": "neutral",
+                "subtitle": "Just say no",
+                "value": "4M",
+                "suit": "action",
+                "colors": [],
+                "effect": "no",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              }
+            ],
+            "community": [],
+            "discard": {
+              "id": "d091",
+              "label": "Sly deal",
+              "color": "neutral",
+              "subtitle": "Sly deal",
+              "value": "3M",
+              "suit": "action",
+              "colors": [],
+              "effect": "sly",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            },
+            "drawn": null,
+            "draw_count": 77,
+            "pot": 0,
+            "message": "Accept, or answer with Just Say No.",
+            "actions": [],
+            "winners": [],
+            "detail": {
+              "moves": 2,
+              "rent_multiplier": 1,
+              "debts": {
+                "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
+                "baf691ac-60ab-5cf4-b394-02f24342044e": [],
+                "29420896-d26f-5a05-9f4c-8daf0c6adb27": [],
+                "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117": []
+              },
+              "pending": "sly",
+              "payment_amount": 0,
+              "property_groups": [
+                {
+                  "color": "brown",
+                  "name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ],
+                  "properties": [
+                    "Mediterranean Avenue",
+                    "Baltic Avenue"
+                  ]
+                },
+                {
+                  "color": "sky",
+                  "name": "Light blue",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "properties": [
+                    "Oriental Avenue",
+                    "Vermont Avenue",
+                    "Connecticut Avenue"
+                  ]
+                },
+                {
+                  "color": "pink",
+                  "name": "Pink",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    4
+                  ],
+                  "properties": [
+                    "St. Charles Place",
+                    "States Avenue",
+                    "Virginia Avenue"
+                  ]
+                },
+                {
+                  "color": "orange",
+                  "name": "Orange",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    3,
+                    5
+                  ],
+                  "properties": [
+                    "St. James Place",
+                    "Tennessee Avenue",
+                    "New York Avenue"
+                  ]
+                },
+                {
+                  "color": "red",
+                  "name": "Red",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    3,
+                    6
+                  ],
+                  "properties": [
+                    "Kentucky Avenue",
+                    "Indiana Avenue",
+                    "Illinois Avenue"
+                  ]
+                },
+                {
+                  "color": "yellow",
+                  "name": "Yellow",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    6
+                  ],
+                  "properties": [
+                    "Atlantic Avenue",
+                    "Ventnor Avenue",
+                    "Marvin Gardens"
+                  ]
+                },
+                {
+                  "color": "green",
+                  "name": "Green",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    7
+                  ],
+                  "properties": [
+                    "Pacific Avenue",
+                    "North Carolina Avenue",
+                    "Pennsylvania Avenue"
+                  ]
+                },
+                {
+                  "color": "blue",
+                  "name": "Dark blue",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    3,
+                    8
+                  ],
+                  "properties": [
+                    "Park Place",
+                    "Boardwalk"
+                  ]
+                },
+                {
+                  "color": "rail",
+                  "name": "Railroads",
+                  "set_size": 4,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3,
+                    4
+                  ],
+                  "properties": [
+                    "Reading Railroad",
+                    "Pennsylvania Railroad",
+                    "B&O Railroad",
+                    "Short Line"
+                  ]
+                },
+                {
+                  "color": "utility",
+                  "name": "Utilities",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ],
+                  "properties": [
+                    "Electric Company",
+                    "Water Works"
+                  ]
+                }
+              ],
+              "collections": [
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "brown:0",
+                  "color": "brown",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "sky:0",
+                  "color": "sky",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "pink:0",
+                  "color": "pink",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "orange:0",
+                  "color": "orange",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "red:0",
+                  "color": "red",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "yellow:0",
+                  "color": "yellow",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "green:0",
+                  "color": "green",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "blue:0",
+                  "color": "blue",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 3
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "rail:0",
+                  "color": "rail",
+                  "count": 1,
+                  "set_size": 4,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "utility:0",
+                  "color": "utility",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "brown:1",
+                  "color": "brown",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "blue:1",
+                  "color": "blue",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 3
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "green:1",
+                  "color": "green",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                }
+              ],
+              "pending_action": {
+                "kind": "sly",
+                "actor": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                "responder": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                "amount": null,
+                "blocked": false,
+                "stage": "counter",
+                "transfers": [
+                  {
+                    "source": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                    "target": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                    "cards": [
+                      "d053"
+                    ]
+                  }
+                ],
+                "collection": null,
+                "category": null,
+                "source_collection": null,
+                "multiplier": 1
+              },
+              "payment_bundles": []
+            }
+          },
+          "paused": false,
+          "missing_players": [],
+          "invite_token": null,
+          "bot_pending": false,
+          "bot_due_at": null,
+          "last_action": null,
+          "activity": []
+        }
+      }
+    ]
   },
   {
     "id": "crowded-sly-response",
@@ -22210,7 +24284,7 @@ export const dealScenarios: DealScenario[] = [
           },
           {
             "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
-            "count": 1,
+            "count": 2,
             "score": 0,
             "chips": null,
             "bet": 0,
@@ -22278,9 +24352,9 @@ export const dealScenarios: DealScenario[] = [
           "rent_ladder": []
         },
         "drawn": null,
-        "draw_count": 78,
+        "draw_count": 77,
         "pot": 0,
-        "message": "Played Sly deal.",
+        "message": "Accept, or answer with Just Say No.",
         "actions": [
           {
             "label": "Continue",
@@ -23102,7 +25176,7 @@ export const dealScenarios: DealScenario[] = [
               },
               {
                 "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
-                "count": 1,
+                "count": 2,
                 "score": 0,
                 "chips": null,
                 "bet": 0,
@@ -23193,9 +25267,9 @@ export const dealScenarios: DealScenario[] = [
               "rent_ladder": []
             },
             "drawn": null,
-            "draw_count": 78,
+            "draw_count": 77,
             "pot": 0,
-            "message": "Played Sly deal.",
+            "message": "Play up to 2 more cards, or end your turn.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -23979,7 +26053,7 @@ export const dealScenarios: DealScenario[] = [
               },
               {
                 "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
-                "count": 1,
+                "count": 2,
                 "score": 0,
                 "chips": null,
                 "bet": 0,
@@ -24033,9 +26107,9 @@ export const dealScenarios: DealScenario[] = [
               "rent_ladder": []
             },
             "drawn": null,
-            "draw_count": 78,
+            "draw_count": 77,
             "pot": 0,
-            "message": "Played Sly deal.",
+            "message": "Accept the block, or answer with your own Just Say No.",
             "actions": [],
             "winners": [],
             "detail": {
@@ -24323,6 +26397,3608 @@ export const dealScenarios: DealScenario[] = [
                 "responder": "baf691ac-60ab-5cf4-b394-02f24342044e",
                 "amount": null,
                 "blocked": true,
+                "stage": "counter",
+                "transfers": [
+                  {
+                    "source": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                    "target": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                    "cards": [
+                      "d053"
+                    ]
+                  }
+                ],
+                "collection": null,
+                "category": null,
+                "source_collection": null,
+                "multiplier": 1
+              },
+              "payment_bundles": []
+            }
+          },
+          "paused": false,
+          "missing_players": [],
+          "invite_token": null,
+          "bot_pending": false,
+          "bot_due_at": null,
+          "last_action": null,
+          "activity": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "crowded-sly-waiting",
+    "label": "Deal \u00b7 attacker waits for the defender's answer",
+    "selfId": "baf691ac-60ab-5cf4-b394-02f24342044e",
+    "focusCard": null,
+    "room": {
+      "id": "84a8e39e-ba24-5470-b31f-e956751c0726",
+      "name": "Synthetic Deal workspace",
+      "code": "DESIGN1",
+      "game_id": "deal",
+      "owner_id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+      "capacity": 4,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "b68158ee-6125-5303-8f8d-f2463665e00a",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "deal",
+        "phase": "playing",
+        "current_player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+        "players": [
+          {
+            "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [
+              {
+                "id": "d003",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d004",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d005",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d006",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d007",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d008",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d009",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d010",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d011",
+                "label": "3M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "3M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d012",
+                "label": "3M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "3M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              }
+            ],
+            "properties": {
+              "brown:0": [
+                {
+                  "id": "d020",
+                  "label": "Mediterranean Avenue",
+                  "color": "brown",
+                  "subtitle": "Mediterranean Avenue",
+                  "value": "1M",
+                  "suit": "property",
+                  "colors": [
+                    "brown"
+                  ],
+                  "effect": "",
+                  "set_name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "sky:0": [
+                {
+                  "id": "d022",
+                  "label": "Oriental Avenue",
+                  "color": "sky",
+                  "subtitle": "Oriental Avenue",
+                  "value": "1M",
+                  "suit": "property",
+                  "colors": [
+                    "sky"
+                  ],
+                  "effect": "",
+                  "set_name": "Light blue",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3
+                  ]
+                }
+              ],
+              "pink:0": [
+                {
+                  "id": "d025",
+                  "label": "St. Charles Place",
+                  "color": "pink",
+                  "subtitle": "St. Charles Place",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "pink"
+                  ],
+                  "effect": "",
+                  "set_name": "Pink",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    4
+                  ]
+                }
+              ],
+              "orange:0": [
+                {
+                  "id": "d028",
+                  "label": "St. James Place",
+                  "color": "orange",
+                  "subtitle": "St. James Place",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "orange"
+                  ],
+                  "effect": "",
+                  "set_name": "Orange",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    3,
+                    5
+                  ]
+                }
+              ],
+              "red:0": [
+                {
+                  "id": "d031",
+                  "label": "Kentucky Avenue",
+                  "color": "red",
+                  "subtitle": "Kentucky Avenue",
+                  "value": "3M",
+                  "suit": "property",
+                  "colors": [
+                    "red"
+                  ],
+                  "effect": "",
+                  "set_name": "Red",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    3,
+                    6
+                  ]
+                }
+              ],
+              "yellow:0": [
+                {
+                  "id": "d034",
+                  "label": "Atlantic Avenue",
+                  "color": "yellow",
+                  "subtitle": "Atlantic Avenue",
+                  "value": "3M",
+                  "suit": "property",
+                  "colors": [
+                    "yellow"
+                  ],
+                  "effect": "",
+                  "set_name": "Yellow",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    6
+                  ]
+                }
+              ],
+              "green:0": [
+                {
+                  "id": "d037",
+                  "label": "Pacific Avenue",
+                  "color": "green",
+                  "subtitle": "Pacific Avenue",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "green"
+                  ],
+                  "effect": "",
+                  "set_name": "Green",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    7
+                  ]
+                }
+              ],
+              "blue:0": [
+                {
+                  "id": "d040",
+                  "label": "Park Place",
+                  "color": "blue",
+                  "subtitle": "Park Place",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "blue"
+                  ],
+                  "effect": "",
+                  "set_name": "Dark blue",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    3,
+                    8
+                  ]
+                }
+              ],
+              "rail:0": [
+                {
+                  "id": "d042",
+                  "label": "Reading Railroad",
+                  "color": "rail",
+                  "subtitle": "Reading Railroad",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "rail"
+                  ],
+                  "effect": "",
+                  "set_name": "Railroads",
+                  "set_size": 4,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3,
+                    4
+                  ]
+                }
+              ],
+              "utility:0": [
+                {
+                  "id": "d046",
+                  "label": "Electric Company",
+                  "color": "utility",
+                  "subtitle": "Electric Company",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "utility"
+                  ],
+                  "effect": "",
+                  "set_name": "Utilities",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "brown:1": [
+                {
+                  "id": "d021",
+                  "label": "Baltic Avenue",
+                  "color": "brown",
+                  "subtitle": "Baltic Avenue",
+                  "value": "1M",
+                  "suit": "property",
+                  "colors": [
+                    "brown"
+                  ],
+                  "effect": "",
+                  "set_name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "blue:1": [
+                {
+                  "id": "d041",
+                  "label": "Boardwalk",
+                  "color": "blue",
+                  "subtitle": "Boardwalk",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "blue"
+                  ],
+                  "effect": "",
+                  "set_name": "Dark blue",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    3,
+                    8
+                  ]
+                }
+              ],
+              "green:1": [
+                {
+                  "id": "d053",
+                  "label": "Wild property",
+                  "color": "green",
+                  "subtitle": "Wild property",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "green",
+                    "blue"
+                  ],
+                  "effect": "",
+                  "set_name": "Green",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    7
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+            "count": 2,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [
+          {
+            "id": "d000",
+            "label": "1M",
+            "color": "neutral",
+            "subtitle": "MONEY",
+            "value": "1M",
+            "suit": "",
+            "colors": [],
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          },
+          {
+            "id": "d083",
+            "label": "Just say no",
+            "color": "neutral",
+            "subtitle": "Just say no",
+            "value": "4M",
+            "suit": "action",
+            "colors": [],
+            "effect": "no",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          }
+        ],
+        "community": [],
+        "discard": {
+          "id": "d091",
+          "label": "Sly deal",
+          "color": "neutral",
+          "subtitle": "Sly deal",
+          "value": "3M",
+          "suit": "action",
+          "colors": [],
+          "effect": "sly",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
+        },
+        "drawn": null,
+        "draw_count": 77,
+        "pot": 0,
+        "message": "Accept, or answer with Just Say No.",
+        "actions": [],
+        "winners": [],
+        "detail": {
+          "moves": 2,
+          "rent_multiplier": 1,
+          "debts": {
+            "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
+            "baf691ac-60ab-5cf4-b394-02f24342044e": [],
+            "29420896-d26f-5a05-9f4c-8daf0c6adb27": [],
+            "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117": []
+          },
+          "pending": "sly",
+          "payment_amount": 0,
+          "property_groups": [
+            {
+              "color": "brown",
+              "name": "Brown",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Mediterranean Avenue",
+                "Baltic Avenue"
+              ]
+            },
+            {
+              "color": "sky",
+              "name": "Light blue",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                3
+              ],
+              "properties": [
+                "Oriental Avenue",
+                "Vermont Avenue",
+                "Connecticut Avenue"
+              ]
+            },
+            {
+              "color": "pink",
+              "name": "Pink",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                4
+              ],
+              "properties": [
+                "St. Charles Place",
+                "States Avenue",
+                "Virginia Avenue"
+              ]
+            },
+            {
+              "color": "orange",
+              "name": "Orange",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                3,
+                5
+              ],
+              "properties": [
+                "St. James Place",
+                "Tennessee Avenue",
+                "New York Avenue"
+              ]
+            },
+            {
+              "color": "red",
+              "name": "Red",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                3,
+                6
+              ],
+              "properties": [
+                "Kentucky Avenue",
+                "Indiana Avenue",
+                "Illinois Avenue"
+              ]
+            },
+            {
+              "color": "yellow",
+              "name": "Yellow",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                6
+              ],
+              "properties": [
+                "Atlantic Avenue",
+                "Ventnor Avenue",
+                "Marvin Gardens"
+              ]
+            },
+            {
+              "color": "green",
+              "name": "Green",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                7
+              ],
+              "properties": [
+                "Pacific Avenue",
+                "North Carolina Avenue",
+                "Pennsylvania Avenue"
+              ]
+            },
+            {
+              "color": "blue",
+              "name": "Dark blue",
+              "set_size": 2,
+              "rent_ladder": [
+                3,
+                8
+              ],
+              "properties": [
+                "Park Place",
+                "Boardwalk"
+              ]
+            },
+            {
+              "color": "rail",
+              "name": "Railroads",
+              "set_size": 4,
+              "rent_ladder": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "properties": [
+                "Reading Railroad",
+                "Pennsylvania Railroad",
+                "B&O Railroad",
+                "Short Line"
+              ]
+            },
+            {
+              "color": "utility",
+              "name": "Utilities",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Electric Company",
+                "Water Works"
+              ]
+            }
+          ],
+          "collections": [
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "brown:0",
+              "color": "brown",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "sky:0",
+              "color": "sky",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "pink:0",
+              "color": "pink",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "orange:0",
+              "color": "orange",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "red:0",
+              "color": "red",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "yellow:0",
+              "color": "yellow",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "green:0",
+              "color": "green",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "blue:0",
+              "color": "blue",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 3
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "rail:0",
+              "color": "rail",
+              "count": 1,
+              "set_size": 4,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "utility:0",
+              "color": "utility",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "brown:1",
+              "color": "brown",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "blue:1",
+              "color": "blue",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 3
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "green:1",
+              "color": "green",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            }
+          ],
+          "pending_action": {
+            "kind": "sly",
+            "actor": "baf691ac-60ab-5cf4-b394-02f24342044e",
+            "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+            "responder": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+            "amount": null,
+            "blocked": false,
+            "stage": "counter",
+            "transfers": [
+              {
+                "source": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                "target": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                "cards": [
+                  "d053"
+                ]
+              }
+            ],
+            "collection": null,
+            "category": null,
+            "source_collection": null,
+            "multiplier": 1
+          },
+          "payment_bundles": []
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null,
+      "last_action": null,
+      "activity": []
+    },
+    "transitions": []
+  },
+  {
+    "id": "crowded-sly-blocked",
+    "label": "Deal \u00b7 attacker answers a Just Say No",
+    "selfId": "baf691ac-60ab-5cf4-b394-02f24342044e",
+    "focusCard": null,
+    "room": {
+      "id": "b477ff84-8bd8-5060-9c92-4c675eb5c33d",
+      "name": "Synthetic Deal workspace",
+      "code": "DESIGN1",
+      "game_id": "deal",
+      "owner_id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+      "capacity": 4,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "2a7bfafb-95a9-52fb-8133-99d252b3a153",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+          "name": "Dev",
+          "avatar": 1,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+          "name": "Mira",
+          "avatar": 2,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        },
+        {
+          "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+          "name": "Sam",
+          "avatar": 3,
+          "ready": true,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "deal",
+        "phase": "playing",
+        "current_player": "baf691ac-60ab-5cf4-b394-02f24342044e",
+        "players": [
+          {
+            "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [
+              {
+                "id": "d003",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d004",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d005",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d006",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d007",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d008",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d009",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d010",
+                "label": "2M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "2M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d011",
+                "label": "3M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "3M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d012",
+                "label": "3M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "3M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              }
+            ],
+            "properties": {
+              "brown:0": [
+                {
+                  "id": "d020",
+                  "label": "Mediterranean Avenue",
+                  "color": "brown",
+                  "subtitle": "Mediterranean Avenue",
+                  "value": "1M",
+                  "suit": "property",
+                  "colors": [
+                    "brown"
+                  ],
+                  "effect": "",
+                  "set_name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "sky:0": [
+                {
+                  "id": "d022",
+                  "label": "Oriental Avenue",
+                  "color": "sky",
+                  "subtitle": "Oriental Avenue",
+                  "value": "1M",
+                  "suit": "property",
+                  "colors": [
+                    "sky"
+                  ],
+                  "effect": "",
+                  "set_name": "Light blue",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3
+                  ]
+                }
+              ],
+              "pink:0": [
+                {
+                  "id": "d025",
+                  "label": "St. Charles Place",
+                  "color": "pink",
+                  "subtitle": "St. Charles Place",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "pink"
+                  ],
+                  "effect": "",
+                  "set_name": "Pink",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    4
+                  ]
+                }
+              ],
+              "orange:0": [
+                {
+                  "id": "d028",
+                  "label": "St. James Place",
+                  "color": "orange",
+                  "subtitle": "St. James Place",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "orange"
+                  ],
+                  "effect": "",
+                  "set_name": "Orange",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    3,
+                    5
+                  ]
+                }
+              ],
+              "red:0": [
+                {
+                  "id": "d031",
+                  "label": "Kentucky Avenue",
+                  "color": "red",
+                  "subtitle": "Kentucky Avenue",
+                  "value": "3M",
+                  "suit": "property",
+                  "colors": [
+                    "red"
+                  ],
+                  "effect": "",
+                  "set_name": "Red",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    3,
+                    6
+                  ]
+                }
+              ],
+              "yellow:0": [
+                {
+                  "id": "d034",
+                  "label": "Atlantic Avenue",
+                  "color": "yellow",
+                  "subtitle": "Atlantic Avenue",
+                  "value": "3M",
+                  "suit": "property",
+                  "colors": [
+                    "yellow"
+                  ],
+                  "effect": "",
+                  "set_name": "Yellow",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    6
+                  ]
+                }
+              ],
+              "green:0": [
+                {
+                  "id": "d037",
+                  "label": "Pacific Avenue",
+                  "color": "green",
+                  "subtitle": "Pacific Avenue",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "green"
+                  ],
+                  "effect": "",
+                  "set_name": "Green",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    7
+                  ]
+                }
+              ],
+              "blue:0": [
+                {
+                  "id": "d040",
+                  "label": "Park Place",
+                  "color": "blue",
+                  "subtitle": "Park Place",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "blue"
+                  ],
+                  "effect": "",
+                  "set_name": "Dark blue",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    3,
+                    8
+                  ]
+                }
+              ],
+              "rail:0": [
+                {
+                  "id": "d042",
+                  "label": "Reading Railroad",
+                  "color": "rail",
+                  "subtitle": "Reading Railroad",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "rail"
+                  ],
+                  "effect": "",
+                  "set_name": "Railroads",
+                  "set_size": 4,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3,
+                    4
+                  ]
+                }
+              ],
+              "utility:0": [
+                {
+                  "id": "d046",
+                  "label": "Electric Company",
+                  "color": "utility",
+                  "subtitle": "Electric Company",
+                  "value": "2M",
+                  "suit": "property",
+                  "colors": [
+                    "utility"
+                  ],
+                  "effect": "",
+                  "set_name": "Utilities",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "brown:1": [
+                {
+                  "id": "d021",
+                  "label": "Baltic Avenue",
+                  "color": "brown",
+                  "subtitle": "Baltic Avenue",
+                  "value": "1M",
+                  "suit": "property",
+                  "colors": [
+                    "brown"
+                  ],
+                  "effect": "",
+                  "set_name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ]
+                }
+              ],
+              "blue:1": [
+                {
+                  "id": "d041",
+                  "label": "Boardwalk",
+                  "color": "blue",
+                  "subtitle": "Boardwalk",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "blue"
+                  ],
+                  "effect": "",
+                  "set_name": "Dark blue",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    3,
+                    8
+                  ]
+                }
+              ],
+              "green:1": [
+                {
+                  "id": "d053",
+                  "label": "Wild property",
+                  "color": "green",
+                  "subtitle": "Wild property",
+                  "value": "4M",
+                  "suit": "property",
+                  "colors": [
+                    "green",
+                    "blue"
+                  ],
+                  "effect": "",
+                  "set_name": "Green",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    7
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+            "count": 2,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          },
+          {
+            "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+            "count": 1,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [
+          {
+            "id": "d000",
+            "label": "1M",
+            "color": "neutral",
+            "subtitle": "MONEY",
+            "value": "1M",
+            "suit": "",
+            "colors": [],
+            "effect": "",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          },
+          {
+            "id": "d083",
+            "label": "Just say no",
+            "color": "neutral",
+            "subtitle": "Just say no",
+            "value": "4M",
+            "suit": "action",
+            "colors": [],
+            "effect": "no",
+            "set_name": null,
+            "set_size": null,
+            "rent_ladder": []
+          }
+        ],
+        "community": [],
+        "discard": {
+          "id": "d082",
+          "label": "Just say no",
+          "color": "neutral",
+          "subtitle": "Just say no",
+          "value": "4M",
+          "suit": "action",
+          "colors": [],
+          "effect": "no",
+          "set_name": null,
+          "set_size": null,
+          "rent_ladder": []
+        },
+        "drawn": null,
+        "draw_count": 77,
+        "pot": 0,
+        "message": "Accept the block, or answer with your own Just Say No.",
+        "actions": [
+          {
+            "label": "Let it stand",
+            "action": {
+              "type": "accept",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Just say no",
+            "action": {
+              "type": "no",
+              "card": "d083",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "moves": 2,
+          "rent_multiplier": 1,
+          "debts": {
+            "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
+            "baf691ac-60ab-5cf4-b394-02f24342044e": [],
+            "29420896-d26f-5a05-9f4c-8daf0c6adb27": [],
+            "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117": []
+          },
+          "pending": "sly",
+          "payment_amount": 0,
+          "property_groups": [
+            {
+              "color": "brown",
+              "name": "Brown",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Mediterranean Avenue",
+                "Baltic Avenue"
+              ]
+            },
+            {
+              "color": "sky",
+              "name": "Light blue",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                3
+              ],
+              "properties": [
+                "Oriental Avenue",
+                "Vermont Avenue",
+                "Connecticut Avenue"
+              ]
+            },
+            {
+              "color": "pink",
+              "name": "Pink",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                2,
+                4
+              ],
+              "properties": [
+                "St. Charles Place",
+                "States Avenue",
+                "Virginia Avenue"
+              ]
+            },
+            {
+              "color": "orange",
+              "name": "Orange",
+              "set_size": 3,
+              "rent_ladder": [
+                1,
+                3,
+                5
+              ],
+              "properties": [
+                "St. James Place",
+                "Tennessee Avenue",
+                "New York Avenue"
+              ]
+            },
+            {
+              "color": "red",
+              "name": "Red",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                3,
+                6
+              ],
+              "properties": [
+                "Kentucky Avenue",
+                "Indiana Avenue",
+                "Illinois Avenue"
+              ]
+            },
+            {
+              "color": "yellow",
+              "name": "Yellow",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                6
+              ],
+              "properties": [
+                "Atlantic Avenue",
+                "Ventnor Avenue",
+                "Marvin Gardens"
+              ]
+            },
+            {
+              "color": "green",
+              "name": "Green",
+              "set_size": 3,
+              "rent_ladder": [
+                2,
+                4,
+                7
+              ],
+              "properties": [
+                "Pacific Avenue",
+                "North Carolina Avenue",
+                "Pennsylvania Avenue"
+              ]
+            },
+            {
+              "color": "blue",
+              "name": "Dark blue",
+              "set_size": 2,
+              "rent_ladder": [
+                3,
+                8
+              ],
+              "properties": [
+                "Park Place",
+                "Boardwalk"
+              ]
+            },
+            {
+              "color": "rail",
+              "name": "Railroads",
+              "set_size": 4,
+              "rent_ladder": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "properties": [
+                "Reading Railroad",
+                "Pennsylvania Railroad",
+                "B&O Railroad",
+                "Short Line"
+              ]
+            },
+            {
+              "color": "utility",
+              "name": "Utilities",
+              "set_size": 2,
+              "rent_ladder": [
+                1,
+                2
+              ],
+              "properties": [
+                "Electric Company",
+                "Water Works"
+              ]
+            }
+          ],
+          "collections": [
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "brown:0",
+              "color": "brown",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "sky:0",
+              "color": "sky",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "pink:0",
+              "color": "pink",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "orange:0",
+              "color": "orange",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "red:0",
+              "color": "red",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "yellow:0",
+              "color": "yellow",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "green:0",
+              "color": "green",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "blue:0",
+              "color": "blue",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 3
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "rail:0",
+              "color": "rail",
+              "count": 1,
+              "set_size": 4,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "utility:0",
+              "color": "utility",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "brown:1",
+              "color": "brown",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 1
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "blue:1",
+              "color": "blue",
+              "count": 1,
+              "set_size": 2,
+              "complete": false,
+              "rent": 3
+            },
+            {
+              "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "key": "green:1",
+              "color": "green",
+              "count": 1,
+              "set_size": 3,
+              "complete": false,
+              "rent": 2
+            }
+          ],
+          "pending_action": {
+            "kind": "sly",
+            "actor": "baf691ac-60ab-5cf4-b394-02f24342044e",
+            "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+            "responder": "baf691ac-60ab-5cf4-b394-02f24342044e",
+            "amount": null,
+            "blocked": true,
+            "stage": "counter",
+            "transfers": [
+              {
+                "source": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                "target": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                "cards": [
+                  "d053"
+                ]
+              }
+            ],
+            "collection": null,
+            "category": null,
+            "source_collection": null,
+            "multiplier": 1
+          },
+          "payment_bundles": []
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null,
+      "last_action": null,
+      "activity": []
+    },
+    "transitions": [
+      {
+        "label": "Accept the block",
+        "action": {
+          "type": "accept",
+          "card": "",
+          "target": "",
+          "color": "",
+          "choice": "",
+          "amount": 0,
+          "slot": 0,
+          "cards": [],
+          "groups": []
+        },
+        "room": {
+          "id": "b477ff84-8bd8-5060-9c92-4c675eb5c33d",
+          "name": "Synthetic Deal workspace",
+          "code": "DESIGN1",
+          "game_id": "deal",
+          "owner_id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+          "capacity": 4,
+          "settings": {},
+          "status": "playing",
+          "revision": 2,
+          "match_id": "2a7bfafb-95a9-52fb-8133-99d252b3a153",
+          "match_version": 2,
+          "members": [
+            {
+              "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "name": "Alexandra with a rather long name",
+              "avatar": 0,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+              "name": "Dev",
+              "avatar": 1,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+              "name": "Mira",
+              "avatar": 2,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+              "name": "Sam",
+              "avatar": 3,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            }
+          ],
+          "messages": [],
+          "game": {
+            "game_id": "deal",
+            "phase": "playing",
+            "current_player": "baf691ac-60ab-5cf4-b394-02f24342044e",
+            "players": [
+              {
+                "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                "count": 0,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [
+                  {
+                    "id": "d003",
+                    "label": "1M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "1M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d004",
+                    "label": "1M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "1M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d005",
+                    "label": "1M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "1M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d006",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d007",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d008",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d009",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d010",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d011",
+                    "label": "3M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "3M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d012",
+                    "label": "3M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "3M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ],
+                "properties": {
+                  "brown:0": [
+                    {
+                      "id": "d020",
+                      "label": "Mediterranean Avenue",
+                      "color": "brown",
+                      "subtitle": "Mediterranean Avenue",
+                      "value": "1M",
+                      "suit": "property",
+                      "colors": [
+                        "brown"
+                      ],
+                      "effect": "",
+                      "set_name": "Brown",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        1,
+                        2
+                      ]
+                    }
+                  ],
+                  "sky:0": [
+                    {
+                      "id": "d022",
+                      "label": "Oriental Avenue",
+                      "color": "sky",
+                      "subtitle": "Oriental Avenue",
+                      "value": "1M",
+                      "suit": "property",
+                      "colors": [
+                        "sky"
+                      ],
+                      "effect": "",
+                      "set_name": "Light blue",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        1,
+                        2,
+                        3
+                      ]
+                    }
+                  ],
+                  "pink:0": [
+                    {
+                      "id": "d025",
+                      "label": "St. Charles Place",
+                      "color": "pink",
+                      "subtitle": "St. Charles Place",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "pink"
+                      ],
+                      "effect": "",
+                      "set_name": "Pink",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        1,
+                        2,
+                        4
+                      ]
+                    }
+                  ],
+                  "orange:0": [
+                    {
+                      "id": "d028",
+                      "label": "St. James Place",
+                      "color": "orange",
+                      "subtitle": "St. James Place",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "orange"
+                      ],
+                      "effect": "",
+                      "set_name": "Orange",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        1,
+                        3,
+                        5
+                      ]
+                    }
+                  ],
+                  "red:0": [
+                    {
+                      "id": "d031",
+                      "label": "Kentucky Avenue",
+                      "color": "red",
+                      "subtitle": "Kentucky Avenue",
+                      "value": "3M",
+                      "suit": "property",
+                      "colors": [
+                        "red"
+                      ],
+                      "effect": "",
+                      "set_name": "Red",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        3,
+                        6
+                      ]
+                    }
+                  ],
+                  "yellow:0": [
+                    {
+                      "id": "d034",
+                      "label": "Atlantic Avenue",
+                      "color": "yellow",
+                      "subtitle": "Atlantic Avenue",
+                      "value": "3M",
+                      "suit": "property",
+                      "colors": [
+                        "yellow"
+                      ],
+                      "effect": "",
+                      "set_name": "Yellow",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        4,
+                        6
+                      ]
+                    }
+                  ],
+                  "green:0": [
+                    {
+                      "id": "d037",
+                      "label": "Pacific Avenue",
+                      "color": "green",
+                      "subtitle": "Pacific Avenue",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "green"
+                      ],
+                      "effect": "",
+                      "set_name": "Green",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        4,
+                        7
+                      ]
+                    }
+                  ],
+                  "blue:0": [
+                    {
+                      "id": "d040",
+                      "label": "Park Place",
+                      "color": "blue",
+                      "subtitle": "Park Place",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "blue"
+                      ],
+                      "effect": "",
+                      "set_name": "Dark blue",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        3,
+                        8
+                      ]
+                    }
+                  ],
+                  "rail:0": [
+                    {
+                      "id": "d042",
+                      "label": "Reading Railroad",
+                      "color": "rail",
+                      "subtitle": "Reading Railroad",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "rail"
+                      ],
+                      "effect": "",
+                      "set_name": "Railroads",
+                      "set_size": 4,
+                      "rent_ladder": [
+                        1,
+                        2,
+                        3,
+                        4
+                      ]
+                    }
+                  ],
+                  "utility:0": [
+                    {
+                      "id": "d046",
+                      "label": "Electric Company",
+                      "color": "utility",
+                      "subtitle": "Electric Company",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "utility"
+                      ],
+                      "effect": "",
+                      "set_name": "Utilities",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        1,
+                        2
+                      ]
+                    }
+                  ],
+                  "brown:1": [
+                    {
+                      "id": "d021",
+                      "label": "Baltic Avenue",
+                      "color": "brown",
+                      "subtitle": "Baltic Avenue",
+                      "value": "1M",
+                      "suit": "property",
+                      "colors": [
+                        "brown"
+                      ],
+                      "effect": "",
+                      "set_name": "Brown",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        1,
+                        2
+                      ]
+                    }
+                  ],
+                  "blue:1": [
+                    {
+                      "id": "d041",
+                      "label": "Boardwalk",
+                      "color": "blue",
+                      "subtitle": "Boardwalk",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "blue"
+                      ],
+                      "effect": "",
+                      "set_name": "Dark blue",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        3,
+                        8
+                      ]
+                    }
+                  ],
+                  "green:1": [
+                    {
+                      "id": "d053",
+                      "label": "Wild property",
+                      "color": "green",
+                      "subtitle": "Wild property",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "green",
+                        "blue"
+                      ],
+                      "effect": "",
+                      "set_name": "Green",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        4,
+                        7
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                "count": 2,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              },
+              {
+                "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+                "count": 1,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              },
+              {
+                "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+                "count": 1,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              }
+            ],
+            "hand": [
+              {
+                "id": "d000",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              },
+              {
+                "id": "d083",
+                "label": "Just say no",
+                "color": "neutral",
+                "subtitle": "Just say no",
+                "value": "4M",
+                "suit": "action",
+                "colors": [],
+                "effect": "no",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              }
+            ],
+            "community": [],
+            "discard": {
+              "id": "d082",
+              "label": "Just say no",
+              "color": "neutral",
+              "subtitle": "Just say no",
+              "value": "4M",
+              "suit": "action",
+              "colors": [],
+              "effect": "no",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            },
+            "drawn": null,
+            "draw_count": 77,
+            "pot": 0,
+            "message": "Play up to 2 more cards, or end your turn.",
+            "actions": [
+              {
+                "label": "End turn",
+                "action": {
+                  "type": "end_turn",
+                  "card": "",
+                  "target": "",
+                  "color": "",
+                  "choice": "",
+                  "amount": 0,
+                  "slot": 0,
+                  "cards": [],
+                  "groups": []
+                },
+                "input": null,
+                "minimum": null,
+                "maximum": null,
+                "step": 1,
+                "eligible_cards": []
+              },
+              {
+                "label": "Bank 1M",
+                "action": {
+                  "type": "bank",
+                  "card": "d000",
+                  "target": "",
+                  "color": "",
+                  "choice": "",
+                  "amount": 0,
+                  "slot": 0,
+                  "cards": [],
+                  "groups": []
+                },
+                "input": null,
+                "minimum": null,
+                "maximum": null,
+                "step": 1,
+                "eligible_cards": []
+              },
+              {
+                "label": "Bank 4M",
+                "action": {
+                  "type": "bank",
+                  "card": "d083",
+                  "target": "",
+                  "color": "",
+                  "choice": "",
+                  "amount": 0,
+                  "slot": 0,
+                  "cards": [],
+                  "groups": []
+                },
+                "input": null,
+                "minimum": null,
+                "maximum": null,
+                "step": 1,
+                "eligible_cards": []
+              }
+            ],
+            "winners": [],
+            "detail": {
+              "moves": 2,
+              "rent_multiplier": 1,
+              "debts": {
+                "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
+                "baf691ac-60ab-5cf4-b394-02f24342044e": [],
+                "29420896-d26f-5a05-9f4c-8daf0c6adb27": [],
+                "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117": []
+              },
+              "pending": null,
+              "payment_amount": 0,
+              "property_groups": [
+                {
+                  "color": "brown",
+                  "name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ],
+                  "properties": [
+                    "Mediterranean Avenue",
+                    "Baltic Avenue"
+                  ]
+                },
+                {
+                  "color": "sky",
+                  "name": "Light blue",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "properties": [
+                    "Oriental Avenue",
+                    "Vermont Avenue",
+                    "Connecticut Avenue"
+                  ]
+                },
+                {
+                  "color": "pink",
+                  "name": "Pink",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    4
+                  ],
+                  "properties": [
+                    "St. Charles Place",
+                    "States Avenue",
+                    "Virginia Avenue"
+                  ]
+                },
+                {
+                  "color": "orange",
+                  "name": "Orange",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    3,
+                    5
+                  ],
+                  "properties": [
+                    "St. James Place",
+                    "Tennessee Avenue",
+                    "New York Avenue"
+                  ]
+                },
+                {
+                  "color": "red",
+                  "name": "Red",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    3,
+                    6
+                  ],
+                  "properties": [
+                    "Kentucky Avenue",
+                    "Indiana Avenue",
+                    "Illinois Avenue"
+                  ]
+                },
+                {
+                  "color": "yellow",
+                  "name": "Yellow",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    6
+                  ],
+                  "properties": [
+                    "Atlantic Avenue",
+                    "Ventnor Avenue",
+                    "Marvin Gardens"
+                  ]
+                },
+                {
+                  "color": "green",
+                  "name": "Green",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    7
+                  ],
+                  "properties": [
+                    "Pacific Avenue",
+                    "North Carolina Avenue",
+                    "Pennsylvania Avenue"
+                  ]
+                },
+                {
+                  "color": "blue",
+                  "name": "Dark blue",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    3,
+                    8
+                  ],
+                  "properties": [
+                    "Park Place",
+                    "Boardwalk"
+                  ]
+                },
+                {
+                  "color": "rail",
+                  "name": "Railroads",
+                  "set_size": 4,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3,
+                    4
+                  ],
+                  "properties": [
+                    "Reading Railroad",
+                    "Pennsylvania Railroad",
+                    "B&O Railroad",
+                    "Short Line"
+                  ]
+                },
+                {
+                  "color": "utility",
+                  "name": "Utilities",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ],
+                  "properties": [
+                    "Electric Company",
+                    "Water Works"
+                  ]
+                }
+              ],
+              "collections": [
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "brown:0",
+                  "color": "brown",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "sky:0",
+                  "color": "sky",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "pink:0",
+                  "color": "pink",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "orange:0",
+                  "color": "orange",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "red:0",
+                  "color": "red",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "yellow:0",
+                  "color": "yellow",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "green:0",
+                  "color": "green",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "blue:0",
+                  "color": "blue",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 3
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "rail:0",
+                  "color": "rail",
+                  "count": 1,
+                  "set_size": 4,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "utility:0",
+                  "color": "utility",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "brown:1",
+                  "color": "brown",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "blue:1",
+                  "color": "blue",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 3
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "green:1",
+                  "color": "green",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                }
+              ],
+              "pending_action": null,
+              "payment_bundles": []
+            }
+          },
+          "paused": false,
+          "missing_players": [],
+          "invite_token": null,
+          "bot_pending": false,
+          "bot_due_at": null,
+          "last_action": null,
+          "activity": []
+        }
+      },
+      {
+        "label": "Just Say No back",
+        "action": {
+          "type": "no",
+          "card": "d083",
+          "target": "",
+          "color": "",
+          "choice": "",
+          "amount": 0,
+          "slot": 0,
+          "cards": [],
+          "groups": []
+        },
+        "room": {
+          "id": "b477ff84-8bd8-5060-9c92-4c675eb5c33d",
+          "name": "Synthetic Deal workspace",
+          "code": "DESIGN1",
+          "game_id": "deal",
+          "owner_id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+          "capacity": 4,
+          "settings": {},
+          "status": "playing",
+          "revision": 2,
+          "match_id": "2a7bfafb-95a9-52fb-8133-99d252b3a153",
+          "match_version": 2,
+          "members": [
+            {
+              "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+              "name": "Alexandra with a rather long name",
+              "avatar": 0,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+              "name": "Dev",
+              "avatar": 1,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+              "name": "Mira",
+              "avatar": 2,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            },
+            {
+              "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+              "name": "Sam",
+              "avatar": 3,
+              "ready": true,
+              "seated": true,
+              "connected": true,
+              "last_seen": 0.0,
+              "is_bot": false
+            }
+          ],
+          "messages": [],
+          "game": {
+            "game_id": "deal",
+            "phase": "playing",
+            "current_player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+            "players": [
+              {
+                "id": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                "count": 0,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [
+                  {
+                    "id": "d003",
+                    "label": "1M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "1M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d004",
+                    "label": "1M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "1M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d005",
+                    "label": "1M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "1M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d006",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d007",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d008",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d009",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d010",
+                    "label": "2M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "2M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d011",
+                    "label": "3M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "3M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  },
+                  {
+                    "id": "d012",
+                    "label": "3M",
+                    "color": "neutral",
+                    "subtitle": "MONEY",
+                    "value": "3M",
+                    "suit": "",
+                    "colors": [],
+                    "effect": "",
+                    "set_name": null,
+                    "set_size": null,
+                    "rent_ladder": []
+                  }
+                ],
+                "properties": {
+                  "brown:0": [
+                    {
+                      "id": "d020",
+                      "label": "Mediterranean Avenue",
+                      "color": "brown",
+                      "subtitle": "Mediterranean Avenue",
+                      "value": "1M",
+                      "suit": "property",
+                      "colors": [
+                        "brown"
+                      ],
+                      "effect": "",
+                      "set_name": "Brown",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        1,
+                        2
+                      ]
+                    }
+                  ],
+                  "sky:0": [
+                    {
+                      "id": "d022",
+                      "label": "Oriental Avenue",
+                      "color": "sky",
+                      "subtitle": "Oriental Avenue",
+                      "value": "1M",
+                      "suit": "property",
+                      "colors": [
+                        "sky"
+                      ],
+                      "effect": "",
+                      "set_name": "Light blue",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        1,
+                        2,
+                        3
+                      ]
+                    }
+                  ],
+                  "pink:0": [
+                    {
+                      "id": "d025",
+                      "label": "St. Charles Place",
+                      "color": "pink",
+                      "subtitle": "St. Charles Place",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "pink"
+                      ],
+                      "effect": "",
+                      "set_name": "Pink",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        1,
+                        2,
+                        4
+                      ]
+                    }
+                  ],
+                  "orange:0": [
+                    {
+                      "id": "d028",
+                      "label": "St. James Place",
+                      "color": "orange",
+                      "subtitle": "St. James Place",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "orange"
+                      ],
+                      "effect": "",
+                      "set_name": "Orange",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        1,
+                        3,
+                        5
+                      ]
+                    }
+                  ],
+                  "red:0": [
+                    {
+                      "id": "d031",
+                      "label": "Kentucky Avenue",
+                      "color": "red",
+                      "subtitle": "Kentucky Avenue",
+                      "value": "3M",
+                      "suit": "property",
+                      "colors": [
+                        "red"
+                      ],
+                      "effect": "",
+                      "set_name": "Red",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        3,
+                        6
+                      ]
+                    }
+                  ],
+                  "yellow:0": [
+                    {
+                      "id": "d034",
+                      "label": "Atlantic Avenue",
+                      "color": "yellow",
+                      "subtitle": "Atlantic Avenue",
+                      "value": "3M",
+                      "suit": "property",
+                      "colors": [
+                        "yellow"
+                      ],
+                      "effect": "",
+                      "set_name": "Yellow",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        4,
+                        6
+                      ]
+                    }
+                  ],
+                  "green:0": [
+                    {
+                      "id": "d037",
+                      "label": "Pacific Avenue",
+                      "color": "green",
+                      "subtitle": "Pacific Avenue",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "green"
+                      ],
+                      "effect": "",
+                      "set_name": "Green",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        4,
+                        7
+                      ]
+                    }
+                  ],
+                  "blue:0": [
+                    {
+                      "id": "d040",
+                      "label": "Park Place",
+                      "color": "blue",
+                      "subtitle": "Park Place",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "blue"
+                      ],
+                      "effect": "",
+                      "set_name": "Dark blue",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        3,
+                        8
+                      ]
+                    }
+                  ],
+                  "rail:0": [
+                    {
+                      "id": "d042",
+                      "label": "Reading Railroad",
+                      "color": "rail",
+                      "subtitle": "Reading Railroad",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "rail"
+                      ],
+                      "effect": "",
+                      "set_name": "Railroads",
+                      "set_size": 4,
+                      "rent_ladder": [
+                        1,
+                        2,
+                        3,
+                        4
+                      ]
+                    }
+                  ],
+                  "utility:0": [
+                    {
+                      "id": "d046",
+                      "label": "Electric Company",
+                      "color": "utility",
+                      "subtitle": "Electric Company",
+                      "value": "2M",
+                      "suit": "property",
+                      "colors": [
+                        "utility"
+                      ],
+                      "effect": "",
+                      "set_name": "Utilities",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        1,
+                        2
+                      ]
+                    }
+                  ],
+                  "brown:1": [
+                    {
+                      "id": "d021",
+                      "label": "Baltic Avenue",
+                      "color": "brown",
+                      "subtitle": "Baltic Avenue",
+                      "value": "1M",
+                      "suit": "property",
+                      "colors": [
+                        "brown"
+                      ],
+                      "effect": "",
+                      "set_name": "Brown",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        1,
+                        2
+                      ]
+                    }
+                  ],
+                  "blue:1": [
+                    {
+                      "id": "d041",
+                      "label": "Boardwalk",
+                      "color": "blue",
+                      "subtitle": "Boardwalk",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "blue"
+                      ],
+                      "effect": "",
+                      "set_name": "Dark blue",
+                      "set_size": 2,
+                      "rent_ladder": [
+                        3,
+                        8
+                      ]
+                    }
+                  ],
+                  "green:1": [
+                    {
+                      "id": "d053",
+                      "label": "Wild property",
+                      "color": "green",
+                      "subtitle": "Wild property",
+                      "value": "4M",
+                      "suit": "property",
+                      "colors": [
+                        "green",
+                        "blue"
+                      ],
+                      "effect": "",
+                      "set_name": "Green",
+                      "set_size": 3,
+                      "rent_ladder": [
+                        2,
+                        4,
+                        7
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                "count": 1,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              },
+              {
+                "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
+                "count": 1,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              },
+              {
+                "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
+                "count": 1,
+                "score": 0,
+                "chips": null,
+                "bet": 0,
+                "folded": false,
+                "eliminated": false,
+                "removed_slots": [],
+                "cards": [],
+                "bank": [],
+                "properties": {}
+              }
+            ],
+            "hand": [
+              {
+                "id": "d000",
+                "label": "1M",
+                "color": "neutral",
+                "subtitle": "MONEY",
+                "value": "1M",
+                "suit": "",
+                "colors": [],
+                "effect": "",
+                "set_name": null,
+                "set_size": null,
+                "rent_ladder": []
+              }
+            ],
+            "community": [],
+            "discard": {
+              "id": "d083",
+              "label": "Just say no",
+              "color": "neutral",
+              "subtitle": "Just say no",
+              "value": "4M",
+              "suit": "action",
+              "colors": [],
+              "effect": "no",
+              "set_name": null,
+              "set_size": null,
+              "rent_ladder": []
+            },
+            "drawn": null,
+            "draw_count": 77,
+            "pot": 0,
+            "message": "Accept, or answer with Just Say No.",
+            "actions": [],
+            "winners": [],
+            "detail": {
+              "moves": 2,
+              "rent_multiplier": 1,
+              "debts": {
+                "c0326a78-e994-5c4e-a0d9-a0a575f279e2": [],
+                "baf691ac-60ab-5cf4-b394-02f24342044e": [],
+                "29420896-d26f-5a05-9f4c-8daf0c6adb27": [],
+                "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117": []
+              },
+              "pending": "sly",
+              "payment_amount": 0,
+              "property_groups": [
+                {
+                  "color": "brown",
+                  "name": "Brown",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ],
+                  "properties": [
+                    "Mediterranean Avenue",
+                    "Baltic Avenue"
+                  ]
+                },
+                {
+                  "color": "sky",
+                  "name": "Light blue",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "properties": [
+                    "Oriental Avenue",
+                    "Vermont Avenue",
+                    "Connecticut Avenue"
+                  ]
+                },
+                {
+                  "color": "pink",
+                  "name": "Pink",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    4
+                  ],
+                  "properties": [
+                    "St. Charles Place",
+                    "States Avenue",
+                    "Virginia Avenue"
+                  ]
+                },
+                {
+                  "color": "orange",
+                  "name": "Orange",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    1,
+                    3,
+                    5
+                  ],
+                  "properties": [
+                    "St. James Place",
+                    "Tennessee Avenue",
+                    "New York Avenue"
+                  ]
+                },
+                {
+                  "color": "red",
+                  "name": "Red",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    3,
+                    6
+                  ],
+                  "properties": [
+                    "Kentucky Avenue",
+                    "Indiana Avenue",
+                    "Illinois Avenue"
+                  ]
+                },
+                {
+                  "color": "yellow",
+                  "name": "Yellow",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    6
+                  ],
+                  "properties": [
+                    "Atlantic Avenue",
+                    "Ventnor Avenue",
+                    "Marvin Gardens"
+                  ]
+                },
+                {
+                  "color": "green",
+                  "name": "Green",
+                  "set_size": 3,
+                  "rent_ladder": [
+                    2,
+                    4,
+                    7
+                  ],
+                  "properties": [
+                    "Pacific Avenue",
+                    "North Carolina Avenue",
+                    "Pennsylvania Avenue"
+                  ]
+                },
+                {
+                  "color": "blue",
+                  "name": "Dark blue",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    3,
+                    8
+                  ],
+                  "properties": [
+                    "Park Place",
+                    "Boardwalk"
+                  ]
+                },
+                {
+                  "color": "rail",
+                  "name": "Railroads",
+                  "set_size": 4,
+                  "rent_ladder": [
+                    1,
+                    2,
+                    3,
+                    4
+                  ],
+                  "properties": [
+                    "Reading Railroad",
+                    "Pennsylvania Railroad",
+                    "B&O Railroad",
+                    "Short Line"
+                  ]
+                },
+                {
+                  "color": "utility",
+                  "name": "Utilities",
+                  "set_size": 2,
+                  "rent_ladder": [
+                    1,
+                    2
+                  ],
+                  "properties": [
+                    "Electric Company",
+                    "Water Works"
+                  ]
+                }
+              ],
+              "collections": [
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "brown:0",
+                  "color": "brown",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "sky:0",
+                  "color": "sky",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "pink:0",
+                  "color": "pink",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "orange:0",
+                  "color": "orange",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "red:0",
+                  "color": "red",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "yellow:0",
+                  "color": "yellow",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "green:0",
+                  "color": "green",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "blue:0",
+                  "color": "blue",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 3
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "rail:0",
+                  "color": "rail",
+                  "count": 1,
+                  "set_size": 4,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "utility:0",
+                  "color": "utility",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "brown:1",
+                  "color": "brown",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 1
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "blue:1",
+                  "color": "blue",
+                  "count": 1,
+                  "set_size": 2,
+                  "complete": false,
+                  "rent": 3
+                },
+                {
+                  "player": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                  "key": "green:1",
+                  "color": "green",
+                  "count": 1,
+                  "set_size": 3,
+                  "complete": false,
+                  "rent": 2
+                }
+              ],
+              "pending_action": {
+                "kind": "sly",
+                "actor": "baf691ac-60ab-5cf4-b394-02f24342044e",
+                "target": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                "responder": "c0326a78-e994-5c4e-a0d9-a0a575f279e2",
+                "amount": null,
+                "blocked": false,
                 "stage": "counter",
                 "transfers": [
                   {
@@ -24892,7 +30568,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 88,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -26184,7 +31860,7 @@ export const dealScenarios: DealScenario[] = [
         "drawn": null,
         "draw_count": 88,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [],
         "winners": [],
         "detail": {

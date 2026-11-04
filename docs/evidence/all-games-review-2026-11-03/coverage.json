@@ -1,0 +1,2662 @@
+{
+ "date": "2026-11-03",
+ "games": [
+  {
+   "game": "azul",
+   "fixOwner": "azul-gems",
+   "visuallyInspected": 7,
+   "playedThrough": 6,
+   "savedRoomVerified": 4,
+   "review": {
+    "visuallyInspected": [
+     "Art: the ceramic-tiles-v1 master and each of its 6 cells as AtlasArt crops it. All 6 have clean borders. Also Storybook games-board-pieces--all-artwork.",
+     "In-game art sizes measured at 320: factory/centre 28x28, pattern line 20x25, wall 22x25 (empty spaces at 18% opacity), floor cell 25x46. Viewed at 320, 390 and 1440.",
+     "Art matches data: 30 rendered walls across 10 legal fixtures. Every tile's atlas cell matches its data colour, and every wall cell matches the engine's wall_column.",
+     "All 10 Azul fixtures (2p/4p drafting, placing, occupied floor, round over) screenshotted and lint-checked at 320/390/768/1024/1280/1440. Opened azul-4-31-3 (1440/390), azul-4-31-16 (1440/320) and azul-2-17-23 (1440/320). Drafted-tiles box measured at 320/390/768/1440 (azul-4-31-16, azul-2-17-6). Saving-a-move state checked.",
+     "Real 4-human room ebee4878-0053-4c49-a28b-332dbf2ba743: opening at 6 widths (seat 1) and seat 2 at 390; draft, waiting and after views from seats 1-3; pause banner with 2 seats disconnected; crowded round 4 at 6 widths with all four boards expanded at 320 and 1440; round review from all 4 seats at 390; finished table at 320/390/768/1440 plus seat 3; rematch lobby and the new match.",
+     "Real 2-seat bot room 32be1e12-331e-4629-bcf0-4d330177de2e at 320 (centre draft, marker on floor, finished match).",
+     "Real 4-seat bot room at 320x640 (pattern-line position after drafting, view during bot turns)."
+    ],
+    "playedThrough": [
+     "Opening draft by keyboard at 320 (31 Tabs to Factory 9, Enter), then placement by tap on line 1 with 1 overflow (seat 1).",
+     "Round 4: tapped \"Take 3 red from factory 6\" at 1440, placed on pattern line 4 (1 fit, 2 to floor), checked the result from the acting and waiting seats.",
+     "Centre first-taker (2 players): tapped centre red at 320, marker went to floor (\u22121), then completed the match against the bot (39-8).",
+     "Round review: the starter pressed \"Next round\" in the UI; the other 3 seats were observed.",
+     "Full 4-player match to the end (5 rounds); remaining moves were legal automated moves. Result 16-8-6-0. Rematch: \"I\u2019m ready\" on all 4 seats, then \"Start rematch\" gave a new round 1.",
+     "Waiting-seat views during human and bot turns."
+    ],
+    "savedRoomVerified": [
+     "Reload after a committed placement: identical table text, match version 118 before and after.",
+     "Two human seats disconnected: \"Saving a seat for \u2026\" pause with controls disabled. On reconnect paused became false and the placement committed.",
+     "Rematch from the finished room started a fresh match (scores 0, round 1).",
+     "No bag order, deck order or seed in any player's room payload."
+    ],
+    "notCovered": [
+     "A full 7-tile floor with overflow discarded happened during automated play (14-point floor penalties), but I didn't screenshot it at that moment.",
+     "The exhaustion rule (no tiles left for a new offer) and the result screen for an exact-score tie.",
+     "3-player Azul.",
+     "How fast other players' screens update: local pages lagged several seconds behind moves. Realtime may not be configured locally (the client falls back to polling every 4s). Production realtime was not measured.",
+     "A screen-reader pass beyond reading aria-labels.",
+     "Before/after captures of fixes: this review was read-only, so only \"before\" evidence exists."
+    ],
+    "hardestCase": "4 players at 320x640, round 4: seat 1 takes 3 red from factory 6, and lines 1 and 4 each overflow 2. Nothing previews that before the tap. After the tap the drafted tiles are invisible (0px row), every pattern line is more than 260px below the fold, the overflow is 10px text with no point cost, and all three opponent boards are collapsed. Inspected from the acting seat (320 and 1440) and waiting seats 2-3 (390)."
+   }
+  },
+  {
+   "game": "gem-market",
+   "fixOwner": "azul-gems",
+   "visuallyInspected": 6,
+   "playedThrough": 7,
+   "savedRoomVerified": 4,
+   "review": {
+    "visuallyInspected": [
+     "Art: the gem-districts-v1 master and all 16 cells as AtlasArt crops them, with a pixel audit of each cell's border (13 of 16 have art touching it). Storybook games-board-pieces--all-artwork (15 districts, patron, 4 development cards, tokens).",
+     "Art matches data: 267 rendered development and patron cards across all 7 fixtures. Art cell, bonus colour, points and cost chips all matched the data.",
+     "Colour-blind simulation (protanopia, deuteranopia, tritanopia colour distance) of the six gem colours, plus protanopia renders of the supply and a cost row.",
+     "All 7 Gem fixtures screenshotted and lint-checked at 320/390/768/1024/1280/1440. Opened 4-player crowded (1440/390), return gems (390) and 2-player patron (390). Cards with 5-colour costs measured at 320/390/768/1440. Saving and Disconnected states checked.",
+     "Real 2-human room 4b705f6c-e0b6-4354-908a-7677c5da00f0: opening at 6 widths (seat 1) and seat 2; position of the selected-card panel measured at 320/390/1024/1440.",
+     "Real 4-human room 5c540e31-3c6e-4601-9f92-167a8be5a039: return phase at 320/390/1440 plus a waiting seat; 3 reserved cards at 320; buy panel at 320/390/768; patron chooser at 390 plus a waiting seat; final round from the acting and waiting seats; crowded table at 6 widths; every opponent panel expanded at 320 (11-16 cards each); finished table at 320/390/1440; rematch."
+    ],
+    "playedThrough": [
+     "Gem picking in the UI: 3 different colours, changed a pick (removed emerald, added sapphire), tried a 4th colour, Clear, then committed two ruby (seat 1, 390).",
+     "Card selection followed by a tier switch (selection lost), and gems and a card selected at the same time.",
+     "Reserved from the market in the UI (seat 2, Tier 3 Pearl Palace, +1 gold) and reserved blind (seat 1, tier 3, +1 gold).",
+     "Returned 2 gems over the limit using the buttons inside the action panel (seat 1, 4 players).",
+     "Reached the 3-card reserve limit and checked the limit message and the price breakdown for a selected reserved card. Reached the last reserved card by keyboard (9 Tabs, Enter).",
+     "Welcomed a patron in the UI: Bea (seat 2) selected the only eligible patron, Patron 9, then Welcome.",
+     "Final round triggered at 19 prestige and played to the end (Bea 19, Dmitri 16, Cyrus 14, Alexandra 11); other turns were legal automated moves. Rematch: \"I\u2019m ready\" on all 4 seats, then \"Start rematch\"."
+    ],
+    "savedRoomVerified": [
+     "Blind-reserved card id absent from the opponent's payload, DOM and activity log. The market reservation appears in the activity log, which is fine because that card was face up.",
+     "Opponents see only the reserved count (cards: [null]).",
+     "Reload keeps committed state (version and gems unchanged) and clears any unconfirmed gem or card selection.",
+     "Rematch started a fresh match (scores 0, 17 cards and patrons on the table)."
+    ],
+    "notCovered": [
+     "Tapping Buy in the UI. Every purchase was made by legal automated moves; the UI path was checked only up to the hidden Buy button and its price breakdown.",
+     "Buying a reserved card through the UI; choosing between two or more eligible patrons; \"Pass \u2014 no action available\"; the fewer-developments tie-break; an empty tier deck for blind reserve in a real room.",
+     "3-player Gem Market.",
+     "How fast other players' screens update (see the Azul note).",
+     "A screen-reader pass beyond aria-labels; before/after captures of fixes (read-only review)."
+    ],
+    "hardestCase": "4 players, late game at 320/390 and 1440. A player holding 3 reserved cards and 12 gems must return 2, but 3 of the 5 return buttons are hidden inside the panel. Buying a card lower on the page puts Buy and the price breakdown off-screen, and on phones also below the panel's inner scroll. Choosing a patron means finding the only eligible one off the right edge with no highlight. The final round is announced by one sentence. Inspected from the acting and waiting seats."
+   }
+  },
+  {
+   "game": "four-in-a-row",
+   "fixOwner": "boards",
+   "visuallyInspected": 6,
+   "playedThrough": 5,
+   "savedRoomVerified": 4,
+   "review": {
+    "visuallyInspected": [
+     "6 legal fixtures (four-in-a-row-2-17-2/8/16, 2-31-2/8/16) in /design/midgame at 320/390/768/1024/1280/1440 with lint",
+     "Real room opening at 320/390/768/1024/1280/1440 (bot room, 30-char name)",
+     "Late board before the win: seat 0 at 320/390/768/1440",
+     "Diagonal win from both seats (390) and full page 320/390/768/1440",
+     "Full-board draw: last mover at 320/390/768/1440, other seat 390",
+     "Read-only overview at 320; drop-row affordance crops; laptop fold at 1024x700 and 1280x720"
+    ],
+    "playedThrough": [
+     "Two humans: 10 legal moves via API, winning diagonal drop by seat 0 through the real UI ('Drop in column 4') - win seen by both seats",
+     "Rematch through the UI (both 'I'm ready', host 'Start rematch'); seat order swapped",
+     "First rematch move by keyboard (Tab to 'Drop in column 3' + Enter) - applied",
+     "40 more legal moves, final drop through the UI at 320px -> full-board draw seen by both seats",
+     "Touch (rail arrow + tap) and keyboard reach of off-screen column 7 at 320 in the fixture harness - action submitted"
+    ],
+    "savedRoomVerified": [
+     "Refresh of both seats after the win: 4 winning cells and notice persisted",
+     "Server state after win (outcome_reason four-in-a-row, winning_cells 17/23/29/35) and draw (board-full, draw=true)",
+     "Rematch started (status playing, version 1); keyboard move incremented the version",
+     "Both seats receive identical projections except their own actions (rooms/privacy.json)"
+    ],
+    "notCovered": [
+     "Horizontal/vertical winning-line highlight variants (only diagonal)",
+     "Bot-driven full match in the client (bot room used for opening/fold only)",
+     "Paused/disconnected state in a Four room (verified in boop; shared shell)",
+     "Native screen reader"
+    ],
+    "hardestCase": "Full 42-disc draw with the last legal drop made at 320px (column 7 off-screen, fade bars over columns 2 and 6), plus the diagonal win read by the loser at 390."
+   }
+  },
+  {
+   "game": "reversi",
+   "fixOwner": "boards",
+   "visuallyInspected": 6,
+   "playedThrough": 2,
+   "savedRoomVerified": 3,
+   "review": {
+    "visuallyInspected": [
+     "6 legal fixtures (reversi-2-17-2/8/16, 2-31-2/8/16) at 6 widths with lint",
+     "Real room opening at 6 widths",
+     "Midgame (20 moves) from both seats at 390",
+     "Late crowded board (58 moves) on the mover at 320/390/768/1440; hover-before-commit at 390",
+     "Forced pass from both seats at 390 and the passer at 320",
+     "Final board and results from both seats at 390, full 320/390/768/1440; overview modal at 320"
+    ],
+    "playedThrough": [
+     "Two humans: 58 legal moves via API; pass-causing move 'Place at F1' through the real UI; seat 1 auto-passed and seat 0 moved again",
+     "Finished with server-legal moves to a 36-28 result"
+    ],
+    "savedRoomVerified": [
+     "Passer refreshed after the pass: identical notice/board/strip",
+     "End state read back (winner, scores 36/28, draw=false)",
+     "Projection parity between seats (rooms/privacy.json)"
+    ],
+    "notCovered": [
+     "Equal-disc draw result",
+     "An early mid-game pass (found pass is at move 59)",
+     "Rematch in Reversi (shared flow verified in Four)",
+     "Reaching an off-screen H-column legal move at 320 by touch/keyboard (no fixture had one; same rail mechanism verified in Four/Mancala/boop)"
+    ],
+    "hardestCase": "Late-game forced pass (seat 1 has no placement after F1) viewed from both seats at 320/390 with one of two legal moves hidden at 320."
+   }
+  },
+  {
+   "game": "checkers",
+   "fixOwner": "boards",
+   "visuallyInspected": 7,
+   "playedThrough": 4,
+   "savedRoomVerified": 4,
+   "review": {
+    "visuallyInspected": [
+     "8 legal fixtures (move, capture, king move, king capture for both seeds) at 6 widths with lint",
+     "Real room opening at 6 widths; seat 2 orientation at 390",
+     "Compulsory capture before/after selection at 320/390",
+     "Mid-chain from both seats at 390; keyboard-selected state",
+     "Promotion at 320 from both seats + king element crop",
+     "Endings: threefold draw and no-legal-move win from both seats at 390",
+     "Overview modal at 320; 3x zoom of squares (board parity is correct)"
+    ],
+    "playedThrough": [
+     "Two humans: 8 legal moves, compulsory jump G3xE5 through the UI (select, deselect, reselect, commit), continuation E5xG7 by keyboard",
+     "Server-legal autoplay to a threefold-repetition draw",
+     "Second room: 41 legal moves, crowning A7->B8 through the UI at 320px",
+     "Server-legal autoplay to a decisive no-legal-move win (11-10 captures)"
+    ],
+    "savedRoomVerified": [
+     "Refresh mid-chain kept the forced continuation (only 'Select piece E5' enabled)",
+     "Server message/scores/version after the chain",
+     "End states (threefold draw; no-legal-move win) read back",
+     "Projection parity between seats"
+    ],
+    "notCovered": [
+     "40-moves-each quiet draw; 'no-pieces' win",
+     "Capture onto the crowning row ending a chain",
+     "Backward king multi-jump chain",
+     "Rematch in Checkers"
+    ],
+    "hardestCase": "Compulsory capture followed by a forced multi-jump, refreshed mid-chain and finished by keyboard; promotion at 320px where column H is off-screen."
+   }
+  },
+  {
+   "game": "mancala",
+   "fixOwner": "boards",
+   "visuallyInspected": 6,
+   "playedThrough": 4,
+   "savedRoomVerified": 3,
+   "review": {
+    "visuallyInspected": [
+     "6 legal fixtures at 6 widths with lint (seed spill is cosmetic, no overlap with counts)",
+     "Real room opening at 6 widths; seat 2 opening at 390",
+     "Extra turn from both seats at 390",
+     "Capture from both seats at 390 and the victim at 320",
+     "Hoard state (pit 15, store 16) from both seats at 320/390 and seat 2 at 768/1440, plus pit/store element crops",
+     "End sweep and results from both seats at 390; overview modal at 320"
+    ],
+    "playedThrough": [
+     "Extra turn through the UI ('Sow pit 3 \u00b7 4 seeds')",
+     "Capture through the UI ('Sow pit 5 \u00b7 1 seeds' captured 4) after 8 legal moves",
+     "37-move hoarding sequence then server-legal autoplay to the end (27-21 after the sweep)",
+     "Touch and keyboard reach of off-screen own pit 6 at 320 (fixture harness) - action submitted"
+    ],
+    "savedRoomVerified": [
+     "Server pits/messages after extra turn, capture and hoard match the UI counts",
+     "End stores and winner read back",
+     "Projection parity between seats"
+    ],
+    "notCovered": [
+     "Refresh mid-match in Mancala (shared shell verified elsewhere)",
+     "24-24 draw; multi-lap sow skipping the opponent store (engine tests only)",
+     "Rematch in Mancala"
+    ],
+    "hardestCase": "15-seed pit and 16-seed store at 320px where seat 0's own store is off-screen, plus the capture seen by the victim."
+   }
+  },
+  {
+   "game": "boop",
+   "fixOwner": "boards",
+   "visuallyInspected": 7,
+   "playedThrough": 5,
+   "savedRoomVerified": 5,
+   "review": {
+    "visuallyInspected": [
+     "10 legal fixtures (placing and graduating) at 6 widths with lint",
+     "Real room opening at 6 widths",
+     "Multi-boop before (seat 0) and after (seat 1) at 390 and 320",
+     "Graduating with 2 overlapping lines + 8 return options at 1280x720, 1440x900, 390x844, 320x640 and full 320/390/768/1440; seat 2 waiting view",
+     "Selected line, cleared, return-piece selected, Confirm scrolled into view at 320",
+     "Eight-cat win from both seats at 390/320 and full 320/1440; paused banner at 390",
+     "Contact sheet of all four pieces from 30 to 120px; cats vs kittens at 320-390 in real rooms"
+    ],
+    "playedThrough": [
+     "13 legal moves then 'Place kitten at E2' through the UI (4 pushes, 2 kittens off the bed)",
+     "71 legal moves to graduation; chose line 1, switched to line 2, cleared, chose return B1, refreshed (preview reset), reselected line 1, scrolled Confirm into view and confirmed (activity 'Graduated kittens F1, E2, D3')",
+     "90 legal moves, 'Select cat' then 'Place cat at A6' through the UI -> eight-cat win",
+     "Guest tab closed -> room paused after 46s with disabled bed -> guest reopened -> resumed in 0.1s -> 'Place kitten at C3' saved",
+     "Touch and keyboard reach of off-screen F1 at 320 (fixture harness) - action submitted"
+    ],
+    "savedRoomVerified": [
+     "Server last_pushes for the multi-boop",
+     "Graduation result (pools/retired) and phase return to placing",
+     "Eight-cat win state and results",
+     "Pause/resume and the post-resume move (version 2)",
+     "Projection parity between seats (pools are public by rule)"
+    ],
+    "notCovered": [
+     "Three-cats-in-a-line win in a real room (only eight-cat)",
+     "Lines of 4+ producing 3 or more overlapping graduation options",
+     "Bot-driven boops viewed by a human (two-human only)",
+     "Rematch in boop"
+    ],
+    "hardestCase": "Graduation with all eight pieces on the bed (two overlapping lines plus eight return choices) at 320px and 1280x720, and the eight-cat win read by the loser."
+   }
+  },
+  {
+   "game": "holdem",
+   "fixOwner": "casino",
+   "visuallyInspected": 6,
+   "playedThrough": 4,
+   "savedRoomVerified": 3,
+   "review": {
+    "visuallyInspected": [
+     "Fixture harness /design/midgame: all 8 legal Hold'em scenarios (2 and 9 seats; preflop, flop, turn, river) at 320/390/768/1024/1280/1440 with the content-spill/collision/tiny-text lint (/private/tmp/claude-501/-Users-rudraghav-games/ec625a2d-2e7c-4d98-b897-ee9a78676e7b/scratchpad/review/casino/shots/harness/holdem-*.png, /private/tmp/claude-501/-Users-rudraghav-games/ec625a2d-2e7c-4d98-b897-ee9a78676e7b/scratchpad/review/casino/harness-lint.json)",
+     "Real 9-seat bot room, host 'Alexandra-Catherine Montgomery' (30 chars): waiting state at 390/1440, first decision at all six widths with lint and per-button decision-dock visibility audit, after-raise at 390/1440, showdown result plus lobby/rematch area at all six widths",
+     "Real heads-up room with two humans, both 30-character names: preflop from both seats, all-in response (guest) and waiting (host) at 390/1440, showdown from both seats at 390/1440 (+320/768/1280 lint), uncontested fold win with refund from both seats",
+     "Seat-versus-felt geometry audit in real rooms: 9 seats at six widths, 2 seats at 1024/1280/1440",
+     "Real 4-seat room at the flop and the Game activity panel (390 modal, 1440 side panel); Contributions and pot eligibility panel opened at 390",
+     "Fixture saving and disconnected states at 390; standard-deck contact sheets at every in-game size (shared casino art)"
+    ],
+    "playedThrough": [
+     "9 seats: amount control exercised (3, 5, 1000, empty), raise to 10 committed by clicking 'Raise to' at 390, bots re-raised, then check/call down to a two-way showdown (two pair beat one pair) and the results/settlement screen",
+     "Heads-up, two humans: SB went all in by clicking 'All in \u00b7 199' at 390 after the dock was scrolled, BB clicked 'Call 198' at 1440, automatic run-out, showdown (pair of 3s beat ace high) checked from both seats",
+     "Rematch through the real lobby UI (both 'I'm ready', host 'Start rematch'); button rotated; second hand all-in then fold (API) produced an uncontested win with a 198-chip refund",
+     "4 seats: raise to 12 and calls to the flop (API) to inspect the board, last-action cue and activity log"
+    ],
+    "savedRoomVerified": [
+     "Reload after the UI raise restored the same seats, chips, bets, last-action cue and 'Your turn' (holdem9-report.json step 'refresh')",
+     "Rematch started from the saved finished room through the normal lobby controls; button moved to the other seat",
+     "Hidden information: in the heads-up room each player's API view had players[].cards = [] for both seats until showdown and the page DOM contained no opponent card labels; folded hands stayed hidden at the 9-seat showdown (only the two showdown hands revealed); activity history carried only community cards"
+    ],
+    "notCovered": [
+     "Genuine unequal-stack side pots and odd-chip splits: every match starts at 200 chips, so natural all-ins are equal; only contribution layers and an uncalled-bet refund were observed (engine relies on synthetic tests)",
+     "9 human seats all with 30-character names (host long-named, bots short); short-stack 'All in only' branch; re-raise after a short all-in; check-raise via UI",
+     "Real-room pause for Hold'em (pause verified in a Teen Patti real room and in the Hold'em fixture only)",
+     "Touch events (mouse clicks and keyboard were used), screen readers, browsers other than Chromium"
+    ],
+    "hardestCase": "9 seats with a 30-character host name at 320px: 'Raise to' is half-hidden and 'All in' fully hidden inside the decision dock, and a plain two-way showdown is reported as 'Main pot 3 + Side pot 1 46'. Heads-up all-in from both seats with 30-character names: at 1280 the opponent seat sits on the turn banner and the winning hole cards are 42px previews with the explanation below the fold."
+   }
+  },
+  {
+   "game": "teen-patti",
+   "fixOwner": "casino",
+   "visuallyInspected": 5,
+   "playedThrough": 5,
+   "savedRoomVerified": 4,
+   "review": {
+    "visuallyInspected": [
+     "Fixture harness: all 6 legal scenarios (2/6 seats; blind, seen, sideshow offer, sideshow accept) at six widths with lint; saving and disconnected states at 390",
+     "Real 3-human room with 30-character names: blind decision, after 'See my cards', sideshow offer (requester) at 320/390/768/1440 with dock audits, responder at 320/390/768/1440 (re-measured after a corrected viewport wait), requester waiting and bystander at 390/1440, declined and accepted states from all three seats, show offer, results from all three seats at 390/1440",
+     "Real 6-human room with 30-character names: start at six widths with geometry and lint, mixed blind/seen midgame at 390/1440, result at six widths, rematch at 390",
+     "Real 6-human pot-limit game: forced 6-way showdown at 320/390/768/1024/1440 with lint and geometry",
+     "Real 2-human room: pause banner and disabled controls at 390, resume from both seats"
+    ],
+    "playedThrough": [
+     "'See my cards' and 'Play chips' clicked at 390; seen odd amount 3 and over-max 5/6 tried",
+     "Sideshow requested by clicking 'Request sideshow \u00b7 2' (C); responder declined by clicking 'Decline sideshow' (B); in the next orbit A requested (API) and C accepted (API) and was silently folded; in the first run B accepted through the UI and lost",
+     "Show: completed by UI click in the first run and by API in the second; 6-seat game finished by a blind player's show beating a seen player",
+     "Pot limit: 261 legal moves by six humans until the pot reached 1026 and the engine forced a 6-way showdown",
+     "6-seat rematch through the real lobby UI (host 'I'm ready' then 'Start rematch')"
+    ],
+    "savedRoomVerified": [
+     "Responder reload while a sideshow request was pending restored Accept/Decline and the explanation",
+     "Pause: guest silent for 45 s, host saw 'Game paused', the 'Saving a seat' banner and all four controls disabled; guest returned and both seats showed the same resumed state",
+     "Hidden information: blind players' API hand stayed []; through pending, declined and accepted sideshows no seat's API view or DOM contained another player's card labels; the sideshow comparison never revealed cards; folded hands stayed hidden at results; only show participants (or all players at the pot limit) were revealed",
+     "Rematch reset stacks to 199 after the boot and rotated the first player"
+    ],
+    "notCovered": [
+     "Sideshow tie (requester loses), sideshows-disabled setting, base-stake cap 64",
+     "Pot-limit settlement triggered by a sideshow payment",
+     "Touch events, screen readers"
+    ],
+    "hardestCase": "Six humans with 30-character names driven by 261 legal moves to the 1024 pot limit: six revealed 3-card hands at 35-42px, a winner (A-J-10 over A-J-2) decided by the third card, and no hand names, 'pot limit reached' message or explanation anywhere. Sideshow request, response and bystander views from three seats."
+   }
+  },
+  {
+   "game": "blackjack",
+   "fixOwner": "casino",
+   "visuallyInspected": 4,
+   "playedThrough": 4,
+   "savedRoomVerified": 4,
+   "review": {
+    "visuallyInspected": [
+     "Fixture harness: all 8 legal scenarios (1/7 seats; betting, insurance, decision, split, double, crowded 5-card hands) at six widths; saving/disconnected at 390",
+     "Real 7-human room with 30-character names: betting at 320/390/1440, insurance offer at 320/390/1440 and a waiting seat, double before/after at 390/1440, split before (320/390/1440) and after (320/390/768/1440) including rail navigation to hand 2 at 320, active hand switching (390), observer of the split seat (390/1440), split settlement (390/1440/full page), insurance settlement (390/1440/full page), natural blackjack win (390/full page), first result at six widths",
+     "Real 7-seat bot room: seat/felt geometry at six widths and with Game activity open at 1440; seat-card repaint after a 1440-to-320 resize",
+     "Last-row seat with four public cards: 'Inspect' reached by keyboard at 320, modal inspected, then 390"
+    ],
+    "playedThrough": [
+     "'Place bet' clicked at 390 after testing 5, 1, 202 and 10",
+     "'Double down' clicked by the first seat; 'Insure for 5' clicked against a dealer ace (dealer had blackjack: insurance +10, hand -10, net 0)",
+     "'Split pair' clicked on 4\u2666 4\u2663 at 320; hand 1 'Stand' and hand 2 'Double down' clicked at 390; settlement checked (hand 1 lost, hand 2 won 20, net +10)",
+     "14 rounds in total across 7-human rooms with API rematches, including two dealer-peek naturals that ended the round before any decision and a player natural paid 3:2 (+15)"
+    ],
+    "savedRoomVerified": [
+     "Reload in the middle of the split restored both hands, bets and the active hand",
+     "Dealer hole card: across 10 rounds the revealed hole-card id never appeared in any pre-reveal payload of the acting seats (0 occurrences); dealer_hidden stayed true until settlement",
+     "Keyboard: the last-row 'Inspect' control was reached in 6 Tabs at 320; Enter opened the read-only modal with all four cards; Escape returned focus to the trigger",
+     "Rematches re-dealt with stacks reset to 200"
+    ],
+    "notCovered": [
+     "Split aces, re-split to four hands, double after split that busts, dealer hits soft 17 setting",
+     "One-player table in a real room (fixture only); declining insurance through the UI",
+     "Touch events, screen readers"
+    ],
+    "hardestCase": "Seven humans with 30-character names: a natural 4-4 split with hand 2 doubled to three cards. At 1440 the doubled card is hidden behind the split frame's inner rail, the result appears only in text, and observers see a flattened '4 cards \u00b7 Inspect' seat whose last-action cue is covered by that seat. The top-centre seat also sits on the dealer label."
+   }
+  },
+  {
+   "game": "deal",
+   "fixOwner": "deal-layout+deal-decisions",
+   "visuallyInspected": 13,
+   "playedThrough": 11,
+   "savedRoomVerified": 7,
+   "review": {
+    "visuallyInspected": [
+     "Real saved bot room, 2 seats, opening at 320x640, 390x844, 768x1024, 1000x1190 (owner's case), 1024x700, 1280x720, 1440x900: full page + first screen + row geometry (shots/01-opening, 01-opening.json)",
+     "Real saved 2-human room (30/28-character names), pending Sly Deal on a placed Red/Yellow wild: actor at 1440 while waiting; defender at 320/390/768/1440, in peek, after reload, board with outlined target, both seats after resolution (shots/07-sly-deal)",
+     "Real saved 5-human room, 30-character names: opening from seat 0 at six widths; peaceful midgame after 75 legal moves from seats 0 and 3 at six widths; separate 83-move finished match with results and rematch lobby (shots/09-five-deal-mid, shots/09-five-deal-finished)",
+     "Real saved bot room on a phone (390): every step of an own turn (shots/08-ownturn-deal-390)",
+     "Real saved bot room played to the end: first screen and full page at 320/390/1280/1440, then rematch (shots/10-results-deal)",
+     "Real room saving state with a 3s-throttled /actions request at 390 (shots/15-misc/saving-real-390.png)",
+     "/design/deal harness: all 21 scenarios at 320/390/768/1024/1280/1440 with descendant-spill geometry, cross-region collisions and lint; decision panel captured when open (shots/02-harness, 02-harness.json)",
+     "Opponent public-table inspector with 13 sets and 10 bank cards at 320/390/768/1440 (shots/05-inspector)",
+     "DPR2 element captures at true size: stock/discard, own crowded board, opponent strip, hand at 390 and 1440 (shots/04-sizes)",
+     "Storybook games-card-inventory--deal: 74 faces at hand (126x178) and compact (80x114) frames, dense per-group contact sheets (shots/03-sheets, shots/03-art)",
+     "Natural 9-card hand: last card by keyboard and by touch at 320/390/1440; Quick rules opened (shots/12-hand-rules)",
+     "Forced Deal target change and clear at 390/1440 (shots/15-misc)",
+     "Response-panel fold for steal, counter and payment at 320x568, 320x640, 390x664, 390x844 (shots/17-panel-fold)"
+    ],
+    "playedThrough": [
+     "Own turn through the real UI only (390): selected a Railroad/Utilities wild, 'Choose a move', destination select, Place property (v1 to v2, plays 3 to 2, card on board)",
+     "Banked an action card (Deal breaker) via dock 'Bank for 5M' then panel 'Confirm \u00b7 bank 5M' (plays 2 to 1, card in bank)",
+     "Ended turn with the End turn button, watched the bot turn for 12s, returned to my turn with 3 plays",
+     "Refreshed mid-turn: same match version and plays left; an uncommitted card selection was lost after refresh",
+     "2-human Sly Deal on a placed wild: defender opened View table (peek) and Space-hold peek, refreshed (identical panel restored), closed and reopened via 'Review sly', clicked 'Allow transfer'; server v38 to v39, card d051 moved from the defender's Red set to the actor's Red set; both seats re-inspected",
+     "Hidden information: 37 steered legal moves with per-step checks plus a dedicated matched-version run (76 seat checks): no card id from the other seat's hand ever appeared in a projection (an early flag was a stale-snapshot false positive)",
+     "Forced Deal (harness): changed target Dev to Mira (highlight followed), chose a swap (take/give preview, own give-card outlined), cleared (highlight and selection removed)",
+     "Opponent inspector: keyboard (14 Tabs) and touch reached the last of 13 sets; Info opened Card info for its wild; Escape returned focus to that Info button",
+     "Last of 9 hand cards selected with Tab+Enter and with rail navigation + tap",
+     "Played a bot room to the end (Bot Ada won, v74), then I'm ready and Start rematch: new match id, v3, 'Your turn'",
+     "Saving state: delayed bank action showed 'Saving\u2026' with aria-busy; hand cards and End turn disabled; saved as v2 after release"
+    ],
+    "savedRoomVerified": [
+     "Opening state, 2 seats",
+     "Property placement (wild destination), banking an action, ending the turn, and refresh persistence (bot room, 390)",
+     "Sly Deal on a placed wild accepted through the UI; transfer and both resulting boards verified in both seats' projections and screens",
+     "5-seat 30-character-name midgame (75 moves) and finished match (83 moves) from two seats",
+     "Results and rematch (new match started)",
+     "Saving state under a throttled network",
+     "No other-seat hand ids in either projection across legal moves (2-human room)"
+    ],
+    "notCovered": [
+     "Just Say No and counter chains in a saved room (harness counter/counter-chain fixtures only)",
+     "Choosing and paying a bill through the real UI in a saved room (harness payment fixtures only)",
+     "13-pile + 10-bank-card crowded board in a saved room (controlled harness fixtures only)",
+     "Sly Deal against a wild on a crowded board from the attacker's seat (harness defender view only)",
+     "Disconnect/pause banner in a real room (harness 'Disconnected' toggle not exercised in a room)",
+     "Discard-down-to-seven phase, Double the Rent, buildings and rent multipliers in a saved room",
+     "Real mobile browsers, real touch hardware and screen readers"
+    ],
+    "hardestCase": "Sly Deal on the defender's placed wild (Red/Yellow, Red active). Done in a real saved 2-human room with 30/28-character names: defender at 320/390/768/1440 and actor at 1440; the action was completed through the UI and the transfer verified. The crowded variant (13 sets, 10 bank cards) exists only as the controlled harness fixture crowded-sly-response (defender view). Rendering is correct, but at 320x640 Just Say No is hidden inside the panel, the copy is 'Sly / A \u2192 B / B \u2192 A', the defender's target card is covered on phones, and both seats get a misleading turn label."
+   }
+  },
+  {
+   "game": "deal-no-mercy",
+   "fixOwner": "deal-layout+deal-decisions",
+   "visuallyInspected": 6,
+   "playedThrough": 3,
+   "savedRoomVerified": 2,
+   "review": {
+    "visuallyInspected": [
+     "Real saved bot room, 2 seats, opening at 320/390/768/1000/1024/1280/1440 (shots/01-opening/deal-no-mercy-*)",
+     "Harness no-mercy, crowded-no-mercy, crowded-opponent-no-mercy and linked-payment-no-mercy at six widths (shots/02-harness)",
+     "Midgame harness deal-no-mercy-5-31-17 (creditor) and deal-no-mercy-5-31-18 (debtor in settle-debt state) at 390 and 1440 (shots/11-debts-buildings)",
+     "Midgame harness deal-no-mercy-5-31-26: Super Sly Deal composer at 390 and 1440 (shots/14-supersly)",
+     "Opponent inspector with 13 sets at 320/390/768/1440 (shots/05-inspector)",
+     "Storybook games-card-inventory--deal-no-mercy: 85 faces at both frames (shots/03-sheets, shots/03-art)"
+    ],
+    "playedThrough": [
+     "Opponent inspector: keyboard and touch reached the last of 13 sets; Card info opened; focus returned",
+     "Super Sly Deal composer: chose 'Yellow' and inspected the preview (not committed)",
+     "Matched-version hidden-information run in a saved 2-human room: 110 seat checks, no other-seat hand ids in any projection"
+    ],
+    "savedRoomVerified": [
+     "Opening state, 2 seats",
+     "Hidden-hand privacy across the steered legal moves of a 2-human room"
+    ],
+    "notCovered": [
+     "Debt settlement, Super Sly Deal, Market Crash, Heist, Tax Collector/Repossession distributions, Tough Luck, Unfair Trade and Go Again in saved rooms",
+     "Own-turn Just Say No play cost in a saved room",
+     "5-seat No Mercy saved room; No Mercy results and rematch",
+     "Shack rent and building transfer in a saved room",
+     "Defender's view of a pending Super Sly Deal"
+    ],
+    "hardestCase": "Super Sly Deal against a wild that is active in another colour (the engine takes every property whose printed colours include the chosen colour). Inspected from the actor's seat in the legal midgame fixture deal-no-mercy-5-31-26 at 390/1440: the screen renders, but the actor is never shown which cards or whose sets will be taken. Not reached in a saved room; the defender's view was not inspected."
+   }
+  },
+  {
+   "game": "sea-salt-paper",
+   "fixOwner": "paper-gang-nimmt",
+   "visuallyInspected": 3,
+   "playedThrough": 2,
+   "savedRoomVerified": 4,
+   "review": {
+    "visuallyInspected": [
+     "Contact sheets of all 46 distinct kind x colour faces (58 cards) at full 134px and compact 104px built from the real component markup/CSS, plus the 16-cell atlas unclipped",
+     "Fixture harness: all 18 legal fixtures (2 and 4 seats; draw, choosing, playing, crab pile/card, steal, stop, round over, crowded) at 320/390/768/1024/1280/1440 with lint",
+     "Saved rooms at 320/390/768/1024/1280/1440: opening draw (2p, 4p); private keep-one-of-two before/after selection and after reload; playing; duo selected; steal target (1 and 3 targets); victim during and after steal; crab pile choice; crab private pile of 9 cards; Stop vs Last Chance; caller and final-turn views; round over (2p both seats, 4p); final result + lobby; Inspect modal; Saving state"
+    ],
+    "playedThrough": [
+     "2 humans (30-char names), full match 41-19 over 5 rounds: Draw two/select/clear/reselect/reload/keep by click; steal duo + target by click on both sides; crab duo -> pile -> keyboard Tab to the 9th card + Enter -> Take by click; Last Chance by click (caller succeeded 10 vs 2); Stop by click; boat/fish duos, discard takes, Next round and end turns via API steering",
+     "4 seats (1 human + 3 bots), full match over 6 rounds (bot won 34-30-26-25): Inspect via keyboard with focus return; steal among 3 bots by click; Saving state on duo submit; I'm ready + Start rematch by click -> new match round 1 with scores reset"
+    ],
+    "savedRoomVerified": [
+     "Reload during the private draw keeps the server draft (phase choosing, 2 options) but drops the local highlight",
+     "Other seat's view never contained the private draft IDs or crab-pile options (private_options empty); stolen card ID left the victim's view",
+     "Rematch from the results lobby started a fresh match (rooms e43558ea)",
+     "Rooms 1cf0c8c9, d48a0b25, e43558ea all closed"
+    ],
+    "notCovered": [
+     "Four-mermaid instant win (never occurred)",
+     "Last Chance failure and exact ties; stock exhaustion voiding a round",
+     "A natural crowded 4-seat late game with >=18 played cards (bots Stop early; covered only by fixtures, max 11 cards per player)",
+     "Boat and fish duo screens individually (played via API only)",
+     "Colour-blind simulation and screen-reader pass"
+    ],
+    "hardestCase": "4 seats on a 320/390 phone: keep one of two drawn cards (cards hidden under the sticky bar, discard piles not visible), then steal from one of three opponents and see neither which card moved nor the round result before a bot starts the next round."
+   }
+  },
+  {
+   "game": "the-gang",
+   "fixOwner": "paper-gang-nimmt",
+   "visuallyInspected": 3,
+   "playedThrough": 3,
+   "savedRoomVerified": 5,
+   "review": {
+    "visuallyInspected": [
+     "Fixture harness: all 12 legal fixtures (3 and 6 seats; chips each street, showdown, heist review) at 6 widths with lint; dock geometry at 320/390/1440",
+     "Standard 52-card SVG faces at in-game sizes: community 45x65 (<=600px) / 54x77, pocket 62x87 / 82x115, revealed 45x65 / 54x77; chips in white/yellow/orange/red",
+     "Saved rooms: preflop (6 widths), chip selected (320/390/1440), Saving state, stealer and victim views, last-free-chip, flop (6 widths), paused/disconnect, showdown own turn and waiting, after reveal, heist review (320/390/1440), result, rematch"
+    ],
+    "playedThrough": [
+     "6 seats (2 humans + 4 bots), 3 heists to a 3-alarm team loss: claim by click with delayed save, steal between humans by click, last free chip closes the street, both humans revealed by click, Next heist by click, I'm ready x2 + Start rematch by click -> new match",
+     "3 seats (1 human + 2 bots), full match (2 vaults, 3 alarms) via API with screenshots at 320",
+     "6 seats at 320: claim then 'Return my chip' by click after scrolling the dock (chip returned)"
+    ],
+    "savedRoomVerified": [
+     "Other players' pocket cards were [null, null] placeholders in every non-owner view until their reveal action",
+     "Pending save: aria-busy, 'Saving\u2026', all chips disabled",
+     "Disconnect: after 50s away the other human saw 'Game paused / Saving a seat for \u2026'; resumed on return",
+     "Stale-version race clears the selection (PAPERGANGNIMMT-15)",
+     "Rooms ae508eab, 01c4c7cd, 385faf28, 87e11220, 263777cf closed"
+    ],
+    "notCovered": [
+     "A successful-vault review screenshot at 6 seats (vaults occurred only in the 3-seat API run)",
+     "Five-heist maximum and a three-vault team win result screen",
+     "Screen-reader pass of the chip rack"
+    ],
+    "hardestCase": "6 seats on a 320px phone while two humans contest the same chip: the commit button is clipped in the dock, holder names are 10px/truncated, and the player who lost the chip is not told."
+   }
+  },
+  {
+   "game": "six-nimmt",
+   "fixOwner": "paper-gang-nimmt",
+   "visuallyInspected": 3,
+   "playedThrough": 2,
+   "savedRoomVerified": 4,
+   "review": {
+    "visuallyInspected": [
+     "Number faces for all five penalty classes and 3-digit numbers at hand (59x82, 75x100) and row (30x46, 38x55, 52x70) sizes",
+     "Fixture harness: all 8 legal fixtures (2 and 10 seats; selecting, review, take row, round over) at 6 widths with lint",
+     "Saved rooms (10 seats): selecting (6 widths), selected/reload/keyboard last card, locked, other seat before lock, after reveal (6 widths), capture review (320/390/1440), take-row decision and waiting seat, after take row, round over, result; phone-only pass at 320 touch and 390; activity and rules modals at 320; 2 seats: selecting, take row, round over"
+    ],
+    "playedThrough": [
+     "10 seats (2 humans + 8 bots), full match (2 rounds, ended at 69): lock by click, by keyboard (Tab to the 10th card + Enter) and by touch (4 Next taps + tap + Lock); take row by click (390) and by tap (320); Next selection/Next round via API",
+     "2 seats (1 human + 1 bot): one round with forced low cards and take row via API"
+    ],
+    "savedRoomVerified": [
+     "A's locked number never appeared in B's room JSON or DOM before the reveal; reveal then showed all ten",
+     "Lock persisted across reload; the unlocked local selection did not",
+     "Stale-version race returns 409 and clears the selection (PAPERGANGNIMMT-15)",
+     "Rooms f2289f8c, 562b0e2e, 5c566f30 closed"
+    ],
+    "notCovered": [
+     "Rematch in 6 nimmt! (shared lobby flow verified in the other two games)",
+     "Tie for the lowest total; a full 2-seat match",
+     "Next selection / Next round buttons were rendered but advanced via API"
+    ],
+    "hardestCase": "10 seats on a 320px phone after a reveal with a low-card row choice and two sixth-card captures in one resolution: rows are replaced without explanation, penalty markers vanish from revealed cards, take-row costs sit below the fold and only 1 of 10 seats is visible."
+   }
+  },
+  {
+   "game": "rummy",
+   "fixOwner": "rummy-shithead",
+   "visuallyInspected": 6,
+   "playedThrough": 7,
+   "savedRoomVerified": 6,
+   "review": {
+    "visuallyInspected": [
+     "Fixture harness /design/midgame: rummy-2-17-2, -2-17-3, -2-17-8, -6-31-2, -6-31-3, -6-31-32 at 320/390/768/1024/1280/1440 with layout lint (36 renders); declare/discard dock geometry measured at 320/390/768/1440",
+     "Saved 2-seat room (1 human + bot, 30-char name): opening draw phase at 320/390/768/1440; hand visibility per width; take-discard, open-pickup selection, waiting on the bot, next turn, Activity panel; result at 320/390/768/1440; rematch start",
+     "Saved 6-seat room (5 bots, 30-char host): opening at 6 widths with strip visibility per width; result at 320/390/1440",
+     "Saved 3-human room with 30-char names (A and B at 390, C at 1440): opening, invalid-declaration modal, saving, after-state on all three seats, first-turn drop, result on all three seats",
+     "Saved 2-human rooms: take discard plus refresh and the other seat's view of the empty discard; drop for 40 with both results; a valid human declaration (before, selected-dock geometry, result) with the opponent's result at 1440",
+     "Art: contact sheets of all 52 faces, the joker and the back at 82x116, 69x99, 54x77 and 45x65 (DPR2 and DPR1), plus in-situ DPR3 captures of the piles and hand at 390"
+    ],
+    "playedThrough": [
+     "Draw from stock and take discard through the pile buttons; open-pickup restriction (picked card shows no move)",
+     "Select, change and clear card selection; move cards into Group 1/2; sort by suit and rank; keyboard Tab+Enter to the last ungrouped card; touch arrows to reach and select the last of 14 cards at 320",
+     "Discard through the action dock; screen while the bot or other human responds; next turn",
+     "Invalid declaration via the confirmation modal, completed by a human seat (80-point penalty, play continued for the others)",
+     "Valid declaration completed by a human through the UI in a saved room (only after scrolling the clipped dock); finish_reason valid_declaration, 80/-80",
+     "Drop for 20 on a first turn and drop for 40 later, each completed with one tap and no confirmation; last-active-player result",
+     "Results for bot and human declarations and last-active-player wins; rematch from the results (new match, new wild rank)"
+    ],
+    "savedRoomVerified": [
+     "Refresh mid-turn after taking the discard: phase discard, 14 cards and 26 legal actions preserved, open pickup still excluded",
+     "Groups persist across the opponent's turn but are lost on refresh; sort resets to As dealt",
+     "Saving state with a delayed action POST: banner shows Saving\u2026, dock shows Saving your move\u2026",
+     "Hidden information at the opening from 3 seats: no cross-seat hand ids in any payload; DOM shows only the own 13 cards plus 2 pile cards; hands are revealed only at the finish (engine design)",
+     "Activity log events and card faces match the moves (Took the discard J\u2666, Discarded 7\u2665, Bot took 7\u2665 \u2026)",
+     "Rematch creates a fresh match; all Rummy rooms closed afterwards"
+    ],
+    "notCovered": [
+     "Stock exhaustion and discard reshuffle (the 6-seat match ended by a bot declaration with 11 cards left in stock)",
+     "A joker on the discard during a draw phase (code-reviewed only: the Take discard button is silently absent)",
+     "Disconnect, pause and reconnect inside a Rummy room (verified in a Shithead room on the same room shell)",
+     "Six human seats at once (tested 1 human + 5 bots, and 3 humans); printed-joker cut (\"Wild rank: A\") seen only at a rematch start",
+     "Screen readers and browser zoom"
+    ],
+    "hardestCase": "A winning 14-card hand at 390 px in a saved 2-human room. The summary says \"4 loss points\", the winning 4\u2665 is not marked, wild 2s are not marked, and after selecting it the Declare button is half-hidden under a full \"Discard 4\u2665\" in the 208 px dock. The human completed the declaration only after scrolling inside the dock; the opponent then could not see the winning melds. Also a 3-human false declaration seen from all three seats (\"Your turn \u00b7 Invalid declaration: 80 points.\" on the next player's screen; the declarer shown as \"Folded\")."
+   }
+  },
+  {
+   "game": "shithead",
+   "fixOwner": "rummy-shithead",
+   "visuallyInspected": 6,
+   "playedThrough": 7,
+   "savedRoomVerified": 5,
+   "review": {
+    "visuallyInspected": [
+     "Fixture harness: shithead-2-17-2, -2-17-3, -5-31-2, -5-31-6, -2-1-32-crowded (20-card hand) and -5-1-62-crowded (22-card hand) at 320/390/768/1024/1280/1440 with layout lint (36 renders)",
+     "Saved 5-seat room (4 bots, 30-char host): setup at 6 widths, playing at 6 widths, own turns before/selected/after at 390, face-up and face-down stages, result at 320/390/768/1440, rematch",
+     "Saved 2-human room: setup on both seats, illegal selection, 10 burn, 2 reset, four-of-a-kind burn, blind flips, result on both seats",
+     "Saved 5-human room (house rules on, 30-char names): naturally reached 31-card pile before and after pickup from the picker (320/390/768/1440) and an observer (1440), View pile panel, result from the loser (390) and the first escaper (1440)",
+     "Saved 2-human rooms: face-up pickup with a chosen card; failed blind flip seen from the opponent seat after the poll; saving state; disconnect pause; reconnect",
+     "In-situ DPR3 captures of the piles, own table, opponents and opponent inspection modal at 390; strip width measured at 1024/1280/1440"
+    ],
+    "playedThrough": [
+     "Setup: choose three face-up cards (a 4th tap replaces the oldest), confirm; reload during setup clears the partial selection",
+     "Play single and multiple equal-rank cards; select, deselect and clear",
+     "Illegal card selection (3 on 4): Play stays disabled with no reason",
+     "2 reset on 9, 10 burn of a 5-card pile with a play-again turn, and a four-of-a-kind burn (5\u2663 on three 5s), each through the UI",
+     "Take pile in the hand stage (31 cards, via UI); face-up stage play; face-up pickup with a selected card (via UI)",
+     "Blind flips through the UI: successes, and failures where 8\u2665 and 3\u2663 picked up the pile",
+     "Last-player loss result viewed by the loser and by winners; rematch from the results (fresh setup)"
+    ],
+    "savedRoomVerified": [
+     "Saving state with a delayed POST: the selection stays highlighted, Play is disabled, the banner shows Saving\u2026",
+     "Disconnect pauses the room after about 39 s for the remaining player (\"Saving a seat for \u2026\", seat shows Reconnecting\u2026); reconnect resumes with the reconnected seat's legal actions intact",
+     "Hidden information: setup payloads carry no cross-seat hand ids; over a whole 2-seat match (93 moves, 186 view pairs) no private card id reached the other seat except cards that had already been public; hidden slots are booleans only",
+     "Outcome text consistent on every seat; rematch starts at setup with an empty pile and 0 burned",
+     "All Shithead rooms closed afterwards"
+    ],
+    "notCovered": [
+     "\"Seven or lower\" comparison and transparent-3 look-through were active in the 5-human run but not separately inspected",
+     "Five humans each in a live browser at once (five humans were driven through their own authorized API views, with 1-2 browser pages open)",
+     "Picking up a 30+ pile while in the face-up stage",
+     "Screen readers and browser zoom"
+    ],
+    "hardestCase": "A naturally reached 31-card pile in a saved 5-human room (30-char names, both house rules): the picker took it through the UI and was left with a 36-card hand showing 2 cards at 320 and 5 at 1440; the observer's banner said \"Pile taken: 31 cards\" with the picker scrolled out of the strip. Also a failed blind flip seen from the opponent seat as \"Your turn \u00b7 8\u2665 cannot beat the pile. All 8 cards are taken.\""
+   }
+  },
+  {
+   "game": "skyjo",
+   "fixOwner": "skyjo-flip7-trio",
+   "visuallyInspected": 4,
+   "playedThrough": 4,
+   "savedRoomVerified": 5,
+   "review": {
+    "visuallyInspected": [
+     "16 legal fixtures (skyjo-2-17-2/5/6/9/60/62/63/193, skyjo-8-31-2/17/18/25/230/232/234/249) on /design/midgame at 320/390/768/1024/1280/1440 with the layout lint (96 renders; collisions involving rail arrows and clipped scroll content checked by eye and discarded as false positives)",
+     "CONSTRUCTED contact sheet (real room page, room JSON rewritten in my browser only): all 15 values -2..12, back, removed column, discard, drawn card, opponent mini grid, at 320 and 390 (DSF 3) and 1440 (DSF 2)",
+     "Real saved rooms: 2 humans (host 390, guest 1440), 2 humans (both 390), 8 seats at 320 plus whole-page shots of the 8-seat room at 320/390/768/1024/1280/1440 (opening, own decision, final turns, round end, finished)",
+     "Inspect modal of the 7th opponent at 320; grid focus ring and dock geometry on the harness"
+    ],
+    "playedThrough": [
+     "2 humans with 30-character names, saved room: opening reveals through the UI on both seats; Draw a card (pile button); replace by tapping a grid card; Take discard then replace through the UI; then about 300 legal moves with a steering policy: natural column clear (both seats), final turns (both seats), five round reviews where only the eligible player had and pressed 'Next round', match end 102 vs 110, results, rematch through 'I'm ready' x2 and 'Start rematch' (new match, round 1, 0 points)",
+     "8 seats (1 human + 7 bots, 320px, 30-character name): opening, own draw decision, keyboard navigation of the opponent rail to the 7th opponent (8 Enter presses), tap 'Inspect' on it, final turns closed by a bot, round end, play to finish (round 3, Bot Eli 81), results",
+     "2 humans (Ana/Ben, 390): stock draw, 'Discard & reveal' from the dock, reveal phase on both seats, reveal by UI, phone activity panel (Room options > Game activity)",
+     "Harness keyboard check: Tab across the 12 grid buttons and Enter committed swap slot 5 (recorded action verified)"
+    ],
+    "savedRoomVerified": [
+     "Reload while holding a private drawn card: drawn card and all 13 legal actions restored",
+     "Reload during the round review: ledger restored",
+     "Other seat during a private stock draw: projection drawn=null, card id absent from the JSON, activity says 'Drew a private card' with no card",
+     "Rematch produced a new match id, opening phase, scores reset, activity cleared; room left/closed afterwards",
+     "Privacy probe (3 seats): no deck/seed/shuffle keys; hidden grid slots are null"
+    ],
+    "notCovered": [
+     "Disconnect/pause not exercised in a Skyjo room (same room shell verified in Trio)",
+     "'Saving a move' state not separately captured in Skyjo (shared pending path verified in Trio)",
+     "A column cleared by the end-of-round reveal; a live tie that blocks the closer's doubling (only seen as a ledger line)",
+     "Round review with a human finisher at 8 seats (bots always closed it within about a second)",
+     "Touch-drag scrolling of the opponent rail (keyboard and tap used); real devices and screen readers; production"
+    ],
+    "hardestCase": "8 seats at 320 with a 30-character name during final turns: the own 12-card grid stays readable and every action completed (tap and keyboard), but only one opponent is visible at a time and the closer's grid is off-screen, the banner still says 'Turn over two cards to begin.', the final-turn order is cut off at 768/1440, and the round ledger was never visible because a bot started round 2 within about 1.2 s."
+   }
+  },
+  {
+   "game": "flip-7",
+   "fixOwner": "skyjo-flip7-trio",
+   "visuallyInspected": 3,
+   "playedThrough": 4,
+   "savedRoomVerified": 3,
+   "review": {
+    "visuallyInspected": [
+     "8 legal fixtures (flip-7-3-17-2/9/43/20-crowded, flip-7-10-31-2/4/27/57-crowded) at 320/390/768/1024/1280/1440 with lint (48 renders)",
+     "CONSTRUCTED contact sheet of all 22 faces (0-12, +2/+4/+6/+8/+10, x2, Freeze, Flip Three, Second Chance) in own and other rows at 320/390 (DSF 3) and 1440 (DSF 2), with measured element and text sizes",
+     "Real saved rooms: 2 humans + bot (A 390, B 1440), 2 humans + bot (both 390), 10 seats at 320/390/768/1440 during target decisions"
+    ],
+    "playedThrough": [
+     "2 humans + bot with 30-character names, saved room, 9 rounds to 204 (B wins): Hit and Stay through the UI; B gave Freeze to A through the real button (A and B before, during, after); A gave Flip Three to B through the real button (both sides); human busts; human-dealt Next round through the UI; results; rematch through the lobby UI, then closed",
+     "10 seats (1 human + 9 bots, 390): Flip Three with 5 targets and Freeze with 8 targets; reached the last target by Tab (the dock scrolled itself) and committed with Enter (both moves accepted); human busted mid-round",
+     "2 humans + bot (both 390): mid-round human bust seen by both seats; human-dealt round review seen by the dealer and the waiting seat",
+     "4 seats: disclosure (details) persistence timeline while bots took turns"
+    ],
+    "savedRoomVerified": [
+     "Reloads during target decisions, after a bust and in a round review restored the same state",
+     "Rematch: new match id, round 1, scores 0, earlier activity not mixed in",
+     "Privacy probe: no deck/seed/shuffle state in the projection; only public table cards"
+    ],
+    "notCovered": [
+     "Passing an extra Second Chance (never reached naturally; no fixture)",
+     "Flip Three that draws another Freeze/Flip Three (deferred effects) or busts the target, watched live",
+     "Seven-number bonus ending a round, watched live; tied leaders at 200 playing on",
+     "Pause/reconnect in Flip 7 (verified in Trio); touch scrolling inside the target dock (keyboard used)"
+    ],
+    "hardestCase": "10 seats at 320/390, human must give Freeze with 8 eligible targets: 2 buttons are visible in the 208px dock and 6 are hidden, none shows the target's points at stake, the self option has no 'you' and its label is clipped at 320. The player did complete the action on the last target by keyboard, but the frozen target got no explanation and the next banner attributed the message to another player."
+   }
+  },
+  {
+   "game": "trio",
+   "fixOwner": "skyjo-flip7-trio",
+   "visuallyInspected": 3,
+   "playedThrough": 4,
+   "savedRoomVerified": 4,
+   "review": {
+    "visuallyInspected": [
+     "6 legal fixtures (trio-3-17-2/3/51-crowded, trio-6-31-2/3/24-crowded) at 320/390/768/1024/1280/1440 with lint (36 renders)",
+     "CONSTRUCTED sheet: hand 1-12, revealed/empty/hidden table positions, three reveals with a 30-character owner, collected trios for every seat at 320/390/1440",
+     "Real saved rooms: 2 humans + bot (A 390, B 1440) and 6 seats at 320/390/768/1024/1440"
+    ],
+    "playedThrough": [
+     "2 humans + bot with 30-character names, saved room, full match to A's third trio: A pressed 'Lowest' on B through the UI (both sides), table reveals, failed review and Continue through the UI (both sides), collected trio and Continue (both sides), finish, results, rematch through the lobby UI",
+     "Same room after rematch: saving state with the action POST delayed 3.5 s; stale move from a 'second device' giving the 409 error and its persistence; B offline 50 s producing the paused banner on A; B reconnected with the same hand",
+     "6 seats (1 human + 5 bots, 320): Tab to the last player's 'Highest' and Enter committed; played to the end",
+     "3-seat pace probe measuring how long bot reveals stay visible"
+    ],
+    "savedRoomVerified": [
+     "Refresh of the waiting seat during a failed review restored the reveals ('1' from Bartholomew, '11' Table 2)",
+     "Disconnect/reconnect: 'Saving a seat for\u2026' banner, controls blocked, resumed with the same hand",
+     "Privacy: A's projection never contains B's hand card ids; hidden table positions are '?' with slot ids; other players expose only counts and collected trios",
+     "Rematch created a new match with fresh hands"
+    ],
+    "notCovered": [
+     "Win by the trio of 7s",
+     "Revealing from your own hand through the UI (done through the API while steering)",
+     "Single-card hands and a player whose hand empties",
+     "4- and 5-seat layouts (3 and 6 covered)"
+    ],
+    "hardestCase": "6 seats at 320 asking the last player's highest card: reachable by keyboard and touch and the move commits, but the revealed card appears above the viewport; when bots play, their reveals are visible for under a second, so a human cannot make an informed memory decision."
+   }
+  },
+  {
+   "game": "tarot",
+   "fixOwner": "tarot",
+   "visuallyInspected": 10,
+   "playedThrough": 9,
+   "savedRoomVerified": 6,
+   "review": {
+    "visuallyInspected": [
+     "All 78 card faces at a large size (delivered WebP, full cell and in-card crop contact sheets), plus Storybook games-tarot-deck--all-78 at the real component size (180x270, 11px names)",
+     "Symbol counts on all 40 Ace-to-Ten cards (PNG masters at 440-1200px), and identity of all 22 major arcana and 16 court cards (heads kept on top-aligned Wands/Cups courts)",
+     "Card back at rail size (96px) and spread sizes (92px phone, 110px choosing, 190px desktop)",
+     "Spread at 320/390/768/1024/1280/1440 in a real room. Chosen cards (knights, queens, high counts, long names, v2 'meet' cards) at real spread size via a constructed community rewrite at 320/390. Desktop spread at DPR 2: no visible blur at 174px art",
+     "Explore-the-deck modal at 320 and 1440 (All 78, then Pentacles to its last card)",
+     "48 character portraits: Storybook cast at 1440 and 390 (all decode), in-reading frames at 88x110 and 112x140, pixel scan for baked-in bands",
+     "Real room shell: lobby at 6 widths, choosing phase at 6 widths, spread-ready/question form at 6 widths, astrology toggle at 320/390/1440, rules dialog, activity panel, guest 'You're next in' view",
+     "Storybook Tarot reading stories (4 stories x 4 widths) and games-tables--tarot",
+     "/design/midgame tarot fixtures tarot-1-17-2/-3 and tarot-1-31-2/-3 at 320 and 1440",
+     "Constructed states in the real room shell: generating, unavailable, finished reading at 6 widths, finished reading with saved astrology at 320/1440, image credits open at 320, astrology chart preview at 320/390/768/1440"
+    ],
+    "playedThrough": [
+     "Real saved solo room, 30-character player name and 41-character room name: lobby > I'm ready > Open my deck through the UI",
+     "Pick 1 by touch at 320x640: \u203a pressed 59 times to reach the 78th card, tapped it, pick committed (pentacles-12 to 'Where you are')",
+     "Pick 2 by keyboard at 390: Tab x6 into the deck, Tab x4, Enter, with the save delayed 2.5s so the 'Saving\u2026' state could be inspected; committed",
+     "Pick 3 by tap at 390; question form appeared and 'Read my cards' was enabled (status ready, free tier)",
+     "Question entry (400 characters), refresh, astrology on/off, Explore-the-deck filter and Escape, activity log",
+     "Astrology flow up to a chart preview (constructed place/chart responses): Both system, date, time, place search, select, preview, then changed time cleared the preview",
+     "Edge room: rapid double tap (one move sent), stale second tab (409, no duplicate), offline tap then reconnect (committed once)",
+     "Second human (guest) joined the solo room by code: hidden-information check",
+     "NOT completed: requesting a reading, the finished reading and rematch. The task prohibits provider calls, so these were rendered only as constructed states"
+    ],
+    "savedRoomVerified": [
+     "Each pick persisted: room payload community grew 1 > 2 > 3 cards and survived navigation and reload with the same card ids",
+     "Spread and phase unchanged after refresh in the reading phase. The unsent question was lost (TAROT-10)",
+     "Deck order never leaves the server: payloads hold no 'deck' key, actions carry only choice indices, and only picked card ids appear. The activity log says 'Chose a Tarot card \u00b7 1 card' without naming it",
+     "Guest member: game view null, GET /reading 404, no card ids in the payload",
+     "Offline pick replayed once after reconnect. Stale-tab pick rejected with 409 and no duplicate",
+     "All 10 rooms I created are closed. The first was closed via a cleanup guest (claim host > end match > remove owner > leave, status 'closed') because its host context had been closed first"
+    ],
+    "notCovered": [
+     "Real AI reading generation, provider failure and retry, and saved-reading readback: provider calls are prohibited. Generating, unavailable and complete states were checked only with in-browser GET rewrites",
+     "Real 'Start rematch' after a genuinely finished reading. Second-match state reset and question-draft reset on rematch",
+     "Real geocoder search and server chart calculation, DST 'needs_time_choice' and invalid-time branches, saved-chart reuse after a failed reading",
+     "Motion and reveal animations: all runs used prefers-reduced-motion: reduce",
+     "Real screen-reader output: only DOM roles, labels and aria-live were inspected",
+     "Physical phone hardware and swipe scrolling of the rail: rail reach was tested with the \u203a buttons and keyboard",
+     "The 7 Storybook astrology stories, which crash (TAROT-18)",
+     "Paused/disconnected-other-player states: not applicable to a solo game"
+    ],
+    "hardestCase": "Two cases. First, a 320x640 phone in a real saved room: reach the 78th face-down card (59 presses of \u203a), tap it, and try to see what was drawn. The pick saves correctly, but the revealed card lands below the fold with an 8px name and focus is lost (TAROT-02, TAROT-03). Second, the completed reading on the same phone (constructed): about 4,000px of reading with four portraits; opening Image credits makes the page scroll sideways (TAROT-05); and the only way to draw again is a disabled 'Start rematch' 5.8 screens down (TAROT-04)."
+   }
+  },
+  {
+   "game": "uno",
+   "fixOwner": "uno",
+   "visuallyInspected": 5,
+   "playedThrough": 7,
+   "savedRoomVerified": 6,
+   "review": {
+    "visuallyInspected": [
+     "All 54 classic faces + shared 'g.' back in contact sheets at in-game sizes (hand 82x116, phone hand 69x99, discard 54x78, compact 54x77/45x65), rendered twice: Storybook default (Arial) and with the app's DM Sans injected",
+     "Colour-vision simulations (deuteranopia, protanopia, tritanopia, grayscale) of every face; luminance/contrast computed for the four card tokens",
+     "Real saved rooms at 320/390/768/1024/1280/1440: 2-seat bot room (30-char name), two-human 2-seat rooms (both +4 challenge outcomes, desktop + phone seats), 10-seat room (4 humans with 30-char names + 6 bots), 10-seat room with 7/0 house rule, 2-seat room with stacking + 7/0",
+     "Natural 70-card hand (73 after draws) at 320/390/768/1440; harness fixtures uno-10-31-18, uno-10-31-22 (challenge/accept), uno-2-11-87 (long hand) at 320/390/1440",
+     "Results screen at 320/390/1440, lobby rematch controls, Activity panel (phone modal via menu, desktop side panel), paused banner, saving state, offline phone view"
+    ],
+    "playedThrough": [
+     "Opening (incl. opening Wild colour choice in the 10-seat room, chosen via API), midgame and late game in a 2-seat bot room; shed to one card twice and timed the UNO!/catch race (UI)",
+     "Result and rematch through the real 'I'm ready' + 'Start rematch' controls (2-seat bot room); second rematch later used for flow tests",
+     "Wild +4 played through the UI by seat A (1440) and challenged through the UI by seat B (390): illegal play (A drew 4) and legal play (B drew 6), inspected from both seats before selection, after selection, while waiting and after resolution",
+     "Draw a card via UI three times with a 70+ card hand (unplayable draw auto-passes; playable draw -> 'Play your drawn card or pass' -> Pass via UI)",
+     "House rules room: catch missed UNO from the catcher's phone (UI), draw-two stacking via UI, classic 7 swap via UI and the target's view afterwards",
+     "Selection change between cards, re-tap to deselect, Clear selection, plain Wild with colour choice via UI",
+     "10-seat sequence (Skip, Reverse, +2, Wild, Wild +4 accept by bot, direction change) captured from the host phone on every host turn; 10-seat 7-swap target list rendered (selection only; target not committed)"
+    ],
+    "savedRoomVerified": [
+     "page.reload() mid-selection: same match_version and identical hand, selection cleared (expected), instruction reset",
+     "Saving state with the move request held 2.5 s: banner 'Saving\u2026', dock 'Saving your move\u2026', all hand cards and action buttons disabled; move committed after release",
+     "Three humans stop heartbeating in the 10-seat room: room pauses, banner names them, their seats read 'Reconnecting\u2026', dock 'Game paused'",
+     "Hidden information: after both challenges, A's 27-31 card ids were absent from B's DOM and from B's authorized room JSON (only the public discard matched); activity rows only carry public cards",
+     "Offline 9 s on a phone (context.setOffline) and back online: table state unchanged after reconnect",
+     "Rematch started in the same saved room through the lobby UI"
+    ],
+    "notCovered": [
+     "Classic 0 'pass hands' house rule played through the UI (7 swap covered); stacking chains longer than one stack in classic",
+     "Opening +2/Skip/Reverse effects in a real room (only an opening Wild was dealt)",
+     "Acting while offline / outages longer than 9 s; true realtime push (local env had no realtime, pages poll every 4 s)",
+     "Committing a 10-seat 7-swap target (list rendered and measured, not clicked); screen-reader output; physical touch devices (Playwright mouse clicks at phone viewports only)",
+     "Native-speed human reaction for UNO! measured indirectly (window = 0.83 s between button appearance and bot catch); no human user study"
+    ],
+    "hardestCase": "10 seats with four 30-character human names and the 7/0 rule: choosing a 7-swap target on a 390/320 phone. The dock shows 4-6 of 10 buttons (6 hidden inside its scroll, the long-named humans last), none show hand sizes, and the strip shows 1.5 seats, so the player cannot see whose hand they are taking. Also: a natural 70-card hand at 320px (2 cards visible, 34 arrow presses to the last card) and the UNO! call, which a human cannot complete before a bot catches them."
+   }
+  },
+  {
+   "game": "uno-no-mercy",
+   "fixOwner": "uno",
+   "visuallyInspected": 4,
+   "playedThrough": 4,
+   "savedRoomVerified": 3,
+   "review": {
+    "visuallyInspected": [
+     "All 68 No Mercy faces at hand/phone-hand/discard/compact sizes (Storybook Arial and app DM Sans), colour-vision simulations",
+     "Real 6-seat saved room (3 humans with 30-char names + 3 bots) from the host phone (390x844) at every special event, plus a desktop host (1440, DPR 2) run with discard element captures",
+     "Harness fixtures uno-no-mercy-6-31-16 (roulette choose), uno-no-mercy-2-11-17 (24-card hand), uno-no-mercy-6-31-2 at 320/390/1440",
+     "Results/lobby after a full match at 390; eliminated player's own view"
+    ],
+    "playedThrough": [
+     "Full match to the result: 210 versions, five eliminations (host eliminated at 43 cards after a 22-card stack), winner by last-player-standing with 1,250 points",
+     "Three rematches in the same saved room (started via the ready/start API)",
+     "Through the UI from the host seat: 0 rotation (phone), 7 swap onto another human with that human's view captured (phone), stacking Reverse +4 onto a +4 (phone), Colour Roulette (desktop; bot victim chose), Discard All with two red cards (desktop)",
+     "Victim side of Colour Roulette (choose screen rendered; choice committed via API), penalty decisions 'Draw 6' and 'Draw 22' (committed via API), bystander views of Skip Everyone, Discard All, +6, +10, Reverse +4, 7 swaps between bots, UNO catches"
+    ],
+    "savedRoomVerified": [
+     "Three rematches reused the same saved room; hands, seat order and eliminations reset correctly",
+     "Activity rows for 7 swaps and 0 rotations carry only the played card and the target (no hand contents)",
+     "A heartbeat lapse paused the table and the API refused the move with 'The table is paused while a player reconnects' (409) until heartbeats resumed"
+    ],
+    "notCovered": [
+     "Skip Everyone played by the human through the UI (observed only as a bystander and in the art sheets)",
+     "Two-player Reverse +4 self-penalty from the actor's own screen (seen only in the log: Bot Bo eliminated himself)",
+     "Reload/refresh specifically in No Mercy (verified in classic; same shell and CardTable)",
+     "No Mercy specials at 320px and 768px in a real room (390 and 1440 only); a natural 24-card hand for an active human at 320 (harness only)",
+     "Mercy recycling of eliminated hands into the deck as seen by players"
+    ],
+    "hardestCase": "An active player with 21 cards facing a 22-card stack on a 390 phone with six seats and long names: the only way to survive is to stack the +10 that is in hand, but the screen says only 'Draw 22 cards or stack an allowed draw card'. After drawing, the eliminated player is still shown a 43-card hand and 'Waiting for the next move\u2026'."
+   }
+  },
+  {
+   "game": "word-agents",
+   "fixOwner": "words-party",
+   "visuallyInspected": 6,
+   "playedThrough": 7,
+   "savedRoomVerified": 6,
+   "review": {
+    "visuallyInspected": [
+     "Fixture harness (legal projections) word-agents-4-17-2, 4-17-6, 10-31-2, 10-31-6 at 320/390/768/1440 (baseline) plus dock geometry at 320/390/768/1024/1280/1440",
+     "Saved 4-human room, spymasters at 390 and 320 and operatives at 768 and 1440: opening, after clue, select / change / clear / reselect, after own agent, after bystander, after enemy agent, assassin selected, results, lobby rematch",
+     "Saved 10-human room with 30-character names (spymasters 390/320, operatives 320/390/320, desktop 1440): opening, after clue, concurrent confirm, after enemy, activity panel on phone and desktop, all-agents-found results",
+     "Saved 4-human room: spymaster first view at 390x844 (fold), saving state at 320 (delayed POST), pause banner after 45s disconnect, reconnect, desktop activity card expanded, End guesses at 320",
+     "10-seat bot room at 320/390/768/1024/1280/1440",
+     "WordTile contact sheets (constructed DOM using the app CSS) at desktop and phone sizes, with greyscale, deuteranopia and protanopia simulations and long words; library tile at 1440/390/320; lobby thumbnail at 390"
+    ],
+    "playedThrough": [
+     "Spymaster clue in the UI: \u201ctwo words\u201d and \u201cabc1\u201d blocked silently; board word rejected by the server (input cleared); valid clue with count chosen in the select",
+     "Operative in the UI: select, change target, clear by re-tapping, keyboard focus + Enter, confirm own agent \u2192 continue; confirm bystander \u2192 turn passes; End guesses \u2192 turn passes",
+     "Opponent operative confirms an enemy agent in the UI \u2192 turn passes",
+     "Operative confirms the assassin in the UI \u2192 match ends; 10-player match played to the end with legal API moves (all agents found)",
+     "Concurrency: two operatives confirm the same word; a teammate guesses while another has a selection (it survives)",
+     "Last tile reached at 320 by keyboard (Tab \u00d724 \u2192 TOAST \u2192 Enter) and by touch (Next word columns + tap)",
+     "Rematch: all players press I\u2019m ready, host presses Start rematch \u2192 new match, roles rotated"
+    ],
+    "savedRoomVerified": [
+     "Key privacy: operatives\u2019 API views show 0 unrevealed identities in 4p and 10p; every rooms/* JSON response an operative page received during a full 4p match was clean; operative DOM has no key colours or \u201cAssassin\u201d",
+     "Spymasters see all 25 identities; the finished state reveals the key to everyone",
+     "Refresh mid-guess phase: same board and guesses-left; uncommitted selection not restored",
+     "Pause: a disconnected spymaster (>45s) pauses the table with a banner and disabled tiles; play resumes after reconnect",
+     "Public activity carries only public faces (clue text, revealed word); the identity is not displayed (WORDSPARTY-05)",
+     "Rematch starts a fresh match with rotated seats and roles"
+    ],
+    "notCovered": [
+     "Supabase realtime push: the local environment polls every 4s (\u201cConnected\u201d, not \u201cLive\u201d), so cross-seat latency observations are local only",
+     "Quality and timing of bot clues and guesses; bot-only teams were not reviewed",
+     "Non-participant member view (code read only: game=None for non-participants)",
+     "Every possible board and long-word combination on live boards (long words checked on a constructed sheet and in seen boards with STRAWBERRY/LIGHTHOUSE)",
+     "Screen-reader announcements on real assistive technology; production build"
+    ],
+    "hardestCase": "10 humans with 30-character names, Red operative at 320x640 while Blue guesses. The banner says \u201cGuinevere Rosalind Whitchurch\u2019s turn\u201d and her seat alone is lit. The board shows 2\u20133 columns, and the viewer\u2019s own seat and team are scrolled out of the strip. After Blue\u2019s wrong guess the header reads \u201cRED TEAM \u00b7 Quixotic 3\u201d (Blue\u2019s clue) while Red waits for its own spymaster. The word that ended Blue\u2019s turn can be in a hidden column, and the activity log, two taps away, does not say what it was. Saved-state privacy held throughout."
+   }
+  },
+  {
+   "game": "spill-or-chill",
+   "fixOwner": "words-party",
+   "visuallyInspected": 4,
+   "playedThrough": 6,
+   "savedRoomVerified": 5,
+   "review": {
+    "visuallyInspected": [
+     "Fixtures spill-or-chill-3-17-2, 3-17-3, 10-31-2, 10-31-3 at 320/390/768/1440 (baseline) plus dock geometry at 6 widths",
+     "Saved 10-human room (sip prompts on) at 390/320/1440/768: opening, waiting, reveal, final reveal, results",
+     "Saved 3-human room at 320/390/1440: spotlight first view, selected, saving (delayed POST), reveal, pass reveal, results, rematch",
+     "10-seat bot room at 6 widths; library tile at 1440/390/320; lobby thumbnail; prompt-card surface at 1440/390"
+    ],
+    "playedThrough": [
+     "Spotlight Keep private (Chill) in the UI with a delayed save",
+     "Spotlight Pass \u2192 \u201cConfirm pass\u201d in the UI",
+     "Share via legal API move",
+     "Spotlight advances with Next prompt in the UI",
+     "Remaining rounds of the 10-player and 3-player matches via legal API moves to the natural finish",
+     "Rematch via lobby UI"
+    ],
+    "savedRoomVerified": [
+     "The response is not visible to others until the spotlight submits; activity shows only \u201cLocked a response\u201d",
+     "The reveal survives refresh",
+     "Results: 8-way tie at 2 points in 10p; \u201c1 points\u201d wording in 3p",
+     "Rematch starts at round 1 with the spotlight rotated and scores reset",
+     "Optional sip line appears only with the setting on and never affects score"
+    ],
+    "notCovered": [
+     "Review of the wording of all 48 original prompts",
+     "Pause/reconnect in a party room (shared room shell verified in Word Agents)",
+     "Realtime push path (local polling)",
+     "Assistive-technology run"
+    ],
+    "hardestCase": "10 humans with 30-character names, spotlight at 320. The three buttons do not show their points (Keep private = +1 = Share; Pass = 0). The match ends in an 8-way tie whose results heading fills a phone screen and pushes the page to 357px with an unbroken name."
+   }
+  },
+  {
+   "game": "most-likely",
+   "fixOwner": "words-party",
+   "visuallyInspected": 4,
+   "playedThrough": 6,
+   "savedRoomVerified": 5,
+   "review": {
+    "visuallyInspected": [
+     "Fixtures most-likely-3-17-2, 3-17-4, 10-31-2, 10-31-11 at 320/390/768/1440 (baseline) plus dock geometry at 6 widths",
+     "Saved 10-human room at 390/320/1440/768: opening, first/last selection, keyboard trail, locked, waiting on two, reveal, final reveal, results",
+     "Saved 3-human room at 320/390/1440: final row containing only Pass, saving state, reveal, results, rematch",
+     "10-seat room with 2 humans and 8 bots: last voter\u2019s scroll position at reveal; 10-seat bot room at 6 widths; library tile; lobby thumbnail; prompt card"
+    ],
+    "playedThrough": [
+     "Vote for a friend; change target; Pass \u2192 \u201cConfirm pass\u201d",
+     "Keyboard Tab through all 9 candidates and Pass to Lock in; Enter on the last candidate",
+     "Lock in via the UI (normal and delayed save)",
+     "Spotlight Next prompt in the UI",
+     "Remaining rounds via legal API moves to the natural finish",
+     "Rematch via lobby UI"
+    ],
+    "savedRoomVerified": [
+     "Votes are secret until everyone submits: other players\u2019 API detail has own_choice null and result null, the DOM shows nothing, and activity shows \u201cLocked a choice\u201d with no target",
+     "An uncommitted draft is not restored after refresh (by design)",
+     "The reveal survives refresh",
+     "Single winner (20 points) and ties are both handled by results",
+     "Rematch rotates the spotlight"
+    ],
+    "notCovered": [
+     "Prompt wording review",
+     "Pause/reconnect in a party room",
+     "Every tie combination at the reveal",
+     "Realtime push path",
+     "Assistive-technology run"
+    ],
+    "hardestCase": "The last voter in a 10-player game at 390, who is also the spotlight. Long names break mid-word in a 2-column grid. Lock in sits inside a nested scroll box. The vote completes the round and the reveal opens scrolled past \u201cVotes revealed.\u201d. Next prompt is 400\u2013560px further down the inner box. Each row mixes votes cast with votes received, and no line says who was voted most likely."
+   }
+  },
+  {
+   "game": "hot-seat",
+   "fixOwner": "words-party",
+   "visuallyInspected": 4,
+   "playedThrough": 6,
+   "savedRoomVerified": 4,
+   "review": {
+    "visuallyInspected": [
+     "Fixtures hot-seat-3-17-2, 3-17-4, 3-17-6, 10-31-2, 10-31-11, 10-31-13 at 320/390/768/1440 (baseline) plus dock geometry at 6 widths",
+     "Saved 10-human room at 390/320/1440/768: opening for spotlight and predictor, selection, keyboard trail, locked, waiting, reveal, final reveal, results (10-way tie)",
+     "Saved 3-human rooms: spotlight first view at 320, saving, reveal, spotlight-pass reveal at 320, results, rematch",
+     "10-seat bot room at 6 widths; library tile; lobby thumbnail; prompt card with A/B"
+    ],
+    "playedThrough": [
+     "Spotlight chooses A or B and Pass in the UI; predictors choose A/B/Pass in the UI",
+     "Change target; keyboard reach to Lock in",
+     "Lock in with a delayed save",
+     "Spotlight Next prompt in the UI",
+     "Remaining rounds via legal API moves to the natural finish",
+     "Rematch via lobby UI"
+    ],
+    "savedRoomVerified": [
+     "The spotlight\u2019s secret answer (including Pass) stays hidden from others until every player submits: API result null, own_choice null, DOM shows nothing, activity shows \u201cLocked a choice\u201d with no detail",
+     "\u201cThe hot seat passed. No points this round.\u201d after a spotlight pass",
+     "The reveal survives refresh",
+     "Rematch rotates the spotlight and resets scores"
+    ],
+    "notCovered": [
+     "Prompt wording review",
+     "Pause/reconnect in a party room",
+     "Realtime push path",
+     "Assistive-technology run"
+    ],
+    "hardestCase": "10 humans, spotlight at 390 who answers last. Until they choose, the banner already says \u201cDecision locked\u201d. Predictors are told to watch \u201cthe highlighted player\u201d while all seats are highlighted. In the 10-row reveal the spotlight\u2019s Next prompt sits 541px down inside the inner box, and the spotlight\u2019s own row shows \u201c\u2014\u201d like a wrong guess."
+   }
+  }
+ ],
+ "fixes": {
+  "azul-gems": {
+   "fixed": [
+    {
+     "id": "AZULGEMS-01",
+     "summary": "Selecting a card opens a bottom-sticky DecisionDock tray naming the card with Buy / 'Reserve \u00b7 +1 gold' (or the reason neither is possible) in a sticky data-decision-actions row; keyboard focus moves to it, Escape/Clear returns focus to the card.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "AZULGEMS-02",
+     "summary": "Azul dock is size=fit and shows the drafted/staged tiles at every width; waiting seats see '<Name> is placing N colour tiles' with the tiles.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "AZULGEMS-03",
+     "summary": "Drafting is staged client-side: tap a colour to preview every line/floor with fit, completion and floor cost (marker cost included); choosing a destination sends the draft then the previewed placement only in the very next saved state; tap again or X cancels; staged choice survives refresh (useTable",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "AZULGEMS-04",
+     "summary": "Destinations live in the pinned dock right under the offer, so the next control is in view after choosing a colour; keyboard focus moves to the first legal destination.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "AZULGEMS-05",
+     "summary": "Engine messages are now actor instructions (Azul draft/place/round/finish; Gem turn/final-round/return/patron/settle); the shared banner shows waiting text and the attributed Last move. Gem LABELS 'Reserved a face-down card'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "AZULGEMS-06",
+     "summary": "Heading and dock are phase/turn aware: 'Your turn: take tiles', '<Name> is taking/placing tiles', 'Round N scored', 'Final walls'; round review lists +wall/\u2212floor/total for everyone and only the starter gets 'Start round N'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "AZULGEMS-07",
+     "summary": "Opponent board summaries show a mini board (pattern lines + 5x5 wall dots), score, wall count and floor loss without opening.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "AZULGEMS-08",
+     "summary": "Tier tabs no longer clear the selection; the tab holding it is marked and the tray stays.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "AZULGEMS-09",
+     "summary": "Gem picker follows legal take/take_pair actions: fourth colour disabled, pair only where supply allows, live reason/progress hint and a 'you'll hold N, then return M' warning; picks and card selection clear each other.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "AZULGEMS-10",
+     "summary": "Patrons always shown with the viewer's progress per requirement (n/3) and a 'Ready to visit' badge; the patron phase tray lists Welcome buttons; patrons named by their colours.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "AZULGEMS-11",
+     "summary": "Each gem colour has its own cut (round pearl, diamond sapphire, trillion ruby, step-cut emerald, hexagonal onyx) in ResourceToken/GemShape.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "AZULGEMS-12",
+     "summary": "Patron cards show '+3' and a Patron mark, never a discount token.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "AZULGEMS-13",
+     "summary": "Market opens on the first non-empty tier (or the selected card's tier); tabs show card count and affordable count.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "AZULGEMS-14",
+     "summary": "Return flow is a compact chip grid in the sticky tray ('Return 2 gems to hold ten'); all six chips visible at 320 with 3 reserved cards and 12 gems; survives refresh; waiting seats see who returns how many.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "AZULGEMS-15",
+     "summary": "Waiting seats never get buy/reserve instructions; the tray appears only for the actor, waiting notes say who is returning/choosing.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "AZULGEMS-16",
+     "summary": "Final-round status note and player strip tell each seat 'This is your last turn; then X and Y move once more', 'You get one more turn', or 'Your turns are done'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "AZULGEMS-17",
+     "summary": "Azul final table lists wall/floor/bonus by type per player; Gem shows ranked 'Final collections' (prestige, developments, patrons) with the tie-break; Gem score label is Prestige. Results-first ordering is the shared Room.tsx change.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "AZULGEMS-18",
+     "summary": "Phone factories are a one-row-per-factory list instead of a 2-wide carousel.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "AZULGEMS-19",
+     "summary": "Consequences, floor penalties and floor total are 12-13px with darker colours; floor total shown next to the floor.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "AZULGEMS-20",
+     "summary": "Discount labels are 12px with a card glyph; pearl gets an outline.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "AZULGEMS-21",
+     "summary": "Reserved cards use the compact card size so three fit at 320 above the market.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "AZULGEMS-24",
+     "summary": "Opponent panels have labelled Holding (n/10), Discounts and Reserved (hidden) rows; bought cards sorted by colour.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "AZULGEMS-26",
+     "summary": "Reserve labels say '+1 gold'/'no gold left', blind reserve is 'face-down', shortfall says how much gold covers, plurals fixed, score label Prestige.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "AZULGEMS-V1",
+     "summary": "Every market/reserved card shows an 'Affordable' or 'Need N more' badge from the server quote; tier tabs count affordable cards.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "AZULGEMS-V2",
+     "summary": "Crowded centre at 320 wraps without clipping (marker + 5 colours fully inside the centre box).",
+     "verification": "rendered-real-room"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "AZULGEMS-22",
+     "reason": "Needs the gem-districts-v1.png atlas re-exported with transparent gutters (art asset work, also used by lobby cover art); no code-only fix."
+    },
+    {
+     "id": "AZULGEMS-23",
+     "reason": "Compact card variant reduces the problem but a fixed art box / two reserved cost rows was not completed or verified."
+    },
+    {
+     "id": "AZULGEMS-25",
+     "reason": "Partly fixed (empty floor 'no penalty yet', plurals, 'scores never drop below 0', marker explained inline, starter note hidden when finished); renaming the 'black' colour display was not done."
+    }
+   ],
+   "roomsClosed": true
+  },
+  "boards": {
+   "fixed": [
+    {
+     "id": "BOARDS-02",
+     "summary": "Terminal engine messages are seat-neutral and name a colour (boop: 'Coral has all eight adult cats on the bed.'; Checkers: 'Ivory has no legal move left, so Coral wins.'). Tables compose the outcome from winners/selfId ('You have no legal move left.' / '<Name> wins with eight adult cats on the bed.'",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "BOARDS-03",
+     "summary": "In-play engine messages are the acting seat's instruction (no anonymous restatements); in-table help is viewer-aware ('Waiting for X (Black).'); Reversi passer sees 'You had no legal placement, so your turn was skipped.' (detail.passed); Mancala victim sees '<Name> captured 4 seeds, emptying your pi",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "BOARDS-V01",
+     "summary": "boop waiting seat sees 'Waiting for <name>' / 'Waiting for <name> to choose a graduation.'; disabled pool buttons no longer show a selected state.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "BOARDS-04",
+     "summary": "Every board shows 'You play <colour>' with a disc/kitten swatch; strip captions read 'Black \u00b7 34 discs', 'Coral \u00b7 1 capture', 'Gold discs', 'Coral \u00b7 5 of 8 graduated'. Rematch swaps seats (server-owned) but each seat now sees its new colour.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "BOARDS-05",
+     "summary": "boop graduation: status and choices live in a fixed-footprint dock below the bed (beside it at >=1000px, capped to end above the fold), Confirm/Clear in a sticky data-decision-actions row; selection survives refresh (useTableDraft scoped to room/match/version). Confirm visible at 1280x720 and 320x64",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "BOARDS-V02",
+     "summary": "Selected graduation line is a filled primary button with a focus ring (aria-pressed).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "BOARDS-06",
+     "summary": "boop bed capped (min(500px, viewport height - 300px)) and laid out beside its controls at >=1000px: whole bed above the fold at 1280x720 (bed 282-702).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "BOARDS-01",
+     "summary": "Board rails use navigation below (no side fades; shell already removed the ::before fades) and dead expansion.css ::before/::after overrides removed; boards now fit at >=360px so no rail chrome appears there.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "BOARDS-07",
+     "summary": "Boards fit with 44px targets from 360px (Four and boop also at 320) by borrowing the page gutter (never closer than 3px to the edge, no page overflow). At 320 Reversi/Checkers/Mancala keep the rail fallback (see deferred).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "BOARDS-08",
+     "summary": "Board width capped by viewport height (and 36px squares on short fine-pointer screens): whole board above the fold at 1280x720 for Four (bottom 677), Reversi/Checkers (702), Mancala (619), boop (702).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "BOARDS-09",
+     "summary": "boop marks booped pieces (arrow on new square, dashed 'OFF' square) and lists them by owner; graduations/returns are recorded in new detail.last_graduation and shown to the next seat with dashed squares.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "BOARDS-10",
+     "summary": "Reversi: server projects flips per legal square and last_flips; hover/focus/first tap previews flips in the mover's colour, second tap places on touch (mouse click/Enter still commit); last flipped discs ringed. Fixed 2-line instruction slot prevents layout shift under the pointer.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "BOARDS-11",
+     "summary": "Checkers: movable pieces ringed, compulsory capture stated, single movable piece (always mid-chain, also after refresh) auto-selected with destinations; last-from and captured squares marked; second seat sees the board rotated.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "BOARDS-12",
+     "summary": "Four: whole column accepts pointer/touch taps (keyboard keeps drop buttons); drop row is filled in the viewer's colour when live; hover/focus shows a landing ghost from server-projected landing cells.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "BOARDS-14",
+     "summary": "Finished tables name the result from the viewer's seat; Mancala explains the final sweep ('...swept: 11 seeds into your store, 0 seeds into <Name>'s.'); engine end message neutral.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "BOARDS-15",
+     "summary": "Mancala: viewer's row and store nearest (seat 2 rotated), owner lines name each side and store position, preview (hover/focus/first tap) shows landing pit, captures or extra turn from server previews; last source/landing/captured pits marked.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "BOARDS-16",
+     "summary": "Manifests declare score units (Reversi Discs, Checkers Captures, Mancala Seeds; Four hides its 1/0 score); captions/labels use singular forms ('1 seed', '1 capture'). Catalog regenerated.",
+     "verification": "unit-tested-only"
+    },
+    {
+     "id": "BOARDS-13",
+     "summary": "Verified only (shell agent's PlayerStrip): both seats visible at 320.",
+     "verification": "rendered-real-room"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "BOARDS-07 (320px, 8x8 and Mancala)",
+     "reason": "Fitting 8 columns at 320px needs ~36px squares, which conflicts with the 44px minimum target in docs/UI_UX_SYSTEM.md and the crowded-board-party/modern-board-fixes specs; kept the rail fallback (arrows below, no fades, overview). Needs an owner decision."
+    },
+    {
+     "id": "BOARDS-17",
+     "reason": "Partly done: A-H/1-8 edge rulers at >=601px, boop coordinates 10px, Mancala labels 10px. Rulers hidden on phones to keep 44px squares."
+    },
+    {
+     "id": "BOARDS-18",
+     "reason": "Only crown fill/contrast and a distinct Four win glow done; non-size kitten/cat cue needs new art (boop-pieces atlas)."
+    },
+    {
+     "id": "BOARDS-19",
+     "reason": "Roving-focus grid not done (P2); auto-selection removes most Tab presses mid-chain."
+    },
+    {
+     "id": "BOARDS-20",
+     "reason": "'View whole board' stays visible (specs require it at 320 and under zoom); boop dock now holds the status/effects so it is not blank."
+    },
+    {
+     "id": "Rematch colour swap",
+     "reason": "Seat order on rematch is server/room-owned (rule change); identity is now always shown instead."
+    }
+   ],
+   "roomsClosed": false
+  },
+  "card-art": {
+   "fixed": [
+    {
+     "id": "SKYJOFLIPTRIO-01",
+     "summary": "Flip 7 has its own 'flip' family: Freeze (snowflake), Flip Three (fanned-cards 3 mark, layered corner glyph so it never reads as number 3), Second Chance (heart-plus), each red with a caption; Flip 7 cards passed as 'shedding' are detected by their \u2726 suit/id. FlipSevenTable now passes family=\"flip\" ",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-02",
+     "summary": "Flip 7 number cards are yellow with dark numerals and no colour word; +2..+10 are blue 'points' modifiers and x2 'double' \u2014 no Uno draw-two art. Uno faces unchanged in structure.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-18",
+     "summary": "Skyjo faces use five printed bands (-2/-1 indigo, 0 blue, 1-4 green, 5-8 yellow with dark ink, 9-12 red), all AA contrast; mini grids take the same faces.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-22",
+     "summary": "Trio 1-12 each have a distinct colour (7 stays yellow with dark ink); white numerals pass AA on all.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-21",
+     "summary": "6 nimmt! yellow (3-penalty) faces print dark ink; 2- and 3-digit numbers scale via data-chars with a thinner frame at row size (30-38px) so 100-104 fit.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "UNO-09",
+     "summary": "Every coloured Uno card prints a colour letter (R/Y/G/B) beside the corner index and a readable colour/action caption at hand sizes (>=9px, DM Sans); playable cue is an ink ring + lift that shows on green; unplayable cards only fade (yellow stays yellow).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "UNO-10",
+     "summary": "At discard/phone sizes (<=54px) the caption is dropped and the face and corner carry the card; draw pictogram re-centred; Reverse uses a distinct two-arrow glyph and Skip Everyone a skip-forward glyph. Face-check: 0 clipped/colliding parts in every frame of uno and uno-no-mercy.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "UNO-15",
+     "summary": "Storybook preview loads DM Sans/Fraunces through next/font and sets the same CSS variables as the app, so contact sheets wrap with the app font (sheet report shows \"DM Sans\").",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "CASINO-15",
+     "summary": "Below ~60px standard cards print a large rank+suit index over the corner; number cards switch to an index-first face (rank, suit, one large pip). Indices 12-19px at 35-54px widths.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-27",
+     "summary": "WebP derivatives are cropped 1 master unit inside the printed outline, so the app frame is the only border.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-26",
+     "summary": "Tables draw 288px WebP derivatives (20 faces ~195KB total, largest 30KB vs 0.4-1.1MB SVGs) generated by scripts/prepare_card_art.mjs playing-cards with hashes in SOURCE.json; SVG masters untouched. Seat faces present after resize.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "RUMMYSHITHEAD-01",
+     "summary": "CardPile draws an empty dashed 'Empty' slot (aria 'Empty discard pile') whenever a pile has no top card and no hidden count; backs only when count>0. TablePile passes through, so no shell change was needed.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-17",
+     "summary": "Same small-size index as CASINO-15 applies to Rummy and Shithead (45x65, 54x77 incl. pile top and face-up cards).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-18",
+     "summary": "Printed jokers (id JK:n, value \u2605) resolve to the red/black joker artwork, alternating by copy, with a 'Joker' index at small sizes.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALTABLE-14",
+     "summary": "Rent cards use a plum RENT action band carrying colour dots (never a property band); two-colour wilds show the active colour solid and the other hatched with a notch, plus an '<colour> active' swatch label.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALTABLE-13",
+     "summary": "Face-intrinsic part: name, rent ladder and 'X active' readable at Deal's 80x114 board/discard and 126x178 hand sizes; '\u2727' prints 'No cash value'. Face-check 0 clipped/colliding parts.",
+     "verification": "rendered-harness"
+    }
+   ],
+   "deferred": [],
+   "roomsClosed": true
+  },
+  "casino": {
+   "fixed": [
+    {
+     "id": "CASINO-01",
+     "summary": "Blackjack uses a dealer-aware seat arc (dealerSeats) that keeps the top centre for dealer cards, payout note and total badge; seat centres are clamped inside the ring.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-02",
+     "summary": "2-4 player rings use explicit seat bands and a clamp so no seat leaves the table or covers the turn banner.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-03",
+     "summary": "Felt cue has a bounded band above the bottom seats; the table reserves bottom space for seat cards/totals/bets; names wrap to two lines. Geometry audit with 26+ char names reports zero seat/felt/dock overlaps at 1024x700, 1280x720, 1440x900.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-04",
+     "summary": "New CasinoDock uses DecisionDock size=fit, two-column choices, inline amount+button and data-decision-actions, so Raise/All in/Split/Sideshow are never below an inner scroll. Every enabled control measured inside the dock and viewport at 390.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-05",
+     "summary": "Hold'em, Teen Patti and Blackjack engines emit an actor instruction via _prompt() (e.g. 'Call 2 to stay in, raise to 4 or more, or fold.'), and a viewer-neutral result at the end; no anonymous 'Raise.'/'Your move' restatements.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-06",
+     "summary": "casinoInstruction() builds the dock line from offered actions (cost to call, all-in consequence, seen/blind cost, double/split +bet); Double/Split buttons show '+10'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-07",
+     "summary": "Wagers show the legal range ('Bet 2\u2013140 chips'), presets (Min/\u00bd pot/Pot; Min/Max; 2/10/20/50), the amount on the button, and an inline reason when the amount can't be sent; typed amount persists via useTableDraft for the same decision.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-08",
+     "summary": "Felt cue and seat chip read 'raised to 24 (+22)'; Hold'em with nothing to match labels the action 'Bet'. LABELS reads 'Raised with N' (the published amount is the increment).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-09",
+     "summary": "Settled layers with identical eligibility merge into 'Pot'; a side pot is named only when eligibility changes and says who was all in for how much (groupSettledPots).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-10",
+     "summary": "Engine projects live_pots as one pot until someone is all in, with eligibility including players who can still match; panel shows contributions.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-11",
+     "summary": "Showdown seats caption 'Won \u00b7 Straight'/'Lost \u00b7 Pair of aces', winning five cards highlighted on felt and hands, pot reads 'won by X', felt cue 'X wins N chips with a flush'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-12",
+     "summary": "Teen Patti server explanations (hand_evaluations, finish_reason, out_reasons) and a settlement section; losers captioned 'Lost show'/'Lost sideshow' instead of 'Folded'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-13",
+     "summary": "sideshow_result published without cards; felt shows viewer-relative outcome ('your hand was stronger, so X packs'), loser seat 'Lost sideshow', loser's panel 'You lost the sideshow, so you're out of this hand.'",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-14",
+     "summary": "Requester and target seats get visible flags ('Asked for sideshow'/'Sideshow decision'); dock addresses the responder as 'you' and states the equal-hands rule.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-16",
+     "summary": "Per-hand result chips ('Blackjack +15', 'Win +20', 'Push', 'Bust \u221210'), seat result chips, two-card 21 labelled 'Blackjack', own settlement first in CasinoSettlement.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-17",
+     "summary": "Own split hands fan cards inside each frame (no inner rail arrows) with total and result per hand.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-18",
+     "summary": "At >=1000px wide and <=960px tall your cards and the dock sit in a sticky column beside the ring. This resume extended the query from 820px to 960px tall so 1440x900 also keeps the wager row on screen.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-19",
+     "summary": "Per-seat last-move chip for the street/round from room.activity (seatMoves), 12px+, plus the attributed felt cue.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-20",
+     "summary": "Dealer total is a 14px badge; seat chips/status and bet badges 11-12px+.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-21",
+     "summary": "At finish bets are replaced by net result chips; folded hands are mucked (no backs).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-22",
+     "summary": "Ring seats use nameLayout='wrap' (two-line names).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-23",
+     "summary": "SB/BB markers on pre-flop bet badges; larger dealer button; Call and All in collapse to 'Call all in \u00b7 N' when equal (also CASINO-M4).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-24",
+     "summary": "Engine projects public_hands per seat; seats and inspect modal show per-hand stacks with totals.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-28",
+     "summary": "Teen Patti wager labelled 'Chaal'/'Blind bet' with its range beside the input; stake shown on the felt.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-29",
+     "summary": "Saving/paused status is a separate dock line; the instruction stays visible.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "CASINO-30",
+     "summary": "Blackjack instruction built from offered actions; single dealer ace reads 'Dealer shows an ace'.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "CASINO-M1",
+     "summary": "Split players' seats show one small stack per hand with its total, not a merged fan.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-M2",
+     "summary": "After settlement the felt shows 'won by X'/'wagers settled' and seats show result chips instead of live bets.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "CASINO-M3",
+     "summary": "poker_explanation descriptions start with the category ('Two pair, kings and 6s'; 'Full house, \u2026') and best five sorted.",
+     "verification": "unit-tested-only"
+    },
+    {
+     "id": "CASINO-M4",
+     "summary": "Duplicate All in hidden when calling takes the whole stack; single 'Call all in \u00b7 N'.",
+     "verification": "completed-in-saved-room"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "CASINO-15",
+     "reason": "Card faces: card-art agent."
+    },
+    {
+     "id": "CASINO-26",
+     "reason": "Card face SVG weight: card-art agent."
+    },
+    {
+     "id": "CASINO-27",
+     "reason": "Card face inner border: card-art agent."
+    },
+    {
+     "id": "CASINO-25",
+     "reason": "Needs history logic beyond LABELS in public_history.py (attaching newly dealt common/dealer cards to the triggering move); the brief forbids touching that logic. Also affects Blackjack ('Bot Fern placed a bet: 10 \u2665, 10 \u2666 \u2026'). See sharedRequests."
+    }
+   ],
+   "roomsClosed": true
+  },
+  "deal-decisions": {
+   "fixed": [
+    {
+     "id": "DEALACTIONS-01",
+     "summary": "Steal/swap/crash targets are full-width radio rows naming the exact card: colours for wilds, active colour, value, source set with n/m ('Wild Green/Railroads \u00b7 Green active \u00b7 4M \u00b7 from Green set 2 (1/3)'). Any-colour wild reads 'no cash value'. The summary repeats it as a sentence; the commit says '",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "DEALACTIONS-02 / DEALTABLE-M1",
+     "summary": "Commit labels by move type: debt settlement reads 'Give Just say no to Priya Creditor' in the dock and panel (never 'Play'); choose/keep/give likewise. Panel copy: 'You owe Priya. Give them this card from your hand; it uses one of your plays...'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "DEALACTIONS-03 / DEALTABLE-04",
+     "summary": "Verified the shared banner in real response windows: defender 'Your response \u00b7 Accept, or answer with Just Say No.', attacker 'Your turn \u00b7 Waiting for Alexandra... to respond.', payer 'You owe a payment'. The waiting dock offers a read-only 'View pending action'.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALACTIONS-04 / DEALTABLE-07",
+     "summary": "Response opens with one sentence: 'Dev Attacker wants to Sly Deal your Wild Green/Railroads (Green active, 4M) from your Green set 2 (1/3).' Facts say what the set becomes. Accept is primary ('Accept Sly Deal' / 'Dev Attacker takes it.'). Just Say No is secondary ('You keep it unless Dev answers wit",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "DEALACTIONS-06",
+     "summary": "Engine message is now the acting seat's instruction (DealEngine.instruction), never an anonymous 'Played X.' restatement; the shared attributed Last move line says what happened. LABELS: 'Let the last play stand', 'Chose a card to take', 'Gave a hand card to settle a debt'.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALACTIONS-08",
+     "summary": "Forced Deal is two steps (take, then give) instead of a flat pair list; Deal Breaker lists the set's cards, total and '+1 complete set for you'; bills say 'Pays you 5M'; rent rows show amounts sorted high to low with multiplier ('18M rent from each other player (9M \u00d72)').",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALACTIONS-09 / DEALTABLE-03",
+     "summary": "Transferred cards are compact rows, and answers/commits sit in data-decision-actions. Accept + Just Say No are fully visible at 320x568, 320x640, 390x664, 390x844 and 1440 (crowded Sly, blocked, bill counter, Deal Breaker with 3 cards).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALACTIONS-10",
+     "summary": "Verified shared focus fix in a real room: focus lands on the panel container; holding Space sets data-peeking=true, the outlined target card is visible on the board, and releasing restores the same decision.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALACTIONS-11",
+     "summary": "While Double the Rent is armed the dock reads 'Rent \u00d72 armed \u00b7 Play a Rent card next: its rent is charged \u00d72. End turn returns after that rent.'; the rent composer says it is armed and shows '(9M \u00d72)'.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALACTIONS-12",
+     "summary": "Debtor: debt copy + 'Give X to <creditor>' commit (with debt-chip count). Creditor: dock title 'Received: <card>' plus the layout status 'Play or bank the card Sam gave you'; banked it through the UI.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "DEALACTIONS-13",
+     "summary": "Market Crash/Heist picks and Repossession/Tax keep/give are listed inside the panel as rows with the exact card and set; the commit says 'Take Park Place'. The 'select a highlighted card on the table' copy is gone.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALACTIONS-14",
+     "summary": "Each selected property shows its set impact ('Brown set 1: 2/2 \u2192 1/2 \u00b7 breaks a complete set and its House and Hotel rent'); carried buildings say 'goes with its property'. Insolvency: 'You can't cover 5M. Give everything you have (2M) to settle the bill' (+ debt-chip note in No Mercy) and a 'Select",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALACTIONS-17",
+     "summary": "Destination rows show pile contents, n/m before \u2192 after, 'completes the set', 'New Brown set 2 \u00b7 New pile', a wild's new active colour, and 'Free move, uses no play' for rearranges.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALACTIONS-18 / DEALTABLE-22",
+     "summary": "Partial payment selection now uses useTableDraft (room+match+version). A 1M note selected toward a 5M bill was still selected after reload, then paid through the UI.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "DEALACTIONS-19",
+     "summary": "One block label: 'Accept the block' (with 'Your Sly Deal is cancelled.'); Just Say No back says the action goes ahead unless answered. Tough Luck and Forced Debt use target-perspective wording; public log reads 'Let the last play stand'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "DEALACTIONS-20 (partial)",
+     "summary": "Decision previews no longer reuse hand card faces (no 'Play it or bank it' footer in transfers); rows print 'no cash value' instead of '\u2727'. Banked-action labels in the bank are DealPlayer (layout), not changed.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALACTIONS-V01",
+     "summary": "With 3+ players the player is chosen from rows; a player with a single move is auto-selected (no redundant second pick). Commit: 'Play Debt collector on <name>'; disabled buttons say why ('Choose a player first', 'Choose a property to take').",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALTABLE-12",
+     "summary": "Super Sly Deal rows list every card each colour takes with owner and active colour ('Every Red property \u00b7 Takes 2 cards: Dev's Wild Red/Yellow (Red active, in Red set 1); Mira's Kentucky Avenue'); the chosen colour's cards are outlined on the opponent chips. Engine rule (printed colours) unchanged; ",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "Owner hardest case",
+     "summary": "Real saved 2-human room reached by legal moves: defender with 13 piles/60M (later 17 piles/73M) and Just Say No. Attacker picked the wild from named rows at 390 and committed; defender saw exact card/active colour/source set at 320/390/1440, held Space to peek at the outlined card, refreshed mid-res",
+     "verification": "completed-in-saved-room"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "DEALTABLE-14",
+     "reason": "Card art (Rent vs Wild band, wild orientation, '\u2727' on the face) is PlayingCard/card-face CSS owned by the card-art agent. Decision text now names wilds and active colours, so decisions no longer rely on the art."
+    },
+    {
+     "id": "DEALACTIONS-V02",
+     "reason": "The 'Choose <name>' target button lives in shared OpponentPanel/DealPlayer/stable-deal.css (layout/shell). The layout agent already re-laid it out (verb kept, ellipsis, no Inspect overlap). I did not re-measure it."
+    },
+    {
+     "id": "Result + rematch re-check",
+     "reason": "Not re-verified by me. My finisher policy looped on free rearranges and hit the 429 rate limit. Match-end UI is layout/room-shell work that the deal-layout agent completed in saved rooms; my changes add no finished-state UI."
+    },
+    {
+     "id": "DEALACTIONS-05/07/15/16",
+     "reason": "Fixed and verified by the deal-layout agent. The waiting read-only panel now uses the new perspective text (A-390-waiting-panel.png)."
+    }
+   ],
+   "roomsClosed": true
+  },
+  "deal-layout": {
+   "fixed": [
+    {
+     "id": "DEALTABLE-01",
+     "summary": "Fixed-height grid replaced by content-sized rows (opponents, centre, hand, dock, own board). Draw pile is a small back + count; discard is a readable chip. Nothing spills into opponents or your name.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALTABLE-02",
+     "summary": "One card per opponent: name (2 lines max), hand count, sets complete, bank total with denominations, and a chip per pile that wraps. Nothing is clipped.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALTABLE-05",
+     "summary": "Plays are shown with their owner ('3 plays left' plus pips, tagged mine/other), hidden during responses, discard and finished. The idle dock hint is viewer-aware (table-status.ts).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALTABLE-06",
+     "summary": "The centre no longer repeats the engine tagline. It shows the readable last discard (it opens Card info) and a viewer-aware status line. The banner carries the attributed last move.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALTABLE-08",
+     "summary": "Finished match: the dock and End turn are hidden and the hand is disabled. The status says '<Winner> won with <sets>' and the results sit above the table.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "DEALTABLE-09",
+     "summary": "The page scrolls instead of an inner fixed window. The hand comes right after the centre: all 7 cards are fully on the first screen at 320x640, 390x844, 1024x700 and 1280x720 in real 2-seat rooms. 13-pile boards wrap into grid rows.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALTABLE-10",
+     "summary": "Quick rules is no longer in a 44px track and opens fully.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALTABLE-11",
+     "summary": "Layout part: No Mercy debt badges show on opponent cards and your heading. A debtor gets 'You owe <name> a debt chip: settle before you play' and a matching dock hint. A gift recipient is told to play or bank the card received.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALTABLE-13",
+     "summary": "Layout part: the discard is a readable chip (name, value, colour stripe). Own and inspector sets use row cards with 11px+ name, active colour and value. Opponent chips are 11px+. Cards are not scaled below legibility.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALTABLE-15",
+     "summary": "Opponent chips print the colour name and n/m, plus a check mark and rent when complete and building marks. Colour is no longer the only cue.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALTABLE-16",
+     "summary": "Layout: with the page flow, the board stays reachable under the modeless panel, and the peek/view controls stay off opponents.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALTABLE-17",
+     "summary": "The opponent inspector uses row cards in a two-column set grid on phones.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALTABLE-18",
+     "summary": "Opponent names clamp to two lines, or to distinct short names in the status line. Every opponent is a visible row (no hidden rail).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALTABLE-19",
+     "summary": "The turn indicator moved beside the name, and the status line names whose turn it is.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALTABLE-20",
+     "summary": "An empty hand shows 'No cards in hand. You draw 5 at the start of your next turn.' and the row shrinks.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "DEALTABLE-22",
+     "summary": "The selected card, target and move survive a refresh via useTableDraft, scoped to room+match+version.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "DEALACTIONS-05",
+     "summary": "Waiting seats see a pending line naming who they wait for and on what ('Waiting for X to respond to your 1M rent', 'X owes Y 5M'). They also get a read-only View pending action instead of a disabled response button.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "DEALACTIONS-07",
+     "summary": "Layout part: the hand and board stay in page flow under the modeless decision panel on phones, so payment assets and destinations remain reachable.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "DEALACTIONS-15",
+     "summary": "Phone match end: results above the table, no live controls, winner status in the centre.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "DEALACTIONS-16",
+     "summary": "Discard copy only goes to the discarding seat; others read 'X is discarding down to 7 cards'. Ending a turn with more than 7 cards and plays left warns 'ending now means discarding N cards'.",
+     "verification": "unit-tested-only"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "DEALTABLE-03/04/07/12/14",
+     "reason": "Response panel content, Super Sly preview and card art are owned by the deal-actions / card-art agents, not this layout family."
+    },
+    {
+     "id": "DEALTABLE-21",
+     "reason": "Rematch lobby illustration belongs to the room shell / game-art thumbnail, not the Deal table files."
+    },
+    {
+     "id": "5-seat phone hand position",
+     "reason": "With 4 opponents at 390x844 and 320x640, the hand heading sits at the fold and the cards need one scroll (0/5 fully on the first screen in real room 47618a00). Fitting them would mean collapsing opponents into a horizontal rail, which hides opponent information. Left as a design trade-off for the ow"
+    }
+   ],
+   "roomsClosed": true
+  },
+  "paper-gang-nimmt": {
+   "fixed": [
+    {
+     "id": "PAPERGANGNIMMT-01",
+     "summary": "Keep-one-of-two and crab-search choices live in a DecisionDock size=fit with the commit buttons in data-decision-actions below the cards; the selected card's rule shows under the cards, never under a bar. Selections use useTableDraft (survive refresh).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-02",
+     "summary": "PaperPlayingCard paints the scoring colour as a full-width band with a per-colour glyph and 12px colour name (>=4.5:1), re-tones the illustration via an SVG duotone filter in PaperCardArt, and colours the edge.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "PAPERGANGNIMMT-03",
+     "summary": "Illustrations come from a padded atlas (paper-symbols-v2.webp) so no neighbour bleeds and no subject is cut.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "PAPERGANGNIMMT-04",
+     "summary": "The sea (stock count and both discard tops with counts) is visible in every phase for every seat, including pile-to-discard and pile-to-search choices; the searched pile is marked.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-05",
+     "summary": "Discards and their Inspect controls are no longer inside a fixed-height dock on phones; the sea flows in normal layout.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "PAPERGANGNIMMT-06",
+     "summary": "Engine records per-seat private_events: thief sees the stolen card, victim sees only its name (no ID/card view), fish/crab actor sees the drawn card; nobody else receives anything. Shown as 'Only you can see these updates'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-07",
+     "summary": "ending_consequences states the viewer's own numbers for Stop and Last Chance (points, bonus, both outcomes).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-08",
+     "summary": "Final-turn seats see a banner naming the caller and the card points to beat (protected_points projected, public), and the engine message says it too.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-09",
+     "summary": "Round summary panel first at round end with outcome sentence and each player's award parts; last_round persists into the next round as a collapsible 'Round N result' so a bot restart doesn't erase it (bot pacing itself is shell's).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-10",
+     "summary": "Own hand shows every card at once (3-column compact grid on phones), so both cards of a selected duo are visible.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "PAPERGANGNIMMT-11",
+     "summary": "Gang dock is size=fit; on phones the chip rack becomes a list (chip then full holder name); Take and Return buttons are in normal flow and fully visible at 320 with 6 players.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-12",
+     "summary": "detail.taken_chips (public, as is the rack) tells a player whose chip was taken and by whom until they choose again.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-13",
+     "summary": "Chip-holder names are full-size (14px) and not truncated in the phone list layout.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-14",
+     "summary": "Heist review leads with the verdict and each out-of-order pair, then hands in red-chip order labelled with their chip and category with check/cross, then Next heist.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-15",
+     "summary": "Gang chips and 6 nimmt locks keep the selection in useTableDraft scoped to the street/selection, surviving other seats' moves and refresh; useRetriedMove resends the committed intent once after a 409 if still legal.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-16",
+     "summary": "detail.resolution/unresolved (public numbers only) list where each revealed number went, sixth-card and low-card row takes with captured cards and penalties; placed cards are ringed in rows.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-17",
+     "summary": "Revealed cards keep their penalty markers regardless of name wrapping.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "PAPERGANGNIMMT-18",
+     "summary": "Forced row take states the low card, labels each row with cards and penalties (button names 'Take row N \u00b7 X cards \u00b7 Y penalties'), marks the cheapest.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-19",
+     "summary": "Round over shows sorted standings with round penalties and the 66 threshold; during play a collapsed standings line names the leader and your place.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-20",
+     "summary": "10-player phone: hand is a 5-column grid in a tray that stays on the first screen (all 10 cards visible at 320x640).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-22",
+     "summary": "Verified the shared Room.tsx order in a finished saved room: banner -> results -> Final table -> table; rematch started through the UI (SSP and The Gang).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-23",
+     "summary": "Steal target buttons show hand size and score; protected players listed as unavailable.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-24",
+     "summary": "Duo summary states the effect; a valid duo becomes the primary action; duo controls tightened.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "PAPERGANGNIMMT-25",
+     "summary": "6 nimmt engine messages are instructions for the acting seats (choose a number; low-card owner chooses a row); the shared banner shows waiting seats who they wait for.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-26",
+     "summary": "Decided deliberately and documented: discarded faces were public when discarded, so history equals perfect memory; a card taken from inside a searched pile is never named (verified other seat sees no crab-taken id).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-27",
+     "summary": "Crew chip history labelled and coloured by chip colour; full names in list layout.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "PAPERGANGNIMMT-V01",
+     "summary": "Shared viewer-aware banner verified; our engine messages now read as instructions for the acting seat only (no 'Card locked' to non-locked seats).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "PAPERGANGNIMMT-V02",
+     "summary": "Tapping a discard opens the inspector and never takes it; only an explicit 'Take \u2026' button commits.",
+     "verification": "rendered-real-room"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "PAPERGANGNIMMT-21",
+     "reason": "Number faces belong to the card-art agent."
+    },
+    {
+     "id": "PAPERGANGNIMMT-09 (bot pacing part)",
+     "reason": "Bot delay at round boundaries is owned by shell; mitigated here by persisting last_round into the next round."
+    }
+   ],
+   "roomsClosed": true
+  },
+  "rummy-shithead": {
+   "fixed": [
+    {
+     "id": "RUMMYSHITHEAD-02",
+     "summary": "Winning Declare is first and primary ('Declare \u00b7 discard 4\u2665'), Discard demoted to secondary with a note; commit buttons sit in a sticky data-decision-actions row so they never clip in the dock.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-03",
+     "summary": "Winning discards derived from discard_analyses[*].valid: summary 'You can declare: discard 4\u2665', dock chip to select it, Win badge on the card. Declaration then committed through the UI in saved rooms.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-04",
+     "summary": "Felt shows the cut card with 'Wild: 10s'/'Wild: jacks' (never raw 'T'); printed-joker cut reads as aces wild; manifest rules explain the cut joker.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-05",
+     "summary": "Wild-rank cards and printed jokers carry a 'Wild' marker drawn by Rummy CSS around the card (not inside PlayingCard) in hand, felt and results; accessible name '10\u2660 (wild joker)'.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-06",
+     "summary": "RummyHand renders wrapped overlapped fans (7 per row on phones, 14 on wide) so a 14-card hand is fully visible at 320 without scrolling.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-07",
+     "summary": "Drawn card marked 'New' (visible in the wrapped fan); a card taken from the discard is marked 'Taken'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-08",
+     "summary": "Drop is a secondary dock button that opens a confirmation ('Drop for 20 points?', names the winner if one player would remain); draw choices are named in the dock.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-09",
+     "summary": "Engine messages are now instructions for the acting seat (Rummy _draw_prompt / discard prompt; Shithead prompt()); anonymous restatements ('Invalid declaration: 80 points', 'Pile taken', 'Burned 4; play again') removed; Rummy/Shithead LABELS read well in the shared Last move line.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-10",
+     "summary": "Public 'out' map in the Rummy projection; seats read 'Dropped \u00b7 \u221220' / 'False declaration \u00b7 \u221280'; the out player's dock says 'You're out of this deal (\u221280, false declaration). The others play on.'",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-11",
+     "summary": "RummyResults shows every revealed hand grouped by settlement melds (jokers marked), winner first, with points/reason, spanning full width.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-12",
+     "summary": "Groups, sort and selected card persisted with useTableDraft scoped to room+match; stale ids dropped.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-13",
+     "summary": "Shithead hand passes server-legal playableIds; others dimmed; selecting one explains why Play is disabled; Take pile becomes primary when nothing is playable.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-14",
+     "summary": "Top equal-rank run fanned with '6 \u00d73 on top: one more 6 burns'; pile note explains the last burn (10 or four of a kind, plays again), failed flip or pickup from last_play; View pile lists newest first.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-15",
+     "summary": "Face-up/hidden stages move your table cards into the workspace above the dock with stage copy ('Play your face-up cards'); pickup consequence spelled out. Face-up play (v24\u219225) and blind flip (v36\u219237) committed through the UI at 320 in a 5-seat room.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-16",
+     "summary": "Shithead hands of 9+ cards wrap into overlapped rows; heading counts the hand; setup shows all six cards at once.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-19",
+     "summary": "'Group my melds' applies the shown analysis melds to Groups 1\u20134; 'Move 4\u2665 to:' label; group kind chip.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-20",
+     "summary": "Rummy dock names the pending move ('Discarding 4\u2665\u2026'), explains the taken-card restriction and the joker-on-discard restriction (felt + engine prompt). Rematch scroll reset is Room.tsx (shell) \u2014 see deferred.",
+     "verification": "unit-tested-only"
+    },
+    {
+     "id": "RUMMYSHITHEAD-21",
+     "summary": "Shithead CSS now targets .shithead-game > .player-strip-rail so the strip spans the grid on desktop.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-23",
+     "summary": "Shithead outcome names the Shithead ('You're the Shithead\u2026' for the loser) and lists escape order; seats read 'Escaped 1st'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-24",
+     "summary": "Setup picks use useTableDraft (room+match+setup round): waiting players can pre-select (confirmed on their turn), refresh keeps picks, a 4th tap is refused with a hint.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "RUMMYSHITHEAD-V-01",
+     "summary": "Card taken from the discard is marked 'Taken' with legend 'from the discard; keep it this turn', and selecting it explains it can't be discarded this turn; manifest rule added.",
+     "verification": "rendered-real-room"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "RUMMYSHITHEAD-01",
+     "reason": "Empty discard drawn as card back: TablePile/CardPile \u2014 card-art/shell owned."
+    },
+    {
+     "id": "RUMMYSHITHEAD-17",
+     "reason": "Small-size card index legibility: PlayingCard/card-face CSS \u2014 card-art agent."
+    },
+    {
+     "id": "RUMMYSHITHEAD-18",
+     "reason": "Printed joker art detection in standard-card-art \u2014 card-art agent."
+    },
+    {
+     "id": "RUMMYSHITHEAD-22",
+     "reason": "Partial: Shithead opponent stages now plain language at >=12px; compact seat-chip mode for PlayerStrip is shell-owned (at 320 the strip still shows ~2.5 of 5-6 seats)."
+    },
+    {
+     "id": "RUMMYSHITHEAD-20 (rematch scroll)",
+     "reason": "Scrolling to the banner when a new match starts lives in Room.tsx (shell)."
+    }
+   ],
+   "roomsClosed": false
+  },
+  "shell": {
+   "fixed": [
+    {
+     "id": "RAIL-ARROWS",
+     "summary": "HorizontalRail arrows live in gutters beside the viewport (never over it); edge fade via mask only on the side that can still scroll; revealKey/revealIndex keep the focused/current item fully inside the narrowed viewport (scroll-padding aware) so the last item is reachable by touch and keyboard.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "UNO-08/RUMMYSHITHEAD-22/BOARDS-13/PAPERGANGNIMMT-20/WORDSPARTY-04/SKYJOFLIPTRIO-25/DEALTABLE-18",
+     "summary": "PlayerStrip: compact seats (3+ fit at 320), viewer first and labelled You and pinned, seat order = turn order with direction arrows when detail.direction exists, Next badge from detail.next_player, singular/plural counts, current/pending player auto-revealed, roving-tabindex arrow-key navigation, lo",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-04/SKYJOFLIPTRIO-05/PAPERGANGNIMMT-09",
+     "summary": "Server-side bot pacing: bot_delay() in backend/app/rooms/bots.py holds bots 5s before Trio continue, 4s next_selection, 6s next_prompt, 8s next_round/next_heist, only when the due bot's only legal actions are review-advances; ordinary moves keep 0.8s. service.py sets match.bot_due_at from it; client",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "UNO-01",
+     "summary": "Bots may not catch an unannounced UNO by a human for 3s (BOT_CATCH_GRACE_SECONDS); the human's Call UNO is offered and was completed within the window in a saved room. Catching remains a legal engine action (no rule change).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "UNO-14/TAROT-17",
+     "summary": "useRoom exposes connection (offline/reconnecting/live/connected) from navigator.onLine and failing room reads; header chip shows Offline/Reconnecting on phones; sticky offline banner; turn banner switches to a paused tone ('Moves pause while you're offline' / 'Your move is waiting to be sent'); the ",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "SHELL-VERIFY",
+     "summary": "Verified viewer-aware banner, Last move line, results-first order, singular units, rematch, refresh mid-decision in real saved rooms (Uno 3 seats, Six nimmt 3 seats at 320, Most Likely 3 seats, Skyjo 2 seats) at phone + 1440. Shell refinements: rematch start controls placed first in the finished Lob",
+     "verification": "completed-in-saved-room"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "RAIL-RESIDUAL",
+     "reason": "Remaining rail lint issues after the fix (e.g. 55 at 320) are in game-specific rails/boards styled by family stylesheets (e.g. 768 player-strip inside game layouts); not overlapping arrows on content in the shell rails."
+    },
+    {
+     "id": "SKYJO-REAL-ROOM-END",
+     "reason": "Skyjo real-room verification reached opening/mid/refresh only; the run aborted when the dev server/browser closed under load (v-skyjo.log). Results/rematch verified in Uno, Six nimmt, Most Likely."
+    },
+    {
+     "id": "ROOM-LAYOUT-REMATCH-SPEC",
+     "reason": "tests/browser/room-layout.spec.ts:30 failed once with 'Start rematch' disabled after both players readied. My reproduction (rematch-friends.cjs, Four in a Row, 390) showed both members ready+connected on the server while the host page still showed the friend 'Not ready yet' 2.5s later (4s polling, n"
+    }
+   ],
+   "roomsClosed": false
+  },
+  "skyjo-flip7-trio": {
+   "fixed": [
+    {
+     "id": "SKYJOFLIPTRIO-03",
+     "summary": "Skyjo engine message is now phase/actor-aware (opening, draw/take with discard value, replace the drawn/taken card, reveal, Final turn prefix, round scored, match over); only the drawer view names a privately drawn card. Waiting seats get dock text from public info (\"X drew from the deck and is deci",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-06",
+     "summary": "Flip 7 targets are chosen on the player rows: each eligible row gets a Freeze / Flip Three / Give Second Chance button (own row: Freeze yourself / Take Flip Three) whose accessible name states the consequence (banks N); the dock explains the card; names wrap at 320 with a separate You badge; dock si",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-07",
+     "summary": "Engine records public detail.effects (card, by, to) per round; rows show Frozen by X / Flip Three from X notes; LABELS read Flipped a card / Stayed and banked / Gave an action card; engine messages instruct the actor (hit/stay with bust numbers, target consequence); a seat that may be targeted is to",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-08",
+     "summary": "Other players rows are viewer-owned disclosures (state survives turns); current row is marked without changing height; every row shows card chips when closed.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-09",
+     "summary": "Own Flip 7 cards wrap instead of scrolling; busted rows say Busted on N and outline the repeated pair (cards and chips).",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-10",
+     "summary": "Trio engine message is the actor instruction (found a 6, find another; two 6s; no match; collected) and never A trio is yours to everyone; waiting seats see Waiting for X in the dock and a status line on the reveal strip; dock hidden at match end. LABELS: Asked for a card / Ended the turn.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-11",
+     "summary": "Reveal strip reserves full height, reveals are figures with single-line ellipsis owner labels (You / Table N / name with title) and lowest/highest edge (public edge added to projection).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-12",
+     "summary": "Reveal strip is sticky while a turn has reveals on phones/tablets with Continue inside it; from an 860px table the hands and Lowest/Highest controls sit in a side column under the strip (fits 1024x700).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-13",
+     "summary": "Skyjo opponents are a stacked list (no one-at-a-time rail) on phones and a side column on wide screens; each row has total, Showing N \u00b7 hidden count, badges and a 4x3 mini grid coloured by value band with recent slots outlined.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-14",
+     "summary": "Discard-and-reveal moved onto the Discard pile (no clipped dock button); final turns shown as a wrapping name chain with the current seat marked, in its own section.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-15",
+     "summary": "All three tables pass viewer-aware instructions to ActionPanel/DecisionDock: actors see the engine instruction, waiting seats see whom they wait for and why; no raw phase ids.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-16",
+     "summary": "Verified with shared Room order: winner banner (You win! / X wins), results then rematch at top; engine finished messages state the end condition; rematch started a new match in each game.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-17",
+     "summary": "Verified shared stale-move note: pinned at top, dismissible, cleared after refresh/version change.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-19",
+     "summary": "Skyjo round review is a ranked ledger at the top of the table (round points, grid total, columns removed, doubled, total) with best/closer/own marked and the Next round button inside.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-20",
+     "summary": "Flip 7 round review ranks totals with +round points and distance to 200, leader marked.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-21",
+     "summary": "Own Trio row reads You (full name in title); reveal labels use You.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "SKYJOFLIPTRIO-24",
+     "summary": "Trio manifest score_label=\"Trios\"; results read 3 trios / 0 trios; catalog regenerated. Singular units come from the shared RoomResults fix.",
+     "verification": "completed-in-saved-room"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "SKYJOFLIPTRIO-23",
+     "reason": "Redacting reveal values from activity after Continue is a product decision (memory-aid setting) and touches the shared public-history allowlist; no private hand ever enters activity. Documented in modern README."
+    },
+    {
+     "id": "SKYJOFLIPTRIO-25",
+     "reason": "Partially addressed in my tables (Flip 7 names wrap, Trio uses ellipsis + title, You badges); truncation in PlayerStrip/OpponentPanel is owned by the shell agent."
+    },
+    {
+     "id": "SKYJOFLIPTRIO-01",
+     "reason": "card-art owned; their flip family exists and FlipSevenTable already uses family=\"flip\"."
+    },
+    {
+     "id": "SKYJOFLIPTRIO-02",
+     "reason": "card-art owned (same flip family)."
+    },
+    {
+     "id": "SKYJOFLIPTRIO-18",
+     "reason": "card-art owned face colours; my mini grids now use value-band colours."
+    },
+    {
+     "id": "SKYJOFLIPTRIO-22",
+     "reason": "card-art owned."
+    },
+    {
+     "id": "SKYJOFLIPTRIO-04",
+     "reason": "bot pacing belongs to the shell agent."
+    },
+    {
+     "id": "SKYJOFLIPTRIO-05",
+     "reason": "bot pacing belongs to the shell agent."
+    }
+   ],
+   "roomsClosed": true
+  },
+  "tarot": {
+   "fixed": [
+    {
+     "id": "TAROT-01",
+     "summary": "Twelve number cards now show the right symbol count. Each was retouched locally from its v1 atlas cell (numpy/scipy patch fill plus copies of symbols from the same card; no image generation or external service) into a single-card master minor-<id>-v2.png at the cell's own size, with a WebP made with",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "TAROT-01b",
+     "summary": "Seven of Wands (8\u21927) and Eight of Wands (9\u21928) corrected as above.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "TAROT-09",
+     "summary": "All 78 faces now use slice framing. The five 2 Nov masters are cropped by viewBox to the atlas-cell aspect at checked offsets, so every symbol stays inside art boxes from 0.746 to 0.82 and the suit-coloured side bands are gone. Pentacles 03/05/06/07/10 crop from the bottom so their top coins stay wh",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "TAROT-02",
+     "summary": "On every width, spread position labels and card names are 11px and meanings 12px (before: 8/8/10px on phones, 9px labels on desktop). Names and labels get room for two lines.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "TAROT-03",
+     "summary": "A committed pick scrolls its filled slot into view, focuses it, highlights it for 4s (an animated reveal when motion is allowed) and announces 'You drew <card> for <position>.' in a polite live region. A refresh shows the saved spread without replaying a reveal. On phones, a 'Choose card N of 3' but",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "TAROT-04",
+     "summary": "A finished solo reading shows a primary 'Draw a new spread' button at the top of the reading (y\u2248300 at 320) and again after the last section. It sends ready then start in one tap (as RoomDialog does); only the room owner sees it. The shell's lobby below the table still needs a shared change (see sha",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "TAROT-05",
+     "summary": "Image credits wrap (overflow-wrap:anywhere), and a credit that is only a URL reads as its site name ('nbc.com') while the link keeps the full source. Opening credits at 320 now leaves scrollWidth at 320 (before: 592).",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "TAROT-07",
+     "summary": "Empty slots are dashed 'Lands here' outlines, not card backs. The next slot is ochre-filled ('Your next card lands here'), and the heading names it: 'Choose card 2 of 3 \u00b7 What is shifting'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "TAROT-08",
+     "summary": "The deck is one Tab stop with roving focus (arrows, Home, End). Labels read 'Face-down card 5 of 77, for what is shifting' and no longer contradict the heading.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "TAROT-10",
+     "summary": "The unsent question is a useTableDraft scoped to room and match. It survives a reload, clears when a reading is saved and never carries into the next spread. Birth fields stay memory-only.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "TAROT-13",
+     "summary": "The Explore-the-deck heading sticks flush with the dialog edge, so no scrolled cards show above it. The suit filter is pinned beneath it, as one swipeable row on phones.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "TAROT-14",
+     "summary": "One 'Your next small move' block, with the chart's step as 'From your chart:'; the astrology block's own 'A small next move' is removed. Each card section shows its card as a 64px thumbnail.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "TAROT-15",
+     "summary": "Re-cropped rani.webp (letterbox bands and the BCCL watermark removed) and circuit.webp (left strip removed) to full-bleed 4:5. Updated the manifest bytes/sha256, regenerated tarot-characters.json, and export --check passes.",
+     "verification": "unit-tested-only"
+    },
+    {
+     "id": "TAROT-16",
+     "summary": "At 480px and below the Western wheel breaks out to nearly the full screen width (300px at 320, before 232). House numbers render at about 11px and planet glyphs at 15px. All 20 astrology specs pass, including every planet's pointer target at phone width.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "TAROT-18",
+     "summary": "The JSON import attribute was removed from the synthetic chart fixture. All 7 Games/Tarot astrology stories (and the other 13 Tarot stories) render without an error screen at 390.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "TAROT-19",
+     "summary": "The lobby tile shows a small three-card fan scaled to the 76x62 tile, with names hidden, instead of a headless crop of The Fool.",
+     "verification": "rendered-real-room"
+    },
+    {
+     "id": "TAROT-06",
+     "summary": "Partial, inside the table: while a reading is being written, a plum status line says 'Writing your reading. This usually takes under a minute'. When readings are unavailable, the reason and 'Your three cards are saved.' sit next to the disabled button. The top banner override needs a shared change.",
+     "verification": "unit-tested-only"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "wands-06 (TAROT-01 borderline)",
+     "reason": "Six of Wands shows only the rider's staff. A traditional count needs five new staves carried through the crowd and horse, which is a re-composition rather than a retouch, so local tooling alone would look wrong. It is recorded as the one open exception in the README inventory and the unit test."
+    },
+    {
+     "id": "pentacles-04 framing",
+     "reason": "The coin on the head and the two coins under the boots span 96% of a tall cell, so at every art-box aspect the boot coins are partly cropped (4 coins still visible). Fixing it needs re-composition. Recorded in the inventory."
+    },
+    {
+     "id": "TAROT-06 banner",
+     "reason": "The top banner comes from shared TurnNotice/turn-state; see sharedRequests. The in-table status is done."
+    },
+    {
+     "id": "TAROT-11",
+     "reason": "Lobby invite panel and capacity-1 join rules are shared (Lobby.tsx, rooms service); see sharedRequests."
+    },
+    {
+     "id": "TAROT-12",
+     "reason": "The '1 players' copy is in Room.tsx (shell); see sharedRequests."
+    },
+    {
+     "id": "TAROT-17",
+     "reason": "Offline paused-mutation state and the 409 'hand' copy are in shared useRoom/Room/rooms service; see sharedRequests."
+    }
+   ],
+   "roomsClosed": true
+  },
+  "uno": {
+   "fixed": [
+    {
+     "id": "UNO-02",
+     "summary": "No Mercy elimination is stated before and after: engine message and dock say 'drawing puts you out (N cards)', the draw button reads 'Draw 4 \u2014 you're out' (danger style), stackable cards become one-tap 'Stack Yellow +4' shortcuts; once out the hand is replaced by a 'You're out \u2014 eliminated with N ca",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "UNO-03",
+     "summary": "Engine records a public last_event (actor, kind, colour, target, challenge outcome, discard-all count, skipped seats, per-player draw counts, eliminations; never drawn faces; you_drew only to the owner). Felt shows outcome lines ('Challenge failed: Benedict drew 6', 'X swapped hands with you: you no",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "UNO-04",
+     "summary": "Hand sorted playable-first; on turn start or after a draw the first playable / just-drawn card is scrolled into view and badged ('just drawn' outline); stack and drawn-card moves are also dock buttons ('Stack Blue +2', 'Play Green 0'); on sticky phone docks the page scrolls so the hand is not hidden",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "UNO-05",
+     "summary": "Long hands: playable first then by colour, with per-colour counts in the heading; cards overlap to ~52% (corner + colour + tap target) so 24 cards show 5 faces at 320 instead of 2 and the last card is a few rail steps away.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "UNO-06",
+     "summary": "Penalty instructions only for the current player; bystanders see 'Cassandra must draw 8 or stack' on the felt and in the dock; engine message is the actor's instruction and the banner shows it only to them.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "UNO-07",
+     "summary": "Colour choice is four swatches with colour name and 'N in hand'; swap targets show name + card count sorted fewest first; more than 3 targets open a TableDecisionPanel with avatar/name/count rows; commit rows are data-decision-actions sticky; phone dock now sizes to content (max min(216px,42dvh)).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "UNO-11",
+     "summary": "Labels: 'Wild', 'Colour roulette', 'Play Yellow 4', 'Play Wild \u00b7 Red', 'Choose Red', 'Take 4 cards'; pluralised counts; no raw phase text in Uno dock; unplayable selection explains why ('Can't play this now \u2014 match \u2026') instead of effect text.",
+     "verification": "unit-tested-only"
+    },
+    {
+     "id": "UNO-12",
+     "summary": "With the shared Room order the banner announces the winner ('Cassandra wins / Last player standing after 3 eliminations.') and results sit directly below; direction/next/limit lines hide when finished; eliminated viewer keeps the 'You're out' note.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "UNO-13",
+     "summary": "Selected-card explanations computed from public counts and own hand: 'Your other 16 cards go to the player you pick', 'Every hand passes clockwise: your 2 cards go to Alexandra; you get Benedict's 3', 'Bot Cleo draws 2 or stacks another +2', challenge copy 'if Alexandra held Red, they draw 4; if not",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "UNO-V1",
+     "summary": "Uno dock is sticky at the bottom on screens <=900px while the viewer has moves, commit row pinned; selecting a card keeps Play on screen at 320px; dock height now fits content on phones.",
+     "verification": "completed-in-saved-room"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "UNO-01",
+     "reason": "Owned by the shell agent (bot pacing / UNO race). Uno dock copy for the call is in place ('One card left: call UNO! now, or anyone can catch you for 2 cards')."
+    },
+    {
+     "id": "UNO-08",
+     "reason": "Shell agent (PlayerStrip)."
+    },
+    {
+     "id": "UNO-09",
+     "reason": "Card-art agent."
+    },
+    {
+     "id": "UNO-10",
+     "reason": "Card-art agent."
+    },
+    {
+     "id": "UNO-14",
+     "reason": "Shell agent."
+    },
+    {
+     "id": "UNO-15",
+     "reason": "Card-art agent / Storybook."
+    },
+    {
+     "id": "UNO-02 (banner + results parts)",
+     "reason": "Banner for an eliminated seat still reads '<Name>'s turn / Waiting for <Name>' and RoomResults lists losers as '0 points' without elimination order; those files are shared (turn-state.ts, RoomResults.tsx) \u2014 see sharedRequests. Table, dock, seats and felt already state the elimination."
+    }
+   ],
+   "roomsClosed": true
+  },
+  "words-party": {
+   "fixed": [
+    {
+     "id": "WORDSPARTY-01",
+     "summary": "Engine clears clue on turn change, stores last_clue + turn_end; projection exposes clue only in guess phase (old saves too). Clue phase header: '<Team> team\u2019s turn / Waiting for <spymaster>\u2019s clue' (or 'Give your clue'); strip says which clue ended and why.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-02",
+     "summary": "Revealed tiles covered: striped face + check mark + 'revealed' in aria-label; latest reveal outlined (data-last).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-03",
+     "summary": "Board no longer in HorizontalRail: all 25 tiles visible at 320/390 (mixed case 12px, soft hyphens for 6+ letter words, short identity labels). Acting player's dock is a compact sticky bottom bar on phones (clue, count, Give clue in one row).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-04",
+     "summary": "In-table 'You \u00b7 Red operative' chip, 'Your team\u2019s clue' vs '<Team> team\u2019s clue \u00b7 <Team> operatives are guessing', per-role/team dock copy. Top banner still names the first operative (single current_player) \u2014 sharedRequest.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-05",
+     "summary": "Public detail.last_reveal (revealed tiles only) and attributed engine messages; strip '<Name> chose ARROW [Bystander]' + turn-end reason; tile outlined.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-06",
+     "summary": "Final header 'Red team wins \u00b7 Blue revealed the assassin, CROWN.'; finish message names team and word. RoomResults ordering is shared \u2014 sharedRequest.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-07",
+     "summary": "Verified shared results heading collapse; unbroken 30-char winner name still widens 320 to 338px (shared).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-08",
+     "summary": "Party dock size='fit', Lock in / Next prompt in data-decision-actions (sticky), dock keyed by round:phase so reveals open at top; fixed heights removed.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-09",
+     "summary": "Party engine keeps the instruction message for undecided players (no 'Decision locked'); backend test added.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-10",
+     "summary": "'8 of 10 locked in \u00b7 waiting for A and Juno' / 'still choosing: \u2026'.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-11",
+     "summary": "Most Likely reveal headline 'Most likely: <name> \u00b7 7 votes (+1)', rows sorted by votes received, 'voted for X', leader highlighted.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-12",
+     "summary": "'Spill \u00b7 I answered aloud (+1)', 'Chill \u00b7 keep it to myself (+1)', 'Pass (no point)'; instruction/message state scoring.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-13",
+     "summary": "One column on phones, break-word, 3-line clamp with full name title, Bot badge.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-14",
+     "summary": "Drafts not cleared on confirm; 'Saving MAP\u2026' / 'Saving \u201cVoyage\u201d for 2\u2026' / 'Saving: \u2026'; kept after a constructed 409 and a real stale 409 (re-press succeeded).",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-15",
+     "summary": "Inline clue helper explains spaces/non-letters/board word before submit.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-16",
+     "summary": "Identity labels 11px, team counts as filled chips with active ring; harness tiny-text 0 for all four games.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "WORDSPARTY-17",
+     "summary": "Flat board + 'board unlocks on your team\u2019s turn' copy for watching seats; dock content-sized.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-19",
+     "summary": "Hot Seat names the predicted player, options always visible (answer outlined), hot-seat row 'Hot seat answer' + 'answer', headline with correct-prediction count.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "WORDSPARTY-21",
+     "summary": "Naming half only: one display name per seat (seatName + Bot badge) on choices/reveal.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "WORDSPARTY-22",
+     "summary": "useTableDraft for clue/count/word and party choice; refresh keeps them.",
+     "verification": "completed-in-saved-room"
+    },
+    {
+     "id": "WORDSPARTY-23",
+     "summary": "'Round host \u00b7 reveals the next prompt' in Most Likely.",
+     "verification": "rendered-harness"
+    },
+    {
+     "id": "WORDSPARTY-M01",
+     "summary": "Verified '1 point' singular (shared fix).",
+     "verification": "completed-in-saved-room"
+    }
+   ],
+   "deferred": [
+    {
+     "id": "WORDSPARTY-18",
+     "reason": "Rule/scoring change; copy now states the scoring."
+    },
+    {
+     "id": "WORDSPARTY-20",
+     "reason": "Shared; verified already fixed by shared agents."
+    },
+    {
+     "id": "WORDSPARTY-M02",
+     "reason": "Shared error note (now pinned top by Room.tsx); not separately re-measured."
+    },
+    {
+     "id": "WORDSPARTY-21-art",
+     "reason": "Library/lobby art crops not changed (time)."
+    }
+   ],
+   "roomsClosed": true
+  }
+ },
+ "findingsByReviewFamily": {
+  "azul-gems": {
+   "total": 26,
+   "severity": {
+    "P0": 2,
+    "P1": 19,
+    "P2": 5
+   }
+  },
+  "boards": {
+   "total": 20,
+   "severity": {
+    "P0": 2,
+    "P1": 13,
+    "P2": 5
+   }
+  },
+  "casino": {
+   "total": 30,
+   "severity": {
+    "P0": 3,
+    "P1": 17,
+    "P2": 10
+   }
+  },
+  "deal-actions": {
+   "total": 20,
+   "severity": {
+    "P0": 3,
+    "P1": 12,
+    "P2": 5
+   }
+  },
+  "deal-table": {
+   "total": 22,
+   "severity": {
+    "P0": 2,
+    "P1": 13,
+    "P2": 7
+   }
+  },
+  "paper-gang-nimmt": {
+   "total": 27,
+   "severity": {
+    "P0": 2,
+    "P1": 20,
+    "P2": 5
+   }
+  },
+  "rummy-shithead": {
+   "total": 24,
+   "severity": {
+    "P0": 1,
+    "P1": 16,
+    "P2": 7
+   }
+  },
+  "skyjo-flip7-trio": {
+   "total": 25,
+   "severity": {
+    "P0": 3,
+    "P1": 14,
+    "P2": 8
+   }
+  },
+  "tarot": {
+   "total": 19,
+   "severity": {
+    "P0": 1,
+    "P1": 4,
+    "P2": 14
+   }
+  },
+  "uno": {
+   "total": 15,
+   "severity": {
+    "P0": 2,
+    "P1": 7,
+    "P2": 6
+   }
+  },
+  "words-party": {
+   "total": 23,
+   "severity": {
+    "P0": 1,
+    "P1": 13,
+    "P2": 9
+   }
+  }
+ }
+}

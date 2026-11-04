@@ -229,11 +229,14 @@ test('Tarot reveals three distinct cards and survives a refresh', async ({ page 
     await page.getByRole('button', { name: 'Explore the deck', exact: true }).click();
     await page.keyboard.press('Escape');
     await expect(gallery).toHaveCount(0);
-    for (const position of [4, 17, 65]) {
-      await page.getByRole('button', { name: `Choose card ${position}`, exact: true }).click();
-      await expect(
-        page.getByRole('button', { name: `Choose card ${position}`, exact: true }),
-      ).toHaveCount(0);
+    // Deck labels are positional ("Face-down card 5 of 77, for …"), so each
+    // pick is checked by the deck shrinking by exactly one card.
+    const deck = page.getByRole('button', { name: /^Face-down card \d+ of \d+/ });
+    for (const [pick, position] of [4, 17, 65].entries()) {
+      const before = await deck.count();
+      await deck.nth(position - 1).click();
+      // The deck leaves the table once the third card completes the spread.
+      await expect(deck).toHaveCount(pick === 2 ? 0 : before - 1);
     }
     await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
     await expect(

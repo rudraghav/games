@@ -1,5 +1,5 @@
 import type { AstrologyChart, AstrologyPlace, AstrologyReading } from '@games/api-client';
-import computed from './astrology-chart-synthetic.json' with { type: 'json' };
+import computed from './astrology-chart-synthetic.json';
 
 // Deterministic Astronomy Engine fixture: J2000 noon, Greenwich. Not a person's birth data.
 export const syntheticChart = computed as AstrologyChart;

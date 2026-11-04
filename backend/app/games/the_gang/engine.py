@@ -17,6 +17,9 @@ from app.core.contracts import (
 from app.core.poker_explanation import explain_poker_hand
 
 STREETS = ("Preflop", "Flop", "Turn", "River")
+CHIP_COLORS = ("white", "yellow", "orange", "red")
+CHIP_MESSAGE = "Take, swap or return chips until everyone holds one."
+REVEAL_MESSAGE = "Reveal your pocket cards. Hands are revealed from the weakest red chip up."
 HAND_NAMES = ("High card", "Pair", "Two pair", "Three of a kind", "Straight", "Flush",
               "Full house", "Four of a kind", "Straight flush")
 
@@ -56,8 +59,8 @@ class GangEngine(BaseEngine):
         Random(s["seed"] + s["heist"]).shuffle(deck)
         s.update(deck=deck, hands={p: [deck.pop(), deck.pop()] for p in s["order"]},
                  board=[], chips=dict.fromkeys(s["order"]), history=[], revealed=[], street=0,
-                 phase="chips", turn=0, last_success=None,
-                 message="Estimate your pocket cards. Everyone can take a white chip.")
+                 phase="chips", turn=0, last_success=None, taken={},
+                 message="Take the white chip that matches your pocket cards: 1 star is the weakest hand.")
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
         if player not in s["order"] or s["phase"] == "finished":
@@ -77,13 +80,14 @@ class GangEngine(BaseEngine):
         s["history"].append(dict(s["chips"]))
         if s["street"] == 3:
             first = min(s["order"], key=lambda p: s["chips"][p])
-            s.update(phase="showdown", turn=s["order"].index(first),
-                     message="Red chips are locked. Reveal hands from weakest chip to strongest.")
+            s.update(phase="showdown", turn=s["order"].index(first), taken={}, message=REVEAL_MESSAGE)
         else:
             s["street"] += 1
             s["board"].extend(s["deck"].pop() for _ in range(3 if s["street"] == 1 else 1))
-            s.update(chips=dict.fromkeys(s["order"]), turn=0,
-                     message=f"{STREETS[s['street']]}. Estimate again using the new community cards.")
+            color = CHIP_COLORS[s["street"]]
+            s.update(chips=dict.fromkeys(s["order"]), turn=0, taken={},
+                     message=f"{STREETS[s['street']]}: take the {color} chip that matches your hand "
+                             "with the new community cards.")
 
     def _settle(self, s: State) -> None:
         ordered = sorted(s["order"], key=lambda p: s["chips"][p])
@@ -91,7 +95,9 @@ class GangEngine(BaseEngine):
         success = all(a <= b for a, b in zip(ranks, ranks[1:], strict=False))
         s["vaults" if success else "alarms"] += 1
         s.update(last_success=success, turn=0, phase="heist_review",
-                 message="Vault cracked. The order was right!" if success else "Alarm triggered. At least one hand was out of order.")
+                 message=("Vault cracked: the order was right. Start the next heist when the crew is ready."
+                          if success else
+                          "Alarm: at least one hand was out of order. Start the next heist when the crew is ready."))
         if s["vaults"] == 3:
             s.update(phase="finished", winners=list(s["order"]), message="Three vaults cracked. The whole crew wins!")
         elif s["alarms"] == 3:
@@ -107,19 +113,22 @@ class GangEngine(BaseEngine):
             remaining = [p for p in sorted(s["order"], key=lambda p: s["chips"][p]) if p not in s["revealed"]]
             if remaining:
                 s["turn"] = s["order"].index(remaining[0])
-                s["message"] = "Hand revealed. The next chip reveals now."
+                s["message"] = REVEAL_MESSAGE
             else:
                 self._settle(s)
         else:
+            taken = s.setdefault("taken", {})
+            taken.pop(player, None)
             if action.type == "return_chip":
                 s["chips"][player] = None
-                s["message"] = "Chip returned. Everyone can revise their estimate."
             else:
                 for owner in s["order"]:
                     if s["chips"][owner] == action.amount:
                         s["chips"][owner] = None
+                        # Public: everyone sees the rack, so the loser can be told plainly.
+                        taken[owner] = {"by": player, "rank": action.amount}
                 s["chips"][player] = action.amount
-                s["message"] = f"{action.amount}-star chip chosen. Revise until everyone holds a chip."
+            s["message"] = CHIP_MESSAGE
             pending = [p for p in s["order"] if s["chips"][p] is None]
             if pending:
                 s["turn"] = s["order"].index(pending[0])
@@ -145,6 +154,7 @@ class GangEngine(BaseEngine):
                     "revealed": s["revealed"], "last_success": s["last_success"],
                     "own_hand_name": hand_name(own + s["board"]) if own and len(s["board"]) >= 3 else None,
                     "decision_mode": "simultaneous" if s["phase"] == "chips" else "turn",
+                    "taken_chips": s.get("taken", {}) if s["phase"] == "chips" else {},
                     "pending_players": [p for p in s["order"] if s["chips"][p] is None] if s["phase"] == "chips" else [],
                     "hand_names": {p: hand_name(s["hands"][p] + s["board"]) for p in s["revealed"]},
                     "hand_evaluations": {p: explain_poker_hand(s["hands"][p] + s["board"])

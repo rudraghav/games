@@ -5,20 +5,22 @@ import { Button, PlayingCard } from '@games/ui';
 import type { ActionOption, Card, DealDetails } from '@games/api-client';
 import type { TableProps } from '../types';
 import { playerName } from '../types';
-import { actionLabel, transferPreview } from './presentation';
+import { ChoiceList, optionRows, type ChoiceRow } from './DealResolution';
+import {
+  cardPhrase,
+  cardProse,
+  cardTitle,
+  commitLabel,
+  describeOption,
+  locate,
+  optionKey,
+  rentQuote,
+  type DealContext,
+} from './decisions';
+import { debtNames } from './table-status';
 
-export const optionKey = (option: ActionOption) => JSON.stringify(option.value);
-const moveLabels: Record<string, string> = {
-  property: 'Place property',
-  rearrange: 'Move property',
-  bank: 'Bank card',
-  discard: 'Discard card',
-  settle_debt: 'Give card',
-  choose: 'Take card',
-  keep: 'Keep card',
-  give: 'Give card',
-  no: 'Just say no',
-};
+export { optionKey };
+
 interface Props extends TableProps {
   card: Card;
   options: ActionOption[];
@@ -30,38 +32,125 @@ interface Props extends TableProps {
   onTargetChange?: (target: string) => void;
   onClear: () => void;
 }
+
+/** Why this card is selected and what choosing it will do, in one line. */
+function intro(card: Card, play: ActionOption[], ctx: DealContext, banking: boolean) {
+  const type = play[0]?.value.type;
+  if (banking)
+    return `Bank it for ${card.value}. Banked actions become money and cannot be played later.`;
+  if (type === 'settle_debt')
+    return `You owe ${debtNames(ctx.room, ctx.details.debts[ctx.selfId] || [], ctx.selfId)}. Give them this card from your hand; it uses one of your plays and they play or bank it at once.`;
+  if (type === 'property') return 'Choose the pile it goes in.';
+  if (type === 'rearrange') return 'Moving a property between your piles is free: it uses no play.';
+  if (type === 'discard') return 'Discard it to get down to 7 cards.';
+  if (ctx.details.rentMultiplier > 1 && ['rent', 'rent_double'].includes(card.effect))
+    return `Double the Rent is armed: this rent is charged ×${ctx.details.rentMultiplier}.`;
+  if (!play.length) return 'This card can only be banked now.';
+  return 'Choose how to use this card.';
+}
+
 export function DealComposer(props: Props) {
-  const { card, options, candidate, details, match, room } = props;
-  const [localTarget, setTarget] = useState('');
+  const { card, options, candidate, details, match, room, selfId } = props;
+  const ctx: DealContext = { match, room, details, selfId };
+  const [localTarget, setLocalTarget] = useState('');
   const target = props.target ?? localTarget;
   const play = options.filter((option) => option.value.type !== 'bank');
   const bank = options.find((option) => option.value.type === 'bank');
   const targets = [...new Set(play.map((option) => option.value.target).filter(Boolean))];
-  const choices =
-    targets.length > 1 ? play.filter((option) => option.value.target === target) : play;
+  const needsTarget = targets.length > 1;
+  const choices = needsTarget ? play.filter((option) => option.value.target === target) : play;
   const banking = candidate?.value.type === 'bank';
   const blocked = props.pending || room.paused;
-  const preview = transferPreview(candidate, match);
-  const collection = details.collections.find(
-    (group) => group.player === props.selfId && group.key === candidate?.value.color,
+  const forced = card.effect === 'forced';
+  const [take, setTake] = useState<string | null>(
+    forced && candidate ? candidate.value.choice || null : null,
   );
-  const rent =
-    candidate?.value.type === 'play' && ['rent', 'rent_double'].includes(card.effect) && collection
-      ? collection.rent * details.rentMultiplier * (card.effect === 'rent_double' ? 2 : 1)
+  const pick = (key: string) => {
+    const option = choices.find((item) => optionKey(item) === key);
+    if (option) props.onCandidate(option);
+  };
+  const chooseTarget = (id: string) => {
+    setLocalTarget(id);
+    props.onTargetChange?.(id);
+    setTake(null);
+    // A player with exactly one possible move needs no second pick.
+    const only = play.filter((option) => option.value.target === id);
+    if (only.length === 1) props.onCandidate(only[0]);
+    else props.onResetMove();
+  };
+
+  const targetRows: ChoiceRow[] = targets.map((id) => {
+    const own = play.filter((option) => option.value.target === id);
+    return {
+      key: id,
+      title: playerName(room, id),
+      detail:
+        own.length === 1
+          ? describeOption(own[0], ctx).detail
+          : `${own.length} possible ${forced ? 'swaps' : card.effect === 'sly' ? 'properties' : 'choices'}`,
+      colors: [],
+    };
+  });
+
+  // Forced Deal: first the card you take, then the card you give.
+  const takeIds = [...new Set(choices.map((option) => option.value.choice).filter(Boolean))];
+  const takeRows: ChoiceRow[] = takeIds.map((id) => {
+    const place = locate(match, selfId, id);
+    return {
+      key: id,
+      title: place ? cardTitle(place.card, details) : 'Property',
+      detail: cardPhrase(ctx, id, { title: false, owner: false }),
+      colors: place?.card.suit === 'property' ? [place.card.color] : [],
+    };
+  });
+  const gives = choices.filter((option) => option.value.choice === take);
+  const giveRows: ChoiceRow[] = gives.map((option) => {
+    const id = option.value.cards?.[0];
+    const place = locate(match, selfId, id);
+    return {
+      key: optionKey(option),
+      title: place ? cardTitle(place.card, details) : 'Property',
+      detail: id ? cardPhrase(ctx, id, { title: false, owner: false }) : '',
+      colors: place?.card.suit === 'property' ? [place.card.color] : [],
+    };
+  });
+
+  const rentLike = ['rent', 'rent_double'].includes(card.effect);
+  const ordered = rentLike
+    ? [...choices].sort(
+        (a, b) =>
+          rentQuote(ctx, card, b.value.color).amount - rentQuote(ctx, card, a.value.color).amount,
+      )
+    : choices;
+  const rows = optionRows(ordered, ctx);
+  const showRows =
+    !banking && !forced && (rows.length > 1 || (rows.length === 1 && candidate !== choices[0]));
+  const selectedKey = candidate ? optionKey(candidate) : null;
+  const steal =
+    candidate?.value.type === 'play' &&
+    candidate.value.choice &&
+    ['sly', 'forced'].includes(card.effect);
+  const summary =
+    candidate && !banking
+      ? steal
+        ? {
+            title: 'You take',
+            detail: `${cardProse(ctx, candidate.value.choice)}${
+              candidate.value.cards?.[0]
+                ? ` and give ${cardProse(ctx, candidate.value.cards[0])}`
+                : ''
+            }`,
+          }
+        : describeOption(candidate, ctx)
       : null;
+
   return (
     <section className="deal-composer" aria-label="Selected card" aria-busy={props.pending}>
       <div className="deal-selected-preview">
         <PlayingCard card={card} family="property" compact />
         <div>
           <h3>{card.label}</h3>
-          <p>
-            {banking
-              ? `Bank it for ${card.value}. Banked actions become money and cannot be played later.`
-              : card.suit === 'property'
-                ? 'Choose a highlighted set or a destination below.'
-                : 'Choose how to use this card.'}
-          </p>
+          <p>{intro(card, play, ctx, banking)}</p>
         </div>
         <button
           type="button"
@@ -73,85 +162,93 @@ export function DealComposer(props: Props) {
         </button>
       </div>
       <div className="deal-move-form">
-        {!banking && targets.length > 1 ? (
-          <label>
-            Player
-            <select
-              className="input"
-              value={target}
+        {!banking && needsTarget ? (
+          <fieldset className="deal-choice-step">
+            <legend>1. Choose a player</legend>
+            <ChoiceList
+              label="Choose a player"
+              rows={targetRows}
+              selected={target || null}
               disabled={blocked}
-              onChange={(event) => {
-                setTarget(event.target.value);
-                props.onTargetChange?.(event.target.value);
-                props.onResetMove();
-              }}
-            >
-              <option value="">Choose a player</option>
-              {targets.map((id) => (
-                <option key={id} value={id}>
-                  {playerName(room, id)}
-                </option>
-              ))}
-            </select>
-          </label>
+              onChoose={chooseTarget}
+            />
+          </fieldset>
         ) : null}
-        {!banking && (play.length > 1 || (play.length === 1 && candidate !== play[0])) ? (
-          <label>
-            {['property', 'rearrange'].includes(play[0]?.value.type) ? 'Destination' : 'Move'}
-            <select
-              className="input"
-              aria-label="Card move"
-              value={candidate && choices.includes(candidate) ? optionKey(candidate) : ''}
+        {!banking && forced && choices.length ? (
+          <>
+            <fieldset className="deal-choice-step">
+              <legend>{needsTarget ? '2. ' : '1. '}Property you take</legend>
+              <ChoiceList
+                label="Property you take"
+                rows={takeRows}
+                selected={take}
+                disabled={blocked}
+                onChoose={(id) => {
+                  setTake(id);
+                  const only = choices.filter((option) => option.value.choice === id);
+                  if (only.length === 1) props.onCandidate(only[0]);
+                  else props.onResetMove();
+                }}
+              />
+            </fieldset>
+            {take ? (
+              <fieldset className="deal-choice-step">
+                <legend>{needsTarget ? '3. ' : '2. '}Property you give</legend>
+                <ChoiceList
+                  label="Property you give"
+                  rows={giveRows}
+                  selected={selectedKey}
+                  disabled={blocked}
+                  onChoose={pick}
+                />
+              </fieldset>
+            ) : null}
+          </>
+        ) : null}
+        {showRows && (!needsTarget || target) ? (
+          <fieldset className="deal-choice-step">
+            <legend>
+              {needsTarget ? '2. ' : ''}
+              {['property', 'rearrange'].includes(play[0]?.value.type)
+                ? 'Destination'
+                : rentLike
+                  ? 'Set to charge rent on'
+                  : 'Choose a move'}
+            </legend>
+            <ChoiceList
+              label="Card move"
+              rows={rows}
+              selected={selectedKey}
               disabled={blocked || !choices.length}
-              onChange={(event) => {
-                const option = choices.find((item) => optionKey(item) === event.target.value);
-                if (option) props.onCandidate(option);
-              }}
-            >
-              <option value="">{choices.length ? 'Choose a move' : 'Choose a player first'}</option>
-              {choices.map((option) => (
-                <option key={optionKey(option)} value={optionKey(option)}>
-                  {actionLabel(option, match, room, details.propertyGroups)}
-                </option>
-              ))}
-            </select>
-          </label>
+              onChoose={pick}
+            />
+          </fieldset>
         ) : null}
-        {candidate ? (
-          <p className="deal-move-summary">
-            {banking
-              ? `Add ${card.value} to your bank`
-              : actionLabel(candidate, match, room, details.propertyGroups)}
+        {banking ? (
+          <p className="deal-move-summary">Add {card.value} to your bank</p>
+        ) : summary ? (
+          <p className="deal-move-summary" aria-label="Move preview">
+            <strong>{summary.title}</strong>
+            {summary.detail ? `${steal ? ' ' : ' · '}${summary.detail}` : ''}
           </p>
         ) : !options.length ? (
           <p className="small muted">This card has no available move.</p>
         ) : null}
-        {preview.length || rent !== null ? (
-          <div className="deal-target-preview" aria-label="Move preview">
-            {preview.map(({ role, card: asset }) => (
-              <span key={`${role}:${asset.id}`}>
-                <b>{role}</b>
-                {asset.label}
-                <span>{asset.value}</span>
-              </span>
-            ))}
-            {rent !== null ? (
-              <span>
-                <b>{rent}M rent</b>
-                {candidate?.value.target
-                  ? `from ${playerName(room, candidate.value.target)}`
-                  : 'from each other player'}
-              </span>
-            ) : null}
-          </div>
-        ) : null}
-        <div className="deal-commit-actions">
+        <div className="deal-commit-actions" data-decision-actions>
           {play.length && !banking ? (
             <Button
-              disabled={blocked || !candidate || banking}
+              disabled={blocked || !candidate}
               onClick={() => candidate && props.onAction(candidate.value)}
             >
-              {moveLabels[candidate?.value.type || play[0].value.type] || `Play ${card.label}`}
+              {candidate
+                ? commitLabel(candidate, ctx)
+                : needsTarget && !target
+                  ? 'Choose a player first'
+                  : forced && !take
+                    ? 'Choose a property to take'
+                    : ['property', 'rearrange'].includes(play[0].value.type)
+                      ? 'Choose a destination'
+                      : `Play ${card.label}`}
               <ArrowRight size={15} />
             </Button>
           ) : null}

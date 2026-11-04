@@ -33,20 +33,22 @@ test('Azul keeps the center available while all factories can be reached without
   await expect(center).toBeVisible();
   const rail = page.locator('.azul-factories');
   if ((page.viewportSize()?.width || 0) <= 600) {
-    const next = page.getByRole('button', { name: 'Next factories', exact: true });
-    const before = await center.boundingBox();
-    await next.click();
-    expect(await rail.evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);
-    expect(await center.boundingBox()).toEqual(before);
-    for (let i = 0; i < 4; i++) await next.click();
+    // Phones list every factory in one column: comparing offers needs no sideways paging.
+    await expect(page.getByRole('button', { name: 'Next factories', exact: true })).toHaveCount(0);
+    expect(await rail.evaluate((el) => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+    const frame = (await rail.boundingBox())!;
+    const centerBox = (await center.boundingBox())!;
+    for (let factory = 1; factory <= 9; factory++) {
+      const bounds = (await page
+        .getByRole('region', { name: `Factory ${factory}`, exact: true })
+        .boundingBox())!;
+      expect(bounds.x).toBeGreaterThanOrEqual(frame.x - 1);
+      expect(bounds.x + bounds.width).toBeLessThanOrEqual(frame.x + frame.width + 1);
+      expect(bounds.y).toBeGreaterThanOrEqual(centerBox.y + centerBox.height);
+    }
     const last = page.getByRole('region', { name: 'Factory 9', exact: true });
-    const bounds = await last.boundingBox();
-    const frame = await rail.boundingBox();
-    expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(frame!.x + frame!.width + 1);
-    await page.getByRole('button', { name: 'Previous factories', exact: true }).click();
-    expect(await rail.evaluate((el) => el.scrollLeft)).toBeLessThan(
-      await rail.evaluate((el) => el.scrollWidth - el.clientWidth),
-    );
+    await last.scrollIntoViewIfNeeded();
+    await expect(last).toBeInViewport();
   } else {
     await expect(page.getByRole('region', { name: 'Factory 9', exact: true })).toBeVisible();
   }
@@ -56,6 +58,9 @@ test('number rows expose capacity before committing a private number', async ({ 
   await page.getByLabel('Table scenario').selectOption({ label: '6 nimmt! · maximum seats' });
   const rows = page.locator('.six-rows');
   const hand = page.getByRole('region', { name: 'Your private number cards' });
+  // On phones the open hand is a tray that stays on screen while the rows scroll;
+  // at the end of the page it rests in place, after every row.
+  await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
   expect(await rows.evaluate((el) => el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(
     await hand.evaluate((el) => el.getBoundingClientRect().top),
   );

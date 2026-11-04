@@ -64,14 +64,15 @@ class FlipSevenEngine(BaseEngine):
                     "table": {p: [] for p in players}, "status": dict.fromkeys(players, "active"),
                     "scores": dict.fromkeys(players, 0), "round_scores": {}, "winners": [],
                     "round": 0, "dealer": 0, "tasks": [], "pending": None, "resume": 0,
-                    "message": "The first cards are on the table."}
+                    "effects": []}
         self._begin_round(s)
         return s
 
     def _begin_round(self, s: State) -> None:
         s["round"] += 1
         s.update(phase="playing", table={p: [] for p in s["order"]},
-                 status=dict.fromkeys(s["order"], "active"), pending=None, resume=s["dealer"])
+                 status=dict.fromkeys(s["order"], "active"), pending=None, resume=s["dealer"],
+                 effects=[])
         order = s["order"][s["dealer"]:] + s["order"][:s["dealer"]]
         s["tasks"] = [{"kind": "draw", "player": p, "remaining": 1, "batch": False,
                        "deferred": []} for p in order]
@@ -86,9 +87,9 @@ class FlipSevenEngine(BaseEngine):
         s.update(tasks=[], pending=None, dealer=(s["dealer"] + 1) % len(s["order"]))
         s["turn"] = s["dealer"]
         if best >= 200 and len(leaders) == 1:
-            s.update(phase="finished", winners=leaders, message="Two hundred and beyond. Your luck has a winner!")
+            s.update(phase="finished", winners=leaders)
         else:
-            s.update(phase="round_over", message="Round banked. Review your score before the next deal.")
+            s.update(phase="round_over")
 
     def _active(self, s: State) -> list[str]:
         return [p for p in s["order"] if s["status"][p] == "active"]
@@ -102,7 +103,7 @@ class FlipSevenEngine(BaseEngine):
                 s["tasks"].pop(0)
                 if s["status"][p] != "busted" and self._active(s):
                     s.update(pending={"card": task["card"], "player": p}, phase="target",
-                             turn=s["order"].index(p), message=f"Choose who receives {face(task['card']).label}.")
+                             turn=s["order"].index(p))
                     return
                 continue
             if not task["remaining"] or s["status"][p] != "active":
@@ -121,25 +122,21 @@ class FlipSevenEngine(BaseEngine):
             card = s["deck"].pop()
             task["remaining"] -= 1
             held = s["table"][p]
-            s["message"] = f"Flipped {face(card).label}."
             if card.startswith("n-") and any(c.startswith("n-") and
                     c.split("-")[1] == card.split("-")[1] for c in held):
                 protection = next((c for c in held if c.startswith("chance-")), None)
                 if protection:
                     held.remove(protection)
                     s["discard"].extend([protection, card])
-                    s["message"] = "Second Chance saved the duplicate. Still in!"
                 else:
                     held.append(card)
                     s["status"][p] = "busted"
-                    s["message"] = "A duplicate. Busted this round."
                 continue
             if card.startswith("chance-") and any(c.startswith("chance-") for c in held):
                 targets = [q for q in self._active(s) if not any(c.startswith("chance-") for c in s["table"][q])]
                 if targets:
                     held.append(card)
-                    s.update(pending={"card": card, "player": p}, phase="target", turn=s["order"].index(p),
-                             message="An extra Second Chance. Give it to another active player.")
+                    s.update(pending={"card": card, "player": p}, phase="target", turn=s["order"].index(p))
                     return
                 s["discard"].append(card)
                 continue
@@ -148,8 +145,7 @@ class FlipSevenEngine(BaseEngine):
                 if task["batch"]:
                     task["deferred"].append(card)
                 else:
-                    s.update(pending={"card": card, "player": p}, phase="target", turn=s["order"].index(p),
-                             message=f"Choose who receives {face(card).label}.")
+                    s.update(pending={"card": card, "player": p}, phase="target", turn=s["order"].index(p))
                     return
             if sum(c.startswith("n-") for c in held) == 7:
                 self._finish_round(s)
@@ -191,6 +187,9 @@ class FlipSevenEngine(BaseEngine):
             card = s["pending"]["card"]
             kind = card.split("-")[0]
             s.update(pending=None, phase="playing")
+            # Public record of who gave which action card, so every seat can see it.
+            s.setdefault("effects", []).append(
+                {"card": face(card).label, "by": player, "to": action.target})
             if kind == "chance":
                 s["table"][player].remove(card)
                 s["table"][action.target].append(card)
@@ -207,12 +206,42 @@ class FlipSevenEngine(BaseEngine):
             s["resume"] = (s["turn"] + 1) % len(s["order"])
             if action.type == "stay":
                 s["status"][player] = "stayed"
-                s["message"] = f"Banked {round_points(s, player)} points."
             else:
                 s["tasks"] = [{"kind": "draw", "player": player, "remaining": 1,
                                "batch": False, "deferred": []}]
         self._advance(s)
         return s
+
+    def _message(self, s: State) -> str:
+        """The instruction for the seat that can act. Every Flip 7 card is public."""
+        if s["phase"] == "finished":
+            return "A total reached 200, so the match is over. The highest total wins."
+        if s["phase"] == "round_over":
+            best = max(s["scores"].values())
+            tie = " The leaders are tied, so play continues." if best >= 200 else ""
+            return (f"Round {s['round']} is banked.{tie} Deal round {s['round'] + 1} "
+                    "when everyone has checked the scores.")
+        if s["pending"]:
+            kind = s["pending"]["card"].split("-")[0]
+            if kind == "chance":
+                return "You already hold a Second Chance. Give this one to another active player."
+            if kind == "freeze":
+                return "Choose who receives Freeze. Their round ends and their points are banked."
+            return "Choose who must flip three cards. A repeated number busts them."
+        actor = s["order"][s["turn"]]
+        held = s["table"][actor]
+        if not held:
+            return "Hit to flip your first card."
+        text = f"Hit to flip another card, or stay to bank {round_points(s, actor)}."
+        numbers = sorted({int(c.split("-")[1]) for c in held if c.startswith("n-")})
+        if any(c.startswith("chance-") for c in held):
+            text += " Your Second Chance saves one repeated number."
+        elif numbers:
+            listed = ", ".join(str(n) for n in numbers[:-1])
+            text += f" A repeated {listed + ' or ' if listed else ''}{numbers[-1]} busts you."
+        if len(numbers) == 6:
+            text += " One more new number ends the round with a 15-point bonus."
+        return text
 
     def project_view(self, s: State, player: str) -> GameView:
         return GameView(
@@ -221,9 +250,10 @@ class FlipSevenEngine(BaseEngine):
             players=[PlayerView(id=p, score=s["scores"][p], count=len(s["table"][p]),
                                 folded=s["status"][p] != "active", cards=[face(c) for c in s["table"][p]])
                      for p in s["order"]], hand=[], draw_count=len(s["deck"]),
-            actions=self.legal_actions(s, player), winners=s["winners"], message=s["message"],
+            actions=self.legal_actions(s, player), winners=s["winners"], message=self._message(s),
             detail={"round": s["round"], "status": s["status"], "round_scores": s["round_scores"],
                     "at_risk": {p: round_points(s, p) for p in s["order"]},
                     "pending_card": face(s["pending"]["card"]).label if s["pending"] else "",
-                    "dealer": s["order"][s["dealer"]]},
+                    "dealer": s["order"][s["dealer"]],
+                    "effects": [dict(effect) for effect in s.get("effects", [])]},
         )

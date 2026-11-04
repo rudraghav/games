@@ -142,6 +142,57 @@ def test_six_exact_low_score_tie_shares_victory_and_not_double_counts_round():
     assert e.project_view(s, "a").detail["total_penalties"] == {"a": 66, "b": 66}
 
 
+def test_six_resolution_records_each_placement_capture_and_low_card_take():
+    e = SixNimmtEngine()
+    s = six_position({"a": [2, 90], "b": [56, 91], "c": [21, 92]}, [[10, 20, 30, 40, 50], [60], [70], [80]])
+    for player, card in [("b", 56), ("c", 21), ("a", 2)]:
+        s = e.apply_action(s, player, Action(type="select_number", card=f"number-{card}"))
+    view = e.project_view(s, "c")
+    assert s["phase"] == "take_row" and view.detail["resolution"] == []
+    assert [item["card"]["value"] for item in view.detail["unresolved"]] == ["2", "21", "56"]
+    assert "Your 2 is lower than every row end" in e.project_view(s, "a").message
+    s = e.apply_action(s, "a", Action(type="take_row", choice="1"))
+    steps = e.project_view(s, "b").detail["resolution"]
+    # Later cards resolve against the updated rows: 21 follows the new starter 2.
+    assert [(step["player"], step["card"]["value"], step["row"], step["kind"]) for step in steps] == [
+        ("a", "2", 1, "low"), ("c", "21", 1, "placed"), ("b", "56", 0, "sixth")]
+    assert [card["value"] for card in steps[0]["captured"]] == ["60"] and steps[0]["penalties"] == 3
+    assert steps[1]["captured"] == [] and steps[1]["penalties"] == 0
+    assert [card["value"] for card in steps[2]["captured"]] == ["10", "20", "30", "40", "50"]
+    assert steps[2]["penalties"] == 3 + 3 + 3 + 3 + 3
+    assert e.project_view(s, "b").detail["unresolved"] == []
+    s = e.apply_action(s, s["order"][s["turn"]], Action(type="next_selection"))
+    assert e.project_view(s, "a").detail["resolution"] == []
+
+
+def test_simultaneous_messages_instruct_the_seat_that_can_act():
+    e = SixNimmtEngine()
+    s = six_position({"a": [2, 5], "b": [3, 6]}, [[10], [20], [30], [40]])
+    s = e.apply_action(s, "a", Action(type="select_number", card="number-5"))
+    # Only "b" can act; the message is an instruction, not "card locked" news.
+    assert "Choose one number" in e.project_view(s, "b").message
+    g = GangEngine()
+    t = g.setup(["a", "b", "c"], {}, seed=3)
+    t = g.apply_action(t, "a", Action(type="claim_chip", amount=2))
+    assert g.project_view(t, "b").message.startswith("Take, swap or return chips")
+
+
+def test_gang_taken_chip_is_reported_to_the_crew_until_its_holder_chooses_again():
+    e = GangEngine()
+    s = e.setup(["a", "b", "c"], {}, seed=3)
+    s = e.apply_action(s, "a", Action(type="claim_chip", amount=2))
+    s = e.apply_action(s, "b", Action(type="claim_chip", amount=2))
+    assert s["chips"] == {"a": None, "b": 2, "c": None}
+    for viewer in ["a", "b", "c"]:
+        assert e.project_view(s, viewer).detail["taken_chips"] == {"a": {"by": "b", "rank": 2}}
+    s = e.apply_action(s, "a", Action(type="claim_chip", amount=3))
+    assert e.project_view(s, "a").detail["taken_chips"] == {}
+    s = e.apply_action(s, "c", Action(type="claim_chip", amount=3))
+    assert e.project_view(s, "a").detail["taken_chips"] == {"a": {"by": "c", "rank": 3}}
+    s = e.apply_action(s, "a", Action(type="claim_chip", amount=1))
+    assert s["street"] == 1 and e.project_view(s, "a").detail["taken_chips"] == {}
+
+
 def test_gang_chip_transfer_return_and_final_pick_advance_canonical_street():
     e = GangEngine()
     s = e.setup(["a", "b", "c"], {}, seed=3)

@@ -133,14 +133,14 @@
         "play",
         "uno"
       ],
-      "peakPrivateHand": 18,
+      "peakPrivateHand": 24,
       "phases": [
         "playing"
       ],
       "physicalInventoryChecked": true,
       "seats": 6,
       "seed": 31,
-      "steps": 97,
+      "steps": 129,
       "stress": false,
       "supplemental": false
     },

@@ -35,7 +35,7 @@ from app.games.tarot.reading import (
     generate_reading,
 )
 from app.models import Match, Member, Message, Profile, Receipt, Room, TarotReading
-from app.rooms.bots import BOT_DELAY_SECONDS, BOT_NAMES, next_bot_view
+from app.rooms.bots import BOT_DELAY_SECONDS, BOT_NAMES, bot_delay, next_bot_view
 from app.rooms.public_actions import PUBLIC_ACTIONS, public_action
 from app.rooms.public_history import public_move
 from app.rooms.repository import Repository
@@ -164,15 +164,12 @@ class RoomService:
             raise HTTPException(422, str(error)) from error
         after_views = {p: engine.project_view(match.state, p) for p in match.participants}
         event = public_move(before_views, after_views, player_id, action, match.version + 1)
-        observing_bots = (
-            [
-                member
-                for member, _ in self.repo.members(room.id)
-                if member.is_bot and member.user_id in match.participants
-            ]
-            if match.game_id in {"trio", "flip-7"}
-            else []
-        )
+        match_bots = [
+            member
+            for member, _ in self.repo.members(room.id)
+            if member.is_bot and member.user_id in match.participants
+        ]
+        observing_bots = match_bots if match.game_id in {"trio", "flip-7"} else []
         if observing_bots:
             from app.bots import observe_view
 
@@ -187,7 +184,10 @@ class RoomService:
                 memories[member.user_id] = memory
             match.bot_memory = memories
         match.version += 1
-        match.bot_due_at = time.time() + BOT_DELAY_SECONDS
+        # Reviews and fresh UNO calls get time to be read or answered before a bot acts.
+        match.bot_due_at = time.time() + bot_delay(
+            engine, match.state, [m for m in match_bots if m.seated], BOT_DELAY_SECONDS
+        )
         room.revision += 1
         if match.state["phase"] == "finished":
             view = after_views[player_id]
@@ -374,7 +374,7 @@ class RoomService:
                 return room_view(self.repo, room, actor.id, self.cipher)
             if match.version != data.expected_version or room.status != "playing":
                 raise HTTPException(
-                    409, "The table changed. Your hand has been refreshed; choose your move again."
+                    409, "The table changed while you were choosing. It is up to date now; choose again."
                 )
             self._member(room_id, actor.id).seen_at = time.time()
             if not self._connected(room_id, match):

@@ -68,7 +68,7 @@ for (const [id, name] of [
         await expect(
           players[1].getByRole('button', { name: 'Lock in my choice', exact: true }),
         ).toHaveCount(0);
-        await choose(page, 'Share · I answered aloud');
+        await choose(page, 'Spill · I answered aloud');
         expect((await roomAs(page, roomId)).game!.players[0].score).toBe(1);
       } else if (id === 'most-likely') {
         await choose(page, 'Party Friend 1');

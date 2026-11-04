@@ -144,9 +144,14 @@ test('saved crowded-action families preserve exact moves, public state and narro
       const started = await start(game);
       const actor = actorFor(started.game!.current_player!);
       const before = await roomAs(actor, roomId);
+      // An ordinary move: a property with one destination (a wild's several piles
+      // are a separate radio choice) or else a bank move.
+      const placements = before.game!.actions.filter((item) => item.action.type === 'property');
       const option =
-        before.game!.actions.find((item) => item.action.type === 'property') ||
-        before.game!.actions.find((item) => item.action.type === 'bank');
+        placements.find(
+          (item) =>
+            placements.filter((other) => other.action.card === item.action.card).length === 1,
+        ) || before.game!.actions.find((item) => item.action.type === 'bank');
       expect(option, 'An ordinary naturally dealt property or bank move exists').toBeTruthy();
       const index = before.game!.hand.findIndex((card) => card.id === option!.action.card);
       expect(index).toBeGreaterThanOrEqual(0);

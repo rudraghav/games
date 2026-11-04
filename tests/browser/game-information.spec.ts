@@ -69,9 +69,14 @@ test('effect instructions and alternate victory conditions are available without
   )!;
   await scenario(page, freeze.id);
   await expect(
-    page.getByText('Freeze banks the chosen player’s round points. Choose an eligible player.', {
-      exact: true,
-    }),
+    page.getByText(
+      'Freeze ends that player’s round and banks their points. Choose a player in the rows below.',
+      { exact: true },
+    ),
+  ).toBeVisible();
+  // Every eligible target is a control on its own row and states its consequence.
+  await expect(
+    page.getByRole('button', { name: /^Give Freeze to .+: banks \d+$/ }).first(),
   ).toBeVisible();
   await scenario(page, 'boop-2-17-8');
   await expect(
@@ -79,7 +84,8 @@ test('effect instructions and alternate victory conditions are available without
   ).toBeVisible();
   await scenario(page, 'uno-2-17-2');
   await page.locator('.card-hand > button[aria-label*="Green Skip"]').click();
-  await expect(page.getByText('The next player loses their turn.', { exact: true })).toBeVisible();
+  // The effect names who is affected: with two players a Skip comes straight back.
+  await expect(page.getByText(/^.+ loses their turn; you play again\.$/)).toBeVisible();
 });
 
 test('opponent Gem Market tokens are public while reserved card identities remain hidden', async ({
@@ -106,7 +112,7 @@ test('opponent Gem Market tokens are public while reserved card identities remai
   );
 });
 
-test('completed Gang and Paper rounds keep the next action close to the hand and public reveal', async ({
+test('completed Gang and Paper rounds explain the result before the next action, right beside it', async ({
   page,
 }) => {
   const gang = midgameScenarios.find(
@@ -116,17 +122,25 @@ test('completed Gang and Paper rounds keep the next action close to the hand and
       item.room.game!.actions?.some((option) => option.action.type === 'next_heist'),
   )!;
   await scenario(page, gang.id);
+  // Verdict, then the red-chip ladder, then a compact dock with Next heist.
+  const verdict = page.getByRole('region', { name: 'Heist ranking explanation', exact: true });
+  await expect(verdict).toBeVisible();
   const gangDock = page.getByRole('region', { name: 'Ranking and reveal decisions', exact: true });
-  expect((await gangDock.boundingBox())!.height).toBe(112);
-  await expect(gangDock.getByRole('button', { name: 'Next heist', exact: true })).toBeVisible();
-  const gangGap = await page
-    .locator('.gang-table')
-    .evaluate(
-      (table) =>
-        table.querySelector('.gang-revealed')!.getBoundingClientRect().top -
-        table.querySelector('.gang-private')!.getBoundingClientRect().bottom,
-    );
-  expect(gangGap).toBeLessThan(170);
+  const next = gangDock.getByRole('button', { name: 'Next heist', exact: true });
+  await expect(next).toBeVisible();
+  const gangLayout = await page.locator('.gang-table').evaluate((table) => {
+    const box = (selector: string) => table.querySelector(selector)!.getBoundingClientRect();
+    return {
+      verdictToLadder: box('.gang-revealed').top - box('.gang-verdict').bottom,
+      ladderToDock: box('.gang-review-dock').top - box('.gang-revealed').bottom,
+      dock: box('.gang-review-dock').height,
+    };
+  });
+  expect(gangLayout.verdictToLadder).toBeGreaterThanOrEqual(0);
+  expect(gangLayout.verdictToLadder).toBeLessThan(40);
+  expect(gangLayout.ladderToDock).toBeGreaterThanOrEqual(0);
+  expect(gangLayout.ladderToDock).toBeLessThan(40);
+  expect(gangLayout.dock).toBeLessThan(170);
   const paper = midgameScenarios.find(
     (item) =>
       item.game === 'sea-salt-paper' &&
@@ -134,15 +148,24 @@ test('completed Gang and Paper rounds keep the next action close to the hand and
       item.room.game!.actions?.some((option) => option.action.type === 'next_round'),
   )!;
   await scenario(page, paper.id);
-  const paperDock = page.getByRole('region', { name: 'Draw and card choices', exact: true });
-  expect((await paperDock.boundingBox())!.height).toBe(112);
-  await expect(paperDock.getByRole('button', { name: 'Next round', exact: true })).toBeVisible();
-  const paperGap = await page
-    .locator('.paper-table')
-    .evaluate(
-      (table) =>
-        table.querySelector('.paper-hand')!.getBoundingClientRect().top -
-        table.querySelector('.paper-heading')!.getBoundingClientRect().bottom,
-    );
-  expect(paperGap).toBeLessThan(160);
+  // The round summary comes first, says why everyone scored what they did, and
+  // holds Next round; the revealed hand follows directly (after this seat's own
+  // private notices, when it has any).
+  const summary = page.getByRole('region', { name: /^Round \d+ results$/ });
+  await expect(summary).toContainText(
+    /stopped the round|Last Chance (worked|failed)|stock ran out/,
+  );
+  await expect(summary.getByRole('button', { name: 'Next round', exact: true })).toBeVisible();
+  const paperLayout = await page.locator('.paper-table').evaluate((table) => {
+    const box = (selector: string) => table.querySelector(selector)!.getBoundingClientRect();
+    return {
+      headingToSummary: box('.paper-round-summary').top - box('.paper-heading').bottom,
+      summaryToHand:
+        box('.paper-hand').top -
+        box('.paper-round-summary').bottom -
+        (table.querySelector('.paper-notices') ? box('.paper-notices').height + 14 : 0),
+    };
+  });
+  expect(paperLayout.headingToSummary).toBeLessThan(40);
+  expect(paperLayout.summaryToHand).toBeLessThan(40);
 });

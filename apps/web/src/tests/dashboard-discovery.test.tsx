@@ -76,7 +76,7 @@ describe('Dashboard discovery and private room entry', () => {
     expect(findGames([game], 'palace', 2, 'boards')).toEqual([]);
     const art = renderToStaticMarkup(<GameArt game={game} />);
     expect(art).toContain('palace-cover-row--backs');
-    expect(art).toContain('/playing-cards/10_of_diamonds.svg');
+    expect(art).toContain('/playing-cards/web/10_of_diamonds.webp');
   });
   it('gives returning members a readable room shortcut without exposing an invite', () => {
     const html = renderToStaticMarkup(

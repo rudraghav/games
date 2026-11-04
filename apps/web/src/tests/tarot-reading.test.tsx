@@ -1,7 +1,8 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { TarotReading } from '@/games/tarot/TarotReading';
+import { TarotReading, readableCredit } from '@/games/tarot/TarotReading';
 import { tarotReadingCards, tarotReadingExample } from '@/stories/fixtures/tarot-reading';
+import { syntheticAstrologyReading } from '@/stories/fixtures/astrology';
 import * as characterCatalogue from '@games/api-client/characters';
 import type { TarotCharacter } from '@games/api-client/characters';
 
@@ -289,5 +290,34 @@ describe('saved Tarot reading presentation', () => {
     const html = renderToStaticMarkup(<TarotReading reading={reading} cards={tarotReadingCards} />);
     expect(html).toContain('&lt;script&gt;');
     expect(html).not.toContain('<script>');
+  });
+
+  it('shows each discussed card beside its section heading', () => {
+    const html = renderToStaticMarkup(
+      <TarotReading reading={tarotReadingExample} cards={tarotReadingCards} />,
+    );
+    expect(html.match(/class="tarot-reading-card-heading"/g)).toHaveLength(3);
+    for (const card of tarotReadingCards) expect(html).toContain(`aria-label="${card.label}"`);
+  });
+
+  it('ends with one next move that folds in the chart advice', () => {
+    const reading = { ...tarotReadingExample, astrology: syntheticAstrologyReading };
+    const html = renderToStaticMarkup(<TarotReading reading={reading} cards={tarotReadingCards} />);
+    expect(html.match(/class="tarot-next-step"/g)).toHaveLength(1);
+    expect(html).not.toContain('A small next move');
+    expect(html).toContain('From your chart:');
+    expect(html).toContain(syntheticAstrologyReading.interpretation.next_step);
+  });
+
+  it('reads raw source URLs in credits as their site name', () => {
+    expect(readableCredit('http://www.nbc.com/The_Office/images/office_michael_1024x78.jpg')).toBe(
+      'nbc.com',
+    );
+    expect(
+      readableCredit(
+        'Cropped and reduced from image at http://killing-eve.wikia.com/wiki/Villanelle',
+      ),
+    ).toBe('Cropped and reduced from image at killing-eve.wikia.com');
+    expect(readableCredit('Phantom Films; film still')).toBe('Phantom Films; film still');
   });
 });

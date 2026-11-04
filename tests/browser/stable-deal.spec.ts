@@ -5,12 +5,13 @@ import { dealScenarios } from '../../apps/web/src/stories/generated/deal-scenari
 // Engine-generated projections only: this suite never creates rooms or uses the API.
 test.skip(Boolean(process.env.GAMES_TEST_URL), 'The design review route is local-only.');
 
+// Table order: opponents, shared centre, private hand, command dock, then your own table.
 const regions = [
   '.deal-opponents',
   '.deal-center',
-  '.deal-board-scroll',
-  '.deal-command-dock',
   '.deal-hand-dock',
+  '.deal-command-dock',
+  '.deal-board-scroll',
 ] as const;
 const own = (page: Page) => page.locator('.deal-player[data-own="true"]');
 const hand = (page: Page) => page.getByRole('group', { name: 'Your hand', exact: true });
@@ -29,10 +30,27 @@ async function bounds(page: Page) {
   );
 }
 
-async function stable(page: Page, before: Awaited<ReturnType<typeof bounds>>) {
+/**
+ * Selecting, previewing and clearing never move a region. Only placement may add
+ * destination tiles to the end of your own table, which sits last, so it can grow
+ * downward without moving anything else. After a committed move the server's new
+ * table may change your own sets (boardMayChange); every other region stays put.
+ */
+async function stable(
+  page: Page,
+  before: Awaited<ReturnType<typeof bounds>>,
+  { boardMayGrow = false, boardMayChange = false } = {},
+) {
   const after = await bounds(page);
   for (const [index, value] of after.entries()) {
     for (const key of ['x', 'y', 'width', 'height'] as const) {
+      if (regions[index] === '.deal-board-scroll' && key === 'height') {
+        if (boardMayChange) continue;
+        if (boardMayGrow) {
+          expect(value.height).toBeGreaterThanOrEqual(before[index].height - 1);
+          continue;
+        }
+      }
       expect(Math.abs(value[key] - before[index][key]), `${regions[index]} ${key}`).toBeLessThan(1);
     }
   }
@@ -68,7 +86,7 @@ test.beforeEach(async ({ page }) => {
   ).toBeVisible();
 });
 
-test('every mid-game fixture has distinct fixed rows, visible opponent summaries and private hands', async ({
+test('every mid-game fixture has distinct content-sized rows, visible opponent summaries and private hands', async ({
   page,
 }) => {
   for (const item of dealScenarios) {
@@ -98,8 +116,34 @@ test('every mid-game fixture has distinct fixed rows, visible opponent summaries
       expect(wordLines, 'A property word must stay intact on compact cards').toBe(1);
     }
     expect(geometry[3].height).toBeLessThanOrEqual(112);
+    // The whole hand fits on the table's first screen, directly under the shared centre.
     const stage = await page.locator('.deal-workspace').boundingBox();
-    expect(stage!.height).toBeLessThanOrEqual(page.viewportSize()!.height + 1);
+    const handBottom = geometry[2].y + geometry[2].height;
+    expect(handBottom - (stage!.y + (await page.evaluate(() => scrollY)))).toBeLessThanOrEqual(
+      page.viewportSize()!.height,
+    );
+    // Nothing on the table scrolls inside a fixed window; every region shows all its content.
+    const clipped = await page.evaluate(
+      (selectors) => {
+        return selectors.filter((selector) => {
+          const element = document.querySelector(selector)!;
+          return element.scrollHeight > element.clientHeight + 1;
+        });
+      },
+      ['.deal-opponents', '.deal-center', '.deal-hand-dock', '.deal-board-scroll'],
+    );
+    expect(clipped, `${item.id}: regions with hidden content`).toEqual([]);
+    for (const summary of await page.locator('.deal-opponents .opponent-panel-summary').all())
+      expect(
+        await summary.evaluate((element) => {
+          const box = element.getBoundingClientRect();
+          return [...element.children].every((child) => {
+            const rect = child.getBoundingClientRect();
+            return rect.top >= box.top - 1 && rect.bottom <= box.bottom + 1;
+          });
+        }),
+        `${item.id}: every opponent bank and set chip is inside its summary`,
+      ).toBe(true);
   }
 });
 
@@ -110,11 +154,12 @@ test('selecting existing and new property piles preserves the table and hand', a
   await card.focus();
   await card.press('Space');
   await expect(card).toHaveAttribute('aria-pressed', 'true');
-  await stable(page, initial);
+  // Destinations appear at the end of your own table; nothing above it moves.
+  await stable(page, initial, { boardMayGrow: true });
   await own(page).getByRole('button', { name: 'Place here', exact: true }).click();
-  await stable(page, initial);
+  await stable(page, initial, { boardMayGrow: true });
   await own(page).getByRole('button', { name: 'New Brown · set 2', exact: true }).click();
-  await stable(page, initial);
+  await stable(page, initial, { boardMayGrow: true });
   await page
     .locator('.deal-command-dock')
     .getByRole('button', { name: 'Place property', exact: true })
@@ -124,7 +169,7 @@ test('selecting existing and new property piles preserves the table and hand', a
     color: 'brown',
     choice: 'brown:1',
   });
-  await stable(page, initial);
+  await stable(page, initial, { boardMayGrow: true });
   await expect(own(page).locator('.deal-collection')).toHaveCount(2);
 });
 
@@ -137,18 +182,24 @@ test('swap previews use actual public cards and changing player or canceling ban
     .getByRole('button', { name: /^Forced deal, bank value 3M/ })
     .click();
   await expect(panel(page)).toBeVisible();
-  const player = panel(page).getByRole('combobox', { name: 'Player', exact: true });
-  const move = panel(page).getByRole('combobox', { name: 'Card move', exact: true });
-  await player.selectOption({ label: 'Dev' });
-  await move.selectOption({ label: 'Dev · Take Kentucky Avenue · Give Mediterranean Avenue' });
-  await expect(panel(page).getByLabel('Move preview')).toContainText('TakeKentucky Avenue3M');
-  await expect(panel(page).getByLabel('Move preview')).toContainText('GiveMediterranean Avenue1M');
+  // Player, then the card you take, then the card you give: each row names the exact card.
+  const step = (name: string) => panel(page).getByRole('radiogroup', { name, exact: true });
+  const player = step('Choose a player');
+  await player.getByRole('radio', { name: /^Dev/ }).click();
+  await step('Property you take')
+    .getByRole('radio', { name: /^Kentucky Avenue/ })
+    .click();
+  await step('Property you give')
+    .getByRole('radio', { name: /^Mediterranean Avenue/ })
+    .click();
+  await expect(panel(page).getByLabel('Move preview')).toContainText('Kentucky Avenue (3M)');
+  await expect(panel(page).getByLabel('Move preview')).toContainText('Mediterranean Avenue (1M)');
   await stable(page, initial);
-  await player.selectOption({ label: 'Mira' });
-  await expect(move).toHaveValue('');
+  await player.getByRole('radio', { name: /^Mira/ }).click();
+  await expect(step('Property you give')).toHaveCount(0);
   await expect(panel(page).getByLabel('Move preview')).toHaveCount(0);
   await expect(
-    panel(page).getByRole('button', { name: 'Play Forced deal', exact: true }),
+    panel(page).getByRole('button', { name: 'Choose a property to take', exact: true }),
   ).toBeDisabled();
   await stable(page, initial);
   await panel(page).getByRole('button', { name: 'Bank for 3M', exact: true }).click();
@@ -157,18 +208,22 @@ test('swap previews use actual public cards and changing player or canceling ban
   ).toBeVisible();
   await stable(page, initial);
   await panel(page).getByRole('button', { name: 'Cancel', exact: true }).click();
-  await expect(move).toHaveValue('');
-  await move.selectOption({ label: 'Mira · Take Pacific Avenue · Give Oriental Avenue' });
-  await expect(panel(page).getByLabel('Move preview')).toContainText('TakePacific Avenue4M');
-  await expect(panel(page).getByLabel('Move preview')).toContainText('GiveOriental Avenue1M');
+  await expect(panel(page).getByLabel('Move preview')).toHaveCount(0);
+  await step('Property you take')
+    .getByRole('radio', { name: /^Pacific Avenue/ })
+    .click();
+  const give = step('Property you give').getByRole('radio', { name: /^Oriental Avenue/ });
+  await give.click();
+  await expect(panel(page).getByLabel('Move preview')).toContainText('Pacific Avenue (4M)');
+  await expect(panel(page).getByLabel('Move preview')).toContainText('Oriental Avenue (1M)');
   await stable(page, initial);
   await capture(page, 'swap-selected');
   await panel(page).getByRole('button', { name: 'View table', exact: true }).click();
   await expect(panel(page)).toHaveAttribute('data-peeking', 'true');
-  await expect(panel(page).getByRole('combobox', { name: 'Player', exact: true })).toBeHidden();
+  await expect(player).toBeHidden();
   await stable(page, initial);
   await panel(page).getByRole('button', { name: 'Resume move', exact: true }).click();
-  await expect(move).not.toHaveValue('');
+  await expect(give).toHaveAttribute('aria-checked', 'true');
   await page.locator('.deal-board-scroll').focus();
   await page.keyboard.down('Space');
   await expect(panel(page)).toHaveAttribute('data-peeking', 'true');
@@ -187,8 +242,10 @@ test('swap previews use actual public cards and changing player or canceling ban
   await expect(inspectTarget).toBeFocused();
   await stable(page, initial);
   await page.getByRole('button', { name: 'Choose move options', exact: true }).click();
-  await expect(move).not.toHaveValue('');
-  await panel(page).getByRole('button', { name: 'Play Forced deal', exact: true }).click();
+  await expect(give).toHaveAttribute('aria-checked', 'true');
+  await panel(page)
+    .getByRole('button', { name: 'Play Forced deal · take Pacific Avenue', exact: true })
+    .click();
   const fixture = dealScenarios.find((item) => item.id === 'forced')!;
   const expected = fixture.transitions.find(
     (transition) =>
@@ -246,13 +303,15 @@ test('payment toggles, counter actions and public inspect keep geometry and rest
   expect(await submitted(page)).toEqual(
     dealScenarios.find((item) => item.id === 'payment-bank')!.transitions[0].action,
   );
-  await stable(page, initial);
+  // The paid notes leave your own table; nothing else moves.
+  await stable(page, initial, { boardMayChange: true });
   await scenario(page, 'counter');
   const counterInitial = await bounds(page);
-  await panel(page).getByRole('button', { name: 'Just say no', exact: true }).click();
+  await panel(page).getByRole('button', { name: 'Just Say No', exact: true }).click();
   expect(await submitted(page)).toMatchObject({ type: 'no' });
   await stable(page, counterInitial);
-  await page.getByRole('button', { name: 'Choose move options', exact: true }).click();
+  // The blocker now waits for the collector; the pending action stays viewable.
+  await page.getByRole('button', { name: 'View pending action', exact: true }).click();
   await expect(
     panel(page).getByRole('heading', { name: 'Action blocked', exact: true }),
   ).toBeVisible();
@@ -269,19 +328,22 @@ test('rent preview matches the committed house, hotel and Double the Rent bill',
     .getByRole('button', { name: new RegExp(`^${rent.label}, bank value`) })
     .click();
   await expect(panel(page)).toBeVisible();
-  const choice = panel(page).getByRole('combobox', { name: 'Card move', exact: true });
   // A single legal set is selected immediately; multiple sets require an exact choice.
-  if (await choice.count())
-    await choice.selectOption(JSON.stringify(fixture.transitions[0].action));
+  const choice = panel(page).getByRole('radiogroup', { name: 'Card move', exact: true });
+  if (await choice.count()) await choice.getByRole('radio', { name: /^Brown set 1/ }).click();
   await expect(panel(page).getByLabel('Move preview')).toContainText('18M rent');
   await expect(panel(page).getByLabel('Move preview')).toContainText('from each other player');
+  await expect(panel(page).getByLabel('Move preview')).toContainText('(9M ×2)');
   await stable(page, initial);
   await capture(page, 'rent-18M');
-  await panel(page)
-    .getByRole('button', { name: `Play ${rent.label}`, exact: true })
-    .click();
+  await panel(page).getByRole('button', { name: 'Charge 18M rent', exact: true }).click();
   expect(await submitted(page)).toEqual(fixture.transitions[0].action);
-  await page.getByRole('button', { name: 'Choose move options', exact: true }).click();
+  // The collector now waits: the table names the committed bill and who must answer it.
+  await expect(page.locator('.deal-turn-status')).toContainText('respond to your 18M rent');
+  await expect(
+    page.locator('.deal-command-dock').getByRole('button', { name: /^Review / }),
+  ).toHaveCount(0);
+  await page.getByRole('button', { name: 'View pending action', exact: true }).click();
   await expect(
     panel(page).getByRole('region', { name: 'Pending action', exact: true }),
   ).toContainText('18M');

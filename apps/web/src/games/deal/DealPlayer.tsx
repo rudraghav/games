@@ -1,10 +1,11 @@
 'use client';
-import { Check, ChevronDown, Info, Landmark, Plus, House } from 'lucide-react';
+import { Check, Hotel, House, Info, Landmark, Plus, Tent } from 'lucide-react';
 import { Seat, PlayingCard, Button } from '@games/ui';
 import type { ActionOption, Card, DealDetails, Player } from '@games/api-client';
 import { OpponentPanel } from '../shared/OpponentPanel';
 import type { TableProps } from '../types';
-import { bankValue, pileName } from './presentation';
+import { pileName } from './presentation';
+import { SHORT_SET_NAMES, bankTotal, debtNames, denominations } from './table-status';
 
 interface Props extends TableProps {
   player: Player;
@@ -22,12 +23,28 @@ interface Props extends TableProps {
   targetable?: string[];
   onTarget?: (id: string) => void;
 }
+
+const buildingIcons = { House, Hotel, Shack: Tent } as const;
+
+/** A building badge names the building in text for assistive technology. */
+function BuildingMark({ card }: { card: Card }) {
+  const Icon = buildingIcons[card.label as keyof typeof buildingIcons] || House;
+  return (
+    <span className="deal-chip-building" title={card.label}>
+      <Icon size={12} role="img" aria-label={card.label} />
+    </span>
+  );
+}
+
 export function DealPlayer(props: Props) {
   const { player, room, selfId, match, details, placements, selected, candidate } = props;
   const own = player.id === selfId;
   const member = room.members.find((item) => item.id === player.id);
   const groups = Object.entries(player.properties);
   const assets = [...player.bank, ...groups.flatMap(([, cards]) => cards)];
+  const previewed = (cards: Card[]) => cards.some((card) => props.previewIds?.includes(card.id));
+  const debts = details.debts[player.id] || [];
+  const total = bankTotal(player.bank);
   const isSelected = (id: string) =>
     props.paymentEligible ? props.paid.includes(id) : selected === id;
   const selectable = (card: Card) =>
@@ -53,37 +70,52 @@ export function DealPlayer(props: Props) {
         (option) => option.value.choice && !groups.some(([key]) => key === option.value.choice),
       )
     : [];
+  // Individual notes only while one can be chosen; otherwise the bank reads as denominations.
+  const individualNotes = player.bank.some(selectable);
   const board = (
     <div className="deal-assets">
       <section className="deal-bank" aria-label={`${own ? 'Your' : member?.name || 'Player'} bank`}>
         <header>
           <span>
-            <Landmark size={14} /> Bank
+            <Landmark size={14} aria-hidden="true" /> Bank
           </span>
-          <strong>{player.bank.reduce((sum, card) => sum + bankValue(card), 0)}M</strong>
+          <strong>{total}M</strong>
         </header>
-        <div className="deal-bank-notes">
-          {player.bank.map((card) =>
-            selectable(card) ? (
-              <button
-                type="button"
-                key={card.id}
-                aria-label={`${card.label}, bank value ${card.value}`}
-                aria-pressed={isSelected(card.id)}
-                disabled={props.pending || room.paused}
-                onClick={() => props.onSelect(card.id)}
-                className="deal-bank-note"
-              >
-                <b>{card.value}</b>
-                <span>{card.subtitle === 'MONEY' ? 'Money' : card.label}</span>
-              </button>
-            ) : (
-              <span className="deal-bank-note" key={card.id}>
-                <b>{card.value}</b>
-                <span>{card.subtitle === 'MONEY' ? 'Money' : card.label}</span>
-              </span>
-            ),
-          )}
+        <div className="deal-bank-notes" data-grouped={!individualNotes}>
+          {individualNotes
+            ? player.bank.map((card) =>
+                selectable(card) ? (
+                  <button
+                    type="button"
+                    key={card.id}
+                    aria-label={`${card.label}, bank value ${card.value}`}
+                    aria-pressed={isSelected(card.id)}
+                    disabled={props.pending || room.paused}
+                    onClick={() => props.onSelect(card.id)}
+                    className="deal-bank-note"
+                  >
+                    <b>{card.value}</b>
+                    <span>{card.subtitle === 'MONEY' ? 'Money' : card.label}</span>
+                  </button>
+                ) : (
+                  <span className="deal-bank-note" key={card.id}>
+                    <b>{card.value}</b>
+                    <span>{card.subtitle === 'MONEY' ? 'Money' : card.label}</span>
+                  </span>
+                ),
+              )
+            : denominations(player.bank).map((note) => (
+                <span
+                  className="deal-bank-note"
+                  key={note.value}
+                  data-count={note.count}
+                  data-previewed={previewed(note.cards) || undefined}
+                  title={note.cards.map((card) => card.label).join(', ')}
+                >
+                  <b>{note.label}</b>
+                  {note.count > 1 ? <span>×{note.count}</span> : null}
+                </span>
+              ))}
           {!player.bank.length ? <span className="deal-empty">No money banked</span> : null}
         </div>
       </section>
@@ -111,11 +143,6 @@ export function DealPlayer(props: Props) {
                   {info?.count ?? cards.filter((card) => card.suit === 'property').length}/
                   {info?.setSize ?? reference?.setSize ?? '?'}
                 </span>
-                {info ? (
-                  <b className="deal-summary-rent" aria-label={`Rent ${info.rent}M`}>
-                    {info.rent}M
-                  </b>
-                ) : null}
                 {info?.complete ? <Check size={14} aria-label="Complete set" /> : null}
               </header>
               <div className="deal-collection-cards">
@@ -135,13 +162,13 @@ export function DealPlayer(props: Props) {
                           disabled={props.pending || room.paused}
                           onClick={() => props.onSelect(card.id)}
                         >
-                          <House size={13} />
+                          <House size={13} aria-hidden="true" />
                           {card.label}
                           <span>{card.value}</span>
                         </button>
                       ) : (
                         <span key={card.id}>
-                          <House size={13} />
+                          <House size={13} aria-hidden="true" />
                           {card.label}
                           <span>{card.value}</span>
                         </span>
@@ -188,13 +215,13 @@ export function DealPlayer(props: Props) {
             disabled={props.pending || room.paused}
             onClick={() => props.onDestination(option)}
           >
-            <Plus size={18} />
+            <Plus size={18} aria-hidden="true" />
             <span>New {pileName(option.value.choice, details.propertyGroups)}</span>
           </button>
         ))}
         {!groups.length && !newPiles.length ? (
           <div className="deal-empty-collection">
-            <span className="deal-set-slots">
+            <span className="deal-set-slots" aria-hidden="true">
               <i />
               <i />
               <i />
@@ -207,7 +234,9 @@ export function DealPlayer(props: Props) {
       </div>
     </div>
   );
-  if (!own)
+  if (!own) {
+    const sets = details.collections.filter((group) => group.player === player.id);
+    const notes = denominations(player.bank);
     return (
       <OpponentPanel
         player={player}
@@ -223,35 +252,61 @@ export function DealPlayer(props: Props) {
         targetDisabled={props.pending || room.paused}
         summary={
           <>
-            <span className="deal-summary-bank">
-              <Landmark size={12} />
-              {player.bank.reduce((sum, card) => sum + bankValue(card), 0)}M
+            <span
+              className="deal-summary-bank"
+              data-previewed={previewed(player.bank) || undefined}
+            >
+              <Landmark size={13} aria-hidden="true" />
+              <span className="deal-summary-label">Bank</span>
+              <b>{total}M</b>
+              {notes.length ? (
+                <span className="deal-summary-notes">
+                  {notes
+                    .map((note) => `${note.label}${note.count > 1 ? ` ×${note.count}` : ''}`)
+                    .join(' · ')}
+                </span>
+              ) : null}
             </span>
-            <div className="deal-summary-sets">
-              {details.collections
-                .filter((group) => group.player === player.id)
-                .map((group) => (
-                  <span
-                    key={group.key}
-                    data-property-color={group.color}
-                    data-complete={group.complete}
-                    title={`${pileName(group.key, details.propertyGroups)} · rent ${group.rent}M`}
-                  >
-                    <i />
-                    <span>
-                      {group.count}/{group.setSize}
-                    </span>
-                    {group.complete ? <Check size={10} aria-label="Complete set" /> : null}
-                  </span>
-                ))}
-              {!groups.length ? <span className="muted">No sets yet</span> : null}
-            </div>
+            {debts.length ? (
+              <span className="deal-summary-debt">Owes {debtNames(room, debts, selfId)}</span>
+            ) : null}
+            {sets.map((group) => {
+              const cards = player.properties[group.key] || [];
+              const buildings = cards.filter((card) => card.suit !== 'property');
+              return (
+                <span
+                  key={group.key}
+                  className="deal-chip"
+                  data-property-color={group.color}
+                  data-complete={group.complete}
+                  data-previewed={previewed(cards) || undefined}
+                  title={`${pileName(group.key, details.propertyGroups)} · ${group.count} of ${group.setSize} · rent ${group.rent}M`}
+                >
+                  <i aria-hidden="true" />
+                  <span>{SHORT_SET_NAMES[group.color] || group.color}</span>
+                  <b>
+                    {group.count}/{group.setSize}
+                  </b>
+                  {group.complete ? (
+                    <>
+                      <Check size={12} role="img" aria-label="complete" />
+                      <span className="deal-chip-rent">{group.rent}M</span>
+                    </>
+                  ) : null}
+                  {buildings.map((card) => (
+                    <BuildingMark key={card.id} card={card} />
+                  ))}
+                </span>
+              );
+            })}
+            {!sets.length ? <span className="deal-summary-empty">No sets yet</span> : null}
           </>
         }
       >
         {board}
       </OpponentPanel>
     );
+  }
   return (
     <article
       className="deal-player"
@@ -265,27 +320,13 @@ export function DealPlayer(props: Props) {
           name={member?.name || 'Player'}
           avatar={member?.avatar}
           bot={member?.isBot}
-          you={own}
+          you
           active={match.currentPlayer === player.id}
           connected={member?.connected ?? false}
-          caption={`${player.count} card${player.count === 1 ? '' : 's'} · ${player.score}/3 sets${details.debts[player.id]?.length ? ` · ${details.debts[player.id].length} debt` : ''}`}
+          caption={`${player.score} of 3 sets complete${debts.length ? ` · you owe ${debtNames(room, debts, selfId)}` : ''}`}
         />
-        {!own ? (
-          <strong className="deal-opponent-bank">
-            {player.bank.reduce((sum, card) => sum + bankValue(card), 0)}M
-          </strong>
-        ) : null}
       </div>
-      {own ? (
-        board
-      ) : assets.length ? (
-        <details className="deal-opponent-details">
-          <summary>
-            View bank & properties <ChevronDown size={14} />
-          </summary>
-          {board}
-        </details>
-      ) : null}
+      {board}
     </article>
   );
 }

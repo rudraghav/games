@@ -129,7 +129,10 @@ def test_paper_private_two_card_choice_and_forced_empty_pile():
     updated = engine.apply_action(s, "a", engine.legal_actions(s, "a")[0].action)
     assert json.dumps(s, sort_keys=True) == before
     assert len(updated["hands"]["a"]) == 1 and len(updated["piles"][0]) == 1
-    assert "Card kept" in engine.project_view(updated, "a").message
+    # The shared message instructs the actor and never names the private card.
+    message = engine.project_view(updated, "a").message
+    assert "finish your turn" in message
+    assert all(BY_ID[c].view().value not in message for c in draft)
     assert paper_inventory(updated) == Counter(BY_ID.keys())
 
 
@@ -177,6 +180,105 @@ def test_paper_theft_only_unprotected_targets_and_no_hidden_state():
     assert len(before.intersection(s["hands"]["a"])) == 1
     assert paper_inventory(s) == Counter(BY_ID.keys())
     assert '"seed"' not in engine.project_view(s, "c").model_dump_json()
+
+
+def test_paper_steal_tells_only_thief_and_victim_which_card_moved():
+    engine, s = paper_state(
+        {"a": ids("shark", 1) + ids("swimmer", 1), "b": ids("octopus", 1, color="green"), "c": ids("penguin", 1)}
+    )
+    s = engine.apply_action(
+        s, "a", next(o.action for o in engine.legal_actions(s, "a") if o.action.type == "pair")
+    )
+    stolen = ids("octopus", 1, color="green")[0]
+    s = engine.apply_action(s, "a", Action(type="steal", target="b"))
+    thief = engine.project_view(s, "a").detail["private_events"]
+    victim = engine.project_view(s, "b")
+    assert thief == [{"kind": "stole", "other": "b", "name": "Green Octopus",
+                      "card": BY_ID[stolen].view().model_dump()}]
+    # The victim is told what they lost, but the card's identity is never sent
+    # to them now that it sits in another private hand.
+    assert victim.detail["private_events"] == [
+        {"kind": "stolen", "other": "a", "name": "Green Octopus", "card": None}]
+    assert stolen not in victim.model_dump_json()
+    bystander = engine.project_view(s, "c")
+    assert bystander.detail["private_events"] == []
+    assert stolen not in bystander.model_dump_json()
+    assert "Octopus" not in engine.project_view(s, "a").message
+    # The victim's notice survives the thief's turn and clears when the victim draws.
+    s = engine.apply_action(s, "a", Action(type="end_turn"))
+    assert engine.project_view(s, "b").detail["private_events"][0]["kind"] == "stolen"
+    s = engine.apply_action(s, "b", Action(type="take_stock"))
+    assert engine.project_view(s, "b").detail["private_events"] == []
+    assert engine.project_view(s, "a").detail["private_events"][0]["kind"] == "stole"
+
+
+def test_paper_fish_and_crab_results_are_private_to_the_actor():
+    engine, s = paper_state({"a": ids("fish", 2), "b": []})
+    drawn = s["deck"][-1]
+    s = engine.apply_action(
+        s, "a", next(o.action for o in engine.legal_actions(s, "a") if o.action.type == "pair")
+    )
+    assert engine.project_view(s, "a").detail["private_events"][0] == {
+        "kind": "fish", "other": None,
+        "name": f"{BY_ID[drawn].color.title()} {BY_ID[drawn].view().value}",
+        "card": BY_ID[drawn].view().model_dump()}
+    assert engine.project_view(s, "b").detail["private_events"] == []
+    assert drawn not in engine.project_view(s, "b").model_dump_json()
+    engine, s = paper_state({"a": ids("crab", 2), "b": []})
+    s["piles"] = [[s["deck"].pop(), s["deck"].pop()], []]
+    hidden = s["piles"][0][0]
+    s = engine.apply_action(
+        s, "a", next(o.action for o in engine.legal_actions(s, "a") if o.action.type == "pair")
+    )
+    s = engine.apply_action(s, "a", Action(type="inspect", choice="0"))
+    s = engine.apply_action(s, "a", Action(type="take_inspected", card=hidden))
+    assert engine.project_view(s, "a").detail["private_events"][0]["card"]["id"] == hidden
+    assert hidden not in engine.project_view(s, "b").model_dump_json()
+
+
+def test_paper_stakes_target_and_round_summary_are_projected():
+    caller = ids("shell", 6)  # 10 card points, color bonus 1
+    engine, s = paper_state({"a": caller, "b": ids("penguin", 2)})
+    stakes = engine.project_view(s, "a").detail["ending_consequences"]
+    assert "you score 11 (10 + color bonus 1)" in stakes["last_chance"]
+    assert "only your color bonus (1)" in stakes["last_chance"]
+    assert "(you: 10)" in stakes["stop"]
+    s = engine.apply_action(s, "a", Action(type="last_chance"))
+    other = engine.project_view(s, "b")
+    assert other.detail["protected_points"] == {"a": 10}
+    assert "Beat 10 card points" in other.message
+    s["phase"] = "playing"
+    s = engine.apply_action(s, "b", Action(type="end_turn"))
+    summary = engine.project_view(s, "b").detail["last_round"]
+    assert summary["outcome"] == "caller_won" and summary["caller"] == "a"
+    assert summary["result"]["a"] == {"card_points": 10, "color_bonus": 1, "award": 11}
+    s = engine.apply_action(s, s["order"][s["turn"]], Action(type="next_round"))
+    view = engine.project_view(s, "a")
+    assert view.detail["round_result"] == {} and view.detail["last_round"]["round"] == 1
+    engine, s = paper_state({"a": caller, "b": []})
+    s = engine.apply_action(s, "a", Action(type="stop"))
+    assert engine.project_view(s, "b").detail["last_round"]["outcome"] == "stopped"
+    assert engine.project_view(s, "b").detail["last_round"]["stopper"] == "a"
+
+
+def test_paper_history_never_names_a_card_taken_from_inside_a_searched_pile():
+    from app.rooms.public_history import public_move
+
+    engine, s = paper_state({"a": ids("crab", 2), "b": []})
+    s["piles"] = [[s["deck"].pop(), s["deck"].pop(), s["deck"].pop()], []]
+    interior = s["piles"][0][0]
+    s = engine.apply_action(
+        s, "a", next(o.action for o in engine.legal_actions(s, "a") if o.action.type == "pair")
+    )
+    s = engine.apply_action(s, "a", Action(type="inspect", choice="0"))
+    before = {p: engine.project_view(s, p) for p in ("a", "b")}
+    action = Action(type="take_inspected", card=interior)
+    s = engine.apply_action(s, "a", action)
+    after = {p: engine.project_view(s, p) for p in ("a", "b")}
+    event = public_move(before, after, "a", action, 9)
+    assert event is not None and event.label == "Took a card from the searched pile"
+    assert event.cards == [] and interior not in event.model_dump_json()
+    assert interior not in after["b"].model_dump_json()
 
 
 @pytest.mark.parametrize("caller_wins", [False, True])

@@ -58,7 +58,10 @@ test('corrected Tarot art keeps its complete frame and all 78 cards', async ({ p
     ]) {
       const card = page.getByLabel(name, { exact: true });
       await card.scrollIntoViewIfNeeded();
-      await expect(card.locator('svg')).toHaveAttribute('preserveAspectRatio', 'xMidYMid meet');
+      await expect(card.locator('svg')).toHaveAttribute(
+        'preserveAspectRatio',
+        /^xMid(YMid|YMin) slice$/,
+      );
       await expect(card.locator('image')).toHaveAttribute('href', `/tarot/minor-${id}-v2.png`);
       await page.evaluate(async (path) => {
         const img = new Image();

@@ -32,15 +32,21 @@ describe('Licensed standard card faces', () => {
           }}
         />,
       );
-      const file = html.match(/href="\/playing-cards\/([a-z0-9_]+\.svg)"/)?.[1];
+      // Tables draw the compact derivative; it must come from a pinned master of the same face.
+      const derived = html.match(/href="\/playing-cards\/(web\/([a-z0-9_]+)\.webp)"/);
       expect(html).toContain('role="img"');
-      expect(file).toBeTruthy();
-      const svg = readFileSync(resolve(root, file!), 'utf8');
+      expect(derived).toBeTruthy();
+      const [, file, name] = derived!;
+      const bytes = readFileSync(resolve(root, file));
+      expect(createHash('sha256').update(bytes).digest('hex')).toBe(source.derived.files[file]);
+      const master = `${name}.svg`;
+      const svg = readFileSync(resolve(root, master), 'utf8');
       expect(svg).not.toMatch(/<script|<foreignObject|\bonload\s*=|\bonerror\s*=|javascript:/i);
-      expect(createHash('sha256').update(svg).digest('hex')).toBe(source.files[file!]);
-      faces.add(file!);
+      expect(createHash('sha256').update(svg).digest('hex')).toBe(source.files[master]);
+      faces.add(master);
     }
     expect(faces.size).toBe(54);
     expect(Object.keys(source.files)).toHaveLength(54);
+    expect(Object.keys(source.derived.files)).toHaveLength(54);
   });
 });

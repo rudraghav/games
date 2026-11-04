@@ -264,20 +264,6 @@
     gap: 12px;
     container-type: inline-size;
   }
-  .deal-opponents {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    align-items: start;
-    padding: 2px 2px 10px;
-    scroll-snap-type: x proximity;
-  }
-  .deal-opponents > .deal-player {
-    flex: 1 0 240px;
-    min-width: 0;
-    max-width: 440px;
-    scroll-snap-align: start;
-  }
   .deal-player {
     border: 1px solid var(--color-border);
     border-radius: 16px;
@@ -311,28 +297,11 @@
     height: 30px;
     font-size: 11px;
   }
+  /* The turn light sits on the avatar, beside the name it belongs to. */
   .deal-player-heading .turn-light {
-    right: 0;
-    top: 1px;
-  }
-  .deal-opponent-bank {
-    font-size: 14px;
-    font-variant-numeric: tabular-nums;
-    padding-right: 9px;
-  }
-  .deal-opponent-details > summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    list-style: none;
-    cursor: pointer;
-    font-size: 11px;
-    color: var(--color-ink-muted);
-    padding: 0 12px;
-    min-height: 44px;
-  }
-  .deal-opponent-details[open] > summary {
-    border-bottom: 1px solid var(--color-border);
+    left: 21px;
+    right: auto;
+    top: 0;
   }
   .deal-assets {
     display: grid;
@@ -598,51 +567,7 @@
   .deal-new-set[aria-pressed='true'] {
     outline: 2px solid var(--color-focus);
   }
-  .deal-center {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 7px 10px;
-  }
-  .deal-stock {
-    display: flex;
-    align-items: start;
-    gap: 15px;
-  }
-  .deal-stock .playing-card,
-  .deal-stock .playing-card.playing-card--property:not(.playing-card--back) {
-    --card-width: 80px;
-    --card-height: 114px;
-  }
-  .deal-stock .card-pile > span {
-    font-size: 10px;
-  }
-  .deal-last-move {
-    flex: 1;
-    min-width: 0;
-    max-width: 450px;
-  }
-  .deal-last-move p {
-    font-size: 13px;
-    line-height: 1.5;
-    margin-top: 6px;
-    overflow-wrap: anywhere;
-  }
-  .deal-turn-controls {
-    margin-left: auto;
-    display: grid;
-    gap: 9px;
-    justify-items: end;
-    flex: none;
-  }
-  .deal-turn-controls > span {
-    font-size: 11px;
-    color: var(--color-ink-muted);
-  }
-  .deal-turn-controls > span > b {
-    font-size: 18px;
-    color: var(--color-ink);
-  }
+  /* Centre row, hand dock and board layout live in stable-deal.css. */
   .deal-hand-dock {
     min-width: 0;
     border: 1px solid var(--color-border);
@@ -789,23 +714,6 @@
     .deal-bank-note {
       flex: 0 0 80px;
     }
-    .deal-center {
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 0;
-    }
-    .deal-last-move {
-      order: 3;
-      flex: 1 0 100%;
-      max-width: none;
-    }
-    .deal-last-move .eyebrow {
-      display: none;
-    }
-    .deal-last-move p {
-      margin: 0;
-      font-size: 12px;
-    }
     .deal-composer {
       grid-template-columns: minmax(0, 1fr);
       gap: 14px;
@@ -833,8 +741,142 @@
       flex-wrap: wrap;
       padding-inline: 12px;
     }
-    .deal-opponents > .deal-player {
-      flex-basis: 230px;
-    }
+  }
+}
+/* Deal decisions: every choice is a full-width row that names the exact card. */
+@layer components {
+  .deal-choice-step {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .deal-choice-step > legend {
+    padding: 0 0 4px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-ink-muted);
+  }
+  .deal-choice-list {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+  }
+  .deal-choice {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    min-width: 0;
+    min-height: 44px;
+    padding: 8px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    background: #fffdf7;
+    color: var(--color-ink);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .deal-choice:hover:not(:disabled) {
+    border-color: #8fa58a;
+  }
+  .deal-choice[aria-checked='true'] {
+    border-color: var(--color-sage);
+    background: #eef3e6;
+    box-shadow: inset 0 0 0 1px var(--color-sage);
+  }
+  .deal-choice:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+  .deal-choice-swatch {
+    display: flex;
+    flex: none;
+    gap: 2px;
+    min-height: 26px;
+  }
+  .deal-choice-swatch > i {
+    width: 8px;
+    border-radius: 4px;
+    background: var(--property-ink);
+  }
+  .deal-choice-copy {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+  .deal-choice-copy > strong {
+    font-size: 13px;
+  }
+  .deal-choice-copy > span {
+    color: var(--color-ink-muted);
+  }
+  .deal-resolution .deal-resolution-headline {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+  .deal-resolution-facts {
+    display: grid;
+    gap: 3px;
+    margin: 0;
+    padding-left: 18px;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  .deal-resolution .deal-resolution-warning {
+    padding: 6px 8px;
+    border-radius: 8px;
+    background: #fbe9e2;
+    color: #8a2f1c;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .deal-transfer-list {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .deal-transfer-list > li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 4px 4px 4px 8px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: #fffdf7;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .deal-transfer-list > li > span:not(.deal-choice-swatch) {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .deal-resolution-answers {
+    display: grid;
+    gap: 8px;
+  }
+  .deal-resolution-answers > div {
+    display: grid;
+    gap: 3px;
+  }
+  .deal-resolution-answers .button {
+    width: 100%;
+    min-height: 44px;
+  }
+  .deal-resolution-answers p {
+    color: var(--color-ink-muted);
+  }
+  .deal-move-summary > strong {
+    font-weight: 700;
   }
 }

@@ -107,3 +107,43 @@ def test_purchase_quote_shortfall_free_purchase_and_private_reservation_boundary
     state["phase"] = "return_tokens"
     view = engine.project_view(state, "a")
     assert view.detail["return_count"] == 1 and view.detail["reservation_limit"] is True
+
+
+def test_messages_instruct_the_acting_seat_and_labels_name_consequences():
+    from app.games.gem_market.deck import PATRONS, patron_view
+    from app.games.gem_market.engine import FINAL_PROMPT, TURN_PROMPT
+
+    engine = GemMarketEngine()
+    assert engine.manifest.score_label == "Prestige"
+    state = engine.setup(["a", "b"], {}, seed=17)
+    # The opening message is the acting seat's instruction, never a tagline.
+    assert state["message"] == TURN_PROMPT
+    reserves = [o.label for o in engine.legal_actions(state, "a") if o.action.type.startswith("reserve")]
+    assert reserves and all(label.endswith("· +1 gold") for label in reserves)
+    state["bank"]["gold"] = 0
+    reserves = [o.label for o in engine.legal_actions(state, "a") if o.action.type.startswith("reserve")]
+    assert reserves and all(label.endswith("· no gold left") for label in reserves)
+    # Patrons are named by the three discounts they require.
+    for ident, needs in PATRONS.items():
+        label = patron_view(ident).label
+        assert all(color.title() in label for color in needs)
+    assert len({patron_view(ident).label for ident in PATRONS}) == len(PATRONS)
+    # Taking past ten tells the actor exactly how many to return.
+    state = engine.setup(["a", "b"], {}, seed=17)
+    for color in COLORS:
+        state["tokens"]["a"][color] = 2
+        state["bank"][color] -= 2
+    option = next(o for o in engine.legal_actions(state, "a") if o.action.type == "take")
+    state = engine.apply_action(state, "a", option.action)
+    assert state["phase"] == "return_tokens"
+    assert state["message"] == "You hold 13 gems. Return 3 gems to keep ten."
+    # The final round tells the next seat it is their last turn; the end is neutral.
+    state = engine.setup(["a", "b"], {}, seed=17)
+    state["final_round"] = True
+    option = next(o for o in engine.legal_actions(state, "a") if o.action.type == "take")
+    state = engine.apply_action(state, "a", option.action)
+    assert state["turn"] == 1 and state["message"] == FINAL_PROMPT
+    option = next(o for o in engine.legal_actions(state, "b") if o.action.type == "take")
+    state = engine.apply_action(state, "b", option.action)
+    assert state["phase"] == "finished"
+    assert "your" not in state["message"].lower() and "fewer developments" in state["message"]

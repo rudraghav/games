@@ -147,7 +147,7 @@ def test_number_selections_stay_private_until_everyone_has_locked():
     state = engine.apply_action(state, "p", first)
     after = {p: engine.project_view(state, p) for p in players}
     event = public_move(before, after, "p", first, 2)
-    assert event is not None and event.cards == [] and event.label == "Locked a number"
+    assert event is not None and event.cards == [] and event.label == "Locked a secret number"
     assert first.card not in event.model_dump_json()
     before = after
     second = before["q"].actions[0].action

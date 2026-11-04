@@ -50,7 +50,19 @@ for (const edition of ['classic', 'no-mercy']) {
         overlaps: 0,
       });
       expect(report.rows).toBeGreaterThan(1);
-      await expect(own.locator('.deal-bank-note')).toHaveCount(10);
+      // Ten bank cards read as denominations with counts, all on the table at once.
+      const notes = await own.locator('.deal-bank-note').evaluateAll((items) =>
+        items.map((item) => ({
+          value: Number.parseInt(item.querySelector('b')!.textContent!, 10),
+          count: Number(item.getAttribute('data-count')),
+          visible: item.getBoundingClientRect().height > 0,
+        })),
+      );
+      expect(notes.reduce((sum, note) => sum + note.count, 0)).toBe(10);
+      expect(notes.every((note) => note.visible)).toBe(true);
+      await expect(own.locator('.deal-bank > header strong')).toHaveText(
+        `${notes.reduce((sum, note) => sum + note.value * note.count, 0)}M`,
+      );
       const lastInfo = own.getByRole('button', { name: /^Inspect / }).last();
       await lastInfo.focus();
       await lastInfo.press('Enter');
@@ -102,15 +114,18 @@ test('a pending steal shows the actual wild, permits inspection and commits only
       .getByRole('combobox', { name: 'Deal scenario', exact: true })
       .selectOption(fixture.id);
     await expect(panel(page)).toBeVisible();
-    await expect(panel(page).locator('.deal-transfer-card .playing-card')).toHaveCount(1);
-    await expect(
-      panel(page).getByRole('button', { name: 'Allow transfer', exact: true }),
-    ).toBeVisible();
-    await expect(panel(page).locator('.deal-transfer-card .playing-card')).toHaveAccessibleName(
-      new RegExp(target.label),
+    // One sentence names the exact wild, its active colour and the set it leaves.
+    await expect(panel(page).locator('.deal-resolution-headline')).toContainText(
+      'wants to Sly Deal your Wild Green/Dark blue (Green active, 4M) from your Green set 2',
     );
+    await expect(panel(page).locator('.deal-transfer-list > li')).toHaveCount(1);
+    for (const name of [/^Accept Sly Deal$/, /^Just Say No$/]) {
+      const button = panel(page).getByRole('button', { name });
+      await expect(button).toBeVisible();
+      await expect(button).toBeInViewport({ ratio: 1 });
+    }
     await panel(page)
-      .getByRole('button', { name: `${target.label} · ${target.value}`, exact: true })
+      .getByRole('button', { name: `Card info: ${target.label}`, exact: true })
       .click();
     await expect(page.getByRole('dialog', { name: 'Card info', exact: true })).toBeVisible();
     await page.keyboard.press('Escape');
@@ -123,18 +138,18 @@ test('a pending steal shows the actual wild, permits inspection and commits only
     for (const flag of ['Saving a move', 'Disconnected']) {
       await page.getByLabel(flag, { exact: true }).check();
       await expect(
-        panel(page).getByRole('button', { name: response.label, exact: true }),
+        panel(page).getByRole('button', { name: 'Just Say No', exact: true }),
       ).toBeDisabled();
       await page.getByLabel(flag, { exact: true }).uncheck();
     }
-    const control = panel(page).getByRole('button', { name: response.label, exact: true });
+    const control = panel(page).getByRole('button', { name: 'Just Say No', exact: true });
     await control.focus();
     await control.press('Space');
     expect(JSON.parse(await page.getByLabel('Submitted action').innerText())).toEqual(
       response.action,
     );
     await page.getByRole('button', { name: 'Reset scenario', exact: true }).click();
-    await panel(page).getByRole('button', { name: 'Allow transfer', exact: true }).click();
+    await panel(page).getByRole('button', { name: 'Accept Sly Deal', exact: true }).click();
     expect(JSON.parse(await page.getByLabel('Submitted action').innerText())).toEqual(
       fixture.room.game!.actions!.find((option) => option.action.type === 'accept')!.action,
     );
@@ -150,7 +165,8 @@ test('a pending steal shows the actual wild, permits inspection and commits only
 test('both Deal editions keep every legal midgame collection inside its board at four widths', async ({
   page,
 }, info) => {
-  test.setTimeout(120000);
+  // Every legal Deal midgame state at two widths; generous for a loaded dev server.
+  test.setTimeout(360000);
   const cases = midgameScenarios.filter((entry) => ['deal', 'deal-no-mercy'].includes(entry.game));
   expect(new Set(cases.map((entry) => entry.game)).size).toBe(2);
   for (const width of info.project.name === 'phone' ? [320, 390] : [768, 1440]) {

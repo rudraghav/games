@@ -34,6 +34,83 @@ describe('Authoritative room presentation', () => {
     ).toBe('Your choice is locked');
     expect(turnState(match, { ...room, paused: true }, self).tone).toBe('paused');
   });
+  it('names the turn owner and the responder during a response window', () => {
+    const response = {
+      ...room.game!,
+      detail: { pending_action: { actor: other, responder: self, stage: 'counter' } },
+    };
+    expect(turnState({ ...response, currentPlayer: self }, room, self).label).toBe('Your response');
+    const actorView = turnState({ ...response, currentPlayer: self, actions: [] }, room, other);
+    expect(actorView.label).toBe('Your turn');
+    expect(actorView.message).toMatch(/^Waiting for .+ to respond\.$/);
+    const paying = {
+      ...response,
+      currentPlayer: self,
+      detail: { pending_action: { actor: other, responder: self, stage: 'payment' } },
+    };
+    expect(turnState(paying, room, self).label).toBe('You owe a payment');
+  });
+  it('tells waiting seats who they are waiting for instead of the actor’s instruction', () => {
+    const waiting = { ...room.game!, currentPlayer: other, actions: [], message: 'Draw 8 cards.' };
+    const state = turnState(waiting, room, self);
+    expect(state.message).not.toContain('Draw 8');
+    expect(state.message).toMatch(/^Waiting for /);
+    const locked = {
+      ...room.game!,
+      actions: [],
+      detail: { decision_mode: 'simultaneous', pending_players: [other] },
+    };
+    expect(turnState(locked, room, self).message).toMatch(/^Waiting for .+\.$/);
+  });
+  it('names the guessing team in Word Agents instead of its first operative', () => {
+    const words = { ...room, gameId: 'word-agents' };
+    const guess = {
+      ...room.game!,
+      phase: 'guess',
+      currentPlayer: self,
+      message: 'Guess a word for MAP 2.',
+      detail: { teams: { [self]: 0, [other]: 1 }, active_team: 0, spymasters: [] },
+    };
+    expect(turnState(guess, words, self)).toMatchObject({
+      label: 'Your team’s turn',
+      tone: 'active',
+    });
+    expect(turnState(guess, words, other)).toMatchObject({
+      label: 'Red team’s turn',
+      message: 'Waiting for Red operatives to guess.',
+    });
+  });
+  it('tells an eliminated seat it is out instead of waiting for a turn', () => {
+    const out = {
+      ...room.game!,
+      currentPlayer: other,
+      actions: [],
+      players: room.game!.players.map((player) => ({ ...player, eliminated: player.id === self })),
+    };
+    expect(turnState(out, room, self)).toMatchObject({ label: 'You’re out', tone: 'waiting' });
+    expect(turnState(out, room, other).label).toBe('Your turn');
+  });
+  it('ranks No Mercy eliminations below the players still in, last out first', () => {
+    const finished = {
+      ...room.game!,
+      phase: 'finished',
+      winners: [other],
+      detail: { out: [{ player: self, cards: 29 }] },
+    };
+    const html = renderToStaticMarkup(
+      <RoomResults room={{ ...room, status: 'finished', game: finished }} game={gameById('uno')} />,
+    );
+    expect(html).toContain('Out 1st · 29 cards');
+    expect(html.indexOf('Out 1st')).toBeGreaterThan(html.indexOf('data-winner="true"'));
+  });
+  it('announces the winner from the viewer’s seat when the match ends', () => {
+    const finished = { ...room.game!, phase: 'finished', winners: [self] };
+    expect(turnState(finished, room, self).label).toBe('You win!');
+    expect(turnState(finished, room, other).label).toMatch(/ wins$/);
+    expect(turnState({ ...finished, winners: [], detail: { draw: true } }, room, self).label).toBe(
+      'It’s a draw',
+    );
+  });
   it('shows a cooperative loss without inventing a draw and shows a team score once', () => {
     const game = { ...gameById('uno'), playMode: 'cooperative' as const, scoreLabel: 'Vaults' };
     const match = {
@@ -45,7 +122,8 @@ describe('Authoritative room presentation', () => {
     const html = renderToStaticMarkup(<RoomResults room={{ ...room, game: match }} game={game} />);
     expect(html).toContain('The team didn’t make it this time.');
     expect(html).not.toContain('draw');
-    expect(html.match(/Vaults/g)).toHaveLength(1);
+    expect(html.match(/Vaults?\b/g)).toHaveLength(1);
+    expect(html).toContain('1</strong> Vault<');
     expect(html.match(/role="listitem"/g)).toHaveLength(2);
   });
   it('orders penalty results low first without changing server winners', () => {

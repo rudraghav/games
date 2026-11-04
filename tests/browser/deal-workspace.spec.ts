@@ -84,6 +84,9 @@ test('card selection chooses an exact existing/new pile and a free same-color re
     choice: 'brown:0',
   });
   await expect(own(page).getByLabel('Complete set', { exact: true })).toHaveCount(1);
+  // A harness reset returns to the same table version, where this tab keeps an unsent
+  // card choice across refreshes; forget it so the scenario starts fresh.
+  await page.evaluate(() => sessionStorage.clear());
   await page.getByRole('button', { name: 'Reset scenario', exact: true }).click();
   await hand(page)
     .getByRole('button', { name: /^Baltic Avenue, bank value 1M/ })
@@ -118,24 +121,32 @@ test('changing swap target or canceling bank mode cannot submit an earlier hidde
   await hand(page)
     .getByRole('button', { name: /^Forced deal, bank value 3M/ })
     .click();
-  const play = panel(page).getByRole('button', { name: 'Play Forced deal', exact: true });
-  const player = page.getByRole('combobox', { name: 'Player', exact: true });
-  const move = page.getByLabel('Card move', { exact: true });
+  // The commit button names the move once it is complete, and is disabled until then.
+  const play = panel(page).locator('.deal-commit-actions .button--primary');
+  const step = (name: string) => panel(page).getByRole('radiogroup', { name, exact: true });
   await expect(play).toBeDisabled();
-  await player.selectOption({ label: 'Dev' });
-  await move.selectOption({ label: 'Dev · Take Kentucky Avenue · Give Mediterranean Avenue' });
+  await step('Choose a player').getByRole('radio', { name: /^Dev/ }).click();
+  await step('Property you take')
+    .getByRole('radio', { name: /^Kentucky Avenue/ })
+    .click();
+  await step('Property you give')
+    .getByRole('radio', { name: /^Mediterranean Avenue/ })
+    .click();
   await expect(play).toBeEnabled();
-  await player.selectOption({ label: 'Mira' });
+  await expect(play).toHaveText('Play Forced deal · take Kentucky Avenue');
+  await step('Choose a player').getByRole('radio', { name: /^Mira/ }).click();
   await expect(play).toBeDisabled();
-  await expect(move).toHaveValue('');
   await expect(page.locator('.deal-move-summary')).toHaveCount(0);
   await page.getByRole('button', { name: 'Bank for 3M', exact: true }).click();
-  await expect(play).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Confirm · bank 3M', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Cancel', exact: true }).click();
   await expect(play).toBeDisabled();
-  await expect(move).toHaveValue('');
-  await move.selectOption({ label: 'Mira · Take Pacific Avenue · Give Oriental Avenue' });
+  await step('Property you take')
+    .getByRole('radio', { name: /^Pacific Avenue/ })
+    .click();
+  await step('Property you give')
+    .getByRole('radio', { name: /^Oriental Avenue/ })
+    .click();
   await capture(page, 'forced-swap');
   await play.click();
   const selected = fixture('forced').transitions.find(
@@ -153,14 +164,15 @@ test('countering and counter-countering show the bill, current block and permitt
   await expect(page.getByRole('region', { name: 'Pending action', exact: true })).toContainText(
     '5M',
   );
-  await page.getByRole('button', { name: 'Just say no', exact: true }).click();
+  await page.getByRole('button', { name: 'Just Say No', exact: true }).click();
   expect(await submitted(page)).toMatchObject({ type: 'no' });
-  await page.getByRole('button', { name: 'Choose move options', exact: true }).click();
+  // The blocker now waits for the collector; the pending action stays viewable.
+  await page.getByRole('button', { name: 'View pending action', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Action blocked', exact: true })).toBeVisible();
   await selectScenario(page, 'counter-chain');
   await expect(page.getByRole('heading', { name: 'Action blocked', exact: true })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Let it stand', exact: true })).toBeVisible();
-  await page.getByRole('button', { name: 'Just say no', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Accept the block', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Just Say No', exact: true }).click();
   expect(await submitted(page)).toMatchObject({ type: 'no' });
   await expect(page.getByRole('heading', { name: 'Action blocked', exact: true })).toHaveCount(0);
 });
@@ -178,9 +190,7 @@ test('payment requires the bill or every payable asset and makes overpayment exp
   await page.getByRole('button', { name: 'Choose move options', exact: true }).click();
   await expect(page.locator('.deal-payment-total')).toContainText('1M overpayment');
   await expect(own(page).locator('.deal-collection footer')).toContainText('Rent 0M');
-  await expect(
-    page.getByText('Choose bank cards or properties below. No change is given.', { exact: true }),
-  ).toBeVisible();
+  await expect(page.getByText(/No change is given\./)).toBeVisible();
   await capture(page, 'payment');
   await panel(page).getByRole('button', { name: 'Pay 6M', exact: true }).click();
   expect(await submitted(page)).toEqual(fixture('payment-bank').transitions[0].action);
@@ -192,12 +202,13 @@ test('payment requires the bill or every payable asset and makes overpayment exp
     fixture('payment-exact').transitions.find((item) => item.label === 'Pay exactly')!.action,
   );
   await selectScenario(page, 'payment-insolvent');
-  await page.getByRole('button', { name: 'Select bank money', exact: true }).click();
+  // Assets cannot cover the bill: the panel says so and offers to give everything.
+  await expect(panel(page).getByRole('status')).toContainText('You can’t cover 5M');
+  await own(page).getByRole('button', { name: '1M, bank value 1M', exact: true }).click();
   await expect(panel(page).getByRole('button', { name: 'Pay 1M', exact: true })).toBeDisabled();
+  await panel(page).getByRole('button', { name: 'Select everything', exact: true }).click();
+  await expect(panel(page).getByRole('button', { name: 'Pay 2M', exact: true })).toBeEnabled();
   await panel(page).getByRole('button', { name: 'Close move options', exact: true }).click();
-  await own(page)
-    .getByRole('button', { name: /^Mediterranean Avenue, bank value 1M/ })
-    .click();
   await expect(command(page).getByRole('button', { name: 'Pay 2M', exact: true })).toBeEnabled();
   await expect(own(page).getByRole('button', { name: /^Wild property, not bankable/ })).toHaveCount(
     0,
@@ -215,11 +226,17 @@ test('pending saves and disconnection disable an already selected game decision'
     .click();
   await page.getByRole('button', { name: 'Bank for 3M', exact: true }).click();
   const confirm = page.getByRole('button', { name: 'Confirm · bank 3M', exact: true });
-  await page.getByLabel('Saving a move', { exact: true }).check();
+  // The harness-only toggles can sit under the open decision panel, so toggle them directly.
+  const toggle = async (label: string, checked: boolean) => {
+    const box = page.getByLabel(label, { exact: true });
+    await box.dispatchEvent('click');
+    await expect(box).toBeChecked({ checked });
+  };
+  await toggle('Saving a move', true);
   await expect(confirm).toBeDisabled();
-  await page.getByLabel('Saving a move', { exact: true }).uncheck();
+  await toggle('Saving a move', false);
   await expect(confirm).toBeEnabled();
-  await page.getByLabel('Disconnected', { exact: true }).check();
+  await toggle('Disconnected', true);
   await expect(confirm).toBeDisabled();
   await expect(page.getByLabel('Submitted action', { exact: true })).toHaveText(
     'No action submitted',

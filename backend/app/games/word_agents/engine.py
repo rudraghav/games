@@ -7,6 +7,7 @@ from app.core.contracts import (
     CardView,
     GameManifest,
     GameView,
+    JsonValue,
     LegalAction,
     PlayerView,
     RuleError,
@@ -33,6 +34,9 @@ TABLE TEA TELEPHONE TENT THUNDER TIGER TOAST TOMATO TORCH TOWER TRAIN TREE TUNNE
 TURTLE UMBRELLA VALLEY VELVET VIOLIN VOLCANO WALL WALNUT WATCH WATER WAVE WHALE
 WHEEL WINDOW WING WINTER WOLF WOOD YARD ZEBRA""".split()
 TEAM_COLORS = ["coral", "blue"]
+TEAM_NAMES = ["Red", "Blue"]
+IDENTITIES = ["Red agent", "Blue agent", "bystander", "assassin"]
+CLUE_PROMPT = "Give your team a one-word clue and a number."
 
 
 class WordAgentsEngine(BaseEngine):
@@ -54,7 +58,8 @@ class WordAgentsEngine(BaseEngine):
         return {"order": players, "turn": active, "active_team": active, "phase": "clue",
                 "words": randomizer.sample(WORDS, 25), "key": key, "revealed": [False] * 25,
                 "clue": "", "clue_count": 0, "guesses": 0, "guesses_left": 0,
-                "winners": [], "message": "Spymaster, find a connection and give your team a clue."}
+                "last_clue": None, "last_reveal": None, "turn_end": None,
+                "winners": [], "message": CLUE_PROMPT}
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
         if s["phase"] == "finished" or player not in s["order"]:
@@ -71,14 +76,18 @@ class WordAgentsEngine(BaseEngine):
             options.append(legal("End guesses", "end_guesses"))
         return options
 
-    def _next_team(self, s: State) -> None:
+    def _next_team(self, s: State, reason: str, outcome: str) -> None:
+        # The finished clue moves to last_clue, so the new team never sees it as theirs.
+        ended = TEAM_NAMES[s["active_team"]]
+        s["last_clue"] = {"team": s["active_team"], "clue": s["clue"], "count": s["clue_count"]}
         s["active_team"] = 1 - s["active_team"]
-        s.update(turn=s["active_team"], phase="clue", guesses=0, guesses_left=0,
-                 message="The next spymaster can give a new clue.")
+        s.update(turn=s["active_team"], phase="clue", guesses=0, guesses_left=0, clue="",
+                 clue_count=0, turn_end=reason,
+                 message=f"{outcome}{ended}’s turn ended. {CLUE_PROMPT}")
 
-    def _finish(self, s: State, team: int, message: str) -> None:
+    def _finish(self, s: State, team: int, reason: str, message: str) -> None:
         s.update(phase="finished", winners=[p for i, p in enumerate(s["order"]) if i % 2 == team],
-                 message=message)
+                 turn_end=reason, winning_team=team, message=message)
 
     def apply_action(self, state: State, player: str, action: Action) -> State:
         validate_action(self.legal_actions(state, player), action)
@@ -89,29 +98,56 @@ class WordAgentsEngine(BaseEngine):
                 raise RuleError("Give one word using letters, an apostrophe or a hyphen.")
             if clue.upper() in [word for i, word in enumerate(s["words"]) if not s["revealed"][i]]:
                 raise RuleError("Your clue cannot be a word still visible on the board.")
-            s.update(clue=clue, clue_count=action.amount, guesses=0, guesses_left=action.amount + 1,
-                     phase="guess", turn=2 + s["active_team"],
-                     message="Discuss the clue, then choose a word together.")
+            guesses = action.amount + 1
+            s.update(clue=clue, clue_count=action.amount, guesses=0, guesses_left=guesses,
+                     phase="guess", turn=2 + s["active_team"], turn_end=None,
+                     message=f"Choose a word for “{clue}” ({action.amount}). Talk it over first; "
+                             f"up to {guesses} guesses.")
         elif action.type == "end_guesses":
-            self._next_team(s)
+            self._next_team(s, "stopped", "Guesses ended. ")
         else:
             cell, active = int(action.choice), s["active_team"]
             role = s["key"][cell]
+            word = s["words"][cell].title()
             s["revealed"][cell] = True
+            s["last_reveal"] = {"cell": cell, "player": player}
             s["guesses"] += 1
             s["guesses_left"] -= 1
+            team_name = TEAM_NAMES[active]
             if role == 3:
-                self._finish(s, 1 - active, "The assassin was found. The other team wins.")
+                winner = 1 - active
+                self._finish(s, winner, "assassin",
+                             f"{team_name} revealed the assassin ({word}). {TEAM_NAMES[winner]} team wins.")
             else:
                 for team in (0, 1):
                     if all(s["revealed"][i] for i, identity in enumerate(s["key"]) if identity == team):
-                        self._finish(s, team, "Every agent is home. A brilliant connection!")
+                        how = ("found every agent" if team == active
+                               else f"revealed {TEAM_NAMES[team]}’s last agent ({word})")
+                        self._finish(s, team, "all_found" if team == active else "gave_away",
+                                     f"{team_name} {how}. {TEAM_NAMES[team]} team wins.")
                         return s
-                if role != active or not s["guesses_left"]:
-                    self._next_team(s)
+                if role != active:
+                    self._next_team(s, "wrong", f"{word} was {self._article(IDENTITIES[role])}. ")
+                elif not s["guesses_left"]:
+                    self._next_team(s, "guesses", f"{word} was a {team_name} agent and that was the last guess. ")
                 else:
-                    s["message"] = "An agent found. Continue or end your guesses."
+                    left = s["guesses_left"]
+                    s["message"] = (f"{word} was a {team_name} agent. Choose another word or end guesses "
+                                    f"({left} {'guess' if left == 1 else 'guesses'} left).")
         return s
+
+    @staticmethod
+    def _article(identity: str) -> str:
+        return f"the {identity}" if identity == "assassin" else f"a {identity}"
+
+    @staticmethod
+    def _last_reveal(s: State) -> dict[str, JsonValue] | None:
+        last = s.get("last_reveal")
+        if not isinstance(last, dict) or not s["revealed"][last["cell"]]:
+            return None
+        cell = last["cell"]
+        return {"cell": str(cell), "word": s["words"][cell].title(), "player": last["player"],
+                "identity": [*TEAM_COLORS, "neutral", "assassin"][s["key"][cell]]}
 
     def project_view(self, s: State, player: str) -> GameView:
         known_key = player in s["order"][:2] or s["phase"] == "finished"
@@ -127,8 +163,15 @@ class WordAgentsEngine(BaseEngine):
                               if known_key or s["revealed"][i] else "unknown"),
                        subtitle="revealed" if s["revealed"][i] else "hidden")
                        for i, word in enumerate(s["words"])],
-            detail={"active_team": s["active_team"], "clue": s["clue"],
-                    "clue_count": s["clue_count"], "guesses_left": s["guesses_left"],
+            detail={"active_team": s["active_team"],
+                    # Only the clue being guessed is current; older saves kept a finished clue.
+                    "clue": s["clue"] if s["phase"] == "guess" else "",
+                    "clue_count": s["clue_count"] if s["phase"] == "guess" else 0,
+                    "guesses_left": s["guesses_left"],
+                    "last_clue": s.get("last_clue"), "turn_end": s.get("turn_end"),
+                    "winning_team": s.get("winning_team"),
+                    # A revealed tile's identity is public on the board already.
+                    "last_reveal": self._last_reveal(s),
                     "role": "spymaster" if player in s["order"][:2] else "operative",
                     "teams": {p: i % 2 for i, p in enumerate(s["order"])},
                     "spymasters": s["order"][:2],

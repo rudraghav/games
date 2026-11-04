@@ -77,9 +77,9 @@ class PartyEngine(BaseEngine):
 
     def _start_message(self) -> str:
         return {
-            "spill-or-chill": "Spotlight player, share a story or keep it chill. Passing is always welcome.",
-            "most-likely": "Make your secret vote. Everyone reveals together.",
-            "hot-seat": "One secret preference. A room full of predictions. Lock yours in.",
+            "spill-or-chill": "Answer aloud and Spill, or keep it to yourself and Chill (+1 either way). Pass scores nothing.",
+            "most-likely": "Vote in secret for one friend, or pass. Votes reveal together.",
+            "hot-seat": "Lock in your secret pick. Everything reveals together.",
         }[self.mode]
 
     def _spotlight(self, s: State) -> str:
@@ -133,7 +133,7 @@ class PartyEngine(BaseEngine):
         s["result"] = result
         s["history"].append({"prompt_id": s["deck"][s["round"]], **result})
         s.update(phase="reveal", turn=s["order"].index(self._spotlight(s)),
-                 message="Choices are in. The spotlight player can move the night along.")
+                 message="Everything is revealed. Talk it over, then bring up the next prompt.")
 
     def apply_action(self, state: State, player: str, action: Action) -> State:
         validate_action(self.legal_actions(state, player), action)
@@ -152,7 +152,9 @@ class PartyEngine(BaseEngine):
         s["decisions"][player] = action.target if action.type == "vote" and action.target else action.choice
         pending = [p for p in self._eligible(s) if p not in s["decisions"]]
         if pending:
-            s.update(turn=s["order"].index(pending[0]), message="Decision locked. Waiting for the rest of the room.")
+            # The shared message stays the instruction for players still choosing;
+            # locked-in seats are told whom they wait for by the table itself.
+            s["turn"] = s["order"].index(pending[0])
         else:
             self._reveal(s)
         return s

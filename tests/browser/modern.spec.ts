@@ -96,12 +96,16 @@ test('friends click modern game decisions and refresh the saved table', async ({
         lastActor = actor;
         await expect(actor.locator('.modern-game')).toBeVisible();
         const version = snapshot.match_version!;
+        let saves = 1;
         if (game === 'azul') {
+          // Choosing a colour only previews it; picking its line saves the draft and the placement.
+          if (snapshot.game!.phase === 'drafting') {
+            await actor.locator('.azul-draft-button:enabled').first().click();
+            saves = 2;
+          }
           await actor
             .locator(
-              snapshot.game!.phase === 'drafting'
-                ? '.azul-draft-button:enabled'
-                : '.azul-pattern-line:enabled',
+              '.azul-player-board[data-own="true"] .azul-pattern-line:enabled, .azul-player-board[data-own="true"] .azul-floor .button:enabled',
             )
             .first()
             .click();
@@ -109,12 +113,15 @@ test('friends click modern game decisions and refresh the saved table', async ({
           if (snapshot.game!.phase === 'review')
             await actor.getByRole('button', { name: 'Continue', exact: true }).click();
           else await actor.locator('.trio-table-cards button:enabled').first().click();
+        } else if (snapshot.game!.phase === 'target') {
+          // Flip 7 targets are chosen on the player rows, not in the dock.
+          await actor.locator('.flip-target-button:enabled').first().click();
         } else {
           await actor.locator('.action-panel button:enabled').first().click();
         }
         await expect
           .poll(async () => (await roomAs(page, roomId!)).match_version)
-          .toBe(version + 1);
+          .toBe(version + saves);
         snapshot = await roomAs(page, roomId);
       }
       const version = snapshot.match_version;

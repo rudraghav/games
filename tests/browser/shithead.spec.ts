@@ -37,18 +37,34 @@ test('Shithead tables keep setup, public and blind cards distinct at both seat l
       ),
     ).toBe(true);
     const controls = page.locator('.shithead-game button:enabled');
+    // Every rendered control is a full touch target; controls a layout hides
+    // with display:none (such as phone strip arrows) are not on screen to tap.
     expect(
       await controls.evaluateAll((elements) =>
-        elements.every((element) => {
-          const r = element.getBoundingClientRect();
-          return r.width >= 43.5 && r.height >= 43.5;
-        }),
+        elements
+          .filter((element) => element.getClientRects().length > 0)
+          .every((element) => {
+            const r = element.getBoundingClientRect();
+            return r.width >= 43.5 && r.height >= 43.5;
+          }),
       ),
     ).toBe(true);
+    // All six setup cards stay distinct (a visible gap, even when they wrap to a
+    // second row on phones) and in view at once, without scrolling the hand.
     expect(
       await page.locator('.shithead-workspace .card-hand').evaluate((element) => {
         const cards = Array.from(element.children).map((card) => card.getBoundingClientRect());
-        return cards.every((card, index) => index === 0 || card.left >= cards[index - 1].right + 5);
+        const apart = (a: DOMRect, b: DOMRect) =>
+          a.right + 5 <= b.left ||
+          b.right + 5 <= a.left ||
+          a.bottom + 5 <= b.top ||
+          b.bottom + 5 <= a.top;
+        const frame = element.closest('.horizontal-rail-viewport')!.getBoundingClientRect();
+        return (
+          cards.length === 6 &&
+          cards.every((a, i) => cards.every((b, j) => j <= i || apart(a, b))) &&
+          cards.every((card) => card.left >= frame.left - 1 && card.right <= frame.right + 1)
+        );
       }),
     ).toBe(true);
     if (limit === 'maximum')

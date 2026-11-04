@@ -132,7 +132,8 @@ test('crowded decisions support keyboard selection, clear, blocked states and ex
   )!;
   await show(page, board);
   const [source] = board.next.action.choice.split(':');
-  const sourceControl = page.locator('.board-grid > button').nth(Number(source));
+  // Squares are found by board index: the second seat sees the board turned.
+  const sourceControl = page.locator(`.board-grid > button[data-cell="${source}"]`);
   await sourceControl.focus();
   await page.keyboard.press('Space');
   await expect(sourceControl).toHaveAttribute('aria-pressed', 'true');

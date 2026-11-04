@@ -178,3 +178,67 @@ def test_new_boards_finish_conserve_and_rematch(engine, seed):
             assert sum(p is not None for p in s["board"]) <= 24
     assert s["phase"] == "finished" and (s["winners"] or s.get("draw"))
     assert engine.setup(["a", "b"], {}, seed)["phase"] == "playing"
+
+
+def test_board_messages_are_perspective_safe_and_consequences_are_public():
+    """Shared messages never tell a loser "you"; consequence detail matches the move."""
+    from app.games.board.four import FourEngine
+    from app.games.board.reversi import ReversiEngine
+    from app.games.boop.engine import BoopEngine
+
+    engine = CheckersEngine()
+    blocked = checkers_position({42: 0, 35: 1, 7: 1, 14: 0, 21: 0})
+    end = engine.apply_action(blocked, "a", Action(type="move", choice="42:28"))
+    assert end["outcome_reason"] == "no-legal-move"
+    assert end["message"] == "Ivory has no legal move left, so Coral wins."
+    for view in (engine.project_view(end, "a"), engine.project_view(end, "b")):
+        assert "you" not in view.message.lower() and "opponent" not in view.message.lower()
+        assert view.detail["last_from"] == 42 and view.detail["last_captured"] == 35
+
+    four = FourEngine()
+    s = four.setup(["a", "b"], {})
+    for column in ["0", "1", "0", "1", "0", "1"]:
+        s = four.apply_action(s, s["order"][s["turn"]], Action(type="drop", choice=column))
+    view = four.project_view(s, "a")
+    assert view.detail["landing"]["0"] == 14 and view.detail["landing"]["6"] == 41
+    s = four.apply_action(s, "a", Action(type="drop", choice="0"))
+    assert s["message"] == "Coral connected four in a row."
+
+    reversi = ReversiEngine()
+    s = reversi.setup(["a", "b"], {})
+    view = reversi.project_view(s, "b")
+    assert view.detail["flips"]["19"] == [27]
+    s = reversi.apply_action(s, "a", Action(type="place", choice="19"))
+    assert reversi.project_view(s, "b").detail["last_flips"] == [27]
+    assert s["message"].startswith("You play White")
+
+    boop = BoopEngine()
+    s = boop.setup(["a", "b"], {})
+    cats = [0, 2, 4, 12, 16, 24, 26, 28]
+    for slot in cats[:7]:
+        s["board"][slot] = {"owner": "a", "kind": "cat"}
+    s["pools"]["a"] = {"kitten": 0, "cat": 1}
+    s = boop.apply_action(s, "a", Action(type="place", color="cat", choice="28"))
+    assert s["phase"] == "finished" and s["winners"] == ["a"]
+    assert "you" not in s["message"].lower()
+
+
+def test_mancala_previews_match_the_sowing_they_describe():
+    engine = MancalaEngine()
+    chooser = random.Random(5)
+    s = engine.setup(["a", "b"], {})
+    while s["phase"] != "finished":
+        actor = s["order"][s["turn"]]
+        previews = engine.project_view(s, "b" if actor == "a" else "a").detail["previews"]
+        actions = engine.legal_actions(s, actor)
+        assert set(previews) == {option.action.choice for option in actions}
+        option = chooser.choice(actions)
+        expected = previews[option.action.choice]
+        after = engine.apply_action(s, actor, option.action)
+        assert after["last_move"] == expected["landing"]
+        captured = after["last_capture"]["seeds"] if after["last_capture"] else 0
+        assert captured == expected["captures"]
+        if after["phase"] != "finished":
+            assert (after["turn"] == s["turn"]) == expected["extra_turn"]
+        s = after
+    assert s["sweep"] is not None and sum(s["pits"]) == 48

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from pydantic import JsonValue
+
 from app.core.cards import draw, rng, shuffle_saved
 from app.core.contracts import (
     Action,
@@ -13,7 +15,9 @@ from app.core.contracts import (
     State,
     legal,
 )
-from app.games.uno.deck import COLORS, deck, penalty, points, view
+from app.games.uno.deck import COLORS, LABELS, deck, label, penalty, points, view
+
+LIMIT = 25
 
 
 class UnoEngine(BaseEngine):
@@ -92,16 +96,19 @@ class UnoEngine(BaseEngine):
         state["color"] = first.split(":")[0]
         if not self.mercy:
             kind = first.split(":")[1]
+            self._event(state, "opening", None, kind=kind)
             if kind == "wild":
                 state["pending"] = {"type": "opening_color"}
-                state["message"] = "Choose the opening colour."
             elif kind == "draw2":
+                state["last_event"]["skipped"] = [players[0]]
                 self._take(state, players[0], 2)
                 self._advance(state)
             elif kind == "skip":
+                state["last_event"]["skipped"] = [players[0]]
                 self._advance(state)
             elif kind == "reverse":
                 state["direction"], state["turn"] = -1, len(players) - 1
+        self._prompt(state)
         return state
 
     def _advance(self, s: State, steps: int = 1) -> None:
@@ -111,7 +118,16 @@ class UnoEngine(BaseEngine):
                 s["turn"] = (s["turn"] + s["direction"]) % len(s["order"])
         s["drawn"] = None
 
+    def _event(self, s: State, event: str, actor: str | None, **extra: object) -> None:
+        """What the latest action did, in public terms; drawn faces stay with their owner."""
+        s["last_event"] = {
+            "type": event, "actor": actor, "kind": None, "color": None, "target": None,
+            "outcome": None, "discarded": 0, "skipped": [], "drew": {}, "cards": {},
+            "eliminated": [], **extra,
+        }
+
     def _take(self, s: State, player: str, count: int) -> None:
+        taken: list[str] = []
         for _ in range(count):
             if not s["deck"] and len(s["discard"]) < 2:
                 for out in s["eliminated"]:
@@ -120,9 +136,18 @@ class UnoEngine(BaseEngine):
                 shuffle_saved(s, s["deck"])
             if not s["deck"] and len(s["discard"]) < 2:
                 break
-            s["hands"][player].extend(draw(s))
-        if self.mercy and len(s["hands"][player]) >= 25 and player not in s["eliminated"]:
+            cards = draw(s)
+            s["hands"][player].extend(cards)
+            taken.extend(cards)
+        event = s.get("last_event")
+        if event is not None and taken:
+            event["drew"][player] = event["drew"].get(player, 0) + len(taken)
+            event["cards"].setdefault(player, []).extend(taken)
+        if self.mercy and len(s["hands"][player]) >= LIMIT and player not in s["eliminated"]:
             s["eliminated"].append(player)
+            s.setdefault("out", {})[player] = len(s["hands"][player])
+            if event is not None:
+                event["eliminated"].append(player)
 
     def _can_play(self, s: State, card: str, player: str) -> bool:
         color, kind, _ = card.split(":")
@@ -149,9 +174,9 @@ class UnoEngine(BaseEngine):
         pending = s["pending"]
         if pending:
             if pending["type"] in {"roulette", "opening_color"}:
-                return [legal(f"Choose {c}", "choose", color=c) for c in COLORS]
+                return [legal(f"Choose {c.title()}", "choose", color=c) for c in COLORS]
             if pending["type"] == "challenge":
-                return [legal("Take four", "accept"), legal("Challenge +4", "challenge")]
+                return [legal("Take 4 cards", "accept"), legal("Challenge +4", "challenge")]
         for card in s["hands"][player]:
             if not self._can_play(s, card, player):
                 continue
@@ -165,19 +190,26 @@ class UnoEngine(BaseEngine):
                 for target in targets:
                     actions.append(
                         legal(
-                            f"Play {view(card).value}" + (f" · {c}" if c else ""),
+                            f"Play {label(card)}" + (f" · {c.title()}" if c else ""),
                             "play",
                             card=card,
                             color=c,
                             target=target,
                         )
                     )
+        held = len(s["hands"][player])
         if s["penalty"]:
-            actions.append(legal(f"Draw {s['penalty']}", "draw"))
+            out = self.mercy and held + s["penalty"] >= LIMIT
+            actions.append(legal(f"Draw {s['penalty']}" + (" — you’re out" if out else ""), "draw"))
         elif not s["drawn"]:
             if not self.mercy or not any(a.action.type == "play" for a in actions):
                 actions.append(
-                    legal("Draw until playable" if self.mercy else "Draw a card", "draw")
+                    legal(
+                        ("Draw a card — you’re out" if held + 1 >= LIMIT else "Draw until playable")
+                        if self.mercy
+                        else "Draw a card",
+                        "draw",
+                    )
                 )
         elif not self.mercy:
             actions.append(legal("Pass", "end_turn"))
@@ -202,6 +234,59 @@ class UnoEngine(BaseEngine):
             ) + (250 * len(s["eliminated"]) if self.mercy else 0)
             s["phase"] = "finished"
 
+    def _following(self, s: State, turn: int) -> int:
+        turn = (turn + s["direction"]) % len(s["order"])
+        while s["order"][turn] in s["eliminated"]:
+            turn = (turn + s["direction"]) % len(s["order"])
+        return turn
+
+    def _prompt(self, s: State) -> None:
+        """The instruction for whoever acts next, from public facts only.
+
+        The banner shows it to that player; the last move itself is attributed
+        from public history, so it is never restated here.
+        """
+        if s["winners"]:
+            out = len(s["eliminated"])
+            if self.mercy and s["hands"][s["winners"][0]]:
+                s["message"] = f"Last player standing after {out} elimination{'' if out == 1 else 's'}."
+            else:
+                s["message"] = "Hand emptied. The winner scores the cards left in the other hands" + (
+                    f", plus 250 for each of the {out} eliminated." if self.mercy and out else "."
+                )
+            return
+        held = len(s["hands"][s["order"][s["turn"]]])
+        pending = s["pending"]
+        if pending and pending["type"] == "opening_color":
+            s["message"] = "Choose the opening colour."
+        elif pending and pending["type"] == "challenge":
+            s["message"] = "Take 4 cards, or challenge the Wild +4."
+        elif pending and pending["type"] == "roulette":
+            s["message"] = f"Name a colour, then draw until it appears (out at {LIMIT} cards)."
+        elif s["penalty"]:
+            if self.mercy:
+                out = held + s["penalty"] >= LIMIT
+                s["message"] = f"Stack +{s['penalty_floor']} or higher, or draw {s['penalty']}" + (
+                    " — drawing puts you out." if out else "."
+                )
+            elif s["settings"].get("stack_draw_two", False):
+                s["message"] = f"Stack a +2, or draw {s['penalty']}."
+            else:
+                s["message"] = f"Draw {s['penalty']}; your turn then passes."
+        elif s["drawn"]:
+            s["message"] = "Play the card you drew" + ("." if self.mercy else ", or pass.")
+        else:
+            color, kind, _ = s["discard"][-1].split(":")
+            match = f"Match {s['color'].title()}" + (
+                "" if color == "wild" else f" or {LABELS.get(kind, kind)}"
+            )
+            s["message"] = match + (
+                (f". Drawing now puts you out at {LIMIT} cards." if held + 1 >= LIMIT
+                 else ", or draw until you can.")
+                if self.mercy
+                else ", or draw a card."
+            )
+
     def apply_action(self, state: State, player: str, action: Action) -> State:
         options = self.legal_actions(state, player)
         if action not in [o.action for o in options]:
@@ -212,15 +297,21 @@ class UnoEngine(BaseEngine):
             s["catchable"] = None if s["catchable"] == player else s["catchable"]
             return s
         if action.type == "catch_uno":
+            self._event(s, "catch_uno", player, target=action.target)
             self._take(s, action.target, 2)
             s["catchable"] = None
             self._finish(s)
+            self._prompt(s)
             return s
         s["catchable"] = None
         s["called"] = [p for p in s["called"] if len(s["hands"][p]) == 1]
+        self._event(s, action.type, player)
         if action.type in ("accept", "challenge"):
             pending = s["pending"]
             s["pending"] = None
+            s["last_event"]["target"] = pending["actor"]
+            if action.type == "challenge":
+                s["last_event"]["outcome"] = "succeeded" if pending["illegal"] else "failed"
             if action.type == "challenge" and pending["illegal"]:
                 self._take(s, pending["actor"], 4)
             else:
@@ -229,6 +320,7 @@ class UnoEngine(BaseEngine):
         elif action.type == "choose":
             opening = s["pending"]["type"] == "opening_color"
             s["color"] = action.color
+            s["last_event"].update(kind="opening" if opening else "roulette", color=action.color)
             if not opening:
                 while player not in s["eliminated"]:
                     before = len(s["hands"][player])
@@ -243,6 +335,7 @@ class UnoEngine(BaseEngine):
                 self._advance(s)
         elif action.type == "draw":
             if s["penalty"]:
+                s["last_event"]["kind"] = "penalty"
                 self._take(s, player, s["penalty"])
                 s["penalty"] = s["penalty_floor"] = 0
                 self._advance(s)
@@ -269,11 +362,15 @@ class UnoEngine(BaseEngine):
             )
             s["hands"][player].remove(card)
             s["discard"].append(card)
+            # The colour a Wild +4 challenge is judged against, already public on the table.
+            s["last_event"]["from_color"] = s["color"]
             s["color"] = action.color or color
+            s["last_event"].update(kind=kind, color=s["color"], target=action.target)
             if kind == "discard_all":
                 extras = [c for c in s["hands"][player] if c.split(":")[0] == color]
                 s["hands"][player] = [c for c in s["hands"][player] if c not in extras]
                 s["discard"][-1:-1] = extras
+                s["last_event"]["discarded"] = len(extras)
             # No Mercy ends as soon as the final card is played, before a 7/0
             # could transfer the newly empty hand to another player.
             final_mercy_card = self.mercy and not s["hands"][player]
@@ -301,6 +398,12 @@ class UnoEngine(BaseEngine):
                 if kind == "skip_all" or kind == "reverse4" and active_count == 2
                 else 1
             )
+            if steps == 2:
+                s["last_event"]["skipped"] = [s["order"][self._following(s, s["turn"])]]
+            elif kind == "skip_all":
+                s["last_event"]["skipped"] = [
+                    p for p in s["order"] if p != player and p not in s["eliminated"]
+                ]
             self._advance(s, steps)
             if kind == "wild4":
                 s["pending"] = {"type": "challenge", "illegal": illegal_wild, "actor": player}
@@ -312,8 +415,8 @@ class UnoEngine(BaseEngine):
             for p in s["order"]:
                 if len(s["hands"][p]) == 1 and p not in s["called"]:
                     s["catchable"] = p
-            s["message"] = f"Played {view(card).label}."
         self._finish(s)
+        self._prompt(s)
         return s
 
     def project_view(self, s: State, player: str) -> GameView:
@@ -346,6 +449,30 @@ class UnoEngine(BaseEngine):
                 "color": s["color"], "penalty": s["penalty"], "direction": s["direction"],
                 "pending_kind": s["pending"]["type"] if s["pending"] else None,
                 "next_player": following,
-                "elimination_limit": 25 if self.mercy else None,
+                "elimination_limit": LIMIT if self.mercy else None,
+                "last_event": self._public_event(s),
+                # Only the viewer's own new cards, and only while still in their hand.
+                "you_drew": [
+                    c for c in (s.get("last_event") or {}).get("cards", {}).get(player, [])
+                    if c in s["hands"].get(player, [])
+                ],
+                "out": [
+                    {"player": p, "cards": s.get("out", {}).get(p, len(s["hands"][p]))}
+                    for p in s["eliminated"]
+                ],
             },
         )
+
+    @staticmethod
+    def _public_event(s: State) -> dict[str, JsonValue] | None:
+        """Who did what to whom and how many cards moved; never a drawn face."""
+        event = s.get("last_event")
+        if not event:
+            return None
+        return {
+            "type": event["type"], "actor": event["actor"], "kind": event["kind"],
+            "color": event["color"], "from_color": event.get("from_color"),
+            "target": event["target"], "outcome": event["outcome"],
+            "discarded": event["discarded"], "skipped": list(event["skipped"]),
+            "drew": dict(event["drew"]), "eliminated": list(event["eliminated"]),
+        }

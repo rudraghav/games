@@ -87,7 +87,20 @@ test('320px boards expose overview, pan controls and the last keyboard action', 
     await scenario(page, game);
     const overview = page.getByRole('button', { name: 'View whole board', exact: true });
     await expect(overview).toBeVisible();
-    await expect(page.locator('.board-pan-hint')).toBeVisible();
+    // Boards that fit show every square; only an overflowing rail needs the pan cue.
+    const rail = page.locator('.board-rail');
+    if ((await rail.getAttribute('data-overflow')) === 'true')
+      await expect(page.locator('.board-pan-hint')).toBeVisible();
+    else
+      expect(
+        await rail.evaluate((node) => {
+          const frame = node.getBoundingClientRect();
+          return [...node.querySelectorAll('.board-square, .mancala-pit')].every((cell) => {
+            const box = cell.getBoundingClientRect();
+            return box.left >= frame.left - 1 && box.right <= frame.right + 1;
+          });
+        }),
+      ).toBe(true);
     await overview.click();
     const dialog = page.getByRole('dialog');
     await expect(dialog).toContainText('Read-only overview.');
@@ -134,7 +147,12 @@ test('Gem selected development explains the authoritative shortfall', async ({ p
   const quote = page.getByLabel('Purchase payment', { exact: true });
   await expect(quote).toContainText('Printed cost');
   await expect(quote).toContainText('Discount');
-  await expect(quote).toContainText(`${quotes[card.id].shortfall} matching gems or gold`);
+  await expect(quote).toContainText(`Short by ${quotes[card.id].shortfall}`);
+  // The tray with the quote stays inside the viewport after the tap.
+  const tray = page.getByRole('region', { name: 'Selected development', exact: true });
+  const box = (await tray.boundingBox())!;
+  expect(box.y).toBeGreaterThanOrEqual(0);
+  expect(box.y + box.height).toBeLessThanOrEqual(page.viewportSize()!.height + 1);
   await expect(page.getByLabel('Submitted action', { exact: true })).toHaveText(
     'No action submitted',
   );

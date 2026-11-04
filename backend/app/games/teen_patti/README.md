@@ -26,3 +26,16 @@ server-offered wager range/parity. This exposes no pocket cards: a private
 sideshow comparison still does not add either hand to the public reveal list.
 `test_casino_explanations.py` drives peek/bet/request/decline legally and verifies
 public parties/status while each participant sees only their own pocket cards.
+
+The projection also carries public table records that reveal no cards: chips each
+seat has put in (`paid`, boot included), why a seat is out (`out_reasons`:
+packed, lost_sideshow, lost_show), the latest sideshow response
+(`sideshow_result`: requester, target, accepted, loser — who packs is public,
+neither hand is) and how the hand ended (`finish_reason`: show, pot_limit,
+packed). At the end, publicly shown hands get a category, rank and description
+(`hand_evaluations`, Trail through High card); the viewer's own seen hand gets
+`own_evaluation`. `message` is the instruction for the seat that can act (or the
+responding neighbour), and at the end the comparison that decided it ("Show:
+colour beats pair.", "Pot limit reached, so every hand was shown: both hands are
+high card; the third card decides."). The bet is labelled "Blind bet" or "Chaal"
+(seen bet). Rules and outcomes are unchanged.

@@ -51,6 +51,9 @@ test('hand selections and grouping controls keep card and board wells stationary
   page,
 }) => {
   await gallery(page, 'Uno · maximum seats');
+  // In a room the table scrolls the hand above the pinned phone dock when the turn
+  // starts; the gallery mounts mid-turn, so show the hand the same way first.
+  await page.locator('.private-hand').evaluate((node) => node.scrollIntoView({ block: 'start' }));
   await steady(page, ['.card-table', '.private-hand', '.action-panel'], () =>
     page.getByRole('group', { name: 'Your hand', exact: true }).getByRole('button').first().click(),
   );
@@ -87,16 +90,20 @@ test('market and simultaneous choices keep the public board visible and stationa
   page,
 }) => {
   await gallery(page, 'Gem Market · maximum seats');
-  await steady(page, ['.gem-table', '.gem-wallet', '.action-panel'], () =>
+  await steady(page, ['.gem-table', '.gem-wallet', '.gem-supply'], () =>
     page.getByRole('button', { name: 'Select pearl', exact: true }).click(),
   );
-  await steady(page, ['.gem-table', '.gem-wallet', '.action-panel'], () =>
+  // The selected card's decision opens in a tray after the market, so nothing above it moves.
+  await steady(page, ['.gem-table', '.gem-wallet', '.gem-supply'], () =>
     page
       .locator('.gem-tier[data-current="true"] .development-card, .gem-tier .development-card')
       .filter({ visible: true })
       .first()
       .click(),
   );
+  await expect(
+    page.getByRole('region', { name: 'Selected development', exact: true }),
+  ).toBeVisible();
 
   await gallery(page, 'The Gang · maximum seats');
   await steady(page, ['.gang-community', '.gang-private', '.gang-turn-dock'], () =>
@@ -139,6 +146,9 @@ test('legal mid-game private selections and public targets stay in fixed decisio
   page,
 }) => {
   await midgame(page, 'word-agents', 'guess');
+  // On phones the acting operative's dock is sticky; bring the word into view
+  // first so the click itself does not scroll the page under the measurement.
+  await page.locator('.word-board button:enabled').first().scrollIntoViewIfNeeded();
   await steady(page, ['.word-board', '.word-action-dock'], () =>
     page.locator('.word-board button:enabled').first().click(),
   );
@@ -179,7 +189,7 @@ test('Azul board and supply retain their places after the recorded draft is comm
   await expect(board.getByRole('button', { name: /^Place on pattern line/ }).first()).toBeVisible();
 });
 
-test('casino decisions keep a compact fixed dock and every legal control can be reached', async ({
+test('casino decisions size the dock to their controls and every legal control can be reached', async ({
   page,
 }) => {
   await page.goto('/design/midgame');
@@ -188,12 +198,10 @@ test('casino decisions keep a compact fixed dock and every legal control can be 
   );
   expect(scenarios.some((item) => item.next.action.type === 'split')).toBe(true);
   expect(scenarios.some((item) => item.next.action.type === 'double')).toBe(true);
-  let height: number | null = null;
   for (const item of scenarios) {
     await page.getByRole('combobox', { name: 'Game', exact: true }).selectOption(item.game);
     await page.getByLabel('Mid-game scenario').selectOption(item.id);
     const dock = page.locator('.casino-decision-shell .action-panel');
-    const currentHeight = await dock.evaluate((node) => node.getBoundingClientRect().height);
     expect(
       await dock.evaluate(
         (node) =>
@@ -202,8 +210,15 @@ test('casino decisions keep a compact fixed dock and every legal control can be 
       ),
       `${item.label}: decision heading starts inside the dock`,
     ).toBe(true);
-    if (height !== null) expect(currentHeight).toBe(height);
-    height = currentHeight;
+    // The dock is content-sized (a fixed height hid Raise, All in, Split and
+    // Sideshow), so it must never need its own inner scroll.
+    expect(
+      await dock.evaluate((node) => {
+        const frame = node.closest('.decision-dock')!;
+        return frame.scrollHeight <= frame.clientHeight + 1;
+      }),
+      `${item.label}: dock shows every control without an inner scroll`,
+    ).toBe(true);
     const controls = dock.locator('button:enabled,input:enabled,select:enabled');
     const firstButton = dock.locator('button:enabled').first();
     if (await firstButton.count())
@@ -228,7 +243,6 @@ test('casino decisions keep a compact fixed dock and every legal control can be 
       expect(visible, `${item.label}: ${await control.textContent()}`).toBe(true);
     }
   }
-  expect(height).toBe((page.viewportSize()?.width || 0) < 701 ? 252 : 192);
 });
 
 test('split blackjack hands have explicit navigation while the table and controls stay fixed', async ({
@@ -272,7 +286,10 @@ test('modeless peek resets after the hand closes and reopens its controlled pane
   await forcedDeal.click();
   await expect(panel).toHaveAttribute('data-peeking', 'false');
   await expect(panel.getByRole('button', { name: 'View table', exact: true })).toBeVisible();
-  await expect(panel.getByRole('combobox', { name: 'Player', exact: true })).toBeVisible();
+  // The reopened panel starts the decision again at its first step.
+  await expect(
+    panel.getByRole('radiogroup', { name: /^(Choose a player|Property you take)$/ }).first(),
+  ).toBeVisible();
   await panel.getByRole('button', { name: 'Close move options', exact: true }).click();
   await expect(forcedDeal).toBeFocused();
 });

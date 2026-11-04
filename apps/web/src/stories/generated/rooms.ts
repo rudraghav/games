@@ -23,7 +23,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.653192,
+          "last_seen": 1793726916.800718,
           "is_bot": false
         },
         {
@@ -33,7 +33,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.653196,
+          "last_seen": 1793726916.800722,
           "is_bot": false
         }
       ],
@@ -99,7 +99,7 @@ export const fixtures = [
           },
           {
             "id": "wild:wild:3",
-            "label": "Wild Wild",
+            "label": "Wild",
             "color": "wild",
             "subtitle": "UNO",
             "value": "Wild",
@@ -180,10 +180,10 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 93,
         "pot": 0,
-        "message": "Match the top card.",
+        "message": "Match Red or 2, or draw a card.",
         "actions": [
           {
-            "label": "Play 2",
+            "label": "Play Green 2",
             "action": {
               "type": "play",
               "card": "green:2:0",
@@ -202,7 +202,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Wild \u00b7 red",
+            "label": "Play Wild \u00b7 Red",
             "action": {
               "type": "play",
               "card": "wild:wild:3",
@@ -221,7 +221,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Wild \u00b7 yellow",
+            "label": "Play Wild \u00b7 Yellow",
             "action": {
               "type": "play",
               "card": "wild:wild:3",
@@ -240,7 +240,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Wild \u00b7 green",
+            "label": "Play Wild \u00b7 Green",
             "action": {
               "type": "play",
               "card": "wild:wild:3",
@@ -259,7 +259,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Wild \u00b7 blue",
+            "label": "Play Wild \u00b7 Blue",
             "action": {
               "type": "play",
               "card": "wild:wild:3",
@@ -278,7 +278,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse",
+            "label": "Play Red Reverse",
             "action": {
               "type": "play",
               "card": "red:reverse:1",
@@ -323,7 +323,22 @@ export const fixtures = [
           "direction": 1,
           "pending_kind": null,
           "next_player": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
-          "elimination_limit": null
+          "elimination_limit": null,
+          "last_event": {
+            "type": "opening",
+            "actor": null,
+            "kind": "2",
+            "color": null,
+            "from_color": null,
+            "target": null,
+            "outcome": null,
+            "discarded": 0,
+            "skipped": [],
+            "drew": {},
+            "eliminated": []
+          },
+          "you_drew": [],
+          "out": []
         }
       },
       "paused": false,
@@ -358,7 +373,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.653665,
+          "last_seen": 1793726916.800937,
           "is_bot": false
         },
         {
@@ -368,7 +383,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.653667,
+          "last_seen": 1793726916.800938,
           "is_bot": false
         },
         {
@@ -378,7 +393,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6536682,
+          "last_seen": 1793726916.800939,
           "is_bot": false
         },
         {
@@ -388,7 +403,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.653669,
+          "last_seen": 1793726916.80094,
           "is_bot": false
         },
         {
@@ -398,7 +413,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.653669,
+          "last_seen": 1793726916.800941,
           "is_bot": false
         },
         {
@@ -408,7 +423,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.653671,
+          "last_seen": 1793726916.8009422,
           "is_bot": false
         },
         {
@@ -418,7 +433,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.653673,
+          "last_seen": 1793726916.8009431,
           "is_bot": false
         },
         {
@@ -428,7 +443,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.653674,
+          "last_seen": 1793726916.800944,
           "is_bot": false
         },
         {
@@ -438,7 +453,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.653675,
+          "last_seen": 1793726916.8009448,
           "is_bot": false
         },
         {
@@ -448,7 +463,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.653675,
+          "last_seen": 1793726916.8009448,
           "is_bot": false
         }
       ],
@@ -618,7 +633,7 @@ export const fixtures = [
           },
           {
             "id": "wild:wild:3",
-            "label": "Wild Wild",
+            "label": "Wild",
             "color": "wild",
             "subtitle": "UNO",
             "value": "Wild",
@@ -1154,10 +1169,10 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 2,
         "pot": 0,
-        "message": "Match the top card.",
+        "message": "Match Red or 2, or draw a card.",
         "actions": [
           {
-            "label": "Play 2",
+            "label": "Play Green 2",
             "action": {
               "type": "play",
               "card": "green:2:0",
@@ -1176,7 +1191,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Wild \u00b7 red",
+            "label": "Play Wild \u00b7 Red",
             "action": {
               "type": "play",
               "card": "wild:wild:3",
@@ -1195,7 +1210,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Wild \u00b7 yellow",
+            "label": "Play Wild \u00b7 Yellow",
             "action": {
               "type": "play",
               "card": "wild:wild:3",
@@ -1214,7 +1229,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Wild \u00b7 green",
+            "label": "Play Wild \u00b7 Green",
             "action": {
               "type": "play",
               "card": "wild:wild:3",
@@ -1233,7 +1248,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Wild \u00b7 blue",
+            "label": "Play Wild \u00b7 Blue",
             "action": {
               "type": "play",
               "card": "wild:wild:3",
@@ -1252,7 +1267,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse",
+            "label": "Play Red Reverse",
             "action": {
               "type": "play",
               "card": "red:reverse:1",
@@ -1271,7 +1286,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +4 \u00b7 red",
+            "label": "Play Wild +4 \u00b7 Red",
             "action": {
               "type": "play",
               "card": "wild:wild4:0",
@@ -1290,7 +1305,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +4 \u00b7 yellow",
+            "label": "Play Wild +4 \u00b7 Yellow",
             "action": {
               "type": "play",
               "card": "wild:wild4:0",
@@ -1309,7 +1324,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +4 \u00b7 green",
+            "label": "Play Wild +4 \u00b7 Green",
             "action": {
               "type": "play",
               "card": "wild:wild4:0",
@@ -1328,7 +1343,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +4 \u00b7 blue",
+            "label": "Play Wild +4 \u00b7 Blue",
             "action": {
               "type": "play",
               "card": "wild:wild4:0",
@@ -1347,7 +1362,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 6",
+            "label": "Play Red 6",
             "action": {
               "type": "play",
               "card": "red:6:1",
@@ -1366,7 +1381,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 8",
+            "label": "Play Red 8",
             "action": {
               "type": "play",
               "card": "red:8:1",
@@ -1385,7 +1400,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 2",
+            "label": "Play Blue 2",
             "action": {
               "type": "play",
               "card": "blue:2:1",
@@ -1404,7 +1419,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 2",
+            "label": "Play Yellow 2",
             "action": {
               "type": "play",
               "card": "yellow:2:1",
@@ -1423,7 +1438,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 6",
+            "label": "Play Red 6",
             "action": {
               "type": "play",
               "card": "red:6:0",
@@ -1442,7 +1457,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 3",
+            "label": "Play Red 3",
             "action": {
               "type": "play",
               "card": "red:3:0",
@@ -1461,7 +1476,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 2",
+            "label": "Play Yellow 2",
             "action": {
               "type": "play",
               "card": "yellow:2:0",
@@ -1480,7 +1495,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +4 \u00b7 red",
+            "label": "Play Wild +4 \u00b7 Red",
             "action": {
               "type": "play",
               "card": "wild:wild4:3",
@@ -1499,7 +1514,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +4 \u00b7 yellow",
+            "label": "Play Wild +4 \u00b7 Yellow",
             "action": {
               "type": "play",
               "card": "wild:wild4:3",
@@ -1518,7 +1533,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +4 \u00b7 green",
+            "label": "Play Wild +4 \u00b7 Green",
             "action": {
               "type": "play",
               "card": "wild:wild4:3",
@@ -1537,7 +1552,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +4 \u00b7 blue",
+            "label": "Play Wild +4 \u00b7 Blue",
             "action": {
               "type": "play",
               "card": "wild:wild4:3",
@@ -1556,7 +1571,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +2",
+            "label": "Play Red +2",
             "action": {
               "type": "play",
               "card": "red:draw2:1",
@@ -1575,7 +1590,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Skip",
+            "label": "Play Red Skip",
             "action": {
               "type": "play",
               "card": "red:skip:1",
@@ -1594,7 +1609,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 2",
+            "label": "Play Green 2",
             "action": {
               "type": "play",
               "card": "green:2:1",
@@ -1613,7 +1628,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse",
+            "label": "Play Red Reverse",
             "action": {
               "type": "play",
               "card": "red:reverse:0",
@@ -1632,7 +1647,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 5",
+            "label": "Play Red 5",
             "action": {
               "type": "play",
               "card": "red:5:0",
@@ -1651,7 +1666,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 3",
+            "label": "Play Red 3",
             "action": {
               "type": "play",
               "card": "red:3:1",
@@ -1670,7 +1685,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 1",
+            "label": "Play Red 1",
             "action": {
               "type": "play",
               "card": "red:1:1",
@@ -1715,7 +1730,22 @@ export const fixtures = [
           "direction": 1,
           "pending_kind": null,
           "next_player": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
-          "elimination_limit": null
+          "elimination_limit": null,
+          "last_event": {
+            "type": "opening",
+            "actor": null,
+            "kind": "2",
+            "color": null,
+            "from_color": null,
+            "target": null,
+            "outcome": null,
+            "discarded": 0,
+            "skipped": [],
+            "drew": {},
+            "eliminated": []
+          },
+          "you_drew": [],
+          "out": []
         }
       },
       "paused": false,
@@ -1750,7 +1780,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.654006,
+          "last_seen": 1793726916.8025029,
           "is_bot": false
         },
         {
@@ -1760,7 +1790,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.654007,
+          "last_seen": 1793726916.802505,
           "is_bot": false
         }
       ],
@@ -1907,10 +1937,10 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 152,
         "pot": 0,
-        "message": "Match the top card.",
+        "message": "Match Green or 6, or draw until you can.",
         "actions": [
           {
-            "label": "Play 4",
+            "label": "Play Green 4",
             "action": {
               "type": "play",
               "card": "green:4:1",
@@ -1929,7 +1959,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse",
+            "label": "Play Green Reverse",
             "action": {
               "type": "play",
               "card": "green:reverse:2",
@@ -1948,7 +1978,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 3",
+            "label": "Play Green 3",
             "action": {
               "type": "play",
               "card": "green:3:0",
@@ -1967,7 +1997,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse +4 \u00b7 red",
+            "label": "Play Wild Reverse +4 \u00b7 Red",
             "action": {
               "type": "play",
               "card": "wild:reverse4:2",
@@ -1986,7 +2016,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse +4 \u00b7 yellow",
+            "label": "Play Wild Reverse +4 \u00b7 Yellow",
             "action": {
               "type": "play",
               "card": "wild:reverse4:2",
@@ -2005,7 +2035,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse +4 \u00b7 green",
+            "label": "Play Wild Reverse +4 \u00b7 Green",
             "action": {
               "type": "play",
               "card": "wild:reverse4:2",
@@ -2024,7 +2054,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse +4 \u00b7 blue",
+            "label": "Play Wild Reverse +4 \u00b7 Blue",
             "action": {
               "type": "play",
               "card": "wild:reverse4:2",
@@ -2050,7 +2080,10 @@ export const fixtures = [
           "direction": 1,
           "pending_kind": null,
           "next_player": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
-          "elimination_limit": 25
+          "elimination_limit": 25,
+          "last_event": null,
+          "you_drew": [],
+          "out": []
         }
       },
       "paused": false,
@@ -2085,7 +2118,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.654179,
+          "last_seen": 1793726916.80266,
           "is_bot": false
         },
         {
@@ -2095,7 +2128,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.65418,
+          "last_seen": 1793726916.8026612,
           "is_bot": false
         },
         {
@@ -2105,7 +2138,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.654181,
+          "last_seen": 1793726916.802662,
           "is_bot": false
         },
         {
@@ -2115,7 +2148,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.654182,
+          "last_seen": 1793726916.8026628,
           "is_bot": false
         },
         {
@@ -2125,7 +2158,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.654183,
+          "last_seen": 1793726916.8026628,
           "is_bot": false
         },
         {
@@ -2135,7 +2168,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6541839,
+          "last_seen": 1793726916.802664,
           "is_bot": false
         }
       ],
@@ -2422,7 +2455,7 @@ export const fixtures = [
           },
           {
             "id": "wild:roulette:3",
-            "label": "Wild Colour roulette",
+            "label": "Colour roulette",
             "color": "wild",
             "subtitle": "UNO",
             "value": "Colour roulette",
@@ -2513,7 +2546,7 @@ export const fixtures = [
           },
           {
             "id": "wild:roulette:0",
-            "label": "Wild Colour roulette",
+            "label": "Colour roulette",
             "color": "wild",
             "subtitle": "UNO",
             "value": "Colour roulette",
@@ -2555,10 +2588,10 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 108,
         "pot": 0,
-        "message": "Match the top card.",
+        "message": "Match Green or 2, or draw until you can.",
         "actions": [
           {
-            "label": "Play 2",
+            "label": "Play Blue 2",
             "action": {
               "type": "play",
               "card": "blue:2:0",
@@ -2577,7 +2610,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 4",
+            "label": "Play Green 4",
             "action": {
               "type": "play",
               "card": "green:4:1",
@@ -2596,7 +2629,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse",
+            "label": "Play Green Reverse",
             "action": {
               "type": "play",
               "card": "green:reverse:2",
@@ -2615,7 +2648,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play 3",
+            "label": "Play Green 3",
             "action": {
               "type": "play",
               "card": "green:3:0",
@@ -2634,7 +2667,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse +4 \u00b7 red",
+            "label": "Play Wild Reverse +4 \u00b7 Red",
             "action": {
               "type": "play",
               "card": "wild:reverse4:2",
@@ -2653,7 +2686,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse +4 \u00b7 yellow",
+            "label": "Play Wild Reverse +4 \u00b7 Yellow",
             "action": {
               "type": "play",
               "card": "wild:reverse4:2",
@@ -2672,7 +2705,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse +4 \u00b7 green",
+            "label": "Play Wild Reverse +4 \u00b7 Green",
             "action": {
               "type": "play",
               "card": "wild:reverse4:2",
@@ -2691,7 +2724,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Reverse +4 \u00b7 blue",
+            "label": "Play Wild Reverse +4 \u00b7 Blue",
             "action": {
               "type": "play",
               "card": "wild:reverse4:2",
@@ -2710,7 +2743,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +10 \u00b7 red",
+            "label": "Play Wild +10 \u00b7 Red",
             "action": {
               "type": "play",
               "card": "wild:wild10:6",
@@ -2729,7 +2762,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +10 \u00b7 yellow",
+            "label": "Play Wild +10 \u00b7 Yellow",
             "action": {
               "type": "play",
               "card": "wild:wild10:6",
@@ -2748,7 +2781,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +10 \u00b7 green",
+            "label": "Play Wild +10 \u00b7 Green",
             "action": {
               "type": "play",
               "card": "wild:wild10:6",
@@ -2767,7 +2800,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +10 \u00b7 blue",
+            "label": "Play Wild +10 \u00b7 Blue",
             "action": {
               "type": "play",
               "card": "wild:wild10:6",
@@ -2786,7 +2819,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +4",
+            "label": "Play Green +4",
             "action": {
               "type": "play",
               "card": "green:draw4:0",
@@ -2805,7 +2838,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play +2",
+            "label": "Play Green +2",
             "action": {
               "type": "play",
               "card": "green:draw2:0",
@@ -2843,7 +2876,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play Discard all",
+            "label": "Play Green Discard all",
             "action": {
               "type": "play",
               "card": "green:discard_all:1",
@@ -2888,7 +2921,10 @@ export const fixtures = [
           "direction": 1,
           "pending_kind": null,
           "next_player": "b34c747c-f55f-5ca1-a9f1-9a962b463165",
-          "elimination_limit": 25
+          "elimination_limit": 25,
+          "last_event": null,
+          "you_drew": [],
+          "out": []
         }
       },
       "paused": false,
@@ -2923,7 +2959,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.654389,
+          "last_seen": 1793726916.8028312,
           "is_bot": false
         },
         {
@@ -2933,7 +2969,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.65439,
+          "last_seen": 1793726916.8028328,
           "is_bot": false
         }
       ],
@@ -3100,7 +3136,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 94,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -3469,7 +3505,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6545868,
+          "last_seen": 1793726916.803005,
           "is_bot": false
         },
         {
@@ -3479,7 +3515,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.654589,
+          "last_seen": 1793726916.803006,
           "is_bot": false
         },
         {
@@ -3489,7 +3525,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.65459,
+          "last_seen": 1793726916.803007,
           "is_bot": false
         },
         {
@@ -3499,7 +3535,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.65459,
+          "last_seen": 1793726916.803008,
           "is_bot": false
         },
         {
@@ -3509,7 +3545,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.654591,
+          "last_seen": 1793726916.803008,
           "is_bot": false
         }
       ],
@@ -3704,7 +3740,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 79,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -4076,7 +4112,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.654766,
+          "last_seen": 1793726916.803166,
           "is_bot": false
         },
         {
@@ -4086,7 +4122,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.654767,
+          "last_seen": 1793726916.8031669,
           "is_bot": false
         }
       ],
@@ -4253,7 +4289,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 103,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -4641,7 +4677,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.656333,
+          "last_seen": 1793726916.8033412,
           "is_bot": false
         },
         {
@@ -4651,7 +4687,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.656335,
+          "last_seen": 1793726916.803343,
           "is_bot": false
         },
         {
@@ -4661,7 +4697,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6563358,
+          "last_seen": 1793726916.8033438,
           "is_bot": false
         },
         {
@@ -4671,7 +4707,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6563358,
+          "last_seen": 1793726916.803345,
           "is_bot": false
         },
         {
@@ -4681,7 +4717,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6563368,
+          "last_seen": 1793726916.803345,
           "is_bot": false
         }
       ],
@@ -4887,7 +4923,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 88,
         "pot": 0,
-        "message": "Three sets. One winner.",
+        "message": "Play up to 3 more cards, or end your turn.",
         "actions": [
           {
             "label": "End turn",
@@ -5278,7 +5314,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6565251,
+          "last_seen": 1793726916.803564,
           "is_bot": false
         },
         {
@@ -5288,7 +5324,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.656527,
+          "last_seen": 1793726916.803565,
           "is_bot": false
         }
       ],
@@ -5358,7 +5394,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 3,
-        "message": "Blinds are in. Your move.",
+        "message": "Call 1 to stay in, raise to 4 or more, or fold.",
         "actions": [
           {
             "label": "Fold",
@@ -5449,7 +5485,7 @@ export const fixtures = [
           },
           "live_pots": [
             {
-              "amount": 2,
+              "amount": 3,
               "contributors": [
                 "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
                 "b34c747c-f55f-5ca1-a9f1-9a962b463165"
@@ -5458,17 +5494,8 @@ export const fixtures = [
                 "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
                 "b34c747c-f55f-5ca1-a9f1-9a962b463165"
               ],
-              "refund_to": null
-            },
-            {
-              "amount": 1,
-              "contributors": [
-                "b34c747c-f55f-5ca1-a9f1-9a962b463165"
-              ],
-              "eligible": [
-                "b34c747c-f55f-5ca1-a9f1-9a962b463165"
-              ],
-              "refund_to": "b34c747c-f55f-5ca1-a9f1-9a962b463165"
+              "refund_to": null,
+              "all_in": []
             }
           ],
           "hand_evaluations": {},
@@ -5507,7 +5534,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.656648,
+          "last_seen": 1793726916.8036978,
           "is_bot": false
         },
         {
@@ -5517,7 +5544,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6566489,
+          "last_seen": 1793726916.803699,
           "is_bot": false
         },
         {
@@ -5527,7 +5554,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.65665,
+          "last_seen": 1793726916.8037,
           "is_bot": false
         },
         {
@@ -5537,7 +5564,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.656651,
+          "last_seen": 1793726916.803701,
           "is_bot": false
         },
         {
@@ -5547,7 +5574,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.656652,
+          "last_seen": 1793726916.803702,
           "is_bot": false
         },
         {
@@ -5557,7 +5584,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6566532,
+          "last_seen": 1793726916.803702,
           "is_bot": false
         },
         {
@@ -5567,7 +5594,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6566541,
+          "last_seen": 1793726916.803703,
           "is_bot": false
         },
         {
@@ -5577,7 +5604,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.656655,
+          "last_seen": 1793726916.803704,
           "is_bot": false
         },
         {
@@ -5587,7 +5614,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6566558,
+          "last_seen": 1793726916.803705,
           "is_bot": false
         }
       ],
@@ -5748,7 +5775,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 3,
-        "message": "Blinds are in. Your move.",
+        "message": "Call 2 to stay in, raise to 4 or more, or fold.",
         "actions": [],
         "winners": [],
         "detail": {
@@ -5769,26 +5796,24 @@ export const fixtures = [
           },
           "live_pots": [
             {
-              "amount": 2,
+              "amount": 3,
               "contributors": [
                 "b34c747c-f55f-5ca1-a9f1-9a962b463165",
                 "e7bfce63-aea4-51ae-b7c4-ecfe886962d4"
               ],
               "eligible": [
+                "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
                 "b34c747c-f55f-5ca1-a9f1-9a962b463165",
-                "e7bfce63-aea4-51ae-b7c4-ecfe886962d4"
+                "e7bfce63-aea4-51ae-b7c4-ecfe886962d4",
+                "19285837-cef0-568b-9a40-febfd6a8cb39",
+                "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9",
+                "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46",
+                "d03315f3-275f-534f-915a-d668855c7de9",
+                "b99cae13-1a84-5dfe-95f8-3ec6f935de22",
+                "a8e0bd43-e804-5665-9c48-c5581447c0fe"
               ],
-              "refund_to": null
-            },
-            {
-              "amount": 1,
-              "contributors": [
-                "e7bfce63-aea4-51ae-b7c4-ecfe886962d4"
-              ],
-              "eligible": [
-                "e7bfce63-aea4-51ae-b7c4-ecfe886962d4"
-              ],
-              "refund_to": "e7bfce63-aea4-51ae-b7c4-ecfe886962d4"
+              "refund_to": null,
+              "all_in": []
             }
           ],
           "hand_evaluations": {},
@@ -5827,7 +5852,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.656766,
+          "last_seen": 1793726916.803827,
           "is_bot": false
         },
         {
@@ -5837,7 +5862,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.656768,
+          "last_seen": 1793726916.803828,
           "is_bot": false
         }
       ],
@@ -6076,7 +6101,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 78,
         "pot": 0,
-        "message": "Draw, group your cards, then discard.",
+        "message": "Draw from the stock or take the A \u2665 from the discard.",
         "actions": [
           {
             "label": "Draw from stock",
@@ -6176,6 +6201,7 @@ export const fixtures = [
           },
           "discard_analyses": {},
           "drop_cost": 20,
+          "out": {},
           "finish_reason": null,
           "settlements": {}
         }
@@ -6212,7 +6238,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.668899,
+          "last_seen": 1793726916.815605,
           "is_bot": false
         },
         {
@@ -6222,7 +6248,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6689012,
+          "last_seen": 1793726916.815607,
           "is_bot": false
         },
         {
@@ -6232,7 +6258,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.668902,
+          "last_seen": 1793726916.815607,
           "is_bot": false
         },
         {
@@ -6242,7 +6268,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6689029,
+          "last_seen": 1793726916.815608,
           "is_bot": false
         },
         {
@@ -6252,7 +6278,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6689038,
+          "last_seen": 1793726916.815609,
           "is_bot": false
         },
         {
@@ -6262,7 +6288,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6689038,
+          "last_seen": 1793726916.8156102,
           "is_bot": false
         }
       ],
@@ -6553,7 +6579,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 26,
         "pot": 0,
-        "message": "Draw, group your cards, then discard.",
+        "message": "Draw from the stock or take the 7 \u2660 from the discard.",
         "actions": [
           {
             "label": "Draw from stock",
@@ -6653,6 +6679,7 @@ export const fixtures = [
           },
           "discard_analyses": {},
           "drop_cost": 20,
+          "out": {},
           "finish_reason": null,
           "settlements": {}
         }
@@ -6689,7 +6716,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669046,
+          "last_seen": 1793726916.815758,
           "is_bot": false
         },
         {
@@ -6699,7 +6726,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669047,
+          "last_seen": 1793726916.8157592,
           "is_bot": false
         }
       ],
@@ -6742,7 +6769,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 2,
-        "message": "The boot is in. Play blind or see your cards.",
+        "message": "Bet blind 1\u20132, see your cards, ask for a show or pack.",
         "actions": [
           {
             "label": "Pack / fold",
@@ -6783,7 +6810,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play chips",
+            "label": "Blind bet",
             "action": {
               "type": "bet",
               "card": "",
@@ -6831,7 +6858,16 @@ export const fixtures = [
           },
           "sideshow": null,
           "sideshow_target": null,
-          "sideshow_cost": null
+          "sideshow_cost": null,
+          "paid": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 1,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 1
+          },
+          "out_reasons": {},
+          "sideshow_result": null,
+          "finish_reason": null,
+          "hand_evaluations": {},
+          "own_evaluation": null
         }
       },
       "paused": false,
@@ -6866,7 +6902,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669148,
+          "last_seen": 1793726916.815883,
           "is_bot": false
         },
         {
@@ -6876,7 +6912,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669149,
+          "last_seen": 1793726916.815884,
           "is_bot": false
         },
         {
@@ -6886,7 +6922,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6691499,
+          "last_seen": 1793726916.815885,
           "is_bot": false
         },
         {
@@ -6896,7 +6932,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669151,
+          "last_seen": 1793726916.815886,
           "is_bot": false
         },
         {
@@ -6906,7 +6942,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669152,
+          "last_seen": 1793726916.8158872,
           "is_bot": false
         },
         {
@@ -6916,7 +6952,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669153,
+          "last_seen": 1793726916.815888,
           "is_bot": false
         }
       ],
@@ -7011,7 +7047,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 6,
-        "message": "The boot is in. Play blind or see your cards.",
+        "message": "Bet blind 1\u20132, see your cards or pack.",
         "actions": [
           {
             "label": "Pack / fold",
@@ -7052,7 +7088,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Play chips",
+            "label": "Blind bet",
             "action": {
               "type": "bet",
               "card": "",
@@ -7085,7 +7121,20 @@ export const fixtures = [
           },
           "sideshow": null,
           "sideshow_target": null,
-          "sideshow_cost": null
+          "sideshow_cost": null,
+          "paid": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 1,
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": 1,
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": 1,
+            "19285837-cef0-568b-9a40-febfd6a8cb39": 1,
+            "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9": 1,
+            "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46": 1
+          },
+          "out_reasons": {},
+          "sideshow_result": null,
+          "finish_reason": null,
+          "hand_evaluations": {},
+          "own_evaluation": null
         }
       },
       "paused": false,
@@ -7120,7 +7169,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669296,
+          "last_seen": 1793726916.816035,
           "is_bot": false
         }
       ],
@@ -7150,7 +7199,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 312,
         "pot": 0,
-        "message": "Place your free-chip wager.",
+        "message": "Bet 2\u2013200 chips (even amounts).",
         "actions": [
           {
             "label": "Place bet",
@@ -7184,7 +7233,11 @@ export const fixtures = [
             "net": null
           },
           "dealer_natural": null,
-          "settlements": {}
+          "settlements": {},
+          "public_hands": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": []
+          },
+          "insured": {}
         }
       },
       "paused": false,
@@ -7219,7 +7272,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669427,
+          "last_seen": 1793726916.816166,
           "is_bot": false
         },
         {
@@ -7229,7 +7282,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6694279,
+          "last_seen": 1793726916.8161669,
           "is_bot": false
         },
         {
@@ -7239,7 +7292,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669429,
+          "last_seen": 1793726916.8161678,
           "is_bot": false
         },
         {
@@ -7249,7 +7302,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.66943,
+          "last_seen": 1793726916.816169,
           "is_bot": false
         },
         {
@@ -7259,7 +7312,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.66943,
+          "last_seen": 1793726916.816169,
           "is_bot": false
         },
         {
@@ -7269,7 +7322,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669431,
+          "last_seen": 1793726916.81617,
           "is_bot": false
         },
         {
@@ -7279,7 +7332,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6694322,
+          "last_seen": 1793726916.816171,
           "is_bot": false
         }
       ],
@@ -7387,7 +7440,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 312,
         "pot": 0,
-        "message": "Place your free-chip wager.",
+        "message": "Bet 2\u2013200 chips (even amounts).",
         "actions": [
           {
             "label": "Place bet",
@@ -7421,7 +7474,17 @@ export const fixtures = [
             "net": null
           },
           "dealer_natural": null,
-          "settlements": {}
+          "settlements": {},
+          "public_hands": {
+            "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": [],
+            "b34c747c-f55f-5ca1-a9f1-9a962b463165": [],
+            "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": [],
+            "19285837-cef0-568b-9a40-febfd6a8cb39": [],
+            "d103ce40-287c-59d3-b3b2-8a3a8bbadaa9": [],
+            "df3573dc-a2a9-5dc8-af2c-e2f432d3fc46": [],
+            "d03315f3-275f-534f-915a-d668855c7de9": []
+          },
+          "insured": {}
         }
       },
       "paused": false,
@@ -7456,7 +7519,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669535,
+          "last_seen": 1793726916.816364,
           "is_bot": false
         },
         {
@@ -7466,7 +7529,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669536,
+          "last_seen": 1793726916.816365,
           "is_bot": false
         }
       ],
@@ -7547,7 +7610,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 125,
         "pot": 0,
-        "message": "Turn over two cards to begin.",
+        "message": "Turn over two of your cards to begin.",
         "actions": [
           {
             "label": "Reveal card 1",
@@ -7818,7 +7881,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.66968,
+          "last_seen": 1793726916.816504,
           "is_bot": false
         },
         {
@@ -7828,7 +7891,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6696808,
+          "last_seen": 1793726916.8165052,
           "is_bot": false
         },
         {
@@ -7838,7 +7901,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669682,
+          "last_seen": 1793726916.8165061,
           "is_bot": false
         },
         {
@@ -7848,7 +7911,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669683,
+          "last_seen": 1793726916.8165069,
           "is_bot": false
         },
         {
@@ -7858,7 +7921,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669683,
+          "last_seen": 1793726916.8165069,
           "is_bot": false
         },
         {
@@ -7868,7 +7931,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669684,
+          "last_seen": 1793726916.8165078,
           "is_bot": false
         },
         {
@@ -7878,7 +7941,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669685,
+          "last_seen": 1793726916.816509,
           "is_bot": false
         },
         {
@@ -7888,7 +7951,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.669686,
+          "last_seen": 1793726916.81651,
           "is_bot": false
         }
       ],
@@ -8125,7 +8188,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 53,
         "pot": 0,
-        "message": "Turn over two cards to begin.",
+        "message": "Turn over two of your cards to begin.",
         "actions": [
           {
             "label": "Reveal card 1",
@@ -8396,7 +8459,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6697972,
+          "last_seen": 1793726916.816619,
           "is_bot": false
         }
       ],
@@ -9948,7 +10011,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.670154,
+          "last_seen": 1793726916.8169081,
           "is_bot": false
         }
       ],
@@ -11500,7 +11563,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.670412,
+          "last_seen": 1793726916.8171678,
           "is_bot": false
         },
         {
@@ -11510,7 +11573,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.670413,
+          "last_seen": 1793726916.817169,
           "is_bot": false
         }
       ],
@@ -12100,7 +12163,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Drop your first disc into a column.",
+        "message": "You drop coral discs and go first. Choose a column.",
         "actions": [
           {
             "label": "Drop in column 1",
@@ -12243,7 +12306,16 @@ export const fixtures = [
           "draw": false,
           "last_move": null,
           "outcome_reason": null,
-          "winning_cells": []
+          "winning_cells": [],
+          "landing": {
+            "0": 35,
+            "1": 36,
+            "2": 37,
+            "3": 38,
+            "4": 39,
+            "5": 40,
+            "6": 41
+          }
         }
       },
       "paused": false,
@@ -12278,7 +12350,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.67054,
+          "last_seen": 1793726916.817305,
           "is_bot": false
         },
         {
@@ -12288,7 +12360,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.670541,
+          "last_seen": 1793726916.817306,
           "is_bot": false
         }
       ],
@@ -12878,7 +12950,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Drop your first disc into a column.",
+        "message": "You drop coral discs and go first. Choose a column.",
         "actions": [
           {
             "label": "Drop in column 1",
@@ -13021,7 +13093,16 @@ export const fixtures = [
           "draw": false,
           "last_move": null,
           "outcome_reason": null,
-          "winning_cells": []
+          "winning_cells": [],
+          "landing": {
+            "0": 35,
+            "1": 36,
+            "2": 37,
+            "3": 38,
+            "4": 39,
+            "5": 40,
+            "6": 41
+          }
         }
       },
       "paused": false,
@@ -13056,7 +13137,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.670656,
+          "last_seen": 1793726916.817429,
           "is_bot": false
         },
         {
@@ -13066,7 +13147,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.670657,
+          "last_seen": 1793726916.81743,
           "is_bot": false
         }
       ],
@@ -13942,7 +14023,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Black begins. Choose a highlighted square.",
+        "message": "You play Black and go first. Choose a marked square to flip discs.",
         "actions": [
           {
             "label": "Place at D3",
@@ -14028,7 +14109,23 @@ export const fixtures = [
           "draw": false,
           "last_move": null,
           "outcome_reason": null,
-          "winning_cells": []
+          "winning_cells": [],
+          "flips": {
+            "19": [
+              27
+            ],
+            "26": [
+              27
+            ],
+            "37": [
+              36
+            ],
+            "44": [
+              36
+            ]
+          },
+          "last_flips": [],
+          "passed": null
         }
       },
       "paused": false,
@@ -14063,7 +14160,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.670871,
+          "last_seen": 1793726916.8177862,
           "is_bot": false
         },
         {
@@ -14073,7 +14170,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.670872,
+          "last_seen": 1793726916.817787,
           "is_bot": false
         }
       ],
@@ -14949,7 +15046,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Black begins. Choose a highlighted square.",
+        "message": "You play Black and go first. Choose a marked square to flip discs.",
         "actions": [
           {
             "label": "Place at D3",
@@ -15035,7 +15132,23 @@ export const fixtures = [
           "draw": false,
           "last_move": null,
           "outcome_reason": null,
-          "winning_cells": []
+          "winning_cells": [],
+          "flips": {
+            "19": [
+              27
+            ],
+            "26": [
+              27
+            ],
+            "37": [
+              36
+            ],
+            "44": [
+              36
+            ]
+          },
+          "last_flips": [],
+          "passed": null
         }
       },
       "paused": false,
@@ -15070,7 +15183,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.671139,
+          "last_seen": 1793726916.818111,
           "is_bot": false
         },
         {
@@ -15080,7 +15193,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6711402,
+          "last_seen": 1793726916.818112,
           "is_bot": false
         },
         {
@@ -15090,7 +15203,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6711411,
+          "last_seen": 1793726916.818113,
           "is_bot": false
         },
         {
@@ -15100,7 +15213,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6711419,
+          "last_seen": 1793726916.818114,
           "is_bot": false
         }
       ],
@@ -15495,7 +15608,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Spymaster, find a connection and give your team a clue.",
+        "message": "Give your team a one-word clue and a number.",
         "actions": [],
         "winners": [],
         "detail": {
@@ -15503,6 +15616,10 @@ export const fixtures = [
           "clue": "",
           "clue_count": 0,
           "guesses_left": 0,
+          "last_clue": null,
+          "turn_end": null,
+          "winning_team": null,
+          "last_reveal": null,
           "role": "spymaster",
           "teams": {
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 0,
@@ -15552,7 +15669,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.67127,
+          "last_seen": 1793726916.818244,
           "is_bot": false
         },
         {
@@ -15562,7 +15679,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6712708,
+          "last_seen": 1793726916.8182452,
           "is_bot": false
         },
         {
@@ -15572,7 +15689,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.671272,
+          "last_seen": 1793726916.818246,
           "is_bot": false
         },
         {
@@ -15582,7 +15699,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.671273,
+          "last_seen": 1793726916.8182468,
           "is_bot": false
         },
         {
@@ -15592,7 +15709,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.671274,
+          "last_seen": 1793726916.818248,
           "is_bot": false
         },
         {
@@ -15602,7 +15719,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.671275,
+          "last_seen": 1793726916.818248,
           "is_bot": false
         },
         {
@@ -15612,7 +15729,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.671276,
+          "last_seen": 1793726916.818249,
           "is_bot": false
         },
         {
@@ -15622,7 +15739,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.671276,
+          "last_seen": 1793726916.81825,
           "is_bot": false
         },
         {
@@ -15632,7 +15749,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.671277,
+          "last_seen": 1793726916.818251,
           "is_bot": false
         },
         {
@@ -15642,7 +15759,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.671278,
+          "last_seen": 1793726916.818252,
           "is_bot": false
         }
       ],
@@ -16115,7 +16232,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Spymaster, find a connection and give your team a clue.",
+        "message": "Give your team a one-word clue and a number.",
         "actions": [],
         "winners": [],
         "detail": {
@@ -16123,6 +16240,10 @@ export const fixtures = [
           "clue": "",
           "clue_count": 0,
           "guesses_left": 0,
+          "last_clue": null,
+          "turn_end": null,
+          "winning_team": null,
+          "last_reveal": null,
           "role": "spymaster",
           "teams": {
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5": 0,
@@ -16178,7 +16299,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.671412,
+          "last_seen": 1793726916.8183901,
           "is_bot": false
         },
         {
@@ -16188,7 +16309,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.671414,
+          "last_seen": 1793726916.818391,
           "is_bot": false
         }
       ],
@@ -16391,7 +16512,7 @@ export const fixtures = [
           },
           {
             "id": "patron-4",
-            "label": "Patron 5",
+            "label": "Patron of Pearl, Ruby & Onyx",
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 ruby \u00b7 3 onyx",
             "value": "3",
@@ -16404,7 +16525,7 @@ export const fixtures = [
           },
           {
             "id": "patron-7",
-            "label": "Patron 8",
+            "label": "Patron of Sapphire, Ruby & Onyx",
             "color": "gold",
             "subtitle": "3 sapphire \u00b7 3 ruby \u00b7 3 onyx",
             "value": "3",
@@ -16417,7 +16538,7 @@ export const fixtures = [
           },
           {
             "id": "patron-0",
-            "label": "Patron 1",
+            "label": "Patron of Pearl, Sapphire & Ruby",
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 sapphire \u00b7 3 ruby",
             "value": "3",
@@ -16433,7 +16554,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 78,
         "pot": 0,
-        "message": "A small collection can become a brilliant engine.",
+        "message": "Take 3 different gems or 2 of one colour, or buy or reserve a development.",
         "actions": [
           {
             "label": "Take pearl, sapphire, ruby",
@@ -16721,7 +16842,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Onyx Workshop",
+            "label": "Reserve Onyx Workshop \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-1-onyx-1",
@@ -16740,7 +16861,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Emerald Workshop",
+            "label": "Reserve Emerald Workshop \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-1-emerald-2",
@@ -16759,7 +16880,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Ruby Workshop",
+            "label": "Reserve Ruby Workshop \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-1-ruby-3",
@@ -16778,7 +16899,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Ruby Workshop",
+            "label": "Reserve Ruby Workshop \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-1-ruby-7",
@@ -16797,7 +16918,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Ruby Guild",
+            "label": "Reserve Ruby Guild \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-2-ruby-4",
@@ -16816,7 +16937,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Onyx Guild",
+            "label": "Reserve Onyx Guild \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-2-onyx-3",
@@ -16835,7 +16956,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Ruby Guild",
+            "label": "Reserve Ruby Guild \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-2-ruby-3",
@@ -16854,7 +16975,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Emerald Guild",
+            "label": "Reserve Emerald Guild \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-2-emerald-2",
@@ -16873,7 +16994,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Pearl Palace",
+            "label": "Reserve Pearl Palace \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-3-pearl-2",
@@ -16892,7 +17013,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Ruby Palace",
+            "label": "Reserve Ruby Palace \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-3-ruby-0",
@@ -16911,7 +17032,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Sapphire Palace",
+            "label": "Reserve Sapphire Palace \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-3-sapphire-2",
@@ -16930,7 +17051,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Sapphire Palace",
+            "label": "Reserve Sapphire Palace \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-3-sapphire-0",
@@ -16949,7 +17070,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve blind from tier 1",
+            "label": "Reserve face-down from tier 1 \u00b7 +1 gold",
             "action": {
               "type": "reserve_blind",
               "card": "",
@@ -16968,7 +17089,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve blind from tier 2",
+            "label": "Reserve face-down from tier 2 \u00b7 +1 gold",
             "action": {
               "type": "reserve_blind",
               "card": "",
@@ -16987,7 +17108,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve blind from tier 3",
+            "label": "Reserve face-down from tier 3 \u00b7 +1 gold",
             "action": {
               "type": "reserve_blind",
               "card": "",
@@ -17051,49 +17172,6 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-1-onyx-1": {
-              "tier": 1,
-              "cost": {
-                "sapphire": 2,
-                "ruby": 1,
-                "emerald": 1
-              },
-              "bonus": "onyx",
-              "points": 0
-            },
-            "gem-2-onyx-3": {
-              "tier": 2,
-              "cost": {
-                "onyx": 2,
-                "pearl": 2,
-                "sapphire": 2,
-                "ruby": 2
-              },
-              "bonus": "onyx",
-              "points": 2
-            },
-            "gem-2-ruby-3": {
-              "tier": 2,
-              "cost": {
-                "ruby": 2,
-                "emerald": 2,
-                "onyx": 2,
-                "pearl": 2
-              },
-              "bonus": "ruby",
-              "points": 2
-            },
-            "gem-3-pearl-2": {
-              "tier": 3,
-              "cost": {
-                "pearl": 3,
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3
-              },
-              "bonus": "pearl",
-              "points": 4
-            },
             "gem-2-emerald-2": {
               "tier": 2,
               "cost": {
@@ -17103,48 +17181,6 @@ export const fixtures = [
               },
               "bonus": "emerald",
               "points": 3
-            },
-            "gem-3-sapphire-2": {
-              "tier": 3,
-              "cost": {
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 3
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
-            "gem-1-ruby-3": {
-              "tier": 1,
-              "cost": {
-                "ruby": 1,
-                "emerald": 1,
-                "onyx": 1,
-                "pearl": 1,
-                "sapphire": 1
-              },
-              "bonus": "ruby",
-              "points": 1
-            },
-            "gem-1-emerald-2": {
-              "tier": 1,
-              "cost": {
-                "onyx": 2,
-                "sapphire": 2
-              },
-              "bonus": "emerald",
-              "points": 0
-            },
-            "gem-3-sapphire-0": {
-              "tier": 3,
-              "cost": {
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 5
-              },
-              "bonus": "sapphire",
-              "points": 4
             },
             "gem-1-ruby-7": {
               "tier": 1,
@@ -17164,6 +17200,61 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 4
             },
+            "gem-2-ruby-3": {
+              "tier": 2,
+              "cost": {
+                "ruby": 2,
+                "emerald": 2,
+                "onyx": 2,
+                "pearl": 2
+              },
+              "bonus": "ruby",
+              "points": 2
+            },
+            "gem-1-ruby-3": {
+              "tier": 1,
+              "cost": {
+                "ruby": 1,
+                "emerald": 1,
+                "onyx": 1,
+                "pearl": 1,
+                "sapphire": 1
+              },
+              "bonus": "ruby",
+              "points": 1
+            },
+            "gem-1-onyx-1": {
+              "tier": 1,
+              "cost": {
+                "sapphire": 2,
+                "ruby": 1,
+                "emerald": 1
+              },
+              "bonus": "onyx",
+              "points": 0
+            },
+            "gem-3-pearl-2": {
+              "tier": 3,
+              "cost": {
+                "pearl": 3,
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3
+              },
+              "bonus": "pearl",
+              "points": 4
+            },
+            "gem-3-sapphire-2": {
+              "tier": 3,
+              "cost": {
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 3
+              },
+              "bonus": "sapphire",
+              "points": 4
+            },
             "gem-2-ruby-4": {
               "tier": 2,
               "cost": {
@@ -17173,6 +17264,36 @@ export const fixtures = [
               },
               "bonus": "ruby",
               "points": 3
+            },
+            "gem-3-sapphire-0": {
+              "tier": 3,
+              "cost": {
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 5
+              },
+              "bonus": "sapphire",
+              "points": 4
+            },
+            "gem-1-emerald-2": {
+              "tier": 1,
+              "cost": {
+                "onyx": 2,
+                "sapphire": 2
+              },
+              "bonus": "emerald",
+              "points": 0
+            },
+            "gem-2-onyx-3": {
+              "tier": 2,
+              "cost": {
+                "onyx": 2,
+                "pearl": 2,
+                "sapphire": 2,
+                "ruby": 2
+              },
+              "bonus": "onyx",
+              "points": 2
             }
           },
           "patron_costs": {
@@ -17576,7 +17697,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.672002,
+          "last_seen": 1793726916.818862,
           "is_bot": false
         },
         {
@@ -17586,7 +17707,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.672003,
+          "last_seen": 1793726916.8188632,
           "is_bot": false
         },
         {
@@ -17596,7 +17717,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.672004,
+          "last_seen": 1793726916.818864,
           "is_bot": false
         },
         {
@@ -17606,7 +17727,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6720052,
+          "last_seen": 1793726916.8188648,
           "is_bot": false
         }
       ],
@@ -17841,7 +17962,7 @@ export const fixtures = [
           },
           {
             "id": "patron-4",
-            "label": "Patron 5",
+            "label": "Patron of Pearl, Ruby & Onyx",
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 ruby \u00b7 3 onyx",
             "value": "3",
@@ -17854,7 +17975,7 @@ export const fixtures = [
           },
           {
             "id": "patron-7",
-            "label": "Patron 8",
+            "label": "Patron of Sapphire, Ruby & Onyx",
             "color": "gold",
             "subtitle": "3 sapphire \u00b7 3 ruby \u00b7 3 onyx",
             "value": "3",
@@ -17867,7 +17988,7 @@ export const fixtures = [
           },
           {
             "id": "patron-0",
-            "label": "Patron 1",
+            "label": "Patron of Pearl, Sapphire & Ruby",
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 sapphire \u00b7 3 ruby",
             "value": "3",
@@ -17880,7 +18001,7 @@ export const fixtures = [
           },
           {
             "id": "patron-5",
-            "label": "Patron 6",
+            "label": "Patron of Pearl, Emerald & Onyx",
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 emerald \u00b7 3 onyx",
             "value": "3",
@@ -17893,7 +18014,7 @@ export const fixtures = [
           },
           {
             "id": "patron-1",
-            "label": "Patron 2",
+            "label": "Patron of Pearl, Sapphire & Emerald",
             "color": "gold",
             "subtitle": "3 pearl \u00b7 3 sapphire \u00b7 3 emerald",
             "value": "3",
@@ -17909,7 +18030,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 78,
         "pot": 0,
-        "message": "A small collection can become a brilliant engine.",
+        "message": "Take 3 different gems or 2 of one colour, or buy or reserve a development.",
         "actions": [
           {
             "label": "Take pearl, sapphire, ruby",
@@ -18197,7 +18318,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Onyx Workshop",
+            "label": "Reserve Onyx Workshop \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-1-onyx-1",
@@ -18216,7 +18337,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Emerald Workshop",
+            "label": "Reserve Emerald Workshop \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-1-emerald-2",
@@ -18235,7 +18356,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Ruby Workshop",
+            "label": "Reserve Ruby Workshop \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-1-ruby-3",
@@ -18254,7 +18375,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Ruby Workshop",
+            "label": "Reserve Ruby Workshop \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-1-ruby-7",
@@ -18273,7 +18394,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Ruby Guild",
+            "label": "Reserve Ruby Guild \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-2-ruby-4",
@@ -18292,7 +18413,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Onyx Guild",
+            "label": "Reserve Onyx Guild \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-2-onyx-3",
@@ -18311,7 +18432,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Ruby Guild",
+            "label": "Reserve Ruby Guild \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-2-ruby-3",
@@ -18330,7 +18451,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Emerald Guild",
+            "label": "Reserve Emerald Guild \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-2-emerald-2",
@@ -18349,7 +18470,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Pearl Palace",
+            "label": "Reserve Pearl Palace \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-3-pearl-2",
@@ -18368,7 +18489,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Ruby Palace",
+            "label": "Reserve Ruby Palace \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-3-ruby-0",
@@ -18387,7 +18508,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Sapphire Palace",
+            "label": "Reserve Sapphire Palace \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-3-sapphire-2",
@@ -18406,7 +18527,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve Sapphire Palace",
+            "label": "Reserve Sapphire Palace \u00b7 +1 gold",
             "action": {
               "type": "reserve",
               "card": "gem-3-sapphire-0",
@@ -18425,7 +18546,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve blind from tier 1",
+            "label": "Reserve face-down from tier 1 \u00b7 +1 gold",
             "action": {
               "type": "reserve_blind",
               "card": "",
@@ -18444,7 +18565,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve blind from tier 2",
+            "label": "Reserve face-down from tier 2 \u00b7 +1 gold",
             "action": {
               "type": "reserve_blind",
               "card": "",
@@ -18463,7 +18584,7 @@ export const fixtures = [
             "eligible_cards": []
           },
           {
-            "label": "Reserve blind from tier 3",
+            "label": "Reserve face-down from tier 3 \u00b7 +1 gold",
             "action": {
               "type": "reserve_blind",
               "card": "",
@@ -18557,49 +18678,6 @@ export const fixtures = [
             }
           },
           "card_info": {
-            "gem-1-onyx-1": {
-              "tier": 1,
-              "cost": {
-                "sapphire": 2,
-                "ruby": 1,
-                "emerald": 1
-              },
-              "bonus": "onyx",
-              "points": 0
-            },
-            "gem-2-onyx-3": {
-              "tier": 2,
-              "cost": {
-                "onyx": 2,
-                "pearl": 2,
-                "sapphire": 2,
-                "ruby": 2
-              },
-              "bonus": "onyx",
-              "points": 2
-            },
-            "gem-2-ruby-3": {
-              "tier": 2,
-              "cost": {
-                "ruby": 2,
-                "emerald": 2,
-                "onyx": 2,
-                "pearl": 2
-              },
-              "bonus": "ruby",
-              "points": 2
-            },
-            "gem-3-pearl-2": {
-              "tier": 3,
-              "cost": {
-                "pearl": 3,
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3
-              },
-              "bonus": "pearl",
-              "points": 4
-            },
             "gem-2-emerald-2": {
               "tier": 2,
               "cost": {
@@ -18609,48 +18687,6 @@ export const fixtures = [
               },
               "bonus": "emerald",
               "points": 3
-            },
-            "gem-3-sapphire-2": {
-              "tier": 3,
-              "cost": {
-                "sapphire": 3,
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 3
-              },
-              "bonus": "sapphire",
-              "points": 4
-            },
-            "gem-1-ruby-3": {
-              "tier": 1,
-              "cost": {
-                "ruby": 1,
-                "emerald": 1,
-                "onyx": 1,
-                "pearl": 1,
-                "sapphire": 1
-              },
-              "bonus": "ruby",
-              "points": 1
-            },
-            "gem-1-emerald-2": {
-              "tier": 1,
-              "cost": {
-                "onyx": 2,
-                "sapphire": 2
-              },
-              "bonus": "emerald",
-              "points": 0
-            },
-            "gem-3-sapphire-0": {
-              "tier": 3,
-              "cost": {
-                "ruby": 3,
-                "emerald": 3,
-                "onyx": 5
-              },
-              "bonus": "sapphire",
-              "points": 4
             },
             "gem-1-ruby-7": {
               "tier": 1,
@@ -18670,6 +18706,61 @@ export const fixtures = [
               "bonus": "ruby",
               "points": 4
             },
+            "gem-2-ruby-3": {
+              "tier": 2,
+              "cost": {
+                "ruby": 2,
+                "emerald": 2,
+                "onyx": 2,
+                "pearl": 2
+              },
+              "bonus": "ruby",
+              "points": 2
+            },
+            "gem-1-ruby-3": {
+              "tier": 1,
+              "cost": {
+                "ruby": 1,
+                "emerald": 1,
+                "onyx": 1,
+                "pearl": 1,
+                "sapphire": 1
+              },
+              "bonus": "ruby",
+              "points": 1
+            },
+            "gem-1-onyx-1": {
+              "tier": 1,
+              "cost": {
+                "sapphire": 2,
+                "ruby": 1,
+                "emerald": 1
+              },
+              "bonus": "onyx",
+              "points": 0
+            },
+            "gem-3-pearl-2": {
+              "tier": 3,
+              "cost": {
+                "pearl": 3,
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3
+              },
+              "bonus": "pearl",
+              "points": 4
+            },
+            "gem-3-sapphire-2": {
+              "tier": 3,
+              "cost": {
+                "sapphire": 3,
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 3
+              },
+              "bonus": "sapphire",
+              "points": 4
+            },
             "gem-2-ruby-4": {
               "tier": 2,
               "cost": {
@@ -18679,6 +18770,36 @@ export const fixtures = [
               },
               "bonus": "ruby",
               "points": 3
+            },
+            "gem-3-sapphire-0": {
+              "tier": 3,
+              "cost": {
+                "ruby": 3,
+                "emerald": 3,
+                "onyx": 5
+              },
+              "bonus": "sapphire",
+              "points": 4
+            },
+            "gem-1-emerald-2": {
+              "tier": 1,
+              "cost": {
+                "onyx": 2,
+                "sapphire": 2
+              },
+              "bonus": "emerald",
+              "points": 0
+            },
+            "gem-2-onyx-3": {
+              "tier": 2,
+              "cost": {
+                "onyx": 2,
+                "pearl": 2,
+                "sapphire": 2,
+                "ruby": 2
+              },
+              "bonus": "onyx",
+              "points": 2
             }
           },
           "patron_costs": {
@@ -19092,7 +19213,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.672436,
+          "last_seen": 1793726916.8193111,
           "is_bot": false
         },
         {
@@ -19102,7 +19223,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.672438,
+          "last_seen": 1793726916.8193128,
           "is_bot": false
         }
       ],
@@ -19978,7 +20099,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Coral moves first. Choose a piece.",
+        "message": "You play Coral and move first. Choose a piece, then its destination.",
         "actions": [
           {
             "label": "Move A3 to B4",
@@ -20121,7 +20242,10 @@ export const fixtures = [
           "draw": false,
           "last_move": null,
           "outcome_reason": null,
-          "winning_cells": []
+          "winning_cells": [],
+          "last_from": null,
+          "last_captured": null,
+          "forced": null
         }
       },
       "paused": false,
@@ -20156,7 +20280,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6726332,
+          "last_seen": 1793726916.819526,
           "is_bot": false
         },
         {
@@ -20166,7 +20290,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6726341,
+          "last_seen": 1793726916.819527,
           "is_bot": false
         }
       ],
@@ -21042,7 +21166,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Coral moves first. Choose a piece.",
+        "message": "You play Coral and move first. Choose a piece, then its destination.",
         "actions": [
           {
             "label": "Move A3 to B4",
@@ -21185,7 +21309,10 @@ export const fixtures = [
           "draw": false,
           "last_move": null,
           "outcome_reason": null,
-          "winning_cells": []
+          "winning_cells": [],
+          "last_from": null,
+          "last_captured": null,
+          "forced": null
         }
       },
       "paused": false,
@@ -21220,7 +21347,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.672809,
+          "last_seen": 1793726916.819707,
           "is_bot": false
         },
         {
@@ -21230,7 +21357,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.67281,
+          "last_seen": 1793726916.8197079,
           "is_bot": false
         }
       ],
@@ -21456,7 +21583,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Choose a pit on your side to start sowing.",
+        "message": "You go first. Choose one of your pits to sow its seeds.",
         "actions": [
           {
             "label": "Sow pit 1 \u00b7 4 seeds",
@@ -21576,7 +21703,42 @@ export const fixtures = [
         "winners": [],
         "detail": {
           "draw": false,
-          "last_move": null
+          "last_move": null,
+          "last_source": null,
+          "last_capture": null,
+          "sweep": null,
+          "previews": {
+            "0": {
+              "landing": 4,
+              "captures": 0,
+              "extra_turn": false
+            },
+            "1": {
+              "landing": 5,
+              "captures": 0,
+              "extra_turn": false
+            },
+            "2": {
+              "landing": 6,
+              "captures": 0,
+              "extra_turn": true
+            },
+            "3": {
+              "landing": 7,
+              "captures": 0,
+              "extra_turn": false
+            },
+            "4": {
+              "landing": 8,
+              "captures": 0,
+              "extra_turn": false
+            },
+            "5": {
+              "landing": 9,
+              "captures": 0,
+              "extra_turn": false
+            }
+          }
         }
       },
       "paused": false,
@@ -21611,7 +21773,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.672885,
+          "last_seen": 1793726916.819815,
           "is_bot": false
         },
         {
@@ -21621,7 +21783,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6728861,
+          "last_seen": 1793726916.8198159,
           "is_bot": false
         }
       ],
@@ -21847,7 +22009,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Choose a pit on your side to start sowing.",
+        "message": "You go first. Choose one of your pits to sow its seeds.",
         "actions": [
           {
             "label": "Sow pit 1 \u00b7 4 seeds",
@@ -21967,7 +22129,42 @@ export const fixtures = [
         "winners": [],
         "detail": {
           "draw": false,
-          "last_move": null
+          "last_move": null,
+          "last_source": null,
+          "last_capture": null,
+          "sweep": null,
+          "previews": {
+            "0": {
+              "landing": 4,
+              "captures": 0,
+              "extra_turn": false
+            },
+            "1": {
+              "landing": 5,
+              "captures": 0,
+              "extra_turn": false
+            },
+            "2": {
+              "landing": 6,
+              "captures": 0,
+              "extra_turn": true
+            },
+            "3": {
+              "landing": 7,
+              "captures": 0,
+              "extra_turn": false
+            },
+            "4": {
+              "landing": 8,
+              "captures": 0,
+              "extra_turn": false
+            },
+            "5": {
+              "landing": 9,
+              "captures": 0,
+              "extra_turn": false
+            }
+          }
         }
       },
       "paused": false,
@@ -22002,7 +22199,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673015,
+          "last_seen": 1793726916.81995,
           "is_bot": false
         },
         {
@@ -22012,7 +22209,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673016,
+          "last_seen": 1793726916.819951,
           "is_bot": false
         },
         {
@@ -22022,7 +22219,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673017,
+          "last_seen": 1793726916.819952,
           "is_bot": false
         }
       ],
@@ -22120,7 +22317,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 91,
         "pot": 0,
-        "message": "Flipped 9.",
+        "message": "Hit to flip another card, or stay to bank 11. A repeated 11 busts you.",
         "actions": [
           {
             "label": "Hit \u00b7 flip a card",
@@ -22176,7 +22373,8 @@ export const fixtures = [
             "e7bfce63-aea4-51ae-b7c4-ecfe886962d4": 9
           },
           "pending_card": "",
-          "dealer": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5"
+          "dealer": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "effects": []
         }
       },
       "paused": false,
@@ -22211,7 +22409,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673155,
+          "last_seen": 1793726916.82008,
           "is_bot": false
         },
         {
@@ -22221,7 +22419,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673156,
+          "last_seen": 1793726916.820081,
           "is_bot": false
         },
         {
@@ -22231,7 +22429,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6731572,
+          "last_seen": 1793726916.820082,
           "is_bot": false
         },
         {
@@ -22241,7 +22439,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673158,
+          "last_seen": 1793726916.820083,
           "is_bot": false
         },
         {
@@ -22251,7 +22449,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673159,
+          "last_seen": 1793726916.8200839,
           "is_bot": false
         },
         {
@@ -22261,7 +22459,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6731598,
+          "last_seen": 1793726916.820085,
           "is_bot": false
         },
         {
@@ -22271,7 +22469,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6731598,
+          "last_seen": 1793726916.820085,
           "is_bot": false
         },
         {
@@ -22281,7 +22479,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673161,
+          "last_seen": 1793726916.820086,
           "is_bot": false
         },
         {
@@ -22291,7 +22489,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673162,
+          "last_seen": 1793726916.820087,
           "is_bot": false
         },
         {
@@ -22301,7 +22499,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673163,
+          "last_seen": 1793726916.8200881,
           "is_bot": false
         }
       ],
@@ -22588,7 +22786,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 84,
         "pot": 0,
-        "message": "Flipped 5.",
+        "message": "Hit to flip another card, or stay to bank 11. A repeated 11 busts you.",
         "actions": [
           {
             "label": "Hit \u00b7 flip a card",
@@ -22658,7 +22856,8 @@ export const fixtures = [
             "3e67b5ca-94db-57c3-b0e1-f1d5ad017207": 5
           },
           "pending_card": "",
-          "dealer": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5"
+          "dealer": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "effects": []
         }
       },
       "paused": false,
@@ -22693,7 +22892,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6732821,
+          "last_seen": 1793726916.820213,
           "is_bot": false
         },
         {
@@ -22703,7 +22902,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673283,
+          "last_seen": 1793726916.820214,
           "is_bot": false
         },
         {
@@ -22713,7 +22912,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673284,
+          "last_seen": 1793726916.820215,
           "is_bot": false
         }
       ],
@@ -23005,7 +23204,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Find three matching numbers. Reveal a card to begin.",
+        "message": "Reveal a table card, or ask any player for their lowest or highest card. You can ask yourself too.",
         "actions": [
           {
             "label": "Reveal table card 1",
@@ -23331,7 +23530,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6734312,
+          "last_seen": 1793726916.820437,
           "is_bot": false
         },
         {
@@ -23341,7 +23540,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673432,
+          "last_seen": 1793726916.820438,
           "is_bot": false
         },
         {
@@ -23351,7 +23550,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673433,
+          "last_seen": 1793726916.820439,
           "is_bot": false
         },
         {
@@ -23361,7 +23560,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673434,
+          "last_seen": 1793726916.82044,
           "is_bot": false
         },
         {
@@ -23371,7 +23570,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673434,
+          "last_seen": 1793726916.820441,
           "is_bot": false
         },
         {
@@ -23381,7 +23580,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673435,
+          "last_seen": 1793726916.8204422,
           "is_bot": false
         }
       ],
@@ -23621,7 +23820,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Find three matching numbers. Reveal a card to begin.",
+        "message": "Reveal a table card, or ask any player for their lowest or highest card. You can ask yourself too.",
         "actions": [
           {
             "label": "Reveal table card 1",
@@ -24004,7 +24203,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673589,
+          "last_seen": 1793726916.8205929,
           "is_bot": false
         },
         {
@@ -24014,7 +24213,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.67359,
+          "last_seen": 1793726916.8205938,
           "is_bot": false
         }
       ],
@@ -24057,7 +24256,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 80,
         "pot": 0,
-        "message": "Choose a color from a factory to begin.",
+        "message": "Take every tile of one colour from a factory.",
         "actions": [
           {
             "label": "1 yellow \u00b7 factory 1",
@@ -24534,7 +24733,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6737769,
+          "last_seen": 1793726916.82078,
           "is_bot": false
         },
         {
@@ -24544,7 +24743,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6737778,
+          "last_seen": 1793726916.8207822,
           "is_bot": false
         },
         {
@@ -24554,7 +24753,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.67378,
+          "last_seen": 1793726916.8207822,
           "is_bot": false
         },
         {
@@ -24564,7 +24763,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.673781,
+          "last_seen": 1793726916.8207831,
           "is_bot": false
         }
       ],
@@ -24633,7 +24832,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 64,
         "pot": 0,
-        "message": "Choose a color from a factory to begin.",
+        "message": "Take every tile of one colour from a factory.",
         "actions": [
           {
             "label": "1 yellow \u00b7 factory 1",
@@ -25452,7 +25651,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6741061,
+          "last_seen": 1793726916.8210151,
           "is_bot": false
         },
         {
@@ -25462,7 +25661,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6741068,
+          "last_seen": 1793726916.821017,
           "is_bot": false
         },
         {
@@ -25472,7 +25671,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6741078,
+          "last_seen": 1793726916.821017,
           "is_bot": false
         }
       ],
@@ -25528,7 +25727,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Spotlight player, share a story or keep it chill. Passing is always welcome.",
+        "message": "Answer aloud and Spill, or keep it to yourself and Chill (+1 either way). Pass scores nothing.",
         "actions": [
           {
             "label": "Share \u00b7 I answered aloud",
@@ -25634,7 +25833,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6741939,
+          "last_seen": 1793726916.821098,
           "is_bot": false
         },
         {
@@ -25644,7 +25843,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674195,
+          "last_seen": 1793726916.821099,
           "is_bot": false
         },
         {
@@ -25654,7 +25853,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674196,
+          "last_seen": 1793726916.8211,
           "is_bot": false
         },
         {
@@ -25664,7 +25863,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674196,
+          "last_seen": 1793726916.821101,
           "is_bot": false
         },
         {
@@ -25674,7 +25873,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674197,
+          "last_seen": 1793726916.8211021,
           "is_bot": false
         },
         {
@@ -25684,7 +25883,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674198,
+          "last_seen": 1793726916.8211021,
           "is_bot": false
         },
         {
@@ -25694,7 +25893,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674199,
+          "last_seen": 1793726916.821103,
           "is_bot": false
         },
         {
@@ -25704,7 +25903,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6742,
+          "last_seen": 1793726916.821104,
           "is_bot": false
         },
         {
@@ -25714,7 +25913,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6742,
+          "last_seen": 1793726916.821105,
           "is_bot": false
         },
         {
@@ -25724,7 +25923,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674201,
+          "last_seen": 1793726916.821106,
           "is_bot": false
         }
       ],
@@ -25871,7 +26070,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Spotlight player, share a story or keep it chill. Passing is always welcome.",
+        "message": "Answer aloud and Spill, or keep it to yourself and Chill (+1 either way). Pass scores nothing.",
         "actions": [
           {
             "label": "Share \u00b7 I answered aloud",
@@ -25977,7 +26176,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674273,
+          "last_seen": 1793726916.821176,
           "is_bot": false
         },
         {
@@ -25987,7 +26186,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674274,
+          "last_seen": 1793726916.821177,
           "is_bot": false
         },
         {
@@ -25997,7 +26196,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6742752,
+          "last_seen": 1793726916.8211782,
           "is_bot": false
         }
       ],
@@ -26053,7 +26252,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Make your secret vote. Everyone reveals together.",
+        "message": "Vote in secret for one friend, or pass. Votes reveal together.",
         "actions": [
           {
             "label": "Vote for seat 2",
@@ -26159,7 +26358,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674347,
+          "last_seen": 1793726916.821249,
           "is_bot": false
         },
         {
@@ -26169,7 +26368,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674348,
+          "last_seen": 1793726916.82125,
           "is_bot": false
         },
         {
@@ -26179,7 +26378,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674349,
+          "last_seen": 1793726916.82125,
           "is_bot": false
         },
         {
@@ -26189,7 +26388,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.67435,
+          "last_seen": 1793726916.8212512,
           "is_bot": false
         },
         {
@@ -26199,7 +26398,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6743512,
+          "last_seen": 1793726916.821252,
           "is_bot": false
         },
         {
@@ -26209,7 +26408,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6743522,
+          "last_seen": 1793726916.821253,
           "is_bot": false
         },
         {
@@ -26219,7 +26418,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6743522,
+          "last_seen": 1793726916.8212538,
           "is_bot": false
         },
         {
@@ -26229,7 +26428,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674353,
+          "last_seen": 1793726916.821255,
           "is_bot": false
         },
         {
@@ -26239,7 +26438,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6743538,
+          "last_seen": 1793726916.821255,
           "is_bot": false
         },
         {
@@ -26249,7 +26448,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674355,
+          "last_seen": 1793726916.821256,
           "is_bot": false
         }
       ],
@@ -26396,7 +26595,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Make your secret vote. Everyone reveals together.",
+        "message": "Vote in secret for one friend, or pass. Votes reveal together.",
         "actions": [
           {
             "label": "Vote for seat 2",
@@ -26635,7 +26834,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674444,
+          "last_seen": 1793726916.821344,
           "is_bot": false
         },
         {
@@ -26645,7 +26844,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6744452,
+          "last_seen": 1793726916.821345,
           "is_bot": false
         },
         {
@@ -26655,7 +26854,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674446,
+          "last_seen": 1793726916.821346,
           "is_bot": false
         }
       ],
@@ -26711,7 +26910,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "One secret preference. A room full of predictions. Lock yours in.",
+        "message": "Lock in your secret pick. Everything reveals together.",
         "actions": [
           {
             "label": "Choose A",
@@ -26820,7 +27019,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674517,
+          "last_seen": 1793726916.821425,
           "is_bot": false
         },
         {
@@ -26830,7 +27029,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674518,
+          "last_seen": 1793726916.821426,
           "is_bot": false
         },
         {
@@ -26840,7 +27039,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674519,
+          "last_seen": 1793726916.8214269,
           "is_bot": false
         },
         {
@@ -26850,7 +27049,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.67452,
+          "last_seen": 1793726916.8214269,
           "is_bot": false
         },
         {
@@ -26860,7 +27059,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.67452,
+          "last_seen": 1793726916.821428,
           "is_bot": false
         },
         {
@@ -26870,7 +27069,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674521,
+          "last_seen": 1793726916.821429,
           "is_bot": false
         },
         {
@@ -26880,7 +27079,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6745222,
+          "last_seen": 1793726916.82143,
           "is_bot": false
         },
         {
@@ -26890,7 +27089,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6745229,
+          "last_seen": 1793726916.821431,
           "is_bot": false
         },
         {
@@ -26900,7 +27099,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6745238,
+          "last_seen": 1793726916.821431,
           "is_bot": false
         },
         {
@@ -26910,7 +27109,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6745238,
+          "last_seen": 1793726916.821432,
           "is_bot": false
         }
       ],
@@ -27057,7 +27256,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "One secret preference. A room full of predictions. Lock yours in.",
+        "message": "Lock in your secret pick. Everything reveals together.",
         "actions": [
           {
             "label": "Choose A",
@@ -27166,7 +27365,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6746109,
+          "last_seen": 1793726916.821517,
           "is_bot": false
         },
         {
@@ -27176,7 +27375,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674612,
+          "last_seen": 1793726916.8215182,
           "is_bot": false
         },
         {
@@ -27186,7 +27385,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674613,
+          "last_seen": 1793726916.8215191,
           "is_bot": false
         }
       ],
@@ -27278,7 +27477,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 46,
         "pot": 0,
-        "message": "Estimate your pocket cards. Everyone can take a white chip.",
+        "message": "Take the white chip that matches your pocket cards: 1 star is the weakest hand.",
         "actions": [
           {
             "label": "Take 1-star chip",
@@ -27354,6 +27553,7 @@ export const fixtures = [
           "last_success": null,
           "own_hand_name": null,
           "decision_mode": "simultaneous",
+          "taken_chips": {},
           "pending_players": [
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
             "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -27398,7 +27598,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674714,
+          "last_seen": 1793726916.8216162,
           "is_bot": false
         },
         {
@@ -27408,7 +27608,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6747148,
+          "last_seen": 1793726916.821617,
           "is_bot": false
         },
         {
@@ -27418,7 +27618,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674716,
+          "last_seen": 1793726916.8216178,
           "is_bot": false
         },
         {
@@ -27428,7 +27628,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674716,
+          "last_seen": 1793726916.8216178,
           "is_bot": false
         },
         {
@@ -27438,7 +27638,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674717,
+          "last_seen": 1793726916.821619,
           "is_bot": false
         },
         {
@@ -27448,7 +27648,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.674718,
+          "last_seen": 1793726916.82162,
           "is_bot": false
         }
       ],
@@ -27588,7 +27788,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 40,
         "pot": 0,
-        "message": "Estimate your pocket cards. Everyone can take a white chip.",
+        "message": "Take the white chip that matches your pocket cards: 1 star is the weakest hand.",
         "actions": [
           {
             "label": "Take 1-star chip",
@@ -27724,6 +27924,7 @@ export const fixtures = [
           "last_success": null,
           "own_hand_name": null,
           "decision_mode": "simultaneous",
+          "taken_chips": {},
           "pending_players": [
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
             "b34c747c-f55f-5ca1-a9f1-9a962b463165",
@@ -27771,7 +27972,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6748219,
+          "last_seen": 1793726916.821728,
           "is_bot": false
         },
         {
@@ -27781,7 +27982,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6748228,
+          "last_seen": 1793726916.821729,
           "is_bot": false
         }
       ],
@@ -27821,7 +28022,7 @@ export const fixtures = [
         "hand": [
           {
             "id": "number-4",
-            "label": "4, 1 penalty point",
+            "label": "4 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "4",
@@ -27834,7 +28035,7 @@ export const fixtures = [
           },
           {
             "id": "number-36",
-            "label": "36, 1 penalty point",
+            "label": "36 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "36",
@@ -27847,7 +28048,7 @@ export const fixtures = [
           },
           {
             "id": "number-39",
-            "label": "39, 1 penalty point",
+            "label": "39 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "39",
@@ -27860,7 +28061,7 @@ export const fixtures = [
           },
           {
             "id": "number-40",
-            "label": "40, 3 penalty points",
+            "label": "40 (3 penalty points)",
             "color": "yellow",
             "subtitle": "3",
             "value": "40",
@@ -27873,7 +28074,7 @@ export const fixtures = [
           },
           {
             "id": "number-53",
-            "label": "53, 1 penalty point",
+            "label": "53 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "53",
@@ -27886,7 +28087,7 @@ export const fixtures = [
           },
           {
             "id": "number-54",
-            "label": "54, 1 penalty point",
+            "label": "54 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "54",
@@ -27899,7 +28100,7 @@ export const fixtures = [
           },
           {
             "id": "number-58",
-            "label": "58, 1 penalty point",
+            "label": "58 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "58",
@@ -27912,7 +28113,7 @@ export const fixtures = [
           },
           {
             "id": "number-81",
-            "label": "81, 1 penalty point",
+            "label": "81 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "81",
@@ -27925,7 +28126,7 @@ export const fixtures = [
           },
           {
             "id": "number-97",
-            "label": "97, 1 penalty point",
+            "label": "97 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "97",
@@ -27938,7 +28139,7 @@ export const fixtures = [
           },
           {
             "id": "number-98",
-            "label": "98, 1 penalty point",
+            "label": "98 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "98",
@@ -27955,7 +28156,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 80,
         "pot": 0,
-        "message": "Everyone chooses one private card. The lowest revealed number resolves first.",
+        "message": "Choose one number to lock. Locked numbers stay secret until everyone has chosen, then resolve from lowest to highest.",
         "actions": [
           {
             "label": "Lock 4",
@@ -28156,7 +28357,7 @@ export const fixtures = [
             [
               {
                 "id": "number-5",
-                "label": "5, 2 penalty points",
+                "label": "5 (2 penalty points)",
                 "color": "blue",
                 "subtitle": "2",
                 "value": "5",
@@ -28171,7 +28372,7 @@ export const fixtures = [
             [
               {
                 "id": "number-84",
-                "label": "84, 1 penalty point",
+                "label": "84 (1 penalty point)",
                 "color": "green",
                 "subtitle": "1",
                 "value": "84",
@@ -28186,7 +28387,7 @@ export const fixtures = [
             [
               {
                 "id": "number-47",
-                "label": "47, 1 penalty point",
+                "label": "47 (1 penalty point)",
                 "color": "green",
                 "subtitle": "1",
                 "value": "47",
@@ -28201,7 +28402,7 @@ export const fixtures = [
             [
               {
                 "id": "number-45",
-                "label": "45, 2 penalty points",
+                "label": "45 (2 penalty points)",
                 "color": "blue",
                 "subtitle": "2",
                 "value": "45",
@@ -28233,6 +28434,8 @@ export const fixtures = [
           },
           "round_scores": {},
           "pending_player": null,
+          "resolution": [],
+          "unresolved": [],
           "decision_mode": "simultaneous",
           "pending_players": [
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
@@ -28272,7 +28475,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675006,
+          "last_seen": 1793726916.821913,
           "is_bot": false
         },
         {
@@ -28282,7 +28485,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6750069,
+          "last_seen": 1793726916.8219142,
           "is_bot": false
         },
         {
@@ -28292,7 +28495,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675008,
+          "last_seen": 1793726916.821915,
           "is_bot": false
         },
         {
@@ -28302,7 +28505,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675009,
+          "last_seen": 1793726916.8219159,
           "is_bot": false
         },
         {
@@ -28312,7 +28515,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.67501,
+          "last_seen": 1793726916.8219168,
           "is_bot": false
         },
         {
@@ -28322,7 +28525,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6750112,
+          "last_seen": 1793726916.821918,
           "is_bot": false
         },
         {
@@ -28332,7 +28535,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6750112,
+          "last_seen": 1793726916.821919,
           "is_bot": false
         },
         {
@@ -28342,7 +28545,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675012,
+          "last_seen": 1793726916.821919,
           "is_bot": false
         },
         {
@@ -28352,7 +28555,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675013,
+          "last_seen": 1793726916.82192,
           "is_bot": false
         },
         {
@@ -28362,7 +28565,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6750138,
+          "last_seen": 1793726916.821921,
           "is_bot": false
         }
       ],
@@ -28506,7 +28709,7 @@ export const fixtures = [
         "hand": [
           {
             "id": "number-4",
-            "label": "4, 1 penalty point",
+            "label": "4 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "4",
@@ -28519,7 +28722,7 @@ export const fixtures = [
           },
           {
             "id": "number-36",
-            "label": "36, 1 penalty point",
+            "label": "36 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "36",
@@ -28532,7 +28735,7 @@ export const fixtures = [
           },
           {
             "id": "number-39",
-            "label": "39, 1 penalty point",
+            "label": "39 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "39",
@@ -28545,7 +28748,7 @@ export const fixtures = [
           },
           {
             "id": "number-40",
-            "label": "40, 3 penalty points",
+            "label": "40 (3 penalty points)",
             "color": "yellow",
             "subtitle": "3",
             "value": "40",
@@ -28558,7 +28761,7 @@ export const fixtures = [
           },
           {
             "id": "number-53",
-            "label": "53, 1 penalty point",
+            "label": "53 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "53",
@@ -28571,7 +28774,7 @@ export const fixtures = [
           },
           {
             "id": "number-54",
-            "label": "54, 1 penalty point",
+            "label": "54 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "54",
@@ -28584,7 +28787,7 @@ export const fixtures = [
           },
           {
             "id": "number-58",
-            "label": "58, 1 penalty point",
+            "label": "58 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "58",
@@ -28597,7 +28800,7 @@ export const fixtures = [
           },
           {
             "id": "number-81",
-            "label": "81, 1 penalty point",
+            "label": "81 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "81",
@@ -28610,7 +28813,7 @@ export const fixtures = [
           },
           {
             "id": "number-97",
-            "label": "97, 1 penalty point",
+            "label": "97 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "97",
@@ -28623,7 +28826,7 @@ export const fixtures = [
           },
           {
             "id": "number-98",
-            "label": "98, 1 penalty point",
+            "label": "98 (1 penalty point)",
             "color": "green",
             "subtitle": "1",
             "value": "98",
@@ -28640,7 +28843,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "Everyone chooses one private card. The lowest revealed number resolves first.",
+        "message": "Choose one number to lock. Locked numbers stay secret until everyone has chosen, then resolve from lowest to highest.",
         "actions": [
           {
             "label": "Lock 4",
@@ -28841,7 +29044,7 @@ export const fixtures = [
             [
               {
                 "id": "number-42",
-                "label": "42, 1 penalty point",
+                "label": "42 (1 penalty point)",
                 "color": "green",
                 "subtitle": "1",
                 "value": "42",
@@ -28856,7 +29059,7 @@ export const fixtures = [
             [
               {
                 "id": "number-52",
-                "label": "52, 1 penalty point",
+                "label": "52 (1 penalty point)",
                 "color": "green",
                 "subtitle": "1",
                 "value": "52",
@@ -28871,7 +29074,7 @@ export const fixtures = [
             [
               {
                 "id": "number-77",
-                "label": "77, 5 penalty points",
+                "label": "77 (5 penalty points)",
                 "color": "red",
                 "subtitle": "5",
                 "value": "77",
@@ -28886,7 +29089,7 @@ export const fixtures = [
             [
               {
                 "id": "number-11",
-                "label": "11, 5 penalty points",
+                "label": "11 (5 penalty points)",
                 "color": "red",
                 "subtitle": "5",
                 "value": "11",
@@ -28934,6 +29137,8 @@ export const fixtures = [
           },
           "round_scores": {},
           "pending_player": null,
+          "resolution": [],
+          "unresolved": [],
           "decision_mode": "simultaneous",
           "pending_players": [
             "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
@@ -28981,7 +29186,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6751869,
+          "last_seen": 1793726916.8220959,
           "is_bot": false
         },
         {
@@ -28991,7 +29196,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675188,
+          "last_seen": 1793726916.8220968,
           "is_bot": false
         }
       ],
@@ -29034,7 +29239,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 56,
         "pot": 0,
-        "message": "A new tide. Draw from the deck or either discard.",
+        "message": "Draw two from the stock and keep one, or take the top card of a discard pile.",
         "actions": [
           {
             "label": "Draw from deck",
@@ -29138,10 +29343,14 @@ export const fixtures = [
           "round_result": {},
           "instant_mermaids": null,
           "ending_consequences": {
-            "stop": "Score each player's card points now.",
-            "last_chance": "Each opponent gets a final turn. If stock runs out at a turn's end, the unfinished round scores no points.",
+            "stop": "End the round: everyone scores their card points now (you: 0). No color bonus.",
+            "last_chance": "Your hand is revealed and protected; each opponent takes one final turn. If no one ends with more than your 0 card points, you score 0 (0 + color bonus 0) and the others score only their color bonus. Otherwise you score only your color bonus (0) and they score their card points. If the stock runs out at the end of a final turn, the round scores no points.",
             "end_turn": "Pass play to the next player."
-          }
+          },
+          "protected_points": {},
+          "crab_pile": null,
+          "last_round": null,
+          "private_events": []
         }
       },
       "paused": false,
@@ -29176,7 +29385,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675311,
+          "last_seen": 1793726916.82223,
           "is_bot": false
         },
         {
@@ -29186,7 +29395,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675312,
+          "last_seen": 1793726916.822231,
           "is_bot": false
         },
         {
@@ -29196,7 +29405,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675313,
+          "last_seen": 1793726916.822232,
           "is_bot": false
         },
         {
@@ -29206,7 +29415,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675314,
+          "last_seen": 1793726916.8222332,
           "is_bot": false
         }
       ],
@@ -29275,7 +29484,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 56,
         "pot": 0,
-        "message": "A new tide. Draw from the deck or either discard.",
+        "message": "Draw two from the stock and keep one, or take the top card of a discard pile.",
         "actions": [
           {
             "label": "Draw from deck",
@@ -29379,10 +29588,14 @@ export const fixtures = [
           "round_result": {},
           "instant_mermaids": null,
           "ending_consequences": {
-            "stop": "Score each player's card points now.",
-            "last_chance": "Each opponent gets a final turn. If stock runs out at a turn's end, the unfinished round scores no points.",
+            "stop": "End the round: everyone scores their card points now (you: 0). No color bonus.",
+            "last_chance": "Your hand is revealed and protected; each opponent takes one final turn. If no one ends with more than your 0 card points, you score 0 (0 + color bonus 0) and the others score only their color bonus. Otherwise you score only your color bonus (0) and they score their card points. If the stock runs out at the end of a final turn, the round scores no points.",
             "end_turn": "Pass play to the next player."
-          }
+          },
+          "protected_points": {},
+          "crab_pile": null,
+          "last_round": null,
+          "private_events": []
         }
       },
       "paused": false,
@@ -29417,7 +29630,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6753862,
+          "last_seen": 1793726916.82231,
           "is_bot": false
         },
         {
@@ -29427,7 +29640,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675387,
+          "last_seen": 1793726916.822311,
           "is_bot": false
         }
       ],
@@ -29939,7 +30152,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "A cozy bed. Pick a square for your first kitten.",
+        "message": "You play coral and go first. Pick a square for your first kitten.",
         "actions": [
           {
             "label": "Place kitten at A1",
@@ -30649,6 +30862,7 @@ export const fixtures = [
           "last_move": null,
           "last_pushes": [],
           "moves": 0,
+          "last_graduation": null,
           "outcome_reason": null,
           "winning_cells": []
         }
@@ -30685,7 +30899,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6756349,
+          "last_seen": 1793726916.822598,
           "is_bot": false
         },
         {
@@ -30695,7 +30909,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675636,
+          "last_seen": 1793726916.822599,
           "is_bot": false
         }
       ],
@@ -31207,7 +31421,7 @@ export const fixtures = [
         "drawn": null,
         "draw_count": 0,
         "pot": 0,
-        "message": "A cozy bed. Pick a square for your first kitten.",
+        "message": "You play coral and go first. Pick a square for your first kitten.",
         "actions": [
           {
             "label": "Place kitten at A1",
@@ -31917,6 +32131,7 @@ export const fixtures = [
           "last_move": null,
           "last_pushes": [],
           "moves": 0,
+          "last_graduation": null,
           "outcome_reason": null,
           "winning_cells": []
         }
@@ -31953,7 +32168,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675958,
+          "last_seen": 1793726916.822838,
           "is_bot": false
         },
         {
@@ -31963,7 +32178,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.675959,
+          "last_seen": 1793726916.822839,
           "is_bot": false
         }
       ],
@@ -32181,7 +32396,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.676058,
+          "last_seen": 1793726916.822937,
           "is_bot": false
         },
         {
@@ -32191,7 +32406,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6760588,
+          "last_seen": 1793726916.8229382,
           "is_bot": false
         },
         {
@@ -32201,7 +32416,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.67606,
+          "last_seen": 1793726916.822939,
           "is_bot": false
         },
         {
@@ -32211,7 +32426,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.676061,
+          "last_seen": 1793726916.8229399,
           "is_bot": false
         },
         {
@@ -32221,7 +32436,7 @@ export const fixtures = [
           "ready": false,
           "seated": true,
           "connected": true,
-          "last_seen": 1793620706.6760619,
+          "last_seen": 1793726916.8229408,
           "is_bot": false
         }
       ],

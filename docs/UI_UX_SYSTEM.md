@@ -116,6 +116,27 @@ controls and leaving live behind the vertical room-options kebab, in the shared
 Radix dialog with grouped rows and a separate destructive confirmation. Controlled
 dialogs restore focus to their opener when closing without replacing the dialog.
 
+The banner is said from the viewer's seat (`games/shared/turn-state.ts`). Engine
+messages are instructions for the seat that can act, so only that seat sees
+them; waiting seats see who they are waiting for, response windows separate the
+turn owner from the responder ("Your response", "You owe a payment"), an
+eliminated seat reads "You’re out", and Word Agents names the guessing team. A
+"Last move" line repeats the latest public move from room history with its
+actor, public cards, targets and amount (`features/room/move-description.ts`).
+Commit buttons inside a TableDecisionPanel or DecisionDock sit in a sticky
+`data-decision-actions` footer and docks may size to content (`size="fit"`), so
+no legal control scrolls out of reach. Decision panels focus their container on
+open, so holding Space peeks at the table. An unsent choice is kept per tab with
+`useTableDraft(scope, initial)`, scoped to one decision. Board games keep 44px
+targets: boards fit without scrolling from 360px; below that Reversi, Checkers
+and Mancala fall back to the scrolling rail rather than shrink squares.
+
+At match end (except solo Tarot) the room shows the banner, results, the rematch
+lobby and then the final table. Results list winners first, use singular units,
+and rank No Mercy eliminations below the players still in, last out first. A
+failed move appears in a dismissible note pinned to the top of the viewport and
+clears once the table moves on.
+
 Result composition follows the server winner IDs and catalogue play/score
 metadata: cooperative defeat is a team result, penalty scores sort low first,
 and games without meaningful scores retain player identities without invented

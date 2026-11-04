@@ -135,4 +135,243 @@
       order: 3;
     }
   }
+
+  /* Rummy: the whole hand stays readable as wrapped, overlapped fans. The
+     step between card corners fits 14 cards per row on wide tables and 7 on
+     phones; every rank/suit corner stays visible and nothing scrolls away. */
+  .rummy-layout {
+    --rummy-card-w: 82px;
+    --rummy-card-h: 116px;
+    --rummy-gaps-per-row: 13;
+  }
+  .rummy-layout .rummy-groups {
+    container-type: inline-size;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 4px 18px;
+  }
+  .rummy-layout .rummy-group {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 100%;
+    --rummy-step: clamp(
+      26px,
+      calc((100cqw - var(--rummy-card-w) - 12px) / var(--rummy-gaps-per-row)),
+      calc(var(--rummy-card-w) + 6px)
+    );
+  }
+  .rummy-layout .rummy-group[data-bucket='0'] {
+    flex-basis: 100%;
+  }
+  .rummy-layout .rummy-group > .eyebrow {
+    display: block;
+  }
+  .rummy-layout .rummy-group-kind {
+    color: var(--color-sage);
+    letter-spacing: 0.04em;
+  }
+  .rummy-layout .rummy-group .rummy-fan-scroll {
+    padding: 6px 2px 10px;
+  }
+  .rummy-layout .rummy-groups .rummy-group .card-hand.rummy-fan {
+    width: auto;
+    min-width: 0;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    column-gap: 0;
+    row-gap: 18px;
+    /* Room above for the selected card's lift; the last card in a row may
+       extend into the right padding. */
+    padding: 13px calc(var(--rummy-card-w) - var(--rummy-step)) 0 0;
+  }
+  .rummy-layout .rummy-groups .rummy-group .card-hand.rummy-fan > .playing-card {
+    --card-width: var(--rummy-card-w);
+    --card-height: var(--rummy-card-h);
+    width: var(--rummy-card-w);
+    height: var(--rummy-card-h);
+    margin: 0 calc(var(--rummy-step) - var(--rummy-card-w)) 0 0;
+  }
+  /* Markers sit on the table's side of the card, inside each visible strip. */
+  .rummy-layout .playing-card.rummy-mark--wild {
+    box-shadow:
+      0 0 0 2px var(--color-plum),
+      var(--shadow-card);
+  }
+  .rummy-layout .playing-card.rummy-mark--win {
+    box-shadow:
+      0 0 0 2px var(--color-ochre),
+      var(--shadow-card);
+  }
+  .rummy-layout .playing-card.rummy-mark--wild::before,
+  .rummy-layout .playing-card:is(.rummy-mark--win, .rummy-mark--new, .rummy-mark--taken)::after {
+    position: absolute;
+    left: 2px;
+    bottom: 6px;
+    z-index: 2;
+    max-width: calc(100% - 4px);
+    padding: 1px 4px;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .rummy-layout .playing-card.rummy-mark--wild::before {
+    content: 'Wild';
+    background: var(--color-plum);
+  }
+  .rummy-layout .playing-card.rummy-mark--win::after {
+    content: 'Win';
+    background: #7a5a1c;
+  }
+  .rummy-layout .playing-card.rummy-mark--new::after {
+    content: 'New';
+    background: var(--color-sage);
+  }
+  .rummy-layout .playing-card.rummy-mark--taken::after {
+    content: 'Taken';
+    background: #5b5d55;
+  }
+  .rummy-layout
+    .playing-card.rummy-mark--wild:is(
+      .rummy-mark--win,
+      .rummy-mark--new,
+      .rummy-mark--taken
+    )::after {
+    bottom: 27px;
+  }
+  .rummy-layout .rummy-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    margin-top: 2px;
+    color: var(--color-ink-muted);
+  }
+  .rummy-layout .rummy-legend b {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 0 6px;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .rummy-layout .rummy-legend [data-mark='wild'] b {
+    background: var(--color-plum);
+  }
+  .rummy-layout .rummy-legend [data-mark='win'] b {
+    background: #7a5a1c;
+  }
+  .rummy-layout .rummy-legend [data-mark='new'] b {
+    background: var(--color-sage);
+  }
+  .rummy-layout .rummy-legend [data-mark='taken'] b {
+    background: #5b5d55;
+  }
+  .rummy-layout .rummy-groups-note {
+    margin: 6px 0 8px;
+  }
+  /* The felt: stock, discard and the face-up cut card that sets the wild rank. */
+  .rummy-layout .center-piles {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 10px;
+  }
+  .rummy-layout .card-pile > span {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+  .rummy-layout .rummy-wild-card > .playing-card {
+    margin-inline: auto;
+  }
+  .rummy-layout .rummy-wild-card > span {
+    margin-top: 8px;
+    font-weight: 600;
+  }
+  .rummy-layout .rummy-wild-note {
+    max-width: 34ch;
+    margin: 10px auto 0;
+    font-size: 12px;
+    line-height: 1.45;
+    text-align: center;
+    opacity: 0.92;
+  }
+  .rummy-layout > .rummy-analysis,
+  .rummy-layout > .rummy-results {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+  .rummy-layout .rummy-dock .rummy-dock-note {
+    color: var(--color-ink);
+  }
+  @media (max-width: 700px) {
+    /* Stacked dock: choices follow the explanation instead of the dock's floor. */
+    .rummy-layout > .rummy-dock.decision-dock {
+      justify-content: flex-start;
+    }
+  }
+  .rummy-layout .rummy-dock .rummy-win-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .rummy-layout .rummy-dock .rummy-win-chips > .button {
+    width: auto;
+    min-width: 56px;
+    border-color: #7a5a1c;
+  }
+  .rummy-layout .rummy-results > ul {
+    gap: 16px;
+  }
+  .rummy-layout .rummy-results li {
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-border);
+  }
+  .rummy-layout .rummy-results li[data-winner='true'] {
+    border-top-color: var(--color-ochre);
+  }
+  .rummy-layout .rummy-result-heading {
+    display: grid;
+    gap: 2px;
+  }
+  .rummy-layout .rummy-result-melds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+  }
+  .rummy-layout .rummy-result-meld {
+    display: grid;
+    gap: 4px;
+    align-content: start;
+  }
+  .rummy-layout .rummy-result-cards {
+    display: flex;
+    padding-bottom: 2px;
+  }
+  .rummy-layout .rummy-result-cards > .playing-card + .playing-card {
+    margin-left: -24px;
+  }
+  @media (max-width: 600px) {
+    .rummy-layout {
+      --rummy-card-w: 69px;
+      --rummy-card-h: 99px;
+      --rummy-gaps-per-row: 6;
+    }
+    .rummy-layout .rummy-result-cards > .playing-card + .playing-card {
+      margin-left: -19px;
+    }
+  }
+  /* The smallest phones keep seven readable corners per row with a wider strip. */
+  @media (max-width: 360px) {
+    .rummy-layout {
+      --rummy-card-w: 62px;
+      --rummy-card-h: 89px;
+    }
+  }
 }

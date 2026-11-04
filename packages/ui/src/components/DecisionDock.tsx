@@ -2,7 +2,8 @@ import type { ComponentPropsWithoutRef } from 'react';
 import { cn } from '../lib/cn';
 
 type Props = ComponentPropsWithoutRef<'section'> & {
-  size?: 'compact' | 'standard' | 'extended';
+  /** `fit` grows with its content for decisions whose controls must never scroll away. */
+  size?: 'compact' | 'standard' | 'extended' | 'fit';
   label?: string;
   pending?: boolean;
 };

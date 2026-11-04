@@ -24,14 +24,6 @@
     bottom: 0;
     translate: none;
   }
-  .board-rail.horizontal-rail::before {
-    left: 0;
-    bottom: 52px;
-  }
-  .board-rail.horizontal-rail::after {
-    right: 0;
-    bottom: 52px;
-  }
   .board-overview-tools {
     display: flex;
     align-items: center;
@@ -321,26 +313,38 @@
   [data-gem] {
     --gem-color: #e5dfca;
     --gem-wash: #f7f3e8;
+    --gem-ink: #7d6f4f;
+    --gem-ring: #c8bb98;
   }
   [data-gem='sapphire'] {
     --gem-color: #4f7da7;
     --gem-wash: #e6eef5;
+    --gem-ink: #284a69;
+    --gem-ring: #4f7da7;
   }
   [data-gem='ruby'] {
     --gem-color: #c56a5e;
     --gem-wash: #f7e7e2;
+    --gem-ink: #7f342b;
+    --gem-ring: #c56a5e;
   }
   [data-gem='emerald'] {
     --gem-color: #5d826a;
     --gem-wash: #e9f0e7;
+    --gem-ink: #2f4b39;
+    --gem-ring: #5d826a;
   }
   [data-gem='onyx'] {
     --gem-color: #4b5050;
     --gem-wash: #e6e9e7;
+    --gem-ink: #1f2323;
+    --gem-ring: #4b5050;
   }
   [data-gem='gold'] {
     --gem-color: #d2a449;
     --gem-wash: #f9efd6;
+    --gem-ink: #7a5714;
+    --gem-ring: #d2a449;
   }
   .resource-token {
     display: inline-flex;
@@ -351,7 +355,7 @@
     height: 48px;
     padding: 0 10px;
     border-radius: 50%;
-    border: 3px solid var(--gem-color);
+    border: 3px solid var(--gem-ring, var(--gem-color));
     background: var(--gem-wash);
     box-shadow: 0 3px 0 #00000017;
     color: #30372f;
@@ -406,13 +410,14 @@
     margin: 15px 0 28px;
   }
   .patron-row {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    padding: 12px 3px 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    gap: 10px;
+    padding: 10px 2px 16px;
   }
-  .patron-row .development-card {
-    flex: 0 0 128px;
+  .patron-row > .playing-card.development-card {
+    --card-width: 100%;
+    width: 100%;
   }
   .gem-tier {
     margin-top: 12px;
@@ -764,13 +769,11 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr);
     }
-    .gem-layout .gem-tier .gem-card-row,
-    .gem-layout .private-hand .gem-card-row {
+    .gem-layout .gem-tier .gem-card-row {
       gap: 8px;
       padding-block: 8px 12px;
     }
-    .gem-layout .gem-tier .playing-card.development-card,
-    .gem-layout .private-hand .playing-card.development-card {
+    .gem-layout .gem-tier .playing-card.development-card {
       --card-width: 128px;
       flex-basis: 128px;
       width: 128px;
@@ -991,7 +994,7 @@
       width: 100%;
     }
     .gem-wallet-color > small {
-      font-size: 8px;
+      font-size: 12px;
     }
     .gem-layout .gem-tier-navigation {
       display: flex;
@@ -1016,12 +1019,856 @@
       --card-width: 100%;
       width: 100%;
       min-height: 198px;
+      aspect-ratio: auto;
     }
   }
   @media (max-width: 380px) {
     .gem-layout .gem-supply {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       row-gap: 8px;
+    }
+  }
+}
+
+/* Gem Market decisions: shapes, affordability, the decision tray and patrons. */
+@layer components {
+  .gem-shape {
+    display: block;
+    overflow: visible;
+  }
+  .gem-shape-body {
+    fill: var(--gem-color);
+    stroke: var(--gem-ink);
+    stroke-width: 1.3;
+    stroke-linejoin: round;
+  }
+  .gem-shape-facet {
+    fill: none;
+    stroke: #ffffffb8;
+    stroke-width: 0.9;
+    stroke-linecap: round;
+  }
+  [data-gem='pearl'] .gem-shape-facet {
+    stroke: var(--gem-ink);
+    opacity: 0.55;
+  }
+  .resource-token > span {
+    filter: none;
+  }
+  .development-top > b {
+    font-variant-numeric: tabular-nums;
+  }
+  .development-patron-mark {
+    padding: 2px 8px;
+    border: 1px solid #c79b3f;
+    border-radius: 999px;
+    background: #fff8e6;
+    color: #6d4f16;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .development-requirement {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding-right: 4px;
+    border-radius: 999px;
+    background: #ffffffb0;
+  }
+  .development-requirement > small {
+    font-size: 11px;
+    font-weight: 700;
+    color: #5d4f3a;
+    font-variant-numeric: tabular-nums;
+  }
+  .development-requirement[data-met='true'] > small {
+    color: #2f6247;
+  }
+  .development-status {
+    align-self: stretch;
+    margin-top: 6px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: #f1ece2;
+    color: #5d4f3a;
+    font-size: 11px;
+    font-weight: 650;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .development-status[data-status='affordable'],
+  .development-status[data-status='eligible'] {
+    background: #dcebdc;
+    color: #24543a;
+  }
+  .playing-card.development-card[data-status='affordable'],
+  .playing-card.development-card[data-status='eligible'] {
+    box-shadow:
+      0 0 0 2px #6a9a77,
+      0 4px 12px #26382218;
+  }
+  .playing-card.development-card.playing-card--selected[data-status] {
+    box-shadow: none;
+  }
+  .playing-card.development-card--compact {
+    padding: 8px 7px;
+  }
+  .playing-card.development-card--compact .development-top {
+    font-size: 18px;
+  }
+  .playing-card.development-card--compact > strong {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+  .playing-card.development-card--compact .development-illustration {
+    height: 48px;
+    min-height: 36px;
+  }
+  .playing-card.development-card--patron {
+    aspect-ratio: auto;
+    background: linear-gradient(145deg, #fbf3df, white);
+  }
+  .playing-card.development-card--patron .development-illustration {
+    height: 44px;
+  }
+  /* Compact patrons read as one line: crest, prestige, name and progress. */
+  .playing-card.development-card--patron.development-card--compact {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr);
+    grid-template-areas:
+      'art top'
+      'name name'
+      'cost cost'
+      'status status';
+    align-items: center;
+    align-content: start;
+    justify-items: start;
+    gap: 4px 8px;
+    height: auto;
+    min-height: 0;
+    padding: 8px;
+  }
+  .development-card--patron.development-card--compact > .development-top {
+    grid-area: top;
+    width: auto;
+    font-size: 16px;
+  }
+  .development-card--patron.development-card--compact .development-patron-mark {
+    display: none;
+  }
+  .development-card--patron.development-card--compact > .development-illustration {
+    grid-area: art;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    min-height: 0;
+    margin: 0;
+  }
+  .development-card--patron.development-card--compact > strong {
+    grid-area: name;
+    font-size: 12px;
+    line-height: 1.25;
+    text-align: left;
+  }
+  .development-card--patron.development-card--compact > .development-cost {
+    grid-area: cost;
+    justify-content: start;
+    margin-top: 4px;
+  }
+  .development-card--patron.development-card--compact > .development-status {
+    grid-area: status;
+    justify-self: stretch;
+  }
+  .gem-layout[data-phase] > .gem-status {
+    display: grid;
+    gap: 4px;
+    margin: 10px 0;
+    padding: 10px 14px;
+    border: 1px solid #e3c98d;
+    border-left: 4px solid #c79b3f;
+    border-radius: 12px;
+    background: #fff8e6;
+    color: #4c3a25;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .gem-status strong {
+    margin-right: 6px;
+  }
+  .gem-final-summary {
+    margin: 10px 0 14px;
+    padding: 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background: var(--color-surface);
+  }
+  .gem-final-summary h3 {
+    font-size: 15px;
+  }
+  .gem-final-summary [role='list'] {
+    display: grid;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .gem-final-summary [role='listitem'] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 12px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--color-surface-muted);
+    font-size: 14px;
+  }
+  .gem-final-summary [role='listitem'] > strong {
+    overflow-wrap: anywhere;
+  }
+  .gem-final-summary [data-winner='true'] {
+    outline: 2px solid #c79b3f;
+    outline-offset: -2px;
+  }
+  .gem-wallet-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 12px;
+  }
+  .gem-wallet-heading > small {
+    color: var(--color-ink-muted);
+    font-size: 12px;
+  }
+  .gem-wallet-color > .gem-discount {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #4c3a25;
+    font-size: 12px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .gem-wallet-color > .gem-discount--wild {
+    font-weight: 500;
+    color: var(--color-ink-muted);
+  }
+  .gem-discount-card {
+    display: inline-block;
+    width: 9px;
+    height: 12px;
+    border: 1.5px solid var(--gem-ink, #7d6f4f);
+    border-radius: 2px;
+    background: var(--gem-wash, #f7f3e8);
+    vertical-align: -1px;
+  }
+  .gem-reserved-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 8px 2px 4px;
+  }
+  .gem-reserved-row > .playing-card.development-card {
+    --card-width: 150px;
+    flex: 0 0 150px;
+    width: 150px;
+    aspect-ratio: auto;
+  }
+  .gem-supply-gold {
+    display: grid;
+    justify-items: center;
+    padding: 5px;
+    min-width: 55px;
+  }
+  .gem-supply-gold > small {
+    display: block;
+    margin-top: 7px;
+    font-size: 11px;
+    color: #4c3a25;
+  }
+  .gem-take-controls > .gem-take-hint {
+    flex-basis: 100%;
+    min-height: 2.9em;
+    line-height: 1.45;
+    margin: 0;
+    text-align: center;
+    color: #4c3a25;
+    font-size: 13px;
+  }
+  .gem-take-hint[data-ready='true'] {
+    font-weight: 650;
+    color: #24543a;
+  }
+  .gem-tier-navigation > .button {
+    display: grid;
+    justify-items: center;
+    gap: 0;
+    line-height: 1.2;
+  }
+  .gem-tier-navigation > .button > small {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+  }
+  .gem-tier-navigation > .button > small > b {
+    color: #24543a;
+  }
+  .gem-tier-navigation > .button[data-selection='true'] {
+    box-shadow: inset 0 -3px 0 #c79b3f;
+  }
+  .gem-tier-empty {
+    padding: 12px 2px 18px;
+  }
+  .gem-patrons {
+    margin-top: 6px;
+  }
+  .gem-patrons-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2px 12px;
+  }
+  .gem-patrons-heading > h3 {
+    font-size: 14px;
+  }
+  .gem-patrons-heading > small {
+    font-size: 12px;
+    color: #4c3a25;
+  }
+  .gem-patrons[data-choosing='true'] .patron-row {
+    border-radius: 12px;
+    background: #fff8e6cc;
+  }
+  .gem-engine-rows {
+    display: grid;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .gem-engine-rows > div {
+    display: grid;
+    gap: 4px;
+  }
+  .gem-engine-rows dt {
+    font-size: 12px;
+    font-weight: 650;
+    color: var(--color-ink-muted);
+  }
+  .gem-engine-rows dd {
+    margin: 0;
+    font-size: 13px;
+  }
+  .gem-engine-rows .gem-discounts {
+    margin-top: 0;
+  }
+  .gem-bought-cards .playing-card.development-card--compact {
+    flex: 0 0 112px;
+    width: 112px;
+    aspect-ratio: auto;
+  }
+  /* The decision tray floats at the bottom of the screen while a choice is open. */
+  .gem-layout > .gem-tray.decision-dock {
+    position: sticky;
+    bottom: 8px;
+    z-index: 8;
+    display: grid;
+    gap: 8px;
+    margin-block: 12px;
+    padding: 10px 12px;
+    max-block-size: min(62vh, 440px);
+    overflow-y: auto;
+    border: 1px solid #c9b98f;
+    border-radius: 14px;
+    background: var(--color-surface);
+    box-shadow:
+      0 10px 34px #26382238,
+      0 0 0 1px #ffffff inset;
+  }
+  .gem-tray-heading {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .gem-tray-heading > div {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+  .gem-tray-heading strong {
+    font-size: 15px;
+    overflow-wrap: anywhere;
+  }
+  .gem-tray-heading small {
+    font-size: 12px;
+    color: var(--color-ink-muted);
+  }
+  .gem-tray-heading > .button {
+    flex: none;
+  }
+  .gem-tray .gem-purchase-quote {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px 12px;
+    margin: 0;
+  }
+  .gem-tray .gem-purchase-quote > div {
+    display: grid;
+    gap: 3px;
+    margin: 0;
+    min-width: 0;
+  }
+  .gem-tray .gem-purchase-quote dt {
+    font-size: 12px;
+    color: var(--color-ink-muted);
+  }
+  .gem-tray .gem-purchase-quote dd {
+    margin: 0;
+    font-size: 13px;
+  }
+  .gem-tray .gem-purchase-quote > .gem-quote-short {
+    grid-column: 1 / -1;
+  }
+  .gem-quote-short > dt {
+    color: #8a332b;
+    font-weight: 700;
+  }
+  .gem-chips {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+  .gem-chip-empty {
+    color: var(--color-ink-muted);
+  }
+  .gem-tray-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .gem-tray-actions > .button {
+    flex: 1 1 140px;
+    min-height: 46px;
+    white-space: normal;
+  }
+  .gem-tray-reason {
+    margin: 0;
+    color: #4c3a25;
+  }
+  .gem-return-choices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(46px, 1fr));
+    gap: 6px;
+  }
+  .gem-return-choice {
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+    min-height: 52px;
+    padding: 4px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-surface);
+    cursor: pointer;
+  }
+  .gem-return-choice:not(:disabled):hover {
+    border-color: var(--color-focus);
+  }
+  .gem-return-choice > small {
+    font-size: 12px;
+    font-weight: 700;
+    color: #8a332b;
+  }
+  @media (min-width: 901px) {
+    .gem-layout .gem-wallet:has(.gem-reserved-row) {
+      display: grid;
+      grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+      grid-template-rows: auto auto 1fr;
+      column-gap: 24px;
+      align-items: start;
+    }
+    .gem-wallet:has(.gem-reserved-row) > .gem-wallet-heading {
+      grid-column: 1 / -1;
+    }
+    .gem-wallet:has(.gem-reserved-row) > .gem-resources {
+      grid-column: 1;
+      grid-row: 2 / span 2;
+    }
+    .gem-wallet:has(.gem-reserved-row) > .eyebrow {
+      grid-column: 2;
+      grid-row: 2;
+      margin: 8px 0 0;
+    }
+    .gem-wallet:has(.gem-reserved-row) > .gem-reserved-row {
+      grid-column: 2;
+      grid-row: 3;
+    }
+    .gem-reserved-row > .playing-card.development-card {
+      --card-width: 132px;
+      flex-basis: 132px;
+      width: 132px;
+    }
+    .gem-layout .gem-take-controls {
+      margin: 10px 0 16px;
+    }
+    .gem-layout > .gem-tray.decision-dock {
+      grid-template-columns: minmax(180px, 260px) minmax(0, 1fr) minmax(200px, auto);
+      align-items: center;
+      gap: 10px 18px;
+    }
+    .gem-tray .gem-purchase-quote {
+      grid-template-columns: repeat(4, minmax(0, auto));
+      justify-content: start;
+    }
+    .gem-tray-actions {
+      flex-wrap: nowrap;
+    }
+    .gem-layout > .gem-tray:not(:has(.gem-purchase-quote)) {
+      grid-template-columns: minmax(200px, auto) minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .gem-reserved-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+    .gem-reserved-row > .playing-card.development-card {
+      --card-width: 100%;
+      width: 100%;
+      min-width: 0;
+    }
+    .gem-reserved-row .development-illustration {
+      height: 40px;
+    }
+    .gem-reserved-row .development-cost {
+      gap: 2px;
+    }
+    .gem-layout .gem-supply-gold {
+      min-width: 0;
+      padding: 3px;
+    }
+    .gem-layout .gem-supply-gold > .resource-token {
+      width: 40px;
+      min-width: 40px;
+      height: 40px;
+      gap: 3px;
+      padding: 0 5px;
+      font-size: 16px;
+      border-width: 2px;
+    }
+    .patron-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .gem-layout .resource-token--compact {
+      font-size: 11px;
+    }
+    .gem-bought-cards .playing-card.development-card--compact {
+      flex-basis: calc((100% - 16px) / 3);
+      width: calc((100% - 16px) / 3);
+    }
+  }
+}
+
+/*
+ * Four in a Row, Reversi and Checkers: the whole board fits the screen (width on
+ * phones, height on laptops), the viewer's colour and instruction sit above it,
+ * and consequences (landing cell, flips, forced pieces, captures) are drawn on
+ * the squares themselves.
+ */
+@layer components {
+  .classic-board {
+    /* Room header, turn notice, player strip and status line above the board. */
+    --board-chrome: 382px;
+    --board-extra: 0px;
+  }
+  .classic-board--four {
+    --board-extra: 53px;
+  }
+  /* Cells never drop below 44px; narrower screens fall back to the rail. */
+  .classic-board > .board-viewport .board-surface {
+    --board-pad: 25px;
+    width: min(
+      540px,
+      100%,
+      max(
+        288px,
+        calc(
+          (100svh - var(--board-chrome) - var(--board-extra)) * var(--board-columns) /
+            var(--board-rows)
+        )
+      )
+    );
+    min-width: calc(var(--board-columns) * 44px + var(--board-pad));
+  }
+  .classic-board--four > .board-viewport .board-surface {
+    --board-pad: 32px;
+  }
+  /* Short laptop screens with a mouse: 36px squares keep the whole board above the fold. */
+  @media (pointer: fine) and (max-height: 820px) and (min-width: 601px) {
+    .classic-board > .board-viewport .board-surface {
+      min-width: calc(var(--board-columns) * 36px + var(--board-pad));
+    }
+  }
+  .classic-board > .board-viewport .board-square {
+    min-height: 0;
+  }
+  .classic-board--reversi > .board-viewport .board-grid,
+  .classic-board--checkers > .board-viewport .board-grid {
+    gap: 0;
+    padding: 4px;
+    border: 0;
+  }
+  .board-frame {
+    display: flex;
+    gap: 3px;
+  }
+  .board-frame > .board-grid {
+    flex: 1;
+    min-width: 0;
+  }
+  .board-files,
+  .board-ranks {
+    color: #5f4b2f;
+    font-size: 11px;
+    font-weight: 650;
+    line-height: 1;
+    text-align: center;
+  }
+  .board-files {
+    display: grid;
+    grid-template-columns: repeat(var(--board-columns), minmax(0, 1fr));
+    margin: 0 0 3px 17px;
+    padding-inline: 4px;
+  }
+  .board-ranks {
+    display: grid;
+    grid-template-rows: repeat(var(--board-rows), minmax(0, 1fr));
+    align-items: center;
+    width: 14px;
+    padding-block: 4px;
+  }
+  .board-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px 12px;
+    margin: 0 auto 10px;
+    max-width: 540px;
+    color: #3f3020;
+    font-size: 13px;
+    line-height: 1.35;
+    text-align: center;
+  }
+  .board-identity {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 10px 2px 3px;
+    border: 1px solid #c1a176;
+    border-radius: 999px;
+    background: #fffcf7cc;
+    white-space: nowrap;
+  }
+  .board-swatch.board-disc {
+    display: inline-block;
+    flex: none;
+    width: 18px;
+    height: 18px;
+  }
+  .board-swatch.board-disc > .token-art {
+    inset: -1px;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+  }
+  /* A fixed two-line slot: previews change the words, never the board's position. */
+  .classic-board .board-instruction {
+    display: -webkit-box;
+    flex-basis: 100%;
+    min-height: 2.7em;
+    overflow: hidden;
+    font-weight: 600;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .board-event {
+    flex-basis: 100%;
+    color: #5f4b2f;
+  }
+  /* Four in a Row: the drop row reads as live controls; columns highlight under the pointer. */
+  .classic-board .board-drops .board-drop[data-active='true'] {
+    background: #d16d54;
+    border-color: #a8503b;
+    color: #fff;
+    box-shadow: 0 2px 0 #0002;
+  }
+  .classic-board .board-drops .board-drop[data-active='true'][data-color='gold'] {
+    background: #edc55c;
+    border-color: #b8902c;
+    color: #3d2f0c;
+  }
+  .classic-board .board-drops .board-drop:disabled {
+    opacity: 0.35;
+  }
+  .classic-board--four .board-grid {
+    cursor: pointer;
+  }
+  .classic-board--four .board-square[data-column-active='true'] {
+    background: #ffffff26;
+  }
+  .classic-board--four .board-square[data-ghost] .board-disc {
+    opacity: 0.55;
+    outline: 2px dashed #fff;
+    outline-offset: -4px;
+  }
+  .classic-board--four .board-square[data-ghost='coral'] .board-disc {
+    background: #d16d54;
+  }
+  .classic-board--four .board-square[data-ghost='gold'] .board-disc {
+    background: #edc55c;
+  }
+  .classic-board--four .board-square[data-winning='true'] {
+    outline: 3px solid #fff3c4;
+    box-shadow: 0 0 0 3px #f2b437 inset;
+  }
+  /* Reversi: larger legal marks, flip preview in the mover's colour, last flips ringed. */
+  .classic-board--reversi .board-square[data-legal='true']::after {
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 0 0 2px #325a49;
+  }
+  .classic-board--reversi .board-square[data-preview='true']::after {
+    width: 70%;
+    height: 70%;
+    opacity: 0.6;
+    background: var(--reversi-mover, #262b27);
+  }
+  .classic-board--reversi .board-square[data-flip='true']::before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    inset: 30%;
+    border-radius: 50%;
+    background: var(--reversi-mover, #262b27);
+    box-shadow: 0 0 0 2px #f2c14e;
+  }
+  .classic-board--reversi .board-square[data-flipped='true'] .board-disc {
+    box-shadow:
+      0 0 0 2px #f2c14e,
+      0 2px 4px #0005;
+  }
+  .classic-board--reversi[data-mover='ivory'] {
+    --reversi-mover: #f4f0e5;
+  }
+  /* Checkers: movable pieces are ringed, the forced or selected piece glows, captures leave a mark. */
+  .classic-board--checkers .board-square[data-source='true'] {
+    outline: 3px solid #f2c14e;
+    outline-offset: -4px;
+  }
+  .classic-board--checkers .board-square[aria-pressed='true'] {
+    outline: 4px solid #ffd76a;
+    outline-offset: -4px;
+    box-shadow: inset 0 0 0 7px #00000038;
+  }
+  .classic-board--checkers .board-square[data-legal='true']::after {
+    width: 18px;
+    height: 18px;
+    background: #f2c14e;
+    box-shadow: 0 0 0 2px #2f4733;
+  }
+  .classic-board--checkers .board-square[data-last-from='true'] {
+    outline: 2px dashed #f3dca4;
+    outline-offset: -4px;
+  }
+  .classic-board--checkers .board-square[data-captured='true']::before {
+    content: '';
+    position: absolute;
+    inset: 22%;
+    border: 2px dashed #f1a28f;
+    border-radius: 50%;
+  }
+  .board-disc > svg {
+    color: #3a2b0c;
+    fill: #f6d36b;
+    stroke-width: 2.4;
+  }
+  /* Mancala: the viewer's row is near; previews and the last sowing are marked on the pits. */
+  .mancala-table .mancala-owner {
+    margin: 6px 0;
+    font-size: 12px;
+  }
+  .mancala-pit[data-marker='source'] {
+    outline: 3px solid var(--color-ochre);
+    outline-offset: 2px;
+  }
+  .mancala-pit[data-marker='landing'] {
+    outline: 3px dashed var(--color-sage);
+    outline-offset: 2px;
+    background: #f4f8ef;
+  }
+  .mancala-pit[data-marker='captured'] {
+    outline: 3px dashed #b4513c;
+    outline-offset: 2px;
+  }
+  .mancala-pit[data-marker='last-source'] {
+    outline: 2px dashed #8d7240;
+    outline-offset: 2px;
+  }
+  @media (max-width: 600px) {
+    /* Phones: the board borrows most of the page gutter so 44px cells fit from 360px. */
+    .classic-board {
+      padding: 10px 0;
+      /* Up to 15px of the page gutter, always leaving 3px to the screen edge. */
+      margin-inline: max(-15px, calc((100% - 100vw) / 2 + 3px));
+      border-radius: 14px;
+    }
+    .board-files,
+    .board-ranks {
+      display: none;
+    }
+    .classic-board > .board-viewport .board-surface {
+      --board-pad: 0px;
+    }
+    .classic-board--four > .board-viewport .board-surface {
+      --board-pad: 2px;
+    }
+    .classic-board--four > .board-viewport .board-grid {
+      gap: 0;
+      padding: 1px;
+      border-radius: 10px;
+    }
+    .classic-board--four > .board-viewport .board-drops {
+      gap: 0;
+      padding-inline: 1px;
+    }
+    .classic-board--reversi > .board-viewport .board-grid,
+    .classic-board--checkers > .board-viewport .board-grid {
+      padding: 0;
+    }
+    .board-status {
+      padding-inline: 6px;
+      font-size: 12.5px;
+    }
+    .classic-board > .board-viewport .mancala-board {
+      min-width: 347px;
+      grid-template-columns: 26px minmax(0, 1fr) 26px;
+      gap: 4px;
+      padding: 12px 4px;
+      border-radius: 22px;
+    }
+    .classic-board > .board-viewport .mancala-pit {
+      min-height: 60px;
+      padding: 28px 0 4px;
+    }
+    .classic-board > .board-viewport .mancala-pit span {
+      font-size: 10px;
+    }
+    .classic-board > .board-viewport .mancala-pit--store > span:last-child {
+      display: none;
+    }
+    .classic-board > .board-viewport .mancala-pit .mancala-seed {
+      width: 10px;
+      height: 10px;
     }
   }
 }

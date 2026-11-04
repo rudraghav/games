@@ -109,11 +109,31 @@ explicit inspection controls. See the
 26-game matrix and retained inspected images in the table-refresh evidence.
 
 
-Card inventory stories use the generated 281-face source for both Uno and both
-Deal editions, retaining every wild orientation. PlayingCard owns the shared
-24-effect symbols, all 28 named US properties with rent schedules, full allowed-color bands and accessible
-orientation labels. Renderers forward validated metadata instead of inferring
-actions from subtitles. Presentation coverage is separate from engine rules.
+Card inventory stories use the generated 488-face source
+(`scripts/export_card_faces.py`): both Uno and both Deal editions with every wild
+orientation, Flip 7, Skyjo, Trio, 6 nimmt! and the standard deck with both printed
+jokers, each drawn at the sizes its game uses (Storybook loads the app's DM Sans).
+PlayingCard owns the printed faces; tables only size the frame and every face scales
+its print with container units (`packages/ui/src/styles/card-faces.css`):
+
+- Flip 7 has its own `flip` face (also chosen for ✦ cards a table passes as
+  `shedding`): numbers carry no colour word, +N reads "points", ×2 "double", and
+  Freeze, Flip Three and Second Chance have distinct pictograms and names.
+- Uno prints an R/Y/G/B colour letter beside every corner index, so colours never
+  rely on hue; captions drop below 55px (discards, activity) instead of colliding.
+- Skyjo (five value bands), Trio (one colour per number, gold 7) and 6 nimmt!
+  (penalty colours) take their palettes from card data, with AA-contrast numerals.
+- Standard faces draw compact WebP derivatives of the pinned SVG masters
+  (`scripts/prepare_card_art.mjs playing-cards`) and print a large index, with an
+  index-first face for number cards, below 60px. Printed jokers use joker art.
+- Deal Rent cards carry an action band with colour dots; a wild's active half is
+  solid and the inactive half hatched; the any-colour wild says "No cash value".
+- An emptied pile (a taken discard, a drained stock) is an empty slot, never a back.
+
+PlayingCard also owns the shared 24-effect symbols, all 28 named US properties with
+rent schedules and accessible orientation labels. Renderers forward validated
+metadata instead of inferring actions from subtitles. Presentation coverage is
+separate from engine rules.
 
 ## Shithead
 

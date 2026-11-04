@@ -51,6 +51,11 @@
     gap: 10px;
     padding: 8px 0 8px 20px;
   }
+  .tarot-image-credits li,
+  .tarot-image-credits a {
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
   .tarot-image-credits a {
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -61,15 +66,45 @@
       gap: 12px;
     }
   }
+  /* Stick flush with the dialog's top edge: the dialog's own padding would
+     otherwise leave a strip where scrolled cards show above the heading. */
   .modal--sticky-heading .modal-heading {
     position: sticky;
-    top: 0;
+    top: -28px;
     z-index: 2;
-    padding-block: 10px;
+    margin: -28px -28px 0;
+    padding: 28px 28px 10px;
     background: var(--color-surface);
   }
-  .tarot-intro > .button {
-    margin-top: 14px;
+  .tarot-deck-filter {
+    position: sticky;
+    top: calc(var(--tarot-filter-top, 64px) - 28px);
+    z-index: 1;
+    margin-inline: -28px;
+    padding: 8px 28px 10px;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .tarot-reading-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .tarot-reading-card-heading > .tarot-card {
+    width: 64px;
+    padding: 4px;
+    border-radius: 7px;
+    box-shadow: none;
+  }
+  .tarot-reading-card-heading .tarot-name {
+    display: none;
+  }
+  .tarot-reading-card-heading > div {
+    min-width: 0;
+  }
+  .tarot-next-step-chart {
+    padding-top: 10px;
+    border-top: 1px solid var(--color-border);
   }
   .tarot-deck-gallery {
     display: grid;
@@ -159,6 +194,26 @@
     overflow-wrap: anywhere;
   }
   @media (max-width: 600px) {
+    .modal--sticky-heading .modal-heading {
+      top: -22px;
+      margin: -22px -22px 0;
+      padding: 22px 22px 10px;
+    }
+    .tarot-deck-filter {
+      top: calc(var(--tarot-filter-top, 64px) - 22px);
+      margin-inline: -22px;
+      padding: 4px 22px 6px;
+    }
+    /* One swipeable row keeps the pinned area short on a phone. */
+    .tarot-deck-filter .choice-group {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      overscroll-behavior-inline: contain;
+    }
+    .tarot-deck-filter .choice-group > button {
+      flex: none;
+    }
     .tarot-deck-gallery {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px 12px;

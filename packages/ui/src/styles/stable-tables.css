@@ -69,8 +69,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  /*
+   * Player strip: compact, distinguishable seats. The viewer sits first and stays
+   * pinned while the strip scrolls; seats have a fixed basis so overflow never
+   * depends on name length, and they share any spare width.
+   */
   .player-strip-rail {
     min-width: 0;
+    --strip-seat-width: 132px;
+    --strip-gap: 8px;
+  }
+  .player-strip-rail[data-direction] {
+    --strip-gap: 14px;
   }
   .card-game-layout > .player-strip-rail {
     grid-column: 1 / -1;
@@ -86,19 +96,176 @@
     display: flex;
     width: max-content;
     min-width: 100%;
-    gap: 9px;
+    gap: var(--strip-gap);
     align-items: stretch;
     justify-content: center;
   }
   .player-strip-content > .player-strip-seat {
-    flex: 1 0 145px;
+    position: relative;
+    flex: 1 0 var(--strip-seat-width);
+    width: var(--strip-seat-width);
     min-width: 0;
-    max-width: 190px;
+    max-width: 200px;
+    border-radius: 14px;
+  }
+  .player-strip-content > .player-strip-seat:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
   }
   .player-strip-content .seat {
     min-height: 58px;
     width: 100%;
     height: 100%;
+    align-items: flex-start;
+    padding-block: 7px;
+  }
+  .player-strip-content .seat-copy > strong {
+    align-items: flex-start;
+    white-space: normal;
+  }
+  .player-strip-content .seat-name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    line-height: 1.25;
+  }
+  .player-strip-content .seat-copy > span {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    margin-top: 3px;
+    line-height: 1.3;
+  }
+  .player-strip-content .seat--active {
+    background: color-mix(in srgb, var(--color-sage-light) 55%, var(--color-surface));
+  }
+  .player-strip-content .seat--active .seat-copy {
+    padding-right: 9px;
+  }
+  .player-strip-content .seat .turn-light {
+    top: 7px;
+    right: 7px;
+    width: 8px;
+    height: 8px;
+  }
+  .player-strip-content .seat[data-connected='false'] {
+    border-style: dashed;
+  }
+  .player-strip-content > [data-out='true'] .seat-copy {
+    opacity: 0.62;
+  }
+  .seat .seat-badge {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--color-ochre-light);
+    color: var(--color-ink);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 16px;
+  }
+  /* The viewer's seat stays at the start while the others scroll beneath it. */
+  .player-strip-rail[data-pinned='true'] .player-strip-content > [data-self='true'] {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+  }
+  .player-strip-rail[data-pinned='true'] .horizontal-rail[data-overflow='true'] > .player-strip {
+    --rail-fade-start: 0px;
+    scroll-padding-left: calc(var(--strip-seat-width) + var(--strip-gap));
+  }
+  .player-strip-rail[data-pinned='true']
+    .horizontal-rail[data-at-start='false']
+    .player-strip-content
+    > [data-self='true']
+    > .seat {
+    box-shadow: 8px 0 10px -8px #17201840;
+  }
+  .player-strip-rail[data-pinned='true']
+    .horizontal-rail[data-at-start='false']
+    .player-strip-content
+    > [data-self='true']
+    > .seat--active {
+    box-shadow:
+      0 0 0 2px var(--color-sage-light),
+      8px 0 10px -8px #17201840;
+  }
+  /* Turn order reads left to right; Uno-style direction marks the gaps. */
+  .player-strip-rail[data-direction]
+    .player-strip-content
+    > .player-strip-seat
+    + .player-strip-seat::before {
+    content: '›';
+    position: absolute;
+    top: 50%;
+    left: calc(-1 * var(--strip-gap));
+    width: var(--strip-gap);
+    translate: 0 -50%;
+    color: var(--color-ink-muted);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    pointer-events: none;
+  }
+  .player-strip-rail[data-direction='-1']
+    .player-strip-content
+    > .player-strip-seat
+    + .player-strip-seat::before {
+    content: '‹';
+  }
+  @media (max-width: 600px) {
+    .player-strip-rail {
+      --strip-seat-width: 80px;
+      --strip-gap: 6px;
+    }
+    .player-strip-rail[data-direction] {
+      --strip-gap: 10px;
+    }
+    .player-strip-content {
+      justify-content: flex-start;
+    }
+    .player-strip-content > .player-strip-seat {
+      max-width: 168px;
+    }
+    .player-strip-content .seat {
+      gap: 0;
+      min-height: 50px;
+      padding: 6px 7px;
+      border-radius: 12px;
+    }
+    .player-strip-content .seat > .avatar {
+      display: none;
+    }
+    .player-strip-content .seat-copy strong {
+      font-size: 12px;
+    }
+    .player-strip-content .seat .seat-kind {
+      padding: 2px 3px;
+    }
+    .player-strip-content .seat-kind-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    /*
+     * Seats reveal themselves when tapped, swiped or focused (arrow keys move
+     * between them), so the 88px of arrow gutters go to a third seat instead.
+     */
+    .player-strip-rail .horizontal-rail > .rail-navigation {
+      display: none;
+    }
+    .player-strip-rail .horizontal-rail[data-overflow='true'] > .horizontal-rail-viewport {
+      margin-inline: 0;
+    }
   }
   .opponent-panel {
     min-width: 0;
@@ -132,6 +299,18 @@
   }
   .opponent-panel > .seat .turn-light {
     right: 47px;
+  }
+  /* Long names wrap to two lines (start…end) instead of sharing one cut-off prefix. */
+  .opponent-panel > .seat .seat-copy > strong {
+    white-space: normal;
+  }
+  .opponent-panel > .seat .seat-name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    line-height: 1.25;
   }
   .opponent-panel-summary {
     margin-top: 8px;
@@ -204,11 +383,10 @@
   .opponent-panel-inspection .skyjo-grid .grid-card-value {
     font-size: 28px;
   }
+  /* Grows with split hands so no hand, total or result hides behind a scroll. */
   .casino-layout .casino-own-cards {
-    block-size: 180px;
-    min-block-size: 180px;
-    max-block-size: 180px;
-    overflow: auto;
+    min-block-size: 150px;
+    min-inline-size: 0;
   }
   .casino-layout .casino-decision-shell .action-context {
     flex: 0 0 auto;
@@ -259,15 +437,14 @@
   .gem-engine-summary .resource-token {
     min-height: 26px;
   }
+  /* Reserve the height of a full strip, so the first reveal never moves the hands
+     below it, but never cap it: a card or name is never cut. */
   .stable-game-table .trio-reveals {
-    block-size: 140px;
-    min-block-size: 140px;
-    max-block-size: 140px;
-    overflow: auto;
-    align-items: center;
+    min-block-size: 164px;
+    align-content: center;
   }
   .stable-game-table .trio-reveals[data-empty='true'] {
-    min-height: 140px;
+    min-height: 164px;
   }
   .stable-game-table .trio-review.decision-dock {
     margin-top: 10px;
@@ -282,18 +459,13 @@
   .word-guess-status {
     min-height: 20px;
   }
+  /* Azul's dock sizes to its subject: drafted tiles must never be clipped. */
   .stable-game-table .azul-draft-preview.decision-dock {
-    --decision-height: 72px;
     margin: 0;
-    padding: 8px;
-  }
-  .stable-game-table .azul-draft-preview > div {
-    overflow-x: auto;
-    flex-wrap: nowrap;
+    padding: 10px 12px;
   }
   .azul-public-progress {
-    flex-basis: 100%;
-    font-size: 10px;
+    font-size: 12px;
     color: var(--color-ink-muted);
   }
   .stable-game-table .azul-table[data-phase='placing'] .azul-supply {
@@ -305,19 +477,16 @@
     gap: 5px 12px;
   }
   .stable-game-table .azul-factory {
-    block-size: 148px;
-    min-block-size: 148px;
-    overflow: auto;
+    min-block-size: 132px;
   }
   .stable-game-table .azul-factory--center {
-    block-size: 116px;
-    min-block-size: 116px;
+    min-block-size: 64px;
   }
   .stable-game-table .azul-factory--center > span {
     max-width: 70px;
   }
+  /* Party decisions are content-sized (size="fit"): Lock in and Next prompt never hide in a scroll box. */
   .stable-game-table .party-decision-workspace {
-    --decision-height: 320px;
     padding: 0;
   }
   .party-decision-workspace .party-reveal,
@@ -328,26 +497,9 @@
     display: flex;
     min-height: 100px;
   }
-  .stable-game-table .gang-turn-dock {
-    --decision-height: 300px;
-  }
+  /* The Gang and 6 nimmt! decisions are content-sized (size="fit"); see coop-number-games.css. */
   .gang-turn-dock .gang-decision {
     padding-top: 0;
-  }
-  .gang-turn-dock .gang-decision-note {
-    min-height: 44px;
-    margin-block: 8px;
-  }
-  .stable-game-table .six-hand-viewport {
-    padding-block: 14px 5px;
-  }
-  .stable-game-table .six-hand {
-    flex-wrap: nowrap;
-    width: max-content;
-    min-width: 100%;
-    overflow: visible;
-    margin-block: 0;
-    padding-block: 5px;
   }
   .stable-game-table .flip-card-row {
     flex-wrap: nowrap;
@@ -356,40 +508,16 @@
     overflow: visible;
     min-height: 104px;
   }
-  .stable-game-table .paper-source-dock {
-    --decision-height: 270px;
-  }
-  .paper-source-dock .paper-draw {
-    margin: 0;
-  }
+  /* Sea Salt & Paper decisions are content-sized (DecisionDock size="fit"):
+     nothing overlays the cards being chosen. */
   .paper-source-dock .paper-private-choice {
     margin-top: 0;
-  }
-  .paper-source-dock .paper-private-choice > .paper-actions {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    position: sticky;
-    bottom: 0;
-    z-index: 1;
-    gap: 8px;
-    padding-block: 6px;
-    background: var(--color-surface);
   }
   .paper-source-dock .paper-card-row {
     padding-block: 10px 16px;
   }
-  .paper-hand .horizontal-rail-content.paper-card-row {
-    flex-wrap: nowrap;
-    width: max-content;
-    min-width: 100%;
-    overflow: visible;
-    padding-top: 20px;
-  }
   .paper-hand-instruction {
     min-height: 20px;
-  }
-  .paper-hand > .horizontal-rail {
-    min-height: 214px;
   }
   .paper-empty-status {
     min-height: 20px;
@@ -455,15 +583,6 @@
     .casino-layout .casino-decision-shell .action-panel.decision-dock {
       --decision-height: 252px;
     }
-    .stable-game-table .gang-turn-dock {
-      --decision-height: 340px;
-    }
-    .stable-game-table .party-decision-workspace {
-      --decision-height: 360px;
-    }
-    .stable-game-table .paper-source-dock {
-      --decision-height: 310px;
-    }
     .action-panel.decision-dock {
       flex-direction: column;
       align-items: stretch;
@@ -494,14 +613,6 @@
     .uno-workspace .action-panel .decision-control:only-child {
       grid-column: 1/-1;
     }
-    .player-strip-content {
-      justify-content: flex-start;
-      gap: 7px;
-    }
-    .player-strip-content > .player-strip-seat {
-      flex: 0 0 155px;
-      max-width: 155px;
-    }
     .skyjo-opponent-row > .opponent-panel {
       flex-basis: 190px;
       width: 190px;
@@ -526,6 +637,824 @@
     .stable-game-table .azul-table[data-phase='placing'] .azul-player-boards {
       grid-column: 2;
       grid-row: 3;
+    }
+  }
+}
+
+/* Skyjo: every opponent at a glance, the closing order and the last change (skyjo-flip7-trio). */
+@layer components {
+  .skyjo-workspace {
+    container-type: inline-size;
+  }
+  .skyjo-workspace .skyjo-table {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+  }
+  .skyjo-workspace .skyjo-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    min-width: 0;
+  }
+  .skyjo-workspace .skyjo-main > .skyjo-piles {
+    margin-bottom: 0;
+    column-gap: 12px;
+  }
+  /* Pile labels wrap so the draw, discard and drawn card share one row on phones. */
+  .skyjo-workspace .skyjo-piles .card-pile > span {
+    max-width: 76px;
+    margin-inline: auto;
+    line-height: 1.3;
+  }
+  .skyjo-workspace .skyjo-players {
+    margin-top: 0;
+  }
+  /* The dock holds one instruction; it uses the full width and never hides it. */
+  .skyjo-workspace .action-panel.decision-dock .action-context {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .skyjo-workspace .action-panel.decision-dock .action-choices:empty {
+    display: none;
+  }
+  .skyjo-final-turns {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--color-coral);
+    border-radius: 12px;
+    background: var(--color-coral-light);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .skyjo-final-turns p {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  .skyjo-final-turns ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .skyjo-final-turns li {
+    display: inline-flex;
+    gap: 8px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  .skyjo-final-turns li + li::before {
+    content: '→';
+    color: var(--color-ink-muted);
+    font-weight: 400;
+  }
+  .skyjo-final-turns li[data-current='true'] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .skyjo-round-review.game-information-settlement {
+    margin: 0;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+  }
+  .skyjo-review-heading h3 {
+    font-size: 15px;
+  }
+  .skyjo-review-heading p {
+    margin-top: 2px;
+  }
+  .skyjo-round-review ol {
+    display: grid;
+    gap: 6px;
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .skyjo-round-review li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2px 12px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--color-surface-muted);
+    font-size: 13px;
+  }
+  .skyjo-round-review li[data-best='true'] {
+    background: var(--color-sage-light);
+  }
+  .skyjo-round-review li[data-own='true'] {
+    box-shadow: inset 3px 0 0 var(--color-sage);
+  }
+  .skyjo-review-player {
+    display: flex;
+    gap: 6px;
+    align-items: baseline;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .skyjo-review-player strong {
+    min-width: 0;
+  }
+  .skyjo-review-player em {
+    flex: none;
+    white-space: nowrap;
+    font-style: normal;
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: var(--color-coral-light);
+  }
+  .skyjo-review-score {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .skyjo-review-score b {
+    font-size: 17px;
+    font-variant-numeric: tabular-nums;
+  }
+  .skyjo-review-detail,
+  .skyjo-review-total {
+    color: var(--color-ink-muted);
+    font-size: 12px;
+  }
+  .skyjo-review-total {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .skyjo-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .skyjo-badge {
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: var(--color-ochre-light);
+    color: var(--color-ink);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .skyjo-badge[data-tone='news'] {
+    background: var(--color-sky-light);
+  }
+  .skyjo-player[data-own='true'] > .skyjo-badges {
+    margin-top: 8px;
+    justify-content: center;
+  }
+  /* Opponents stack as compact rows: name, facts and a coloured 4x3 summary. */
+  .skyjo-workspace .skyjo-opponents {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    margin: 0;
+    min-width: 0;
+  }
+  .skyjo-opponents > .opponent-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 10px;
+    row-gap: 3px;
+    align-items: start;
+    padding: 8px 9px;
+  }
+  .skyjo-opponents > .opponent-panel > .seat {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+  }
+  .skyjo-opponents .opponent-panel-summary {
+    display: contents;
+  }
+  .skyjo-opponents .skyjo-badges {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .skyjo-opponents .opponent-facts {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 0;
+    padding-left: 2px;
+    font-size: 11px;
+  }
+  .skyjo-opponents .skyjo-mini-grid {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+    grid-template-columns: repeat(4, 20px);
+    gap: 3px;
+  }
+  .skyjo-opponents .skyjo-mini-grid > span {
+    min-height: 17px;
+    font-size: 11px;
+    line-height: 1;
+  }
+  /* Revealed values keep their printed band so low and high cards read at a glance. */
+  .skyjo-mini-grid > span[data-band='negative'] {
+    background: #dcdcf2;
+    color: #2b2d77;
+  }
+  .skyjo-mini-grid > span[data-band='zero'] {
+    background: #d6e6f2;
+    color: #1d4f73;
+  }
+  .skyjo-mini-grid > span[data-band='low'] {
+    background: #d9ecdf;
+    color: #1f5531;
+  }
+  .skyjo-mini-grid > span[data-band='middle'] {
+    background: #f7e6b5;
+    color: #5f4511;
+  }
+  .skyjo-mini-grid > span[data-band='high'] {
+    background: #f6d5cb;
+    color: #7c2a1b;
+  }
+  .skyjo-mini-grid > span[data-recent='true'],
+  .skyjo-workspace .grid-card-empty[data-recent='true'] {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 1px;
+  }
+  .skyjo-workspace .skyjo-grid .playing-card.skyjo-recent {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+  @container (max-width: 520px) {
+    .skyjo-opponents .seat .avatar {
+      display: none;
+    }
+  }
+  /* Wide tables: your grid on the left, every opponent beside it on the first screen. */
+  @container (min-width: 860px) {
+    .skyjo-workspace .skyjo-table {
+      grid-template-columns: minmax(320px, 440px) minmax(0, 1fr);
+      gap: 16px;
+    }
+    .skyjo-workspace .skyjo-opponents {
+      grid-column: 2;
+      grid-row: 1;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+  }
+}
+
+/* Uno and Uno No Mercy: a full-width felt band with the situation and the last
+   outcome, a sorted hand that overlaps to its corners when long, colour
+   swatches, and a dock that stays on screen on phones while there are moves. */
+@layer components {
+  .uno-workspace.card-game-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .uno-workspace > .uno-felt {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 24px;
+    min-height: 0;
+    padding: 14px 16px;
+  }
+  .uno-felt .uno-felt-info {
+    display: flex;
+    flex: 1 1 170px;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    max-width: 460px;
+    text-align: center;
+  }
+  .uno-felt .uno-felt-info > .table-detail {
+    margin: 0;
+  }
+  .uno-felt .uno-current-colour {
+    text-transform: none;
+    font-size: 12px;
+    opacity: 1;
+  }
+  .uno-felt .uno-situation,
+  .uno-felt .uno-event {
+    max-width: 100%;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+  .uno-felt .uno-situation {
+    padding: 4px 10px;
+    border: 1px solid #ffffff59;
+    border-radius: 12px;
+    background: #ffffff1f;
+    font-weight: 700;
+  }
+  .uno-felt .uno-situation[data-you='true'] {
+    border-color: transparent;
+    background: var(--color-surface);
+    color: var(--color-ink);
+  }
+  .uno-felt .uno-event {
+    font-weight: 600;
+  }
+  .uno-felt .uno-out-list {
+    color: #ffd9cf;
+    opacity: 1;
+  }
+  .uno-workspace .hand-heading > .uno-colour-counts {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .uno-colour-counts > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .uno-colour-counts i,
+  .uno-swatch > i {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #0003;
+    border-radius: 50%;
+    background: var(--uno-swatch, var(--color-ink-muted));
+  }
+  .uno-workspace [data-color='red'] {
+    --uno-swatch: var(--color-card-red);
+  }
+  .uno-workspace [data-color='yellow'] {
+    --uno-swatch: var(--color-card-yellow);
+  }
+  .uno-workspace [data-color='green'] {
+    --uno-swatch: var(--color-card-green);
+  }
+  .uno-workspace [data-color='blue'] {
+    --uno-swatch: var(--color-card-blue);
+  }
+  .uno-workspace [data-color='wild'] {
+    --uno-swatch: conic-gradient(
+      var(--color-card-red) 0 25%,
+      var(--color-card-yellow) 0 50%,
+      var(--color-card-green) 0 75%,
+      var(--color-card-blue) 0
+    );
+  }
+  /* Room for the playable lift inside the rail. */
+  .uno-hand .hand-rail .card-hand {
+    padding-top: 6px;
+  }
+  /* Long hands overlap to the index corner; the selected card opens fully. */
+  .uno-hand[data-fan='true'] .hand-rail .card-hand {
+    gap: 0;
+  }
+  .uno-hand[data-fan='true'] .hand-rail .card-hand > .playing-card + .playing-card {
+    margin-left: var(--uno-overlap, -40px);
+  }
+  .uno-hand[data-fan='true'] .hand-rail .card-hand > .playing-card--selected + .playing-card {
+    margin-left: 6px;
+  }
+  .uno-hand .card-hand > .playing-card:hover,
+  .uno-hand .card-hand > .playing-card:focus-visible {
+    z-index: 5;
+  }
+  /* Overlapping cards must stay opaque: unplayable cards fade under a light veil
+     (the same tint as fading them) instead of letting the card beneath show through. */
+  .uno-hand .card-hand > .playing-card.playing-card--shedding[data-playable='false'] {
+    opacity: 1;
+  }
+  .uno-hand .card-hand > .playing-card[data-playable='false']::after,
+  .uno-hand .card-hand > .playing-card.uno-card--new::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  .uno-hand .card-hand > .playing-card[data-playable='false']::after {
+    background: rgb(255 252 247 / 0.4);
+  }
+  .uno-hand .card-hand > .playing-card.uno-card--new::after {
+    box-shadow: inset 0 0 0 3px var(--color-ochre);
+  }
+  .uno-out-notice {
+    display: grid;
+    gap: 4px;
+    padding: 14px 4px 12px;
+    text-align: center;
+  }
+  .uno-out-notice > strong {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--color-coral);
+  }
+  .uno-workspace > .uno-dock.decision-dock[data-size='compact'] {
+    --decision-height: 96px;
+  }
+  /* Beside the instruction column the choices need no scroll edge. */
+  .uno-workspace > .uno-dock .action-choices[data-decision-actions] {
+    padding-block: 0 4px;
+    box-shadow: none;
+  }
+  .uno-workspace .uno-dock .action-choices > .uno-swatches {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .uno-workspace .uno-dock .uno-swatch.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    width: 100%;
+    min-height: 54px;
+    padding: 5px 4px;
+    border: 2px solid var(--uno-swatch);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    white-space: normal;
+  }
+  .uno-workspace .uno-dock .uno-swatch > i {
+    width: 16px;
+    height: 16px;
+  }
+  .uno-workspace .uno-dock .uno-swatch > span {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .uno-workspace .uno-dock .uno-swatch > small {
+    font-size: 11px;
+    line-height: 1.1;
+    color: var(--color-ink-muted);
+  }
+  .uno-workspace .uno-dock .uno-call.button {
+    background: var(--color-card-red);
+    border-color: var(--color-card-red);
+    color: var(--color-white);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+  .uno-swap-targets {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .uno-swap-targets > .uno-swap-target.button {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 52px;
+    text-align: left;
+    white-space: normal;
+  }
+  .uno-swap-target .uno-swap-name {
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+  .uno-swap-target .uno-swap-count {
+    color: var(--color-ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 900px) {
+    /* While the viewer has moves, the dock stays at the bottom of the screen. */
+    .uno-workspace > .uno-dock.decision-dock[data-has-actions='true'] {
+      position: sticky;
+      bottom: 0;
+      z-index: 12;
+      box-shadow: 0 -10px 24px #2638222b;
+    }
+  }
+  @media (max-width: 700px) {
+    /* Only as tall as the decision needs, so the hand stays visible above it;
+       longer choices scroll under the pinned commit row. */
+    .uno-workspace > .uno-dock.decision-dock[data-size='standard'] {
+      block-size: auto;
+      min-block-size: 0;
+      max-block-size: min(216px, 42dvh);
+    }
+    .uno-workspace > .uno-dock.decision-dock[data-size='compact'] {
+      --decision-height: 112px;
+    }
+    .uno-workspace > .uno-dock .action-choices[data-decision-actions] {
+      padding-block: 8px 4px;
+      box-shadow: 0 -12px 12px -12px #202f2440;
+    }
+    .uno-workspace > .uno-felt {
+      gap: 8px 16px;
+      padding: 12px;
+    }
+  }
+}
+
+/* Uno: what happened since the viewer's last turn, folded into the felt. */
+@layer components {
+  .uno-felt .uno-since {
+    width: 100%;
+    max-width: 100%;
+    font-size: 12px;
+    text-align: left;
+  }
+  .uno-felt .uno-since > summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: 44px;
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .uno-felt .uno-since > ol {
+    display: grid;
+    gap: 3px;
+    margin: 0;
+    padding: 6px 10px 8px 26px;
+    border-radius: 10px;
+    background: #0000002e;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Uno: a waiting dock is one line of who is acting and what they face. */
+@layer components {
+  .uno-workspace > .uno-dock .action-choices:empty {
+    display: none;
+  }
+  .uno-workspace > .uno-dock[data-has-actions='false'] .action-context {
+    flex: 1 1 auto;
+  }
+}
+
+/* Word Agents: all five columns fit a phone, found words look covered (striped,
+   ticked) rather than merely faded, and the latest reveal is outlined. */
+@layer components {
+  .word-tile__identity-short {
+    display: none;
+  }
+  .stable-game-table .word-score {
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .stable-game-table .word-score__team {
+    padding: 3px 10px;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .stable-game-table .word-score__team[data-tone='coral'] {
+    background: #a74332;
+  }
+  .stable-game-table .word-score__team[data-tone='blue'] {
+    background: #295b88;
+  }
+  .stable-game-table .word-score__team[data-active='true'] {
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 0 4px #34372f;
+  }
+  .stable-game-table .word-role {
+    padding: 2px 10px;
+    border: 2px solid currentColor;
+    border-radius: 999px;
+    background: #fffaf0;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .stable-game-table .word-role[data-tone='coral'],
+  .stable-game-table .word-clue[data-tone='coral'] .eyebrow {
+    color: #a74332;
+  }
+  .stable-game-table .word-role[data-tone='blue'],
+  .stable-game-table .word-clue[data-tone='blue'] .eyebrow {
+    color: #295b88;
+  }
+  .stable-game-table .word-clue .eyebrow {
+    font-weight: 700;
+  }
+  .stable-game-table .word-clue h2 {
+    overflow-wrap: break-word;
+  }
+  .stable-game-table .word-last {
+    display: grid;
+    gap: 2px;
+    justify-items: center;
+    max-width: 560px;
+    margin: 0 auto 12px;
+    padding: 8px 12px;
+    border: 1px solid #d8ceba;
+    border-radius: 10px;
+    background: #fffaf0e6;
+    text-align: center;
+  }
+  .stable-game-table .word-last p {
+    margin: 0;
+  }
+  .word-last__identity {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: #b8ac96;
+    color: #292b25;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .word-last__identity[data-tone='coral'] {
+    background: #b64e3d;
+    color: #fff;
+  }
+  .word-last__identity[data-tone='blue'] {
+    background: #376a91;
+    color: #fff;
+  }
+  .word-last__identity[data-tone='assassin'] {
+    background: #272c29;
+    color: #fff;
+  }
+  .stable-game-table .word-board {
+    gap: 8px;
+  }
+  .stable-game-table .word-tile {
+    position: relative;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  .stable-game-table .word-tile strong {
+    /* A flex item's minimum is its longest word; let long words wrap inside the tile. */
+    min-width: 0;
+    overflow-wrap: anywhere;
+    line-height: 1.15;
+    text-align: center;
+  }
+  .stable-game-table .word-tile > span {
+    font-size: 11px;
+  }
+  .stable-game-table .word-tile[data-revealed='true'] {
+    opacity: 1;
+    box-shadow: none;
+    background-image: repeating-linear-gradient(135deg, #ffffff38 0 5px, transparent 5px 11px);
+  }
+  .stable-game-table .word-tile[data-revealed='true'] strong {
+    opacity: 0.82;
+  }
+  .word-tile__mark {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .stable-game-table .word-tile[data-last='true'] {
+    z-index: 1;
+    outline: 3px solid #e7b53c;
+    outline-offset: 2px;
+  }
+  /* Watching seats get a flat board: it should not look tappable. */
+  .stable-game-table .word-board[data-interactive='false'] button.word-tile:disabled {
+    box-shadow: none;
+    cursor: default;
+  }
+  .stable-game-table .word-action-dock {
+    display: grid;
+    gap: 8px;
+  }
+  .stable-game-table .word-action-dock > p {
+    margin: 0;
+  }
+  .stable-game-table .clue-form {
+    margin-top: 0;
+  }
+  .word-clue-help {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: var(--color-ink-muted);
+  }
+  .word-clue-help[data-problem='true'] {
+    color: #a33a2b;
+    font-weight: 600;
+  }
+  .stable-game-table .word-decisions {
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 0;
+  }
+  .word-decision-note {
+    flex-basis: 100%;
+    margin: 0;
+    text-align: center;
+  }
+  @media (max-width: 600px) {
+    .stable-game-table .word-board {
+      gap: 4px;
+    }
+    .stable-game-table .word-tile {
+      min-height: 58px;
+      padding: 7px 2px 5px;
+      gap: 3px;
+    }
+    /* Mixed case is narrower than capitals, so five columns fit a 320px phone. */
+    .stable-game-table .word-tile {
+      text-transform: none;
+    }
+    .stable-game-table .word-tile strong {
+      font-size: 12px;
+      letter-spacing: 0;
+      /* Five columns on a phone: a long word breaks onto a second line rather than
+         spilling past its tile; short words never break. */
+      overflow-wrap: anywhere;
+    }
+    .stable-game-table .word-board {
+      margin-inline: -4px;
+    }
+    .stable-game-table .word-tile > span {
+      font-size: 11px;
+      letter-spacing: -0.01em;
+    }
+    .stable-game-table .word-tile__identity-long {
+      display: none;
+    }
+    .stable-game-table .word-tile__identity-short {
+      display: inline;
+    }
+    .word-tile__mark {
+      top: 2px;
+      right: 3px;
+      font-size: 11px;
+    }
+    .stable-game-table .word-score__team,
+    .stable-game-table .word-role {
+      font-size: 12px;
+    }
+    .stable-game-table .word-score {
+      justify-content: space-between;
+    }
+    .stable-game-table .word-role {
+      order: 3;
+      margin-inline: auto;
+    }
+    .stable-game-table .word-decisions > .button {
+      flex: 1 1 0;
+      min-width: 0;
+      padding-inline: 10px;
+    }
+    /* One compact row on phones: clue, count and Give clue beside each other. */
+    .stable-game-table .clue-form {
+      grid-template-columns: minmax(0, 1fr) 58px auto;
+      gap: 6px;
+    }
+    .stable-game-table .clue-form > button {
+      grid-column: auto;
+      padding-inline: 12px;
+    }
+    .stable-game-table .clue-form .field {
+      gap: 0;
+    }
+    .stable-game-table .clue-form__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .stable-game-table .clue-form .input {
+      min-height: 44px;
+      padding-inline: 8px;
+    }
+    .stable-game-table .word-action-dock[data-acting] {
+      padding: 8px;
+    }
+    .stable-game-table .word-action-dock[data-acting] [data-decision-actions] {
+      padding-block: 0;
+      box-shadow: none;
+    }
+    /* The acting player's clue form or confirm buttons stay on screen with the board. */
+    .stable-game-table .word-action-dock[data-acting] {
+      position: sticky;
+      bottom: 0;
+      z-index: 3;
+      box-shadow: 0 -8px 18px #202f2430;
     }
   }
 }

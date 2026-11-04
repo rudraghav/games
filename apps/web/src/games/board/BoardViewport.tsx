@@ -2,7 +2,11 @@
 import { useState, type ReactNode } from 'react';
 import { Button, HorizontalRail, Modal } from '@games/ui';
 
-/** Keep full-size move targets; the overview is read-only and never submits a move. */
+/**
+ * Boards fit the viewport whenever they can; the rail (arrows below, never
+ * over the squares) is only a fallback for very narrow or zoomed screens. The
+ * overview is read-only and never submits a move.
+ */
 export function BoardViewport({
   children,
   overview,
@@ -18,6 +22,7 @@ export function BoardViewport({
       <HorizontalRail
         label={label}
         navigationLabel="board columns"
+        navigationPosition="below"
         className="board-rail"
         contentClassName="board-rail-content"
       >

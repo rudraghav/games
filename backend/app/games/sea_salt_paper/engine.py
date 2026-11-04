@@ -18,6 +18,9 @@ from app.core.contracts import (
 )
 from app.games.sea_salt_paper.deck import BY_ID, CARDS, card_points, color_bonus
 
+DRAW_MESSAGE = "Draw two from the stock and keep one, or take the top card of a discard pile."
+PLAY_MESSAGE = "Play any duos you want, then finish your turn."
+
 
 def pair_kind(cards: list[str]) -> str | None:
     kinds = [BY_ID[c].kind for c in cards]
@@ -46,7 +49,8 @@ class PaperEngine(BaseEngine):
         s: State = {"order": players, "turn": 0, "phase": "draw", "scores": dict.fromkeys(players, 0),
                     "winners": [], "round": 0, "seed": Random(seed).randrange(2**63), "randomness": 0,
                     "target": {2: 40, 3: 35, 4: 30}[len(players)], "starter": 0,
-                    "round_result": {}, "message": "Take a card. A little ocean is waiting."}
+                    "round_result": {}, "last_round": None, "private_events": {},
+                    "message": DRAW_MESSAGE}
         self._round(s)
         return s
 
@@ -58,10 +62,29 @@ class PaperEngine(BaseEngine):
                  hands={p: [] for p in s["order"]}, played={p: [] for p in s["order"]},
                  phase="draw", turn=s["starter"], draft=[], protected=[], final_queue=[],
                  caller=None, crab_pile=None, instant_mermaids=None, round_result={},
-                 message="A new tide. Draw from the deck or either discard.")
+                 private_events={}, message=DRAW_MESSAGE)
 
     def _all(self, s: State, p: str) -> list[str]:
         return s["hands"][p] + s["played"][p]
+
+    def _note(self, s: State, player: str, kind: str, card: str, other: str | None = None) -> None:
+        """Remember a private outcome for one seat only; projected to nobody else."""
+        events = s.setdefault("private_events", {}).setdefault(player, [])
+        events.append({"kind": kind, "card": card, "other": other})
+        del events[:-4]
+
+    @staticmethod
+    def _event_view(event: dict[str, JsonValue]) -> dict[str, JsonValue]:
+        """A seat's own notice. A victim learns only the name of the card they lost:
+        its identity now sits in another private hand, so no card view or ID is sent."""
+        card = BY_ID[str(event["card"])]
+        return {"kind": event["kind"], "other": event["other"],
+                "name": f"{card.color.title()} {card.view().value}",
+                "card": None if event["kind"] == "stolen" else card.view().model_dump()}
+
+    def _final_turn_message(self, s: State) -> str:
+        points = card_points(self._all(s, s["caller"]))
+        return f"Last Chance: this is your final turn. Beat {points} card points or the caller wins the bet."
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
         if s["phase"] == "finished" or player != s["order"][s["turn"]]:
@@ -99,7 +122,7 @@ class PaperEngine(BaseEngine):
         options.append(legal("Finish turn", "end_turn"))
         return options
 
-    def _finish(self, s: State, *, exhausted: bool = False) -> None:
+    def _finish(self, s: State, *, exhausted: bool = False, stopper: str | None = None) -> None:
         values = {p: card_points(self._all(s, p)) for p in s["order"]}
         bonuses = {p: color_bonus(self._all(s, p)) for p in s["order"]}
         caller = s["caller"]
@@ -116,9 +139,13 @@ class PaperEngine(BaseEngine):
         s.update(protected=list(s["order"]), phase="round_over", draft=[],
                  round_result={p: {"card_points": values[p], "color_bonus": bonuses[p], "award": awards[p]}
                                for p in s["order"]}, final_queue=[])
+        outcome = "exhausted" if exhausted else ("caller_won" if won else "caller_lost") if caller else "stopped"
+        s["last_round"] = {"round": s["round"], "outcome": outcome, "caller": caller, "stopper": stopper,
+                           "result": dict(s["round_result"])}
         s["starter"] = (s["turn"] + 1) % len(s["order"]) if exhausted or not caller else (s["order"].index(caller) + 1) % len(s["order"])
         s["turn"] = s["starter"]
-        s["message"] = "The stock ran out. This tide scores no points." if exhausted else "Round scored. Take a look before the next tide."
+        s["message"] = ("The stock ran out, so this round scores no points. Start the next round when ready."
+                        if exhausted else "Check the round scores, then start the next round.")
         if max(s["scores"].values()) >= s["target"]:
             best = max((s["scores"][p], awards[p]) for p in s["order"])
             s.update(phase="finished", winners=[p for p in s["order"] if (s["scores"][p], awards[p]) == best],
@@ -132,74 +159,92 @@ class PaperEngine(BaseEngine):
             s["protected"].append(p)
             if s["final_queue"]:
                 s["turn"] = s["order"].index(s["final_queue"].pop(0))
-                s.update(phase="draw", message="Last Chance: take your final turn.")
+                s.update(phase="draw", message=self._final_turn_message(s))
             else:
                 self._finish(s)
         else:
-            s.update(turn=(s["turn"] + 1) % len(s["order"]), phase="draw",
-                     message="Choose a card from the deck or a discard.")
+            s.update(turn=(s["turn"] + 1) % len(s["order"]), phase="draw", message=DRAW_MESSAGE)
 
     def apply_action(self, state: State, player: str, action: Action) -> State:
         validate_action(self.legal_actions(state, player), action)
         s = self.copy(state)
         kind = action.type
+        if kind in {"take_stock", "take_discard"}:
+            # A seat's private notices last until it starts drawing again.
+            s.setdefault("private_events", {}).pop(player, None)
         if kind == "next_round":
             self._round(s)
         elif kind == "take_stock":
             s["draft"] = [s["deck"].pop() for _ in range(min(2, len(s["deck"])))]
             s["phase"] = "choosing"
-            s["message"] = "Two cards drawn. Keep one and choose a discard pile for the other."
+            s["message"] = "Keep one of your two drawn cards. The other goes face up on a discard pile."
             if len(s["draft"]) == 1:
                 s["hands"][player].append(s["draft"].pop())
                 s["phase"] = "playing"
-                s["message"] = "The last stock card is in your hand. Choose how to finish your turn."
+                s["message"] = "The last stock card is in your hand. " + PLAY_MESSAGE
         elif kind == "take_discard":
             s["hands"][player].append(s["piles"][int(action.choice)].pop())
             s["phase"] = "playing"
-            s["message"] = "Discard taken. Play a duo or choose how to finish your turn."
+            s["message"] = PLAY_MESSAGE
         elif kind == "keep":
             s["hands"][player].append(action.card)
             s["draft"].remove(action.card)
             s["piles"][int(action.choice)].append(s["draft"].pop())
             s["phase"] = "playing"
-            s["message"] = "Card kept. You can play an available duo or finish your turn."
+            s["message"] = PLAY_MESSAGE
         elif kind == "pair":
             for card in action.cards:
                 s["hands"][player].remove(card)
                 s["played"][player].append(card)
             effect = pair_kind(action.cards)
-            s["message"] = f"A {effect} duo is on the table."
+            name = "shark and swimmer" if effect == "steal" else effect
+            s["message"] = f"Your {name} duo has no effect now. {PLAY_MESSAGE}"
             if effect == "boat":
                 s["phase"] = "draw" if s["deck"] or any(s["piles"]) else "playing"
+                if s["phase"] == "draw":
+                    s["message"] = "Boat duo: take another turn. " + DRAW_MESSAGE
             elif effect == "fish" and s["deck"]:
-                s["hands"][player].append(s["deck"].pop())
+                drawn = s["deck"].pop()
+                s["hands"][player].append(drawn)
+                self._note(s, player, "fish", drawn)
+                s["message"] = f"Fish duo: you drew the top stock card. {PLAY_MESSAGE}"
             elif effect == "crab" and any(s["piles"]):
                 s["phase"] = "crab_pile"
+                s["message"] = "Crab duo: choose a discard pile to search."
             elif effect == "steal" and any(p != player and p not in s["protected"] and s["hands"][p] for p in s["order"]):
                 s["phase"] = "steal"
+                s["message"] = "Shark and swimmer: choose a player to steal a random card from."
         elif kind == "inspect":
-            s.update(crab_pile=int(action.choice), phase="crab_card")
+            s.update(crab_pile=int(action.choice), phase="crab_card",
+                     message=f"Take any one card from discard pile {int(action.choice) + 1}. Only you see this pile.")
         elif kind == "take_inspected":
             s["piles"][s["crab_pile"]].remove(action.card)
             s["hands"][player].append(action.card)
-            s.update(crab_pile=None, phase="playing", message="A card chosen from the discard. Your secret.")
+            self._note(s, player, "crab", action.card)
+            s.update(crab_pile=None, phase="playing", message=PLAY_MESSAGE)
         elif kind == "steal":
             s["randomness"] += 1
             index = Random(s["seed"] + s["randomness"]).randrange(len(s["hands"][action.target]))
-            s["hands"][player].append(s["hands"][action.target].pop(index))
-            s.update(phase="playing", message="A random card changed hands.")
+            stolen = s["hands"][action.target].pop(index)
+            s["hands"][player].append(stolen)
+            # Only the two seats involved learn which card moved.
+            self._note(s, player, "stole", stolen, action.target)
+            self._note(s, action.target, "stolen", stolen, player)
+            s.update(phase="playing", message=PLAY_MESSAGE)
         elif kind == "reveal_mermaids":
             s.update(phase="finished", winners=[player], protected=list(s["order"]),
                      instant_mermaids=player, message="All four mermaids! An instant game win.")
+            s["last_round"] = {"round": s["round"], "outcome": "mermaids", "caller": None,
+                               "stopper": player, "result": {}}
         elif kind == "stop":
-            self._finish(s)
+            self._finish(s, stopper=player)
         elif kind == "last_chance":
             s["caller"] = player
             s["protected"] = [player]
             order = s["order"][s["turn"] + 1:] + s["order"][:s["turn"]]
             s["turn"] = s["order"].index(order[0])
-            s.update(final_queue=order[1:], phase="draw",
-                     message="Last Chance! Final turns may end early if the stock runs out.")
+            s.update(final_queue=order[1:], phase="draw")
+            s["message"] = self._final_turn_message(s)
         else:
             self._end_turn(s)
         return s
@@ -211,14 +256,21 @@ class PaperEngine(BaseEngine):
                 private = s["draft"]
             elif s["phase"] == "crab_card":
                 private = list(reversed(s["piles"][s["crab_pile"]]))
+        seated = player in s["order"]
+        points = card_points(self._all(s, player)) if seated else 0
+        bonus = color_bonus(self._all(s, player)) if seated else 0
+        # Only the viewer's own totals: the stakes of their own Stop or Last Chance.
+        bet = (f"Your hand is revealed and protected; each opponent takes one final turn. "
+               f"If no one ends with more than your {points} card points, you score {points + bonus} "
+               f"({points} + color bonus {bonus}) and the others score only their color bonus. "
+               f"Otherwise you score only your color bonus ({bonus}) and they score their card points.")
         endings: dict[str, JsonValue] = {
-            "stop": "Score each player's card points now.",
-            "last_chance": (
+            "stop": f"End the round: everyone scores their card points now (you: {points}). No color bonus.",
+            "last_chance": bet + " " + (
                 "Stock empty: opponents may take discards, but the first finished final turn "
                 "ends the round with no points. Four mermaids still win immediately."
                 if not s["deck"] else
-                "Each opponent gets a final turn. If stock runs out at a turn's end, "
-                "the unfinished round scores no points."
+                "If the stock runs out at the end of a final turn, the round scores no points."
             ),
             "end_turn": (
                 "Stock empty: finishing ends this round with no points for anyone."
@@ -244,5 +296,12 @@ class PaperEngine(BaseEngine):
                     "own_points": card_points(self._all(s, player)) if player in s["order"] else 0,
                     "own_bonus": color_bonus(self._all(s, player)) if player in s["order"] else 0,
                     "round_result": s["round_result"], "instant_mermaids": s["instant_mermaids"],
-                    "ending_consequences": endings},
+                    "ending_consequences": endings,
+                    # Revealed (protected) hands are public, so their card points are too.
+                    "protected_points": {p: card_points(self._all(s, p)) for p in s["protected"]},
+                    # Which pile a crab duo is searching is public; its contents are not.
+                    "crab_pile": s["crab_pile"],
+                    "last_round": s.get("last_round"),
+                    "private_events": [self._event_view(event)
+                                       for event in s.get("private_events", {}).get(player, [])]},
         )

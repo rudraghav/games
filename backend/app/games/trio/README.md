@@ -20,3 +20,9 @@ Captured positions remain empty, preserving memory of all other positions.
 
 Acceptance: 36-card conservation through success/failure; dynamic hand ends;
 no hidden IDs/ranks in projections; seven/three-trio victory; seeded 3/6-seat matches.
+
+Projected messages instruct the seat that can act (reveal or ask; find another or
+the third of a number; no match, continue; trio collected, continue) and name the
+winning condition at the end. Each hand reveal records which end was asked for as
+public `edge` (`low`/`high`; table reveals have none). The catalogue's score unit is
+"Trios". `test_skyjo_flip_trio_messages.py` covers the messages and edges.

@@ -1,14 +1,20 @@
 'use client';
+import type { ComponentType } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { cn } from '../lib/cn';
-import { standardCardAsset } from '../lib/standard-card-art';
+import {
+  isStandardJoker,
+  standardCardArtSize,
+  standardCardAsset,
+  standardJokerInk,
+} from '../lib/standard-card-art';
 import {
   dealPropertyNames as propertyNames,
   dealCardInstructions as dealInstructions,
 } from '../lib/deal-card-info';
 import {
   Ban,
-  Repeat2,
+  ArrowRightLeft,
   Layers,
   SkipForward,
   Shuffle,
@@ -34,6 +40,9 @@ import {
   CloudLightning,
   Scale,
   Magnet,
+  Snowflake,
+  HeartPlus,
+  Layers3,
 } from 'lucide-react';
 
 export interface CardPresentation {
@@ -52,9 +61,14 @@ export interface CardPresentation {
   set_size?: number | null;
   rent_ladder?: readonly number[];
 }
+/**
+ * Face families. `flip` is Flip 7 (numbers, score modifiers and action cards);
+ * Flip 7 cards passed as `shedding` are recognised by their printed ✦ suit.
+ */
+export type CardFamily = 'standard' | 'shedding' | 'property' | 'grid' | 'flip';
 interface PlayingCardProps {
   card?: CardPresentation;
-  family?: 'standard' | 'shedding' | 'property' | 'grid';
+  family?: CardFamily;
   faceDown?: boolean;
   selected?: boolean;
   compact?: boolean;
@@ -98,11 +112,24 @@ const effectIcons = {
   unfair: Scale,
   yoink: Magnet,
 };
+
+/* ---------- Deal ---------- */
+
 function PropertyBands({ colors, active }: { colors: readonly string[]; active?: string }) {
   return (
-    <span className="property-band" aria-hidden="true">
+    <span className="property-band" data-wild={active ? 'true' : undefined} aria-hidden="true">
       {colors.map((color) => (
         <span key={color} data-property-color={color} data-active={color === active} />
+      ))}
+    </span>
+  );
+}
+/** Rent is an action: a plum action band carrying the colours it charges, never a property band. */
+function RentBand({ colors }: { colors: readonly string[] }) {
+  return (
+    <span className="property-band deal-rent-band" data-count={colors.length} aria-hidden="true">
+      {colors.map((color) => (
+        <span key={color} data-property-color={color} />
       ))}
     </span>
   );
@@ -114,19 +141,38 @@ function DealFace({ card }: { card: CardPresentation }) {
   const wild = property && colors.length > 1;
   const money = card.subtitle === 'MONEY';
   const effect = card.effect || '';
+  const rent = !property && effect.startsWith('rent');
   const Icon = effectIcons[effect as keyof typeof effectIcons] || HandCoins;
   const ladder = card.rentLadder || card.rent_ladder || [];
   const setSize = card.setSize || card.set_size;
+  const noCashValue = card.value === '✧';
   const colorLabel =
     colors.length === 10
       ? 'Any colour'
       : colors.map((color) => propertyNames[color] || color).join(' / ');
   return (
     <>
-      <PropertyBands colors={colors} active={wild ? card.color : undefined} />
+      {rent ? (
+        <RentBand colors={colors} />
+      ) : (
+        <PropertyBands colors={colors} active={wild ? card.color : undefined} />
+      )}
       <span className="deal-card-meta">
-        <span>{money ? 'BANK' : property ? (wild ? 'WILD' : 'PROPERTY') : 'ACTION'}</span>
-        <span className="property-value">{card.value}</span>
+        <span>
+          {money ? 'BANK' : property ? (wild ? 'WILD' : 'PROPERTY') : rent ? 'RENT' : 'ACTION'}
+        </span>
+        <span className="property-value" data-no-cash={noCashValue || undefined}>
+          {noCashValue ? (
+            <>
+              <span className="deal-no-cash-glyph" aria-hidden="true">
+                {card.value}{' '}
+              </span>
+              No cash value
+            </>
+          ) : (
+            card.value
+          )}
+        </span>
       </span>
       <span className="deal-card-body">
         {money ? (
@@ -155,7 +201,7 @@ function DealFace({ card }: { card: CardPresentation }) {
               <span className="property-color-label">{colorLabel}</span>
             ) : null}
             {wild ? (
-              <span className="property-active-label">
+              <span className="property-active-label" data-property-color={card.color}>
                 {propertyNames[card.color] || card.color} active
               </span>
             ) : null}
@@ -187,6 +233,17 @@ function DealFace({ card }: { card: CardPresentation }) {
     </>
   );
 }
+function propertyAccessibleName(card: CardPresentation) {
+  const colors = card.colors || [];
+  const value = card.value === '✧' ? 'not bankable' : `bank value ${card.value}`;
+  const allowed = colors.length
+    ? `, ${colors.length === 10 ? 'any colour: ' : ''}${colors.map((color) => propertyNames[color] || color).join(', ')}`
+    : '';
+  return `${card.label}, ${value}${allowed}${card.suit === 'property' && colors.length > 1 ? `; ${propertyNames[card.color] || card.color} active` : ''}`;
+}
+
+/* ---------- Uno ---------- */
+
 function DrawMark({ value }: { value: string }) {
   return (
     <span className="shedding-draw-mark">
@@ -198,99 +255,238 @@ function DrawMark({ value }: { value: string }) {
     </span>
   );
 }
-function SkipAllMark() {
+/** Uno's reverse: two parallel arrows pointing opposite ways. */
+function ReverseMark(props: { size?: number }) {
   return (
-    <svg className="shedding-all-mark" viewBox="0 0 64 64">
-      <circle cx="32" cy="32" r="18" />
-      <path d="M20 44L44 20" />
-      <circle cx="9" cy="12" r="5" />
-      <circle cx="55" cy="12" r="5" />
-      <circle cx="9" cy="52" r="5" />
-      <circle cx="55" cy="52" r="5" />
+    <svg
+      className="shedding-reverse-mark"
+      viewBox="0 0 24 24"
+      width={props.size}
+      height={props.size}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3.5 13.5 13.5 3.5M7.5 3.5h6v6" />
+      <path d="M20.5 10.5 10.5 20.5M16.5 20.5h-6v-6" />
     </svg>
   );
 }
-function propertyAccessibleName(card: CardPresentation) {
-  const colors = card.colors || [];
-  const value = card.value === '✧' ? 'not bankable' : `bank value ${card.value}`;
-  const allowed = colors.length
-    ? `, ${colors.length === 10 ? 'any colour: ' : ''}${colors.map((color) => propertyNames[color] || color).join(', ')}`
-    : '';
-  return `${card.label}, ${value}${allowed}${card.suit === 'property' && colors.length > 1 ? `; ${propertyNames[card.color] || card.color} active` : ''}`;
+const unoSymbols: Partial<Record<string, ComponentType<{ size?: number }>>> = {
+  Skip: Ban,
+  Reverse: ReverseMark,
+  'Discard all': Layers,
+  'Skip everyone': SkipForward,
+  Wild: Sparkles,
+  'Reverse +4': ReverseMark,
+  'Colour roulette': Shuffle,
+};
+/** A non-colour cue for every coloured card, so colours never rely on hue alone. */
+const unoColourMarks: Record<string, string> = { red: 'R', yellow: 'Y', green: 'G', blue: 'B' };
+function unoName(card: CardPresentation) {
+  if (/^\d$/.test(card.value)) return card.color.charAt(0).toUpperCase() + card.color.slice(1);
+  const draw = card.value.match(/^\+(\d+)$/);
+  return draw ? `Draw ${draw[1]}` : card.value;
+}
+function SheddingFace({ card }: { card: CardPresentation }) {
+  const Icon = unoSymbols[card.value];
+  const draw = /^\+\d+$/.test(card.value);
+  const index =
+    card.value === 'Reverse +4' ? '+4' : draw || /^\d+$/.test(card.value) ? card.value : '';
+  const mark = unoColourMarks[card.color];
+  return (
+    <>
+      {/* Value and colour letter share the top-left corner: the part a fanned hand leaves visible. */}
+      <span className="shedding-index">
+        {index || (Icon ? <Icon size={13} /> : '')}
+        {mark ? (
+          <span className="shedding-colour" aria-hidden="true">
+            {mark}
+          </span>
+        ) : null}
+      </span>
+      <span
+        className="shedding-face"
+        data-design={
+          card.value === 'Reverse +4'
+            ? 'reverse-draw'
+            : draw
+              ? 'draw'
+              : card.value === 'Skip everyone'
+                ? 'skip-all'
+                : Icon
+                  ? 'symbol'
+                  : 'number'
+        }
+        aria-hidden="true"
+      >
+        {draw ? (
+          <DrawMark value={index} />
+        ) : (
+          <>
+            {Icon ? <Icon /> : null}
+            {index ? <strong>{index}</strong> : null}
+          </>
+        )}
+      </span>
+      <span className="card-action-name">{unoName(card)}</span>
+    </>
+  );
 }
 
-function CardContents({ card, family, faceDown }: PlayingCardProps) {
-  if (faceDown || !card)
-    return (
-      <span className="card-back-pattern">
-        <span>g.</span>
+/* ---------- Flip 7 ---------- */
+
+type FlipKind = 'number' | 'modifier' | 'multiplier' | 'freeze' | 'flip-three' | 'second-chance';
+const flipActions: Record<string, FlipKind> = {
+  Freeze: 'freeze',
+  'Flip Three': 'flip-three',
+  'Second Chance': 'second-chance',
+};
+function isFlipSevenCard(card: CardPresentation) {
+  return (
+    card.suit === '✦' &&
+    /^(n-\d+-\d+|plus-\d+|times-2|freeze-\d+|three-\d+|chance-\d+)$/.test(card.id)
+  );
+}
+function flipKind(card: CardPresentation): FlipKind {
+  if (flipActions[card.value]) return flipActions[card.value];
+  if (/^\+\d+$/.test(card.value)) return 'modifier';
+  if (/^[×x]\d+$/.test(card.value)) return 'multiplier';
+  return 'number';
+}
+/** A front card printed 3 over two fanned cards: "the target flips three cards". */
+function FlipThreeMark() {
+  return (
+    <svg className="flip-three-mark" viewBox="0 0 48 48" aria-hidden="true">
+      <rect x="4" y="13" width="19" height="27" rx="3" transform="rotate(-17 13.5 26.5)" />
+      <rect x="25" y="13" width="19" height="27" rx="3" transform="rotate(17 34.5 26.5)" />
+      <rect x="13" y="7" width="22" height="32" rx="3.5" />
+      <text x="24" y="31.5" textAnchor="middle">
+        3
+      </text>
+    </svg>
+  );
+}
+function FlipGlyph({ kind, index }: { kind: FlipKind; index?: boolean }) {
+  if (kind === 'freeze') return <Snowflake />;
+  if (kind === 'second-chance') return <HeartPlus />;
+  // Never a bare "3" in the corner: it would read as the number card 3 when scanning for duplicates.
+  return index ? <Layers3 /> : <FlipThreeMark />;
+}
+function FlipFace({ card }: { card: CardPresentation }) {
+  const kind = flipKind(card);
+  const action = kind === 'freeze' || kind === 'flip-three' || kind === 'second-chance';
+  const value = kind === 'multiplier' ? '×2' : card.value;
+  const caption =
+    kind === 'modifier' ? 'points' : kind === 'multiplier' ? 'double' : action ? card.value : null;
+  return (
+    <>
+      <span className="flip-index" aria-hidden="true">
+        {action ? <FlipGlyph kind={kind} index /> : value}
       </span>
-    );
-  if (family === 'property') return <DealFace card={card} />;
-  if (family === 'grid') return <span className="grid-card-value">{card.value}</span>;
-  if (family === 'standard') {
-    const artwork = standardCardAsset(card);
-    if (artwork)
-      return (
-        <svg
-          className="standard-card-art"
-          viewBox="0 0 167.0869141 242.6669922"
-          preserveAspectRatio="xMidYMid meet"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <image href={artwork} width="167.0869141" height="242.6669922" />
-        </svg>
-      );
-  }
-  if (family === 'shedding') {
-    const symbols: Partial<Record<string, typeof Ban>> = {
-      Skip: Ban,
-      Reverse: Repeat2,
-      'Discard all': Layers,
-      'Skip everyone': SkipForward,
-      Wild: Sparkles,
-      'Reverse +4': Repeat2,
-      'Colour roulette': Shuffle,
-    };
-    const Icon = symbols[card.value];
-    const draw = /^\+\d+$/.test(card.value);
-    const index =
-      card.value === 'Reverse +4' ? '+4' : draw || /^\d+$/.test(card.value) ? card.value : '';
-    const name = /^\d$/.test(card.value) ? card.color : card.value;
-    return (
-      <>
-        <span className="shedding-index">{index || (Icon ? <Icon size={13} /> : '')}</span>
-        <span
-          className="shedding-face"
-          data-design={
-            card.value === 'Reverse +4'
-              ? 'reverse-draw'
-              : draw
-                ? 'draw'
-                : card.value === 'Skip everyone'
-                  ? 'skip-all'
-                  : Icon
-                    ? 'symbol'
-                    : 'number'
-          }
-          aria-hidden="true"
-        >
-          {draw ? (
-            <DrawMark value={index} />
-          ) : card.value === 'Skip everyone' ? (
-            <SkipAllMark />
-          ) : (
-            <>
-              {Icon ? <Icon /> : null}
-              {index ? <strong>{index}</strong> : null}
-            </>
-          )}
+      <span className="flip-face" aria-hidden="true">
+        {action ? <FlipGlyph kind={kind} /> : <strong data-chars={value.length}>{value}</strong>}
+      </span>
+      {caption ? (
+        <span className="flip-caption" aria-hidden="true">
+          {caption}
         </span>
-        <span className="card-action-name">{name}</span>
-      </>
-    );
-  }
+      ) : null}
+    </>
+  );
+}
+
+/* ---------- Skyjo, Trio and 6 nimmt! ---------- */
+
+type GridGame = 'skyjo' | 'trio' | 'six-nimmt';
+function gridGame(card: CardPresentation): GridGame | undefined {
+  if (card.subtitle === 'SKYJO' || card.id.startsWith('sky:')) return 'skyjo';
+  if (card.id.startsWith('trio-')) return 'trio';
+  if (card.id.startsWith('number-')) return 'six-nimmt';
+  return undefined;
+}
+/** Skyjo prints -2/-1, 0, 1-4, 5-8 and 9-12 in five different colours. */
+function skyjoBand(value: number) {
+  return value < 0
+    ? 'negative'
+    : value === 0
+      ? 'zero'
+      : value < 5
+        ? 'low'
+        : value < 9
+          ? 'middle'
+          : 'high';
+}
+function GridFace({ card }: { card: CardPresentation }) {
+  return (
+    <span className="grid-card-value" data-chars={card.value.length}>
+      {card.value}
+    </span>
+  );
+}
+
+/* ---------- Standard 52-card deck ---------- */
+
+const suitPaths: Record<string, string> = {
+  '♠': 'M12 1.8C9.4 5.6 3.6 8.9 3.6 13.4c0 2.9 2.2 4.9 4.7 4.9 1.4 0 2.6-.6 3.2-1.5-.2 2-1 3.8-2.4 5.4h5.8c-1.4-1.6-2.2-3.4-2.4-5.4.6.9 1.8 1.5 3.2 1.5 2.5 0 4.7-2 4.7-4.9 0-4.5-5.8-7.8-8.4-11.6z',
+  '♥': 'M12 21.4S2.8 15.6 2.8 9.1c0-3.2 2.4-5.6 5.3-5.6 1.7 0 3.1.8 3.9 2.1.8-1.3 2.2-2.1 3.9-2.1 2.9 0 5.3 2.4 5.3 5.6 0 6.5-9.2 12.3-9.2 12.3z',
+  '♦': 'M12 1.8 20.2 12 12 22.2 3.8 12z',
+  '♣': 'M12 2.2a4.6 4.6 0 0 0-4.3 6.3 4.6 4.6 0 1 0 2.9 7.6c-.3 2.1-1.1 4-2.5 5.7h7.8c-1.4-1.7-2.2-3.6-2.5-5.7a4.6 4.6 0 1 0 2.9-7.6A4.6 4.6 0 0 0 12 2.2z',
+};
+function SuitMark({ suit, className }: { suit: string; className?: string }) {
+  const d = suitPaths[suit];
+  if (!d) return <i className={className}>{suit}</i>;
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d={d} />
+    </svg>
+  );
+}
+function standardFace(card: CardPresentation) {
+  return isStandardJoker(card) ? 'joker' : /^[JQK]$/.test(card.value) ? 'court' : 'pips';
+}
+function standardInk(card: CardPresentation) {
+  if (isStandardJoker(card)) return standardJokerInk(card);
+  return card.suit === '♥' || card.suit === '♦' || card.color === 'red' ? 'red' : 'black';
+}
+function StandardFace({ card }: { card: CardPresentation }) {
+  const artwork = standardCardAsset(card);
+  if (!artwork) return <LegacyFace card={card} />;
+  const face = standardFace(card);
+  return (
+    <>
+      <svg
+        className="standard-card-art"
+        viewBox={`0 0 ${standardCardArtSize.width} ${standardCardArtSize.height}`}
+        preserveAspectRatio="xMidYMid meet"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <image
+          href={artwork}
+          width={standardCardArtSize.width}
+          height={standardCardArtSize.height}
+        />
+      </svg>
+      {/* Small tables cannot read the printed 5-7px corner: a large index replaces it there. */}
+      <span className="standard-index" aria-hidden="true">
+        {face === 'joker' ? (
+          <b>Joker</b>
+        ) : (
+          <>
+            <b>{card.value}</b>
+            <SuitMark suit={card.suit} />
+          </>
+        )}
+      </span>
+      {face === 'pips' ? <SuitMark suit={card.suit} className="standard-pip" /> : null}
+    </>
+  );
+}
+function LegacyFace({ card }: { card: CardPresentation }) {
   const value = card.value;
   return (
     <>
@@ -309,10 +505,54 @@ function CardContents({ card, family, faceDown }: PlayingCardProps) {
   );
 }
 
+function faceFamily(card: CardPresentation | undefined, family: CardFamily): CardFamily {
+  return card && family === 'shedding' && isFlipSevenCard(card) ? 'flip' : family;
+}
+
+function CardContents({
+  card,
+  family,
+  faceDown,
+}: {
+  card?: CardPresentation;
+  family: CardFamily;
+  faceDown?: boolean;
+}) {
+  if (faceDown || !card)
+    return (
+      <span className="card-back-pattern">
+        <span>g.</span>
+      </span>
+    );
+  if (family === 'property') return <DealFace card={card} />;
+  if (family === 'grid') return <GridFace card={card} />;
+  if (family === 'flip') return <FlipFace card={card} />;
+  if (family === 'standard') return <StandardFace card={card} />;
+  if (family === 'shedding') return <SheddingFace card={card} />;
+  return <LegacyFace card={card} />;
+}
+
+function faceAttributes(card: CardPresentation | undefined, family: CardFamily, faceDown: boolean) {
+  if (faceDown || !card) return {};
+  if (family === 'flip') return { 'data-flip-kind': flipKind(card) };
+  if (family === 'standard')
+    return standardCardAsset(card)
+      ? { 'data-standard-face': standardFace(card), 'data-ink': standardInk(card) }
+      : {};
+  if (family !== 'grid') return {};
+  const game = gridGame(card);
+  const number = Number(card.value);
+  return {
+    'data-grid-game': game,
+    'data-grid-band': game === 'skyjo' && Number.isFinite(number) ? skyjoBand(number) : undefined,
+    'data-grid-number': game === 'trio' ? card.value : undefined,
+  };
+}
+
 export function PlayingCard(props: PlayingCardProps) {
   const {
     card,
-    family = 'standard',
+    family: requestedFamily = 'standard',
     faceDown = false,
     selected = false,
     compact,
@@ -323,6 +563,7 @@ export function PlayingCard(props: PlayingCardProps) {
     playable,
   } = props;
   const reduced = useReducedMotion();
+  const family = faceFamily(faceDown ? undefined : card, requestedFamily);
   const classes = cn(
     'playing-card',
     `playing-card--${family}`,
@@ -331,7 +572,7 @@ export function PlayingCard(props: PlayingCardProps) {
     selected && 'playing-card--selected',
     className,
   );
-  const content = <CardContents {...props} family={family} />;
+  const content = <CardContents card={card} family={family} faceDown={faceDown} />;
   const appearance = {
     className: classes,
     'data-playable': playable,
@@ -345,6 +586,7 @@ export function PlayingCard(props: PlayingCardProps) {
             ? 'property'
             : 'action'
         : undefined,
+    ...faceAttributes(card, family, faceDown),
   };
   const accessibleName =
     label ||

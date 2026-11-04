@@ -23,20 +23,31 @@ async function verifyRequests(page: Page, room: RoomView) {
     await expect(page.getByRole('button', { name: label, exact: true })).toHaveCount(1);
 }
 
-async function verifyReveals(page: Page, room: RoomView) {
+async function verifyReveals(page: Page, room: RoomView, viewer: string) {
   const revealed = trioDetails(room.game!.detail).revealed;
+  // Which end was asked for is public, like the request itself.
+  const edges = (
+    (room.game!.detail as { revealed?: { edge?: string | null }[] }).revealed ?? []
+  ).map((item) => item.edge ?? null);
   const region = page.locator('.trio-reveals');
   await expect(region.getByRole('img')).toHaveCount(revealed.length);
-  const rows = region.locator(':scope > div');
+  const rows = region.locator('.trio-reveal');
   for (const [index, reveal] of revealed.entries()) {
+    // Each reveal names its owner from this seat: "You" for the viewer's own card.
     const owner =
       reveal.owner === 'table'
         ? `Table ${reveal.slot + 1}`
-        : room.members.find((member) => member.id === reveal.owner)!.name;
+        : reveal.owner === viewer
+          ? 'You'
+          : room.members.find((member) => member.id === reveal.owner)!.name;
     await expect(
       rows.nth(index).getByRole('img', { name: reveal.card.label, exact: true }),
     ).toHaveCount(1);
-    await expect(rows.nth(index).locator(':scope > span')).toHaveText(owner);
+    await expect(rows.nth(index).locator('.trio-reveal-owner')).toHaveText(owner);
+    if (reveal.owner !== 'table')
+      await expect(rows.nth(index).locator('.trio-reveal-edge')).toHaveText(
+        edges[index] === 'low' ? 'lowest' : 'highest',
+      );
   }
   const tree = await region.ariaSnapshot();
   for (const reveal of revealed) expect(tree).toContain(`img "${reveal.card.label}"`);
@@ -148,14 +159,14 @@ test('Trio keyboard requests identify the player and preserve only public reveal
       const publicReveals = trioDetails(moved.game!.detail).revealed;
       expect(publicReveals).toHaveLength(index + 1);
       expect(publicReveals.at(-1)!.owner).toBe(targetId);
-      await verifyReveals(actor, moved);
+      await verifyReveals(actor, moved, actorId);
       for (const person of players) {
         await person.reload();
         const saved = await roomAs(person, roomId);
         expect(saved.match_version).toBe(moved.match_version);
         expect(trioDetails(saved.game!.detail).revealed).toEqual(publicReveals);
         await verifyRequests(person, saved);
-        await verifyReveals(person, saved);
+        await verifyReveals(person, saved, identities[players.indexOf(person)]);
       }
     }
     const review = await roomAs(actor, roomId);
@@ -169,7 +180,7 @@ test('Trio keyboard requests identify the player and preserve only public reveal
         const saved = await roomAs(person, roomId);
         expect(saved.match_version).toBe(next.match_version);
         expect(trioDetails(saved.game!.detail).revealed).toEqual([]);
-        await verifyReveals(person, saved);
+        await verifyReveals(person, saved, identities[players.indexOf(person)]);
       }
     }
   } finally {

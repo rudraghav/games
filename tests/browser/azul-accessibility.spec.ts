@@ -79,8 +79,14 @@ test('Azul exposes drafted colours, existing lines and every floor penalty befor
       (entry) => entry.action.type === 'place_tiles' && entry.action.choice === String(row),
     );
     const contents = line.length ? `${line.length} ${line[0]} tiles` : 'empty';
+    const fits = Math.min(spaces, data.draft.length);
+    const overflow = Math.max(0, data.draft.length - spaces);
+    const floorHeld = data.floors[fixture.selfId].length;
+    const cost = penalties
+      .slice(floorHeld, Math.min(7, floorHeld + overflow))
+      .reduce((sum, value) => sum + value, 0);
     const fit = option
-      ? `; ${Math.min(spaces, data.draft.length)} tiles fit, ${Math.max(0, data.draft.length - spaces)} go to floor`
+      ? `; ${fits} tiles fit, ${overflow} go to floor${overflow ? `, costing ${cost} point${cost === 1 ? '' : 's'}` : ''}${line.length + fits === row + 1 ? '; completes the line' : ''}`
       : '';
     const label = `Place on pattern line ${row + 1}, ${spaces} spaces available; ${contents}${fit}`;
     await expect(own.getByRole('button', { name: label, exact: true })).toHaveCount(1);
@@ -131,11 +137,33 @@ test('Azul keeps accessible draft actions and full boards within narrow and wide
     const count = source.filter((color) => color === action.color).length;
     const sourceLabel =
       action.choice === 'center' ? 'center' : `factory ${Number(action.choice) + 1}`;
+    const marker = action.choice === 'center' && data.marker ? ' and the first-player marker' : '';
     const button = page.getByRole('button', {
-      name: `Take ${count} ${action.color} from ${sourceLabel}`,
+      name: `Take ${count} ${action.color} from ${sourceLabel}${marker}`,
       exact: true,
     });
-    await recordedKeyboardMove(page, fixture, button);
+    const submitted = page.getByLabel('Submitted action', { exact: true });
+    await expect(submitted).toHaveText('No action submitted');
+    // Choosing a colour only stages it: the tiles and every destination's
+    // consequence show before anything is sent.
+    await button.focus();
+    await page.keyboard.press('Enter');
+    await expect(button).toHaveAttribute('aria-pressed', 'true');
+    const selected = page.getByRole('group', { name: 'Selected tiles', exact: true });
+    await expect(
+      selected.getByRole('img', { name: `${action.color} tile`, exact: true }),
+    ).toHaveCount(count);
+    await expect(submitted).toHaveText('No action submitted');
+    // Focus lands on the first legal destination; one key press drafts and places.
+    await expect(page.locator(':focus')).toHaveAttribute('data-azul-choice', '');
+    await page.keyboard.press('Enter');
+    await expect
+      .poll(async () => {
+        const text = await submitted.textContent();
+        return text === 'No action submitted' ? null : JSON.parse(text!).type;
+      })
+      .toBe('place_tiles');
+    // The harness only advances on the recorded draft, so the placing state proves it was sent.
     const draft = page.getByRole('group', { name: 'Drafted tiles', exact: true });
     const nextDraft = azulDetails(fixture.next.game.detail).draft;
     await expect(draft.getByRole('img')).toHaveCount(nextDraft.length);

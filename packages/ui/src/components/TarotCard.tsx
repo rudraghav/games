@@ -11,6 +11,9 @@ interface TarotCardProps {
   compact?: boolean;
   label?: string;
   imageLoader?: (path: string) => string;
+  /** Roving focus for a deck of choices: only one card is a Tab stop. */
+  tabIndex?: number;
+  onFocus?: () => void;
 }
 export function TarotCard({
   id,
@@ -21,6 +24,8 @@ export function TarotCard({
   compact,
   label,
   imageLoader,
+  tabIndex,
+  onFocus,
 }: TarotCardProps) {
   const reduced = useReducedMotion();
   const artwork = id ? tarotArtwork[id] : undefined;
@@ -72,6 +77,8 @@ export function TarotCard({
       {...shared}
       type="button"
       onClick={onClick}
+      onFocus={onFocus}
+      tabIndex={tabIndex}
       disabled={disabled}
       aria-pressed={selected}
       whileHover={reduced ? undefined : { y: -6 }}

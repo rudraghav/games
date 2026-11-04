@@ -35,11 +35,20 @@ def deck(mercy: bool) -> list[str]:
     return cards
 
 
+def label(card: str) -> str:
+    """Printed name: 'Red 7', 'Wild', 'Wild +4', 'Colour roulette' (never 'Wild Wild')."""
+    color, kind, _ = card.split(":")
+    name = LABELS.get(kind, kind)
+    if color == "wild":
+        return name if kind in {"wild", "roulette"} else f"Wild {name}"
+    return f"{color.title()} {name}"
+
+
 def view(card: str) -> CardView:
     color, kind, _ = card.split(":")
     return CardView(
         id=card,
-        label=f"{color.title()} {LABELS.get(kind, kind)}",
+        label=label(card),
         color=color,
         value=LABELS.get(kind, kind),
         subtitle="UNO",

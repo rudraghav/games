@@ -13,6 +13,8 @@ from app.core.contracts import (
     validate_action,
 )
 
+# Seat 0 plays coral pieces, seat 1 blue. Finished messages name a colour, never "you".
+COLOURS = ("Coral", "Blue")
 DIRECTIONS = tuple((r, c) for r in (-1, 0, 1) for c in (-1, 0, 1) if (r, c) != (0, 0))
 
 
@@ -54,9 +56,9 @@ class BoopEngine(BaseEngine):
         return {"order": players, "turn": 0, "phase": "placing", "board": [None] * 36,
                 "pools": {p: {"kitten": 8, "cat": 0} for p in players},
                 "retired": dict.fromkeys(players, 0), "reserve": dict.fromkeys(players, 8),
-                "winners": [], "last_move": None, "last_pushes": [], "moves": 0,
-                "outcome_reason": None, "winning_cells": [],
-                "message": "A cozy bed. Pick a square for your first kitten."}
+                "winners": [], "last_move": None, "last_pushes": [], "last_graduation": None,
+                "moves": 0, "outcome_reason": None, "winning_cells": [],
+                "message": "You play coral and go first. Pick a square for your first kitten."}
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
         if s["phase"] == "finished" or player != s["order"][s["turn"]]:
@@ -91,7 +93,11 @@ class BoopEngine(BaseEngine):
         validate_action(self.legal_actions(state, player), action)
         s = self.copy(state)
         if action.type in {"graduate", "return_piece"}:
-            self._return(s, player, [int(n) for n in action.choice.split(",")])
+            slots = [int(n) for n in action.choice.split(",")]
+            kittens = sum(s["board"][i]["kind"] == "kitten" for i in slots)
+            s["last_graduation"] = {"owner": player, "cells": slots, "kind": action.type,
+                                    "kittens": kittens}
+            self._return(s, player, slots)
             self._pass(s)
             return s
         index = int(action.choice)
@@ -119,7 +125,7 @@ class BoopEngine(BaseEngine):
             else:
                 s["board"][destination] = piece
             pushes.append({"from": source, "to": destination, **piece})
-        s.update(last_move=index, last_pushes=pushes, moves=s["moves"] + 1)
+        s.update(last_move=index, last_pushes=pushes, last_graduation=None, moves=s["moves"] + 1)
         own = [piece for piece in s["board"] if piece and piece["owner"] == player]
         adult_lines = lines(s["board"], player, adult_only=True)
         if adult_lines or len(own) == 8 and all(p["kind"] == "cat" for p in own):
@@ -127,8 +133,8 @@ class BoopEngine(BaseEngine):
                      outcome_reason="three-cats" if adult_lines else "eight-cats",
                      winning_cells=list(adult_lines[0]) if adult_lines else
                      [i for i, p in enumerate(s["board"]) if p and p["owner"] == player],
-                     message="Three adult cats in a line win!" if adult_lines else
-                     "All eight adult cats are on the bed. You win!")
+                     message=f"{COLOURS[s['turn']]} lined up three adult cats." if adult_lines else
+                     f"{COLOURS[s['turn']]} has all eight adult cats on the bed.")
         elif lines(s["board"], player) or len(own) == 8:
             s.update(phase="graduating", message="Choose one line to graduate, or bring a piece back if all eight are down.")
         else:
@@ -148,6 +154,7 @@ class BoopEngine(BaseEngine):
             actions=self.legal_actions(s, player), winners=s["winners"], message=s["message"],
             detail={"pools": s["pools"], "retired": s["retired"], "reserve": s["reserve"],
                     "last_move": s["last_move"], "last_pushes": s["last_pushes"], "moves": s["moves"],
+                    "last_graduation": s.get("last_graduation"),
                     "outcome_reason": s.get("outcome_reason"),
                     "winning_cells": s.get("winning_cells", [])},
         )

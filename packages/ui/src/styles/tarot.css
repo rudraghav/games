@@ -242,7 +242,8 @@
     gap: 18px;
   }
   .tarot-spread-slot .eyebrow {
-    font-size: 9px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
   }
   .tarot-spread-slot .tarot-card {
     width: 100%;
@@ -307,7 +308,8 @@
     padding: 28px 0;
     border-top: 1px solid var(--color-border);
   }
-  .tarot-reading article > h3 {
+  .tarot-reading article > h3,
+  .tarot-reading-card-heading h3 {
     font-family: var(--font-display);
     font-size: 29px;
     font-weight: 500;
@@ -372,17 +374,20 @@
       gap: 12px;
     }
     .tarot-spread-slot > .eyebrow {
-      font-size: 8px;
-      letter-spacing: 0.04em;
-      min-height: 22px;
+      font-size: 11px;
+      line-height: 1.25;
+      letter-spacing: 0.02em;
+      min-height: 28px;
     }
     .tarot-spread-slot .tarot-card {
       border-radius: 8px;
       padding: 4px;
     }
     .tarot-spread-slot .tarot-name {
-      font-size: 8px;
-      min-height: 23px;
+      font-size: 11px;
+      line-height: 1.15;
+      min-height: 30px;
+      padding-top: 4px;
     }
     .tarot-spread-slot .tarot-back-orbit {
       font-size: 45px;
@@ -392,8 +397,8 @@
       margin-top: 3px;
     }
     .tarot-card-meaning {
-      font-size: 10px;
-      line-height: 1.7;
+      font-size: 12px;
+      line-height: 1.5;
     }
     .tarot-pick-area {
       padding: 18px 14px;
@@ -416,7 +421,8 @@
     .tarot-art .tarot-pips i {
       font-size: 9px;
     }
-    .tarot-reading article > h3 {
+    .tarot-reading article > h3,
+    .tarot-reading-card-heading h3 {
       font-size: 26px;
     }
     .tarot-reading article > p {
@@ -484,5 +490,138 @@
 @layer components {
   .tarot-footnote {
     order: 5;
+  }
+  /* An empty slot is where a pick lands, not a card you can tap. */
+  .tarot-slot-empty {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 190px;
+    aspect-ratio: 2/3;
+    padding: 10px;
+    border: 2px dashed var(--color-border);
+    border-radius: 12px;
+    color: var(--color-ink-muted);
+    font-size: 11px;
+    line-height: 1.3;
+    text-align: center;
+  }
+  .tarot-table[data-phase='choosing'] .tarot-slot-empty {
+    max-width: 110px;
+  }
+  .tarot-spread-slot[data-next] .tarot-slot-empty {
+    border-style: solid;
+    border-color: var(--color-ochre);
+    background: var(--color-ochre-light);
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  .tarot-spread-slot[data-next] > .eyebrow {
+    color: var(--color-ink);
+  }
+  .tarot-spread-slot {
+    border-radius: 14px;
+  }
+  .tarot-spread-slot:focus {
+    outline: none;
+  }
+  .tarot-spread-slot:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 4px;
+  }
+  .tarot-spread-slot[data-fresh] .tarot-card {
+    outline: 3px solid var(--color-ochre);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tarot-spread-slot[data-fresh] .tarot-card {
+      animation: tarot-reveal 0.45s ease-out;
+    }
+  }
+  @keyframes tarot-reveal {
+    from {
+      transform: rotateY(80deg) scale(0.92);
+      opacity: 0.3;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  .tarot-deck-cards {
+    display: contents;
+  }
+  .tarot-back-to-deck {
+    display: none;
+    order: 3;
+    justify-content: center;
+    margin: 0 0 12px;
+  }
+  .tarot-intro-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 12px;
+    margin-top: 14px;
+  }
+  .tarot-again {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    max-width: 700px;
+    width: 100%;
+    margin: 8px auto 0;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .tarot-reading-status {
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--color-plum-light);
+    color: var(--color-plum);
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 8px 0;
+  }
+  .tarot-submit > .button {
+    width: 100%;
+    margin: 6px 0 10px;
+  }
+  /* The lobby tile is 76×62: a small fan that fits, names hidden. */
+  .lobby-summary .lobby-game .game-art.game-art--tarot {
+    transform: none;
+  }
+  .lobby-summary .lobby-game .game-art--tarot > .tarot-card {
+    width: 38px;
+    padding: 3px;
+    border-radius: 5px;
+    box-shadow: none;
+  }
+  .lobby-summary .lobby-game .game-art--tarot > .tarot-card:nth-child(1) {
+    transform: translate(-17px, 3px) rotate(-12deg);
+  }
+  .lobby-summary .lobby-game .game-art--tarot > .tarot-card:nth-child(2) {
+    transform: translate(17px, 3px) rotate(12deg);
+  }
+  .lobby-summary .lobby-game .game-art--tarot > .tarot-card:nth-child(3) {
+    transform: rotate(-2deg);
+  }
+  .lobby-summary .lobby-game .game-art--tarot .tarot-art {
+    border-radius: 3px;
+  }
+  .lobby-summary .lobby-game .game-art--tarot .tarot-name {
+    display: none;
+  }
+  @media (max-width: 600px) {
+    .tarot-table[data-phase='choosing'] .tarot-back-to-deck {
+      display: flex;
+    }
+    .tarot-table[data-phase='choosing'] .tarot-spread {
+      gap: 8px;
+    }
+    .tarot-slot-empty {
+      border-radius: 8px;
+      padding: 6px;
+    }
   }
 }

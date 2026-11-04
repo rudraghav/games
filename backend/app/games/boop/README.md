@@ -47,8 +47,12 @@ chain, kitten/adult strength, mixed graduation, overlapping choices, eight-piece
 return and both victory conditions. Seeded full matches use public board views;
 source states are immutable and all 32 physical-piece counts remain conserved.
 
-The shared turn message is neutral about the viewer; the room notice names the
-actual actor. Bed squares have coordinate labels and native keyboard activation.
+In-play messages are the acting seat's instruction (the room shows them only to
+that seat); terminal messages name a colour ("Coral has all eight adult cats on
+the bed."), never "you", because every seat reads them. The room notice names the
+actual actor. `last_graduation` (owner, removed cells, kittens retired, kind)
+records the latest graduation or return so the next seat can see what left the
+bed; it clears on the next placement. Bed squares have coordinate labels and native keyboard activation.
 Kitten/adult art, available counts and selected-piece state remain explicit;
 the same selection and placement flow works through touch, mouse or keyboard.
 

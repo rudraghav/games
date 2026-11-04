@@ -48,10 +48,64 @@ describe('Party decisions and personalized projections', () => {
         onAction={() => undefined}
       />,
     );
-    expect(html).toContain('You’re locked in. Waiting for your friends.');
+    expect(html).toContain('You’re locked in.');
+    // Locked-in viewers see exactly whom the room is waiting for.
+    expect(html).toMatch(/1 of \d+ locked in · waiting for /);
     expect(html).toContain('Your choice: A');
     expect(html).not.toContain('Lock in my choice');
-    expect(html).not.toContain('The answer was');
+    expect(html).not.toContain('chose A');
+  });
+
+  it('leads a Most Likely reveal with the result and labels votes cast and received', () => {
+    const fixture = fixtures.find((item) => item.room.game_id === 'most-likely')!;
+    const room = mapRoom(fixture.room);
+    const match = room.game!;
+    const [a, b, c] = match.players.map((player) => player.id);
+    const html = renderToStaticMarkup(
+      <PartyTable
+        room={room}
+        match={{
+          ...match,
+          phase: 'reveal',
+          actions: [],
+          detail: {
+            ...match.detail,
+            submitted: [a, b, c],
+            result: {
+              choices: { [a]: b, [b]: a, [c]: a },
+              tallies: { [a]: 2, [b]: 1, [c]: 0 },
+              answer: null,
+              points: { [a]: 1, [b]: 0, [c]: 0 },
+            },
+          },
+        }}
+        selfId={c}
+        pending={false}
+        onAction={() => undefined}
+      />,
+    );
+    const name = (id: string) => room.members.find((member) => member.id === id)!.name;
+    expect(html).toContain(`Most likely: ${name(a)} · 2 votes (+1)`);
+    expect(html).toContain(`voted for ${name(b)}`);
+    // Rows lead with the most votes received.
+    expect(html.indexOf('2 votes</span>')).toBeLessThan(html.indexOf('1 vote</span>'));
+  });
+
+  it('states Spill or Chill scoring on the buttons', () => {
+    const fixture = fixtures.find((item) => item.room.game_id === 'spill-or-chill')!;
+    const room = mapRoom(fixture.room);
+    const html = renderToStaticMarkup(
+      <PartyTable
+        room={room}
+        match={room.game!}
+        selfId={room.game!.detail.spotlight as string}
+        pending={false}
+        onAction={() => undefined}
+      />,
+    );
+    expect(html).toContain('Spill · I answered aloud (+1)');
+    expect(html).toContain('Chill · keep it to myself (+1)');
+    expect(html).toContain('Pass (no point)');
   });
 
   it('rejects malformed party result payloads before rendering', () => {

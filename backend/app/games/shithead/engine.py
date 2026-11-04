@@ -52,6 +52,33 @@ def stage(s: State, player: str) -> str:
     return "face_up" if s["face_up"][player] else "face_down"
 
 
+def prompt(s: State, burned: bool = False) -> str:
+    """The instruction for the player who acts next.
+
+    Engine messages are shown only to a seat that can act; who did what is
+    attributed separately by the room's public move history.
+    """
+    player = s["order"][s["turn"]]
+    source = stage(s, player)
+    lead = "You burned the pile. " if burned else ""
+    if source == "face_down":
+        if not s["pile"]:
+            return f"{lead}Flip any hidden table card to lead."
+        return f"{lead}Flip a hidden table card. If it can’t beat the pile, you take the pile."
+    zone = "your hand" if source == "hand" else "your face-up cards"
+    top = comparison(s)
+    if not s["pile"]:
+        return f"{lead}Lead any card from {zone}."
+    take = "take the pile" if source == "hand" else "take the pile with one face-up card"
+    if top in {None, "2"}:
+        return f"Play any card from {zone}, or {take}."
+    specials = "a 2, 3 or 10" if s["settings"]["transparent_three"] else "a 2 or 10"
+    if top == "7" and s["settings"]["seven_low"]:
+        return f"Play a 7 or lower (or {specials}) from {zone}, or {take}."
+    value = card_view(f"{top}S:0").value
+    return f"Match or beat {value} (or play {specials}) from {zone}, or {take}."
+
+
 class ShitheadEngine(BaseEngine):
     def __init__(self) -> None:
         super().__init__(
@@ -187,11 +214,8 @@ class ShitheadEngine(BaseEngine):
             for field in ["face_up", "hands"]:
                 for index, player in enumerate(s["order"]):
                     if any(rank(card) == value for card in s[field][player]):
-                        s.update(
-                            phase="playing",
-                            turn=index,
-                            message="Play from your hand. Match or beat the pile.",
-                        )
+                        s.update(phase="playing", turn=index)
+                        s["message"] = prompt(s)
                         return
 
     def apply_action(self, state: State, player: str, action: Action) -> State:
@@ -221,8 +245,9 @@ class ShitheadEngine(BaseEngine):
             s["hands"][player].extend(s["pile"])
             s["pile"] = []
             s["last_play"] = {"player": player, "type": "pickup", "count": amount}
-            s["message"] = f"Pile taken: {amount} cards. The next player leads."
             self._next(s, player)
+            if s["phase"] != "finished":
+                s["message"] = prompt(s)
             return s
         if action.type == "flip":
             card = s["face_down"][player][action.slot]
@@ -238,10 +263,9 @@ class ShitheadEngine(BaseEngine):
                     "count": amount,
                     "card": card_view(card).model_dump(),
                 }
-                s["message"] = (
-                    f"{card_view(card).label} cannot beat the pile. All {amount} cards are taken."
-                )
                 self._next(s, player)
+                if s["phase"] != "finished":
+                    s["message"] = prompt(s)
                 return s
             played = [card]
         else:
@@ -269,10 +293,9 @@ class ShitheadEngine(BaseEngine):
             "burned": amount,
             "cards": [card_view(c).model_dump() for c in played],
         }
-        s["message"] = f"{len(played)} card{'s' if len(played) != 1 else ''} played." + (
-            f" Burned {amount}; play again." if burned else ""
-        )
         self._next(s, player, repeat=burned)
+        if s["phase"] != "finished":
+            s["message"] = prompt(s, burned=burned and s["order"][s["turn"]] == player)
         return s
 
     def project_view(self, s: State, player: str) -> GameView:

@@ -25,3 +25,10 @@ share one pure hand calculation, so natural 3:2 and ordinary split-21 payouts
 cannot diverge. Dealer natural/settlement information remains absent until the
 hole card is publicly revealed. `test_casino_explanations.py` checks these
 boundaries and reconciles hand plus insurance totals against saved profit.
+
+`public_hands` groups every seat's face-up cards by hand (size, bet, total, soft,
+done, split) in the same order as `players[].cards`, so other seats can read a
+split; it never includes the dealer. `insured` lists public insurance stakes.
+`message` is the instruction for the seat that can act ("Hand 2 of 2 is 12: hit
+or stand.", "The dealer shows an ace: insure for 5 or decline.") and at the end
+the dealer's result for everyone ("Dealer busts with 24; wagers settled.").

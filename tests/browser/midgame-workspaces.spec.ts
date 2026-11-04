@@ -189,8 +189,13 @@ test('legal split, insurance, declaration, challenge and round-closing continuat
         ])
         .find((card) => card.id === item!.next.action.card)!;
       const name = card.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      await page.getByRole('button', { name: new RegExp(`^${name}, bank value`) }).click();
-      await page.getByRole('button', { name: 'Keep card', exact: true }).click();
+      // The response panel lists the cards to keep; the commit names the kept card.
+      await page
+        .getByRole('radiogroup', { name: 'Keep one, hand out the rest', exact: true })
+        .getByRole('radio', { name: new RegExp(name) })
+        .first()
+        .click();
+      await page.getByRole('button', { name: /^Keep / }).click();
     } else {
       await page.getByRole('button', { name: move.label, exact: true }).click();
     }

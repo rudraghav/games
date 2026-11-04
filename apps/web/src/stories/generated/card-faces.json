@@ -994,7 +994,7 @@
     "kind": "wild",
     "card": {
       "id": "wild:wild:0",
-      "label": "Wild Wild",
+      "label": "Wild",
       "color": "wild",
       "subtitle": "UNO",
       "value": "Wild",
@@ -4223,7 +4223,7 @@
     "kind": "roulette",
     "card": {
       "id": "wild:roulette:0",
-      "label": "Wild Colour roulette",
+      "label": "Colour roulette",
       "color": "wild",
       "subtitle": "UNO",
       "value": "Colour roulette",
@@ -6394,6 +6394,3939 @@
       "suit": "action",
       "colors": [],
       "effect": "yoink",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:0",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-0-0",
+      "label": "0",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "0",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:1",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-1-0",
+      "label": "1",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "1",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:2",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-2-0",
+      "label": "2",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "2",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:3",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-3-0",
+      "label": "3",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "3",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:4",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-4-0",
+      "label": "4",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "4",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:5",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-5-0",
+      "label": "5",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "5",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:6",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-6-0",
+      "label": "6",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "6",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:7",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-7-0",
+      "label": "7",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "7",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:8",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-8-0",
+      "label": "8",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "8",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:9",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-9-0",
+      "label": "9",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "9",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:10",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-10-0",
+      "label": "10",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "10",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:11",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-11-0",
+      "label": "11",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "11",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:n:12",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "number",
+    "card": {
+      "id": "n-12-0",
+      "label": "12",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "12",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:plus:+2",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "modifier",
+    "card": {
+      "id": "plus-2",
+      "label": "+2",
+      "color": "blue",
+      "subtitle": "",
+      "value": "+2",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:plus:+4",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "modifier",
+    "card": {
+      "id": "plus-4",
+      "label": "+4",
+      "color": "blue",
+      "subtitle": "",
+      "value": "+4",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:plus:+6",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "modifier",
+    "card": {
+      "id": "plus-6",
+      "label": "+6",
+      "color": "blue",
+      "subtitle": "",
+      "value": "+6",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:plus:+8",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "modifier",
+    "card": {
+      "id": "plus-8",
+      "label": "+8",
+      "color": "blue",
+      "subtitle": "",
+      "value": "+8",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:plus:+10",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "modifier",
+    "card": {
+      "id": "plus-10",
+      "label": "+10",
+      "color": "blue",
+      "subtitle": "",
+      "value": "+10",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:times:\u00d72",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "modifier",
+    "card": {
+      "id": "times-2",
+      "label": "\u00d72",
+      "color": "blue",
+      "subtitle": "",
+      "value": "\u00d72",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:freeze:Freeze",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "action",
+    "card": {
+      "id": "freeze-0",
+      "label": "Freeze",
+      "color": "red",
+      "subtitle": "",
+      "value": "Freeze",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:three:Flip Three",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "action",
+    "card": {
+      "id": "three-0",
+      "label": "Flip Three",
+      "color": "red",
+      "subtitle": "",
+      "value": "Flip Three",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "flip-7:chance:Second Chance",
+    "game": "flip-7",
+    "family": "flip",
+    "kind": "action",
+    "card": {
+      "id": "chance-0",
+      "label": "Second Chance",
+      "color": "red",
+      "subtitle": "",
+      "value": "Second Chance",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:-2",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:-2:0",
+      "label": "-2",
+      "color": "blue",
+      "subtitle": "SKYJO",
+      "value": "-2",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:-1",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:-1:0",
+      "label": "-1",
+      "color": "blue",
+      "subtitle": "SKYJO",
+      "value": "-1",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:0",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:0:0",
+      "label": "0",
+      "color": "blue",
+      "subtitle": "SKYJO",
+      "value": "0",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:1",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:1:0",
+      "label": "1",
+      "color": "green",
+      "subtitle": "SKYJO",
+      "value": "1",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:2",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:2:0",
+      "label": "2",
+      "color": "green",
+      "subtitle": "SKYJO",
+      "value": "2",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:3",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:3:0",
+      "label": "3",
+      "color": "green",
+      "subtitle": "SKYJO",
+      "value": "3",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:4",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:4:0",
+      "label": "4",
+      "color": "green",
+      "subtitle": "SKYJO",
+      "value": "4",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:5",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:5:0",
+      "label": "5",
+      "color": "yellow",
+      "subtitle": "SKYJO",
+      "value": "5",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:6",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:6:0",
+      "label": "6",
+      "color": "yellow",
+      "subtitle": "SKYJO",
+      "value": "6",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:7",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:7:0",
+      "label": "7",
+      "color": "yellow",
+      "subtitle": "SKYJO",
+      "value": "7",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:8",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:8:0",
+      "label": "8",
+      "color": "yellow",
+      "subtitle": "SKYJO",
+      "value": "8",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:9",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:9:0",
+      "label": "9",
+      "color": "coral",
+      "subtitle": "SKYJO",
+      "value": "9",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:10",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:10:0",
+      "label": "10",
+      "color": "coral",
+      "subtitle": "SKYJO",
+      "value": "10",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:11",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:11:0",
+      "label": "11",
+      "color": "coral",
+      "subtitle": "SKYJO",
+      "value": "11",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "skyjo:12",
+    "game": "skyjo",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "sky:12:0",
+      "label": "12",
+      "color": "coral",
+      "subtitle": "SKYJO",
+      "value": "12",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:1",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-1-0",
+      "label": "Trio 1",
+      "color": "violet",
+      "subtitle": "",
+      "value": "1",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:2",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-2-0",
+      "label": "Trio 2",
+      "color": "violet",
+      "subtitle": "",
+      "value": "2",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:3",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-3-0",
+      "label": "Trio 3",
+      "color": "violet",
+      "subtitle": "",
+      "value": "3",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:4",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-4-0",
+      "label": "Trio 4",
+      "color": "violet",
+      "subtitle": "",
+      "value": "4",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:5",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-5-0",
+      "label": "Trio 5",
+      "color": "violet",
+      "subtitle": "",
+      "value": "5",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:6",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-6-0",
+      "label": "Trio 6",
+      "color": "violet",
+      "subtitle": "",
+      "value": "6",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:7",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-7-0",
+      "label": "Trio 7",
+      "color": "yellow",
+      "subtitle": "",
+      "value": "7",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:8",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-8-0",
+      "label": "Trio 8",
+      "color": "violet",
+      "subtitle": "",
+      "value": "8",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:9",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-9-0",
+      "label": "Trio 9",
+      "color": "violet",
+      "subtitle": "",
+      "value": "9",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:10",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-10-0",
+      "label": "Trio 10",
+      "color": "violet",
+      "subtitle": "",
+      "value": "10",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:11",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-11-0",
+      "label": "Trio 11",
+      "color": "violet",
+      "subtitle": "",
+      "value": "11",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "trio:12",
+    "game": "trio",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "trio-12-0",
+      "label": "Trio 12",
+      "color": "violet",
+      "subtitle": "",
+      "value": "12",
+      "suit": "\u2726",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:1",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-1",
+      "label": "1 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "1",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:2",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-2",
+      "label": "2 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "2",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:3",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-3",
+      "label": "3 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "3",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:4",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-4",
+      "label": "4 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "4",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:5",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-5",
+      "label": "5 (2 penalty points)",
+      "color": "blue",
+      "subtitle": "2",
+      "value": "5",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:6",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-6",
+      "label": "6 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "6",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:7",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-7",
+      "label": "7 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "7",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:8",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-8",
+      "label": "8 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "8",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:9",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-9",
+      "label": "9 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "9",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:10",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-10",
+      "label": "10 (3 penalty points)",
+      "color": "yellow",
+      "subtitle": "3",
+      "value": "10",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:11",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-11",
+      "label": "11 (5 penalty points)",
+      "color": "red",
+      "subtitle": "5",
+      "value": "11",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:12",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-12",
+      "label": "12 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "12",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:13",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-13",
+      "label": "13 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "13",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:14",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-14",
+      "label": "14 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "14",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:15",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-15",
+      "label": "15 (2 penalty points)",
+      "color": "blue",
+      "subtitle": "2",
+      "value": "15",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:16",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-16",
+      "label": "16 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "16",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:17",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-17",
+      "label": "17 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "17",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:18",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-18",
+      "label": "18 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "18",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:19",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-19",
+      "label": "19 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "19",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:20",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-20",
+      "label": "20 (3 penalty points)",
+      "color": "yellow",
+      "subtitle": "3",
+      "value": "20",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:21",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-21",
+      "label": "21 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "21",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:22",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-22",
+      "label": "22 (5 penalty points)",
+      "color": "red",
+      "subtitle": "5",
+      "value": "22",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:23",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-23",
+      "label": "23 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "23",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:24",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-24",
+      "label": "24 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "24",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:25",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-25",
+      "label": "25 (2 penalty points)",
+      "color": "blue",
+      "subtitle": "2",
+      "value": "25",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:26",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-26",
+      "label": "26 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "26",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:27",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-27",
+      "label": "27 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "27",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:28",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-28",
+      "label": "28 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "28",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:29",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-29",
+      "label": "29 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "29",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:30",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-30",
+      "label": "30 (3 penalty points)",
+      "color": "yellow",
+      "subtitle": "3",
+      "value": "30",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:31",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-31",
+      "label": "31 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "31",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:32",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-32",
+      "label": "32 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "32",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:33",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-33",
+      "label": "33 (5 penalty points)",
+      "color": "red",
+      "subtitle": "5",
+      "value": "33",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:34",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-34",
+      "label": "34 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "34",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:35",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-35",
+      "label": "35 (2 penalty points)",
+      "color": "blue",
+      "subtitle": "2",
+      "value": "35",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:36",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-36",
+      "label": "36 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "36",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:37",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-37",
+      "label": "37 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "37",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:38",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-38",
+      "label": "38 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "38",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:39",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-39",
+      "label": "39 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "39",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:40",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-40",
+      "label": "40 (3 penalty points)",
+      "color": "yellow",
+      "subtitle": "3",
+      "value": "40",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:41",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-41",
+      "label": "41 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "41",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:42",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-42",
+      "label": "42 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "42",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:43",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-43",
+      "label": "43 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "43",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:44",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-44",
+      "label": "44 (5 penalty points)",
+      "color": "red",
+      "subtitle": "5",
+      "value": "44",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:45",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-45",
+      "label": "45 (2 penalty points)",
+      "color": "blue",
+      "subtitle": "2",
+      "value": "45",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:46",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-46",
+      "label": "46 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "46",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:47",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-47",
+      "label": "47 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "47",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:48",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-48",
+      "label": "48 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "48",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:49",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-49",
+      "label": "49 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "49",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:50",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-50",
+      "label": "50 (3 penalty points)",
+      "color": "yellow",
+      "subtitle": "3",
+      "value": "50",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:51",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-51",
+      "label": "51 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "51",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:52",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-52",
+      "label": "52 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "52",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:53",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-53",
+      "label": "53 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "53",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:54",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-54",
+      "label": "54 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "54",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:55",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-55",
+      "label": "55 (7 penalty points)",
+      "color": "plum",
+      "subtitle": "7",
+      "value": "55",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:56",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-56",
+      "label": "56 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "56",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:57",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-57",
+      "label": "57 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "57",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:58",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-58",
+      "label": "58 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "58",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:59",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-59",
+      "label": "59 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "59",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:60",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-60",
+      "label": "60 (3 penalty points)",
+      "color": "yellow",
+      "subtitle": "3",
+      "value": "60",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:61",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-61",
+      "label": "61 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "61",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:62",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-62",
+      "label": "62 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "62",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:63",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-63",
+      "label": "63 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "63",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:64",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-64",
+      "label": "64 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "64",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:65",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-65",
+      "label": "65 (2 penalty points)",
+      "color": "blue",
+      "subtitle": "2",
+      "value": "65",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:66",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-66",
+      "label": "66 (5 penalty points)",
+      "color": "red",
+      "subtitle": "5",
+      "value": "66",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:67",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-67",
+      "label": "67 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "67",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:68",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-68",
+      "label": "68 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "68",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:69",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-69",
+      "label": "69 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "69",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:70",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-70",
+      "label": "70 (3 penalty points)",
+      "color": "yellow",
+      "subtitle": "3",
+      "value": "70",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:71",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-71",
+      "label": "71 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "71",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:72",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-72",
+      "label": "72 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "72",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:73",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-73",
+      "label": "73 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "73",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:74",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-74",
+      "label": "74 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "74",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:75",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-75",
+      "label": "75 (2 penalty points)",
+      "color": "blue",
+      "subtitle": "2",
+      "value": "75",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:76",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-76",
+      "label": "76 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "76",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:77",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-77",
+      "label": "77 (5 penalty points)",
+      "color": "red",
+      "subtitle": "5",
+      "value": "77",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:78",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-78",
+      "label": "78 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "78",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:79",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-79",
+      "label": "79 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "79",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:80",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-80",
+      "label": "80 (3 penalty points)",
+      "color": "yellow",
+      "subtitle": "3",
+      "value": "80",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:81",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-81",
+      "label": "81 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "81",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:82",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-82",
+      "label": "82 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "82",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:83",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-83",
+      "label": "83 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "83",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:84",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-84",
+      "label": "84 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "84",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:85",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-85",
+      "label": "85 (2 penalty points)",
+      "color": "blue",
+      "subtitle": "2",
+      "value": "85",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:86",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-86",
+      "label": "86 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "86",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:87",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-87",
+      "label": "87 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "87",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:88",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-88",
+      "label": "88 (5 penalty points)",
+      "color": "red",
+      "subtitle": "5",
+      "value": "88",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:89",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-89",
+      "label": "89 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "89",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:90",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-90",
+      "label": "90 (3 penalty points)",
+      "color": "yellow",
+      "subtitle": "3",
+      "value": "90",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:91",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-91",
+      "label": "91 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "91",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:92",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-92",
+      "label": "92 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "92",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:93",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-93",
+      "label": "93 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "93",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:94",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-94",
+      "label": "94 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "94",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:95",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-95",
+      "label": "95 (2 penalty points)",
+      "color": "blue",
+      "subtitle": "2",
+      "value": "95",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:96",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-96",
+      "label": "96 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "96",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:97",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-97",
+      "label": "97 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "97",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:98",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-98",
+      "label": "98 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "98",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:99",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-99",
+      "label": "99 (5 penalty points)",
+      "color": "red",
+      "subtitle": "5",
+      "value": "99",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:100",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-100",
+      "label": "100 (3 penalty points)",
+      "color": "yellow",
+      "subtitle": "3",
+      "value": "100",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:101",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-101",
+      "label": "101 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "101",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:102",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-102",
+      "label": "102 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "102",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:103",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-103",
+      "label": "103 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "103",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "six-nimmt:104",
+    "game": "six-nimmt",
+    "family": "grid",
+    "kind": "number",
+    "card": {
+      "id": "number-104",
+      "label": "104 (1 penalty point)",
+      "color": "green",
+      "subtitle": "1",
+      "value": "104",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:2S",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "2S:0",
+      "label": "2 \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "2",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:3S",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "3S:0",
+      "label": "3 \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "3",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:4S",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "4S:0",
+      "label": "4 \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "4",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:5S",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "5S:0",
+      "label": "5 \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "5",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:6S",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "6S:0",
+      "label": "6 \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "6",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:7S",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "7S:0",
+      "label": "7 \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "7",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:8S",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "8S:0",
+      "label": "8 \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "8",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:9S",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "9S:0",
+      "label": "9 \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "9",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:TS",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "TS:0",
+      "label": "10 \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "10",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:JS",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "JS:0",
+      "label": "J \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "J",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:QS",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "QS:0",
+      "label": "Q \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "Q",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:KS",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "KS:0",
+      "label": "K \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "K",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:AS",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "AS:0",
+      "label": "A \u2660",
+      "color": "ink",
+      "subtitle": "",
+      "value": "A",
+      "suit": "\u2660",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:2H",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "2H:0",
+      "label": "2 \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "2",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:3H",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "3H:0",
+      "label": "3 \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "3",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:4H",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "4H:0",
+      "label": "4 \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "4",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:5H",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "5H:0",
+      "label": "5 \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "5",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:6H",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "6H:0",
+      "label": "6 \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "6",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:7H",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "7H:0",
+      "label": "7 \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "7",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:8H",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "8H:0",
+      "label": "8 \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "8",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:9H",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "9H:0",
+      "label": "9 \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "9",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:TH",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "TH:0",
+      "label": "10 \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "10",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:JH",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "JH:0",
+      "label": "J \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "J",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:QH",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "QH:0",
+      "label": "Q \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "Q",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:KH",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "KH:0",
+      "label": "K \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "K",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:AH",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "AH:0",
+      "label": "A \u2665",
+      "color": "red",
+      "subtitle": "",
+      "value": "A",
+      "suit": "\u2665",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:2D",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "2D:0",
+      "label": "2 \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "2",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:3D",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "3D:0",
+      "label": "3 \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "3",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:4D",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "4D:0",
+      "label": "4 \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "4",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:5D",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "5D:0",
+      "label": "5 \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "5",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:6D",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "6D:0",
+      "label": "6 \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "6",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:7D",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "7D:0",
+      "label": "7 \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "7",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:8D",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "8D:0",
+      "label": "8 \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "8",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:9D",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "9D:0",
+      "label": "9 \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "9",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:TD",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "TD:0",
+      "label": "10 \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "10",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:JD",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "JD:0",
+      "label": "J \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "J",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:QD",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "QD:0",
+      "label": "Q \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "Q",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:KD",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "KD:0",
+      "label": "K \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "K",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:AD",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "AD:0",
+      "label": "A \u2666",
+      "color": "red",
+      "subtitle": "",
+      "value": "A",
+      "suit": "\u2666",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:2C",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "2C:0",
+      "label": "2 \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "2",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:3C",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "3C:0",
+      "label": "3 \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "3",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:4C",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "4C:0",
+      "label": "4 \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "4",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:5C",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "5C:0",
+      "label": "5 \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "5",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:6C",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "6C:0",
+      "label": "6 \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "6",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:7C",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "7C:0",
+      "label": "7 \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "7",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:8C",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "8C:0",
+      "label": "8 \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "8",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:9C",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "9C:0",
+      "label": "9 \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "9",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:TC",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "TC:0",
+      "label": "10 \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "10",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:JC",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "JC:0",
+      "label": "J \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "J",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:QC",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "QC:0",
+      "label": "Q \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "Q",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:KC",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "KC:0",
+      "label": "K \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "K",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:AC",
+    "game": "standard",
+    "family": "standard",
+    "kind": "rank",
+    "card": {
+      "id": "AC:0",
+      "label": "A \u2663",
+      "color": "ink",
+      "subtitle": "",
+      "value": "A",
+      "suit": "\u2663",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:JK:0",
+    "game": "standard",
+    "family": "standard",
+    "kind": "joker",
+    "card": {
+      "id": "JK:0",
+      "label": "Joker",
+      "color": "violet",
+      "subtitle": "",
+      "value": "\u2605",
+      "suit": "",
+      "colors": [],
+      "effect": "",
+      "set_name": null,
+      "set_size": null,
+      "rent_ladder": []
+    }
+  },
+  {
+    "key": "standard:JK:1",
+    "game": "standard",
+    "family": "standard",
+    "kind": "joker",
+    "card": {
+      "id": "JK:1",
+      "label": "Joker",
+      "color": "violet",
+      "subtitle": "",
+      "value": "\u2605",
+      "suit": "",
+      "colors": [],
+      "effect": "",
       "set_name": null,
       "set_size": null,
       "rent_ladder": []

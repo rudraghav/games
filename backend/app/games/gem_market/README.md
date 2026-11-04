@@ -44,3 +44,9 @@ choice. `test_expansion.py` verifies conservation throughout complete 2/4-seat
 matches and reservation privacy; `test_gem_market_edges.py` independently checks
 the final seating round, fewer-development tie-break and one-patron limit.
 `test_table_rules.py` adds separate 2/4-seat completion seeds.
+
+Messages are instructions for the seat that can act (in the final round, "this is
+your last turn"; on a return, how many gems to give back). The room shows other
+seats whom it is waiting for and the attributed last public move. Reserve actions
+state whether a gold is gained ("Reserve … · +1 gold" or "no gold left"), and
+patrons are named by their three required colours.

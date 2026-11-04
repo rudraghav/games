@@ -1,4 +1,5 @@
 import { Sparkles } from 'lucide-react';
+import { TarotCard } from '@games/ui';
 import type { ReadingView } from '@games/api-client';
 import { tarotCharacter } from '@games/api-client/characters';
 import { TarotCharacterImage } from './TarotCharacterImage';
@@ -13,12 +14,25 @@ function characterArtwork(name: string, source: string) {
     : undefined;
 }
 
+/** Raw source URLs in a credit read as their site name; the link keeps the full source. */
+export function readableCredit(credit: string) {
+  return credit.replace(/https?:\/\/[^\s]+/g, (url) => {
+    try {
+      return new URL(url).hostname.replace(/^www\./, '');
+    } catch {
+      return url;
+    }
+  });
+}
+
 export function TarotReading({
   reading,
   cards,
+  imageLoader,
 }: {
   reading: Reading;
   cards: readonly { id: string; label: string }[];
+  imageLoader?: (path: string) => string;
 }) {
   const cardNames = new Map(cards.map((card) => [card.id, card.label]));
   const portraits = [
@@ -35,13 +49,25 @@ export function TarotReading({
     <div className="tarot-reading">
       {reading.cards.map((card) => (
         <article key={card.card_id}>
-          <span className="eyebrow">
-            {card.position}
-            {card.title.toLocaleLowerCase() !== cardNames.get(card.card_id)?.toLocaleLowerCase()
-              ? ` · ${cardNames.get(card.card_id) || card.card_id}`
-              : ''}
-          </span>
-          <h3>{card.title}</h3>
+          <header className="tarot-reading-card-heading">
+            {cardNames.has(card.card_id) ? (
+              <TarotCard
+                compact
+                id={card.card_id}
+                name={cardNames.get(card.card_id)}
+                imageLoader={imageLoader}
+              />
+            ) : null}
+            <div>
+              <span className="eyebrow">
+                {card.position}
+                {card.title.toLocaleLowerCase() !== cardNames.get(card.card_id)?.toLocaleLowerCase()
+                  ? ` · ${cardNames.get(card.card_id) || card.card_id}`
+                  : ''}
+              </span>
+              <h3>{card.title}</h3>
+            </div>
+          </header>
           <div
             className="tarot-perspectives"
             data-variant={card.quirky_interpretation ? 'split' : 'single'}
@@ -98,11 +124,11 @@ export function TarotReading({
               <li key={p.id}>
                 {p.filePage || p.sourcePage ? (
                   <a href={p.filePage || p.sourcePage} target="_blank" rel="noopener noreferrer">
-                    {p.name}: {p.credit}
+                    {p.name}: {readableCredit(p.credit)}
                   </a>
                 ) : (
                   <span>
-                    {p.name}: {p.credit}
+                    {p.name}: {readableCredit(p.credit)}
                   </span>
                 )}
                 {p.licenseUrl && p.license ? (
@@ -124,6 +150,11 @@ export function TarotReading({
       <div className="tarot-next-step">
         <span className="eyebrow">Your next small move</span>
         <p>{reading.next_step}</p>
+        {reading.astrology?.interpretation.next_step ? (
+          <p className="tarot-next-step-chart">
+            <strong>From your chart:</strong> {reading.astrology.interpretation.next_step}
+          </p>
+        ) : null}
       </div>
     </div>
   );

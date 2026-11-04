@@ -225,12 +225,14 @@ def test_uno_pending_cause_direction_recipient_and_elimination_are_public_withou
     for player in state["order"]:
         detail = engine.project_view(state, player).detail
         assert detail == {"color": "red", "penalty": 0, "direction": -1,
-                          "pending_kind": "roulette", "next_player": "p2", "elimination_limit": 25}
+                          "pending_kind": "roulette", "next_player": "p2", "elimination_limit": 25,
+                          "last_event": None, "you_drew": [], "out": [{"player": "p3", "cards": 0}]}
     classic, state = uno_case()
     state["pending"] = {"type": "challenge", "actor": "p2", "illegal": True}
     detail = classic.project_view(state, "p0").detail
     assert detail["pending_kind"] == "challenge" and detail["elimination_limit"] is None
     assert "illegal" not in detail and "actor" not in detail
+    assert "illegal" not in str(detail["last_event"]) and detail["last_event"]["outcome"] is None
 
 
 def test_classic_deck_matches_publisher_inventory():

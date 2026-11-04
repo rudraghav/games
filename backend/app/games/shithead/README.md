@@ -121,3 +121,15 @@ when decisions are available. Waiting and blind-slot-only views no longer reserv
 from 474.8px to 256.8px; the visible hand keeps its 160px footprint. Two- and
 five-seat setup/playing selection checks show zero movement of pile, hand,
 own table or opponent positions, with 44px touch controls and no page overflow.
+
+## Table clarity — 3 November 2026
+
+`prompt(state)` writes every engine message for the player who acts next: "Match
+or beat 9 (or play a 2 or 10) from your hand, or take the pile", the face-up
+variant, a blind-flip instruction, "Lead any card…" on an empty pile, and "You
+burned the pile. Lead any card…" for the burner's extra turn. Messages no longer
+restate the previous move anonymously ("8 ♥ cannot beat the pile…", "Pile
+taken: 31 cards", "Burned 4; play again."); the room's attributed Last move line
+and the table's pile note carry that, and the banner shows the engine message
+only to the seat that can act. No rule, projection or state shape changed.
+History labels read "Played: 5 ♣" and "Flipped a hidden card".

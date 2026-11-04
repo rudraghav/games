@@ -31,10 +31,28 @@ class RummyEngine(BaseEngine):
                 rules=[
                     "Draw one, discard one, and arrange your 13 cards.",
                     "Declare with two sequences, including one pure sequence.",
-                    "Points format. Jokers are wild; maximum loss is 80 points.",
+                    "The face-up cut card sets the wild rank: every card of that rank and both "
+                    "printed jokers act as jokers. A printed-joker cut makes aces wild.",
+                    "A joker on the discard can’t be taken, and a card taken from the discard "
+                    "can’t be discarded on the same turn.",
+                    "Points format: unmatched cards count, capped at 80. Dropping costs 20 "
+                    "before your first discard and 40 later; a false declaration costs 80.",
                 ],
             )
         )
+
+    @staticmethod
+    def _draw_prompt(s: State) -> str:
+        """The next drawer's instruction; the attributed last move lives in room history."""
+        top = s["discard"][-1] if s["discard"] else None
+        if top is None:
+            return "Draw from the stock."
+        if is_joker(top, s["wild"]):
+            return (
+                f"Draw from the stock. The {card_view(top).label} on the discard is a joker "
+                "and can’t be taken."
+            )
+        return f"Draw from the stock or take the {card_view(top).label} from the discard."
 
     def setup(
         self, players: list[str], settings: dict[str, bool], seed: int | None = None
@@ -43,7 +61,7 @@ class RummyEngine(BaseEngine):
         cards = standard_deck(2, 2)
         rng(seed).shuffle(cards)
         cut = cards.pop()
-        return {
+        state: State = {
             "phase": "draw",
             "order": players,
             "turn": 0,
@@ -57,8 +75,9 @@ class RummyEngine(BaseEngine):
             "open_pickup": None,
             "scores": {p: 0 for p in players},
             "winners": [],
-            "message": "Draw, group your cards, then discard.",
         }
+        state["message"] = self._draw_prompt(state)
+        return state
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
         if s["phase"] == "finished" or player != s["order"][s["turn"]] or player in s["dropped"]:
@@ -100,6 +119,9 @@ class RummyEngine(BaseEngine):
                 draw(s) if action.type == "draw_stock" else [s["discard"].pop()]
             )
             s["phase"] = "discard"
+            s["message"] = (
+                "Discard one card, or declare with it if your other 13 cards form a valid hand."
+            )
             return s
         if action.type == "fold":
             s["dropped"][player] = 20 if player not in s["played"] else 40
@@ -112,7 +134,6 @@ class RummyEngine(BaseEngine):
                     self._finish(s, player, declared=True)
                     return s
                 s["dropped"][player] = 80
-                s["message"] = "Invalid declaration: 80 points."
             if player not in s["played"]:
                 s["played"].append(player)
         active = [p for p in s["order"] if p not in s["dropped"]]
@@ -123,6 +144,8 @@ class RummyEngine(BaseEngine):
             s["turn"] = (s["turn"] + 1) % len(s["order"])
             while s["order"][s["turn"]] in s["dropped"]:
                 s["turn"] = (s["turn"] + 1) % len(s["order"])
+            # Written for the next drawer; who dropped or declared is public history.
+            s["message"] = self._draw_prompt(s)
         return s
 
     def project_view(self, s: State, player: str) -> GameView:
@@ -157,6 +180,15 @@ class RummyEngine(BaseEngine):
             detail={
                 "wild_rank": s["wild"], "analysis": analysis, "discard_analyses": discards,
                 "drop_cost": 20 if player not in s["played"] else 40,
+                # Public: drops and declarations are table actions. A false
+                # declaration is the only 80-point penalty.
+                "out": {
+                    p: {
+                        "penalty": penalty,
+                        "reason": "false_declaration" if penalty == 80 else "drop",
+                    }
+                    for p, penalty in s["dropped"].items()
+                },
                 "finish_reason": s.get("finish_reason"),
                 "settlements": {
                     p: {"analysis": hand_analysis(s["hands"][p], s["wild"]),

@@ -1,0 +1,577 @@
+/*
+ * Printed card faces (PlayingCard / CardPile). Tables decide how big a card is;
+ * each face scales its printing with its own frame (container units), so the
+ * same face stays legible from a 30px 6 nimmt! row to an 82px hand.
+ * Contrast targets WCAG AA: 4.5:1 for small print, 3:1 for large numerals.
+ */
+:root {
+  --color-uno-red: #cc3d2c;
+  --color-uno-yellow: #f1bf33;
+  --color-uno-green: #2a6e41;
+  --color-uno-blue: #255a9e;
+  --color-uno-yellow-ink: #4a3305;
+}
+
+@layer components {
+  /* ===== Standard 52-card deck (Hold'em, Teen Patti, Blackjack, Rummy, Shithead, The Gang) ===== */
+  .playing-card.playing-card--standard {
+    container-type: inline-size;
+  }
+  .playing-card.playing-card--standard .standard-card-art {
+    position: absolute;
+    inset: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    display: block;
+  }
+  .playing-card.playing-card--standard.playing-card--compact .standard-card-art {
+    inset: 1px;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+  }
+  .playing-card--standard :is(.standard-index, .standard-pip) {
+    display: none;
+  }
+  .playing-card--standard[data-ink='red'] {
+    --standard-ink: #c22a20;
+  }
+  .playing-card--standard[data-ink='black'] {
+    --standard-ink: #1c1e1b;
+  }
+  /* Below ~60px the printed corner shrinks to 5-7px: print a large index over it, and give
+     number cards an index-first face (rank, suit and one large pip) instead of tiny pips. */
+  @container (max-width: 60px) {
+    .playing-card--standard[data-standard-face='pips'] .standard-card-art {
+      display: none;
+    }
+    .playing-card--standard .standard-index {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      display: grid;
+      justify-items: center;
+      align-content: start;
+      gap: 1px;
+      min-width: 38cqw;
+      padding: 3px 2px 4px;
+      border-bottom-right-radius: 7px;
+      background: #fff;
+      color: var(--standard-ink, #1c1e1b);
+      font-family: var(--font-body, Arial), sans-serif;
+      line-height: 0.9;
+    }
+    .playing-card--standard .standard-index b {
+      font-size: clamp(12px, 38cqw, 19px);
+      font-weight: 800;
+      letter-spacing: -0.07em;
+    }
+    .playing-card--standard .standard-index > svg {
+      width: clamp(9px, 27cqw, 14px);
+      height: clamp(9px, 27cqw, 14px);
+      fill: currentColor;
+    }
+    .playing-card--standard .standard-pip {
+      position: absolute;
+      right: 7%;
+      bottom: 6%;
+      display: block;
+      width: 52cqw;
+      height: 52cqw;
+      fill: var(--standard-ink, #1c1e1b);
+    }
+    .playing-card--standard[data-standard-face='joker'] .standard-index {
+      padding-inline: 2px;
+    }
+    .playing-card--standard[data-standard-face='joker'] .standard-index b {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      text-transform: uppercase;
+      letter-spacing: -0.14em;
+      font-size: clamp(8px, 22cqw, 12px);
+    }
+  }
+
+  /* ===== Uno and Uno No Mercy ===== */
+  .playing-card.playing-card--shedding {
+    container-type: inline-size;
+    font-family: var(--font-body, Arial), sans-serif;
+  }
+  .playing-card.playing-card--shedding[data-color='red'] {
+    --card-color: var(--color-uno-red);
+  }
+  .playing-card.playing-card--shedding[data-color='yellow'] {
+    --card-color: var(--color-uno-yellow);
+  }
+  .playing-card.playing-card--shedding[data-color='green'] {
+    --card-color: var(--color-uno-green);
+  }
+  .playing-card.playing-card--shedding[data-color='blue'] {
+    --card-color: var(--color-uno-blue);
+  }
+  .playing-card.playing-card--shedding[data-color='wild'] {
+    background: conic-gradient(
+      var(--color-uno-red),
+      var(--color-uno-yellow),
+      var(--color-uno-green),
+      var(--color-uno-blue),
+      var(--color-uno-red)
+    );
+  }
+  .playing-card--shedding .shedding-index {
+    position: absolute;
+    z-index: 1;
+    top: 2px;
+    left: 3px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: clamp(11px, 19cqw, 15px);
+    font-weight: 850;
+    line-height: 1;
+  }
+  .playing-card--shedding .shedding-index > svg {
+    width: 1.05em;
+    height: 1.05em;
+    stroke-width: 2.6;
+  }
+  /* The colour, spelled out: R / Y / G / B never depends on seeing hue. */
+  .playing-card--shedding .shedding-colour {
+    display: grid;
+    place-items: center;
+    width: clamp(15px, 24cqw, 18px);
+    height: clamp(15px, 24cqw, 18px);
+    border-radius: 50%;
+    background: var(--color-white);
+    box-shadow: 0 0 0 1.5px var(--card-color);
+    color: var(--card-color);
+    font-size: clamp(11px, 16cqw, 12.5px);
+    font-weight: 850;
+    line-height: 1;
+  }
+  .playing-card--shedding[data-color='yellow']
+    :is(.shedding-colour, .shedding-face, .shedding-index, .card-action-name) {
+    color: var(--color-uno-yellow-ink);
+  }
+  .playing-card--shedding .shedding-face {
+    position: absolute;
+    inset: 19px 5px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    background: var(--color-white);
+    border-radius: 48%;
+    color: var(--card-color);
+    font-weight: 850;
+  }
+  .playing-card--shedding .shedding-face > strong {
+    font-size: clamp(15px, 45cqw, 34px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .playing-card--shedding .shedding-face > svg {
+    width: 44cqw;
+    height: 44cqw;
+    flex: none;
+    stroke-width: 2.5;
+  }
+  .playing-card--shedding .shedding-face[data-design='reverse-draw'] > svg {
+    width: 30cqw;
+    height: 30cqw;
+  }
+  .playing-card--shedding .shedding-face[data-design='reverse-draw'] > strong {
+    font-size: clamp(12px, 29cqw, 22px);
+  }
+  .playing-card--shedding .shedding-draw-mark {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .playing-card--shedding .shedding-draw-mark > svg {
+    position: absolute;
+    inset: 4% 8%;
+    width: 84%;
+    height: 92%;
+    fill: currentColor;
+    fill-opacity: 0.09;
+    stroke: currentColor;
+    stroke-width: 2;
+    opacity: 0.55;
+  }
+  .playing-card--shedding .shedding-draw-mark > strong {
+    position: relative;
+    font-size: clamp(14px, 44cqw, 32px);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    text-shadow: 0 0 3px var(--color-white);
+  }
+  .playing-card.playing-card--shedding .card-action-name {
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 23px;
+    font-size: clamp(11px, 15cqw, 12px);
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: none;
+    overflow-wrap: normal;
+  }
+  /* Playable cards lift with an ink ring that shows on every colour (a sage edge vanished on
+     green); the rest keep their true colours and only fade, so yellow still reads as yellow. */
+  .playing-card.playing-card--shedding[data-playable='true']:not(.playing-card--selected) {
+    translate: 0 -6px;
+    border-color: var(--color-white);
+    box-shadow:
+      0 0 0 2px var(--color-ink),
+      0 7px 14px #12291b45;
+  }
+  .playing-card.playing-card--shedding[data-playable='false'] {
+    filter: none;
+    opacity: 0.72;
+  }
+  /* Discards, activity and phone piles: no room for a caption, so the face and corners carry it. */
+  @container (max-width: 54px) {
+    .playing-card.playing-card--shedding .card-action-name {
+      display: none;
+    }
+    .playing-card--shedding .shedding-face {
+      inset: clamp(13px, 32cqw, 17px) 3px 6px;
+    }
+  }
+
+  /* ===== Flip 7 ===== */
+  .playing-card.playing-card--flip:not(.playing-card--back) {
+    --flip-ink: var(--color-white);
+    --flip-face-ink: var(--card-color);
+    container-type: inline-size;
+    background: var(--card-color);
+    border: 3px solid var(--color-white);
+    color: var(--flip-ink);
+    font-family: var(--font-body, Arial), sans-serif;
+  }
+  .playing-card.playing-card--flip[data-flip-kind='number'] {
+    --card-color: #efb944;
+    --flip-ink: #432f04;
+    --flip-face-ink: #432f04;
+  }
+  .playing-card.playing-card--flip:is([data-flip-kind='modifier'], [data-flip-kind='multiplier']) {
+    --card-color: #2d64a4;
+  }
+  .playing-card.playing-card--flip:is(
+      [data-flip-kind='freeze'],
+      [data-flip-kind='flip-three'],
+      [data-flip-kind='second-chance']
+    ) {
+    --card-color: #c53e2f;
+  }
+  .playing-card--flip .flip-index {
+    position: absolute;
+    z-index: 1;
+    top: 2px;
+    left: 3px;
+    font-size: clamp(9px, 22cqw, 15px);
+    font-weight: 850;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .playing-card--flip .flip-index > svg {
+    display: block;
+    width: 1.15em;
+    height: 1.15em;
+    stroke-width: 2.6;
+  }
+  .playing-card--flip .flip-face {
+    position: absolute;
+    inset: 25cqw 5cqw 15cqw;
+    display: grid;
+    place-items: center;
+    border-radius: 46%;
+    background: var(--color-white);
+    color: var(--flip-face-ink);
+    font-weight: 850;
+  }
+  .playing-card--flip:is([data-flip-kind='modifier'], [data-flip-kind='multiplier']) .flip-face {
+    inset: 24cqw 5cqw 31cqw;
+  }
+  /* Action names need two lines on phone rows ("Second / Chance"). */
+  .playing-card--flip:is(
+      [data-flip-kind='freeze'],
+      [data-flip-kind='flip-three'],
+      [data-flip-kind='second-chance']
+    )
+    .flip-face {
+    inset: 22cqw 5cqw 45cqw;
+  }
+  .playing-card--flip .flip-face > strong {
+    font-size: clamp(16px, 52cqw, 36px);
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+  .playing-card--flip .flip-face > strong[data-chars='2'] {
+    font-size: clamp(14px, 42cqw, 30px);
+  }
+  .playing-card--flip .flip-face > strong[data-chars='3'] {
+    font-size: clamp(12px, 33cqw, 24px);
+    letter-spacing: -0.07em;
+  }
+  .playing-card--flip .flip-face > svg {
+    width: 56cqw;
+    height: 56cqw;
+    stroke-width: 2.3;
+  }
+  .playing-card--flip[data-flip-kind='freeze'] .flip-face {
+    background: #e5f1fa;
+    color: #1d5a8e;
+  }
+  .playing-card--flip[data-flip-kind='second-chance'] .flip-face {
+    background: #fde9ee;
+    color: #ad2547;
+  }
+  .playing-card--flip .flip-face > .flip-three-mark {
+    width: 64cqw;
+    height: 64cqw;
+  }
+  .playing-card--flip .flip-three-mark rect {
+    fill: var(--color-white);
+    stroke: currentColor;
+    stroke-width: 2.8;
+  }
+  .playing-card--flip .flip-three-mark text {
+    fill: currentColor;
+    font-size: 23px;
+    font-weight: 850;
+    font-family: var(--font-body, Arial), sans-serif;
+  }
+  .playing-card--flip .flip-caption {
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    display: grid;
+    place-items: center;
+    height: 30cqw;
+    padding-inline: 1px;
+    font-size: clamp(8px, 17cqw, 12px);
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    overflow-wrap: normal;
+  }
+  .playing-card--flip:is(
+      [data-flip-kind='freeze'],
+      [data-flip-kind='flip-three'],
+      [data-flip-kind='second-chance']
+    )
+    .flip-caption {
+    height: 44cqw;
+    line-height: 1.02;
+  }
+
+  /* ===== Skyjo, Trio and 6 nimmt! (grid family) ===== */
+  .playing-card.playing-card--grid[data-color='yellow'] {
+    color: #3a2905;
+  }
+  .playing-card.playing-card--grid .grid-card-value[data-chars='3'] {
+    letter-spacing: -0.06em;
+    font-variant-numeric: tabular-nums;
+  }
+  /* Skyjo prints five bands: the two best cards are not the 0's blue. */
+  .playing-card.playing-card--grid[data-grid-band='negative'] {
+    --card-color: #3d3f96;
+  }
+  .playing-card.playing-card--grid[data-grid-band='zero'] {
+    --card-color: #2a73a8;
+  }
+  .playing-card.playing-card--grid[data-grid-band='low'] {
+    --card-color: #2f7a46;
+  }
+  .playing-card.playing-card--grid[data-grid-band='middle'] {
+    --card-color: #edbe4a;
+    color: #3a2905;
+  }
+  .playing-card.playing-card--grid[data-grid-band='high'] {
+    --card-color: #c4402f;
+  }
+  /* 6 nimmt!: penalty colours, each readable at row size. */
+  .playing-card.playing-card--grid[data-grid-game='six-nimmt'][data-color='green'] {
+    --card-color: #2f7a46;
+  }
+  .playing-card.playing-card--grid[data-grid-game='six-nimmt'][data-color='blue'] {
+    --card-color: #2c66a6;
+  }
+  .playing-card.playing-card--grid[data-grid-game='six-nimmt'][data-color='yellow'] {
+    --card-color: #edbe4a;
+  }
+  .playing-card.playing-card--grid[data-grid-game='six-nimmt'][data-color='red'] {
+    --card-color: #c4402f;
+  }
+  /* Trio: one colour per number for recall; the winning 7 stays gold. */
+  .playing-card.playing-card--grid[data-grid-number='1'] {
+    --card-color: #a34383;
+  }
+  .playing-card.playing-card--grid[data-grid-number='2'] {
+    --card-color: #6d3fa0;
+  }
+  .playing-card.playing-card--grid[data-grid-number='3'] {
+    --card-color: #3a4aa8;
+  }
+  .playing-card.playing-card--grid[data-grid-number='4'] {
+    --card-color: #1f6f9f;
+  }
+  .playing-card.playing-card--grid[data-grid-number='5'] {
+    --card-color: #1d7a75;
+  }
+  .playing-card.playing-card--grid[data-grid-number='6'] {
+    --card-color: #2f7d3a;
+  }
+  .playing-card.playing-card--grid[data-grid-number='7'] {
+    --card-color: #e9b43c;
+    color: #3a2905;
+  }
+  .playing-card.playing-card--grid[data-grid-number='8'] {
+    --card-color: #66661a;
+  }
+  .playing-card.playing-card--grid[data-grid-number='9'] {
+    --card-color: #a9531d;
+  }
+  .playing-card.playing-card--grid[data-grid-number='10'] {
+    --card-color: #b3302a;
+  }
+  .playing-card.playing-card--grid[data-grid-number='11'] {
+    --card-color: #7d2a4a;
+  }
+  .playing-card.playing-card--grid[data-grid-number='12'] {
+    --card-color: #545e6e;
+  }
+
+  /* ===== Deal: Rent is an action, a wild shows which half it is played as ===== */
+  .playing-card--property .property-band.deal-rent-band {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding-inline: 4px;
+    background: #6a5675;
+  }
+  .playing-card--property .deal-rent-band > span {
+    flex: 0 1 auto;
+    width: auto;
+    height: 70%;
+    aspect-ratio: 1;
+    min-width: 0;
+    border-radius: 50%;
+    background: var(--property-ink);
+    box-shadow: 0 0 0 1px var(--color-white);
+  }
+  .playing-card--property .property-band[data-wild='true'] > span[data-active='true'] {
+    flex: 2.4;
+  }
+  .playing-card--property .property-band[data-wild='true'] > span[data-active='false'] {
+    background: repeating-linear-gradient(
+      135deg,
+      var(--property-ink) 0 2px,
+      color-mix(in srgb, var(--property-ink) 30%, white) 2px 5px
+    );
+  }
+  .playing-card--property .property-active-label[data-property-color]::before {
+    content: '';
+    display: inline-block;
+    width: 0.95em;
+    height: 0.95em;
+    margin-right: 0.3em;
+    border-radius: 2px;
+    background: var(--property-ink);
+    box-shadow: 0 0 0 1px #0002;
+    vertical-align: -0.12em;
+  }
+  .playing-card.playing-card--property .property-value[data-no-cash] {
+    font-size: clamp(7px, 9cqw, 10px);
+    font-weight: 750;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  /* Hand cards: decision text (set size, ladder, colours, active colour) at 8px or more. */
+  .playing-card.playing-card--property:not(.playing-card--compact) .deal-rent-label {
+    font-size: 8px;
+  }
+  .playing-card.playing-card--property:not(.playing-card--compact) .deal-rent-ladder small {
+    font-size: 8px;
+  }
+  .playing-card.playing-card--property:not(.playing-card--compact)
+    :is(.property-color-label, .property-active-label) {
+    font-size: 9px;
+  }
+  /* Board and inspector cards (80px): keep only what decides a move, at a readable size.
+     The band already shows the colours and the ladder's length is the set size. */
+  @container (max-width: 90px) {
+    .playing-card.playing-card--property.playing-card--compact .deal-card-meta {
+      font-size: 7px;
+      letter-spacing: 0.02em;
+    }
+    .playing-card.playing-card--property.playing-card--compact .property-value {
+      font-size: 11px;
+    }
+    .playing-card.playing-card--property.playing-card--compact .property-value[data-no-cash] {
+      font-size: 7px;
+    }
+    .playing-card.playing-card--property.playing-card--compact .property-name {
+      font-size: 10px;
+    }
+    .playing-card.playing-card--property.playing-card--compact[data-card-kind='property']
+      .property-color-label,
+    .playing-card.playing-card--property.playing-card--compact .deal-rent-label,
+    .playing-card.playing-card--property.playing-card--compact
+      .deal-card-foot
+      > span:not(.deal-rent-ladder):not(.deal-rent-label) {
+      display: none;
+    }
+    .playing-card.playing-card--property.playing-card--compact .property-color-label {
+      font-size: 7px;
+      line-height: 1.1;
+    }
+    .playing-card.playing-card--property.playing-card--compact .property-active-label {
+      font-size: 8px;
+      line-height: 1.1;
+    }
+    .playing-card.playing-card--property.playing-card--compact .deal-card-foot {
+      align-content: center;
+    }
+    .playing-card.playing-card--property.playing-card--compact .deal-rent-ladder small {
+      display: none;
+    }
+    .playing-card.playing-card--property.playing-card--compact .deal-rent-ladder b {
+      font-size: 8px;
+    }
+    /* A wild's kind label already says WILD: give its active colour the title's line. */
+    .playing-card.playing-card--property.playing-card--compact
+      .property-band[data-wild='true']
+      ~ .deal-card-body
+      .property-name,
+    .playing-card.playing-card--property.playing-card--compact .deal-no-cash-glyph {
+      display: none;
+    }
+  }
+
+  /* ===== Piles ===== */
+  .pile-shadow:has(> .playing-card--empty) {
+    box-shadow: none;
+  }
+  /* The empty slot takes the table's own text colour, so "Empty" reads on a dark felt too. */
+  .card-pile .playing-card.playing-card--empty {
+    border: 2px dashed currentColor;
+    background: transparent;
+    color: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    opacity: 0.85;
+  }
+}

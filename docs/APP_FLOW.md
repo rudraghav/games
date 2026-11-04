@@ -102,6 +102,10 @@ and ending a match remain deliberate actions. Escape closes dialogs and returns
 keyboard focus to the opener. Live turn summaries distinguish the normal actor
 from another player who has a legal reaction or simultaneous decision. Results
 show team wins/losses for cooperative games and the correct score ordering/units.
+At match end results and the rematch lobby come before the final table, and
+starting a rematch scrolls back to the turn banner. A stale move returns a
+game-neutral 409 ("The table changed while you were choosing…"); the client
+refreshes and keeps the viewer's unsent draft.
 
 After create/join commits, room entry cancels any earlier player-profile query
 and fetches the authoritative identity before navigating. A late pre-entry

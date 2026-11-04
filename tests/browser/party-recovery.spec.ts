@@ -145,20 +145,20 @@ test('party drafts survive same-prompt updates but never carry into a new prompt
           const data = partyDetails((await roomAs(page, roomId)).game!.detail);
           if (data.spotlight === hostId) break;
           const actor = players[identities.indexOf(data.spotlight)];
-          await submit(actor, /^Pass$/);
+          await submit(actor, /^Pass/);
           await nextPrompt(actor, data.round + 1);
         }
         expect(partyDetails((await roomAs(page, roomId)).game!.detail).spotlight).toBe(hostId);
       }
       const draftLabel =
-        mode === 'hot-seat' ? /^A ·/ : mode === 'most-likely' ? /^Recovery friend 1$/ : /^Share ·/;
+        mode === 'hot-seat' ? /^A ·/ : mode === 'most-likely' ? /^Recovery friend 1$/ : /^Spill ·/;
       const draft = page
         .locator('.party-choice')
         .filter({ has: page.locator('.party-choice__label').filter({ hasText: draftLabel }) });
       await draft.click();
       await expect(draft).toHaveAttribute('aria-pressed', 'true');
       const versionBeforeInspect = (await roomAs(page, roomId)).match_version;
-      if (mode !== 'spill-or-chill') await submit(friends[0], /^Pass$/);
+      if (mode !== 'spill-or-chill') await submit(friends[0], /^Pass/);
       await receiveLatest(page);
       if (mode !== 'spill-or-chill')
         await expect(page.locator('.party-decisions')).toContainText('1 of 3 locked in');
@@ -169,12 +169,12 @@ test('party drafts survive same-prompt updates but never carry into a new prompt
       );
 
       // The same identity commits a different answer in another tab.
-      await submit(sibling, /^Pass$/);
+      await submit(sibling, /^Pass/);
       await receiveLatest(page);
       if (mode !== 'spill-or-chill') {
         await expect(page.locator('.party-locked')).toContainText('Your choice: Passed');
         expect(partyDetails((await roomAs(page, roomId)).game!.detail).ownChoice).toBe('pass');
-        await submit(friends[1], /^Pass$/);
+        await submit(friends[1], /^Pass/);
       }
       await receiveLatest(page);
       await expect(page.locator('.party-reveal')).toBeVisible();
@@ -188,7 +188,7 @@ test('party drafts survive same-prompt updates but never carry into a new prompt
           const data = partyDetails((await roomAs(page, roomId)).game!.detail);
           if (data.spotlight === hostId) break;
           const actor = players[identities.indexOf(data.spotlight)];
-          await submit(actor, /^Pass$/);
+          await submit(actor, /^Pass/);
           await nextPrompt(actor, data.round + 1);
         }
         expect(partyDetails((await roomAs(page, roomId)).game!.detail).spotlight).toBe(hostId);
@@ -199,7 +199,7 @@ test('party drafts survive same-prompt updates but never carry into a new prompt
       ).toBeDisabled();
       expect(partyDetails((await roomAs(page, roomId)).game!.detail).ownChoice).toBeNull();
       // The new prompt requires and saves a fresh, deliberate choice.
-      await submit(page, /^Pass$/);
+      await submit(page, /^Pass/);
       const saved = await roomAs(page, roomId);
       const savedChoice = partyDetails(saved.game!.detail);
       expect(savedChoice.ownChoice).toBe('pass');

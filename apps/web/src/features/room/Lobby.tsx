@@ -46,9 +46,46 @@ export function Lobby({
       setCopyError('Copy isn’t available here. Select the room code below.');
     }
   }
+  // After a match the rematch controls come first, right under the results;
+  // the seats and invite details follow for anyone who wants them.
+  const rematch = room.status === 'finished';
+  const startControls = (
+    <>
+      <div className="lobby-start" role="group" aria-label="Get ready to play">
+        <Button variant={own?.ready ? 'secondary' : 'primary'} pending={pending} onClick={ready}>
+          {own?.ready ? (
+            <>
+              <Check size={16} />
+              You’re ready
+            </>
+          ) : own?.seated ? (
+            'I’m ready'
+          ) : (
+            'Take an open seat'
+          )}
+        </Button>
+        {host ? (
+          <Button onClick={start} disabled={!canStart || pending}>
+            {rematch ? 'Start rematch' : game.family === 'tarot' ? 'Open my deck' : 'Start game'}
+            <ArrowRight size={16} />
+          </Button>
+        ) : (
+          <p className="small muted">The host starts when everyone’s ready.</p>
+        )}
+      </div>
+      {!canStart && host ? (
+        <p className="small muted">
+          {seated.length < game.minPlayers
+            ? `Bring at least ${game.minPlayers} players to the table.`
+            : 'Everyone seated needs to be connected and ready.'}
+        </p>
+      ) : null}
+    </>
+  );
   return (
-    <section className="lobby">
+    <section className="lobby" data-rematch={rematch || undefined}>
       <div className="lobby-body">
+        {rematch ? startControls : null}
         <div className="section-heading">
           <div className="lobby-summary">
             <div className="lobby-game" data-tone={game.color}>
@@ -152,39 +189,7 @@ export function Lobby({
               </span>
             ))}
         </div>
-        <div className="lobby-start" role="group" aria-label="Get ready to play">
-          <Button variant={own?.ready ? 'secondary' : 'primary'} pending={pending} onClick={ready}>
-            {own?.ready ? (
-              <>
-                <Check size={16} />
-                You’re ready
-              </>
-            ) : own?.seated ? (
-              'I’m ready'
-            ) : (
-              'Take an open seat'
-            )}
-          </Button>
-          {host ? (
-            <Button onClick={start} disabled={!canStart || pending}>
-              {room.status === 'finished'
-                ? 'Start rematch'
-                : game.family === 'tarot'
-                  ? 'Open my deck'
-                  : 'Start game'}
-              <ArrowRight size={16} />
-            </Button>
-          ) : (
-            <p className="small muted">The host starts when everyone’s ready.</p>
-          )}
-        </div>
-        {!canStart && host ? (
-          <p className="small muted">
-            {seated.length < game.minPlayers
-              ? `Bring at least ${game.minPlayers} players to the table.`
-              : 'Everyone seated needs to be connected and ready.'}
-          </p>
-        ) : null}
+        {rematch ? null : startControls}
         {room.members.some((member) => !member.seated) ? (
           <p className="small muted">
             Waiting for the next seat:{' '}

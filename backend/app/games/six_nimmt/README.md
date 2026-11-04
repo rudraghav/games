@@ -15,3 +15,11 @@ secret choices at one version. Exactly one commits; the other receives a conflic
 The committed lock survives retry and application restart without revealing its
 number to a waiting player. Reviewed submissions then reveal all numbers in
 ascending order; receipts contain committed versions only.
+
+Table messages and projections (2026-11-03): messages instruct the seats that can
+act (choose a number; the low-card owner chooses a row; the first seat continues).
+`detail.resolution` lists each resolved number in order with its row, whether it
+was placed, was a sixth card, or was a low card that chose a row, and any captured
+cards and penalties. `detail.unresolved` lists revealed numbers still waiting on a
+low-card row choice. Both contain only numbers that were already public on the
+table. Public history labels: “Locked a secret number”, “Took a row of penalty cards”.

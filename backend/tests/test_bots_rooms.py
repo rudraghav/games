@@ -58,6 +58,13 @@ def drive(client, room, header):
     )
 
 
+def unpaced(monkeypatch):
+    """Drive bots without waiting; pacing has its own focused tests."""
+    monkeypatch.setattr("app.rooms.service.BOT_DELAY_SECONDS", 0)
+    monkeypatch.setattr("app.rooms.bots.BOT_REVIEW_DELAY_SECONDS", {})
+    monkeypatch.setattr("app.rooms.bots.BOT_CATCH_GRACE_SECONDS", 0)
+
+
 def move(client, room, header, action):
     return client.post(
         f"/v1/rooms/{room['id']}/actions",
@@ -185,7 +192,7 @@ def test_bot_drive_is_paced_concurrent_idempotent_and_restart_safe(client, monke
     with sessions()() as db:
         assert db.get(Match, room["match_id"]).bot_memory == memory
         assert db.get(Match, room["match_id"]).bot_due_at == due
-    monkeypatch.setattr("app.rooms.service.BOT_DELAY_SECONDS", 0)
+    unpaced(monkeypatch)
     with TestClient(app) as restarted:
         live = restarted.get(path, headers=host).json()
         human = move(restarted, live, host, live["game"]["actions"][0]["action"])
@@ -202,7 +209,7 @@ def test_bot_drive_is_paced_concurrent_idempotent_and_restart_safe(client, monke
 
 
 def test_bots_ignore_their_lease_but_missing_humans_pause_them(client, monkeypatch):
-    monkeypatch.setattr("app.rooms.service.BOT_DELAY_SECONDS", 0)
+    unpaced(monkeypatch)
     room, host = create_bots(client, game="uno", seats=3)
     guest = player(client)
     path = f"/v1/rooms/{room['id']}"
@@ -230,7 +237,7 @@ def test_bots_ignore_their_lease_but_missing_humans_pause_them(client, monkeypat
 
 
 def test_ranked_gang_bots_wait_without_churning_human_choices(client, monkeypatch):
-    monkeypatch.setattr("app.rooms.service.BOT_DELAY_SECONDS", 0)
+    unpaced(monkeypatch)
     room, host = create_bots(client, game="the-gang", seats=3, count=2)
     room = begin(client, room, host)
     host_id = room["owner_id"]
@@ -250,7 +257,7 @@ def test_ranked_gang_bots_wait_without_churning_human_choices(client, monkeypatc
 def test_one_human_can_rematch_change_game_and_close_all_bot_room(client, monkeypatch):
     from app.bots import choose_action
 
-    monkeypatch.setattr("app.rooms.service.BOT_DELAY_SECONDS", 0)
+    unpaced(monkeypatch)
     room, host = create_bots(client)
     path = f"/v1/rooms/{room['id']}"
     room = begin(client, room, host)
@@ -293,7 +300,7 @@ def test_bot_policy_receives_only_its_projection_and_its_choice_stays_private(cl
     import app.bots
     from app.bots import BotDecision
 
-    monkeypatch.setattr("app.rooms.service.BOT_DELAY_SECONDS", 0)
+    unpaced(monkeypatch)
     private_seed = 0xE51CD21AD3973B4D8106A7CF9362B026
     entropy_requests = []
 
@@ -362,7 +369,7 @@ def test_human_bot_like_display_name_does_not_limit_available_bot_seats(client):
 
 
 def test_trio_bots_remember_public_reveals_even_during_the_humans_turn(client, monkeypatch):
-    monkeypatch.setattr("app.rooms.service.BOT_DELAY_SECONDS", 0)
+    unpaced(monkeypatch)
     room, host = create_bots(client, game="trio", seats=3, count=2)
     room = begin(client, room, host)
     option = next(o for o in room["game"]["actions"] if o["action"]["type"] == "reveal_table")
@@ -381,7 +388,7 @@ def test_trio_bots_remember_public_reveals_even_during_the_humans_turn(client, m
 
 
 def test_bot_uno_announcement_precedes_another_bots_catch(client, monkeypatch):
-    monkeypatch.setattr("app.rooms.service.BOT_DELAY_SECONDS", 0)
+    unpaced(monkeypatch)
     room, host = create_bots(client, game="uno", seats=3, count=2)
     room = begin(client, room, host)
     bots = [m["id"] for m in room["members"] if m["is_bot"]]
@@ -417,7 +424,7 @@ def test_one_human_and_bots_finish_every_multiplayer_game_through_http(
     from app.bots import choose_action, observe_view
     from app.core.contracts import GameView
 
-    monkeypatch.setattr("app.rooms.service.BOT_DELAY_SECONDS", 0)
+    unpaced(monkeypatch)
     # Pacing/rate limits have independent coverage. Bounded scenarios can exercise
     # thousands of legal turns without waiting for a production minute window.
     monkeypatch.setattr(RoomService, "_rate", lambda *args, **kwargs: None)
@@ -453,3 +460,74 @@ def test_one_human_and_bots_finish_every_multiplayer_game_through_http(
     assert all(not m["is_bot"] or m["ready"] for m in room["members"])
     history = client.get("/v1/me", headers=host).json()["history"]
     assert any(m["id"] == room["match_id"] and m["game_id"] == game_id for m in history)
+
+
+def test_a_bot_waits_before_closing_its_reveal_and_then_advances(client, monkeypatch):
+    from app.rooms.bots import BOT_REVIEW_DELAY_SECONDS
+
+    # Ordinary bot moves are unpaced here; only the review pause is under test.
+    monkeypatch.setattr("app.rooms.service.BOT_DELAY_SECONDS", 0)
+    room, host = create_bots(client, game="spill-or-chill", seats=3, count=2)
+    room = begin(client, room, host)
+    assert room["game"]["detail"]["spotlight"] == room["owner_id"]
+    answer = next(o["action"] for o in room["game"]["actions"] if o["action"]["type"] == "respond")
+    room = move(client, room, host, answer).json()
+    # A person holding the reveal advances it when ready; bots never wait on them.
+    assert room["game"]["phase"] == "reveal" and not room["bot_pending"]
+    room = move(client, room, host, room["game"]["actions"][0]["action"]).json()
+    assert room["game"]["detail"]["spotlight"].startswith("bot:")
+    assert room["bot_pending"] and room["bot_due_at"] - time.time() < 1
+    room = drive(client, room, host).json()
+    assert room["game"]["phase"] == "reveal"
+    pause = BOT_REVIEW_DELAY_SECONDS["next_prompt"]
+    assert pause - 2 < room["bot_due_at"] - time.time() <= pause
+    early = drive(client, room, host).json()
+    assert early["match_version"] == room["match_version"]
+    assert early["game"]["phase"] == "reveal"
+    with sessions()() as db, db.begin():
+        db.get(Match, room["match_id"]).bot_due_at = 0
+    advanced = drive(client, room, host).json()
+    assert advanced["match_version"] == room["match_version"] + 1
+    assert advanced["game"]["phase"] == "answer"
+
+
+def test_a_person_gets_a_fair_window_to_call_uno_before_a_bot_catch(client, monkeypatch):
+    from app.rooms.bots import BOT_CATCH_GRACE_SECONDS
+
+    monkeypatch.setattr("app.rooms.service.BOT_DELAY_SECONDS", 0)
+    room, host = create_bots(client, game="uno", seats=2, count=1)
+    room = begin(client, room, host)
+    human = room["owner_id"]
+    with sessions()() as db, db.begin():
+        match = db.get(Match, room["match_id"])
+        state = ENGINES["uno"].copy(match.state)
+        pool = state["hands"][human] + state["deck"]
+        # Two cards in hand, one an ordinary number in the current colour.
+        card = next(c for c in pool if c.split(":")[1] in {"1", "2", "3", "4", "5", "6", "8", "9"})
+        other = next(c for c in pool if c != card)
+        state["deck"] = [c for c in pool if c not in {card, other}]
+        state["hands"][human] = [card, other]
+        state.update(
+            color=card.split(":")[0],
+            called=[],
+            catchable=None,
+            pending=None,
+            penalty=0,
+            drawn=None,
+            turn=state["order"].index(human),
+        )
+        match.state = state
+    room = client.get(f"/v1/rooms/{room['id']}", headers=host).json()
+    play = next(o["action"] for o in room["game"]["actions"] if o["action"].get("card") == card)
+    room = move(client, room, host, play).json()
+    assert any(o["action"]["type"] == "uno" for o in room["game"]["actions"])
+    assert room["bot_pending"]
+    assert BOT_CATCH_GRACE_SECONDS - 2 < room["bot_due_at"] - time.time() <= BOT_CATCH_GRACE_SECONDS
+    early = drive(client, room, host).json()
+    assert early["match_version"] == room["match_version"]
+    # The catch itself is unchanged once the window has passed.
+    with sessions()() as db, db.begin():
+        db.get(Match, room["match_id"]).bot_due_at = 0
+    caught = drive(client, room, host).json()
+    assert caught["match_version"] == room["match_version"] + 1
+    assert len(caught["game"]["hand"]) == 3

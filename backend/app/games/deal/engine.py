@@ -214,6 +214,38 @@ class DealEngine(BaseEngine):
         self._after(s)
         return s
 
+    def instruction(self, s: State) -> str:
+        """What the seat that can act should do now. The banner's attributed
+        Last move line already says what just happened, so this never restates it."""
+        if s["phase"] == "finished":
+            return "Three complete sets in different colours."
+        if s["queue"]:
+            e = s["queue"][0]
+            if e.get("select"):
+                return "Choose the card to take."
+            if e.get("payment"):
+                return f"Pay {e.get('amount', 0)}M from your bank or properties. No change is given."
+            if e.get("distribution"):
+                return "Keep one card, then choose who gets each of the others." if "keep" not in e \
+                    else "Choose who gets each remaining card."
+            if e["blocked"]:
+                return "Accept the block, or answer with your own Just Say No."
+            return "Accept, or answer with Just Say No."
+        if s["gift"]:
+            return "Place or bank the card you were given for a debt."
+        if s["phase"] == "discard":
+            owner = s["order"][s["turn"]]
+            extra = len(s["hands"][owner]) - 7
+            return f"Discard {extra} card{'s' if extra != 1 else ''} to keep 7."
+        owner = s["order"][s["turn"]]
+        if self.mercy and s["debts"][owner] and s["hands"][owner]:
+            return "Settle your debt first: give a card from your hand to your creditor."
+        if s["boost"] > 1:
+            return f"Play a Rent card next: it charges ×{s['boost']}."
+        if s["moves"] <= 0:
+            return "No plays left. Move properties between your sets, or end your turn."
+        return f"Play up to {s['moves']} more card{'s' if s['moves'] != 1 else ''}, or end your turn."
+
     def project_view(self, s: State, player: str) -> GameView:
         current = s["order"][s["turn"]]
         pending = None
@@ -269,7 +301,7 @@ class DealEngine(BaseEngine):
             discard=self.cards[s["discard"][-1]].view() if s["discard"] else None,
             draw_count=len(s["deck"]),
             actions=self.legal_actions(s, player),
-            message=s["message"],
+            message=self.instruction(s),
             winners=s["winners"],
             detail={
                 "moves": s["moves"],

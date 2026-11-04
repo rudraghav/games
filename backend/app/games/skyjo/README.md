@@ -25,3 +25,12 @@ round points and cumulative points. The UI displays that server ledger during
 round review/results; hidden-grid totals are never sent during play.
 `test_casino_explanations.py` checks the queue at 2/8 seats and ledger parity;
 existing final-reveal and positive/zero/negative doubling tests remain in force.
+
+Projected messages are the instruction for the seat that can act, derived from the
+phase at projection time: turn over two cards, then one more; draw or take the
+named discard; replace with the card you took or drew, or discard it and turn over
+a card; turn over a face-down card; "Final turn." during final turns; start the
+next round after review; the lowest total wins at the end. Only the drawer's own
+view names a privately drawn value; every other view says "the drawn card". The
+stored round-start text is left unchanged because saved reshuffles hash the state.
+`test_skyjo_flip_trio_messages.py` covers each phase and the private draw.

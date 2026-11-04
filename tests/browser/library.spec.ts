@@ -119,7 +119,13 @@ for (const name of ['Checkers', 'Mancala']) {
           .focus();
         await page.keyboard.press('Enter');
       }
-      await page.getByRole('button', { name: move.label, exact: true }).click();
+      // Mancala pits also name their owner ("Sow pit 3 · 4 seeds · Board Host").
+      await page
+        .getByRole('button', {
+          name: name === 'Mancala' ? `${move.label} · Board Host` : move.label,
+          exact: true,
+        })
+        .click();
       await expect
         .poll(async () => (await roomAs(page, id!)).match_version)
         .toBe(initial.match_version! + 1);

@@ -157,3 +157,21 @@ def test_seat_limits_unique_identity_and_sip_default(mode):
         with pytest.raises(RuleError):
             engine.setup(players, {})
     assert not engine.project_view(engine.setup(["a", "b", "c"], {}), "a").detail["sip_prompts"]
+
+
+@pytest.mark.parametrize("mode", ["most-likely", "hot-seat"])
+def test_undecided_players_keep_their_instruction_after_others_lock_in(mode):
+    engine = PartyEngine(mode)
+    players = ["a", "b", "c"]
+    state = engine.setup(players, {}, seed=5)
+    start = engine.project_view(state, "b").message
+    option = engine.legal_actions(state, "a")[0].action
+    state = engine.apply_action(state, "a", option)
+    view = engine.project_view(state, "b")
+    # Someone else's lock-in never tells an undecided player their decision is locked.
+    assert view.actions and view.message == start and "locked" not in view.message.lower()
+
+
+def test_spill_or_chill_instruction_states_the_scoring():
+    state = PartyEngine("spill-or-chill").setup(["a", "b", "c"], {}, seed=3)
+    assert "+1" in state["message"] and "Pass scores nothing" in state["message"]

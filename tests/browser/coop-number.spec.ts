@@ -16,6 +16,8 @@ test('cooperative and number-row tables fit both seat limits with readable contr
         await page.locator('.coop-number-game button:enabled').evaluateAll((buttons) =>
           buttons.every((button) => {
             const box = button.getBoundingClientRect();
+            // Unrendered controls (display: none rail arrows) are not touch targets.
+            if (!button.getClientRects().length) return true;
             return box.width >= 43.5 && box.height >= 43.5;
           }),
         ),
@@ -27,11 +29,14 @@ test('cooperative and number-row tables fit both seat limits with readable contr
             : '.six-hand-panel > .button',
         );
         expect(
-          await cta.evaluate(
-            (button) =>
-              Math.abs(button.getBoundingClientRect().width - button.parentElement!.clientWidth) <=
-              1,
-          ),
+          await cta.evaluate((button) => {
+            // Fills the parent's content box (the phone tray keeps side padding).
+            const parent = button.parentElement!;
+            const style = getComputedStyle(parent);
+            const content =
+              parent.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            return Math.abs(button.getBoundingClientRect().width - content) <= 1;
+          }),
         ).toBe(true);
       }
       if (limit === 'maximum')
@@ -195,8 +200,12 @@ test('friends move ranking chips, reveal hands and lock private number selection
     expect(revealed).toEqual([...revealed].sort((a, b) => a - b));
     while (snapshot.game!.phase === 'take_row') {
       const actor = byId.get(snapshot.game!.current_player!)!;
-      await expect(actor.getByRole('button', { name: 'Take row 1', exact: true })).toBeVisible();
-      await actor.getByRole('button', { name: 'Take row 1', exact: true }).click();
+      // The row choice names its cost: cards taken and penalty points.
+      const takeRow = actor.getByRole('button', {
+        name: /^Take row 1 · \d+ cards? · \d+ penalt(y|ies)$/,
+      });
+      await expect(takeRow).toBeVisible();
+      await takeRow.click();
       const previousVersion = snapshot.match_version!;
       await expect
         .poll(async () => (await roomAs(page, roomId!)).match_version)

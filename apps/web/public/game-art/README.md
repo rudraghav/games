@@ -36,6 +36,21 @@ The boop prompt in PROMPTS.json is retained verbatim. Both delivery files are
 reproducible with `node scripts/prepare_game_art.mjs` (WebP quality 90, alpha 100,
 no resizing). All generated original masters remain preserved.
 
+### Padded delivery atlas and colour tones — 3 November 2026
+
+The v1 master's subjects cross its nominal 313.5px cells (crab legs, the shark's
+snout, the lighthouse tip, the penguin colony and the captain's hat reach their
+neighbours), so exact cell clipping showed fragments and cut subjects.
+`node scripts/prepare_paper_symbols.mjs` derives `paper-symbols-v2.webp` without
+repainting anything: each opaque connected component is assigned to the cell that
+holds its centroid, copied alone and centred in a 320px cell with at least 16px of
+transparent margin (1280×1280, same reading order). The script fails unless every
+cell keeps a fully transparent 2px border. The v1 PNG and WebP are preserved.
+
+Cards re-tone the illustration to their scoring colour with an SVG duotone filter
+(`PaperCardArt` `tone`), so a “Yellow Octopus” is drawn yellow; library art keeps
+the original colours.
+
 ## Districts, tiles, materials and tokens — 1 November 2026
 
 Four additional original ImageGen masters share the warm illustrated table style.

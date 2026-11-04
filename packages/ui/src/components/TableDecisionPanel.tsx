@@ -30,6 +30,7 @@ export function TableDecisionPanel({ open, onOpenChange, title, children }: Pane
 function TableDecisionContent({ onOpenChange, title, children }: Omit<PanelProps, 'open'>) {
   const [peek, setPeek] = useState(false);
   const opener = useRef<HTMLElement | null>(null);
+  const content = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const key = (event: KeyboardEvent) => {
       if (
@@ -53,12 +54,18 @@ function TableDecisionContent({ onOpenChange, title, children }: Omit<PanelProps
   }, []);
   return (
     <Dialog.Content
+      ref={content}
       className="table-decision-panel"
       data-peeking={peek}
+      tabIndex={-1}
       onInteractOutside={(event) => event.preventDefault()}
-      onOpenAutoFocus={() => {
+      onOpenAutoFocus={(event) => {
         opener.current =
           document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        // Focus the panel itself, not Close or a commit button, so a stray Space
+        // peeks at the table instead of closing or confirming the decision.
+        event.preventDefault();
+        content.current?.focus({ preventScroll: true });
       }}
       onCloseAutoFocus={(event) => {
         event.preventDefault();

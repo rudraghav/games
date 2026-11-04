@@ -71,10 +71,6 @@ export function AstrologyReading({ astrology }: { astrology: SavedAstrology }) {
           <h4>How it meets your cards</h4>
           <p>{astrology.interpretation.tarot_connection}</p>
         </section>
-        <section className="astrology-interpretation">
-          <h4>A small next move</h4>
-          <p>{astrology.interpretation.next_step}</p>
-        </section>
       </div>
     </section>
   );

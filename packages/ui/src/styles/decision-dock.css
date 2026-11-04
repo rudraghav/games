@@ -108,6 +108,29 @@
   .decision-dock[data-size='compact'] {
     --decision-height: 96px;
   }
+  .decision-dock[data-size='fit'] {
+    block-size: auto;
+    min-block-size: 0;
+    max-block-size: none;
+    overflow: visible;
+  }
+  /* Commit controls stay in view while longer choices scroll above them. */
+  .decision-dock [data-decision-actions],
+  .table-decision-body [data-decision-actions] {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    background: var(--color-surface);
+    box-shadow: 0 -12px 12px -12px #202f2440;
+    padding-block: 8px;
+  }
+  .table-decision-panel:focus {
+    outline: none;
+  }
+  .table-decision-panel:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
   .decision-dock[data-size='extended'] {
     --decision-height: 228px;
   }

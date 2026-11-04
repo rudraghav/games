@@ -118,7 +118,7 @@ def test_six_private_simultaneous_choices_conflict_retry_restart_and_reveal(clie
     early = PublicMoveView.model_validate(waiting.json()["activity"][0])
     assert early.model_dump() == {
         "version": 2, "actor_id": ids[committed], "type": "select_number",
-        "label": "Locked a number", "targets": [], "amount": None,
+        "label": "Locked a secret number", "targets": [], "amount": None,
         "cards": [], "destination": None, "count": 1,
     }
     with sessions()() as session:
@@ -167,7 +167,7 @@ def test_six_private_simultaneous_choices_conflict_retry_restart_and_reveal(clie
             assert event.type == "select_number" and event.targets == []
             assert event.amount is None and event.destination is None
             if event.version < 4:
-                assert event.cards == [] and event.count == 1 and event.label == "Locked a number"
+                assert event.cards == [] and event.count == 1 and event.label == "Locked a secret number"
                 assert all(choice["card"] not in json.dumps(receipt.response) for choice in choices)
             else:
                 assert {card.id for card in event.cards} == {choice["card"] for choice in choices}

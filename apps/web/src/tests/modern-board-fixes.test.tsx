@@ -6,6 +6,7 @@ import { fixtures } from '@/stories/generated/rooms';
 import { BoardTable } from '@/games/board/BoardTable';
 import { GemsTable } from '@/games/gems/GemsTable';
 import { BoopTable } from '@/games/boop/BoopTable';
+import { playerName } from '@/games/types';
 
 function fixture(game: string) {
   const item = fixtures.find((entry) => entry.room.game_id === game)!;
@@ -38,8 +39,10 @@ describe('Authoritative market and board explanations', () => {
 
   it('renders only server-supplied winning cells and accepts legacy details', () => {
     const props = fixture('four-in-a-row');
+    const opponent = props.match.players.find((player) => player.id !== props.selfId)!;
     props.match.phase = 'finished';
-    props.match.message = 'Four in a row!';
+    props.match.message = 'Gold connected four in a row.';
+    props.match.winners = [opponent.id];
     props.match.detail = {
       ...props.match.detail,
       outcome_reason: 'four-in-a-row',
@@ -47,7 +50,9 @@ describe('Authoritative market and board explanations', () => {
     };
     const html = renderToStaticMarkup(<BoardTable {...props} />);
     expect(html.match(/data-winning="true"/g)).toHaveLength(4);
-    expect(html).toContain('Four in a row!');
+    // The loser's table names the winner instead of repeating a generic message.
+    expect(html).toContain(`${playerName(props.room, opponent.id)} connected four in a row.`);
+    expect(html).not.toContain('You connected');
     expect(html).toContain('View whole board');
     const legacy = { rows: 6, columns: 7, draw: false, last_move: null };
     expect(boardDetails(legacy).winningCells).toEqual([]);

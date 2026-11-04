@@ -3,6 +3,7 @@ import { useState, type ReactNode } from 'react';
 import { Maximize2 } from 'lucide-react';
 import { Button, Modal, Seat } from '@games/ui';
 import type { Player, Room } from '@games/api-client';
+import { distinctNames, seatName } from './seat-names';
 
 /** Public-only compact information remains on the table; full assets are inspectable. */
 export function OpponentPanel({
@@ -33,6 +34,9 @@ export function OpponentPanel({
   const [open, setOpen] = useState(false);
   const member = room.members.find((item) => item.id === player.id);
   const name = member?.name || 'Player';
+  // Long names keep their distinguishing start and end; the full name stays the title.
+  const others = room.members.filter((item) => item.id !== player.id).map(seatName);
+  const label = distinctNames([seatName(member), ...others])[0];
   return (
     <article
       className={`opponent-panel ${className}`}
@@ -43,6 +47,8 @@ export function OpponentPanel({
       <Seat
         compact
         name={name}
+        displayName={label}
+        nameLayout="wrap"
         avatar={member?.avatar}
         bot={member?.isBot}
         connected={member?.connected ?? false}

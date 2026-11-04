@@ -144,7 +144,9 @@
     "rules": [
       "Draw one, discard one, and arrange your 13 cards.",
       "Declare with two sequences, including one pure sequence.",
-      "Points format. Jokers are wild; maximum loss is 80 points."
+      "The face-up cut card sets the wild rank: every card of that rank and both printed jokers act as jokers. A printed-joker cut makes aces wild.",
+      "A joker on the discard can\u2019t be taken, and a card taken from the discard can\u2019t be discarded on the same turn.",
+      "Points format: unmatched cards count, capped at 80. Dropping costs 20 before your first discard and 40 later; a false declaration costs 80."
     ]
   },
   {
@@ -261,7 +263,7 @@
     "bots_supported": true,
     "play_mode": "competitive",
     "score_label": "Points",
-    "score_order": "high",
+    "score_order": "none",
     "rules_version": "1",
     "settings": [],
     "rules": [
@@ -282,7 +284,7 @@
     "color": "sage",
     "bots_supported": true,
     "play_mode": "competitive",
-    "score_label": "Points",
+    "score_label": "Discs",
     "score_order": "high",
     "rules_version": "1",
     "settings": [],
@@ -326,7 +328,7 @@
     "color": "sage",
     "bots_supported": true,
     "play_mode": "competitive",
-    "score_label": "Points",
+    "score_label": "Prestige",
     "score_order": "high",
     "rules_version": "1",
     "settings": [],
@@ -348,7 +350,7 @@
     "color": "sage",
     "bots_supported": true,
     "play_mode": "competitive",
-    "score_label": "Points",
+    "score_label": "Captures",
     "score_order": "high",
     "rules_version": "1",
     "settings": [],
@@ -371,7 +373,7 @@
     "color": "ochre",
     "bots_supported": true,
     "play_mode": "competitive",
-    "score_label": "Points",
+    "score_label": "Seeds",
     "score_order": "high",
     "rules_version": "1",
     "settings": [],
@@ -418,7 +420,7 @@
     "color": "plum",
     "bots_supported": true,
     "play_mode": "competitive",
-    "score_label": "Points",
+    "score_label": "Trios",
     "score_order": "high",
     "rules_version": "simple-1",
     "settings": [],

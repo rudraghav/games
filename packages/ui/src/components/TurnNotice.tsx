@@ -5,10 +5,12 @@ export interface TurnNoticeProps {
   message: string;
   tone: 'active' | 'waiting' | 'paused' | 'complete';
   pending?: boolean;
+  /** The latest public move, attributed to its player. */
+  lastMove?: string | null;
 }
 
-/** A compact, shared summary of who can act and the last authoritative message. */
-export function TurnNotice({ label, message, tone, pending = false }: TurnNoticeProps) {
+/** A compact, shared summary of who can act, what they can do and what just happened. */
+export function TurnNotice({ label, message, tone, pending = false, lastMove }: TurnNoticeProps) {
   const Icon = pending
     ? LoaderCircle
     : tone === 'active'
@@ -32,7 +34,12 @@ export function TurnNotice({ label, message, tone, pending = false }: TurnNotice
       </span>
       <div className="turn-notice-main">
         <strong>{label}</strong>
-        <p>{message}</p>
+        {message ? <p>{message}</p> : null}
+        {lastMove ? (
+          <p className="turn-notice-last">
+            <span>Last move</span> {lastMove}
+          </p>
+        ) : null}
       </div>
       {pending ? <span className="turn-notice-saving">Saving…</span> : null}
     </section>

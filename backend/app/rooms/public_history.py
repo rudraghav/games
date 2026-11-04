@@ -19,29 +19,33 @@ HISTORY_LIMIT = 80
 CARD_LIMIT = 12
 
 LABELS: dict[str, dict[str, str]] = {
-    "uno": {"play": "Played a card", "draw": "Drew cards", "choose": "Chose a colour",
-            "uno": "Called UNO", "catch_uno": "Caught an unannounced UNO",
-            "accept": "Accepted the draw", "challenge": "Challenged a Wild Draw Four",
-            "end_turn": "Passed the turn"},
+    # Read as "Dev played: Red 7 → you"; outcomes (who drew, swaps) show on the table.
+    "uno": {"play": "Played", "draw": "Drew from the pile", "choose": "Chose a colour",
+            "uno": "Called UNO!", "catch_uno": "Caught a missed UNO",
+            "accept": "Took 4 cards", "challenge": "Challenged the Wild +4",
+            "end_turn": "Passed after drawing"},
     "deal": {"bank": "Banked a card", "property": "Placed a property", "play": "Played an action",
              "rearrange": "Moved a property", "pay": "Paid a bill", "no": "Played Just Say No",
-             "accept": "Accepted the action", "choose": "Chose a public card",
+             "accept": "Let the last play stand", "choose": "Chose a card to take",
              "keep": "Kept a public card", "give": "Gave a public card",
-             "discard": "Discarded a card", "settle_debt": "Settled a debt with a private card",
+             "discard": "Discarded a card", "settle_debt": "Gave a hand card to settle a debt",
              "end_turn": "Ended the turn"},
-    "holdem": {"fold": "Folded", "check": "Checked", "call": "Called", "raise": "Raised",
-               "all_in": "Went all in"},
-    "teen-patti": {"fold": "Folded", "peek": "Looked at their cards", "bet": "Bet",
-                   "show": "Requested a show", "sideshow": "Requested a sideshow",
+    # Casino amounts are the chips put in by that move, so a raise reads "raised with".
+    "holdem": {"fold": "Folded", "check": "Checked", "call": "Called", "raise": "Raised with",
+               "all_in": "Went all in with"},
+    "teen-patti": {"fold": "Packed", "peek": "Looked at their cards", "bet": "Bet",
+                   "show": "Asked for a show", "sideshow": "Asked for a sideshow",
                    "accept": "Accepted the sideshow", "decline": "Declined the sideshow"},
     "blackjack": {"bet": "Placed a bet", "accept": "Took insurance", "decline": "Declined insurance",
                   "hit": "Drew a card", "stand": "Stood", "split": "Split their hand",
                   "double": "Doubled down"},
+    # Read as "Dev discarded and declared: 4 ♥"; a false declaration shows on the seat.
     "rummy": {"draw_stock": "Drew from the stock", "draw_discard": "Took the discard",
-              "discard": "Discarded a card", "declare": "Declared a hand", "fold": "Dropped"},
-    "skyjo": {"draw_stock": "Drew a private card", "draw_discard": "Took the discard",
+              "discard": "Discarded", "declare": "Discarded and declared",
+              "fold": "Dropped out of the deal"},
+    "skyjo": {"draw_stock": "Drew from the deck", "draw_discard": "Took the discard",
               "swap": "Replaced a grid card", "discard": "Discarded the drawn card",
-              "reveal": "Revealed a grid card", "next_round": "Started the next round"},
+              "reveal": "Turned over a card", "next_round": "Started the next round"},
     "tarot": {"pick": "Chose a Tarot card"},
     "four-in-a-row": {"drop": "Dropped a disc"},
     "reversi": {"place": "Placed a disc"},
@@ -49,30 +53,31 @@ LABELS: dict[str, dict[str, str]] = {
     "mancala": {"sow": "Sowed seeds"},
     "word-agents": {"clue": "Gave a clue", "guess": "Chose a word", "end_guesses": "Ended guessing"},
     "gem-market": {"buy": "Bought a development", "reserve": "Reserved a market card",
-                   "reserve_blind": "Reserved a hidden card", "take": "Took gems",
+                   "reserve_blind": "Reserved a face-down card", "take": "Took gems",
                    "take_pair": "Took a matching pair of gems", "return": "Returned a gem",
                    "patron": "Welcomed a patron", "pass": "Passed"},
-    "flip-7": {"hit": "Drew a card", "stay": "Stayed", "target_effect": "Played an effect",
-               "next_round": "Started the next round"},
-    "trio": {"reveal_hand": "Revealed a hand-end card", "reveal_table": "Revealed a table card",
-             "continue": "Continued after the reveal"},
+    "flip-7": {"hit": "Flipped a card", "stay": "Stayed and banked", "target_effect": "Gave an action card",
+               "next_round": "Dealt the next round"},
+    "trio": {"reveal_hand": "Asked for a card", "reveal_table": "Revealed a table card",
+             "continue": "Ended the turn"},
     "azul": {"draft_tiles": "Drafted tiles", "place_tiles": "Placed tiles",
              "next_round": "Started the next round"},
     "party": {"respond": "Locked a response", "vote": "Locked a choice", "choose": "Locked a choice",
               "predict": "Locked a prediction", "next_prompt": "Started the next prompt"},
-    "the-gang": {"claim_chip": "Claimed a ranking chip", "return_chip": "Returned their chip",
-                 "reveal_hand": "Revealed a poker hand", "next_heist": "Started the next heist"},
-    "six-nimmt": {"select_number": "Locked a number", "take_row": "Took a row",
-                  "next_selection": "Continued to the next selection", "next_round": "Started the next round"},
-    "sea-salt-paper": {"take_stock": "Drew two private cards", "keep": "Kept a private card and discarded the other",
-                       "take_discard": "Took a discard", "pair": "Played a duo",
-                       "inspect": "Inspected a discard pile", "take_inspected": "Took a discard",
-                       "steal": "Took a random private card", "stop": "Stopped the round",
+    "the-gang": {"claim_chip": "Claimed a ranking chip", "return_chip": "Returned their chip to the center",
+                 "reveal_hand": "Revealed their pocket cards", "next_heist": "Started the next heist"},
+    "six-nimmt": {"select_number": "Locked a secret number", "take_row": "Took a row of penalty cards",
+                  "next_selection": "Started the next selection", "next_round": "Started the next round"},
+    "sea-salt-paper": {"take_stock": "Drew from the stock", "keep": "Kept one and discarded the other",
+                       "take_discard": "Took the top discard", "pair": "Played a duo",
+                       "inspect": "Searched a discard pile", "take_inspected": "Took a card from the searched pile",
+                       "steal": "Stole a random card", "stop": "Stopped the round",
                        "last_chance": "Called Last Chance", "reveal_mermaids": "Revealed four mermaids",
                        "end_turn": "Finished the turn", "next_round": "Started the next round"},
     "boop": {"place": "Placed a piece", "graduate": "Graduated kittens", "return_piece": "Returned a piece"},
-    "shithead": {"arrange": "Chose three face-up cards", "play": "Played cards",
-                 "flip": "Flipped a table card", "pickup": "Picked up the pile"},
+    # Read as "Dev played: 5 ♣, 5 ♦"; burns and failed flips get their own label below.
+    "shithead": {"arrange": "Chose three face-up cards", "play": "Played",
+                 "flip": "Flipped a hidden card", "pickup": "Picked up the pile"},
 }
 
 PRIVATE_CARD_MOVES = {
@@ -230,6 +235,16 @@ def public_move(
             chosen.append(action.choice)
         if group == "word-agents" and kind == "guess":
             chosen.append(action.choice)
+        if group == "deal" and kind == "accept":
+            # An accepted steal moves public table cards: their faces never change,
+            # so name them from the public transfer list everyone already sees.
+            effect = before.detail.get("pending_action")
+            if isinstance(effect, dict) and all(v.detail.get("pending_action") == effect for v in before_views.values()):
+                transfers = effect.get("transfers")
+                for transfer in transfers if isinstance(transfers, list) else []:
+                    moved = transfer.get("cards") if isinstance(transfer, dict) else None
+                    if isinstance(moved, list):
+                        chosen.extend(str(card) for card in moved)
         if kind == "draw_discard" and before.discard is not None:
             chosen.append(before.discard.id)
         if group == "sea-salt-paper" and kind == "take_discard" and action.choice in {"0", "1"}:
@@ -240,7 +255,8 @@ def public_move(
                 if isinstance(ident, str):
                     chosen.append(ident)
         cards_by_id = {key: (new.get(key) or old[key]) for key in chosen if key in new or key in old}
-        if group != "gem-market":
+        # Word Agents' final reveal recolours the whole key; the move is the one word chosen.
+        if group not in {"gem-market", "word-agents"}:
             cards_by_id.update({key: card for key, card in new.items() if old.get(key) != card})
         cards = list(cards_by_id.values())
         count = len(cards) or None

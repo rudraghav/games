@@ -109,7 +109,7 @@ export function ActionPanel({
   instruction?: string;
   selectionDetails?: ReactNode;
   pinSelection?: boolean;
-  dockSize?: 'compact' | 'standard' | 'extended';
+  dockSize?: 'compact' | 'standard' | 'extended' | 'fit';
 }) {
   const own = match.players.find((player) => player.id === selfId);
   const assets = own ? [...own.bank, ...Object.values(own.properties).flat()] : [];
@@ -143,7 +143,7 @@ export function ActionPanel({
                   ? 'Choose what to do with this card.'
                   : match.actions.some((option) => option.value.card)
                     ? 'Select a card to see its moves.'
-                    : match.phase.replaceAll('_', ' ')}
+                    : turn.message}
         </span>
         {selectionDetails}
         {clear ? (
@@ -158,7 +158,8 @@ export function ActionPanel({
           </button>
         ) : null}
       </div>
-      <div className="action-choices">
+      {/* Commit buttons stay in view when a long instruction scrolls the dock. */}
+      <div className="action-choices" data-decision-actions={choices.length ? '' : undefined}>
         {choices.map((option, i) => (
           <Decision
             key={
@@ -181,7 +182,7 @@ export function ActionPanel({
         ) : null}
         {!match.actions.length && !instruction ? (
           <span className="small muted">
-            {match.phase === 'finished' ? 'That’s a wrap.' : 'Waiting for the next move…'}
+            {match.phase === 'finished' ? 'That’s a wrap.' : turn.message}
           </span>
         ) : null}
       </div>

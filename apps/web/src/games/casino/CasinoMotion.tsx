@@ -14,12 +14,14 @@ function CasinoCard({
   group,
   index,
   event,
+  winning,
 }: {
   card: Card | null;
   compact: boolean;
   group: string;
   index: number;
   event: CasinoTransition | null;
+  winning: boolean;
 }) {
   const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
   const enter = !reduced && Boolean(event?.newCards.includes(cardMotionKey(group, index, card)));
@@ -31,6 +33,7 @@ function CasinoCard({
     <motion.div
       className="casino-card"
       data-card-enter={enter || undefined}
+      data-winning={winning || undefined}
       initial={enter ? { opacity: 0, y: 8, rotateY: 65 } : false}
       animate={animation}
       layout="position"
@@ -57,6 +60,7 @@ export function CasinoCardRow({
   compact = false,
   className = '',
   hand = false,
+  highlight,
 }: {
   cards: (Card | null)[];
   group: string;
@@ -65,6 +69,8 @@ export function CasinoCardRow({
   compact?: boolean;
   className?: string;
   hand?: boolean;
+  /** Public cards that made a winning hand. */
+  highlight?: ReadonlySet<string>;
 }) {
   const contents = cards.map((card, index) => (
     <CasinoCard
@@ -74,6 +80,7 @@ export function CasinoCardRow({
       group={group}
       index={index}
       event={event}
+      winning={Boolean(card && highlight?.has(card.id))}
     />
   ));
   return hand ? (
@@ -186,12 +193,15 @@ export function CasinoChipFlights({
   );
 }
 
+/** The felt's latest move. A long name may shorten; the move and its chips never do. */
 export function CasinoActionCue({
+  actor = null,
   label,
   cueKey,
   event,
   children,
 }: {
+  actor?: string | null;
   label: string;
   cueKey: string;
   event: CasinoTransition | null;
@@ -206,7 +216,9 @@ export function CasinoActionCue({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: event && !reduced ? CASINO_MOTION.cue : 0 }}
       >
-        {label}
+        {actor ? <span className="casino-cue-actor">{actor}</span> : null}
+        {actor && label ? ' ' : null}
+        {label ? <span className="casino-cue-move">{label}</span> : null}
         {children}
       </motion.span>
     </div>

@@ -37,12 +37,15 @@ test('Rummy explains a legal declaration before committing and the resulting poi
   expect(fixture).toBeTruthy();
   await scenario(page, fixture.id);
   const card = fixture.room.game!.hand!.find((item) => item.id === fixture.next.action.card)!;
+  // The winning card is marked before selection; its name says so.
   await page
     .getByRole('group', { name: 'Ungrouped', exact: true })
-    .getByRole('button', { name: card.label, exact: true })
+    .getByRole('button', { name: `${card.label} (discard it to declare)`, exact: true })
     .click();
   await expect(
-    page.getByText('This discard leaves a valid declaration.', { exact: true }),
+    page.getByText(`Discarding ${card.label} leaves a valid hand. Declare to win this deal.`, {
+      exact: true,
+    }),
   ).toBeVisible();
   const witness = page
     .locator('details')
@@ -77,11 +80,14 @@ test('Rummy warns before an invalid declaration and keeps the selection when can
   const id = Object.entries(data.discard_analyses).find(([, row]) => !row.valid)![0];
   const card = fixture.room.game!.hand!.find((item) => item.id === id)!;
   await scenario(page, fixture.id);
+  // A card's name may add its role (wild joker, just drawn); it always starts with the card.
   await page
     .getByRole('group', { name: 'Ungrouped', exact: true })
-    .getByRole('button', { name: card.label, exact: true })
+    .getByRole('button', {
+      name: new RegExp(`^${card.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}( \\(|$)`),
+    })
     .click();
-  await expect(page.getByText(/This discard leaves an invalid declaration/)).toBeVisible();
+  await expect(page.getByText(/Declaring now would be a false declaration/)).toBeVisible();
   await page.getByRole('button', { name: `Declare · discard ${card.label}`, exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Declare an invalid hand?', exact: true });
   await expect(dialog).toContainText('80-point penalty');
@@ -102,12 +108,20 @@ test('Teen Patti names both sideshow parties and public seen status', async ({ p
   await scenario(page, fixture.id);
   const data = teenPattiDetails(fixture.room.game!.detail ?? {});
   const name = (id: string) => fixture.room.members.find((member) => member.id === id)!.name;
+  // The responder is addressed as "you"; both parties are also marked on their seats.
+  expect(data.sideshow!.target).toBe(fixture.selfId);
   await expect(page.locator('.action-context')).toContainText(
-    `${name(data.sideshow!.actor)} paid ${data.sideshow!.cost} chips`,
+    `${name(data.sideshow!.actor)} asks you for a sideshow`,
   );
   await expect(page.locator('.action-context')).toContainText(
-    `with ${name(data.sideshow!.target)}`,
+    `equal hands: ${name(data.sideshow!.actor)} packs`,
   );
+  await expect(
+    page.locator(`.casino-seat[data-player-id="${data.sideshow!.actor}"] .casino-seat-flag`),
+  ).toHaveText('Asked for sideshow');
+  await expect(
+    page.locator(`.casino-seat[data-player-id="${data.sideshow!.target}"] .casino-seat-flag`),
+  ).toHaveText('Sideshow decision');
   for (const [id, seen] of Object.entries(data.seen)) {
     const player = fixture.room.game!.players!.find((person) => person.id === id)!;
     if (!player.folded)
@@ -118,12 +132,70 @@ test('Teen Patti names both sideshow parties and public seen status', async ({ p
   await fits(page);
 });
 
+test('casino docks show every choice, its cost and why a wager cannot be sent yet', async ({
+  page,
+}) => {
+  const raise = midgameScenarios.find(
+    (item) =>
+      item.game === 'holdem' &&
+      item.seats === 9 &&
+      item.room.game!.actions!.some((option) => option.action.type === 'raise') &&
+      item.room.game!.actions!.some((option) => option.action.type === 'all_in'),
+  )!;
+  expect(raise).toBeTruthy();
+  await scenario(page, raise.id);
+  const dock = page.getByRole('region', { name: 'Your actions' });
+  // No inner scroll: every enabled control sits inside the dock's own box.
+  expect(
+    await dock.evaluate((node) => {
+      const box = node.getBoundingClientRect();
+      return (
+        node.scrollHeight <= node.clientHeight + 1 &&
+        [...node.querySelectorAll('button:enabled, input:enabled')].every((control) => {
+          const rect = control.getBoundingClientRect();
+          return rect.top >= box.top - 1 && rect.bottom <= box.bottom + 1;
+        })
+      );
+    }),
+  ).toBe(true);
+  await expect(dock.getByRole('button', { name: /^All in · \d+$/ })).toBeVisible();
+  const option = raise.room.game!.actions!.find((item) => item.action.type === 'raise')!;
+  await expect(dock).toContainText(`${option.minimum}–${option.maximum} chips`);
+  const amount = dock.getByRole('spinbutton', { name: `${option.label} amount` });
+  const commit = dock.getByRole('button', { name: option.label, exact: true });
+  await amount.fill(String(option.minimum! - 1));
+  await expect(dock).toContainText(`Enter at least ${option.minimum}.`);
+  await expect(commit).toBeDisabled();
+  await amount.fill(String(option.minimum! + 6));
+  await expect(commit).toBeEnabled();
+  await expect(commit).toHaveText(`${option.label} ${option.minimum! + 6}`);
+  await dock.getByRole('button', { name: /^Min / }).click();
+  await expect(amount).toHaveValue(String(option.minimum));
+  await expect(dock.locator('.action-context')).not.toContainText(raise.room.game!.phase);
+  await commit.click();
+  await expect(page.getByLabel('Submitted action')).toHaveText(
+    JSON.stringify({ ...option.action, amount: option.minimum }),
+  );
+
+  const split = midgameScenarios.find(
+    (item) => item.game === 'blackjack' && item.next.action.type === 'split',
+  )!;
+  await scenario(page, split.id);
+  const splitOption = split.room.game!.actions!.find((item) => item.action.type === 'split')!;
+  const splitButton = dock.getByRole('button', { name: splitOption.label, exact: true });
+  await expect(splitButton).toHaveText(/\+\d+$/);
+  await expect(dock.locator('.action-context')).toContainText('Split adds');
+  await fits(page);
+});
+
 test('Skyjo exposes remaining final turns and the settled round calculation', async ({ page }) => {
   const closing = midgameScenarios.find(
     (item) => item.game === 'skyjo' && skyjoDetails(item.room.game!.detail ?? {}).remaining.length,
   )!;
   await scenario(page, closing.id);
-  await expect(page.locator('.action-context')).toContainText('Final turns:');
+  await expect(page.getByRole('region', { name: 'Final turns', exact: true })).toContainText(
+    'Final turns:',
+  );
   const review = midgameScenarios.find(
     (item) =>
       item.game === 'skyjo' &&
@@ -148,9 +220,15 @@ test('Gang switches privacy copy after reveal and explains the public hand order
     page.getByText('These cards are now visible to the crew.', { exact: true }),
   ).toBeVisible();
   await expect(page.getByText('Only you can see these cards.', { exact: true })).toHaveCount(0);
+  // The verdict comes first, then every hand in red-chip order with its comparison.
   await expect(page.getByRole('region', { name: 'Heist ranking explanation' })).toContainText(
-    'Chip order:',
+    /Vault cracked|Alarm: hands out of order/,
   );
+  await expect(
+    page
+      .getByRole('list', { name: 'Hands by red chip, weakest first', exact: true })
+      .getByRole('listitem'),
+  ).toHaveCount(fixture.seats);
   await page.getByText('Best five cards', { exact: true }).first().click();
   await expect(page.locator('.gang-revealed details[open] .playing-card')).toHaveCount(5);
   await fits(page);

@@ -34,3 +34,7 @@ arrangement has not been established. Ordinary seeded matches ended by a row.
 Acceptance: 100-tile conservation; draft/overflow/marker/adjacency/bonus tests;
 illegal rows rejected; seeded complete 2/4-seat matches; no bag order exposed;
 conserved zero-offer completion and nonzero underfilled-offer continuation.
+
+Messages are instructions for the seat that can act ("Place your 3 red tiles on
+one pattern line or the floor."); the room shows other seats whom it is waiting
+for and the attributed last public move, so messages never restate a move.

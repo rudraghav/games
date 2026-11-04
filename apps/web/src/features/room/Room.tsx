@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
@@ -8,12 +8,14 @@ import {
   MoreVertical,
   ArrowLeft,
   Wifi,
+  WifiOff,
   RefreshCw,
   Settings2,
   Link2,
   Flag,
   LogOut,
   History,
+  X,
 } from 'lucide-react';
 import { Button, Modal, Wordmark, TurnNotice, ChoiceGroup } from '@games/ui';
 import { gameById } from '@games/api-client/catalog';
@@ -27,10 +29,14 @@ import { Chat } from './Chat';
 import { RoomActivity } from './RoomActivity';
 import { Lobby } from './Lobby';
 import { RoomResults } from './RoomResults';
+import { latestMove } from './move-description';
 import { useMediaQuery } from '@/shared/use-media-query';
 
+/** The shortest time a failed-move note stays up once the table has moved on. */
+const ERROR_READ_MS = 6000;
+
 export function RoomScreen({ id }: { id: string }) {
-  const { room: query, me, live, mutation, move, botError, retryBots } = useRoom(id);
+  const { room: query, me, live, connection, mutation, move, botError, retryBots } = useRoom(id);
   const desktop = useMediaQuery('(min-width: 1100px)');
   const [panel, setPanel] = useState<'chat' | 'activity' | 'rules' | 'menu' | 'configure' | null>(
     null,
@@ -39,6 +45,44 @@ export function RoomScreen({ id }: { id: string }) {
   const router = useRouter();
   const room = query.data;
   const selfId = me.data?.profile?.id || '';
+  // A failed move stays readable until the table moves on after it, never for the
+  // whole match. A stale move first refreshes the table, so the note belongs to
+  // the version shown once that refresh settles, not to the one it was sent from.
+  // It also stays up long enough to read when bots keep the table moving.
+  const errorVersion = useRef<number | null | undefined>(undefined);
+  const errorShownAt = useRef(0);
+  const matchVersion = room?.matchVersion ?? null;
+  const refreshing = query.isFetching;
+  useEffect(() => {
+    if (!mutation.error) {
+      errorVersion.current = undefined;
+      return;
+    }
+    if (refreshing) return;
+    if (errorVersion.current === undefined) {
+      errorVersion.current = matchVersion;
+      errorShownAt.current = Date.now();
+      return;
+    }
+    if (matchVersion === errorVersion.current) return;
+    const timer = window.setTimeout(
+      () => mutation.reset(),
+      Math.max(0, errorShownAt.current + ERROR_READ_MS - Date.now()),
+    );
+    return () => window.clearTimeout(timer);
+  }, [mutation, matchVersion, refreshing]);
+  // A rematch starts while players are scrolled down at the results; bring the
+  // new match's turn banner back into view instead of leaving them mid-page.
+  const matchId = room?.game?.id ?? null;
+  const shownMatch = useRef(matchId);
+  useEffect(() => {
+    if (shownMatch.current && matchId && matchId !== shownMatch.current)
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      });
+    shownMatch.current = matchId;
+  }, [matchId]);
   const playerUnavailable = room && me.isSuccess && !selfId;
   const entryError = query.error || me.error;
   if (!room || !selfId)
@@ -79,6 +123,11 @@ export function RoomScreen({ id }: { id: string }) {
   const self = room.members.find((member) => member.id === selfId);
   const Table = tableRegistry[room.gameId];
   const turn = room.game ? turnState(room.game, room, selfId) : null;
+  // Offline, the saved table stays readable but stops looking or acting live.
+  const offline = connection === 'offline';
+  // At the end of a match the result and the rematch come first; the final
+  // table stays below for review. Tarot's reading is itself the result.
+  const resultsFirst = room.status === 'finished' && Boolean(room.game) && room.gameId !== 'tarot';
   const operate = (operation: () => ReturnType<typeof api.room>) => mutation.mutate(operation);
   const chat = (
     <Chat
@@ -88,6 +137,18 @@ export function RoomScreen({ id }: { id: string }) {
       send={async (body, kind) => {
         await mutation.mutateAsync(() => api.chat(id, body, kind));
       }}
+    />
+  );
+  const lobby = (
+    <Lobby
+      room={room}
+      selfId={selfId}
+      ready={() => operate(() => api.ready(id, !self?.ready))}
+      start={() => operate(() => api.start(id))}
+      configure={() => setPanel('configure')}
+      pending={mutation.isPending}
+      addBots={(count) => operate(() => api.addBots(id, count))}
+      removeBot={(botId) => operate(() => api.kick(id, botId))}
     />
   );
   const tablePanel = (
@@ -120,10 +181,25 @@ export function RoomScreen({ id }: { id: string }) {
         <div className="room-toolbar">
           <span
             className="connection-state"
-            title={live ? 'Live updates connected' : 'Checking the table regularly'}
+            data-state={connection}
+            title={
+              connection === 'offline'
+                ? 'No network connection'
+                : connection === 'reconnecting'
+                  ? 'Trying to reach the table'
+                  : live
+                    ? 'Live updates connected'
+                    : 'Checking the table regularly'
+            }
           >
-            <Wifi size={14} />
-            {query.isError ? 'Reconnecting' : live ? 'Live' : 'Connected'}
+            {connection === 'offline' ? <WifiOff size={14} /> : <Wifi size={14} />}
+            {connection === 'offline'
+              ? 'Offline'
+              : connection === 'reconnecting'
+                ? 'Reconnecting'
+                : live
+                  ? 'Live'
+                  : 'Connected'}
           </span>
           <Button
             size="icon"
@@ -169,7 +245,30 @@ export function RoomScreen({ id }: { id: string }) {
         data-chat-open={desktop && (panel === 'chat' || panel === 'activity')}
       >
         <div className="room-main">
-          {query.isError ? (
+          {mutation.error ? (
+            <div className="error-note room-error" role="alert">
+              <p>{mutation.error.message}</p>
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Dismiss this message"
+                onClick={() => mutation.reset()}
+              >
+                <X size={16} />
+              </Button>
+            </div>
+          ) : null}
+          {offline ? (
+            <div className="connection-banner room-offline" role="status">
+              <WifiOff size={16} aria-hidden="true" />
+              <span>
+                <strong>You’re offline.</strong>{' '}
+                {mutation.isPaused
+                  ? 'Your move will be sent when you reconnect.'
+                  : 'This is your last saved table. Moves resume when you reconnect.'}
+              </span>
+            </div>
+          ) : query.isError ? (
             <div className="connection-banner" role="status">
               The connection is taking a moment. Your last saved table is here.
               <Button variant="ghost" size="sm" onClick={() => void query.refetch()}>
@@ -199,35 +298,42 @@ export function RoomScreen({ id }: { id: string }) {
             <>
               <TurnNotice
                 label={turn!.label}
-                tone={turn!.tone}
-                message={room.game.message}
-                pending={mutation.isPending}
+                tone={offline ? 'paused' : turn!.tone}
+                message={
+                  offline
+                    ? mutation.isPaused
+                      ? 'Your move is waiting to be sent.'
+                      : 'Moves pause while you’re offline.'
+                    : turn!.message
+                }
+                lastMove={latestMove(room, selfId)}
+                pending={mutation.isPending && !mutation.isPaused}
               />
-              <Table
-                key={room.matchId}
-                match={room.game}
-                room={room}
-                selfId={selfId}
-                imageLoader={optimizeCardArt}
-                onAction={move}
-                pending={mutation.isPending || !selfId}
-              />
-              {room.status === 'finished' && room.game.id !== 'tarot' ? (
-                <RoomResults room={room} game={game} />
+              {resultsFirst ? (
+                <>
+                  <RoomResults room={room} game={game} />
+                  {lobby}
+                  <h2 className="final-table-heading">Final table</h2>
+                </>
               ) : null}
+              <div className="room-table-frame" data-offline={offline} inert={offline}>
+                <Table
+                  key={room.matchId}
+                  match={room.game}
+                  room={room}
+                  selfId={selfId}
+                  imageLoader={optimizeCardArt}
+                  onAction={move}
+                  pending={mutation.isPending || !selfId}
+                />
+              </div>
             </>
           ) : null}
           {room.status !== 'playing' ? (
-            <Lobby
-              room={room}
-              selfId={selfId}
-              ready={() => operate(() => api.ready(id, !self?.ready))}
-              start={() => operate(() => api.start(id))}
-              configure={() => setPanel('configure')}
-              pending={mutation.isPending}
-              addBots={(count) => operate(() => api.addBots(id, count))}
-              removeBot={(botId) => operate(() => api.kick(id, botId))}
-            />
+            // A finished solo reading offers its own one-tap "Draw a new spread".
+            resultsFirst || (room.status === 'finished' && game.maxPlayers === 1) ? null : (
+              lobby
+            )
           ) : !room.game ? (
             <div className="center-state">
               <h2 className="heading-md">You’re next in.</h2>
@@ -235,11 +341,6 @@ export function RoomScreen({ id }: { id: string }) {
                 This match is already underway. Chat with the group and join the next round.
               </p>
             </div>
-          ) : null}
-          {mutation.error ? (
-            <p className="error-note room-error" role="alert">
-              {mutation.error.message}
-            </p>
           ) : null}
         </div>
         {desktop && (panel === 'chat' || panel === 'activity') ? (
@@ -268,10 +369,10 @@ export function RoomScreen({ id }: { id: string }) {
           ))}
         </ol>
         <p className="small muted">
-          {game.minPlayers === game.maxPlayers
-            ? game.minPlayers
-            : `${game.minPlayers}–${game.maxPlayers}`}{' '}
-          players · {game.minutes} minutes
+          {game.maxPlayers === 1
+            ? 'Solo'
+            : `${game.minPlayers === game.maxPlayers ? game.minPlayers : `${game.minPlayers}–${game.maxPlayers}`} players`}{' '}
+          · {game.minutes} minutes
         </p>
       </Modal>
       <Modal

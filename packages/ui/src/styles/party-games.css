@@ -101,7 +101,9 @@
     white-space: normal;
     height: auto;
     padding: 12px;
-    overflow-wrap: anywhere;
+    /* Names break at spaces and hyphens, never mid-word unless a word cannot fit. */
+    overflow-wrap: break-word;
+    hyphens: manual;
   }
   .party-choice[aria-pressed='true'] {
     border-color: var(--party-accent);
@@ -109,8 +111,23 @@
     box-shadow: inset 0 0 0 1px var(--party-accent);
   }
   .party-choice__label {
+    flex: 1 1 auto;
     min-width: 0;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+  }
+  .party-choice__badge {
+    flex: none;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: var(--party-tint);
+    color: var(--party-accent);
+    font-size: 11px;
+    font-weight: 700;
   }
   .party-locked {
     display: inline-flex;
@@ -288,9 +305,6 @@
     .party-choice-grid {
       grid-template-columns: 1fr;
     }
-    .party-table[data-mode='most-likely'] .party-choice-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
     .party-reveal__row {
       flex-wrap: wrap;
     }
@@ -341,5 +355,49 @@
       center,
       100% 50%;
     box-shadow: inset 0 0 0 1px #ffffff80;
+  }
+}
+
+/* Decisions grow with their content; the commit or reveal control stays pinned in
+   view (data-decision-actions) and the reveal leads with the result. */
+@layer components {
+  .party-table[data-mode='most-likely'] .party-choice-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
+  }
+  .party-commit-bar {
+    display: grid;
+    gap: 6px;
+  }
+  .party-commit-note {
+    margin: 0;
+    color: var(--color-ink-muted);
+  }
+  .party-waiting {
+    overflow-wrap: break-word;
+  }
+  .party-reveal h3 {
+    overflow-wrap: break-word;
+  }
+  .party-reveal__row[data-leader='true'] {
+    border-radius: 10px;
+    background: var(--party-tint);
+    padding-inline: 8px;
+  }
+  .party-reveal__identity {
+    overflow-wrap: break-word;
+  }
+  /* A single unbroken 30-character name may split rather than widen the page. */
+  .party-reveal__identity > strong,
+  .party-choice__label {
+    overflow-wrap: anywhere;
+  }
+  .party-reveal > [data-decision-actions] > .button {
+    width: 100%;
+  }
+  .party-options p[data-answer='true'] {
+    border-radius: 6px;
+    background: #ffffffb0;
+    outline: 2px solid var(--party-accent);
+    outline-offset: 3px;
   }
 }

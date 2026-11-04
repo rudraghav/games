@@ -11,7 +11,7 @@ function positionLabels(room: RoomView) {
   return game.community.map((card, index) =>
     game.game_id === 'four-in-a-row'
       ? `${card.label}: ${card.value ? owner(Number(card.value) - 1) : 'empty'}`
-      : `${owner(index < 7 ? 0 : 1)} · ${card.label}: ${card.value} seeds`,
+      : `${owner(index < 7 ? 0 : 1)} · ${card.label}: ${card.value} ${card.value === '1' ? 'seed' : 'seeds'}`,
   );
 }
 

@@ -324,5 +324,20 @@
     .astrology-saved-heading h3 {
       font-size: 22px;
     }
+    /* On a phone the wheel breaks out of the nested card padding to almost the
+       full screen width, and its smallest labels grow with it. */
+    .astrology-figure > svg.astrology-wheel {
+      width: min(calc(100vw - 20px), 420px);
+      max-width: none;
+      margin-inline: calc(50% - min(calc(50vw - 10px), 210px));
+    }
+    /* 18 viewBox units render at about 11px on a 300px wheel. */
+    .astro-house-number {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .astro-planet-symbol {
+      font-size: 24px;
+    }
   }
 }

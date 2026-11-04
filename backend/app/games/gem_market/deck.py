@@ -44,5 +44,7 @@ PATRONS = {f"patron-{i}": {color: 3 for color in colors}
 
 
 def patron_view(ident: str) -> CardView:
-    return CardView(id=ident, label=f"Patron {int(ident.split('-')[1]) + 1}", value="3",
+    """Patrons are named by the three discounts they require, which identify them uniquely."""
+    first, second, third = (color.title() for color in PATRONS[ident])
+    return CardView(id=ident, label=f"Patron of {first}, {second} & {third}", value="3",
                     color="gold", suit="patron", subtitle=" · ".join(f"3 {c}" for c in PATRONS[ident]))

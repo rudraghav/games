@@ -29,3 +29,12 @@ The 1 November 2026 audit reviewed CGE's publisher description against these
 explicit house choices. `test_expansion.py` covers the assassin, last enemy agent,
 clue rejection, guess limit and key privacy; `test_table_rules.py` completes
 shuffled matches at 4/10 seats without altering the saved key or board.
+
+Projection notes (3 November 2026). `detail.clue`/`clue_count` are non-empty only
+in the guess phase; a finished clue moves to `last_clue` (team, clue, count) and
+`turn_end` says why the turn ended (`wrong`, `stopped`, `guesses`, or at the end
+`assassin`, `all_found`, `gave_away`; `winning_team` is set then). `last_reveal`
+names the last revealed word, who chose it and its identity — only ever a tile
+that is already revealed, so it adds nothing hidden. Engine messages are written
+for the seat that can act and say what the last guess turned out to be.
+

@@ -251,3 +251,22 @@ classic seed 12 reaches the third-play counter window in four legal actions.
 All now assert exact quotes, actual transferred IDs, card conservation and input
 immutability. Controlled cases additionally cover selection order/deduplication,
 bank/building-only payment, insolvency, hidden canaries and bot loss valuation.
+
+## Seat instructions and move labels — 3 November 2026
+
+`GameView.message` is computed by `DealEngine.instruction(state)` at projection
+time instead of being the stored "Played …" text. It is written for the seat
+that can act, never restates the previous move (the room's attributed Last move
+line does that), and reveals nothing private: for example "Play up to 2 more
+cards, or end your turn.", "Accept, or answer with Just Say No.", "Accept the
+block, or answer with your own Just Say No.", "Pay 5M from your bank or
+properties. No change is given.", "Choose the card to take.", "Settle your debt
+first: give a card from your hand to your creditor.", "Place or bank the card
+you were given for a debt.", "Play a Rent card next: it charges ×2." and
+"Discard 1 card to keep 7.". The stored `message` key is kept for saved-state
+compatibility. No rule or projection field changed.
+
+Public move-history labels: accepting is "Let the last play stand" (it covers
+both an accepted action and an accepted block), choosing is "Chose a card to
+take" and a debt settlement is "Gave a hand card to settle a debt" (the card
+stays private to the two players).

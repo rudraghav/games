@@ -1,14 +1,18 @@
 'use client';
 import { useRef, useState } from 'react';
-import { Hand, Button, CardPile, DecisionDock, PlayingCard, TableDecisionPanel } from '@games/ui';
+import { Hand, Button, DecisionDock, TableDecisionPanel } from '@games/ui';
 import { dealDetails, type ActionOption } from '@games/api-client';
-import { ArrowRight, CircleHelp, Info, ShieldCheck, SlidersHorizontal, X } from 'lucide-react';
-import { playerName, type TableProps } from '../types';
+import { ArrowRight, CircleHelp, Eye, Info, SlidersHorizontal, X } from 'lucide-react';
+import { type TableProps } from '../types';
+import { useTableDraft } from '../shared/table-draft';
 import { DealPlayer } from './DealPlayer';
-import { DealComposer, optionKey } from './DealComposer';
-import { paymentSelection, pileName, suggestBankPayment } from './presentation';
+import { DealComposer } from './DealComposer';
+import { DealResolution } from './DealResolution';
+import { EFFECT_TITLES, commitLabel, optionKey, type DealContext } from './decisions';
+import { paymentSelection } from './presentation';
 import { DealCardInformation } from './DealCardInformation';
 import { dealInfoEntries } from './information';
+import { tableStatus } from './table-status';
 
 export function DealTable(props: TableProps) {
   const { match, room, selfId, pending } = props;
@@ -26,23 +30,17 @@ export function DealTable(props: TableProps) {
     : null;
   const [dismissedResolution, setDismissedResolution] = useState<string | null>(null);
   const [decisionOpen, setDecisionOpen] = useState(false);
-  const [selected, setSelected] = useState<string | null>(null);
-  const [target, setTarget] = useState('');
-  const [choiceKey, setChoiceKey] = useState<string | null>(null);
-  const [payment, setPayment] = useState<{ signature: string; cards: string[] }>({
-    signature: '',
-    cards: [],
-  });
+  // The viewer's unsent card choice survives a refresh, but only for this exact table version.
+  const draft = `deal:${room.id}:${room.matchId}:${room.matchVersion}`;
+  const [selected, setSelected] = useTableDraft<string | null>(`${draft}:card`, null);
+  const [target, setTarget] = useTableDraft(`${draft}:target`, '');
+  const [choiceKey, setChoiceKey] = useTableDraft<string | null>(`${draft}:move`, null);
+  // A partial payment also survives a refresh, scoped to this exact bill and version.
+  const [payment, setPayment] = useTableDraft<string[]>(`${draft}:pay`, []);
+  const ctx: DealContext = { match, room, details, selfId };
   const own = match.players.find((player) => player.id === selfId);
   const pay = match.actions.find((option) => option.value.type === 'pay');
-  const signature = JSON.stringify([
-    pay?.eligibleCards,
-    details.pendingAction,
-    details.paymentBundles,
-    room.matchVersion,
-  ]);
-  const paid = payment.signature === signature ? payment.cards : [];
-  const assets = own ? [...own.bank, ...Object.values(own.properties).flat()] : [];
+  const paid = pay ? payment.filter((id) => pay.eligibleCards.includes(id)) : [];
   const quote = paymentSelection(details.paymentBundles, paid);
   const paidValue = quote.amount;
   const paymentValid =
@@ -59,9 +57,11 @@ export function DealTable(props: TableProps) {
   ].find((item) => item.id === selected);
   const options = match.actions.filter((option) => option.value.card === card?.id && Boolean(card));
   const playable = options.filter((option) => option.value.type !== 'bank');
+  // Once a player is chosen, a single remaining move needs no second pick.
+  const forTarget = target ? playable.filter((option) => option.value.target === target) : playable;
   const candidate =
-    options.find((option) => optionKey(option) === choiceKey) ||
-    (playable.length === 1 ? playable[0] : null);
+    match.actions.find((option) => optionKey(option) === choiceKey) ||
+    (forTarget.length === 1 ? forTarget[0] : playable.length === 1 ? playable[0] : null);
   const choose = (option: ActionOption) => setChoiceKey(optionKey(option));
   const clear = () => {
     setSelected(null);
@@ -72,10 +72,7 @@ export function DealTable(props: TableProps) {
   };
   const select = (id: string) => {
     if (pay?.eligibleCards.includes(id)) {
-      setPayment({
-        signature,
-        cards: paid.includes(id) ? paid.filter((item) => item !== id) : [...paid, id],
-      });
+      setPayment(paid.includes(id) ? paid.filter((item) => item !== id) : [...paid, id]);
     } else {
       const moves = match.actions.filter((option) => option.value.card === id);
       const complex = moves.some(
@@ -92,15 +89,16 @@ export function DealTable(props: TableProps) {
   const commit: TableProps['onAction'] = (action) => {
     props.onAction(action);
     clear();
-    setPayment({ signature: '', cards: [] });
+    setPayment([]);
   };
   const end = match.actions.find((option) => option.value.type === 'end_turn');
   const counter = match.actions.filter((option) => ['accept', 'no'].includes(option.value.type));
+  const staged = match.actions.some((option) =>
+    ['choose', 'keep', 'give'].includes(option.value.type),
+  );
   const effect = details.pendingAction;
-  const publicCards = match.players.flatMap((player) => [
-    ...player.bank,
-    ...Object.values(player.properties).flat(),
-  ]);
+  const effectTitle = effect ? EFFECT_TITLES[effect.kind] || effect.kind : '';
+  const armed = details.rentMultiplier > 1 && !details.pending && match.currentPlayer === selfId;
   const bank = options.find((option) => option.value.type === 'bank');
   const placements = options.filter((option) =>
     ['property', 'rearrange'].includes(option.value.type),
@@ -121,18 +119,48 @@ export function DealTable(props: TableProps) {
         ? [candidate.value.choice, ...(candidate.value.cards || [])].filter(Boolean)
         : []),
       ...(effect?.transfers.flatMap((transfer) => transfer.cards) || []),
+      // A Super Sly Deal colour takes every matching public property: outline them all.
+      ...(card?.effect === 'super_sly' && candidate?.value.color
+        ? match.players
+            .filter((player) => player.id !== selfId)
+            .flatMap((player) => Object.values(player.properties).flat())
+            .filter(
+              (item) => item.suit === 'property' && item.colors.includes(candidate.value.color),
+            )
+            .map((item) => item.id)
+        : []),
       ...quote.carried,
     ],
     targeted: candidate?.value.target || target || effect?.target,
     targetable: [...new Set(options.map((option) => option.value.target).filter(Boolean))],
     onTarget: (id: string) => {
       setTarget(id);
-      setChoiceKey(null);
+      const only = playable.filter((option) => option.value.target === id);
+      setChoiceKey(only.length === 1 ? optionKey(only[0]) : null);
     },
   };
+  const finished = match.phase === 'finished';
+  // Only the seat that must answer a pending effect gets the response controls.
+  const responding = Boolean(details.pending) && !finished && match.actions.length > 0;
+  const status = tableStatus(match, room, selfId, details);
+  // A No Mercy debt card handed to this seat: name it, since it joins the end of the hand.
+  const gift =
+    status.title === 'Card received'
+      ? match.hand.find((item) => item.id === match.actions[0]?.value.card) || null
+      : null;
+  const discard = match.discard;
+  const discardColors = discard?.colors?.length
+    ? discard.colors
+    : discard?.suit === 'property'
+      ? [discard.color]
+      : [];
   return (
     <div className="deal-stage-container">
-      <div className="table-layout deal-workspace" data-pending={Boolean(details.pending)}>
+      <div
+        className="table-layout deal-workspace"
+        data-pending={Boolean(details.pending) && !finished}
+        data-phase={match.phase}
+      >
         <div className="deal-opponents" aria-label="Other players">
           {match.players
             .filter((player) => player.id !== selfId)
@@ -142,24 +170,75 @@ export function DealTable(props: TableProps) {
         </div>
         <div className="deal-center" aria-label="Shared play area">
           <div className="deal-stock">
-            <CardPile label="Draw" count={match.drawCount} family="property" compact />
-            <CardPile
-              label="Discard"
-              card={match.discard}
-              family="property"
-              compact
-              empty={!match.discard}
-            />
+            <div
+              className="deal-draw"
+              role="img"
+              aria-label={`Draw pile, ${match.drawCount} card${match.drawCount === 1 ? '' : 's'}`}
+            >
+              <span className="deal-pile-back" aria-hidden="true">
+                <span>g.</span>
+              </span>
+              <span className="deal-pile-copy" aria-hidden="true">
+                <b>{match.drawCount}</b>
+                <span>Draw</span>
+              </span>
+            </div>
+            {discard ? (
+              <button
+                type="button"
+                className="deal-discard"
+                data-card-kind={
+                  discard.subtitle === 'MONEY'
+                    ? 'money'
+                    : discard.suit === 'property'
+                      ? 'property'
+                      : 'action'
+                }
+                aria-label={`Top of the discard pile: ${discard.label}, ${discard.value}. Card info`}
+                onClick={() => inspect(discard.id)}
+              >
+                <span className="deal-discard-band" aria-hidden="true">
+                  {discardColors.map((color) => (
+                    <span key={color} data-property-color={color} />
+                  ))}
+                </span>
+                <span className="deal-discard-copy" aria-hidden="true">
+                  <span>Discard</span>
+                  <strong>{discard.label}</strong>
+                </span>
+                <b className="deal-discard-value" aria-hidden="true">
+                  {discard.value}
+                </b>
+              </button>
+            ) : (
+              <div className="deal-discard" data-empty="true">
+                <span className="deal-discard-copy">
+                  <span>Discard</span>
+                  <strong>Empty</strong>
+                </span>
+              </div>
+            )}
           </div>
-          <div className="deal-last-move">
-            <span className="eyebrow">On the table</span>
-            <p>{match.message}</p>
-          </div>
+          <p className="deal-turn-status" data-tone={status.tone}>
+            {status.text}
+          </p>
           <div className="deal-turn-controls">
-            <span>
-              <b>{Math.max(0, details.moves)}</b> {details.moves === 1 ? 'play' : 'plays'} left
-            </span>
-            {end ? (
+            {status.plays ? (
+              <span className="deal-plays" data-mine={status.plays.mine}>
+                <span className="deal-play-pips" aria-hidden="true">
+                  {[0, 1, 2].map((index) => (
+                    <i key={index} data-used={index >= status.plays!.left} />
+                  ))}
+                </span>
+                <span>
+                  <b>{status.plays.left}</b> {status.plays.left === 1 ? 'play' : 'plays'} left
+                </span>
+              </span>
+            ) : (
+              // Keeps the centre row's height when a response or a discard replaces the plays.
+              <span className="deal-plays" data-empty="true" aria-hidden="true" />
+            )}
+            {end && !finished ? (
               <Button
                 variant="secondary"
                 disabled={pending || room.paused}
@@ -171,19 +250,48 @@ export function DealTable(props: TableProps) {
             ) : null}
           </div>
         </div>
-        <div
-          className="deal-board-scroll"
-          role="region"
-          aria-label="Your bank and property sets"
-          tabIndex={0}
-        >
-          {own ? <DealPlayer {...playerProps} player={own} /> : null}
-        </div>
+        <section className="deal-hand-dock" aria-label="Your hand and moves">
+          <div className="hand-heading">
+            <h3>
+              Your hand <span className="muted">{match.hand.length}</span>
+            </h3>
+            <Button
+              className="deal-hand-info"
+              size="sm"
+              variant="ghost"
+              aria-label="Card info"
+              disabled={!informationCards.length}
+              onClick={() => inspect(selected || match.hand[0]?.id || informationCards[0].card.id)}
+            >
+              <Info size={16} />
+              <span className="deal-hand-info-label">Card info</span>
+            </Button>
+          </div>
+          {match.hand.length ? (
+            <Hand
+              cards={match.hand}
+              family="property"
+              selectedIds={selected ? [selected] : []}
+              onSelect={select}
+              disabled={pending || room.paused || finished}
+              playableIds={match.actions
+                .filter((option) => option.value.card)
+                .map((option) => option.value.card)}
+            />
+          ) : (
+            <p className="deal-hand-empty">
+              {finished
+                ? 'No cards left in your hand.'
+                : 'No cards in hand. You draw 5 at the start of your next turn.'}
+            </p>
+          )}
+        </section>
         <DecisionDock
           className="deal-command-dock"
           label="Your actions"
           pending={pending}
           size="compact"
+          hidden={finished}
         >
           <div className="deal-command-title">
             <strong>
@@ -191,13 +299,15 @@ export function DealTable(props: TableProps) {
                 ? `Pay ${details.paymentAmount}M · ${paidValue}M selected`
                 : card
                   ? card.label
-                  : details.pending
+                  : responding
                     ? 'Your response'
-                    : match.currentPlayer === selfId
-                      ? 'Your move'
-                      : 'At the table'}
+                    : armed
+                      ? `Rent ×${details.rentMultiplier} armed`
+                      : gift
+                        ? `Received: ${gift.label}`
+                        : status.title}
             </strong>
-            {card || details.pending ? (
+            {card || responding ? (
               <>
                 {card ? (
                   <Button
@@ -228,6 +338,15 @@ export function DealTable(props: TableProps) {
                   </Button>
                 ) : null}
               </>
+            ) : details.pending && !finished ? (
+              <Button
+                size="icon"
+                variant="ghost"
+                aria-label="View pending action"
+                onClick={() => setDecisionOpen(true)}
+              >
+                <Eye size={17} />
+              </Button>
             ) : null}
           </div>
           <div className="deal-command-primary">
@@ -238,22 +357,22 @@ export function DealTable(props: TableProps) {
               >
                 Pay {paidValue}M
               </Button>
-            ) : details.pending ? (
+            ) : responding && details.pending ? (
               <Button
                 disabled={pending || room.paused || !match.actions.length}
                 onClick={() => setDecisionOpen(true)}
               >
-                Review {details.pending.replaceAll('_', ' ')}
+                {effect?.stage === 'select'
+                  ? 'Choose the card to take'
+                  : effect?.stage === 'distribution'
+                    ? 'Choose what to keep'
+                    : effect?.blocked
+                      ? 'Answer the block'
+                      : `Respond to ${effect?.kind === 'bill' ? `${effect.amount ?? 0}M bill` : effectTitle}`}
               </Button>
             ) : candidate && candidate.value.type !== 'bank' ? (
               <Button disabled={pending || room.paused} onClick={() => commit(candidate.value)}>
-                {candidate.value.type === 'property'
-                  ? 'Place property'
-                  : candidate.value.type === 'rearrange'
-                    ? 'Move property'
-                    : candidate.value.type === 'discard'
-                      ? 'Discard card'
-                      : `Play ${card?.label || 'card'}`}
+                {commitLabel(candidate, ctx)}
               </Button>
             ) : card ? (
               <Button
@@ -266,12 +385,22 @@ export function DealTable(props: TableProps) {
                 {!playable.length && bank ? `Bank for ${card.value}` : 'Choose a move'}
               </Button>
             ) : (
-              <p className="small muted">
-                {match.phase === 'discard' ? 'Discard down to seven.' : 'Select a card to play.'}
+              <p className="deal-command-hint">
+                {armed
+                  ? `Play a Rent card next: its rent is charged ×${details.rentMultiplier}. End turn returns after that rent.`
+                  : status.hint}
               </p>
             )}
           </div>
         </DecisionDock>
+        <div
+          className="deal-board-scroll"
+          role="region"
+          aria-label="Your bank and property sets"
+          tabIndex={0}
+        >
+          {own ? <DealPlayer {...playerProps} player={own} /> : null}
+        </div>
         <TableDecisionPanel
           open={
             decisionOpen ||
@@ -281,153 +410,38 @@ export function DealTable(props: TableProps) {
             setDecisionOpen(open);
             if (!open) setDismissedResolution(resolutionKey);
           }}
-          title={pay ? `Pay ${details.paymentAmount}M` : card?.label || 'Your response'}
+          title={
+            pay
+              ? `Pay ${details.paymentAmount}M`
+              : responding && details.pending
+                ? effect?.kind === 'bill'
+                  ? 'Your response'
+                  : effectTitle
+                : card?.label || (details.pending ? 'Pending action' : 'Your move')
+          }
         >
           {details.pending ? (
-            <section className="deal-resolution" aria-label="Pending action" aria-live="polite">
-              <div>
-                <ShieldCheck size={20} />
-                <div>
-                  <h3>
-                    {pay
-                      ? `Pay ${details.paymentAmount}M`
-                      : effect?.blocked
-                        ? 'Action blocked'
-                        : details.pending.replaceAll('_', ' ')}
-                  </h3>
-                  <p>
-                    {effect
-                      ? `${playerName(room, effect.actor)} → ${playerName(room, effect.target)}${effect.amount ? ` · ${effect.amount}M` : ''}`
-                      : match.message}
-                  </p>
-                  {effect?.source_collection ? (
-                    <p className="small">
-                      Rent from {pileName(effect.source_collection, details.propertyGroups)}
-                      {effect.multiplier > 1 ? ` · ${effect.multiplier}× rent` : ''}
-                    </p>
-                  ) : null}
-                  {effect?.category ? <p>Take {effect.category} cards from their hand.</p> : null}
-                </div>
-              </div>
-              {effect?.transfers.map((transfer, index) => (
-                <div key={`${transfer.source}:${index}`}>
-                  <p className="small">
-                    {effect.blocked ? 'If restored: ' : ''}
-                    {playerName(room, transfer.source)} → {playerName(room, transfer.target)}
-                    {effect.collection
-                      ? ` · ${pileName(effect.collection, details.propertyGroups)}`
-                      : ''}
-                  </p>
-                  <div className="deal-resolution-actions">
-                    {transfer.cards.map((id) => {
-                      const asset = publicCards.find((item) => item.id === id);
-                      return asset ? (
-                        <div key={id} className="deal-transfer-card">
-                          <PlayingCard card={asset} family="property" />
-                          <Button variant="ghost" size="sm" onClick={() => inspect(id)}>
-                            {asset.label} · {asset.value}
-                            <Info size={14} />
-                          </Button>
-                        </div>
-                      ) : null;
-                    })}
-                  </div>
-                </div>
-              ))}
-              {pay ? (
-                <>
-                  <p>Choose bank cards or properties below. No change is given.</p>
-                  <div className="deal-payment-total">
-                    <strong>{paidValue}M selected</strong>
-                    <span>
-                      {paidValue > details.paymentAmount
-                        ? `${paidValue - details.paymentAmount}M overpayment`
-                        : `${Math.max(0, details.paymentAmount - paidValue)}M remaining`}
-                    </span>
-                  </div>
-                  {quote.ids.length ? (
-                    <div aria-label="Payment transfer preview">
-                      <p className="small">{paidValue}M will leave your table:</p>
-                      <div className="deal-resolution-actions">
-                        {quote.ids.map((id) => {
-                          const asset = assets.find((item) => item.id === id);
-                          return asset ? (
-                            <Button key={id} variant="ghost" size="sm" onClick={() => inspect(id)}>
-                              {asset.label} · {asset.value}
-                              {quote.carried.includes(id) ? ' · attached' : ''}
-                              <Info size={14} />
-                            </Button>
-                          ) : null;
-                        })}
-                      </div>
-                    </div>
-                  ) : null}
-                  <div className="deal-resolution-actions">
-                    {paid.length ? (
-                      <Button
-                        variant="ghost"
-                        disabled={pending}
-                        onClick={() => setPayment({ signature, cards: [] })}
-                      >
-                        Clear payment
-                      </Button>
-                    ) : null}
-                    <Button
-                      variant="secondary"
-                      disabled={pending || room.paused}
-                      onClick={() =>
-                        setPayment({
-                          signature,
-                          cards: suggestBankPayment(
-                            own?.bank || [],
-                            pay.eligibleCards,
-                            details.paymentAmount,
-                          ),
-                        })
-                      }
-                    >
-                      Select bank money
-                    </Button>
-                    <Button
-                      disabled={pending || room.paused || !paymentValid}
-                      onClick={() => commit({ ...pay.value, cards: paid })}
-                    >
-                      Pay {paidValue}M
-                    </Button>
-                  </div>
-                </>
-              ) : counter.length ? (
-                <div className="deal-resolution-actions">
-                  {counter
-                    .filter(
-                      (option, index, all) =>
-                        all.findIndex((item) => item.value.type === option.value.type) === index,
-                    )
-                    .map((option) => (
-                      <Button
-                        key={optionKey(option)}
-                        variant={option.value.type === 'no' ? 'primary' : 'secondary'}
-                        disabled={pending || room.paused}
-                        onClick={() => commit(option.value)}
-                      >
-                        {option.value.type === 'accept' && effect?.transfers.length
-                          ? effect.blocked
-                            ? 'Keep action blocked'
-                            : 'Allow transfer'
-                          : option.label}
-                      </Button>
-                    ))}
-                </div>
-              ) : (
-                <p className="small muted">
-                  {match.actions.length
-                    ? 'Select a highlighted card on the table to continue.'
-                    : 'Waiting for the next decision.'}
-                </p>
-              )}
-            </section>
+            <DealResolution
+              ctx={ctx}
+              blocked={pending || room.paused}
+              onCommit={commit}
+              onInspect={inspect}
+              paid={paid}
+              onPaid={setPayment}
+              stageChoice={
+                choiceKey ??
+                (candidate && ['choose', 'keep', 'give'].includes(candidate.value.type)
+                  ? optionKey(candidate)
+                  : null)
+              }
+              onStageChoice={(key) => {
+                const option = match.actions.find((item) => optionKey(item) === key);
+                setSelected(option?.value.card || null);
+                setChoiceKey(key);
+              }}
+            />
           ) : null}
-          {card && !pay && !counter.length ? (
+          {card && !pay && !counter.length && !staged ? (
             <DealComposer
               key={card.id}
               {...props}
@@ -444,33 +458,6 @@ export function DealTable(props: TableProps) {
             />
           ) : null}
         </TableDecisionPanel>
-        <section className="deal-hand-dock" aria-label="Your hand and moves">
-          <div className="hand-heading">
-            <h3>
-              Your hand <span className="muted">{match.hand.length}</span>
-            </h3>
-            <Button
-              className="deal-hand-info"
-              size="sm"
-              variant="ghost"
-              disabled={!informationCards.length}
-              onClick={() => inspect(selected || match.hand[0]?.id || informationCards[0].card.id)}
-            >
-              <Info size={16} />
-              Card info
-            </Button>
-          </div>
-          <Hand
-            cards={match.hand}
-            family="property"
-            selectedIds={selected ? [selected] : []}
-            onSelect={select}
-            disabled={pending || room.paused}
-            playableIds={match.actions
-              .filter((option) => option.value.card)
-              .map((option) => option.value.card)}
-          />
-        </section>
         <details className="deal-quick-rules">
           <summary>
             <CircleHelp size={15} />

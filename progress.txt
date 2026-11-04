@@ -1,3 +1,70 @@
+## 2026-11-03 — All-games fixes verified locally
+
+- The first fix run was stopped mid-way at the owner's request; 13 owners then
+  resumed from their own partial edits with the same file ownership. Owners
+  report 249 fixes: 128 completed through the normal UI in saved rooms, 104
+  rendered only (real room or harness), 8 unit-tested only; deferred items
+  and per-game coverage are in docs/evidence/all-games-review-2026-11-03.
+- Owner's Deal case: in a saved room the defender held 13 piles, a 60M bank and
+  Just Say No; Sly Deal on a named wild, peek, refresh mid-response, Just Say
+  No, accepted block, then an accepted Sly Deal moving the wild — both seats.
+- Shared follow-ups applied: "You're out" for eliminated seats, No Mercy
+  elimination order and winners-first results, rematch scrolls to the banner,
+  Word Agents team-turn banner, solo Tarot keeps only "Draw a new spread",
+  game-neutral stale-move copy, accepted Deal steals name the moved cards, the
+  final Word Agents move names only the chosen word, split Blackjack seats fan
+  tighter, Hot Seat lists its options once.
+- Browser specs updated where intent held but layout changed (Deal reading
+  order, two-step Forced Deal, keep-from-panel, owner-named Mancala pits,
+  positional Tarot deck labels, full-bleed Tarot art, content-sized casino dock).
+- State: verifying the final source, then commit, push and one production deploy.
+
+## 2026-11-03 — All-games review triaged; shared banner and fix phase started
+
+- Before baseline: 1,120 harness renders (259 legal states + 21 Deal scenarios
+  at 320/390/768/1440) with a content-spill/collision/clipping/tiny-text lint.
+  Every Deal state spilled; rail arrows covered seat names in 13 games.
+- Eleven family reviewers played all 27 games (saved rooms, both seats where
+  hidden information or responses matter, art contact sheets) and independent
+  reproducers re-checked every P0/P1: 251 findings (15 P0, 142 reproduced P1,
+  94 P2 or partial). Recurring causes: engine messages written for the actor
+  shown to every seat with no attribution; results below the whole table at
+  match end; fixed-height docks/panels hiding commit buttons; rails covering
+  content; selections lost on refresh or when another seat moves first.
+- Shared fixes landed locally: viewer-aware turn banner (owner vs responder,
+  "Waiting for …", winner from the viewer's seat) with an attributed "Last move"
+  line from public history; results and rematch first at match end; move error
+  pinned to the top, dismissible and cleared when the table moves; decision
+  panels focus themselves so Space peeks; sticky data-decision-actions; a
+  size="fit" dock; singular result units; a tab-scoped draft hook.
+- Local API restarted with --reload so per-family backend message fixes apply
+  while agents test. Fix phase: 13 owners with disjoint files (shell, card art,
+  Deal layout then Deal decisions, and nine families), each followed by an
+  independent read-only verifier and one repair round. State: fixing.
+
+## 2026-11-03 — All-games table, art and decision review kickoff
+
+- User supplied a live 2-seat Deal capture with the opponent panel overlapping
+  the draw/discard piles, plus playdeal.io's table and Sly Deal dialog as the
+  quality bar, and asked for every game to be reviewed and improved.
+- Reproduced locally at 320/390/768/1000/1440 in a real bot room and in the
+  /design/midgame harness: the 74px Deal centre row holds a 101px pile stack,
+  which spills into the opponent row and onto the player's name. The previous
+  259-state audit captured it but measured row boxes, not spilling content.
+- Outcome: a player can tell whose turn it is, what just happened, what they
+  can do and what their choice affects, on a small phone late in a crowded
+  match, in all 27 games. Fix misleading art, unclear consequences, hidden
+  controls and lost selections first; preserve each game's visual identity.
+- Acceptance: per-game checklist separating visually inspected, played through
+  and saved-room verified; art contact sheets and actual-size checks; content
+  overflow/collision/tiny-text lint at 320/390/768/1440 (+1024/1280); Deal Sly
+  Deal against a wild on a 13-pile board understood from both seats; before/
+  after captures of the same state; affected named checks, saved refresh, one
+  push/deployment and live verification.
+- Task all-games-table-review-20261103 (owner claude-ec625a2d). Local services
+  restarted on web 3217/API 8217/Storybook 6105; review output is task-owned
+  scratch. No rule/API/schema change planned. State: review in progress.
+
 ## 2026-11-03 — Crowded layouts pushed and live verified
 
 - Application 4d89dcac173f2f9cb89e1f67ba80a773e9ce4088 is pushed to main.

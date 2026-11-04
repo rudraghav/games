@@ -26,11 +26,28 @@ checkers' no-pieces/no-legal-move win, threefold repetition or 40-moves-each qui
 draw. The engine provides the reason and decisive Four cells; the client does not
 recompute either. Missing result metadata in older saved states remains readable.
 
-At narrow widths, Four, Reversi, checkers and Mancala retain full-size move targets
-in the shared horizontal rail. Visible pan controls and a swipe cue make the
-remaining columns discoverable. Keyboard focus scrolls only the rail to reveal
-the selected action. A separate read-only whole-board overview fits the screen;
-closing it restores focus without submitting a move.
+Messages are perspective-safe. `message` is shown by the room only to the seat
+that can act, so in-play messages are that seat's instruction ("You play Black.
+Choose a marked square to flip discs.") and never restate the previous move (the
+attributed "Last move" line does that). Terminal messages are seen by everyone,
+so they name a colour, never "you" ("Ivory has no legal move left, so Coral
+wins."). Seat 0 is Coral (Four, checkers) or Black (Reversi); seat 1 is Gold,
+Ivory or White.
+
+Public consequence detail, all derived from the public board (no hidden state):
+Four `landing` (landing cell per legal column); Reversi `flips` (discs each legal
+placement would flip), `last_flips` and `passed` (the seat skipped by the latest
+placement); checkers `last_from`, `last_captured` and `forced` (the piece that
+must keep jumping); Mancala `previews` (landing pit, captured seeds and extra
+turn per legal pit), `last_source`, `last_capture` and the end `sweep`. Older
+saved states without these keys stay readable. Manifests declare score units
+(Discs, Captures, Seeds); Four in a Row's 1/0 score is hidden (`score_order: none`).
+
+At 360px and wider, every board fits the screen with 44px move targets (phones
+borrow most of the page gutter); laptops cap the board by viewport height. Below
+that, the shared horizontal rail (arrows below the board, never over squares) and
+a read-only whole-board overview remain the fallback; closing the overview
+restores focus without submitting a move.
 
 Audit: `test_expansion.py` independently checks gravity, all winning directions,
 full-column rejection, Reversi eight-direction captures, forced passes and

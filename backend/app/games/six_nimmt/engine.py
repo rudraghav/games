@@ -21,9 +21,13 @@ def penalty(number: int) -> int:
     return 7 if number == 55 else 5 if number % 11 == 0 else 3 if number % 10 == 0 else 2 if number % 5 == 0 else 1
 
 
+SELECT_MESSAGE = ("Choose one number to lock. Locked numbers stay secret until everyone has chosen, "
+                  "then resolve from lowest to highest.")
+
+
 def face(number: int) -> CardView:
     points = penalty(number)
-    return CardView(id=f"number-{number}", label=f"{number}, {points} penalty {'point' if points == 1 else 'points'}",
+    return CardView(id=f"number-{number}", label=f"{number} ({points} penalty {'point' if points == 1 else 'points'})",
                     value=str(number), subtitle=str(points), color={1: "green", 2: "blue", 3: "yellow", 5: "red", 7: "plum"}[points])
 
 
@@ -57,8 +61,8 @@ class SixNimmtEngine(BaseEngine):
         Random(s["seed"] + s["round"]).shuffle(deck)
         s.update(deck=deck, hands={p: sorted(deck.pop() for _ in range(10)) for p in s["order"]},
                  rows=[[deck.pop()] for _ in range(4)], captured={p: [] for p in s["order"]},
-                 selected={}, pending=[], revealed=[], phase="selecting", turn=0, trick=1,
-                 message="Everyone chooses one private card. The lowest revealed number resolves first.")
+                 selected={}, pending=[], revealed=[], resolution=[], phase="selecting", turn=0, trick=1,
+                 message=SELECT_MESSAGE)
 
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
         if player not in s["order"] or s["phase"] == "finished":
@@ -71,9 +75,12 @@ class SixNimmtEngine(BaseEngine):
             return [legal(f"Take row {i + 1} · {sum(map(penalty, row))} penalties", "take_row", choice=str(i)) for i, row in enumerate(s["rows"])]
         return [legal("Next round", "next_round")] if s["phase"] == "round_over" else [legal("Next selection", "next_selection")]
 
-    def _take(self, s: State, player: str, row: int, card: int) -> None:
-        s["captured"][player].extend(s["rows"][row])
+    def _take(self, s: State, player: str, row: int, card: int, kind: str) -> None:
+        taken = s["rows"][row]
+        s["captured"][player].extend(taken)
         s["rows"][row] = [card]
+        s.setdefault("resolution", []).append({"player": player, "number": card, "row": row, "kind": kind,
+                                               "captured": list(taken), "penalties": sum(map(penalty, taken))})
 
     def _resolve(self, s: State) -> None:
         while s["pending"]:
@@ -81,25 +88,30 @@ class SixNimmtEngine(BaseEngine):
             p, card = item["player"], item["number"]
             eligible = [i for i, row in enumerate(s["rows"]) if row[-1] < card]
             if not eligible:
+                # Only the card's owner can act, so the message speaks to them.
                 s.update(phase="take_row", turn=s["order"].index(p),
-                         message=f"{card} is below every row end. Its owner chooses a row to take.")
+                         message=f"Your {card} is lower than every row end. Choose a row to take: "
+                                 f"you score its penalties and your {card} starts that row.")
                 return
             row = max(eligible, key=lambda i: s["rows"][i][-1])
             if len(s["rows"][row]) == 5:
-                self._take(s, p, row, card)
+                self._take(s, p, row, card, "sixth")
             else:
                 s["rows"][row].append(card)
+                s.setdefault("resolution", []).append({"player": p, "number": card, "row": row, "kind": "placed",
+                                                       "captured": [], "penalties": 0})
             s["pending"].pop(0)
-        s.update(turn=0, phase="review", message="Cards resolved. Review the rows before the next selection.")
+        s.update(turn=0, phase="review",
+                 message="Check where each number went, then continue to the next selection.")
         if not any(s["hands"].values()):
             s["round_scores"] = {p: sum(map(penalty, s["captured"][p])) for p in s["order"]}
             for p in s["order"]:
                 s["scores"][p] += s["round_scores"][p]
-            s.update(phase="round_over", message="Ten cards played. Round penalties are added to the totals.")
+            s.update(phase="round_over", message="All ten cards are played. Check the round penalties, then start the next round.")
             if max(s["scores"].values()) >= 66:
                 best = min(s["scores"].values())
                 s.update(phase="finished", winners=[p for p in s["order"] if s["scores"][p] == best],
-                         message="The round is complete. Fewest penalties wins!")
+                         message="Someone reached 66 penalties. The fewest penalties wins.")
 
     def apply_action(self, state: State, player: str, action: Action) -> State:
         validate_action(self.legal_actions(state, player), action)
@@ -107,11 +119,11 @@ class SixNimmtEngine(BaseEngine):
         if action.type == "next_round":
             self._deal(s)
         elif action.type == "next_selection":
-            s.update(phase="selecting", selected={}, pending=[], revealed=[], turn=0, trick=s["trick"] + 1,
-                     message="New selection. Lock one card; keep it secret until everyone is in.")
+            s.update(phase="selecting", selected={}, pending=[], revealed=[], resolution=[], turn=0,
+                     trick=s["trick"] + 1, message=SELECT_MESSAGE)
         elif action.type == "take_row":
             item = s["pending"].pop(0)
-            self._take(s, player, int(action.choice), item["number"])
+            self._take(s, player, int(action.choice), item["number"], "low")
             self._resolve(s)
         else:
             number = int(action.card.removeprefix("number-"))
@@ -120,11 +132,12 @@ class SixNimmtEngine(BaseEngine):
             pending = [p for p in s["order"] if p not in s["selected"]]
             if pending:
                 s["turn"] = s["order"].index(pending[0])
-                s["message"] = "Card locked. Other players' selections stay private."
+                s["message"] = SELECT_MESSAGE
             else:
                 s["revealed"] = [{"player": p, "number": n} for p, n in sorted(s["selected"].items(), key=lambda item: item[1])]
                 s["pending"] = [dict(item) for item in s["revealed"]]
                 s["selected"] = {}
+                s["resolution"] = []
                 self._resolve(s)
         return s
 
@@ -146,6 +159,13 @@ class SixNimmtEngine(BaseEngine):
                     "round_penalties": {p: points for p, points in round_penalties.items()},
                     "total_penalties": totals,
                     "round_scores": s["round_scores"], "pending_player": s["pending"][0]["player"] if s["pending"] else None,
+                    # Public: every revealed number and every row it took were already on the table.
+                    "resolution": [{"player": step["player"], "card": face(step["number"]).model_dump(), "row": step["row"],
+                                    "kind": step["kind"], "captured": [face(n).model_dump() for n in step["captured"]],
+                                    "penalties": step["penalties"]}
+                                   for step in s.get("resolution", [])],
+                    "unresolved": [{"player": item["player"], "card": face(item["number"]).model_dump()}
+                                   for item in s["pending"]],
                     "decision_mode": "simultaneous" if s["phase"] == "selecting" else "turn",
                     "pending_players": [p for p in s["order"] if p not in s["selected"]] if s["phase"] == "selecting" else []},
         )

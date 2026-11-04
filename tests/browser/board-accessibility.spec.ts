@@ -104,7 +104,7 @@ test('Mancala names both players pits and stores in the table and read-only over
   const pits = game.community!;
   const labels = pits.map(
     (card, index) =>
-      `${playerName(fixture, index < 7 ? 0 : 1)} · ${card.label}: ${card.value} seeds`,
+      `${playerName(fixture, index < 7 ? 0 : 1)} · ${card.label}: ${card.value} ${card.value === '1' ? 'seed' : 'seeds'}`,
   );
   expect(labels).toHaveLength(14);
   const board = page.locator('.mancala-board');

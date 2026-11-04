@@ -1,7 +1,10 @@
+from typing import Any
+
 from app.core.contracts import CardView, GameView, LegalAction, PlayerView, State
 
 
-def board_view(game_id: str, s: State, actions: list[LegalAction]) -> GameView:
+def board_view(game_id: str, s: State, actions: list[LegalAction],
+               extra: dict[str, Any] | None = None) -> GameView:
     colors = ["coral", "gold"] if game_id == "four-in-a-row" else ["ink", "ivory"]
     return GameView(
         game_id=game_id, phase=s["phase"],
@@ -14,5 +17,5 @@ def board_view(game_id: str, s: State, actions: list[LegalAction]) -> GameView:
                    for i, cell in enumerate(s["board"])],
         detail={"rows": s["rows"], "columns": s["columns"], "draw": s.get("draw", False),
                 "last_move": s.get("last_move"), "outcome_reason": s.get("outcome_reason"),
-                "winning_cells": s.get("winning_cells", [])},
+                "winning_cells": s.get("winning_cells", []), **(extra or {})},
     )

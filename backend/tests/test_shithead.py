@@ -208,3 +208,39 @@ def test_natural_complete_bot_matches_conserve_deck_and_memory(count, seed, extr
     assert s["phase"] == "finished", (count, seed, extras, _move)
     assert len(s["winners"]) == count - 1 and s["loser"] not in s["winners"]
     assert all(not e.legal_actions(s, p) for p in players)
+
+
+def test_messages_instruct_the_next_actor_instead_of_restating_moves():
+    # A normal play: the next player is told what beats the pile.
+    e, s = scenario({"a": ["9S:0", "4S:0"], "b": ["5S:0", "KS:0"]})
+    after = e.apply_action(s, "a", Action(type="play", cards=["9S:0"]))
+    assert after["message"] == "Match or beat 9 (or play a 2 or 10) from your hand, or take the pile."
+    # A pickup: the next player leads, and nobody is told "Pile taken" anonymously.
+    taken = e.apply_action(after, "b", Action(type="pickup"))
+    assert taken["message"] == "Lead any card from your hand."
+    # A burn keeps the burner's turn and says so to them.
+    e, s = scenario({"a": ["TS:0", "4S:0"], "b": ["5S:0"]}, pile=["AH:0"])
+    burned = e.apply_action(s, "a", Action(type="play", cards=["TS:0"]))
+    assert burned["message"] == "You burned the pile. Lead any card from your hand."
+    # A failed blind flip: the next player leads; the flip itself is public history.
+    e, s = scenario(
+        {"a": [], "b": ["5S:0"]},
+        pile=["AH:0"],
+        down={"a": ["3H:0", "4H:0", None], "b": [None, None, None]},
+    )
+    flipped = e.apply_action(s, "a", Action(type="flip", slot=0))
+    assert flipped["message"] == "Lead any card from your hand."
+    # Face-up and hidden stages, and the seven-low house rule.
+    e, s = scenario({"a": ["8S:0"], "b": []}, pile=["7S:0"], up={"a": [], "b": ["3H:0"]})
+    s["settings"]["seven_low"] = True
+    played = e.apply_action(s, "a", Action(type="pickup"))
+    assert played["message"] == "Lead any card from your face-up cards."
+    e, s = scenario(
+        {"a": ["9S:0", "4C:0"], "b": []},
+        pile=["4S:0"],
+        down={"a": [None] * 3, "b": ["3H:0", None, None]},
+    )
+    blind = e.apply_action(s, "a", Action(type="play", cards=["9S:0"]))
+    assert blind["message"].startswith("Flip a hidden table card.")
+    for message in (after, taken, burned, flipped, played, blind):
+        assert not any(old in message["message"] for old in ("Pile taken", "cannot beat", "played."))
