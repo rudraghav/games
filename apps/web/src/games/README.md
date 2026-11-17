@@ -56,6 +56,11 @@ only server-legal cards while leaving other cards inspectable; card moves appear
 after selection, and colour/draw/challenge instructions reflect the legal choices.
 Yellow-card ranks, corners and captions use measured contrasting ink.
 
+Uno and Uno No Mercy retain the selected card while a move is saving or fails.
+The tab's room/match/version-scoped draft also survives refresh, so a failed
+same-version move can be retried deliberately. A saved version expires the
+selection; Clear selection and choosing another card remain explicit local choices.
+
 `shared/TablePile` places an authorized draw action on its corresponding pile for
 Rummy and Skyjo. It is one labeled keyboard/touch control, disabled while saving
 or paused. Rummy's local group buttons preserve card identity across sorting;

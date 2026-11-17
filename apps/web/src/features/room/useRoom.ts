@@ -154,7 +154,14 @@ export function useRoom(id: string) {
   ]);
   function move(action: Action) {
     const current = cache.getQueryData<Room>(keys.room(id));
-    if (!current?.matchId || current.matchVersion == null || mutation.isPending) return;
+    if (
+      !online ||
+      !navigator.onLine ||
+      !current?.matchId ||
+      current.matchVersion == null ||
+      mutation.isPending
+    )
+      return;
     const actionId = crypto.randomUUID();
     mutation.mutate(() => api.move(id, current.matchId!, current.matchVersion!, action, actionId));
   }

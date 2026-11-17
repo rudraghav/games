@@ -431,6 +431,29 @@
   .gem-card-row .playing-card.development-card {
     --card-width: 100%;
   }
+  .gem-tier .playing-card.development-card {
+    justify-content: flex-start;
+    aspect-ratio: auto;
+  }
+  .gem-tier .development-card > .development-illustration {
+    flex: none;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1;
+  }
+  .gem-tier .development-card > strong {
+    min-height: 2.5em;
+    line-height: 1.25;
+  }
+  .gem-tier .development-card > .development-cost {
+    flex: none;
+    width: 100%;
+    height: 51px;
+    align-content: start;
+  }
+  .gem-tier .development-cost > .resource-token--compact {
+    padding-inline: 3px;
+  }
   .playing-card.development-card {
     --card-width: 140px;
     --card-height: auto;

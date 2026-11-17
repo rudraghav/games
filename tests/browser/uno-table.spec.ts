@@ -1,4 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
+import { randomUUID } from 'node:crypto';
+import { requestAs, roomAs, type RoomView } from './helpers';
 import {
   midgameScenarios,
   type MidgameScenario,
@@ -120,5 +122,172 @@ test('colour choices show a swatch, the colour name and how many the viewer hold
     await expect(swatch).toContainText(
       `${hand.filter((card) => card.color === colour).length} in hand`,
     );
+  }
+});
+
+test('failed Uno saves preserve the exact selection through refresh and a deliberate retry', async ({
+  page,
+  browser,
+  baseURL,
+}) => {
+  test.setTimeout(120000);
+  const context = await browser.newContext({ baseURL, viewport: page.viewportSize()! });
+  const friend = await context.newPage();
+  let roomId: string | undefined;
+  let joined = false;
+  try {
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
+    await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Uno recovery host');
+    await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
+    const creation = page.waitForResponse(
+      (response) => response.url().endsWith('/v1/rooms') && response.request().method() === 'POST',
+    );
+    await page.getByRole('button', { name: 'Create room', exact: true }).click();
+    const created = await creation;
+    expect(created.status()).toBe(201);
+    roomId = ((await created.json()) as RoomView).id;
+    await expect(page).toHaveURL(new RegExp(`/rooms/${roomId}$`));
+    const code = await page.locator('.room-code').innerText();
+    await friend.goto('/');
+    await friend.getByRole('button', { name: 'Join a room', exact: true }).click();
+    await friend
+      .getByRole('textbox', { name: 'Your name', exact: true })
+      .fill('Uno recovery friend');
+    await friend.getByRole('textbox', { name: 'Room code', exact: true }).fill(code);
+    await friend.getByRole('button', { name: 'Join the room', exact: true }).click();
+    await expect(friend).toHaveURL(page.url());
+    joined = true;
+
+    for (const game of ['uno', 'uno-no-mercy']) {
+      if (game !== 'uno') {
+        expect((await requestAs(page, `rooms/${roomId}/abandon`, 'POST')).status()).toBe(200);
+        expect(
+          (
+            await requestAs(page, `rooms/${roomId}/settings`, 'PUT', {
+              game_id: game,
+              capacity: 2,
+              settings: {},
+            })
+          ).status(),
+        ).toBe(200);
+      }
+      for (const member of [page, friend]) {
+        expect((await requestAs(member, `rooms/${roomId}/heartbeat`, 'POST')).status()).toBe(200);
+        expect(
+          (await requestAs(member, `rooms/${roomId}/ready`, 'PUT', { ready: true })).status(),
+        ).toBe(200);
+      }
+      expect((await requestAs(page, `rooms/${roomId}/start`, 'POST')).status()).toBe(200);
+      let actor = page;
+      let before = await roomAs(page, roomId);
+      const plainPlay = (room: RoomView) =>
+        room.game!.actions.find(
+          ({ action }) => action.type === 'play' && !action.color && !action.target,
+        );
+      // Reach a normal card play using only each actor's current legal projection.
+      for (let step = 0; step < 40; step++) {
+        actor = before.game!.current_player === before.owner_id ? page : friend;
+        before = await roomAs(actor, roomId);
+        if (plainPlay(before)) break;
+        const option = before.game!.actions.find(({ action }) => action.type !== 'uno')!;
+        expect(option).toBeTruthy();
+        expect(
+          (
+            await requestAs(actor, `rooms/${roomId}/actions`, 'POST', {
+              match_id: before.match_id,
+              expected_version: before.match_version,
+              action_id: randomUUID(),
+              action: option.action,
+            })
+          ).status(),
+        ).toBe(200);
+        before = await roomAs(page, roomId);
+      }
+      const option = plainPlay(before);
+      expect(option, `${game} reaches a legal plain card play`).toBeTruthy();
+      const face = before.game!.hand.find((card) => card.id === option!.action.card)!;
+      const duplicateIndex = before
+        .game!.hand.filter((card) => card.label === face.label)
+        .sort((a, b) => a.id.localeCompare(b.id))
+        .findIndex((card) => card.id === face.id);
+      await actor.reload();
+      const hand = actor.getByRole('group', { name: 'Your hand', exact: true });
+      const card = hand
+        .getByRole('button', { name: `${face.label}, playable`, exact: true })
+        .nth(duplicateIndex);
+      await card.click();
+      const play = actor
+        .locator('.uno-dock')
+        .getByRole('button', { name: option!.label, exact: true });
+      await expect(card).toHaveAttribute('aria-pressed', 'true');
+      await actor.route(
+        '**/api/backend/v1/rooms/*/actions',
+        (route) =>
+          route.fulfill({ status: 503, json: { detail: 'Controlled unavailable response' } }),
+        { times: 1 },
+      );
+      const failure = actor.waitForResponse((response) =>
+        response.url().endsWith(`/rooms/${roomId}/actions`),
+      );
+      await play.click();
+      expect((await failure).status()).toBe(503);
+      await expect(
+        actor.getByText('We could not reach the table. Please try again.', { exact: true }),
+      ).toBeVisible();
+      expect((await roomAs(actor, roomId)).match_version).toBe(before.match_version);
+      await expect(card).toHaveAttribute('aria-pressed', 'true');
+      await expect(play).toBeEnabled();
+      await actor.reload();
+      await expect(card).toHaveAttribute('aria-pressed', 'true');
+      await expect(play).toBeEnabled();
+      // A retained draft remains editable and clearable; it never commits itself.
+      await actor.getByRole('button', { name: 'Clear selection', exact: true }).click();
+      await expect(hand.getByRole('button', { pressed: true })).toHaveCount(0);
+      await card.click();
+      const otherName = (
+        await hand
+          .getByRole('button')
+          .evaluateAll((buttons) => buttons.map((button) => button.getAttribute('aria-label')!))
+      ).find((label) => label !== `${face.label}, playable`)!;
+      const otherCard = hand.getByRole('button', { name: otherName, exact: true }).first();
+      await otherCard.click();
+      await expect(otherCard).toHaveAttribute('aria-pressed', 'true');
+      await card.click();
+      await expect(card).toHaveAttribute('aria-pressed', 'true');
+      expect((await roomAs(actor, roomId)).match_version).toBe(before.match_version);
+      const retry = actor.waitForResponse((response) =>
+        response.url().endsWith(`/rooms/${roomId}/actions`),
+      );
+      await play.click();
+      const savedResponse = await retry;
+      expect(savedResponse.status()).toBe(200);
+      expect(savedResponse.request().postDataJSON().action).toEqual(option!.action);
+      const saved = (await savedResponse.json()) as RoomView;
+      expect(saved.match_version).toBe(before.match_version! + 1);
+      await expect(hand.getByRole('button', { pressed: true })).toHaveCount(0);
+      await actor.reload();
+      await expect(hand.getByRole('button', { pressed: true })).toHaveCount(0);
+      const refreshed = await roomAs(actor, roomId);
+      expect(refreshed.match_version).toBe(saved.match_version);
+      expect(refreshed.game!.hand.some((card) => card.id === face.id)).toBe(false);
+    }
+  } finally {
+    try {
+      if (roomId) {
+        const current = await requestAs(page, `rooms/${roomId}`);
+        if (current.status() !== 404) {
+          expect(current.status()).toBe(200);
+          if (((await current.json()) as RoomView).status === 'playing')
+            expect((await requestAs(page, `rooms/${roomId}/abandon`, 'POST')).status()).toBe(200);
+          if (joined)
+            expect((await requestAs(friend, `rooms/${roomId}/leave`, 'POST')).status()).toBe(200);
+          expect((await requestAs(page, `rooms/${roomId}/leave`, 'POST')).status()).toBe(200);
+          expect((await requestAs(page, `rooms/${roomId}`)).status()).toBe(404);
+        }
+      }
+    } finally {
+      await context.close();
+    }
   }
 });

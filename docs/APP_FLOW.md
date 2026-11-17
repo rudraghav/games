@@ -57,8 +57,12 @@ minimum/maximum players, fresh presence and readiness server-side. The table
 renders only the viewer projection supplied by the engine. Results offer rematch
 and change game; changing games returns everyone to lobby readiness.
 
-Pending moves disable duplicate controls. Validation errors explain the action
-without exposing internal state. Realtime loss shows reconnecting and enables
+Pending moves disable duplicate controls. Browser-offline tables also disable
+commit controls in open move panels; new moves are not queued while offline.
+Draft choices remain available after reconnect. Failed Uno moves retain the
+selected card through same-version refresh so the player can retry or change it;
+accepted moves clear that draft. Validation errors explain the action without
+exposing internal state. Realtime loss shows reconnecting and enables
 bounded polling; snapshots are fetched on reconnect and refocus. Chat stays in a
 side panel on desktop and a sheet on phones. Forms and card controls work without dragging.
 

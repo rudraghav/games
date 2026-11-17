@@ -28,7 +28,8 @@ last player keeps the answer in view; from an 860px table the hands and their
 Lowest/Highest controls sit in a side column with the strip right above them.
 Continue is part of the strip. Waiting seats see whom they are waiting for, never
 the actor's instruction, and the dock disappears at match end. Your own row reads
-"You". Results count trios ("1 trio", "3 trios").
+"You" and says "your turn" when active; another active player says "their turn".
+Results count trios ("1 trio", "3 trios").
 
 Activity keeps every public reveal with its value, as before. Whether that history
 should be redacted once a turn ends (a memory-aid setting) is a product decision

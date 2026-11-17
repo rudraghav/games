@@ -147,7 +147,10 @@ recorded under `docs/evidence/room-audit-2026-11-01/README.md`.
 Illustrated game pieces share an AtlasArt viewport and semantic wrappers:
 BoopPiece selects kitten/cat and coral/blue variants; PaperCardArt selects one of
 14 original ocean symbols, and PaperPlayingCard composes it with readable type,
-color name and rule text. Complete cells use proportional meet alignment.
+color name and rule text. Complete cells use proportional meet alignment. Unevenly packed atlases may
+provide an explicit source rectangle; Gem districts use measured bounds rather
+than assuming equal grid cells. Gem market cards reserve equal art, title, cost
+and action rows so all costs and status remain visible at phone and desktop sizes.
 Masters and reproducible WebP derivatives live in public/game-art; run
 `node scripts/prepare_game_art.mjs` after deliberate master changes.
 

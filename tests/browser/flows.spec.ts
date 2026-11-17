@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { requestAs, openRoomOptions } from './helpers';
+import { requestAs, roomAs, openRoomOptions } from './helpers';
 import gameCatalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 test('the complete catalogue and every table scenario fit the viewport', async ({ page }) => {
@@ -63,7 +63,8 @@ test('independent guests create, join, chat, play, refresh and switch games', as
     await setup.getByRole('button', { name: 'Create room', exact: true }).click();
     await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
     const roomPath = new URL(page.url()).pathname;
-    ownedRoomId = roomPath.split('/').at(-1)!;
+    const roomId = roomPath.split('/').at(-1)!;
+    ownedRoomId = roomId;
     const code = await page.locator('.room-code').innerText();
     await guest.goto('/');
     await guest.getByRole('button', { name: 'Join a room', exact: true }).click();
@@ -83,18 +84,17 @@ test('independent guests create, join, chat, play, refresh and switch games', as
     await expect(
       guest.getByRole('group', { name: 'Your hand', exact: true }).getByRole('button'),
     ).toHaveCount(7);
-    const apiPath = `/api/backend${roomPath.replace('/rooms/', '/v1/rooms/')}`;
-    const snapshot = await (await page.request.get(apiPath)).json();
-    const actorPage = snapshot.game.current_player === snapshot.owner_id ? page : guest;
-    const actorView = await (await actorPage.request.get(apiPath)).json();
-    const decision = actorView.game.actions.find((option: { action: { type: string } }) =>
+    const snapshot = await roomAs(page, roomId);
+    const actorPage = snapshot.game!.current_player === snapshot.owner_id ? page : guest;
+    const actorView = await roomAs(actorPage, roomId);
+    const decision = actorView.game!.actions.find((option) =>
       ['draw', 'choose'].includes(option.action.type),
     );
     expect(decision).toBeTruthy();
-    await actorPage.getByRole('button', { name: decision.label, exact: true }).click();
+    await actorPage.getByRole('button', { name: decision!.label, exact: true }).click();
     await expect
-      .poll(async () => (await (await page.request.get(apiPath)).json()).match_version)
-      .toBeGreaterThan(snapshot.match_version);
+      .poll(async () => (await roomAs(page, roomId)).match_version)
+      .toBeGreaterThan(snapshot.match_version!);
     const visibleChat = page
       .getByRole('region', { name: 'Room chat', exact: true })
       .filter({ visible: true });

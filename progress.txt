@@ -1,3 +1,41 @@
+## 2026-11-17 — Current audit fixes and release verification
+
+- Current visual review covers all 27 games, with evidence separated into legal
+  fixtures, real saved actions and hosted checks in docs/evidence/current-app-audit-2026-11-17.
+- Fixed offline portalled move submissions, Uno failed-save draft loss, Gem atlas
+  bleed/unequal card rows, six-letter Word wrapping, narrow Party cover clipping,
+  Trio own-turn wording, and two Tarot symbol/crop defects. Original artwork is
+  preserved. Hosted flow reads now use the browser's authenticated session.
+- Contracts/tooling pass; 235 frontend tests, types and lint pass. Build compiled
+  but stopped on the verified Next 16.4.3 advisory GHSA-mfr8-8qww-v76h. The
+  compatible 16.4.5 patch is installed; final checks run without bypassing the gate.
+- Production still serves0840f8b. Initial cloud checks failed while the dedicated
+  project was unavailable. After owner sign-in the dashboard confirmed restoration;
+  fresh auth/signing-key/pooler and Alembic/drift/privacy checks pass. Owner's
+  permanent Google account, profile and six owned rooms/memberships are preserved
+  in the private before fingerprint. No database reset or credential change.
+- State: local changes under verification; no new push/deployment yet. Next:
+  finish dependency patch and final checks, then push/deploy one verified release.
+
+## 2026-11-17 — Current app audit and improvement kickoff
+
+- User requests the current app and changes be checked, audited, improved and
+  pushed. Starting checkout is clean at3be4108, with the all-games implementation
+  0840f8b following the previous crowded-state release. No active ownership exists.
+- Outcome: inspect the current rendered experience and recent changes across
+  all27 games, reproduce meaningful gaps, implement root-cause fixes and verify
+  a single release. Prior audit evidence guides coverage; fresh observations
+  and saved actions establish current behavior.
+- Acceptance: readable real-size assets, reachable controls at320/390/768/1440,
+  clear actor/target/consequence, coherent selection/cancel/refresh/recovery and
+  saved multiplayer actions. Document per-game coverage and remaining limits.
+  Affected named checks, source/alias parity, hosted behavior and cleanup pass.
+- Task-owned scratch: output/playwright/current-app-audit-20261117. Existing
+  web3217/API8217/Storybook6105 are retained. Preserve source/art/history/private
+  data and unrelated work. Root owns shared changes and final release integration.
+- Next: render the current app, inspect the release's deferred cases and verify
+  the previously incomplete hosted core flow before choosing focused repairs.
+
 ## 2026-11-04 — All-games review pushed and live verified
 
 - Application 0840f8b7208397fe635153057de623ef39e54933 is pushed to main and

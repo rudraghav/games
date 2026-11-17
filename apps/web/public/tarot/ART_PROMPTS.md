@@ -108,3 +108,28 @@ copies, composited behind or in front of existing figures). Each became a
 unchanged. The per-card changes and the verified symbol count for every Ace to
 Ten are recorded in `README.md`. Any future art change must re-count the
 affected cards at the gallery frame and update that table, which a unit test checks.
+
+## Six of Wands and Four of Pentacles — 17 November 2026
+
+Built-in ImageGen edits used the existing Wands and Pentacles atlas respectively
+as the style and character reference. Each output is an original 1024×1536
+portrait, preserving the black ink, cobalt, coral, cream and gold palette,
+silkscreen texture, recognizable scene and full-bleed illustration without
+text, border, logos or watermark. Original masters remain intact.
+
+- `minor-wands-06-v2.png`: triumphant laurel-crowned rider on a white horse,
+  wreath-bearing staff in the rider's hand, exactly five additional staffs
+  held by the celebrating procession. Exactly six distinct staff tips, no
+  accidental extra branches or unheld staff. Keep the wreath and all counted
+  tips safely inside the visible card frame.
+- `minor-pentacles-04-v2.png`: seated adult holding possessions tightly, city
+  behind; exactly four distinct pentacle discs: one above the head, one held
+  at the chest, and one complete disc beneath each boot. Recompose the figure
+  and foreground so both boot coins remain whole after phone cropping.
+
+Two iterations per card. Independent inspection rejected the first Wands
+output for a seventh unheld staff and the first Pentacles output because the
+boot coins extended to y1455. The second outputs corrected those defects;
+the accepted Pentacles coin bounds end around y1230. Selected PNGs are
+preserved alongside reproducible WebP derivatives. Counts and framing are
+recorded in `README.md` and the current-app audit evidence.

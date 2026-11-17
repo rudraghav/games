@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-17",
+  "baseline": "3be4108",
+  "implementationUnderReview": "0840f8b",
+  "environment": {
+    "web": "http://127.0.0.1:3217",
+    "api": "http://127.0.0.1:8217",
+    "productionWrites": false,
+    "readingProviderCalls": 0
+  },
+  "fixes": [
+    {
+      "game": "word-agents",
+      "case": "Four-seat natural guess projection at 320px split Magnet as Magne/t without a hyphen.",
+      "cause": "The soft-hyphen helper had no break opportunity for exactly six letters.",
+      "change": "Add the first legal break after three letters, preserving existing longer-word behavior.",
+      "proof": "Existing browser density regression now examines rendered letter lines: fails before for Magnet, passes after at 320/390/768/1440. Same-state before/after screenshots inspected."
+    },
+    {
+      "games": ["spill-or-chill", "most-likely", "hot-seat"],
+      "case": "The two-column catalogue at 320px clipped the front cards; Hot Seat lost the B option at the right edge.",
+      "change": "Tighten and scale the existing card fan using the poster container width.",
+      "proof": "Existing catalogue geometry regression extended to both Party cards: fails before, passes after at 320/390/desktop. Hot Seat 320/390 after images manually inspected."
+    },
+    {
+      "game": "tarot",
+      "case": "Six of Wands showed one staff; Four of Pentacles clipped both boot coins.",
+      "change": "Two accepted original ImageGen standalone masters, matching WebP derivatives and explicit inspected viewBoxes. Original atlases preserved.",
+      "proof": "Independent source review confirms six staffs/four coins. Actual saved-room WebP gallery cards pass source-bound geometry at 320/390/1440. Constructed copies of the real card markup in the real choosing/reading spread styles retain those bounds at all three widths (measured art aspect 0.752\u20130.848).",
+      "iterations": 2,
+      "rejectedFirstOutputs": "Seven staffs and boot coins too low. Rejected outputs excluded from delivery."
+    }
+  ],
+  "coverage": [
+    {
+      "game": "word-agents",
+      "legalProjections": 4,
+      "seats": [4, 10],
+      "phases": ["guess", "clue"],
+      "viewportWidths": [320, 390, 768, 1440],
+      "checks": [
+        "Legible words with explicit hyphenated wraps",
+        "Minimum action target dimensions",
+        "No page overflow",
+        "Keyboard selection and recorded legal continuation",
+        "Saving/disconnected interaction gates"
+      ],
+      "savedRoomPlayInThisSubtask": false
+    },
+    {
+      "game": "spill-or-chill",
+      "legalProjections": 4,
+      "seats": [3, 10],
+      "phases": ["answer", "reveal"],
+      "viewportWidths": [320, 390, 768, 1440],
+      "savedRoomEvidence": "Desktop/phone real choices, refresh, same-round update, sibling-tab authority and fresh round. No additional table defect reproduced."
+    },
+    {
+      "game": "most-likely",
+      "legalProjections": 4,
+      "seats": [3, 10],
+      "phases": ["vote", "reveal"],
+      "viewportWidths": [320, 390, 768, 1440],
+      "savedRoomEvidence": "Desktop/phone real votes, refresh, same-round update, sibling-tab authority and fresh round. Ten-seat vote/reveal manually inspected at 320px."
+    },
+    {
+      "game": "hot-seat",
+      "legalProjections": 6,
+      "seats": [3, 10],
+      "phases": ["predict", "spotlight chooses", "reveal"],
+      "viewportWidths": [320, 390, 768, 1440],
+      "savedRoomEvidence": "Desktop/phone real predictions and spotlight decisions, refresh, same-round update, sibling-tab authority and fresh round. Ten-seat choose/predict/reveal manually inspected at 320px."
+    },
+    {
+      "game": "tarot",
+      "legalProjections": 4,
+      "seats": [1],
+      "phases": ["one card chosen", "two cards chosen"],
+      "viewportWidths": [320, 390, 768, 1440],
+      "savedRoomEvidence": "Desktop/phone actual solo-room card reveals, roving deck focus, saved spread refresh and private unsent-question draft refresh.",
+      "syntheticEvidence": "Finished reading, credits and one-tap new spread use intercepted constructed responses. No reading provider called.",
+      "artEvidence": "Four 14-card minor-suit gallery contact sheets reviewed. Six of Wands and Four of Pentacles corrected and independently counted; accepted gallery and constructed spread crops inspected.",
+      "constructedSpreadEvidence": "Copied current rendered card markup into the existing fixture spread and applied actual choosing/reading phase styles. No random draw or saved match outcome is claimed for these deterministic framing probes."
+    }
+  ],
+  "checks": [
+    {
+      "command": "pnpm exec playwright test tests/browser/crowded-board-party.spec.ts --workers=1",
+      "result": "4 passed"
+    },
+    {
+      "command": "pnpm exec playwright test tests/browser/party-recovery.spec.ts tests/browser/tarot-table.spec.ts --workers=1",
+      "result": "8 passed"
+    },
+    {
+      "command": "pnpm exec playwright test tests/browser/library-browsing.spec.ts -g 'new catalogue illustrations' --workers=1",
+      "result": "2 passed"
+    },
+    {
+      "command": "pnpm exec vitest run apps/web/src/tests/party.test.tsx apps/web/src/tests/table-layout.test.tsx apps/web/src/tests/tarot-reading.test.tsx",
+      "result": "22 passed in 3 files"
+    },
+    {
+      "command": "pnpm exec tsc --noEmit -p tests/tsconfig.json",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm exec prettier --check <six modified Word/Party paths>",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm exec vitest run apps/web/src/tests/tarot-artwork.test.tsx",
+      "result": "3 passed; all 40 numbered-card inventory counts required without exception"
+    },
+    {
+      "command": "GAMES_TEST_URL=http://127.0.0.1:3217 pnpm exec playwright test tests/browser/tarot-art-hosted.spec.ts --project=desktop --workers=1",
+      "result": "1 passed; local room created, abandoned, left and subsequent GET404 verified; actual gallery across 320/390/1440"
+    }
+  ],
+  "scopeLimits": [
+    "Legal projections are fixture-based, not an exhaustive enumeration of every game state.",
+    "No production multiplayer writes or AI reading requests.",
+    "Tarot spread framing probes are constructed local markup, not saved random draws. Finished reading/rematch checks use constructed responses; provider behavior was not re-evaluated."
+  ],
+  "evidenceFolder": "output/playwright/current-app-audit-20261117/party-tarot-art",
+  "cleanup": {
+    "savedRooms": "Two Party rooms and seven solo Tarot rooms closed by suite cleanup. Party and explicit artwork suite assert later GET404; tarot-table asserts abandon/leave200. Thirteen local guest identities remain for normal application retention.",
+    "browser": "Own named Playwright CLI browser party-tarot-20261117 closed. Normal user browsers and other task contexts preserved.",
+    "services": "Existing local web/API/Storybook/Postgres retained.",
+    "removed": {
+      "bytes": 6162627,
+      "items": 44,
+      "scope": "Superseded own failure artifacts, raw trace, duplicate images and exactly named CLI scratch snapshots/logs. Selected before/after/gallery/spread evidence retained."
+    }
+  },
+  "acceptedAssets": [
+    {
+      "path": "apps/web/public/tarot/minor-wands-06-v2.png",
+      "bytes": 3582764,
+      "sha256": "a6f585551d6dda46637ca224688abfc2087d72431ea04444ca6db2128315ec44"
+    },
+    {
+      "path": "apps/web/public/tarot/minor-wands-06-v2.webp",
+      "bytes": 179860,
+      "sha256": "8afdfb65f65112b0e536f1e7d0aca8218281072a37cc3cab1da28518dad9c772"
+    },
+    {
+      "path": "apps/web/public/tarot/minor-pentacles-04-v2.png",
+      "bytes": 3277725,
+      "sha256": "3531417dcabda22e6bf087043efd32477aa6b2c932438102e4c4087b6be20421"
+    },
+    {
+      "path": "apps/web/public/tarot/minor-pentacles-04-v2.webp",
+      "bytes": 124752,
+      "sha256": "1ca55ea2b0870b8f9451a711bc11004e7f4a5f72c3269d6099225c4cc027024f"
+    }
+  ]
+}

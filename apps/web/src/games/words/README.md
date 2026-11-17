@@ -10,6 +10,10 @@ mixed case at 12px and long words carry soft hyphens so they wrap as
 "Light-house", never as a bare split; identity labels shorten to Red / Blue /
 Neutral / Assassin. Revealed words are covered (striped face and a check mark,
 "revealed" in the accessible name), and the latest reveal is outlined.
+Six-letter words also have a break opportunity after their first three letters,
+so a narrow tile reads "Mag-net" instead of leaving its final letter alone.
+The browser density check inspects actual letter positions to catch unmarked
+line breaks in all four legal Word Agents projections at the four review widths.
 
 The header only ever shows the clue being guessed. In the clue phase it reads
 "Waiting for <spymaster>'s clue" (or "Give your clue"), and a "what just

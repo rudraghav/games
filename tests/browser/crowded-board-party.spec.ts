@@ -87,12 +87,40 @@ test('crowded board, party and Tarot projections keep readable labels and full-s
             );
           })
           .map((node) => node.textContent);
-        return { overflow: document.documentElement.scrollWidth > innerWidth, small, clippedText };
+        const bareWordBreaks = [...root.querySelectorAll('.word-tile strong')].flatMap((node) => {
+          const text = node.firstChild;
+          if (!(text instanceof Text)) return [];
+          const range = document.createRange();
+          let previousTop: number | undefined;
+          for (let index = 0; index < text.length; index++) {
+            if (text.data[index] === '\u00ad') continue;
+            range.setStart(text, index);
+            range.setEnd(text, index + 1);
+            // Chromium can include the preceding soft hyphen in the first
+            // letter's range; the last rectangle belongs to the letter itself.
+            const top = [...range.getClientRects()].at(-1)!.top;
+            if (
+              previousTop !== undefined &&
+              Math.abs(top - previousTop) > 2 &&
+              text.data[index - 1] !== '\u00ad'
+            )
+              return [text.data.replaceAll('\u00ad', '')];
+            previousTop = top;
+          }
+          return [];
+        });
+        return {
+          overflow: document.documentElement.scrollWidth > innerWidth,
+          small,
+          clippedText,
+          bareWordBreaks,
+        };
       });
       expect(result, `${item.id} at ${width}px`).toEqual({
         overflow: false,
         small: [],
         clippedText: [],
+        bareWordBreaks: [],
       });
     }
   }

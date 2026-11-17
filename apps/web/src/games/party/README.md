@@ -34,6 +34,11 @@ is keyed by round and phase so a reveal always opens at its top. Most Likely
 candidates use one column on phones and break names only at spaces/hyphens
 unless a single word cannot fit.
 
+Library artwork keeps the complete two-card composition inside narrow posters.
+Container-sized framing tightens the fan on phones, so Hot Seat retains both
+the A and B choices. The existing catalogue browser check measures both cards
+for all three party games at 320px, 390px and desktop widths.
+
 `tests/browser/party-recovery.spec.ts` exercises this sequence in actual saved
 rooms across all three modes on desktop and phone. It uses independent guests
 and a sibling tab sharing the host identity, checks exact version increments,

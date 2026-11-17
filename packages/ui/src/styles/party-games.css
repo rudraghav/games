@@ -300,6 +300,23 @@
     color: var(--party-art-ink);
     transform: rotate(9deg);
   }
+  /* The library's two-column phone posters are narrower than a full card fan. */
+  @container (max-width: 250px) {
+    .game-library .party-artwork__card--back {
+      transform: translateX(-10px) rotate(-16deg) scale(0.8);
+    }
+    .game-library .party-artwork__card--front {
+      transform: translate(10px, 3px) rotate(8deg) scale(0.8);
+    }
+  }
+  @container (max-width: 149px) {
+    .game-library .party-artwork__card--back {
+      transform: translateX(-10px) rotate(-16deg) scale(0.62);
+    }
+    .game-library .party-artwork__card--front {
+      transform: translate(10px, 3px) rotate(8deg) scale(0.62);
+    }
+  }
   @media (max-width: 560px) {
     .party-options,
     .party-choice-grid {

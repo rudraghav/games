@@ -55,3 +55,7 @@ remains ephemeral; a pre-1970 note distinguishes uncertain historical civil time
 from calculated celestial precision. All corrected card artworks now use the same
 full-bleed `slice` framing as the atlas cells (see `public/tarot/README.md`). Desktop/phone recovery tests cover
 ordinary/chart retries and edits, with no provider call for a saved read.
+Six of Wands and Four of Pentacles now use dedicated original masters with
+six distinct staffs and four complete coins. Their gallery and spread crops
+retain the counted symbols at phone and desktop proportions; all forty numbered
+minor cards now meet the inventory count assertion without an exception.

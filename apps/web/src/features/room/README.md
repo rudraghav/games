@@ -30,7 +30,10 @@ readable but is dimmed and `inert`, so it neither looks nor acts live, a sticky
 banner explains it, and the banner's message says moves pause. A move started just
 before the network dropped stays queued (TanStack pauses it) and is sent once on
 reconnect; the banner says so instead of an endless "Saving…". Bots are not
-driven while offline.
+driven while offline. The table also receives a local pause while offline, so
+move panels portalled outside the inert frame disable their commit controls.
+`useRoom.move` independently rejects new offline submissions. Draft choices stay
+in place and become usable again on reconnect; the cached server room is unchanged.
 
 ## Failed moves
 

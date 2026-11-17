@@ -65,13 +65,17 @@ const suitRows = {
  *   inside the frame for art boxes from 0.746 (desktop spread) to 0.82 (phone).
  * - 3 Nov retouched masters are the original atlas cell, edited locally, at the
  *   cell's own size.
+ * - 17 Nov ImageGen masters correct Six of Wands and Four of Pentacles. The
+ *   latter uses a closer subject crop; both retain every symbol at each aspect.
  */
 const singleCardMasters: Readonly<
   Record<string, { width: number; height: number; viewBox: string }>
 > = {
+  'wands-06': { width: 1024, height: 1536, viewBox: '0 220 1024 1303' },
   'cups-02': { width: 1024, height: 1536, viewBox: '0 60 1024 1303' },
   'cups-06': { width: 1024, height: 1536, viewBox: '0 100 1024 1303' },
   'cups-08': { width: 1024, height: 1536, viewBox: '0 120 1024 1303' },
+  'pentacles-04': { width: 1024, height: 1536, viewBox: '112 300 800 1018' },
   'pentacles-08': { width: 1024, height: 1536, viewBox: '0 42 1024 1303' },
   'pentacles-09': { width: 1024, height: 1536, viewBox: '0 20 1024 1303' },
   ...Object.fromEntries(

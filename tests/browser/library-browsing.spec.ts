@@ -101,7 +101,15 @@ test('new catalogue illustrations and complete numeric symbols fit their mobile 
   const widths = testInfo.project.name === 'phone' ? [320, 390] : [1440];
   for (const width of widths) {
     if (testInfo.project.name === 'phone') await page.setViewportSize({ width, height: 844 });
-    for (const name of ['The Gang', 'Sea Salt & Paper', 'boop.', '6 nimmt!']) {
+    for (const name of [
+      'The Gang',
+      'Sea Salt & Paper',
+      'boop.',
+      '6 nimmt!',
+      'Spill or Chill',
+      'Most Likely',
+      'Hot Seat',
+    ]) {
       const poster = page
         .getByRole('button', { name: `Create ${name} room`, exact: true })
         .locator('.game-poster');
@@ -115,7 +123,7 @@ test('new catalogue illustrations and complete numeric symbols fit their mobile 
             box.bottom <= bounds.bottom + 1;
           return [
             ...element.querySelectorAll(
-              '.card-corner, .grid-card-value, .gang-cover-chip, .paper-card-art, .boop-piece',
+              '.card-corner, .grid-card-value, .gang-cover-chip, .paper-card-art, .boop-piece, .party-artwork__card',
             ),
           ].every((part) => within(part.getBoundingClientRect()));
         }),

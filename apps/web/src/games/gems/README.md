@@ -14,6 +14,13 @@ owns this wrapping; private reservations and market tiers retain their layouts.
 at 320, 390, 768 and 1440 pixels, including naturally reached collection peaks.
 This is legal-projection evidence, separate from saved multiplayer acceptance.
 
+Market cards reserve the same illustration, title and two cost rows, keeping
+their artwork and status aligned when neighbouring cards have different costs.
+The original district atlas uses measured subject rectangles for all fifteen
+buildings and the patron crest, because the art is not packed on an exact grid.
+This avoids showing fragments of an adjacent building while keeping the source
+art intact. Shared ceramic/token atlases retain their existing grid coordinates.
+
 ## Decisions at a glance
 
 Every market and reserved card carries the viewer's server quote as a badge

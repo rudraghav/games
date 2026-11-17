@@ -105,3 +105,12 @@ The historical testing URL is https://games-r9le3idrh-rudraghavs-projects.vercel
 It retains Vercel Authentication as a rollback reference. Current friend access
 uses the public production address above. Application membership/invite checks
 remain required independently of Vercel's deployment gate.
+
+
+## Framework baseline — 17 November 2026
+
+The workspace pins Next and eslint-config-next16.4.5 with React19.3.1. The
+production-only dependency audit is part of this release evidence; development
+Storybook glob/minimatch findings remain separately documented in
+`docs/evidence/current-app-audit-2026-11-17/framework-security.md`. Do not bypass
+a build security gate or force incompatible tooling overrides to suppress it.

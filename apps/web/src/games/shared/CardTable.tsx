@@ -160,7 +160,7 @@ export function CardTable(props: TableProps) {
 
   const commit = (action: ActionOption['value']) => {
     props.onAction(action);
-    setSelected(null);
+    // Keep the choice retryable until a saved version replaces this draft.
     setDismissedSwap(null);
   };
 

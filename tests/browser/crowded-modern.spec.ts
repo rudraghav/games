@@ -80,13 +80,50 @@ test('all seven modern families keep expanded collections within rows at compact
               ),
             };
           });
+        const markets = [...root.querySelectorAll('.gem-tier .gem-card-row')]
+          .filter(visible)
+          .map((row) => {
+            const cards = [...row.querySelectorAll('.development-card')].filter(visible);
+            const heights = cards.map((card) => card.getBoundingClientRect().height);
+            const artwork = cards.map(
+              (card) =>
+                card.querySelector('.development-illustration')!.getBoundingClientRect().height,
+            );
+            return {
+              uneven:
+                Math.max(...heights) - Math.min(...heights) > 1 ||
+                Math.max(...artwork) - Math.min(...artwork) > 1,
+              clippedCosts: cards.some((card) => {
+                const frame = card.getBoundingClientRect();
+                const cost = card.querySelector('.development-cost') as HTMLElement;
+                const content = [...card.querySelectorAll('.development-cost,.development-status')];
+                return (
+                  cost.scrollHeight > cost.clientHeight + 1 ||
+                  content.some((element) => {
+                    const box = element.getBoundingClientRect();
+                    return (
+                      box.left < frame.left - 1 ||
+                      box.right > frame.right + 1 ||
+                      box.bottom > frame.bottom - 1
+                    );
+                  })
+                );
+              }),
+            };
+          });
         return {
           pageOverflow: document.documentElement.scrollWidth > innerWidth + 1,
           small,
           clippedCollections: collections.filter((row) => row.clipped || row.overlap).length,
+          inconsistentMarketCards: markets.filter((row) => row.uneven || row.clippedCosts).length,
         };
       });
-      if (measured.pageOverflow || measured.small.length || measured.clippedCollections)
+      if (
+        measured.pageOverflow ||
+        measured.small.length ||
+        measured.clippedCollections ||
+        measured.inconsistentMarketCards
+      )
         failures.push({ id: item.id, width, ...measured });
     }
   }
@@ -160,6 +197,10 @@ test('legally cleared Trio positions keep their names and are never reveal contr
     (entry) => entry.game === 'trio' && entry.id.endsWith('-crowded'),
   )) {
     await show(page, item);
+    const current = page.locator('.trio-player[data-current="true"]');
+    await expect(current).toContainText(
+      (await current.getAttribute('data-own')) === 'true' ? 'your turn' : 'their turn',
+    );
     const empty = item.room.game!.community!.filter((card) => card.suit === 'empty');
     expect(empty.length).toBeGreaterThan(0);
     const positions = page.locator('.trio-table-cards');

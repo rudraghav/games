@@ -166,18 +166,28 @@ test('saved crowded-action families preserve exact moves, public state and narro
       } else {
         await panel.getByRole('button', { name: `Bank for ${card.value}`, exact: true }).click();
       }
-      const after = await commit(actor, before, option!.action, () =>
-        keyboard(
-          actor,
-          panel.getByRole('button', {
-            name:
-              option!.action.type === 'property'
-                ? 'Place property'
-                : `Confirm · bank ${card.value}`,
-            exact: true,
-          }),
-        ),
-      );
+      const confirm = panel.getByRole('button', {
+        name:
+          option!.action.type === 'property' ? 'Place property' : `Confirm · bank ${card.value}`,
+        exact: true,
+      });
+      await expect(confirm).toBeEnabled();
+      const observer = players.find((item) => item !== actor)!;
+      // This panel portals outside the room's inert frame. Losing the network
+      // must disable it too, without discarding the draft or queuing a new move.
+      await actor.context().setOffline(true);
+      try {
+        await expect(actor.locator('.room-offline')).toContainText('Moves resume');
+        await expect(confirm).toBeDisabled();
+        await expect(panel).not.toContainText('Saving…');
+        expect((await roomAs(observer, roomId)).match_version).toBe(before.match_version);
+      } finally {
+        await actor.context().setOffline(false);
+      }
+      await expect(actor.locator('.room-offline')).not.toBeVisible();
+      await expect(confirm).toBeEnabled();
+      expect((await roomAs(actor, roomId)).match_version).toBe(before.match_version);
+      const after = await commit(actor, before, option!.action, () => keyboard(actor, confirm));
       const ownAssets = after.game!.players.find(
         (player) => player.id === identities[players.indexOf(actor)],
       )!;

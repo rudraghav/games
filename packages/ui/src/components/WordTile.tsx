@@ -11,7 +11,10 @@ const IDENTITIES: Record<string, { label: string; short: string }> = {
 function breakable(word: string) {
   if (word.length < 6) return word;
   return (
-    word.slice(0, 3) + [...word.slice(3, -3)].map((c) => c + '\u00ad').join('') + word.slice(-3)
+    word.slice(0, 3) +
+    '\u00ad' +
+    [...word.slice(3, -3)].map((c) => c + '\u00ad').join('') +
+    word.slice(-3)
   );
 }
 

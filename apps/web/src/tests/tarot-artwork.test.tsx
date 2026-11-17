@@ -45,6 +45,7 @@ describe('Complete original Tarot artwork', () => {
         'cups-06',
         'cups-08',
         'cups-10',
+        'pentacles-04',
         'pentacles-05',
         'pentacles-08',
         'pentacles-09',
@@ -55,6 +56,7 @@ describe('Complete original Tarot artwork', () => {
         'swords-09',
         'swords-10',
         'wands-05',
+        'wands-06',
         'wands-07',
         'wands-08',
         'wands-09',
@@ -72,12 +74,13 @@ describe('Complete original Tarot artwork', () => {
 
   it('records a verified symbol count equal to the rank for every Ace to Ten', () => {
     const readme = readFileSync(resolve('apps/web/public/tarot/README.md'), 'utf8');
-    const rows = [...readme.matchAll(/^\| (wands|cups|swords|pentacles)-(\d\d) \| (\d+) \|/gm)];
+    const rows = [
+      ...readme.matchAll(
+        /^\|[ \t]+(wands|cups|swords|pentacles)-(\d\d)[ \t]+\|[ \t]+(\d+)[ \t]+\|/gm,
+      ),
+    ];
     expect(rows).toHaveLength(40);
-    // Six of Wands shows only the rider's staff; recorded as an open art correction.
-    const pending = new Set(['wands-06']);
     for (const [, suit, rank, count] of rows) {
-      if (pending.has(`${suit}-${rank}`)) continue;
       expect(Number(count), `${suit}-${rank}`).toBe(Number(rank));
       expect(tarotArtwork[`${suit}-${rank}`]).toBeDefined();
     }

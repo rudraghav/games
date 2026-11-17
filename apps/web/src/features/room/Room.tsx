@@ -125,6 +125,10 @@ export function RoomScreen({ id }: { id: string }) {
   const turn = room.game ? turnState(room.game, room, selfId) : null;
   // Offline, the saved table stays readable but stops looking or acting live.
   const offline = connection === 'offline';
+  // Move panels can portal outside the inert table frame. Give every table the
+  // same local pause without changing the cached server snapshot or pretending
+  // that a move is saving. Reconnecting restores the existing draft choices.
+  const tableRoom = offline ? { ...room, paused: true } : room;
   // At the end of a match the result and the rematch come first; the final
   // table stays below for review. Tarot's reading is itself the result.
   const resultsFirst = room.status === 'finished' && Boolean(room.game) && room.gameId !== 'tarot';
@@ -320,7 +324,7 @@ export function RoomScreen({ id }: { id: string }) {
                 <Table
                   key={room.matchId}
                   match={room.game}
-                  room={room}
+                  room={tableRoom}
                   selfId={selfId}
                   imageLoader={optimizeCardArt}
                   onAction={move}

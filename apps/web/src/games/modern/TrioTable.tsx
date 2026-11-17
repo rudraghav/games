@@ -186,7 +186,12 @@ export function TrioTable(props: TableProps) {
                       )}
                     </strong>
                     <span className="small muted">
-                      {player.count} in hand{player.id === current ? ' · their turn' : ''}
+                      {player.count} in hand
+                      {player.id === current
+                        ? player.id === selfId
+                          ? ' · your turn'
+                          : ' · their turn'
+                        : ''}
                     </span>
                   </div>
                   <div className="trio-end-actions">
