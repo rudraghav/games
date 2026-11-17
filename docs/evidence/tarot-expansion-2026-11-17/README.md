@@ -126,3 +126,17 @@ the inspected visual references and feature boundaries.
 The tested candidate is ready for the user's requested main publication. The
 previous sensitive-tone gate and repeated provider503s still hold production;
 47 of58 provider attempts have been used. No new deployment is implied by main.
+
+
+## Main publication and production state
+
+Application`8eecb3a388cfecf29adb2c2103dc07f6c7d205d4` is now pushed to main with exact remote
+readback. The normal fast-forward includes the reference expansion and verified
+mobile UI polish. Production remains`65de797`/`dpl_3aLSUJHLn5STFeHttnT5NRHwG84U`,
+READY inbom1; fresh catalogue/private/development endpoint checks return200/401/404.
+No new deployment occurred. Actual sensitive-tone acceptance and hosted generation
+remain pending provider availability. Main publication does not waive that gate.
+
+Five duplicate screenshots were removed only after verifying retained copies
+(5,626,058bytes reclaimed). The manual room is closed, task browsers are closed,
+and web/API/Storybook remain healthy. Runtime inputs are unchanged by this closure.

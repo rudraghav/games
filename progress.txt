@@ -1,3 +1,25 @@
+## 2026-11-17 — Mobile Tarot pushed to main; production held
+
+- Application8eecb3a388cfecf29adb2c2103dc07f6c7d205d4 is committed and pushed to main through
+  a normal fast-forward from197b0f8. Fresh remote readback matches; clean checkout.
+  The same publication includes the previously reviewed reference expansion.
+- Verified mobile layout/recovery/astrology/archive and optional-feedback behavior:
+  57 browser cases,241 frontend tests,44 workflow tests, types/lint/build and
+  asset/contract/index checks pass. The focused final checks and motion caveats
+  are recorded immediately below; no provider prose is represented as verified.
+- Fresh production readback15:38:55UTC still serves65de797, READY deployment
+  dpl_3aLSUJHLn5STFeHttnT5NRHwG84U inbom1. Catalogue200, private profile401,
+  development session404. No deployment or provider/config/schema mutation.
+  Actual sensitive-tone acceptance remains blocked by provider availability.
+- Cleanup removed5 verified duplicate QA screenshots (5,626,058bytes), preserving
+  final copies/hashes. All task browsers closed; manual room reads404 after leave.
+  Web3217/API8217/Storybook6105 remain200; user browser, source/cache originals,
+  models and recovery remain. Required large source scratch from expansion is
+  retained for provenance/recovery as previously documented.
+- This closure changes documentation only; all6170 verified runtime inputs retain
+  fingerprint b8b92ecaf188a5782c113f00d7fac875d4800504f80ae1d597ecd1bb69fb007e.
+  No repeat build or deployment is needed for this publication record.
+
 ## 2026-11-17 — Mobile Tarot polish verified for main
 
 - Final checks pass on a stable complete source snapshot:241 frontend tests,
