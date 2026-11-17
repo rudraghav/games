@@ -291,3 +291,11 @@ final owner preservation and runtime-log checks remain pending. Resume with the
 same saved evidence and bounded remaining allowance when provider availability
 returns; do not silently substitute a model or present schema success as prose
 quality. No production expansion deployment has been attempted.
+
+The post-pause availability probe also returned high-demand503, bringing the
+total to46 attempted calls and six consecutive unavailable responses. The source
+candidate is now pushed as5e8bfa9 on codex/tarot-reference-expansion. Production
+remains unchanged. Retain the58-attempt ceiling: nine direct-evaluation attempts
+and three hosted attempts remain; revise the plan explicitly if a later accepted
+contract genuinely requires more. There is still no accepted medium-thinking
+reading, so the sensitive-tone gate is unresolved rather than marked passed.

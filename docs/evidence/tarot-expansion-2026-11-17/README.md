@@ -83,3 +83,25 @@ Cleanup review identified307,087,495 bytes of matching stage/crop copies and
 regenerable previews. They remain until release because the task is unfinished.
 Original generated artwork, source caches, recovery copies and review evidence
 are protected. Existing development services and user browser are preserved.
+
+## Pushed candidate and cleanup receipt
+
+Candidate[`5e8bfa9`](https://github.com/rudraghav/games/commit/5e8bfa9e042508bbe809eb8927b5c42bbb485426)
+is pushed to[`codex/tarot-reference-expansion`](https://github.com/rudraghav/games/tree/codex/tarot-reference-expansion),
+with exact remote readback. Main and the production deployment remain unchanged.
+A sixth, later availability probe also returned503;46 calls total are accounted
+for. No medium-thinking reading or hosted expansion flow is accepted yet.
+
+After the candidate and all promoted counterparts were durably pushed, cleanup
+removed6326 exact duplicate/preview files(307,087,495 bytes) and50 verified
+temporary Linux wheel downloads(79,756,057 bytes). Every retained counterpart,
+original/source/recovery file and installed dependency/model remained unchanged.
+No directory was removed. The remaining1.123GB reference scratch is required
+source/recovery/evaluation evidence while this task is unfinished; the exact
+private cleanup plans, protection snapshots and receipts remain available.
+
+The full application fingerprint is unchanged across publication and cleanup.
+Fresh owner account/profile/room/membership/identity fingerprints match the
+before-state. Current production catalogue200, private profile401 and disabled
+development-session404 checks pass; existing local services remain healthy.
+These verify preservation of the current app, not deployment of the new candidate.

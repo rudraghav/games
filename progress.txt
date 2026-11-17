@@ -1,3 +1,32 @@
+## 2026-11-17 — Expanded Tarot candidate pushed; production quality gate blocked
+
+- Application candidate5e8bfa9e042508bbe809eb8927b5c42bbb485426 is pushed to
+  codex/tarot-reference-expansion; exact remote readback matches. Main stays at
+  197b0f8, and production stays at65de797/dpl_3aLSUJHLn5STFeHttnT5NRHwG84U.
+  No expansion deployment or hosted generation has been attempted.
+- The5,636-reference library,24 exact meme scenes, local semantic matching,
+  responsive image types, private saved archives and optional astrology behavior
+  are committed. Local gates:241 frontend,6542 backend,181 persistence/privacy,
+  44 workflow tests plus contracts/types/lint/build;42 responsive browser cases.
+- Release is blocked on actual reading quality. The latest low-thinking grief
+  output trivialized loss; medium-thinking has no successful provider response.
+  Six consecutive availability probes, including another model, two question
+  types and a later post-pause check, returned high-demand503. Total46 attempts;
+  stop calls now, retain the58-attempt ceiling including3 hosted reserve.
+- Source/runtime fingerprint is unchanged by publication/cleanup. Owner account,
+  profile,6 rooms/memberships and identity match the private before-state.
+  Current catalogue responds200; private profile401; development session404.
+  Local web/API/Storybook remain healthy; no user browser or active service closed.
+- Reclaimed386,843,552 bytes:6326 exact duplicate/preview files and50 verified
+  temporary Linux wheel downloads. All retained/source/original/model/recovery
+  fingerprints pass. Remaining1,123,450,725-byte reference scratch is intentionally
+  retained public source caches, original inputs, recovery and review evidence.
+- Resume: complete sensitive-tone and ordinary/Western/Vedic/Both provider review
+  within remaining allowance; then fast-forward main to the accepted candidate,
+  one SHA-pinned Git-source production deploy, hosted private-flow/image/cold-start
+  checks and post-release owner/log readback. Do not redeploy the old candidate or
+  claim all possible readings have been checked.
+
 ## 2026-11-17 — Expanded Tarot candidate: artwork complete, prose review ongoing
 
 - Local catalogue now contains5,636 distinct references, including24 exact meme
