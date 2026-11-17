@@ -60,3 +60,17 @@ findings explicitly until a separately validated tooling migration is available.
 Do not force incompatible overrides merely to obtain a zero-count audit. This
 review changed no package manifests, lockfile, installed packages or security
 gate settings.
+
+## Installed release result
+
+Application `65de79752ae2bf2075f561f7b57425e51b81b4af` pins Next and
+eslint-config-next to **16.4.5**, preserving React/React DOM 19.3.1. The lockfile
+change stays within the compatible Next dependency family; no incompatible
+overrides or security-gate bypasses were introduced. Production dependency audit
+now reports **zero advisories**. The full audit retains **two moderate,
+development-only** glob/minimatch findings described above.
+
+Types, lint, 235 unit tests, the production build, contracts and tooling pass.
+The patched runtime passed 63 browser cases and seven hosted checks; exact
+coverage and release evidence are in the [audit record](README.md). The two
+remaining tooling findings require a separately validated dependency migration.

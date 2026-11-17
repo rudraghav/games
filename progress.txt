@@ -1,3 +1,34 @@
+## 2026-11-17 — Current app audit pushed and live verified
+
+- Application 65de79752ae2bf2075f561f7b57425e51b81b4af is pushed to main and
+  deployed once as dpl_3aLSUJHLn5STFeHttnT5NRHwG84U, READY/production/bom1.
+  The canonical Games alias and both source metadata fields match.
+- Fresh visual coverage spans all 27 games. Fixed offline move panels, Uno
+  failed-save selection, Gem artwork/card geometry, Word wrapping, Party cover
+  clipping, Trio turn wording and two Tarot illustrations. Original art remains.
+  Next and its ESLint config are 16.4.5; production dependency audit is clear.
+- Final frontend/types/lint/build, contracts and tooling pass: 235 unit tests,
+  488 card faces, 259 legal projections and 44 workflow tests. Browser gate:
+  63 passed, one intentional desktop skip for a phone-only case. Final Uno
+  harness gate: 8 passed after fixing a just-drawn-card locator and timeout
+  cleanup. These final test/documentation edits do not change deployed runtime.
+- Seven hosted checks passed: core guest flow on desktop/phone; crowded phone
+  actions/offline recovery; Uno/No Mercy 503 retry; Gem saved moves; catalogue
+  artwork; Tarot delivery/crops. Delivered WebP bytes match committed files.
+- Six hosted QA rooms are closed, zero active memberships. Owner account,
+  profile, rooms, memberships and identity fingerprints match before release.
+  Runtime warnings/errors/fatal and HTTP 5xx: zero from 06:08:05–06:13:32 UTC,
+  complete pagination. All 565 runtime inputs retain the verified fingerprint.
+  Public 200/401/404 boundaries and the 27-game catalogue pass.
+- Games cloud availability was restored without resets; the original local
+  database volume is intact. Web/API/Storybook remain healthy. Task browsers
+  closed and only verified disposable scratch removed. One local test room
+  left by a timeout was closed through normal endpoints, preserving history.
+- State: application pushed, deployed and live verified; final test/docs closure
+  pushed separately without another deployment. Evidence and per-game limits:
+  docs/evidence/current-app-audit-2026-11-17/README.md. Two moderate development-only
+  Storybook glob/minimatch advisories remain for a validated tooling migration.
+
 ## 2026-11-17 — Current audit fixes and release verification
 
 - Current visual review covers all 27 games, with evidence separated into legal
