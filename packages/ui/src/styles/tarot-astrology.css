@@ -1,10 +1,8 @@
 @layer components {
   .astrology-option {
     margin-block: 18px;
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    background: var(--color-surface);
-    padding: 14px;
+    border-block: 1px solid var(--color-border);
+    padding-block: 14px;
   }
   .astrology-option-toggle {
     display: flex;
@@ -261,18 +259,21 @@
     margin-top: 14px;
     line-height: 1.5;
   }
+  .astrology-calculation-note > p {
+    padding-bottom: 12px;
+    overflow-wrap: anywhere;
+  }
   .astrology-saved {
     margin-block: 24px;
-    padding: 18px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-card);
-    background: var(--color-surface);
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
   }
   .astrology-saved-heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+    flex-wrap: wrap;
   }
   .astrology-saved-heading h3 {
     font-family: var(--font-display);
@@ -314,12 +315,12 @@
     .astrology-place-search {
       grid-template-columns: minmax(0, 1fr);
     }
-    .astrology-option,
-    .astrology-saved {
-      padding: 12px;
+    .astrology-option {
+      padding-block: 12px;
     }
     .astrology-saved-heading {
-      align-items: start;
+      align-items: stretch;
+      flex-direction: column;
     }
     .astrology-saved-heading h3 {
       font-size: 22px;

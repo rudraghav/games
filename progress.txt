@@ -1,3 +1,91 @@
+## 2026-11-17 — Mobile Tarot polish verified for main
+
+- Final checks pass on a stable complete source snapshot:241 frontend tests,
+  types/lint/build,44 workflow tests and asset/OpenAPI/index contracts. Browser
+  checks pass57 cases across five affected specs; one desktop-only skip is the
+  explicitly phone-only lobby capture. No AI provider call was made by these
+  synthetic reading/real local room checks.
+- Reports: verify-7b61d5b9da4241efad9f61ea31f93e58 (frontend/contracts/tooling),
+  verify-4e6a23fb78794b968cd96a12e12b0e01 (10 Tarot table cases),
+  verify-56533544a238487eab83776a851bdd19 (47 other browser cases).
+  Existing6542 backend/181 multiplayer proof is retained: no backend changes
+  were made in this mobile pass.
+- The screen prioritizes cards about200px earlier on phones, enlarges choices,
+  aligns spread rows and puts secondary controls in compact headers/menus.
+  Reading explanations span full phone rows; chart calculation facts collapse
+  behind an accessible disclosure. Saved-spread GET retry never generates.
+- A live reduced-motion change exposed a stale animation-library hook value.
+  Card hover/press now uses media-query CSS; committed-pick effects read the
+  current preference. Failed taps, refresh and reduced motion produce no
+  haptic call; physical device vibration remains untested and optional.
+- Runtime fingerprint b8b92ecaf188a5782c113f00d7fac875d4800504f80ae1d597ecd1bb69fb007e
+  covers6170 runtime files. Final evidence is retained under
+  output/playwright/tarot-mobile-20261117 and tarot-mobile-ui-20261117.
+- Cleanup: own manual room was abandoned/left through normal controls and reads
+  back404; both child browsers and root browser closed. Retain requested local
+  services, current proof, source images/models, recovery files and user browser.
+- Ready for the explicitly requested normal fast-forward/push to main. Production
+  remains65de797; provider47/58 attempts and sensitive-tone acceptance remain
+  unresolved. Publishing main is not a claim of a hosted production rollout.
+
+## 2026-11-17 — Card-first visual polish scope
+
+- User extends the mobile audit to first-viewport density, larger important
+  content, alignment, design references and subtle animation/haptics. Preserve
+  the paper/plum palette and existing original art; do not copy reference assets.
+- Visually inspected actual Purrweb and Nixtio Dribbble shots: transfer large
+  card emphasis, short serif hierarchy, quiet secondary controls and shallow
+  depth. Keep reveal/press motion bounded and reduced-motion aware.
+- Acceptance: deck starts within250px at320px, larger selectable cards at least
+  140px tall, three-card spread reachable without duplicated turn copy, no
+  overlap/overflow at320/390/1440. Optional device pulse only follows this tab's
+  saved pick; failed attempts, refresh and reduced motion must never pulse.
+- First mobile gate passed55 browser cases;2 failures were a new test capturing
+  two card names before the third server response, now fixed by awaiting count3.
+  Manual abandoned-room recovery exposed solo invite chrome, now removed.
+  Rerun affected UI/browser gates after this added visual scope.
+
+## 2026-11-17 — Mobile Tarot UI and main publication kickoff
+
+- User explicitly requests a fresh mobile review of every Tarot flow, efficient
+  rows, secondary actions in menus, helpful tooltips/disclosures and clean boxes
+  and layouts, followed by push to main. Start is clean ce1fd1a on
+  codex/tarot-reference-expansion; preserve the expanded catalogue and private data.
+- Direction: retain the paper/plum visual language, prioritize the spread and
+  primary action, reduce nested padding and redundant chrome, reuse shared
+  buttons/dialogs/disclosures. Hover-only hints must not hide essential phone help.
+- Acceptance: fresh screenshots and interaction checks at320/390 and desktop;
+  selecting all cards, optional question/astrology preview and validation,
+  loading/unavailable/retry/reload, saved reading/chart inspection, image credits,
+  private archive and new spread. No page overflow or clipped controls; primary
+  actions stay explicit; keyboard focus and touch targets remain usable.
+- Run affected frontend/contracts/browser checks and preserve existing backend
+  proof where unchanged. Publish the verified candidate to main as requested;
+  distinguish mocked flow proof from actual provider/hosted results. A fresh
+  bounded provider probe again returned503 (47 attempts total), so do not claim
+  that generation quality or live provider availability has passed.
+
+## 2026-11-17 — Mobile Tarot implementation ready for final checks
+
+- Solo setup removes one-option Seats and misleading invite copy. The existing
+  room options menu holds solo phone chat/activity; desktop keeps panel open/close
+  controls. Toolbar icons have native hints.
+  Multiplayer controls remain available. No new menu primitive was introduced.
+- Phone reference names sit beside portraits and explanations span the full row.
+  Optional astrology and saved charts lose redundant nested boxes; narrow chart
+  controls stack, and calculation metadata uses a native disclosure. Charts
+  retain touch/keyboard/text inspection and matching hover hints.
+- Deck DOM order now matches visual order. Completed readings display the exact
+  saved question. Failed saved-spread reads offer GET-only retry; pending/error/
+  unavailable/paused states prevent duplicate or premature generation. Main
+  actions wrap at320px; raw birth details remain ephemeral.
+- Targeted20 chart/presentation tests, browser type-check and lint pass. Fresh
+  manual320/390/1440 screenshots inspect full-width text, form, charts and
+  disclosures. Final affected frontend/contracts/browser gates run next.
+- Main publication is explicitly requested and will proceed after UI checks.
+  Production remains held for the previously recorded actual-provider quality
+  gap; the latest medium probe again returned503 (47/58 total).
+
 ## 2026-11-17 — Expanded Tarot candidate pushed; production quality gate blocked
 
 - Application candidate5e8bfa9e042508bbe809eb8927b5c42bbb485426 is pushed to

@@ -40,6 +40,17 @@ describe('authoritative astrology presentation', () => {
     expect(html).toContain(syntheticChart.charts[1].moon_nakshatra!.name);
     expect(html).not.toContain('birth_date');
     expect(html).not.toContain('2000-01-01');
+    const calculationDetails = html.match(
+      /<details class="astrology-data astrology-calculation-note">([\s\S]*?)<\/details>/,
+    )?.[1];
+    expect(calculationDetails).toContain('<summary>How this chart was calculated</summary>');
+    expect(calculationDetails).toContain(syntheticChart.source);
+    expect(calculationDetails).toContain(syntheticChart.calculation_version);
+    expect(calculationDetails).toContain(syntheticChart.precision_note);
+    const chartHints = [...html.matchAll(/aria-label="([^"]+)"[^>]*><title>(.*?)<\/title>/g)];
+    expect(chartHints).toHaveLength(syntheticChart.charts[0].placements.length + 12);
+    for (const [, accessibleLabel, hoverHint] of chartHints)
+      expect(hoverHint).toBe(accessibleLabel);
     for (const chart of syntheticChart.charts)
       for (const point of chart.placements) {
         expect(html).toContain(point.name);

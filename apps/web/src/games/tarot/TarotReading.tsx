@@ -102,10 +102,10 @@ export function TarotReading({
                       data-artwork-type={portrait?.imageType}
                     >
                       {portrait ? <TarotCharacterImage character={portrait} /> : null}
+                      <p className="tarot-character-name">
+                        {character.name} <span>{character.source}</span>
+                      </p>
                       <div className="tarot-character-copy">
-                        <p className="tarot-character-name">
-                          {character.name} <span>{character.source}</span>
-                        </p>
                         <p>{character.connection}</p>
                       </div>
                     </li>

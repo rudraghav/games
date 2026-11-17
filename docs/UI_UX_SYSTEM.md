@@ -296,7 +296,13 @@ private reading flow. Western uses an interactive wheel, Vedic a North Indian
 house diagram. Both include accessible selection and placement/house/aspect tables.
 The frontend draws only server-calculated positions and names the calculation
 convention. The birth form invalidates previews when inputs change and never
-persists raw birth details in browser storage.
+persists raw birth details in browser storage. Optional fields use a divider within
+the question form; saved astrology uses a section divider and stacks its show/hide
+control on narrow phones. Calculation metadata lives in a keyboard-accessible
+native disclosure; chart selection stays available by touch, keyboard and text
+inspector, with matching native hover hints. Phone reference portraits and names
+share a row while their explanations use the full available width. Tarot's deck
+precedes the spread in DOM and visual order, and main actions wrap without clipping.
 
 Audit refinement retains stable decision footprints. Uno uses two-column colour
 choices at every width with a 180px desktop / 244px phone dock; long docks have
@@ -305,3 +311,11 @@ HorizontalRail/Modal primitives, with a read-only overview and full-size move ta
 Boop graduation requires preview/confirm; Paper public inspection never takes a
 card. Five corrected Tarot cards opt into full-frame SVG fitting. Acceptance
 uses normal-height browser frames, not only tall catalogue captures.
+
+Tarot's first phone viewport prioritizes enlarged card choices and the current
+selection step. Its local heading replaces redundant normal-turn chrome; paused
+and offline notices remain explicit. Rail arrows and the swipe hint share one
+control row. Card press/reveal and reading-entry motion are short and honor
+reduced motion. Optional device feedback confirms only a local committed pick,
+never a failed request or restored snapshot; unsupported devices keep the same
+visual and accessible feedback.

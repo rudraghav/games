@@ -105,3 +105,24 @@ Fresh owner account/profile/room/membership/identity fingerprints match the
 before-state. Current production catalogue200, private profile401 and disabled
 development-session404 checks pass; existing local services remain healthy.
 These verify preservation of the current app, not deployment of the new candidate.
+
+
+## Mobile UI and visual polish follow-up
+
+The user explicitly requested main publication after mobile review, then added
+card-first density, design references, restrained animation and optional haptics.
+The current UI pass removes redundant turn/setup chrome, aligns and enlarges
+cards, uses existing options menus, expands phone reference explanations, and
+adds visible GET-only saved-reading recovery. Optional astrology remains private
+and off by default; calculation metadata uses a native disclosure.
+
+Fresh stable checks pass241 frontend tests,44 workflow tests, types/lint/build
+and contracts;57 browser cases pass with one deliberate phone-only case skipped
+on desktop. The tests cover real local room actions with constructed readings,
+not actual-provider prose. Failed taps, reload and reduced-motion settings do not
+produce haptic calls; physical feedback was not tested. Module README records
+the inspected visual references and feature boundaries.
+
+The tested candidate is ready for the user's requested main publication. The
+previous sensitive-tone gate and repeated provider503s still hold production;
+47 of58 provider attempts have been used. No new deployment is implied by main.

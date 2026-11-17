@@ -4,15 +4,17 @@
 
 ## Choosing and revealing
 
-- The deck rail is one Tab stop (roving focus): arrow keys, Home and End move between cards, Enter or a tap picks. Labels say what a card is and what it will fill: “Face-down card 5 of 77, for what is shifting”. The heading names the next position: “Choose card 2 of 3 · What is shifting”.
+- The deck precedes the spread in both visual and keyboard order. The deck rail is one Tab stop (roving focus): arrow keys, Home and End move between cards, Enter or a tap picks. Labels say what a card is and what it will fill: “Face-down card 5 of 77, for what is shifting”. The heading names the next position: “Choose card 2 of 3 · What is shifting”.
 - Empty spread slots are dashed drop targets (“Lands here”), never card backs; the next slot is highlighted.
 - After a committed pick, the filled slot scrolls into view, takes focus and briefly highlights, and a polite live region says “You drew <card> for <position>.” A refresh starts from the saved spread without replaying a reveal. On phones a “Choose card N of 3” button below the spread returns to the deck. The public activity line still never names the card.
 - Spread position labels and card names are at least 11px and meanings 12px at every width.
 - The unsent question is a `useTableDraft` scoped to room and match, so it survives a refresh in that tab and never carries into the next spread; it clears when a reading is saved. Birth fields remain memory-only.
+- Loading the saved spread has a visible status; a failed read offers a GET-only retry and keeps generation disabled until authoritative state returns. Paused/offline rooms cannot submit readings.
 - While a reading is being written, or when readings are unavailable, the reason sits next to the button with “Your three cards are saved.”
 
 ## After the reading
 
+- The completed reading displays its exact saved question.
 - A finished solo room shows “Draw a new spread” at the top of the reading and after its last section. It readies the player and starts the next match in one tap (as room creation does); only the room owner sees it.
 - Each card section shows that card as a small thumbnail. With astrology, the chart’s next step is folded into the single “Your next small move” block.
 - Image credits wrap on phones; a credit that is only a URL reads as its site name while the link keeps the full source.
@@ -28,7 +30,7 @@ Astrology starts off. Turning it on offers Both, Western or Vedic, then requires
 - `AstrologyReading` renders validated interpretation text and derives the placement lines from the saved chart using its validated `focus_points`. The AI does not supply chart coordinates. Show/hide changes presentation only.
 - `astrology-presentation.ts` formats returned angles and projects SVG coordinates; it does not calculate a horoscope.
 
-Both diagrams use the server’s whole-sign houses. Calculation version, source and precision note remain visible. Contract types come from generated OpenAPI through `@games/api-client`.
+Both diagrams use the server’s whole-sign houses. Calculation version, source and precision note remain available under “How this chart was calculated”. Native hover hints repeat the chart selection labels; touch and keyboard inspection remain available without hover. Contract types come from generated OpenAPI through `@games/api-client`.
 
 ## Privacy and recovery
 
@@ -42,7 +44,7 @@ A failed or interrupted reading can return `astrology_chart`, containing only th
 
 `astrology-presentation.test.tsx` covers angle formatting, crowded-label anchor conservation, calculated data tables and legacy reading compatibility. Seven Storybook stories cover each chart, both charts, optional-off, saved, recovered and pending states (the synthetic chart fixture is imported without an import attribute, which Storybook's bundler rewrote into a crashing `assert`). At 480px and below the Western wheel breaks out of the nested card padding to nearly the full screen width, with larger house numbers and glyphs.
 
-`tests/browser/tarot-table.spec.ts` covers the reveal, roving deck focus, refresh mid-spread, the saved question draft, the pinned deck filter and (with constructed responses, no reading request) the one-tap new spread and phone credits.
+`tests/browser/tarot-table.spec.ts` covers the reveal, roving deck focus, refresh mid-spread, the saved question draft, the pinned deck filter and (with constructed responses, no reading request) the one-tap new spread and phone credits. It also verifies solo setup/menu controls, DOM deck order and saved-spread GET error recovery without generation.
 
 Fixtures are synthetic: J2000 noon at Greenwich and a New York daylight-saving calculation. Positions were produced by the backend calculator. Interpretation layout examples explicitly say “Synthetic layout example”; they are not a production fallback. Retained visual and verification evidence is in `docs/evidence/tarot-astrology-2026-11-02`.
 
@@ -59,7 +61,6 @@ Six of Wands and Four of Pentacles now use dedicated original masters with
 six distinct staffs and four complete coins. Their gallery and spread crops
 retain the counted symbols at phone and desktop proportions; all forty numbered
 minor cards now meet the inventory count assertion without an exception.
-
 
 ## Expanded people and character references
 
@@ -96,3 +97,40 @@ The archive browser fixture now exercises all six image types with real eligible
 assets: person, fictional character, religious figure, meme, artist work and
 original illustration, including long names at320/390/1440px. Constructed text
 checks layout/privacy/persistence; real-provider quality is a separate gate.
+
+## Mobile layout and controls
+
+Solo setup omits the one-option Seats field and multiplayer invite instructions.
+The phone room toolbar keeps rules and its existing options menu; chat and activity
+remain available inside that menu. Multiplayer rooms retain their toolbar actions.
+Icon controls have accessible names and native hover hints.
+
+On phones a portrait and subject name share one row, followed by a full-width
+connection paragraph. Wider meme/artwork scenes keep their complete composition.
+The astrology form uses a divider within the question box rather than a second
+padded box. Saved astrology uses a section divider, a full-row show/hide control
+on narrow phones, and expandable calculation details. Main reading/new-spread
+actions use a full row and wrap when necessary; charts remain visible by default.
+
+### Card-first visual polish
+
+Normal Tarot turns use the local heading/action state instead of a duplicated
+room turn banner; paused/offline notices remain. A compact heading and deck icon
+bring enlarged card choices into the initial phone viewport. The rail's44px
+controls sit below the cards, sharing their row with the browsing hint. Empty
+spread slots do not reserve blank meaning paragraphs. Recovery lobbies retain
+ready/open-deck controls without multiplayer invitation chrome.
+
+Enabled cards have a small press response; a committed pick retains focus and a
+short reveal. Reading sections enter with a brief fade/rise. Reduced motion
+disables these animations. A single12ms optional Vibration API call follows only
+a local, committed pick on a visible page. Failure, refresh and reduced motion
+produce none; unavailable/denied hardware never blocks the UI. Automated browser
+checks establish call timing, not physical feedback or iPhone support.
+
+Visual references inspected: [Purrweb Tarot](https://dribbble.com/shots/25947541-Tarot-Mobile-iOS-App)
+and [Nixtio Tarot](https://dribbble.com/shots/27667144-Tarot-Reading-Mobile-App-UI-UX-Design).
+Only card prominence, typography hierarchy and restrained depth informed this
+implementation; source artwork remains the app's existing assets. Optional
+haptics follow the [Vibration API](https://www.w3.org/TR/vibration/) visibility
+and browser-activation behavior.

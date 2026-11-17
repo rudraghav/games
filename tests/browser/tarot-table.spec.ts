@@ -8,12 +8,17 @@ test.skip(!!process.env.GAMES_TEST_URL, 'Synthetic reading responses use local d
 const deck = (page: Page) =>
   page.getByRole('group', { name: 'Choose from your shuffled 78-card deck' });
 
-async function soloRoom(page: Page, run: (roomId: string) => Promise<void>) {
+async function soloRoom(
+  page: Page,
+  run: (roomId: string) => Promise<void>,
+  inspectSetup?: () => Promise<void>,
+) {
   let roomId: string | undefined;
   try {
     await page.goto('/');
     await page.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Spread QA');
+    await inspectSetup?.();
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
     await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
     roomId = new URL(page.url()).pathname.split('/').at(-1)!;
@@ -29,16 +34,117 @@ async function soloRoom(page: Page, run: (roomId: string) => Promise<void>) {
   }
 }
 
+test('solo setup omits seats and invitations while room options keep chat and activity reachable', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 640 });
+  await soloRoom(
+    page,
+    async () => {
+      const toolbar = page.locator('.room-toolbar');
+      await expect(toolbar.getByRole('button', { name: 'Open chat', exact: true })).toHaveCount(0);
+      await toolbar.getByRole('button', { name: 'Room options', exact: true }).click();
+      const options = page.getByRole('dialog', { name: 'Your room', exact: true });
+      await expect(options.getByRole('button', { name: 'Open chat', exact: true })).toBeVisible();
+      await expect(
+        options.getByRole('button', { name: 'Game activity', exact: true }),
+      ).toBeVisible();
+      await expect(
+        options.getByRole('button', { name: 'Replace invite link and code', exact: true }),
+      ).toHaveCount(0);
+      await options.getByRole('button', { name: 'Open chat', exact: true }).click();
+      const panel = page.getByRole('dialog', { name: 'At the table', exact: true });
+      await expect(panel.getByRole('region', { name: 'Room chat', exact: true })).toBeVisible();
+      await panel.getByRole('button', { name: 'Close dialog', exact: true }).click();
+      await toolbar.getByRole('button', { name: 'Room options', exact: true }).click();
+      await options.getByRole('button', { name: 'Game activity', exact: true }).click();
+      await expect(panel.getByRole('button', { name: 'Activity', exact: true })).toHaveAttribute(
+        'aria-pressed',
+        'true',
+      );
+      await panel.getByRole('button', { name: 'Close dialog', exact: true }).click();
+      await toolbar.getByRole('button', { name: 'Room options', exact: true }).click();
+      await options.getByRole('button', { name: 'End this match', exact: true }).click();
+      await options.getByRole('button', { name: 'Yes, end this match', exact: true }).click();
+      const lobby = page.locator('.lobby');
+      await expect(lobby).toBeVisible();
+      await expect(lobby.getByRole('group', { name: 'Invite friends', exact: true })).toHaveCount(
+        0,
+      );
+      await lobby.getByRole('button', { name: 'I’m ready', exact: true }).click();
+      const openDeck = lobby.getByRole('button', { name: 'Open my deck', exact: true });
+      await expect(openDeck).toBeEnabled();
+      await openDeck.click();
+      await expect(deck(page).locator('button.tarot-card')).toHaveCount(78);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+        true,
+      );
+    },
+    async () => {
+      const setup = page.getByRole('dialog', { name: 'Create room', exact: true });
+      const seats = setup.getByRole('combobox', { name: 'Seats', exact: true });
+      const game = setup.getByRole('combobox', { name: 'The game', exact: true });
+      await expect(seats).toHaveCount(0);
+      await expect(setup).toContainText('A private space for your own reading.');
+      await expect(setup).not.toContainText('Invite-only.');
+      await game.selectOption('uno');
+      await expect(seats).toBeVisible();
+      await expect(setup).toContainText('Invite-only. Share a link or room code to add friends.');
+      await game.selectOption('tarot');
+      await expect(seats).toHaveCount(0);
+      await expect(setup).not.toContainText('Invite-only.');
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+        true,
+      );
+    },
+  );
+});
+
 test('each pick is revealed in its slot, named and focused; the deck is one Tab stop', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 640 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.addInitScript(() => {
+    const recorded: VibratePattern[] = [];
+    Object.defineProperty(window, '__tarotPickPulses', { configurable: true, value: recorded });
+    Object.defineProperty(navigator, 'vibrate', {
+      configurable: true,
+      value: (pattern: VibratePattern) => {
+        recorded.push(pattern);
+        return true;
+      },
+    });
+  });
+  // This records optional API calls; it does not establish physical device feedback.
+  const pulses = () =>
+    page.evaluate(
+      () => (window as typeof window & { __tarotPickPulses?: VibratePattern[] }).__tarotPickPulses,
+    );
   await soloRoom(page, async (roomId) => {
     await expect(
       page.getByRole('heading', { name: 'Choose card 1 of 3 · Where you are' }),
     ).toBeVisible();
     const cards = deck(page).locator('button.tarot-card');
     await expect(cards).toHaveCount(78);
+    await expect(page.locator('.turn-notice')).toHaveCount(0);
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      window.scrollTo(0, 0);
+    });
+    const firstCardBox = await cards.first().boundingBox();
+    expect(firstCardBox!.y).toBeGreaterThanOrEqual(0);
+    expect(firstCardBox!.y).toBeLessThan(250);
+    expect(firstCardBox!.height).toBeGreaterThanOrEqual(140);
+    expect(
+      await page
+        .locator('.tarot-pick-area, .tarot-spread')
+        .evaluateAll((elements) =>
+          elements.map((element) =>
+            element.classList.contains('tarot-pick-area') ? 'deck' : 'spread',
+          ),
+        ),
+    ).toEqual(['deck', 'spread']);
     expect(await cards.evaluateAll((all) => all.filter((card) => card.tabIndex === 0).length)).toBe(
       1,
     );
@@ -48,6 +154,18 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     await expect(page.locator('.tarot-spread-slot[data-next] .tarot-slot-empty')).toHaveText(
       'Your next card lands here',
     );
+
+    // A rejected tap does not confirm a card or produce feedback.
+    await page.route(
+      `**/api/backend/v1/rooms/${roomId}/actions`,
+      (route) => route.fulfill({ status: 503, json: { detail: 'Synthetic failed card pick.' } }),
+      { times: 1 },
+    );
+    await cards.nth(2).click();
+    await expect(page.locator('.room-error')).toBeVisible();
+    await expect(cards).toHaveCount(78);
+    await expect(page.locator('.tarot-spread .tarot-name')).toHaveCount(0);
+    expect(await pulses()).toEqual([]);
 
     await cards.nth(2).click();
     const first = page.locator('.tarot-spread-slot').first();
@@ -65,6 +183,7 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
       expect(size, selector).toBeGreaterThanOrEqual(11);
     }
     expect((await roomAs(page, roomId)).game!.community).toHaveLength(1);
+    await expect.poll(pulses).toEqual([12]);
 
     // Back to the deck, then a keyboard pick with arrow keys.
     await page.getByRole('button', { name: 'Choose card 2 of 3', exact: true }).click();
@@ -72,10 +191,12 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     await page.keyboard.press('ArrowRight');
     await page.keyboard.press('ArrowRight');
     await expect(page.locator(':focus')).toHaveAccessibleName(/^Face-down card \d+ of 77/);
+    expect(await pulses()).toEqual([12]);
     await page.keyboard.press('Enter');
     const second = page.locator('.tarot-spread-slot').nth(1);
     await expect(second.locator('.tarot-name')).not.toBeEmpty();
     await expect(second).toBeFocused();
+    await expect.poll(pulses).toEqual([12, 12]);
     await page.keyboard.press('Tab');
     await expect(page.locator(':focus')).toHaveText('Choose card 3 of 3');
 
@@ -84,8 +205,19 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     await page.reload();
     await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(names);
     await expect(page.locator('[data-fresh]')).toHaveCount(0);
+    expect(await pulses()).toEqual([]);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await deck(page).locator('button.tarot-card').first().click();
     await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
+    await expect(page.locator('.tarot-spread .tarot-name')).toHaveCount(3);
+    expect(await pulses()).toEqual([]);
+    expect(
+      await page
+        .locator('.tarot-spread-slot')
+        .nth(2)
+        .locator('.tarot-card')
+        .evaluate((element) => getComputedStyle(element).animationName),
+    ).toBe('none');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,
     );
@@ -123,6 +255,55 @@ test('an unsent question survives a refresh and the deck filter stays pinned', a
   });
 });
 
+test('a failed saved-reading check retries only GET and restores the question and reading action', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 640 });
+  await soloRoom(page, async (roomId) => {
+    let recover = false;
+    let successfulChecks = 0;
+    const methods: string[] = [];
+    await page.route(`**/api/backend/v1/rooms/${roomId}/reading`, (route) => {
+      const method = route.request().method();
+      methods.push(method);
+      if (method !== 'GET') return route.abort();
+      if (!recover)
+        return route.fulfill({ status: 503, json: { detail: 'Synthetic saved-reading outage.' } });
+      successfulChecks += 1;
+      return route.fulfill({
+        json: { status: 'ready', reading: null, api_tier: 'paid', question: '', message: '' },
+      });
+    });
+    for (let card = 0; card < 3; card++)
+      await deck(page).locator('button.tarot-card').first().click();
+    const spreadNames = page.locator('.tarot-spread .tarot-name');
+    await expect(spreadNames).toHaveCount(3);
+    const names = await spreadNames.allTextContents();
+    const error = page
+      .getByRole('alert')
+      .filter({ hasText: 'We couldn’t check your saved spread.' });
+    await expect(error).toBeVisible();
+    const read = page.getByRole('button', { name: 'Read my cards', exact: true });
+    await expect(read).toBeDisabled();
+    const question = page.getByRole('textbox', { name: /What’s on your mind/ });
+    const draft = 'Which small habit should I give more time to?';
+    await question.fill(draft);
+    const attemptsBeforeRetry = methods.length;
+    recover = true;
+    await page.getByRole('button', { name: 'Try again', exact: true }).click();
+    await expect(read).toBeEnabled();
+    await expect(error).toHaveCount(0);
+    await expect(question).toHaveValue(draft);
+    await expect(spreadNames).toHaveText(names);
+    expect(successfulChecks).toBe(1);
+    expect(methods.length).toBeGreaterThan(attemptsBeforeRetry);
+    expect(methods.every((method) => method === 'GET')).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+  });
+});
+
 test('a finished solo reading offers a one-tap new spread and wraps credits on a phone', async ({
   page,
 }) => {
@@ -133,6 +314,7 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
     await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
     const room = await roomAs(page, roomId);
     const cards = room.game!.community;
+    const savedQuestion = 'How can I make a little room for a creative hobby this week?';
     const characters = [
       ['Michael Scott', 'The Office'],
       ['Hermione Granger', 'Harry Potter'],
@@ -158,7 +340,7 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
             json: {
               status: 'complete',
               api_tier: 'paid',
-              question: '',
+              question: savedQuestion,
               message: '',
               reading: {
                 ...tarotReadingExample,
@@ -196,6 +378,7 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
     );
     await page.reload();
     await expect(page.locator('.tarot-reading')).toBeVisible();
+    await expect(page.locator('.tarot-saved-question')).toHaveText(savedQuestion);
     const again = page.getByRole('button', { name: 'Draw a new spread', exact: true });
     await expect(again).toHaveCount(2);
     await expect(again.first()).toBeInViewport();

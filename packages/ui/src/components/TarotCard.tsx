@@ -1,5 +1,4 @@
 'use client';
-import { motion, useReducedMotion } from 'motion/react';
 import { cn } from '../lib/cn';
 import { tarotArtwork } from '../lib/tarot-artwork';
 interface TarotCardProps {
@@ -27,7 +26,6 @@ export function TarotCard({
   tabIndex,
   onFocus,
 }: TarotCardProps) {
-  const reduced = useReducedMotion();
   const artwork = id ? tarotArtwork[id] : undefined;
   const displayName = name || artwork?.name;
   const content = (
@@ -73,7 +71,7 @@ export function TarotCard({
     'aria-label': label || displayName || 'Choose a face-down Tarot card',
   };
   return onClick ? (
-    <motion.button
+    <button
       {...shared}
       type="button"
       onClick={onClick}
@@ -81,11 +79,9 @@ export function TarotCard({
       tabIndex={tabIndex}
       disabled={disabled}
       aria-pressed={selected}
-      whileHover={reduced ? undefined : { y: -6 }}
-      transition={{ duration: reduced ? 0 : 0.2 }}
     >
       {content}
-    </motion.button>
+    </button>
   ) : (
     <div {...shared}>{content}</div>
   );

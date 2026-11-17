@@ -134,44 +134,48 @@ function WesternWheel({
               );
             })
         : null}
-      {markers.map(({ point, anchor, label }) => (
-        <g key={point.id}>
-          <line
-            x1={anchor.x}
-            y1={anchor.y}
-            x2={label.x}
-            y2={label.y}
-            className="astro-planet-leader"
-          />
-          <circle cx={anchor.x} cy={anchor.y} r="3" className="astro-position-dot" />
-          <g
-            role="button"
-            tabIndex={0}
-            className="astro-planet-target"
-            aria-pressed={selection === `planet:${point.id}`}
-            aria-label={`${point.name}, ${point.sign}, ${formatDegree(point.degree)}, house ${point.house}${point.retrograde ? ', retrograde' : ''}`}
-            data-point-id={point.id}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                select(`planet:${point.id}`);
-              }
-            }}
-          >
-            <circle
-              cx={label.x}
-              cy={label.y}
-              r="3"
-              className="astro-hit-area"
-              vectorEffect="non-scaling-stroke"
+      {markers.map(({ point, anchor, label }) => {
+        const description = `${point.name}, ${point.sign}, ${formatDegree(point.degree)}, house ${point.house}${point.retrograde ? ', retrograde' : ''}`;
+        return (
+          <g key={point.id}>
+            <line
+              x1={anchor.x}
+              y1={anchor.y}
+              x2={label.x}
+              y2={label.y}
+              className="astro-planet-leader"
             />
-            <circle cx={label.x} cy={label.y} r="15" className="astro-planet-disc" />
-            <text x={label.x} y={label.y + 7} className="astro-planet-symbol">
-              {planetSymbols[point.id] || point.name.slice(0, 2)}
-            </text>
+            <circle cx={anchor.x} cy={anchor.y} r="3" className="astro-position-dot" />
+            <g
+              role="button"
+              tabIndex={0}
+              className="astro-planet-target"
+              aria-pressed={selection === `planet:${point.id}`}
+              aria-label={description}
+              data-point-id={point.id}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  select(`planet:${point.id}`);
+                }
+              }}
+            >
+              <title>{description}</title>
+              <circle
+                cx={label.x}
+                cy={label.y}
+                r="3"
+                className="astro-hit-area"
+                vectorEffect="non-scaling-stroke"
+              />
+              <circle cx={label.x} cy={label.y} r="15" className="astro-planet-disc" />
+              <text x={label.x} y={label.y + 7} className="astro-planet-symbol">
+                {planetSymbols[point.id] || point.name.slice(0, 2)}
+              </text>
+            </g>
           </g>
-        </g>
-      ))}
+        );
+      })}
       <text x="22" y="244" className="astro-angle-label">
         ASC
       </text>
@@ -207,6 +211,7 @@ function VedicDiamond({
       {vedicHouses.map((geometry) => {
         const house = chart.houses.find((entry) => entry.number === geometry.number)!;
         const planets = chart.placements.filter((point) => point.house === house.number);
+        const description = `House ${house.number}, ${house.sign}: ${planets.map((point) => point.name).join(', ') || 'no planets'}`;
         const chosen =
           selection === `house:${house.number}` ||
           planets.some((point) => selection === `planet:${point.id}`);
@@ -217,7 +222,7 @@ function VedicDiamond({
             tabIndex={0}
             className="astro-vedic-house"
             aria-pressed={chosen}
-            aria-label={`House ${house.number}, ${house.sign}: ${planets.map((point) => point.name).join(', ') || 'no planets'}`}
+            aria-label={description}
             onClick={() => select(`house:${house.number}`)}
             onKeyDown={(event) => {
               if (event.key === 'Enter' || event.key === ' ') {
@@ -226,6 +231,7 @@ function VedicDiamond({
               }
             }}
           >
+            <title>{description}</title>
             <polygon points={geometry.points} />
             <text x={geometry.x} y={geometry.y - 8} className="astro-vedic-sign">
               {house.number} · {house.sign.slice(0, 3)}
@@ -451,11 +457,14 @@ export function AstrologyChart({ chart }: { chart: ChartData }) {
       ) : (
         <SystemChart key={selected.system} chart={selected} />
       )}
-      <p className="astrology-calculation-note small muted">
-        {chart.source} · {chart.calculation_version}
-        <br />
-        {chart.precision_note}
-      </p>
+      <details className="astrology-data astrology-calculation-note">
+        <summary>How this chart was calculated</summary>
+        <p className="small muted">
+          {chart.source} · {chart.calculation_version}
+          <br />
+          {chart.precision_note}
+        </p>
+      </details>
     </section>
   );
 }

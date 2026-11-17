@@ -29,6 +29,7 @@ export function Lobby({
   const [copied, setCopied] = useState('');
   const [copyError, setCopyError] = useState('');
   const game = gameById(room.gameId);
+  const solo = game.maxPlayers === 1;
   const seated = room.members.filter((member) => member.seated);
   const own = room.members.find((member) => member.id === selfId);
   const host = room.ownerId === selfId;
@@ -75,9 +76,11 @@ export function Lobby({
       </div>
       {!canStart && host ? (
         <p className="small muted">
-          {seated.length < game.minPlayers
-            ? `Bring at least ${game.minPlayers} players to the table.`
-            : 'Everyone seated needs to be connected and ready.'}
+          {solo
+            ? 'Mark yourself ready, then open your deck.'
+            : seated.length < game.minPlayers
+              ? `Bring at least ${game.minPlayers} players to the table.`
+              : 'Everyone seated needs to be connected and ready.'}
         </p>
       ) : null}
     </>
@@ -92,10 +95,12 @@ export function Lobby({
               <GameArt game={game} />
             </div>
             <div>
-              <h2 className="heading-md">Players</h2>
-              <p className="small muted">
-                {seated.length} of {room.capacity} seats
-              </p>
+              <h2 className="heading-md">{solo ? 'Your reading space' : 'Players'}</h2>
+              {!solo ? (
+                <p className="small muted">
+                  {seated.length} of {room.capacity} seats
+                </p>
+              ) : null}
             </div>
           </div>
           {host ? (
@@ -103,6 +108,7 @@ export function Lobby({
               size="icon"
               variant="ghost"
               aria-label="Change game and settings"
+              title="Change game and settings"
               onClick={configure}
               disabled={pending}
             >
@@ -160,21 +166,23 @@ export function Lobby({
         {room.members.some((member) => member.isBot) && game.family === 'party' ? (
           <p className="small muted">Bots use simulated answers and votes.</p>
         ) : null}
-        <div className="invite-panel" role="group" aria-label="Invite friends">
-          <div>
-            <span className="eyebrow">Your room code</span>
-            <strong className="room-code">{room.code}</strong>
+        {!solo ? (
+          <div className="invite-panel" role="group" aria-label="Invite friends">
+            <div>
+              <span className="eyebrow">Your room code</span>
+              <strong className="room-code">{room.code}</strong>
+            </div>
+            <div className="invite-actions">
+              <Button variant="secondary" size="sm" onClick={() => void copy('code')}>
+                {copied === 'code' ? <Check size={15} /> : <Copy size={15} />}Code
+              </Button>
+              <Button size="sm" onClick={() => void copy('link')}>
+                {copied === 'link' ? <Check size={15} /> : <Link2 size={15} />}
+                {copied === 'link' ? 'Copied!' : 'Copy invite'}
+              </Button>
+            </div>
           </div>
-          <div className="invite-actions">
-            <Button variant="secondary" size="sm" onClick={() => void copy('code')}>
-              {copied === 'code' ? <Check size={15} /> : <Copy size={15} />}Code
-            </Button>
-            <Button size="sm" onClick={() => void copy('link')}>
-              {copied === 'link' ? <Check size={15} /> : <Link2 size={15} />}
-              {copied === 'link' ? 'Copied!' : 'Copy invite'}
-            </Button>
-          </div>
-        </div>
+        ) : null}
         {copyError ? (
           <p className="small muted" role="status">
             {copyError}

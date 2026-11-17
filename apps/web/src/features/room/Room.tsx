@@ -119,6 +119,7 @@ export function RoomScreen({ id }: { id: string }) {
       </main>
     );
   const game = gameById(room.gameId);
+  const solo = game.maxPlayers === 1;
   const host = room.ownerId === selfId;
   const self = room.members.find((member) => member.id === selfId);
   const Table = tableRegistry[room.gameId];
@@ -209,24 +210,29 @@ export function RoomScreen({ id }: { id: string }) {
             size="icon"
             variant="ghost"
             aria-label="Game rules"
+            title="Game rules"
             onClick={() => setPanel('rules')}
           >
             <BookOpen size={19} />
           </Button>
-          <Button
-            size="icon"
-            variant="ghost"
-            className="room-chat-button"
-            aria-label={panel === 'chat' ? 'Close chat' : 'Open chat'}
-            aria-expanded={panel === 'chat'}
-            onClick={() => setPanel(panel === 'chat' ? null : 'chat')}
-          >
-            <MessageCircle size={19} />
-          </Button>
+          {!solo || desktop ? (
+            <Button
+              size="icon"
+              variant="ghost"
+              className="room-chat-button"
+              aria-label={panel === 'chat' ? 'Close chat' : 'Open chat'}
+              title={panel === 'chat' ? 'Close chat' : 'Open chat'}
+              aria-expanded={panel === 'chat'}
+              onClick={() => setPanel(panel === 'chat' ? null : 'chat')}
+            >
+              <MessageCircle size={19} />
+            </Button>
+          ) : null}
           <Button
             size="icon"
             variant="ghost"
             aria-label="Room options"
+            title="Room options"
             onClick={() => setPanel('menu')}
           >
             <MoreVertical size={21} />
@@ -236,6 +242,7 @@ export function RoomScreen({ id }: { id: string }) {
               size="icon"
               variant="ghost"
               aria-label={panel === 'activity' ? 'Close game activity' : 'Open game activity'}
+              title={panel === 'activity' ? 'Close game activity' : 'Open game activity'}
               aria-expanded={panel === 'activity'}
               onClick={() => setPanel(panel === 'activity' ? null : 'activity')}
             >
@@ -300,19 +307,21 @@ export function RoomScreen({ id }: { id: string }) {
           ) : null}
           {room.game ? (
             <>
-              <TurnNotice
-                label={turn!.label}
-                tone={offline ? 'paused' : turn!.tone}
-                message={
-                  offline
-                    ? mutation.isPaused
-                      ? 'Your move is waiting to be sent.'
-                      : 'Moves pause while you’re offline.'
-                    : turn!.message
-                }
-                lastMove={latestMove(room, selfId)}
-                pending={mutation.isPending && !mutation.isPaused}
-              />
+              {game.family !== 'tarot' || offline || room.paused ? (
+                <TurnNotice
+                  label={turn!.label}
+                  tone={offline ? 'paused' : turn!.tone}
+                  message={
+                    offline
+                      ? mutation.isPaused
+                        ? 'Your move is waiting to be sent.'
+                        : 'Moves pause while you’re offline.'
+                      : turn!.message
+                  }
+                  lastMove={latestMove(room, selfId)}
+                  pending={mutation.isPending && !mutation.isPaused}
+                />
+              ) : null}
               {resultsFirst ? (
                 <>
                   <RoomResults room={room} game={game} />
@@ -391,6 +400,12 @@ export function RoomScreen({ id }: { id: string }) {
         description="Manage this room or leave the table."
       >
         <div className="menu-actions">
+          {solo ? (
+            <Button variant="secondary" onClick={() => setPanel('chat')}>
+              <MessageCircle size={17} />
+              Open chat
+            </Button>
+          ) : null}
           <Button variant="secondary" onClick={() => setPanel('activity')}>
             <History size={17} />
             Game activity
@@ -405,14 +420,16 @@ export function RoomScreen({ id }: { id: string }) {
                 <Settings2 size={17} aria-hidden="true" />
                 Change game
               </Button>
-              <Button
-                variant="secondary"
-                pending={mutation.isPending}
-                onClick={() => operate(() => api.rotateInvite(id))}
-              >
-                <Link2 size={17} aria-hidden="true" />
-                Replace invite link and code
-              </Button>
+              {!solo ? (
+                <Button
+                  variant="secondary"
+                  pending={mutation.isPending}
+                  onClick={() => operate(() => api.rotateInvite(id))}
+                >
+                  <Link2 size={17} aria-hidden="true" />
+                  Replace invite link and code
+                </Button>
+              ) : null}
               {room.status === 'playing' ? (
                 <>
                   <Button

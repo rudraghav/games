@@ -299,3 +299,13 @@ remains unchanged. Retain the58-attempt ceiling: nine direct-evaluation attempts
 and three hosted attempts remain; revise the plan explicitly if a later accepted
 contract genuinely requires more. There is still no accepted medium-thinking
 reading, so the sensitive-tone gate is unresolved rather than marked passed.
+
+
+## Mobile review availability check
+
+A fresh bounded probe of the unchanged final medium-thinking candidate returned
+explicit high-demand503 in10.22s, without a reading or reported token usage.
+Total47 of58 attempts; eight direct and three hosted attempts remain. No follow-up
+call or model change was made. Mobile UI and saved-flow verification can be
+published to main independently; actual sensitive-tone acceptance and production
+expansion deployment remain pending.

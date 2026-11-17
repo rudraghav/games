@@ -92,6 +92,12 @@ to the current match, mode, round and player: a submission or next prompt from
 another tab cannot make an old choice the next round's selected answer. Reload
 restores committed state and requires a fresh choice for an uncommitted turn.
 Optional sip prompts are set before starting; every mode always permits Pass.
+Solo Tarot creation omits seat selection and invite instructions. Its room options
+menu holds chat and activity, leaving rules and the options control in the phone toolbar.
+Desktop keeps direct open/close controls for its persistent side panel.
+Loading a saved spread reports progress or a retryable error; retry only fetches
+the saved state. Generation stays disabled until that read succeeds and while
+the room is paused/offline. Completed readings show their exact saved question.
 Tarot offers Explore the deck with major/suit filters, independent of the saved
 three-card spread. Fresh reading sections show The grounded read, The plot twist
 and Your connections; previously saved readings retain their original content.

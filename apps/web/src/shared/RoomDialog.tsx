@@ -64,7 +64,9 @@ export function RoomDialog({
                 name: displayName.trim(),
                 avatar: chosenAvatar,
                 gameId: game.id,
-                roomName: roomName.trim() || `${displayName.trim()}'s game night`,
+                roomName:
+                  roomName.trim() ||
+                  `${displayName.trim()}'s ${game.family === 'tarot' ? 'reading' : 'game night'}`,
                 capacity,
                 settings,
                 bots: playWith === 'bots' && game.botsSupported ? capacity - 1 : 0,
@@ -110,8 +112,12 @@ export function RoomDialog({
         mode === 'join'
           ? 'Enter a room code or paste an invite link.'
           : mode === 'configure'
-            ? 'Choose a game and seat count.'
-            : 'Invite-only. Share a link or room code to add friends.'
+            ? game.maxPlayers === 1
+              ? 'Choose a game for this room.'
+              : 'Choose a game and seat count.'
+            : game.maxPlayers === 1
+              ? 'A private space for your own reading.'
+              : 'Invite-only. Share a link or room code to add friends.'
       }
     >
       <form className="room-setup-form room-setup-form--simple" onSubmit={submit}>
@@ -151,45 +157,47 @@ export function RoomDialog({
                 ))}
               </select>
             </label>
-            <div className="room-play-options" data-solo={game.maxPlayers === 1}>
-              {mode === 'create' && game.botsSupported ? (
-                <div className="room-play-mode">
-                  <span className="field-label">Play with</span>
-                  <ChoiceGroup
-                    label="Play with"
-                    variant="segmented"
-                    options={[
-                      { value: 'friends', label: 'Friends' },
-                      { value: 'bots', label: 'Bots' },
-                    ]}
-                    value={playWith}
-                    onChange={(value) => {
-                      setPlayWith(value);
-                      if (value === 'bots') setCapacity(game.minPlayers);
-                    }}
-                  />
-                </div>
-              ) : null}
-              <label className="field room-seat-field">
-                Seats
-                <select
-                  className="input"
-                  value={capacity}
-                  onChange={(event) => setCapacity(Number(event.target.value))}
-                >
-                  {Array.from(
-                    { length: game.maxPlayers - game.minPlayers + 1 },
-                    (_, i) => game.minPlayers + i,
-                  ).map((count) => (
-                    <option value={count} key={count}>
-                      {playWith === 'bots' && game.botsSupported && mode === 'create'
-                        ? `You + ${count - 1} ${count === 2 ? 'bot' : 'bots'}`
-                        : `${count} ${count === 1 ? 'player' : 'players'}`}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
+            {game.maxPlayers > 1 ? (
+              <div className="room-play-options">
+                {mode === 'create' && game.botsSupported ? (
+                  <div className="room-play-mode">
+                    <span className="field-label">Play with</span>
+                    <ChoiceGroup
+                      label="Play with"
+                      variant="segmented"
+                      options={[
+                        { value: 'friends', label: 'Friends' },
+                        { value: 'bots', label: 'Bots' },
+                      ]}
+                      value={playWith}
+                      onChange={(value) => {
+                        setPlayWith(value);
+                        if (value === 'bots') setCapacity(game.minPlayers);
+                      }}
+                    />
+                  </div>
+                ) : null}
+                <label className="field room-seat-field">
+                  Seats
+                  <select
+                    className="input"
+                    value={capacity}
+                    onChange={(event) => setCapacity(Number(event.target.value))}
+                  >
+                    {Array.from(
+                      { length: game.maxPlayers - game.minPlayers + 1 },
+                      (_, i) => game.minPlayers + i,
+                    ).map((count) => (
+                      <option value={count} key={count}>
+                        {playWith === 'bots' && game.botsSupported && mode === 'create'
+                          ? `You + ${count - 1} ${count === 2 ? 'bot' : 'bots'}`
+                          : `${count} ${count === 1 ? 'player' : 'players'}`}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+            ) : null}
           </>
         )}
         {mode !== 'configure' ? (
@@ -245,7 +253,7 @@ export function RoomDialog({
                     className="input"
                     value={roomName}
                     onChange={(event) => setRoomName(event.target.value)}
-                    placeholder="Friday game night"
+                    placeholder={game.family === 'tarot' ? 'My reading' : 'Friday game night'}
                     maxLength={60}
                   />
                 </label>

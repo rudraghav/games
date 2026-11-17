@@ -2,7 +2,7 @@
 import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useReducedMotion } from 'motion/react';
-import { Sparkles, ArrowRight, ArrowUp, RotateCcw } from 'lucide-react';
+import { Sparkles, ArrowRight, ArrowUp, RotateCcw, Layers3 } from 'lucide-react';
 import { Button, ChoiceGroup, Modal, HorizontalRail, TarotCard, tarotArtwork } from '@games/ui';
 import { ApiError, type AstrologyInput, type AstrologyChart as ChartData } from '@games/api-client';
 import { api } from '@/lib/session';
@@ -27,6 +27,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const [deckFocus, setDeckFocus] = useState(0);
   const [drawnNote, setDrawnNote] = useState('');
   const [fresh, setFresh] = useState<number | null>(null);
+  const localPick = useRef(false);
   const reduced = useReducedMotion();
   const slots = useRef<(HTMLDivElement | null)[]>([]);
   const deck = useRef<HTMLDivElement>(null);
@@ -70,6 +71,13 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const reading = saved.data?.reading;
   const writing = generate.isPending || saved.data?.status === 'generating';
   const unavailable = saved.data?.status === 'unavailable';
+  const cannotGenerate =
+    writing ||
+    !saved.data ||
+    saved.isError ||
+    unavailable ||
+    room.paused ||
+    (!!astrology && !chart);
   const drawn = match.community.length;
   const canDrawAgain =
     room.status === 'finished' && room.ownerId === selfId && match.phase !== 'choosing';
@@ -79,17 +87,38 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const seen = useRef(drawn);
   useEffect(() => {
     if (drawn > seen.current) {
+      const locallyPicked = localPick.current;
+      localPick.current = false;
       const index = drawn - 1;
       const slot = slots.current[index];
-      slot?.scrollIntoView({ block: 'nearest', behavior: reduced ? 'auto' : 'smooth' });
+      const reduceNow = reduced || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      slot?.scrollIntoView({ block: 'nearest', behavior: reduceNow ? 'auto' : 'smooth' });
       slot?.focus({ preventScroll: true });
       setFresh(index);
       setDrawnNote(
         `You drew ${match.community[index].label} for ${positions[index].toLowerCase()}.`,
       );
+      // Optional feedback follows a committed pick, never a failed tap or refresh.
+      if (
+        locallyPicked &&
+        !reduceNow &&
+        document.visibilityState === 'visible' &&
+        typeof navigator.vibrate === 'function'
+      ) {
+        try {
+          navigator.vibrate(12);
+        } catch {
+          // Optional device feedback must never interrupt the saved card reveal.
+        }
+      }
     }
     seen.current = drawn;
   }, [drawn, match.community, reduced]);
+  useEffect(() => {
+    if (!pending) {
+      localPick.current = false;
+    }
+  }, [pending]);
   useEffect(() => {
     if (fresh === null) return;
     const timer = window.setTimeout(() => setFresh(null), 4000);
@@ -159,33 +188,73 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   return (
     <div className="tarot-table stable-tarot-table" data-phase={match.phase}>
       <div className="tarot-intro">
-        <p className="eyebrow">Three-card reading</p>
-        <h2>
-          {reading
-            ? reading.title
-            : match.phase === 'choosing'
-              ? 'Pick three cards'
-              : 'Your three-card spread'}
-        </h2>
-        <p>
-          {reading
-            ? reading.introduction
-            : match.phase === 'choosing'
-              ? 'Choose three cards, then add an optional question.'
-              : 'Add an optional question for your reading.'}
-        </p>
-        <div className="tarot-intro-actions">
-          {drawAgain}
-          <Button variant="ghost" onClick={() => setExploreDeck(true)}>
-            Explore the deck
+        <div className="tarot-intro-header">
+          <div>
+            <p className="eyebrow">Three-card reading</p>
+            <h2>
+              {reading
+                ? reading.title
+                : match.phase === 'choosing'
+                  ? 'Pick three cards'
+                  : 'Your three-card spread'}
+            </h2>
+          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Explore the deck"
+            title="Explore the deck"
+            onClick={() => setExploreDeck(true)}
+          >
+            <Layers3 size={20} />
           </Button>
         </div>
+        {reading ? <p className="tarot-reading-introduction">{reading.introduction}</p> : null}
+        {reading && saved.data?.question ? (
+          <p className="tarot-saved-question">{saved.data.question}</p>
+        ) : null}
+        {drawAgain ? <div className="tarot-intro-actions">{drawAgain}</div> : null}
         {again.error ? (
           <p className="error-note" role="alert">
             A new spread could not start. {again.error.message}
           </p>
         ) : null}
       </div>
+      {match.phase === 'choosing' ? (
+        <section className="tarot-pick-area" aria-busy={pending}>
+          <div className="section-heading">
+            <h3>
+              Choose card {drawn + 1} of 3 · {positions[drawn]}
+            </h3>
+          </div>
+          <HorizontalRail
+            label="Choose from your shuffled 78-card deck"
+            navigationLabel="tarot cards"
+            navigationPosition="below"
+            className="tarot-deck-rail"
+            viewportClassName="tarot-deck"
+            contentClassName="tarot-deck-content"
+          >
+            <div className="tarot-deck-cards" ref={deck} onKeyDown={deckKeys}>
+              {match.actions.map((option, index) => (
+                <TarotCard
+                  compact
+                  key={option.value.choice}
+                  label={`Face-down card ${index + 1} of ${match.actions.length}, for ${positions[drawn].toLowerCase()}`}
+                  tabIndex={index === rovingIndex ? 0 : -1}
+                  onFocus={() => setDeckFocus(index)}
+                  onClick={() => {
+                    localPick.current = true;
+                    onAction(option.value);
+                  }}
+                  disabled={pending || room.paused}
+                />
+              ))}
+            </div>
+          </HorizontalRail>
+          <p className="small muted">Swipe, scroll or use arrow keys to explore.</p>
+        </section>
+      ) : null}
       <div className="tarot-spread">
         {positions.map((position, i) => {
           const card = match.community[i];
@@ -224,8 +293,30 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
         })}
       </div>
       <p className="sr-only" role="status" aria-live="polite">
-        {drawnNote}
+        {pending ? 'Saving your card…' : drawnNote}
       </p>
+      {drawn === 3 && (saved.isPending || saved.isError) ? (
+        <div className="tarot-load-state">
+          {saved.isError ? (
+            <>
+              <p className="error-note" role="alert">
+                We couldn’t check your saved spread. Try again to continue.
+              </p>
+              <Button
+                variant="secondary"
+                pending={saved.isFetching}
+                onClick={() => void saved.refetch()}
+              >
+                Try again
+              </Button>
+            </>
+          ) : (
+            <p className="small muted" role="status">
+              Checking your saved spread…
+            </p>
+          )}
+        </div>
+      ) : null}
       {match.phase === 'choosing' ? (
         <>
           {drawn ? (
@@ -236,36 +327,6 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
               </Button>
             </div>
           ) : null}
-          <section className="tarot-pick-area">
-            <div className="section-heading">
-              <h3>
-                Choose card {drawn + 1} of 3 · {positions[drawn]}
-              </h3>
-              <p className="small muted">Tap any face-down card. It lands in the spread.</p>
-            </div>
-            <HorizontalRail
-              label="Choose from your shuffled 78-card deck"
-              navigationLabel="tarot cards"
-              className="tarot-deck-rail"
-              viewportClassName="tarot-deck"
-              contentClassName="tarot-deck-content"
-            >
-              <div className="tarot-deck-cards" ref={deck} onKeyDown={deckKeys}>
-                {match.actions.map((option, index) => (
-                  <TarotCard
-                    compact
-                    key={option.value.choice}
-                    label={`Face-down card ${index + 1} of ${match.actions.length}, for ${positions[drawn].toLowerCase()}`}
-                    tabIndex={index === rovingIndex ? 0 : -1}
-                    onFocus={() => setDeckFocus(index)}
-                    onClick={() => onAction(option.value)}
-                    disabled={pending || room.paused}
-                  />
-                ))}
-              </div>
-            </HorizontalRail>
-            <p className="small muted">Use the arrows, arrow keys or scroll to see more cards.</p>
-          </section>
         </>
       ) : reading ? (
         <>
@@ -282,12 +343,14 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
           className="tarot-question"
           onSubmit={(event) => {
             event.preventDefault();
-            if (astrology && !chart) return;
+            if (cannotGenerate) return;
             generate.mutate();
           }}
         >
           <label className="field">
-            What’s on your mind? <span className="muted small">Optional</span>
+            <span className="tarot-question-label">
+              What’s on your mind? <span className="muted small">Optional</span>
+            </span>
             <textarea
               className="input"
               maxLength={400}
@@ -331,15 +394,10 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
             </p>
           ) : null}
           <div className="tarot-submit">
-            <Button
-              type="submit"
-              size="lg"
-              pending={writing}
-              disabled={!saved.data || unavailable || (!!astrology && !chart)}
-            >
-              <Sparkles size={17} />
-              {writing ? 'Writing your personal reading…' : 'Read my cards'}
-              <ArrowRight size={17} />
+            <Button type="submit" size="lg" pending={writing} disabled={cannotGenerate}>
+              {!writing ? <Sparkles size={17} /> : null}
+              {writing ? 'Writing your reading…' : 'Read my cards'}
+              {!writing ? <ArrowRight size={17} /> : null}
             </Button>
           </div>
           {writing ? (

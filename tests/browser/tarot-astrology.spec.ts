@@ -186,6 +186,42 @@ test('ordinary Tarot stays optional and preserves all three reading layers', asy
   });
 });
 
+test('an unavailable provider and a paused room keep the spread readable without submitting', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 700 });
+  await withReading(page, async ({ roomId, requests, setView }) => {
+    const names = await page.locator('.tarot-spread .tarot-name').allTextContents();
+    setView({
+      status: 'unavailable',
+      reading: null,
+      api_tier: 'paid',
+      question: '',
+      message: 'Readings are temporarily unavailable.',
+    });
+    await page.reload();
+    const read = page.getByRole('button', { name: 'Read my cards', exact: true });
+    await expect(read).toBeDisabled();
+    await expect(
+      page.getByRole('status').filter({ hasText: 'Readings are temporarily unavailable.' }),
+    ).toContainText('Your three cards are saved.');
+    await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(names);
+    await noOverflow(page);
+    await capture(page, 'provider-unavailable-320');
+
+    setView({ status: 'ready', reading: null, api_tier: 'paid', question: '', message: '' });
+    await page.route(new RegExp(`/api/backend/v1/rooms/${roomId}(/heartbeat)?$`), async (route) => {
+      const response = await route.fetch();
+      await route.fulfill({ response, json: { ...(await response.json()), paused: true } });
+    });
+    await page.reload();
+    await expect(read).toBeDisabled();
+    await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(names);
+    expect(requests).toHaveLength(0);
+    await noOverflow(page);
+  });
+});
+
 for (const chart of [false, true])
   test(`a generating reading survives reload, then retries its saved ${chart ? 'chart' : 'question'}`, async ({
     page,
@@ -203,9 +239,7 @@ for (const chart of [false, true])
       setView({ ...saved, status: 'generating' });
       for (let reload = 0; reload < 2; reload++) {
         await page.reload();
-        await expect(
-          page.getByRole('button', { name: /Writing your personal reading/ }),
-        ).toBeDisabled();
+        await expect(page.getByRole('button', { name: /Writing your reading/ })).toBeDisabled();
         await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue(
           question,
         );
