@@ -33,6 +33,7 @@ async function withReading(
     chartInputs: AstrologyInput[];
   }) => Promise<void>,
 ) {
+  page.setDefaultTimeout(15000);
   let roomId: string | undefined;
   let view: ReadingView = {
     status: 'ready',
@@ -182,6 +183,94 @@ test('ordinary Tarot stays optional and preserves all three reading layers', asy
     expect(requests[0]).not.toHaveProperty('reuse_saved_astrology');
     await expect(page.getByRole('region', { name: 'Saved astrology reading' })).toHaveCount(0);
     await noOverflow(page);
+  });
+});
+
+for (const chart of [false, true])
+  test(`a generating reading survives reload, then retries its saved ${chart ? 'chart' : 'question'}`, async ({
+    page,
+  }) => {
+    await withReading(page, async ({ requests, setView }) => {
+      const names = await page.locator('.tarot-spread .tarot-name').allTextContents();
+      const question = 'How could a book club welcome beginners?';
+      const saved = {
+        reading: null,
+        api_tier: 'paid' as const,
+        question,
+        message: '',
+        ...(chart ? { astrology_chart: syntheticChart } : {}),
+      };
+      setView({ ...saved, status: 'generating' });
+      for (let reload = 0; reload < 2; reload++) {
+        await page.reload();
+        await expect(
+          page.getByRole('button', { name: /Writing your personal reading/ }),
+        ).toBeDisabled();
+        await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue(
+          question,
+        );
+        await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toBeDisabled();
+        await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(names);
+        await expect(page.getByRole('checkbox', { name: 'Include astrology' })).toBeDisabled();
+        expect(requests).toHaveLength(0);
+      }
+      await capture(page, `generating-${chart ? 'chart' : 'ordinary'}`);
+      setView({
+        ...saved,
+        status: 'failed',
+        message: 'Synthetic interruption; your spread is saved.',
+      });
+      await page.reload();
+      await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeEnabled();
+      await expect(page.getByLabel('Birth date', { exact: true })).toHaveCount(0);
+      await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
+      await expect(page.locator('.tarot-reading')).toBeVisible();
+      expect(requests).toHaveLength(1);
+      expect(requests[0].question).toBe(question);
+      expect(requests[0]).not.toHaveProperty('astrology');
+      if (chart) expect(requests[0].reuse_saved_astrology).toBe(true);
+      else expect(requests[0]).not.toHaveProperty('reuse_saved_astrology');
+    });
+  });
+
+test('a lost generation response recovers the saved reading without a second submission', async ({
+  page,
+}) => {
+  await withReading(page, async ({ roomId, setView }) => {
+    const room = await roomAs(page, roomId);
+    const cards = tarotReadingExample.cards.map((card, index) => ({
+      ...card,
+      card_id: room.game!.community[index].id,
+      title: room.game!.community[index].label,
+    }));
+    let submissions = 0;
+    // Synthetic lost response: POST never reaches the provider. A subsequent
+    // GET returns the already-saved result, as production recovery is designed to do.
+    await page.route(`**/api/backend/v1/rooms/${roomId}/reading`, async (route) => {
+      if (route.request().method() !== 'POST') return route.fallback();
+      submissions++;
+      const body = route.request().postDataJSON() as ReadingRequest;
+      setView({
+        status: 'complete',
+        api_tier: 'paid',
+        question: body.question,
+        message: '',
+        reading: { ...tarotReadingExample, cards },
+      });
+      await route.fulfill({ status: 503, json: { detail: 'Synthetic response lost after save.' } });
+    });
+    await page
+      .getByRole('textbox', { name: 'What’s on your mind?' })
+      .fill('How could a club share its tasks?');
+    await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
+    await expect(page.locator('.tarot-reading')).toBeVisible();
+    const rendered = await page.locator('.tarot-reading').innerText();
+    expect(submissions).toBe(1);
+    await page.reload();
+    await expect.poll(() => page.locator('.tarot-reading').innerText()).toBe(rendered);
+    expect(submissions).toBe(1);
+    await noOverflow(page);
+    await capture(page, 'recovered-lost-response');
   });
 });
 

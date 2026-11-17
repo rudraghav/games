@@ -370,6 +370,12 @@ def test_tarot_regeneration_is_budgeted_and_saved_or_recoverable(
         context = json.loads(json.loads(request.content)["input"])
         calls.append(True)
         reading = example_reading([card["card_id"] for card in context["cards"]])
+        # Keep the budget/retry fixture valid for this request's exact shortlist.
+        for section, card in zip(reading["cards"], context["cards"], strict=True):
+            reference = card["reference_characters"][0]
+            section["characters"][0].update(
+                name=reference["name"], source=reference["source"],
+            )
         if len(calls) == 1:
             del reading["cards"][0]["interpretation"]
         return httpx.Response(200, json={"status": "completed", "steps": [{

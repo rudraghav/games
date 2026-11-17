@@ -1,5 +1,79 @@
 # Pop Tarot
 
+## People, characters and saved readings — 17 November 2026
+
+The expanded reference catalogue includes fictional characters and real people
+from film, television, books, games, science, history, civic life, sport and the
+arts. The original48 identities and their character artwork remain unchanged. New references carry a
+stable public identity, source context and source-linked image provenance. A
+portrait of an actor represents that actor; it never substitutes for a fictional
+role. Saved historical references outside the catalogue remain text. New worthwhile
+entries retain their identity while a better source or labelled original
+illustration is prepared. Attributable artist works are explicitly labelled
+Artwork reference, with a work title and source; they are not presented as a face. The artwork exporter checks exact entity bindings, local bytes,
+dimensions, attribution and generated-registry parity.
+
+`pop-tarot-10` ranks the full catalogue by the optional question, card meaning and
+spread position using a pinned local semantic model. It sends at most six
+candidates per card, with sourced public evidence. The same ranked result trims
+to four, three or two candidates when necessary to preserve the existing16,000-
+character request ceiling; the question is encoded only once. There is no user
+profile/history lookup or additional provider request. The schema restricts each
+card to its shortlisted names, and validation requires exact canonical
+name/source identity plus globally distinct names, identities and families.
+Real-person parallels concern documented public work, without invented private
+motives, endorsement or claims that a metaphor establishes facts about a player.
+
+Saved reading content retains its original version and interpretation. Fresh
+generation changes never rewrite earlier analyses. Reading archives authorize
+against the saved solo participant and can be reopened after rematch or room
+closure; reading an archive never generates again. See the room API and frontend
+module documentation for incomplete-state handling and navigation.
+
+## Meaning-based reference retrieval — expanded scope
+
+The new local retrieval path compares the optional question, each exact card
+meaning and its spread role with source-linked public context. The pinned BGE
+encoder runs offline; player input is encoded in memory once per request and
+never stored in the public index, query cache or retrieval logs. Card and role
+vectors and the public catalogue vectors are built ahead of release. No extra
+reading-provider request is introduced by retrieval.
+
+Relevance is primary. A small curated major/regional recognition signal resolves
+near ties; diversity penalties reduce repeated fields/franchises, and exact
+identity/family constraints prevent aliases or closely related forms filling a
+spread. This is retrieval support for a reflective metaphor, not a measured
+personality assessment. Embedding similarity is not factual confidence.
+
+`reference-lenses.json` provides sourced concrete story arcs for the original48
+without changing their names or pictures. New entries retain bounded public
+context and revision/source attribution. Full context stays server-side; selected
+candidates carry a short relevant excerpt; complete contexts already within320
+characters retain their subject and fictional/historical framing. Prompt `pop-tarot-10` asks for the
+concrete evidence and its specific connection to the question/card tension,
+without unsupported biography, private motives or a whole-person equivalence.
+Religious/mythological figures retain their tradition and named form, without
+inferring the reader's religion or claiming divine messages. Curated memes retain
+the exact scene/reaction context; only a strongly relevant meme may enter the
+shortlist and at most one may appear in a spread. The prompt excludes humour
+from grief, trauma, health crises and serious hardship. This is tested editorially,
+not claimed as an exhaustive classification of every possible question.
+
+The application reading adapter currently evaluates medium thinking with the
+same3600-token ceiling and existing time/attempt limits. Exact facts precede
+limited analogies; named references belong with their structured image/source
+entries. Astrology offers symbolic reflection questions, not personality facts
+or predictions. Coordinated bodies can share a sign/house anchor only when both
+computed values match; unrelated later sentences cannot supply a missing anchor.
+See the dated evaluation record for accepted outputs and provider availability.
+
+`fetch_tarot_semantic_model.py` verifies the pinned local model. Build the public
+index with `build_tarot_reference_index.py` after catalogue/context freeze. Model,
+corpus and index hashes guard against stale or mismatched vectors. The provider
+request reuses one ranked result while trimming the shortlist to its existing
+size budget. `test_tarot_retrieval.py` covers ranking/identity invariants; real
+relevance and factuality require the separate editorial/provider evaluations.
+
 ## Optional birth charts — 2 November 2026
 
 Astrology is off by default. A participant may preview Western tropical,
@@ -38,15 +112,14 @@ traditional archetypes, not copied guidebook text. Every one of the 56 minor
 cards has an individual meaning; rank/suit template phrases are not used.
 New readings separate the normal interpretation from a playful reinterpretation
 and one or two structured character connections (name, source and explained
-parallel) for each card. Characters cannot repeat within a spread. A stable
-rotation of broad reference genres across the three cards encourages variety
+parallel) for each card. Characters cannot repeat within a spread. Meaning-based public reference retrieval encourages variety
 without another provider call or retaining a user's earlier readings. Humour
 targets situations rather than mocking hardship or feelings.
 References to films and characters are written analogies; dialogue and lyrics
-are not bundled. Fresh v4 readings choose from a documented 48-reference cast.
+are not bundled. Historical v4 readings used a documented 48-reference cast.
 Each reference now has a local image of the actual character: character artwork,
-an in-character film/TV still or a character illustration. The complete v2 cast
-uses one reviewed 4:5 frame; performer headshots and cosplay cannot enter the
+an in-character film/TV still or a character illustration. Portraits use a reviewed4:5 frame; meme scenes may also use4:3. Generated
+illustrations and attributable artist works are explicitly labelled; performer headshots and cosplay cannot enter the
 active registry. Sources and rights categories are recorded accurately, without
 representing copyright references as freely licensed art. The original photo
 archive remains preserved. Historical references outside this cast remain text.
@@ -101,8 +174,8 @@ for provider latency without automatically repeating a transport failure.
 Fresh-output validation requires all new reading sections and rejects repeated
 characters, unnamed sources, missing/oversized explanations and extra fields.
 Fresh name/source pairs must match the curated cast, including explicit aliases;
-substring matches are rejected. Each card receives a rotating genre's permitted
-references, while the provider schema lists the public cast's names. The public
+substring matches are rejected. Each card receives a bounded rotating shortlist,
+while the provider schema lists only that request's candidate names. The public
 frontend registry is generated from this same cast and the licensed asset manifest
 with `scripts/export_tarot_characters.py`; contract checks reject drift.
 The persisted/API model independently accepts older `pop_culture` paragraphs;

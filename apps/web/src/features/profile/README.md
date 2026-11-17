@@ -17,3 +17,8 @@ URLs or display provider error descriptions. Callbacks are private/non-cacheable
 Cancel/failure does not sign the current player out. Provider secrets and manual
 linking must be configured on the dedicated Games Supabase project before live
 Google connection can succeed. See `docs/GOOGLE_SIGN_IN.md` for setup and evidence.
+
+Completed Tarot history links to `/readings/{matchId}` so a later spread or closed
+room cannot replace the saved reading. Other game history retains its room link.
+The archive authorizes the saved participant on every request; switching to a
+different existing account does not make the earlier guest's readings public.

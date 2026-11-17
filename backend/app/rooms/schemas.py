@@ -4,6 +4,7 @@ from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from app.core.contracts import Action, CardView, GameView
+from app.games.tarot.reading import Reading
 
 
 class Request(BaseModel):
@@ -149,6 +150,19 @@ class MatchSummary(BaseModel):
     winners: list[str]
     score: int
     created_at: float
+
+
+class SavedReadingView(BaseModel):
+    """One participant's saved spread, independent of the room's current match."""
+
+    match_id: str
+    room_id: str
+    created_at: float
+    status: Literal["complete", "generating", "incomplete", "unavailable"]
+    question: str
+    cards: list[CardView] = Field(max_length=3)
+    reading: Reading | None
+    can_resume: bool
 
 
 class MeView(BaseModel):

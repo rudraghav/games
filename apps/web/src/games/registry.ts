@@ -1,11 +1,11 @@
 import type { ComponentType } from 'react';
+import dynamic from 'next/dynamic';
 import { games } from '@games/api-client/catalog';
 import type { TableProps } from './types';
 import { CardTable } from './shared/CardTable';
 import { CasinoTable } from './casino/CasinoTable';
 import { DealTable } from './deal/DealTable';
 import { SkyjoTable } from './skyjo/SkyjoTable';
-import { TarotTable } from './tarot/TarotTable';
 import { RummyTable } from './rummy/RummyTable';
 import { BoardTable } from './board/BoardTable';
 import { MancalaTable } from './board/MancalaTable';
@@ -20,6 +20,9 @@ import { SixNimmtTable } from './coop-number/SixNimmtTable';
 import { PaperTable } from './sea/PaperTable';
 import { BoopTable } from './boop/BoopTable';
 import { ShitheadTable } from './shithead/ShitheadTable';
+
+// The expanded illustrated reference library is needed only by Tarot players.
+const TarotTable = dynamic(() => import('./tarot/TarotTable').then((module) => module.TarotTable));
 
 const familyTables: Record<string, ComponentType<TableProps>> = {
   shedding: CardTable,

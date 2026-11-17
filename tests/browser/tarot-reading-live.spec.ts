@@ -1,0 +1,311 @@
+import { expect, test, type BrowserContext, type Page } from '@playwright/test';
+import { createHash } from 'node:crypto';
+import { writeFile } from 'node:fs/promises';
+import type { components } from '../../packages/api-client/src/generated/schema';
+import type { TarotCharacter } from '../../packages/api-client/src/tarot-characters';
+import registry from '../../packages/api-client/src/generated/tarot-characters.json' with { type: 'json' };
+import { attachPreviewAccess, requestAs, roomAs } from './helpers';
+
+type ReadingView = components['schemas']['ReadingView'];
+type SavedReading = components['schemas']['SavedReadingView'];
+type OwnedRoom = { page: Page; roomId?: string; closed?: boolean };
+type OwnedRun = { rooms: OwnedRoom[]; contexts: BrowserContext[] };
+const cleanup = new WeakMap<Page, OwnedRun>();
+const digest = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
+const normalized = (value: string) =>
+  value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]/g, '');
+function referenceArtwork(name: string, source: string) {
+  return (registry as readonly TarotCharacter[]).find(
+    (entry) =>
+      [entry.name, ...entry.aliases].some((value) => normalized(value) === normalized(name)) &&
+      [entry.source, ...entry.sourceAliases].some(
+        (value) => normalized(value) === normalized(source),
+      ),
+  );
+}
+
+test.skip(
+  !process.env.GAMES_TEST_URL || process.env.GAMES_TEST_AI !== '1',
+  'Explicit hosted AI acceptance only; two generation submissions, up to three provider attempts.',
+);
+test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
+
+async function closeRoom(owned: OwnedRoom) {
+  if (!owned.roomId || owned.closed) return;
+  const response = await requestAs(owned.page, `rooms/${owned.roomId}`);
+  if (response.status() !== 404) {
+    expect(response.status()).toBe(200);
+    if ((await response.json()).status === 'playing')
+      expect((await requestAs(owned.page, `rooms/${owned.roomId}/abandon`, 'POST')).status()).toBe(
+        200,
+      );
+    expect((await requestAs(owned.page, `rooms/${owned.roomId}/leave`, 'POST')).status()).toBe(200);
+    expect((await requestAs(owned.page, `rooms/${owned.roomId}`)).status()).toBe(404);
+  }
+  owned.closed = true;
+}
+
+// A timed-out generation must leave a fresh cleanup budget and live guest contexts.
+test.afterEach(async ({ page }) => {
+  test.setTimeout(45000);
+  const owned = cleanup.get(page);
+  if (!owned) return;
+  try {
+    const results = await Promise.allSettled(owned.rooms.map(closeRoom));
+    const failure = results.find((result) => result.status === 'rejected');
+    if (failure?.status === 'rejected') throw failure.reason;
+  } finally {
+    await Promise.all(owned.contexts.map((context) => context.close()));
+    cleanup.delete(page);
+  }
+});
+
+async function pickSpread(page: Page) {
+  for (let number = 1; number <= 3; number++) {
+    await expect(page.getByRole('heading', { name: `Choose card ${number} of 3` })).toBeVisible();
+    await page
+      .getByRole('group', { name: 'Choose from your shuffled 78-card deck' })
+      .getByRole('button')
+      .first()
+      .click();
+  }
+  await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeEnabled();
+}
+
+async function savedReading(page: Page, matchId: string): Promise<SavedReading> {
+  const response = await requestAs(page, `readings/${matchId}`);
+  expect(response.status()).toBe(200);
+  return response.json();
+}
+
+async function bothChart(page: Page) {
+  await page.getByRole('checkbox', { name: 'Include astrology', exact: true }).check();
+  await page.getByRole('button', { name: 'Both', exact: true }).click();
+  // Public J2000 benchmark, not a person's birth details. The live lookup selects
+  // Greenwich city coordinates rather than pretending to be the observatory.
+  await page.getByLabel('Birth date', { exact: true }).fill('2000-01-01');
+  await page.getByLabel('Birth time', { exact: true }).fill('12:00');
+  await page.getByRole('searchbox', { name: 'Birthplace', exact: true }).fill('Greenwich');
+  await page.getByRole('button', { name: 'Search places', exact: true }).click();
+  const places = page.getByRole('combobox', { name: 'Choose birthplace', exact: true });
+  await expect(places).toBeVisible();
+  const option = places
+    .locator('option')
+    .filter({ hasText: /Greenwich.*United Kingdom/ })
+    .first();
+  const value = await option.getAttribute('value');
+  expect(value, 'Live location search must return Greenwich in the United Kingdom').toBeTruthy();
+  await places.selectOption(value!);
+  await page.getByRole('button', { name: 'Preview chart', exact: true }).click();
+  const charts = page.getByRole('region', { name: 'Calculated birth charts', exact: true });
+  await expect(charts).toBeVisible();
+  await charts.getByRole('tab', { name: 'Vedic', exact: true }).click();
+  await expect(charts.locator('.astrology-diamond')).toBeVisible();
+  await charts.getByRole('tab', { name: 'Western', exact: true }).click();
+}
+
+async function inspectReading(
+  page: Page,
+  reading: NonNullable<ReadingView['reading']>,
+  mode: string,
+) {
+  const references = reading.cards.flatMap((card) => card.characters || []);
+  expect(references.length).toBeGreaterThanOrEqual(3);
+  expect(references.length).toBeLessThanOrEqual(6);
+  const rows = page.locator('.tarot-character-connections li');
+  await expect(rows).toHaveCount(references.length);
+  for (const [index, reference] of references.entries()) {
+    const artwork = referenceArtwork(reference.name, reference.source);
+    expect(artwork, 'Every selected reference resolves by both name and source').toBeTruthy();
+    const row = rows.nth(index);
+    await expect(row.locator('.tarot-character-name')).toContainText(reference.name);
+    await expect(row.locator('.tarot-character-name span')).toHaveText(reference.source);
+    const image = row.locator('.tarot-character-portrait img');
+    await expect(image).toHaveAttribute('src', artwork!.image);
+    await expect(image).toHaveAttribute('alt', artwork!.alt!);
+    await image.scrollIntoViewIfNeeded();
+    await expect
+      .poll(() =>
+        image.evaluate((node) => {
+          const photo = node as HTMLImageElement;
+          return photo.complete && photo.naturalWidth > 0 && photo.naturalHeight > 0;
+        }),
+      )
+      .toBe(true);
+  }
+  for (const width of [320, 390, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    await expect(page.locator('.tarot-reading > article')).toHaveCount(3);
+    // Nonpersonal generated content only; no room code, auth data or birth inputs.
+    await page.locator('.tarot-reading').screenshot({
+      path: test.info().outputPath(`${mode}-reading-${width}.png`),
+    });
+  }
+  return references.map((reference) => {
+    const artwork = referenceArtwork(reference.name, reference.source)!;
+    return {
+      id: artwork.id,
+      name: artwork.name,
+      source: artwork.source,
+      kind: artwork.kind || 'character',
+    };
+  });
+}
+
+test('two independent live readings retain exact private archives after new spreads and closure', async ({
+  page,
+  browser,
+  baseURL,
+}) => {
+  test.skip(test.info().project.name !== 'desktop', 'Two identities cover all three widths once.');
+  test.setTimeout(300000);
+  page.setDefaultTimeout(15000);
+  const context = await browser.newContext({
+    baseURL,
+    viewport: { width: 390, height: 900 },
+    reducedMotion: 'reduce',
+  });
+  const second = await context.newPage();
+  second.setDefaultTimeout(15000);
+  const owned: OwnedRun = { rooms: [{ page }, { page: second }], contexts: [context] };
+  cleanup.set(page, owned);
+  const submissions = new Map<Page, number>([
+    [page, 0],
+    [second, 0],
+  ]);
+  for (const [index, room] of owned.rooms.entries()) {
+    await attachPreviewAccess(room.page);
+    room.page.on('request', (request) => {
+      if (
+        request.method() === 'POST' &&
+        /\/rooms\/[^/]+\/reading$/.test(new URL(request.url()).pathname)
+      )
+        submissions.set(room.page, submissions.get(room.page)! + 1);
+    });
+    await room.page.goto('/');
+    await room.page.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).click();
+    await room.page
+      .getByRole('textbox', { name: 'Your name', exact: true })
+      .fill(`Tarot live QA ${index + 1}`);
+    const creation = room.page.waitForResponse(
+      (response) => response.url().endsWith('/v1/rooms') && response.request().method() === 'POST',
+    );
+    await room.page.getByRole('button', { name: 'Create room', exact: true }).click();
+    const created = await creation;
+    expect(created.status()).toBe(201);
+    room.roomId = (await created.json()).id;
+    await expect(room.page).toHaveURL(new RegExp(`/rooms/${room.roomId}$`));
+    await pickSpread(room.page);
+  }
+  expect((await roomAs(page, owned.rooms[0].roomId!)).owner_id).not.toBe(
+    (await roomAs(second, owned.rooms[1].roomId!)).owner_id,
+  );
+  for (const [index, room] of owned.rooms.entries()) {
+    const actor = room.page,
+      outsider = owned.rooms[1 - index].page;
+    const mode = index === 0 ? 'ordinary' : 'both';
+    const question =
+      index === 0 ? '' : 'How could a community group make room for shared creative practice?';
+    await test.step(`${mode}: generate once, refresh, inspect, archive and close`, async () => {
+      const before = await roomAs(actor, room.roomId!);
+      const matchId = before.match_id!;
+      if (index === 1) {
+        await actor.getByRole('textbox', { name: 'What’s on your mind?' }).fill(question);
+        await bothChart(actor);
+      }
+      expect((await requestAs(outsider, `rooms/${room.roomId}/reading`)).status()).toBe(404);
+      expect((await requestAs(outsider, `readings/${matchId}`)).status()).toBe(404);
+      await actor.getByRole('button', { name: 'Read my cards', exact: true }).click();
+      await expect(actor.locator('.tarot-reading')).toBeVisible({ timeout: 80000 });
+      const response = await requestAs(actor, `rooms/${room.roomId}/reading`);
+      expect(response.status()).toBe(200);
+      const current: ReadingView = await response.json();
+      expect(current.status).toBe('complete');
+      expect(current.question).toBe(question);
+      expect(current.reading!.cards.map((card) => card.card_id)).toEqual(
+        before.game!.community.map((card) => card.id),
+      );
+      expect(Boolean(current.reading!.astrology)).toBe(index === 1);
+      if (current.reading!.astrology)
+        expect(current.reading!.astrology.chart.charts.map((chart) => chart.system)).toEqual([
+          'western',
+          'vedic',
+        ]);
+      const selectedReferences = await inspectReading(actor, current.reading!, mode);
+      const visible = digest(await actor.locator('.tarot-reading').innerText());
+      const readingHash = digest(current.reading);
+      const sameText = () =>
+        expect
+          .poll(async () => digest(await actor.locator('.tarot-reading').innerText()))
+          .toBe(visible);
+      await actor.reload();
+      await sameText();
+      expect(
+        digest((await (await requestAs(actor, `rooms/${room.roomId}/reading`)).json()).reading),
+      ).toBe(readingHash);
+      expect(submissions.get(actor)).toBe(1);
+      await actor.getByRole('button', { name: 'Draw a new spread', exact: true }).first().click();
+      await expect(actor.getByRole('heading', { name: 'Choose card 1 of 3' })).toBeVisible();
+      const next = await roomAs(actor, room.roomId!);
+      expect(next.match_id).not.toBe(matchId);
+      await pickSpread(actor);
+      await expect(actor.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue('');
+      await expect(
+        actor.getByRole('checkbox', { name: 'Include astrology', exact: true }),
+      ).not.toBeChecked();
+      const nextSaved: ReadingView = await (
+        await requestAs(actor, `rooms/${room.roomId}/reading`)
+      ).json();
+      expect(nextSaved.reading).toBeNull();
+      const archived = await savedReading(actor, matchId);
+      expect(digest(archived.reading)).toBe(readingHash);
+      expect(archived.question).toBe(question);
+      expect(archived.can_resume).toBe(false);
+      await actor.goto(`/readings/${matchId}`);
+      await sameText();
+      await expect(actor.getByRole('link', { name: 'Return to spread', exact: true })).toHaveCount(
+        0,
+      );
+      await closeRoom(room);
+      await actor.reload();
+      await sameText();
+      expect(digest((await savedReading(actor, matchId)).reading)).toBe(readingHash);
+      expect((await requestAs(outsider, `readings/${matchId}`)).status()).toBe(404);
+      await outsider.goto(`/readings/${matchId}`);
+      await expect(
+        outsider.getByRole('heading', { name: 'This reading isn’t available.', exact: true }),
+      ).toBeVisible();
+      await expect(outsider.locator('.tarot-reading')).toHaveCount(0);
+      if (index === 0) await outsider.goto(`/rooms/${owned.rooms[1].roomId}`);
+      await actor.goto('/profile');
+      await actor.locator(`a.history-row[href="/readings/${matchId}"]`).click();
+      await sameText();
+      expect(submissions.get(actor)).toBe(1);
+      await writeFile(
+        test.info().outputPath(`${mode}-reading-private.json`),
+        JSON.stringify(
+          {
+            mode,
+            question,
+            reading: current.reading,
+            selectedReferences,
+            readingSha256: readingHash,
+            generationSubmissions: submissions.get(actor),
+            archivedAfterRematchAndClosure: true,
+          },
+          null,
+          2,
+        ),
+        { flag: 'wx', mode: 0o600 },
+      );
+    });
+  }
+});

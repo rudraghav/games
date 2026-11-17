@@ -15,3 +15,10 @@ application table is in private schema `games` with RLS enabled.
 Use the root verification runner. Isolated database checks are launched through
 `scripts/isolated_backend.py`; raw database tests refuse the development database.
 Per-game READMEs record their sources, chosen table rules and unresolved gaps.
+
+
+Tarot's semantic reference retrieval uses pinned NumPy, ONNX Runtime and Tokenizers
+versions from `uv.lock`. The small public model and precomputed reference index
+are bundled under the Tarot module and loaded only on demand. Production never
+downloads weights or sends questions to an embedding provider. See the module
+README for corpus/model integrity and offline relevance checks.

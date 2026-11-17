@@ -8,6 +8,7 @@ export function proxyFailure(
 ) {
   const route = path
     .replace(/(rooms\/)(?!join(?:\/|$))[^/]+/, '$1:room')
+    .replace(/(readings\/)[^/]+/, '$1:match')
     .replace(/(members\/)[^/]+/, '$1:member');
   const name = error instanceof Error ? error.name : '';
   const cause =

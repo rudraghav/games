@@ -1,0 +1,24 @@
+{
+  "identities": 5636,
+  "addedAcceptedAssets": 5588,
+  "bytes": 86056106,
+  "origin": {
+    "sourced": 5551,
+    "generated": 37
+  },
+  "rights": {
+    "public-domain": 2629,
+    "licensed": 2458,
+    "copyright-reference": 464,
+    "generated": 37
+  },
+  "imageTypes": {
+    "person": 5096,
+    "character": 291,
+    "artwork": 25,
+    "illustration": 37,
+    "religious_figure": 115,
+    "meme": 24
+  },
+  "hashDimensionAttributionEntityKindChecks": "passed"
+}

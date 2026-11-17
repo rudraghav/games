@@ -68,10 +68,25 @@ A canonical deck browser reveals artwork without exposing the shuffled game deck
 Fresh readings include a grounded and separate quirky interpretation plus one
 or two named character connections per card. Distinct minor-card meanings guide
 the model. Older saved output remains readable without invented new sections.
-The active character imagery shows the fictional characters themselves: official
-character art, in-character stills or character illustrations, with consistent
-frames and accurate source credits. Performer headshots and voice-actor/cosplay
-substitutes do not satisfy this requirement.
+Reference imagery shows the named subject: character art, in-character stills or
+illustrations for fictional characters, and portraits for real people. Original
+illustrations are labelled. Attributed artist works carry an Artwork reference
+label and exact work credit; meme references use the actual scene/reaction. An actor's
+portrait is valid when the reference is that actor; it cannot substitute for a
+fictional role. Images use consistent frames and accurate source credits.
+
+The 17 November expansion broadens the reference library beyond the original 48
+to include actors, scientists, historical rulers, political/civic leaders,
+sportspersons, writers, musicians and fictional heroes across cultures, including
+familiar deities and curated Hollywood/Bollywood/Telugu and internet memes. The
+expanded scope requires over5,000 distinct, image-backed eligible identities,
+with sourced public story/work context. Question, card and position meanings
+guide reference selection; aliases and related forms do not fill a spread. Requests
+use a bounded, varied shortlist so the larger catalogue does not inflate AI cost
+or imply every reference belongs in one reading. Comparisons to real people
+describe public work or achievements, not private beliefs or endorsements.
+Specific saved readings reopen from private match history after a new spread or
+room closure; an archive never silently regenerates the analysis.
 
 ## Release gate
 

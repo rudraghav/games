@@ -148,6 +148,32 @@ export function mapMe(wire: Wire['MeView']) {
   };
 }
 
+const savedReadingGate = z.object({
+  match_id: z.string().uuid(),
+  room_id: z.string().uuid(),
+  created_at: z.number().finite().nonnegative(),
+  status: z.enum(['complete', 'generating', 'incomplete', 'unavailable']),
+  question: z.string().max(400),
+  cards: z.array(cardSchema).max(3),
+  can_resume: z.boolean(),
+});
+
+export function mapSavedReading(wire: Wire['SavedReadingView']) {
+  const parsed = savedReadingGate.parse(wire);
+  if (parsed.status === 'complete' && !wire.reading)
+    throw new Error('The saved reading is incomplete. Please try again.');
+  return {
+    matchId: parsed.match_id,
+    roomId: parsed.room_id,
+    createdAt: parsed.created_at,
+    status: parsed.status,
+    question: parsed.question,
+    cards: parsed.cards,
+    reading: wire.reading,
+    canResume: parsed.can_resume,
+  };
+}
+
 export type Room = ReturnType<typeof mapRoom>;
 export type Match = NonNullable<Room['game']>;
 export type Card = ReturnType<typeof mapCard>;
@@ -156,3 +182,4 @@ export type Action = Wire['Action'];
 export type ActionOption = Match['actions'][number];
 export type Me = ReturnType<typeof mapMe>;
 export type ReadingView = Wire['ReadingView'];
+export type SavedReading = ReturnType<typeof mapSavedReading>;

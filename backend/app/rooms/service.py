@@ -6,6 +6,7 @@ import json
 import logging
 import secrets
 import time
+from typing import Literal
 from uuid import UUID, uuid4, uuid5
 
 from cryptography.fernet import Fernet
@@ -53,6 +54,7 @@ from app.rooms.schemas import (
     RoomSettings,
     RoomSummary,
     RoomView,
+    SavedReadingView,
 )
 from app.rooms.views import room_view
 from app.settings import settings
@@ -478,6 +480,46 @@ class RoomService:
         except GeocoderUnavailable:
             raise HTTPException(503, "City lookup is temporarily unavailable. Please try again.") from None
         return calculate_chart(data.astrology, place)
+
+    def saved_reading(self, actor: Identity, match_id: str) -> SavedReadingView:
+        # A room can move on or close without taking its participant's reading
+        # away. The saved sole participant, not current membership, authorizes it.
+        with self.session.begin():
+            match = self.repo.match(match_id)
+            if not match or match.game_id != "tarot" or match.participants != [actor.id]:
+                raise HTTPException(404, "This reading is unavailable to your player session.")
+            saved = self.repo.reading(match.id)
+            room = self.repo.room(match.room_id)
+            member = self.repo.member(match.room_id, actor.id)
+            can_resume = bool(
+                room and room.status != "closed" and room.match_id == match.id
+                and member and member.active and not member.is_bot
+            )
+            status: Literal["complete", "generating", "incomplete", "unavailable"] = "incomplete"
+            reading = None
+            if saved and saved.status == "complete":
+                try:
+                    # Historical output uses the backwards-compatible stored
+                    # parser, never the stricter fresh-generation validator.
+                    reading = Reading.model_validate(saved.payload)
+                    status = "complete"
+                except ValidationError:
+                    logging.getLogger("uvicorn.error").warning(
+                        "games.reading_archive.invalid_payload"
+                    )
+                    status = "unavailable"
+            elif saved and saved.status == "generating" and saved.lease_until > time.time():
+                status = "generating"
+            return SavedReadingView(
+                match_id=match.id,
+                room_id=match.room_id,
+                created_at=match.created_at,
+                status=status,
+                question=saved.question if saved else "",
+                cards=ENGINES["tarot"].project_view(match.state, actor.id).community,
+                reading=reading,
+                can_resume=can_resume,
+            )
 
     def reading(
         self, actor: Identity, room_id: str, data: ReadingInput | None = None

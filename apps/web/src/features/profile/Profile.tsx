@@ -103,7 +103,15 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
               <div className="match-history">
                 {me.data?.history.length ? (
                   me.data.history.map((match) => (
-                    <Link className="history-row" key={match.id} href={`/rooms/${match.roomId}`}>
+                    <Link
+                      className="history-row"
+                      key={match.id}
+                      href={
+                        match.gameId === 'tarot'
+                          ? `/readings/${match.id}`
+                          : `/rooms/${match.roomId}`
+                      }
+                    >
                       <div>
                         <strong>{gameById(match.gameId).name}</strong>
                         <span className="small muted">

@@ -1,0 +1,719 @@
+{
+  "reviewedAt": "2026-11-17",
+  "count": 14,
+  "assetBytes": 232110,
+  "scope": "Fourteen sourced recovery images only; canonical identities and semantic context unchanged. Four separately generated figures are reviewed in the art agent receipt.",
+  "assets": [
+    {
+      "id": "su-song-q1265657",
+      "asset": {
+        "id": "su-song-q1265657",
+        "imageType": "person",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/su-song-q1265657.webp",
+        "alt": "Later traditional drawing of Su Song, not an authenticated contemporary likeness",
+        "credit": "Unknown artist, traditional drawing of Su Song; Zhejiang Library collection via Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Su_Song",
+        "filePage": "https://commons.wikimedia.org/wiki/File:%E8%98%87%E9%A0%8C%E5%85%A8%E8%BA%AB.jpg",
+        "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/a/ab/%E8%98%87%E9%A0%8C%E5%85%A8%E8%BA%AB.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "entityId": "Q1265657",
+        "rights": "public-domain",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "width": 320,
+        "height": 400,
+        "bytes": 14410,
+        "sha256": "238ba9b485aaf165964272e9a30dcf94ec5051d05ec4605bfce6c90a773c4092",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Su_Song",
+        "sourceCrop": {
+          "left": 80,
+          "top": 0,
+          "width": 290,
+          "height": 363
+        },
+        "sourceDimensions": {
+          "width": 408,
+          "height": 749
+        }
+      }
+    },
+    {
+      "id": "robert-hooke-q46830",
+      "asset": {
+        "id": "robert-hooke-q46830",
+        "imageType": "person",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/robert-hooke-q46830.webp",
+        "alt": "Rita Greer’s 2004 imagined reconstruction of Robert Hooke from written descriptions; no authenticated contemporary portrait survives",
+        "credit": "Rita Greer · The original is an oil painting on board by Rita Greer, history painter, 2004. This was digitized by Rita and sent via email to the Department of Engineering Science, Oxford University, where it was subsequently uploaded to Wikimedia.",
+        "sourcePage": "https://en.wikipedia.org/wiki/Robert_Hooke",
+        "filePage": "https://commons.wikimedia.org/wiki/File:13_Portrait_of_Robert_Hooke.JPG",
+        "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/13_Portrait_of_Robert_Hooke.JPG/960px-13_Portrait_of_Robert_Hooke.JPG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "entityId": "Q46830",
+        "rights": "licensed",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "width": 320,
+        "height": 400,
+        "bytes": 15496,
+        "sha256": "0f81f9b00d9431ef7732e345f691dabca335b03b23cc33d7a1c77aa373901973",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Replace the uncertain Portrait of a Mathematician attribution with an explicitly labelled reconstructed portrait.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Robert_Hooke",
+        "sourceCrop": {
+          "left": 150,
+          "top": 250,
+          "width": 900,
+          "height": 1125
+        },
+        "sourceDimensions": {
+          "width": 1280,
+          "height": 1526
+        },
+        "license": "FAL",
+        "licenseUrl": "https://artlibre.org/licence/lal/en"
+      }
+    },
+    {
+      "id": "abdullah-al-mahdi-billah-q307629",
+      "asset": {
+        "id": "abdullah-al-mahdi-billah-q307629",
+        "imageType": "artwork",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/abdullah-al-mahdi-billah-q307629.webp",
+        "alt": "Calligraphic name artwork for Abd Allah al-Mahdi Billah; not a facial portrait",
+        "credit": "Abdulaziz · Telegram",
+        "sourcePage": "https://en.wikipedia.org/wiki/Abd_Allah_al-Mahdi_Billah",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Abd_Allah_al-Mahdi_Billah.png",
+        "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Abd_Allah_al-Mahdi_Billah.png/960px-Abd_Allah_al-Mahdi_Billah.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "entityId": "Q307629",
+        "rights": "licensed",
+        "width": 320,
+        "height": 400,
+        "bytes": 17052,
+        "sha256": "a9cb6e176e42c5aab9a986f35d2c76a41932c2efb4fbff12b158070701e63108",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Abd_Allah_al-Mahdi_Billah",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "sourceCrop": {
+          "left": 0,
+          "top": 0,
+          "width": 960,
+          "height": 960
+        },
+        "sourceDimensions": {
+          "width": 960,
+          "height": 960
+        },
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "artworkTitle": "Calligraphic name of Abd Allah al-Mahdi Billah by Abdulaziz",
+        "artworkAttributionUrl": "https://commons.wikimedia.org/wiki/File:Abd_Allah_al-Mahdi_Billah.png"
+      }
+    },
+    {
+      "id": "abu-bakr-q334923",
+      "asset": {
+        "id": "abu-bakr-q334923",
+        "imageType": "artwork",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/abu-bakr-q334923.webp",
+        "alt": "Abu Bakr’s name on the Hagia Sophia calligraphic medallion; not a facial portrait",
+        "credit": "Mark Ahsmann · Own work",
+        "sourcePage": "https://en.wikipedia.org/wiki/Abu_Bakr",
+        "filePage": "https://commons.wikimedia.org/wiki/File:20131203_Istanbul_091.jpg",
+        "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/20131203_Istanbul_091.jpg/1280px-20131203_Istanbul_091.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "entityId": "Q334923",
+        "rights": "licensed",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "width": 320,
+        "height": 400,
+        "bytes": 19370,
+        "sha256": "ad85dcac1eae5fbabfe51cb52d2720164c18f8cd11a679ee94141aa2eee03917",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Abu_Bakr",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "sourceCrop": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 1318
+        },
+        "sourceDimensions": {
+          "width": 1280,
+          "height": 1318
+        },
+        "artworkTitle": "Calligraphic name of Abu Bakr, Hagia Sophia medallion",
+        "artworkAttributionUrl": "https://commons.wikimedia.org/wiki/File:20131203_Istanbul_091.jpg"
+      }
+    },
+    {
+      "id": "gwanggaeto-the-great-q498791",
+      "asset": {
+        "id": "gwanggaeto-the-great-q498791",
+        "imageType": "person",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/gwanggaeto-the-great-q498791.webp",
+        "alt": "Lee Jong-sang’s 1977 standard commemorative portrait of Gwanggaeto the Great; a modern imagined depiction",
+        "credit": "Lee Jong-sang, 1977 standard portrait of Gwanggaeto the Great; Academy of Korean Studies source, reproduced via Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Gwanggaeto_the_Great",
+        "filePage": "https://dh.aks.ac.kr/Encyves/wiki/index.php/%EA%B4%91%EA%B0%9C%ED%86%A0%EB%8C%80%EC%99%95_%ED%91%9C%EC%A4%80%EC%98%81%EC%A0%95",
+        "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Gwanggaeto_the_Great.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "entityId": "Q498791",
+        "rights": "copyright-reference",
+        "width": 320,
+        "height": 400,
+        "bytes": 16418,
+        "sha256": "32613c8129afe43fff3b38e851059b66361eaf56ca3b676bc0aa9bd613f48495",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Gwanggaeto_the_Great",
+        "rightsNote": "Named source attribution retained; a recent uploader’s unsupported CC0 claim is not adopted.",
+        "sourceCrop": {
+          "left": 73,
+          "top": 25,
+          "width": 250,
+          "height": 313
+        },
+        "sourceDimensions": {
+          "width": 366,
+          "height": 600
+        }
+      }
+    },
+    {
+      "id": "uthman-ibn-affan-q37731",
+      "asset": {
+        "id": "uthman-ibn-affan-q37731",
+        "imageType": "artwork",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/uthman-ibn-affan-q37731.webp",
+        "alt": "Uthman ibn Affan’s name on the Hagia Sophia calligraphic medallion; not a facial portrait",
+        "credit": "Vikiçizer · Own work",
+        "sourcePage": "https://en.wikipedia.org/wiki/Uthman",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Ayasofya_13_(cropped).JPG",
+        "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Ayasofya_13_%28cropped%29.JPG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "entityId": "Q37731",
+        "rights": "licensed",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "width": 320,
+        "height": 400,
+        "bytes": 17728,
+        "sha256": "410267c7659a262654df050cf67a05e67c9f40e4341bee6c0275ab5ce5d1f382",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Uthman",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "sourceCrop": {
+          "left": 0,
+          "top": 0,
+          "width": 660,
+          "height": 675
+        },
+        "sourceDimensions": {
+          "width": 660,
+          "height": 675
+        },
+        "artworkTitle": "Calligraphic name of Uthman ibn Affan, Hagia Sophia medallion",
+        "artworkAttributionUrl": "https://commons.wikimedia.org/wiki/File:Ayasofya_13_(cropped).JPG"
+      }
+    },
+    {
+      "id": "razia-sultana-q465076",
+      "asset": {
+        "id": "razia-sultana-q465076",
+        "imageType": "person",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/razia-sultana-q465076.webp",
+        "alt": "Razia Sultana, seated central ruler in Gulam Ali Khan’s 19th-century court miniature, Salar Jung Museum XXIII-237",
+        "credit": "Gulam Ali Khan, nineteenth-century court miniature; Salar Jung Museum, inventory XXIII-237, via Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Razia_Sultan",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Miniature_painting_of_Razia_Sultana_holding_court_(%22durbar%22)_with_identifying_inscriptions,_by_Gulam_Ali_Khan,_circa_19th_century.jpg",
+        "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Miniature_painting_of_Razia_Sultana_holding_court_%28%22durbar%22%29_with_identifying_inscriptions%2C_by_Gulam_Ali_Khan%2C_circa_19th_century.jpg/960px-Miniature_painting_of_Razia_Sultana_holding_court_%28%22durbar%22%29_with_identifying_inscriptions%2C_by_Gulam_Ali_Khan%2C_circa_19th_century.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "entityId": "Q465076",
+        "rights": "public-domain",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "width": 320,
+        "height": 400,
+        "bytes": 23768,
+        "sha256": "47099d316e800e78d7ac5077b38c0079c73841dde2812039a7e20ae0d2297356",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Razia_Sultan",
+        "sourceCrop": {
+          "left": 390,
+          "top": 340,
+          "width": 145,
+          "height": 181
+        },
+        "sourceDimensions": {
+          "width": 960,
+          "height": 1355
+        }
+      }
+    },
+    {
+      "id": "alfred-the-great-q83476",
+      "asset": {
+        "id": "alfred-the-great-q83476",
+        "imageType": "person",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/alfred-the-great-q83476.webp",
+        "alt": "Alfred the Great depicted in the commemorative statue at Wantage",
+        "credit": "Wantage statue of Alfred the Great; photograph by Philip Jelley, retouched by Pko, via Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Alfred_the_Great",
+        "filePage": "https://commons.wikimedia.org/wiki/File:King_Alfred_the_Great_statue,_Wantage,_Oxfordshire_retouched.jpg",
+        "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/King_Alfred_the_Great_statue%2C_Wantage%2C_Oxfordshire_retouched.jpg/960px-King_Alfred_the_Great_statue%2C_Wantage%2C_Oxfordshire_retouched.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "entityId": "Q83476",
+        "rights": "licensed",
+        "width": 320,
+        "height": 400,
+        "bytes": 15490,
+        "sha256": "ae32b065f90892cb5ff221da7b066b4bdd023b20cc3cc9557d36f73df13b41a8",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Alfred_the_Great",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "sourceCrop": {
+          "left": 250,
+          "top": 250,
+          "width": 750,
+          "height": 938
+        },
+        "sourceDimensions": {
+          "width": 1280,
+          "height": 1707
+        },
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+      }
+    },
+    {
+      "id": "charles-the-fat-q150712",
+      "asset": {
+        "id": "charles-the-fat-q150712",
+        "imageType": "person",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/charles-the-fat-q150712.webp",
+        "alt": "Charles the Fat depicted in a later manuscript miniature; the central crowned ruler in blue",
+        "credit": "Grandes Chroniques de France manuscript; Bibliothèque nationale de France / Gallica, btv1b84472995, view 335",
+        "sourcePage": "https://en.wikipedia.org/wiki/Charles_the_Fat",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Emperor_Charles_III_le_Gros.jpg",
+        "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Emperor_Charles_III_le_Gros.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "entityId": "Q150712",
+        "rights": "public-domain",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "width": 320,
+        "height": 400,
+        "bytes": 13244,
+        "sha256": "1976efab8f42bc4f21894fdbe65f4975fcc826f6eeae5818b2faae3e92f23128",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Charles_the_Fat",
+        "sourceCrop": {
+          "left": 204,
+          "top": 122,
+          "width": 61,
+          "height": 77
+        },
+        "sourceDimensions": {
+          "width": 430,
+          "height": 380
+        }
+      }
+    },
+    {
+      "id": "otto-i-the-great-q43915",
+      "asset": {
+        "id": "otto-i-the-great-q43915",
+        "imageType": "person",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/otto-i-the-great-q43915.webp",
+        "alt": "Otto the Great, central crowned ruler in a manuscript depiction from about 1200",
+        "credit": "Chronicle of Bishop Otto of Freising, about 1200; reproduction by Andreas Praefcke via Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Otto_the_Great",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Otto_I_Manuscriptum_Mediolanense_c_1200.jpg",
+        "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/1/11/Otto_I_Manuscriptum_Mediolanense_c_1200.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "entityId": "Q43915",
+        "rights": "public-domain",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "width": 320,
+        "height": 400,
+        "bytes": 17614,
+        "sha256": "5b475f4dd1c9aa369efd00fd6b945c012e604bb0d4f802f9213e5ac1dfb6f3bf",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Otto_the_Great",
+        "sourceCrop": {
+          "left": 137,
+          "top": 16,
+          "width": 154,
+          "height": 193
+        },
+        "sourceDimensions": {
+          "width": 450,
+          "height": 326
+        }
+      }
+    },
+    {
+      "id": "robert-guiscard-q203792",
+      "asset": {
+        "id": "robert-guiscard-q203792",
+        "imageType": "person",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/robert-guiscard-q203792.webp",
+        "alt": "Robert Guiscard depicted in the statue bearing his name",
+        "credit": "Named statue of Robert Guiscard; photograph by Pietro espasian via Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Robert_Guiscard",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Statua_di_Roberto_il_Guiscardo.jpg",
+        "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Statua_di_Roberto_il_Guiscardo.jpg/500px-Statua_di_Roberto_il_Guiscardo.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "entityId": "Q203792",
+        "rights": "licensed",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "width": 320,
+        "height": 400,
+        "bytes": 13158,
+        "sha256": "ba1e8f865f9c98b8c429c73e5a76956d616d0f8e0c97c58d88b996de534187b9",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Robert_Guiscard",
+        "sourceCrop": {
+          "left": 100,
+          "top": 40,
+          "width": 330,
+          "height": 413
+        },
+        "sourceDimensions": {
+          "width": 500,
+          "height": 1059
+        },
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      }
+    },
+    {
+      "id": "vercingetorix-q178953",
+      "asset": {
+        "id": "vercingetorix-q178953",
+        "imageType": "person",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/vercingetorix-q178953.webp",
+        "alt": "Vercingetorix depicted in the commemorative statue at Alise-Sainte-Reine",
+        "credit": "Vercingetorix monument at Alise-Sainte-Reine; photograph by Benjamin Smith via Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Vercingetorix",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Alise-Sainte-Reine_-_Statue_de_Vercing%C3%A9torix_-_02.jpg",
+        "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Alise-Sainte-Reine_-_Statue_de_Vercing%C3%A9torix_-_02.jpg/960px-Alise-Sainte-Reine_-_Statue_de_Vercing%C3%A9torix_-_02.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "entityId": "Q178953",
+        "rights": "licensed",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "width": 320,
+        "height": 400,
+        "bytes": 15082,
+        "sha256": "07ab2174d2fb847ec078ff91ba163a2219a27a54913f227e19b24a0c2903df17",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Vercingetorix",
+        "sourceCrop": {
+          "left": 320,
+          "top": 40,
+          "width": 330,
+          "height": 413
+        },
+        "sourceDimensions": {
+          "width": 960,
+          "height": 1439
+        },
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      }
+    },
+    {
+      "id": "vladimir-the-great-q14974",
+      "asset": {
+        "id": "vladimir-the-great-q14974",
+        "imageType": "person",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/vladimir-the-great-q14974.webp",
+        "alt": "Vladimir the Great, seated ruler at left in Ivan Eggink’s painting of his choice of religion",
+        "credit": "Ivan Eggink, Grand Prince Vladimir chooses a religion; painting reproduced via Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Vladimir_the_Great",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Eggink_VelKnVladimir.jpg",
+        "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Eggink_VelKnVladimir.jpg/960px-Eggink_VelKnVladimir.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "entityId": "Q14974",
+        "rights": "public-domain",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "width": 320,
+        "height": 400,
+        "bytes": 13856,
+        "sha256": "c1eb8278f4289f5ace866c9d78b4b3b861c56acf3bd88cd85d6e7d652ca360d8",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Vladimir_the_Great",
+        "sourceCrop": {
+          "left": 170,
+          "top": 195,
+          "width": 157,
+          "height": 196
+        },
+        "sourceDimensions": {
+          "width": 960,
+          "height": 684
+        }
+      }
+    },
+    {
+      "id": "ashoka-q8589",
+      "asset": {
+        "id": "ashoka-q8589",
+        "imageType": "person",
+        "origin": "sourced",
+        "reviewStatus": "accepted",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/ashoka-q8589.webp",
+        "alt": "Ashoka as the central crowned rider in the Sanchi southern-gateway relief of the Ramagrama visit; a later narrative depiction",
+        "credit": "Photo Dharma, detail of the Ramagrama-visit relief on Sanchi Stupa 1’s southern gateway, via Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Ashoka",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Ashoka%27s_visit_to_the_Ramagrama_stupa_Sanchi_Stupa_1_Southern_gateway.jpg",
+        "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/2/28/Ashoka%27s_visit_to_the_Ramagrama_stupa_Sanchi_Stupa_1_Southern_gateway.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "entityId": "Q8589",
+        "rights": "licensed",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+        "width": 320,
+        "height": 400,
+        "bytes": 19424,
+        "sha256": "3a4159f3781333c43f720aa7bba8e155a229d3b55f99ce8b6fe1145c8afcc171",
+        "modifications": "Manually framed the exact named depiction or complete calligraphic name artwork, fitted to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Named source depiction checked against its file description, canonical article or institutional catalogue; no map or anonymous face substituted.",
+        "discoverySource": "https://en.wikipedia.org/wiki/Ashoka",
+        "rightsNote": "Source-declared rights retained with original attribution; historical depictions are not claims of an authenticated likeness.",
+        "sourceCrop": {
+          "left": 385,
+          "top": 65,
+          "width": 235,
+          "height": 294
+        },
+        "sourceDimensions": {
+          "width": 861,
+          "height": 822
+        }
+      }
+    }
+  ],
+  "review": [
+    {
+      "id": "su-song-q1265657",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "238ba9b485aaf165964272e9a30dcf94ec5051d05ec4605bfce6c90a773c4092",
+      "bytes": 14410,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "robert-hooke-q46830",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "0f81f9b00d9431ef7732e345f691dabca335b03b23cc33d7a1c77aa373901973",
+      "bytes": 15496,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "abdullah-al-mahdi-billah-q307629",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "a9cb6e176e42c5aab9a986f35d2c76a41932c2efb4fbff12b158070701e63108",
+      "bytes": 17052,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "abu-bakr-q334923",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "ad85dcac1eae5fbabfe51cb52d2720164c18f8cd11a679ee94141aa2eee03917",
+      "bytes": 19370,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "gwanggaeto-the-great-q498791",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "32613c8129afe43fff3b38e851059b66361eaf56ca3b676bc0aa9bd613f48495",
+      "bytes": 16418,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "uthman-ibn-affan-q37731",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "410267c7659a262654df050cf67a05e67c9f40e4341bee6c0275ab5ce5d1f382",
+      "bytes": 17728,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "razia-sultana-q465076",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "47099d316e800e78d7ac5077b38c0079c73841dde2812039a7e20ae0d2297356",
+      "bytes": 23768,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "alfred-the-great-q83476",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "ae32b065f90892cb5ff221da7b066b4bdd023b20cc3cc9557d36f73df13b41a8",
+      "bytes": 15490,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "charles-the-fat-q150712",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "1976efab8f42bc4f21894fdbe65f4975fcc826f6eeae5818b2faae3e92f23128",
+      "bytes": 13244,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "otto-i-the-great-q43915",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "5b475f4dd1c9aa369efd00fd6b945c012e604bb0d4f802f9213e5ac1dfb6f3bf",
+      "bytes": 17614,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "robert-guiscard-q203792",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "ba1e8f865f9c98b8c429c73e5a76956d616d0f8e0c97c58d88b996de534187b9",
+      "bytes": 13158,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "vercingetorix-q178953",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "07ab2174d2fb847ec078ff91ba163a2219a27a54913f227e19b24a0c2903df17",
+      "bytes": 15082,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "vladimir-the-great-q14974",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "c1eb8278f4289f5ace866c9d78b4b3b861c56acf3bd88cd85d6e7d652ca360d8",
+      "bytes": 13856,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    },
+    {
+      "id": "ashoka-q8589",
+      "reviewStatus": "accepted",
+      "reviewedAt": "2026-11-17",
+      "views": [
+        "source at native resolution",
+        "final 320×400",
+        "final 88×110"
+      ],
+      "sha256": "3a4159f3781333c43f720aa7bba8e155a229d3b55f99ce8b6fe1145c8afcc171",
+      "bytes": 19424,
+      "finding": "Exact named depiction or name calligraphy is legible; source framing and historical-likeness limitations are recorded."
+    }
+  ],
+  "metadataNote": "Three nonfigurative calligraphy assets use imageType=artwork with an exact descriptive artworkTitle and artworkAttributionUrl so the product shows its Artwork reference caption. Hooke and Gwanggaeto use imageType=person with explicit reconstructed/painted likeness caveats."
+}

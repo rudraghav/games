@@ -1,5 +1,6 @@
 from collections.abc import Iterator
 from typing import Annotated
+from uuid import UUID
 
 from fastapi import APIRouter, Depends
 
@@ -25,6 +26,7 @@ from app.rooms.schemas import (
     Ready,
     RoomSettings,
     RoomView,
+    SavedReadingView,
 )
 from app.rooms.service import RoomService
 
@@ -73,6 +75,11 @@ def heartbeat(room_id: str, actor: Actor, svc: Service) -> RoomView:
 @router.get("/rooms/{room_id}/reading", response_model=ReadingView)
 def reading(room_id: str, actor: Actor, svc: Service) -> ReadingView:
     return svc.reading(actor, room_id)
+
+
+@router.get("/readings/{match_id}", response_model=SavedReadingView)
+def saved_reading(match_id: UUID, actor: Actor, svc: Service) -> SavedReadingView:
+    return svc.saved_reading(actor, str(match_id))
 
 
 @router.post("/rooms/{room_id}/reading", response_model=ReadingView)

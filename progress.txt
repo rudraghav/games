@@ -1,3 +1,83 @@
+## 2026-11-17 — Expanded Tarot candidate: artwork complete, prose review ongoing
+
+- Local catalogue now contains5,636 distinct references, including24 exact meme
+  scenes. Original48 identities/art remain;5,588 additions include5,551 sourced
+  images and37 labelled originals. All accepted sheets and focused repairs were
+  visually reviewed; source, dimensions, hashes and identity joins pass.
+- Local semantic retrieval ranks sourced evidence by question, card and position,
+  enforces distinct identity families, and keeps provider requests bounded.
+  Short complete evidence now preserves fictional framing before plot events.
+- Private saved archives survive refresh, rematch and room closure. The42-case
+  browser gate passed at320/390/1440px, including six artwork types and outsider
+  access denial; this is constructed saved-flow evidence, not provider quality.
+- Actual reading review found unsupported motive/virtue analogies and overly
+  certain astrology language. Compact pop10 improved several cases, but its
+  grief humour remains a quality blocker. Medium-thinking comparison is pending
+  provider availability: four Flash-Lite probes and one Flash3.8 comparison
+  returned explicit high-demand503. No model substitution was deployed.
+- Fixed correct grouped astrology anchors being rejected: direct body groups
+  require identical computed sign/house;19 focused tests pass. All21 targeted
+  source/retrieval/selection tests pass. Final named release gates run next.
+- Linux locked-wheel audit estimates336MB backend base bundle, within the
+  documented500MB Python limit before provider packaging proof. Local cold
+  request preparation0.273s/warm0.125s; no runtime model download.
+- Final stable named gates pass:241 frontend,6542 backend,181 persistence/privacy,
+  44 workflow tests, types/lint/build and all image/index/contracts checks.
+  Report verify-2a52b3f01106447db068d72316bcbccd; responsive report
+  verify-6e856aac3c5d4b139733412a08bf3b4d. Fresh production schema/privacy gate passes.
+- Prepare codex/tarot-reference-expansion for review-branch publication while
+  actual sensitive-tone acceptance is blocked. No production deployment. Preserve existing services and
+  owner state. Cleanup inventory can reclaim307MB of verified duplicate/preview
+  scratch after release; original/source/recovery evidence remains protected.
+
+## 2026-11-17 — Expanded scope: 5,000+ recognizable references and nuanced matching
+
+- User extends the in-progress release to over 5,000 image-backed references,
+  deeper Indian/regional cinema and popular characters, plus a bounded set of
+  familiar religious/mythological figures. Examples include Shiva, Rudra,
+  Nataraja, Rama, Indra and Ganesha; Greek and other traditions also belong.
+  Do not pad the count with obscure traditional variations.
+- Preserve the accepted 1,342-reference baseline and its 81 exclusions/53 crops.
+  New acceptance: recognizable breadth, distinct identity/form families, exact
+  sourced depictions, and reference choice grounded in question, card meaning,
+  spread position and documented public work/story context. Explain specific
+  connections rather than generic virtue/personality analogies.
+- Baseline provider evaluation made 9 attempts: seven nonblank cases validated;
+  the blank case failed schema twice. Editorial review found generic analogies
+  and one weak historical inference. These are baseline findings, not final
+  acceptance. No new production push or deployment occurred.
+- The user also requests widely used Instagram/X and Hollywood/Bollywood/Telugu
+  meme references. Curate exact scenes and documented reaction meanings, with
+  dated popularity evidence; keep humour optional and appropriate to the question.
+  Preserve good names through better online sourcing or labelled original art.
+- Next: expand source-backed catalogue; implement local semantic retrieval with
+  bounded provider context; diagnose structured-output failures; compare fresh
+  analyses, verify private saved flow and responsive UI, then release once.
+
+## 2026-11-17 — Tarot reference expansion and complete reading flow kickoff
+
+- User authorizes improvements, fresh analysis checks, push and expansion beyond
+  1,000 references: fictional characters, actors, scientists, historical rulers,
+  politicians, sportspersons and other notable people. Starting main is clean at
+  197b0f8; current serving application is 65de797.
+- Outcome: varied, accurate, illustrated comparisons and private access to a
+  specific saved reading even after a new spread or room closure. Preserve all
+  existing reading text, card art, identities and room history.
+- Acceptance: over 1,000 distinct usable canonical references with traceable
+  images; bounded candidate selection and generation cost; no guessed portraits;
+  archive authorization and stable refresh; desktop/phone UI; real ordinary,
+  Western, Vedic and Both evaluations across varied nonpersonal questions;
+  affected named checks, one verified production release and cleanup.
+- Real people are referenced through documented public work or achievements,
+  never invented private beliefs or implied endorsement. Question and raw birth
+  inputs remain private; saved charts retain the current opt-in contract.
+- Task tarot-expansion-20261117. Scratch is output/playwright/tarot-expansion-20261117
+  and ignored .vercel/tarot-expansion-*; preserve existing 3217/8217/6105 services.
+  State: private archive and bounded per-card selection implemented. All acquired
+  images visually reviewed; targeted source crops and final catalogue reconciliation
+  are in progress. Production no-op migration, drift and privacy grants pass.
+  Next: frozen registry, fresh real analyses, affected gates and one release.
+
 ## 2026-11-17 — Current app audit pushed and live verified
 
 - Application 65de79752ae2bf2075f561f7b57425e51b81b4af is pushed to main and

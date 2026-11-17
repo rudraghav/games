@@ -12,9 +12,14 @@ import httpx
 import pytest
 from test_tarot import example_reading
 
-from app.games.tarot.characters import CHARACTERS, find_character, lane_characters, normalized
-from app.games.tarot.reading import (
+from app.games.tarot.characters import (
+    CHARACTERS,
     REFERENCE_LANES,
+    find_character,
+    normalized,
+    reference_candidates,
+)
+from app.games.tarot.reading import (
     CharacterConnection,
     Reading,
     generate_reading,
@@ -46,7 +51,7 @@ def test_canonical_names_and_every_explicit_alias_resolve_to_the_same_cast_membe
         ("captain holt", "Brooklyn 99", "holt"),
         ("Poo", "K3G", "poo"),
         ("Elizabeth Bennet", "Pride & Prejudice", "elizabeth-bennet"),
-        ("Homer Simpson", "The Simpsons", None),
+        ("Unlisted test character", "Unlisted test source", None),
         ("Elsa", "Moana", None),
         ("Elsa", "Unfrozen", None),
         ("Elsa", "Frozen yogurt", None),
@@ -62,7 +67,7 @@ def test_matching_tolerates_typography_but_rejects_unknown_names_and_wrong_sourc
 
 
 @pytest.mark.parametrize(
-    ("name", "source"), [("Homer Simpson", "The Simpsons"), ("Elsa", "Moana"), ("Elsa", "Unfrozen")]
+    ("name", "source"), [("Unlisted test character", "Unlisted test source"), ("Elsa", "Moana"), ("Elsa", "Unfrozen")]
 )
 def test_fresh_reading_rejects_unknown_or_mismatched_references(name, source):
     payload = example_reading(CARDS)
@@ -85,7 +90,7 @@ def test_distinct_aliases_cannot_duplicate_a_canonical_character(same_card):
 
 def test_historical_unknown_character_connections_remain_accepted_and_unchanged():
     payload = example_reading(CARDS)
-    unknown = {**payload["cards"][0]["characters"][0], "name": "Nimona", "source": "Nimona"}
+    unknown = {**payload["cards"][0]["characters"][0], "name": "Unlisted historical character", "source": "Unlisted historical character"}
     payload["cards"][0]["characters"] = [unknown]
     assert CharacterConnection.model_validate(unknown).model_dump() == unknown
     saved = Reading.model_validate(payload)
@@ -94,29 +99,24 @@ def test_historical_unknown_character_connections_remain_accepted_and_unchanged(
         validate_reading(saved.model_dump(), CARDS)
 
 
-def test_every_reference_lane_has_distinct_real_choices_and_schema_names_match_the_full_cast():
-    assert len(CHARACTERS) == len({c["id"] for c in CHARACTERS}) == 48
+def test_reference_identities_are_unique_and_provider_schema_is_bounded():
+    assert len(CHARACTERS) == len({c["id"] for c in CHARACTERS})
     assert set(REFERENCE_LANES) == {c["lane"] for c in CHARACTERS}
-    alias_owner = {}
+    pair_owner = {}
     for character in CHARACTERS:
         for name in [character["name"], *character["aliases"]]:
-            key = normalized(name)
-            assert alias_owner.setdefault(key, character["id"]) == character["id"]
-    all_choices = []
-    for lane in REFERENCE_LANES:
-        choices = lane_characters(lane)
-        assert len(choices) >= 3
-        assert all(set(choice) == {"name", "source"} for choice in choices)
-        assert all(find_character(**choice)["lane"] == lane for choice in choices)
-        all_choices.extend(choices)
-    assert len(all_choices) == len({c["name"] for c in all_choices}) == 48
-    schema = provider_schema(CARDS)
-    names = schema["$defs"]["CharacterConnection"]["properties"]["name"]["enum"]
-    assert names == [c["name"] for c in CHARACTERS]
-    assert len(names) == len(set(names)) == 48
+            for source in [character["source"], *character["sourceAliases"]]:
+                key = normalized(name), normalized(source)
+                assert pair_owner.setdefault(key, character["id"]) == character["id"]
+    candidates = reference_candidates(CARDS)
+    names = provider_schema(CARDS)["$defs"]["CharacterConnection"]["properties"]["name"]["enum"]
+    assert names == list(dict.fromkeys(c["name"] for group in candidates for c in group))
+    assert len(names) <= 18
+    assert len({c["id"] for group in candidates for c in group}) == 18
+    assert all(len(group) == 6 for group in candidates)
 
 
-def test_each_provider_card_receives_its_complete_lane_choices_without_performer_metadata(
+def test_each_provider_card_receives_a_bounded_identity_shortlist_without_image_metadata(
     monkeypatch,
 ):
     real_client = httpx.Client
@@ -124,6 +124,11 @@ def test_each_provider_card_receives_its_complete_lane_choices_without_performer
 
     def respond(request):
         calls.append(json.loads(request.content))
+        candidates = json.loads(calls[-1]["input"])["cards"]
+        payload = example_reading(CARDS)
+        for section, candidate in zip(payload["cards"], candidates, strict=True):
+            first = candidate["reference_characters"][0]
+            section["characters"][0].update(name=first["name"], source=first["source"])
         return httpx.Response(
             200,
             json={
@@ -131,7 +136,7 @@ def test_each_provider_card_receives_its_complete_lane_choices_without_performer
                 "steps": [
                     {
                         "type": "model_output",
-                        "content": [{"type": "text", "text": json.dumps(example_reading(CARDS))}],
+                        "content": [{"type": "text", "text": json.dumps(payload)}],
                     }
                 ],
             },
@@ -144,24 +149,35 @@ def test_each_provider_card_receives_its_complete_lane_choices_without_performer
     generate_reading(CARDS, "What can I try?")
     assert len(calls) == 1
     cards = json.loads(calls[0]["input"])["cards"]
-    assert len({c["reference_lane"] for c in cards}) == 3
     for card in cards:
-        assert card["reference_characters"] == lane_characters(card["reference_lane"])
+        choices = card["reference_characters"]
+        assert 2 <= len(choices) <= 6
+        for choice in choices:
+            assert find_character(choice["name"], choice["source"]) is not None
+            assert not {"image", "performer", "remoteImage"} & choice.keys()
 
 
-def test_all_48_reviewed_assets_match_identity_provenance_integrity_and_generated_registry():
+def test_all_reviewed_assets_match_identity_provenance_integrity_and_generated_registry():
     media = json.loads(
         (ROOT / "apps/web/public/characters/character-art-v2/manifest.json").read_text()
     )
+    extra = ROOT / "apps/web/public/characters/reference-art-v1/manifest.json"
+    if extra.is_file():
+        media.extend(json.loads(extra.read_text()))
     generated = json.loads(
         (ROOT / "packages/api-client/src/generated/tarot-characters.json").read_text()
     )
     by_id = {c["id"]: c for c in CHARACTERS}
     artwork_by_id = {m["id"]: m for m in media}
-    assert len(media) == len({m["id"] for m in media}) == 48
+    assert len(media) == len({m["id"] for m in media}) == len(CHARACTERS)
     assert {m["id"] for m in media} == set(by_id)
-    assert {m["imageType"] for m in media} <= {"character", "illustration"}
-    assert generated == [{**c, **artwork_by_id[c["id"]]} for c in CHARACTERS]
+    assert {m["imageType"] for m in media} <= {"character", "illustration", "person", "religious_figure", "meme", "artwork"}
+    assert [item["id"] for item in generated] == [item["id"] for item in CHARACTERS]
+    for item in generated:
+        reference, art = by_id[item["id"]], artwork_by_id[item["id"]]
+        assert (item["name"], item["source"]) == (reference["name"], reference["source"])
+        assert (item["image"], item["sha256"], item["credit"]) == (art["image"], art["sha256"], art["credit"])
+        assert not {"sourceContext", "contextSourceUrl", "sourceCrop", "generationPrompt", "remoteImage"} & item.keys()
     for image in media:
         assert re.fullmatch(r"[a-z0-9-]+", image["id"])
         assert image["image"] == portrait_export.artwork_path(by_id[image["id"]], image)
@@ -173,7 +189,9 @@ def test_all_48_reviewed_assets_match_identity_provenance_integrity_and_generate
         assert portrait_export.webp_dimensions(data) == (image["width"], image["height"])
         assert 0 < image["width"] <= 400 and 0 < image["height"] <= 500
         portrait_export.validate_attribution(image)
-        assert image["width"] * 5 == image["height"] * 4
+        assert image["width"] * 5 == image["height"] * 4 or (
+            by_id[image["id"]].get("kind") == "meme" and image["width"] * 3 == image["height"] * 4
+        )
         assert "performer" not in image and "performerLabel" not in image
     portrait_export.export(check=True)
 
@@ -320,7 +338,7 @@ def test_new_character_assets_do_not_silently_mix_in_an_archived_performer(monke
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload))
     monkeypatch.setattr(portrait_export, "ROOT", tmp_path)
-    with pytest.raises(SystemExit, match="requires actual-character"):
+    with pytest.raises(SystemExit, match="requires exact character"):
         portrait_export.export()
 
 
@@ -388,3 +406,13 @@ def test_exporter_refuses_unreviewed_asset_drift(monkeypatch, tmp_path, fault):
         portrait_export.export(
             check=True, manifest=tmp_path / "apps/web/public/characters/manifest.json"
         )
+
+
+def test_attributable_work_is_explicitly_different_from_a_person_portrait():
+    artwork, _ = versioned_artwork("character")
+    artwork.update(imageType="artwork", artworkTitle="A named work",
+                   artworkAttributionUrl="https://museum.example/work")
+    portrait_export.validate_attribution(artwork)
+    del artwork["artworkTitle"]
+    with pytest.raises(SystemExit, match="exact work title"):
+        portrait_export.validate_attribution(artwork)

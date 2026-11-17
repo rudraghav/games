@@ -1,0 +1,4174 @@
+{
+  "reviewedAt": "2026-11-17",
+  "excluded": [
+    {
+      "id": "winnie-the-pooh-q188574",
+      "entityId": "Q188574",
+      "name": "Winnie the Pooh",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Winnie-the-Pooh",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Pooh_Shepard1928.jpg",
+      "reason": "Subject is too faint, small or visually busy to remain identifiable in the 88×110 reading portrait."
+    },
+    {
+      "id": "sun-wukong-q11773777",
+      "entityId": "Q11773777",
+      "name": "Sun Wukong",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Sun_Wukong",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Xiyou.PNG",
+      "reason": "Subject is too faint, small or visually busy to remain identifiable in the 88×110 reading portrait."
+    },
+    {
+      "id": "baba-yaga-q187002",
+      "entityId": "Q187002",
+      "name": "Baba Yaga",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Baba_Yaga",
+      "filePage": "https://commons.wikimedia.org/wiki/File:%D0%A1%D0%BA%D0%B0%D0%B7%D0%BA%D0%B0_%D0%91%D0%B0%D0%B1%D0%B0-%D1%8F%D0%B3%D0%B0_3.jpg",
+      "reason": "Subject is too faint, small or visually busy to remain identifiable in the 88×110 reading portrait."
+    },
+    {
+      "id": "su-song-q1265657",
+      "entityId": "Q1265657",
+      "name": "Su Song",
+      "category": "science",
+      "sourcePage": "https://en.wikipedia.org/wiki/Su_Song",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Clock_Tower_from_Su_Song%27s_Book_desmear.JPG",
+      "reason": "Lead image is a clock-tower schematic, not a depiction of the person."
+    },
+    {
+      "id": "robert-hooke-q46830",
+      "entityId": "Q46830",
+      "name": "Robert Hooke",
+      "category": "science",
+      "sourcePage": "https://en.wikipedia.org/wiki/Robert_Hooke",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Portrait_of_a_Mathematician_1680c.jpg",
+      "reason": "Source describes the sitter as unknown; attribution to Hooke is conjectural."
+    },
+    {
+      "id": "abdullah-al-mahdi-billah-q307629",
+      "entityId": "Q307629",
+      "name": "Abdullah al-Mahdi Billah",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Abd_Allah_al-Mahdi_Billah",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Calif_al_Mahdi_Kairouan_912_CE(png).png",
+      "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person."
+    },
+    {
+      "id": "abu-bakr-q334923",
+      "entityId": "Q334923",
+      "name": "Abu Bakr",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Abu_Bakr",
+      "filePage": "https://commons.wikimedia.org/wiki/File:20131203_Istanbul_091.jpg",
+      "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person."
+    },
+    {
+      "id": "gwanggaeto-the-great-q498791",
+      "entityId": "Q498791",
+      "name": "Gwanggaeto the Great",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Gwanggaeto_the_Great",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Gwanggaeto_Stele_5.jpg",
+      "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person."
+    },
+    {
+      "id": "suppiluliuma-i-q354903",
+      "entityId": "Q354903",
+      "name": "Suppiluliuma I",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/%C5%A0uppiluliuma_I",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Map_Hittite_rule_en.svg",
+      "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person."
+    },
+    {
+      "id": "uthman-ibn-affan-q37731",
+      "entityId": "Q37731",
+      "name": "Uthman ibn Affan",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Uthman",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Ayasofya_13_(cropped).JPG",
+      "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person."
+    },
+    {
+      "id": "razia-sultana-q465076",
+      "entityId": "Q465076",
+      "name": "Razia Sultana",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Razia_Sultan",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Painting_of_Razia_Sultana_of_the_Delhi_Sultanate,_from_the_lacquer-binding_cover_of_a_manuscript_of_Tulsi_Das%27_%27Ramcharitmanas%27,_ca.1830%E2%80%9336.jpg",
+      "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person."
+    },
+    {
+      "id": "alfred-the-great-q83476",
+      "entityId": "Q83476",
+      "name": "Alfred the Great",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Alfred_the_Great",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Alfred_the_Great,_silver_penny;_struck_875%E2%80%93880_(obverse).png",
+      "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size."
+    },
+    {
+      "id": "chandragupta-ii-q844536",
+      "entityId": "Q844536",
+      "name": "Chandragupta II",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Chandragupta_II",
+      "filePage": "https://commons.wikimedia.org/wiki/File:ChandraguptaIIOnHorse.jpg",
+      "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size."
+    },
+    {
+      "id": "charles-the-fat-q150712",
+      "entityId": "Q150712",
+      "name": "Charles the Fat",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Charles_the_Fat",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Sceau_de_Charles_le_gros.jpg",
+      "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size."
+    },
+    {
+      "id": "otto-i-the-great-q43915",
+      "entityId": "Q43915",
+      "name": "Otto I the Great",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Otto_the_Great",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Siegel_Otto_I_Posse.JPG",
+      "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size."
+    },
+    {
+      "id": "robert-guiscard-q203792",
+      "entityId": "Q203792",
+      "name": "Robert Guiscard",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Robert_Guiscard",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Robert_Guiscard.jpg",
+      "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size."
+    },
+    {
+      "id": "samudragupta-q1133363",
+      "entityId": "Q1133363",
+      "name": "Samudragupta",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Samudragupta",
+      "filePage": "https://commons.wikimedia.org/wiki/File:SamudraguptaCoin.png",
+      "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size."
+    },
+    {
+      "id": "vercingetorix-q178953",
+      "entityId": "Q178953",
+      "name": "Vercingetorix",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Vercingetorix",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Vercing%C3%A9torix_stat%C3%A8re_Gallica_avers.jpg",
+      "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size."
+    },
+    {
+      "id": "vladimir-the-great-q14974",
+      "entityId": "Q14974",
+      "name": "Vladimir the Great",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Vladimir_the_Great",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Coin_of_Vladimir_the_Great.JPG",
+      "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size."
+    },
+    {
+      "id": "ajatasatru-q379242",
+      "entityId": "Q379242",
+      "name": "Ajatasatru",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Ajatashatru",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Indian_Museum_Sculpture_-_Ajatasattu_worships_the_Buddha_(9217704485).jpg",
+      "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size."
+    },
+    {
+      "id": "ashoka-q8589",
+      "entityId": "Q8589",
+      "name": "Ashoka",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Ashoka",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Ashoka%27s_visit_to_the_Ramagrama_stupa_Sanchi_Stupa_1_Southern_gateway.jpg",
+      "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size."
+    },
+    {
+      "id": "bolesaw-i-the-brave-q53436",
+      "entityId": "Q53436",
+      "name": "Bolesław I the Brave",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Boles%C5%82aw_I_the_Brave",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Boles%C5%82aw_I_the_Brave_buys_the_corpse_of_Saint_Adalbert_of_Prague_from_the_Prussians,_Gniezno_Door_ca._1170.png",
+      "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size."
+    },
+    {
+      "id": "charles-martel-q3301",
+      "entityId": "Q3301",
+      "name": "Charles Martel",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Charles_Martel",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Charles_Martel_divise_le_royaume_entre_P%C3%A9pin_et_Carloman.jpg",
+      "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size."
+    },
+    {
+      "id": "decebalus-q28928",
+      "entityId": "Q28928",
+      "name": "Decebalus",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Decebalus",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Decebal_suicide.jpg",
+      "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size."
+    },
+    {
+      "id": "hammurabi-q36359",
+      "entityId": "Q36359",
+      "name": "Hammurabi",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Hammurabi",
+      "filePage": "https://commons.wikimedia.org/wiki/File:F0182_Louvre_Code_Hammourabi_Bas-relief_Sb8_rwk.jpg",
+      "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size."
+    },
+    {
+      "id": "narmer-q189582",
+      "entityId": "Q189582",
+      "name": "Narmer",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Narmer",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Narmer_palette_(obverse)_(cropped).jpg",
+      "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size."
+    },
+    {
+      "id": "roger-ii-of-sicily-q193901",
+      "entityId": "Q193901",
+      "name": "Roger II of Sicily",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Roger_II_of_Sicily",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Martorana_Palermo_msu2017-0166.jpg",
+      "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size."
+    },
+    {
+      "id": "sri-krishnadevaraya-q121235",
+      "entityId": "Q121235",
+      "name": "Sri Krishnadevaraya",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Krishnadevaraya",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Chinnadevi,_Krishnadevaraya,_Tirumaladevi_statues_at_Chandragiri_Museum.jpg",
+      "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size."
+    },
+    {
+      "id": "suryavarman-ii-q313298",
+      "entityId": "Q313298",
+      "name": "Suryavarman II",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Suryavarman_II",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Suryavarman_II_Angkor_Wat_0869.jpg",
+      "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size."
+    },
+    {
+      "id": "thelstan-q170017",
+      "entityId": "Q170017",
+      "name": "Æthelstan",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/%C3%86thelstan",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Athelstan_(cropped).jpg",
+      "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size."
+    },
+    {
+      "id": "amir-khusrau-q207817",
+      "entityId": "Q207817",
+      "name": "Amir Khusrau",
+      "category": "literature",
+      "sourcePage": "https://en.wikipedia.org/wiki/Amir_Khusrau",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Amir_Khusro.jpg",
+      "reason": "Multiple figures in the lead illustration make the intended individual unclear at reading size."
+    },
+    {
+      "id": "kabir-q312551",
+      "entityId": "Q312551",
+      "name": "Kabir",
+      "category": "literature",
+      "sourcePage": "https://en.wikipedia.org/wiki/Kabir",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Kabir004.jpg",
+      "reason": "Multiple figures in the lead illustration make the intended individual unclear at reading size."
+    },
+    {
+      "id": "virgil-q1398",
+      "entityId": "Q1398",
+      "name": "Virgil",
+      "category": "literature",
+      "sourcePage": "https://en.wikipedia.org/wiki/Virgil",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Virgil_mosaic_in_the_Bardo_National_Museum_(Tunis)_(12241228546).jpg",
+      "reason": "Multiple figures in the lead illustration make the intended individual unclear at reading size."
+    },
+    {
+      "id": "chretien-de-troyes-q4302",
+      "entityId": "Q4302",
+      "name": "Chrétien de Troyes",
+      "category": "literature",
+      "sourcePage": "https://en.wikipedia.org/wiki/Chr%C3%A9tien_de_Troyes",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Chr%C3%A9tien_de_Troyes.jpg",
+      "reason": "Faint, small or visually dense historical depiction is not legible at reading size."
+    },
+    {
+      "id": "enheduanna-q232505",
+      "entityId": "Q232505",
+      "name": "Enheduanna",
+      "category": "literature",
+      "sourcePage": "https://en.wikipedia.org/wiki/Enheduanna",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Enheduanna,_daughter_of_Sargon_of_Akkad.jpg",
+      "reason": "Faint, small or visually dense historical depiction is not legible at reading size."
+    },
+    {
+      "id": "kalidasa-q7011",
+      "entityId": "Q7011",
+      "name": "Kalidasa",
+      "category": "literature",
+      "sourcePage": "https://en.wikipedia.org/wiki/Kalidasa",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Kalidasa_inditing_the_cloud_Messenger,_A.D._375.jpg",
+      "reason": "Faint, small or visually dense historical depiction is not legible at reading size."
+    },
+    {
+      "id": "li-bai-q7071",
+      "entityId": "Q7071",
+      "name": "Li Bai",
+      "category": "literature",
+      "sourcePage": "https://en.wikipedia.org/wiki/Li_Bai",
+      "filePage": "https://commons.wikimedia.org/wiki/File:LiBai.jpg",
+      "reason": "Faint, small or visually dense historical depiction is not legible at reading size."
+    },
+    {
+      "id": "matsuo-basho-q5676",
+      "entityId": "Q5676",
+      "name": "Matsuo Bashō",
+      "category": "literature",
+      "sourcePage": "https://en.wikipedia.org/wiki/Matsuo_Bash%C5%8D",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Basho_by_Morikawa_Kyoriku_(1656-1715).jpg",
+      "reason": "Faint, small or visually dense historical depiction is not legible at reading size."
+    },
+    {
+      "id": "qu-yuan-q313330",
+      "entityId": "Q313330",
+      "name": "Qu Yuan",
+      "category": "literature",
+      "sourcePage": "https://en.wikipedia.org/wiki/Qu_Yuan",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Qu_Yuan_Chen_Hongshou_2.jpg",
+      "reason": "Faint, small or visually dense historical depiction is not legible at reading size."
+    },
+    {
+      "id": "tao-yuanming-q314210",
+      "entityId": "Q314210",
+      "name": "Tao Yuanming",
+      "category": "literature",
+      "sourcePage": "https://en.wikipedia.org/wiki/Tao_Yuanming",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Ch%27en_Hung-shou_002.jpg",
+      "reason": "Faint, small or visually dense historical depiction is not legible at reading size."
+    },
+    {
+      "id": "sappho-q17892",
+      "entityId": "Q17892",
+      "name": "Sappho",
+      "category": "literature",
+      "sourcePage": "https://en.wikipedia.org/wiki/Sappho",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Malarz_Safony_-_Kalpis_wykonana_technik%C4%85_Six.jpg",
+      "reason": "The lead image is a vase; the depicted person is too small to identify at reading size."
+    },
+    {
+      "id": "ahmad-ibn-ibrahim-al-ghazi-q335728",
+      "entityId": "Q335728",
+      "name": "Ahmad ibn Ibrahim al-Ghazi",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Ahmad_ibn_Ibrahim_al-Ghazi",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Imaam_Ahmed_Gurey.jpg",
+      "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait."
+    },
+    {
+      "id": "arminius-q68880",
+      "entityId": "Q68880",
+      "name": "Arminius",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Arminius",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Hermannsdenkmal_statue.jpg",
+      "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait."
+    },
+    {
+      "id": "eleanor-of-aquitaine-q178525",
+      "entityId": "Q178525",
+      "name": "Eleanor of Aquitaine",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Eleanor_of_Aquitaine",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Gisant_d%27Ali%C3%A9nor_d%27Aquitaine_%C3%A0_l%27abbaye_de_Fontevraud.jpg",
+      "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait."
+    },
+    {
+      "id": "emperor-wen-of-sui-q7418",
+      "entityId": "Q7418",
+      "name": "Emperor Wen of Sui",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Emperor_Wen_of_Sui",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Sui_Wendi_Tang.jpg",
+      "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait."
+    },
+    {
+      "id": "ismail-i-q214559",
+      "entityId": "Q214559",
+      "name": "Ismail I",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Ismail_I",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Shah_Ismail_I_Safavid,_Behzad.jpg",
+      "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait."
+    },
+    {
+      "id": "rudrama-devi-q3523666",
+      "entityId": "Q3523666",
+      "name": "Rudrama Devi",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Rudrama_Devi",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Rani_Rudrama_Devi,_Warangal_Fort_Telangana,_India_-_1.jpg",
+      "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait."
+    },
+    {
+      "id": "stephen-i-of-hungary-q177903",
+      "entityId": "Q177903",
+      "name": "Stephen I of Hungary",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Stephen_I_of_Hungary",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Portrayal_of_Stephen_I,_King_of_Hungary_on_the_coronation_pall.jpg",
+      "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait."
+    },
+    {
+      "id": "svatopluk-i-q437589",
+      "entityId": "Q437589",
+      "name": "Svatopluk I of Moravia",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Svatopluk_I_of_Moravia",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Bratislava_Profesionalita_maestra_Kulicha.jpg",
+      "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait."
+    },
+    {
+      "id": "sviatoslav-i-of-kiev-q1058572",
+      "entityId": "Q1058572",
+      "name": "Sviatoslav I",
+      "category": "royalty",
+      "sourcePage": "https://en.wikipedia.org/wiki/Sviatoslav_I",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Sviatoslav_by_Eugene_Lanceray_1886.JPG",
+      "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait."
+    },
+    {
+      "id": "abu-bakr-al-razi-q169234",
+      "entityId": "Q169234",
+      "name": "Abu Bakr al-Razi",
+      "category": "science",
+      "sourcePage": "https://en.wikipedia.org/wiki/Abu_Bakr_al-Razi",
+      "filePage": "https://commons.wikimedia.org/wiki/File:%D8%B2%DA%A9%D8%B1%DB%8C%D8%A7%DB%8C_%D8%B1%D8%A7%D8%B2%DB%8C_%D8%A7%D8%AB%D8%B1_%D8%AD%D8%B3%DB%8C%D9%86_%D8%A8%D9%87%D8%B2%D8%A7%D8%AF_(cropped).jpg",
+      "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait."
+    },
+    {
+      "id": "loki-q1147326",
+      "entityId": "Q1147326",
+      "name": "Loki",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Loki_(Marvel_Comics)",
+      "filePage": "https://en.wikipedia.org/wiki/File:Various_incarnations_of_Loki_(2014).webp",
+      "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait."
+    },
+    {
+      "id": "robin-q59996",
+      "entityId": "Q59996",
+      "name": "Robin",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Robin_(character)",
+      "filePage": "https://en.wikipedia.org/wiki/File:Robins_(DC_Comics_characters).png",
+      "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait."
+    },
+    {
+      "id": "rogue-q838097",
+      "entityId": "Q838097",
+      "name": "Rogue",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Rogue_(Marvel_Comics)",
+      "filePage": "https://en.wikipedia.org/wiki/File:Excalibur_2019_-18.jpeg",
+      "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait."
+    },
+    {
+      "id": "scarlet-witch-q929285",
+      "entityId": "Q929285",
+      "name": "Scarlet Witch",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Scarlet_Witch",
+      "filePage": "https://en.wikipedia.org/wiki/File:Scarlet_Witch_Various_incarnations_2021.jpg",
+      "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait."
+    },
+    {
+      "id": "wonder-woman-q338430",
+      "entityId": "Q338430",
+      "name": "Wonder Woman",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Wonder_Woman",
+      "filePage": "https://en.wikipedia.org/wiki/File:Wonder_Woman_750.jpg",
+      "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait."
+    },
+    {
+      "id": "the-addams-family-q3817916",
+      "entityId": "Q3817916",
+      "name": "The Addams Family",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/The_Addams_Family",
+      "filePage": "https://en.wikipedia.org/wiki/File:THE-ADDAMS-FAMILY-by-Charles-Addams-1938-%C2%A9The-New-Yorker.jpg",
+      "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait."
+    },
+    {
+      "id": "the-fantastic-four-q152098",
+      "entityId": "Q152098",
+      "name": "The Fantastic Four",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Fantastic_Four",
+      "filePage": "https://en.wikipedia.org/wiki/File:Fantastic_Four_(Marvel_Comics_characters).jpg",
+      "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait."
+    },
+    {
+      "id": "pandava-q236221",
+      "entityId": "Q236221",
+      "name": "Pāṇḍava",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Pandava",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Draupadi_and_Pandavas.jpg",
+      "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait."
+    },
+    {
+      "id": "saruman-q216489",
+      "entityId": "Q216489",
+      "name": "Saruman",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Saruman",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Escudo_Isengard.svg",
+      "reason": "Lead image is a hand symbol, not the character."
+    },
+    {
+      "id": "sauron-q2281",
+      "entityId": "Q2281",
+      "name": "Sauron",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Sauron",
+      "filePage": "https://en.wikipedia.org/wiki/File:Sauron_Tolkien_illustration.jpg",
+      "reason": "Lead depiction is ambiguous or illegible at reading portrait size."
+    },
+    {
+      "id": "balbir-singh-sr-q804684",
+      "entityId": "Q804684",
+      "name": "Balbir Singh Sr.",
+      "category": "sport",
+      "sourcePage": "https://en.wikipedia.org/wiki/Balbir_Singh_Sr.",
+      "filePage": "https://commons.wikimedia.org/wiki/File:1956-_Melbourne_Olympic_Victory_Ceremony.jpg",
+      "reason": "Lead image shows a multi-person podium; the individual is unclear at reading size."
+    },
+    {
+      "id": "martin-brodeur-q357465",
+      "entityId": "Q357465",
+      "name": "Martin Brodeur",
+      "category": "sport",
+      "sourcePage": "https://en.wikipedia.org/wiki/Martin_Brodeur",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Martin_Brodeur_during_game_at_Prudential_Center_vs_Ottawa_11-25-09_3.jpeg",
+      "reason": "Back-facing sports action image does not show the identified face."
+    },
+    {
+      "id": "seve-ballesteros-q272190",
+      "entityId": "Q272190",
+      "name": "Seve Ballesteros",
+      "category": "sport",
+      "sourcePage": "https://en.wikipedia.org/wiki/Seve_Ballesteros",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Seve_Ballesteros_2006-07-19_(cropped).jpg",
+      "reason": "Back-facing sports action image does not show the identified face."
+    },
+    {
+      "id": "guillaume-dufay-q207717",
+      "entityId": "Q207717",
+      "name": "Guillaume Du Fay",
+      "category": "music",
+      "sourcePage": "https://en.wikipedia.org/wiki/Guillaume_Du_Fay",
+      "filePage": "https://commons.wikimedia.org/wiki/File:DufayBinchois.jpg",
+      "reason": "Two equally prominent manuscript figures do not identify a single portrait."
+    },
+    {
+      "id": "black-canary-q599124",
+      "entityId": "Q599124",
+      "name": "Black Canary",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Black_Canary",
+      "filePage": "https://en.wikipedia.org/wiki/File:Black_Canaries_(DC_Comics_characters).png",
+      "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained."
+    },
+    {
+      "id": "black-widow-q369197",
+      "entityId": "Q369197",
+      "name": "Black Widow",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Black_Widow_(Natasha_Romanova)",
+      "filePage": "https://en.wikipedia.org/wiki/File:Natasha_Romanova_incarnations.jpg",
+      "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained."
+    },
+    {
+      "id": "captain-marvel-q534153",
+      "entityId": "Q534153",
+      "name": "Captain Marvel",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Shazam_(DC_Comics)",
+      "filePage": "https://en.wikipedia.org/wiki/File:Billy_Batson,_Shazam_Captain_Marvel_(Modern).png",
+      "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained."
+    },
+    {
+      "id": "flash-q180784",
+      "entityId": "Q180784",
+      "name": "Flash",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/The_Flash",
+      "filePage": "https://en.wikipedia.org/wiki/File:The_Flash_Family.jpg",
+      "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained."
+    },
+    {
+      "id": "four-emperors-q2488420",
+      "entityId": "Q2488420",
+      "name": "Four Emperors",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Four_Emperors_(One_Piece)",
+      "filePage": "https://en.wikipedia.org/wiki/File:Four_Emperors.png",
+      "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained."
+    },
+    {
+      "id": "gambit-q2639150",
+      "entityId": "Q2639150",
+      "name": "Gambit",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Gambit_(Marvel_Comics)",
+      "filePage": "https://en.wikipedia.org/wiki/File:Gambit_incarnations.png",
+      "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained."
+    },
+    {
+      "id": "green-lantern-q32884",
+      "entityId": "Q32884",
+      "name": "Green Lantern",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Green_Lantern",
+      "filePage": "https://en.wikipedia.org/wiki/File:Green_Lantern_Rebirth_6.jpg",
+      "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained."
+    },
+    {
+      "id": "harley-quinn-q849477",
+      "entityId": "Q849477",
+      "name": "Harley Quinn",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Harley_Quinn",
+      "filePage": "https://en.wikipedia.org/wiki/File:HarleyQuinn_Various_incarnations.jpg",
+      "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained."
+    },
+    {
+      "id": "hildegard-of-bingen-q70991",
+      "entityId": "Q70991",
+      "name": "Hildegard of Bingen",
+      "category": "music",
+      "sourcePage": "https://en.wikipedia.org/wiki/Hildegard_of_Bingen",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Hildegard_von_Bingen.jpg",
+      "reason": "Multiple manuscript figures; lead-image association alone does not identify which figure to frame."
+    },
+    {
+      "id": "jean-grey-q5350072",
+      "entityId": "Q5350072",
+      "name": "Jean Grey",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Jean_Grey",
+      "filePage": "https://en.wikipedia.org/wiki/File:Jean_Grey_(Modern).webp",
+      "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained."
+    },
+    {
+      "id": "jessica-jones-q2271377",
+      "entityId": "Q2271377",
+      "name": "Jessica Jones",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Jessica_Jones",
+      "filePage": "https://en.wikipedia.org/wiki/File:Jessica_Jones_by_Mike_Mayhew.jpg",
+      "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained."
+    },
+    {
+      "id": "muthuswami-dikshitar-q1771067",
+      "entityId": "Q1771067",
+      "name": "Muthuswami Dikshitar",
+      "category": "music",
+      "sourcePage": "https://en.wikipedia.org/wiki/Muthuswami_Dikshitar",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Muthuswami_Dikshitar_1976_stamp_of_India.jpg",
+      "reason": "Whole postage stamp leaves the subject too small beside text at reading portrait size."
+    },
+    {
+      "id": "syama-sastri-q3519351",
+      "entityId": "Q3519351",
+      "name": "Syama Sastri",
+      "category": "music",
+      "sourcePage": "https://en.wikipedia.org/wiki/Syama_Sastri",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Shyama_Shastri_1985_stamp_of_India.jpg",
+      "reason": "Whole postage stamp leaves the subject too small beside text at reading portrait size."
+    },
+    {
+      "id": "yayoi-kusama-q231121",
+      "entityId": "Q231121",
+      "name": "Yayoi Kusama",
+      "category": "music",
+      "sourcePage": "https://en.wikipedia.org/wiki/Yayoi_Kusama",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Yayoi_Kusama_in_2005.jpg",
+      "reason": "Visual artist incorrectly seeded in music; excluded to avoid an inaccurate category."
+    },
+    {
+      "id": "belinda-clark-q3195953",
+      "entityId": "Q3195953",
+      "name": "Belinda Clark",
+      "category": "sport",
+      "sourcePage": "https://en.wikipedia.org/wiki/Belinda_Clark",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Belinda_Clark_Batting_for_Women%27s_Cricket_Australia_vs_India_Match_at_North_Sydney_Oval.jpg",
+      "reason": "Face is turned down and obscured in the source; a tighter crop cannot provide a legible portrait."
+    },
+    {
+      "id": "captain-ahab-q2630009",
+      "entityId": "Q2630009",
+      "name": "Captain Ahab",
+      "category": "fiction",
+      "sourcePage": "https://en.wikipedia.org/wiki/Captain_Ahab",
+      "filePage": "https://commons.wikimedia.org/wiki/File:Moby_Dick_final_chase.jpg",
+      "reason": "Source and tested crop remain too indistinct or back-facing at 88×110; excluded after framing review."
+    }
+  ],
+  "framing": [
+    {
+      "id": "andrei-tarkovsky-q853",
+      "entityId": "Q853",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Andrei_Tarkovsky_by_Boris_Baldin.jpg/1280px-Andrei_Tarkovsky_by_Boris_Baldin.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 373,
+        "top": 0,
+        "width": 606,
+        "height": 758
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 758
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "naseeruddin-shah-q469945",
+      "entityId": "Q469945",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Naseeruddin_Shah_at_IFP_Season_9.jpg/1280px-Naseeruddin_Shah_at_IFP_Season_9.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 181,
+        "top": 21,
+        "width": 597,
+        "height": 746
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 853
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "irrfan-khan-q360927",
+      "entityId": "Q360927",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/2/27/Irrfan_Khan_still2.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 138,
+        "top": 27,
+        "width": 337,
+        "height": 421
+      },
+      "sourceDimensions": {
+        "width": 600,
+        "height": 902
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "tim-berners-lee-q80",
+      "entityId": "Q80",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Tim_Berners-Lee_at_the_2025_Web_Summit_%28Cropped%29.jpg/1280px-Tim_Berners-Lee_at_the_2025_Web_Summit_%28Cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 213,
+        "top": 0,
+        "width": 768,
+        "height": 960
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 960
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "mayawati-q264896",
+      "entityId": "Q264896",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Mayawati_in_2016.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 57,
+        "top": 0,
+        "width": 228,
+        "height": 285
+      },
+      "sourceDimensions": {
+        "width": 380,
+        "height": 285
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "savitribai-phule-q2645692",
+      "entityId": "Q2645692",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Savitribai_Phule_statue%2C_Maharashtra_sadan%2C_New_Delhi.jpg/960px-Savitribai_Phule_statue%2C_Maharashtra_sadan%2C_New_Delhi.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 102,
+        "top": 114,
+        "width": 728,
+        "height": 909
+      },
+      "sourceDimensions": {
+        "width": 960,
+        "height": 1705
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "han-yu-q318998",
+      "entityId": "Q318998",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/%E8%87%B3%E8%81%96%E5%85%88%E8%B3%A2%E5%8D%8A%E8%BA%AB%E5%83%8F_%E5%86%8A-110-%E9%9F%93%E6%84%88.jpg/1280px-%E8%87%B3%E8%81%96%E5%85%88%E8%B3%A2%E5%8D%8A%E8%BA%AB%E5%83%8F_%E5%86%8A-110-%E9%9F%93%E6%84%88.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 276,
+        "top": 672,
+        "width": 768,
+        "height": 959
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1799
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "octavia-e-butler-q239739",
+      "entityId": "Q239739",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Butler_signing.jpg/1280px-Butler_signing.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 299,
+        "top": 0,
+        "width": 768,
+        "height": 961
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 979
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "emperor-meiji-q174231",
+      "entityId": "Q174231",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Meiji_Emperor_%28cropped%29%28b%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 322,
+        "top": 64,
+        "width": 580,
+        "height": 724
+      },
+      "sourceDimensions": {
+        "width": 1076,
+        "height": 1610
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "empress-dowager-cixi-q47842",
+      "entityId": "Q47842",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/The_Ci-Xi_Imperial_Dowager_Empress_%289.2%29.PNG/960px-The_Ci-Xi_Imperial_Dowager_Empress_%289.2%29.PNG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 169,
+        "top": 123,
+        "width": 638,
+        "height": 799
+      },
+      "sourceDimensions": {
+        "width": 960,
+        "height": 1536
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "henry-viii-of-england-q38370",
+      "entityId": "Q38370",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/After_Hans_Holbein_the_Younger_-_Portrait_of_Henry_VIII_-_Google_Art_Project.jpg/960px-After_Hans_Holbein_the_Younger_-_Portrait_of_Henry_VIII_-_Google_Art_Project.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 169,
+        "top": 51,
+        "width": 676,
+        "height": 844
+      },
+      "sourceDimensions": {
+        "width": 960,
+        "height": 1688
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "hyder-ali-q1569078",
+      "entityId": "Q1569078",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/3/3a/%22Hyder_Ali%2C%22_a_steel_engraving_from_the_1790%27s_%28with_modern_hand_coloring%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 118,
+        "top": 168,
+        "width": 269,
+        "height": 336
+      },
+      "sourceDimensions": {
+        "width": 550,
+        "height": 841
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "ibn-saud-q151509",
+      "entityId": "Q151509",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/7/75/Official_Portrait_of_King_Abdulaziz.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 162,
+        "top": 270,
+        "width": 648,
+        "height": 810
+      },
+      "sourceDimensions": {
+        "width": 1080,
+        "height": 1302
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "menilek-ii-q244748",
+      "entityId": "Q244748",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Menelik_II_in_coronation_garb%2C_Emperor_of_Ethiopia.jpg/1280px-Menelik_II_in_coronation_garb%2C_Emperor_of_Ethiopia.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 256,
+        "top": 160,
+        "width": 768,
+        "height": 961
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1595
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "isambard-kingdom-brunel-q207380",
+      "entityId": "Q207380",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Robert_Howlett_%28Isambard_Kingdom_Brunel_Standing_Before_the_Launching_Chains_of_the_Great_Eastern%29%2C_The_Metropolitan_Museum_of_Art_-_restoration1.jpg/1280px-Robert_Howlett_%28Isambard_Kingdom_Brunel_Standing_Before_the_Launching_Chains_of_the_Great_Eastern%29%2C_The_Metropolitan_Museum_of_Art_-_restoration1.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 384,
+        "top": 201,
+        "width": 588,
+        "height": 736
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1672
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "zhang-heng-q197206",
+      "entityId": "Q197206",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/d/df/20251004_Tomb_of_Zhang_Heng_03.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 360,
+        "top": 144,
+        "width": 505,
+        "height": 630
+      },
+      "sourceDimensions": {
+        "width": 1200,
+        "height": 1800
+      },
+      "reason": "Reduce empty frame/background or full-body space so the identified face remains legible in an 88×110 reading portrait."
+    },
+    {
+      "id": "abebe-bikila-q52596",
+      "entityId": "Q52596",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Abebe_Bikila_1968_%28b_retouched%29.jpg/960px-Abebe_Bikila_1968_%28b_retouched%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 260,
+        "top": 145,
+        "width": 400,
+        "height": 500
+      },
+      "sourceDimensions": {
+        "width": 960,
+        "height": 1610
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "ashton-eaton-q1789",
+      "entityId": "Q1789",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Ashton_Eaton_2_Daegu_2011.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 190,
+        "top": 25,
+        "width": 260,
+        "height": 325
+      },
+      "sourceDimensions": {
+        "width": 640,
+        "height": 426
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "babe-ruth-q213812",
+      "entityId": "Q213812",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Babe_Ruth2.jpg/1280px-Babe_Ruth2.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 400,
+        "top": 100,
+        "width": 480,
+        "height": 600
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1686
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "ezekiel-kemboi-q1677",
+      "entityId": "Q1677",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/2/20/Ezekiel_Kemboi_Moscow_2013.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 195,
+        "top": 70,
+        "width": 270,
+        "height": 338
+      },
+      "sourceDimensions": {
+        "width": 640,
+        "height": 426
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "giba-q455738",
+      "entityId": "Q455738",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/World_League_Final_2011_%285927183473%29.jpg/960px-World_League_Final_2011_%285927183473%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 160,
+        "top": 60,
+        "width": 550,
+        "height": 688
+      },
+      "sourceDimensions": {
+        "width": 960,
+        "height": 1769
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "hima-das-q51876537",
+      "entityId": "Q51876537",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/8/88/Hima_Das_Salutes_India.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 150,
+        "top": 0,
+        "width": 320,
+        "height": 400
+      },
+      "sourceDimensions": {
+        "width": 671,
+        "height": 433
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "kevin-martin-q511414",
+      "entityId": "Q511414",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/0/06/Kevin_Martin_%28curler%29.JPG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 200,
+        "top": 70,
+        "width": 480,
+        "height": 600
+      },
+      "sourceDimensions": {
+        "width": 948,
+        "height": 1040
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "lisa-fernandez-q2729085",
+      "entityId": "Q2729085",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/3/3a/LisaFernandezGoldMedal.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 280,
+        "top": 0,
+        "width": 600,
+        "height": 750
+      },
+      "sourceDimensions": {
+        "width": 1200,
+        "height": 1800
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "mahesh-bhupathi-q312554",
+      "entityId": "Q312554",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Mahesh_Bhupathi_US_Open_2009-2010-01-02.jpg/1280px-Mahesh_Bhupathi_US_Open_2009-2010-01-02.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 500,
+        "top": 20,
+        "width": 640,
+        "height": 800
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1019
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "nadia-comaneci-q33228",
+      "entityId": "Q33228",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Nadia_Com%C4%83neci_at_Sports_Festival_2026.jpg/1280px-Nadia_Com%C4%83neci_at_Sports_Festival_2026.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 260,
+        "top": 170,
+        "width": 640,
+        "height": 800
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1920
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "paavo-nurmi-q101942",
+      "entityId": "Q101942",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Paavo_Nurmi_%28Antwerp_1920%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 84,
+        "top": 0,
+        "width": 176,
+        "height": 220
+      },
+      "sourceDimensions": {
+        "width": 324,
+        "height": 506
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "pedro-martinez-q726918",
+      "entityId": "Q726918",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Pedro%27s_return.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 200,
+        "top": 300,
+        "width": 480,
+        "height": 600
+      },
+      "sourceDimensions": {
+        "width": 821,
+        "height": 1373
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "saina-nehwal-q464311",
+      "entityId": "Q464311",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Ms._Saina_Nehwal%2C_Badminton_player_shares_her_inspirational_journey_with_the_audience_under_the_series_-_Her_Story_-_My_Story_at_Rashtrapati_Bhavan%2C_in_New_Delhi_on_July_11%2C_2024_%282%29.jpg/1280px-thumbnail.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 300,
+        "top": 0,
+        "width": 480,
+        "height": 600
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 915
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "sammy-baugh-q372640",
+      "entityId": "Q372640",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/%22Slingin_Sammy%22_Baugh%2C_Washington%2C_D.C.%2C_Sept._11._%22Slinging_Sammy%22_Baugh%2C_new_addition_to_the_Washington_Redskins%2C_the_Texas_Christian_U._star_is_rated_as_one_of_the_greatest_of_this_LCCN2016877914_%28cropped%29.jpg/960px-thumbnail.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 240,
+        "top": 100,
+        "width": 540,
+        "height": 675
+      },
+      "sourceDimensions": {
+        "width": 960,
+        "height": 1780
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "shizuka-arakawa-q229686",
+      "entityId": "Q229686",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Arakawa_2009_Festa_On_Ice.JPG/1280px-Arakawa_2009_Festa_On_Ice.JPG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 650,
+        "top": 180,
+        "width": 560,
+        "height": 700
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1590
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "ali-akbar-khan-q468356",
+      "entityId": "Q468356",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Dia7275_Ali_Akbar_Khan_r.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 90,
+        "top": 60,
+        "width": 360,
+        "height": 450
+      },
+      "sourceDimensions": {
+        "width": 800,
+        "height": 600
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "amjad-ali-khan-q2748525",
+      "entityId": "Q2748525",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/2/22/Amjad_Ali_Khan.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 170,
+        "top": 0,
+        "width": 280,
+        "height": 350
+      },
+      "sourceDimensions": {
+        "width": 500,
+        "height": 368
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "arijit-singh-q4790608",
+      "entityId": "Q4790608",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/4/44/Arijit_singh_in_2026.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 220,
+        "top": 40,
+        "width": 520,
+        "height": 650
+      },
+      "sourceDimensions": {
+        "width": 1016,
+        "height": 1548
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "buddy-holly-q5977",
+      "entityId": "Q5977",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Buddy_Holly_Brunswick_Records.jpg/1280px-Buddy_Holly_Brunswick_Records.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 320,
+        "top": 0,
+        "width": 600,
+        "height": 750
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1497
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "chuck-berry-q5921",
+      "entityId": "Q5921",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/2/20/Chuck_Berry_1957.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 230,
+        "top": 0,
+        "width": 560,
+        "height": 700
+      },
+      "sourceDimensions": {
+        "width": 1234,
+        "height": 1558
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "clara-schumann-q132232",
+      "entityId": "Q132232",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Franz_Hanfstaengl_-_Clara_Schumann_%281857%29.jpg/1280px-Franz_Hanfstaengl_-_Clara_Schumann_%281857%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 350,
+        "top": 240,
+        "width": 600,
+        "height": 750
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1630
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "elvis-presley-q303",
+      "entityId": "Q303",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Elvis_Presley_promoting_Jailhouse_Rock.jpg/1280px-Elvis_Presley_promoting_Jailhouse_Rock.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 350,
+        "top": 20,
+        "width": 600,
+        "height": 750
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1651
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "karlheinz-stockhausen-q154556",
+      "entityId": "Q154556",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Stockhausen_1994_WDR.jpg/1280px-Stockhausen_1994_WDR.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 250,
+        "top": 120,
+        "width": 440,
+        "height": 550
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 881
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "paco-de-lucia-q153300",
+      "entityId": "Q153300",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Paco_de_Luc%C3%ADa_4.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 270,
+        "top": 20,
+        "width": 440,
+        "height": 550
+      },
+      "sourceDimensions": {
+        "width": 1024,
+        "height": 768
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "serge-gainsbourg-q1698",
+      "entityId": "Q1698",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Serge_Gainsbourg_par_Claude_Truong-Ngoc_1981.jpg/1280px-Serge_Gainsbourg_par_Claude_Truong-Ngoc_1981.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 420,
+        "top": 0,
+        "width": 640,
+        "height": 800
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 834
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "sonu-nigam-q470898",
+      "entityId": "Q470898",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/7/76/Sonu_Nigam123.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 116,
+        "top": 0,
+        "width": 176,
+        "height": 220
+      },
+      "sourceDimensions": {
+        "width": 352,
+        "height": 240
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "sunidhi-chauhan-q2722933",
+      "entityId": "Q2722933",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Sunidhi_Chauhan_performing_in_Delhi.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 70,
+        "top": 100,
+        "width": 520,
+        "height": 650
+      },
+      "sourceDimensions": {
+        "width": 900,
+        "height": 1500
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "tyagaraja-q2044389",
+      "entityId": "Q2044389",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/4/42/Sri_Tyagabrahmam.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 140,
+        "top": 60,
+        "width": 340,
+        "height": 425
+      },
+      "sourceDimensions": {
+        "width": 603,
+        "height": 739
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "udit-narayan-jha-q469818",
+      "entityId": "Q469818",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Udit-Narayan-2019.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 150,
+        "top": 0,
+        "width": 330,
+        "height": 412
+      },
+      "sourceDimensions": {
+        "width": 620,
+        "height": 450
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "youssou-ndour-q210734",
+      "entityId": "Q210734",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/3/33/YoussouNdour20090913.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 500,
+        "top": 260,
+        "width": 480,
+        "height": 600
+      },
+      "sourceDimensions": {
+        "width": 1000,
+        "height": 876
+      },
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "cthulhu-q12038",
+      "entityId": "Q12038",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Cthulhu3.jpg/1280px-Cthulhu3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 210,
+        "top": 200,
+        "width": 720,
+        "height": 900
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1595
+      },
+      "reason": "Focus the named character and remove letterboxing, manuscript notes or other depictions so the subject remains clear in an 88×110 reading portrait."
+    },
+    {
+      "id": "count-dracula-q3266236",
+      "entityId": "Q3266236",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/0/08/Bela_Lugosi_as_Dracula.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 388,
+        "top": 4,
+        "width": 400,
+        "height": 500
+      },
+      "sourceDimensions": {
+        "width": 887,
+        "height": 650
+      },
+      "reason": "Focus the named character and remove letterboxing, manuscript notes or other depictions so the subject remains clear in an 88×110 reading portrait."
+    },
+    {
+      "id": "daenerys-targaryen-q2708078",
+      "entityId": "Q2708078",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/0/0d/Daenerys_Targaryen_with_Dragon-Emilia_Clarke.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 154,
+        "top": 2,
+        "width": 208,
+        "height": 260
+      },
+      "sourceDimensions": {
+        "width": 377,
+        "height": 264
+      },
+      "reason": "Focus the named character and remove letterboxing, manuscript notes or other depictions so the subject remains clear in an 88×110 reading portrait."
+    },
+    {
+      "id": "indiana-jones-q148659",
+      "entityId": "Q148659",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Indianajones4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 120,
+        "top": 0,
+        "width": 500,
+        "height": 625
+      },
+      "sourceDimensions": {
+        "width": 1024,
+        "height": 665
+      },
+      "reason": "Focus the named character and remove letterboxing, manuscript notes or other depictions so the subject remains clear in an 88×110 reading portrait."
+    },
+    {
+      "id": "kermit-the-frog-q1107971",
+      "entityId": "Q1107971",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Kermit_puppet.jpg/1280px-Kermit_puppet.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 420,
+        "top": 55,
+        "width": 520,
+        "height": 650
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 853
+      },
+      "reason": "Focus the named character and remove letterboxing, manuscript notes or other depictions so the subject remains clear in an 88×110 reading portrait."
+    },
+    {
+      "id": "gollum-q15007",
+      "entityId": "Q15007",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Gollum_at_Wellington_Airport.jpg/1280px-Gollum_at_Wellington_Airport.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "crop": {
+        "left": 90,
+        "top": 260,
+        "width": 416,
+        "height": 520
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 853
+      },
+      "reason": "Focus the named character and remove letterboxing, manuscript notes or other depictions so the subject remains clear in an 88×110 reading portrait."
+    },
+    {
+      "id": "hinata-hyuga-q718965",
+      "entityId": "Q718965",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/9/92/HinataHyugagrowth.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 96,
+        "height": 120
+      },
+      "sourceDimensions": {
+        "width": 266,
+        "height": 241
+      },
+      "reason": "Focus the named character and remove letterboxing, manuscript notes or other depictions so the subject remains clear in an 88×110 reading portrait."
+    }
+  ],
+  "nameCorrections": [
+    {
+      "id": "constantine-stanislavsky-q49484",
+      "before": "Constantine Stanislavsky",
+      "after": "Konstantin Stanislavski",
+      "sourcePage": "https://en.wikipedia.org/wiki/Konstantin_Stanislavski",
+      "entityId": "Q49484"
+    },
+    {
+      "id": "isadora-duncana-q483512",
+      "before": "Isadora Duncana",
+      "after": "Isadora Duncan",
+      "sourcePage": "https://en.wikipedia.org/wiki/Isadora_Duncan",
+      "entityId": "Q483512"
+    },
+    {
+      "id": "jack-warner-q72614",
+      "before": "Jack Warner",
+      "after": "Jack L. Warner",
+      "sourcePage": "https://en.wikipedia.org/wiki/Jack_L._Warner",
+      "entityId": "Q72614"
+    },
+    {
+      "id": "manoj-bajpai-q158533",
+      "before": "Manoj Bajpai",
+      "after": "Manoj Bajpayee",
+      "sourcePage": "https://en.wikipedia.org/wiki/Manoj_Bajpayee",
+      "entityId": "Q158533"
+    },
+    {
+      "id": "tabu-q158233",
+      "before": "Tabu",
+      "after": "Tabu (actress)",
+      "sourcePage": "https://en.wikipedia.org/wiki/Tabu_(actress)",
+      "entityId": "Q158233"
+    },
+    {
+      "id": "tony-leung-q319001",
+      "before": "Tony Leung",
+      "after": "Tony Leung Chiu-wai",
+      "sourcePage": "https://en.wikipedia.org/wiki/Tony_Leung_Chiu-wai",
+      "entityId": "Q319001"
+    },
+    {
+      "id": "toshiro-mifune-q37001",
+      "before": "Toshirō Mifune",
+      "after": "Toshiro Mifune",
+      "sourcePage": "https://en.wikipedia.org/wiki/Toshiro_Mifune",
+      "entityId": "Q37001"
+    },
+    {
+      "id": "andrew-barton-paterson-q436699",
+      "before": "Andrew Barton Paterson",
+      "after": "Banjo Paterson",
+      "sourcePage": "https://en.wikipedia.org/wiki/Banjo_Paterson",
+      "entityId": "Q436699"
+    },
+    {
+      "id": "farabi-q160460",
+      "before": "Farabi",
+      "after": "Al-Farabi",
+      "sourcePage": "https://en.wikipedia.org/wiki/Al-Farabi",
+      "entityId": "Q160460"
+    },
+    {
+      "id": "fuzuli-q178379",
+      "before": "Fuzuli",
+      "after": "Fuzuli (poet)",
+      "sourcePage": "https://en.wikipedia.org/wiki/Fuzuli_(poet)",
+      "entityId": "Q178379"
+    },
+    {
+      "id": "meera-q466330",
+      "before": "Meera",
+      "after": "Mirabai",
+      "sourcePage": "https://en.wikipedia.org/wiki/Mirabai",
+      "entityId": "Q466330"
+    },
+    {
+      "id": "mirza-ghalib-q107000",
+      "before": "Mirza Ghalib",
+      "after": "Ghalib",
+      "sourcePage": "https://en.wikipedia.org/wiki/Ghalib",
+      "entityId": "Q107000"
+    },
+    {
+      "id": "omar-khayyam-q35900",
+      "before": "Omar Khayyám",
+      "after": "Omar Khayyam",
+      "sourcePage": "https://en.wikipedia.org/wiki/Omar_Khayyam",
+      "entityId": "Q35900"
+    },
+    {
+      "id": "panini-q189725",
+      "before": "Panini",
+      "after": "Pāṇini",
+      "sourcePage": "https://en.wikipedia.org/wiki/P%C4%81%E1%B9%87ini",
+      "entityId": "Q189725"
+    },
+    {
+      "id": "sor-juana-ines-de-la-cruz-q183074",
+      "before": "Sor Juana Inés de la Cruz",
+      "after": "Juana Inés de la Cruz",
+      "sourcePage": "https://en.wikipedia.org/wiki/Juana_In%C3%A9s_de_la_Cruz",
+      "entityId": "Q183074"
+    },
+    {
+      "id": "subramanya-bharathi-q256286",
+      "before": "Subramanya Bharathi",
+      "after": "Subramania Bharati",
+      "sourcePage": "https://en.wikipedia.org/wiki/Subramania_Bharati",
+      "entityId": "Q256286"
+    },
+    {
+      "id": "thales-q36303",
+      "before": "Thales",
+      "after": "Thales of Miletus",
+      "sourcePage": "https://en.wikipedia.org/wiki/Thales_of_Miletus",
+      "entityId": "Q36303"
+    },
+    {
+      "id": "angelique-kidjo-q231276",
+      "before": "Angelique Kidjo",
+      "after": "Angélique Kidjo",
+      "sourcePage": "https://en.wikipedia.org/wiki/Ang%C3%A9lique_Kidjo",
+      "entityId": "Q231276"
+    },
+    {
+      "id": "celine-dion-q5105",
+      "before": "Céline Dion",
+      "after": "Celine Dion",
+      "sourcePage": "https://en.wikipedia.org/wiki/Celine_Dion",
+      "entityId": "Q5105"
+    },
+    {
+      "id": "guillaume-dufay-q207717",
+      "before": "Guillaume Dufay",
+      "after": "Guillaume Du Fay",
+      "sourcePage": "https://en.wikipedia.org/wiki/Guillaume_Du_Fay",
+      "entityId": "Q207717"
+    },
+    {
+      "id": "hemanta-mukhopadhyay-q2732205",
+      "before": "Hemanta Mukhopadhyay",
+      "after": "Hemant Kumar",
+      "sourcePage": "https://en.wikipedia.org/wiki/Hemant_Kumar",
+      "entityId": "Q2732205"
+    },
+    {
+      "id": "maria-meneghini-callas-q128297",
+      "before": "Maria Meneghini Callas",
+      "after": "Maria Callas",
+      "sourcePage": "https://en.wikipedia.org/wiki/Maria_Callas",
+      "entityId": "Q128297"
+    },
+    {
+      "id": "parveen-sultana-q3631779",
+      "before": "Parveen Sultana",
+      "after": "Parween Sultana",
+      "sourcePage": "https://en.wikipedia.org/wiki/Parween_Sultana",
+      "entityId": "Q3631779"
+    },
+    {
+      "id": "pau-casals-q208537",
+      "before": "Pau Casals",
+      "after": "Pablo Casals",
+      "sourcePage": "https://en.wikipedia.org/wiki/Pablo_Casals",
+      "entityId": "Q208537"
+    },
+    {
+      "id": "prince-q7542",
+      "before": "Prince",
+      "after": "Prince (musician)",
+      "sourcePage": "https://en.wikipedia.org/wiki/Prince_(musician)",
+      "entityId": "Q7542"
+    },
+    {
+      "id": "udit-narayan-jha-q469818",
+      "before": "Udit Narayan Jha",
+      "after": "Udit Narayan",
+      "sourcePage": "https://en.wikipedia.org/wiki/Udit_Narayan",
+      "entityId": "Q469818"
+    },
+    {
+      "id": "youssou-ndour-q210734",
+      "before": "Youssou N’Dour",
+      "after": "Youssou N'Dour",
+      "sourcePage": "https://en.wikipedia.org/wiki/Youssou_N%27Dour",
+      "entityId": "Q210734"
+    },
+    {
+      "id": "zakir-hussain-q144719",
+      "before": "Zakir Hussain",
+      "after": "Zakir Hussain (musician)",
+      "sourcePage": "https://en.wikipedia.org/wiki/Zakir_Hussain_(musician)",
+      "entityId": "Q144719"
+    },
+    {
+      "id": "abdelkader-el-djezairi-q179825",
+      "before": "Abdelkader El Djezairi",
+      "after": "Emir Abdelkader",
+      "sourcePage": "https://en.wikipedia.org/wiki/Emir_Abdelkader",
+      "entityId": "Q179825"
+    },
+    {
+      "id": "abu-muslim-al-khorasani-q335210",
+      "before": "Abu Muslim al Khorasani",
+      "after": "Abu Muslim",
+      "sourcePage": "https://en.wikipedia.org/wiki/Abu_Muslim",
+      "entityId": "Q335210"
+    },
+    {
+      "id": "camillo-benso-di-cavour-q166092",
+      "before": "Camillo Benso di Cavour",
+      "after": "Camillo Benso, Count of Cavour",
+      "sourcePage": "https://en.wikipedia.org/wiki/Camillo_Benso,_Count_of_Cavour",
+      "entityId": "Q166092"
+    },
+    {
+      "id": "cecil-john-rhodes-q19825",
+      "before": "Cecil John Rhodes",
+      "after": "Cecil Rhodes",
+      "sourcePage": "https://en.wikipedia.org/wiki/Cecil_Rhodes",
+      "entityId": "Q19825"
+    },
+    {
+      "id": "don-stephen-senanayake-q663001",
+      "before": "Don Stephen Senanayake",
+      "after": "D. S. Senanayake",
+      "sourcePage": "https://en.wikipedia.org/wiki/D._S._Senanayake",
+      "entityId": "Q663001"
+    },
+    {
+      "id": "erode-venkatappa-ramasamy-q737280",
+      "before": "Erode Venkatappa Ramasamy",
+      "after": "Periyar",
+      "sourcePage": "https://en.wikipedia.org/wiki/Periyar",
+      "entityId": "Q737280"
+    },
+    {
+      "id": "franklin-delano-roosevelt-q8007",
+      "before": "Franklin Delano Roosevelt",
+      "after": "Franklin D. Roosevelt",
+      "sourcePage": "https://en.wikipedia.org/wiki/Franklin_D._Roosevelt",
+      "entityId": "Q8007"
+    },
+    {
+      "id": "franz-joseph-i-of-austria-q51056",
+      "before": "Franz Joseph I of Austria",
+      "after": "Franz Joseph I",
+      "sourcePage": "https://en.wikipedia.org/wiki/Franz_Joseph_I",
+      "entityId": "Q51056"
+    },
+    {
+      "id": "isma-il-pasha-q159378",
+      "before": "Isma'il Pasha",
+      "after": "Isma'il Pasha of Egypt",
+      "sourcePage": "https://en.wikipedia.org/wiki/Isma%27il_Pasha_of_Egypt",
+      "entityId": "Q159378"
+    },
+    {
+      "id": "jayaram-jayalalithaa-q465018",
+      "before": "Jayaram Jayalalithaa",
+      "after": "J. Jayalalithaa",
+      "sourcePage": "https://en.wikipedia.org/wiki/J._Jayalalithaa",
+      "entityId": "Q465018"
+    },
+    {
+      "id": "kim-il-sung-q41117",
+      "before": "Kim Il-sung",
+      "after": "Kim Il Sung",
+      "sourcePage": "https://en.wikipedia.org/wiki/Kim_Il_Sung",
+      "entityId": "Q41117"
+    },
+    {
+      "id": "louis-philippe-i-q7771",
+      "before": "Louis-Philippe I",
+      "after": "Louis Philippe I",
+      "sourcePage": "https://en.wikipedia.org/wiki/Louis_Philippe_I",
+      "entityId": "Q7771"
+    },
+    {
+      "id": "menilek-ii-q244748",
+      "before": "Menilek II",
+      "after": "Menelik II",
+      "sourcePage": "https://en.wikipedia.org/wiki/Menelik_II",
+      "entityId": "Q244748"
+    },
+    {
+      "id": "michael-collins-q173196",
+      "before": "Michael Collins",
+      "after": "Michael Collins (Irish leader)",
+      "sourcePage": "https://en.wikipedia.org/wiki/Michael_Collins_(Irish_leader)",
+      "entityId": "Q173196"
+    },
+    {
+      "id": "miguel-hidalgo-y-costilla-q55636",
+      "before": "Miguel Hidalgo Y Costilla",
+      "after": "Miguel Hidalgo y Costilla",
+      "sourcePage": "https://en.wikipedia.org/wiki/Miguel_Hidalgo_y_Costilla",
+      "entityId": "Q55636"
+    },
+    {
+      "id": "mohammad-ali-jinnah-q160554",
+      "before": "Mohammad Ali Jinnah",
+      "after": "Muhammad Ali Jinnah",
+      "sourcePage": "https://en.wikipedia.org/wiki/Muhammad_Ali_Jinnah",
+      "entityId": "Q160554"
+    },
+    {
+      "id": "mohammed-zahir-shah-q152265",
+      "before": "Mohammed Zahir Shah",
+      "after": "Mohammad Zahir Shah",
+      "sourcePage": "https://en.wikipedia.org/wiki/Mohammad_Zahir_Shah",
+      "entityId": "Q152265"
+    },
+    {
+      "id": "muhammad-ahmad-ibn-abdallah-q298678",
+      "before": "Muhammad Ahmad ibn ʿAbdallah",
+      "after": "Muhammad Ahmad",
+      "sourcePage": "https://en.wikipedia.org/wiki/Muhammad_Ahmad",
+      "entityId": "Q298678"
+    },
+    {
+      "id": "muhammad-ali-q182781",
+      "before": "Muhammad Ali",
+      "after": "Muhammad Ali of Egypt",
+      "sourcePage": "https://en.wikipedia.org/wiki/Muhammad_Ali_of_Egypt",
+      "entityId": "Q182781"
+    },
+    {
+      "id": "park-chung-hee-q14356",
+      "before": "Park Chung-hee",
+      "after": "Park Chung Hee",
+      "sourcePage": "https://en.wikipedia.org/wiki/Park_Chung_Hee",
+      "entityId": "Q14356"
+    },
+    {
+      "id": "sardar-vallabhbhai-patel-q9455",
+      "before": "Sardar Vallabhbhai Patel",
+      "after": "Vallabhbhai Patel",
+      "sourcePage": "https://en.wikipedia.org/wiki/Vallabhbhai_Patel",
+      "entityId": "Q9455"
+    },
+    {
+      "id": "shaka-zulu-q27695",
+      "before": "Shaka Zulu",
+      "after": "Shaka",
+      "sourcePage": "https://en.wikipedia.org/wiki/Shaka",
+      "entityId": "Q27695"
+    },
+    {
+      "id": "talaat-pasa-q315888",
+      "before": "Talaat Paşa",
+      "after": "Talaat Pasha",
+      "sourcePage": "https://en.wikipedia.org/wiki/Talaat_Pasha",
+      "entityId": "Q315888"
+    },
+    {
+      "id": "wangari-muta-maathai-q46795",
+      "before": "Wangari Muta Maathai",
+      "after": "Wangarĩ Maathai",
+      "sourcePage": "https://en.wikipedia.org/wiki/Wangar%C4%A9_Maathai",
+      "entityId": "Q46795"
+    },
+    {
+      "id": "alexei-i-of-russia-q7731",
+      "before": "Alexei I of Russia",
+      "after": "Alexis of Russia",
+      "sourcePage": "https://en.wikipedia.org/wiki/Alexis_of_Russia",
+      "entityId": "Q7731"
+    },
+    {
+      "id": "catherine-ii-of-russia-q36450",
+      "before": "Catherine II of Russia",
+      "after": "Catherine the Great",
+      "sourcePage": "https://en.wikipedia.org/wiki/Catherine_the_Great",
+      "entityId": "Q36450"
+    },
+    {
+      "id": "christina-of-sweden-q52937",
+      "before": "Christina of Sweden",
+      "after": "Christina, Queen of Sweden",
+      "sourcePage": "https://en.wikipedia.org/wiki/Christina,_Queen_of_Sweden",
+      "entityId": "Q52937"
+    },
+    {
+      "id": "cnut-the-great-q134128",
+      "before": "Cnut the Great",
+      "after": "Cnut",
+      "sourcePage": "https://en.wikipedia.org/wiki/Cnut",
+      "entityId": "Q134128"
+    },
+    {
+      "id": "darius-i-q44387",
+      "before": "Darius I",
+      "after": "Darius the Great",
+      "sourcePage": "https://en.wikipedia.org/wiki/Darius_the_Great",
+      "entityId": "Q44387"
+    },
+    {
+      "id": "draco-q28626",
+      "before": "Draco",
+      "after": "Draco (legislator)",
+      "sourcePage": "https://en.wikipedia.org/wiki/Draco_(legislator)",
+      "entityId": "Q28626"
+    },
+    {
+      "id": "elizabeth-i-of-england-q7207",
+      "before": "Elizabeth I of England",
+      "after": "Elizabeth I",
+      "sourcePage": "https://en.wikipedia.org/wiki/Elizabeth_I",
+      "entityId": "Q7207"
+    },
+    {
+      "id": "frederick-ii-of-prussia-q33550",
+      "before": "Frederick II of Prussia",
+      "after": "Frederick the Great",
+      "sourcePage": "https://en.wikipedia.org/wiki/Frederick_the_Great",
+      "entityId": "Q33550"
+    },
+    {
+      "id": "friedrich-wilhelm-i-of-prussia-q105013",
+      "before": "Friedrich Wilhelm I of Prussia",
+      "after": "Frederick William I of Prussia",
+      "sourcePage": "https://en.wikipedia.org/wiki/Frederick_William_I_of_Prussia",
+      "entityId": "Q105013"
+    },
+    {
+      "id": "gregory-vii-q133063",
+      "before": "Gregory VII",
+      "after": "Pope Gregory VII",
+      "sourcePage": "https://en.wikipedia.org/wiki/Pope_Gregory_VII",
+      "entityId": "Q133063"
+    },
+    {
+      "id": "gustavus-adolphus-of-sweden-q52938",
+      "before": "Gustavus Adolphus of Sweden",
+      "after": "Gustavus Adolphus",
+      "sourcePage": "https://en.wikipedia.org/wiki/Gustavus_Adolphus",
+      "entityId": "Q52938"
+    },
+    {
+      "id": "henry-viii-of-england-q38370",
+      "before": "Henry VIII of England",
+      "after": "Henry VIII",
+      "sourcePage": "https://en.wikipedia.org/wiki/Henry_VIII",
+      "entityId": "Q38370"
+    },
+    {
+      "id": "jahangir-i-q83653",
+      "before": "Jahangir I",
+      "after": "Jahangir",
+      "sourcePage": "https://en.wikipedia.org/wiki/Jahangir",
+      "entityId": "Q83653"
+    },
+    {
+      "id": "jiajing-emperor-of-ming-q10011",
+      "before": "Jiajing Emperor of Ming",
+      "after": "Jiajing Emperor",
+      "sourcePage": "https://en.wikipedia.org/wiki/Jiajing_Emperor",
+      "entityId": "Q10011"
+    },
+    {
+      "id": "nzingha-mbande-q467650",
+      "before": "Nzingha Mbande",
+      "after": "Nzinga of Ndongo and Matamba",
+      "sourcePage": "https://en.wikipedia.org/wiki/Nzinga_of_Ndongo_and_Matamba",
+      "entityId": "Q467650"
+    },
+    {
+      "id": "pachacutec-q213758",
+      "before": "Pachacútec",
+      "after": "Pachacuti",
+      "sourcePage": "https://en.wikipedia.org/wiki/Pachacuti",
+      "entityId": "Q213758"
+    },
+    {
+      "id": "pratap-singh-q2722956",
+      "before": "Pratap Singh",
+      "after": "Maharana Pratap",
+      "sourcePage": "https://en.wikipedia.org/wiki/Maharana_Pratap",
+      "entityId": "Q2722956"
+    },
+    {
+      "id": "rajendra-chola-i-q211483",
+      "before": "Rajendra Chola I",
+      "after": "Rajendra I",
+      "sourcePage": "https://en.wikipedia.org/wiki/Rajendra_I",
+      "entityId": "Q211483"
+    },
+    {
+      "id": "rani-lakshmibai-q181878",
+      "before": "Rani Lakshmibai",
+      "after": "Lakshmibai, Rani of Jhansi",
+      "sourcePage": "https://en.wikipedia.org/wiki/Lakshmibai,_Rani_of_Jhansi",
+      "entityId": "Q181878"
+    },
+    {
+      "id": "rani-velu-nachiyar-q15408153",
+      "before": "Rani Velu Nachiyar",
+      "after": "Velu Nachiyar",
+      "sourcePage": "https://en.wikipedia.org/wiki/Velu_Nachiyar",
+      "entityId": "Q15408153"
+    },
+    {
+      "id": "suiko-q298057",
+      "before": "Suiko",
+      "after": "Empress Suiko",
+      "sourcePage": "https://en.wikipedia.org/wiki/Empress_Suiko",
+      "entityId": "Q298057"
+    },
+    {
+      "id": "svatopluk-i-q437589",
+      "before": "Svatopluk I",
+      "after": "Svatopluk I of Moravia",
+      "sourcePage": "https://en.wikipedia.org/wiki/Svatopluk_I_of_Moravia",
+      "entityId": "Q437589"
+    },
+    {
+      "id": "sviatoslav-i-of-kiev-q1058572",
+      "before": "Sviatoslav I of Kiev",
+      "after": "Sviatoslav I",
+      "sourcePage": "https://en.wikipedia.org/wiki/Sviatoslav_I",
+      "entityId": "Q1058572"
+    },
+    {
+      "id": "theodora-q204843",
+      "before": "Theodora",
+      "after": "Theodora (wife of Justinian I)",
+      "sourcePage": "https://en.wikipedia.org/wiki/Theodora_(wife_of_Justinian_I)",
+      "entityId": "Q204843"
+    },
+    {
+      "id": "urban-ii-q30578",
+      "before": "Urban II",
+      "after": "Pope Urban II",
+      "sourcePage": "https://en.wikipedia.org/wiki/Pope_Urban_II",
+      "entityId": "Q30578"
+    },
+    {
+      "id": "victoria-q9439",
+      "before": "Victoria",
+      "after": "Queen Victoria",
+      "sourcePage": "https://en.wikipedia.org/wiki/Queen_Victoria",
+      "entityId": "Q9439"
+    },
+    {
+      "id": "chandrasekhara-venkata-raman-q60429",
+      "before": "Chandrasekhara Venkata Raman",
+      "after": "C. V. Raman",
+      "sourcePage": "https://en.wikipedia.org/wiki/C._V._Raman",
+      "entityId": "Q60429"
+    },
+    {
+      "id": "chen-ning-yang-q181369",
+      "before": "Chen-ning Yang",
+      "after": "Yang Chen-Ning",
+      "sourcePage": "https://en.wikipedia.org/wiki/Yang_Chen-Ning",
+      "entityId": "Q181369"
+    },
+    {
+      "id": "dennis-m-ritchie-q45575",
+      "before": "Dennis M. Ritchie",
+      "after": "Dennis Ritchie",
+      "sourcePage": "https://en.wikipedia.org/wiki/Dennis_Ritchie",
+      "entityId": "Q45575"
+    },
+    {
+      "id": "georg-simon-ohm-q1585",
+      "before": "Georg Simon Ohm",
+      "after": "Georg Ohm",
+      "sourcePage": "https://en.wikipedia.org/wiki/Georg_Ohm",
+      "entityId": "Q1585"
+    },
+    {
+      "id": "homi-jehangir-bhabha-q325611",
+      "before": "Homi Jehangir Bhabha",
+      "after": "Homi J. Bhabha",
+      "sourcePage": "https://en.wikipedia.org/wiki/Homi_J._Bhabha",
+      "entityId": "Q325611"
+    },
+    {
+      "id": "jean-baptiste-de-lamarck-q82122",
+      "before": "Jean-Baptiste de Lamarck",
+      "after": "Jean-Baptiste Lamarck",
+      "sourcePage": "https://en.wikipedia.org/wiki/Jean-Baptiste_Lamarck",
+      "entityId": "Q82122"
+    },
+    {
+      "id": "johann-peter-gustav-lejeune-dirichlet-q29193",
+      "before": "Johann Peter Gustav Lejeune Dirichlet",
+      "after": "Peter Gustav Lejeune Dirichlet",
+      "sourcePage": "https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet",
+      "entityId": "Q29193"
+    },
+    {
+      "id": "margaret-hamilton-q11628",
+      "before": "Margaret Hamilton",
+      "after": "Margaret Hamilton (software engineer)",
+      "sourcePage": "https://en.wikipedia.org/wiki/Margaret_Hamilton_(software_engineer)",
+      "entityId": "Q11628"
+    },
+    {
+      "id": "muhammad-ibn-musa-al-khwarizmi-q9038",
+      "before": "Muḥammad ibn Musa al-Khwarizmi",
+      "after": "Al-Khwarizmi",
+      "sourcePage": "https://en.wikipedia.org/wiki/Al-Khwarizmi",
+      "entityId": "Q9038"
+    },
+    {
+      "id": "nicolas-carnot-q181685",
+      "before": "Nicolas Carnot",
+      "after": "Nicolas Léonard Sadi Carnot",
+      "sourcePage": "https://en.wikipedia.org/wiki/Nicolas_L%C3%A9onard_Sadi_Carnot",
+      "entityId": "Q181685"
+    },
+    {
+      "id": "nikolai-ivanovich-lobachevsky-q129199",
+      "before": "Nikolai Ivanovich Lobachevsky",
+      "after": "Nikolai Lobachevsky",
+      "sourcePage": "https://en.wikipedia.org/wiki/Nikolai_Lobachevsky",
+      "entityId": "Q129199"
+    },
+    {
+      "id": "samuel-finley-breese-morse-q75698",
+      "before": "Samuel Finley Breese Morse",
+      "after": "Samuel Morse",
+      "sourcePage": "https://en.wikipedia.org/wiki/Samuel_Morse",
+      "entityId": "Q75698"
+    },
+    {
+      "id": "sathamangalam-ranga-iyengar-srinivasa-varadhan-q370247",
+      "before": "Sathamangalam Ranga Iyengar Srinivasa Varadhan",
+      "after": "S. R. Srinivasa Varadhan",
+      "sourcePage": "https://en.wikipedia.org/wiki/S._R._Srinivasa_Varadhan",
+      "entityId": "Q370247"
+    },
+    {
+      "id": "svante-august-arrhenius-q80956",
+      "before": "Svante August Arrhenius",
+      "after": "Svante Arrhenius",
+      "sourcePage": "https://en.wikipedia.org/wiki/Svante_Arrhenius",
+      "entityId": "Q80956"
+    },
+    {
+      "id": "thomas-young-q25820",
+      "before": "Thomas Young",
+      "after": "Thomas Young (scientist)",
+      "sourcePage": "https://en.wikipedia.org/wiki/Thomas_Young_(scientist)",
+      "entityId": "Q25820"
+    },
+    {
+      "id": "venkatraman-ramakrishnan-q60061",
+      "before": "Venkatraman Ramakrishnan",
+      "after": "Venki Ramakrishnan",
+      "sourcePage": "https://en.wikipedia.org/wiki/Venki_Ramakrishnan",
+      "entityId": "Q60061"
+    },
+    {
+      "id": "william-gilbert-q192706",
+      "before": "William Gilbert",
+      "after": "William Gilbert (physicist)",
+      "sourcePage": "https://en.wikipedia.org/wiki/William_Gilbert_(physicist)",
+      "entityId": "Q192706"
+    },
+    {
+      "id": "alexander-karelin-q187247",
+      "before": "Alexander Karelin",
+      "after": "Aleksandr Karelin",
+      "sourcePage": "https://en.wikipedia.org/wiki/Aleksandr_Karelin",
+      "entityId": "Q187247"
+    },
+    {
+      "id": "balbir-singh-sr-q804684",
+      "before": "Balbir Singh, Sr.",
+      "after": "Balbir Singh Sr.",
+      "sourcePage": "https://en.wikipedia.org/wiki/Balbir_Singh_Sr.",
+      "entityId": "Q804684"
+    },
+    {
+      "id": "gukesh-d-q56026072",
+      "before": "Gukesh D",
+      "after": "Gukesh Dommaraju",
+      "sourcePage": "https://en.wikipedia.org/wiki/Gukesh_Dommaraju",
+      "entityId": "Q56026072"
+    },
+    {
+      "id": "kevin-martin-q511414",
+      "before": "Kevin Martin",
+      "after": "Kevin Martin (curler)",
+      "sourcePage": "https://en.wikipedia.org/wiki/Kevin_Martin_(curler)",
+      "entityId": "Q511414"
+    },
+    {
+      "id": "major-dhyan-chand-singh-q381138",
+      "before": "Major Dhyan Chand Singh",
+      "after": "Dhyan Chand",
+      "sourcePage": "https://en.wikipedia.org/wiki/Dhyan_Chand",
+      "entityId": "Q381138"
+    },
+    {
+      "id": "marta-q228616",
+      "before": "Marta",
+      "after": "Marta (footballer)",
+      "sourcePage": "https://en.wikipedia.org/wiki/Marta_(footballer)",
+      "entityId": "Q228616"
+    },
+    {
+      "id": "mohammad-babar-azam-q4837515",
+      "before": "Mohammad Babar Azam",
+      "after": "Babar Azam",
+      "sourcePage": "https://en.wikipedia.org/wiki/Babar_Azam",
+      "entityId": "Q4837515"
+    },
+    {
+      "id": "pedro-martinez-q726918",
+      "before": "Pedro Martinez",
+      "after": "Pedro Martínez",
+      "sourcePage": "https://en.wikipedia.org/wiki/Pedro_Mart%C3%ADnez",
+      "entityId": "Q726918"
+    },
+    {
+      "id": "praggnanandhaa-q26703041",
+      "before": "Praggnanandhaa",
+      "after": "R Praggnanandhaa",
+      "sourcePage": "https://en.wikipedia.org/wiki/R_Praggnanandhaa",
+      "entityId": "Q26703041"
+    },
+    {
+      "id": "pusarla-venkata-sindhu-q448360",
+      "before": "Pusarla Venkata Sindhu",
+      "after": "P. V. Sindhu",
+      "sourcePage": "https://en.wikipedia.org/wiki/P._V._Sindhu",
+      "entityId": "Q448360"
+    },
+    {
+      "id": "yuzuru-hanyu-q597023",
+      "before": "Yuzuru Hanyū",
+      "after": "Yuzuru Hanyu",
+      "sourcePage": "https://en.wikipedia.org/wiki/Yuzuru_Hanyu",
+      "entityId": "Q597023"
+    }
+  ],
+  "sourceCorrections": [
+    {
+      "id": "aang-q1640011",
+      "before": "World of Avatar",
+      "after": "Avatar: The Last Airbender",
+      "entityId": "Q1640011"
+    },
+    {
+      "id": "ahsoka-tano-q51755",
+      "before": "Star Wars Legends",
+      "after": "Star Wars",
+      "entityId": "Q51755"
+    },
+    {
+      "id": "aquaman-q623059",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q623059"
+    },
+    {
+      "id": "arwen-q206018",
+      "before": "Tolkien's legendarium",
+      "after": "The Lord of the Rings",
+      "entityId": "Q206018"
+    },
+    {
+      "id": "arya-stark-q3624677",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q3624677"
+    },
+    {
+      "id": "ash-ketchum-q308950",
+      "before": "Pokémon universe",
+      "after": "Pokémon",
+      "entityId": "Q308950"
+    },
+    {
+      "id": "azula-q1995776",
+      "before": "World of Avatar",
+      "after": "Avatar: The Last Airbender",
+      "entityId": "Q1995776"
+    },
+    {
+      "id": "bart-simpson-q5480",
+      "before": "The Simpsons universe",
+      "after": "The Simpsons",
+      "entityId": "Q5480"
+    },
+    {
+      "id": "batgirl-q753713",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q753713"
+    },
+    {
+      "id": "batman-q2695156",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q2695156"
+    },
+    {
+      "id": "beast-boy-q575227",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q575227"
+    },
+    {
+      "id": "bellatrix-lestrange-q1057918",
+      "before": "Harry Potter universe",
+      "after": "Harry Potter",
+      "entityId": "Q1057918"
+    },
+    {
+      "id": "bilbo-baggins-q185737",
+      "before": "Tolkien's legendarium",
+      "after": "The Lord of the Rings",
+      "entityId": "Q185737"
+    },
+    {
+      "id": "black-panther-q998220",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q998220"
+    },
+    {
+      "id": "bo-peep-q20823443",
+      "before": "Toy Story universe",
+      "after": "Toy Story",
+      "entityId": "Q20823443"
+    },
+    {
+      "id": "boba-fett-q51790",
+      "before": "Star Wars Legends",
+      "after": "Star Wars",
+      "entityId": "Q51790"
+    },
+    {
+      "id": "bowser-q845864",
+      "before": "Super Mario universe",
+      "after": "Super Mario",
+      "entityId": "Q845864"
+    },
+    {
+      "id": "bran-stark-q3643599",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q3643599"
+    },
+    {
+      "id": "brienne-of-tarth-q11680307",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q11680307"
+    },
+    {
+      "id": "brock-q864918",
+      "before": "Pokémon universe",
+      "after": "Pokémon",
+      "entityId": "Q864918"
+    },
+    {
+      "id": "bulma-q1614785",
+      "before": "Dragon Ball universe",
+      "after": "Dragon Ball",
+      "entityId": "Q1614785"
+    },
+    {
+      "id": "buzz-lightyear-q1986193",
+      "before": "Toy Story universe",
+      "after": "Toy Story",
+      "entityId": "Q1986193"
+    },
+    {
+      "id": "carol-danvers-q726756",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q726756"
+    },
+    {
+      "id": "catwoman-q158952",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q158952"
+    },
+    {
+      "id": "cersei-lannister-q3665163",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q3665163"
+    },
+    {
+      "id": "chewbacca-q51803",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q51803"
+    },
+    {
+      "id": "cyborg-q2466726",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q2466726"
+    },
+    {
+      "id": "cyclops-q857921",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q857921"
+    },
+    {
+      "id": "daenerys-targaryen-q2708078",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q2708078"
+    },
+    {
+      "id": "daredevil-q327553",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q327553"
+    },
+    {
+      "id": "darkseid-q430698",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q430698"
+    },
+    {
+      "id": "darth-maul-q51766",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q51766"
+    },
+    {
+      "id": "deadpool-q1631090",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q1631090"
+    },
+    {
+      "id": "din-djarin-q79325377",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q79325377"
+    },
+    {
+      "id": "doctor-strange-q907767",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q907767"
+    },
+    {
+      "id": "donkey-q748427",
+      "before": "Shrek universe",
+      "after": "Shrek",
+      "entityId": "Q748427"
+    },
+    {
+      "id": "dr-eggman-q1996763",
+      "before": "Sonic the Hedgehog universe",
+      "after": "Sonic the Hedgehog",
+      "entityId": "Q1996763"
+    },
+    {
+      "id": "draco-malfoy-q179641",
+      "before": "Harry Potter universe",
+      "after": "Harry Potter",
+      "entityId": "Q179641"
+    },
+    {
+      "id": "eddard-stark-q259818",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q259818"
+    },
+    {
+      "id": "finn-q21772120",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q21772120"
+    },
+    {
+      "id": "frieza-q757313",
+      "before": "Dragon Ball universe",
+      "after": "Dragon Ball",
+      "entityId": "Q757313"
+    },
+    {
+      "id": "gaara-q221196",
+      "before": "Naruto universe",
+      "after": "Naruto",
+      "entityId": "Q221196"
+    },
+    {
+      "id": "gamora-q2721152",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q2721152"
+    },
+    {
+      "id": "ginny-weasley-q187923",
+      "before": "Harry Potter universe",
+      "after": "Harry Potter",
+      "entityId": "Q187923"
+    },
+    {
+      "id": "gohan-q752269",
+      "before": "Dragon Ball universe",
+      "after": "Dragon Ball",
+      "entityId": "Q752269"
+    },
+    {
+      "id": "gollum-q15007",
+      "before": "Tolkien's legendarium",
+      "after": "The Lord of the Rings",
+      "entityId": "Q15007"
+    },
+    {
+      "id": "green-arrow-q611993",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q611993"
+    },
+    {
+      "id": "grogu-q77001957",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q77001957"
+    },
+    {
+      "id": "groot-q3116935",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q3116935"
+    },
+    {
+      "id": "gus-fring-q5620660",
+      "before": "Gilliverse",
+      "after": "Breaking Bad",
+      "entityId": "Q5620660"
+    },
+    {
+      "id": "han-solo-q51802",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q51802"
+    },
+    {
+      "id": "hank-schrader-q5648455",
+      "before": "Gilliverse",
+      "after": "Breaking Bad",
+      "entityId": "Q5648455"
+    },
+    {
+      "id": "hawkeye-q19095",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q19095"
+    },
+    {
+      "id": "hinata-hyuga-q718965",
+      "before": "Naruto universe",
+      "after": "Naruto",
+      "entityId": "Q718965"
+    },
+    {
+      "id": "hulk-q188760",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q188760"
+    },
+    {
+      "id": "iron-fist-q1194243",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q1194243"
+    },
+    {
+      "id": "itachi-uchiha-q1043344",
+      "before": "Naruto universe",
+      "after": "Naruto",
+      "entityId": "Q1043344"
+    },
+    {
+      "id": "jaime-lannister-q3806180",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q3806180"
+    },
+    {
+      "id": "jango-fett-q51795",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q51795"
+    },
+    {
+      "id": "jesse-pinkman-q6186746",
+      "before": "Gilliverse",
+      "after": "Breaking Bad",
+      "entityId": "Q6186746"
+    },
+    {
+      "id": "jessie-q2200623",
+      "before": "Toy Story universe",
+      "after": "Toy Story",
+      "entityId": "Q2200623"
+    },
+    {
+      "id": "jim-hopper-q65515536",
+      "before": "Stranger Things universe",
+      "after": "Stranger Things",
+      "entityId": "Q65515536"
+    },
+    {
+      "id": "jiraiya-naruto-q912184",
+      "before": "Naruto universe",
+      "after": "Naruto",
+      "entityId": "Q912184"
+    },
+    {
+      "id": "jon-snow-q3183235",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q3183235"
+    },
+    {
+      "id": "jorah-mormont-q3810007",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q3810007"
+    },
+    {
+      "id": "joyce-byers-q65515261",
+      "before": "Stranger Things universe",
+      "after": "Stranger Things",
+      "entityId": "Q65515261"
+    },
+    {
+      "id": "kakashi-hatake-q1767",
+      "before": "Naruto universe",
+      "after": "Naruto",
+      "entityId": "Q1767"
+    },
+    {
+      "id": "kamala-khan-q15208946",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q15208946"
+    },
+    {
+      "id": "katara-q1758871",
+      "before": "World of Avatar",
+      "after": "Avatar: The Last Airbender",
+      "entityId": "Q1758871"
+    },
+    {
+      "id": "korra-q2536755",
+      "before": "World of Avatar",
+      "after": "Avatar: The Last Airbender",
+      "entityId": "Q2536755"
+    },
+    {
+      "id": "krillin-q757141",
+      "before": "Dragon Ball universe",
+      "after": "Dragon Ball",
+      "entityId": "Q757141"
+    },
+    {
+      "id": "kylo-ren-q21515016",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q21515016"
+    },
+    {
+      "id": "lex-luthor-q694790",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q694790"
+    },
+    {
+      "id": "lisa-simpson-q5846",
+      "before": "The Simpsons universe",
+      "after": "The Simpsons",
+      "entityId": "Q5846"
+    },
+    {
+      "id": "luke-cage-q2267760",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q2267760"
+    },
+    {
+      "id": "luna-lovegood-q190282",
+      "before": "Harry Potter universe",
+      "after": "Harry Potter",
+      "entityId": "Q190282"
+    },
+    {
+      "id": "mace-windu-q51725",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q51725"
+    },
+    {
+      "id": "magneto-q840291",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q840291"
+    },
+    {
+      "id": "master-roshi-q1752065",
+      "before": "Dragon Ball universe",
+      "after": "Dragon Ball",
+      "entityId": "Q1752065"
+    },
+    {
+      "id": "mike-ehrmantraut-q16578433",
+      "before": "Gilliverse",
+      "after": "Breaking Bad",
+      "entityId": "Q16578433"
+    },
+    {
+      "id": "minerva-mcgonagall-q192179",
+      "before": "Harry Potter universe",
+      "after": "Harry Potter",
+      "entityId": "Q192179"
+    },
+    {
+      "id": "misty-q1057356",
+      "before": "Pokémon universe",
+      "after": "Pokémon",
+      "entityId": "Q1057356"
+    },
+    {
+      "id": "mr-burns-q716636",
+      "before": "The Simpsons universe",
+      "after": "The Simpsons",
+      "entityId": "Q716636"
+    },
+    {
+      "id": "mr-krabs-q1193472",
+      "before": "SpongeBob SquarePants universe",
+      "after": "SpongeBob SquarePants",
+      "entityId": "Q1193472"
+    },
+    {
+      "id": "nami-q877964",
+      "before": "One Piece universe",
+      "after": "One Piece",
+      "entityId": "Q877964"
+    },
+    {
+      "id": "ned-flanders-q1158157",
+      "before": "The Simpsons universe",
+      "after": "The Simpsons",
+      "entityId": "Q1158157"
+    },
+    {
+      "id": "neville-longbottom-q190366",
+      "before": "Harry Potter universe",
+      "after": "Harry Potter",
+      "entityId": "Q190366"
+    },
+    {
+      "id": "nico-robin-q1190653",
+      "before": "One Piece universe",
+      "after": "One Piece",
+      "entityId": "Q1190653"
+    },
+    {
+      "id": "nightwing-q686623",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q686623"
+    },
+    {
+      "id": "obi-wan-kenobi-q51740",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q51740"
+    },
+    {
+      "id": "palpatine-q51770",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q51770"
+    },
+    {
+      "id": "patrick-star-q1077456",
+      "before": "SpongeBob SquarePants universe",
+      "after": "SpongeBob SquarePants",
+      "entityId": "Q1077456"
+    },
+    {
+      "id": "petyr-baelish-q4360302",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q4360302"
+    },
+    {
+      "id": "piccolo-q151659",
+      "before": "Dragon Ball universe",
+      "after": "Dragon Ball",
+      "entityId": "Q151659"
+    },
+    {
+      "id": "po-q3307548",
+      "before": "Kung Fu Panda universe",
+      "after": "Kung Fu Panda",
+      "entityId": "Q3307548"
+    },
+    {
+      "id": "poe-dameron-q21782656",
+      "before": "Star Wars Legends",
+      "after": "Star Wars",
+      "entityId": "Q21782656"
+    },
+    {
+      "id": "poison-ivy-q375671",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q375671"
+    },
+    {
+      "id": "princess-daisy-q1148659",
+      "before": "Super Mario universe",
+      "after": "Super Mario",
+      "entityId": "Q1148659"
+    },
+    {
+      "id": "princess-fiona-q52405",
+      "before": "Shrek universe",
+      "after": "Shrek",
+      "entityId": "Q52405"
+    },
+    {
+      "id": "professor-moriarty-q283111",
+      "before": "Sherlock Holmes universe",
+      "after": "Sherlock Holmes",
+      "entityId": "Q283111"
+    },
+    {
+      "id": "professor-x-q838076",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q838076"
+    },
+    {
+      "id": "puss-in-boots-q2283527",
+      "before": "Shrek universe",
+      "after": "Shrek",
+      "entityId": "Q2283527"
+    },
+    {
+      "id": "qui-gon-jinn-q51736",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q51736"
+    },
+    {
+      "id": "r2-d2-q51788",
+      "before": "Star Wars Legends",
+      "after": "Star Wars",
+      "entityId": "Q51788"
+    },
+    {
+      "id": "raven-q245928",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q245928"
+    },
+    {
+      "id": "remus-lupin-q208657",
+      "before": "Harry Potter universe",
+      "after": "Harry Potter",
+      "entityId": "Q208657"
+    },
+    {
+      "id": "rock-lee-q52852",
+      "before": "Naruto universe",
+      "after": "Naruto",
+      "entityId": "Q52852"
+    },
+    {
+      "id": "rocket-raccoon-q638476",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q638476"
+    },
+    {
+      "id": "roronoa-zoro-q858432",
+      "before": "One Piece universe",
+      "after": "One Piece",
+      "entityId": "Q858432"
+    },
+    {
+      "id": "rosalina-q2208427",
+      "before": "Super Mario universe",
+      "after": "Super Mario",
+      "entityId": "Q2208427"
+    },
+    {
+      "id": "rubeus-hagrid-q177439",
+      "before": "Harry Potter universe",
+      "after": "Harry Potter",
+      "entityId": "Q177439"
+    },
+    {
+      "id": "sakura-haruno-q203240",
+      "before": "Naruto universe",
+      "after": "Naruto",
+      "entityId": "Q203240"
+    },
+    {
+      "id": "samwell-tarly-q11703515",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q11703515"
+    },
+    {
+      "id": "sandor-clegane-q3948140",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q3948140"
+    },
+    {
+      "id": "sandy-cheeks-q1189756",
+      "before": "SpongeBob SquarePants universe",
+      "after": "SpongeBob SquarePants",
+      "entityId": "Q1189756"
+    },
+    {
+      "id": "sanji-q1061765",
+      "before": "One Piece universe",
+      "after": "One Piece",
+      "entityId": "Q1061765"
+    },
+    {
+      "id": "sansa-stark-q3472490",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q3472490"
+    },
+    {
+      "id": "sasuke-uchiha-q1740",
+      "before": "Naruto universe",
+      "after": "Naruto",
+      "entityId": "Q1740"
+    },
+    {
+      "id": "saul-goodman-q7154377",
+      "before": "Gilliverse",
+      "after": "Breaking Bad",
+      "entityId": "Q7154377"
+    },
+    {
+      "id": "scott-lang-q81787",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q81787"
+    },
+    {
+      "id": "severus-snape-q176772",
+      "before": "Harry Potter universe",
+      "after": "Harry Potter",
+      "entityId": "Q176772"
+    },
+    {
+      "id": "shadow-the-hedgehog-q1136987",
+      "before": "Sonic the Hedgehog universe",
+      "after": "Sonic the Hedgehog",
+      "entityId": "Q1136987"
+    },
+    {
+      "id": "sirius-black-q713701",
+      "before": "Harry Potter universe",
+      "after": "Harry Potter",
+      "entityId": "Q713701"
+    },
+    {
+      "id": "sokka-q2060477",
+      "before": "World of Avatar",
+      "after": "Avatar: The Last Airbender",
+      "entityId": "Q2060477"
+    },
+    {
+      "id": "sonic-the-hedgehog-q191626",
+      "before": "Sonic the Hedgehog universe",
+      "after": "Sonic the Hedgehog",
+      "entityId": "Q191626"
+    },
+    {
+      "id": "spider-man-q79037",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q79037"
+    },
+    {
+      "id": "star-lord-q3496918",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q3496918"
+    },
+    {
+      "id": "starfire-q427987",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q427987"
+    },
+    {
+      "id": "steve-harrington-q65515753",
+      "before": "Stranger Things universe",
+      "after": "Stranger Things",
+      "entityId": "Q65515753"
+    },
+    {
+      "id": "storm-q632212",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q632212"
+    },
+    {
+      "id": "superman-q79015",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q79015"
+    },
+    {
+      "id": "thanos-q2276627",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q2276627"
+    },
+    {
+      "id": "the-joker-q217533",
+      "before": "DC Universe",
+      "after": "DC Comics",
+      "entityId": "Q217533"
+    },
+    {
+      "id": "toad-q1061603",
+      "before": "Super Mario universe",
+      "after": "Super Mario",
+      "entityId": "Q1061603"
+    },
+    {
+      "id": "tony-tony-chopper-q1152213",
+      "before": "One Piece universe",
+      "after": "One Piece",
+      "entityId": "Q1152213"
+    },
+    {
+      "id": "toph-beifong-q12879",
+      "before": "World of Avatar",
+      "after": "Avatar: The Last Airbender",
+      "entityId": "Q12879"
+    },
+    {
+      "id": "trunks-q757302",
+      "before": "Dragon Ball universe",
+      "after": "Dragon Ball",
+      "entityId": "Q757302"
+    },
+    {
+      "id": "tyrion-lannister-q2076759",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q2076759"
+    },
+    {
+      "id": "usopp-q1078696",
+      "before": "One Piece universe",
+      "after": "One Piece",
+      "entityId": "Q1078696"
+    },
+    {
+      "id": "varys-q4008842",
+      "before": "World of Ice and Fire",
+      "after": "Game of Thrones",
+      "entityId": "Q4008842"
+    },
+    {
+      "id": "vegeta-q180916",
+      "before": "Dragon Ball universe",
+      "after": "Dragon Ball",
+      "entityId": "Q180916"
+    },
+    {
+      "id": "vision-q2307071",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q2307071"
+    },
+    {
+      "id": "walter-white-q23554",
+      "before": "Gilliverse",
+      "after": "Breaking Bad",
+      "entityId": "Q23554"
+    },
+    {
+      "id": "waluigi-q1050827",
+      "before": "Super Mario universe",
+      "after": "Super Mario",
+      "entityId": "Q1050827"
+    },
+    {
+      "id": "wario-q536138",
+      "before": "Super Mario universe",
+      "after": "Super Mario",
+      "entityId": "Q536138"
+    },
+    {
+      "id": "wasp-q648125",
+      "before": "Earth-616",
+      "after": "Marvel Comics",
+      "entityId": "Q648125"
+    },
+    {
+      "id": "woody-q2290907",
+      "before": "Toy Story universe",
+      "after": "Toy Story",
+      "entityId": "Q2290907"
+    },
+    {
+      "id": "yoda-q51730",
+      "before": "Star Wars universe",
+      "after": "Star Wars",
+      "entityId": "Q51730"
+    },
+    {
+      "id": "yoshi-q214174",
+      "before": "Super Mario universe",
+      "after": "Super Mario",
+      "entityId": "Q214174"
+    },
+    {
+      "id": "zuko-q1997841",
+      "before": "World of Avatar",
+      "after": "Avatar: The Last Airbender",
+      "entityId": "Q1997841"
+    }
+  ],
+  "descriptionPolicy": "Category reference labels and curated fictional franchise labels only; no unreviewed Wikidata biographical assertions are published.",
+  "expansion20261117": {
+    "eligibleReferences": 5636,
+    "acceptedAdditionalImages": 5588,
+    "original48Preserved": true,
+    "candidateSha256": "fcec5676f5ade6be8e67e65277b9733d03d84c4f83edf8e1c1f1ad943bd3251f",
+    "heldIdentities": [
+      {
+        "id": "chris-benoit-q44292",
+        "state": "editorial_hold"
+      },
+      {
+        "id": "lech-czech-and-rus-q338097",
+        "state": "editorial_hold"
+      },
+      {
+        "id": "moomins-q200344",
+        "state": "editorial_hold"
+      },
+      {
+        "id": "nightwing-q686623",
+        "state": "editorial_hold"
+      },
+      {
+        "id": "supergirl-q8981293",
+        "state": "editorial_hold"
+      },
+      {
+        "id": "the-hardy-boys-q1471089",
+        "state": "editorial_hold"
+      },
+      {
+        "id": "wandering-jew-q464017",
+        "state": "editorial_hold"
+      },
+      {
+        "id": "william-joyce-q76532",
+        "state": "editorial_hold"
+      },
+      {
+        "id": "x-men-q128452",
+        "state": "editorial_hold"
+      }
+    ],
+    "recoveryInventory": [
+      {
+        "id": "winnie-the-pooh-q188574",
+        "entityId": "Q188574",
+        "name": "Winnie the Pooh",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Winnie-the-Pooh",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Pooh_Shepard1928.jpg",
+        "reason": "Subject is too faint, small or visually busy to remain identifiable in the 88×110 reading portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "sun-wukong-q11773777",
+        "entityId": "Q11773777",
+        "name": "Sun Wukong",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Sun_Wukong",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Xiyou.PNG",
+        "reason": "Subject is too faint, small or visually busy to remain identifiable in the 88×110 reading portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "baba-yaga-q187002",
+        "entityId": "Q187002",
+        "name": "Baba Yaga",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Baba_Yaga",
+        "filePage": "https://commons.wikimedia.org/wiki/File:%D0%A1%D0%BA%D0%B0%D0%B7%D0%BA%D0%B0_%D0%91%D0%B0%D0%B1%D0%B0-%D1%8F%D0%B3%D0%B0_3.jpg",
+        "reason": "Subject is too faint, small or visually busy to remain identifiable in the 88×110 reading portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "su-song-q1265657",
+        "entityId": "Q1265657",
+        "name": "Su Song",
+        "category": "science",
+        "sourcePage": "https://en.wikipedia.org/wiki/Su_Song",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Clock_Tower_from_Su_Song%27s_Book_desmear.JPG",
+        "reason": "Lead image is a clock-tower schematic, not a depiction of the person.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "robert-hooke-q46830",
+        "entityId": "Q46830",
+        "name": "Robert Hooke",
+        "category": "science",
+        "sourcePage": "https://en.wikipedia.org/wiki/Robert_Hooke",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Portrait_of_a_Mathematician_1680c.jpg",
+        "reason": "Source describes the sitter as unknown; attribution to Hooke is conjectural.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "abdullah-al-mahdi-billah-q307629",
+        "entityId": "Q307629",
+        "name": "Abdullah al-Mahdi Billah",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Abd_Allah_al-Mahdi_Billah",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Calif_al_Mahdi_Kairouan_912_CE(png).png",
+        "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "abu-bakr-q334923",
+        "entityId": "Q334923",
+        "name": "Abu Bakr",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Abu_Bakr",
+        "filePage": "https://commons.wikimedia.org/wiki/File:20131203_Istanbul_091.jpg",
+        "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "gwanggaeto-the-great-q498791",
+        "entityId": "Q498791",
+        "name": "Gwanggaeto the Great",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Gwanggaeto_the_Great",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Gwanggaeto_Stele_5.jpg",
+        "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "suppiluliuma-i-q354903",
+        "entityId": "Q354903",
+        "name": "Suppiluliuma I",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/%C5%A0uppiluliuma_I",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Map_Hittite_rule_en.svg",
+        "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "uthman-ibn-affan-q37731",
+        "entityId": "Q37731",
+        "name": "Uthman ibn Affan",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Uthman",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Ayasofya_13_(cropped).JPG",
+        "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "razia-sultana-q465076",
+        "entityId": "Q465076",
+        "name": "Razia Sultana",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Razia_Sultan",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Painting_of_Razia_Sultana_of_the_Delhi_Sultanate,_from_the_lacquer-binding_cover_of_a_manuscript_of_Tulsi_Das%27_%27Ramcharitmanas%27,_ca.1830%E2%80%9336.jpg",
+        "reason": "Lead image is calligraphy, an inscription, a monument or a map rather than a legible depiction of the person.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "alfred-the-great-q83476",
+        "entityId": "Q83476",
+        "name": "Alfred the Great",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Alfred_the_Great",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Alfred_the_Great,_silver_penny;_struck_875%E2%80%93880_(obverse).png",
+        "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "chandragupta-ii-q844536",
+        "entityId": "Q844536",
+        "name": "Chandragupta II",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Chandragupta_II",
+        "filePage": "https://commons.wikimedia.org/wiki/File:ChandraguptaIIOnHorse.jpg",
+        "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "charles-the-fat-q150712",
+        "entityId": "Q150712",
+        "name": "Charles the Fat",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Charles_the_Fat",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Sceau_de_Charles_le_gros.jpg",
+        "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "otto-i-the-great-q43915",
+        "entityId": "Q43915",
+        "name": "Otto I the Great",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Otto_the_Great",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Siegel_Otto_I_Posse.JPG",
+        "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "robert-guiscard-q203792",
+        "entityId": "Q203792",
+        "name": "Robert Guiscard",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Robert_Guiscard",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Robert_Guiscard.jpg",
+        "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "samudragupta-q1133363",
+        "entityId": "Q1133363",
+        "name": "Samudragupta",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Samudragupta",
+        "filePage": "https://commons.wikimedia.org/wiki/File:SamudraguptaCoin.png",
+        "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "vercingetorix-q178953",
+        "entityId": "Q178953",
+        "name": "Vercingetorix",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Vercingetorix",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Vercing%C3%A9torix_stat%C3%A8re_Gallica_avers.jpg",
+        "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "vladimir-the-great-q14974",
+        "entityId": "Q14974",
+        "name": "Vladimir the Great",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Vladimir_the_Great",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Coin_of_Vladimir_the_Great.JPG",
+        "reason": "Coin association establishes issuer, not necessarily depicted identity; portrait is also illegible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "ajatasatru-q379242",
+        "entityId": "Q379242",
+        "name": "Ajatasatru",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Ajatashatru",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Indian_Museum_Sculpture_-_Ajatasattu_worships_the_Buddha_(9217704485).jpg",
+        "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "ashoka-q8589",
+        "entityId": "Q8589",
+        "name": "Ashoka",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Ashoka",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Ashoka%27s_visit_to_the_Ramagrama_stupa_Sanchi_Stupa_1_Southern_gateway.jpg",
+        "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "bolesaw-i-the-brave-q53436",
+        "entityId": "Q53436",
+        "name": "Bolesław I the Brave",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Boles%C5%82aw_I_the_Brave",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Boles%C5%82aw_I_the_Brave_buys_the_corpse_of_Saint_Adalbert_of_Prague_from_the_Prussians,_Gniezno_Door_ca._1170.png",
+        "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "charles-martel-q3301",
+        "entityId": "Q3301",
+        "name": "Charles Martel",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Charles_Martel",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Charles_Martel_divise_le_royaume_entre_P%C3%A9pin_et_Carloman.jpg",
+        "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "decebalus-q28928",
+        "entityId": "Q28928",
+        "name": "Decebalus",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Decebalus",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Decebal_suicide.jpg",
+        "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "hammurabi-q36359",
+        "entityId": "Q36359",
+        "name": "Hammurabi",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Hammurabi",
+        "filePage": "https://commons.wikimedia.org/wiki/File:F0182_Louvre_Code_Hammourabi_Bas-relief_Sb8_rwk.jpg",
+        "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "narmer-q189582",
+        "entityId": "Q189582",
+        "name": "Narmer",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Narmer",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Narmer_palette_(obverse)_(cropped).jpg",
+        "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "roger-ii-of-sicily-q193901",
+        "entityId": "Q193901",
+        "name": "Roger II of Sicily",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Roger_II_of_Sicily",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Martorana_Palermo_msu2017-0166.jpg",
+        "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "sri-krishnadevaraya-q121235",
+        "entityId": "Q121235",
+        "name": "Sri Krishnadevaraya",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Krishnadevaraya",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Chinnadevi,_Krishnadevaraya,_Tirumaladevi_statues_at_Chandragiri_Museum.jpg",
+        "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "suryavarman-ii-q313298",
+        "entityId": "Q313298",
+        "name": "Suryavarman II",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Suryavarman_II",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Suryavarman_II_Angkor_Wat_0869.jpg",
+        "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "thelstan-q170017",
+        "entityId": "Q170017",
+        "name": "Æthelstan",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/%C3%86thelstan",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Athelstan_(cropped).jpg",
+        "reason": "Multi-person relief or scene leaves the intended subject unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "amir-khusrau-q207817",
+        "entityId": "Q207817",
+        "name": "Amir Khusrau",
+        "category": "literature",
+        "sourcePage": "https://en.wikipedia.org/wiki/Amir_Khusrau",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Amir_Khusro.jpg",
+        "reason": "Multiple figures in the lead illustration make the intended individual unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "kabir-q312551",
+        "entityId": "Q312551",
+        "name": "Kabir",
+        "category": "literature",
+        "sourcePage": "https://en.wikipedia.org/wiki/Kabir",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Kabir004.jpg",
+        "reason": "Multiple figures in the lead illustration make the intended individual unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "virgil-q1398",
+        "entityId": "Q1398",
+        "name": "Virgil",
+        "category": "literature",
+        "sourcePage": "https://en.wikipedia.org/wiki/Virgil",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Virgil_mosaic_in_the_Bardo_National_Museum_(Tunis)_(12241228546).jpg",
+        "reason": "Multiple figures in the lead illustration make the intended individual unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "chretien-de-troyes-q4302",
+        "entityId": "Q4302",
+        "name": "Chrétien de Troyes",
+        "category": "literature",
+        "sourcePage": "https://en.wikipedia.org/wiki/Chr%C3%A9tien_de_Troyes",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Chr%C3%A9tien_de_Troyes.jpg",
+        "reason": "Faint, small or visually dense historical depiction is not legible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "enheduanna-q232505",
+        "entityId": "Q232505",
+        "name": "Enheduanna",
+        "category": "literature",
+        "sourcePage": "https://en.wikipedia.org/wiki/Enheduanna",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Enheduanna,_daughter_of_Sargon_of_Akkad.jpg",
+        "reason": "Faint, small or visually dense historical depiction is not legible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "kalidasa-q7011",
+        "entityId": "Q7011",
+        "name": "Kalidasa",
+        "category": "literature",
+        "sourcePage": "https://en.wikipedia.org/wiki/Kalidasa",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Kalidasa_inditing_the_cloud_Messenger,_A.D._375.jpg",
+        "reason": "Faint, small or visually dense historical depiction is not legible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "li-bai-q7071",
+        "entityId": "Q7071",
+        "name": "Li Bai",
+        "category": "literature",
+        "sourcePage": "https://en.wikipedia.org/wiki/Li_Bai",
+        "filePage": "https://commons.wikimedia.org/wiki/File:LiBai.jpg",
+        "reason": "Faint, small or visually dense historical depiction is not legible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "matsuo-basho-q5676",
+        "entityId": "Q5676",
+        "name": "Matsuo Bashō",
+        "category": "literature",
+        "sourcePage": "https://en.wikipedia.org/wiki/Matsuo_Bash%C5%8D",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Basho_by_Morikawa_Kyoriku_(1656-1715).jpg",
+        "reason": "Faint, small or visually dense historical depiction is not legible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "qu-yuan-q313330",
+        "entityId": "Q313330",
+        "name": "Qu Yuan",
+        "category": "literature",
+        "sourcePage": "https://en.wikipedia.org/wiki/Qu_Yuan",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Qu_Yuan_Chen_Hongshou_2.jpg",
+        "reason": "Faint, small or visually dense historical depiction is not legible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "tao-yuanming-q314210",
+        "entityId": "Q314210",
+        "name": "Tao Yuanming",
+        "category": "literature",
+        "sourcePage": "https://en.wikipedia.org/wiki/Tao_Yuanming",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Ch%27en_Hung-shou_002.jpg",
+        "reason": "Faint, small or visually dense historical depiction is not legible at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "sappho-q17892",
+        "entityId": "Q17892",
+        "name": "Sappho",
+        "category": "literature",
+        "sourcePage": "https://en.wikipedia.org/wiki/Sappho",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Malarz_Safony_-_Kalpis_wykonana_technik%C4%85_Six.jpg",
+        "reason": "The lead image is a vase; the depicted person is too small to identify at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "ahmad-ibn-ibrahim-al-ghazi-q335728",
+        "entityId": "Q335728",
+        "name": "Ahmad ibn Ibrahim al-Ghazi",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Ahmad_ibn_Ibrahim_al-Ghazi",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Imaam_Ahmed_Gurey.jpg",
+        "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "arminius-q68880",
+        "entityId": "Q68880",
+        "name": "Arminius",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Arminius",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Hermannsdenkmal_statue.jpg",
+        "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "eleanor-of-aquitaine-q178525",
+        "entityId": "Q178525",
+        "name": "Eleanor of Aquitaine",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Eleanor_of_Aquitaine",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Gisant_d%27Ali%C3%A9nor_d%27Aquitaine_%C3%A0_l%27abbaye_de_Fontevraud.jpg",
+        "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "emperor-wen-of-sui-q7418",
+        "entityId": "Q7418",
+        "name": "Emperor Wen of Sui",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Emperor_Wen_of_Sui",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Sui_Wendi_Tang.jpg",
+        "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "ismail-i-q214559",
+        "entityId": "Q214559",
+        "name": "Ismail I",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Ismail_I",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Shah_Ismail_I_Safavid,_Behzad.jpg",
+        "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "rudrama-devi-q3523666",
+        "entityId": "Q3523666",
+        "name": "Rudrama Devi",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Rudrama_Devi",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Rani_Rudrama_Devi,_Warangal_Fort_Telangana,_India_-_1.jpg",
+        "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "stephen-i-of-hungary-q177903",
+        "entityId": "Q177903",
+        "name": "Stephen I of Hungary",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Stephen_I_of_Hungary",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Portrayal_of_Stephen_I,_King_of_Hungary_on_the_coronation_pall.jpg",
+        "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "svatopluk-i-q437589",
+        "entityId": "Q437589",
+        "name": "Svatopluk I of Moravia",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Svatopluk_I_of_Moravia",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Bratislava_Profesionalita_maestra_Kulicha.jpg",
+        "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "sviatoslav-i-of-kiev-q1058572",
+        "entityId": "Q1058572",
+        "name": "Sviatoslav I",
+        "category": "royalty",
+        "sourcePage": "https://en.wikipedia.org/wiki/Sviatoslav_I",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Sviatoslav_by_Eugene_Lanceray_1886.JPG",
+        "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "abu-bakr-al-razi-q169234",
+        "entityId": "Q169234",
+        "name": "Abu Bakr al-Razi",
+        "category": "science",
+        "sourcePage": "https://en.wikipedia.org/wiki/Abu_Bakr_al-Razi",
+        "filePage": "https://commons.wikimedia.org/wiki/File:%D8%B2%DA%A9%D8%B1%DB%8C%D8%A7%DB%8C_%D8%B1%D8%A7%D8%B2%DB%8C_%D8%A7%D8%AB%D8%B1_%D8%AD%D8%B3%DB%8C%D9%86_%D8%A8%D9%87%D8%B2%D8%A7%D8%AF_(cropped).jpg",
+        "reason": "Tiny, faint or unclear historical subject does not remain identifiable in an 88×110 portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "loki-q1147326",
+        "entityId": "Q1147326",
+        "name": "Loki",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Loki_(Marvel_Comics)",
+        "filePage": "https://en.wikipedia.org/wiki/File:Various_incarnations_of_Loki_(2014).webp",
+        "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait.",
+        "recovered": true,
+        "finalEligible": true
+      },
+      {
+        "id": "robin-q59996",
+        "entityId": "Q59996",
+        "name": "Robin",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Robin_(character)",
+        "filePage": "https://en.wikipedia.org/wiki/File:Robins_(DC_Comics_characters).png",
+        "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait.",
+        "recovered": false,
+        "finalEligible": false,
+        "representedBy": "dick-grayson-q660051"
+      },
+      {
+        "id": "rogue-q838097",
+        "entityId": "Q838097",
+        "name": "Rogue",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Rogue_(Marvel_Comics)",
+        "filePage": "https://en.wikipedia.org/wiki/File:Excalibur_2019_-18.jpeg",
+        "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "scarlet-witch-q929285",
+        "entityId": "Q929285",
+        "name": "Scarlet Witch",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Scarlet_Witch",
+        "filePage": "https://en.wikipedia.org/wiki/File:Scarlet_Witch_Various_incarnations_2021.jpg",
+        "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait.",
+        "recovered": true,
+        "finalEligible": true
+      },
+      {
+        "id": "wonder-woman-q338430",
+        "entityId": "Q338430",
+        "name": "Wonder Woman",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Wonder_Woman",
+        "filePage": "https://en.wikipedia.org/wiki/File:Wonder_Woman_750.jpg",
+        "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait.",
+        "recovered": true,
+        "finalEligible": true
+      },
+      {
+        "id": "the-addams-family-q3817916",
+        "entityId": "Q3817916",
+        "name": "The Addams Family",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/The_Addams_Family",
+        "filePage": "https://en.wikipedia.org/wiki/File:THE-ADDAMS-FAMILY-by-Charles-Addams-1938-%C2%A9The-New-Yorker.jpg",
+        "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait.",
+        "recovered": false,
+        "finalEligible": false
+      },
+      {
+        "id": "the-fantastic-four-q152098",
+        "entityId": "Q152098",
+        "name": "The Fantastic Four",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Fantastic_Four",
+        "filePage": "https://en.wikipedia.org/wiki/File:Fantastic_Four_(Marvel_Comics_characters).jpg",
+        "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait.",
+        "recovered": false,
+        "finalEligible": false
+      },
+      {
+        "id": "pandava-q236221",
+        "entityId": "Q236221",
+        "name": "Pāṇḍava",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Pandava",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Draupadi_and_Pandavas.jpg",
+        "reason": "Lead image is a group, collage or multiple different identities, unsuitable for one canonical reference portrait.",
+        "recovered": false,
+        "finalEligible": false
+      },
+      {
+        "id": "saruman-q216489",
+        "entityId": "Q216489",
+        "name": "Saruman",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Saruman",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Escudo_Isengard.svg",
+        "reason": "Lead image is a hand symbol, not the character.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "sauron-q2281",
+        "entityId": "Q2281",
+        "name": "Sauron",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Sauron",
+        "filePage": "https://en.wikipedia.org/wiki/File:Sauron_Tolkien_illustration.jpg",
+        "reason": "Lead depiction is ambiguous or illegible at reading portrait size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "balbir-singh-sr-q804684",
+        "entityId": "Q804684",
+        "name": "Balbir Singh Sr.",
+        "category": "sport",
+        "sourcePage": "https://en.wikipedia.org/wiki/Balbir_Singh_Sr.",
+        "filePage": "https://commons.wikimedia.org/wiki/File:1956-_Melbourne_Olympic_Victory_Ceremony.jpg",
+        "reason": "Lead image shows a multi-person podium; the individual is unclear at reading size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "martin-brodeur-q357465",
+        "entityId": "Q357465",
+        "name": "Martin Brodeur",
+        "category": "sport",
+        "sourcePage": "https://en.wikipedia.org/wiki/Martin_Brodeur",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Martin_Brodeur_during_game_at_Prudential_Center_vs_Ottawa_11-25-09_3.jpeg",
+        "reason": "Back-facing sports action image does not show the identified face.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "seve-ballesteros-q272190",
+        "entityId": "Q272190",
+        "name": "Seve Ballesteros",
+        "category": "sport",
+        "sourcePage": "https://en.wikipedia.org/wiki/Seve_Ballesteros",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Seve_Ballesteros_2006-07-19_(cropped).jpg",
+        "reason": "Back-facing sports action image does not show the identified face.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "guillaume-dufay-q207717",
+        "entityId": "Q207717",
+        "name": "Guillaume Du Fay",
+        "category": "music",
+        "sourcePage": "https://en.wikipedia.org/wiki/Guillaume_Du_Fay",
+        "filePage": "https://commons.wikimedia.org/wiki/File:DufayBinchois.jpg",
+        "reason": "Two equally prominent manuscript figures do not identify a single portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "black-canary-q599124",
+        "entityId": "Q599124",
+        "name": "Black Canary",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Black_Canary",
+        "filePage": "https://en.wikipedia.org/wiki/File:Black_Canaries_(DC_Comics_characters).png",
+        "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained.",
+        "recovered": false,
+        "finalEligible": false,
+        "representedBy": "black-canary-dinah-laurel-lance-q96373646"
+      },
+      {
+        "id": "black-widow-q369197",
+        "entityId": "Q369197",
+        "name": "Black Widow",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Black_Widow_(Natasha_Romanova)",
+        "filePage": "https://en.wikipedia.org/wiki/File:Natasha_Romanova_incarnations.jpg",
+        "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained.",
+        "recovered": false,
+        "finalEligible": false,
+        "representedBy": "black-widow-natasha-romanoff-q23895063"
+      },
+      {
+        "id": "captain-marvel-q534153",
+        "entityId": "Q534153",
+        "name": "Captain Marvel",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Shazam_(DC_Comics)",
+        "filePage": "https://en.wikipedia.org/wiki/File:Billy_Batson,_Shazam_Captain_Marvel_(Modern).png",
+        "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "flash-q180784",
+        "entityId": "Q180784",
+        "name": "Flash",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/The_Flash",
+        "filePage": "https://en.wikipedia.org/wiki/File:The_Flash_Family.jpg",
+        "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained.",
+        "recovered": false,
+        "finalEligible": false,
+        "representedBy": "flash-barry-allen-q2258938"
+      },
+      {
+        "id": "four-emperors-q2488420",
+        "entityId": "Q2488420",
+        "name": "Four Emperors",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Four_Emperors_(One_Piece)",
+        "filePage": "https://en.wikipedia.org/wiki/File:Four_Emperors.png",
+        "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained.",
+        "recovered": false,
+        "finalEligible": false
+      },
+      {
+        "id": "gambit-q2639150",
+        "entityId": "Q2639150",
+        "name": "Gambit",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Gambit_(Marvel_Comics)",
+        "filePage": "https://en.wikipedia.org/wiki/File:Gambit_incarnations.png",
+        "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained.",
+        "recovered": true,
+        "finalEligible": true
+      },
+      {
+        "id": "green-lantern-q32884",
+        "entityId": "Q32884",
+        "name": "Green Lantern",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Green_Lantern",
+        "filePage": "https://en.wikipedia.org/wiki/File:Green_Lantern_Rebirth_6.jpg",
+        "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained.",
+        "recovered": false,
+        "finalEligible": false,
+        "representedBy": "green-lantern-hal-jordan-q2345627"
+      },
+      {
+        "id": "harley-quinn-q849477",
+        "entityId": "Q849477",
+        "name": "Harley Quinn",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Harley_Quinn",
+        "filePage": "https://en.wikipedia.org/wiki/File:HarleyQuinn_Various_incarnations.jpg",
+        "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained.",
+        "recovered": true,
+        "finalEligible": true
+      },
+      {
+        "id": "hildegard-of-bingen-q70991",
+        "entityId": "Q70991",
+        "name": "Hildegard of Bingen",
+        "category": "music",
+        "sourcePage": "https://en.wikipedia.org/wiki/Hildegard_of_Bingen",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Hildegard_von_Bingen.jpg",
+        "reason": "Multiple manuscript figures; lead-image association alone does not identify which figure to frame.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "jean-grey-q5350072",
+        "entityId": "Q5350072",
+        "name": "Jean Grey",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Jean_Grey",
+        "filePage": "https://en.wikipedia.org/wiki/File:Jean_Grey_(Modern).webp",
+        "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained.",
+        "recovered": true,
+        "finalEligible": true
+      },
+      {
+        "id": "jessica-jones-q2271377",
+        "entityId": "Q2271377",
+        "name": "Jessica Jones",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Jessica_Jones",
+        "filePage": "https://en.wikipedia.org/wiki/File:Jessica_Jones_by_Mike_Mayhew.jpg",
+        "reason": "Lead image combines multiple distinct people or different identities; no unambiguous single portrait was retained.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "muthuswami-dikshitar-q1771067",
+        "entityId": "Q1771067",
+        "name": "Muthuswami Dikshitar",
+        "category": "music",
+        "sourcePage": "https://en.wikipedia.org/wiki/Muthuswami_Dikshitar",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Muthuswami_Dikshitar_1976_stamp_of_India.jpg",
+        "reason": "Whole postage stamp leaves the subject too small beside text at reading portrait size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "syama-sastri-q3519351",
+        "entityId": "Q3519351",
+        "name": "Syama Sastri",
+        "category": "music",
+        "sourcePage": "https://en.wikipedia.org/wiki/Syama_Sastri",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Shyama_Shastri_1985_stamp_of_India.jpg",
+        "reason": "Whole postage stamp leaves the subject too small beside text at reading portrait size.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "yayoi-kusama-q231121",
+        "entityId": "Q231121",
+        "name": "Yayoi Kusama",
+        "category": "music",
+        "sourcePage": "https://en.wikipedia.org/wiki/Yayoi_Kusama",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Yayoi_Kusama_in_2005.jpg",
+        "reason": "Visual artist incorrectly seeded in music; excluded to avoid an inaccurate category.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "belinda-clark-q3195953",
+        "entityId": "Q3195953",
+        "name": "Belinda Clark",
+        "category": "sport",
+        "sourcePage": "https://en.wikipedia.org/wiki/Belinda_Clark",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Belinda_Clark_Batting_for_Women%27s_Cricket_Australia_vs_India_Match_at_North_Sydney_Oval.jpg",
+        "reason": "Face is turned down and obscured in the source; a tighter crop cannot provide a legible portrait.",
+        "recovered": false,
+        "finalEligible": true
+      },
+      {
+        "id": "captain-ahab-q2630009",
+        "entityId": "Q2630009",
+        "name": "Captain Ahab",
+        "category": "fiction",
+        "sourcePage": "https://en.wikipedia.org/wiki/Captain_Ahab",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Moby_Dick_final_chase.jpg",
+        "reason": "Source and tested crop remain too indistinct or back-facing at 88×110; excluded after framing review.",
+        "recovered": false,
+        "finalEligible": true
+      }
+    ],
+    "reviewBoundary": "All final added images manually inspected in batch sheets; flagged sources and replacements checked individually. Historical depictions and generated symbolic illustrations are labelled; this is not forensic likeness authentication."
+  }
+}

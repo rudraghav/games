@@ -9,7 +9,10 @@ type Reading = NonNullable<ReadingView['reading']>;
 
 function characterArtwork(name: string, source: string) {
   const artwork = tarotCharacter(name, source);
-  return artwork?.imageType === 'character' || artwork?.imageType === 'illustration'
+  return artwork &&
+    ['character', 'illustration', 'person', 'religious_figure', 'meme', 'artwork'].includes(
+      artwork.imageType,
+    )
     ? artwork
     : undefined;
 }
@@ -87,7 +90,7 @@ export function TarotReading({
           </div>
           {card.characters?.length ? (
             <div className="tarot-character-connections">
-              <h4>Your character energy</h4>
+              <h4>Your connections</h4>
               <ul>
                 {card.characters.map((character) => {
                   const portrait = characterArtwork(character.name, character.source);
@@ -95,6 +98,8 @@ export function TarotReading({
                     <li
                       key={`${character.name}-${character.source}`}
                       data-has-portrait={!!portrait}
+                      data-reference-kind={portrait?.kind}
+                      data-artwork-type={portrait?.imageType}
                     >
                       {portrait ? <TarotCharacterImage character={portrait} /> : null}
                       <div className="tarot-character-copy">
@@ -124,11 +129,13 @@ export function TarotReading({
               <li key={p.id}>
                 {p.filePage || p.sourcePage ? (
                   <a href={p.filePage || p.sourcePage} target="_blank" rel="noopener noreferrer">
-                    {p.name}: {readableCredit(p.credit)}
+                    {p.name}: {p.artworkTitle ? `${p.artworkTitle}. ` : ''}
+                    {readableCredit(p.credit)}
                   </a>
                 ) : (
                   <span>
-                    {p.name}: {readableCredit(p.credit)}
+                    {p.name}: {p.artworkTitle ? `${p.artworkTitle}. ` : ''}
+                    {readableCredit(p.credit)}
                   </span>
                 )}
                 {p.licenseUrl && p.license ? (
@@ -140,7 +147,7 @@ export function TarotReading({
                   </>
                 ) : null}
                 {p.rightsNote ? <> · {p.rightsNote}</> : null}
-                {' · framed to 4:5 and converted to WebP'}
+                {` · framed to ${p.width * 3 === p.height * 4 ? '4:3' : '4:5'} and converted to WebP`}
               </li>
             ))}
           </ul>

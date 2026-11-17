@@ -137,3 +137,19 @@ questions and historical-time labeling. `transportTelemetry` now counts HTTP
 failures separately and aggregates only normalized endpoint/status/duration.
 `eval_astrology.py --system western|vedic|both` and `--ordinary` support a bounded
 nonpersonal reading matrix; use a new ignored output path, never overwrite evidence.
+
+Tarot's local-only astrology suite also covers ordinary/chart generation across
+reloads, disabled duplicate submission, saved-question/chart retry and recovery
+when a synthetic response is lost after saving. These cases intercept provider
+endpoints and make no AI calls. `scripts/eval_tarot_matrix.py` separately prepares
+eight fixed nonpersonal ordinary/Western/Vedic/Both requests; it is dry-run by
+default, requires explicit `--execute --run-id`, caps provider attempts and saves
+raw readings only in private ignored files. Its direct provider results do not
+establish room persistence or authorization.
+
+`tarot-reading-live.spec.ts` is separately gated by both `GAMES_TEST_URL` and
+`GAMES_TEST_AI=1`. Its one desktop case uses two independent readers for ordinary
+and Both readings, then checks real images, responsive layouts, exact saved
+refresh, new-spread separation and private archives after room closure. It makes
+two generation submissions (at most three provider attempts with production
+retry), never mocks production responses and uses a fresh teardown budget.

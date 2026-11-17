@@ -58,7 +58,7 @@ describe('authoritative astrology presentation', () => {
       />,
     );
     expect(extended).toContain('Saved astrology reading');
-    expect(extended.match(/Your character energy/g)).toHaveLength(3);
+    expect(extended.match(/Your connections/g)).toHaveLength(3);
     for (const card of tarotReadingExample.cards) expect(extended).toContain(card.interpretation);
     expect(extended).toContain(syntheticAstrologyReading.interpretation.tarot_connection);
   });

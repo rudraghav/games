@@ -13,6 +13,17 @@ from app.games.tarot.reading import (
 from app.settings import settings
 
 
+@pytest.fixture(autouse=True)
+def transport_reference_candidates(monkeypatch):
+    # Transport/retry tests isolate provider behavior with a declared shortlist.
+    # Real catalogue breadth and budget are checked in test_tarot_selection.
+    from app.games.tarot.characters import find_character
+    pairs = [("Chihiro", "Spirited Away"), ("Miles Morales", "Spider-Man: Into the Spider-Verse"),
+             ("Leslie Knope", "Parks and Recreation")]
+    monkeypatch.setattr("app.games.tarot.reading.reference_candidates",
+                        lambda *_args, **_kwargs: [[find_character(*pair)] for pair in pairs])
+
+
 def test_gemini_request_is_bounded_private_and_schema_checked(monkeypatch):
     cards = ["major-00", "cups-03", "swords-10"]
     real_client = httpx.Client
@@ -50,11 +61,10 @@ def test_gemini_request_is_bounded_private_and_schema_checked(monkeypatch):
     assert result.cards[0].card_id == cards[0]
     payload = captured[0]
     assert payload["store"] is False
-    assert payload["generation_config"] == {"thinking_level": "low", "max_output_tokens": 3600}
+    assert payload["generation_config"] == {"thinking_level": "medium", "max_output_tokens": 3600}
     assert payload["response_format"]["mime_type"] == "application/json"
     context = json.loads(payload["input"])
     assert context["cards"][0]["card_id"] == cards[0]
-    assert len({card["reference_lane"] for card in context["cards"]}) == 3
     schema = payload["response_format"]["schema"]
     assert schema["properties"]["title"]["description"] == "Use 1–100 characters."
     positions = ["Where you are", "What is shifting", "Your next move"]

@@ -1,9 +1,19 @@
 import createClient from 'openapi-fetch';
 import { z } from 'zod';
 import type { paths } from './generated/schema';
-import { mapMe, mapRoom, type Action } from './mappers';
+import { mapMe, mapRoom, mapSavedReading, type Action } from './mappers';
 import type { AstrologyInput } from './astrology';
-export type { Room, Match, Card, Player, Action, ActionOption, Me, ReadingView } from './mappers';
+export type {
+  Room,
+  Match,
+  Card,
+  Player,
+  Action,
+  ActionOption,
+  Me,
+  ReadingView,
+  SavedReading,
+} from './mappers';
 export { boardDetails, wordsDetails, gemsDetails } from './game-details';
 export { trioDetails, flipSevenDetails, azulDetails } from './modern-details';
 export { partyDetails } from './party-details';
@@ -119,6 +129,13 @@ export function createApi(accessToken?: () => Promise<string | null>) {
     },
     async reading(id: string) {
       return unwrap(await client.GET('/v1/rooms/{room_id}/reading', { params: params(id) }));
+    },
+    async savedReading(matchId: string) {
+      return mapSavedReading(
+        unwrap(
+          await client.GET('/v1/readings/{match_id}', { params: { path: { match_id: matchId } } }),
+        ),
+      );
     },
     async generateReading(
       id: string,

@@ -7,6 +7,13 @@ type ReferenceIdentity = {
   lane: string;
   aliases: readonly string[];
   sourceAliases: readonly string[];
+  kind?: 'person' | 'character' | 'religious_figure' | 'meme';
+  category?: string;
+  description?: string;
+  tradition?: string;
+  identityFamily?: string;
+  wikidataId?: string;
+  wikipediaUrl?: string;
 };
 
 type ArtworkAsset = {
@@ -18,6 +25,8 @@ type ArtworkAsset = {
   credit: string;
   alt?: string;
   artworkVersion?: string;
+  artworkTitle?: string;
+  artworkAttributionUrl?: string;
   origin?: 'generated' | 'sourced';
   rights?: 'copyright-reference' | 'licensed' | 'public-domain' | 'generated';
   rightsNote?: string;
@@ -42,13 +51,12 @@ type PhotoArtwork = ArtworkAsset & {
 };
 
 type SourcedCharacterArtwork = ArtworkAsset & {
-  imageType: 'character';
+  imageType: 'character' | 'person' | 'religious_figure' | 'meme' | 'artwork';
   origin: 'sourced';
   artworkVersion: string;
   alt: string;
   sourcePage: string;
   filePage: string;
-  remoteImage: string;
   performer?: never;
   performerLabel?: never;
 } & (

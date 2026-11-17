@@ -59,3 +59,40 @@ Six of Wands and Four of Pentacles now use dedicated original masters with
 six distinct staffs and four complete coins. Their gallery and spread crops
 retain the counted symbols at phone and desktop proportions; all forty numbered
 minor cards now meet the inventory count assertion without an exception.
+
+
+## Expanded people and character references
+
+The source-backed catalogue now spans fictional characters and notable people
+from acting, science, history, politics, sport, literature and music. Every active
+reference has an exact name/source identity and a credited local portrait or
+character depiction. A real person's portrait is never used as a substitute for
+a role they played. Historical artwork is a depiction, not a verified lifetime
+photograph. The importer retains explicit exclusions and crop decisions.
+
+The backend selects a small, category-balanced shortlist for each card; the
+provider must use an identity from that card's shortlist. This keeps request
+size bounded as the library grows. Real-person connections concern public work
+and achievements without inventing private beliefs or implying endorsement.
+The expanded registry is loaded with the Tarot table, not every game's table.
+
+Profile history opens `/readings/[matchId]`, preserving the specific saved
+question, cards, interpretation and optional charts after a new spread or room
+closure. Reading it never regenerates text. The participant-only endpoint returns
+404 to other people, including other room visitors. See
+`features/reading/README.md` for archive behavior and verification.
+
+## Expanded scene and artwork presentation
+
+`TarotCharacterImage` is shared by current and archived readings. Person and
+character portraits remain112px on desktop and88px on narrow screens. Meme
+scenes and labelled artist works receive176px on desktop, then stack above the
+explanation up to240px on phones. Meme files retain4:3 or4:5 composition; actual
+images are never replaced by the actor who played the scene. Original generated
+art and artist-work references have distinct visible captions. Credits include
+the work title, actual image source and honest rights category.
+
+The archive browser fixture now exercises all six image types with real eligible
+assets: person, fictional character, religious figure, meme, artist work and
+original illustration, including long names at320/390/1440px. Constructed text
+checks layout/privacy/persistence; real-provider quality is a separate gate.

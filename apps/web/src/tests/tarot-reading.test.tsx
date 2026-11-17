@@ -43,6 +43,114 @@ beforeEach(() => {
 afterEach(() => vi.restoreAllMocks());
 
 describe('saved Tarot reading presentation', () => {
+  it('labels an artist’s work explicitly rather than presenting it as their portrait', () => {
+    const work = {
+      ...sourcedArtwork(originalCharacterLookup('Chihiro', 'Spirited Away')!),
+      id: 'banksy',
+      name: 'Banksy',
+      source: 'Visual arts',
+      kind: 'person',
+      imageType: 'artwork',
+      artworkTitle: 'Well Hung Lover',
+      artworkAttributionUrl: 'https://example.org/work',
+      alt: 'Well Hung Lover, a mural by Banksy; not a portrait of the artist',
+    } satisfies TarotCharacter;
+    vi.mocked(characterCatalogue.tarotCharacter).mockReturnValue(work);
+    const html = renderToStaticMarkup(
+      <TarotReading reading={tarotReadingExample} cards={tarotReadingCards} />,
+    );
+    expect(html).toContain('Artwork reference');
+    expect(html).toContain(work.artworkTitle);
+    expect(html).toContain(work.alt);
+    expect(html).not.toContain('Original illustration');
+  });
+
+  it.each(['religious_figure', 'meme'] as const)(
+    'keeps a %s image tied to its exact source and subject',
+    (kind) => {
+      const reference = {
+        ...sourcedArtwork(originalCharacterLookup('Chihiro', 'Spirited Away')!),
+        id: `review-${kind}`,
+        name: kind === 'meme' ? 'Confused Travolta' : 'Nataraja',
+        source:
+          kind === 'meme' ? 'Pulp Fiction — reaction meme' : 'Hindu tradition — Shiva as dancer',
+        kind,
+        imageType: kind,
+        image: `/characters/reference-art-v1/review-${kind}.webp`,
+        alt:
+          kind === 'meme'
+            ? 'Vincent Vega looking around in Pulp Fiction'
+            : 'Nataraja, a traditional depiction of Shiva dancing',
+      } satisfies TarotCharacter;
+      vi.mocked(characterCatalogue.tarotCharacter).mockImplementation((name, source) =>
+        name === reference.name && source === reference.source ? reference : undefined,
+      );
+      const reading = {
+        ...tarotReadingExample,
+        cards: [
+          {
+            ...tarotReadingExample.cards[0],
+            characters: [
+              {
+                name: reference.name,
+                source: reference.source,
+                connection:
+                  'The supplied scene or symbol offers a specific reflection on this moment.',
+              },
+            ],
+          },
+        ],
+      };
+      const html = renderToStaticMarkup(
+        <TarotReading reading={reading} cards={tarotReadingCards} />,
+      );
+      expect(html).toContain(reference.image);
+      expect(html).toContain(reference.alt);
+      expect(html).toContain(reference.source);
+      expect(html).not.toContain('Original illustration');
+      expect(html).not.toContain('Chihiro');
+    },
+  );
+
+  it('shows a real person as themselves with an exact identity and public-work source', () => {
+    const person = {
+      ...sourcedArtwork(originalCharacterLookup('Chihiro', 'Spirited Away')!),
+      id: 'marie-curie',
+      name: 'Marie Curie',
+      source: 'Physics and chemistry',
+      kind: 'person',
+      imageType: 'person',
+      image: '/characters/reference-art-v1/marie-curie.webp',
+      alt: 'Portrait of Marie Curie',
+      credit: 'Source portrait credit',
+    } satisfies TarotCharacter;
+    vi.mocked(characterCatalogue.tarotCharacter).mockImplementation((name, source) =>
+      name === person.name && source === person.source ? person : undefined,
+    );
+    const reading = {
+      ...tarotReadingExample,
+      cards: [
+        {
+          ...tarotReadingExample.cards[0],
+          characters: [
+            {
+              name: person.name,
+              source: person.source,
+              connection: 'Her sustained experimental work offers a metaphor for patient practice.',
+            },
+          ],
+        },
+      ],
+    };
+    const html = renderToStaticMarkup(<TarotReading reading={reading} cards={tarotReadingCards} />);
+    expect(html).toContain('Your connections');
+    expect(html).toContain('alt="Portrait of Marie Curie"');
+    expect(html).toContain(person.image);
+    expect(html).toContain('Physics and chemistry');
+    expect(html).not.toContain('Chihiro');
+    expect(html).not.toContain('performer');
+  });
+
   it('shows all three perspectives and explained character connections for each selected card', () => {
     const reading = {
       ...tarotReadingExample,
@@ -65,7 +173,7 @@ describe('saved Tarot reading presentation', () => {
     const html = renderToStaticMarkup(<TarotReading reading={reading} cards={tarotReadingCards} />);
     expect(html.match(/The grounded read/g)).toHaveLength(3);
     expect(html.match(/The plot twist/g)).toHaveLength(3);
-    expect(html.match(/Your character energy/g)).toHaveLength(3);
+    expect(html.match(/Your connections/g)).toHaveLength(3);
     // These bounded WebPs must work through the Services public route without
     // depending on the unavailable root image-optimization endpoint.
     expect(html).not.toContain('/_next/image');
@@ -90,7 +198,7 @@ describe('saved Tarot reading presentation', () => {
     const html = renderToStaticMarkup(<TarotReading reading={reading} cards={tarotReadingCards} />);
     expect(html.match(/An earlier saved character analogy/g)).toHaveLength(3);
     expect(html).not.toContain('The plot twist');
-    expect(html).not.toContain('Your character energy');
+    expect(html).not.toContain('Your connections');
     expect(html).not.toContain('tarot-character-portrait');
     expect(html).not.toContain('Image credits');
   });
@@ -166,6 +274,7 @@ describe('saved Tarot reading presentation', () => {
     };
     const html = renderToStaticMarkup(<TarotReading reading={reading} cards={tarotReadingCards} />);
     expect(html).toContain('alt="Illustration of Link"');
+    expect(html).toContain('<figcaption>Original illustration</figcaption>');
     expect(html).toContain('alt="Character image of Princess Peach from Super Mario"');
     expect(html).not.toContain('Cosplay');
     expect(html).not.toContain('Portrait of');

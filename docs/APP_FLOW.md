@@ -19,6 +19,7 @@ request and saved public reveals agree across all seats after refresh.
 - `/rooms/[id]`: authenticated membership-only lobby, live table, results and room chat.
 - `/join/[token]`: guest identity and explicit join; navigate to the stable room URL after joining.
 - `/profile`: Google signup/sign-in, guest-preserving account/email linking, saved name/avatar and match results.
+- `/readings/[matchId]`: the original participant's saved Tarot spread and analysis, independent of the room's current spread or membership; no generation on open.
 - `/auth/callback`: private PKCE exchange and safe account success/cancel/conflict status.
 - `/privacy`: public data-use summary for Google signup, room history and Gemini readings.
 - `/design`: component/table gallery for development and review.
@@ -93,11 +94,24 @@ restores committed state and requires a fresh choice for an uncommitted turn.
 Optional sip prompts are set before starting; every mode always permits Pass.
 Tarot offers Explore the deck with major/suit filters, independent of the saved
 three-card spread. Fresh reading sections show The grounded read, The plot twist
-and Character energy; previously saved readings retain their original content.
-Character connections include actual character art or in-character stills in a
-consistent frame, with an expandable source/rights credit list. Performer
-headshots and cosplay are excluded from the active registry. Unknown historical
-references remain text; the UI never substitutes an unrelated portrait.
+and Your connections; previously saved readings retain their original content.
+The Your connections sections include exact subject imagery in a consistent
+frame, with expandable source/rights credits. Fictional characters use character
+art or in-character stills; real people use their own portraits or an explicitly
+labelled original illustration. An artist may use an explicitly labelled,
+source-verified artwork. Memes use their actual scene or reaction image and
+religious figures retain the named tradition/form. Scenes and artworks are larger
+on desktop and sit above their explanation on narrow phones. Actor headshots
+and cosplay never substitute for a named fictional role. Unknown historical
+references remain text; the UI never substitutes an unrelated portrait. The
+expanded image/reference library loads with Tarot rather than every game table.
+
+Tarot entries in Profile's history open the specific saved reading by match ID.
+They retain the question, selected cards and original analysis after a rematch or
+room closure. Other identities receive no reading content. Incomplete or
+unavailable analyses are explicit; only a still-current accessible spread offers
+resuming in its room. Guests retain access while they retain their player session;
+linking an account preserves that identity through the existing account flow.
 
 On phones, the room title and compact toolbar share a row above the table, and
 inviting, readying, starting and shared move controls each use a complete row.

@@ -1,0 +1,1711 @@
+{
+  "review": {
+    "reviewedOriginals": 61,
+    "acceptedOriginals": 55,
+    "heldOriginals": 6,
+    "newIndividualReplacements": 2,
+    "acceptedFinalIndividuals": 57,
+    "cropCount": 34,
+    "replacementCount": 3,
+    "noGeneratedImages": true,
+    "sourceInspection": "All61 original contact-sheet entries viewed; all37 priority source originals inspected;34 exact-source crops,2 canonical-individual replacements and1 Tooth Fairy illustration replacement reviewed at88×110; final63 images including6 preserved holds visually inspected in3 final sheets.",
+    "holds": {
+      "lech-czech-and-rus-q338097": "Group of three legendary brothers; cannot attach group QID to a guessed individual. Preserved for individually sourced repair.",
+      "moomins-q200344": "Group identity replaced by exact individual Moomintroll Q2914822; original preserved.",
+      "supergirl-q8981293": "Shared mantle with collage of different holders; replaced by exact Kara Zor-El Q738569.",
+      "the-hardy-boys-q1471089": "Two brothers, Frank and Joe, with shared article and cover. Individual canonical entity/source portrait not sufficiently verified in this bounded pass; preserve for repair.",
+      "wandering-jew-q464017": "Editorial hold directed by root: antisemitic legend is unsuitable for the intended reflective reference catalogue; preserve audit provenance.",
+      "x-men-q128452": "Team rather than individual. Existing named X-Men characters already cover individual references; preserve team source without eligibility."
+    },
+    "limits": [
+      "Tarzan retained as its legible credited book-cover silhouette; no invented face or actor substitution.",
+      "Period illustrations and officially labelled sculptures/costumed portrayals are representations, not photographic proof of historical appearance.",
+      "No broad group expansion or universal image/factual accuracy claim. Source identity and composition were checked within this batch."
+    ],
+    "evidence": [
+      "fiction-001-sources/final-88-1.png",
+      "fiction-001-sources/final-88-2.png",
+      "fiction-001-sources/final-88-3.png",
+      "fiction-001-sources/replacements-88.png"
+    ],
+    "cleanup": "No browser rooms or production writes. Source caches, source originals, previous cropped versions and before copies preserved until merged manifest hashes are verified; no unrelated files or active services changed."
+  },
+  "entries": [
+    {
+      "id": "arjuna-q185790",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "48951c785fa9ee8f8e160a53c4d40d369bba271d304cb746f25590d3659259f9",
+      "reviewedBytes": 24794
+    },
+    {
+      "id": "arsene-lupin-q461606",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "88b8c1a2187bfc037b6f0ba8a89df996353cfe35eb9ce79d1d11d1879a755f0e",
+      "reviewedBytes": 11916
+    },
+    {
+      "id": "bhallaladeva-q38805060",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "2bdc1bad9055fd1517326c507eee9fdcf46fc9b59b52169cf72b47b78b753eb5",
+      "reviewedBytes": 13308
+    },
+    {
+      "id": "chitti-q58057393",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "700769a9078f14664d7197eca45ddc234b2d919d37ab9d2a5f92c1a2b3735713",
+      "reviewedBytes": 17270
+    },
+    {
+      "id": "darth-vader-q12206942",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "514ff9c33f87108b30a51bfe26533f7e8d3aeb597132bca2ad3051a023514c8e",
+      "reviewedBytes": 11058
+    },
+    {
+      "id": "don-q5292131",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "ac92a1e36f1335134ff125ca947feec017a9472b4145a53be428b1a4d6ea2c24",
+      "reviewedBytes": 7284
+    },
+    {
+      "id": "don-juan-q210372",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "d396808904834cc9d5595a602ebce88131f144deeed6c3ff9a4a48ccb2a8a81d",
+      "reviewedBytes": 22220
+    },
+    {
+      "id": "dr-watson-q187349",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "477a1a4ae04ba4398f5a90f9d9906951a99c91539d1cb5c960f32b0bbc9949ad",
+      "reviewedBytes": 39386
+    },
+    {
+      "id": "ebenezer-scrooge-q626756",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "b4a8647f2ed14e402e6b0ebfd93d3a0aa6768d7115d6fa7dc02f1a286fe68d1d",
+      "reviewedBytes": 57062
+    },
+    {
+      "id": "falstaff-q1233109",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "d5bde068f944ef81ca6acf8d17c2c0d9474d9eabd4218526ead1685e7c05ae36",
+      "reviewedBytes": 13874
+    },
+    {
+      "id": "feluda-q2723899",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "6aac8b05b6b03ed04b18ed1c2e84b6400aa3762b438de87ec9a0e8255b939823",
+      "reviewedBytes": 14710
+    },
+    {
+      "id": "flash-gordon-q92566",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "60a56eb16c47995a0c70b60359f122a498b19cd706fc12d18180f8690da4fbc4",
+      "reviewedBytes": 19562
+    },
+    {
+      "id": "frankenstein-s-monster-q2021531",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "51279ae096eb74950da389104b5c3b3a50c446c1f5351220139481369e8b0ed6",
+      "reviewedBytes": 44768
+    },
+    {
+      "id": "gabbar-singh-q5515286",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "cf5f221662c6f598a003eeeb113c1b47bf32cd5690dfe4e79f3e14e5cdc92891",
+      "reviewedBytes": 14432
+    },
+    {
+      "id": "ghanada-q5555458",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "9f87685e6e2738a0341d2c6246bebd95e83dce27ee72d924af0c1528788b97a3",
+      "reviewedBytes": 15250
+    },
+    {
+      "id": "grinch-q719748",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "a58ee1edf9bb64facebde0ca2fd1f708bfc1e098ec7b684db5fef2a38ecebbf3",
+      "reviewedBytes": 10074
+    },
+    {
+      "id": "hannibal-lecter-q211013",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "8267c63340c4b1519f98906e445bdc64c97e5dae2de9e9f939f45db9499eaa6e",
+      "reviewedBytes": 11210
+    },
+    {
+      "id": "headless-horseman-q1475916",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "8fdbb29532ef870cf9b2abe94a770afe5261edb3863dcde809de6f087ae2ffb9",
+      "reviewedBytes": 29322
+    },
+    {
+      "id": "hercule-poirot-q170534",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "ac341b6ffc048734869e0a091a6f71c4d2ab23a15c4006a0937be9200de4e250",
+      "reviewedBytes": 6484
+    },
+    {
+      "id": "homer-simpson-q7810",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "899018d7555bbf2bc2718700be56517e432eaa0ec122b2da12b0a5ff3c570f7c",
+      "reviewedBytes": 8956
+    },
+    {
+      "id": "iago-q1655364",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "0682fd1f3869ddef0133c20983387516220b1f7ac6741a2a0e90a53dd93d2434",
+      "reviewedBytes": 7738
+    },
+    {
+      "id": "john-rambo-q951317",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "0027aeec4bed0b4a1f2884bd7fd01f040854d3c9948f6686f553bc4080513f35",
+      "reviewedBytes": 12976
+    },
+    {
+      "id": "jules-maigret-q830561",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "14e99056483607f4816e380ac030aea399a0fcbb2fcca65068f932b23659c71d",
+      "reviewedBytes": 38152
+    },
+    {
+      "id": "king-kong-q216810",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "73022972ab73ad69c280cec82371256e1b4ad1b4422ceced811d2ac19da1e5d8",
+      "reviewedBytes": 14780
+    },
+    {
+      "id": "lady-macbeth-q2454065",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "a1a1ff46af3da1fcaa3f0d5ff98f30092dd58a7a576f170a88502a9c508d6572",
+      "reviewedBytes": 12086
+    },
+    {
+      "id": "lech-czech-and-rus-q338097",
+      "reviewStatus": "hold",
+      "reviewedSha256": "8bb7ae541974912c9ad3266e5fd06f7bfe2d43fc66d36c6638b75d4ecc38abcb",
+      "reviewedBytes": 27824,
+      "reason": "Group of three legendary brothers; cannot attach group QID to a guessed individual. Preserved for individually sourced repair."
+    },
+    {
+      "id": "lu-zhishen-q1075357",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "b174e22b0f14977731aab65525168d8a64ff492639ad4412f39fee3a483f88d3",
+      "reviewedBytes": 21036
+    },
+    {
+      "id": "luke-skywalker-q51746",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "4c87fd545cbe9fbbf8438e33a48ad2eb112a29390f2111eeddd8e648c297b737",
+      "reviewedBytes": 8896
+    },
+    {
+      "id": "minnie-mouse-q11936",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "12fc4011d01ceed3b5add77b8b4ca72ee4dcfe00f2ceb9278f0f3f4fb4c557ae",
+      "reviewedBytes": 8614
+    },
+    {
+      "id": "monkey-d-luffy-q477948",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "266d9cb2d512bc9ee0e88f18d3c14814b4f8793110fa9a20d8382a8d9c424ee1",
+      "reviewedBytes": 12524
+    },
+    {
+      "id": "moomins-q200344",
+      "reviewStatus": "hold",
+      "reviewedSha256": "d5ec2ac90709982b82eea8dacf175538849fd9a8a74e8a23787e056965fd552a",
+      "reviewedBytes": 22490,
+      "reason": "Group identity replaced by exact individual Moomintroll Q2914822; original preserved."
+    },
+    {
+      "id": "mother-goose-q142305",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "e10320b75500508d590d43d08a4dc405b51c441567160248203ebdaba0e30992",
+      "reviewedBytes": 35822
+    },
+    {
+      "id": "munna-bhai-q6936780",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "5a450380dbc16d727b7530583ffde3bc029240042cc756f9a922cf001906df08",
+      "reviewedBytes": 9200
+    },
+    {
+      "id": "nancy-drew-q1076932",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "37bf322293b13312ea103e35b63ee1511f9e79a6a6061688ae2c37c872f17796",
+      "reviewedBytes": 35786
+    },
+    {
+      "id": "naruto-uzumaki-q931",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "7bf551fc873e619f09e56e5a3bef0b47e01fef7510c42356151f7451f08c12c7",
+      "reviewedBytes": 7378
+    },
+    {
+      "id": "paul-bunyan-q150519",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "7c0266e92335f3016a09ac9213b56498dece94f1be09898b04ec2c3b0a207c37",
+      "reviewedBytes": 24890
+    },
+    {
+      "id": "philip-marlowe-q623732",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "29d02cf597d908d5768d391065049cba1e7661ef8839d4bfe9d96caffa026e75",
+      "reviewedBytes": 13164
+    },
+    {
+      "id": "pinocchio-q6502703",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "059dba44cd0844aada44b079c0e58d110e54ff63c8a0951d0a5d031786404154",
+      "reviewedBytes": 38510
+    },
+    {
+      "id": "pippi-longstocking-q6668",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "c08035ac25651b1f1ef5d819bc6cbaae9b724e7c01a76e99b5fa8d8a7383747d",
+      "reviewedBytes": 43240
+    },
+    {
+      "id": "popeye-q199796",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "d57dd3cc51a7762f4295de18c40a61e6b1e70508dc6c8b03e6f9e7fe0ebdf406",
+      "reviewedBytes": 12494
+    },
+    {
+      "id": "prince-hamlet-q2447542",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "36b235cca660e91b326d0c0a56b63260e2b7f919ab4d40d4da5824808f91a937",
+      "reviewedBytes": 12878
+    },
+    {
+      "id": "rostam-q60062",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "6fa63ffcc8739a2748a8ee0e85d2f97fb5b91764c4df1c2c796fa31f172f7f81",
+      "reviewedBytes": 28840
+    },
+    {
+      "id": "scheherazade-q216445",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "40a40b119db7e3c17bd88e1fe11b045d911594e97d308b3011e82c616ada8c94",
+      "reviewedBytes": 18610
+    },
+    {
+      "id": "scrooge-mcduck-q11937",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "0f5bf3d9400876de704dfb1968b67e8c5b8e55937031c9f41ad141f4b7407a17",
+      "reviewedBytes": 26390
+    },
+    {
+      "id": "sinbad-the-sailor-q122018",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "0d44093cbb9f227ea43aab41dba12d01e3ba0f03a9eb45a222b68f5b2e8ad915",
+      "reviewedBytes": 31026
+    },
+    {
+      "id": "sinterklaas-q5764991",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "742540fb2c1b81d58bd45714dd4cad6948079783bf58840187fa5fb682d2f364",
+      "reviewedBytes": 17074
+    },
+    {
+      "id": "snoopy-q207369",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "8d964ba83bdc5dd537f9d10da3dfc84f2debdb5a72a3ea9617f89cb33e80c3e7",
+      "reviewedBytes": 7024
+    },
+    {
+      "id": "spongebob-squarepants-q935079",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "f1fba083a009d37661f1663bc333d9705760b8c51d483495219d3d131282f1ef",
+      "reviewedBytes": 15002
+    },
+    {
+      "id": "supergirl-q8981293",
+      "reviewStatus": "hold",
+      "reviewedSha256": "b421d59fd87db43eee59322b6d7f0540a403b541dd3f653e8f5b50d52bbd1581",
+      "reviewedBytes": 28256,
+      "reason": "Shared mantle with collage of different holders; replaced by exact Kara Zor-El Q738569."
+    },
+    {
+      "id": "sweeney-todd-q669485",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "aac150db8792450437c9e6298567b7bd0a3b5139d68f3dfb0657d41625bf99fa",
+      "reviewedBytes": 36630
+    },
+    {
+      "id": "tarzan-q170241",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "41e4bb8bf8ab5ec74180d953a2462052421a63a4433baa0a9c7b449460100a11",
+      "reviewedBytes": 11532
+    },
+    {
+      "id": "the-hardy-boys-q1471089",
+      "reviewStatus": "hold",
+      "reviewedSha256": "41de3a411274e357a36b01e6b841c196ad78c4afa5faaffa3cf23abbf716202f",
+      "reviewedBytes": 26206,
+      "reason": "Two brothers, Frank and Joe, with shared article and cover. Individual canonical entity/source portrait not sufficiently verified in this bounded pass; preserve for repair."
+    },
+    {
+      "id": "the-yellow-kid-q892228",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "345b8f462770194e5dfe9360f2e68193f526c83d4687a32a6d87b0a703fac654",
+      "reviewedBytes": 12470
+    },
+    {
+      "id": "ultraman-q25339665",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "0121a47d769549369dcea1c2729ae65cef7ad2ef3e689af2e3207425aeeeef5f",
+      "reviewedBytes": 5176
+    },
+    {
+      "id": "uncle-tom-q2035679",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "66550247ea71176090d4a9ba9cbbdd951456da9f90dc44b920fc71ea0eb98cf2",
+      "reviewedBytes": 38378
+    },
+    {
+      "id": "wandering-jew-q464017",
+      "reviewStatus": "hold",
+      "reviewedSha256": "85e2d7a3ce42f9006293fd7607e6a16bf290db176f878e8064c99d44c790ba16",
+      "reviewedBytes": 47294,
+      "reason": "Editorial hold directed by root: antisemitic legend is unsuitable for the intended reflective reference catalogue; preserve audit provenance."
+    },
+    {
+      "id": "wolverine-q186422",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "9d704917dbaa98daf71eedfb7505463f30d703a21d8cf1bb17aba4e194f33c08",
+      "reviewedBytes": 10504
+    },
+    {
+      "id": "woody-woodpecker-q741321",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "f9607dded1bc9f28f3a5dcf30d14b775d2d60d05cda031d67c9da59a2f123fe9",
+      "reviewedBytes": 11924
+    },
+    {
+      "id": "x-men-q128452",
+      "reviewStatus": "hold",
+      "reviewedSha256": "a20e296dfee17061e826ba088f3ae4bca77ae889dd812b449e8a70cb76472234",
+      "reviewedBytes": 20868,
+      "reason": "Team rather than individual. Existing named X-Men characters already cover individual references; preserve team source without eligibility."
+    },
+    {
+      "id": "prince-charming-q1090843",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "ad128921445695e4391b4054962441400516153d745b7e92b185ffaf6e29d55d",
+      "reviewedBytes": 45940
+    },
+    {
+      "id": "tooth-fairy-q846982",
+      "reviewStatus": "accepted",
+      "reviewedSha256": "1e469978e8c57d1bd5f88dd613f53376ce0058e5b980077867607b638f8b2f7d",
+      "reviewedBytes": 7186
+    }
+  ],
+  "crops": [
+    {
+      "id": "arjuna-q185790",
+      "reviewStatus": "accepted",
+      "entityId": "Q185790",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Arjuna_statue.JPG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 168,
+        "top": 179,
+        "width": 754,
+        "height": 943
+      },
+      "sourceDimensions": {
+        "width": 1197,
+        "height": 1793
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 24794,
+      "sha256": "48951c785fa9ee8f8e160a53c4d40d369bba271d304cb746f25590d3659259f9",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "bhallaladeva-q38805060",
+      "reviewStatus": "accepted",
+      "entityId": "Q38805060",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/c/c6/Bhallaladeva_promo.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 108,
+        "top": 16,
+        "width": 163,
+        "height": 204
+      },
+      "sourceDimensions": {
+        "width": 387,
+        "height": 259
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 13308,
+      "sha256": "2bdc1bad9055fd1517326c507eee9fdcf46fc9b59b52169cf72b47b78b753eb5",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "darth-vader-q12206942",
+      "reviewStatus": "accepted",
+      "entityId": "Q12206942",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/0/0b/Darth_Vader_in_The_Empire_Strikes_Back.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 79,
+        "top": 13,
+        "width": 161,
+        "height": 201
+      },
+      "sourceDimensions": {
+        "width": 316,
+        "height": 315
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 11058,
+      "sha256": "514ff9c33f87108b30a51bfe26533f7e8d3aeb597132bca2ad3051a023514c8e",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "don-q5292131",
+      "reviewStatus": "accepted",
+      "entityId": "Q5292131",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/1/1e/DonSrkAmitabh.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 4,
+        "top": 47,
+        "width": 162,
+        "height": 203
+      },
+      "sourceDimensions": {
+        "width": 377,
+        "height": 263
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 7284,
+      "sha256": "ac92a1e36f1335134ff125ca947feec017a9472b4145a53be428b1a4d6ea2c24",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "don-juan-q210372",
+      "reviewStatus": "accepted",
+      "entityId": "Q210372",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Max_Slevogt_-_Der_S%C3%A4nger_Francisco_d%27Andrade_als_Don_Giovanni_in_Mozarts_Oper_-_Google_Art_Project.jpg/1280px-Max_Slevogt_-_Der_S%C3%A4nger_Francisco_d%27Andrade_als_Don_Giovanni_in_Mozarts_Oper_-_Google_Art_Project.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "sourceCrop": {
+        "left": 346,
+        "top": 64,
+        "width": 563,
+        "height": 704
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1598
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 22220,
+      "sha256": "d396808904834cc9d5595a602ebce88131f144deeed6c3ff9a4a48ccb2a8a81d",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "dr-watson-q187349",
+      "reviewStatus": "accepted",
+      "entityId": "Q187349",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Sherlock_Holmes_%26_Watson_-_The_Greek_Interpreter_-_Sidney_Paget.jpg/1280px-Sherlock_Holmes_%26_Watson_-_The_Greek_Interpreter_-_Sidney_Paget.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "sourceCrop": {
+        "left": 26,
+        "top": 114,
+        "width": 550,
+        "height": 688
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1420
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 39386,
+      "sha256": "477a1a4ae04ba4398f5a90f9d9906951a99c91539d1cb5c960f32b0bbc9949ad",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "ebenezer-scrooge-q626756",
+      "reviewStatus": "accepted",
+      "entityId": "Q626756",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Marley%27s_Ghost-John_Leech%2C_1843.jpg/960px-Marley%27s_Ghost-John_Leech%2C_1843.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "sourceCrop": {
+        "left": 77,
+        "top": 613,
+        "width": 413,
+        "height": 516
+      },
+      "sourceDimensions": {
+        "width": 960,
+        "height": 1572
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 57062,
+      "sha256": "b4a8647f2ed14e402e6b0ebfd93d3a0aa6768d7115d6fa7dc02f1a286fe68d1d",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "falstaff-q1233109",
+      "reviewStatus": "accepted",
+      "entityId": "Q1233109",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Adolf_Schr%C3%B6dter_Falstaff_und_sein_Page.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 27,
+        "top": 134,
+        "width": 249,
+        "height": 311
+      },
+      "sourceDimensions": {
+        "width": 453,
+        "height": 517
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 13874,
+      "sha256": "d5bde068f944ef81ca6acf8d17c2c0d9474d9eabd4218526ead1685e7c05ae36",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "feluda-q2723899",
+      "reviewStatus": "accepted",
+      "entityId": "Q2723899",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/2/21/Feluda_and_Topshe.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 135,
+        "top": 48,
+        "width": 129,
+        "height": 161
+      },
+      "sourceDimensions": {
+        "width": 269,
+        "height": 371
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 14710,
+      "sha256": "6aac8b05b6b03ed04b18ed1c2e84b6400aa3762b438de87ec9a0e8255b939823",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "flash-gordon-q92566",
+      "reviewStatus": "accepted",
+      "entityId": "Q92566",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/b/be/Flash_Gordon.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 51,
+        "top": 42,
+        "width": 159,
+        "height": 199
+      },
+      "sourceDimensions": {
+        "width": 256,
+        "height": 384
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 19562,
+      "sha256": "60a56eb16c47995a0c70b60359f122a498b19cd706fc12d18180f8690da4fbc4",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "frankenstein-s-monster-q2021531",
+      "reviewStatus": "accepted",
+      "entityId": "Q2021531",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Frankenstein%2C_or_the_Modern_Prometheus_%28Revised_Edition%2C_1831%29_Creature.jpg/1280px-Frankenstein%2C_or_the_Modern_Prometheus_%28Revised_Edition%2C_1831%29_Creature.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "sourceCrop": {
+        "left": 102,
+        "top": 31,
+        "width": 742,
+        "height": 928
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1021
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 44768,
+      "sha256": "51279ae096eb74950da389104b5c3b3a50c446c1f5351220139481369e8b0ed6",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "gabbar-singh-q5515286",
+      "reviewStatus": "accepted",
+      "entityId": "Q5515286",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/3/3c/Gabbar_Singh_%28Amjad_Khan%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 64,
+        "top": 0,
+        "width": 154,
+        "height": 193
+      },
+      "sourceDimensions": {
+        "width": 320,
+        "height": 240
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 14432,
+      "sha256": "cf5f221662c6f598a003eeeb113c1b47bf32cd5690dfe4e79f3e14e5cdc92891",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "hannibal-lecter-q211013",
+      "reviewStatus": "accepted",
+      "entityId": "Q211013",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/6/6e/Hannibal_Lecter_in_Silence_of_the_Lambs.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 93,
+        "top": 0,
+        "width": 201,
+        "height": 251
+      },
+      "sourceDimensions": {
+        "width": 387,
+        "height": 258
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 11210,
+      "sha256": "8267c63340c4b1519f98906e445bdc64c97e5dae2de9e9f939f45db9499eaa6e",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "headless-horseman-q1475916",
+      "reviewStatus": "accepted",
+      "entityId": "Q1475916",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/e/eb/The_Headless_Horseman.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 113,
+        "top": 193,
+        "width": 250,
+        "height": 313
+      },
+      "sourceDimensions": {
+        "width": 471,
+        "height": 642
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 29322,
+      "sha256": "8fdbb29532ef870cf9b2abe94a770afe5261edb3863dcde809de6f087ae2ffb9",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "hercule-poirot-q170534",
+      "reviewStatus": "accepted",
+      "entityId": "Q170534",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/2/2d/Albert_Finney_plays_Poirot.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 55,
+        "top": 11,
+        "width": 207,
+        "height": 259
+      },
+      "sourceDimensions": {
+        "width": 369,
+        "height": 270
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 6484,
+      "sha256": "ac341b6ffc048734869e0a091a6f71c4d2ab23a15c4006a0937be9200de4e250",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "iago-q1655364",
+      "reviewStatus": "accepted",
+      "entityId": "Q1655364",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Edwin_Booth_as_Iago.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 435,
+        "top": 246,
+        "width": 448,
+        "height": 560
+      },
+      "sourceDimensions": {
+        "width": 1244,
+        "height": 1536
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 7738,
+      "sha256": "0682fd1f3869ddef0133c20983387516220b1f7ac6741a2a0e90a53dd93d2434",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "jules-maigret-q830561",
+      "reviewStatus": "accepted",
+      "entityId": "Q830561",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Delfzijl_Maigret_01.jpg/1280px-Delfzijl_Maigret_01.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "sourceCrop": {
+        "left": 294,
+        "top": 0,
+        "width": 691,
+        "height": 864
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1707
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 38152,
+      "sha256": "14e99056483607f4816e380ac030aea399a0fcbb2fcca65068f932b23659c71d",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "lady-macbeth-q2454065",
+      "reviewStatus": "accepted",
+      "entityId": "Q2454065",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/b/b7/VA_UVA_FA_507-001_Cattermole_Lady_Macbeth_V%26A.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 344,
+        "top": 0,
+        "width": 264,
+        "height": 330
+      },
+      "sourceDimensions": {
+        "width": 800,
+        "height": 555
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 12086,
+      "sha256": "a1a1ff46af3da1fcaa3f0d5ff98f30092dd58a7a576f170a88502a9c508d6572",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "lu-zhishen-q1075357",
+      "reviewStatus": "accepted",
+      "entityId": "Q1075357",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Lu_Zhishen_Water_Margin_2.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 329,
+        "top": 135,
+        "width": 534,
+        "height": 668
+      },
+      "sourceDimensions": {
+        "width": 1136,
+        "height": 901
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 21036,
+      "sha256": "b174e22b0f14977731aab65525168d8a64ff492639ad4412f39fee3a483f88d3",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "mother-goose-q142305",
+      "reviewStatus": "accepted",
+      "entityId": "Q142305",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Mother_Goose_riding.jpg/960px-Mother_Goose_riding.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "sourceCrop": {
+        "left": 192,
+        "top": 491,
+        "width": 614,
+        "height": 768
+      },
+      "sourceDimensions": {
+        "width": 960,
+        "height": 1638
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 35822,
+      "sha256": "e10320b75500508d590d43d08a4dc405b51c441567160248203ebdaba0e30992",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "nancy-drew-q1076932",
+      "reviewStatus": "accepted",
+      "entityId": "Q1076932",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/4/4b/The_Secret_of_the_Old_Clock_%281930%29_cover_art%2C_1953_printing_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 201,
+        "top": 242,
+        "width": 286,
+        "height": 358
+      },
+      "sourceDimensions": {
+        "width": 609,
+        "height": 866
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 35786,
+      "sha256": "37bf322293b13312ea103e35b63ee1511f9e79a6a6061688ae2c37c872f17796",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "naruto-uzumaki-q931",
+      "reviewStatus": "accepted",
+      "entityId": "Q931",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/9/9a/NarutoUzumaki.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 193,
+        "top": 37,
+        "width": 104,
+        "height": 130
+      },
+      "sourceDimensions": {
+        "width": 297,
+        "height": 337
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 7378,
+      "sha256": "7bf551fc873e619f09e56e5a3bef0b47e01fef7510c42356151f7451f08c12c7",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "paul-bunyan-q150519",
+      "reviewStatus": "accepted",
+      "entityId": "Q150519",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Paul_Bunyan_statue_in_Bangor%2C_Maine.jpg/1280px-Paul_Bunyan_statue_in_Bangor%2C_Maine.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "sourceCrop": {
+        "left": 294,
+        "top": 0,
+        "width": 704,
+        "height": 880
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 1707
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 24890,
+      "sha256": "7c0266e92335f3016a09ac9213b56498dece94f1be09898b04ec2c3b0a207c37",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "philip-marlowe-q623732",
+      "reviewStatus": "accepted",
+      "entityId": "Q623732",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/The-Big-Sleep-trailer-book.jpg/1280px-The-Big-Sleep-trailer-book.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "sourceCrop": {
+        "left": 218,
+        "top": 84,
+        "width": 680,
+        "height": 850
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 934
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 13164,
+      "sha256": "29d02cf597d908d5768d391065049cba1e7661ef8839d4bfe9d96caffa026e75",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "pinocchio-q6502703",
+      "reviewStatus": "accepted",
+      "entityId": "Q6502703",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/6/65/Pinocchio.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 82,
+        "top": 113,
+        "width": 312,
+        "height": 390
+      },
+      "sourceDimensions": {
+        "width": 512,
+        "height": 705
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 38510,
+      "sha256": "059dba44cd0844aada44b079c0e58d110e54ff63c8a0951d0a5d031786404154",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "pippi-longstocking-q6668",
+      "reviewStatus": "accepted",
+      "entityId": "Q6668",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Inger_Nilsson_as_Pippi_L%C3%A5ngstrump.jpg/1280px-Inger_Nilsson_as_Pippi_L%C3%A5ngstrump.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "sourceCrop": {
+        "left": 448,
+        "top": 0,
+        "width": 640,
+        "height": 800
+      },
+      "sourceDimensions": {
+        "width": 1280,
+        "height": 832
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 43240,
+      "sha256": "c08035ac25651b1f1ef5d819bc6cbaae9b724e7c01a76e99b5fa8d8a7383747d",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "prince-hamlet-q2447542",
+      "reviewStatus": "accepted",
+      "entityId": "Q2447542",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/4/40/Hamlet_William_Morris_Hunt.jpeg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 177,
+        "top": 127,
+        "width": 377,
+        "height": 471
+      },
+      "sourceDimensions": {
+        "width": 770,
+        "height": 1272
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 12878,
+      "sha256": "36b235cca660e91b326d0c0a56b63260e2b7f919ab4d40d4da5824808f91a937",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "rostam-q60062",
+      "reviewStatus": "accepted",
+      "entityId": "Q60062",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/1/16/Rostam_and_the_White_Div_from_Baysanghar_Shahnameh.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 186,
+        "top": 85,
+        "width": 502,
+        "height": 628
+      },
+      "sourceDimensions": {
+        "width": 810,
+        "height": 848
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 28840,
+      "sha256": "6fa63ffcc8739a2748a8ee0e85d2f97fb5b91764c4df1c2c796fa31f172f7f81",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "sinbad-the-sailor-q122018",
+      "reviewStatus": "accepted",
+      "entityId": "Q122018",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Having_balanced_my_cargo_exactly.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 20,
+        "top": 0,
+        "width": 255,
+        "height": 319
+      },
+      "sourceDimensions": {
+        "width": 500,
+        "height": 735
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 31026,
+      "sha256": "0d44093cbb9f227ea43aab41dba12d01e3ba0f03a9eb45a222b68f5b2e8ad915",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "sweeney-todd-q669485",
+      "reviewStatus": "accepted",
+      "entityId": "Q669485",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Todd_murdering_a_victim.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 276,
+        "top": 92,
+        "width": 181,
+        "height": 226
+      },
+      "sourceDimensions": {
+        "width": 476,
+        "height": 613
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 36630,
+      "sha256": "aac150db8792450437c9e6298567b7bd0a3b5139d68f3dfb0657d41625bf99fa",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "ultraman-q25339665",
+      "reviewStatus": "accepted",
+      "entityId": "Q25339665",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/4/4e/Ultraman_Profile_Photo.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 48,
+        "top": 8,
+        "width": 155,
+        "height": 194
+      },
+      "sourceDimensions": {
+        "width": 250,
+        "height": 417
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 5176,
+      "sha256": "0121a47d769549369dcea1c2729ae65cef7ad2ef3e689af2e3207425aeeeef5f",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "uncle-tom-q2035679",
+      "reviewStatus": "accepted",
+      "entityId": "Q2035679",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/3/34/Uncle_Tom%27s_Cabin_-_Chloe_and_Tom.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 244,
+        "top": 33,
+        "width": 336,
+        "height": 420
+      },
+      "sourceDimensions": {
+        "width": 610,
+        "height": 818
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 38378,
+      "sha256": "66550247ea71176090d4a9ba9cbbdd951456da9f90dc44b920fc71ea0eb98cf2",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "wolverine-q186422",
+      "reviewStatus": "accepted",
+      "entityId": "Q186422",
+      "remoteImage": "https://upload.wikimedia.org/wikipedia/en/d/d3/Wolverine_%28circa_2024%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "sourceCrop": {
+        "left": 31,
+        "top": 0,
+        "width": 204,
+        "height": 255
+      },
+      "sourceDimensions": {
+        "width": 255,
+        "height": 392
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 10504,
+      "sha256": "9d704917dbaa98daf71eedfb7505463f30d703a21d8cf1bb17aba4e194f33c08",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    },
+    {
+      "id": "prince-charming-q1090843",
+      "reviewStatus": "accepted",
+      "entityId": "Q1090843",
+      "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Prince_of_Sleeping_Beauty.jpg/960px-Prince_of_Sleeping_Beauty.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "sourceCrop": {
+        "left": 163,
+        "top": 98,
+        "width": 576,
+        "height": 720
+      },
+      "sourceDimensions": {
+        "width": 960,
+        "height": 1637
+      },
+      "width": 320,
+      "height": 400,
+      "bytes": 45940,
+      "sha256": "ad128921445695e4391b4054962441400516153d745b7e92b185ffaf6e29d55d",
+      "modifications": "Manually framed the existing source to keep the subject clear at reading size; resized to 320×400 and converted to WebP. No generative alteration.",
+      "reason": "Reduce blank bands, background or full-body space so the source subject stays legible in the 88×110 reading portrait."
+    }
+  ],
+  "replacements": [
+    {
+      "identity": {
+        "id": "supergirl-kara-zor-el-q738569",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "sourceAliases": [],
+        "recognizability": "supporting",
+        "name": "Supergirl (Kara Zor-El)",
+        "source": "DC Comics",
+        "wikidataId": "Q738569",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Supergirl_(Kara_Zor-El)",
+        "identityFamily": "kara-zor-el",
+        "aliases": [
+          "Kara Zor-El",
+          "Supergirl"
+        ],
+        "description": "Character from DC Comics.",
+        "sourceContext": "Kara Zor-El reaches Earth as a teenager after Krypton is destroyed. She must find a place in an unfamiliar world while learning to manage extraordinary powers and youthful mistakes. DC describes her repeated acts of saving the world as earning the trust of her adopted home.",
+        "contextSourceUrl": "https://www.dc.com/characters/supergirl",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked official character profile",
+        "contextModifications": "Concise factual paraphrase; identity and work kept separate."
+      },
+      "asset": {
+        "id": "supergirl-kara-zor-el-q738569",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/supergirl-kara-zor-el-q738569.webp",
+        "alt": "Supergirl (Kara Zor-El) — DC Comics",
+        "credit": "Stanley “Artgerm” Lau / DC Comics; Supergirl character profile illustration",
+        "sourcePage": "https://en.wikipedia.org/wiki/Supergirl_(Kara_Zor-El)",
+        "filePage": "https://www.dc.com/characters/supergirl",
+        "remoteImage": "https://static.dc.com/2026-06/Supergirl_Char_Profile_0.jpg",
+        "entityId": "Q738569",
+        "rights": "copyright-reference",
+        "rightsNote": "Copyright remains with the original rights holder. Exact source attribution retained; no open reuse licence asserted.",
+        "width": 320,
+        "height": 400,
+        "bytes": 13314,
+        "sha256": "4466f28d7fc563fb9bee3f597d113af7417b5c996302ebecfdc499398e884ee7",
+        "sourceCrop": {
+          "left": 25,
+          "top": 0,
+          "width": 800,
+          "height": 1000
+        },
+        "sourceDimensions": {
+          "width": 1000,
+          "height": 1500
+        },
+        "modifications": "Cropped the identified source composition, fitted into 320×400 ivory frame and converted to WebP. No generative alteration.",
+        "sourceSelection": "Exact individual explicitly named by the official publisher, official character attraction or illustration source.",
+        "reason": "Replace a collage of different Supergirl holders with one explicitly identified canonical individual.",
+        "reviewStatus": "accepted"
+      }
+    },
+    {
+      "identity": {
+        "id": "moomintroll-q2914822",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "sourceAliases": [],
+        "recognizability": "supporting",
+        "name": "Moomintroll",
+        "source": "Moomins by Tove Jansson",
+        "wikidataId": "Q2914822",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/List_of_Moomin_characters#Moomintroll",
+        "identityFamily": "moomintroll",
+        "aliases": [
+          "Muumipeikko",
+          "Mumintrollet"
+        ],
+        "description": "Character from Moomins by Tove Jansson.",
+        "sourceContext": "Moomintroll, the child of Moominmamma and Moominpappa, becomes enthusiastic about new things and loves the sea. His friendship with Snufkin includes fishing together. This is the individual Moomintroll, not the entire Moomin family.",
+        "contextSourceUrl": "https://www.moominworld.fi/characters/moomintroll/",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked official character profile",
+        "contextModifications": "Concise factual paraphrase; identity and work kept separate."
+      },
+      "asset": {
+        "id": "moomintroll-q2914822",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/moomintroll-q2914822.webp",
+        "alt": "Moomintroll — Moomins by Tove Jansson; official Moominworld costumed portrayal",
+        "credit": "Moominworld / Moomin Characters; officially identified costumed portrayal of Moomintroll in his room",
+        "sourcePage": "https://en.wikipedia.org/wiki/List_of_Moomin_characters#Moomintroll",
+        "filePage": "https://www.moominworld.fi/characters/moomintroll/",
+        "remoteImage": "https://www.moominworld.fi/wp-content/uploads/2022/02/Muumi_Muumipeikko.jpg",
+        "entityId": "Q2914822",
+        "rights": "copyright-reference",
+        "rightsNote": "Copyright remains with the original rights holder. Exact source attribution retained; no open reuse licence asserted.",
+        "width": 320,
+        "height": 400,
+        "bytes": 16862,
+        "sha256": "3aa12fd728ea504735adf35e18f49ff89224b4b13e1cc8232ce4ff1411c28e30",
+        "sourceCrop": {
+          "left": 250,
+          "top": 35,
+          "width": 700,
+          "height": 875
+        },
+        "sourceDimensions": {
+          "width": 1200,
+          "height": 1200
+        },
+        "modifications": "Cropped the identified source composition, fitted into 320×400 ivory frame and converted to WebP. No generative alteration.",
+        "sourceSelection": "Exact individual explicitly named by the official publisher, official character attraction or illustration source.",
+        "reason": "Replace a group identity with its verified individual character and an explicitly labelled official portrayal.",
+        "reviewStatus": "accepted"
+      }
+    },
+    {
+      "identity": {
+        "id": "tooth-fairy-q846982",
+        "name": "Tooth Fairy",
+        "source": "Tooth fairy folklore",
+        "lane": "fictional heroes and characters",
+        "aliases": [],
+        "sourceAliases": [],
+        "kind": "character",
+        "category": "fiction",
+        "wikidataId": "Q846982",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Tooth_fairy",
+        "description": "Character from Tooth fairy folklore.",
+        "sourceContext": "The tooth fairy is a folkloric figure of early childhood in Western and Western-influenced cultures. The folklore states that when children lose one of their baby teeth, they should place it underneath their pillow or on their bedside table; the tooth fairy will visit while they sleep, replacing the lost tooth with a small payment.",
+        "contextSourceUrl": "https://en.wikipedia.org/wiki/Tooth_fairy?oldid=1377078178",
+        "contextRetrievedAt": "2026-11-17",
+        "contextLicense": "CC BY-SA 4.0",
+        "contextAttribution": "Wikipedia contributors; linked article revision",
+        "contextModifications": "Selected adjacent complete informative lead sentences; no rewritten clauses; at most100words/600characters.",
+        "sitelinks": 35,
+        "recognizability": "supporting",
+        "identityFamily": "tooth-fairy"
+      },
+      "asset": {
+        "id": "tooth-fairy-q846982",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/tooth-fairy-q846982.webp",
+        "alt": "Tooth Fairy — Tooth fairy folklore",
+        "credit": "OpenClipart via FreeSVG.org, Tooth fairy, SVG ID 72237; illustrator not named on the source page",
+        "sourcePage": "https://en.wikipedia.org/wiki/Tooth_fairy",
+        "filePage": "https://freesvg.org/tooth-fairy",
+        "remoteImage": "https://freesvg.org/img/Tooth-Fairy.png",
+        "entityId": "Q846982",
+        "rights": "public-domain",
+        "rightsNote": "Source page explicitly offers this image as public domain / CC0.",
+        "license": "CC0 1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "width": 320,
+        "height": 400,
+        "bytes": 7186,
+        "sha256": "1e469978e8c57d1bd5f88dd613f53376ce0058e5b980077867607b638f8b2f7d",
+        "sourceCrop": {
+          "left": 130,
+          "top": 0,
+          "width": 400,
+          "height": 500
+        },
+        "sourceDimensions": {
+          "width": 600,
+          "height": 600
+        },
+        "modifications": "Cropped the identified source composition, fitted into 320×400 ivory frame and converted to WebP. No generative alteration.",
+        "sourceSelection": "Exact individual explicitly named by the official publisher, official character attraction or illustration source.",
+        "reason": "Replace a small coin ornament with an explicitly named Tooth Fairy illustration showing the fairy and tooth.",
+        "reviewStatus": "accepted"
+      }
+    }
+  ],
+  "identityCorrections": [
+    {
+      "id": "arjuna-q185790",
+      "identity": {
+        "source": "Hindu epics — Mahabharata",
+        "sourceAliases": [],
+        "description": "Arjuna, a central figure of the Mahabharata in Hindu traditions.",
+        "kind": "religious_figure",
+        "category": "religion",
+        "lane": "religious and mythological figures",
+        "tradition": "Hindu traditions",
+        "identityFamily": "arjuna"
+      },
+      "asset": {
+        "alt": "Arjuna — Hindu epics — Mahabharata",
+        "imageType": "religious_figure"
+      }
+    },
+    {
+      "id": "arsene-lupin-q461606",
+      "identity": {
+        "source": "Arsène Lupin stories by Maurice Leblanc",
+        "sourceAliases": [],
+        "description": "Character from Arsène Lupin stories by Maurice Leblanc."
+      },
+      "asset": {
+        "alt": "Arsène Lupin — Arsène Lupin stories by Maurice Leblanc"
+      }
+    },
+    {
+      "id": "don-q5292131",
+      "identity": {
+        "source": "Don (1978 film)",
+        "sourceAliases": [
+          "Don"
+        ],
+        "description": "Character from Don (1978 film).",
+        "name": "Don (1978)",
+        "identityFamily": "don-film-character",
+        "aliases": [
+          "Don"
+        ],
+        "sourceContext": "Don is the criminal played by Amitabh Bachchan in the 1978 film Don. He is a manipulative lieutenant working under Vardhaan Makhija. This entry depicts the original Don, not Vijay, the lookalike recruited to impersonate him, and not the later Shah Rukh Khan adaptation."
+      },
+      "asset": {
+        "alt": "Amitabh Bachchan portraying Don in the 1978 film Don",
+        "credit": "1978 Don film still featuring Amitabh Bachchan; left panel of the source composite, credited on the source file to the linked original image",
+        "sourceSelection": "Only the explicitly identified Amitabh Bachchan / original 1978 Don panel; Shah Rukh Khan panel excluded."
+      }
+    },
+    {
+      "id": "don-juan-q210372",
+      "identity": {
+        "source": "Don Juan legend",
+        "sourceAliases": [],
+        "description": "Character from Don Juan legend."
+      },
+      "asset": {
+        "alt": "Don Juan — Don Juan legend"
+      }
+    },
+    {
+      "id": "ebenezer-scrooge-q626756",
+      "identity": {
+        "source": "A Christmas Carol",
+        "sourceAliases": [],
+        "description": "Character from A Christmas Carol."
+      },
+      "asset": {
+        "alt": "Ebenezer Scrooge — A Christmas Carol"
+      }
+    },
+    {
+      "id": "falstaff-q1233109",
+      "identity": {
+        "source": "Henry IV and The Merry Wives of Windsor",
+        "sourceAliases": [],
+        "description": "Character from Henry IV and The Merry Wives of Windsor."
+      },
+      "asset": {
+        "alt": "Falstaff — Henry IV and The Merry Wives of Windsor"
+      }
+    },
+    {
+      "id": "flash-gordon-q92566",
+      "identity": {
+        "source": "Flash Gordon comics",
+        "sourceAliases": [],
+        "description": "Character from Flash Gordon comics."
+      },
+      "asset": {
+        "alt": "Flash Gordon — Flash Gordon comics"
+      }
+    },
+    {
+      "id": "frankenstein-s-monster-q2021531",
+      "identity": {
+        "source": "Frankenstein by Mary Shelley",
+        "sourceAliases": [],
+        "description": "Character from Frankenstein by Mary Shelley."
+      },
+      "asset": {
+        "alt": "Frankenstein's monster — Frankenstein by Mary Shelley"
+      }
+    },
+    {
+      "id": "grinch-q719748",
+      "identity": {
+        "source": "How the Grinch Stole Christmas!",
+        "sourceAliases": [],
+        "description": "Character from How the Grinch Stole Christmas!."
+      },
+      "asset": {
+        "alt": "Grinch — How the Grinch Stole Christmas!"
+      }
+    },
+    {
+      "id": "hannibal-lecter-q211013",
+      "identity": {
+        "source": "Hannibal Lecter stories by Thomas Harris",
+        "sourceAliases": [],
+        "description": "Character from Hannibal Lecter stories by Thomas Harris."
+      },
+      "asset": {
+        "alt": "Hannibal Lecter — Hannibal Lecter stories by Thomas Harris"
+      }
+    },
+    {
+      "id": "headless-horseman-q1475916",
+      "identity": {
+        "source": "Headless horseman folklore",
+        "sourceAliases": [],
+        "description": "Character from Headless horseman folklore."
+      },
+      "asset": {
+        "alt": "Headless rider illustration from Mayne Reid’s The Headless Horseman; a representation of headless-rider folklore, not a still from Sleepy Hollow"
+      }
+    },
+    {
+      "id": "iago-q1655364",
+      "identity": {
+        "source": "Othello",
+        "sourceAliases": [],
+        "description": "Character from Othello."
+      },
+      "asset": {
+        "alt": "Iago — Othello"
+      }
+    },
+    {
+      "id": "john-rambo-q951317",
+      "identity": {
+        "source": "Rambo",
+        "sourceAliases": [],
+        "description": "Character from Rambo."
+      },
+      "asset": {
+        "alt": "John Rambo — Rambo"
+      }
+    },
+    {
+      "id": "jules-maigret-q830561",
+      "identity": {
+        "source": "Maigret novels by Georges Simenon",
+        "sourceAliases": [],
+        "description": "Character from Maigret novels by Georges Simenon."
+      },
+      "asset": {
+        "alt": "Jules Maigret — Maigret novels by Georges Simenon"
+      }
+    },
+    {
+      "id": "lady-macbeth-q2454065",
+      "identity": {
+        "source": "Macbeth",
+        "sourceAliases": [],
+        "description": "Character from Macbeth."
+      },
+      "asset": {
+        "alt": "Lady Macbeth — Macbeth"
+      }
+    },
+    {
+      "id": "mother-goose-q142305",
+      "identity": {
+        "source": "Mother Goose nursery rhymes",
+        "sourceAliases": [],
+        "description": "Character from Mother Goose nursery rhymes."
+      },
+      "asset": {
+        "alt": "Mother Goose — Mother Goose nursery rhymes"
+      }
+    },
+    {
+      "id": "nancy-drew-q1076932",
+      "identity": {
+        "source": "Nancy Drew mysteries",
+        "sourceAliases": [],
+        "description": "Character from Nancy Drew mysteries."
+      },
+      "asset": {
+        "alt": "Nancy Drew — Nancy Drew mysteries"
+      }
+    },
+    {
+      "id": "paul-bunyan-q150519",
+      "identity": {
+        "source": "North American lumberjack folklore",
+        "sourceAliases": [],
+        "description": "Character from North American lumberjack folklore."
+      },
+      "asset": {
+        "alt": "Paul Bunyan — North American lumberjack folklore"
+      }
+    },
+    {
+      "id": "philip-marlowe-q623732",
+      "identity": {
+        "source": "Philip Marlowe novels by Raymond Chandler",
+        "sourceAliases": [],
+        "description": "Character from Philip Marlowe novels by Raymond Chandler."
+      },
+      "asset": {
+        "alt": "Philip Marlowe — Philip Marlowe novels by Raymond Chandler"
+      }
+    },
+    {
+      "id": "popeye-q199796",
+      "identity": {
+        "source": "Popeye / Thimble Theatre",
+        "sourceAliases": [],
+        "description": "Character from Popeye / Thimble Theatre."
+      },
+      "asset": {
+        "alt": "Popeye — Popeye / Thimble Theatre"
+      }
+    },
+    {
+      "id": "prince-hamlet-q2447542",
+      "identity": {
+        "source": "Hamlet",
+        "sourceAliases": [],
+        "description": "Character from Hamlet."
+      },
+      "asset": {
+        "alt": "Prince Hamlet — Hamlet"
+      }
+    },
+    {
+      "id": "rostam-q60062",
+      "identity": {
+        "source": "Shahnameh",
+        "sourceAliases": [],
+        "description": "Character from Shahnameh."
+      },
+      "asset": {
+        "alt": "Rostam — Shahnameh"
+      }
+    },
+    {
+      "id": "scheherazade-q216445",
+      "identity": {
+        "source": "One Thousand and One Nights",
+        "sourceAliases": [],
+        "description": "Character from One Thousand and One Nights."
+      },
+      "asset": {
+        "alt": "Scheherazade — One Thousand and One Nights"
+      }
+    },
+    {
+      "id": "sinbad-the-sailor-q122018",
+      "identity": {
+        "source": "Sinbad voyage tales",
+        "sourceAliases": [],
+        "description": "Character from Sinbad voyage tales."
+      },
+      "asset": {
+        "alt": "Sinbad the Sailor — Sinbad voyage tales"
+      }
+    },
+    {
+      "id": "sinterklaas-q5764991",
+      "identity": {
+        "source": "Dutch Saint Nicholas folklore",
+        "sourceAliases": [],
+        "description": "Character from Dutch Saint Nicholas folklore."
+      },
+      "asset": {
+        "alt": "Sinterklaas — Dutch Saint Nicholas folklore"
+      }
+    },
+    {
+      "id": "snoopy-q207369",
+      "identity": {
+        "source": "Peanuts",
+        "sourceAliases": [],
+        "description": "Character from Peanuts."
+      },
+      "asset": {
+        "alt": "Snoopy — Peanuts"
+      }
+    },
+    {
+      "id": "sweeney-todd-q669485",
+      "identity": {
+        "source": "The String of Pearls",
+        "sourceAliases": [],
+        "description": "Character from The String of Pearls."
+      },
+      "asset": {
+        "alt": "Sweeney Todd — The String of Pearls"
+      }
+    },
+    {
+      "id": "the-yellow-kid-q892228",
+      "identity": {
+        "source": "Hogan's Alley",
+        "sourceAliases": [],
+        "description": "Character from Hogan's Alley."
+      },
+      "asset": {
+        "alt": "The Yellow Kid — Hogan's Alley"
+      }
+    },
+    {
+      "id": "ultraman-q25339665",
+      "identity": {
+        "source": "Ultraman (1966)",
+        "sourceAliases": [],
+        "description": "Character from Ultraman (1966)."
+      },
+      "asset": {
+        "alt": "Ultraman — Ultraman (1966)"
+      }
+    },
+    {
+      "id": "uncle-tom-q2035679",
+      "identity": {
+        "source": "Uncle Tom’s Cabin",
+        "sourceAliases": [],
+        "description": "Character from Uncle Tom’s Cabin."
+      },
+      "asset": {
+        "alt": "Uncle Tom — Uncle Tom’s Cabin"
+      }
+    },
+    {
+      "id": "woody-woodpecker-q741321",
+      "identity": {
+        "source": "Woody Woodpecker cartoons",
+        "sourceAliases": [],
+        "description": "Character from Woody Woodpecker cartoons."
+      },
+      "asset": {
+        "alt": "Woody Woodpecker — Woody Woodpecker cartoons"
+      }
+    },
+    {
+      "id": "prince-charming-q1090843",
+      "identity": {
+        "source": "European fairy tales",
+        "sourceAliases": [],
+        "description": "Character from European fairy tales.",
+        "name": "Prince Charming"
+      },
+      "asset": {
+        "alt": "Prince from Sleeping Beauty, representing the Prince Charming fairy-tale archetype"
+      }
+    },
+    {
+      "id": "naruto-uzumaki-q931",
+      "asset": {
+        "alt": "Naruto Uzumaki in his Part II design, right figure in the credited source illustration"
+      }
+    }
+  ]
+}

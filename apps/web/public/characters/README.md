@@ -1,4 +1,13 @@
-# Tarot character reference photos
+# Tarot reference artwork
+
+Current character depictions are in `character-art-v2`; the expanded people and
+characters catalogue is in `reference-art-v1`. Their manifests record exact
+identity/source bindings, image origins, credits and local hashes. Active
+character references never substitute a performer portrait. See each version
+for provenance. The original files below remain a historical archive and are
+not used as a fallback.
+
+## Original performer-photo archive
 
 48 licensed reference photographs from Wikimedia Commons, resized and converted
 to WebP by Games. These are performer portraits or explicitly labelled cosplay,

@@ -1,0 +1,28 @@
+{
+  "count": 5636,
+  "categories": {
+    "original": 48,
+    "actors": 1095,
+    "publicfigures": 201,
+    "music": 755,
+    "sport": 755,
+    "literature": 563,
+    "fiction": 291,
+    "religion": 116,
+    "politics": 550,
+    "royalty": 334,
+    "science": 603,
+    "visualarts": 301,
+    "memes": 24
+  },
+  "kinds": {
+    "character": 339,
+    "person": 5157,
+    "religious_figure": 116,
+    "meme": 24
+  },
+  "candidateSha256": "fcec5676f5ade6be8e67e65277b9733d03d84c4f83edf8e1c1f1ad943bd3251f",
+  "contextsPresent": 5588,
+  "original 48UseSeparateSourceLenses": true,
+  "source": "semantic-final-candidate.json; final asset promotion independently gated"
+}

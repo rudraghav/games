@@ -1,0 +1,595 @@
+{
+  "review": {
+    "reviewedAt": "2026-11-17",
+    "acceptedIndividuals": 10,
+    "bytes": 226566,
+    "generatedImages": 0,
+    "identityFile": "fiction-recovery-identities.json",
+    "imageChecks": [
+      "All source images inspected before framing.",
+      "All10 final images inspected at320×400 and88×110. Jessica Jones and Baba Yaga framing tightened after inspection.",
+      "Jessica Jones uses only her investigator portrait, with no second face. Native low-resolution texture is retained.",
+      "Pooh and Sun Wukong retain credited historical line art; Saruman and Sauron use explicitly labelled film portrayals, not actor portraits.",
+      "Rogue uses a named single-subject Marvel illustration instead of the multiple-incarnation collage."
+    ],
+    "canonicalReplacements": {
+      "robin-q59996": "dick-grayson-q660051"
+    },
+    "representedElsewhere": {
+      "black-widow-q369197": "Explicit MCU Natasha Romanoff already present; do not silently label that portrayal as the comics incarnation. Existing same-character family supplies coverage."
+    },
+    "groupHolds": [
+      "the-addams-family-q3817916",
+      "the-fantastic-four-q152098",
+      "pandava-q236221",
+      "four-emperors-q2488420"
+    ],
+    "cleanup": "10 new staged source-derived WebPs only; downloaded originals, prior held originals and crop receipts retained. No browser resources, production writes or reading-provider calls. No broad image enhancement or invented likeness."
+  },
+  "entries": [
+    {
+      "identity": {
+        "id": "winnie-the-pooh-q188574",
+        "name": "Winnie-the-Pooh",
+        "source": "Winnie-the-Pooh by A. A. Milne",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "aliases": [
+          "Pooh Bear",
+          "Edward Bear"
+        ],
+        "sourceAliases": [],
+        "identityFamily": "winnie-the-pooh",
+        "wikidataId": "Q188574",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Winnie-the-Pooh",
+        "description": "Character from Winnie-the-Pooh by A. A. Milne.",
+        "sourceContext": "Pooh pursues honey with a balloon and gets into a tight place after visiting Rabbit. He also searches for Eeyore’s lost tail and finds it being used as Owl’s bell-pull. His small adventures combine appetite and misjudgment with practical care for friends.",
+        "contextSourceUrl": "https://www.gutenberg.org/cache/epub/67098/pg67098-images.html",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked source; scene facts separated from thematic interpretation",
+        "contextModifications": "Concise factual synopsis with clearly contextual thematic framing; no private-person personality claims.",
+        "recognizability": "major"
+      },
+      "asset": {
+        "id": "winnie-the-pooh-q188574",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/winnie-the-pooh-q188574.webp",
+        "alt": "Winnie-the-Pooh seated by his tree-house door in E. H. Shepard’s original illustration",
+        "credit": "E. H. Shepard, Winnie-the-Pooh (1926), page 3; scan via Bibliodyssey / Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Winnie-the-Pooh",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Pooh_Shepard1928.jpg",
+        "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Pooh_Shepard1928.jpg/1280px-Pooh_Shepard1928.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "entityId": "Q188574",
+        "rights": "public-domain",
+        "rightsNote": "Source file identifies this specific image as public domain; source attribution and work date are retained.",
+        "width": 320,
+        "height": 400,
+        "bytes": 33270,
+        "sha256": "86140dfaa01e1f9bca58ef516eadeafea5eb5bd22e57270e5637f2ec0b48fb40",
+        "sourceCrop": {
+          "left": 450,
+          "top": 700,
+          "width": 450,
+          "height": 563
+        },
+        "sourceDimensions": {
+          "width": 1280,
+          "height": 1396
+        },
+        "modifications": "Manually isolated the verified named individual from its exact source, resized to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Source-specific identity checked against the canonical article/file or official publisher profile. Film appearances are explicitly labelled as portrayals.",
+        "reviewStatus": "accepted"
+      }
+    },
+    {
+      "identity": {
+        "id": "sun-wukong-q11773777",
+        "name": "Sun Wukong",
+        "source": "Journey to the West",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "aliases": [
+          "Monkey King"
+        ],
+        "sourceAliases": [],
+        "identityFamily": "sun-wukong",
+        "wikidataId": "Q11773777",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Sun_Wukong",
+        "description": "Character from Journey to the West.",
+        "sourceContext": "Sun Wukong acquires extraordinary powers, rebels against Heaven and is confined beneath a mountain by the Buddha. Later he accompanies Tang Sanzang on the journey for Buddhist scriptures. His story brings unruly capability into a demanding shared undertaking.",
+        "contextSourceUrl": "https://en.wikipedia.org/wiki/Sun_Wukong?oldid=1385390882",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked source; scene facts separated from thematic interpretation",
+        "contextModifications": "Concise factual synopsis with clearly contextual thematic framing; no private-person personality claims.",
+        "recognizability": "major"
+      },
+      "asset": {
+        "id": "sun-wukong-q11773777",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/sun-wukong-q11773777.webp",
+        "alt": "Sun Wukong in a 19th-century Journey to the West illustration",
+        "credit": "Anonymous 19th-century illustrator, Illustrations for the Original Gist of the Journey to the West (Xiyou Yuanzhi Tuxiang); Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Sun_Wukong",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Xiyou.PNG",
+        "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Xiyou.PNG/1280px-Xiyou.PNG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "entityId": "Q11773777",
+        "rights": "public-domain",
+        "rightsNote": "Source file identifies this specific image as public domain; source attribution and work date are retained.",
+        "width": 320,
+        "height": 400,
+        "bytes": 35406,
+        "sha256": "5fe49006911a8097df7317bdabd0148b924cf250ac3bd42a80623f2f3da7f804",
+        "sourceCrop": {
+          "left": 480,
+          "top": 430,
+          "width": 700,
+          "height": 875
+        },
+        "sourceDimensions": {
+          "width": 1280,
+          "height": 1822
+        },
+        "modifications": "Manually isolated the verified named individual from its exact source, resized to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Source-specific identity checked against the canonical article/file or official publisher profile. Film appearances are explicitly labelled as portrayals.",
+        "reviewStatus": "accepted"
+      }
+    },
+    {
+      "identity": {
+        "id": "baba-yaga-q187002",
+        "name": "Baba Yaga",
+        "source": "Slavic folklore",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "aliases": [],
+        "sourceAliases": [],
+        "identityFamily": "baba-yaga",
+        "wikidataId": "Q187002",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Baba_Yaga",
+        "description": "Character from Slavic folklore.",
+        "sourceContext": "Baba Yaga has contrasting roles across Slavic tales: she can threaten a visitor or help a hero. She lives in a forest hut on chicken legs and travels in a mortar with a pestle. Her uncertain reception makes the encounter a test rather than a simple promise of kindness or danger.",
+        "contextSourceUrl": "https://en.wikipedia.org/wiki/Baba_Yaga?oldid=1385955944",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked source; scene facts separated from thematic interpretation",
+        "contextModifications": "Concise factual synopsis with clearly contextual thematic framing; no private-person personality claims.",
+        "recognizability": "major"
+      },
+      "asset": {
+        "id": "baba-yaga-q187002",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/baba-yaga-q187002.webp",
+        "alt": "Baba Yaga travelling in her mortar, illustrated by Ivan Bilibin",
+        "credit": "Ivan Bilibin, Baba Yaga from Vasilisa the Beautiful; scan via Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Baba_Yaga",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Bilibin._Baba_Yaga.jpg",
+        "remoteImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Bilibin._Baba_Yaga.jpg/1280px-Bilibin._Baba_Yaga.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "entityId": "Q187002",
+        "rights": "public-domain",
+        "rightsNote": "Source file identifies this specific image as public domain; source attribution and work date are retained.",
+        "width": 320,
+        "height": 400,
+        "bytes": 42654,
+        "sha256": "2cd01c2d5388161cfdb1dd167e8771d3e329223a7e07dae25c1667ae192abd9d",
+        "sourceCrop": {
+          "left": 280,
+          "top": 240,
+          "width": 630,
+          "height": 788
+        },
+        "sourceDimensions": {
+          "width": 1280,
+          "height": 1640
+        },
+        "modifications": "Manually isolated the verified named individual from its exact source, resized to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Source-specific identity checked against the canonical article/file or official publisher profile. Film appearances are explicitly labelled as portrayals.",
+        "reviewStatus": "accepted"
+      }
+    },
+    {
+      "identity": {
+        "id": "dick-grayson-q660051",
+        "name": "Dick Grayson (Nightwing)",
+        "source": "DC Comics",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "aliases": [
+          "Robin",
+          "Nightwing",
+          "Richard Grayson"
+        ],
+        "sourceAliases": [],
+        "identityFamily": "dick-grayson",
+        "wikidataId": "Q660051",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Dick_Grayson",
+        "description": "Character from DC Comics.",
+        "sourceContext": "Dick Grayson begins as Batman’s partner Robin, then establishes his own identity as Nightwing. He retains his mentor’s training while trying to avoid Batman’s isolation and controlling habits. The arc concerns becoming independent without discarding what a teacher gave him.",
+        "contextSourceUrl": "https://www.dc.com/characters/nightwing",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked source; scene facts separated from thematic interpretation",
+        "contextModifications": "Concise factual synopsis with clearly contextual thematic framing; no private-person personality claims.",
+        "recognizability": "major"
+      },
+      "asset": {
+        "id": "dick-grayson-q660051",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/dick-grayson-q660051.webp",
+        "alt": "Dick Grayson in his Nightwing identity, official DC Comics illustration",
+        "credit": "DC Comics, official Nightwing character profile illustration; individual artist not named beside this image",
+        "sourcePage": "https://en.wikipedia.org/wiki/Dick_Grayson",
+        "filePage": "https://www.dc.com/characters/nightwing",
+        "remoteImage": "https://static.dc.com/dc/files/default_images/Char_Thumb_Nightwing_2_5c50fa380942a3.78305981.jpg",
+        "entityId": "Q660051",
+        "rights": "copyright-reference",
+        "rightsNote": "Copyright remains with the original rights holder. Exact source attribution retained; no open reuse licence asserted.",
+        "width": 320,
+        "height": 400,
+        "bytes": 28172,
+        "sha256": "64f528905cea28f0a9a38af90dddb5ae21675f054b90de3c5ebad42a4db545fe",
+        "sourceCrop": {
+          "left": 0,
+          "top": 20,
+          "width": 384,
+          "height": 480
+        },
+        "sourceDimensions": {
+          "width": 384,
+          "height": 582
+        },
+        "modifications": "Manually isolated the verified named individual from its exact source, resized to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Source-specific identity checked against the canonical article/file or official publisher profile. Film appearances are explicitly labelled as portrayals.",
+        "reviewStatus": "accepted"
+      }
+    },
+    {
+      "identity": {
+        "id": "rogue-q838097",
+        "name": "Rogue",
+        "source": "Marvel Comics",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "aliases": [
+          "Anna Marie"
+        ],
+        "sourceAliases": [],
+        "identityFamily": "rogue-anna-marie",
+        "wikidataId": "Q838097",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Rogue_%28Marvel_Comics%29",
+        "description": "Character from Marvel Comics.",
+        "sourceContext": "Rogue absorbs powers and memories through touch. For years this makes closeness dangerous and feels like a curse; later she gains control. After beginning as a reluctant villain and absorbing Ms. Marvel’s psyche, she joins the X-Men seeking help and a different use for her abilities.",
+        "contextSourceUrl": "https://en.wikipedia.org/wiki/Rogue_%28Marvel_Comics%29?oldid=1384184168",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked source; scene facts separated from thematic interpretation",
+        "contextModifications": "Concise factual synopsis with clearly contextual thematic framing; no private-person personality claims.",
+        "recognizability": "major"
+      },
+      "asset": {
+        "id": "rogue-q838097",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/rogue-q838097.webp",
+        "alt": "Rogue (Anna Marie) in the green-and-yellow costume with her distinctive white hair streak",
+        "credit": "Marvel Comics, Rogue illustration; source file links Rogue volume 3 issue 3",
+        "sourcePage": "https://en.wikipedia.org/wiki/Rogue_%28Marvel_Comics%29",
+        "filePage": "https://en.wikipedia.org/wiki/File:Rogue_(Marvel_Comics).png",
+        "remoteImage": "https://upload.wikimedia.org/wikipedia/en/9/95/Rogue_%28Marvel_Comics%29.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "entityId": "Q838097",
+        "rights": "copyright-reference",
+        "rightsNote": "Copyright remains with the original rights holder. Exact source attribution retained; no open reuse licence asserted.",
+        "width": 320,
+        "height": 400,
+        "bytes": 14976,
+        "sha256": "070577f6fd8b04037b28241003f793dcc86cb7d56e49b35bf3b4726c3d7e7162",
+        "sourceCrop": {
+          "left": 0,
+          "top": 0,
+          "width": 266,
+          "height": 333
+        },
+        "sourceDimensions": {
+          "width": 266,
+          "height": 375
+        },
+        "modifications": "Manually isolated the verified named individual from its exact source, resized to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Source-specific identity checked against the canonical article/file or official publisher profile. Film appearances are explicitly labelled as portrayals.",
+        "reviewStatus": "accepted"
+      }
+    },
+    {
+      "identity": {
+        "id": "saruman-q216489",
+        "name": "Saruman",
+        "source": "The Lord of the Rings",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "aliases": [
+          "Saruman the White"
+        ],
+        "sourceAliases": [],
+        "identityFamily": "saruman",
+        "wikidataId": "Q216489",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Saruman",
+        "description": "Character from The Lord of the Rings.",
+        "sourceContext": "Saruman leads the wizards sent to oppose Sauron but comes to desire power for himself. From Isengard he betrays that purpose, tries to dominate others and rejects an offered chance to change course. Knowledge and order become destructive when turned into control.",
+        "contextSourceUrl": "https://en.wikipedia.org/wiki/Saruman?oldid=1385946782",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked source; scene facts separated from thematic interpretation",
+        "contextModifications": "Concise factual synopsis with clearly contextual thematic framing; no private-person personality claims.",
+        "recognizability": "major"
+      },
+      "asset": {
+        "id": "saruman-q216489",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/saruman-q216489.webp",
+        "alt": "Christopher Lee portraying Saruman in The Lord of the Rings film adaptation",
+        "credit": "New Line Cinema, Christopher Lee as Saruman in The Lord of the Rings; film still via the source file",
+        "sourcePage": "https://en.wikipedia.org/wiki/Saruman",
+        "filePage": "https://en.wikipedia.org/wiki/File:Christopher_Lee_as_Saruman_LOTR.jpg",
+        "remoteImage": "https://upload.wikimedia.org/wikipedia/en/a/aa/Christopher_Lee_as_Saruman_LOTR.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "entityId": "Q216489",
+        "rights": "copyright-reference",
+        "rightsNote": "Copyright remains with the original rights holder. Exact source attribution retained; no open reuse licence asserted.",
+        "width": 320,
+        "height": 400,
+        "bytes": 10192,
+        "sha256": "d085d41f6d9ed08ba3a6ada1f88e8cd4aa4f4136ad7e285c0f902175441e5de2",
+        "sourceCrop": {
+          "left": 90,
+          "top": 0,
+          "width": 180,
+          "height": 225
+        },
+        "sourceDimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "modifications": "Manually isolated the verified named individual from its exact source, resized to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Source-specific identity checked against the canonical article/file or official publisher profile. Film appearances are explicitly labelled as portrayals.",
+        "reviewStatus": "accepted"
+      }
+    },
+    {
+      "identity": {
+        "id": "sauron-q2281",
+        "name": "Sauron",
+        "source": "The Lord of the Rings",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "aliases": [
+          "The Dark Lord",
+          "The Necromancer"
+        ],
+        "sourceAliases": [],
+        "identityFamily": "sauron",
+        "wikidataId": "Q2281",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Sauron",
+        "description": "Character from The Lord of the Rings.",
+        "sourceContext": "Sauron seeks to dominate Middle-earth through the One Ring and pursues its recovery after losing it. He rules Mordor and directs other wills toward conquest. The character represents possessive power and control, not a model of healthy ambition.",
+        "contextSourceUrl": "https://en.wikipedia.org/wiki/Sauron?oldid=1386052745",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked source; scene facts separated from thematic interpretation",
+        "contextModifications": "Concise factual synopsis with clearly contextual thematic framing; no private-person personality claims.",
+        "recognizability": "major"
+      },
+      "asset": {
+        "id": "sauron-q2281",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/sauron-q2281.webp",
+        "alt": "Sauron in his armoured form in Peter Jackson’s The Fellowship of the Ring",
+        "credit": "New Line Cinema, Sala Baker as the armoured Sauron in The Fellowship of the Ring; film still via the source file",
+        "sourcePage": "https://en.wikipedia.org/wiki/Sauron",
+        "filePage": "https://en.wikipedia.org/wiki/File:Sauron.jpg",
+        "remoteImage": "https://upload.wikimedia.org/wikipedia/en/3/3a/Sauron.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "entityId": "Q2281",
+        "rights": "copyright-reference",
+        "rightsNote": "Copyright remains with the original rights holder. Exact source attribution retained; no open reuse licence asserted.",
+        "width": 320,
+        "height": 400,
+        "bytes": 9564,
+        "sha256": "3d39b3c35f32ebca2c88b0700f52d5b437229c7b61aeb02c489afacbafff05dd",
+        "sourceCrop": {
+          "left": 110,
+          "top": 0,
+          "width": 159,
+          "height": 199
+        },
+        "sourceDimensions": {
+          "width": 352,
+          "height": 199
+        },
+        "modifications": "Manually isolated the verified named individual from its exact source, resized to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Source-specific identity checked against the canonical article/file or official publisher profile. Film appearances are explicitly labelled as portrayals.",
+        "reviewStatus": "accepted"
+      }
+    },
+    {
+      "identity": {
+        "id": "captain-marvel-q534153",
+        "name": "Shazam (Billy Batson)",
+        "source": "DC Comics",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "aliases": [
+          "Captain Marvel",
+          "Billy Batson",
+          "Shazam"
+        ],
+        "sourceAliases": [],
+        "identityFamily": "billy-batson",
+        "wikidataId": "Q534153",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Shazam_%28DC_Comics%29",
+        "description": "Character from DC Comics.",
+        "sourceContext": "Billy Batson, a child who has had to fend for himself, becomes the wizard Shazam’s champion. Speaking the wizard’s name transforms him into an adult superhero able to help people. The contrast is between youthful experience and a suddenly enlarged responsibility.",
+        "contextSourceUrl": "https://www.dc.com/characters/shazam",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked source; scene facts separated from thematic interpretation",
+        "contextModifications": "Concise factual synopsis with clearly contextual thematic framing; no private-person personality claims.",
+        "recognizability": "major"
+      },
+      "asset": {
+        "id": "captain-marvel-q534153",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/captain-marvel-q534153.webp",
+        "alt": "Billy Batson in his Shazam superhero form, official DC Comics illustration",
+        "credit": "DC Comics, official Shazam character profile illustration; individual artist not named beside this image",
+        "sourcePage": "https://en.wikipedia.org/wiki/Shazam_%28DC_Comics%29",
+        "filePage": "https://www.dc.com/characters/shazam",
+        "remoteImage": "https://static.dc.com/dc/files/default_images/Char_Thumb_Shazam_5c53a74aefbb12.02099042.jpg",
+        "entityId": "Q534153",
+        "rights": "copyright-reference",
+        "rightsNote": "Copyright remains with the original rights holder. Exact source attribution retained; no open reuse licence asserted.",
+        "width": 320,
+        "height": 400,
+        "bytes": 30608,
+        "sha256": "6b3c29fc2dd6c7957e510d569bcfb9d996c3faed2e22f6ba896d6a64e331d9e4",
+        "sourceCrop": {
+          "left": 0,
+          "top": 0,
+          "width": 384,
+          "height": 480
+        },
+        "sourceDimensions": {
+          "width": 384,
+          "height": 582
+        },
+        "modifications": "Manually isolated the verified named individual from its exact source, resized to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Source-specific identity checked against the canonical article/file or official publisher profile. Film appearances are explicitly labelled as portrayals.",
+        "reviewStatus": "accepted"
+      }
+    },
+    {
+      "identity": {
+        "id": "jessica-jones-q2271377",
+        "name": "Jessica Jones",
+        "source": "Marvel Comics",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "aliases": [
+          "Jessica Campbell Jones"
+        ],
+        "sourceAliases": [],
+        "identityFamily": "jessica-jones",
+        "wikidataId": "Q2271377",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Jessica_Jones",
+        "description": "Character from Marvel Comics.",
+        "sourceContext": "Jessica Jones leaves conventional superhero work and runs Alias Private Investigations, usually as its sole employee. The same extraordinary abilities now serve a working investigator’s cases. Her identity is distinct from Jessica Drew, the separate character who influenced the series’ early conception.",
+        "contextSourceUrl": "https://en.wikipedia.org/wiki/Jessica_Jones?oldid=1385527037",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked source; scene facts separated from thematic interpretation",
+        "contextModifications": "Concise factual synopsis with clearly contextual thematic framing; no private-person personality claims.",
+        "recognizability": "major"
+      },
+      "asset": {
+        "id": "jessica-jones-q2271377",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/jessica-jones-q2271377.webp",
+        "alt": "Jessica Jones as a private investigator, upper-right portrait in Mike Mayhew’s illustration",
+        "credit": "Mike Mayhew / Marvel Comics, Jessica Jones composition; isolated the adult investigator portrait from the upper-right panel",
+        "sourcePage": "https://en.wikipedia.org/wiki/Jessica_Jones",
+        "filePage": "https://en.wikipedia.org/wiki/File:Jessica_Jones_by_Mike_Mayhew.jpg",
+        "remoteImage": "https://upload.wikimedia.org/wikipedia/en/6/6e/Jessica_Jones_by_Mike_Mayhew.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "entityId": "Q2271377",
+        "rights": "copyright-reference",
+        "rightsNote": "Copyright remains with the original rights holder. Exact source attribution retained; no open reuse licence asserted.",
+        "width": 320,
+        "height": 400,
+        "bytes": 9372,
+        "sha256": "27dd481b18e19ffafd983acb7683974a81df0ce03d964116e429335c8a8ee246",
+        "sourceCrop": {
+          "left": 148,
+          "top": 82,
+          "width": 64,
+          "height": 80
+        },
+        "sourceDimensions": {
+          "width": 257,
+          "height": 387
+        },
+        "modifications": "Manually isolated the verified named individual from its exact source, resized to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Source-specific identity checked against the canonical article/file or official publisher profile. Film appearances are explicitly labelled as portrayals.",
+        "reviewStatus": "accepted"
+      }
+    },
+    {
+      "identity": {
+        "id": "captain-ahab-q2630009",
+        "name": "Captain Ahab",
+        "source": "Moby-Dick",
+        "kind": "character",
+        "category": "fiction",
+        "lane": "fictional heroes and characters",
+        "aliases": [
+          "Ahab"
+        ],
+        "sourceAliases": [],
+        "identityFamily": "captain-ahab",
+        "wikidataId": "Q2630009",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Captain_Ahab",
+        "description": "Character from Moby-Dick.",
+        "sourceContext": "After Moby Dick takes his leg, Captain Ahab redirects the Pequod’s whaling voyage into a revenge hunt. He presses the crew into that private mission and abandons caution when the whale appears. His determination becomes obsession with costs borne by others.",
+        "contextSourceUrl": "https://en.wikipedia.org/wiki/Captain_Ahab?oldid=1384832009",
+        "contextRetrievedAt": "2026-11-17",
+        "contextAttribution": "Editorial paraphrase of the linked source; scene facts separated from thematic interpretation",
+        "contextModifications": "Concise factual synopsis with clearly contextual thematic framing; no private-person personality claims.",
+        "recognizability": "major"
+      },
+      "asset": {
+        "id": "captain-ahab-q2630009",
+        "imageType": "character",
+        "origin": "sourced",
+        "artworkVersion": "reference-art-v1",
+        "image": "/characters/reference-art-v1/captain-ahab-q2630009.webp",
+        "alt": "Gregory Peck portraying Captain Ahab in the 1956 film Moby Dick",
+        "credit": "Warner Bros., 1956 Moby Dick publicity portrait of Gregory Peck as Captain Ahab; Wikimedia Commons",
+        "sourcePage": "https://en.wikipedia.org/wiki/Captain_Ahab",
+        "filePage": "https://commons.wikimedia.org/wiki/File:Peck_Moby_Dick.jpg",
+        "remoteImage": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Peck_Moby_Dick.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "entityId": "Q2630009",
+        "rights": "public-domain",
+        "rightsNote": "Source file identifies this specific image as public domain; source attribution and work date are retained.",
+        "width": 320,
+        "height": 400,
+        "bytes": 12352,
+        "sha256": "c6d70b54d0c34ed8378e5e8947672aad28a25105241a45a4eda8396dce4ee3f6",
+        "sourceCrop": {
+          "left": 165,
+          "top": 80,
+          "width": 400,
+          "height": 500
+        },
+        "sourceDimensions": {
+          "width": 680,
+          "height": 850
+        },
+        "modifications": "Manually isolated the verified named individual from its exact source, resized to 320×400 and converted to WebP. No generative alteration.",
+        "sourceSelection": "Source-specific identity checked against the canonical article/file or official publisher profile. Film appearances are explicitly labelled as portrayals.",
+        "reviewStatus": "accepted"
+      }
+    }
+  ]
+}

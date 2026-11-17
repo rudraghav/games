@@ -1,0 +1,25 @@
+[
+  {
+    "id": "nightwing-q686623",
+    "imageType": "character",
+    "origin": "sourced",
+    "artworkVersion": "reference-art-v1",
+    "image": "/characters/reference-art-v1/archive/nightwing-q686623.webp",
+    "alt": "Nightwing — DC Comics",
+    "credit": "David Nakayama · Nightwing #137 Cover B Nakayama Variant 2026 BN – BattleBuddyComics.com",
+    "sourcePage": "https://en.wikipedia.org/wiki/Nightwing",
+    "filePage": "https://en.wikipedia.org/wiki/File:Nightwing_Vol_4_137_(2026_Cover_B_David_Nakayama_art.png",
+    "remoteImage": "https://upload.wikimedia.org/wikipedia/en/8/8b/Nightwing_Vol_4_137_%282026_Cover_B_David_Nakayama_art.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "entityId": "Q686623",
+    "rights": "copyright-reference",
+    "rightsNote": "Copyright remains with the original image/work rights holder. Exact identity-linked reference for commentary; no open reuse license is asserted.",
+    "width": 320,
+    "height": 400,
+    "bytes": 7652,
+    "sha256": "46bd7559929ed5956524167089419e183359552c908075b287e0b4a91e296c9b",
+    "modifications": "Fitted without cropping into a 4:5 ivory frame, resized to 320×400 and converted to WebP.",
+    "sourceSelection": "Declared lead image on the resolved canonical Wikipedia identity article.",
+    "discoverySource": "https://en.wikipedia.org/wiki/Nightwing",
+    "reviewStatus": "editorial_hold"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "alara-of-nubia-q533610",
+    "name": "Alara of Kush",
+    "tool": "OpenAI built-in Image Generation",
+    "prompt": "Use case: historical-scene. Asset: a single finished Tarot reference card illustration, portrait 4:5, full bleed. Subject: Alara of Kush. A dignified imagined upper-body portrayal of the early Napatan Nubian ruler, dark skin, simple linen and restrained gold adornment. A quiet Nile bend and the silhouette of Jebel Barkal behind him. A symbolic interpretation of founding a dynasty in Upper Nubia; not a claimed surviving likeness. Style: refined editorial woodcut-inspired painted illustration, crisp elegant shapes, textured paper, luminous restrained colors, beautiful composition rather than photorealism. Palette: warm sandstone, deep indigo and muted gold. Composition: one large head and upper torso occupying most of frame, readable at 88 by 110 pixels, quiet minimal setting. No text, letters, labels, signature, border, collage, additional people, modern objects or invented historical inscriptions. Clearly an original artistic interpretation, not a documentary photograph or copied painting.",
+    "sourceSha256": "f98c052d3ce45485ce90238ccdc485dce8f2ae4c6dc898e00d48edc9ab0a6f57"
+  },
+  {
+    "id": "askia-muhammad-i-q1771994",
+    "name": "Askia Muhammad I",
+    "tool": "OpenAI built-in Image Generation",
+    "prompt": "Use case: historical-scene. Asset: a single finished Tarot reference card illustration, portrait 4:5, full bleed. Subject: Askia Muhammad I. A dignified imagined upper-body portrayal of the Songhai ruler of the late fifteenth and early sixteenth century, a West African man in layered woven robes and a wrapped headcloth. Niger river landscape and subtle earthen Sahel architecture behind him. Calm, thoughtful expression; an original symbolic interpretation, not an authentic surviving likeness. Style: refined editorial woodcut-inspired painted illustration, crisp elegant shapes, textured paper, luminous restrained colors, beautiful composition rather than photorealism. Palette: terracotta, cream, dark teal and small gold accents. Composition: one large head and upper torso occupying most of frame, readable at 88 by 110 pixels, quiet minimal setting. No text, letters, labels, signature, border, collage, additional people, modern objects or invented historical inscriptions. Clearly an original artistic interpretation, not a documentary photograph or copied painting.",
+    "sourceSha256": "29e8d62e60c76470eee53d94448d27f467d7b904411614c9faf77c3ff3eed5fc"
+  },
+  {
+    "id": "bindusara-q315526",
+    "name": "Bindusara",
+    "tool": "OpenAI built-in Image Generation",
+    "prompt": "Use case: historical-scene. Asset: a single finished Tarot reference card illustration, portrait 4:5, full bleed. Subject: Bindusara. An imagined upper-body portrayal of the Mauryan ruler of ancient India, early third century BCE: an Indian man in a draped cotton garment with restrained court ornaments, before simple carved wooden palace architecture. A sense of consolidation and stewardship. No later Mughal costume, no modern Hindu iconography. Original symbolic portrait, not an authentic surviving likeness. Style: refined editorial woodcut-inspired painted illustration, crisp elegant shapes, textured paper, luminous restrained colors, beautiful composition rather than photorealism. Palette: burnt orange, muted emerald, parchment and ink. Composition: one large head and upper torso occupying most of frame, readable at 88 by 110 pixels, quiet minimal setting. No text, letters, labels, signature, border, collage, additional people, modern objects or invented historical inscriptions. Clearly an original artistic interpretation, not a documentary photograph or copied painting.",
+    "sourceSha256": "2724486e0932162ebb22d6725f19fa379de714c6d14c6ca80d10d07fa63bd3df"
+  },
+  {
+    "id": "cyaxares-q297855",
+    "name": "Cyaxares",
+    "tool": "OpenAI built-in Image Generation",
+    "prompt": "Use case: historical-scene. Asset: one finished Tarot reference card illustration, portrait 4:5, full bleed. Subject: Cyaxares. An imagined upper-body portrayal of the seventh-century BCE Median ruler: a mature man of the ancient Iranian plateau, a long wool robe, simple period head covering, carefully patterned woven shoulder cloth. Quiet mountainous plateau behind him. An original symbolic interpretation of a Median king; not a claimed surviving likeness. Style: refined editorial woodcut-inspired painted illustration, crisp elegant shapes, textured paper, luminous restrained colors, beautiful composition rather than photorealism. Palette: slate blue, russet, cream and restrained gold. Composition: one large head and upper torso occupying most of frame, readable at 88 by 110 pixels, quiet minimal setting. No text, letters, labels, signature, border, collage or additional people. Clearly an original artistic interpretation, not a documentary photograph or copied painting.",
+    "sourceSha256": "11d735c9c0c68a110f16a69956052d91d91fee1075bb4c6579c701010291d6e3"
+  },
+  {
+    "id": "menes-q189574",
+    "name": "Menes",
+    "tool": "OpenAI built-in Image Generation",
+    "prompt": "Use case: historical-scene. Asset: one finished Tarot reference card illustration, portrait 4:5, full bleed. Subject: Menes. An original symbolic portrayal of the early Egyptian ruler remembered in later tradition for uniting Upper and Lower Egypt. One imagined adult royal figure in profile, simple linen and stylized red-and-white crown symbolism; two quiet Nile banks joined by the river behind. Early Dynastic visual inspiration, no later pyramids or invented inscriptions. Do not claim an authentic face or resolve his disputed identity. Style: refined editorial woodcut-inspired painted illustration, crisp elegant shapes, textured paper, luminous restrained colors, beautiful composition rather than photorealism. Palette: lapis blue, limestone cream, muted coral and gold. Composition: one large head and upper torso occupying most of frame, readable at 88 by 110 pixels, quiet minimal setting. No text, letters, labels, signature, border, collage or additional people. Clearly an original artistic interpretation, not a documentary photograph or copied painting.",
+    "sourceSha256": "a9cb8cf69bcfcc3cd9ff685934c8d0c4ec28180f6d82edd2ac14b03906b38a7b"
+  },
+  {
+    "id": "sheshi-q14318465",
+    "name": "Sheshi",
+    "tool": "OpenAI built-in Image Generation",
+    "prompt": "Use case: historical-scene. Asset: one finished Tarot reference card illustration, portrait 4:5, full bleed. Subject: Sheshi. An original symbolic portrayal of the ancient Egyptian ruler Sheshi, whose chronology and identity are debated and whose name survives on scarab seals. A single imagined adult royal figure in modest ancient Nile Delta clothing with a small scarab design as an artistic symbol, reeds and water behind. No invented hieroglyphs, no asserted dynasty, no claim of an authentic face. Style: refined editorial woodcut-inspired painted illustration, crisp elegant shapes, textured paper, luminous restrained colors, beautiful composition rather than photorealism. Palette: papyrus cream, malachite green, warm brown and dark ink. Composition: one large head and upper torso occupying most of frame, readable at 88 by 110 pixels, quiet minimal setting. No text, letters, labels, signature, border, collage or additional people. Clearly an original artistic interpretation, not a documentary photograph or copied painting.",
+    "sourceSha256": "aaf50a5a74f214ea05e47c72960991550915d8ce104a76b1868e5587f0f0e1d4"
+  },
+  {
+    "id": "amr-ibn-al-as-q314781",
+    "name": "Amr ibn al-As",
+    "tool": "OpenAI built-in Image Generation",
+    "prompt": "Use case: historical-scene. Asset: one finished Tarot reference card illustration, portrait 4:5, full bleed. Subject: Amr ibn al-As. An original imagined upper-body portrayal of the seventh-century Arab commander and governor, in simple woven robes and a plain wrapped headcloth, a rolled document in one hand. Quiet early Fustat earthen structures and Nile light behind. Thoughtful administrative mood, no weapons, battle scene, halo, sacred text or later Ottoman costume; not a claimed authentic surviving likeness. Style: refined editorial woodcut-inspired painted illustration, crisp elegant shapes, textured paper, luminous restrained colors, beautiful composition rather than photorealism. Palette: warm sand, muted blue, cream and charcoal. Composition: one large head and upper torso occupying most of frame, readable at 88 by 110 pixels, quiet minimal setting. No text, letters, labels, signature, border, collage or additional people. Clearly an original artistic interpretation, not a documentary photograph or copied painting.",
+    "sourceSha256": "29187e3dbebe3da11066f2da882625e904c01f1a65df68578d89105db337b8ff"
+  },
+  {
+    "id": "devapala-q15649142",
+    "name": "Devapala of Bengal",
+    "tool": "OpenAI built-in Image Generation",
+    "prompt": "Use case: historical-scene. Asset: one finished Tarot reference card illustration, portrait 4:5, full bleed. Subject: Devapala of Bengal. An original imagined upper-body portrayal of the ninth-century Pala ruler of Bengal, an adult Bengali man in draped cloth with restrained court ornaments, subtle early medieval eastern Indian brick architecture behind. Quiet scholarly court atmosphere without specific undocumented event or text. No Mughal costume, modern symbols or invented inscriptions. Not a claimed surviving likeness. Style: refined editorial woodcut-inspired painted illustration, crisp elegant shapes, textured paper, luminous restrained colors, beautiful composition rather than photorealism. Palette: deep red, dark green, ochre and parchment. Composition: one large head and upper torso occupying most of frame, readable at 88 by 110 pixels, quiet minimal setting. No text, letters, labels, signature, border, collage or additional people. Clearly an original artistic interpretation, not a documentary photograph or copied painting.",
+    "sourceSha256": "a3d4986d58a327d8aa7cf3a30a36eeb428e5264df95003a1f0bd35da75e3e016"
+  }
+]

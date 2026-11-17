@@ -1,0 +1,17 @@
+{
+  "path": "output/tarot-reference-import-20261117/semantic-final-candidate.json",
+  "identities": 5636,
+  "sha256": "fcec5676f5ade6be8e67e65277b9733d03d84c4f83edf8e1c1f1ad943bd3251f",
+  "heldIds": [
+    "chris-benoit-q44292",
+    "lech-czech-and-rus-q338097",
+    "moomins-q200344",
+    "nightwing-q686623",
+    "supergirl-q8981293",
+    "the-hardy-boys-q1471089",
+    "wandering-jew-q464017",
+    "william-joyce-q76532",
+    "x-men-q128452"
+  ],
+  "note": "Canonical identities and contexts frozen for offline semantic/index evaluation. Remaining asset review is independent; this is not a promoted image manifest."
+}

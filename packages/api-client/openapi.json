@@ -447,6 +447,62 @@
         }
       }
     },
+    "/v1/readings/{match_id}": {
+      "get": {
+        "summary": "Saved Reading",
+        "operationId": "saved_reading_v1_readings__match_id__get",
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Match Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedReadingView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/rooms/{room_id}/astrology/places": {
       "post": {
         "summary": "Astrology Places",
@@ -3538,6 +3594,71 @@
           "missing_players"
         ],
         "title": "RoomView"
+      },
+      "SavedReadingView": {
+        "properties": {
+          "match_id": {
+            "type": "string",
+            "title": "Match Id"
+          },
+          "room_id": {
+            "type": "string",
+            "title": "Room Id"
+          },
+          "created_at": {
+            "type": "number",
+            "title": "Created At"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "complete",
+              "generating",
+              "incomplete",
+              "unavailable"
+            ],
+            "title": "Status"
+          },
+          "question": {
+            "type": "string",
+            "title": "Question"
+          },
+          "cards": {
+            "items": {
+              "$ref": "#/components/schemas/CardView"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Cards"
+          },
+          "reading": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Reading"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "can_resume": {
+            "type": "boolean",
+            "title": "Can Resume"
+          }
+        },
+        "type": "object",
+        "required": [
+          "match_id",
+          "room_id",
+          "created_at",
+          "status",
+          "question",
+          "cards",
+          "reading",
+          "can_resume"
+        ],
+        "title": "SavedReadingView",
+        "description": "One participant's saved spread, independent of the room's current match."
       },
       "Section": {
         "properties": {

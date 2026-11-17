@@ -58,3 +58,20 @@ Only participants receive those match projections; outsiders still receive 404.
 The frontend applies one revision acceptance rule to normal GET, action,
 heartbeat and bot responses. Lower room revisions are rejected even across a
 rematch; equal revisions may refresh presence. No schema or transaction changes.
+
+## Private saved Tarot archive
+
+`GET /v1/readings/{match_id}` reads the exact historical match and saved reading.
+Only that Tarot match's sole recorded participant may read it; current room
+membership is not required. Unknown, non-Tarot and other players' matches all
+return 404. The response includes only the chosen cards, private saved question,
+backwards-compatible reading and a current-room return flag. Closed rooms and
+rematches cannot be resumed from an old archive entry. Responses are private and
+non-cacheable; archive reads never generate output or change the saved record.
+
+Complete legacy readings keep their original text and optional missing layers.
+Missing, failed and expired attempts are explicitly incomplete; a live lease is
+generating. Invalid stored output is explicitly unavailable and emits only a safe
+warning, leaving the original payload intact. Profile history also discovers a
+completed solo Tarot match when its old membership row is absent.
+`test_tarot_archive.py` verifies these boundaries in an isolated database.

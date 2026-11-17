@@ -124,6 +124,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/readings/{match_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Saved Reading */
+        get: operations["saved_reading_v1_readings__match_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/rooms/{room_id}/astrology/places": {
         parameters: {
             query?: never;
@@ -1239,6 +1256,30 @@ export interface components {
             activity?: components["schemas"]["PublicMoveView"][];
         };
         /**
+         * SavedReadingView
+         * @description One participant's saved spread, independent of the room's current match.
+         */
+        SavedReadingView: {
+            /** Match Id */
+            match_id: string;
+            /** Room Id */
+            room_id: string;
+            /** Created At */
+            created_at: number;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "complete" | "generating" | "incomplete" | "unavailable";
+            /** Question */
+            question: string;
+            /** Cards */
+            cards: components["schemas"]["CardView"][];
+            reading: components["schemas"]["Reading"] | null;
+            /** Can Resume */
+            can_resume: boolean;
+        };
+        /**
          * Section
          * @description Stored/wire contract also accepts readings saved before the expansion.
          */
@@ -1553,6 +1594,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ReadingView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    saved_reading_v1_readings__match_id__get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                match_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SavedReadingView"];
                 };
             };
             /** @description Validation Error */

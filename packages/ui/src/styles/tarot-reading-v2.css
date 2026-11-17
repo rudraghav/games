@@ -21,11 +21,18 @@
     background: var(--color-surface-muted);
   }
   .tarot-character-portrait figcaption {
-    font-size: 10px;
+    font-size: 11px;
     line-height: 1.4;
     color: var(--color-ink-muted);
     margin-top: 6px;
     overflow-wrap: anywhere;
+  }
+  .tarot-character-connections li:is([data-reference-kind='meme'], [data-artwork-type='artwork']) {
+    grid-template-columns: 176px minmax(0, 1fr);
+  }
+  .tarot-character-portrait:is([data-reference-kind='meme'], [data-artwork-type='artwork']) img {
+    aspect-ratio: auto;
+    object-fit: contain;
   }
   .tarot-character-copy {
     min-width: 0;
@@ -64,6 +71,13 @@
     .tarot-character-connections li[data-has-portrait='true'] {
       grid-template-columns: 88px minmax(0, 1fr);
       gap: 12px;
+    }
+    .tarot-character-connections
+      li:is([data-reference-kind='meme'], [data-artwork-type='artwork']) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .tarot-character-portrait:is([data-reference-kind='meme'], [data-artwork-type='artwork']) {
+      width: min(100%, 240px);
     }
   }
   /* Stick flush with the dialog's top edge: the dialog's own padding would

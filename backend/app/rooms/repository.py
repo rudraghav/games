@@ -3,7 +3,7 @@ from __future__ import annotations
 import hashlib
 import time
 
-from sqlalchemy import func, select
+from sqlalchemy import and_, func, or_, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
 
@@ -113,12 +113,19 @@ class Repository:
         )
 
     def history(self, user_id: str) -> list[Match]:
-        # The membership join narrows candidates; participant validation is performed by the service.
+        # Keep completed solo readings discoverable even if an old membership
+        # is absent. The service still validates the saved participants.
         return list(
             self.session.scalars(
                 select(Match)
-                .join(Member, Member.room_id == Match.room_id)
-                .where(Member.user_id == user_id, Match.result.is_not(None))
+                .outerjoin(Member, and_(Member.room_id == Match.room_id, Member.user_id == user_id))
+                .where(
+                    or_(
+                        Member.user_id == user_id,
+                        and_(Match.game_id == "tarot", Match.participants[0].as_string() == user_id),
+                    ),
+                    Match.result.is_not(None),
+                )
                 .order_by(Match.created_at.desc())
                 .limit(100)
             ).all()

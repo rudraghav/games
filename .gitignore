@@ -6,6 +6,7 @@ playwright-report/
 .playwright-cli/
 test-results/
 output/playwright/
+output/tarot-reference-import-20261117/
 *.tsbuildinfo
 __pycache__/
 .pytest_cache/
