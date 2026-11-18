@@ -10,6 +10,7 @@ export function GameTile({
   tone,
   artwork,
   onChoose,
+  href,
   edition = 'standard',
   soloMode = false,
   variant = 'standard',
@@ -22,22 +23,16 @@ export function GameTile({
   minutes: string;
   tone: string;
   artwork: ReactNode;
-  onChoose: () => void;
+  onChoose?: () => void;
+  href?: string;
   edition?: 'standard' | 'house';
   soloMode?: boolean;
   variant?: 'standard' | 'featured';
   actionLabel?: string;
 }) {
   const featured = variant === 'featured';
-  return (
-    <button
-      type="button"
-      className="game-tile"
-      data-edition={edition}
-      data-variant={variant}
-      onClick={onChoose}
-      aria-label={`${featured ? `${actionLabel} — ` : ''}Create ${name} room`}
-    >
+  const content = (
+    <>
       <div className="game-poster" data-tone={tone}>
         {artwork}
       </div>
@@ -74,6 +69,21 @@ export function GameTile({
           </span>
         ) : null}
       </div>
+    </>
+  );
+  const attributes = {
+    className: 'game-tile',
+    'data-edition': edition,
+    'data-variant': variant,
+    'aria-label': `Open ${name}`,
+  };
+  return href ? (
+    <a {...attributes} href={href}>
+      {content}
+    </a>
+  ) : (
+    <button {...attributes} type="button" onClick={onChoose}>
+      {content}
     </button>
   );
 }

@@ -34,3 +34,8 @@ export const api = createApi(async () => {
   await ensureSession();
   return supabase ? (await supabase.auth.getSession()).data.session?.access_token || null : null;
 });
+
+// Public discovery may read an existing identity, but must never create a guest.
+export const passiveApi = createApi(async () =>
+  supabase ? (await supabase.auth.getSession()).data.session?.access_token || null : null,
+);

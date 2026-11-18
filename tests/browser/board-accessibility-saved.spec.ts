@@ -1,5 +1,12 @@
 import { expect, test, type Page } from '@playwright/test';
-import { attachPreviewAccess, openRoomOptions, requestAs, roomAs, type RoomView } from './helpers';
+import {
+  openGameSetup,
+  attachPreviewAccess,
+  openRoomOptions,
+  requestAs,
+  roomAs,
+  type RoomView,
+} from './helpers';
 
 // Two independent identities share one room; no fixtures, bots or private-state injection.
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
@@ -70,7 +77,7 @@ test('keyboard board moves retain named public positions after a saved refresh',
   try {
     for (const actor of [page, friend]) await attachPreviewAccess(actor);
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Four in a Row room', exact: true }).click();
+    await openGameSetup(page, 'Four in a Row');
     await page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill(`Board access host ${info.project.name}`);

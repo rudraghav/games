@@ -17,6 +17,21 @@ class Repository:
     def profile(self, user_id: str) -> Profile | None:
         return self.session.get(Profile, user_id)
 
+    def lock_quick_play(self, room_id: str) -> None:
+        """Serialize one launch intent, even before its room exists."""
+        key = int.from_bytes(hashlib.sha256(room_id.encode()).digest()[:8], signed=True)
+        self.session.execute(select(func.pg_advisory_xact_lock(key)))
+
+    def ensure_player(self, user_id: str, default_name: str) -> Profile:
+        """Create a first-time player without overwriting a saved profile."""
+        self.session.execute(insert(Profile).values(
+            id=user_id, name=default_name, avatar=0,
+        ).on_conflict_do_nothing(index_elements=[Profile.id]))
+        return self.session.scalars(
+            select(Profile).where(Profile.id == user_id)
+            .execution_options(populate_existing=True)
+        ).one()
+
     def public_action(self, match_id: str, version: int) -> dict | None:
         # The existing match-prefix primary index bounds this lookup to one match.
         response = self.session.scalar(select(Receipt.response).where(

@@ -1,7 +1,8 @@
 # Private saved Tarot readings
 
-The thin `/readings/[matchId]` route renders `SavedReadingScreen`, reached from
-Profile history. It reads the exact saved match independently of the room's
+The thin `/games/tarot/readings/[matchId]` route renders `SavedReadingScreen`,
+reached from Profile history. Old `/readings/[matchId]` links remain compatible
+and redirect only after an authorized read. It reads the exact saved match independently of the room's
 current match or closure. Shared `TarotReading`, card-art loading, navigation and
 buttons retain the normal reading presentation, character art and chart controls.
 

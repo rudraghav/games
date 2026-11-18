@@ -23,6 +23,7 @@ from app.rooms.schemas import (
     Move,
     ProfileInput,
     ProfileView,
+    QuickPlay,
     Ready,
     RoomSettings,
     RoomView,
@@ -55,6 +56,11 @@ def profile(data: ProfileInput, actor: Actor, svc: Service) -> ProfileView:
 @router.post("/rooms", response_model=RoomView, status_code=201)
 def create(data: CreateRoom, actor: Actor, svc: Service) -> RoomView:
     return svc.create(actor, data)
+
+
+@router.post("/games/{game_id}/play", response_model=RoomView)
+def quick_play(game_id: str, data: QuickPlay, actor: Actor, svc: Service) -> RoomView:
+    return svc.quick_play(actor, game_id, data)
 
 
 @router.post("/rooms/join", response_model=RoomView)

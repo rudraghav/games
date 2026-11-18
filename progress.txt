@@ -1,3 +1,65 @@
+## 2026-11-18 — Game entry local release gate passed
+
+- Final frontend types/lint/build and 251 tests pass after the profile-race fix.
+  Backend 6948, persistence/privacy 219, generated contracts/assets and tooling
+  44 pass. Runtime is unchanged from the recorded verified fingerprint.
+- Browser acceptance: 61 passed and one intentional desktop-only layout skip;
+  two old-menu-copy assertions failed, were corrected, and both pass in the
+  separate six-case reading rerun. That rerun also covers ordinary/Both-chart
+  display. Six phone WebKit entry, friends, retry and profile-recovery cases pass.
+  All 27 public entry pages create no guest/session; 320px captures are inspected.
+  These are local checks; no new AI generation was used to validate navigation.
+- Browser source is frozen. Private evidence and exact scoped cleanup receipts
+  remain in output/game-entry-20261118. Preparing the authorized main push and
+  one SHA-pinned production deployment; live behavior is not yet verified.
+
+## 2026-11-18 — Game entry implemented; local acceptance in progress
+
+- Added all 27 public /games/[gameId] pages and real catalogue links. Start
+  reading and Play with bots bypass name/setup/lobby; friends choose the game
+  before shared setup. Home uses Your games and Play solo; Tarot uses Reading
+  options without multiplayer controls. Old room/archive links remain private
+  and canonicalize after authorized reads. Existing profiles stay unchanged.
+- POST /v1/games/{game_id}/play creates and starts atomically. Actor/request-bound
+  room and first-match IDs plus a transaction advisory lock recover concurrent
+  or lost responses; changed/closed sessions require an explicit new start.
+  No new database schema, provider configuration, prompt or generation calls.
+- Independent review found a delayed pre-launch profile read could overwrite
+  the committed Guest identity. Reused the existing cancel-and-refresh helper;
+  browser regressions cover both stale-null and failed fresh-profile responses.
+- Local commands pass: frontend 251, backend 6948, persistence/privacy 219,
+  generated contracts/catalogue/assets, import boundaries and tooling 44. The
+  initial combined ownership receipt is inconclusive because source changed
+  during the run; final frontend rerun passes on stable source. Backend inputs
+  stayed unchanged. Browser acceptance and release evidence are still pending.
+- Read-only production schema/privacy check passes: reviewed head a6e442b15d80,
+  no schema drift, eight RLS tables and all 112 grant checks. Runtime fingerprint
+  4d6d9de735ef16a2dc34e4c888e8b42cc2655aec691bc5098ab19987c887da88 covers 6186 files.
+  Main remains bdf2c893; these changes are local, not yet pushed or deployed.
+
+## 2026-11-18 — Game-first entry and named URLs kickoff
+
+- User approves direct Tarot entry, game-specific URLs and room setup only when
+  choosing to play with friends. Keep the shared server-owned session/match,
+  privacy, shuffle, history, reading and bot rules; this changes entry/navigation.
+- Public /games/[gameId] pages open without creating a guest or room. Tarot
+  offers its reading start directly; supported bot games offer immediate Play
+  with bots using existing defaults. An intentional start creates and starts
+  one private session; bounded retries recover that same launch. Friends choose
+  create/join from the game page, then use the existing invitation lobby.
+- Canonical active URLs include the authoritative game: /games/[gameId]/rooms/[id]
+  for multiplayer and /games/tarot/play/[id] for Tarot. Private archives use
+  /games/tarot/readings/[matchId]. Existing room/archive/invite links keep working;
+  a stale game slug follows the server's actual game after authorization.
+- Acceptance: all27 entries, zero writes on browsing, accessible phone layouts,
+  first-time/returning users, duplicate/lost launch responses, start failures,
+  bot play, friend create/join, room game changes, saved Tarot refresh/archive,
+  outsider denial and old links. No reading prompt/provider change or bulk data
+  rewrite. Scratch/evidence belongs to output/game-entry-20261118 and ignored
+  release receipts; preserve existing services and earlier evidence.
+- Baseline: clean mainbdf2c893; production14e5cfa. Run affected named local gates,
+  browser/live checks, push main and verify the actual production rollout.
+
 ## 2026-11-18 — Tarot provider recovery live-verified and closed
 
 - Application14e5cfa00864a8d71ff77111980c27eca0750d88 is READY in bom1 at

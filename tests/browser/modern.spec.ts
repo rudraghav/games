@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test';
-import { requestAs, roomAs, type RoomView, openRoomOptions } from './helpers';
+import { openGameSetup, requestAs, roomAs, type RoomView, openRoomOptions } from './helpers';
 
 test('modern covers and every modern table fit with readable touch controls', async ({ page }) => {
   await page.goto('/');
   for (const name of ['Flip 7', 'Trio', 'Azul']) {
-    const tile = page.getByRole('button', { name: `Create ${name} room`, exact: true });
+    const tile = page.getByRole('link', { name: `Open ${name}`, exact: true });
     await expect(tile).toBeVisible();
     await expect(tile.locator('.game-art--modern-numbers, .game-art--azul')).toHaveCount(1);
   }
@@ -49,7 +49,7 @@ test('friends click modern game decisions and refresh the saved table', async ({
   }
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Flip 7 room', exact: true }).click();
+    await openGameSetup(page, 'Flip 7');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Modern Host');
     await openRoomOptions(page);
     await page

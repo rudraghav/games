@@ -4,7 +4,7 @@ import { writeFile } from 'node:fs/promises';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import type { TarotCharacter } from '../../packages/api-client/src/tarot-characters';
 import registry from '../../packages/api-client/src/generated/tarot-characters.json' with { type: 'json' };
-import { attachPreviewAccess, requestAs, roomAs } from './helpers';
+import { openGameSetup, attachPreviewAccess, requestAs, roomAs } from './helpers';
 
 type ReadingView = components['schemas']['ReadingView'];
 type SavedReading = components['schemas']['SavedReadingView'];
@@ -318,7 +318,7 @@ test('selected independent live readings retain exact private archives after new
       continue;
     }
     await room.page.goto('/');
-    await room.page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
+    await openGameSetup(room.page, 'tarot');
     await room.page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill(`Tarot live QA ${index + 1}`);
@@ -352,7 +352,7 @@ test('selected independent live readings retain exact private archives after new
     await room.page.getByRole('button', { name: 'Create room', exact: true }).click();
     const created = await creation;
     expect(created.status()).toBe(201);
-    await expect(room.page).toHaveURL(new RegExp(`/rooms/${room.roomId}$`));
+    await expect(room.page).toHaveURL(new RegExp(`/games/tarot/play/${room.roomId}$`));
     await pickSpread(room.page);
   }
   expect((await (await requestAs(page, 'me')).json()).profile.id).not.toBe(
@@ -472,7 +472,7 @@ test('selected independent live readings retain exact private archives after new
       if (index === 0 && owned.rooms[1].roomId)
         await outsider.goto(`/rooms/${owned.rooms[1].roomId}`);
       await actor.goto('/profile');
-      await actor.locator(`a.history-row[href="/readings/${matchId}"]`).click();
+      await actor.locator(`a.history-row[href="/games/tarot/readings/${matchId}"]`).click();
       await sameText();
       expect(submissions.get(actor)).toBe(1);
       await writeFile(

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import { Plus } from 'lucide-react';
 import { Button, Wordmark, SegmentedTabs } from '@games/ui';
-import { api } from '@/lib/session';
+import { passiveApi } from '@/lib/session';
 import { RoomDialog } from '@/shared/RoomDialog';
 import { SiteHeader } from '@/shared/SiteHeader';
 import { keys } from '@/shared/query-keys';
@@ -30,15 +30,15 @@ export function LoungeRooms({
     .toSorted((a, b) => Number(b.status === 'playing') - Number(a.status === 'playing'));
   const finished = rooms.filter((room) => room.status === 'finished');
   return (
-    <section className="lounge-rooms" aria-label="Your rooms">
+    <section className="lounge-rooms" aria-label="Your games">
       {loading ? (
         <div className="lounge-rooms-state" role="status">
-          <p>Loading your rooms…</p>
+          <p>Loading your games…</p>
         </div>
       ) : error ? (
         <div className="lounge-rooms-state" role="alert">
-          <h2>Could not load rooms</h2>
-          <p>Try again to see your rooms.</p>
+          <h2>Could not load your games</h2>
+          <p>Try again to see your games.</p>
           <Button variant="secondary" onClick={onRetry}>
             Try again
           </Button>
@@ -56,7 +56,7 @@ export function LoungeRooms({
             </section>
           ) : null}
           {finished.length ? (
-            <section className="lounge-rooms-group" aria-label="Finished rooms">
+            <section className="lounge-rooms-group" aria-label="Finished games">
               <h2>Finished</h2>
               <div className="recent-rooms">
                 {finished.map((room) => (
@@ -68,8 +68,8 @@ export function LoungeRooms({
         </>
       ) : (
         <div className="lounge-rooms-state">
-          <h2>No rooms yet</h2>
-          <p>Rooms you create or join appear here.</p>
+          <h2>No games yet</h2>
+          <p>Readings and games you start or join appear here.</p>
         </div>
       )}
     </section>
@@ -83,8 +83,9 @@ export function Lounge() {
     withBots?: boolean;
   } | null>(null);
   const [tab, setTab] = useState<'games' | 'rooms'>('games');
+  const [soloRequest, setSoloRequest] = useState(0);
   const played = useHasPlayed();
-  const me = useQuery({ queryKey: keys.me, queryFn: () => api.me(), enabled: played });
+  const me = useQuery({ queryKey: keys.me, queryFn: () => passiveApi.me(), enabled: played });
   return (
     <>
       <SiteHeader showGamesLink={false} onHomeClick={() => setTab('games')}>
@@ -101,13 +102,16 @@ export function Lounge() {
       <main className="page-width lounge-dashboard">
         <section className="hero hero--compact">
           <div>
-            <h1 className="hero-title">{tab === 'games' ? 'Choose a game' : 'Your rooms'}</h1>
+            <h1 className="hero-title">{tab === 'games' ? 'Choose a game' : 'Your games'}</h1>
             <div className="hero-actions">
               <Button
                 size="lg"
-                onClick={() => setDialog({ mode: 'create', gameId: 'uno', withBots: true })}
+                onClick={() => {
+                  setTab('games');
+                  setSoloRequest((value) => value + 1);
+                }}
               >
-                Play with bots
+                Play solo
               </Button>
               <Button
                 size="lg"
@@ -127,15 +131,11 @@ export function Lounge() {
             {
               value: 'games',
               label: 'Games',
-              content: (
-                <GameLibrary
-                  onChoose={(gameId, withBots) => setDialog({ mode: 'create', gameId, withBots })}
-                />
-              ),
+              content: <GameLibrary key={soloRequest} initialSolo={soloRequest > 0} />,
             },
             {
               value: 'rooms',
-              label: 'Rooms',
+              label: 'Your games',
               content: (
                 <LoungeRooms
                   rooms={me.data?.rooms || []}

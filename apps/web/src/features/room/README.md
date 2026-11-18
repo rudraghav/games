@@ -4,6 +4,16 @@
 results, rematch lobby and the table itself. Game tables render inside it and
 never duplicate these pieces.
 
+Named multiplayer `/games/[gameId]/rooms/[id]` and solo
+`/games/tarot/play/[id]` routes share this renderer. The old `/rooms/[id]`
+route remains compatible. RoomScreen replaces legacy or stale game paths only
+after successful authorized room and player reads; a slug grants no access.
+
+Tarot presents Pop Tarot and Reading options, with Saved readings and Back to
+Tarot. Multiplayer invite, host and chat controls are omitted. Going back
+does not abandon the spread; home's Your games can resume it. A legacy solo
+lobby still offers Start reading for recovery, without a multiplayer setup form.
+
 ## Order on screen
 
 - Playing: banner, then the table.

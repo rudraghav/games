@@ -11,7 +11,7 @@ import {
 } from '../../apps/web/src/stories/fixtures/astrology';
 import dstChart from '../../apps/web/src/stories/fixtures/astrology-dst-synthetic.json' with { type: 'json' };
 import { tarotReadingExample } from '../../apps/web/src/stories/fixtures/tarot-reading';
-import { requestAs, roomAs } from './helpers';
+import { openGameSetup, requestAs, roomAs } from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off' });
 test.skip(!!process.env.GAMES_TEST_URL, 'Synthetic provider tests use local development only.');
@@ -127,7 +127,7 @@ async function withReading(
   });
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
+    await openGameSetup(page, 'tarot');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Synthetic chart QA');
     const created = page
       .waitForResponse(
@@ -141,7 +141,7 @@ async function withReading(
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
     await created;
     roomId = owned.roomId!;
-    await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
+    await expect(page).toHaveURL(/\/games\/tarot\/play\/[\da-f-]+$/);
     for (let card = 1; card <= 3; card++) {
       await expect(page.getByRole('heading', { name: `Choose card ${card} of 3` })).toBeVisible();
       await page

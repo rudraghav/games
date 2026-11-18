@@ -2,13 +2,13 @@
 import Link from 'next/link';
 import { UserRound } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '@/lib/session';
+import { passiveApi } from '@/lib/session';
 import { keys } from './query-keys';
 import { useHasPlayed } from './player-preferences';
 
 export function AccountNav() {
   const played = useHasPlayed();
-  const me = useQuery({ queryKey: keys.me, queryFn: () => api.me(), enabled: played });
+  const me = useQuery({ queryKey: keys.me, queryFn: () => passiveApi.me(), enabled: played });
   const signedIn = me.data && !me.data.anonymous;
   return (
     <Link

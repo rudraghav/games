@@ -4,6 +4,22 @@ Room services authorize human identities, lock the current room/match and apply
 the pure engine. State, version, result, action receipt and public notification
 commit atomically. Repository methods own SQL; the projection owns visibility.
 
+## Direct solo and bot starts
+
+`POST /v1/games/{game_id}/play` takes a UUID `request_id`. An intentional start
+preserves an existing profile or inserts Guest, fills the minimum supported bot
+group (at least one bot), readies the human and starts through the same engine
+path in one transaction. Tarot uses one seat. Failure rolls back the profile,
+room, members and match together. Creation/start limits still apply.
+
+Room and first-match IDs are derived from authenticated actor plus request ID.
+A transaction-scoped advisory lock serializes duplicate launches even before a
+room exists, without reversing ordinary room-before-profile lock ordering.
+Retry returns the original authorized match; it never revives a departed,
+closed or rematched session or changes its game. The separate quick-play
+throttle bounds replays. `test_quick_play.py` covers every catalogue entry,
+profile preservation, hidden cards, limits, rollback and concurrent launch/join.
+
 `public_actions.py` retains the small, unchanged casino cue used by committed
 chip/card animations. `public_history.py` builds the separate public timeline
 for every registered game. It does not save or return a submitted action.

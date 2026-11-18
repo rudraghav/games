@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { requestAs, roomAs, openRoomOptions } from './helpers';
+import { openGameSetup, requestAs, roomAs, openRoomOptions } from './helpers';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 test.use({ trace: 'off', screenshot: 'off' });
@@ -11,15 +11,10 @@ test('compact discovery preserves solo intent and clear private setup', async ({
     await page.evaluate(() => document.fonts.ready);
     const first = await page.locator('.game-tile').first().boundingBox();
     expect(first!.y).toBeLessThan(420);
-    const featured = page.getByRole('button', {
-      name: 'Start reading — Create Pop Tarot room',
-      exact: true,
-    });
+    const featured = page.getByRole('link', { name: 'Open Pop Tarot', exact: true });
     await expect(featured).toHaveAttribute('data-variant', 'featured');
     await expect(page.locator('.game-tile')).toHaveCount(catalogue.length);
-    await expect(page.locator('.game-tile').first()).toHaveAccessibleName(
-      'Start reading — Create Pop Tarot room',
-    );
+    await expect(page.locator('.game-tile').first()).toHaveAccessibleName('Open Pop Tarot');
     await expect(featured.getByText('Featured', { exact: true })).toBeVisible();
     await expect(featured.getByText('Start reading', { exact: true })).toBeVisible();
     const grid = await page.locator('.catalogue-grid').boundingBox();
@@ -51,24 +46,18 @@ test('compact discovery preserves solo intent and clear private setup', async ({
     expect(clippedCovers).toEqual([]);
   }
   const library = page.getByRole('region', { name: 'Games', exact: true });
-  const featured = library.getByRole('button', {
-    name: 'Start reading — Create Pop Tarot room',
-    exact: true,
-  });
+  const featured = library.getByRole('link', { name: 'Open Pop Tarot', exact: true });
   await featured.focus();
   await page.keyboard.press('Enter');
-  const tarotSetup = page.getByRole('dialog', { name: 'Create room', exact: true });
-  await expect(tarotSetup.getByRole('combobox', { name: 'The game', exact: true })).toHaveValue(
-    'tarot',
-  );
-  await expect(tarotSetup.getByRole('combobox', { name: 'Seats', exact: true })).toHaveCount(0);
-  await tarotSetup.getByRole('button', { name: 'Cancel', exact: true }).click();
-  await expect(featured).toBeFocused();
+  await expect(page).toHaveURL(/\/games\/tarot$/);
+  await expect(page.getByRole('button', { name: 'Start reading', exact: true })).toBeVisible();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.goto('/');
   const search = library.getByRole('searchbox', { name: 'Search games' });
   await search.fill('poker');
   await expect(featured).toHaveCount(0);
   await expect(
-    library.getByRole('button', { name: 'Create Texas Hold’em room', exact: true }),
+    library.getByRole('link', { name: 'Open Texas Hold’em', exact: true }),
   ).toBeVisible();
   await search.fill('tarot');
   await expect(page.locator('.game-tile')).toHaveCount(1);
@@ -79,29 +68,21 @@ test('compact discovery preserves solo intent and clear private setup', async ({
   await library.getByRole('button', { name: 'Reset filters', exact: true }).click();
   await expect(page.locator('.game-tile')).toHaveCount(catalogue.length);
   await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('1');
-  const uno = library.getByRole('button', { name: 'Create Uno room', exact: true });
+  const uno = library.getByRole('link', { name: 'Open Uno', exact: true });
   await expect(uno.getByText('You + bots', { exact: true })).toBeVisible();
   await uno.click();
-  const dialog = page.getByRole('dialog', { name: 'Create room', exact: true });
-  await expect(dialog.getByRole('button', { name: 'Bots', exact: true })).toHaveAttribute(
+  await expect(page).toHaveURL(/\/games\/uno\?mode=bots$/);
+  await expect(page.getByRole('button', { name: 'Play with bots', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Play with friends', exact: true })).toBeVisible();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Play solo', exact: true }).click();
+  await expect(library.getByRole('button', { name: 'Solo + bots', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
   );
-  await expect(dialog.getByRole('combobox', { name: 'Seats', exact: true })).toHaveValue('2');
-  await expect(
-    dialog.getByText('Invite-only. Share a link or room code to add friends.', { exact: true }),
-  ).toHaveCount(1);
-  await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
-  await expect(uno).toBeFocused();
-  await library.getByRole('button', { name: 'Reset filters', exact: true }).click();
-  await expect(library.getByRole('searchbox', { name: 'Search games' })).toBeFocused();
-  await library.getByRole('button', { name: 'Solo + bots', exact: true }).click();
-  await uno.click();
-  await expect(dialog.getByRole('button', { name: 'Bots', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'true',
-  );
-  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(uno).toBeVisible();
 });
 
 test('private room shortcuts and pasted invite links stay membership-scoped', async ({
@@ -117,7 +98,7 @@ test('private room shortcuts and pasted invite links stay membership-scoped', as
   let friendJoined = false;
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
+    await openGameSetup(page, 'Uno');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Dashboard Host');
     await openRoomOptions(page);
     await page.getByRole('textbox', { name: 'Room name', exact: true }).fill('Dashboard table');
@@ -129,15 +110,15 @@ test('private room shortcuts and pasted invite links stay membership-scoped', as
     expect(room.invite_token).toBeTruthy();
     await page.goto('/');
     await expect(page.locator('.room-shortcut:visible')).toHaveCount(0);
-    await page.getByRole('tab', { name: 'Rooms', exact: true }).click();
-    const rooms = page.getByRole('region', { name: 'Your rooms', exact: true });
+    await page.getByRole('tab', { name: 'Your games', exact: true }).click();
+    const rooms = page.getByRole('region', { name: 'Your games', exact: true });
     await expect(
       rooms.getByRole('link', { name: 'Open Dashboard table, Uno', exact: true }),
     ).toBeVisible();
     await expect(page.getByRole('tabpanel', { name: 'Games', exact: true })).toHaveCount(0);
     await friend.goto('/');
-    await friend.getByRole('tab', { name: 'Rooms', exact: true }).click();
-    await expect(friend.getByRole('heading', { name: 'No rooms yet', exact: true })).toBeVisible();
+    await friend.getByRole('tab', { name: 'Your games', exact: true }).click();
+    await expect(friend.getByRole('heading', { name: 'No games yet', exact: true })).toBeVisible();
     await expect(friend.locator('.room-shortcut:visible')).toHaveCount(0);
     await friend.getByRole('button', { name: 'Join a room', exact: true }).click();
     await friend.getByRole('textbox', { name: 'Your name', exact: true }).fill('Dashboard Friend');
@@ -149,10 +130,10 @@ test('private room shortcuts and pasted invite links stay membership-scoped', as
     friendJoined = true;
     expect((await roomAs(friend, id)).members).toHaveLength(2);
     await friend.goto('/');
-    await friend.getByRole('tab', { name: 'Rooms', exact: true }).click();
+    await friend.getByRole('tab', { name: 'Your games', exact: true }).click();
     await expect(
       friend
-        .getByRole('region', { name: 'Your rooms', exact: true })
+        .getByRole('region', { name: 'Your games', exact: true })
         .getByRole('link', { name: 'Open Dashboard table, Uno', exact: true }),
     ).toBeVisible();
     await outsider.goto('/');
@@ -161,9 +142,9 @@ test('private room shortcuts and pasted invite links stay membership-scoped', as
     await expect.poll(async () => (await requestAs(outsider, 'me')).status()).toBe(200);
     await outsider.getByRole('button', { name: 'Cancel', exact: true }).click();
     expect((await requestAs(outsider, `rooms/${id}`)).status()).toBe(404);
-    await outsider.getByRole('tab', { name: 'Rooms', exact: true }).click();
+    await outsider.getByRole('tab', { name: 'Your games', exact: true }).click();
     await expect(
-      outsider.getByRole('heading', { name: 'No rooms yet', exact: true }),
+      outsider.getByRole('heading', { name: 'No games yet', exact: true }),
     ).toBeVisible();
     await expect(outsider.locator('.room-shortcut:visible')).toHaveCount(0);
     await friend.getByRole('link', { name: 'Open Dashboard table, Uno', exact: true }).click();
@@ -182,8 +163,8 @@ test('private room shortcuts and pasted invite links stay membership-scoped', as
     expect((await departed).status()).toBe(200);
     friendJoined = false;
     await expect(friend).toHaveURL(/\/$/);
-    await friend.getByRole('tab', { name: 'Rooms', exact: true }).click();
-    await expect(friend.getByRole('heading', { name: 'No rooms yet', exact: true })).toBeVisible();
+    await friend.getByRole('tab', { name: 'Your games', exact: true }).click();
+    await expect(friend.getByRole('heading', { name: 'No games yet', exact: true })).toBeVisible();
     await expect(friend.locator('.room-shortcut:visible')).toHaveCount(0);
     expect((await roomAs(page, id)).members).toHaveLength(1);
     await expect(
@@ -228,7 +209,7 @@ test('canonical board covers keep every cell in lobby and member thumbnails', as
     let id: string | undefined;
     try {
       await page.goto('/');
-      await page.getByRole('button', { name: `Create ${name} room`, exact: true }).click();
+      await openGameSetup(page, `${name}`);
       await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Board Cover QA');
       await openRoomOptions(page);
       await page.getByRole('textbox', { name: 'Room name', exact: true }).fill('Cover table');
@@ -239,7 +220,7 @@ test('canonical board covers keep every cell in lobby and member thumbnails', as
       await expect(lobby.locator('.game-art > span')).toHaveCount(count);
       expect(await inside(lobby, '.game-art > span')).toBe(true);
       await page.goto('/');
-      await page.getByRole('tab', { name: 'Rooms', exact: true }).click();
+      await page.getByRole('tab', { name: 'Your games', exact: true }).click();
       const room = page.getByRole('link', { name: `Open Cover table, ${name}`, exact: true });
       await expect(room).toBeVisible();
       await expect(room.locator('.game-art > span')).toHaveCount(count);
@@ -265,7 +246,7 @@ test('Games and Rooms use keyboard tabs, preserve filters and never create a bro
   await page.setViewportSize({ width: info.project.name === 'phone' ? 320 : 1440, height: 844 });
   await page.goto('/');
   const games = page.getByRole('tab', { name: 'Games', exact: true });
-  const rooms = page.getByRole('tab', { name: 'Rooms', exact: true });
+  const rooms = page.getByRole('tab', { name: 'Your games', exact: true });
   await expect(games).toHaveAttribute('aria-selected', 'true');
   await expect(page.locator('[role="tabpanel"]')).toHaveCount(2);
   for (const tab of [games, rooms]) {
@@ -286,10 +267,10 @@ test('Games and Rooms use keyboard tabs, preserve filters and never create a bro
   await expect(rooms).toHaveAttribute('aria-selected', 'true');
   await expect(rooms).toHaveAttribute('tabindex', '0');
   await expect(games).toHaveAttribute('tabindex', '-1');
-  const panel = page.getByRole('tabpanel', { name: 'Rooms', exact: true });
+  const panel = page.getByRole('tabpanel', { name: 'Your games', exact: true });
   await expect(panel).toHaveAttribute('id', (await rooms.getAttribute('aria-controls'))!);
   await expect(panel).toHaveAttribute('aria-labelledby', (await rooms.getAttribute('id'))!);
-  await expect(panel.getByRole('heading', { name: 'No rooms yet', exact: true })).toBeVisible();
+  await expect(panel.getByRole('heading', { name: 'No games yet', exact: true })).toBeVisible();
   await expect(page.locator('.game-tile:visible')).toHaveCount(0);
   await rooms.press('ArrowRight');
   await expect(games).toBeFocused();
@@ -371,12 +352,12 @@ test('Rooms loading, retry and membership groups leave Games clear', async ({ pa
   });
   await page.goto('/');
   await expect(page.locator('.room-shortcut:visible')).toHaveCount(0);
-  await page.getByRole('tab', { name: 'Rooms', exact: true }).click();
-  await expect(page.getByText('Loading your rooms…', { exact: true })).toBeVisible();
+  await page.getByRole('tab', { name: 'Your games', exact: true }).click();
+  await expect(page.getByText('Loading your games…', { exact: true })).toBeVisible();
   state = 'error';
   release();
   await expect(
-    page.getByRole('heading', { name: 'Could not load rooms', exact: true }),
+    page.getByRole('heading', { name: 'Could not load your games', exact: true }),
   ).toBeVisible();
   state = 'ready';
   await page.getByRole('button', { name: 'Try again', exact: true }).click();
@@ -384,9 +365,9 @@ test('Rooms loading, retry and membership groups leave Games clear', async ({ pa
   await expect(active.getByRole('link')).toHaveCount(2);
   await expect(active.getByRole('link').first()).toHaveAttribute(
     'href',
-    '/rooms/22222222-2222-4222-8222-222222222222',
+    '/games/uno/rooms/22222222-2222-4222-8222-222222222222',
   );
-  const finished = page.getByRole('region', { name: 'Finished rooms', exact: true });
+  const finished = page.getByRole('region', { name: 'Finished games', exact: true });
   await expect(
     finished.getByRole('link', { name: 'Open Last game, Texas Hold’em', exact: true }),
   ).toBeVisible();
@@ -401,7 +382,7 @@ test('a profile-loaded member keeps owned Rooms without a remembered-player flag
   let id: string | undefined;
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
+    await openGameSetup(page, 'Uno');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Cache Member');
     await openRoomOptions(page);
     await page.getByRole('textbox', { name: 'Room name', exact: true }).fill('Cached table');
@@ -429,7 +410,7 @@ test('a profile-loaded member keeps owned Rooms without a remembered-player flag
       'aria-selected',
       'true',
     );
-    await page.getByRole('tab', { name: 'Rooms', exact: true }).click();
+    await page.getByRole('tab', { name: 'Your games', exact: true }).click();
     await expect(
       page.getByRole('link', { name: 'Open Cached table, Uno', exact: true }),
     ).toBeVisible();

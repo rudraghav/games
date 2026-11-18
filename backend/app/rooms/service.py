@@ -55,6 +55,7 @@ from app.rooms.schemas import (
     Move,
     ProfileInput,
     ProfileView,
+    QuickPlay,
     RoomSettings,
     RoomSummary,
     RoomView,
@@ -71,6 +72,9 @@ def invite() -> tuple[str, str]:
 
 def room_code() -> str:
     return "".join(secrets.choice("ABCDEFGHJKMNPQRSTVWXYZ23456789") for _ in range(8))
+
+
+QUICK_PLAY_NAMESPACE = UUID("80b8112a-4a30-4c3f-9222-77e480956729")
 
 
 class RoomService:
@@ -247,6 +251,59 @@ class RoomService:
                 self._add_bots(room, data.bots)
             return room_view(self.repo, room, actor.id, self.cipher)
 
+    def quick_play(self, actor: Identity, game_id: str, data: QuickPlay) -> RoomView:
+        """Create and start once; a lost response can safely repeat this same intent."""
+        from app.bots import supports_bots
+
+        self._rate(actor, "quick-play")
+        engine = ENGINES.get(game_id)
+        if engine is None or not (
+            engine.manifest.play_mode == "solo" or supports_bots(game_id)
+        ):
+            raise HTTPException(422, "Choose a game that supports solo play or bots.")
+        capacity = (1 if engine.manifest.play_mode == "solo"
+                    else max(2, engine.manifest.min_players))
+        values = self._settings(game_id, capacity, {})
+        # Bind both IDs to the authenticated actor, independently of the URL's game.
+        # One intent cannot open another actor's session or be reused for a new game.
+        room_id = str(uuid5(QUICK_PLAY_NAMESPACE, f"{actor.id}:{data.request_id}"))
+        match_id = str(uuid5(QUICK_PLAY_NAMESPACE, f"{room_id}:first-match"))
+        with self.session.begin():
+            self.repo.lock_quick_play(room_id)
+            existing = self.repo.room(room_id, lock=True)
+            if existing is not None:
+                if existing.owner_id != actor.id:
+                    raise HTTPException(404, "This game is unavailable.")
+                if existing.status == "closed":
+                    raise HTTPException(410, "This game has ended. Start a new game.")
+                self._room(room_id, actor)
+                if existing.game_id != game_id or existing.match_id != match_id:
+                    raise HTTPException(409, "This start belongs to an earlier game.")
+                return room_view(self.repo, existing, actor.id, self.cipher)
+
+            # Retries have their own request throttle above; only a new committed
+            # launch consumes the existing room-creation and start allowances.
+            if self.repo.rate(actor.id + ":create", 3600) > 12:
+                raise HTTPException(429, "Please slow down and try again shortly.")
+            if self.repo.rate(actor.id + ":start", 60) > 20:
+                raise HTTPException(429, "Please slow down and try again shortly.")
+            profile = self.repo.ensure_player(actor.id, "Guest")
+            token, hashed = invite()
+            room = Room(
+                id=room_id, name=f"{profile.name}'s {engine.manifest.name}"[:60],
+                code=room_code(), owner_id=actor.id, game_id=game_id,
+                capacity=capacity, settings=values, invite_hash=hashed,
+                invite_ciphertext=self.cipher.encrypt(token.encode()).decode(),
+            )
+            self.repo.add(room)
+            self.repo.flush()
+            self.repo.add(Member(room_id=room.id, user_id=actor.id, ready=True))
+            self.repo.flush()
+            if capacity > 1:
+                self._add_bots(room, capacity - 1)
+            self._start_match(room, match_id=match_id)
+            return room_view(self.repo, room, actor.id, self.cipher)
+
     def join(self, actor: Identity, data: JoinRoom) -> RoomView:
         self._rate(actor, "join", 30)
         with self.session.begin():
@@ -330,38 +387,39 @@ class RoomService:
         self._rate(actor, "start", 20)
         with self.session.begin():
             room = self._room(room_id, actor, lock=True, host=True)
-            if room.status == "playing":
-                raise HTTPException(409, "A match is already in progress.")
-            seated = [m for m, _ in self.repo.members(room_id) if m.seated]
-            engine = ENGINES[room.game_id]
-            if not engine.manifest.min_players <= len(seated) <= room.capacity or not all(
-                (m.is_bot or m.ready and time.time() - m.seen_at < 45) for m in seated
-            ):
-                raise HTTPException(
-                    409,
-                    "Every seated player must be connected and ready, with enough players for this game.",
-                )
-            players = [m.user_id for m in seated]
-            offset = room.round_number % len(players)
-            players = players[offset:] + players[:offset]
-            match = Match(
-                id=str(uuid4()),
-                room_id=room.id,
-                game_id=room.game_id,
-                rules_version=engine.manifest.rules_version,
-                state=engine.setup(players, room.settings),
-                participants=players,
-                bot_due_at=time.time() + BOT_DELAY_SECONDS,
-            )
-            self.repo.add(match)
-            self.repo.flush()
-            room.match_id, room.status = match.id, "playing"
-            room.round_number += 1
-            room.revision += 1
-            for member in seated:
-                member.ready = member.is_bot
-            self.repo.flush()
+            self._start_match(room)
             return room_view(self.repo, room, actor.id, self.cipher)
+
+    def _start_match(self, room: Room, *, match_id: str | None = None) -> None:
+        """Start inside the caller's locked transaction, including atomic quick play."""
+        if room.status == "playing":
+            raise HTTPException(409, "A match is already in progress.")
+        seated = [m for m, _ in self.repo.members(room.id) if m.seated]
+        engine = ENGINES[room.game_id]
+        if not engine.manifest.min_players <= len(seated) <= room.capacity or not all(
+            (m.is_bot or m.ready and time.time() - m.seen_at < 45) for m in seated
+        ):
+            raise HTTPException(
+                409,
+                "Every seated player must be connected and ready, with enough players for this game.",
+            )
+        players = [m.user_id for m in seated]
+        offset = room.round_number % len(players)
+        players = players[offset:] + players[:offset]
+        match = Match(
+            id=match_id or str(uuid4()), room_id=room.id, game_id=room.game_id,
+            rules_version=engine.manifest.rules_version,
+            state=engine.setup(players, room.settings), participants=players,
+            bot_due_at=time.time() + BOT_DELAY_SECONDS,
+        )
+        self.repo.add(match)
+        self.repo.flush()
+        room.match_id, room.status = match.id, "playing"
+        room.round_number += 1
+        room.revision += 1
+        for member in seated:
+            member.ready = member.is_bot
+        self.repo.flush()
 
     def move(self, actor: Identity, room_id: str, data: Move) -> RoomView:
         self._rate(actor, "move", 180)

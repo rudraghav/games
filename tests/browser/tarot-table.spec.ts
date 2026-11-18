@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { tarotReadingExample } from '../../apps/web/src/stories/fixtures/tarot-reading';
-import { requestAs, roomAs } from './helpers';
+import { openGameSetup, requestAs, roomAs } from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off' });
 test.skip(!!process.env.GAMES_TEST_URL, 'Synthetic reading responses use local development only.');
@@ -16,11 +16,11 @@ async function soloRoom(
   let roomId: string | undefined;
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
+    await openGameSetup(page, 'tarot');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Spread QA');
     await inspectSetup?.();
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
-    await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
+    await expect(page).toHaveURL(/\/games\/tarot\/play\/[\da-f-]+$/);
     roomId = new URL(page.url()).pathname.split('/').at(-1)!;
     await run(roomId);
   } finally {
@@ -34,47 +34,40 @@ async function soloRoom(
   }
 }
 
-test('solo setup omits seats and invitations while room options keep chat and activity reachable', async ({
+test('solo setup omits seats and invitations and reading options retain saved reading navigation', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 640 });
   await soloRoom(
     page,
-    async () => {
+    async (roomId) => {
       const toolbar = page.locator('.room-toolbar');
       await expect(toolbar.getByRole('button', { name: 'Open chat', exact: true })).toHaveCount(0);
-      await toolbar.getByRole('button', { name: 'Room options', exact: true }).click();
-      const options = page.getByRole('dialog', { name: 'Your room', exact: true });
-      await expect(options.getByRole('button', { name: 'Open chat', exact: true })).toBeVisible();
+      await toolbar.getByRole('button', { name: 'Reading options', exact: true }).click();
+      const options = page.getByRole('dialog', { name: 'Reading options', exact: true });
       await expect(
-        options.getByRole('button', { name: 'Game activity', exact: true }),
-      ).toBeVisible();
+        options.getByRole('link', { name: 'Saved readings', exact: true }),
+      ).toHaveAttribute('href', '/profile');
+      await expect(
+        options.getByRole('link', { name: 'Back to Tarot', exact: true }),
+      ).toHaveAttribute('href', '/games/tarot');
+      await expect(options.getByRole('button', { name: 'Open chat', exact: true })).toHaveCount(0);
+      await expect(options.getByRole('button', { name: 'Game activity', exact: true })).toHaveCount(
+        0,
+      );
       await expect(
         options.getByRole('button', { name: 'Replace invite link and code', exact: true }),
       ).toHaveCount(0);
-      await options.getByRole('button', { name: 'Open chat', exact: true }).click();
-      const panel = page.getByRole('dialog', { name: 'At the table', exact: true });
-      await expect(panel.getByRole('region', { name: 'Room chat', exact: true })).toBeVisible();
-      await panel.getByRole('button', { name: 'Close dialog', exact: true }).click();
-      await toolbar.getByRole('button', { name: 'Room options', exact: true }).click();
-      await options.getByRole('button', { name: 'Game activity', exact: true }).click();
-      await expect(panel.getByRole('button', { name: 'Activity', exact: true })).toHaveAttribute(
-        'aria-pressed',
-        'true',
-      );
-      await panel.getByRole('button', { name: 'Close dialog', exact: true }).click();
-      await toolbar.getByRole('button', { name: 'Room options', exact: true }).click();
-      await options.getByRole('button', { name: 'End this match', exact: true }).click();
-      await options.getByRole('button', { name: 'Yes, end this match', exact: true }).click();
-      const lobby = page.locator('.lobby');
-      await expect(lobby).toBeVisible();
-      await expect(lobby.getByRole('group', { name: 'Invite friends', exact: true })).toHaveCount(
-        0,
-      );
-      await lobby.getByRole('button', { name: 'I’m ready', exact: true }).click();
-      const openDeck = lobby.getByRole('button', { name: 'Open my deck', exact: true });
-      await expect(openDeck).toBeEnabled();
-      await openDeck.click();
+      await options.getByRole('button', { name: 'Close dialog', exact: true }).click();
+      // A legacy paused solo room resumes directly without multiplayer lobby controls.
+      expect((await requestAs(page, `rooms/${roomId}/abandon`, 'POST')).ok()).toBe(true);
+      await page.reload();
+      await expect(
+        page.getByRole('heading', { name: 'Your next spread', exact: true }),
+      ).toBeVisible();
+      await expect(page.getByRole('group', { name: 'Invite friends', exact: true })).toHaveCount(0);
+      await expect(page.getByRole('button', { name: 'I’m ready', exact: true })).toHaveCount(0);
+      await page.getByRole('button', { name: 'Start reading', exact: true }).click();
       await expect(deck(page).locator('button.tarot-card')).toHaveCount(78);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
         true,

@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
-import { requestAs, roomAs, openRoomOptions } from './helpers';
+import { openGameSetup, requestAs, roomAs, openRoomOptions } from './helpers';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import gameCatalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
@@ -48,10 +48,8 @@ test('personal cloud: all games, private views, revisions and a saved reading', 
         );
     }
     await page.goto('/');
-    await expect(
-      page.getByRole('button', { name: /^(?:Start reading — )?Create .+ room$/ }),
-    ).toHaveCount(gameCatalogue.length);
-    await page.getByRole('button', { name: 'Create Word Agents room', exact: true }).click();
+    await expect(page.getByRole('link', { name: /^Open / })).toHaveCount(gameCatalogue.length);
+    await openGameSetup(page, 'Word Agents');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Cloud Test Host');
     await openRoomOptions(page);
     await page

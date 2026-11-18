@@ -11,6 +11,7 @@ import { keys } from '@/shared/query-keys';
 import { rememberPlayer } from '@/shared/player-preferences';
 import { AccountSection } from './AccountSection';
 import { historyResult } from './history-result';
+import { readingPath, roomPath } from '@/shared/game-paths';
 
 export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }) {
   const cache = useQueryClient();
@@ -99,7 +100,7 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
               ) : null}
             </section>
             <section className="profile-card">
-              <h2 className="heading-md">Match history</h2>
+              <h2 className="heading-md">Your history</h2>
               <div className="match-history">
                 {me.data?.history.length ? (
                   me.data.history.map((match) => (
@@ -108,8 +109,8 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
                       key={match.id}
                       href={
                         match.gameId === 'tarot'
-                          ? `/readings/${match.id}`
-                          : `/rooms/${match.roomId}`
+                          ? readingPath(match.id)
+                          : roomPath({ id: match.roomId, gameId: match.gameId })
                       }
                     >
                       <div>

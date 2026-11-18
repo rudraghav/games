@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
-import { attachPreviewAccess, requestAs, roomAs } from './helpers';
+import { openGameSetup, attachPreviewAccess, requestAs, roomAs } from './helpers';
 
 // Explicit live evaluation: two guests, two bounded provider calls, three owned rooms.
 test.skip(
@@ -45,10 +45,10 @@ test('live charts, private saved readings, opt-out and Deal inspection', async (
     await attachPreviewAccess(actor);
     await actor.goto('/');
     await expect(actor.getByRole('navigation', { name: 'Main navigation' })).toHaveCount(0);
-    await actor.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
+    await openGameSetup(actor, 'tarot');
     await actor.getByRole('textbox', { name: 'Your name', exact: true }).fill(name);
     await actor.getByRole('button', { name: 'Create room', exact: true }).click();
-    await expect(actor).toHaveURL(/\/rooms\/[\da-f-]+$/);
+    await expect(actor).toHaveURL(/\/games\/tarot\/play\/[\da-f-]+$/);
     const id = new URL(actor.url()).pathname.split('/').at(-1)!;
     owned.push({ actor, id });
     for (let number = 1; number <= 3; number++) {
@@ -167,7 +167,7 @@ test('live charts, private saved readings, opt-out and Deal inspection', async (
       1,
     );
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Monopoly Deal room', exact: true }).click();
+    await openGameSetup(page, 'Monopoly Deal');
     await page.getByRole('button', { name: 'Bots', exact: true }).click();
     await page.getByRole('button', { name: 'Play game', exact: true }).click();
     await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);

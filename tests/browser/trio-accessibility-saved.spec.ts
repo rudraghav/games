@@ -1,6 +1,13 @@
 import { expect, test, type Page } from '@playwright/test';
 import { trioDetails } from '../../packages/api-client/src/modern-details';
-import { attachPreviewAccess, openRoomOptions, requestAs, roomAs, type RoomView } from './helpers';
+import {
+  openGameSetup,
+  attachPreviewAccess,
+  openRoomOptions,
+  requestAs,
+  roomAs,
+  type RoomView,
+} from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 type Option = NonNullable<RoomView['game']>['actions'][number];
@@ -93,7 +100,7 @@ test('Trio keyboard requests identify the player and preserve only public reveal
   try {
     for (const actor of players) await attachPreviewAccess(actor);
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Trio room', exact: true }).click();
+    await openGameSetup(page, 'Trio');
     await page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill(`Trio access host ${info.project.name}`);

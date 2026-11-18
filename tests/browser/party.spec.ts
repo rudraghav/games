@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
-import { requestAs, roomAs } from './helpers';
+import { openGameSetup, requestAs, roomAs } from './helpers';
 
 for (const [id, name] of [
   ['spill-or-chill', 'Spill or Chill'],
@@ -21,7 +21,7 @@ for (const [id, name] of [
     let roomId: string | undefined;
     try {
       await page.goto('/');
-      await page.getByRole('button', { name: `Create ${name} room`, exact: true }).click();
+      await openGameSetup(page, `${name}`);
       await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Party Host');
       await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('3');
       await page.getByRole('button', { name: 'Create room', exact: true }).click();

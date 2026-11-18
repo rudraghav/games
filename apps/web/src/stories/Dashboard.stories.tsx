@@ -10,7 +10,7 @@ import { GameArt } from '@/shared/GameArt';
 const meta = {
   title: 'Dashboard/Discovery',
   component: GameLibrary,
-  args: { onChoose: () => undefined },
+  args: { initialSolo: false },
 } satisfies Meta<typeof GameLibrary>;
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -80,10 +80,10 @@ function TabbedDashboard({
         value={tab}
         onValueChange={setTab}
         items={[
-          { value: 'games', label: 'Games', content: <GameLibrary onChoose={() => undefined} /> },
+          { value: 'games', label: 'Games', content: <GameLibrary /> },
           {
             value: 'rooms',
-            label: 'Rooms',
+            label: 'Your games',
             content: (
               <LoungeRooms
                 rooms={state === 'member' ? memberRooms : []}

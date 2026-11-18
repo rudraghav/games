@@ -1,6 +1,6 @@
 import { expect, test, type BrowserContext, type Page } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
-import { requestAs, roomAs, type RoomView } from './helpers';
+import { openGameSetup, requestAs, roomAs, type RoomView } from './helpers';
 import {
   midgameScenarios,
   type MidgameScenario,
@@ -165,7 +165,7 @@ test('failed Uno saves preserve the exact selection through refresh and a delibe
   for (const actor of [page, friend]) actor.setDefaultTimeout(15000);
   let roomId: string | undefined;
   await page.goto('/');
-  await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
+  await openGameSetup(page, 'Uno');
   await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Uno recovery host');
   await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
   const creation = page.waitForResponse(

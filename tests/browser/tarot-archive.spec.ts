@@ -6,7 +6,7 @@ import { tarotReadingExample } from '../../apps/web/src/stories/fixtures/tarot-r
 import { syntheticAstrologyReading } from '../../apps/web/src/stories/fixtures/astrology';
 import type { TarotCharacter } from '../../packages/api-client/src/tarot-characters';
 import registry from '../../packages/api-client/src/generated/tarot-characters.json' with { type: 'json' };
-import { openRoomOptions, requestAs, roomAs } from './helpers';
+import { openGameSetup, openRoomOptions, requestAs, roomAs } from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off' });
 test.skip(!!process.env.GAMES_TEST_URL, 'Archive fixture writes are local development only.');
@@ -160,7 +160,7 @@ for (const astrology of [false, true]) {
       });
     });
     await page.goto('/');
-    await page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
+    await openGameSetup(page, 'tarot');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Archive QA');
     await openRoomOptions(page);
     await page.getByRole('textbox', { name: 'Room name', exact: true }).fill(roomName);
@@ -176,7 +176,7 @@ for (const astrology of [false, true]) {
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
     await created;
     const roomId = owned.roomId!;
-    await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
+    await expect(page).toHaveURL(/\/games\/tarot\/play\/[\da-f-]+$/);
     for (let card = 1; card <= 3; card++) {
       await expect(page.getByRole('heading', { name: `Choose card ${card} of 3` })).toBeVisible();
       await page
@@ -222,7 +222,7 @@ for (const astrology of [false, true]) {
       },
     );
     await page.goto('/profile');
-    const history = page.locator(`a.history-row[href="/readings/${room.match_id}"]`);
+    const history = page.locator(`a.history-row[href="/games/tarot/readings/${room.match_id}"]`);
     await expect(history).toBeVisible();
     await history.click();
     await expect(page.getByRole('heading', { name: reading.title, exact: true })).toBeVisible();
@@ -231,6 +231,10 @@ for (const astrology of [false, true]) {
     await inspectReferences(page);
     await expect(page.getByRole('link', { name: 'Return to spread', exact: true })).toBeVisible();
     const original = await page.locator('.tarot-reading').innerText();
+    await expect(page).toHaveURL(new RegExp(`/games/tarot/readings/${room.match_id}$`));
+    await page.goto(`/readings/${room.match_id}`);
+    await expect(page).toHaveURL(new RegExp(`/games/tarot/readings/${room.match_id}$`));
+    await expect.poll(() => page.locator('.tarot-reading').innerText()).toBe(original);
     const archivePath = `readings/${room.match_id}`;
     const originalResponse = await requestAs(page, archivePath);
     expect(originalResponse.status()).toBe(200);
@@ -302,7 +306,7 @@ for (const astrology of [false, true]) {
     expect((await requestAs(page, `rooms/${roomId}/leave`, 'POST')).status()).toBe(200);
     expect((await requestAs(page, `rooms/${roomId}`)).status()).toBe(404);
     await page.goto('/profile');
-    await page.locator(`a.history-row[href="/readings/${room.match_id}"]`).click();
+    await page.locator(`a.history-row[href="/games/tarot/readings/${room.match_id}"]`).click();
     await expect.poll(() => page.locator('.tarot-reading').innerText()).toBe(original);
     await expect(page.getByText(`Your question: ${question}`, { exact: true })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Return to spread', exact: true })).toHaveCount(0);

@@ -6,7 +6,7 @@ import {
   teenPattiDetails,
   gangDetails,
 } from '../../packages/api-client/src/index';
-import { openRoomOptions, requestAs, roomAs } from './helpers';
+import { openGameSetup, openRoomOptions, requestAs, roomAs } from './helpers';
 
 test.skip(
   Boolean(process.env.GAMES_TEST_URL),
@@ -238,7 +238,7 @@ test('a natural Blackjack round shows a saved per-hand ledger after refresh', as
   let id: string | undefined;
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Blackjack room', exact: true }).click();
+    await openGameSetup(page, 'Blackjack');
     await page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill('Casino explanation QA');

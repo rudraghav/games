@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { requestAs, roomAs, type RoomView } from './helpers';
+import { openGameSetup, requestAs, roomAs, type RoomView } from './helpers';
 
 test('cooperative and number-row tables fit both seat limits with readable controls', async ({
   page,
@@ -62,7 +62,7 @@ test('friends move ranking chips, reveal hands and lock private number selection
   }
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create The Gang room', exact: true }).click();
+    await openGameSetup(page, 'The Gang');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Crew Host');
     await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('3');
     await page.getByRole('button', { name: 'Create room', exact: true }).click();

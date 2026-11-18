@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { attachPreviewAccess, requestAs, roomAs } from './helpers';
+import { openGameSetup, attachPreviewAccess, requestAs, roomAs } from './helpers';
 
 test.skip(!process.env.GAMES_TEST_URL, 'Requires the exact hosted Games preview.');
 test.use({ trace: 'off', screenshot: 'off' });
@@ -55,7 +55,7 @@ test('cloud Broadcast reaches members and rejects a nonmember', async ({
   let id: string | undefined;
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
+    await openGameSetup(page, 'Uno');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Broadcast Test Host');
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
     await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/, { timeout: 45000 });

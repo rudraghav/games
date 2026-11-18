@@ -4,12 +4,13 @@ import { Search, UsersRound, RotateCcw, X } from 'lucide-react';
 import { Button, ChoiceGroup, GameTile } from '@games/ui';
 import { games } from '@games/api-client/catalog';
 import { GameArt } from '@/shared/GameArt';
+import { gamePath } from '@/shared/game-paths';
 import { categories, findGames, type Category } from './catalogue-search';
 
-export function GameLibrary({ onChoose }: { onChoose: (id: string, withBots: boolean) => void }) {
+export function GameLibrary({ initialSolo = false }: { initialSolo?: boolean }) {
   const [query, setQuery] = useState('');
-  const [players, setPlayers] = useState(0);
-  const [category, setCategory] = useState<Category>('all');
+  const [players, setPlayers] = useState(initialSolo ? 1 : 0);
+  const [category, setCategory] = useState<Category>(initialSolo ? 'solo' : 'all');
   const search = useRef<HTMLInputElement>(null);
   const categoryRail = useRef<HTMLDivElement>(null);
   const hasFilters = query.trim().length > 0 || players !== 0 || category !== 'all';
@@ -118,9 +119,7 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string, withBots: boo
                 soloMode={players === 1 || category === 'solo'}
                 edition={game.rulesVersion.startsWith('house-') ? 'house' : 'standard'}
                 artwork={<GameArt game={game} />}
-                onChoose={() =>
-                  onChoose(game.id, (players === 1 || category === 'solo') && game.botsSupported)
-                }
+                href={`${gamePath(game.id)}${(players === 1 || category === 'solo') && game.botsSupported ? '?mode=bots' : ''}`}
               />
             ))}
           </div>

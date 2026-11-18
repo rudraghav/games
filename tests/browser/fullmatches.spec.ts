@@ -4,6 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import {
+  openGameSetup,
   attachPreviewAccess,
   requestAs,
   roomAs,
@@ -146,9 +147,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
     const initialGame = selected.find(
       (game) => game.min_players <= maxSeats && game.max_players >= maxSeats,
     )!;
-    await page
-      .getByRole('button', { name: `Create ${initialGame.name} room`, exact: true })
-      .click();
+    await openGameSetup(page, `${initialGame.name}`);
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Full Match Host');
     await openRoomOptions(page);
     await page

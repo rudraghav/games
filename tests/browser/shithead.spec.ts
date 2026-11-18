@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
-import { requestAs, roomAs, type RoomView } from './helpers';
+import { openGameSetup, requestAs, roomAs, type RoomView } from './helpers';
 
 test('Shithead tables keep setup, public and blind cards distinct at both seat limits', async ({
   page,
@@ -104,7 +104,7 @@ test('friends choose real table cards, play a hand card and restore the saved ta
   }
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Shithead room', exact: true }).click();
+    await openGameSetup(page, 'Shithead');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Palace Host');
     await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
     await page.getByRole('button', { name: 'Create room', exact: true }).click();

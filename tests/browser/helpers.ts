@@ -1,5 +1,6 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 import type { components } from '../../packages/api-client/src/generated/schema';
+import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 // FastAPI emits response defaults, although OpenAPI marks defaulted fields optional.
 export type RoomView = Omit<components['schemas']['RoomView'], 'game'> & {
@@ -115,6 +116,19 @@ export async function roomAs(page: Page, id: string): Promise<RoomView> {
   const response = await requestAs(page, `rooms/${id}`);
   expect(response.status()).toBe(200);
   return response.json();
+}
+
+/** Explicit setup remains useful for saved-game fixtures with custom seats/rules.
+ * Public game entry and quick play are exercised separately in game-entry.spec.
+ */
+export async function openGameSetup(page: Page, gameIdOrName: string) {
+  const game = catalogue.find((item) => item.id === gameIdOrName || item.name === gameIdOrName);
+  if (!game) throw new Error(`Unknown browser fixture game: ${gameIdOrName}`);
+  await page.getByRole('button', { name: 'Create room', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'Create room', exact: true });
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole('combobox', { name: 'The game', exact: true }).selectOption(game.id);
+  return dialog;
 }
 
 export async function attachPreviewAccess(page: Page) {

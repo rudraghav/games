@@ -10,6 +10,7 @@ import { keys } from './query-keys';
 import { rememberedPlayer, rememberPlayer } from './player-preferences';
 import { refreshPlayer } from './player-query';
 import { roomInvite } from './room-invite';
+import { roomPath } from './game-paths';
 
 interface RoomDialogProps {
   open: boolean;
@@ -19,6 +20,8 @@ interface RoomDialogProps {
   invite?: string;
   roomId?: string;
   withBots?: boolean;
+  fixedGame?: boolean;
+  friendsOnly?: boolean;
 }
 export function RoomDialog({
   open,
@@ -28,6 +31,8 @@ export function RoomDialog({
   invite = '',
   roomId,
   withBots = false,
+  fixedGame = false,
+  friendsOnly = false,
 }: RoomDialogProps) {
   const avatarPicker = useRef<HTMLDetailsElement>(null);
   const avatarOpener = useRef<HTMLElement>(null);
@@ -35,13 +40,17 @@ export function RoomDialog({
   const cache = useQueryClient();
   const me = useQuery({ queryKey: keys.me, queryFn: () => api.me(), enabled: open });
   const [selectedGame, setSelectedGame] = useState(gameId);
-  const [playWith, setPlayWith] = useState<'friends' | 'bots'>(withBots ? 'bots' : 'friends');
+  const [playWith, setPlayWith] = useState<'friends' | 'bots'>(
+    withBots && !friendsOnly ? 'bots' : 'friends',
+  );
   const [name, setName] = useState<string>();
   const [avatar, setAvatar] = useState<number>();
   const [roomName, setRoomName] = useState('');
   const [code, setCode] = useState(invite);
   const [capacity, setCapacity] = useState(
-    withBots ? gameById(gameId).minPlayers : Math.min(4, gameById(gameId).maxPlayers),
+    withBots && !friendsOnly
+      ? gameById(gameId).minPlayers
+      : Math.min(4, gameById(gameId).maxPlayers),
   );
   const [settings, setSettings] = useState<Record<string, boolean>>({});
   const [pending, setPending] = useState(false);
@@ -69,11 +78,11 @@ export function RoomDialog({
                   `${displayName.trim()}'s ${game.family === 'tarot' ? 'reading' : 'game night'}`,
                 capacity,
                 settings,
-                bots: playWith === 'bots' && game.botsSupported ? capacity - 1 : 0,
+                bots: !friendsOnly && playWith === 'bots' && game.botsSupported ? capacity - 1 : 0,
               });
       if (
         mode === 'create' &&
-        (game.family === 'tarot' || (playWith === 'bots' && game.botsSupported))
+        (game.family === 'tarot' || (!friendsOnly && playWith === 'bots' && game.botsSupported))
       ) {
         // Creation is already committed; failed auto-start recovers in this room.
         try {
@@ -89,7 +98,7 @@ export function RoomDialog({
       // room's read-only retry state, never back to a repeatable create/join.
       await refreshPlayer(cache, () => api.me()).catch(() => undefined);
       onOpenChange(false);
-      router.push(`/rooms/${room.id}`);
+      router.push(roomPath(room));
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Please try again.');
     } finally {
@@ -107,7 +116,15 @@ export function RoomDialog({
           avatarOpener.current?.focus();
         }
       }}
-      title={mode === 'join' ? 'Join room' : mode === 'configure' ? 'Room settings' : 'Create room'}
+      title={
+        mode === 'join'
+          ? 'Join room'
+          : mode === 'configure'
+            ? 'Room settings'
+            : fixedGame
+              ? `Play ${game.name} with friends`
+              : 'Create room'
+      }
       description={
         mode === 'join'
           ? 'Enter a room code or paste an invite link.'
@@ -138,28 +155,30 @@ export function RoomDialog({
           </label>
         ) : (
           <>
-            <label className="field">
-              The game
-              <select
-                className="input"
-                value={game.id}
-                onChange={(event) => {
-                  const next = gameById(event.target.value);
-                  setSelectedGame(next.id);
-                  setCapacity(Math.max(next.minPlayers, Math.min(capacity, next.maxPlayers)));
-                  setSettings({});
-                }}
-              >
-                {games.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </label>
+            {!fixedGame ? (
+              <label className="field">
+                The game
+                <select
+                  className="input"
+                  value={game.id}
+                  onChange={(event) => {
+                    const next = gameById(event.target.value);
+                    setSelectedGame(next.id);
+                    setCapacity(Math.max(next.minPlayers, Math.min(capacity, next.maxPlayers)));
+                    setSettings({});
+                  }}
+                >
+                  {games.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            ) : null}
             {game.maxPlayers > 1 ? (
               <div className="room-play-options">
-                {mode === 'create' && game.botsSupported ? (
+                {mode === 'create' && game.botsSupported && !friendsOnly ? (
                   <div className="room-play-mode">
                     <span className="field-label">Play with</span>
                     <ChoiceGroup

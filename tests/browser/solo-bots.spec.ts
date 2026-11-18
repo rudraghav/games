@@ -1,3 +1,4 @@
+import { openGameSetup } from './helpers';
 import { expect, test, type Page } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
@@ -209,7 +210,7 @@ test('one human plays every multiplayer game with the real bot driver', async ({
     await attachPreviewAccess(page);
     await page.goto('/');
     // The same single guest identity is reused for this viewport's entire run.
-    await page.getByRole('button', { name: 'Play with bots', exact: true }).click();
+    await openGameSetup(page, 'four-in-a-row');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Solo Match Host');
     await page
       .getByRole('group', { name: 'Play with', exact: true })

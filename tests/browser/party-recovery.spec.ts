@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { partyDetails } from '../../packages/api-client/src/party-details';
-import { attachPreviewAccess, openRoomOptions, requestAs, roomAs } from './helpers';
+import { openGameSetup, attachPreviewAccess, openRoomOptions, requestAs, roomAs } from './helpers';
 
 // One shared room, three identities and a second host tab cover all party modes.
 // Trace/screenshot output stays off because a party choice can be private.
@@ -31,7 +31,7 @@ test('party drafts survive same-prompt updates but never carry into a new prompt
   try {
     for (const actor of [...players, sibling]) await attachPreviewAccess(actor);
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Hot Seat room', exact: true }).click();
+    await openGameSetup(page, 'Hot Seat');
     await page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill(`Recovery host ${info.project.name}`);

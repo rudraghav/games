@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { requestAs, roomAs } from './helpers';
+import { openGameSetup, requestAs, roomAs } from './helpers';
 
 test('paper and cat tables render both limits with decoded artwork and phone-sized controls', async ({
   page,
@@ -70,7 +70,7 @@ test('paper choices stay private through refresh and boop pieces move with mouse
   }
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Sea Salt & Paper room', exact: true }).click();
+    await openGameSetup(page, 'Sea Salt & Paper');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Paper Host');
     await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
     await page.getByRole('button', { name: 'Create room', exact: true }).click();

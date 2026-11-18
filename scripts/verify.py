@@ -20,7 +20,7 @@ GROUPS = {
     "migrations": ("Fresh local schema upgrade, drift and privacy grants", [
         [PYTHON, "scripts/isolated_backend.py", "tests/test_migrations.py", "-q"]]),
     "multiplayer": ("Membership, retries, conflicts, host transfer and persistence", [
-        [PYTHON, "scripts/isolated_backend.py", "tests/test_rooms.py", "tests/test_party_rooms.py", "tests/test_coop_number_rooms.py", "tests/test_bots_rooms.py", "tests/test_public_actions_rooms.py", "tests/test_rummy_declaration_rooms.py", "tests/test_astrology_rooms.py", "tests/test_tarot_archive.py", "-q"]]),
+        [PYTHON, "scripts/isolated_backend.py", "tests/test_rooms.py", "tests/test_quick_play.py", "tests/test_party_rooms.py", "tests/test_coop_number_rooms.py", "tests/test_bots_rooms.py", "tests/test_public_actions_rooms.py", "tests/test_rummy_declaration_rooms.py", "tests/test_astrology_rooms.py", "tests/test_tarot_archive.py", "-q"]]),
     "browser": ("Independent browser sessions and responsive flows", [["pnpm", "exec", "tsc", "-p", "tests/tsconfig.json"], ["pnpm", "test:browser"]]),
     "tooling": ("Module boundaries, ownership and verification contracts", [
         [sys.executable, "scripts/check_boundaries.py"],

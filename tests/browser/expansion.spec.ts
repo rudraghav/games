@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { requestAs, roomAs } from './helpers';
+import { openGameSetup, requestAs, roomAs } from './helpers';
 
 for (const [game, count] of [
   ['Four in a Row', 2],
@@ -24,7 +24,7 @@ for (const [game, count] of [
     let id: string | undefined;
     try {
       await page.goto('/');
-      await page.getByRole('button', { name: `Create ${game} room`, exact: true }).click();
+      await openGameSetup(page, `${game}`);
       await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Expansion Host');
       await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption(String(count));
       await page.getByRole('button', { name: 'Create room', exact: true }).click();

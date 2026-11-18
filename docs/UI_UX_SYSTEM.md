@@ -67,7 +67,15 @@ play-mode metadata. Search accepts familiar names, punctuation and accented inpu
 Clear search and Escape preserve the category/group, while Reset filters restores
 all choices and returns focus to search. One live result count follows the
 controls. Phone hero actions occupy full rows, and tile subtitles remain readable
-so unfamiliar games can be understood before opening room setup.
+so unfamiliar games can be understood before opening their public game page.
+Game tiles are real links with an Open game accessible name. Game entry reuses
+GameArt, semantic Button variants and a native rules disclosure. The phone view
+keeps art, title and full-row play actions together without a large hero gap.
+Tarot starts from Start reading; multiplayer offers Play with friends and Play
+with bots. Bot-filter links emphasize bots without auto-starting. Pending buttons
+show Starting…; failed starts retain the request for Try again. An expired session
+requires the explicit Start a new reading/game action. Secondary history/join
+links stay below the main actions.
 Room setup uses a compact profile row with an optional 44px avatar picker, a segmented Friends/Bots choice and a seat selector. Room-name and rule controls are inside Room options. Submit and Cancel occupy separate full rows, with the primary action first, at every width. Form changes preserve the same
 shared create/join/configure behavior and are documented with inspected captures
 in `evidence/browsing-2026-11-01`.
@@ -90,7 +98,7 @@ number runs and Hit/Stay decisions; Trio separates private sorted hands, public
 hand-end requests and stable memory slots; Azul uses tile shapes alongside color,
 factory sources and explicit pattern-line placement. Party games share one
 prompt/choice/reveal table and typed projection validator, with distinct original
-poster variants. Games remain registry-driven rather than special room routes.
+poster variants. Game pages remain registry-driven and share the same room renderer.
 
 Tarot's artwork registry maps every canonical ID to an original atlas rectangle.
 SVG viewports preserve illustration proportions and clip neighboring cells;
@@ -190,7 +198,7 @@ live with the owning board rules so late imports cannot hide columns or counts.
 The complete 52-scenario phone/desktop audit and inspected samples are recorded
 in `docs/evidence/table-refresh-2026-11-01`.
 
-The home starts with a compact title/action row and shared SegmentedTabs for Games / Rooms. Games shows the catalogue alone. Rooms groups active/waiting and finished memberships with empty, loading and retry states. Search and Players share one
+The home starts with a compact title/action row and shared SegmentedTabs for Games / Your games. Games shows the catalogue alone. Your games groups active/waiting and finished sessions with empty, loading and retry states. Search and Players share one
 control row; category pills scroll beside a fixed, labeled Reset control. The
 announced result count stays visually hidden to give games more first-fold space.
 At 320px the secondary header Create action uses its labeled icon, while the

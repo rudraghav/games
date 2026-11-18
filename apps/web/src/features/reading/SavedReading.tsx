@@ -1,5 +1,7 @@
 'use client';
+import { useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { ApiError } from '@games/api-client';
 import { Button } from '@games/ui';
@@ -7,9 +9,12 @@ import { api } from '@/lib/session';
 import { SiteHeader } from '@/shared/SiteHeader';
 import { optimizeCardArt } from '@/shared/card-art';
 import { TarotReading } from '@/games/tarot/TarotReading';
+import { gamePath, readingPath, roomPath } from '@/shared/game-paths';
 
 /** An exact saved spread. Reading this page never requests another interpretation. */
 export function SavedReadingScreen({ matchId }: { matchId: string }) {
+  const pathname = usePathname();
+  const router = useRouter();
   const saved = useQuery({
     queryKey: ['saved-tarot-reading', matchId],
     queryFn: () => api.savedReading(matchId),
@@ -18,6 +23,11 @@ export function SavedReadingScreen({ matchId }: { matchId: string }) {
     refetchInterval: (query) => (query.state.data?.status === 'generating' ? 3000 : false),
   });
   const data = saved.isError ? undefined : saved.data;
+  useEffect(() => {
+    if (!data) return;
+    const canonical = readingPath(data.matchId);
+    if (pathname !== canonical) router.replace(canonical, { scroll: false });
+  }, [data, pathname, router]);
   const unavailable = saved.error instanceof ApiError && saved.error.status === 404;
   return (
     <>
@@ -28,8 +38,15 @@ export function SavedReadingScreen({ matchId }: { matchId: string }) {
             Back to profile
           </Link>
           {data?.canResume ? (
-            <Link href={`/rooms/${data.roomId}`} className="button button--secondary button--md">
+            <Link
+              href={roomPath({ id: data.roomId, gameId: 'tarot' })}
+              className="button button--secondary button--md"
+            >
               Return to spread
+            </Link>
+          ) : data ? (
+            <Link href={gamePath('tarot')} className="button button--secondary button--md">
+              New reading
             </Link>
           ) : null}
         </nav>

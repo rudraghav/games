@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
-import { requestAs, roomAs, openRoomOptions } from './helpers';
+import { openGameSetup, requestAs, roomAs, openRoomOptions } from './helpers';
 
 const captureOnly = process.env.GAMES_DESIGN_CAPTURE === '1';
 test.skip(!captureOnly, 'Capture-only design audit, explicitly opt in.');
@@ -77,7 +77,7 @@ test('capture production lobby and representative human game tables', async ({
   }
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
+    await openGameSetup(page, 'Uno');
     await page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill('Audit Host with a long name');
@@ -191,7 +191,7 @@ test('capture a natural local result and rematch arrangement', async ({
   const dir = 'output/playwright/room-design-audit/local-before';
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Four in a Row room', exact: true }).click();
+    await openGameSetup(page, 'Four in a Row');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Layout Host');
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
     await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);

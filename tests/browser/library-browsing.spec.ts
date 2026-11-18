@@ -7,13 +7,13 @@ test('browsing filters intersect, reset deliberately and keep keyboard focus', a
   await page.goto('/#games');
   const library = page.getByRole('region', { name: 'Games' });
   const search = library.getByRole('searchbox', { name: 'Search games' });
-  const tiles = library.getByRole('button', { name: /^(?:Start reading — )?Create .+ room$/ });
+  const tiles = library.getByRole('link', { name: /^Open / });
 
   await library.getByRole('button', { name: 'Cards', exact: true }).click();
   await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('4');
   await search.fill('SEA SALT & PAPER');
   await expect(tiles).toHaveCount(1);
-  await expect(tiles).toHaveAccessibleName('Create Sea Salt & Paper room');
+  await expect(tiles).toHaveAccessibleName('Open Sea Salt & Paper');
   await expect(library.getByRole('status')).toHaveText('1 game');
 
   await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('5');
@@ -34,7 +34,7 @@ test('browsing filters intersect, reset deliberately and keep keyboard focus', a
   await expect(cooperative).toHaveAttribute('aria-pressed', 'true');
   await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('6');
   await expect(tiles).toHaveCount(1);
-  await expect(tiles).toHaveAccessibleName('Create The Gang room');
+  await expect(tiles).toHaveAccessibleName('Open The Gang');
   await search.fill('not a game');
   await search.press('Escape');
   await expect(search).toBeFocused();
@@ -111,7 +111,7 @@ test('new catalogue illustrations and complete numeric symbols fit their mobile 
       'Hot Seat',
     ]) {
       const poster = page
-        .getByRole('button', { name: `Create ${name} room`, exact: true })
+        .getByRole('link', { name: `Open ${name}`, exact: true })
         .locator('.game-poster');
       expect(
         await poster.evaluate((element) => {
@@ -143,7 +143,7 @@ test('room setup groups profile and game fields with full phone action rows', as
   test.skip(Boolean(process.env.GAMES_TEST_URL), 'Setup review uses local sessions only.');
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  const dir = '.vercel/room-setup-review';
+  const dir = testInfo.outputPath('room-setup-review');
   await mkdir(dir, { recursive: true });
   const widths = testInfo.project.name === 'phone' ? [320, 390] : [1440];
   let roomWrites = 0;

@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
-import { attachPreviewAccess, requestAs, roomAs } from './helpers';
+import { openGameSetup, attachPreviewAccess, requestAs, roomAs } from './helpers';
 
 async function openActivity(page: Page) {
   const direct = page.getByRole('button', { name: 'Open game activity', exact: true });
@@ -25,7 +25,7 @@ test('public moves persist once across retries and refresh, with cards visible t
   let joined = false;
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Monopoly Deal room', exact: true }).click();
+    await openGameSetup(page, 'Monopoly Deal');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Activity Host');
     await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
     await page.getByRole('button', { name: 'Create room', exact: true }).click();

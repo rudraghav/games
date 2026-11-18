@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
-import { requestAs, roomAs } from './helpers';
+import { openGameSetup, requestAs, roomAs } from './helpers';
 
 test('catalogue ranks fit their poster and browser icons load', async ({ page }) => {
   await page.goto('/');
@@ -18,7 +18,7 @@ test('catalogue ranks fit their poster and browser icons load', async ({ page })
 
   await page.getByRole('searchbox', { name: 'Search games' }).fill('skyjo');
   const poster = page
-    .getByRole('button', { name: 'Create Skyjo room', exact: true })
+    .getByRole('link', { name: 'Open Skyjo', exact: true })
     .locator('.game-poster');
   await expect(poster.locator('.grid-card-value')).toHaveCount(12);
   // Verify what the browser actually draws, independent of CSS pixel constants:
@@ -45,26 +45,20 @@ test('catalogue search, category and group size work with keyboard and reduced m
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  const tiles = page.getByRole('button', { name: /^(?:Start reading — )?Create .+ room$/ });
+  const tiles = page.getByRole('link', { name: /^Open / });
   await expect(tiles).toHaveCount(catalogue.length);
   await expect(page.getByText(`${catalogue.length} games`, { exact: true })).toBeVisible();
   await expect(
     page
-      .getByRole('button', { name: 'Create Monopoly Deal No Mercy room', exact: true })
+      .getByRole('link', { name: 'Open Monopoly Deal No Mercy', exact: true })
       .getByText(/Games house deck/),
   ).toBeVisible();
   await page.getByRole('searchbox', { name: 'Search games' }).fill('poker');
-  await expect(
-    page.getByRole('button', { name: 'Create Texas Hold’em room', exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Open Texas Hold’em', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Clear search' }).click();
   await page.getByRole('button', { name: 'Board games', exact: true }).click();
-  await expect(
-    page.getByRole('button', { name: 'Create Checkers room', exact: true }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole('button', { name: 'Create Mancala room', exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Open Checkers', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Open Mancala', exact: true })).toBeVisible();
   await page.getByLabel('Players', { exact: true }).selectOption('10');
   await expect(page.getByRole('heading', { name: 'No games found' })).toBeVisible();
   await page.getByRole('button', { name: 'Show all games' }).focus();
@@ -88,7 +82,7 @@ for (const name of ['Checkers', 'Mancala']) {
     let id: string | undefined;
     try {
       await page.goto('/');
-      await page.getByRole('button', { name: `Create ${name} room`, exact: true }).click();
+      await openGameSetup(page, `${name}`);
       await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Board Host');
       await page.getByRole('button', { name: 'Create room', exact: true }).click();
       await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);

@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   BookOpen,
@@ -33,6 +33,7 @@ import { RoomResults } from './RoomResults';
 import { latestMove } from './move-description';
 import { useMediaQuery } from '@/shared/use-media-query';
 import { forgetRoomMembership } from '@/shared/player-query';
+import { gamePath, roomPath } from '@/shared/game-paths';
 
 /** The shortest time a failed-move note stays up once the table has moved on. */
 const ERROR_READ_MS = 6000;
@@ -46,8 +47,16 @@ export function RoomScreen({ id }: { id: string }) {
   );
   const [confirmAbandon, setConfirmAbandon] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
   const room = query.data;
   const selfId = me.data?.profile?.id || '';
+  useEffect(() => {
+    // A slug is navigation context, never permission or authority over the game.
+    // Resolve legacy and stale links only from a successful member-only read.
+    if (!room || !selfId || query.isError || me.isError) return;
+    const canonical = roomPath(room);
+    if (pathname !== canonical) router.replace(canonical, { scroll: false });
+  }, [room, selfId, query.isError, me.isError, pathname, router]);
   // A failed move stays readable until the table moves on after it, never for the
   // whole match. A stale move first refreshes the table, so the note belongs to
   // the version shown once that refresh settles, not to the one it was sent from.
@@ -96,16 +105,16 @@ export function RoomScreen({ id }: { id: string }) {
         </Link>
         <h1 className="heading-md">
           {entryError
-            ? 'Reconnect to your room'
+            ? 'Reconnect to your game'
             : playerUnavailable
               ? 'Player details unavailable'
-              : 'Loading room…'}
+              : 'Loading game…'}
         </h1>
         <p className="muted">
           {entryError?.message ||
             (playerUnavailable
               ? 'Try again to confirm your place at the table.'
-              : 'Connecting to your room.')}
+              : 'Connecting to your game.')}
         </p>
         {entryError || playerUnavailable ? (
           <Button
@@ -147,7 +156,22 @@ export function RoomScreen({ id }: { id: string }) {
       }}
     />
   );
-  const lobby = (
+  const lobby = solo ? (
+    <section className="center-state">
+      <h2 className="heading-md">Your next spread</h2>
+      <Button
+        pending={mutation.isPending}
+        onClick={() =>
+          operate(async () => {
+            await api.ready(id, true);
+            return api.start(id);
+          })
+        }
+      >
+        Start reading
+      </Button>
+    </section>
+  ) : (
     <Lobby
       room={room}
       selfId={selfId}
@@ -178,13 +202,17 @@ export function RoomScreen({ id }: { id: string }) {
   return (
     <div className="room-page">
       <header className="room-header">
-        <Link href="/" aria-label="Back to the lounge" className="room-brand">
+        <Link
+          href={gamePath(room.gameId)}
+          aria-label={`Back to ${game.name}`}
+          className="room-brand"
+        >
           <ArrowLeft size={17} />
           <Wordmark />
         </Link>
         <div className="room-title">
-          <h1>{room.name}</h1>
-          <span>{game.name}</span>
+          <h1>{solo ? game.name : room.name}</h1>
+          <span>{solo ? 'Your private reading' : game.name}</span>
         </div>
         <div className="room-toolbar">
           <span
@@ -218,7 +246,7 @@ export function RoomScreen({ id }: { id: string }) {
           >
             <BookOpen size={19} />
           </Button>
-          {!solo || desktop ? (
+          {!solo ? (
             <Button
               size="icon"
               variant="ghost"
@@ -234,13 +262,13 @@ export function RoomScreen({ id }: { id: string }) {
           <Button
             size="icon"
             variant="ghost"
-            aria-label="Room options"
-            title="Room options"
+            aria-label={solo ? 'Reading options' : 'Room options'}
+            title={solo ? 'Reading options' : 'Room options'}
             onClick={() => setPanel('menu')}
           >
             <MoreVertical size={21} />
           </Button>
-          {desktop ? (
+          {desktop && !solo ? (
             <Button
               size="icon"
               variant="ghost"
@@ -256,7 +284,7 @@ export function RoomScreen({ id }: { id: string }) {
       </header>
       <main
         className="room-content"
-        data-chat-open={desktop && (panel === 'chat' || panel === 'activity')}
+        data-chat-open={!solo && desktop && (panel === 'chat' || panel === 'activity')}
       >
         <div className="room-main">
           {mutation.error ? (
@@ -359,12 +387,12 @@ export function RoomScreen({ id }: { id: string }) {
             </div>
           ) : null}
         </div>
-        {desktop && (panel === 'chat' || panel === 'activity') ? (
+        {!solo && desktop && (panel === 'chat' || panel === 'activity') ? (
           <aside className="desktop-chat">{tablePanel}</aside>
         ) : null}
       </main>
       <Modal
-        open={!desktop && (panel === 'chat' || panel === 'activity')}
+        open={!solo && !desktop && (panel === 'chat' || panel === 'activity')}
         onOpenChange={(open) => {
           if (!open) setPanel(null);
         }}
@@ -399,21 +427,24 @@ export function RoomScreen({ id }: { id: string }) {
             setConfirmAbandon(false);
           }
         }}
-        title="Your room"
-        description="Manage this room or leave the table."
+        title={solo ? 'Reading options' : 'Your room'}
+        description={
+          solo ? 'Completed readings stay in your profile.' : 'Manage this room or leave the table.'
+        }
       >
         <div className="menu-actions">
           {solo ? (
-            <Button variant="secondary" onClick={() => setPanel('chat')}>
-              <MessageCircle size={17} />
-              Open chat
+            <Link href="/profile" className="button button--secondary button--md">
+              <History size={17} />
+              Saved readings
+            </Link>
+          ) : (
+            <Button variant="secondary" onClick={() => setPanel('activity')}>
+              <History size={17} />
+              Game activity
             </Button>
-          ) : null}
-          <Button variant="secondary" onClick={() => setPanel('activity')}>
-            <History size={17} />
-            Game activity
-          </Button>
-          {host ? (
+          )}
+          {!solo && host ? (
             <section className="room-options-group" aria-label="Host controls">
               <Button
                 variant="secondary"
@@ -458,7 +489,7 @@ export function RoomScreen({ id }: { id: string }) {
                 </>
               ) : null}
             </section>
-          ) : (
+          ) : !solo ? (
             <Button
               variant="secondary"
               pending={mutation.isPending}
@@ -466,22 +497,29 @@ export function RoomScreen({ id }: { id: string }) {
             >
               Claim hosting if the host is away
             </Button>
+          ) : null}
+          {solo ? (
+            <Link href={gamePath(room.gameId)} className="button button--ghost button--md">
+              <ArrowLeft size={17} aria-hidden="true" />
+              Back to Tarot
+            </Link>
+          ) : (
+            <Button
+              variant="ghost"
+              pending={mutation.isPending}
+              onClick={() => {
+                mutation.mutate(() => api.leave(id), {
+                  onSuccess: async () => {
+                    await forgetRoomMembership(cache, id);
+                    router.push('/');
+                  },
+                });
+              }}
+            >
+              <LogOut size={17} aria-hidden="true" />
+              Leave room
+            </Button>
           )}
-          <Button
-            variant="ghost"
-            pending={mutation.isPending}
-            onClick={() => {
-              mutation.mutate(() => api.leave(id), {
-                onSuccess: async () => {
-                  await forgetRoomMembership(cache, id);
-                  router.push('/');
-                },
-              });
-            }}
-          >
-            <LogOut size={17} aria-hidden="true" />
-            Leave room
-          </Button>
         </div>
       </Modal>
       {panel === 'configure' ? (

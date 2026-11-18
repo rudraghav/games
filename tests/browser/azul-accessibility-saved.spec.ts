@@ -1,6 +1,13 @@
 import { expect, test, type Locator, type Page, type Response } from '@playwright/test';
 import { azulDetails } from '../../packages/api-client/src/modern-details';
-import { attachPreviewAccess, openRoomOptions, requestAs, roomAs, type RoomView } from './helpers';
+import {
+  openGameSetup,
+  attachPreviewAccess,
+  openRoomOptions,
+  requestAs,
+  roomAs,
+  type RoomView,
+} from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 type Option = NonNullable<RoomView['game']>['actions'][number];
@@ -122,7 +129,7 @@ test('Azul keyboard drafting and placement retain named tiles and marker after r
   try {
     for (const actor of [page, friend]) await attachPreviewAccess(actor);
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Azul room', exact: true }).click();
+    await openGameSetup(page, 'Azul');
     await page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill(`Azul access host ${info.project.name}`);

@@ -10,14 +10,14 @@ import { GameLibrary } from '@/features/lounge/GameLibrary';
 
 describe('Dashboard discovery and private room entry', () => {
   it('features one Tarot entry first while keeping the complete catalogue discoverable', () => {
-    const html = renderToStaticMarkup(<GameLibrary onChoose={() => undefined} />);
-    const choices = [
-      ...html.matchAll(/aria-label="(?:Start reading — )?Create ([^"]+) room"/g),
-    ].map((match) => match[1]);
+    const html = renderToStaticMarkup(<GameLibrary />);
+    const choices = [...html.matchAll(/aria-label="Open ([^"]+)"/g)].map((match) => match[1]);
     expect(choices).toHaveLength(games.length);
     expect(new Set(choices).size).toBe(games.length);
     expect(choices[0]).toBe('Pop Tarot');
-    expect(html).toContain('aria-label="Start reading — Create Pop Tarot room"');
+    expect(html).toContain('aria-label="Open Pop Tarot"');
+    expect(html).toContain('href="/games/tarot"');
+    for (const game of games) expect(html).toContain(`href="/games/${game.id}"`);
     expect(html.match(/data-variant="featured"/g)).toHaveLength(1);
     expect(html).toContain('Start reading');
     expect(html).toContain('game-featured-label');
@@ -107,7 +107,7 @@ describe('Dashboard discovery and private room entry', () => {
         }}
       />,
     );
-    expect(html).toContain('/rooms/private-room-id');
+    expect(html).toContain('/games/uno/rooms/private-room-id');
     expect(html).toContain('Open Friday table, Uno');
     expect(html).toContain('In progress');
     expect(html).toContain('3 in room');

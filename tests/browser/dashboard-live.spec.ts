@@ -3,7 +3,14 @@ import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
-import { attachPreviewAccess, openRoomOptions, requestAs, roomAs, type RoomView } from './helpers';
+import {
+  openGameSetup,
+  attachPreviewAccess,
+  openRoomOptions,
+  requestAs,
+  roomAs,
+  type RoomView,
+} from './helpers';
 
 type Me = components['schemas']['MeView'];
 type Run = { cleanup: () => Promise<void>; record: () => Promise<void> };
@@ -214,7 +221,7 @@ test('two guests browse every setup, join a private room and play with the real 
     expect(tiles).toBeGreaterThan(0);
     await expect(actor.locator('.room-shortcut:visible')).toHaveCount(0);
     await actor.getByRole('tab', { name: 'Games', exact: true }).press('ArrowRight');
-    await expect(actor.getByRole('tab', { name: 'Rooms', exact: true })).toHaveAttribute(
+    await expect(actor.getByRole('tab', { name: 'Your games', exact: true })).toHaveAttribute(
       'aria-selected',
       'true',
     );
@@ -228,7 +235,7 @@ test('two guests browse every setup, join a private room and play with the real 
     });
     if (expectedRooms === 2) await expect(botShortcut).toBeVisible();
     else await expect(botShortcut).toHaveCount(0);
-    await actor.getByRole('tab', { name: 'Rooms', exact: true }).press('ArrowLeft');
+    await actor.getByRole('tab', { name: 'Your games', exact: true }).press('ArrowLeft');
     await expect(search).toHaveValue('uno');
     await expect(actor.getByRole('combobox', { name: 'Players', exact: true })).toHaveValue('2');
     await expect(actor.getByRole('button', { name: 'Cards', exact: true })).toHaveAttribute(
@@ -248,11 +255,7 @@ test('two guests browse every setup, join a private room and play with the real 
     for (const width of widths) {
       await page.setViewportSize({ width, height: width === 1440 ? 1000 : 844 });
       for (const game of catalogue) {
-        const createButton =
-          game.id === 'tarot'
-            ? page.getByRole('button', { name: /Create Pop Tarot room$/ })
-            : page.getByRole('button', { name: `Create ${game.name} room`, exact: true });
-        await createButton.click();
+        await openGameSetup(page, game.id);
         const dialog = page.getByRole('dialog', { name: 'Create room', exact: true });
         await expect(dialog.getByRole('combobox', { name: 'The game', exact: true })).toHaveValue(
           game.id,
@@ -265,10 +268,12 @@ test('two guests browse every setup, join a private room and play with the real 
           })),
         );
         expect(options.map((option) => option.value)).toEqual(
-          Array.from(
-            { length: game.max_players - game.min_players + 1 },
-            (_, index) => game.min_players + index,
-          ),
+          game.max_players === 1
+            ? []
+            : Array.from(
+                { length: game.max_players - game.min_players + 1 },
+                (_, index) => game.min_players + index,
+              ),
         );
         expect(
           options.every(
@@ -276,8 +281,10 @@ test('two guests browse every setup, join a private room and play with the real 
               option.label === `${option.value} ${option.value === 1 ? 'player' : 'players'}`,
           ),
         ).toBe(true);
-        expect(Number(await seats.inputValue())).toBeGreaterThanOrEqual(game.min_players);
-        expect(Number(await seats.inputValue())).toBeLessThanOrEqual(game.max_players);
+        if (game.max_players > 1) {
+          expect(Number(await seats.inputValue())).toBeGreaterThanOrEqual(game.min_players);
+          expect(Number(await seats.inputValue())).toBeLessThanOrEqual(game.max_players);
+        } else await expect(seats).toHaveCount(0);
         await expect(dialog.locator('.room-avatar-picker')).not.toHaveAttribute('open');
         await expect(dialog.locator('.avatar-options')).toBeHidden();
         await expect(
@@ -328,7 +335,7 @@ test('two guests browse every setup, join a private room and play with the real 
     }
     expect(counts.roomSubmissions).toBe(0);
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
+    await openGameSetup(page, 'Uno');
     const setup = page.getByRole('dialog', { name: 'Create room', exact: true });
     await setup
       .getByRole('textbox', { name: 'Your name', exact: true })
@@ -379,7 +386,7 @@ test('two guests browse every setup, join a private room and play with the real 
     }
     await page.getByRole('button', { name: 'Reset filters', exact: true }).click();
     const holdem = catalogue.find((game) => game.id === 'holdem')!;
-    await page.getByRole('button', { name: `Create ${holdem.name} room`, exact: true }).click();
+    await openGameSetup(page, `${holdem.name}`);
     const botSetup = page.getByRole('dialog', { name: 'Create room', exact: true });
     await botSetup.getByRole('button', { name: 'Bots', exact: true }).click();
     await botSetup.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');

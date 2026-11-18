@@ -16,10 +16,13 @@ names without including hidden ranks. Keyboard moves retain the server's legal
 request and saved public reveals agree across all seats after refresh.
 
 - `/`: public, server-rendered lounge with 26 multiplayer games and Pop Tarot; search/category/group-size discovery, create/join and member-only room shortcuts.
-- `/rooms/[id]`: authenticated membership-only lobby, live table, results and room chat.
+- `/games/[gameId]`: public game introduction, rules and play choices; opening or refreshing it never starts a session.
+- `/games/[gameId]/rooms/[id]`: authenticated membership-only multiplayer lobby, live table, results and room chat.
+- `/games/tarot/play/[id]`: private active Tarot spread, opened directly by Start reading.
+- `/rooms/[id]`: compatible old link; redirects to the named game route only after authorized room loading.
 - `/join/[token]`: guest identity and explicit join; navigate to the stable room URL after joining.
 - `/profile`: Google signup/sign-in, guest-preserving account/email linking, saved name/avatar and match results.
-- `/readings/[matchId]`: the original participant's saved Tarot spread and analysis, independent of the room's current spread or membership; no generation on open.
+- `/games/tarot/readings/[matchId]`: the original participant's saved Tarot spread and analysis, independent of the room's current spread or membership; no generation on open. Old `/readings/[matchId]` links redirect after authorized loading.
 - `/auth/callback`: private PKCE exchange and safe account success/cancel/conflict status.
 - `/privacy`: public data-use summary for Google signup, room history and AI readings.
 - `/design`: component/table gallery for development and review.
@@ -31,20 +34,27 @@ Phones keep both main home actions in full rows. Search and Players share the
 first control row; category pills scroll in a contained second row beside Reset.
 The live result count is announced without adding a heading above the games.
 When it matches the active filters, Pop Tarot appears once in the first
-full-width catalogue row. Its Start reading action opens the existing solo
-setup flow; the other26 games continue in the regular grid below it.
-Selecting a tile opens that game's existing shared room-creation flow. Just me
-and Solo + bots open supported multiplayer games with Bots already selected and
-label their tile metadata You + bots; Friends remains available in setup.
+full-width catalogue row. Its Start reading link opens `/games/tarot`; the
+other 26 games continue in the regular grid below it. Tiles are ordinary links
+to each game's public page. Just me and Solo + bots add `?mode=bots` for
+supported multiplayer games, emphasizing Play with bots without starting play.
 
 The home page starts with a compact game picker rather than a large promotional
-hero. Play with bots opens room creation in Bots mode; selecting a game tile
-allows Friends or Bots. Bots mode fills the other selected seats, readies the
-human and starts automatically. If auto-start or the fresh identity read fails,
-the already-created room remains the destination; the form never repeats creation.
+hero. Play solo filters the catalogue to solo and bot-capable games. On a game
+page, Start reading or Play with bots creates and starts the private session in
+one transaction, without a name form or lobby. Existing profiles are preserved;
+first-time players receive Guest. Bot play uses the minimum supported group,
+with at least one bot. Play with friends opens setup with that game fixed and
+then the invite lobby. The global Create room dialog retains advanced setup.
+
+Quick play sends a UUID request ID stored per game in this browser tab. Pending
+controls prevent duplicate taps. A lost response offers Try again and reuses the
+same ID, including after a refresh, so the same original match is recovered.
+An ended, abandoned or changed session offers an explicit Start a new reading/game
+instead of silently restarting it. Browsing never submits this request.
 One-person discovery includes supported bot games. Search uses exact aliases
 first and a bounded Fuse.js typo fallback, intersected with category/player filters.
-Games and Rooms are separate segmented tabs. Games is the default catalogue; Rooms groups the player's in-progress/waiting and finished rooms. Switching tabs preserves game search and filters. Home omits the duplicate Games top-navigation item; the Games home brand returns to the Games panel with those choices preserved. Inner pages retain their Games link. Membership shortcuts never appear in the Games panel and have no public discovery feed. Browsing alone creates no guest identity.
+Games and Your games are separate segmented tabs. Games is the default catalogue; Your games groups the player's in-progress/waiting and finished sessions. Switching tabs preserves game search and filters. Home omits the duplicate Games top-navigation item; the Games home brand returns to the Games panel with those choices preserved. Inner pages retain their Games link. Membership shortcuts never appear in the Games panel and have no public discovery feed. Public profile reads use only an existing session, even when stale player preferences remain after sign-out. A stale game slug redirects only after the room's actual game and membership are authorized.
 
 The host can add/fill/remove labeled bot seats in the lobby. A human joining a
 full lobby replaces a bot. Bots never receive login sessions or hosting rights;
@@ -95,9 +105,10 @@ to the current match, mode, round and player: a submission or next prompt from
 another tab cannot make an old choice the next round's selected answer. Reload
 restores committed state and requires a fresh choice for an uncommitted turn.
 Optional sip prompts are set before starting; every mode always permits Pass.
-Solo Tarot creation omits seat selection and invite instructions. Its room options
-menu holds chat and activity, leaving rules and the options control in the phone toolbar.
-Desktop keeps direct open/close controls for its persistent side panel.
+Solo Tarot starts directly at card selection. Its Pop Tarot header and Reading
+options menu omit multiplayer invite, host, chat and membership controls. Back
+to Tarot returns to the game page without abandoning the saved spread; Your games
+can resume it. The global advanced creation dialog remains compatible with solo play.
 Loading a saved spread reports progress or a retryable error; retry only fetches
 the saved state. Generation stays disabled until that read succeeds and while
 the room is paused/offline. Completed readings show their exact saved question.

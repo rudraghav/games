@@ -1,6 +1,13 @@
 import { expect, test, type Page, type Locator } from '@playwright/test';
 import { blackjackDetails } from '../../packages/api-client/src/casino-details';
-import { attachPreviewAccess, openRoomOptions, requestAs, roomAs, type RoomView } from './helpers';
+import {
+  openGameSetup,
+  attachPreviewAccess,
+  openRoomOptions,
+  requestAs,
+  roomAs,
+  type RoomView,
+} from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 type Action = NonNullable<RoomView['game']>['actions'][number]['action'];
@@ -61,7 +68,7 @@ test('saved crowded-action families preserve exact moves, public state and narro
   try {
     for (const actor of players) await attachPreviewAccess(actor);
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Monopoly Deal room', exact: true }).click();
+    await openGameSetup(page, 'Monopoly Deal');
     await page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill(`Crowded host ${info.project.name}`);

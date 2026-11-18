@@ -89,6 +89,16 @@ export function createApi(accessToken?: () => Promise<string | null>) {
     async profile(name: string, avatar: number) {
       return unwrap(await client.PUT('/v1/profile', { body: { name, avatar } }));
     },
+    async quickPlay(gameId: string, requestId: string) {
+      return mapRoom(
+        unwrap(
+          await client.POST('/v1/games/{game_id}/play', {
+            params: { path: { game_id: gameId } },
+            body: { request_id: requestId },
+          }),
+        ),
+      );
+    },
     async create(input: {
       name: string;
       avatar: number;

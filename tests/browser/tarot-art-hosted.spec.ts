@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { requestAs } from './helpers';
+import { openGameSetup, requestAs } from './helpers';
 
 test.skip(!process.env.GAMES_TEST_URL, 'Explicit hosted artwork verification only.');
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
@@ -11,12 +11,12 @@ test('the hosted Tarot deck preserves corrected symbols in delivered WebP frames
   let roomId: string | undefined;
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
+    await openGameSetup(page, 'tarot');
     await page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill('Artwork verification');
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
-    await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
+    await expect(page).toHaveURL(/\/games\/tarot\/play\/[\da-f-]+$/);
     roomId = new URL(page.url()).pathname.split('/').at(-1)!;
     await page.getByRole('button', { name: 'Explore the deck', exact: true }).click();
     for (const width of [320, 390, 1440]) {

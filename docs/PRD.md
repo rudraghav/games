@@ -1,10 +1,18 @@
 # Games product contract
 
-Private game nights with friends: home → choose game → room → invite → ready →
-play → results → rematch/change game. Launch requires nine complete games and
-the owner-requested Pop Tarot experience.
+Choose a game before choosing how to play. Tarot opens directly into a private
+reading; bot play starts immediately. Friends use game → setup → invite lobby →
+ready → play → results → rematch/change game. The catalogue now contains 27 games.
 
 ## Confirmed decisions
+
+Every game has a public `/games/[gameId]` page with rules and clear play actions.
+Browsing creates no identity or session. Start reading and Play with bots need
+no name form or room setup; existing player profiles remain unchanged. Private
+sessions still persist server-side, with idempotent launch retries and authorized
+game-specific URLs. Tarot uses `/games/tarot/play/[id]` for the active spread and
+`/games/tarot/readings/[matchId]` for its immutable archive. Old room/reading links
+remain usable. Home's Your games tab retains unfinished sessions and history.
 
 Uno/classic and Show 'em No Mercy; Monopoly Deal/classic and Deal No Mercy;
 no-limit Texas Hold'em; Indian 13-card points rummy; classic Teen Patti; blackjack;

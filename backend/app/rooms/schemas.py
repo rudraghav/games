@@ -32,6 +32,10 @@ class CreateRoom(ProfileInput):
     bots: int = Field(default=0, ge=0, le=9)
 
 
+class QuickPlay(Request):
+    request_id: UUID
+
+
 class JoinRoom(ProfileInput):
     invite: str = Field(min_length=6, max_length=100)
 

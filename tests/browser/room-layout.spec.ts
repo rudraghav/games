@@ -1,5 +1,5 @@
 import { expect, test, type BrowserContext, type Page } from '@playwright/test';
-import { requestAs, roomAs, openRoomOptions } from './helpers';
+import { openGameSetup, requestAs, roomAs, openRoomOptions } from './helpers';
 
 type OwnedRoom = { id?: string; actors: Page[]; contexts: BrowserContext[] };
 const cleanup = new WeakMap<Page, OwnedRoom>();
@@ -59,7 +59,7 @@ test('room controls, turn notices and a natural result stay clear on narrow layo
     ).toBe(true);
   }
   await page.goto('/');
-  await page.getByRole('button', { name: 'Create Four in a Row room', exact: true }).click();
+  await openGameSetup(page, 'Four in a Row');
   await page.getByRole('textbox', { name: 'Your name', exact: true }).fill(hostName);
   await openRoomOptions(page);
   await page
@@ -201,7 +201,7 @@ test('compact lobby artwork leaves room for players and phone actions', async ({
   const owned: OwnedRoom = { actors: [page], contexts: [] };
   cleanup.set(page, owned);
   await page.goto('/');
-  await page.getByRole('button', { name: 'Create The Gang room', exact: true }).click();
+  await openGameSetup(page, 'The Gang');
   await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Artwork Review');
   await page.getByRole('button', { name: 'Create room', exact: true }).click();
   await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
@@ -287,7 +287,7 @@ test('late pre-join player response cannot erase the newly joined identity', asy
   });
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
+    await openGameSetup(page, 'Uno');
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Identity Host');
     await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
@@ -347,7 +347,7 @@ test('committed room entry recovers from a profile read failure without creating
     } else await route.fulfill({ status: 503, json: { detail: 'Temporarily unavailable' } });
   });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Create Uno room', exact: true }).click();
+  await openGameSetup(page, 'Uno');
   await loaded;
   await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Read Retry Host');
   await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
@@ -355,7 +355,7 @@ test('committed room entry recovers from a profile read failure without creating
   await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
   owned.id = new URL(page.url()).pathname.split('/').at(-1)!;
   await expect(
-    page.getByRole('heading', { name: 'Reconnect to your room', exact: true }),
+    page.getByRole('heading', { name: 'Reconnect to your game', exact: true }),
   ).toBeVisible();
   await expect(page.getByRole('button', { name: 'Take an open seat', exact: true })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Create room', exact: true })).toHaveCount(0);
