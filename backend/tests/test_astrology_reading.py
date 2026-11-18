@@ -76,7 +76,7 @@ def test_combined_reading_is_one_bounded_request_with_only_computed_placements(m
     assert len(captured) == len(reservations) == 1
     assert result.astrology.chart == chart
     body = captured[0]
-    assert body["store"] is False and body["generation_config"]["max_output_tokens"] == 3600
+    assert body["store"] is False and body["generation_config"]["max_output_tokens"] == 8192
     assert len(body["input"]) + len(body["system_instruction"]) + len(json.dumps(body["response_format"]["schema"])) <= 16000
     context = json.loads(body["input"])
     assert {c["system"] for c in context["astrology"]} == {c.system for c in chart.charts}
@@ -135,6 +135,23 @@ def test_invalid_astrology_output_has_no_second_call_or_fake_fallback(monkeypatc
     with pytest.raises(ReadingOutputError):
         generate_reading(CARDS, "", astrology_chart=synthetic_chart())
     assert len(captured) == 1
+
+
+def test_astrology_recovers_once_only_from_definite_overload(monkeypatch):
+    captured, waits = [], []
+    real_client = httpx.Client
+    def respond(request):
+        captured.append(json.loads(request.content))
+        if len(captured) == 1:
+            return httpx.Response(503, headers={"Retry-After": "1"})
+        return provider_response({**example_reading(CARDS), "astrology_interpretation": interpretation()})
+    monkeypatch.setattr("app.games.tarot.reading.httpx.Client",
+                        lambda **kwargs: real_client(transport=httpx.MockTransport(respond), **kwargs))
+    monkeypatch.setattr("app.games.tarot.reading.time.sleep", waits.append)
+    result = generate_reading(CARDS, "", astrology_chart=synthetic_chart())
+    assert result.astrology is not None
+    assert len(captured) == 2 and captured[0] == captured[1]
+    assert waits == [1]
 
 
 @pytest.mark.parametrize("failure", ["generic", "unknown", "duplicate", "swapped"])

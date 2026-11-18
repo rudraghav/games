@@ -13,7 +13,7 @@ illustration is prepared. Attributable artist works are explicitly labelled
 Artwork reference, with a work title and source; they are not presented as a face. The artwork exporter checks exact entity bindings, local bytes,
 dimensions, attribution and generated-registry parity.
 
-`pop-tarot-10` ranks the full catalogue by the optional question, card meaning and
+`pop-tarot-11` ranks the full catalogue by the optional question, card meaning and
 spread position using a pinned local semantic model. It sends at most six
 candidates per card, with sourced public evidence. The same ranked result trims
 to four, three or two candidates when necessary to preserve the existing16,000-
@@ -49,9 +49,12 @@ personality assessment. Embedding similarity is not factual confidence.
 without changing their names or pictures. New entries retain bounded public
 context and revision/source attribution. Full context stays server-side; selected
 candidates carry a short relevant excerpt; complete contexts already within320
-characters retain their subject and fictional/historical framing. Prompt `pop-tarot-10` asks for the
+characters retain their subject and fictional/historical framing. Prompt `pop-tarot-11` asks for the
 concrete evidence and its specific connection to the question/card tension,
 without unsupported biography, private motives or a whole-person equivalence.
+Source attribution and uncertainty must survive the analogy; a qualified claim
+must not become a definite fact. This general instruction follows a focused
+evaluation finding, rather than a topic-specific list of patched biographies.
 Religious/mythological figures retain their tradition and named form, without
 inferring the reader's religion or claiming divine messages. Curated memes retain
 the exact scene/reaction context; only a strongly relevant meme may enter the
@@ -59,8 +62,11 @@ shortlist and at most one may appear in a spread. The prompt excludes humour
 from grief, trauma, health crises and serious hardship. This is tested editorially,
 not claimed as an exhaustive classification of every possible question.
 
-The application reading adapter currently evaluates medium thinking with the
-same3600-token ceiling and existing time/attempt limits. Exact facts precede
+The application reading adapter uses `gemini-4-hydrogen` with low thinking and
+an8192-token combined reasoning/output ceiling. The earlier medium/3600 candidate
+could consume most of its allowance on reasoning and truncate the JSON. Safe usage
+receipts now count thought tokens and total generated tokens as well as visible
+output. Exact facts precede
 limited analogies; named references belong with their structured image/source
 entries. Astrology offers symbolic reflection questions, not personality facts
 or predictions. Coordinated bodies can share a sign/house anchor only when both
@@ -87,8 +93,9 @@ Birth date, time and place stay out of saved readings and provider prompts.
 Only the computed chart is saved privately, including during a pending/failed
 request so refresh and explicit retry can reuse it. Turning astrology off omits
 it from the next request and clears an earlier failed chart draft. Ordinary and
-legacy readings remain unchanged. The `pop-tarot-6` optional contract makes one
-combined provider call, with no automatic astrology retry or substitute reading.
+legacy readings remain unchanged. The optional contract introduced in `pop-tarot-6`
+combines Tarot and astrology in one generation, without an invalid-output retry or
+substitute reading. The current transport policy below permits one definite503 retry.
 
 ## Reading expansion acceptance — 1 November 2026
 
@@ -154,7 +161,7 @@ retains the general Gemini transmission notice without the free-tier statement.
 See https://ai.google.dev/gemini-api/docs/pricing.
 
 Provider: Google Gemini Interactions API with JSON Schema output, storage off,
-low thinking level and a 3,600-token output cap. Default model is configurable
+low thinking level and an8192-token combined thought/output cap. Default model is configurable
 through `TAROT_MODEL`. The `pop-tarot-4` provider schema binds each of the three
 ordered card IDs and positions using supported `prefixItems`/single-value enums.
 Google ignores JSON Schema string-length constraints; descriptions communicate
@@ -162,15 +169,19 @@ the character ranges and strict Pydantic validation remains authoritative. A
 completed but malformed/invalid response or partial truncated response receives
 at most one fresh generation with a safe failure classification, never rejected
 text. Failed, canceled, empty/safety, HTTP quota/auth and transport responses do
-not retry automatically. A 60-second retry deadline and 45-second per-request cap
-fit within the 75-second frontend proxy and 120-second saved-generation lease.
+not retry automatically. A definite503 overload may retry once after a bounded
+delay, including for astrology; invalid astrology output still never regenerates.
+A105-second retry deadline and90-second per-request cap fit within the120-second
+frontend proxy and180-second saved-generation lease.
 Both attempts reserve the transactional daily budget before transmission.
-The per-request cap was raised from 30 seconds after a fresh phone request timed
-out and controlled calls measured about 27 seconds even for a two-token reply.
-Schema removal and minimal thinking did not remove the delay. The model, effort,
-output cap, total retry deadline, proxy timeout and generation lease are unchanged;
-the second attempt receives only the remaining total budget. This adds margin
-for provider latency without automatically repeating a transport failure.
+The18 November evaluation found a40.57-second accepted ordinary response and a
+combined response exceeding the former45-second cap. Further responses exceeded
+60s during provider overload. The bounded90-second cap allows the longer contract;
+the second attempt receives only the remaining total budget. Transport
+failures still preserve the spread for an explicit retry, never a fabricated reading.
+Provider429 returns a clear request-limit response without exposing provider text,
+keys or questions. It preserves the selected cards and permits recovery after the
+provider's limit resets; the app never silently retries a quota failure.
 Fresh-output validation requires all new reading sections and rejects repeated
 characters, unnamed sources, missing/oversized explanations and extra fields.
 Fresh name/source pairs must match the curated cast, including explicit aliases;

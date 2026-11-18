@@ -5,6 +5,10 @@ Profile history. It reads the exact saved match independently of the room's
 current match or closure. Shared `TarotReading`, card-art loading, navigation and
 buttons retain the normal reading presentation, character art and chart controls.
 
+The archive owns its compact page/navigation spacing instead of inheriting the
+profile hero's top and bottom margins. Navigation keeps full touch targets and
+the reading retains the same line lengths and card spacing as the current table.
+
 The backend authorizes the match's sole recorded participant. The page does not
 generate output, edit history or expose a room return link after closure/rematch.
 It refreshes on focus and polls only while an existing generation lease is live.

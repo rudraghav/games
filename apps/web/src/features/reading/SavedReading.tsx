@@ -22,8 +22,8 @@ export function SavedReadingScreen({ matchId }: { matchId: string }) {
   return (
     <>
       <SiteHeader />
-      <main className="profile-page page-width">
-        <nav className="hero-actions profile-intro" aria-label="Reading navigation">
+      <main className="saved-reading-page page-width">
+        <nav className="hero-actions saved-reading-nav" aria-label="Reading navigation">
           <Link href="/profile" className="button button--secondary button--md">
             Back to profile
           </Link>

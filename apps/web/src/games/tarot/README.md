@@ -10,7 +10,7 @@
 - Spread position labels and card names are at least 11px and meanings 12px at every width.
 - The unsent question is a `useTableDraft` scoped to room and match, so it survives a refresh in that tab and never carries into the next spread; it clears when a reading is saved. Birth fields remain memory-only.
 - Loading the saved spread has a visible status; a failed read offers a GET-only retry and keeps generation disabled until authoritative state returns. Paused/offline rooms cannot submit readings.
-- While a reading is being written, or when readings are unavailable, the reason sits next to the button with “Your three cards are saved.”
+- While a reading is being written, or when readings are unavailable, the reason sits next to the button. Writing can take a minute or two; the saved cards remain available.
 
 ## After the reading
 
@@ -21,6 +21,12 @@
 - The Explore-the-deck dialog keeps its heading and suit filter pinned (one swipeable row on phones).
 
 ## Optional astrology
+
+On phones the question form uses the table's existing gutter instead of another
+padded card. Astrology grids own their field spacing, so the shared field's
+outer margins do not accumulate with grid gaps. Input and button hit areas stay
+unchanged. The final next-step block uses 16px phone padding; reference accents
+retain a smaller 10px inset, leaving more width for the explanation text.
 
 Astrology starts off. Turning it on offers Both, Western or Vedic, then requires a birth date, local birth time and a birthplace selected from the authenticated location search. A successful server preview is required before generation. Changing any input, tradition, selected place or daylight-saving occurrence clears that preview; stale search/calculation responses cannot restore it. Repeated local times need an explicit first/second occurrence. Nonexistent local times remain blocked.
 

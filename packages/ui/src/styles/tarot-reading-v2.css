@@ -1,4 +1,11 @@
 @layer components {
+  .saved-reading-page {
+    padding-block: 24px 64px;
+  }
+  .saved-reading-page .saved-reading-nav {
+    max-width: 700px;
+    margin: 0 auto 24px;
+  }
   .tarot-character-connections li[data-has-portrait='true'] {
     display: grid;
     grid-template-columns: 112px minmax(0, 1fr);
@@ -231,6 +238,9 @@
     overflow-wrap: anywhere;
   }
   @media (max-width: 600px) {
+    .tarot-character-connections li {
+      padding-left: 10px;
+    }
     .modal--sticky-heading .modal-heading {
       top: -22px;
       margin: -22px -22px 0;

@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     app_secret: str = ""
     dev_auth_enabled: bool = False
     gemini_api_key: str = ""
-    tarot_model: str = "gemini-3.5-flash-lite"
+    tarot_model: str = "gemini-4-hydrogen"
     tarot_api_tier: Literal["free", "paid"] = "free"
     tarot_daily_limit: int = 100
 

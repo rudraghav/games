@@ -1,5 +1,17 @@
 # Tarot reference expansion and complete reading flow
 
+## Current source status — 18 November 2026
+
+Provider repairs and tighter mobile spacing pass local checks. The candidate uses
+Hydrogen/low, bounded overload recovery, explicit quota messaging and full reasoning
+token accounting. The final attribution/uncertainty wording still needs two real
+prose checks: Gemini reports its20-request free daily limit, resetting around
+08:00UTC/13:30IST today. Production remains65de797; no production configuration
+or deployment change has occurred. See [analysis evidence](analyses.md) and the
+latest root progress entry for exact accepted/pending cases and verification reports.
+
+## Original expansion scope
+
 17 November 2026. User authorized improvements, initially beyond 1,000 references,
 then expanded the scope to over5,000 recognizable references with nuanced matching,
 Indian/regional cinema and bounded familiar mythological figures. Strong names
@@ -19,7 +31,8 @@ before this work: `65de797`, deployment `dpl_3aLSUJHLn5STFeHttnT5NRHwG84U`.
   Requests reduce from six to four, three or two candidates per card to retain
   the existing budget; the private question is encoded once in memory, without
   another provider call, query cache or new storage of birth inputs. The generation
-  model remains unchanged. One meme may be offered when its scene is a strong match;
+  model initially remained unchanged; the18 November candidate is documented above.
+  One meme may be offered when its scene is a strong match;
   the reading contract requires sensitive questions to omit humour.
 - Exact people, characters, religious depictions and meme scenes share a canonical
   identity contract. Original illustrations and attributed artwork references have

@@ -26,6 +26,7 @@
   .astrology-date-fields {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: start;
     gap: 12px;
     min-width: 0;
   }
@@ -40,6 +41,9 @@
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 8px;
     align-items: end;
+  }
+  .astrology-fields .field {
+    margin: 0;
   }
   .astrology-validation {
     color: var(--color-danger);
@@ -192,6 +196,9 @@
     display: grid;
     gap: 12px;
     min-width: 0;
+  }
+  .astrology-chart-details > .field {
+    margin: 0;
   }
   .astrology-inspection {
     min-height: 90px;

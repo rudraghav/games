@@ -31,7 +31,7 @@ function referenceArtwork(name: string, source: string) {
 
 test.skip(
   !process.env.GAMES_TEST_URL || process.env.GAMES_TEST_AI !== '1',
-  'Explicit hosted AI acceptance only; two generation submissions, up to three provider attempts.',
+  'Explicit hosted AI acceptance only; two generation submissions, up to four provider attempts.',
 );
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 
@@ -224,7 +224,7 @@ test('two independent live readings retain exact private archives after new spre
       expect((await requestAs(outsider, `rooms/${room.roomId}/reading`)).status()).toBe(404);
       expect((await requestAs(outsider, `readings/${matchId}`)).status()).toBe(404);
       await actor.getByRole('button', { name: 'Read my cards', exact: true }).click();
-      await expect(actor.locator('.tarot-reading')).toBeVisible({ timeout: 80000 });
+      await expect(actor.locator('.tarot-reading')).toBeVisible({ timeout: 125000 });
       const response = await requestAs(actor, `rooms/${room.roomId}/reading`);
       expect(response.status()).toBe(200);
       const current: ReadingView = await response.json();

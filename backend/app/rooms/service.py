@@ -9,6 +9,7 @@ import time
 from typing import Literal
 from uuid import UUID, uuid4, uuid5
 
+import httpx
 from cryptography.fernet import Fernet
 from fastapi import HTTPException
 from pydantic import ValidationError
@@ -597,7 +598,7 @@ class RoomService:
                 saved = TarotReading(match_id=match_id)
                 self.repo.add(saved)
             saved.status, saved.question = "generating", question
-            saved.attempt_id, saved.lease_until = attempt, time.time() + 120
+            saved.attempt_id, saved.lease_until = attempt, time.time() + 180
             saved.prompt_version = PROMPT_VERSION
             saved.payload = {"astrology_draft": astrology_chart.model_dump(mode="json")} if astrology_chart else None
 
@@ -634,6 +635,10 @@ class RoomService:
             if isinstance(error, ReadingLimitError):
                 raise HTTPException(
                     429, "Today's personal reading limit has been reached. Your spread is saved."
+                ) from None
+            if isinstance(error, httpx.HTTPStatusError) and error.response.status_code == 429:
+                raise HTTPException(
+                    429, "The AI provider is at its current request limit. Your cards are saved; please try again later."
                 ) from None
             raise HTTPException(
                 502, "Your reading could not be completed. Your cards are saved; please retry."

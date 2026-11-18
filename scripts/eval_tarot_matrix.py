@@ -221,7 +221,8 @@ class UsageCapture(logging.Handler):
         if not isinstance(entry, dict) or entry.get("provider") != "gemini":
             return
         keys = ("model", "effort", "provider", "mode", "input_tokens", "cached_tokens",
-                "output_tokens", "cache_hit_rate", "over_cliff", "prompt_version", "attempt")
+                "output_tokens", "thought_tokens", "generated_tokens", "cache_hit_rate",
+                "over_cliff", "prompt_version", "attempt")
         self.entries.append({key: entry[key] for key in keys if key in entry})
 
 

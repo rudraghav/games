@@ -1,5 +1,80 @@
 # Tarot analysis and flow evaluation — 17 November 2026
 
+## 18 November provider recovery investigation
+
+### Latest boundary — provider quota, no production mutation
+
+All seven minimum categories passed independent editorial review on Hydrogen/low/
+8192 with pop-tarot-10. Additional Both-boundaries and Western-beginner passed.
+Vedic-learning completed but strengthened a qualified Borromini source claim;
+ordinary-reset twice timed out. Completed-reading latency ranged23.24–85.74s;
+503s and90s timeouts remain observed provider-availability limitations.
+
+`pop-tarot-11` adds a general requirement to preserve attribution and uncertainty,
+with compact equivalent surrounding instructions to retain the16k request cap.
+The focused Vedic-learning run timed out; grief returned explicit429:20 requests
+per day for Hydrogen on the free tier. At05:47UTC the provider requested a wait
+until about08:00UTC (13:30IST) on18 November. No further calls are made before
+that reset or an explicitly authorized paid project.72/80 attempts are used;
+two direct and six hosted attempts remain reserved. This final prompt has no
+accepted real output yet; earlier acceptances are not relabelled as pop-tarot-11.
+
+Final source checks pass (6557 backend,182 persistence/privacy,241 frontend,
+44 tooling, full contracts,57 browser cases plus one intentional skip). New
+tests cover overload bounds, separate budget reservations, expiry during a slow
+reservation, thought-token logging privacy and quota/spread recovery. Production
+and its existing provider settings remain unchanged pending the remaining gate.
+
+The configured model metadata endpoint returns200 with the existing key. A fresh
+Flash-Lite/medium/3600 grief request now returns200 but is incomplete:1708 input,
+2702 thought and882 visible output tokens. The output cap includes thoughts, so
+the earlier cap cannot reliably accommodate the medium-effort reading contract.
+Current [Google thinking documentation](https://aistudio.google.com/docs/thinking#token-limits)
+confirms this shared cutoff. This is separate from the previous high-demand503s.
+
+A bounded comparison retains the exact prompt and request limits and raises the
+combined thought/output allowance to8192. One Flash3.8 comparison still returned
+503; no model substitution is justified. The next comparison uses the existing
+Flash-Lite model. Total49/58 calls used before that comparison; preserve three
+hosted attempts. These comparisons are evaluation-only until quality is accepted.
+Provider signatures and raw readings remain private; metadata logging will include
+thought tokens so the full generated-token cost is visible without content.
+
+At50 attempts the8192 Flash-Lite response completed but failed two connection
+lengths and editorial grief tone (comic food comparison). Increasing the cap
+alone does not meet acceptance. Flash3.8 remains unavailable. One deliberate
+comparison now uses current stable `gemini-4-hydrogen`, low thinking and8192
+combined tokens with the identical prompt. Google's current model/pricing docs
+confirm structured output, low thinking and free-tier availability; standard paid
+rates are$1.50 input/$7.50 output per million. No billing tier is changed.
+
+The revised ceiling is66 total attempts: at most13 further direct evaluations
+(including this comparison and recovery allowances), then three hosted attempts.
+Required final cases are blank, grief, exact-meme inbox, named Nataraja symbolism,
+Western, Vedic and Both. No production model change precedes accepted prose.
+
+Hydrogen/low/8192 passes grief on its first attempt in40.57s: quiet, non-comic
+imagery; source-grounded Joy/Hildegard/Su Song references; coherent progression
+and an optional, practical invitation. An independent editorial review agrees.
+The first Both attempt timed out at45s. With a60s attempt cap and65s total retry
+deadline (inside the unchanged75s proxy/120s saved lease), Both change completes
+and validates in48.95s, using4552 input +963 thought +1316 visible output tokens.
+Total53 attempts. Source adopts this candidate configuration pending the remaining
+five direct cases and actual hosted acceptance. Prompt and validators are unchanged.
+
+At58 attempts, Nataraja also passes editorial review (44.87s); blank/Western
+returned503 and Vedic/inbox timed out at60s. These four failures provide no prose
+acceptance. The final recovery policy permits one definite503 retry with bounded
+backoff and a separate daily-budget reservation. Timeouts, auth/quota, safety
+and invalid astrology output remain non-retryable. Limits are90s per attempt,
+105s total,120s proxy and180s saved lease. UI accurately says a minute or two.
+
+The explicit final budget is80 attempts total: up to16 more direct attempts and
+six hosted attempts (the two planned submissions use at most four; two are reserved
+for an independently diagnosed hosted recovery). No implicit model switching or
+unbounded retry is introduced. All earlier quality acceptances retain identical
+model, prompt, low thinking, output cap, shortlist and validation inputs.
+
 ## Expanded-catalogue evaluation checkpoint
 
 The initial sections below record the earlier eight-case plan. That baseline

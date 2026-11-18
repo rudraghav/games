@@ -296,6 +296,9 @@
     width: 100%;
     margin: 6px 0 15px;
   }
+  .tarot-question > .field {
+    margin: 0;
+  }
   .tarot-question > p {
     line-height: 1.7;
     margin-top: 8px;
@@ -413,7 +416,13 @@
       margin-top: 7px;
     }
     .tarot-question {
-      padding: 22px 18px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    .tarot-next-step {
+      padding: 16px;
     }
     .tarot-art .tarot-suit {
       font-size: 53px;

@@ -61,6 +61,11 @@ rematch; equal revisions may refresh presence. No schema or transaction changes.
 
 ## Private saved Tarot archive
 
+Generation uses a180-second saved lease around the bounded provider request.
+Every retry reserves the daily budget separately. Provider429 marks the attempt
+failed and returns a clear request-limit message without raw provider details;
+the exact spread remains available and a later retry can save/read back normally.
+
 `GET /v1/readings/{match_id}` reads the exact historical match and saved reading.
 Only that Tarot match's sole recorded participant may read it; current room
 membership is not required. Unknown, non-Tarot and other players' matches all

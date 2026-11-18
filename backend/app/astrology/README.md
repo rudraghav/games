@@ -88,9 +88,11 @@ system the response must choose two or three allowed `focus_points` and name the
 corresponding canonical body, sign and house in its normal text. Validation
 rejects ungrounded, duplicate, swapped or unknown anchors, unexpected systems and
 model-produced positions. Quirky text is separate, followed by a Tarot connection
-and a next step. There is one combined provider call and no automatic astrology
-retry or fabricated fallback. The existing 16,000-character request guard,
-3,600-token output cap, deadline, saved lease and transactional daily budget apply.
+and a next step. Tarot and astrology share one generation; invalid astrology
+output never triggers regeneration or a fabricated fallback. Current transport
+recovery permits one definite503 overload retry, with a separate budget reservation.
+The16,000-character request guard,8192 combined thought/output cap,90s attempt,
+105s total deadline,180s saved lease and transactional daily budget apply.
 Failure logs retain exception class/count only, never birth input or provider text.
 
 ## Verification

@@ -61,7 +61,7 @@ def test_gemini_request_is_bounded_private_and_schema_checked(monkeypatch):
     assert result.cards[0].card_id == cards[0]
     payload = captured[0]
     assert payload["store"] is False
-    assert payload["generation_config"] == {"thinking_level": "medium", "max_output_tokens": 3600}
+    assert payload["generation_config"] == {"thinking_level": "low", "max_output_tokens": 8192}
     assert payload["response_format"]["mime_type"] == "application/json"
     context = json.loads(payload["input"])
     assert context["cards"][0]["card_id"] == cards[0]
@@ -94,6 +94,30 @@ def test_blocked_provider_output_is_not_returned_as_a_reading(monkeypatch):
     with pytest.raises(ReadingOutputError) as error:
         generate_reading(["major-00", "cups-03", "swords-10"], "")
     assert error.value.reason == "not_completed"
+
+
+def test_usage_counts_thinking_without_logging_provider_content(caplog):
+    from app.games.tarot.reading import _log_usage
+
+    with caplog.at_level("INFO", logger="uvicorn.error"):
+        _log_usage({"usage": {"total_input_tokens": 1708, "total_output_tokens": 882,
+                              "total_thought_tokens": 2702},
+                    "steps": [{"signature": "private-thought-signature"}],
+                    "output_text": "private-reading-content"}, "test-model", 1)
+    receipt = json.loads(caplog.records[-1].message)
+    assert receipt["output_tokens"] == 882
+    assert receipt["thought_tokens"] == 2702
+    assert receipt["generated_tokens"] == 3584
+    assert "private-" not in caplog.text
+
+
+@pytest.mark.parametrize("invalid", [-1, True, "private-provider-content", None, {}])
+def test_invalid_usage_is_not_logged(caplog, invalid):
+    from app.games.tarot.reading import _log_usage
+
+    with caplog.at_level("INFO", logger="uvicorn.error"):
+        _log_usage({"usage": {"total_thought_tokens": invalid}}, "test-model", 1)
+    assert not caplog.records
 
 
 @pytest.mark.parametrize("tier", ["free", "paid"])
@@ -188,7 +212,7 @@ def test_blocked_or_malformed_envelope_does_not_trigger_regeneration(monkeypatch
     assert len(calls) == 1
 
 
-@pytest.mark.parametrize("status", [400, 401, 402, 429, 503])
+@pytest.mark.parametrize("status", [400, 401, 402, 429, 500, 502])
 def test_provider_errors_are_not_retried_or_replaced_with_fake_readings(monkeypatch, status):
     calls = mock_provider(monkeypatch, [httpx.Response(status, json={"error": "unavailable"})])
     with pytest.raises(httpx.HTTPStatusError):
@@ -203,7 +227,68 @@ def test_transport_timeout_is_not_automatically_repeated(monkeypatch):
     assert len(calls) == 1
 
 
-@pytest.mark.parametrize("first_seconds", [40, 61])
+def test_temporary_overload_recovers_once_with_a_new_budget_reservation(monkeypatch):
+    calls = mock_provider(monkeypatch, [
+        httpx.Response(503, headers={"Retry-After": "2"}),
+        httpx.Response(200, json=provider_body(json.dumps(example_reading(CARDS)))),
+    ])
+    waits, reservations = [], []
+    monkeypatch.setattr("app.games.tarot.reading.time.sleep", waits.append)
+    result = generate_reading(CARDS, "", before_attempt=lambda: reservations.append(True))
+    assert len(result.cards) == 3
+    assert len(calls) == len(reservations) == 2
+    assert waits == [2]
+    assert calls[0] == calls[1]
+
+
+@pytest.mark.parametrize("retry_after,elapsed,expected_calls", [("2", 0, 2), ("30", 0, 1), ("2", 100, 1)])
+def test_overload_recovery_stops_at_attempt_wait_and_deadline_bounds(
+    monkeypatch, retry_after, elapsed, expected_calls
+):
+    clock = [0.0]
+    calls = mock_provider(monkeypatch, [httpx.Response(503, headers={"Retry-After": retry_after})])
+    monkeypatch.setattr("app.games.tarot.reading.time.monotonic", lambda: clock[0])
+    monkeypatch.setattr("app.games.tarot.reading.time.sleep", lambda _delay: None)
+    def reserve():
+        clock[0] = elapsed
+    with pytest.raises(httpx.HTTPStatusError):
+        generate_reading(CARDS, "", before_attempt=reserve)
+    assert len(calls) == expected_calls
+
+
+def test_overload_retry_cannot_bypass_daily_budget(monkeypatch):
+    calls = mock_provider(monkeypatch, [httpx.Response(503, headers={"Retry-After": "1"})])
+    monkeypatch.setattr("app.games.tarot.reading.time.sleep", lambda _delay: None)
+    reservations = []
+    def reserve():
+        reservations.append(True)
+        if len(reservations) == 2:
+            raise ReadingLimitError("budget exhausted")
+    with pytest.raises(ReadingLimitError):
+        generate_reading(CARDS, "", before_attempt=reserve)
+    assert len(calls) == 1 and len(reservations) == 2
+
+
+@pytest.mark.parametrize("slow_attempt", [1, 2])
+def test_slow_reservation_cannot_transmit_after_deadline(monkeypatch, slow_attempt):
+    from app.games.tarot.reading import REQUEST_DEADLINE_SECONDS
+
+    clock, reservations = [0.0], []
+    calls = mock_provider(monkeypatch, [httpx.Response(503, headers={"Retry-After": "1"})])
+    monkeypatch.setattr("app.games.tarot.reading.time.monotonic", lambda: clock[0])
+    monkeypatch.setattr("app.games.tarot.reading.time.sleep", lambda _delay: None)
+    def reserve():
+        reservations.append(True)
+        if len(reservations) == slow_attempt:
+            clock[0] = REQUEST_DEADLINE_SECONDS + 1
+    with pytest.raises(ReadingOutputError) as error:
+        generate_reading(CARDS, "", before_attempt=reserve)
+    assert error.value.reason == "deadline_exhausted"
+    assert not error.value.retryable
+    assert len(reservations) == slow_attempt and len(calls) == slow_attempt - 1
+
+
+@pytest.mark.parametrize("first_seconds", [40, 106])
 def test_slow_read_has_headroom_without_resetting_the_total_retry_deadline(monkeypatch, first_seconds):
     real_client = httpx.Client
     clock = [0.0]
@@ -221,14 +306,14 @@ def test_slow_read_has_headroom_without_resetting_the_total_retry_deadline(monke
         "app.games.tarot.reading.httpx.Client",
         lambda **kwargs: real_client(transport=httpx.MockTransport(respond), **kwargs),
     )
-    if first_seconds > 60:
+    if first_seconds > 105:
         with pytest.raises(ReadingOutputError):
             generate_reading(CARDS, "")
         assert len(timeouts) == 1
     else:
         assert len(generate_reading(CARDS, "").cards) == 3
-        assert timeouts[1]["read"] == 20
-    assert timeouts[0]["read"] == 45
+        assert timeouts[1]["read"] == 65
+    assert timeouts[0]["read"] == 90
     assert all(timeout["connect"] == 5 for timeout in timeouts)
 
 

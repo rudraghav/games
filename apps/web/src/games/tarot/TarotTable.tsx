@@ -402,7 +402,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
           </div>
           {writing ? (
             <p className="tarot-reading-status" role="status">
-              Writing your reading. This usually takes under a minute; you can stay on this page.
+              Writing your reading. This can take a minute or two; your cards are saved.
             </p>
           ) : saved.data?.message && !unavailable ? (
             <p className="small muted" role="status">

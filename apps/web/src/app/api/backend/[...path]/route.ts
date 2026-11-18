@@ -36,7 +36,7 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
         headers,
         body: ['GET', 'HEAD'].includes(request.method) ? undefined : await request.text(),
         cache: 'no-store',
-        signal: AbortSignal.timeout(path.endsWith('/reading') ? 75000 : 15000),
+        signal: AbortSignal.timeout(path.endsWith('/reading') ? 120000 : 15000),
       },
     );
     if (response.status >= 500)

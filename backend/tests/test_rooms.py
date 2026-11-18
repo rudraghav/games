@@ -299,7 +299,10 @@ def test_tarot_unavailable_does_not_fake_a_reading(client, monkeypatch):
     assert len(client.get(path, headers=headers[0]).json()["game"]["community"]) == 3
 
 
-def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(client, monkeypatch, caplog):
+@pytest.mark.parametrize("failure,expected_status", [("output", 502), ("quota", 429)])
+def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
+    client, monkeypatch, caplog, failure, expected_status
+):
     room, headers = seated_room(client, "tarot", 1)
     path = f"/v1/rooms/{room['id']}"
     for index in range(3):
@@ -314,13 +317,19 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(client, m
     def fail(_cards, question, *, before_attempt=None):
         if before_attempt:
             before_attempt()
-        raise ValueError(f"Private provider content: {question}; local-failure-test-key")
+        private = f"Private provider content: {question}; local-failure-test-key"
+        if failure == "quota":
+            raise httpx.HTTPStatusError(private, request=httpx.Request("POST", "https://provider.invalid"),
+                                        response=httpx.Response(429))
+        raise ValueError(private)
 
     monkeypatch.setattr("app.rooms.service.generate_reading", fail)
     payload = {"match_id": room["match_id"], "question": "Private verification question"}
     response = client.post(path + "/reading", headers=headers[0], json=payload)
-    assert response.status_code == 502
-    assert "error_type=ValueError" in caplog.text
+    assert response.status_code == expected_status
+    assert f"error_type={'HTTPStatusError' if failure == 'quota' else 'ValueError'}" in caplog.text
+    if failure == "quota":
+        assert "request limit" in response.json()["detail"]
     assert payload["question"] not in caplog.text + response.text
     assert "local-failure-test-key" not in caplog.text + response.text
     restored = client.get(path, headers=headers[0]).json()

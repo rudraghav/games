@@ -1,3 +1,60 @@
+## 2026-11-18 — Provider repairs and spacing verified; final AI gate quota-blocked
+
+- Source candidate switches to Gemini4 Hydrogen/low with an8192 combined
+  thought/output cap,90s per attempt and105s total, inside a120s proxy and180s
+  saved-generation lease. One definite503 overload may retry with bounded delay
+  and its own daily-budget reservation. Quota/auth/timeouts never silently repeat.
+  A reservation that consumes the deadline cannot transmit a new request.
+- Safe usage includes thought/generated counts; provider429 produces a clear
+  request-limit message while preserving cards. No provider text or secrets leak.
+- All seven required pop-tarot-10 editorial categories pass (blank, grief, meme,
+  Nataraja, Western, Vedic, Both). Extra variants completed three more readings:
+  two accepted; Vedic learning overstated one qualified historical comparison.
+  General pop-tarot-11 preserves source attribution/uncertainty; its two focused
+  real checks returned timeout and429, so its prose is not yet accepted. Reset
+  variant also has no completed result. No fabricated or mock prose is counted.
+- Provider's explicit429 reports20 requests/day on the free Hydrogen tier and
+  reset around08:00UTC/13:30IST today.72/80 cumulative attempts used; two direct
+  and six hosted attempts reserved. Keep production unchanged until final prose
+  acceptance and live mobile generation can run. User has a pending free/paid-tier
+  preference; no billing, production model, key, tier, schema or deployment mutation.
+- Local checks pass:241 frontend tests/types/lint/build,6557 backend tests,
+  182 multiplayer/privacy/persistence tests,44 tooling tests and all contracts
+  (5636 reference/image/index identities,488 faces,259 scenarios across27 games).
+  57 browser cases pass across five affected specs, with one intentional skip.
+  Final relevant reports: d40cb069dbea4c45b99404282012d157 (frontend/tooling),
+  56a021ab167a4bf7b3cf80c804c24ba9 (final prompt/contracts),
+  4fcdf7f86a1e414d859a38d933571dba (quota/backend/persistence),
+  05d639d2cf374529b46e1fe38b35897e (browser). Each passed on a stable snapshot;
+  later changes only affect the groups explicitly rerun, with UI inputs unchanged.
+- Spacing removes nested phone form padding and duplicated grid-field margins;
+  fields gain38px at320px and saved headings begin61px earlier. Inputs remain48px,
+  controls at least44px, with no overflow at320/390/1440. Shared setup stays intact.
+- Personal release login refreshed. Correct project, read-only schema/drift/RLS
+  and owner fingerprints pass; prior production remains65de797. One-deployment
+  helper and production-model-only update are prepared, not executed. Linux
+  package estimate336MB fits documented500MB, but actual hosted packaging and
+  offline semantic retrieval still require deployment proof.
+- Cleanup: task browser closed, no new worktree/production QA rooms. Retain1MB
+  spacing proof, final local browser evidence, private evaluation diagnostics and
+  release helpers for resumption; no disposable assets need removal yet. Existing
+  required source-image recovery/model assets and requested local services remain.
+
+## 2026-11-18 — Provider recovery, reading acceptance and production kickoff
+
+- User authorizes provider repair, real reading-quality checks, production rollout
+  and complete live mobile Tarot verification. Also audit unnecessary card padding
+  and margins, preserving readable spacing, card artwork and comfortable controls.
+- Acceptance: diagnose provider failures with current evidence; approve real ordinary,
+  sensitive, Western, Vedic and combined readings; relevant local gates pass; one
+  verified production revision serves the canonical app with healthy authentication,
+  private saved readings, exact reference images and no mobile overflow at320/390px.
+- Existing main07b090d is clean. Production previously65de797; verify fresh target,
+  preserve owner data and restore-point metadata before external mutations. Current
+  provider allowance remains47/58 used (eight direct and three hosted remaining).
+- Root owns provider/release integration. Parallel reviews cover spacing, editorial
+  acceptance and read-only deployment readiness. No production change yet.
+
 ## 2026-11-17 — Mobile Tarot pushed to main; production held
 
 - Application8eecb3a388cfecf29adb2c2103dc07f6c7d205d4 is committed and pushed to main through

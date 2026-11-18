@@ -98,6 +98,9 @@ Desktop keeps direct open/close controls for its persistent side panel.
 Loading a saved spread reports progress or a retryable error; retry only fetches
 the saved state. Generation stays disabled until that read succeeds and while
 the room is paused/offline. Completed readings show their exact saved question.
+Writing can take a minute or two. The same saved spread stays available throughout;
+one temporary provider overload can recover automatically within a bounded request,
+while a failed request offers explicit retry without substituting generated text.
 Tarot offers Explore the deck with major/suit filters, independent of the saved
 three-card spread. Fresh reading sections show The grounded read, The plot twist
 and Your connections; previously saved readings retain their original content.
