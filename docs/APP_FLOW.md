@@ -80,14 +80,25 @@ exposing internal state. Realtime loss shows reconnecting and enables
 bounded polling; snapshots are fetched on reconnect and refocus. Chat stays in a
 side panel on desktop and a sheet on phones. Forms and card controls work without dragging.
 
-Deal's play area runs opponents → stock/latest move → own bank/property sets →
-a permanent action bar and hand. Opponent summaries keep bank value and set progress visible; Inspect opens their public assets. Card selection never inserts a row or moves the board/hand. Select a card, choose an exact destination/target,
-then confirm the move. A banked action cannot be played later, so banking has a
-separate confirmation. Bills keep the table visible and let the payer choose
+Deal's play area runs opponents → stock/latest move → private hand → command
+bar → own bank/property sets. Opponent summaries keep bank value and set progress
+visible; Inspect opens their public assets. Card selection never moves these
+regions or submits a move. Selecting a playable card immediately opens named
+buttons for its legal destinations/actions and banking. The compact modeless
+toolkit shows up to three exact choices; All N moves/properties expands the full
+list, and Fewer returns without discarding a partial swap. Changing the selected
+card clears incompatible choices. Unplayable hand cards and public property
+cards without a legal move open information on click. A complete destination,
+player, rent or steal choice commits in one tap with its consequence visible.
+Banking explains the permanent conversion beside its CTA. Forced Deal shows the
+property to take (including its owner), then exact swap CTAs for the property to
+give; a single complete swap can commit directly. Table destination buttons also
+commit the exact placement. Complete No Mercy Take/Keep/Give choices also commit
+from their named rows. Bills keep the table visible and let the payer choose
 bank/property assets; the total and any overpayment stay visible before payment.
 Just Say No and counter-counteractions show the affected players and amount.
 Printed property names, set progress and server-calculated rent remain visible;
-set details expose the complete printed group without disclosing hidden cards. Complex choices open a modeless move panel; View table / Resume move preserves choices while revealing the board. Escape closes it and restores focus. Public swap previews identify the actual take/give cards, and rent includes any committed multiplier.
+set details expose the complete printed group without disclosing hidden cards. Card choices use a modeless move panel; View table / Resume move preserves choices while revealing the board. Escape closes it and restores focus. Public swap previews identify the actual take/give cards, and rent includes any committed multiplier.
 
 Crowded public collections in Deal, Gem Market and Sea Salt & Paper wrap into rows
 inside their existing player areas. Deal's pending transfer shows the actual

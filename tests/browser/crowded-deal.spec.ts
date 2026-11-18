@@ -1,10 +1,33 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
+import { writeFile } from 'node:fs/promises';
 import { dealScenarios } from '../../apps/web/src/stories/generated/deal-scenarios';
 import { midgameScenarios } from '../../apps/web/src/stories/generated/midgame-scenarios';
 
 test.skip(Boolean(process.env.GAMES_TEST_URL), 'Synthetic review routes are local only.');
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 const panel = (page: Page) => page.locator('.table-decision-panel');
+
+async function exposedAction(action: Locator) {
+  // Scroll boundaries round by fractions of a pixel. Keep the actual control
+  // inside its panel and hit-test both ends so footer occlusion still fails.
+  await expect(action).toBeInViewport({ ratio: 0.99 });
+  expect(
+    await action.evaluate((element) => {
+      const box = element.getBoundingClientRect();
+      const panel = element.closest('.table-decision-panel')!.getBoundingClientRect();
+      return (
+        box.top >= panel.top &&
+        box.bottom <= panel.bottom &&
+        box.left >= panel.left &&
+        box.right <= panel.right &&
+        [box.top + 2, box.bottom - 2].every((y) =>
+          element.contains(document.elementFromPoint(box.left + box.width / 2, y)),
+        )
+      );
+    }),
+    'The complete action is inside the panel and unobscured',
+  ).toBe(true);
+}
 
 async function collectionBounds(root: Locator) {
   return root.evaluate((node) => {
@@ -95,6 +118,105 @@ for (const edition of ['classic', 'no-mercy']) {
     }
   });
 }
+
+test('a crowded Sly Deal exposes every exact target immediately and commits the named wild in one step', async ({
+  page,
+}, info) => {
+  const fixture = dealScenarios.find((item) => item.id === 'crowded-sly-attacker')!;
+  const expected = fixture.transitions[0].action;
+  const options = (fixture.room.game!.actions || []).filter(
+    (option) => option.action.card === fixture.focusCard && option.action.type === 'play',
+  );
+  for (const width of info.project.name === 'phone' ? [320, 390] : [768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/design/deal');
+    await page
+      .getByRole('combobox', { name: 'Deal scenario', exact: true })
+      .selectOption(fixture.id);
+    await page
+      .getByRole('group', { name: 'Your hand', exact: true })
+      .getByRole('button', { name: /^Sly deal, bank value/ })
+      .click();
+    const choices = panel(page).getByRole('group', { name: 'Card moves', exact: true });
+    await expect(choices.getByRole('button')).toHaveCount(3);
+    await exposedAction(choices.getByRole('button').first());
+    await exposedAction(panel(page).getByRole('button', { name: /^Bank for/ }));
+    await page.screenshot({ path: test.info().outputPath(`sly-compact-${width}.png`) });
+    const more = panel(page).getByRole('button', {
+      name: `All ${options.length} moves`,
+      exact: true,
+    });
+    await more.click();
+    await expect(choices.getByRole('button')).toHaveCount(options.length);
+    await panel(page).getByRole('button', { name: 'Fewer moves', exact: true }).click();
+    await expect(choices.getByRole('button')).toHaveCount(3);
+    await more.click();
+    await expect(choices.getByRole('button')).toHaveCount(options.length);
+    await expect(
+      panel(page).getByRole('radiogroup', { name: 'Choose a player', exact: true }),
+    ).toHaveCount(0);
+    await expect(page.getByLabel('Submitted action')).toHaveText('No action submitted');
+    await expect(page.locator('.deal-opponents .private-hand')).toHaveCount(0);
+    const target = choices
+      .getByRole('button', {
+        name: /^Take Wild Green\/Dark blue from Alexandra with a rather long name/,
+      })
+      .filter({ hasText: 'Green set 2 (1/3)' });
+    await expect(target).toHaveCount(1);
+    await target.focus();
+    await page.screenshot({ path: test.info().outputPath(`sly-exact-target-${width}.png`) });
+    await writeFile(
+      test.info().outputPath(`sly-target-bounds-${width}.json`),
+      JSON.stringify(
+        await target.evaluate((element) => {
+          const panel = element.closest('.table-decision-panel')!;
+          const main = element.closest('.deal-composer-main')!;
+          const box = element.getBoundingClientRect();
+          return {
+            target: box.toJSON(),
+            panel: panel.getBoundingClientRect().toJSON(),
+            main: main.getBoundingClientRect().toJSON(),
+            scrollTop: main.scrollTop,
+            scrollHeight: main.scrollHeight,
+            clientHeight: main.clientHeight,
+            ancestors: [main, main.parentElement!, main.parentElement!.parentElement!, panel].map(
+              (node) => ({
+                className: node.className,
+                rect: node.getBoundingClientRect().toJSON(),
+                scrollTop: node.scrollTop,
+                scrollHeight: node.scrollHeight,
+                clientHeight: node.clientHeight,
+                padding: getComputedStyle(node).padding,
+                overflow: getComputedStyle(node).overflow,
+              }),
+            ),
+            focused: element === document.activeElement,
+            topHit: element.contains(
+              document.elementFromPoint(box.left + box.width / 2, box.top + 2),
+            ),
+            bottomHit: element.contains(
+              document.elementFromPoint(box.left + box.width / 2, box.bottom - 2),
+            ),
+          };
+        }),
+        null,
+        2,
+      ),
+    );
+    await exposedAction(target);
+    await target.press('Enter');
+    expect(JSON.parse((await page.getByLabel('Submitted action').textContent())!)).toEqual(
+      expected,
+    );
+    // The recorded engine transition reaches the waiting state for this exact public card.
+    await page.getByRole('button', { name: 'View pending action', exact: true }).click();
+    await expect(panel(page)).toContainText('Wild Green/Dark blue');
+    await expect(panel(page)).toContainText('Green set 2');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+  }
+});
 
 test('a pending steal shows the actual wild, permits inspection and commits only the legal response', async ({
   page,

@@ -7,6 +7,7 @@ import { DealResolution } from '@/games/deal/DealResolution';
 import {
   commitLabel,
   describeOption,
+  describeDirectOption,
   describePending,
   type DealContext,
 } from '@/games/deal/decisions';
@@ -72,11 +73,69 @@ describe('Deal decisions name the exact card, its colour and its set', () => {
         onClear={() => undefined}
       />,
     );
-    expect(html).toContain('role="radiogroup"');
-    expect(html).toContain('data-decision-actions');
-    expect(html).toContain(
-      'You take</strong> Alexandra with a rather long name’s Wild Green/Dark blue (Green active, 4M) from their Green set 2 (1/3)',
+    expect(html).toContain('role="group" data-mode="action" aria-label="Card moves"');
+    expect(html).not.toContain('role="radio"');
+    expect(html.match(/class="deal-choice"/g)).toHaveLength(3);
+    expect(html).toContain(`All ${options.length} moves`);
+    expect(html).toContain('Take Mediterranean Avenue from Alexandra with a rather long name');
+    const directLabels = options.map((option) => {
+      const row = describeDirectOption(option, ctx);
+      return `${row.title} · ${row.detail}`;
+    });
+    expect(new Set(directLabels).size).toBe(directLabels.length);
+  });
+
+  it('exposes both exact property destinations with consequences on their direct controls', () => {
+    const { fixture, ctx } = deal('placement');
+    const options = ctx.match.actions.filter((option) => option.value.card === fixture.focusCard);
+    const rows = options.map((option) => describeDirectOption(option, ctx));
+    expect(rows.map((row) => row.title)).toEqual([
+      'Place in Brown set 1',
+      'Place in new Brown set 2',
+    ]);
+    expect(rows[0].detail).toContain('1/2 → 2/2 · completes the set');
+    expect(rows[1].detail).toContain('0/2 → 1/2');
+  });
+
+  it('treats a Forced Deal card used for debt settlement as direct gifts, not a swap', () => {
+    const { ctx } = midgame('deal-no-mercy-5-31-18');
+    const source = deal('forced');
+    const card = {
+      ...source.ctx.match.hand.find((item) => item.id === source.fixture.focusCard)!,
+      id: 'forced-debt-test-card',
+    };
+    const original = ctx.match.actions.find((option) => option.value.type === 'settle_debt')!;
+    const recipients = ctx.room.members.filter((member) => member.id !== ctx.selfId).slice(0, 2);
+    const options = recipients.map((member) => ({
+      ...original,
+      value: { ...original.value, card: card.id, target: member.id },
+    }));
+    const match = { ...ctx.match, hand: [card], actions: options };
+    const details = {
+      ...ctx.details,
+      debts: { ...ctx.details.debts, [ctx.selfId]: recipients.map((member) => member.id) },
+    };
+    const html = renderToStaticMarkup(
+      <DealComposer
+        room={ctx.room}
+        match={match}
+        selfId={ctx.selfId}
+        pending={false}
+        onAction={() => undefined}
+        card={card}
+        options={options}
+        details={details}
+        candidate={null}
+        onCandidate={() => undefined}
+        onResetMove={() => undefined}
+        onClear={() => undefined}
+      />,
     );
+    expect(html).toContain('aria-label="Card moves"');
+    expect(html).not.toContain('Property you take');
+    expect(html).not.toContain('Complete swap');
+    for (const recipient of recipients)
+      expect(html).toContain(`Give Forced deal to ${recipient.name}`);
   });
 
   it('tells the defender what accepting and Just Say No each do', () => {
@@ -121,14 +180,26 @@ describe('Deal decisions name the exact card, its colour and its set', () => {
     }
   });
 
-  it('lists Market Crash targets inside the panel with their sets', () => {
-    const { ctx } = midgame('deal-no-mercy-2-17-24');
+  it.each([
+    ['deal-no-mercy-2-17-24', 'choose', 'Choose the card to take', 'Take'],
+    ['deal-no-mercy-2-17-17', 'keep', 'Keep one, hand out the rest', 'Keep'],
+    ['deal-no-mercy-2-17-18', 'give', 'Keep one, hand out the rest', 'Give'],
+  ])('exposes %s pending decisions as complete, named actions', (id, type, heading, verb) => {
+    const { ctx } = midgame(id);
     const html = resolution(ctx);
-    const choices = ctx.match.actions.filter((option) => option.value.type === 'choose');
+    const choices = ctx.match.actions.filter((option) => option.value.type === type);
     expect(choices.length).toBeGreaterThan(0);
-    expect(html.match(/role="radio"/g)).toHaveLength(choices.length);
-    expect(html).toContain('Choose a card above');
-    expect(html).not.toContain('highlighted card on the table');
+    expect(html).toContain(`role="group" data-mode="action" aria-label="${heading}"`);
+    expect(html.match(/class="deal-choice"/g)).toHaveLength(choices.length);
+    expect(html).not.toContain('role="radio"');
+    expect(html).not.toContain('Choose a card above');
+    expect(html).not.toContain('data-decision-actions');
+    for (const option of choices) {
+      const label = describeDirectOption(option, ctx).title;
+      expect(label).toMatch(new RegExp(`^${verb} `));
+      expect(html).toContain(label);
+      if (type === 'give') expect(label).toContain(' to Dev');
+    }
   });
 
   it('previews every card a Super Sly Deal colour takes, with owner and active colour', () => {

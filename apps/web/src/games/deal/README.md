@@ -2,9 +2,13 @@
 
 `DealTable` lays the table out in content-sized rows, top to bottom: one card per
 opponent, the shared centre, your private hand, the command dock, then your own
-bank and sets. Nothing scrolls inside a fixed window; the page scrolls. Selecting
-a card changes the command; complex choices use the shared modeless decision
-panel. A separate **Card info** control inspects a card without selecting,
+bank and sets. Table rows use page scrolling without fixed clipping windows. Selecting
+a playable card immediately opens the shared modeless decision panel with named
+action buttons in a compact toolkit. Up to three exact choices are exposed first;
+**All N moves/properties** expands the same panel and **Fewer moves/properties**
+returns to the compact view without losing a partial swap. Selecting never submits a move.
+Public property cards without an available move and unplayable hand cards open
+information when clicked. A separate **Card info** control inspects a card without selecting,
 paying, banking or submitting it. Each public property set also has an **Info**
 control, including inside an opponent’s public-table inspector.
 
@@ -14,8 +18,8 @@ control, including inside an opponent’s public-table inspector.
   count, sets complete, bank total with denominations (`1M ×3 · 2M ×5`), a No
   Mercy debt badge (`Owes Mira`) and one chip per property pile with its printed
   colour name, `n/m`, a ✓ and rent when complete, and building marks. Colour is
-  never the only cue. While a move needs a player, **Choose <name>** replaces the
-  name line in place, so rows never change size and Inspect stays uncovered.
+  never the only cue. The move choices name the affected player directly, so
+  they need no separate player-selection step. Inspect stays available.
 - **Shared centre.** The draw count, the top discard as a readable chip (name,
   value, colour stripe; it opens Card info), a viewer-aware status line and, during
   a normal turn, the owner's remaining plays next to End turn. Waiting seats read
@@ -34,7 +38,7 @@ control, including inside an opponent’s public-table inspector.
   sets as a grid of readable rows: colour stripe (split, with the inactive half
   hatched, for wilds), name, active colour and value at 11px or more. The
   opponent inspector uses the same rows in a two-column grid on phones.
-- An unsent card choice survives a refresh for the same table version
+- An unsent card choice and Forced Deal take choice survive a refresh for the same table version
   (`useTableDraft`); any new server version discards it.
 
 Status and dock copy come from `table-status.ts`, which reads only the public
@@ -117,11 +121,22 @@ the viewer's own hand. `DealComposer.tsx` and `DealResolution.tsx` render it.
   colours, with its active colour, value and the set it sits in, e.g.
   "Wild Green/Dark blue · Green active · 4M · from Green set 2 (1/3)". The
   any-colour wild says "no cash value" rather than a glyph.
-- **Choice rows, not dropdowns.** Targets, destinations, rent sets and stage
-  picks (Market Crash, Heist, Repossession, Tax Collector) are full-width radio
-  rows inside the decision panel. Forced Deal is two steps: the card you take,
-  then the card you give. With three or more players a player is chosen first;
-  a player with a single possible move is selected at once (no redundant pick).
+- **Direct card actions.** Selecting a card exposes its legal destination, action
+  and bank buttons immediately. The compact panel shows up to three exact moves,
+  with a labelled expansion for the entire legal list. It does not infer a best
+  move or silently commit a choice; rent keeps its existing amount ordering.
+  A complete choice commits directly: place in a
+  named pile, charge the named player/set, take a named property, or bank for the
+  printed value. The consequence is on the button or beside it before tapping;
+  no generic menu-opening step or radio-then-confirm step is required. Banking
+  explains that the card becomes money permanently; its named CTA is the commit.
+  The table's Place here/Move here and named new-pile buttons also commit directly.
+- **Only necessary choices.** Forced Deal first chooses a property to take, with
+  its owner shown, then offers exact swap buttons naming what you give and take.
+  It has no separate player-selection step. A single legal swap is offered
+  directly. Complete pending stage picks (Market Crash, Heist, Repossession,
+  Tax Collector) also use named Take/Keep/Give action buttons. Multi-asset
+  payments retain their selection and review before committing.
 - **Consequences before commit.** Rent rows show the amount, sorted highest
   first, with any multiplier ("18M rent from each other player (9M ×2)"). Deal
   Breaker lists the set's cards, total and "+1 complete set for you". Super Sly
@@ -138,10 +153,12 @@ the viewer's own hand. `DealComposer.tsx` and `DealResolution.tsx` render it.
   No** is secondary, says what it does and how many you hold. A blocked actor
   sees "Accept the block" (their action is cancelled) or Just Say No back.
   Seats that are not answering get the same sentence and who they wait for.
-- **Always reachable.** Commit and answer buttons sit in a `data-decision-actions`
-  footer that stays visible while longer content scrolls; transferred cards are
-  compact rows, so a Deal Breaker with buildings never pushes the answer out of
-  view. Holding Space peeks at the table without losing the decision.
+- **Always reachable.** The selected-card choices scroll together with their
+  explanation and swap summary; banking sits outside that scroll area and cannot
+  cover a focused action row. Pending payment/answer buttons retain their
+  `data-decision-actions` footer. Transferred cards are compact rows, so a Deal
+  Breaker with buildings never pushes the answer out of view. Holding Space peeks
+  at the table without losing the decision.
 - **Payments.** Each selected property shows its set impact ("Light blue set 1:
   3/3 → 2/3 · breaks a complete set and its House rent"). When your assets cannot
   cover a bill the panel says so and offers **Select everything**. A partial

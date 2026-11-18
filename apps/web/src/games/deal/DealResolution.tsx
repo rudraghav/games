@@ -1,11 +1,11 @@
 'use client';
-import { Info, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Info, ShieldCheck } from 'lucide-react';
 import { Button } from '@games/ui';
 import type { Action, ActionOption } from '@games/api-client';
 import {
   cardPhrase,
   optionKey,
-  commitLabel,
+  describeDirectOption,
   describeOption,
   describePending,
   locate,
@@ -26,18 +26,25 @@ export function ChoiceList(props: {
   label: string;
   rows: ChoiceRow[];
   selected: string | null;
+  /** Action rows commit an already complete move; selection rows only choose. */
+  mode?: 'select' | 'action';
   disabled?: boolean;
   onChoose: (key: string) => void;
 }) {
   return (
-    <div className="deal-choice-list" role="radiogroup" aria-label={props.label}>
+    <div
+      className="deal-choice-list"
+      role={props.mode === 'action' ? 'group' : 'radiogroup'}
+      data-mode={props.mode || 'select'}
+      aria-label={props.label}
+    >
       {props.rows.map((row) => (
         <button
           type="button"
-          role="radio"
+          role={props.mode === 'action' ? undefined : 'radio'}
           key={row.key}
           className="deal-choice"
-          aria-checked={row.key === props.selected}
+          aria-checked={props.mode === 'action' ? undefined : row.key === props.selected}
           disabled={props.disabled}
           onClick={() => props.onChoose(row.key)}
         >
@@ -50,6 +57,9 @@ export function ChoiceList(props: {
             <strong>{row.title}</strong>
             {row.detail ? <span>{row.detail}</span> : null}
           </span>
+          {props.mode === 'action' ? (
+            <ArrowRight className="deal-choice-arrow" size={16} aria-hidden="true" />
+          ) : null}
         </button>
       ))}
     </div>
@@ -67,21 +77,13 @@ interface Props {
   onInspect: (id: string) => void;
   paid: string[];
   onPaid: (cards: string[]) => void;
-  /** The current stage choice (choose, keep or give), shared with the table. */
+  /** Accepted for existing callers; complete staged moves now commit directly. */
   stageChoice: string | null;
   onStageChoice: (key: string | null) => void;
 }
 
 /** The pending effect for every seat: responder controls, or what others wait for. */
-export function DealResolution({
-  ctx,
-  blocked,
-  onCommit,
-  onInspect,
-  paid,
-  onPaid,
-  ...props
-}: Props) {
+export function DealResolution({ ctx, blocked, onCommit, onInspect, paid, onPaid }: Props) {
   const { match, details, selfId } = ctx;
   const effect = details.pendingAction;
   const text = describePending(ctx);
@@ -131,8 +133,10 @@ export function DealResolution({
     ),
   ].map((key) => setImpact(ctx, selfId, key, quote.ids));
 
-  const stageRows = optionRows(stage, ctx);
-  const chosenStage = stage.find((option) => optionKey(option) === props.stageChoice) || null;
+  const stageRows = stage.map((option) => ({
+    key: optionKey(option),
+    ...describeDirectOption(option, ctx),
+  }));
 
   return (
     <section className="deal-resolution" aria-label="Pending action" aria-live="polite">
@@ -287,23 +291,17 @@ export function DealResolution({
           ) : null}
         </div>
       ) : stage.length ? (
-        <>
-          <ChoiceList
-            label={heading}
-            rows={stageRows}
-            selected={props.stageChoice}
-            disabled={blocked}
-            onChoose={props.onStageChoice}
-          />
-          <div className="deal-resolution-actions" data-decision-actions>
-            <Button
-              disabled={blocked || !chosenStage}
-              onClick={() => chosenStage && onCommit(chosenStage.value)}
-            >
-              {chosenStage ? commitLabel(chosenStage, ctx) : 'Choose a card above'}
-            </Button>
-          </div>
-        </>
+        <ChoiceList
+          label={heading}
+          mode="action"
+          rows={stageRows}
+          selected={null}
+          disabled={blocked}
+          onChoose={(key) => {
+            const option = stage.find((item) => optionKey(item) === key);
+            if (!blocked && option) onCommit(option.value);
+          }}
+        />
       ) : (
         <p className="small muted">{text.waiting}</p>
       )}

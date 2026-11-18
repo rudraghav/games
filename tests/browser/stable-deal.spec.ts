@@ -1,5 +1,4 @@
 import { expect, test, type Page } from '@playwright/test';
-import { mkdir } from 'node:fs/promises';
 import { dealScenarios } from '../../apps/web/src/stories/generated/deal-scenarios';
 
 // Engine-generated projections only: this suite never creates rooms or uses the API.
@@ -67,9 +66,7 @@ async function scenario(page: Page, id: string) {
 }
 
 async function capture(page: Page, name: string) {
-  const dir = 'output/playwright/stable-deal';
-  await mkdir(dir, { recursive: true });
-  await page.screenshot({ path: `${dir}/${test.info().project.name}-${name}.png`, fullPage: true });
+  await page.screenshot({ path: test.info().outputPath(`${name}.png`), fullPage: true });
 }
 
 async function submitted(page: Page) {
@@ -147,33 +144,40 @@ test('every mid-game fixture has distinct content-sized rows, visible opponent s
   }
 });
 
-test('selecting existing and new property piles preserves the table and hand', async ({ page }) => {
-  await scenario(page, 'placement');
-  const initial = await bounds(page);
-  const card = hand(page).getByRole('button', { name: /^Baltic Avenue, bank value 1M/ });
-  await card.focus();
-  await card.press('Space');
-  await expect(card).toHaveAttribute('aria-pressed', 'true');
-  // Destinations appear at the end of your own table; nothing above it moves.
-  await stable(page, initial, { boardMayGrow: true });
-  await own(page).getByRole('button', { name: 'Place here', exact: true }).click();
-  await stable(page, initial, { boardMayGrow: true });
-  await own(page).getByRole('button', { name: 'New Brown · set 2', exact: true }).click();
-  await stable(page, initial, { boardMayGrow: true });
-  await page
-    .locator('.deal-command-dock')
-    .getByRole('button', { name: 'Place property', exact: true })
-    .click();
-  expect(await submitted(page)).toMatchObject({
-    type: 'property',
-    color: 'brown',
-    choice: 'brown:1',
-  });
-  await stable(page, initial, { boardMayGrow: true });
-  await expect(own(page).locator('.deal-collection')).toHaveCount(2);
+test('direct board destinations keep the hand stable and apply the exact existing or new pile', async ({
+  page,
+}) => {
+  const fixture = dealScenarios.find((item) => item.id === 'placement')!;
+  for (const destination of ['brown:0', 'brown:1']) {
+    await page.evaluate(() => sessionStorage.clear());
+    await scenario(page, 'placement');
+    await page.getByRole('button', { name: 'Reset scenario', exact: true }).click();
+    const initial = await bounds(page);
+    const card = hand(page).getByRole('button', { name: /^Baltic Avenue, bank value 1M/ });
+    await card.focus();
+    await card.press('Space');
+    await expect(card).toHaveAttribute('aria-pressed', 'true');
+    await expect(panel(page)).toBeVisible();
+    await stable(page, initial, { boardMayGrow: true });
+    await expect(page.getByLabel('Submitted action', { exact: true })).toHaveText(
+      'No action submitted',
+    );
+    await panel(page).getByRole('button', { name: 'View table', exact: true }).click();
+    await stable(page, initial, { boardMayGrow: true });
+    const destinationButton = own(page).getByRole('button', {
+      name: destination === 'brown:0' ? /^Place here/ : /^Place in new Brown/,
+    });
+    await destinationButton.click();
+    const expected = fixture.transitions.find((item) => item.action.choice === destination)!;
+    expect(await submitted(page)).toEqual(expected.action);
+    await expect(own(page).locator('.deal-collection')).toHaveCount(
+      destination === 'brown:0' ? 1 : 2,
+    );
+    await stable(page, initial, { boardMayChange: true });
+  }
 });
 
-test('swap previews use actual public cards and changing player or canceling bank clears the old move', async ({
+test('swap options preserve geometry, reveal exact public cards and survive peek and inspection', async ({
   page,
 }) => {
   await scenario(page, 'forced');
@@ -182,48 +186,36 @@ test('swap previews use actual public cards and changing player or canceling ban
     .getByRole('button', { name: /^Forced deal, bank value 3M/ })
     .click();
   await expect(panel(page)).toBeVisible();
-  // Player, then the card you take, then the card you give: each row names the exact card.
-  const step = (name: string) => panel(page).getByRole('radiogroup', { name, exact: true });
-  const player = step('Choose a player');
-  await player.getByRole('radio', { name: /^Dev/ }).click();
-  await step('Property you take')
-    .getByRole('radio', { name: /^Kentucky Avenue/ })
-    .click();
-  await step('Property you give')
-    .getByRole('radio', { name: /^Mediterranean Avenue/ })
-    .click();
-  await expect(panel(page).getByLabel('Move preview')).toContainText('Kentucky Avenue (3M)');
-  await expect(panel(page).getByLabel('Move preview')).toContainText('Mediterranean Avenue (1M)');
-  await stable(page, initial);
-  await player.getByRole('radio', { name: /^Mira/ }).click();
-  await expect(step('Property you give')).toHaveCount(0);
-  await expect(panel(page).getByLabel('Move preview')).toHaveCount(0);
+  const takes = panel(page).getByRole('radiogroup', { name: 'Property you take', exact: true });
+  await takes.getByRole('radio', { name: /^Take Kentucky Avenue from Dev/ }).click();
+  const swaps = panel(page).getByRole('group', { name: 'Complete swap', exact: true });
   await expect(
-    panel(page).getByRole('button', { name: 'Choose a property to take', exact: true }),
-  ).toBeDisabled();
+    swaps.getByRole('button', { name: /^Swap Mediterranean Avenue for Dev’s Kentucky Avenue/ }),
+  ).toContainText('Mediterranean Avenue');
   await stable(page, initial);
-  await panel(page).getByRole('button', { name: 'Bank for 3M', exact: true }).click();
-  await expect(
-    panel(page).getByRole('button', { name: 'Confirm · bank 3M', exact: true }),
-  ).toBeVisible();
+  await panel(page).getByRole('button', { name: 'Change property', exact: true }).click();
+  await expect(swaps).toHaveCount(0);
+  await takes.getByRole('radio', { name: /^Take Pacific Avenue from Mira/ }).click();
+  await expect(swaps.getByRole('button', { name: /Kentucky Avenue/ })).toHaveCount(0);
+  const give = swaps.getByRole('button', {
+    name: /^Swap Oriental Avenue for Mira’s Pacific Avenue/,
+  });
+  await expect(give).toContainText('Pacific Avenue');
+  await expect(give).toContainText('Oriental Avenue');
+  await expect(page.getByLabel('Submitted action', { exact: true })).toHaveText(
+    'No action submitted',
+  );
   await stable(page, initial);
-  await panel(page).getByRole('button', { name: 'Cancel', exact: true }).click();
-  await expect(panel(page).getByLabel('Move preview')).toHaveCount(0);
-  await step('Property you take')
-    .getByRole('radio', { name: /^Pacific Avenue/ })
-    .click();
-  const give = step('Property you give').getByRole('radio', { name: /^Oriental Avenue/ });
-  await give.click();
-  await expect(panel(page).getByLabel('Move preview')).toContainText('Pacific Avenue (4M)');
-  await expect(panel(page).getByLabel('Move preview')).toContainText('Oriental Avenue (1M)');
-  await stable(page, initial);
-  await capture(page, 'swap-selected');
+  await capture(page, 'swap-options');
   await panel(page).getByRole('button', { name: 'View table', exact: true }).click();
   await expect(panel(page)).toHaveAttribute('data-peeking', 'true');
-  await expect(player).toBeHidden();
+  await expect(swaps).toBeHidden();
   await stable(page, initial);
   await panel(page).getByRole('button', { name: 'Resume move', exact: true }).click();
-  await expect(give).toHaveAttribute('aria-checked', 'true');
+  await expect(panel(page).getByLabel('Selected property to take', { exact: true })).toContainText(
+    'Pacific Avenue',
+  );
+  await expect(give).toBeVisible();
   await page.locator('.deal-board-scroll').focus();
   await page.keyboard.down('Space');
   await expect(panel(page)).toHaveAttribute('data-peeking', 'true');
@@ -242,10 +234,11 @@ test('swap previews use actual public cards and changing player or canceling ban
   await expect(inspectTarget).toBeFocused();
   await stable(page, initial);
   await page.getByRole('button', { name: 'Choose move options', exact: true }).click();
-  await expect(give).toHaveAttribute('aria-checked', 'true');
-  await panel(page)
-    .getByRole('button', { name: 'Play Forced deal · take Pacific Avenue', exact: true })
-    .click();
+  await expect(panel(page).getByLabel('Selected property to take', { exact: true })).toContainText(
+    'Pacific Avenue',
+  );
+  await expect(give).toBeVisible();
+  await give.click();
   const fixture = dealScenarios.find((item) => item.id === 'forced')!;
   const expected = fixture.transitions.find(
     (transition) =>
@@ -328,15 +321,18 @@ test('rent preview matches the committed house, hotel and Double the Rent bill',
     .getByRole('button', { name: new RegExp(`^${rent.label}, bank value`) })
     .click();
   await expect(panel(page)).toBeVisible();
-  // A single legal set is selected immediately; multiple sets require an exact choice.
-  const choice = panel(page).getByRole('radiogroup', { name: 'Card move', exact: true });
-  if (await choice.count()) await choice.getByRole('radio', { name: /^Brown set 1/ }).click();
-  await expect(panel(page).getByLabel('Move preview')).toContainText('18M rent');
-  await expect(panel(page).getByLabel('Move preview')).toContainText('from each other player');
-  await expect(panel(page).getByLabel('Move preview')).toContainText('(9M ×2)');
+  const charge = panel(page)
+    .getByRole('group', { name: 'Card moves', exact: true })
+    .getByRole('button', { name: /^Charge 18M rent from each other player/ });
+  await expect(charge).toContainText('18M rent');
+  await expect(charge).toContainText('from each other player');
+  await expect(charge).toContainText('9M ×2');
+  await expect(page.getByLabel('Submitted action', { exact: true })).toHaveText(
+    'No action submitted',
+  );
   await stable(page, initial);
   await capture(page, 'rent-18M');
-  await panel(page).getByRole('button', { name: 'Charge 18M rent', exact: true }).click();
+  await charge.click();
   expect(await submitted(page)).toEqual(fixture.transitions[0].action);
   // The collector now waits: the table names the committed bill and who must answer it.
   await expect(page.locator('.deal-turn-status')).toContainText('respond to your 18M rent');

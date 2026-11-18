@@ -34,6 +34,7 @@ export function DealTable(props: TableProps) {
   const draft = `deal:${room.id}:${room.matchId}:${room.matchVersion}`;
   const [selected, setSelected] = useTableDraft<string | null>(`${draft}:card`, null);
   const [target, setTarget] = useTableDraft(`${draft}:target`, '');
+  const [takeId, setTakeId] = useTableDraft<string | null>(`${draft}:take`, null);
   const [choiceKey, setChoiceKey] = useTableDraft<string | null>(`${draft}:move`, null);
   // A partial payment also survives a refresh, scoped to this exact bill and version.
   const [payment, setPayment] = useTableDraft<string[]>(`${draft}:pay`, []);
@@ -57,36 +58,41 @@ export function DealTable(props: TableProps) {
   ].find((item) => item.id === selected);
   const options = match.actions.filter((option) => option.value.card === card?.id && Boolean(card));
   const playable = options.filter((option) => option.value.type !== 'bank');
-  // Once a player is chosen, a single remaining move needs no second pick.
-  const forTarget = target ? playable.filter((option) => option.value.target === target) : playable;
+  // Only a globally unambiguous move can be offered without another choice.
+  // A partial swap must never silently pick which property the player gives.
   const candidate =
-    match.actions.find((option) => optionKey(option) === choiceKey) ||
-    (forTarget.length === 1 ? forTarget[0] : playable.length === 1 ? playable[0] : null);
+    options.find((option) => optionKey(option) === choiceKey) ||
+    (playable.length === 1 ? playable[0] : null);
   const choose = (option: ActionOption) => setChoiceKey(optionKey(option));
   const clear = () => {
     setSelected(null);
     setChoiceKey(null);
     setTarget('');
+    setTakeId(null);
     setDecisionOpen(false);
     setDismissedResolution(resolutionKey);
   };
   const select = (id: string) => {
+    if (pending || room.paused) return;
     if (pay?.eligibleCards.includes(id)) {
       setPayment(paid.includes(id) ? paid.filter((item) => item !== id) : [...paid, id]);
     } else {
       const moves = match.actions.filter((option) => option.value.card === id);
-      const complex = moves.some(
-        (option) =>
-          option.value.type === 'play' ||
-          ['choose', 'keep', 'give', 'settle_debt'].includes(option.value.type),
-      );
-      setDecisionOpen(id !== selected && complex);
+      if (!moves.length) {
+        inspect(id);
+        return;
+      }
+      // Selecting reveals the concrete legal actions, including property destinations
+      // and banking. It never submits a move itself.
+      setDecisionOpen(id !== selected && moves.length > 0);
       setSelected(id === selected ? null : id);
       setChoiceKey(null);
       setTarget('');
+      setTakeId(null);
     }
   };
   const commit: TableProps['onAction'] = (action) => {
+    if (pending || room.paused) return;
     props.onAction(action);
     clear();
     setPayment([]);
@@ -113,8 +119,9 @@ export function DealTable(props: TableProps) {
     candidate,
     onSelect: select,
     onInspect: inspect,
-    onDestination: choose,
+    onDestination: (option: ActionOption) => commit(option.value),
     previewIds: [
+      ...(takeId ? [takeId] : []),
       ...(candidate
         ? [candidate.value.choice, ...(candidate.value.cards || [])].filter(Boolean)
         : []),
@@ -132,12 +139,6 @@ export function DealTable(props: TableProps) {
       ...quote.carried,
     ],
     targeted: candidate?.value.target || target || effect?.target,
-    targetable: [...new Set(options.map((option) => option.value.target).filter(Boolean))],
-    onTarget: (id: string) => {
-      setTarget(id);
-      const only = playable.filter((option) => option.value.target === id);
-      setChoiceKey(only.length === 1 ? optionKey(only[0]) : null);
-    },
   };
   const finished = match.phase === 'finished';
   // Only the seat that must answer a pending effect gets the response controls.
@@ -378,8 +379,8 @@ export function DealTable(props: TableProps) {
               <Button
                 disabled={pending || room.paused || !options.length}
                 onClick={() => {
-                  if (!playable.length && bank) choose(bank);
-                  setDecisionOpen(true);
+                  if (!playable.length && bank) commit(bank.value);
+                  else setDecisionOpen(true);
                 }}
               >
                 {!playable.length && bank ? `Bank for ${card.value}` : 'Choose a move'}
@@ -452,6 +453,8 @@ export function DealTable(props: TableProps) {
               onCandidate={choose}
               target={target}
               onTargetChange={setTarget}
+              takeId={takeId}
+              onTakeChange={setTakeId}
               onResetMove={() => setChoiceKey(null)}
               onClear={clear}
               onAction={commit}

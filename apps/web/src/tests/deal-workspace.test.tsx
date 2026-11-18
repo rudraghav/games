@@ -238,7 +238,10 @@ describe('Engine-projected Deal workspace', () => {
           onClear={() => undefined}
         />,
       );
-      expect(html).toMatch(/<button[^>]*disabled=""[^>]*>Play Forced deal/);
+      const choices = html.match(/<button[^>]*class="deal-choice"[^>]*>/g)!;
+      expect(choices.length).toBeGreaterThan(0);
+      expect(choices.every((choice) => choice.includes('disabled=""'))).toBe(true);
+      expect(html).toMatch(/<button[^>]*disabled=""[^>]*>.*?Bank for 3M/);
     }
   });
 

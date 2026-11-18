@@ -1,5 +1,4 @@
 import { expect, test, type Page } from '@playwright/test';
-import { mkdir } from 'node:fs/promises';
 import { dealScenarios } from '../../apps/web/src/stories/generated/deal-scenarios';
 
 test.skip(Boolean(process.env.GAMES_TEST_URL), 'Authorized fixture review is local-only.');
@@ -28,9 +27,8 @@ async function unchanged(page: Page, before: Awaited<ReturnType<typeof bounds>>)
   );
 }
 async function capture(page: Page, name: string) {
-  await mkdir('.vercel/game-info-review', { recursive: true });
   await dialog(page).screenshot({
-    path: `.vercel/game-info-review/${test.info().project.name}-${name}.png`,
+    path: test.info().outputPath(`${name}.png`),
   });
 }
 test.beforeEach(async ({ page }) => {
@@ -100,8 +98,9 @@ test('large-hand and selected-rent inspection preserve selection, geometry and e
   const first = page.locator('.card-hand > button').first();
   await first.click();
   const panel = page.locator('.table-decision-panel');
-  if (await panel.count())
-    await panel.getByRole('button', { name: 'Close move options', exact: true }).click();
+  await expect(panel).toBeVisible();
+  await expect(panel.getByRole('button', { name: /^Bank for/ })).toBeInViewport({ ratio: 1 });
+  await panel.getByRole('button', { name: 'Close move options', exact: true }).click();
   await info.click();
   for (const card of fixture.room.game!.hand)
     await dialog(page)
@@ -144,7 +143,10 @@ test('inspecting an opponent public set restores focus inside its parent dialog 
   const inspectPlayer = page.getByRole('button', { name: 'Inspect Mira', exact: true });
   await inspectPlayer.click();
   const parent = page.getByRole('dialog', { name: 'Mira · public table', exact: true });
-  const info = parent.getByRole('button', { name: 'Inspect Green · set 1', exact: true });
+  // Clicking a public card is read-only, including when gameplay is disconnected.
+  await page.getByLabel('Disconnected', { exact: true }).dispatchEvent('click');
+  const info = parent.getByRole('button', { name: /^Pacific Avenue, bank value 4M/ });
+  await expect(info).toBeEnabled();
   await info.click();
   await expect(dialog(page)).toContainText('1 of 3 properties');
   await expect(dialog(page)).toContainText('2 more needed');
@@ -159,4 +161,32 @@ test('inspecting an opponent public set restores focus inside its parent dialog 
   await page.keyboard.press('Escape');
   await expect(inspectPlayer).toBeFocused();
   await unchanged(page, before);
+});
+
+test('clicking an unavailable hand card opens information without replacing the selected rent move', async ({
+  page,
+}) => {
+  await scenario(page, 'doubled-rent');
+  const before = await bounds(page);
+  const hand = page.getByRole('group', { name: 'Your hand', exact: true });
+  const rent = hand.getByRole('button', { name: /^Rent, bank value/ });
+  const unavailable = hand.getByRole('button', { name: /^Forced deal, bank value/ }).first();
+  await rent.click();
+  const panel = page.locator('.table-decision-panel');
+  await expect(panel.getByRole('button', { name: /^Charge 18M rent/ })).toBeVisible();
+  await panel.getByRole('button', { name: 'Close move options', exact: true }).click();
+  await unavailable.click();
+  await expect(
+    dialog(page).getByRole('heading', { name: 'Forced deal', exact: true }),
+  ).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(rent).toHaveAttribute('aria-pressed', 'true');
+  await expect(unavailable).toHaveAttribute('aria-pressed', 'false');
+  await expect(unavailable).toBeFocused();
+  await unchanged(page, before);
+  await page.getByRole('button', { name: 'Choose move options', exact: true }).click();
+  await expect(panel.getByRole('button', { name: /^Charge 18M rent/ })).toBeVisible();
+  await expect(page.getByLabel('Submitted action', { exact: true })).toHaveText(
+    'No action submitted',
+  );
 });

@@ -1,3 +1,74 @@
+## 2026-11-19 — Deal compact toolkit release gates passed
+
+- Frontend types/lint,270 tests and production build; contracts/catalogue/asset
+  parity and44 workflow tests passed in verify-1d3a53e47e3e40c88682a7deb47af7c4.
+  All54 affected browser cases passed in verify-87e1813e50874ff28cd3ae11aaf8eb41;
+  both reports have stable source fingerprints. Additional22 focused cases and
+  27 focused unit tests pass. Backend rules/schema/API remain unchanged.
+- Browser proof covers compact/expanded exact moves, direct table placement,
+  swaps/backtracking, read-only unavailable-card inspection, zero-value wild
+  exclusion from payments, counter chains, pending/paused controls, geometry and
+  privacy at phone/desktop widths. Root inspected local real-game compact action
+  and corrected expanded final-target screenshots. No exhaustive-match claim.
+- Two old payment assertions expected zero-value wilds to have no click handler;
+  updated them to prove inspection is read-only, Pay2M stays unchanged and the
+  exact committed payment excludes that card. Prior failure evidence retained.
+- Runtime6193 files:5e017b68be847e3619583a114e6b75a613a16481cdae76a30399c2ffe52eb3a7.
+  All28 production config records unchanged; read-only schema check is clean at
+  a6e442b15d80 with8 private tables and112 grants. Fresh prerelease owner baseline
+  has10 rooms/memberships (independent increase from9 earlier); preserve it.
+- Ready for scoped17-file push and one production deployment, then actual hosted
+  saved-room proof and fresh owner/config/health/log readback. No production change yet.
+
+## 2026-11-19 — Deal compact toolkit locally exercised
+
+- Compact first-three actions and full-list expansion are implemented without a
+  growing toolbar or table reflow. Ordinary choices commit directly; Forced Deal
+  keeps take/give selection and Change property. Read-only card clicks preserve
+  the selected move. Direct public table destinations commit exact options.
+- Real local saved-room rehearsal passed six projected property/action/bank
+  commits across both editions: two clicks each, no submission on selection,
+  one version increment per commit, refresh/privacy pass and exact QA room closed.
+- Expansion/collapse review found a focused final choice clipped by 8px after
+  reopening the long list. Measured A/B tests isolated changing compact/expanded
+  spacing; constant spacing fixes the native focus-scroll boundary. Retain the
+  strict top/bottom hit tests. No validation or legality check was removed.
+- Final affected frontend/contracts/tooling and browser gates are next; no push
+  or deployment yet. Scope remains frontend only, with no provider calls.
+
+## 2026-11-19 — Compact Deal action toolkit refinement
+
+- User steering: make card/table clicks useful, expose a few direct moves and
+  retain an expanded view for other choices and back-and-forth selection.
+- Compared an inline growing dock, table-only interaction and a compact modeless
+  action panel. Keep the existing modeless panel to preserve table geometry and
+  keyboard/peek behavior. Show up to three exact moves first; a labelled expansion
+  exposes the complete legal list. Bank remains separate with its consequence.
+- Acceptance: expand/collapse is read-only, preserves partial swap selection and
+  focus, and never silently chooses a card. Changing cards clears the old partial
+  swap. Exact table destinations still commit directly. Public cards without a
+  legal move and unplayable hand cards open information instead of a dead end.
+- Prior local gates: frontend/contracts/tooling passed; 47/48 browser cases
+  passed. One strict viewport assertion differed by a fractional pixel; retain
+  top/bottom hit tests and containment when applying subpixel tolerance. Repeat
+  affected gates after this refinement. No push or deployment has occurred.
+
+## 2026-11-19 — Deal direct card actions kickoff
+
+- Outcome: make selecting Monopoly Deal/No Mercy cards expose concrete action
+  CTAs on the first selected view, removing generic menu-opening, radio-selection
+  and redundant confirmation clicks. Baseline clean main 6afddf7; task
+  deal-direct-actions-20261119, scratch output/playwright/deal-direct-actions-20261119.
+- Acceptance: card selection never submits; property destinations, simple/targeted
+  actions and banking are named buttons with consequences before the committing
+  tap. Complete one-decision moves need selection plus one CTA; Forced Deal keeps
+  only the necessary take/give decisions. Banking explains the permanent conversion.
+  Use only server-enumerated legal actions; no engine, schema or privacy change.
+- Preserve readable exact cards/owners/amounts, table geometry, cancel/peek/info,
+  pending/paused controls, response/payment decisions and both editions. Verify
+  exact submitted actions, click counts, keyboard and first-view CTAs at 320px,
+  larger phone and desktop widths, then scoped push/deploy with hosted proof.
+
 ## 2026-11-19 — CTA morph correction live-verified and closed
 
 - Application 71e47f302a95fe4255174690258579be36f68458 is READY in bom1 at

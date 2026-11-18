@@ -810,6 +810,93 @@
     line-height: 1.4;
     overflow-wrap: anywhere;
   }
+  .deal-choice-list[data-mode='action'] .deal-choice-copy {
+    flex: 1;
+  }
+  .deal-choice-arrow {
+    flex: none;
+    align-self: center;
+    margin-left: auto;
+    color: var(--color-sage);
+  }
+  .deal-choice-list[data-mode='action'] .deal-choice:hover:not(:disabled) {
+    background: var(--color-surface);
+    border-color: var(--color-sage);
+  }
+  /* The whole choice area scrolls, without the bank footer covering a focused row. */
+  .table-decision-panel:has(.deal-composer) {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .table-decision-panel:has(.deal-composer) > .table-decision-heading,
+  .table-decision-panel:has(.deal-composer) > .table-peek-button,
+  .table-decision-panel .deal-composer .deal-commit-actions {
+    flex: none;
+  }
+  .table-decision-panel:has(.deal-composer) > .table-decision-body:not([hidden]) {
+    display: flex;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .table-decision-panel .deal-composer {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .deal-composer-main {
+    display: grid;
+    gap: 12px;
+    min-width: 0;
+  }
+  .table-decision-panel .deal-composer-main {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  .table-decision-panel .deal-composer .deal-commit-actions {
+    position: static;
+    box-shadow: none;
+  }
+  /* Keep spacing stable when expanding: changing it during native focus scrolling
+     can leave the last choice clipped after expand/collapse/expand. */
+  .table-decision-panel .deal-composer {
+    gap: 8px;
+    padding-block: 6px;
+  }
+  .deal-composer .deal-composer-main,
+  .deal-composer .deal-move-form {
+    gap: 8px;
+  }
+  .deal-composer[data-compact='true'] .deal-choice {
+    border-radius: 12px;
+  }
+  .deal-expand-choices {
+    justify-self: end;
+    min-height: 44px;
+  }
+  .deal-take-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-width: 0;
+  }
+  .deal-take-summary > .deal-move-summary {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .deal-take-summary > .button {
+    flex: none;
+  }
+  .deal-bank-warning {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+  }
   .deal-choice-copy > strong {
     font-size: 13px;
   }

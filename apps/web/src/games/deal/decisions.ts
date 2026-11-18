@@ -379,6 +379,62 @@ export function commitLabel(option: ActionOption, ctx: DealContext) {
   }
 }
 
+/** A complete legal move exposed as a button, with its consequence before the click. */
+export function describeDirectOption(option: ActionOption, ctx: DealContext): OptionText {
+  const action = option.value;
+  const card = locate(ctx.match, ctx.selfId, action.card)?.card;
+  const text = describeOption(option, ctx);
+  const who = (id: string) => playerName(ctx.room, id);
+  if (action.type === 'property' || action.type === 'rearrange') {
+    return {
+      ...text,
+      title: `${action.type === 'property' ? 'Place in' : 'Move to'} ${text.title.replace(/^New /, 'new ')}`,
+    };
+  }
+  if (action.type === 'play' && card) {
+    if (['sly', 'forced'].includes(card.effect) && action.choice) {
+      const take = locate(ctx.match, ctx.selfId, action.choice);
+      const give = locate(ctx.match, ctx.selfId, action.cards?.[0]);
+      if (take && give) {
+        return {
+          ...text,
+          title: `Swap ${cardTitle(give.card, ctx.details)} for ${who(take.owner)}’s ${cardTitle(take.card, ctx.details)}`,
+          detail: `You give: ${cardPhrase(ctx, give.card.id, { title: false, owner: false })}. You take: ${cardPhrase(ctx, take.card.id, { title: false, owner: false })}.`,
+        };
+      }
+      if (take) {
+        return {
+          ...text,
+          title: `Take ${cardTitle(take.card, ctx.details)} from ${who(take.owner)}`,
+          detail: cardPhrase(ctx, take.card.id, { title: false, owner: false }),
+        };
+      }
+    }
+    if (['rent', 'rent_double'].includes(card.effect)) {
+      const quote = rentQuote(ctx, card, action.color);
+      return {
+        ...text,
+        title: `Charge ${quote.amount}M rent from ${action.target ? who(action.target) : 'each other player'}`,
+        detail: `${text.title}${quote.multiplier > 1 ? ` · ${quote.base}M ×${quote.multiplier}` : ''}`,
+      };
+    }
+    if (card.effect in BUILDING_RENT) {
+      return { ...text, title: `Add ${card.label} to ${text.title}` };
+    }
+    if (card.effect === 'breaker') return { ...text, title: `Take ${text.title}` };
+    if (card.effect === 'super_sly') {
+      return {
+        ...text,
+        title: `Take every ${groupName(action.color, ctx.details.propertyGroups)} property`,
+      };
+    }
+    if (card.effect === 'tough') {
+      return { ...text, title: `Take every ${action.choice} card from ${who(action.target)}` };
+    }
+  }
+  return { ...text, title: commitLabel(option, ctx) };
+}
+
 export interface PendingText {
   /** One sentence: who wants to do what to which card. */
   headline: string;

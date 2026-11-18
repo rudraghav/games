@@ -81,7 +81,7 @@ shared create/join/configure behavior and are documented with inspected captures
 in `evidence/browsing-2026-11-01`.
 
 Actions remain beside the objects they affect. Deal presents opponents, stock,
-own bank/sets, then a hand and contextual move composer. Casino tables lead with
+the private hand and command bar, then own bank/sets with a contextual move composer. Casino tables lead with
 the public table and keep private cards/actions together directly below it on
 compact screens. Skyjo keeps the viewer's grid first; pile actions sit beside
 their source. Rank sorting uses actual playing-card order. Current screenshot
@@ -281,7 +281,7 @@ Yellow Uno text uses measured 4.5:1-or-better ink in both card sizes. Complete
 281-face paired sheets and focused behavior/visual evidence are retained in
 `docs/evidence/card-workspaces-2026-11-02`.
 
-Stable gameplay uses shared DecisionDock variants with bounded internal scrolling and a persistent clear/status slot. Deal has a 96px command bar, a fixed-height hand, compact public opponent summaries and a scrollable owned bank/collection area. On phones, owned properties use named 44px deed rows; full faces remain in the hand and Inspect views. Complex Deal decisions use TableDecisionPanel, a modeless Radix dialog with an explicit peek toggle, Escape/focus restoration and no blocking overlay. Portalled inspectors use their own viewport rules.
+Stable gameplay uses shared DecisionDock variants with bounded internal scrolling and a persistent clear/status slot. Deal keeps a fixed command-bar footprint, a stable hand, compact public opponent summaries and content-sized owned bank/collection rows. On phones, owned properties use named 44px deed rows; full faces remain in the hand and Inspect views. Deal card selection immediately opens TableDecisionPanel, a modeless Radix dialog with named action CTAs, an explicit peek toggle, Escape/focus restoration and no blocking overlay. Its compact toolkit exposes up to three exact choices, with All N moves/properties and Fewer moves/properties expanding or collapsing the same panel without changing a partial swap. Complete legal choices commit from their labelled row; Forced Deal retains only the take/give decisions. Bank conversion is explained beside its direct CTA, outside the scrolling card-choice area so it cannot cover focused rows. Complete No Mercy Take/Keep/Give choices use direct rows too; payments and counteractions keep their existing review controls. Portalled inspectors use their own viewport rules.
 
 HorizontalRail owns overflow detection, external 44px arrows, native touch scrolling and reduced-motion navigation. It reveals focused cards horizontally without moving the page vertically. OpponentPanel owns the public summary/Inspect vocabulary; features provide only authorized public children. RoomActivity displays the latest 80 durable, server-redacted moves with optional public card details. The same sidebar tabs serve chat/activity on desktop and phone.
 
@@ -300,7 +300,7 @@ Decision-information review is tracked per game in
 `evidence/game-info-2026-11-02/README.md`, including layout and unverified branches.
 Deal keeps inspection separate from playing: Info opens a readable dialog for a
 hand card or public set, including both printed wild groups, set completion and
-labelled rent tiers. The table stays in place and nested inspection returns focus
+labelled rent tiers. Public property cards without legal actions and unplayable hand cards also open information on click. The table stays in place and nested inspection returns focus
 to the exact opener. Azul shows legal-line fit/overflow before placement and keeps
 floor penalties visible under occupied slots; the server remains the move judge.
 

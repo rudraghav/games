@@ -37,7 +37,7 @@ function BuildingMark({ card }: { card: Card }) {
 }
 
 export function DealPlayer(props: Props) {
-  const { player, room, selfId, match, details, placements, selected, candidate } = props;
+  const { player, room, selfId, match, details, placements, selected } = props;
   const own = player.id === selfId;
   const member = room.members.find((item) => item.id === player.id);
   const groups = Object.entries(player.properties);
@@ -59,8 +59,8 @@ export function DealPlayer(props: Props) {
       compact
       className={props.previewIds?.includes(card.id) ? 'deal-preview-card' : undefined}
       selected={isSelected(card.id)}
-      disabled={props.pending || room.paused}
-      onClick={selectable(card) ? () => props.onSelect(card.id) : undefined}
+      disabled={selectable(card) && (props.pending || room.paused)}
+      onClick={() => (selectable(card) ? props.onSelect(card.id) : props.onInspect(card.id))}
     />
   );
   const destination = (key: string) =>
@@ -195,11 +195,10 @@ export function DealPlayer(props: Props) {
                 <button
                   type="button"
                   className="deal-destination"
-                  aria-pressed={candidate === placement}
                   onClick={() => props.onDestination(placement)}
                   disabled={props.pending || room.paused}
                 >
-                  Place here
+                  {placement.value.type === 'rearrange' ? 'Move here' : 'Place here'}
                 </button>
               ) : null}
             </section>
@@ -211,12 +210,14 @@ export function DealPlayer(props: Props) {
             type="button"
             className="deal-new-set"
             data-property-color={option.value.color}
-            aria-pressed={candidate === option}
             disabled={props.pending || room.paused}
             onClick={() => props.onDestination(option)}
           >
             <Plus size={18} aria-hidden="true" />
-            <span>New {pileName(option.value.choice, details.propertyGroups)}</span>
+            <span>
+              {option.value.type === 'rearrange' ? 'Move to new ' : 'Place in new '}
+              {pileName(option.value.choice, details.propertyGroups)}
+            </span>
           </button>
         ))}
         {!groups.length && !newPiles.length ? (
