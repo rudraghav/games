@@ -31,3 +31,11 @@ We followed the play controls with the current player's available moves, includi
 | Shithead | Choose three starting cards in one compact setup row. During play, select a rank and play the selection or the whole legal group. Face-down cards retain a deliberate blind play. |
 
 The review checks direct actions against the move offered by the server. Desktop and phone tests cover manual alternatives, disabled controls, stale choices and exact submissions. The production receipt records which interactions were also played in a saved game.
+
+## Verification
+
+The final desktop and phone run passed 97 browser cases. It included all 259 recorded game states, with 189 belonging to the 25 games above. The phone-only Checkers touch regression also passed. All 273 frontend tests passed.
+
+Four mobile flows were played in production with independent guests. In Checkers, tapping G3 selected the piece and tapping H4 saved one move. In Shithead, both players changed their three starting cards, restored them after refresh and confirmed them without moving the table or exposing their hands. In Teen Patti, the short wagers and a custom five-chip wager each saved once. In Hot Seat, all three guests locked their choices and only the host could advance. Round two survived refresh. All three test rooms were closed.
+
+The [production receipt](production.json) records the release and checks. The other games were covered through local decisions and engine-derived states.

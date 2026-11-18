@@ -1,0 +1,135 @@
+{
+  "checkedAt": "2026-11-18T19:56:38.502426+00:00",
+  "applicationSha": "8c9b7669e478add7d3a4c1ddef64b1f412b9e7c2",
+  "deploymentId": "dpl_9kLZNXyGDaRb476KA4J8J21e5k9d",
+  "url": "https://games-seven-black.vercel.app",
+  "state": "READY",
+  "regions": [
+    "bom1"
+  ],
+  "gitSourceAndAliasMatch": true,
+  "previousDeploymentId": "dpl_B6SxCngSSfBAvxZMRFoG7Niu3YQ9",
+  "review": {
+    "gamesOutsideDeal": 25,
+    "individualGameWorkflowsSimplified": 12,
+    "additionalTouchFix": "A tap selects edge pieces in Checkers before the shared board rail scrolls. The same component is used for scrollable hands.",
+    "phoneWidth": 390,
+    "cardSetupWidths": [
+      320,
+      375,
+      390,
+      412,
+      430
+    ]
+  },
+  "localChecks": {
+    "coreVerification": "verify-cd1149919c4348c9a4f49bc6e76e3e3a",
+    "browserVerification": "verify-c4a1b40fc5864e5ebd18dc8c2b04b08e",
+    "frontendTests": 273,
+    "workflowTests": 44,
+    "browserTestsPassed": 97,
+    "browserTestsSkipped": 1,
+    "allGameScenarios": 259,
+    "scenariosOutsideDeal": 189,
+    "phoneGameViews": 25,
+    "runtimeFiles": 6193,
+    "runtimeFingerprint": "a81748902fe8fc6c7b0898fe581ac437c982ac628bab705d56911ba97579071d"
+  },
+  "liveSavedGames": {
+    "checkers": {
+      "passed": true,
+      "closed": true,
+      "width": 320,
+      "move": "Move G3 to H4",
+      "selectionDidNotSubmit": true,
+      "secondPlayerAndRefreshMatch": true
+    },
+    "shithead": {
+      "passed": true,
+      "closed": true,
+      "width": 390,
+      "guestSeats": 2,
+      "confirmedSetups": 2,
+      "stablePickClearAndReload": true,
+      "onlyCommittedFaceUpCardsShared": true
+    },
+    "teen-patti": {
+      "passed": true,
+      "closed": true,
+      "phoneWidths": [
+        320,
+        390
+      ],
+      "guestSeats": 3,
+      "operations": [
+        "bet 1",
+        "peek",
+        "bet 4",
+        "bet 4",
+        "bet 5"
+      ],
+      "oneRequestPerMove": true,
+      "largerEditableRangeVerified": true
+    },
+    "hot-seat": {
+      "passed": true,
+      "closed": true,
+      "phoneWidths": [
+        320,
+        390
+      ],
+      "guestSeats": 3,
+      "sharedTestRoomWith": "teen-patti",
+      "allPlayersLockedChoice": true,
+      "onlyRoundHostCanAdvance": true,
+      "secondRoundRestored": true
+    }
+  },
+  "publicRoutes": {
+    "checkedAt": "2026-11-18T19:55:12.503187+00:00",
+    "gamesChecked": [
+      "azul",
+      "blackjack",
+      "boop",
+      "checkers",
+      "flip-7",
+      "four-in-a-row",
+      "gem-market",
+      "holdem",
+      "hot-seat",
+      "mancala",
+      "most-likely",
+      "reversi",
+      "rummy",
+      "sea-salt-paper",
+      "shithead",
+      "six-nimmt",
+      "skyjo",
+      "spill-or-chill",
+      "tarot",
+      "teen-patti",
+      "the-gang",
+      "trio",
+      "uno",
+      "uno-no-mercy",
+      "word-agents"
+    ],
+    "pageHeadingsAndStatusMatch": true,
+    "catalogueStatus": 200,
+    "catalogueSize": 27,
+    "unauthenticatedMeStatus": 401
+  },
+  "productionChecks": {
+    "environmentRecordsPreserved": 28,
+    "ownerIdentityAndRoomRecordsMatchBeforeRelease": true,
+    "schemaHead": "a6e442b15d80",
+    "schemaDrift": 0,
+    "privateTables": 8,
+    "grantChecks": 112,
+    "runtimeWarningsOrErrors": 0,
+    "http5xx": 0,
+    "logWindowEnd": "2026-11-18T19:56:06+00:00",
+    "logWindowStart": "2026-11-18T19:52:44.349873+00:00"
+  },
+  "coverage": "All 25 games had a phone view inspected. The local browser sweep includes engine-derived states at both seat limits. Live interactions are listed by game; complete live matches for every game were outside this check."
+}

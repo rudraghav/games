@@ -1,3 +1,22 @@
+## 2026-11-19 — Other-game improvements live and verified
+
+- Pushed application 8c9b7669e478add7d3a4c1ddef64b1f412b9e7c2 to main.
+  Production deployment dpl_9kLZNXyGDaRb476KA4J8J21e5k9d in bom1 is READY
+  and the canonical alias and Git source match. No duplicate deployment.
+- Live independent guest sessions passed for Checkers edge selection and saved
+  move, Shithead setup and hand privacy, Teen Patti blind/seen/custom wagers,
+  and Hot Seat vote, host advance and round-two refresh. Tested at 320/390px.
+  All three hosted test rooms closed with fresh 404 readbacks.
+- All 25 reviewed game pages return 200 with the correct title. Catalogue 200,
+  private profile 401. All 28 configuration records and the owner's records
+  match the baseline. Complete rollout logs have zero warnings/errors and
+  zero HTTP 500+ responses over the observed window.
+- Final evidence: docs/evidence/simpler-turns-2026-11-19/production.json.
+  The documentation closure matches the tested application across 6193 runtime
+  files. Local web, API and Storybook still return 200. Kept the passing browser
+  evidence and first failing trace. Removed 24 byte-identical older screenshots
+  (5,875,290 bytes), plus superseded trial artifacts recorded by their owners.
+
 ## 2026-11-19 — Other games: turn simplifications verified locally
 
 - Reviewed all 25 games outside Deal at 390px and recorded their steps in
