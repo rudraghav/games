@@ -117,7 +117,9 @@ second disabled CTA remains visible. Requests and results never wait for motion.
 Reduced motion changes state immediately; restored progress does not replay the
 transition. Keyboard focus follows the surface and returns to the retry action
 after failure unless the user moved it elsewhere. Only explicit submission
-scrolls the card into view once its expansion completes.
+scrolls the card into view once its expansion completes. Later content growth
+keeps that focused card visible until the user scrolls or interacts elsewhere;
+refresh and unchanged-height polls preserve scroll.
 Writing polls the saved attempt even while its original request is pending.
 Provider preference is Gemini, then Cloudflare, then Groq for ordinary, Western,
 Vedic and combined readings. Groq's Vedic/combined attempts disable reasoning

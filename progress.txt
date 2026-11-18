@@ -1,3 +1,36 @@
+## 2026-11-18 — CTA growth correction locally verified
+
+- The locally requested, focused processing card now follows later content growth
+  after its entrance. Wheel/touch scrolling, navigation keys and outside clicks
+  stop following; restored status and unchanged-height polls preserve scroll.
+- Passed all 64 full Tarot browser cases in verify-0f951ea20a6649bfa1a90f2c08936531;
+  frontend types/lint/build and 266 tests in verify-04fd6ae2c03848e3bfbde0039d76f7f1.
+  Both source fingerprints stable. Prior contracts/tooling inputs unchanged.
+- All ten focused cases passed. Visible retry growth and deliberately scrolling
+  away while retaining focus both verified at 320px in normal/reduced motion.
+  The first fixture exceeded the existing 160-character retry-detail cap; fixed
+  only that fixture and retained failure evidence. Four initial and ten corrected
+  fixture rooms closed; zero provider calls.
+- Runtime fingerprint a4a358782f96932f9af2ca5ccf08acd3a51b3b675f46743f44144147131ef017,
+  6,193 files. Ready for a scoped correction release; prior deployment evidence
+  remains preserved. No backend, schema, provider or configuration changes.
+
+## 2026-11-18 — Live CTA verification: follow-up required
+
+- Application f29a735e68e80ea32cce850b3d42b6b0f7c591cd deployed once, READY at
+  canonical alias in bom1 (dpl_7G4QwFBQouQvrw4AWisButqRq7vQ). Hosted 320px
+  morph/reduced-motion/focus/retry proof passed with two intercepted submissions,
+  zero forwarded provider requests, unchanged authoritative reading and QA room
+  closed. Fresh owner/config/schema and public health checks pass.
+- Visual review found the retry explanation can grow the card after its initial
+  expansion and push the ETA below the viewport. The current test lacked an
+  assertion for this later growth; keep the first proof as historical evidence.
+- Follow-up acceptance: keep a locally requested, focused processing card in view
+  on content growth, but stop following when the user scrolls or moves away.
+  No scroll replay on refresh, numeric polls, unchanged height or background
+  activity; reduced motion remains immediate. Add explicit growth/scroll-away
+  browser assertions before a second intentional correction deployment.
+
 ## 2026-11-18 — Reading CTA morph locally verified
 
 - One persistent CTA surface now expands into the processing card with a short

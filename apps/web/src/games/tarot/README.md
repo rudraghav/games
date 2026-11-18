@@ -31,8 +31,10 @@ Polling starts during the initial POST and continues every two seconds while
 generation/recovery is active, including after refresh. Success cancels in-flight
 status reads before caching the completed reading, so a late pending response
 cannot erase it. An explicit submission scrolls the processing card into view
-once, after expansion; refresh and subsequent polls preserve the user's scroll
-position. Reduced motion performs this one scroll immediately.
+once, after expansion. If a later explanation makes that locally requested card
+taller, it stays in view only while the surface still owns focus and the user has
+not scrolled or interacted elsewhere. Refresh, unchanged-height polls and
+background updates preserve scroll. Reduced motion makes following immediate.
 The pattern follows Shikha's current server-driven ExamRunWatcher; its older
 timer-invented stages are not copied. Existing icons/tokens and reduced-motion
 rules provide the presentation without another dependency.

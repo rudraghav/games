@@ -491,6 +491,138 @@ test('the reading CTA morphs in place into progress and returns keyboard focus o
   });
 });
 
+for (const motion of ['no-preference', 'reduce'] as const) {
+  test(`growing progress stays visible until the user scrolls away (${motion})`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 320, height: 740 });
+    await page.emulateMedia({ reducedMotion: motion });
+    await withReading(page, async ({ roomId, requests, setView }) => {
+      let release!: () => void;
+      const gate = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      let posts = 0;
+      const generating = {
+        status: 'generating',
+        reading: null,
+        api_tier: 'paid' as const,
+        question: '',
+        message: '',
+      };
+      await page.route(`**/api/backend/v1/rooms/${roomId}/reading`, async (route) => {
+        if (route.request().method() === 'POST') {
+          posts++;
+          setView({ ...generating, progress: progress('matching') });
+          await gate;
+        }
+        return route.fallback();
+      });
+      try {
+        const button = page.getByRole('button', { name: 'Read my cards', exact: true });
+        const surface = page.locator('.tarot-action-surface');
+        const panel = page.getByRole('region', { name: 'Reading progress', exact: true });
+        await button.scrollIntoViewIfNeeded();
+        await button.focus();
+        await button.press('Enter');
+        await expect(surface).toBeFocused();
+        await expect(panel.getByRole('status')).toHaveText('Finding character connections.');
+        await expect
+          .poll(async () => {
+            const bounds = (await surface.boundingBox())!;
+            return bounds.y + bounds.height;
+          })
+          .toBeLessThanOrEqual(740);
+        const before = (await surface.boundingBox())!;
+        const initialScroll = await page.evaluate(() => scrollY);
+        const detail = 'Card 1 wording failed its question format. Retrying without that format.';
+        setView({
+          ...generating,
+          progress: progress('retrying', {
+            provider: 'Groq',
+            attempt: 2,
+            retry_detail: detail,
+            estimated_percent: 61,
+            estimated_seconds_remaining: 25,
+          }),
+        });
+        await expect(panel.getByRole('status')).toContainText(detail);
+        await expect
+          .poll(async () => {
+            const bounds = (await surface.boundingBox())!;
+            return bounds.y + bounds.height;
+          })
+          .toBeLessThanOrEqual(740);
+        const grown = (await surface.boundingBox())!;
+        expect(grown.height).toBeGreaterThan(before.height + 20);
+        expect(await page.evaluate(() => scrollY)).toBeGreaterThan(initialScroll);
+        const estimate = (await panel.locator('.tarot-generation-estimate').boundingBox())!;
+        expect(estimate.y + estimate.height).toBeLessThanOrEqual(740);
+        await page.screenshot({ path: test.info().outputPath('grown-progress-visible-320.png') });
+
+        // Wheel movement preserves focus but explicitly ends automatic following.
+        const followedScroll = await page.evaluate(() => scrollY);
+        await page.mouse.wheel(0, -100);
+        await expect
+          .poll(() => page.evaluate(() => scrollY))
+          .toBeLessThanOrEqual(followedScroll - 99);
+        await expect(surface).toBeFocused();
+        const leftScroll = await page.evaluate(() => scrollY);
+        const leftBounds = (await surface.boundingBox())!;
+        expect(leftBounds.y).toBeLessThan(740);
+        expect(leftBounds.y + leftBounds.height).toBeGreaterThan(740);
+        const longerDetail = `${detail} The next model will use your cards and saved question for a fresh interpretation.`;
+        expect(longerDetail.length).toBeLessThanOrEqual(160);
+        setView({
+          ...generating,
+          progress: progress('retrying', {
+            provider: 'Cloudflare',
+            attempt: 3,
+            retry_detail: longerDetail,
+            estimated_percent: 79,
+            estimated_seconds_remaining: 20,
+          }),
+        });
+        await expect(panel.getByRole('status')).toContainText(longerDetail);
+        expect((await surface.boundingBox())!.height).toBeGreaterThan(grown.height + 20);
+        const scrollFrames = await page.evaluate(
+          () =>
+            new Promise<number[]>((resolve) => {
+              const positions: number[] = [];
+              const started = performance.now();
+              const sample = (now: number) => {
+                positions.push(scrollY);
+                if (now - started >= 550) resolve(positions);
+                else requestAnimationFrame(sample);
+              };
+              requestAnimationFrame(sample);
+            }),
+        );
+        expect(scrollFrames.every((position) => Math.abs(position - leftScroll) <= 1)).toBe(true);
+        await page.screenshot({ path: test.info().outputPath('grown-progress-user-away-320.png') });
+        await writeFile(
+          test.info().outputPath('growth-follow.json'),
+          JSON.stringify({
+            before,
+            grown,
+            initialScroll,
+            followedScroll,
+            leftScroll,
+            scrollFrames,
+          }),
+        );
+        expect(posts).toBe(1);
+        await noOverflow(page);
+        release();
+        await expect(page.locator('.tarot-reading')).toBeVisible();
+        expect(requests).toHaveLength(1);
+      } finally {
+        release();
+      }
+    });
+  });
+}
+
 test('a held request polls actual stages and provider fallbacks without another submission', async ({
   page,
 }) => {

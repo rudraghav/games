@@ -32,3 +32,35 @@ The runtime fingerprint is `d80b27451bf356db424bd4225a4c80e67a6f0801a791e8879332
 across 6,193 files. Release status and cleanup follow after production readback.
 Production UI checks use intercepted synthetic reading responses and do not claim
 new hosted AI-output validation. Existing provider behavior is unchanged.
+
+
+## First production observation and correction
+
+The first release `f29a735e68e80ea32cce850b3d42b6b0f7c591cd` reached production;
+its core hosted morph check passed with two locally intercepted submissions and
+zero forwarded generation requests. Visual review then found that a later retry
+explanation could grow the card and move its ETA below the viewport. This first
+proof is retained as historical evidence; it did not include a later-growth
+viewport assertion. A follow-up adds guarded content-growth following and tests
+both visible retry detail and deliberate user scrolling away. No provider behavior
+changes are needed for the correction.
+
+
+## Follow-up local acceptance
+
+The focused card now follows positive content growth after its entrance completes.
+Following requires a local request, retained focus and a visible card. Wheel/touch
+scrolling, navigation keys or interacting elsewhere stops following. Refresh and
+unchanged-height updates preserve scroll. Normal and reduced-motion tests verify
+the ETA stays visible, then prove deliberate scrolling away is respected while the
+surface still owns focus. No request/result waits were added.
+
+All 64 full Tarot browser cases passed in `verify-0f951ea20a6649bfa1a90f2c08936531`.
+Frontend types/lint/build and 266 tests passed in `verify-04fd6ae2c03848e3bfbde0039d76f7f1`.
+Both reports retain stable source fingerprints. Prior contract/tooling evidence is
+reused for unchanged inputs. Ten focused growth/motion scenarios also passed.
+The first growth fixture exceeded the existing 160-character retry-detail limit;
+its failed evidence is retained, and the corrected fixture stays within that
+contract. Four initial and ten corrected fixture rooms were closed, with zero
+provider calls. Final runtime fingerprint:
+`a4a358782f96932f9af2ca5ccf08acd3a51b3b675f46743f44144147131ef017` (6,193 files).

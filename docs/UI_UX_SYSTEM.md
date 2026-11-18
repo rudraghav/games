@@ -342,6 +342,8 @@ The card contains one actual server-stage line and an accessible estimated progr
 rounded remaining time share a row on320px screens. Slow estimates become Taking
 longer than expected; starting/status recovery is indeterminate. The live region
 announces stages without announcing every estimate tick. Only an explicit new
-submission scrolls this region into view after expansion; polling and restored
-sessions preserve scroll. Native reduced-motion preferences make the state change
+submission scrolls this region into view after expansion. Later content growth
+can keep that locally requested, focused card visible; scrolling or interacting
+elsewhere stops following. Unchanged-height polls and restored sessions preserve
+scroll. Native reduced-motion preferences make the state change
 immediate and stop the spinner and meter transitions.
