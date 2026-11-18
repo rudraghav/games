@@ -16,6 +16,9 @@ text: the requested top-level fields, the astrology parent, or a sole requested
 chart section. It moves unchanged strings without inventing or dropping prose.
 Mixed/conflicting locations, missing fields, unknown extras and ambiguous
 placement inside a two-chart response remain invalid.
+The prompt requests one invitational question per field; validation accepts one
+or two complete questions within the same length bounds. Three or more remain
+invalid. This avoids rejecting useful prose solely for one additional question.
 Routing reserves time for later providers and their persistence overhead inside
 the existing 105-second, three-transmission limit. It recalculates network time
 after progress writes and can skip a slower provider when a faster one still fits.

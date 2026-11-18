@@ -1,0 +1,161 @@
+{
+  "checkedAt": "2026-11-18T17:29:24.643680+00:00",
+  "status": "pushed, deployed and live-verified",
+  "production": {
+    "url": "https://games-seven-black.vercel.app",
+    "applicationSha": "0a783b8a1ef33059e635bc42c52bbac92570c53c",
+    "deploymentId": "dpl_F9cs9kEEG1EwF1ssgwGBto6U9vr3",
+    "readyState": "READY",
+    "region": "bom1",
+    "aliasAndSourceMatch": true,
+    "deploymentsCreated": 1
+  },
+  "routing": {
+    "order": [
+      "gemini",
+      "cloudflare",
+      "groq"
+    ],
+    "enabledModes": [
+      "ordinary",
+      "western",
+      "vedic",
+      "both"
+    ],
+    "hardCodedModeDenialRemoved": true,
+    "productionRecordsUpdated": [
+      "TAROT_PROVIDER_ORDER",
+      "TAROT_GROQ_MODES"
+    ],
+    "otherRecordsPreserved": 26,
+    "paidPlanOrCredentialChange": false
+  },
+  "behavior": {
+    "groqVedicAndBothReasoning": "none",
+    "groqJsonTemperature": 0.7,
+    "groqJsonTopP": 0.8,
+    "outputTokenCap": 4096,
+    "completeKnownAstrologyFieldPlacementsAccepted": 3,
+    "invitationalQuestionsPerField": [
+      1,
+      2
+    ],
+    "cardReferenceChartAndCompletenessValidationRetained": true,
+    "deadlineSeconds": 105,
+    "multiProviderTransmissionLimit": 3,
+    "persistenceOverheadReserved": true
+  },
+  "verification": {
+    "report": "verify-f77bc941ab3a4bd4a46e55da0aa538a2",
+    "stableSource": true,
+    "backendTests": 7078,
+    "persistenceTests": 224,
+    "toolingTests": 44,
+    "ruff": "passed",
+    "mypy": "passed",
+    "contracts": "passed",
+    "freshHostedCases": 1,
+    "freshHostedReceipt": "hosted.json",
+    "priorLocalBrowserCases": 75,
+    "priorBrowserCasesRerunInThisRelease": false
+  },
+  "providerEvaluation": {
+    "newGroqCalls": 3,
+    "freshAcceptedCases": [
+      {
+        "mode": "vedic",
+        "attempt": 36,
+        "seconds": 2.254
+      },
+      {
+        "mode": "both",
+        "attempt": 38,
+        "seconds": 2.619
+      }
+    ],
+    "bothAttempt37": "Original two-question style rejection preserved; unchanged response passes the intentional one-to-two question contract. This is a replay, not another inference.",
+    "validatedAlternativeProviderModePairs": 8,
+    "allEightPairsFreshlyGenerated": false,
+    "allEightCurrentValidatorReplaysPassed": true,
+    "newNoReasoningCallsUsedCorrectionFeedback": false
+  },
+  "hosted": {
+    "mode": "both",
+    "submissions": 1,
+    "transmissions": 2,
+    "actualProviders": [
+      "gemini",
+      "cloudflare"
+    ],
+    "actualFallback": "Gemini timeout to Cloudflare success",
+    "groqHostedCalls": 0,
+    "secondsFromLoaderToSavedReadback": 65.9,
+    "widths": [
+      320,
+      390,
+      1440
+    ],
+    "selectedReferenceImagesChecked": 3,
+    "chartsSavedHistoryRefreshAndOutsiderPrivacy": "passed",
+    "estimatedProgressAndTimeVisible": true
+  },
+  "health": {
+    "tarot": 200,
+    "publicCatalogue": 200,
+    "unauthenticatedMe": 401,
+    "catalogueGames": 27
+  },
+  "preservation": {
+    "freshBeforeAfterOwnerFingerprintsMatch": true,
+    "rooms": 7,
+    "memberships": 7,
+    "profile": 1,
+    "identity": 1,
+    "schemaHead": "a6e442b15d80",
+    "schemaDrift": 0,
+    "rlsTables": 8,
+    "grantsPassed": 112,
+    "grantsTotal": 112
+  },
+  "logs": {
+    "start": "2026-11-18T17:21:08.630260+00:00",
+    "end": "2026-11-18T17:26:07+00:00",
+    "queriesComplete": true,
+    "runtimeWarningErrorFatal": 0,
+    "http500Plus": 0
+  },
+  "usage": {
+    "cumulativeGeminiOperatorAttempts": 87,
+    "cumulativeGroqAttempts": 38,
+    "cumulativeCloudflareAttempts": 24,
+    "cumulativeAlternativeAttempts": 62,
+    "unusedDirectSlotRetired": 1,
+    "hostedBrowserRetries": 0
+  },
+  "cleanup": {
+    "hostedQaRoomsClosed": 1,
+    "hostedQaRoomsRemaining": 0,
+    "temporaryBrowserContextsClosed": 2,
+    "taskEvidenceBytesRetained": 1916788,
+    "supersededTaskOutputsRemoved": 0,
+    "retentionReason": "Small final screenshots, logs and failed-phase evidence retained for review.",
+    "servicesPreservedAndHealthy": [
+      3217,
+      8217,
+      6105
+    ],
+    "userBrowserUntouched": true
+  },
+  "runtime": {
+    "fileCount": 6191,
+    "fingerprint": "433605e292984b0228f2048d9b6c37942d9d70f2e9bdcdb905106aaed52c9727",
+    "closureIsDocumentationOnly": true,
+    "duplicateDeploymentNeeded": false
+  },
+  "limitations": [
+    "Fresh hosted flow exercised Gemini then Cloudflare; Groq Vedic/Both were verified separately with direct calls and all-mode routing with deterministic tests.",
+    "Alternative prose can remain more generic than the preferred provider. Validity does not establish equal editorial depth.",
+    "Free quota and provider outages still bound delivery; complete valid output is required and the existing retry action remains available.",
+    "Three selected portraits were inspected in this live request; no claim of exhaustive catalogue or all possible reading coverage."
+  ]
+}

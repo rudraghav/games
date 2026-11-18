@@ -1,0 +1,94 @@
+{
+  "checkedAt": "2026-11-18T17:26:50.486893+00:00",
+  "status": "passed",
+  "production": {
+    "url": "https://games-seven-black.vercel.app",
+    "sourceSha": "0a783b8a1ef33059e635bc42c52bbac92570c53c",
+    "deploymentId": "dpl_F9cs9kEEG1EwF1ssgwGBto6U9vr3",
+    "region": "bom1"
+  },
+  "test": {
+    "suite": "tests/browser/tarot-reading-live.spec.ts",
+    "browser": "Chromium",
+    "mode": "both",
+    "casesPassed": 1,
+    "generationSubmissions": 1,
+    "automaticBrowserRetries": 0,
+    "entry": "Public /games/tarot at 390px -> Start reading -> three actual server-owned card choices",
+    "disclosedProviderOrder": ["Google Gemini", "Cloudflare", "Groq"]
+  },
+  "generation": {
+    "status": "complete",
+    "secondsFromFirstVisibleLoaderToCompleteReadback": 65.9,
+    "visibleStages": [
+      "Starting your reading.",
+      "Finding character connections.",
+      "Writing your reading.",
+      "Retrying with Cloudflare."
+    ],
+    "estimatedPercentObserved": {
+      "minimum": 8,
+      "maximum": 71
+    },
+    "estimatedTimeObserved": [
+      "About 2 min remaining",
+      "About 1 min remaining",
+      "About 55 sec remaining",
+      "About 50 sec remaining",
+      "About 45 sec remaining",
+      "About 40 sec remaining",
+      "About 35 sec remaining",
+      "About 30 sec remaining",
+      "About 25 sec remaining",
+      "About 20 sec remaining"
+    ],
+    "renderedProgressFrames": 31,
+    "extraProgressApiCalls": 0,
+    "productionLogConfirmation": {
+      "source": "Release owner correlated production logs",
+      "transmissions": 2,
+      "gemini": {
+        "transmissions": 1,
+        "result": "timeout"
+      },
+      "cloudflare": {
+        "transmissions": 1,
+        "result": "complete"
+      },
+      "groq": {
+        "transmissions": 0
+      },
+      "manualRetryRequired": false
+    }
+  },
+  "checks": [
+    "Both real calculated charts preview and persist with the generated analysis",
+    "Complete card, astrology and next-step sections render at 320px, 390px and 1440px without document overflow",
+    "All three selected reference images match exact catalogue name/source/image/alt and decode successfully; the 390px capture was visually reviewed",
+    "Saved reading data and visible text remain identical after refresh, a new spread and room closure",
+    "Independent outsider receives 404 and no private reading content; owner profile history retains the reading",
+    "One request completes through automatic Gemini-to-Cloudflare fallback with visible estimated progress and remaining time"
+  ],
+  "limitations": [
+    "This hosted request used Gemini and Cloudflare; it did not force a Groq attempt. Separate direct provider evaluations establish the Groq Vedic/Both evidence.",
+    "The Cloudflare output is usable and structurally complete, but still question-led and less specific/actionable than a stronger reading.",
+    "The three selected portraits were checked; this is not an inspection of every catalogue image or every possible generated reading.",
+    "Duration includes browser observation and saved-result readback; it is not an isolated provider inference measurement."
+  ],
+  "cleanup": {
+    "ownedRooms": 1,
+    "closedRooms": 1,
+    "ownerReadbackStatus": 404,
+    "isolatedBrowserContextsClosed": 2,
+    "testBrowserClosed": true,
+    "activeHostedQaRoomsRemaining": 0,
+    "userBrowserUntouched": true
+  },
+  "evidence": {
+    "privateArtifactRoot": "output/playwright/tarot-last-fallback-20261118/hosted",
+    "log": "output/playwright/tarot-last-fallback-20261118/hosted.log",
+    "progress": "Timestamped rendered DOM frames plus the UI natural GET responses",
+    "screenshots": "Saved Both analysis at 320px, 390px and 1440px",
+    "privacy": "Private identifiers, questions and generated prose remain only in ignored artifacts."
+  }
+}

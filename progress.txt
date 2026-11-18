@@ -1,3 +1,42 @@
+## 2026-11-18 — All-mode Tarot fallback pushed, deployed and live-verified
+
+- Application 0a783b8a1ef33059e635bc42c52bbac92570c53c is READY in bom1 at
+  https://games-seven-black.vercel.app, dpl_F9cs9kEEG1EwF1ssgwGBto6U9vr3.
+  Exact source and alias match. One deployment; docs-only closure needs no second.
+- Gemini → Cloudflare → Groq is active for all four modes. Removed Groq Vedic/Both
+  hard denial; compact JSON with reasoning none produced fresh validated Vedic
+  in 2.254s and Both in 2.619s. Known complete JSON nesting variants map unchanged;
+  one or two complete invitational questions are accepted within existing bounds.
+  Exact card/reference/chart, completeness, refusal and privacy checks remain.
+- Recalculate provider time after persistence and reserve its overhead. Earlier
+  provider latency no longer consumes a usable final Groq slot. Tests cover all
+  four modes reaching Groq, delays, exhaustion, invalid final data and refusals.
+- Frozen report verify-f77bc941ab3a4bd4a46e55da0aa538a2 passed 7078 backend tests,
+  224 persistence tests, 44 tooling tests, Ruff/mypy and generated contracts.
+  Tests isolate provider credentials from local dotenv. Earlier fixture failures
+  remain recorded. No frontend source changed; prior 75 browser cases retained.
+- Fresh hosted Both submission passed in 65.9s through Gemini timeout → Cloudflare
+  success, with visible stages/percentage/ETA. Both charts, all 3 selected images,
+  320/390/1440 layouts, refresh/new-spread/closed-room history and outsider denial
+  passed. Groq was separately exercised directly, not forced in this hosted run.
+- Changed only 2 existing production routing records; 26 others preserved. Fresh
+  owner/profile/7 rooms/memberships/identity fingerprints match; schema unchanged
+  at a6e442b15d80, 8 RLS tables/112 grants pass. Complete rollout queries show 0 runtime
+  warning/error/fatal and 0 HTTP500+. Public Tarot 200/catalogue 200/private me 401.
+- All 8 alternative provider/mode pairs pass current validation, including prior
+  unchanged replays. Three new Groq calls consumed; one unused direct slot retired.
+  Hosted 1 submission/2 transmissions. Actual cumulative operator counts Gemini 87,
+  Groq 38/Cloudflare 24 (alternatives 62). Free plans retained; no further calls planned.
+- Backup prose remains more generic than the preferred model. No claim of equal
+  depth, every possible scenario or guaranteed delivery despite service quotas.
+  Existing retry action remains for exhausted attempts; prior hard gate is removed.
+- Cleanup: 1 hosted QA room and 2 contexts closed; test browser closed, user browser
+  untouched. Retain 1,916,788 bytes final screenshots/logs/failure evidence; no
+  superseded task artifacts to remove. Services 3217/8217/6105 freshly return 200.
+  Public receipts: docs/evidence/tarot-last-fallback-2026-11-18/production.json
+  and hosted.json. Runtime 6191 files fingerprint
+  433605e292984b0228f2048d9b6c37942d9d70f2e9bdcdb905106aaed52c9727.
+
 ## 2026-11-18 — Last-resort Tarot provider recovery kickoff
 
 - User explicitly requests removing disabled Groq modes and preferring other

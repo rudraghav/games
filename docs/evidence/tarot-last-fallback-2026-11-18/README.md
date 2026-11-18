@@ -40,6 +40,45 @@ most four additional Groq requests, with reservations before every transmission
 and no automatic evaluation retry. Failed calls count. Stop on quota; report it
 without re-disabling the model or claiming fresh quality evidence.
 
-Final checks, observed provider responses, configuration readback, deployment and
-hosted acceptance are added with release evidence. Historical provider failures
-and prior task receipts remain unchanged.
+Historical provider failures and prior task receipts remain unchanged. The final
+phase used three new Groq calls and retired its fourth slot. Hosted acceptance
+used one submission and two transmissions, counted separately.
+
+## Released and verified
+
+Application `0a783b8a1ef33059e635bc42c52bbac92570c53c` is live on the canonical
+production alias. Gemini → Cloudflare → Groq is configured for all four modes.
+Only the two existing routing settings changed; 26 other records, credentials,
+free service tiers and the database schema were preserved.
+
+Fresh Groq Vedic and Both calls produced complete validated readings in 2.254 and
+2.619 seconds with reasoning disabled. Current validation also accepts an earlier
+unchanged Both response after allowing one or two complete invitational questions
+per field. The prompt still asks for one; three or more remain invalid. That
+replay is recorded separately from the fresh Both success. All eight alternative
+provider/mode pairs have current validation evidence, including historical replays.
+
+Manual review found exact supplied character evidence and computed placements in
+the fresh outputs. Vedic connected shared resources to a practical conversation;
+Both connected boundaries and role adaptation to a check-in. Backup synthesis can
+still be generic. These examples support availability, not identical quality.
+
+The frozen local gate passed 7,078 backend tests, 224 persistence tests, 44 tooling
+tests, Ruff, mypy and generated contracts. Deterministic checks cover every mode
+reaching final Groq, persistence delays, exhausted deadlines, malformed output and
+refusals. No verification check was disabled to pass the suite.
+
+The production mobile Both flow completed through a natural Gemini timeout then
+Cloudflare success in 65.9 seconds. It displayed stages, estimated percentage and
+time, both charts and three exact catalogue images at 320/390/1440px. Refresh,
+new spread and closed-room history preserved the result; outsider access failed.
+This request did not force Groq. The QA room and both temporary browser contexts
+were closed. Owner fingerprints and schema readback match the fresh baseline.
+Complete deployment log queries returned zero runtime warnings/errors/fatals and
+zero HTTP 500+ records.
+
+See [production evidence](production.json) and [hosted evidence](hosted.json).
+Final documentation shares the deployed runtime fingerprint; no second deployment
+is required. Private generated text, identifiers and request artifacts remain in
+ignored storage. The small final evidence folder is retained, and all three
+existing local services remain healthy.
