@@ -21,10 +21,61 @@ const references = [
   'banksy-q133600',
   'alara-of-nubia-q533610',
 ].map((id) => {
-  const reference = (registry as readonly TarotCharacter[]).find((candidate) => candidate.id === id);
+  const reference = (registry as readonly TarotCharacter[]).find(
+    (candidate) => candidate.id === id,
+  );
   if (!reference) throw new Error(`Missing canonical archive QA reference: ${id}`);
   return reference;
 });
+
+const backgroundEvidence = [
+  'Synthetic background fixture for layout verification.',
+  'This paragraph tests the saved catalogue-context field without making a biographical claim about the displayed reference.',
+  'Its six hundred characters must remain readable below the connection, including its punctuation, a longer phrase, and an exact closing sentence.',
+  'Opening Background should reveal the complete stored text; closing it should leave the interpretation unchanged.',
+  'Refreshing the archive or starting a new spread must not replace these words or request a new analysis.',
+  'This is constructed browser evidence, not a generated reading.',
+].join(' ');
+
+async function inspectBackground(page: Page) {
+  expect(backgroundEvidence).toHaveLength(600);
+  const details = page.locator('.tarot-character-evidence');
+  await expect(details).toHaveCount(1);
+  const row = page.locator('.tarot-character-connections li').filter({ has: details });
+  const connection = row.locator('.tarot-character-copy > p');
+  const originalConnection = await connection.textContent();
+  const summary = details.locator('summary');
+  await expect(summary).toHaveAccessibleName(`Background for ${references[0].name}`);
+  await summary.scrollIntoViewIfNeeded();
+  expect((await summary.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await expect(details).not.toHaveAttribute('open');
+  await expect(details.locator('p')).toBeHidden();
+  await summary.focus();
+  await summary.press('Enter');
+  await expect(details).toHaveAttribute('open');
+  await expect(details.locator('p')).toBeVisible();
+  expect(await details.locator('p').textContent()).toBe(backgroundEvidence);
+  expect(
+    await details.evaluate((element) => {
+      const box = element.getBoundingClientRect();
+      const prose = element.querySelector('p')!;
+      return (
+        element.scrollWidth <= element.clientWidth &&
+        prose.scrollHeight <= prose.clientHeight &&
+        box.left >= 0 &&
+        box.right <= innerWidth
+      );
+    }),
+  ).toBe(true);
+  await row.screenshot({
+    path: test.info().outputPath(`background-${page.viewportSize()!.width}.png`),
+  });
+  if (test.info().project.use.hasTouch) await summary.tap();
+  else await summary.click();
+  await expect(details).not.toHaveAttribute('open');
+  await expect(details.locator('p')).toBeHidden();
+  expect(await connection.textContent()).toBe(originalConnection);
+}
 
 async function inspectReferences(page: Page) {
   await expect(page.locator('.tarot-character-portrait img')).toHaveCount(6);
@@ -65,6 +116,7 @@ async function inspectReferences(page: Page) {
       }),
     ).toBe(true);
   }
+  await inspectBackground(page);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 }
 
@@ -146,6 +198,7 @@ for (const astrology of [false, true]) {
         characters: references.slice(index * 2, index * 2 + 2).map((reference) => ({
           name: reference.name,
           source: reference.source,
+          ...(reference.id === references[0].id ? { evidence: backgroundEvidence } : {}),
           connection:
             'Synthetic layout example: this reference checks the portrait, long identity label, and explanatory paragraph in a saved reading.',
         })),
@@ -183,6 +236,7 @@ for (const astrology of [false, true]) {
     expect(originalResponse.status()).toBe(200);
     expect(originalResponse.headers()['cache-control']).toContain('no-store');
     const originalSaved = await originalResponse.json();
+    expect(originalSaved.reading.cards[0].characters[0].evidence).toBe(backgroundEvidence);
     if (astrology) {
       await expect(page.getByRole('region', { name: 'Saved astrology reading' })).toBeVisible();
       await page.getByRole('button', { name: 'Hide charts', exact: true }).click();
@@ -256,6 +310,7 @@ for (const astrology of [false, true]) {
       ...originalSaved,
       can_resume: false,
     });
+    await inspectBackground(page);
     await page.evaluate(async () => {
       await document.fonts.ready;
       await Promise.all([...document.images].map((image) => image.decode().catch(() => {})));

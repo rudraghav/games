@@ -9,7 +9,6 @@ import time
 from typing import Literal
 from uuid import UUID, uuid4, uuid5
 
-import httpx
 from cryptography.fernet import Fernet
 from fastapi import HTTPException
 from pydantic import ValidationError
@@ -30,11 +29,14 @@ from app.games.registry import ENGINES
 from app.games.tarot.reading import (
     PROMPT_VERSION,
     Reading,
+    ReadingFailure,
     ReadingInput,
     ReadingLimitError,
     ReadingOutputError,
     ReadingView,
     generate_reading,
+    reading_available,
+    reading_failure,
 )
 from app.models import Match, Member, Message, Profile, Receipt, Room, TarotReading
 from app.rooms.bots import BOT_DELAY_SECONDS, BOT_NAMES, bot_delay, next_bot_view
@@ -525,8 +527,6 @@ class RoomService:
     def reading(
         self, actor: Identity, room_id: str, data: ReadingInput | None = None
     ) -> ReadingView:
-        if data:
-            self._rate(actor, "tarot-reading", 10, 3600)
         with self.session.begin():
             room = self._room(room_id, actor, lock=bool(data))
             match = self.repo.match(room.match_id)
@@ -545,25 +545,27 @@ class RoomService:
                 return ReadingView(
                     status="generating",
                     question=saved.question,
-                    message="Your personal reading is being written.",
+                    message="Writing your reading…",
                     astrology_chart=self._saved_astrology_chart(saved),
                 )
             if not data:
+                available = reading_available()
+                failure = self._saved_reading_failure(saved) if available else None
                 return ReadingView(
-                    status="ready" if settings().gemini_api_key else "unavailable",
-                    message="Personal readings are not configured yet."
-                    if not settings().gemini_api_key
-                    else "",
+                    status="failed" if failure else "ready" if available else "unavailable",
+                    message=failure.message if failure else "" if available else "Readings are unavailable.",
+                    failure=failure,
                     question=saved.question if saved else "",
                     astrology_chart=self._saved_astrology_chart(saved),
                 )
-            if not settings().gemini_api_key:
+            if not reading_available():
                 raise HTTPException(
-                    503, "Personal readings are not configured yet. Your cards are saved."
+                    503, "Readings are unavailable."
                 )
             match_id = match.id
             cards = [match.state["deck"][i] for i in match.state["picks"]]
             question = data.question.strip()
+            self._check_reading_retry(saved, question)
             astrology_chart = self._saved_astrology_chart(saved) if data.reuse_saved_astrology else None
             if data.reuse_saved_astrology and astrology_chart is None:
                 raise HTTPException(422, "No saved chart is available. Enter your birth details.")
@@ -581,6 +583,7 @@ class RoomService:
         # Sessions retain objects across commits, so discard the earlier snapshot
         # before locking again; another request may have rematched or retried.
         self.session.expire_all()
+        rate_failure = None
         with self.session.begin():
             room = self._room(room_id, actor, lock=True)
             if room.match_id != match_id:
@@ -591,8 +594,9 @@ class RoomService:
                                    reading=Reading.model_validate(saved.payload))
             if saved and saved.status == "generating" and saved.lease_until > time.time():
                 return ReadingView(status="generating", question=saved.question,
-                                   message="Your personal reading is being written.",
+                                   message="Writing your reading…",
                                    astrology_chart=self._saved_astrology_chart(saved))
+            self._check_reading_retry(saved, question)
             attempt = str(uuid4())
             if saved is None:
                 saved = TarotReading(match_id=match_id)
@@ -601,6 +605,17 @@ class RoomService:
             saved.attempt_id, saved.lease_until = attempt, time.time() + 180
             saved.prompt_version = PROMPT_VERSION
             saved.payload = {"astrology_draft": astrology_chart.model_dump(mode="json")} if astrology_chart else None
+            count = self.repo.rate(actor.id + ":tarot-reading", 3600)
+            if count > 10:
+                rate_failure = ReadingFailure(
+                    code="rate_limited", message="Reading limit reached.",
+                    retryable=True, retry_at=(int(time.time()) // 3600 + 1) * 3600,
+                )
+                saved.status = "failed"
+                saved.payload = {**(saved.payload or {}), "failure": rate_failure.model_dump(mode="json")}
+
+        if rate_failure:
+            raise HTTPException(429, rate_failure.message)
 
         # The provider call deliberately runs without a database transaction or row lock.
         def reserve_attempt() -> None:
@@ -616,6 +631,7 @@ class RoomService:
             else:
                 result = generate_reading(cards, question, before_attempt=reserve_attempt)
         except Exception as error:
+            failure = reading_failure(error)
             logging.getLogger("uvicorn.error").warning(
                 "games.ai.failure model=%s error_type=%s validation_errors=%s",
                 settings().tarot_model,
@@ -632,17 +648,10 @@ class RoomService:
                 saved = self.repo.reading(match_id)
                 if saved and saved.attempt_id == attempt:
                     saved.status = "failed"
-            if isinstance(error, ReadingLimitError):
-                raise HTTPException(
-                    429, "Today's personal reading limit has been reached. Your spread is saved."
-                ) from None
-            if isinstance(error, httpx.HTTPStatusError) and error.response.status_code == 429:
-                raise HTTPException(
-                    429, "The AI provider is at its current request limit. Your cards are saved; please try again later."
-                ) from None
-            raise HTTPException(
-                502, "Your reading could not be completed. Your cards are saved; please retry."
-            ) from None
+                    saved.payload = {**(saved.payload or {}), "failure": failure.model_dump(mode="json")}
+            status = (429 if failure.code in {"rate_limited", "daily_limit"}
+                      else 503 if failure.code == "unavailable" else 502)
+            raise HTTPException(status, failure.message) from None
         self.session.expire_all()
         with self.session.begin():
             room = self._room(room_id, actor, lock=True)
@@ -661,6 +670,26 @@ class RoomService:
             match.result = {"winners": [], "scores": {actor.id: 0}}
             room.status, room.revision = "finished", room.revision + 1
             return ReadingView(status="complete", question=question, reading=result)
+
+    @staticmethod
+    def _check_reading_retry(saved: TarotReading | None, question: str) -> None:
+        failure = RoomService._saved_reading_failure(saved)
+        if failure and failure.retry_at and failure.retry_at > time.time():
+            raise HTTPException(429 if failure.retryable else 503, failure.message)
+        if failure and failure.code == "blocked" and saved and question == saved.question:
+            raise HTTPException(422, failure.message)
+
+    @staticmethod
+    def _saved_reading_failure(saved: TarotReading | None) -> ReadingFailure | None:
+        if saved is None or saved.status != "failed":
+            return None
+        if isinstance(saved.payload, dict) and saved.payload.get("failure"):
+            failure = ReadingFailure.model_validate(saved.payload["failure"])
+            # Configuration can recover without rewriting a user's saved spread.
+            if failure.code == "unavailable" and failure.retry_at and failure.retry_at <= time.time():
+                return None
+            return failure
+        return ReadingFailure(code="temporary", message="Couldn't complete the reading.", retryable=True)
 
     @staticmethod
     def _saved_astrology_chart(saved: TarotReading | None) -> AstrologyChart | None:

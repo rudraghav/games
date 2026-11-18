@@ -329,12 +329,21 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
     assert response.status_code == expected_status
     assert f"error_type={'HTTPStatusError' if failure == 'quota' else 'ValueError'}" in caplog.text
     if failure == "quota":
-        assert "request limit" in response.json()["detail"]
+        assert response.json()["detail"] == "Reading limit reached."
     assert payload["question"] not in caplog.text + response.text
     assert "local-failure-test-key" not in caplog.text + response.text
     restored = client.get(path, headers=headers[0]).json()
     assert restored["game"]["community"] == room["game"]["community"]
     assert restored["game"]["phase"] == "reading"
+    status = client.get(path + "/reading", headers=headers[0]).json()
+    assert status["status"] == "failed"
+    assert status["failure"]["retryable"] is True
+    assert status["failure"]["code"] == ("rate_limited" if failure == "quota" else "temporary")
+    if failure == "quota":
+        assert status["failure"]["retry_at"] > time.time()
+        assert client.post(path + "/reading", headers=headers[0], json=payload).status_code == 429
+        after_cooldown = status["failure"]["retry_at"] + 1
+        monkeypatch.setattr("app.rooms.service.time.time", lambda: after_cooldown)
 
     def recover(cards, _question, *, before_attempt=None):
         from app.games.tarot.reading import validate_reading
@@ -347,6 +356,32 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
     recovered = client.post(path + "/reading", headers=headers[0], json=payload)
     assert recovered.status_code == 200 and recovered.json()["status"] == "complete"
     assert client.get(path + "/reading", headers=headers[0]).json() == recovered.json()
+
+
+def test_tarot_hourly_limit_survives_refresh_without_a_provider_call(client, monkeypatch):
+    room, headers = seated_room(client, "tarot", 1)
+    path = f"/v1/rooms/{room['id']}"
+    for index in range(3):
+        room = client.post(path + "/actions", headers=headers[0], json={
+            "match_id": room["match_id"], "action_id": str(uuid4()),
+            "expected_version": room["match_version"], "action": {"type": "pick", "choice": str(index)},
+        }).json()
+    monkeypatch.setattr(settings(), "gemini_api_key", "local-limit-test")
+    monkeypatch.setattr("app.rooms.service.generate_reading", lambda *_args, **_kwargs: pytest.fail("No provider call"))
+    key = hashlib.sha256((room["owner_id"] + ":tarot-reading").encode()).hexdigest()
+    window = int(time.time()) // 3600
+    with sessions()() as session, session.begin():
+        session.add(RateBucket(key=key, window=window, count=10))
+    payload = {"match_id": room["match_id"], "question": "A saved question"}
+    assert client.post(path + "/reading", headers=headers[0], json=payload).status_code == 429
+    saved = client.get(path + "/reading", headers=headers[0]).json()
+    assert saved["status"] == "failed" and saved["question"] == payload["question"]
+    assert saved["failure"]["code"] == "rate_limited"
+    assert saved["failure"]["retry_at"] == (window + 1) * 3600
+    assert client.post(path + "/reading", headers=headers[0], json=payload).status_code == 429
+    with sessions()() as session:
+        assert session.get(RateBucket, (key, window)).count == 11
+    assert client.get(path, headers=headers[0]).json()["game"]["community"] == room["game"]["community"]
 
 
 @pytest.mark.parametrize("budget_allows_retry", [True, False])

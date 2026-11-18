@@ -149,7 +149,8 @@ def test_failure_retains_only_private_computed_draft_for_explicit_resume_or_opt_
         result = client.post(path + "/reading", headers=owner, json={"match_id": room["match_id"], "astrology": ASTRO})
     assert result.status_code == 502
     ready = client.get(path + "/reading", headers=owner).json()
-    assert ready["status"] == "ready" and ready["astrology_chart"]
+    assert ready["status"] == "failed" and ready["astrology_chart"]
+    assert ready["failure"]["retryable"] is True
     with sessions()() as session:
         stored = json.dumps(session.get(TarotReading, room["match_id"]).payload)
     for secret in [ASTRO["birth_date"], ASTRO["birth_time"], CITY.label, "birth_date"]:

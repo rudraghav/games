@@ -14,6 +14,15 @@ Pop Tarot adds a solo 78-card modern pop-art deck and a three-card spread.
 Readings are AI-written around the selected cards and an optional personal
 question, with playful pop-culture analogies. The card system and AI contract
 remain reusable. No fabricated reading is shown when AI is unavailable.
+Readings can recover through another approved AI provider within one bounded
+request. Every provider must pass the same reading-quality checks. A concise
+failure state preserves the spread and offers Retry only when useful; request
+limits survive refresh, and checking for a lost response never submits again.
+The reading form names the services that may receive the question and chart.
+Reference connections may include a compact Background disclosure containing
+the exact catalogue context, stored separately from the generated reflection.
+The model cannot rewrite that evidence, and saved readings keep their original
+background even if the catalogue is later corrected.
 
 Pop Tarot is the home catalogue's featured game, occupying the first full-width
 row with its own card artwork and a clear Start reading action. It remains one
@@ -25,7 +34,7 @@ The server calculates planetary positions, angles, whole-sign houses and aspects
 before AI interpretation. Western is tropical; Vedic explicitly uses the
 Spica-anchored True Chitrapaksha convention. The saved private reading includes
 the chart and separate normal/quirky interpretations for the selected systems.
-Birth inputs are neither persisted with the reading nor sent to Gemini; only
+Birth inputs are neither persisted with the reading nor sent to AI providers; only
 computed placements are sent. Repeated/nonexistent local times require
 resolution rather than an invented chart. The experience remains reflective.
 

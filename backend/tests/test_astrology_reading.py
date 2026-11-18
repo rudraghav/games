@@ -172,6 +172,46 @@ def test_astrology_focus_points_are_grounded_in_each_exact_computed_chart(failur
         validate_reading(payload, CARDS, astrology_chart=chart)
 
 
+@pytest.mark.parametrize("system", ["western", "vedic", "both"])
+@pytest.mark.parametrize("degree_position", ["before_sign", "after_sign"])
+def test_decimal_degrees_do_not_split_computed_body_sign_house_anchor(system, degree_position):
+    chart = synthetic_chart(system)
+    payload = {**example_reading(CARDS), "astrology_interpretation": interpretation(system, chart)}
+    for current in chart.charts:
+        points = [next(point for point in current.placements if point.id == ident) for ident in ("moon", "mars")]
+        section = payload["astrology_interpretation"][current.system]
+        section["focus_points"] = [point.id for point in points]
+        section["normal"] = " ".join(
+            (f"{point.name} at {point.degree:.2f} degrees in {point.sign} in the {point.house}th house"
+             if degree_position == "before_sign" else
+             f"{point.name} in {point.sign} at {point.degree:.2f} degrees in house {point.house}")
+            + " invites reflection on one manageable priority."
+            for point in points
+        )
+    assert validate_reading(payload, CARDS, astrology_chart=chart).astrology.chart == chart
+
+
+@pytest.mark.parametrize("sun_text", [
+    "Sun at 13.32 degrees. Virgo in house 11 concerns shared plans.",
+    "Sun in Virgo at 13.32 degrees. House 11 concerns shared plans.",
+    "Sun at 13.32 degrees! Virgo in house 11 concerns shared plans.",
+    "Sun in Virgo at 13.32 degrees; house 11 concerns shared plans.",
+    "Sun in Virgo at 13.32. Mercury in house 11 concerns shared plans.",
+    "Sun at 13.32 degrees while Mercury in Virgo in house 11 concerns shared plans.",
+    "Sun in Virgo at 13.32 degrees while Mercury in house 11 concerns shared plans.",
+    "Sun at 13.32 degrees in Libra in house 11 concerns shared plans.",
+    "Sun in Virgo at 13.32 degrees in house 12 concerns shared plans.",
+])
+def test_decimal_degrees_do_not_relax_sentence_body_sign_or_house_boundaries(sun_text):
+    chart = grouped_anchor_chart()
+    payload = {**example_reading(CARDS), "astrology_interpretation": interpretation("vedic", chart)}
+    section = payload["astrology_interpretation"]["vedic"]
+    section["focus_points"] = ["sun", "moon"]
+    section["normal"] = sun_text + " Moon in Sagittarius in house 2 invites reflection on resources."
+    with pytest.raises(ValueError, match="computed body, sign and house"):
+        validate_reading(payload, CARDS, astrology_chart=chart)
+
+
 def grouped_anchor_chart():
     # Public synthetic date/location: Sun and Mercury share Virgo / house 11;
     # Moon is Sagittarius / house 2. No private birth details or provider calls.

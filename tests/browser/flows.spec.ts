@@ -240,7 +240,10 @@ test('Tarot reveals three distinct cards and survives a refresh', async ({ page 
     }
     await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
     await expect(
-      page.getByText(/Google may use questions and readings to improve its products/),
+      page.getByText(/may be sent to Google Gemini to write this reading/),
+    ).toBeVisible();
+    await expect(
+      page.getByText(/Google’s free tier may use questions and readings to improve its products/),
     ).toBeVisible();
     const names = await page.locator('.tarot-spread .tarot-name').allTextContents();
     expect(new Set(names).size).toBe(3);

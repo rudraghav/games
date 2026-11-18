@@ -31,7 +31,7 @@ function referenceArtwork(name: string, source: string) {
 
 test.skip(
   !process.env.GAMES_TEST_URL || process.env.GAMES_TEST_AI !== '1',
-  'Explicit hosted AI acceptance only; two generation submissions, up to four provider attempts.',
+  'Explicit hosted AI acceptance only; two generation submissions, up to six provider attempts.',
 );
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 
@@ -231,6 +231,8 @@ test('two independent live readings retain exact private archives after new spre
       expect(response.status()).toBe(200);
       const current: ReadingView = await response.json();
       expect(current.status).toBe('complete');
+      if (process.env.GAMES_TEST_TAROT_PROVIDERS)
+        expect(current.provider_names).toEqual(process.env.GAMES_TEST_TAROT_PROVIDERS.split(','));
       expect(current.question).toBe(question);
       expect(current.reading!.cards.map((card) => card.card_id)).toEqual(
         before.game!.community.map((card) => card.id),
@@ -301,6 +303,7 @@ test('two independent live readings retain exact private archives after new spre
             selectedReferences,
             readingSha256: readingHash,
             generationSubmissions: submissions.get(actor),
+            disclosedProviders: current.provider_names,
             archivedAfterRematchAndClosure: true,
           },
           null,

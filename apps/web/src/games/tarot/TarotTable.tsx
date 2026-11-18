@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react';
+import Link from 'next/link';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useReducedMotion } from 'motion/react';
 import { Sparkles, ArrowRight, ArrowUp, RotateCcw, Layers3 } from 'lucide-react';
@@ -13,6 +14,17 @@ import { TarotReading } from './TarotReading';
 import { AstrologyForm } from './AstrologyForm';
 
 const positions = ['Where you are', 'What is shifting', 'Your next move'];
+
+function readingErrorMessage(error: unknown) {
+  const status = error instanceof ApiError ? error.status : undefined;
+  if (status === 401) return 'Reconnect to continue.';
+  if (status === 403 || status === 404) return 'This spread is unavailable.';
+  if (status === 409) return 'This spread has changed.';
+  if (status === 422) return 'Check your question and birth details.';
+  if (status === 429) return 'Reading limit reached.';
+  return 'The reading couldn’t finish.';
+}
+
 export function TarotTable({ match, room, selfId, onAction, pending, imageLoader }: TableProps) {
   // The unsent question survives a refresh in this tab, for this spread only.
   const [questionDraft, setQuestion] = useTableDraft<string | null>(
@@ -27,6 +39,8 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const [deckFocus, setDeckFocus] = useState(0);
   const [drawnNote, setDrawnNote] = useState('');
   const [fresh, setFresh] = useState<number | null>(null);
+  const [recovering, setRecovering] = useState(false);
+  const [clockNow, setClockNow] = useState(() => Date.now() / 1000);
   const localPick = useRef(false);
   const reduced = useReducedMotion();
   const slots = useRef<(HTMLDivElement | null)[]>([]);
@@ -55,8 +69,15 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
       cache.setQueryData(queryKey, result);
       void cache.invalidateQueries({ queryKey: keys.room(room.id) });
     },
-    onError: () => {
-      void cache.invalidateQueries({ queryKey });
+    onError: async (error) => {
+      setRecovering(true);
+      try {
+        if (error instanceof ApiError && error.status === 409)
+          await cache.invalidateQueries({ queryKey: keys.room(room.id) });
+        await cache.invalidateQueries({ queryKey });
+      } finally {
+        setRecovering(false);
+      }
     },
   });
   // A solo reading starts its next spread in one tap: ready, then start, as room creation does.
@@ -69,13 +90,65 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
     onError: () => void cache.invalidateQueries({ queryKey: keys.room(room.id) }),
   });
   const reading = saved.data?.reading;
-  const writing = generate.isPending || saved.data?.status === 'generating';
+  const writing = (generate.isPending && !recovering) || saved.data?.status === 'generating';
+  const checking = !reading && (recovering || saved.isPending || saved.isFetching);
   const unavailable = saved.data?.status === 'unavailable';
+  const failure = saved.data?.failure ?? undefined;
+  const changedBlockedQuestion =
+    failure?.code === 'blocked' && question.trim() !== (saved.data?.question || '').trim();
+  const activeFailure = changedBlockedQuestion ? undefined : failure;
+  const retryAt = activeFailure?.retry_at ?? undefined;
+  const coolingDown = retryAt !== undefined && retryAt > clockNow;
+  const recheckAvailability = activeFailure?.code === 'unavailable';
+  const checkReadingStatus = saved.refetch;
+  useEffect(() => {
+    if (retryAt === undefined || retryAt <= clockNow) return;
+    const timer = window.setTimeout(
+      () => {
+        const now = Date.now() / 1000;
+        setClockNow(now);
+        if (recheckAvailability && now >= retryAt) void checkReadingStatus();
+      },
+      Math.min(2147483647, Math.max(0, retryAt * 1000 - Date.now())),
+    );
+    return () => window.clearTimeout(timer);
+  }, [retryAt, clockNow, recheckAvailability, checkReadingStatus]);
+  const providers = saved.data ? (saved.data.provider_names ?? ['Google Gemini']) : [];
+  const providerLabel = new Intl.ListFormat('en', { type: 'disjunction' }).format(providers);
+  const clientStatus = generate.error instanceof ApiError ? generate.error.status : undefined;
+  const clientRetryable =
+    !generate.error || clientStatus === undefined || clientStatus === 408 || clientStatus >= 500;
+  const retryReading =
+    !!activeFailure?.retryable ||
+    (!failure && (saved.data?.status === 'failed' || (!!generate.error && clientRetryable)));
+  const statusError = saved.isError ? saved.error : undefined;
+  const accessStatus =
+    statusError instanceof ApiError ? statusError.status : !failure ? clientStatus : undefined;
+  const statusMessage =
+    checking || writing
+      ? ''
+      : statusError
+        ? accessStatus && [401, 403, 404].includes(accessStatus)
+          ? readingErrorMessage(statusError)
+          : 'Couldn’t check your reading.'
+        : activeFailure
+          ? activeFailure.message
+          : unavailable
+            ? saved.data?.message || 'Readings are unavailable.'
+            : !changedBlockedQuestion && generate.error
+              ? readingErrorMessage(generate.error)
+              : saved.data?.status === 'failed' && !changedBlockedQuestion
+                ? saved.data.message || 'The reading couldn’t finish.'
+                : '';
   const cannotGenerate =
     writing ||
+    checking ||
     !saved.data ||
     saved.isError ||
     unavailable ||
+    (!!activeFailure && !activeFailure.retryable) ||
+    coolingDown ||
+    (!failure && !clientRetryable) ||
     room.paused ||
     (!!astrology && !chart);
   const drawn = match.community.length;
@@ -216,7 +289,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
         {drawAgain ? <div className="tarot-intro-actions">{drawAgain}</div> : null}
         {again.error ? (
           <p className="error-note" role="alert">
-            A new spread could not start. {again.error.message}
+            Couldn’t start a new spread.
           </p>
         ) : null}
       </div>
@@ -295,28 +368,6 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
       <p className="sr-only" role="status" aria-live="polite">
         {pending ? 'Saving your card…' : drawnNote}
       </p>
-      {drawn === 3 && (saved.isPending || saved.isError) ? (
-        <div className="tarot-load-state">
-          {saved.isError ? (
-            <>
-              <p className="error-note" role="alert">
-                We couldn’t check your saved spread. Try again to continue.
-              </p>
-              <Button
-                variant="secondary"
-                pending={saved.isFetching}
-                onClick={() => void saved.refetch()}
-              >
-                Try again
-              </Button>
-            </>
-          ) : (
-            <p className="small muted" role="status">
-              Checking your saved spread…
-            </p>
-          )}
-        </div>
-      ) : null}
       {match.phase === 'choosing' ? (
         <>
           {drawn ? (
@@ -357,9 +408,12 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
               rows={3}
               placeholder="What would you like to reflect on?"
               value={question}
-              aria-describedby="tarot-data-use"
-              onChange={(event) => setQuestion(event.target.value)}
-              disabled={writing}
+              aria-describedby={providers.length ? 'tarot-data-use' : undefined}
+              onChange={(event) => {
+                setQuestion(event.target.value);
+                if (!generate.isPending && clientStatus === 422) generate.reset();
+              }}
+              disabled={writing || recovering}
             />
           </label>
           <AstrologyForm
@@ -369,10 +423,11 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
             onChange={(next) => {
               setAstrology(next);
               setAstrologyChoice(next ? 'new' : 'off');
+              if (!generate.isPending && clientStatus === 422) generate.reset();
             }}
             chart={chart}
             onChartChange={setChart}
-            disabled={writing}
+            disabled={writing || recovering}
             savedChart={saved.data?.astrology_chart || null}
             reuseSaved={reuseSavedAstrology}
             onUseSaved={() => {
@@ -381,41 +436,68 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
               setAstrologyChoice('auto');
             }}
           />
-          <p className="small muted" id="tarot-data-use">
-            Your question, chosen cards and any included calculated chart are sent to Google Gemini
-            to write this reading.
-            {saved.data?.api_tier === 'free'
-              ? ' This version uses the free tier: Google may use questions and readings to improve its products. Keep your question non-sensitive.'
-              : null}
-          </p>
-          {unavailable && saved.data?.message ? (
-            <p className="tarot-reading-status" role="status">
-              {saved.data.message} Your three cards are saved.
+          {providers.length ? (
+            <p className="small muted" id="tarot-data-use">
+              Your question, chosen cards and any included calculated chart may be sent to{' '}
+              {providerLabel} to write this reading.
+              {saved.data?.api_tier === 'free'
+                ? providers.includes('Google Gemini')
+                  ? ' Google’s free tier may use questions and readings to improve its products. Keep your question non-sensitive.'
+                  : ' Keep your question non-sensitive.'
+                : null}
+            </p>
+          ) : null}
+          {statusMessage ? (
+            <p className="error-note" role={unavailable ? 'status' : 'alert'}>
+              {statusMessage}
+              {coolingDown && activeFailure?.retryable && retryAt !== undefined
+                ? ` Try again ${new Intl.DateTimeFormat('en', {
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                  }).format(new Date(retryAt * 1000))}.`
+                : null}
             </p>
           ) : null}
           <div className="tarot-submit">
-            <Button type="submit" size="lg" pending={writing} disabled={cannotGenerate}>
-              {!writing ? <Sparkles size={17} /> : null}
-              {writing ? 'Writing your reading…' : 'Read my cards'}
-              {!writing ? <ArrowRight size={17} /> : null}
-            </Button>
+            {accessStatus === 401 ? (
+              <Link href="/profile" className="button button--secondary button--lg">
+                Open profile
+              </Link>
+            ) : accessStatus === 403 || accessStatus === 404 ? (
+              <Link href="/" className="button button--secondary button--lg">
+                Back to games
+              </Link>
+            ) : saved.isError ? (
+              <Button
+                type="button"
+                size="lg"
+                pending={saved.isFetching}
+                onClick={() => void saved.refetch()}
+              >
+                Check status
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                size="lg"
+                pending={writing || checking}
+                disabled={cannotGenerate}
+                aria-live="polite"
+              >
+                {!writing && !checking ? <Sparkles size={17} /> : null}
+                {writing
+                  ? 'Writing your reading…'
+                  : checking
+                    ? 'Checking status…'
+                    : retryReading
+                      ? 'Retry reading'
+                      : 'Read my cards'}
+                {!writing && !checking ? <ArrowRight size={17} /> : null}
+              </Button>
+            )}
           </div>
-          {writing ? (
-            <p className="tarot-reading-status" role="status">
-              Writing your reading. This can take a minute or two; your cards are saved.
-            </p>
-          ) : saved.data?.message && !unavailable ? (
-            <p className="small muted" role="status">
-              {saved.data.message}
-            </p>
-          ) : null}
-          {generate.error ? (
-            <p className="error-note" role="alert">
-              {generate.error instanceof ApiError && generate.error.status >= 500
-                ? 'Your reading could not be completed. Your cards are saved; please try again.'
-                : generate.error.message}
-            </p>
-          ) : null}
         </form>
       )}
       <p className="tarot-footnote">

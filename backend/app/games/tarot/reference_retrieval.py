@@ -14,6 +14,14 @@ from app.games.tarot.semantic_encoder import FloatMatrix, encoder
 
 ROOT = Path(__file__).parent
 INDEX_VERSION = "tarot-reference-retrieval-1"
+# Reviewed eligibility for new comparisons only. Canonical identities, artwork
+# and indexed rows remain available to resolve saved historical readings.
+NEW_READING_EXCLUSIONS = {
+    "bohdan-khmelnytsky-q203808": (
+        "Reviewed source context consists of massacres, enslavement and attempted "
+        "eradication; unsuitable as a personal reflective comparison."
+    ),
+}
 ROLE_CONTEXTS = (
     "The present situation: notice the current tension, competing needs and what deserves attention.",
     "What is shifting: a transition, changed perspective, letting go or learning a different response.",
@@ -164,9 +172,12 @@ def rank_candidates(
             # Stable tiny near-tie variation, not a random pool that ignores meaning.
             tie = hashlib.sha256(seed + card_id.encode() + reference["id"].encode()).digest()
             relevance[index] += int.from_bytes(tie[:2]) / 65535 * 0.008
-        order = np.argsort(-relevance, kind="stable")
-        meme_pool = set(int(index) for index in order[:12])
-        pool = [int(index) for index in order[:180]]
+        # Filter the shared ranked order before either the bounded or expanded
+        # candidate pool is built; fallback must not reintroduce reviewed holds.
+        order = [int(index) for index in np.argsort(-relevance, kind="stable")
+                 if references[int(index)]["id"] not in NEW_READING_EXCLUSIONS]
+        meme_pool = set(order[:12])
+        pool = order[:180]
         choices: list[dict] = []
         categories: Counter[str] = Counter()
         sources: Counter[str] = Counter()
@@ -177,7 +188,7 @@ def rank_candidates(
                         and references[index]["id"] not in used_ids
                         and (references[index].get("identityFamily") or references[index]["id"]) not in used_families]
             if not eligible:
-                pool = [int(index) for index in order]
+                pool = order[:]
                 eligible = [index for index in pool if (not meme_selected or references[index].get("kind") != "meme")
                             and (references[index].get("kind") != "meme" or index in meme_pool)
                         and references[index]["name"].casefold() not in used_names

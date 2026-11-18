@@ -1,11 +1,26 @@
 # Free hosted inference options for Tarot
 
 Verified on **18 November 2026** against official provider documentation. The
-initial documentation-only research below created no accounts or inference
-requests. A subsequent authorized comparison tested Groq and Cloudflare on
-verified free accounts; **neither met the current Tarot acceptance requirements**.
-The results are recorded at the end of this document. Other listed options remain
-research candidates. Production Gemini and its free plan remain unchanged.
+user subsequently requests automatic model fallback and model-specific prompt
+improvements. The original comparison below rejected particular configurations,
+not either provider permanently. The revised Groq Qwen profile passes all four
+ordinary reading cases, using exact catalogue backgrounds and generated reflective
+questions. A separate medium-reasoning Western reading passes after correcting
+an app validator that mistook decimal degrees for sentence boundaries. Its
+original failed receipt is preserved and the unchanged output is revalidated
+offline. Vedic/Both still fail quality or structure checks. The release selects
+Gemini first, with Groq approved only for ordinary and Western readings;
+Cloudflare remains disabled. This is a small fixed-case acceptance sample, not
+a guarantee that every generated reading will succeed. Billing remains free.
+
+The new recovery implementation supports an explicit provider order and approved
+reading modes, one shared deadline and attempt budget, and concise persistent
+failure states. Keys alone never enable an alternative. Eligibility requires
+actual reading review as well as structured-output validation. Current outcomes
+are recorded in the [evaluation receipt](evidence/tarot-expansion-2026-11-17/free-provider-evaluation.md).
+
+The original research created no accounts or inference requests; later comparisons
+used verified free accounts. Other listed services remain research candidates.
 
 The acceptance requirement is a complete private Tarot reading: three ordered
 cards, grounded references, normal and imaginative interpretations, and optional
@@ -89,7 +104,7 @@ Gemini evaluation does not establish any other model's quality. Provider limits,
 availability and model catalogues can change; refresh these primary sources
 before implementation.
 
-## Observed comparison and decision — 18 November 2026
+## Initial comparison and historical decision — 18 November 2026
 
 Both accounts were confirmed locally as free plans, with credentials kept private.
 The evaluation used the unchanged `pop-tarot-11` prompt, supplied reference facts,
@@ -116,9 +131,10 @@ the unused allowance. Groq Vedic/Both were not run at low effort; Western/Vedic/
 were not run at medium effort. Cloudflare medium grief/Both were not run after the
 placeholder failure. These are explicit evidence gaps, not inferred prose failures.
 
-**Neither tested configuration is adopted for the current contract.** This does
+**Neither initial configuration was adopted for the contract.** This does
 not reject either provider or model for other tasks. No production provider,
 model, billing tier or saved-reading behavior changed. Continue the selected free
-Gemini verification after its quota reset; no further alternative-provider calls
-are required for this comparison. See the [evaluation receipt](evidence/tarot-expansion-2026-11-17/free-provider-evaluation.md)
+Gemini verification after its quota reset; that initial comparison is closed.
+The subsequent model-specific comparison is summarized above. See the
+[evaluation receipt](evidence/tarot-expansion-2026-11-17/free-provider-evaluation.md)
 for transport, validation and editorial distinctions.

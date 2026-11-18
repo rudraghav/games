@@ -1,3 +1,127 @@
+## 2026-11-18 — Provider recovery release candidate
+
+- The bounded comparison closes at 41 direct alternative attempts: 25 Groq and
+  16 Cloudflare. Four ordinary Qwen cases pass with minor editorial concerns.
+  Medium-effort Western is accepted after fixing decimal degrees being treated
+  as sentence endings; the unchanged saved output passes offline revalidation,
+  with its original failure preserved. Fifteen boundary tests retain rejection
+  of wrong signs/houses, other-body spans and true sentence breaks.
+- Release configuration: Gemini primary, Groq Qwen backup for ordinary and
+  Western readings only. Groq Vedic/Both produce placeholders, length failures
+  or unsupported connections, and Cloudflare does not pass mode acceptance.
+  Those modes stay disabled; no further direct evaluation calls are planned.
+  Free plans, the global budget and strict output validation remain in place.
+- Final stable report verify-603160ca5d2a42538f56e174e3614445 passes 244 UI and
+  6946 backend tests, types/lint/build and contracts. The earlier stable full
+  gate also passes 183 persistence/privacy and 44 tooling checks. Responsive
+  recovery covers 95 applicable Chromium and 8 phone WebKit cases; Background
+  and new-spread retry checks pass separately. All local task rooms are closed.
+- Runtime fingerprint 76c9393f0c9bda82998ec4606b8d265c22dfe9d4e8b937f9d7398afe5d172626
+  binds 6177 runtime files. Subsequent edits are documentation only. Main push,
+  exact production configuration readback, one deployment and actual hosted
+  mobile reading/archive/log/owner-preservation checks are the remaining steps.
+
+## 2026-11-18 — Astrology fallback diagnostic and release gate
+
+- The final evidence-3 Qwen profile passes all four ordinary scenarios with
+  minor editorial concerns. Western fails length/anchor requirements; Vedic
+  fails question structure and includes a mismatched named reference. Both
+  receives a token-limit response, so its prose quality remains unassessed.
+  All 38 alternative attempts remain accounted (22 Groq, 16 Cloudflare).
+- Test one separately bounded astrology configuration: Qwen medium reasoning,
+  hidden reasoning output, the same 4096-token cap and evidence-3 contract,
+  with two supplied candidates per card to leave more free-plan token room.
+  The provider documents medium effort; the previous approximate token estimate
+  is not proof of actual quota accounting. No facts, length limits or validation
+  are relaxed. Ordinary requests remain unchanged. This phase permits at most
+  three additional direct attempts (41 cumulative, 25 Groq), including failures.
+  Western must pass before Vedic/Both; failed modes remain disabled.
+- Stable report verify-1b60219c9f764977bc0d856b4025ebe0 passes 244 frontend,
+  6898 backend, 183 persistence/privacy and 44 tooling tests plus generated
+  contracts. The new Background disclosure passes phone Chromium/WebKit and
+  13.13:1 measured text contrast. A subsequent one-line rematch error cleanup
+  passes two existing desktop/phone retry cases, types, lint and formatting.
+- Production remains unchanged. Complete the bounded comparison, approve only
+  supported modes, push the reviewed tree, deploy once and verify real mobile
+  readings, archives, provider logs and owner-data preservation.
+
+## 2026-11-18 — Deterministic reference evidence follow-up
+
+- Qwen's first candidate returns valid structure in2.374s but still changes a
+  supplied biography's chronology. Instead of relying on stronger paraphrasing
+  instructions, split trusted reference background from generated reflection.
+  New optional CharacterConnection.evidence copies the selected supplied context
+  exactly (all5636 catalogue contexts are1–600 characters), validates the binding
+  and preserves it in saved history. Gemini's accepted request schema remains
+  byte-identical; old readings omit the new field and remain readable.
+- Acceptance: model cannot author/replace evidence; references stay in the exact
+  supplied per-card shortlist; legacy/archived readings remain unchanged; the
+  phone disclosure is compact, accessible and supports600 characters without
+  overflow. The new Qwen profile asks reflective questions and leaves factual
+  background to the app. All existing identity/chart/length checks remain.
+- Bound this distinct evidence-contract comparison to38 cumulative alternative
+  attempts,24 per provider, with previous profile ceilings/receipts preserved.
+  At29 used, nine remain: seven required scenarios and two diagnosed recovery
+  attempts. Free accounts and billing remain unchanged; no additional production
+  model is enabled before actual prose acceptance. No production mutation yet.
+- Seven new exact-evidence checks and69 existing Gemini/astrology checks pass.
+  Fresh request comparison reproduces the accepted Gemini grief SHA exactly.
+  Generated OpenAPI/types are updated; UI and new profile verification continue.
+
+## 2026-11-18 — Provider recovery local gate and model-specific checks
+
+- Automatic recovery now shares one105-second deadline and at most3 transmissions
+  across explicitly approved providers; every transmission consumes its own
+  application budget reservation. Saved failures preserve the question/spread/
+  computed chart, with concise Retry reading, Check status and cooldown states.
+  Generic terminal/empty responses offer recovery; only explicit machine-coded
+  policy refusals block alternate routing. Caller cancellation propagates.
+- Stable report verify-a46d4a470a0a4fcdba4c342c85d6fe49 passes243 frontend,
+  6711 backend,183 persistence/privacy,44 tooling tests and generated contracts.
+  The later classification fix passes154 focused checks without changing prompts,
+  request builders or the shared validator. Browser recovery regression continues.
+- Gemini's first two post-reset checks time out. A later pop-tarot-11 grief
+  reading succeeds in24.56s and passes root plus independent editorial review;
+  Vedic-learning again times out90s.76/80 Gemini attempts are accounted, leaving
+  four hosted/recovery attempts. No timeout is recorded as prose acceptance.
+- Alternative comparison reaches27 cumulative attempts. Compact Cloudflare grief
+  improves, but blank contains an unsupported fact and other modes fail exact
+  validation. Groq high/4096 fails output formatting; medium/4096 completes but
+  fails sensitive-tone review. A smaller shortlist with more high-effort output
+  room is being prepared within the same free-only35-attempt comparison ceiling.
+- Main remains095b0fc; these recovery changes are local. Production65de797,
+  model settings, billing and owner data remain unchanged. Production release,
+  actual hosted mobile readings and final preservation/log checks remain pending.
+- Responsive regression covers95 applicable Chromium cases and8 new phone
+  WebKit recovery cases, with one intentional desktop skip. The initial two
+  stale privacy-copy assertions are fixed and both reruns pass; all other
+  affected files retain their before/after hashes. Browser types/formatting pass.
+  All87 owned local rooms are closed with zero active memberships. Existing
+  outputs are restored exactly; task browsers exit and3217/8217/6105 stay healthy.
+  Cleanup reclaims30,630,235bytes of superseded browser output;58,738,169bytes
+  of current proof remain under output/playwright/tarot-release-browser-20261118.
+
+## 2026-11-18 — Bounded provider fallback and actionable errors kickoff
+
+- User extends the pending release: automatically use an alternate model after
+  eligible provider failures, retry within explicit limits, and present concise
+  actionable error messages with Retry only when another attempt can help.
+  Re-evaluate alternative providers with model-specific prompt/format profiles;
+  earlier rejected configurations do not establish that a provider is unusable.
+- Acceptance: exact card/reference/chart validation remains shared; no silent
+  unsafe/placeholder fallback; total attempt/deadline and application budgets
+  include every provider. Quota/auth failure must not repeatedly hit that same
+  provider. Preserve the saved spread/question/chart and private archive flow.
+  Test fallback, exhaustion, cancellation/deadline, privacy and actual mobile CTA.
+- Keep existing free accounts and no paid routing. Bound the new
+  comparison of at most20 additional synthetic alternative-provider attempts
+  (35 cumulative), stopping weak profiles early; preserve all earlier receipts.
+  Enable only profiles whose actual prose/contract checks pass. Production
+  deployment waits for this added behavior and its relevant verification.
+- At08:01UTC the two already-reserved Gemini pop-tarot-11 checks begin after
+  quota reset. GitHub App source access is verified for Games; project linknull
+  and current production65de797 remain unchanged. Main095b0fc is clean at kickoff.
+
 ## 2026-11-18 — Safari-engine verification and release-access checkpoint
 
 - Safari harness changes are pushed asdd1ec70. A final live-test review also

@@ -22,3 +22,9 @@ versions from `uv.lock`. The small public model and precomputed reference index
 are bundled under the Tarot module and loaded only on demand. Production never
 downloads weights or sends questions to an embedding provider. See the module
 README for corpus/model integrity and offline relevance checks.
+
+Tarot generation routes only through configured, quality-approved provider modes.
+The shared local validator remains authoritative across Gemini, Groq and Cloudflare;
+the alternative wire adapter restores trusted IDs instead of trusting copied names.
+Fallbacks share the generation deadline and daily budget. Safe failure metadata in
+the existing private reading payload preserves cooldown/retry behavior across refresh.

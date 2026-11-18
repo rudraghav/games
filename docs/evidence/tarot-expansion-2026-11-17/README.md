@@ -2,15 +2,22 @@
 
 ## Current source status — 18 November 2026
 
-Provider repairs and tighter mobile spacing pass local checks. The candidate uses
-Hydrogen/low, bounded overload recovery, explicit quota messaging and full reasoning
-token accounting. The final attribution/uncertainty wording still needs two real
-prose checks: Gemini reports its20-request free daily limit, resetting around
-08:00UTC/13:30IST today. Production remains65de797; no production configuration
-or deployment change has occurred. See [analysis evidence](analyses.md) and the
-latest root progress entry for exact accepted/pending cases and verification reports.
-Application5dba29d is now on main. The user explicitly keeps the free tier and
-requests completion after reset; resume no earlier than08:01UTC/13:31IST today.
+Provider repairs, the full-row featured Tarot and tighter mobile spacing are
+pushed through095b0fc. The user subsequently adds automatic alternate-model
+recovery, bounded retries and concise actionable failures. Those changes are
+implemented locally, with the same strict reading validator and explicit
+per-provider mode approval; keys alone do not enable an alternative model.
+
+The final frontend/backend/contracts gate passes244 frontend and6946 backend
+tests, types/lint/build and generated contracts. The unchanged persistence and
+workflow paths also passed183 and44 tests. Recovery checks cover95 applicable
+Chromium and8 phone WebKit cases; separate Background and new-spread retry checks
+pass. Groq Qwen is accepted for ordinary and Western backup only; its Vedic/Both
+and Cloudflare modes remain disabled. The41-request alternative comparison is
+closed without changing billing. See [analysis evidence](analyses.md),
+[alternative-provider evidence](free-provider-evaluation.md) and root progress
+for exact acceptance boundaries. Production remains65de797 with its original
+provider settings; no production configuration or deployment change has occurred.
 
 ## Original expansion scope
 
@@ -62,7 +69,7 @@ focused crops retain the original subject. Group entities cannot masquerade as
 one individual. Editorial exclusions and identity repairs remain in the audit. Historical paintings and
 statues are depictions, not asserted lifetime photographs.
 
-## Release preparation
+## Historical release preparation
 
 The production target remains the dedicated personal Games project. A fresh alias
 readback confirms the baseline deployment. Existing owner identity/profile/rooms

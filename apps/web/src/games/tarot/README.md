@@ -9,8 +9,8 @@
 - After a committed pick, the filled slot scrolls into view, takes focus and briefly highlights, and a polite live region says “You drew <card> for <position>.” A refresh starts from the saved spread without replaying a reveal. On phones a “Choose card N of 3” button below the spread returns to the deck. The public activity line still never names the card.
 - Spread position labels and card names are at least 11px and meanings 12px at every width.
 - The unsent question is a `useTableDraft` scoped to room and match, so it survives a refresh in that tab and never carries into the next spread; it clears when a reading is saved. Birth fields remain memory-only.
-- Loading the saved spread has a visible status; a failed read offers a GET-only retry and keeps generation disabled until authoritative state returns. Paused/offline rooms cannot submit readings.
-- While a reading is being written, or when readings are unavailable, the reason sits next to the button. Writing can take a minute or two; the saved cards remain available.
+- Loading the saved spread shows “Checking status…”; a failed read offers only “Check status”, a GET, and generation stays disabled until authoritative state returns. Paused/offline rooms cannot submit readings.
+- Writing and internal fallback share one “Writing your reading…” action state. A failed request first checks whether a reading was saved; only then can the same primary action become “Retry reading”. One concise failure message sits beside it.
 
 ## After the reading
 
@@ -44,6 +44,19 @@ Birth fields exist only in component memory. They are never query keys, URLs, br
 
 A failed or interrupted reading can return `astrology_chart`, containing only the computed chart. Refresh restores that chart without restoring birth fields. Retry sends `reuse_saved_astrology`; choosing off sends an ordinary reading request. Completed readings retain their saved interpretation and chart. Room/match identity keys reset ephemeral form state on rematch.
 
+The authoritative `failure` response carries a safe code, short message,
+`retryable` flag and optional `retry_at` epoch time. Its policy survives refresh.
+Quota cooldowns keep generation disabled, including after question edits; expiry
+only enables the button and never submits. An unavailable service offers no Retry;
+its server-supplied recheck time permits only a GET availability check. A blocked
+question permits a fresh request only after a non-whitespace question change.
+Session/access failures use existing profile/back navigation. Client transport
+errors never display raw provider/browser messages or trigger automatic POSTs.
+
+The form names the server's configured `provider_names` before submission; model
+names and credentials are not exposed. The Google free-tier data-use sentence is
+shown only when Google Gemini is among those providers and the tier is free.
+
 ## Verification and fixtures
 
 `tests/browser/tarot-astrology.spec.ts` exercises actual local rooms with intercepted provider/location/calculation responses: ordinary readings, required fields, both diagrams, each planet’s pointer target at 320px, keyboard inspection, saved reload/hide, stale requests, location errors, daylight-saving decisions and failed-chart reuse/opt-out. `GAMES_ASTROLOGY_LIVE=1` additionally uses the real location service and local server calculator while still intercepting AI generation. Never run this synthetic harness against production.
@@ -51,6 +64,11 @@ A failed or interrupted reading can return `astrology_chart`, containing only th
 `astrology-presentation.test.tsx` covers angle formatting, crowded-label anchor conservation, calculated data tables and legacy reading compatibility. Seven Storybook stories cover each chart, both charts, optional-off, saved, recovered and pending states (the synthetic chart fixture is imported without an import attribute, which Storybook's bundler rewrote into a crashing `assert`). At 480px and below the Western wheel breaks out of the nested card padding to nearly the full screen width, with larger house numbers and glyphs.
 
 `tests/browser/tarot-table.spec.ts` covers the reveal, roving deck focus, refresh mid-spread, the saved question draft, the pinned deck filter and (with constructed responses, no reading request) the one-tap new spread and phone credits. It also verifies solo setup/menu controls, DOM deck order and saved-spread GET error recovery without generation.
+
+The astrology suite also holds a recovery GET open to reject duplicate submits,
+checks both quota cooldowns across reload with a saved chart, proves time expiry
+does not POST, distinguishes edited blocked questions, and checks unavailable
+service recovery through GET only. All reading/provider responses are intercepted.
 
 Fixtures are synthetic: J2000 noon at Greenwich and a New York daylight-saving calculation. Positions were produced by the backend calculator. Interpretation layout examples explicitly say “Synthetic layout example”; they are not a production fallback. Retained visual and verification evidence is in `docs/evidence/tarot-astrology-2026-11-02`.
 
@@ -113,6 +131,12 @@ Icon controls have accessible names and native hover hints.
 
 On phones a portrait and subject name share one row, followed by a full-width
 connection paragraph. Wider meme/artwork scenes keep their complete composition.
+When a saved connection includes catalogue evidence, a closed native Background
+disclosure follows that paragraph. It preserves the exact supplied text, uses
+the existing 44px disclosure target and does not add another card or border.
+Earlier readings without evidence retain their original presentation. The archive
+browser fixture checks 600-character text, keyboard/touch disclosure, narrow
+wrapping, refresh and room closure without generation.
 The astrology form uses a divider within the question box rather than a second
 padded box. Saved astrology uses a section divider, a full-row show/hide control
 on narrow phones, and expandable calculation details. Main reading/new-spread

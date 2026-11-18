@@ -30,6 +30,22 @@ The historical 81 visual exclusions were reconciled individually: six had alread
 
 Source contexts use concrete public work, documented story events or named religious symbolism. Full article introductions remain in the ignored cache; published contexts are bounded to 100 words/600 characters with revision/source URLs and attribution. The extractor keeps complete sentences within paragraphs, excludes unsupported warning-marked claims and first-person praise, and avoids namesake paragraphs. Editorial paraphrases and primary museum/university facts are labelled separately from verbatim Wikipedia excerpts. Seven conservative-extractor exceptions were manually summarized from the complete source introductions. Rich context stays server-side; the browser registry contains only display identity and image credit metadata.
 
+### New-reading eligibility review — 18 November 2026
+
+Two grief-reading reviews found `bohdan-khmelnytsky-q203808` in the automatic
+shortlist. Its exact supplied [source context](https://en.wikipedia.org/wiki/Bohdan_Khmelnytsky?oldid=1382885958)
+consists of massacres, enslavement and attempted eradication, making it unsuitable
+as a personal reflective comparison under the library's editorial exclusions.
+The reviewed ID is now in `reference_retrieval.NEW_READING_EXCLUSIONS`, applied
+before both ordinary and expanded fallback candidate pools. This decision does
+not generalize to historical references through a violence-keyword filter.
+
+The 5,636-entry canonical catalogue, exact image, identity lookup and all vector
+rows remain intact; existing saved readings are preserved. Focused tests force
+the excluded entry to lead both primary and fallback rankings while proving it
+cannot be selected, and check canonical/index alignment. New candidate/request
+hashes change; the earlier catalogue/index hashes and historical evidence do not.
+
 ### Image treatment and honest provenance
 
 Most images are exact source-linked photographs, role stills, illustrations, historical depictions or named statues. Where no authenticated likeness survives, a clear attributed historical depiction can be used without claiming photographic authenticity. Verified artworks may represent artists such as Banksy when no portrait is appropriate; these have explicit artwork titles and institutional attribution links. Generated symbolic illustrations are labelled as original illustrations, never surviving or authenticated faces. Native originals remain preserved, and exact generation prompts and hashes are in [additional historical illustration prompts](additional-historical-illustration-prompts.json), the root historical prompt record, and the relevant music/religious review records.

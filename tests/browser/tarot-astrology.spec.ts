@@ -224,7 +224,20 @@ async function capture(page: Page, name: string) {
 }
 
 test('ordinary Tarot stays optional and preserves all three reading layers', async ({ page }) => {
-  await withReading(page, async ({ requests }) => {
+  await withReading(page, async ({ requests, setView }) => {
+    setView({
+      status: 'ready',
+      reading: null,
+      api_tier: 'paid',
+      question: '',
+      message: '',
+      provider_names: ['Google Gemini', 'Groq', 'Cloudflare'],
+    });
+    await page.reload();
+    await expect(page.locator('#tarot-data-use')).toContainText(
+      'Google Gemini, Groq, or Cloudflare',
+    );
+    await capture(page, 'configured-reading-providers');
     await expect(page.getByRole('checkbox', { name: 'Include astrology' })).not.toBeChecked();
     await expect(page.getByLabel('Birth date', { exact: true })).toHaveCount(0);
     await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
@@ -251,13 +264,17 @@ test('an unavailable provider and a paused room keep the spread readable without
       api_tier: 'paid',
       question: '',
       message: 'Readings are temporarily unavailable.',
+      failure: { code: 'unavailable', message: 'Readings are unavailable.', retryable: false },
     });
     await page.reload();
     const read = page.getByRole('button', { name: 'Read my cards', exact: true });
     await expect(read).toBeDisabled();
     await expect(
-      page.getByRole('status').filter({ hasText: 'Readings are temporarily unavailable.' }),
-    ).toContainText('Your three cards are saved.');
+      page.getByRole('status').filter({ hasText: 'Readings are unavailable.' }),
+    ).toHaveText('Readings are unavailable.');
+    await page.getByRole('textbox', { name: 'What’s on your mind?' }).fill('A new question');
+    await expect(read).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Retry reading', exact: true })).toHaveCount(0);
     await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(names);
     await noOverflow(page);
     await capture(page, 'provider-unavailable-320');
@@ -308,9 +325,9 @@ for (const chart of [false, true])
         message: 'Synthetic interruption; your spread is saved.',
       });
       await page.reload();
-      await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeEnabled();
+      await expect(page.getByRole('button', { name: 'Retry reading', exact: true })).toBeEnabled();
       await expect(page.getByLabel('Birth date', { exact: true })).toHaveCount(0);
-      await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
+      await page.getByRole('button', { name: 'Retry reading', exact: true }).click();
       await expect(page.locator('.tarot-reading')).toBeVisible();
       expect(requests).toHaveLength(1);
       expect(requests[0].question).toBe(question);
@@ -319,6 +336,184 @@ for (const chart of [false, true])
       else expect(requests[0]).not.toHaveProperty('reuse_saved_astrology');
     });
   });
+
+test('an unavailable reading rechecks availability without generating automatically', async ({
+  page,
+}) => {
+  await withReading(page, async ({ roomId, requests, setView }) => {
+    let checks = 0;
+    await page.route(`**/api/backend/v1/rooms/${roomId}/reading`, (route) => {
+      if (route.request().method() === 'GET') checks++;
+      return route.fallback();
+    });
+    setView({
+      status: 'failed',
+      reading: null,
+      api_tier: 'paid',
+      question: 'What needs attention?',
+      message: '',
+      failure: {
+        code: 'unavailable',
+        message: 'Readings are unavailable.',
+        retryable: false,
+        retry_at: Date.now() / 1000 + 4,
+      },
+    });
+    await page.reload();
+    const read = page.getByRole('button', { name: 'Read my cards', exact: true });
+    await expect(read).toBeDisabled();
+    await expect(page.locator('.tarot-question [role="alert"]')).toHaveText(
+      'Readings are unavailable.',
+    );
+    await expect(page.getByRole('button', { name: 'Retry reading', exact: true })).toHaveCount(0);
+    setView({
+      status: 'ready',
+      reading: null,
+      api_tier: 'paid',
+      question: 'What needs attention?',
+      message: '',
+    });
+    await expect(read).toBeEnabled({ timeout: 8000 });
+    expect(checks).toBe(2);
+    expect(requests).toHaveLength(0);
+  });
+});
+
+test('a failed request checks saved status before offering a manual retry', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 740 });
+  await withReading(page, async ({ roomId, requests }) => {
+    let posts = 0;
+    let checks = 0;
+    let holdCheck = true;
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    await page.route(`**/api/backend/v1/rooms/${roomId}/reading`, async (route) => {
+      if (route.request().method() === 'POST') {
+        posts++;
+        if (posts === 1) return route.abort('failed');
+      } else if (holdCheck) {
+        checks++;
+        await gate;
+      }
+      return route.fallback();
+    });
+    try {
+      const question = 'Which small task deserves attention?';
+      await page.getByRole('textbox', { name: 'What’s on your mind?' }).fill(question);
+      await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
+      await expect.poll(() => checks).toBe(1);
+      await expect(
+        page.getByRole('button', { name: 'Checking status…', exact: true }),
+      ).toBeDisabled();
+      await expect(page.getByRole('button', { name: 'Retry reading', exact: true })).toHaveCount(0);
+      await page
+        .locator('form.tarot-question')
+        .evaluate((form: HTMLFormElement) => form.requestSubmit());
+      expect(posts).toBe(1);
+      holdCheck = false;
+      release();
+      const retry = page.getByRole('button', { name: 'Retry reading', exact: true });
+      await expect(retry).toBeEnabled();
+      await expect(page.locator('.tarot-question [role="alert"]')).toHaveText(
+        'The reading couldn’t finish.',
+      );
+      await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue(
+        question,
+      );
+      await noOverflow(page);
+      await capture(page, 'retry-after-status-check-320');
+      await retry.click();
+      await expect(page.locator('.tarot-reading')).toBeVisible();
+      expect(posts).toBe(2);
+      expect(requests).toHaveLength(1);
+      expect(requests[0].question).toBe(question);
+    } finally {
+      holdCheck = false;
+      release();
+    }
+  });
+});
+
+for (const code of ['rate_limited', 'daily_limit'] as const)
+  test(`${code} persists its cooldown and never submits when the wait ends`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 740 });
+    await withReading(page, async ({ requests, setView }) => {
+      const names = await page.locator('.tarot-spread .tarot-name').allTextContents();
+      const retryAt = Date.now() / 1000 + 10;
+      setView({
+        status: 'failed',
+        reading: null,
+        api_tier: 'paid',
+        question: 'Which commitment needs attention?',
+        message: '',
+        astrology_chart: syntheticChart,
+        failure: { code, message: 'Reading limit reached.', retryable: true, retry_at: retryAt },
+      });
+      await page.reload();
+      const retry = page.getByRole('button', { name: 'Retry reading', exact: true });
+      await expect(retry).toBeDisabled();
+      await expect(page.locator('.tarot-question [role="alert"]')).toHaveCount(1);
+      const revised = 'Which commitment needs a smaller first step?';
+      await page.getByRole('textbox', { name: 'What’s on your mind?' }).fill(revised);
+      await page
+        .locator('form.tarot-question')
+        .evaluate((form: HTMLFormElement) => form.requestSubmit());
+      expect(requests).toHaveLength(0);
+      await page.reload();
+      await expect(retry).toBeDisabled();
+      await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue(
+        revised,
+      );
+      await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(names);
+      await expect(page.getByLabel('Birth date', { exact: true })).toHaveCount(0);
+      await expect(
+        page.getByRole('checkbox', { name: 'Include astrology', exact: true }),
+      ).toBeChecked();
+      await noOverflow(page);
+      await capture(page, `${code}-cooldown-320`);
+      await expect(retry).toBeEnabled({ timeout: 15000 });
+      expect(requests).toHaveLength(0);
+      await retry.click();
+      await expect(page.locator('.tarot-reading')).toBeVisible();
+      expect(requests).toHaveLength(1);
+      expect(requests[0].question).toBe(revised);
+      expect(requests[0].reuse_saved_astrology).toBe(true);
+    });
+  });
+
+test('a blocked reading allows a new request only after a meaningful question edit', async ({
+  page,
+}) => {
+  await withReading(page, async ({ requests, setView }) => {
+    const original = 'Should I make an immediate decision?';
+    setView({
+      status: 'failed',
+      reading: null,
+      api_tier: 'paid',
+      question: original,
+      message: '',
+      failure: { code: 'blocked', message: 'Try a different question.', retryable: false },
+    });
+    await page.reload();
+    const read = page.getByRole('button', { name: 'Read my cards', exact: true });
+    const question = page.getByRole('textbox', { name: 'What’s on your mind?' });
+    await expect(read).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Retry reading', exact: true })).toHaveCount(0);
+    await question.fill(` ${original} `);
+    await expect(read).toBeDisabled();
+    const revised = 'What should I consider before making a decision?';
+    await question.fill(revised);
+    await expect(read).toBeEnabled();
+    await expect(page.locator('.tarot-question [role="alert"]')).toHaveCount(0);
+    expect(requests).toHaveLength(0);
+    await read.click();
+    await expect(page.locator('.tarot-reading')).toBeVisible();
+    expect(requests).toHaveLength(1);
+    expect(requests[0].question).toBe(revised);
+  });
+});
 
 test('a lost generation response recovers the saved reading without a second submission', async ({
   page,
@@ -610,7 +805,7 @@ for (const off of [false, true])
       );
       await capture(page, 'recovered-chart');
       if (off) await page.getByRole('checkbox', { name: 'Include astrology' }).uncheck();
-      await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
+      await page.getByRole('button', { name: 'Retry reading', exact: true }).click();
       await expect(page.locator('.tarot-reading')).toBeVisible();
       expect(requests[0].question).toBe('How can I make time for drawing?');
       expect(requests[0]).not.toHaveProperty('astrology');
@@ -643,7 +838,7 @@ for (const draft of [undefined, '', 'A deliberate revised question'])
         await page.evaluate(() => window.dispatchEvent(new Event('focus')));
         await expect(question).toHaveValue(draft);
       }
-      await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
+      await page.getByRole('button', { name: 'Retry reading', exact: true }).click();
       await expect(page.locator('.tarot-reading')).toBeVisible();
       expect(requests[0].question).toBe(draft ?? 'How can I make time for drawing?');
       expect(requests[0]).not.toHaveProperty('astrology');

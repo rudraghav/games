@@ -43,6 +43,32 @@ beforeEach(() => {
 afterEach(() => vi.restoreAllMocks());
 
 describe('saved Tarot reading presentation', () => {
+  it('keeps optional catalogue background collapsed and escapes it without changing the connection', () => {
+    const evidence = 'Public context <not markup> & exact saved punctuation.';
+    const reading = {
+      ...tarotReadingExample,
+      cards: tarotReadingExample.cards.map((card, index) => ({
+        ...card,
+        characters: card.characters.map((character, characterIndex) => ({
+          ...character,
+          ...(index === 0 && characterIndex === 0 ? { evidence } : {}),
+        })),
+      })),
+    };
+    const html = renderToStaticMarkup(<TarotReading reading={reading} cards={tarotReadingCards} />);
+    expect(html.match(/class="tarot-character-evidence"/g)).toHaveLength(1);
+    expect(html).toContain('<details class="tarot-character-evidence">');
+    expect(html).toContain('Public context &lt;not markup&gt; &amp; exact saved punctuation.');
+    expect(html).toContain(`Background for ${reading.cards[0].characters[0].name}`);
+    expect(html.indexOf(reading.cards[0].characters[0].connection)).toBeLessThan(
+      html.indexOf('class="tarot-character-evidence"'),
+    );
+    const legacy = renderToStaticMarkup(
+      <TarotReading reading={tarotReadingExample} cards={tarotReadingCards} />,
+    );
+    expect(legacy).not.toContain('tarot-character-evidence');
+  });
+
   it('labels an artist’s work explicitly rather than presenting it as their portrait', () => {
     const work = {
       ...sourcedArtwork(originalCharacterLookup('Chihiro', 'Spirited Away')!),

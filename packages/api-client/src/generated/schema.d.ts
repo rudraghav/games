@@ -770,6 +770,8 @@ export interface components {
             source: string;
             /** Connection */
             connection: string;
+            /** Evidence */
+            evidence?: string | null;
         };
         /** ChatInput */
         ChatInput: {
@@ -1141,6 +1143,23 @@ export interface components {
             cards: components["schemas"]["Section"][];
             astrology?: components["schemas"]["AstrologyReading"] | null;
         };
+        /**
+         * ReadingFailure
+         * @description Safe, persistent recovery policy; never contains provider error text.
+         */
+        ReadingFailure: {
+            /**
+             * Code
+             * @enum {string}
+             */
+            code: "temporary" | "timeout" | "invalid_output" | "rate_limited" | "daily_limit" | "unavailable" | "blocked";
+            /** Message */
+            message: string;
+            /** Retryable */
+            retryable: boolean;
+            /** Retry At */
+            retry_at?: number | null;
+        };
         /** ReadingInput */
         ReadingInput: {
             /** Match Id */
@@ -1163,6 +1182,8 @@ export interface components {
              * @enum {string}
              */
             api_tier?: "free" | "paid";
+            /** Provider Names */
+            provider_names?: string[];
             /**
              * Question
              * @default
@@ -1174,6 +1195,7 @@ export interface components {
              * @default
              */
             message: string;
+            failure?: components["schemas"]["ReadingFailure"] | null;
             astrology_chart?: components["schemas"]["AstrologyChart"] | null;
         };
         /** Ready */

@@ -107,6 +107,14 @@ export function TarotReading({
                       </p>
                       <div className="tarot-character-copy">
                         <p>{character.connection}</p>
+                        {character.evidence ? (
+                          <details className="tarot-character-evidence">
+                            <summary aria-label={`Background for ${character.name}`}>
+                              Background
+                            </summary>
+                            <p>{character.evidence}</p>
+                          </details>
+                        ) : null}
                       </div>
                     </li>
                   );

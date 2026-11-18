@@ -281,18 +281,16 @@ test('a failed saved-reading check retries only GET and restores the question an
     const spreadNames = page.locator('.tarot-spread .tarot-name');
     await expect(spreadNames).toHaveCount(3);
     const names = await spreadNames.allTextContents();
-    const error = page
-      .getByRole('alert')
-      .filter({ hasText: 'We couldn’t check your saved spread.' });
+    const error = page.getByRole('alert').filter({ hasText: 'Couldn’t check your reading.' });
     await expect(error).toBeVisible();
     const read = page.getByRole('button', { name: 'Read my cards', exact: true });
-    await expect(read).toBeDisabled();
+    await expect(read).toHaveCount(0);
     const question = page.getByRole('textbox', { name: /What’s on your mind/ });
     const draft = 'Which small habit should I give more time to?';
     await question.fill(draft);
     const attemptsBeforeRetry = methods.length;
     recover = true;
-    await page.getByRole('button', { name: 'Try again', exact: true }).click();
+    await page.getByRole('button', { name: 'Check status', exact: true }).click();
     await expect(read).toBeEnabled();
     await expect(error).toHaveCount(0);
     await expect(question).toHaveValue(draft);
@@ -368,6 +366,10 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
       new RegExp(`/api/backend/v1/rooms/${roomId}/(ready|start)$`),
       async (route) => {
         sent.push(route.request().url().split('/').at(-1)!);
+        if (sent.length === 1) {
+          await route.fulfill({ status: 503, json: { detail: 'Synthetic rematch failure.' } });
+          return;
+        }
         const response = await route.fetch({
           method: 'GET',
           url: route
@@ -393,6 +395,12 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
       true,
     );
     await again.first().click();
-    await expect.poll(() => sent).toEqual(['ready', 'start']);
+    await expect(page.locator('.tarot-intro [role="alert"]')).toHaveText(
+      'Couldn’t start a new spread.',
+    );
+    await expect(again.first()).toBeEnabled();
+    expect(sent).toEqual(['ready']);
+    await again.first().click();
+    await expect.poll(() => sent).toEqual(['ready', 'ready', 'start']);
   });
 });

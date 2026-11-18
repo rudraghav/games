@@ -165,5 +165,9 @@ and all focus, saved-pick and reduced-motion assertions remain the same.
 `GAMES_TEST_AI=1`. Its one desktop case uses two independent readers for ordinary
 and Both readings, then checks real images, responsive layouts, exact saved
 refresh, new-spread separation and private archives after room closure. It makes
-two generation submissions (at most four provider attempts with production
-retry), never mocks production responses and uses a fresh teardown budget.
+two generation submissions (at most six provider attempts across approved
+fallbacks), never mocks production responses and uses a fresh teardown budget.
+Set `GAMES_TEST_TAROT_PROVIDERS` to the exact comma-separated display names of
+the deployed providers to verify their disclosure alongside the real reading.
+The retained receipt records that disclosure; it does not itself prove which
+provider completed a request. Release-scoped server logs establish that separately.

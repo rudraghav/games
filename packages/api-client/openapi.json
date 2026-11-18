@@ -2307,6 +2307,19 @@
             "maxLength": 300,
             "minLength": 30,
             "title": "Connection"
+          },
+          "evidence": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 600,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence"
           }
         },
         "additionalProperties": false,
@@ -3256,6 +3269,50 @@
         ],
         "title": "Reading"
       },
+      "ReadingFailure": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "temporary",
+              "timeout",
+              "invalid_output",
+              "rate_limited",
+              "daily_limit",
+              "unavailable",
+              "blocked"
+            ],
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "retryable": {
+            "type": "boolean",
+            "title": "Retryable"
+          },
+          "retry_at": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retry At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "retryable"
+        ],
+        "title": "ReadingFailure",
+        "description": "Safe, persistent recovery policy; never contains provider error text."
+      },
       "ReadingInput": {
         "properties": {
           "match_id": {
@@ -3313,6 +3370,13 @@
             ],
             "title": "Api Tier"
           },
+          "provider_names": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Provider Names"
+          },
           "question": {
             "type": "string",
             "title": "Question",
@@ -3332,6 +3396,16 @@
             "type": "string",
             "title": "Message",
             "default": ""
+          },
+          "failure": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReadingFailure"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "astrology_chart": {
             "anyOf": [

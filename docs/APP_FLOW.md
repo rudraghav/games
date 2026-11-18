@@ -21,7 +21,7 @@ request and saved public reveals agree across all seats after refresh.
 - `/profile`: Google signup/sign-in, guest-preserving account/email linking, saved name/avatar and match results.
 - `/readings/[matchId]`: the original participant's saved Tarot spread and analysis, independent of the room's current spread or membership; no generation on open.
 - `/auth/callback`: private PKCE exchange and safe account success/cancel/conflict status.
-- `/privacy`: public data-use summary for Google signup, room history and Gemini readings.
+- `/privacy`: public data-use summary for Google signup, room history and AI readings.
 - `/design`: component/table gallery for development and review.
 
 Lounge discovery intersects text search, category and group size. Co-op groups
@@ -101,14 +101,22 @@ Desktop keeps direct open/close controls for its persistent side panel.
 Loading a saved spread reports progress or a retryable error; retry only fetches
 the saved state. Generation stays disabled until that read succeeds and while
 the room is paused/offline. Completed readings show their exact saved question.
-Writing can take a minute or two. The same saved spread stays available throughout;
-one temporary provider overload can recover automatically within a bounded request,
-while a failed request offers explicit retry without substituting generated text.
+Writing has one progress state, including bounded retries through approved alternate
+providers. A lost response first triggers a saved-reading check, blocking another
+submission until the check finishes. A failed check offers Check status. A saved
+generation failure offers Retry reading only when retryable and its server cooldown
+has elapsed. Cooldowns survive refresh and never submit automatically. Configuration
+failures show unavailable; a blocked question requires an edit. Cards, question and
+computed chart remain intact, and no substitute reading is invented.
 Tarot offers Explore the deck with major/suit filters, independent of the saved
 three-card spread. Fresh reading sections show The grounded read, The plot twist
 and Your connections; previously saved readings retain their original content.
 The Your connections sections include exact subject imagery in a consistent
-frame, with expandable source/rights credits. Fictional characters use character
+frame, with expandable source/rights credits.
+Reference background, when included, sits in a closed Background disclosure
+under the connection; opening it reveals the exact saved catalogue text without
+generating or fetching a new reading. Older readings have no extra disclosure.
+Fictional characters use character
 art or in-character stills; real people use their own portraits or an explicitly
 labelled original illustration. An artist may use an explicitly labelled,
 source-verified artwork. Memes use their actual scene or reaction image and
@@ -158,7 +166,7 @@ birth date, local time and a city search with an explicit place selection. The
 server resolves the historical timezone and asks which occurrence was intended
 when clocks repeat a time; nonexistent local times cannot generate a chart.
 Preview shows the calculated chart before submission. Birth fields stay in this
-component session; Gemini receives only computed placements with the Tarot
+component session; the disclosed AI providers receive only computed placements with the Tarot
 question/cards. The saved private reading includes the chart and interpretation.
 A failed generation retains only the computed chart draft for explicit retry;
 turning astrology off omits it from the next reading. Earlier saved Tarot readings

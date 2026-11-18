@@ -4,10 +4,51 @@ import importlib.util
 from pathlib import Path
 
 import numpy as np
+import pytest
 
 from app.games.tarot.reference_retrieval import _relative, evidence_excerpt, rank_candidates
 
 CARDS = ["pentacles-08", "major-08", "wands-11"]
+
+
+@pytest.mark.parametrize("excluded_position", [0, 180])
+def test_reviewed_reference_exclusion_applies_to_primary_and_expanded_pools(excluded_position):
+    references = [{
+        "id": f"eligible-{index}", "name": f"Eligible {index}", "source": "Public history",
+        "kind": "person", "identityFamily": "shared-family" if index < 180 else f"family-{index}",
+    } for index in range(183)]
+    references[excluded_position]["id"] = "bohdan-khmelnytsky-q203808"
+    vectors = np.zeros((183, 384), dtype=np.float32)
+    vectors[:180, 0] = 1
+    vectors[180:, 0] = -0.1
+    vectors[excluded_position, 0] = 10 if excluded_position == 0 else 0
+    original_vectors = vectors.copy()
+    neutral = np.zeros((3, 384), dtype=np.float32)
+    query = np.eye(384, dtype=np.float32)[0]
+
+    selected = rank_candidates(references, vectors, neutral, neutral, query,
+                               CARDS, "Support after a loss", per_card=1)
+    chosen = [reference for row in selected for reference in row]
+    assert len(chosen) == 3
+    assert all(reference["id"] != "bohdan-khmelnytsky-q203808" for reference in chosen)
+    # Once a top-180 shared family is chosen, later cards require the full pool.
+    assert sum(reference["identityFamily"] != "shared-family" for reference in chosen) >= 2
+    assert references[excluded_position]["id"] == "bohdan-khmelnytsky-q203808"
+    np.testing.assert_array_equal(vectors, original_vectors)
+
+
+def test_reviewed_selection_exclusion_preserves_canonical_lookup_and_index_alignment():
+    from app.games.tarot.characters import CHARACTERS, find_character
+    from app.games.tarot.reference_retrieval import catalogue_hash, load_index
+
+    reference = find_character("Bohdan Khmelnytsky", "Royal and political history")
+    assert reference is not None and reference["id"] == "bohdan-khmelnytsky-q203808"
+    manifest, vectors, _, _ = load_index()
+    assert manifest["ids"] == [entry["id"] for entry in CHARACTERS]
+    assert manifest["catalogueHash"] == catalogue_hash(CHARACTERS)
+    position = manifest["ids"].index(reference["id"])
+    assert CHARACTERS[position] is reference
+    assert np.isfinite(vectors[position]).all()
 
 
 def toy_cast():

@@ -2,7 +2,51 @@
 
 ## 18 November provider recovery investigation
 
-### Latest boundary — provider quota, no production mutation
+### Latest boundary — verified release candidate
+
+The final local gate `verify-603160ca5d2a42538f56e174e3614445` passes244 frontend
+and6946 backend tests plus generated contracts, types, lint and production build.
+The stable full gate also passes183 persistence/privacy and44 tooling tests.
+Mobile recovery checks cover95 applicable Chromium and8 phone WebKit cases,
+plus the compact Background disclosure and new-spread error/retry checks.
+
+The bounded alternative comparison ends at41 requests (25 Groq,16 Cloudflare).
+Qwen evidence-3/none passes four ordinary cases. Medium reasoning with two
+candidates per card produces an accepted Western reading: a decimal-degree
+validator bug is fixed, the original failed receipt retained and its unchanged
+output revalidated offline. Actual Vedic/Both outputs still fail, so only ordinary
+and Western Groq backups are approved; all Cloudflare modes remain disabled.
+Gemini remains primary. These are small scenario samples with minor editorial
+concerns; production readings retain full validation and concise recovery states.
+
+### Earlier recovery checkpoint
+
+After the quota reset, both reserved `pop-tarot-11` checks timed out at90s.
+A later grief check completed in24.56s and passed two independent editorial
+reviews against the exact current request. Joy, Li Bai, Hildegard and Rahman
+connections preserve their supplied facts; the practical invitation explicitly
+allows listening without singing or socializing. The later Vedic-learning check
+also timed out. There are76 accounted Gemini attempts, leaving four within the
+existing80-attempt ceiling for hosted verification/recovery. A timeout supplies
+no prose evidence; earlier `pop-tarot-10` acceptances remain labelled separately.
+
+The user extends the release to automatic alternate-model recovery. The new
+orchestrator bounds all providers together, accounts for every transmission and
+retains the same card/reference/chart validator. Persistent concise failure
+metadata preserves the spread/question/chart and distinguishes Retry reading,
+GET-only Check status, cooldown and explicit question blocks. Generic empty or
+failed responses are not treated as policy refusals. Only explicit machine-coded
+refusals stop alternate routing; caller cancellation propagates.
+
+The stable local application gate passes243 frontend,6711 backend and183
+persistence/privacy tests, full generated contracts and44 tooling tests in
+`verify-a46d4a470a0a4fcdba4c342c85d6fe49`. Subsequent diagnostic-profile and
+failure-classification changes receive focused checks; responsive browser
+verification and alternate-provider editorial acceptance are tracked separately.
+Production remains65de797 with its original provider settings. No production
+configuration or deployment mutation has occurred.
+
+### Earlier quota checkpoint
 
 All seven minimum categories passed independent editorial review on Hydrogen/low/
 8192 with pop-tarot-10. Additional Both-boundaries and Western-beginner passed.

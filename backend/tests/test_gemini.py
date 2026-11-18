@@ -22,6 +22,8 @@ def transport_reference_candidates(monkeypatch):
              ("Leslie Knope", "Parks and Recreation")]
     monkeypatch.setattr("app.games.tarot.reading.reference_candidates",
                         lambda *_args, **_kwargs: [[find_character(*pair)] for pair in pairs])
+    monkeypatch.setattr(settings(), "gemini_api_key", "local-test-adapter")
+    monkeypatch.setattr(settings(), "tarot_provider_order", ["gemini"])
 
 
 def test_gemini_request_is_bounded_private_and_schema_checked(monkeypatch):
@@ -80,7 +82,7 @@ def test_gemini_request_is_bounded_private_and_schema_checked(monkeypatch):
     assert schema["$defs"]["CharacterConnection"]["properties"]["connection"]["description"] == "Use 30–300 characters."
 
 
-def test_blocked_provider_output_is_not_returned_as_a_reading(monkeypatch):
+def test_incomplete_provider_output_is_not_returned_as_a_reading(monkeypatch):
     real_client = httpx.Client
     monkeypatch.setattr(
         "app.games.tarot.reading.httpx.Client",
@@ -210,6 +212,45 @@ def test_blocked_or_malformed_envelope_does_not_trigger_regeneration(monkeypatch
     with pytest.raises(ReadingOutputError):
         generate_reading(CARDS, "")
     assert len(calls) == 1
+
+
+@pytest.mark.parametrize("body,reason", [
+    ({"status": "failed"}, "not_completed"),
+    ({"status": "cancelled"}, "not_completed"),
+    ({"status": "incomplete"}, "not_completed"),
+    ({"status": "requires_continuation"}, "not_completed"),
+    ({"status": "completed", "steps": []}, "empty_output"),
+    ({"status": "completed", "error": {"code": "api_error"}}, "not_completed"),
+    (provider_body("   "), "empty_output"),
+])
+def test_generic_service_failure_allows_manual_retry_without_same_provider_repeat(monkeypatch, body, reason):
+    from app.games.tarot.reading import reading_failure
+
+    calls = mock_provider(monkeypatch, [httpx.Response(200, json=body)])
+    reservations = []
+    with pytest.raises(ReadingOutputError) as error:
+        generate_reading(CARDS, "", before_attempt=lambda: reservations.append(True))
+    assert error.value.reason == reason and not error.value.retryable
+    failure = reading_failure(error.value)
+    assert failure.code == "invalid_output" and failure.retryable
+    assert "question" not in failure.message
+    assert len(calls) == len(reservations) == 1
+
+
+def test_standalone_parser_uses_explicit_policy_codes_not_error_prose():
+    from app.games.tarot.reading import _parse_output, reading_failure
+
+    for body in (
+        {"status": "failed", "error": {"code": "prohibited_content"}},
+        {"status": "completed", "errors": [{"code": "recitation"}]},
+    ):
+        with pytest.raises(ReadingOutputError) as error:
+            _parse_output(body, CARDS)
+        assert error.value.reason == "refusal"
+        assert reading_failure(error.value).code == "blocked"
+    with pytest.raises(ReadingOutputError) as error:
+        _parse_output({"status": "failed", "error": {"code": "api_error", "message": "private safety refusal"}}, CARDS)
+    assert reading_failure(error.value).code == "invalid_output"
 
 
 @pytest.mark.parametrize("status", [400, 401, 402, 429, 500, 502])
