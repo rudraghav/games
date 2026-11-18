@@ -1,3 +1,25 @@
+## 2026-11-19 — Optional rulebook tutorials live
+
+- Main application e2bfd2420671803f89855fbfa8af9b4882c35c3e is live at
+  games-seven-black.vercel.app on deployment dpl_57tH9QWKGTyQGoU3NK2YjsdgpqLc.
+  The docs-only closeout has the same runtime fingerprint.
+- All 27 public rulebooks and 81 captioned illustrations passed live on 320px
+  and 390px screens. Normal play is primary, and the full Rules & tutorial
+  control fits the first 320×640 screen. Opening and reading a book creates no
+  guest or room.
+- Six phone Chromium and two WebKit cases passed. Ordinary Four in a Row and
+  Tarot started uncoached, and switching in the rulebook preserved the same
+  match and turn through reloads. A saved Off choice survived an older tutorial
+  link. A guest could also play and toggle with local storage blocked. Explicit
+  tutorials saved four bot-game moves and three Tarot picks. All six QA rooms
+  closed with 404 readbacks. No AI reading was requested.
+- The public catalogue returned 200 and the private profile returned 401. Owner
+  records and all 28 production settings matched the prerelease reads. There
+  was no schema drift, runtime warning/error or HTTP 5xx in the release window.
+  Cleanup reclaimed 7,103,548 bytes of duplicate and superseded QA output;
+  retained screenshots and checks are under output/playwright/rules-learning-20261119.
+  The local web, API and Storybook services stayed available.
+
 ## 2026-11-19 — Optional rulebook tutorials locally verified
 
 - All 27 public entries keep ordinary play first. The secondary Rules & tutorial
