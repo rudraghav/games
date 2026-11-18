@@ -1,3 +1,16 @@
+## 2026-11-18 — Main published; free-tier reset selected
+
+- Application5dba29d81e7e9be962e06c8dd934789333d5aebb is pushed to main;
+  fresh remote readback matches and the checkout is clean before this note.
+- User explicitly chooses to keep the free plan and finish after quota reset.
+  Resume no earlier than08:01UTC/13:31IST today with the two final pop-tarot-11
+  prose checks, then the prepared single production rollout and actual live mobile
+  ordinary/Both private archive flows.72/80 total attempts used; six hosted reserved.
+- Production remains65de797 and its model/key/tier unchanged. Public catalogue200,
+  private profile401, dev-session404. Local web3217/API8217/Storybook6105 are200.
+  Runtime fingerprint312a3743c06e0958de4e17d2ebf0a5a1cd46241b6c64f4afc6b4460ddf58c1a1
+  covers6170 runtime files; this publication note changes no runtime input.
+
 ## 2026-11-18 — Provider repairs and spacing verified; final AI gate quota-blocked
 
 - Source candidate switches to Gemini4 Hydrogen/low with an8192 combined

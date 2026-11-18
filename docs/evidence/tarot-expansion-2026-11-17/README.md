@@ -9,6 +9,8 @@ prose checks: Gemini reports its20-request free daily limit, resetting around
 08:00UTC/13:30IST today. Production remains65de797; no production configuration
 or deployment change has occurred. See [analysis evidence](analyses.md) and the
 latest root progress entry for exact accepted/pending cases and verification reports.
+Application5dba29d is now on main. The user explicitly keeps the free tier and
+requests completion after reset; resume no earlier than08:01UTC/13:31IST today.
 
 ## Original expansion scope
 
