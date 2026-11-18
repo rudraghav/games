@@ -64,3 +64,26 @@ its failed evidence is retained, and the corrected fixture stays within that
 contract. Four initial and ten corrected fixture rooms were closed, with zero
 provider calls. Final runtime fingerprint:
 `a4a358782f96932f9af2ca5ccf08acd3a51b3b675f46743f44144147131ef017` (6,193 files).
+
+
+## Final production acceptance — 19 November IST
+
+Correction `71e47f302a95fe4255174690258579be36f68458` is live on the canonical
+production URL in bom1. Exact source and alias match. Hosted 320px normal/reduced
+motion, persistent surface, retry focus, later text growth and full ETA visibility
+passed; screenshots were inspected. Two simulated submissions exercised the UI;
+no generation POST reached the server, and authoritative saved state stayed unchanged.
+This is deployed UI proof, not a fresh AI reading quality evaluation.
+
+All 28 configuration records, the fresh owner baseline, schema head/RLS/grants and
+public health/auth boundaries pass. Complete release log queries contain zero
+runtime warnings/errors/fatals or HTTP 500+ responses. [Production receipt](production.json)
+records the exact revision, checks, evidence boundaries and cleanup.
+
+Cleanup confirms 125 distinct local room receipts plus 20 table-case leave checks;
+both hosted QA rooms closed. Temporary test browsers closed; user browser and
+services 3217/8217/6105 remain healthy. Removed a 354-byte superseded plan. Final
+screenshots/frame records and earlier failure evidence remain below 100 MiB across
+the two task evidence folders. No unfinished work, source, credentials or shared
+services were removed. Documentation closure retains the deployed runtime hash
+and needs no additional deployment.

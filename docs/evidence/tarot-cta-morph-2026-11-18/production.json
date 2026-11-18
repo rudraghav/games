@@ -1,0 +1,102 @@
+{
+  "checkedAt": "2026-11-18T18:33:40.298848+00:00",
+  "applicationSha": "71e47f302a95fe4255174690258579be36f68458",
+  "deploymentId": "dpl_HxPxjzyKJERsEX4LaG7zckbkigdR",
+  "url": "https://games-seven-black.vercel.app/games/tarot",
+  "readyState": "READY",
+  "region": "bom1",
+  "aliasAndSourceMatch": true,
+  "releases": {
+    "initialApplication": "f29a735e68e80ea32cce850b3d42b6b0f7c591cd",
+    "correctionReason": "Live review found retry detail could grow below the viewport. Corrected guarded growth-following and verified again.",
+    "applicationDeployments": 2,
+    "documentationDeploymentRequired": false
+  },
+  "localChecks": {
+    "frontendTests": 266,
+    "browserCases": 64,
+    "frontendTypesLintBuild": true,
+    "frontendReport": "verify-04fd6ae2c03848e3bfbde0039d76f7f1",
+    "browserReport": "verify-0f951ea20a6649bfa1a90f2c08936531",
+    "unchangedContractsAndToolingReport": "verify-2f29b9129dbe498e9409ad2e4e2a5395",
+    "sourceStable": true
+  },
+  "liveUi": {
+    "viewport": {
+      "width": 320,
+      "height": 740
+    },
+    "realGuestAndSelectedCards": true,
+    "simulatedReadingResponses": true,
+    "blockedPosts": 2,
+    "forwardedPosts": 0,
+    "authoritativeReadingUnchanged": true,
+    "screenshotReview": {
+      "reviewed": [
+        "cta-no-preference-retrying-320.png",
+        "cta-reduce-retrying-320.png",
+        "cta-reduce-restored-320.png"
+      ],
+      "retryCardAndEtaVisibleBothMotionModes": true,
+      "retryViewportAssertionsPassed": true,
+      "retryDetailViewportIssue": false,
+      "failureRetryControlReadable": true
+    }
+  },
+  "ownerPreserved": true,
+  "configurationRecordsPreserved": 28,
+  "schema": {
+    "databaseHeads": [
+      "a6e442b15d80"
+    ],
+    "schemaDiffCount": 0,
+    "privateTables": 8,
+    "allPrivateTablesRls": true,
+    "grantChecksPassed": 112,
+    "grantChecks": 112
+  },
+  "health": [
+    {
+      "path": "/games/tarot",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/api/backend/v1/games",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "path": "/api/backend/v1/me",
+      "status": 401,
+      "expected": 401
+    }
+  ],
+  "logs": {
+    "start": "2026-11-18T18:29:16.027259+00:00",
+    "end": "2026-11-18T18:32:34+00:00",
+    "complete": true,
+    "counts": {
+      "runtime": 0,
+      "requests": 0
+    }
+  },
+  "runtime": {
+    "files": 6193,
+    "fingerprint": "a4a358782f96932f9af2ca5ccf08acd3a51b3b675f46743f44144147131ef017"
+  },
+  "cleanup": {
+    "localRoomsClosedWithReceipts": 125,
+    "additionalLocalTableRoomsWithSuccessfulLeaveAssertions": 20,
+    "hostedRoomsClosed": 2,
+    "providerCalls": 0,
+    "supersededPlanBytesRemoved": 354,
+    "testBrowsersClosed": true,
+    "userBrowserRetained": true,
+    "localServicesRetained": [
+      3217,
+      8217,
+      6105
+    ]
+  }
+}

@@ -1,3 +1,28 @@
+## 2026-11-19 — CTA morph correction live-verified and closed
+
+- Application 71e47f302a95fe4255174690258579be36f68458 is READY in bom1 at
+  https://games-seven-black.vercel.app, dpl_HxPxjzyKJERsEX4LaG7zckbkigdR.
+  Exact source/alias match. Two intentional application releases: initial morph,
+  then the later-growth correction discovered in its hosted visual review.
+- The same CTA expands into the processing card. Subsequent retry text and ETA
+  stay visible while the user follows the card; deliberate scrolling is respected.
+  Final hosted 320px normal/reduced motion, geometry, focus and retry pass, with
+  screenshots inspected. Two controlled submissions, zero forwarded generation
+  requests and unchanged authoritative reading. Both hosted QA rooms closed.
+- Final 64 browser cases and 266 frontend tests/types/lint/build pass. Unchanged
+  contracts/tooling retain prior passing proof. All 28 config fingerprints and
+  fresh owner state preserved; schema a6e442b15d80, drift 0, 8 RLS tables and 112 grants pass.
+  Public Tarot/catalogue 200 and unauthenticated me 401. Complete release log
+  windows have zero runtime warning/error/fatal and HTTP 500+ records.
+- Cleanup: 125 unique local closure receipts plus 20 table cleanup assertions;
+  145 local and 2 hosted rooms closed, zero provider calls. Test browsers closed,
+  user browser and services 3217/8217/6105 retained/healthy. Removed 354 bytes of
+  superseded planning output; kept final/failure evidence below 100 MiB. No source,
+  credentials, unfinished work or active service was removed.
+- Public record docs/evidence/tarot-cta-morph-2026-11-18/production.json. Runtime
+  6,193 files a4a358782f96932f9af2ca5ccf08acd3a51b3b675f46743f44144147131ef017;
+  documentation closure has identical runtime and needs no third deployment.
+
 ## 2026-11-18 — CTA growth correction locally verified
 
 - The locally requested, focused processing card now follows later content growth
