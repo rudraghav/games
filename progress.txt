@@ -1,3 +1,31 @@
+## 2026-11-19 — Compact Deal actions live-verified and closed
+
+- Pushed application bb1093a624fb0402eb2145ed3c74cb6f12f1404e to main; one READY
+  production deployment dpl_B6SxCngSSfBAvxZMRFoG7Niu3YQ9 in bom1 serves
+  https://games-seven-black.vercel.app. Git source, both source metadata fields
+  and canonical alias match. Prior dpl_HxPxjzyKJERsEX4LaG7zckbkigdR is retained.
+- Hosted actual saved-room test passed six two-click compact commits across both
+  editions: property, action and banking each. Selection never submitted; every
+  CTA sent one exact legal action and advanced version once. Destination, refresh
+  and opponent-hand privacy pass. Six phone selected views and two desktop saved
+  views inspected; root independently reviewed Classic property and No Mercy rent.
+  Natural hosted cards had at most two choices; expansion remains local fixture
+  evidence, covered in the54 passing browser cases. No exhaustive-match claim.
+- Frontend270 tests/types/lint/build, contracts and44 tooling tests pass. All28
+  config records and fresh owner10-room fingerprints match; schema remains
+  a6e442b15d80 with0 drift,8 private tables and112 grants. Public Deal/No Mercy/
+  catalogue return200; unauthenticated me401. Complete release log queries have
+  zero runtime warning/error/fatal and zero HTTP500+ records. Zero provider calls.
+- Cleanup: all3 local QA rooms and1 hosted QA room closed; hosted freshGET404.
+  Test browsers closed, user browser untouched; retained3217/8217/6105 services
+  return200. Final browser output moved to task/full-final; meaningful baseline,
+  failure and final evidence retained below75MiB. No source, history, credentials,
+  database, unfinished work or active service removed. Cleanup receipt retained.
+- Public proof: docs/evidence/deal-direct-actions-2026-11-19/production.json.
+  This closure is documentation only. All6193 runtime files still match
+  5e017b68be847e3619583a114e6b75a613a16481cdae76a30399c2ffe52eb3a7;
+  no duplicate application deployment is needed.
+
 ## 2026-11-19 — Deal compact toolkit release gates passed
 
 - Frontend types/lint,270 tests and production build; contracts/catalogue/asset

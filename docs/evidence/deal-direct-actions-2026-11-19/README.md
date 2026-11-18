@@ -46,3 +46,18 @@ Classic property/bank were reviewed at 320px; its action and No Mercy at 390px.
 Refresh and hand privacy passed, and the exact QA room was closed with 404 readback.
 Natural hands in this run had at most two direct choices: expansion coverage comes
 from controlled engine-derived review fixtures, not this saved-room rehearsal.
+
+Production is live and verified at https://games-seven-black.vercel.app, application
+`bb1093a624fb0402eb2145ed3c74cb6f12f1404e`, one READY deployment in bom1. See
+[production.json](production.json) for exact source/alias, six actual two-click
+commits, viewport scope, refresh/privacy, health, preservation and log evidence.
+The natural hosted hands did not require expansion; controlled local fixtures
+cover full-list expansion, backtracking and the crowded final target.
+
+Cleanup closed three local QA rooms and one hosted QA room, retaining history;
+the hosted room returned 404. All test browsers closed. User browser and local
+web/API/Storybook remain untouched and healthy. Approximately 74 MiB of meaningful
+baseline, failure and final evidence is retained in task output; final browser
+artifacts were moved out of the shared test-results folder to prevent overwriting.
+No source, credentials, database, unfinished work or active service was removed.
+Documentation closure preserves the tested runtime and needs no second deployment.

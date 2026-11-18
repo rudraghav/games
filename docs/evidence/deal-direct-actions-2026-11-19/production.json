@@ -1,0 +1,224 @@
+{
+  "checkedAt": "2026-11-18T19:32:05.123336+00:00",
+  "applicationSha": "bb1093a624fb0402eb2145ed3c74cb6f12f1404e",
+  "deploymentId": "dpl_B6SxCngSSfBAvxZMRFoG7Niu3YQ9",
+  "url": "https://games-seven-black.vercel.app",
+  "readyState": "READY",
+  "region": "bom1",
+  "sourceAndAliasMatch": true,
+  "applicationDeployments": 1,
+  "previousDeploymentId": "dpl_HxPxjzyKJERsEX4LaG7zckbkigdR",
+  "localChecks": {
+    "frontendTests": 270,
+    "browserCases": 54,
+    "focusedBrowserCases": 22,
+    "workflowTests": 44,
+    "typesLintBuildContracts": "passed",
+    "sourceStableReports": [
+      "verify-1d3a53e47e3e40c88682a7deb47af7c4",
+      "verify-87e1813e50874ff28cd3ae11aaf8eb41"
+    ]
+  },
+  "runtime": {
+    "files": 6193,
+    "sha256": "5e017b68be847e3619583a114e6b75a613a16481cdae76a30399c2ffe52eb3a7"
+  },
+  "hostedGameplay": {
+    "applicationSha": "bb1093a624fb0402eb2145ed3c74cb6f12f1404e",
+    "canonicalUrl": "https://games-seven-black.vercel.app",
+    "checkedAt": "2026-11-18T19:29:24.084Z",
+    "result": "passed",
+    "durationSeconds": 31.5,
+    "realSavedRoom": true,
+    "syntheticGameState": false,
+    "commits": [
+      {
+        "edition": "deal",
+        "category": "property",
+        "card": "Oriental Avenue",
+        "action": "property",
+        "clicks": 2,
+        "choiceMode": "compact",
+        "compactMoves": 1,
+        "viewport": {
+          "width": 320,
+          "height": 740
+        },
+        "versionAdvanced": true,
+        "destinationVerified": true
+      },
+      {
+        "edition": "deal",
+        "category": "bank",
+        "card": "Sly deal",
+        "action": "bank",
+        "clicks": 2,
+        "choiceMode": "compact",
+        "compactMoves": 0,
+        "viewport": {
+          "width": 320,
+          "height": 740
+        },
+        "versionAdvanced": true,
+        "destinationVerified": true
+      },
+      {
+        "edition": "deal",
+        "category": "action",
+        "card": "Pass Go",
+        "action": "play",
+        "clicks": 2,
+        "choiceMode": "compact",
+        "compactMoves": 1,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "versionAdvanced": true,
+        "destinationVerified": true
+      },
+      {
+        "edition": "deal-no-mercy",
+        "category": "property",
+        "card": "Wild property",
+        "action": "property",
+        "clicks": 2,
+        "choiceMode": "compact",
+        "compactMoves": 2,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "versionAdvanced": true,
+        "destinationVerified": true
+      },
+      {
+        "edition": "deal-no-mercy",
+        "category": "action",
+        "card": "Double rent",
+        "action": "play",
+        "clicks": 2,
+        "choiceMode": "compact",
+        "compactMoves": 1,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "versionAdvanced": true,
+        "destinationVerified": true
+      },
+      {
+        "edition": "deal-no-mercy",
+        "category": "bank",
+        "card": "5M",
+        "action": "bank",
+        "clicks": 2,
+        "choiceMode": "compact",
+        "compactMoves": 0,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "versionAdvanced": true,
+        "destinationVerified": true
+      }
+    ],
+    "verified": [
+      "No action submitted on card selection",
+      "At most three complete move choices in compact mode",
+      "Available banking and conversion warning visible in the selected view",
+      "One exact projected action request and one version increment per commit",
+      "Chosen card removed from hand; property and bank destination checked",
+      "Refresh persistence",
+      "Opponent hands remain private",
+      "Phone and desktop page widths fit"
+    ],
+    "visualReview": {
+      "phoneSelectedScreenshots": 6,
+      "desktopSavedScreenshots": 2,
+      "result": "All reviewed; complete decision text and available bank actions readable"
+    },
+    "expansionCoverage": "Not exercised in hosted flow: naturally selected cards offered at most two direct choices. Expanded choices are separate local fixture coverage.",
+    "providerCalls": 0,
+    "cleanup": {
+      "localQaRoomsCreated": 3,
+      "localQaRoomsClosed": 3,
+      "hostedQaRoomsCreated": 1,
+      "hostedQaRoomsClosed": 1,
+      "hostedFreshGetStatus": 404,
+      "otherRoomsCreatedByProofTask": 0,
+      "ownerAccountMutations": 0
+    },
+    "artifactSize": "2.0 MB, retaining first setup failure and exact recovery receipt"
+  },
+  "health": [
+    {
+      "path": "/games/deal",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/games/deal-no-mercy",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/backend/v1/games",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/backend/v1/me",
+      "status": 401,
+      "passed": true
+    }
+  ],
+  "preservation": {
+    "ownerFingerprintsMatchFreshBaseline": true,
+    "configurationRecords": 28,
+    "allConfigurationRecordsMatch": true,
+    "schemaHead": "a6e442b15d80",
+    "schemaDrift": 0,
+    "privateTables": 8,
+    "grantChecks": 112,
+    "schemaChanged": false
+  },
+  "logs": {
+    "start": "2026-11-18T19:26:05.023505+00:00",
+    "end": "2026-11-18T19:30:02+00:00",
+    "runtimeWarningsErrorsFatals": 0,
+    "http500Plus": 0,
+    "complete": true
+  },
+  "cleanup": {
+    "localQaRoomsCreated": 3,
+    "localQaRoomsClosed": 3,
+    "hostedQaRoomsCreated": 1,
+    "hostedQaRoomsClosed": 1,
+    "hostedFreshGetStatus": 404,
+    "otherRoomsCreatedByProofTask": 0,
+    "ownerAccountMutations": 0,
+    "localServices": [
+      {
+        "service": "web",
+        "status": 200
+      },
+      {
+        "service": "api",
+        "status": 200
+      },
+      {
+        "service": "storybook",
+        "status": 200
+      }
+    ],
+    "testBrowsersClosed": true,
+    "userBrowserUntouched": true,
+    "retainedEvidenceBytes": 76400399,
+    "deletions": 0,
+    "unfinishedWorkPreserved": true,
+    "finalBrowserEvidence": "output/playwright/deal-direct-actions-20261119/full-final"
+  },
+  "coverageLimit": "Representative actual saved-room actions plus controlled projection coverage; not every possible complete match. Expansion is locally verified, not reached by the hosted random hands.",
+  "closure": "Documentation-only closure; tested and serving runtime unchanged; no duplicate deployment."
+}
