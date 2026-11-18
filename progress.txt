@@ -1,3 +1,23 @@
+## 2026-11-19 — Guided play and illustrated astrology live
+
+- Application commit 910163961fdf09f8c962a269741f694e6972a772 reached production
+  in bom1. The canonical Games site served that revision. The follow-up
+  verification record changes documentation only and preserves the runtime fingerprint.
+- On the live site at 320px, all 27 game rulebooks showed their 81 labelled
+  examples without clipping or horizontal overflow. A saved Four in a Row
+  match showed the bot's reply, coached four moves, restored the lesson after
+  refresh and stayed playable after the guide closed. A solo Tarot lesson
+  saved three picks and explained the revealed cards without requesting a reading.
+- Another mobile guest calculated both charts through the Tarot tutorial in
+  WebKit. All 16 images loaded. Sign labels in the diagrams and all 24 house
+  rows matched their calculated signs, as did the planetary placements.
+- All three hosted test rooms closed with 404 readbacks. The public catalogue
+  returned 200 and the private profile required authentication. All 28 configuration
+  records and the protected owner's records matched the prerelease checks. Schema
+  drift, release-window runtime warnings/errors and HTTP 5xx responses were zero.
+- Cleanup retained the local web, API and Storybook services, all returning 200.
+  Public verification and check counts: docs/evidence/guided-play-2026-11-19/production.json.
+
 ## 2026-11-19 — Guided turns and sign art passed release checks
 
 - All 27 entries offer a playable tutorial and three game-specific illustrated

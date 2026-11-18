@@ -1,0 +1,92 @@
+{
+  "checkedAt": "2026-11-18T20:34:28.381964+00:00",
+  "applicationSha": "910163961fdf09f8c962a269741f694e6972a772",
+  "deploymentId": "dpl_14Lj8ppuqgTTDEkEXXEFvKrksSWC",
+  "canonicalSite": "https://games-seven-black.vercel.app",
+  "ready": true,
+  "region": "bom1",
+  "local": {
+    "coreReport": "verify-123f5c7d48a742dbaaf8caee0b8bfcd2",
+    "browserReport": "verify-302616006ef14504a6b2e9d5ac510490",
+    "sourceStable": true,
+    "frontendTests": 284,
+    "multiplayerTests": 224,
+    "workflowTests": 44,
+    "browserTests": 94,
+    "phoneOpeningMoves": 27,
+    "ruleExamples": 81,
+    "ruleRenderChecks": 243,
+    "runtimeFiles": 6218,
+    "runtimeFingerprint": "3e74e8e5159172b83245890f83c2812f280a693856e61612b3b838cd818a92ed"
+  },
+  "hosted": {
+    "publicRulebooks": {
+      "games": 27,
+      "illustratedRules": 81,
+      "viewportWidth": 320,
+      "imageAssetsDecoded": 26,
+      "allIllustrationsLabelled": true,
+      "noOverflowOrClippedPieces": true,
+      "readOnlyPublicRoute": true
+    },
+    "fourInARow": {
+      "botOpponents": 1,
+      "learnerMoves": 4,
+      "introContinuedAutomatically": true,
+      "normalBoardUsed": true,
+      "publicBotReplyObserved": true,
+      "refreshRestoredMove2And4": true,
+      "explicitExitKeptSameMatch": true,
+      "closedFreshGet": 404
+    },
+    "tarot": {
+      "soloSeats": 1,
+      "savedPicks": 3,
+      "focusOnDeckBeforePickMadeNoMove": true,
+      "floatingRuleAnnotatedSavedCard": true,
+      "modalSuppressedFloatingRule": true,
+      "spreadRestoredOnRefresh": true,
+      "generationRequests": 0,
+      "closedFreshGet": 404
+    },
+    "astrology": {
+      "browser": "WebKit",
+      "systems": [
+        {
+          "system": "Western",
+          "chartSigns": 12,
+          "planetRows": 12,
+          "houseRows": 12,
+          "confirmedAgainstCalculation": true
+        },
+        {
+          "system": "Vedic",
+          "chartSigns": 12,
+          "planetRows": 9,
+          "houseRows": 12,
+          "confirmedAgainstCalculation": true
+        }
+      ],
+      "guided": true,
+      "width": 320,
+      "closed": true,
+      "distinctImages": 16,
+      "generationPosts": 0,
+      "realCalculation": true
+    },
+    "closedTestRooms": 3,
+    "closedRoomReadback": 404,
+    "catalogueStatus": 200,
+    "privateProfileStatus": 401
+  },
+  "releaseChecks": {
+    "configRecordsPreserved": 28,
+    "ownerRecordsPreserved": true,
+    "migrationHead": "a6e442b15d80",
+    "schemaDrift": 0,
+    "runtimeWarningsErrors": 0,
+    "http5xx": 0,
+    "logStart": "2026-11-18T20:30:25.124895+00:00",
+    "logEnd": "2026-11-18T20:34:09+00:00"
+  }
+}
