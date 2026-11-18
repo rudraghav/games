@@ -1,0 +1,61 @@
+{
+  "applicationSha": "1fb6e0dc3eca3a609635699633bf9f98bd30b5ae",
+  "deploymentId": "dpl_D68UtvJJ25VQJctymryg33oYN9y5",
+  "canonicalUrl": "https://games-seven-black.vercel.app",
+  "readyState": "READY",
+  "region": "bom1",
+  "sourceAndAliasMatch": true,
+  "productionDeploymentsCreated": 1,
+  "publicGamePagesVerified": 27,
+  "local": {
+    "frontendTests": 251,
+    "backendTests": 6948,
+    "persistenceTests": 219,
+    "quickPlayTestsWithinPersistence": 36,
+    "workflowTests": 44,
+    "browserVerifiedCases": 73,
+    "intentionalBrowserSkips": 1,
+    "initialBrowserAssertionFailures": 2,
+    "repairedFailuresVerified": 2,
+    "phoneWebKitCasesWithinBrowser": 6,
+    "typesLintBuildContracts": "passed",
+    "initialCombinedReport": "inconclusive due to source changes; affected frontend and tooling rerun passed"
+  },
+  "hosted": {
+    "scenarios": ["tarot-320", "tarot-390", "bot-direct", "friends-invite", "outsider-denial"],
+    "mobileWidths": [320, 390],
+    "passed": true,
+    "browserErrors": 0,
+    "generationRequests": 0,
+    "qaRoomsCreated": 4,
+    "qaRoomsClosed": 4
+  },
+  "logs": {
+    "start": "2026-11-18T15:18:12.473716+00:00",
+    "end": "2026-11-18T15:22:01+00:00",
+    "runtimeWarningErrorFatalRecords": 0,
+    "http500PlusRecords": 0,
+    "complete": true
+  },
+  "schema": {
+    "head": "a6e442b15d80",
+    "drift": 0,
+    "privateRlsTables": 8,
+    "grantChecksPassed": 112,
+    "migrationRequired": false
+  },
+  "ownerPreserved": true,
+  "providerConfigurationChanged": false,
+  "cleanup": {
+    "localRoomsClosed": 72,
+    "hostedRoomsClosed": 4,
+    "supersededCaptureBytesRemoved": 3502586,
+    "retainedServices": ["web3217", "api8217", "storybook6105"]
+  },
+  "runtimeFiles": 6186,
+  "runtimeFingerprint": "4d6d9de735ef16a2dc34e4c888e8b42cc2655aec691bc5098ab19987c887da88",
+  "limitations": [
+    "No new AI reading generated in this navigation release; prior real-provider evidence retained.",
+    "Live gameplay samples Tarot and Four in a Row; local quick-play startup covers all27 games."
+  ]
+}

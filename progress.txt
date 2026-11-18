@@ -1,3 +1,33 @@
+## 2026-11-18 — Game-first entry pushed, deployed and live-verified
+
+- Main application1fb6e0dc3eca3a609635699633bf9f98bd30b5ae is READY in bom1 at
+  https://games-seven-black.vercel.app, deploymentdpl_D68UtvJJ25VQJctymryg33oYN9y5.
+  Exact Git metadata and canonical alias match; one deployment was created.
+- All27 public game URLs return200. Live Tarot320/390 starts directly as Guest,
+  saves three cards, survives refresh, follows old links and resumes from home.
+  Returning-player bot play preserves profile and responds to a human move.
+  Friends choose/create/invite/join/start from separate sessions. Outsider room
+  and archive404 and unauth401 preserve private content. Six captures inspected;
+  zero browser errors or AI generation requests. Existing provider quality and
+  fallback configuration are unchanged; local saved-reading/chart checks pass.
+- Final local gates: frontend251, backend6948, persistence219 (quick-play36),
+  contracts and tooling44 pass. Browser evidence verifies73 cases, including
+  six phone WebKit and the corrected menu assertions described below. Live
+  gameplay samples Tarot/Four in a Row; local startup tests cover all27 games.
+- Full rollout logs contain zero runtime warning/error/fatal and zero HTTP500+
+  records. Read-only schema head, eight RLS tables and112 grants pass. Permanent
+  owner account/profile, all seven rooms/memberships and identity match the fresh
+  before-state; no schema/environment/provider changes or data rewrites.
+- Cleanup: all72 exact local task rooms and4 hosted QA rooms closed; no foreign
+  room/member rows changed. Four hosted browser contexts closed; web3217/API8217/
+  Storybook6105 preserved. Removed3.5MB of superseded captures; retained final
+  screenshots/minimal failed-assertion context/private receipts, source and user
+  services. Public receipt: docs/evidence/game-entry-2026-11-18/production.json.
+- Closure is documentation only. All6186 runtime files match the deployed
+  4d6d9de735ef16a2dc34e4c888e8b42cc2655aec691bc5098ab19987c887da88 fingerprint;
+  no duplicate deployment is needed. Prior application14e5cfa remains available
+  as the rollback reference.
+
 ## 2026-11-18 — Game entry local release gate passed
 
 - Final frontend types/lint/build and 251 tests pass after the profile-race fix.
