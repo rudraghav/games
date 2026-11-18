@@ -1,3 +1,110 @@
+## 2026-11-18 — Tarot reliability release candidate frozen
+
+- Mobile progress, all four astrology options, analyses, saved/refresh recovery,
+  reference images and failure controls pass 75 browser cases. Stable frontend
+  262 and persistence224 checks pass; final backend/contracts/tooling rerun follows
+  the preserved legacy Western routing change. No new dependency or migration.
+- Final direct ledger57 (Groq35/Cloudflare22). Groq ordinary uses grounded3;
+  Western preserves its accepted medium wire and unchanged saved output. Vedic
+  and Both are hard-gated for Groq; the unproven JSON2 candidate is evaluation-only.
+  Cloudflare all four modes pass with generic-backup prose caveats. Four direct
+  Gemini checks returned503. Six exact alternative case/artifact hashes bind
+  the private acceptance gate; replay and fresh output remain distinguished.
+- Retire the two unused JSON slots. Hosted acceptance is separately bounded to
+  two submissions ordinary/Both and six provider transmissions total (Gemini≤2,
+  alternatives≤4), no browser retries or paid services. Initial rollout remains
+  pending: push exact scope, update only three existing provider routing values,
+  deploy one pinned SHA, then inspect live outputs/stages/images/privacy and logs.
+
+## 2026-11-18 — Groq transport compatibility check
+
+- The two-reference medium request cleared the earlier token-limit rejection but
+  hit recurring provider-side JSON validation. Current ledger55 (Groq33/CF22);
+  no additional plain-medium calls are planned. Retire its two unused slots.
+- Approve one final bounded transport phase: at most four Groq JSON-object calls,
+  preserving all55 reservations (ceiling59/Groq37/CF22). Keep the explicit schema
+  in the prompt, the same two-reference context, medium reasoning,4096 cap and
+  exact local closed-schema/domain validation. Western smoke precedes Vedic/Both,
+  with at most one evidence-driven repair. No relaxed reading acceptance, partial
+  output salvage, new SDK retry layer or paid routing. Stop if this method fails.
+- Cloudflare all four modes and Groq ordinary remain qualified basic fallbacks.
+  Final release will distinguish model availability, live output, unchanged
+  saved-output replay and any remaining unqualified mode. Production unchanged.
+
+## 2026-11-18 — Focused Groq astrology recovery phase
+
+- Final stable local gates pass frontend262, backend7008, persistence224,
+  contracts and tooling44; check report verify-ed154a06706341fcaacbf15f7059f6be.
+  The final direct phase consumed all12 reserved alternative calls (Groq31,
+  Cloudflare22;53 cumulative). Cloudflare covers all four options as a basic
+  backup; Groq ordinary is accepted, astrology needs further repair.
+- Approve at most four additional free Groq astrology attempts, preserving all53
+  reservations (new ceiling57 combined/Groq35/Cloudflare22). Test medium reasoning
+  with unchanged grounded prompt/schema/decoder and4096 output cap: Western smoke,
+  then Vedic/Both and at most one evidence-driven repair. Historical medium calls
+  completed in5–7 seconds within that cap; deterministic placement headers now
+  remove their earlier exact-anchor failure. Ordinary stays none; no paid tier,
+  new provider, key, dependency or unbounded retry is introduced.
+- Adjust fallback timing to reserve35 seconds for Cloudflare after its measured
+ 32-second combined reading, and recompute available time after progress writes.
+  Validate callback overhead before release. These are still local changes.
+
+## 2026-11-18 — Mobile progress complete; actual provider qualification in progress
+
+- Durable private milestones and estimates, initial-POST polling, stale-GET race
+  protection and astrology provider-copy fix are implemented.75 browser cases
+  pass (62 Chromium desktop/phone,13 iPhone WebKit); representative exact images,
+  charts, archives, failure/cooldown/retry and320px layouts pass. No new dependencies.
+- First local gates pass frontend257/backend6992/persistence222/contracts/tooling44,
+  but the combined ownership report is inconclusive because provider/tests/docs
+  changed during execution. Repeat final affected gates after the source freeze.
+- Four current Gemini4-hydrogen checks return503 without outputs; preserve those
+  failures. Revised alternative output is structurally grounded in exact catalogue
+  facts and computed chart labels. Independent review finds useful basic fallback
+  prose, with generic connections/imagery; do not claim identical depth to Gemini.
+  Removed unnecessary compact-length rejection while retaining product bounds and
+  shared validation; any unchanged saved-output replay is distinct from a fresh call.
+- Production remains unchanged. Final routing enablement needs accepted per-mode
+  evidence, source hashes, a clean pushed main and protected-setting readback.
+
+## 2026-11-18 — Bounded free-provider quality phase authorized
+
+- Freeze the grounded-v1 candidate before live evaluation. Preserve all 41 prior
+  alternative transmissions: permit at most 12 new free-plan transmissions,
+  six per provider (cumulative Groq31, Cloudflare22, combined53). Begin with one
+  ordinary/grief smoke each, inspect saved output, then three astrology modes;
+  remaining calls are reserved for nuance or evidence-driven repair. No automatic
+  evaluation retries, paid tiers or unrelated-account credentials.
+- Gemini retains its current contract. Preserve the prior 80 operator attempts;
+  permit at most six additional attempts (four direct mode checks and two hosted
+  acceptance attempts), with reservations before each transmission. Failed and
+  interrupted calls count. Stop on quota or exhausted budget; do not infer quality
+  from schema validation alone. Provider enablement follows editorial acceptance.
+- Local progress/storage/privacy checks and browser testing use synthetic providers
+  and consume no external model quota. Production is unchanged at this stage.
+
+## 2026-11-18 — Full mobile Tarot, model recovery and progress kickoff
+
+- User requests complete mobile Tarot/astrology/analysis/reference-image audit,
+  improved prompting and recovery for every configured model and reading mode,
+  concise processing stages with percentage and remaining-time estimates, and
+  a tested main push/production verification. Review Shikha progress patterns
+  read-only and current official provider/library guidance before implementation.
+- Preserve free plans, dedicated Games credentials, private inputs, exact cards,
+  computed chart and shared output validation. No borrowing Shikha keys/data.
+  Prefer compact provider contracts, deterministic adapters and bounded repair
+  to topic-specific prompt patches. No fabricated reading if all services fail.
+- Acceptance: ordinary/Western/Vedic/Both quality evaluated by provider; approved
+  alternatives recover within bounded time/attempt budgets; loader reflects real
+  server stages and labels time/percentage estimates honestly, never100% before
+  saved completion. Refresh/lost responses do not create duplicate generation.
+  Mobile320/390, saved analyses/charts/character imagery, accessible stages,
+  failure/cooldown/retry and private archive flows have observable test evidence.
+- Claim tarot-reliability-20261118. Baseline clean mainbf770ff; live1fb6e0d.
+  Task scratch belongs to output/playwright/tarot-reliability-20261118 and ignored
+  .vercel receipts; preserve existing services and prior evidence. Live provider
+  evaluations require a fresh bounded operator budget/usage ledger before calls.
+
 ## 2026-11-18 — Game-first entry pushed, deployed and live-verified
 
 - Main application1fb6e0dc3eca3a609635699633bf9f98bd30b5ae is READY in bom1 at

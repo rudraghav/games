@@ -1,5 +1,100 @@
 # Pop Tarot
 
+## Grounded provider recovery — 18 November 2026
+
+The final release preserves Gemini's existing full contract and qualifies these
+alternative profiles. Environment configuration must still enable each mode:
+
+| Provider | Qualified modes | Runtime profile | Reasoning / output cap |
+| --- | --- | --- | --- |
+| Groq Qwen3.8 27B | Ordinary | `grounded-reading-3` | None / 4096 tokens |
+| Groq Qwen3.8 27B | Western | `qwen-astrology-medium-1` | Medium / 4096 tokens |
+| Cloudflare Llama3.3 70B | Ordinary, Western, Vedic, Both | `grounded-reading-3` | None / 4096 tokens |
+
+Groq Vedic and Both are hard-gated in `GROQ_RUNTIME_MODES`, even if an environment
+variable accidentally lists them. Cloudflare provides the qualified alternative
+for those modes. Groq Western retains its previously accepted two-reference
+shortlist, wire request and decoder; current replay verifies the original request
+hash and unchanged saved prose against the current shared validator. No new
+Western inference is claimed by that replay.
+
+The grounded profile requests short invitational questions, imagery and a
+candidate ID per card. The server adds the selected reference's exact supplied
+evidence. Its astrology reflections select allowed computed point IDs; the
+adapter prefixes each exact body/sign/house label and preserves the generated
+reflection verbatim. These headers are chart facts, not generated analysis.
+Groq Western's legacy profile retains its generated, locally checked placement
+anchors. Missing, extra, duplicate, truncated, outside-product-bounds or unbound
+fields fail closed; partial output never becomes a substitute reading.
+
+Both active alternatives use their schema modes with hidden Groq reasoning.
+Cloudflare's schema mode does not guarantee successful generation. Compact
+character targets guide writing; acceptance retains shared product limits.
+Grounded chart questions are bounded to270 characters and the assembled section
+to650. Model identity, explicit refusals, exact reference evidence, requested
+astrology modes and prose limits remain checked. Editorial review separately
+assesses relevance and unsupported claims. The accepted Cloudflare analyses are
+usable reflective backups; some character analogies and sign/house interpretations
+remain generic, so qualification does not establish deeply personal insight.
+
+`grounded-qwen-astrology-2` and `grounded-qwen-json-2` remain evaluation-only
+candidates. JSON2 explicitly places astrology links and next steps at the top
+level of its wire contract, then maps their unchanged strings into the shared
+reading shape. It does not accept misplaced fields, extras, duplicates or partial
+responses. That method produced promising prose before its nesting correction,
+but the corrected request reached a provider token limit without generating a
+reading. It is not enabled for production. Historical experimental adapters and
+all failed records remain available for reproduction.
+
+A single provider can make at most two attempts, and a multi-provider request at
+most three, inside the shared105-second deadline. Routing reserves20 seconds for
+queued Groq and35 for queued Cloudflare, plus a second of overhead per queued
+provider. Starting thresholds are15/30 seconds respectively, so minor persistence
+overhead does not skip a useful remaining slot. Time is recalculated after
+reservation and progress writes. With no overhead, a three-provider chain can
+allocate48/21/36 seconds; actual slots depend on earlier completion times. Each transmission still consumes a separate
+application reservation. One safe corrective request may now repair either
+ordinary or astrology output when time and attempts remain. Its feedback contains
+only a local failure classification with the unchanged original context, never
+rejected prose. Explicit safety refusals still stop the chain; quota and auth
+failures never repeat the same service automatically.
+
+Generation emits matching, writing, checking and retrying milestones through an
+optional callback. Milestones contain only provider/attempt metadata, never the
+question, chart or output. Room services own their persistence and publication.
+
+The alternative-provider ledger ends this task at57 reserved calls:35 Groq and
+22 Cloudflare, including every failed or interrupted attempt. The grounded phase
+added12 calls to the previous41. The native-medium phase used two more; its two
+unused slots were retired when the JSON phase began. The JSON phase then used
+two of its four approved calls, leaving two unused under the cumulative59 ceiling.
+Evaluation stopped at57; the unused slots never trigger calls automatically.
+
+The fixed evaluations cover ordinary grief and Western, Vedic and Both scenarios.
+Length-only rechecks preserve original failures and generated text, bind the
+original request/result/capture hashes, and verify the current adapter and shared
+validator. Legacy Western has a separate exact-wire and unchanged-prose binding.
+Qualification includes current per-mode profile, effort and contract hashes;
+structural validity alone is never editorial acceptance. Tests additionally cover
+runtime wire parity, the hard-gated modes, fallback timing after persistence
+writes, refusals and safe retries. The final focused suite passed444 tests, Ruff
+and mypy. Deployment and live mobile verification remain separately recorded in
+the root progress journal and dated quality evidence.
+
+Safe diagnostics retain only allowlisted quota units/counts and known schema
+field paths, never provider error prose, unknown field names or reasoning.
+The last JSON attempt reported requested3989 against limit1000 without an
+identified TPM/TPD unit; this is not recorded as proof of a daily quota or of an
+8000-token request-size limit. Free-account limits and provider availability still
+bound delivery; no model is enabled merely because its request compiles.
+
+This compact contract follows the documented distinction between schema
+compliance and semantic correctness in [Groq structured outputs](https://console.groq.com/docs/structured-outputs)
+and [Cloudflare JSON mode](https://developers.cloudflare.com/workers-ai/features/json-mode/).
+[Groq reasoning controls](https://console.groq.com/docs/reasoning) describe the
+Qwen reasoning settings. Pydantic validation and explicit bounded corrections
+provide the needed mechanism without adding another SDK retry owner.
+
 ## People, characters and saved readings — 17 November 2026
 
 The expanded reference catalogue includes fictional characters and real people
@@ -102,8 +197,9 @@ Only the computed chart is saved privately, including during a pending/failed
 request so refresh and explicit retry can reuse it. Turning astrology off omits
 it from the next request and clears an earlier failed chart draft. Ordinary and
 legacy readings remain unchanged. The optional contract introduced in `pop-tarot-6`
-combines Tarot and astrology in one generation, without an invalid-output retry or
-substitute reading. The current transport policy below permits one definite503 retry.
+historically combined Tarot and astrology without an invalid-output retry.
+The18 November recovery policy above now permits one bounded safe correction;
+no substitute reading is presented as AI.
 
 ## Reading expansion acceptance — 1 November 2026
 
@@ -182,6 +278,8 @@ Provider routing is configured by `TAROT_PROVIDER_ORDER`, with alternatives off
 by default. `TAROT_GROQ_MODES` and `TAROT_CLOUDFLARE_MODES` explicitly approve
 ordinary/Western/Vedic/Both modes only after real editorial acceptance. Keys alone
 never enable a provider. Missing credentials and unapproved modes are skipped.
+Groq additionally permits only ordinary and Western in the runtime allowlist;
+Vedic/Both remain gated until a future evidence-backed release changes that list.
 Gemini uses its configured model, low thinking and8192 combined thought/output
 cap. Alternative profiles use trusted reference IDs and fixed card/focus slots;
 the adapter restores canonical names, positions and arrays before the SAME local
@@ -193,7 +291,7 @@ attempts share105s, inside the120s proxy and180s saved lease; individual caps ar
 90s Gemini,30s Groq and60s Cloudflare, with useful time reserved for a queued
 alternate. Eligible transport, overload, quota/auth and invalid-output failures
 may move to a different approved provider. Quota/auth/timeouts never repeat the
-same provider automatically. One definite503 retry or one ordinary-output
+same provider automatically. One definite503 retry or one safe output
 correction is allowed if attempts/time remain. Explicit HTTP-level or envelope
 safety refusals never seek another provider. Generic failed/cancelled/empty
 envelopes may use an approved alternate or manual Retry; they do not blame the
@@ -213,7 +311,7 @@ No cooldown expiry generates automatically. Raw birth inputs remain ephemeral.
 Historical18 November Gemini evaluation accepted pop-tarot-10 prose at23–86s.
 The first pop-tarot-11 reset checks timed out90s; a later grief reading passed
 independent editorial review in24.56s, while Vedic-learning still timed out.
-The 18 November release selects Gemini first and Groq Qwen3.8 27B as a backup
+The earlier18 November release selected Gemini first and Groq Qwen3.8 27B as a backup
 only for ordinary and Western readings. Ordinary uses evidence-3/none with the
 canonical shortlist; Western uses qwen-astrology-medium-1/medium with two supplied
 candidates per card. Both use hidden reasoning and a4096 combined-token cap.

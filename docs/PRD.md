@@ -27,6 +27,11 @@ request. Every provider must pass the same reading-quality checks. A concise
 failure state preserves the spread and offers Retry only when useful; request
 limits survive refresh, and checking for a lost response never submits again.
 The reading form names the services that may receive the question and chart.
+While writing, a compact loader shows the actual saved stage: preparing, matching
+references, writing, retrying a provider, checking or saving. Percentage and time
+remaining are explicitly estimates; neither claims completion before the reading
+is saved. Refresh resumes the original attempt and elapsed time. Slow attempts
+say they are taking longer, without a false zero-second countdown.
 Reference connections may include a compact Background disclosure containing
 the exact catalogue context, stored separately from the generated reflection.
 The model cannot rewrite that evidence, and saved readings keep their original

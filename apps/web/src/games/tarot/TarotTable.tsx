@@ -5,13 +5,19 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useReducedMotion } from 'motion/react';
 import { Sparkles, ArrowRight, ArrowUp, RotateCcw, Layers3 } from 'lucide-react';
 import { Button, ChoiceGroup, Modal, HorizontalRail, TarotCard, tarotArtwork } from '@games/ui';
-import { ApiError, type AstrologyInput, type AstrologyChart as ChartData } from '@games/api-client';
+import {
+  ApiError,
+  type AstrologyInput,
+  type AstrologyChart as ChartData,
+  type ReadingView,
+} from '@games/api-client';
 import { api } from '@/lib/session';
 import { keys } from '@/shared/query-keys';
 import type { TableProps } from '../types';
 import { useTableDraft } from '../shared/table-draft';
 import { TarotReading } from './TarotReading';
 import { AstrologyForm } from './AstrologyForm';
+import { ReadingProgress } from './ReadingProgress';
 
 const positions = ['Where you are', 'What is shifting', 'Your next move'];
 
@@ -48,20 +54,14 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const filter = useRef<HTMLDivElement>(null);
   const cache = useQueryClient();
   const queryKey = ['tarot-reading', room.id, room.matchId];
-  const saved = useQuery({
-    queryKey,
-    queryFn: () => api.reading(room.id),
-    enabled: match.community.length === 3,
-    refetchInterval: (query) => (query.state.data?.status === 'generating' ? 3000 : false),
-  });
-  // An explicit empty draft is a user's edit; a missing draft restores the saved question.
-  const question = questionDraft ?? saved.data?.question ?? '';
-  const reuseSavedAstrology =
-    astrologyChoice === 'auto' && !astrology && !!saved.data?.astrology_chart;
-  const generate = useMutation({
-    mutationFn: () =>
+  const progressArea = useRef<HTMLDivElement>(null);
+  const showRequestedProgress = useRef(false);
+  const generate = useMutation<ReadingView>({
+    mutationFn: (): Promise<ReadingView> =>
       api.generateReading(room.id, room.matchId!, question, astrology, reuseSavedAstrology),
-    onSuccess: (result) => {
+    onSuccess: async (result) => {
+      // A late progress poll cannot replace the completed reading with a pending state.
+      await cache.cancelQueries({ queryKey, exact: true });
       setQuestion(null);
       setAstrology(undefined);
       setAstrologyChoice('auto');
@@ -80,6 +80,17 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
       }
     },
   });
+  const saved = useQuery<ReadingView>({
+    queryKey,
+    queryFn: () => api.reading(room.id),
+    enabled: match.community.length === 3,
+    refetchInterval: (query): number | false =>
+      generate.isPending || recovering || query.state.data?.status === 'generating' ? 2000 : false,
+  });
+  // An explicit empty draft is a user's edit; a missing draft restores the saved question.
+  const question: string = questionDraft ?? saved.data?.question ?? '';
+  const reuseSavedAstrology: boolean =
+    astrologyChoice === 'auto' && !astrology && !!saved.data?.astrology_chart;
   // A solo reading starts its next spread in one tap: ready, then start, as room creation does.
   const again = useMutation({
     mutationFn: async () => {
@@ -91,6 +102,14 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   });
   const reading = saved.data?.reading;
   const writing = (generate.isPending && !recovering) || saved.data?.status === 'generating';
+  useEffect(() => {
+    if (!writing || !showRequestedProgress.current) return;
+    showRequestedProgress.current = false;
+    progressArea.current?.scrollIntoView({
+      block: 'nearest',
+      behavior: reduced ? 'auto' : 'smooth',
+    });
+  }, [writing, reduced]);
   const checking = !reading && (recovering || saved.isPending || saved.isFetching);
   const unavailable = saved.data?.status === 'unavailable';
   const failure = saved.data?.failure ?? undefined;
@@ -395,6 +414,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
           onSubmit={(event) => {
             event.preventDefault();
             if (cannotGenerate) return;
+            showRequestedProgress.current = true;
             generate.mutate();
           }}
         >
@@ -498,6 +518,14 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
               </Button>
             )}
           </div>
+          {writing || recovering ? (
+            <div ref={progressArea}>
+              <ReadingProgress
+                progress={saved.data?.status === 'generating' ? saved.data.progress : undefined}
+                recovering={recovering || saved.isError}
+              />
+            </div>
+          ) : null}
         </form>
       )}
       <p className="tarot-footnote">

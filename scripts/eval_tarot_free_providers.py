@@ -3,8 +3,9 @@
 Dry-run by default; execution requires a verified free-only account, an explicit
 attempt budget and a new run ID. Never changes application settings or database
 records. Legacy runs retain their ten-attempt limit. The explicit compact profile
-shares all historical reservations: at most twenty per provider and thirty-five
-combined, including failures and interrupted requests.
+shares all historical reservations, including failures and interrupted requests.
+The grounded phase permits twelve additional calls: cumulative53 combined,
+31 Groq and22 Cloudflare. Earlier profiles retain their original ceilings.
 """
 
 import argparse
@@ -38,8 +39,17 @@ EVIDENCE_MAX_PROVIDER_ATTEMPTS = 24
 EVIDENCE_MAX_COMBINED_ATTEMPTS = 38
 MAX_PROVIDER_ATTEMPTS = 25
 MAX_COMBINED_ATTEMPTS = 41
+GROUNDED_PROFILE = "grounded-v1"
+GROUNDED_MAX_PROVIDER_ATTEMPTS = {"groq": 31, "cloudflare": 22}
+GROUNDED_MAX_COMBINED_ATTEMPTS = 53
+GROUNDED_MEDIUM_PROFILE = "grounded-medium-v1"
+GROUNDED_MEDIUM_MAX_PROVIDER_ATTEMPTS = 35
+GROUNDED_MEDIUM_MAX_COMBINED_ATTEMPTS = 57
+GROUNDED_JSON_PROFILE = "grounded-json-v1"
+GROUNDED_JSON_MAX_PROVIDER_ATTEMPTS = 37
+GROUNDED_JSON_MAX_COMBINED_ATTEMPTS = 59
 ASTROLOGY_PROFILE = "qwen-astrology-medium-v1"
-COMPACT_PROFILES = ("compact-v2", "compact-json-v1", "compact-medium-v1", "compact-high-v1", "qwen-none-v1", "qwen-evidence-v2", ASTROLOGY_PROFILE)
+COMPACT_PROFILES = ("compact-v2", "compact-json-v1", "compact-medium-v1", "compact-high-v1", "qwen-none-v1", "qwen-evidence-v2", ASTROLOGY_PROFILE, GROUNDED_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE)
 PROFILES = ("legacy-v1", "compact-v1", *COMPACT_PROFILES)
 WIRE_VERSION = "free-provider-eval-1"
 SCENARIO_IDS = (
@@ -65,18 +75,53 @@ def digest(value):
 
 
 def profile_combined_limit(profile):
+    if profile == GROUNDED_JSON_PROFILE:
+        return GROUNDED_JSON_MAX_COMBINED_ATTEMPTS
+    if profile == GROUNDED_MEDIUM_PROFILE:
+        return GROUNDED_MEDIUM_MAX_COMBINED_ATTEMPTS
+    if profile == GROUNDED_PROFILE:
+        return GROUNDED_MAX_COMBINED_ATTEMPTS
     if profile == ASTROLOGY_PROFILE:
         return MAX_COMBINED_ATTEMPTS
     return EVIDENCE_MAX_COMBINED_ATTEMPTS if profile == "qwen-evidence-v2" else COMPACT_MAX_COMBINED_ATTEMPTS
 
 
 def profile_scenarios(profile):
-    return ASTROLOGY_SCENARIO_IDS if profile == ASTROLOGY_PROFILE else SCENARIO_IDS
+    if profile == GROUNDED_PROFILE:
+        return ("ordinary-grief", *ASTROLOGY_SCENARIO_IDS)
+    return ASTROLOGY_SCENARIO_IDS if profile in (ASTROLOGY_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE) else SCENARIO_IDS
 
 
 def profile_settings(provider, profile="legacy-v1", reasoning_effort=None):
     if provider not in MODELS or profile not in PROFILES:
         raise EvaluationStop("unsupported_evaluation_profile")
+    if profile == GROUNDED_JSON_PROFILE:
+        from app.games.tarot import grounded, grounded_json
+
+        if provider != "groq" or reasoning_effort not in (None, "medium"):
+            raise EvaluationStop("grounded_json_requires_groq_medium")
+        return {"profile": profile, "model": grounded.MODELS[provider],
+                "reasoning_effort": "medium", "output_cap": grounded.OUTPUT_CAP,
+                "wire_version": grounded_json.PROFILE_VERSION, "smoke_scenario": "western-rest",
+                "max_attempts_provider_total": GROUNDED_JSON_MAX_PROVIDER_ATTEMPTS}
+    if profile == GROUNDED_MEDIUM_PROFILE:
+        from app.games.tarot import grounded, grounded_astrology
+
+        if provider != "groq" or reasoning_effort not in (None, "medium"):
+            raise EvaluationStop("grounded_medium_requires_groq_medium")
+        return {"profile": profile, "model": grounded.MODELS[provider],
+                "reasoning_effort": "medium", "output_cap": grounded.OUTPUT_CAP,
+                "wire_version": grounded_astrology.PROFILE_VERSION, "smoke_scenario": "western-rest",
+                "max_attempts_provider_total": GROUNDED_MEDIUM_MAX_PROVIDER_ATTEMPTS}
+    if profile == GROUNDED_PROFILE:
+        from app.games.tarot import grounded
+
+        if reasoning_effort not in (None, "none"):
+            raise EvaluationStop("grounded_profile_has_fixed_reasoning_effort")
+        return {"profile": profile, "model": grounded.MODELS[provider],
+                "reasoning_effort": "none", "output_cap": grounded.OUTPUT_CAP,
+                "wire_version": grounded.PROFILE_VERSION, "smoke_scenario": "ordinary-grief",
+                "max_attempts_provider_total": GROUNDED_MAX_PROVIDER_ATTEMPTS[provider]}
     if profile == "compact-v1":
         raise EvaluationStop("retired_compact_profile_requires_explicit_new_profile")
     if profile in COMPACT_PROFILES:
@@ -146,6 +191,22 @@ def adapter_fingerprint(profile):
     from app.games.tarot import providers
 
     decoder = hashlib.sha256(Path(providers.__file__).read_bytes()).hexdigest()
+    if profile == GROUNDED_JSON_PROFILE:
+        from app.games.tarot import grounded_json
+
+        return digest({"base": adapter_fingerprint(GROUNDED_MEDIUM_PROFILE),
+                       "json_transport": hashlib.sha256(Path(grounded_json.__file__).read_bytes()).hexdigest()})
+    if profile == GROUNDED_MEDIUM_PROFILE:
+        from app.games.tarot import grounded_astrology
+
+        return digest({"base": adapter_fingerprint(GROUNDED_PROFILE),
+                       "astrology_transform": hashlib.sha256(Path(grounded_astrology.__file__).read_bytes()).hexdigest()})
+    if profile == GROUNDED_PROFILE:
+        from app.games.tarot import groq_qwen, grounded
+
+        return digest({"decoder": decoder,
+                       "wire_transform": hashlib.sha256(Path(grounded.__file__).read_bytes()).hexdigest(),
+                       "shared_helpers": hashlib.sha256(Path(groq_qwen.__file__).read_bytes()).hexdigest()})
     if profile == "compact-json-v1":
         from app.games.tarot import groq_json
 
@@ -218,7 +279,7 @@ def prepare(provider, scenario, reasoning_effort=None, profile="legacy-v1"):
     from app.settings import Settings
 
     settings = profile_settings(provider, profile, reasoning_effort)
-    if profile == ASTROLOGY_PROFILE and scenario.id not in ASTROLOGY_SCENARIO_IDS:
+    if profile in (ASTROLOGY_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE) and scenario.id not in ASTROLOGY_SCENARIO_IDS:
         raise EvaluationStop("astrology_profile_requires_astrology_scenario")
     reasoning_effort, output_cap = settings["reasoning_effort"], settings["output_cap"]
     chart = chart_for(scenario)
@@ -256,7 +317,18 @@ def prepare(provider, scenario, reasoning_effort=None, profile="legacy-v1"):
     if profile in COMPACT_PROFILES:
         from app.games.tarot import providers
 
-        if profile == ASTROLOGY_PROFILE:
+        if profile in (GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE):
+            from app.games.tarot.grounded_astrology import (
+                build_grounded_astrology_request,
+            )
+
+            original, body = build_grounded_astrology_request(original)
+            context = json.loads(original["input"])
+        elif profile == GROUNDED_PROFILE:
+            from app.games.tarot.grounded import build_grounded_request
+
+            body = build_grounded_request(provider, original)
+        elif profile == ASTROLOGY_PROFILE:
             from app.games.tarot.groq_qwen_astrology import (
                 build_groq_qwen_astrology_request,
             )
@@ -271,7 +343,15 @@ def prepare(provider, scenario, reasoning_effort=None, profile="legacy-v1"):
         else:
             body = providers.build_alternative_request(provider, original)
         schema = body["response_format"]["json_schema"]["schema"]
-        if profile == "compact-json-v1":
+        if profile == GROUNDED_JSON_PROFILE:
+            from app.games.tarot.grounded_json import (
+                json_contract_schema,
+                json_transport,
+            )
+
+            body = json_transport(body)
+            schema = json_contract_schema(schema)
+        elif profile == "compact-json-v1":
             from app.games.tarot.groq_json import build_groq_json_request
 
             body = build_groq_json_request(body)
@@ -324,6 +404,8 @@ def prepare(provider, scenario, reasoning_effort=None, profile="legacy-v1"):
         report["schema_adaptation"] += "; neutral imagery wire keys mapped exactly to canonical layers; explicit returned Qwen identity"
     elif profile == "qwen-evidence-v2":
         report["schema_adaptation"] += "; generated reflection questions and imagery; exact supplied source evidence injected server-side"
+    elif profile in (GROUNDED_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE):
+        report["schema_adaptation"] += "; generated reflection and imagery; server-owned exact evidence and selected chart placement headers"
     elif profile == ASTROLOGY_PROFILE:
         report["schema_adaptation"] += "; same evidence-3 schema/prompt; two effective candidates per card and medium reasoning; exact local chart validation"
     if provider == "cloudflare":
@@ -332,7 +414,7 @@ def prepare(provider, scenario, reasoning_effort=None, profile="legacy-v1"):
             estimate * input_rate / 1_000_000 + output_cap * output_rate / 1_000_000,
         )
     return {"scenario": scenario, "chart": chart, "context": context, "body": body,
-            "canonical_request": original, "report": report}
+            "canonical_request": original, "wire_schema": schema, "report": report}
 
 
 def load_credentials(provider):
@@ -403,12 +485,13 @@ DOMAIN_REASONS = {
 }
 
 
-def failed_generation_metadata(error):
+def failed_generation_metadata(error, expected_schema=None):
     """Describe failure structure in memory; never return text, keys or thoughts."""
     if not isinstance(error, dict) or "failed_generation" not in error:
         return {}
     value = error["failed_generation"]
     detail = {"present": True}
+    parsed = value if isinstance(value, dict) else None
     if isinstance(value, str):
         detail.update(kind="text", characters=len(value),
                       ends_with_json_close=value.rstrip().endswith(("}", "]")))
@@ -427,6 +510,33 @@ def failed_generation_metadata(error):
         detail.update(kind="array", member_count=len(value))
     else:
         detail["kind"] = "null" if value is None else "scalar"
+    if isinstance(parsed, dict) and isinstance(expected_schema, dict):
+        present, missing, wrong_types = [], [], []
+        unknown_count = 0
+        def inspect(actual, schema, path="", depth=0):
+            nonlocal unknown_count
+            if depth > 5 or not isinstance(schema, dict) or schema.get("type") != "object":
+                return
+            if not isinstance(actual, dict):
+                wrong_types.append(path or "root")
+                return
+            properties = schema.get("properties", {})
+            if not isinstance(properties, dict):
+                return
+            unknown_count += len(set(actual) - set(properties))
+            for name, child in properties.items():
+                if not re.fullmatch(r"[a-z][a-z0-9_]{0,40}", name):
+                    continue
+                location = (path + "." if path else "") + name
+                if name not in actual:
+                    if name in schema.get("required", []):
+                        missing.append(location)
+                else:
+                    present.append(location)
+                    inspect(actual[name], child, location, depth + 1)
+        inspect(parsed, expected_schema)
+        detail["schema_shape"] = {"known_present_fields": present[:40], "missing_required_fields": missing[:40],
+                                  "wrong_object_fields": wrong_types[:40], "unknown_field_count": unknown_count}
     finish = error.get("finish_reason")
     if finish in ("stop", "length", "content_filter", "tool_calls"):
         detail["reported_finish_reason"] = finish
@@ -434,7 +544,7 @@ def failed_generation_metadata(error):
     return {"failed_generation": detail, **({"failed_generation_usage": usage} if usage else {})}
 
 
-def http_diagnostics(body, headers):
+def http_diagnostics(body, headers, expected_schema=None):
     """Allowlisted machine diagnostics only; never provider error prose."""
     result = {}
     if isinstance(body, dict):
@@ -444,7 +554,7 @@ def http_diagnostics(body, headers):
             entries.extend(error for error in errors[:4] if isinstance(error, dict))
         for error in entries[:4]:
             if "failed_generation" in error:
-                result.update(failed_generation_metadata(error))
+                result.update(failed_generation_metadata(error, expected_schema))
                 break
         usage = normalized_usage(body)
         if usage:
@@ -466,6 +576,18 @@ def http_diagnostics(body, headers):
                 safe_errors.append(fields)
             message = error.get("message")
             if isinstance(message, str):
+                if error.get("code") == "rate_limit_exceeded":
+                    quota = {}
+                    for unit in ("TPM", "TPD"):
+                        if re.search(r"\b" + unit + r"\b", message, re.IGNORECASE):
+                            quota["unit"] = unit
+                            break
+                    for name in ("requested", "limit"):
+                        match = re.search(r"\b" + name + r"\s*[:=]?\s*(\d{1,9})(?!\d|\.\d)", message, re.IGNORECASE)
+                        if match:
+                            quota[name] = int(match[1])
+                    if quota:
+                        result["token_quota"] = quota
                 keywords.update(keyword for keyword in allowed_keywords if re.search(
                     r"(?<![\w])" + re.escape(keyword) + r"(?![\w])", message,
                 ))
@@ -539,7 +661,21 @@ def parse_response(body, prepared):
         from app.games.tarot import providers
 
         try:
-            if prepared["report"]["profile"] == ASTROLOGY_PROFILE:
+            if prepared["report"]["profile"] == GROUNDED_JSON_PROFILE:
+                from app.games.tarot.grounded_json import decode_grounded_json_output
+
+                payload = decode_grounded_json_output(body, prepared["canonical_request"])
+            elif prepared["report"]["profile"] == GROUNDED_MEDIUM_PROFILE:
+                from app.games.tarot.grounded_astrology import (
+                    decode_grounded_astrology_output,
+                )
+
+                payload = decode_grounded_astrology_output(body, prepared["canonical_request"])
+            elif prepared["report"]["profile"] == GROUNDED_PROFILE:
+                from app.games.tarot.grounded import decode_grounded_output
+
+                payload = decode_grounded_output(prepared["report"]["provider"], body, prepared["canonical_request"])
+            elif prepared["report"]["profile"] == ASTROLOGY_PROFILE:
                 from app.games.tarot.groq_qwen_astrology import (
                     decode_groq_qwen_astrology_output,
                 )
@@ -629,14 +765,14 @@ def reservations(provider):
                 or path.name != f"{provider}-attempt-{expected_attempt:03}-reserved.json"):
             raise EvaluationStop("reservation_history_is_invalid")
         rows.append(record)
-    if len(rows) > MAX_PROVIDER_ATTEMPTS:
+    if len(rows) > (GROUNDED_JSON_MAX_PROVIDER_ATTEMPTS if provider == "groq" else GROUNDED_MAX_PROVIDER_ATTEMPTS[provider]):
         raise EvaluationStop("provider_budget_already_exceeded")
     return rows
 
 
 def combined_reservations():
     rows = [row for provider in MODELS for row in reservations(provider)]
-    if len(rows) > MAX_COMBINED_ATTEMPTS:
+    if len(rows) > GROUNDED_JSON_MAX_COMBINED_ATTEMPTS:
         raise EvaluationStop("combined_budget_already_exceeded")
     return rows
 
@@ -661,9 +797,9 @@ SMOKE_FIELDS = (
 def smoke_artifacts(record):
     """Resolve only the evaluator's fixed filenames beneath its private run."""
     run_id, provider, attempt = record["run_id"], record["provider"], record["attempt"]
-    scenario_id = "western-rest" if record.get("profile") == ASTROLOGY_PROFILE else "ordinary-grief"
+    scenario_id = "western-rest" if record.get("profile") in (ASTROLOGY_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE) else "ordinary-grief"
     if (not isinstance(run_id, str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,79}", run_id)
-            or provider not in MODELS or type(attempt) is not int or not 1 <= attempt <= MAX_PROVIDER_ATTEMPTS
+            or provider not in MODELS or type(attempt) is not int or not 1 <= attempt <= (GROUNDED_JSON_MAX_PROVIDER_ATTEMPTS if provider == "groq" else GROUNDED_MAX_PROVIDER_ATTEMPTS[provider])
             or record["id"] != scenario_id):
         raise EvaluationStop("invalid_smoke_artifact_identity")
     paths = {
@@ -897,11 +1033,155 @@ def offline_western_smoke_matches(record, prepared):
         return False
 
 
+def _only_wider_prose_targets(old, new):
+    """Prove the wire differs only by broader length guidance, not instructions/data."""
+    if isinstance(old, dict) and isinstance(new, dict) and old.keys() == new.keys():
+        return all(_only_wider_prose_targets(old[key], new[key]) for key in old)
+    if isinstance(old, list) and isinstance(new, list) and len(old) == len(new):
+        return all(_only_wider_prose_targets(a, b) for a, b in zip(old, new, strict=True))
+    if old == new:
+        return True
+    pattern = r"(\d+)–(\d+) characters\."
+    before = re.fullmatch(pattern, old) if isinstance(old, str) else None
+    after = re.fullmatch(pattern + r" Aim (\d+)–(\d+)\.", new) if isinstance(new, str) else None
+    return bool(before and after and after.groups()[2:] == before.groups()
+                and int(after[1]) <= int(before[1]) and int(after[2]) >= int(before[2]))
+
+
+def validate_grounded_recheck(record, prepared):
+    """Revalidate unchanged saved content; never turn an HTTP error into output."""
+    if (record.get("profile") != GROUNDED_PROFILE or record.get("wire_version") != "grounded-reading-2"
+            or record.get("http_status") != 200
+            or record.get("id") != prepared["report"]["id"]
+            or record.get("model") != prepared["report"]["model"]
+            or record.get("status") not in {"valid", "failed"}
+            or record.get("reason") not in {"valid_contract", "invalid_text_length"}):
+        raise EvaluationStop("not_an_eligible_grounded_length_recheck")
+    provider, run_id, ident, attempt = record["provider"], record["run_id"], record["id"], record["attempt"]
+    if (provider not in MODELS or ident not in SCENARIO_BY_ID
+            or not isinstance(run_id, str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,79}", run_id)
+            or type(attempt) is not int or not 1 <= attempt <= GROUNDED_MAX_PROVIDER_ATTEMPTS[provider]):
+        raise EvaluationStop("invalid_grounded_recheck_identity")
+    folder = EVIDENCE / run_id
+    paths = {
+        "result": EVIDENCE / f"{provider}-attempt-{attempt:03}-result.json",
+        "run_result": folder / f"{ident}-result.json",
+        "reservation": EVIDENCE / f"{provider}-attempt-{attempt:03}-reserved.json",
+        "request": folder / f"{ident}-request-private.json",
+        "preflight": folder / "preflight.json",
+        "content": folder / (f"{ident}-reading-private.json" if record["status"] == "valid"
+                             else f"{ident}-rejected-final-private.json"),
+    }
+    if any(path.is_symlink() or not path.resolve().is_relative_to(EVIDENCE.resolve())
+           or path.stat().st_mode & 0o077 for path in paths.values()):
+        raise EvaluationStop("invalid_grounded_recheck_artifact")
+    if json.loads(paths["run_result"].read_text()) != record or json.loads(paths["result"].read_text()) != record:
+        raise EvaluationStop("grounded_recheck_result_mismatch")
+    reservation = json.loads(paths["reservation"].read_text())
+    for field in ("provider", "attempt", "run_id", "model", "profile", "wire_version", "contract_sha256"):
+        if reservation.get(field) != record.get(field):
+            raise EvaluationStop("grounded_recheck_reservation_mismatch")
+    preflight = json.loads(paths["preflight"].read_text())
+    scenario = next((row for row in preflight.get("scenarios", []) if row.get("id") == ident), None)
+    if (scenario is None or any(scenario.get(field) != record.get(field)
+                               for field in ("request_sha256", "schema_sha256", "context_sha256", "chart_sha256"))):
+        raise EvaluationStop("grounded_recheck_preflight_mismatch")
+    saved = json.loads(paths["request"].read_text())
+    encoded = httpx.Request("POST", "https://evaluation.invalid", json=saved["request"]).content
+    chart = prepared["chart"].model_dump(mode="json") if prepared["chart"] else None
+    if (hashlib.sha256(encoded).hexdigest() != record["request_sha256"]
+            or saved["context"] != prepared["context"] or saved["chart"] != chart
+            or not _only_wider_prose_targets(saved["request"], prepared["body"])):
+        raise EvaluationStop("grounded_recheck_wire_changed_beyond_lengths")
+    stored = json.loads(paths["content"].read_text())
+    if record["status"] == "failed":
+        raw = stored.get("content")
+        if (not isinstance(raw, str) or record.get("rejected_final_capture", {}).get("status") != "saved"
+                or hashlib.sha256(raw.encode()).hexdigest() != record.get("final_text_sha256")):
+            raise EvaluationStop("grounded_recheck_capture_mismatch")
+        from app.games.tarot.grounded import decode_grounded_output
+
+        payload = decode_grounded_output(provider, {"model": record["model"], "choices": [{
+            "finish_reason": "stop", "message": {"content": raw},
+        }]}, prepared["canonical_request"])
+    else:
+        payload = deepcopy(stored)
+        if chart:
+            astrology = payload.pop("astrology", None)
+            if not isinstance(astrology, dict) or astrology.get("chart") != chart:
+                raise EvaluationStop("grounded_recheck_saved_chart_changed")
+            payload["astrology_interpretation"] = astrology["interpretation"]
+    result = reading.validate_reading(payload, list(prepared["scenario"].cards),
+                                     astrology_chart=prepared["chart"],
+                                     candidates=[c["reference_characters"] for c in prepared["context"]["cards"]])
+    return result, paths
+
+
+def grounded_recheck_paths(record):
+    revision = adapter_fingerprint(GROUNDED_PROFILE)[:12]
+    normalized = EVIDENCE / record["run_id"] / f"{record['id']}-bounds-{revision}-revalidated-reading-private.json"
+    receipt = EVIDENCE / f"{record['provider']}-attempt-{record['attempt']:03}-bounds-{revision}-revalidation.json"
+    return normalized, receipt
+
+
+def revalidate_grounded_attempt(provider, attempt):
+    with evaluation_lock(provider):
+        record = json.loads((EVIDENCE / f"{provider}-attempt-{attempt:03}-result.json").read_text())
+        prepared = prepare(provider, SCENARIO_BY_ID[record["id"]], "none", GROUNDED_PROFILE)
+        result, paths = validate_grounded_recheck(record, prepared)
+        normalized, receipt_path = grounded_recheck_paths(record)
+        if normalized.exists() or receipt_path.exists():
+            raise EvaluationStop("grounded_recheck_receipt_exists")
+        private_json(normalized, result.model_dump(mode="json"))
+        private_json(receipt_path, {
+            "attestation_version": "grounded-bounds-revalidation-1", "provider": provider, "attempt": attempt,
+            "original_status": record["status"], "original_reason": record["reason"],
+            "original_contract_sha256": record["contract_sha256"],
+            "adapter_sha256": adapter_fingerprint(GROUNDED_PROFILE),
+            "current_contract_sha256": contract_hash("none", GROUNDED_PROFILE, provider),
+            "current_request_sha256": prepared["report"]["request_sha256"],
+            "artifacts": {name: hashlib.sha256(path.read_bytes()).hexdigest() for name, path in paths.items()},
+            "artifact_paths": {name: str(path) for name, path in paths.items()},
+            "normalized_path": str(normalized),
+            "normalized_sha256": hashlib.sha256(normalized.read_bytes()).hexdigest(),
+            "local_contract_valid": True, "editorial_acceptance": False, "generated_prose_unchanged": True,
+            "provider_calls": 0, "attempts_reserved": 0, "credentials_read": False,
+            "envelope_basis": "Original HTTP200 exact-model stop decode; no new inference or response",
+        })
+        print(json.dumps({"offline_revalidation": "valid", "provider": provider, "attempt": attempt,
+                          "original_status": record["status"], "provider_calls": 0, "editorial_acceptance": False}))
+        return 0
+
+
+def grounded_recheck_matches(record, prepared):
+    try:
+        normalized, receipt_path = grounded_recheck_paths(record)
+        if receipt_path.is_symlink() or receipt_path.stat().st_mode & 0o077:
+            return False
+        receipt = json.loads(receipt_path.read_text())
+        result, paths = validate_grounded_recheck(record, prepared)
+        return (receipt.get("attestation_version") == "grounded-bounds-revalidation-1"
+                and receipt.get("adapter_sha256") == adapter_fingerprint(GROUNDED_PROFILE)
+                and receipt.get("current_request_sha256") == prepared["report"]["request_sha256"]
+                and receipt.get("original_contract_sha256") == record["contract_sha256"]
+                and receipt.get("provider_calls") == 0 and receipt.get("generated_prose_unchanged") is True
+                and receipt.get("artifacts") == {name: hashlib.sha256(path.read_bytes()).hexdigest() for name, path in paths.items()}
+                and not normalized.is_symlink() and normalized.stat().st_mode & 0o077 == 0
+                and receipt.get("normalized_sha256") == hashlib.sha256(normalized.read_bytes()).hexdigest()
+                and json.loads(normalized.read_text()) == result.model_dump(mode="json"))
+    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+        return False
+
+
 def smoke_passed(provider, current_contract, reasoning_effort="low", profile="legacy-v1"):
     expected = profile_settings(provider, profile, reasoning_effort)
     fresh = prepare(provider, SCENARIO_BY_ID[expected["smoke_scenario"]], reasoning_effort, profile) if profile in COMPACT_PROFILES else None
     for path in EVIDENCE.glob(f"{provider}-attempt-???-result.json"):
         record = json.loads(path.read_text())
+        if (profile == GROUNDED_PROFILE and record.get("profile") == profile
+                and record.get("id") == "ordinary-grief" and fresh is not None
+                and grounded_recheck_matches(record, fresh)):
+            return True
         if (profile == ASTROLOGY_PROFILE and record.get("profile") == profile
                 and record.get("id") == "western-rest" and record.get("status") == "failed"
                 and fresh is not None and offline_western_smoke_matches(record, fresh)):
@@ -985,7 +1265,7 @@ def send_once(client, endpoint, key, prepared, *, rejected_output_path=None):
                     return None, {**summary, "reason": "http_error", **http_diagnostics(None, response.headers)}, True
                 return None, {**summary, "reason": "invalid_envelope_json"}, True
             if response.status_code != 200:
-                return None, {**summary, "reason": "http_error", **http_diagnostics(body, response.headers)}, True
+                return None, {**summary, "reason": "http_error", **http_diagnostics(body, response.headers, prepared.get("wire_schema"))}, True
             if prepared["report"].get("profile") in COMPACT_PROFILES:
                 from app.games.tarot import providers
 
@@ -1019,6 +1299,8 @@ def evaluate(args):
         "capture_rejected_output": bool(args.capture_rejected_output),
         "scenarios": [entry["report"] for entry in prepared],
     }
+    if args.execute and args.profile == GROUNDED_MEDIUM_PROFILE:
+        raise EvaluationStop("grounded_medium_execution_retired")
     if not args.execute:
         print(json.dumps(planned, indent=2))
         return 0
@@ -1028,7 +1310,7 @@ def evaluate(args):
         planned["reserved_combined_before_run"] = len(combined_reservations())
         if (not smoke_passed(args.provider, current_contract, effort, args.profile)
                 and selected != [settings["smoke_scenario"]]):
-            raise EvaluationStop("run_one_western_rest_smoke_before_matrix" if args.profile == ASTROLOGY_PROFILE else
+            raise EvaluationStop("run_one_western_rest_smoke_before_matrix" if args.profile in (ASTROLOGY_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE) else
                                  "run_one_ordinary_grief_smoke_before_matrix" if args.profile in COMPACT_PROFILES
                                  else "run_one_ordinary_blank_smoke_before_matrix")
         credentials = load_credentials(args.provider)
@@ -1091,12 +1373,14 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--provider", required=True, choices=MODELS)
     parser.add_argument("--profile", choices=PROFILES, default="legacy-v1",
-                        help="Cumulative phase ceilings: original compact35/20, evidence38/24, astrology medium41/25; all history counts")
+                        help="Cumulative phase ceilings: original compact35/20, evidence38/24, astrology medium41/25, grounded53/31Groq/22Cloudflare, groundedmedium57/35Groq/22Cloudflare; all history counts")
     parser.add_argument("--reasoning-effort", choices=("none", "low", "medium", "high"),
                         help="Legacy default low; compact-v2 fixes Groq high and Cloudflare nonreasoning")
     parser.add_argument("--execute", action="store_true")
     parser.add_argument("--revalidate-western-smoke-attempt", type=int,
                         help="Offline-only explicit attestation of an unchanged captured Western anchor failure")
+    parser.add_argument("--revalidate-grounded-attempt", type=int,
+                        help="Offline-only exact-content proof after widening compact prose bounds")
     parser.add_argument("--capture-rejected-output", action="store_true",
                         help="Opt in to private bounded final content for failed HTTP200 synthetic cases; no reasoning or error bodies")
     parser.add_argument("--free-plan-confirmed", action="store_true",
@@ -1111,11 +1395,19 @@ def main(argv=None):
             or args.execute or args.capture_rejected_output or args.run_id or args.max_attempts is not None
             or args.free_plan_confirmed):
         parser.error("Offline Western revalidation requires only Groq astrology profile and the original attempt number.")
+    if args.revalidate_grounded_attempt is not None and (
+            args.profile != GROUNDED_PROFILE or args.reasoning_effort not in (None, "none")
+            or args.execute or args.capture_rejected_output or args.run_id or args.max_attempts is not None
+            or args.free_plan_confirmed or args.scenario or args.revalidate_western_smoke_attempt is not None):
+        parser.error("Offline grounded revalidation requires only provider, grounded profile and attempt number.")
     if args.profile == "legacy-v1" and args.reasoning_effort == "high":
         parser.error("Legacy evaluations support only low or medium reasoning.")
     if args.scenario and len(set(args.scenario)) != len(args.scenario):
         parser.error("Choose each scenario once; retries require a separate explicit run.")
-    limit = (MAX_PROVIDER_ATTEMPTS if args.profile == ASTROLOGY_PROFILE else
+    limit = (GROUNDED_JSON_MAX_PROVIDER_ATTEMPTS if args.profile == GROUNDED_JSON_PROFILE else
+             GROUNDED_MEDIUM_MAX_PROVIDER_ATTEMPTS if args.profile == GROUNDED_MEDIUM_PROFILE else
+             GROUNDED_MAX_PROVIDER_ATTEMPTS[args.provider] if args.profile == GROUNDED_PROFILE else
+             MAX_PROVIDER_ATTEMPTS if args.profile == ASTROLOGY_PROFILE else
              EVIDENCE_MAX_PROVIDER_ATTEMPTS if args.profile == "qwen-evidence-v2" else
              COMPACT_MAX_PROVIDER_ATTEMPTS if args.profile in COMPACT_PROFILES else LEGACY_MAX_PROVIDER_ATTEMPTS)
     if args.max_attempts is not None and not 1 <= args.max_attempts <= limit:
@@ -1128,6 +1420,8 @@ def main(argv=None):
         if len(args.scenario or profile_scenarios(args.profile)) > args.max_attempts:
             parser.error("Selected scenarios exceed --max-attempts; select a smaller explicit set.")
     try:
+        if args.revalidate_grounded_attempt is not None:
+            return revalidate_grounded_attempt(args.provider, args.revalidate_grounded_attempt)
         if args.revalidate_western_smoke_attempt is not None:
             return revalidate_western_smoke(args.revalidate_western_smoke_attempt)
         return evaluate(args)

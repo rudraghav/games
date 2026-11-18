@@ -7,15 +7,16 @@ import httpx
 import pytest
 from test_astrology_reading import CARDS, synthetic_chart
 from test_tarot_alternative_providers import envelope, wire_payload
+from test_tarot_grounded import grounded_envelope
 
 from app.games.tarot import reading
 from app.games.tarot.characters import find_character
-from app.games.tarot.groq_qwen import MODEL, OUTPUT_CAP
 from app.games.tarot.groq_qwen_astrology import PROFILE_VERSION as ASTROLOGY_PROFILE_VERSION
 from app.games.tarot.groq_qwen_astrology import build_groq_qwen_astrology_request
-from app.games.tarot.groq_qwen_v2 import PROFILE_VERSION, build_groq_qwen_v2_request
-from app.games.tarot.providers import build_alternative_request
+from app.games.tarot.grounded import MODELS, OUTPUT_CAP, PROFILE_VERSION, build_grounded_request
 from app.settings import settings
+
+MODEL = MODELS["groq"]
 
 
 @pytest.fixture
@@ -50,6 +51,8 @@ def transport(monkeypatch, handler):
 
 
 def qwen_envelope(canonical, chart=None):
+    if not chart:
+        return grounded_envelope("groq", canonical)
     payload = wire_payload(canonical, chart)
     for index in range(1, 4):
         card = payload[f"card_{index}"]
@@ -57,16 +60,15 @@ def qwen_envelope(canonical, chart=None):
         card["reflection_question"] = "What small possibility could you explore at your own pace?"
         card["imagery"] = card.pop("quirky_interpretation")
         card["connection"] = "What might this motif invite you to consider at your own pace?"
-    if chart:
-        for current in chart.charts:
-            section = payload["astrology_interpretation"][current.system]
-            section["imagery"] = section.pop("quirky")
+    for current in chart.charts:
+        section = payload["astrology_interpretation"][current.system]
+        section["imagery"] = section.pop("quirky")
     result = envelope("groq", payload)
     result["model"] = MODEL
     return result
 
 
-@pytest.mark.parametrize("mode", ["ordinary", "western", "vedic", "both"])
+@pytest.mark.parametrize("mode", ["ordinary", "western"])
 def test_runtime_groq_matches_evaluated_wire_and_binds_exact_evidence(configured, monkeypatch, ai_caplog, mode):
     monkeypatch.setattr(configured, "tarot_provider_order", ["groq"])
     references = [find_character(*pair) for pair in (
@@ -78,11 +80,8 @@ def test_runtime_groq_matches_evaluated_wire_and_binds_exact_evidence(configured
     ])
     chart = None if mode == "ordinary" else synthetic_chart(mode)
     canonical = reading.build_reading_request(CARDS, "private-question", astrology_chart=chart)
-    if chart:
-        effective, expected = build_groq_qwen_astrology_request(canonical)
-    else:
-        effective = canonical
-        expected = build_groq_qwen_v2_request(build_alternative_request("groq", canonical))
+    effective, expected = (build_groq_qwen_astrology_request(canonical) if chart
+                           else (canonical, build_grounded_request("groq", canonical)))
     calls = transport(monkeypatch, lambda *_: httpx.Response(200, json=qwen_envelope(effective, chart)))
     with ai_caplog.at_level("INFO", logger="games.ai"):
         result = reading.generate_reading(CARDS, "private-question", astrology_chart=chart)
@@ -103,41 +102,20 @@ def test_runtime_groq_matches_evaluated_wire_and_binds_exact_evidence(configured
     assert "private-" not in ai_caplog.text and "PRIVATE" not in ai_caplog.text
 
 
-def test_astro_effective_shortlist_is_used_for_domain_validation_and_later_provider(configured, monkeypatch):
+def test_legacy_western_fallback_keeps_the_same_chart_and_cf_canonical_shortlist(configured, monkeypatch):
     monkeypatch.setattr(configured, "tarot_provider_order", ["groq", "cloudflare"])
-    references = [find_character(*pair) for pair in (
-        ("Chihiro", "Spirited Away"), ("Miles Morales", "Spider-Man: Into the Spider-Verse"),
-        ("Leslie Knope", "Parks and Recreation"),
-    )]
-    monkeypatch.setattr(reading, "reference_candidates", lambda *_args, **_kwargs: [
-        references[index:] + references[:index] for index in range(3)
-    ])
-    chart = synthetic_chart("both")
+    chart = synthetic_chart("western")
     canonical = reading.build_reading_request(CARDS, "", astrology_chart=chart)
-    effective, _ = build_groq_qwen_astrology_request(canonical)
-    validated_candidates = []
-    validate = reading.validate_reading
-    def record_validation(*args, **kwargs):
-        validated_candidates.append(kwargs["candidates"])
-        return validate(*args, **kwargs)
-    monkeypatch.setattr(reading, "validate_reading", record_validation)
-    responses = [qwen_envelope(effective, chart), envelope("cloudflare", wire_payload(canonical, chart))]
     def respond(request, attempt):
-        if attempt == 1:
-            return httpx.Response(503)
-        assert json.loads(request.content) == build_alternative_request("cloudflare", canonical)
-        return httpx.Response(200, json=responses[1])
+        provider = "groq" if attempt == 1 else "cloudflare"
+        expected = build_groq_qwen_astrology_request(canonical)[1] if provider == "groq" else build_grounded_request(provider, canonical)
+        assert json.loads(request.content) == expected
+        return httpx.Response(503) if attempt == 1 else httpx.Response(
+            200, json=grounded_envelope(provider, canonical, chart))
     calls = transport(monkeypatch, respond)
-    assert len(reading.generate_reading(CARDS, "", astrology_chart=chart).cards) == 3
+    result = reading.generate_reading(CARDS, "", astrology_chart=chart)
+    assert len(result.cards) == 3 and result.astrology.chart == chart
     assert len(calls) == 2
-    assert all(len(row) == 3 for row in validated_candidates[0])
-    validated_candidates.clear()
-    effective_candidates = [card["reference_characters"] for card in json.loads(effective["input"])["cards"]]
-    reading._alternative_reading("groq", responses[0], effective, CARDS, chart, effective_candidates)
-    assert validated_candidates == [effective_candidates]
-    with pytest.raises(reading.ReadingOutputError) as error:
-        reading._alternative_reading("groq", responses[0], canonical, CARDS, chart, effective_candidates)
-    assert error.value.reason == "invalid_astrology_effective_shortlist"
 
 
 @pytest.mark.parametrize("refusal", ["message", "content_filter"])
@@ -156,7 +134,7 @@ def test_qwen_refusal_stops_without_fallback(configured, monkeypatch, refusal):
 
 
 @pytest.mark.parametrize("tamper,reason", [
-    ("reference_id", "invalid_reference_evidence"), ("evidence", "invalid_wire_schema"),
+    ("reference_id", "invalid_reference_id"), ("evidence", "invalid_wire_schema"),
     ("model", "unexpected_model"),
 ])
 def test_runtime_qwen_rejects_unbound_reference_or_model_evidence(configured, tamper, reason):
@@ -254,7 +232,7 @@ def test_unknown_alternative_finish_is_rejected_but_not_a_question_block(configu
     invalid = qwen_envelope(canonical)
     invalid["choices"][0]["finish_reason"] = finish
     calls = transport(monkeypatch, lambda _request, attempt: httpx.Response(200, json=(
-        invalid if attempt == 1 else envelope("cloudflare", wire_payload(canonical, None))
+        invalid if attempt == 1 else grounded_envelope("cloudflare", canonical)
     )))
     if alternate:
         assert len(reading.generate_reading(CARDS, "").cards) == 3
@@ -298,9 +276,9 @@ def test_cloudflare_fallback_retains_useful_time(configured, monkeypatch, reserv
     monkeypatch.setattr(reading.time, "monotonic", lambda: clock[0])
     def respond(request, attempt):
         if attempt == 1:
-            assert request.extensions["timeout"]["read"] <= 80 - reservation_seconds
+            assert request.extensions["timeout"]["read"] <= 69 - reservation_seconds
             return httpx.Response(503)
-        return httpx.Response(200, json=envelope("cloudflare", wire_payload(canonical, None)))
+        return httpx.Response(200, json=grounded_envelope("cloudflare", canonical))
     calls = transport(monkeypatch, respond)
     def reserve():
         clock[0] += reservation_seconds
@@ -339,7 +317,7 @@ def test_fallback_cannot_bypass_application_budget(configured, monkeypatch):
     assert len(calls) == 1 and len(reservations) == 2
 
 
-@pytest.mark.parametrize("elapsed,expected", [(90, 2), (98, 1)])
+@pytest.mark.parametrize("elapsed,expected", [(80, 2), (90, 2), (98, 1)])
 def test_timeout_fallback_shares_deadline_and_has_minimum_useful_time(configured, monkeypatch, elapsed, expected):
     clock = [0.0]
     canonical = reading.build_reading_request(CARDS, "")
@@ -404,3 +382,81 @@ def test_safe_failure_policy_ignores_provider_prose(status, code, retryable):
     assert "private" not in json.dumps(result.model_dump())
     if status == 429:
         assert 119 <= result.retry_at - reading.time.time() <= 120
+
+
+@pytest.mark.parametrize("provider,mode", [("groq", "ordinary"), ("groq", "western"),
+    *( ("cloudflare", mode) for mode in ("ordinary", "western", "vedic", "both"))])
+def test_safe_correction_retains_all_context_and_reports_actual_stages(configured, monkeypatch, provider, mode):
+    monkeypatch.setattr(configured, "tarot_provider_order", [provider])
+    chart = None if mode == "ordinary" else synthetic_chart(mode)
+    canonical = reading.build_reading_request(CARDS, "private-question", astrology_chart=chart)
+    events = []
+    def respond(request, attempt):
+        if attempt == 1:
+            assert events[-1].stage == "writing" and events[-1].attempt == 1
+            return httpx.Response(400, json={"error": {"code": "json_validate_failed", "message": "private-error"}})
+        assert events[-1].stage == "writing" and events[-1].attempt == 2
+        context = json.loads(json.loads(request.content)["messages"][1]["content"])
+        assert context.pop("validation_feedback") == "invalid_schema"
+        original_wire = build_groq_qwen_astrology_request(canonical)[1] if provider == "groq" and chart else build_grounded_request(provider, canonical)
+        original = json.loads(original_wire["messages"][1]["content"])
+        assert context == original
+        return httpx.Response(200, json=(qwen_envelope(canonical, chart) if provider == "groq" and chart
+                                        else grounded_envelope(provider, canonical, chart)))
+    calls = transport(monkeypatch, respond)
+    result = reading.generate_reading(CARDS, "private-question", astrology_chart=chart, on_progress=events.append)
+    assert len(result.cards) == 3 and len(calls) == 2
+    assert [event.stage for event in events] == ["matching", "writing", "retrying", "writing", "checking"]
+    assert all(event.max_attempts == 2 for event in events)
+    assert "private" not in repr(events)
+
+
+def test_three_provider_timeouts_reserve_useful_time_for_every_queued_model(configured, monkeypatch):
+    clock = [0.0]
+    monkeypatch.setattr(reading.time, "monotonic", lambda: clock[0])
+    canonical = reading.build_reading_request(CARDS, "")
+    def respond(request, attempt):
+        allowed = request.extensions["timeout"]["read"]
+        assert allowed == [48, 21, 36][attempt - 1]
+        if attempt < 3:
+            clock[0] += allowed
+            raise httpx.ReadTimeout("private-error")
+        return httpx.Response(200, json=grounded_envelope("cloudflare", canonical))
+    calls = transport(monkeypatch, respond)
+    assert len(reading.generate_reading(CARDS, "").cards) == 3
+    assert len(calls) == 3
+
+
+def test_provider_time_slots_survive_progress_and_reservation_overhead(configured, monkeypatch):
+    clock = [0.0]
+    monkeypatch.setattr(reading.time, "monotonic", lambda: clock[0])
+    canonical = reading.build_reading_request(CARDS, "")
+    def overhead(*_args):
+        clock[0] += 1
+    def respond(request, attempt):
+        seconds = request.extensions["timeout"]["read"]
+        if attempt < 3:
+            clock[0] += seconds
+            raise httpx.ReadTimeout("private-error")
+        assert seconds >= 30
+        return httpx.Response(200, json=grounded_envelope("cloudflare", canonical))
+    calls = transport(monkeypatch, respond)
+    assert len(reading.generate_reading(CARDS, "", before_attempt=overhead, on_progress=overhead).cards) == 3
+    assert len(calls) == 3
+
+
+@pytest.mark.parametrize("mode", ["vedic", "both"])
+def test_unqualified_groq_modes_are_gated_even_when_misconfigured(configured, monkeypatch, mode):
+    monkeypatch.setattr(configured, "tarot_provider_order", ["groq", "cloudflare"])
+    chart = synthetic_chart(mode)
+    canonical = reading.build_reading_request(CARDS, "", astrology_chart=chart)
+    assert reading.configured_providers(chart) == ["cloudflare"]
+    calls = transport(monkeypatch, lambda *_: httpx.Response(200, json=grounded_envelope("cloudflare", canonical, chart)))
+    result = reading.generate_reading(CARDS, "", astrology_chart=chart)
+    assert result.astrology.chart == chart
+    assert len(calls) == 1 and calls[0].url.host == "api.cloudflare.com"
+    monkeypatch.setattr(configured, "cloudflare_api_token", "")
+    assert reading.configured_providers(chart) == []
+    with pytest.raises(reading.ReadingGenerationError):
+        reading.generate_reading(CARDS, "", astrology_chart=chart)
+    assert len(calls) == 1

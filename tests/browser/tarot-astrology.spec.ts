@@ -1,9 +1,11 @@
 import { expect, test, type Page } from '@playwright/test';
+import { writeFile } from 'node:fs/promises';
 import type {
+  AstrologyChart,
   AstrologyInput,
   AstrologyPreview,
-  ReadingView,
 } from '../../packages/api-client/src/index';
+import type { components } from '../../packages/api-client/src/generated/schema';
 import {
   syntheticChart,
   syntheticPlace,
@@ -11,18 +13,21 @@ import {
 } from '../../apps/web/src/stories/fixtures/astrology';
 import dstChart from '../../apps/web/src/stories/fixtures/astrology-dst-synthetic.json' with { type: 'json' };
 import { tarotReadingExample } from '../../apps/web/src/stories/fixtures/tarot-reading';
-import { openGameSetup, requestAs, roomAs } from './helpers';
+import { requestAs, roomAs } from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off' });
 test.skip(!!process.env.GAMES_TEST_URL, 'Synthetic provider tests use local development only.');
 
+type ReadingView = components['schemas']['ReadingView'];
+
 const cleanup = new WeakMap<Page, { roomId?: string }>();
-test.afterEach(async ({ page }) => {
+test.afterEach(async ({ page }, info) => {
   test.setTimeout(45000);
   const owned = cleanup.get(page);
   if (!owned) return;
   // Bound cleanup API requests inside the independent teardown budget.
   page.context().setDefaultTimeout(5000);
+  let closed = false;
   try {
     if (owned.roomId) {
       await page.unrouteAll({ behavior: 'ignoreErrors' });
@@ -35,8 +40,14 @@ test.afterEach(async ({ page }) => {
         expect((await requestAs(page, `rooms/${owned.roomId}/leave`, 'POST')).status()).toBe(200);
       }
       expect((await requestAs(page, `rooms/${owned.roomId}`)).status()).toBe(404);
+      closed = true;
     }
   } finally {
+    await writeFile(
+      info.outputPath('cleanup.json'),
+      JSON.stringify({ roomId: owned.roomId, closed, providerCalls: 0 }),
+      { mode: 0o600 },
+    );
     cleanup.delete(page);
   }
 });
@@ -47,6 +58,44 @@ type ReadingRequest = {
   astrology?: AstrologyInput;
   reuse_saved_astrology?: boolean;
 };
+
+function chartFor(system: AstrologyInput['system'] = 'both'): AstrologyChart {
+  return {
+    ...syntheticChart,
+    charts: syntheticChart.charts.filter((chart) => system === 'both' || chart.system === system),
+  };
+}
+
+function readingForChart(chart: AstrologyChart) {
+  const includes = (system: 'western' | 'vedic') =>
+    chart.charts.some((entry) => entry.system === system);
+  return {
+    chart,
+    interpretation: {
+      ...syntheticAstrologyReading.interpretation,
+      western: includes('western') ? syntheticAstrologyReading.interpretation.western : null,
+      vedic: includes('vedic') ? syntheticAstrologyReading.interpretation.vedic : null,
+    },
+  };
+}
+
+function progress(
+  stage: components['schemas']['ReadingProgress']['stage'],
+  patch: Partial<components['schemas']['ReadingProgress']> = {},
+): components['schemas']['ReadingProgress'] {
+  const now = Date.now() / 1000;
+  return {
+    stage,
+    provider: 'Gemini',
+    attempt: 1,
+    max_attempts: 3,
+    started_at: now - 10,
+    updated_at: now,
+    estimated_percent: 35,
+    estimated_seconds_remaining: 45,
+    ...patch,
+  };
+}
 async function withReading(
   page: Page,
   run: (state: {
@@ -75,9 +124,9 @@ async function withReading(
   const recordUrl = (request: import('@playwright/test').Request) =>
     requestedUrls.push(request.url());
   page.on('request', recordUrl);
-  let calculate = async (_input: AstrologyInput): Promise<AstrologyPreview> => ({
+  let calculate = async (input: AstrologyInput): Promise<AstrologyPreview> => ({
     status: 'ready',
-    chart: syntheticChart,
+    chart: chartFor(input.system),
   });
   let places = async (_query: string): Promise<unknown> => ({
     places: [syntheticPlace],
@@ -93,6 +142,11 @@ async function withReading(
         card_id: room.game!.community[index].id,
         title: room.game!.community[index].label,
       }));
+      const astrologyChart = body.astrology
+        ? chartFor(body.astrology.system)
+        : body.reuse_saved_astrology
+          ? view.astrology_chart || syntheticChart
+          : undefined;
       view = {
         status: 'complete',
         api_tier: 'paid',
@@ -101,9 +155,7 @@ async function withReading(
         reading: {
           ...tarotReadingExample,
           cards,
-          ...(body.astrology || body.reuse_saved_astrology
-            ? { astrology: syntheticAstrologyReading }
-            : {}),
+          ...(astrologyChart ? { astrology: readingForChart(astrologyChart) } : {}),
         },
       };
     }
@@ -126,19 +178,17 @@ async function withReading(
     await route.fulfill({ json: await calculate(body.astrology) });
   });
   try {
-    await page.goto('/');
-    await openGameSetup(page, 'tarot');
-    await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Synthetic chart QA');
+    await page.goto('/games/tarot');
     const created = page
       .waitForResponse(
         (response) =>
           response.request().method() === 'POST' &&
-          new URL(response.url()).pathname === '/api/backend/v1/rooms',
+          new URL(response.url()).pathname === '/api/backend/v1/games/tarot/play',
       )
       .then(async (response) => {
         if (response.ok()) owned.roomId = (await response.json()).id;
       });
-    await page.getByRole('button', { name: 'Create room', exact: true }).click();
+    await page.getByRole('button', { name: 'Start reading', exact: true }).click();
     await created;
     roomId = owned.roomId!;
     await expect(page).toHaveURL(/\/games\/tarot\/play\/[\da-f-]+$/);
@@ -165,8 +215,11 @@ async function withReading(
         places = handler;
       },
     });
-    const storage = await page.evaluate(() => Object.values(localStorage).join(' '));
+    const storage = await page.evaluate(() =>
+      [...Object.values(localStorage), ...Object.values(sessionStorage)].join(' '),
+    );
     expect(storage).not.toContain('2000-01-01');
+    expect(storage).not.toContain('Greenwich');
     expect(page.url()).not.toContain('2000-01-01');
     expect(
       requestedUrls.some((url) => /2000-01-01|birth_date|birth_time|Greenwich/.test(url)),
@@ -249,6 +302,300 @@ test('ordinary Tarot stays optional and preserves all three reading layers', asy
     expect(requests[0]).not.toHaveProperty('reuse_saved_astrology');
     await expect(page.getByRole('region', { name: 'Saved astrology reading' })).toHaveCount(0);
     await noOverflow(page);
+  });
+});
+
+for (const system of ['western', 'vedic'] as const)
+  test(`${system} alone previews, submits and restores only its selected chart and analysis`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 320, height: 740 });
+    await withReading(page, async ({ requests, chartInputs }) => {
+      const title = system === 'western' ? 'Western' : 'Vedic';
+      const other = system === 'western' ? 'Vedic' : 'Western';
+      await details(page);
+      await page
+        .getByRole('group', { name: 'Astrology tradition' })
+        .getByRole('button', { name: title, exact: true })
+        .click();
+      await page.getByRole('button', { name: 'Preview chart', exact: true }).click();
+      const charts = page.getByRole('region', { name: 'Calculated birth charts', exact: true });
+      await expect(charts).toBeVisible();
+      await expect(charts.getByRole('tab')).toHaveCount(0);
+      await expect(
+        charts.locator(system === 'western' ? '.astrology-wheel' : '.astrology-diamond'),
+      ).toBeVisible();
+      expect(chartInputs[0].system).toBe(system);
+      await noOverflow(page);
+      await capture(page, `${system}-only-preview-320`);
+      await page
+        .getByRole('textbox', { name: 'What’s on your mind?' })
+        .fill('How can I make room for a new hobby?');
+      await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
+      await expect(
+        page.getByRole('region', { name: `${title} interpretation`, exact: true }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole('region', { name: `${other} interpretation`, exact: true }),
+      ).toHaveCount(0);
+      expect(requests).toHaveLength(1);
+      expect(requests[0].astrology?.system).toBe(system);
+      const original = await page.locator('.astrology-saved').innerText();
+      await page.reload();
+      await expect(
+        page.getByRole('region', { name: `${title} interpretation`, exact: true }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole('region', { name: `${other} interpretation`, exact: true }),
+      ).toHaveCount(0);
+      expect(await page.locator('.astrology-saved').innerText()).toBe(original);
+      await page.getByRole('button', { name: 'Hide charts', exact: true }).click();
+      await expect(charts).not.toBeVisible();
+      await expect(
+        page.getByRole('region', { name: `${title} interpretation`, exact: true }),
+      ).toBeVisible();
+      await page.getByRole('button', { name: 'Show charts', exact: true }).click();
+      await expect(charts).toBeVisible();
+      expect(requests).toHaveLength(1);
+      await capture(page, `${system}-only-saved-320`);
+    });
+  });
+
+test('a held request polls actual stages and provider fallbacks without another submission', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 740 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await withReading(page, async ({ roomId, requests, setView }) => {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    let posts = 0;
+    let progressReads = 0;
+    const question = 'How can I make room for a new hobby?';
+    const generating = {
+      status: 'generating',
+      reading: null,
+      api_tier: 'paid' as const,
+      provider_names: ['Google Gemini', 'Groq', 'Cloudflare'],
+      question,
+      message: '',
+    };
+    const originalCards = await page.locator('.tarot-spread .tarot-name').allTextContents();
+    await page.route(`**/api/backend/v1/rooms/${roomId}/reading`, async (route) => {
+      if (route.request().method() === 'POST') {
+        posts++;
+        setView({ ...generating, progress: progress('matching', { estimated_percent: 28 }) });
+        await gate;
+      } else if (posts) progressReads++;
+      return route.fallback();
+    });
+    try {
+      await page.getByRole('textbox', { name: 'What’s on your mind?' }).fill(question);
+      await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
+      const meter = page.getByRole('progressbar', { name: 'Estimated reading progress' });
+      const panel = page.getByRole('region', { name: 'Reading progress', exact: true });
+      await expect(meter).toHaveAttribute('aria-valuenow', '28');
+      await expect(panel.getByRole('status')).toHaveText('Finding character connections.');
+      await expect(panel).toContainText('28% estimated');
+      await expect(panel).toContainText('About 45 sec remaining');
+      const visibleProgress = await panel.boundingBox();
+      expect(visibleProgress!.y).toBeGreaterThanOrEqual(0);
+      expect(visibleProgress!.y + visibleProgress!.height).toBeLessThanOrEqual(740);
+      expect(
+        await panel.locator('.spin').evaluate((element) => getComputedStyle(element).animationName),
+      ).toBe('none');
+      await expect(
+        page.getByRole('button', { name: 'Writing your reading…', exact: true }),
+      ).toBeDisabled();
+      await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toBeDisabled();
+      await expect(page.getByRole('checkbox', { name: 'Include astrology' })).toBeDisabled();
+      expect(progressReads).toBeGreaterThan(0);
+      const fallbackStart = Date.now() / 1000 - 30;
+      for (const [provider, attempt, percent] of [
+        ['Groq', 2, 61],
+        ['Cloudflare', 3, 79],
+      ] as const) {
+        await page.evaluate(() => scrollTo(0, 0));
+        setView({
+          ...generating,
+          progress: progress('retrying', {
+            provider,
+            attempt,
+            started_at: fallbackStart,
+            estimated_percent: percent,
+            estimated_seconds_remaining: 25,
+          }),
+        });
+        await expect(panel.getByRole('status')).toHaveText(`Retrying with ${provider}.`);
+        await expect(meter).toHaveAttribute('aria-valuenow', String(percent));
+        expect(await page.evaluate(() => scrollY)).toBe(0);
+        expect(Number(await meter.getAttribute('aria-valuenow'))).toBeLessThan(100);
+        await noOverflow(page);
+        await panel.screenshot({ path: test.info().outputPath(`progress-${provider}-320.png`) });
+      }
+      for (const [stage, percent, label] of [
+        ['checking', 93, 'Checking your reading.'],
+        ['saving', 98, 'Saving your reading.'],
+      ] as const) {
+        setView({
+          ...generating,
+          progress: progress(stage, {
+            provider: 'Cloudflare',
+            attempt: 3,
+            started_at: fallbackStart,
+            estimated_percent: percent,
+            estimated_seconds_remaining: 5,
+          }),
+        });
+        await expect(panel.getByRole('status')).toHaveText(label);
+        await expect(meter).toHaveAttribute('aria-valuenow', String(percent));
+      }
+      await page
+        .locator('form.tarot-question')
+        .evaluate((form: HTMLFormElement) => form.requestSubmit());
+      expect(posts).toBe(1);
+      await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(originalCards);
+      release();
+      await expect(page.locator('.tarot-reading')).toBeVisible();
+      await expect(meter).toHaveCount(0);
+      expect(posts).toBe(1);
+      expect(requests).toHaveLength(1);
+    } finally {
+      release();
+    }
+  });
+});
+
+test('saved progress survives refresh and slow estimates never claim completion', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 740 });
+  await withReading(page, async ({ requests, setView }) => {
+    const question = 'What would make a new hobby easier to begin?';
+    const saved = {
+      status: 'generating',
+      reading: null,
+      api_tier: 'paid' as const,
+      question,
+      message: '',
+      astrology_chart: syntheticChart,
+    };
+    const startedAt = Date.now() / 1000 - 50;
+    setView({
+      ...saved,
+      progress: progress('writing', {
+        started_at: startedAt,
+        estimated_percent: 74,
+        estimated_seconds_remaining: 14,
+      }),
+    });
+    const meter = page.getByRole('progressbar', { name: 'Estimated reading progress' });
+    const panel = page.getByRole('region', { name: 'Reading progress', exact: true });
+    for (let reload = 0; reload < 2; reload++) {
+      await page.reload();
+      await expect(meter).toHaveAttribute('aria-valuenow', '74');
+      await expect(panel).toContainText('About 15 sec remaining');
+      await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue(
+        question,
+      );
+      await expect(page.getByRole('checkbox', { name: 'Include astrology' })).toBeChecked();
+      await expect(page.getByLabel('Birth date', { exact: true })).toHaveCount(0);
+      expect(requests).toHaveLength(0);
+    }
+    setView({
+      ...saved,
+      progress: progress('writing', {
+        started_at: startedAt,
+        estimated_percent: 94,
+        estimated_seconds_remaining: null,
+      }),
+    });
+    await expect(meter).toHaveAttribute('aria-valuenow', '94');
+    await expect(panel).toContainText('Taking longer than expected…');
+    await expect(panel).not.toContainText('0 sec remaining');
+    await expect(panel).not.toContainText('100%');
+    await noOverflow(page);
+    await panel.screenshot({ path: test.info().outputPath('progress-slow-320.png') });
+    setView({
+      ...saved,
+      status: 'failed',
+      failure: { code: 'temporary', message: 'The reading couldn’t finish.', retryable: true },
+    });
+    await expect(page.getByRole('button', { name: 'Retry reading', exact: true })).toBeEnabled();
+    await expect(meter).toHaveCount(0);
+    await page.getByRole('button', { name: 'Retry reading', exact: true }).click();
+    await expect(page.locator('.tarot-reading')).toBeVisible();
+    expect(requests).toHaveLength(1);
+    expect(requests[0].reuse_saved_astrology).toBe(true);
+    expect(requests[0]).not.toHaveProperty('astrology');
+  });
+});
+
+test('a late generating poll cannot replace the successfully saved reading', async ({ page }) => {
+  await withReading(page, async ({ roomId, requests, setView }) => {
+    let releasePost!: () => void;
+    let releaseRead!: () => void;
+    const postGate = new Promise<void>((resolve) => {
+      releasePost = resolve;
+    });
+    const readGate = new Promise<void>((resolve) => {
+      releaseRead = resolve;
+    });
+    let posts = 0;
+    let heldReads = 0;
+    const old: ReadingView = {
+      status: 'generating',
+      reading: null,
+      api_tier: 'paid',
+      question: '',
+      message: '',
+      progress: progress('writing', { estimated_percent: 55 }),
+    };
+    await page.route(`**/api/backend/v1/rooms/${roomId}/reading`, async (route) => {
+      if (route.request().method() === 'POST') {
+        posts++;
+        setView(old);
+        await postGate;
+        return route.fallback();
+      }
+      if (posts && heldReads === 0) {
+        heldReads++;
+        await readGate;
+        return route.fulfill({ json: old });
+      }
+      return route.fallback();
+    });
+    try {
+      await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
+      await expect.poll(() => heldReads).toBe(1);
+      releasePost();
+      await expect(page.locator('.tarot-reading')).toBeVisible();
+      const rendered = await page.locator('.tarot-reading').innerText();
+      const lateReply = page.waitForResponse(
+        (response) =>
+          response.request().method() === 'GET' &&
+          response.url().endsWith(`/rooms/${roomId}/reading`),
+      );
+      releaseRead();
+      await (await lateReply).finished();
+      await page.evaluate(
+        () =>
+          new Promise<void>((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+          ),
+      );
+      await expect.poll(() => page.locator('.tarot-reading').innerText()).toBe(rendered);
+      await expect(
+        page.getByRole('progressbar', { name: 'Estimated reading progress' }),
+      ).toHaveCount(0);
+      expect(posts).toBe(1);
+      expect(requests).toHaveLength(1);
+    } finally {
+      releasePost();
+      releaseRead();
+    }
   });
 });
 

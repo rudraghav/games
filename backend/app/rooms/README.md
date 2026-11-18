@@ -78,8 +78,19 @@ rematch; equal revisions may refresh presence. No schema or transaction changes.
 ## Private saved Tarot archive
 
 Generation uses a180-second saved lease around the bounded provider request.
-Every retry reserves the daily budget separately. Provider429 marks the attempt
-failed and returns a clear request-limit message without raw provider details;
+Private `_progress` metadata in that lease persists each actual generation stage,
+provider/attempt, original timestamps and bounded estimate. Authorized reading GETs
+return its validated optional projection; public room events and archives never
+expose it. Every milestone write rechecks the current match, attempt ID, status
+and unexpired lease under a short room lock. Provider I/O happens outside locks.
+Completion atomically replaces the draft with the validated reading. Legacy active
+leases retain a compatible estimated writing state; expired leases can be retried.
+`test_tarot_progress_rooms.py` covers polling during a held POST, duplicate POST,
+outsider privacy, stale writers and legacy leases without external AI calls.
+
+Every retry reserves the daily budget separately. If all eligible alternatives
+fail, a final provider429 marks the attempt failed and returns a clear request-limit
+message without raw provider details;
 the exact spread remains available and a later retry can save/read back normally.
 
 `GET /v1/readings/{match_id}` reads the exact historical match and saved reading.

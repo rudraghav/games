@@ -6,7 +6,7 @@ import re
 import time
 from collections.abc import Callable
 from copy import deepcopy
-from typing import Annotated, Literal
+from typing import Annotated, Literal, cast
 
 import httpx
 from pydantic import (
@@ -27,10 +27,13 @@ from app.astrology.models import (
 )
 from app.games.tarot.characters import find_character, reference_candidates
 from app.games.tarot.deck import BY_ID, POSITIONS
+from app.games.tarot.progress import ProgressEvent, ProgressStage, Provider, ReadingProgress
 from app.settings import settings
 
 PROMPT_VERSION = "pop-tarot-11"
 MAX_ATTEMPTS = 2
+# Environment configuration can enable only modes with accepted runtime evidence.
+GROQ_RUNTIME_MODES = frozenset({"ordinary", "western"})
 # The provider's cap includes reasoning and visible JSON, not just the reading.
 MAX_OUTPUT_TOKENS = 8192
 THINKING_LEVEL = "low"
@@ -417,7 +420,7 @@ def configured_providers(astrology_chart: AstrologyChart | None = None, *, mode:
                     else astrology_chart.charts[0].system)
     enabled = {
         "gemini": bool(config.gemini_api_key),
-        "groq": bool(config.groq_api_key) and mode in config.tarot_groq_modes,
+        "groq": bool(config.groq_api_key) and mode in config.tarot_groq_modes and mode in GROQ_RUNTIME_MODES,
         "cloudflare": bool(config.cloudflare_account_id and config.cloudflare_api_token)
                       and mode in config.tarot_cloudflare_modes,
     }
@@ -532,16 +535,16 @@ def _alternative_reading(
     provider: str, body: object, request: dict, card_ids: list[str],
     chart: AstrologyChart | None, candidates: list[list[dict]],
 ) -> Reading:
-    from app.games.tarot.groq_qwen_astrology import decode_groq_qwen_astrology_output
-    from app.games.tarot.groq_qwen_v2 import decode_groq_qwen_v2_output
-    from app.games.tarot.providers import AlternativeOutputError, decode_alternative_output
+    from app.games.tarot.grounded import decode_grounded_output
+    from app.games.tarot.providers import AlternativeOutputError
 
     try:
-        if provider == "groq":
-            payload = (decode_groq_qwen_astrology_output(body, request) if chart
-                       else decode_groq_qwen_v2_output(body, request))
+        if provider == "groq" and chart:
+            from app.games.tarot.groq_qwen_astrology import decode_groq_qwen_astrology_output
+
+            payload = decode_groq_qwen_astrology_output(body, request)
         else:
-            payload = decode_alternative_output(provider, body, request)
+            payload = decode_grounded_output(provider, body, request)
         return validate_reading(payload, card_ids, astrology_chart=chart, candidates=candidates)
     except AlternativeOutputError as error:
         raise ReadingOutputError(
@@ -556,12 +559,20 @@ def _alternative_reading(
 def generate_reading(
     card_ids: list[str], question: str, *, before_attempt: Callable[[], None] | None = None,
     astrology_chart: AstrologyChart | None = None,
+    on_progress: Callable[[ProgressEvent], None] | None = None,
 ) -> Reading:
     config = settings()
+    providers = configured_providers(astrology_chart)
+    maximum = 3 if len(providers) > 1 else MAX_ATTEMPTS
+
+    def progress(stage: ProgressStage, provider: str | None = None, attempt: int = 0) -> None:
+        if on_progress:
+            on_progress(ProgressEvent(stage, cast(Provider | None, provider), attempt, maximum))
+
+    progress("matching")
     request = build_reading_request(card_ids, question, astrology_chart=astrology_chart)
     context = json.loads(request["input"])
     candidates = [card["reference_characters"] for card in context["cards"]]
-    providers = configured_providers(astrology_chart)
     if not providers:
         raise ReadingGenerationError(ReadingFailure(
             code="unavailable", message="Readings are unavailable.", retryable=False, retry_at=time.time() + 300,
@@ -569,7 +580,6 @@ def generate_reading(
     logger = get_ai_logger()
     deadline = time.monotonic() + REQUEST_DEADLINE_SECONDS
     queue = providers.copy()
-    maximum = 3 if len(providers) > 1 else MAX_ATTEMPTS
     counts: dict[str, int] = {}
     failures: list[Exception] = []
     with httpx.Client(timeout=httpx.Timeout(ATTEMPT_TIMEOUT_SECONDS, connect=5)) as client:
@@ -578,7 +588,8 @@ def generate_reading(
                 break
             provider = queue.pop(0)
             remaining = deadline - time.monotonic()
-            minimum = {"gemini": 15, "groq": 8, "cloudflare": 25}
+            minimum = {"gemini": 15, "groq": 15, "cloudflare": 30}
+            reserved = {"gemini": 15, "groq": 20, "cloudflare": 35}
             if remaining <= 0 or (attempt > 1 and remaining < minimum[provider]):
                 break
             model = config.tarot_model
@@ -589,46 +600,26 @@ def generate_reading(
                 wire = request
                 cap = float(ATTEMPT_TIMEOUT_SECONDS)
             else:
-                from app.games.tarot.providers import (
-                    ALTERNATIVE_MODELS,
-                    ALTERNATIVE_OUTPUT_CAPS,
+                from app.games.tarot.grounded import (
+                    MODELS,
+                    OUTPUT_CAP,
                     PROFILE_VERSION,
-                    alternative_usage,
-                    build_alternative_request,
+                    build_grounded_request,
                 )
-                model = ALTERNATIVE_MODELS[provider]
-                profile = PROFILE_VERSION
-                output_cap = ALTERNATIVE_OUTPUT_CAPS[provider]
-                wire = build_alternative_request(provider, request)
-                if provider == "groq":
-                    from app.games.tarot.groq_qwen import MODEL as GROQ_MODEL
-                    from app.games.tarot.groq_qwen import OUTPUT_CAP as GROQ_OUTPUT_CAP
-                    from app.games.tarot.groq_qwen_v2 import PROFILE_VERSION as GROQ_PROFILE_VERSION
-                    from app.games.tarot.groq_qwen_v2 import build_groq_qwen_v2_request
+                from app.games.tarot.providers import alternative_usage
 
-                    model = GROQ_MODEL
-                    profile = GROQ_PROFILE_VERSION
-                    output_cap = GROQ_OUTPUT_CAP
-                    if astrology_chart:
-                        from app.games.tarot.groq_qwen_astrology import (
-                            MODEL as GROQ_ASTROLOGY_MODEL,
-                        )
-                        from app.games.tarot.groq_qwen_astrology import (
-                            OUTPUT_CAP as GROQ_ASTROLOGY_OUTPUT_CAP,
-                        )
-                        from app.games.tarot.groq_qwen_astrology import (
-                            PROFILE_VERSION as GROQ_ASTROLOGY_PROFILE_VERSION,
-                        )
-                        from app.games.tarot.groq_qwen_astrology import (
-                            build_groq_qwen_astrology_request,
-                        )
+                model, profile, output_cap = MODELS[provider], PROFILE_VERSION, OUTPUT_CAP
+                wire = build_grounded_request(provider, request)
+                if provider == "groq" and astrology_chart:
+                    from app.games.tarot.groq_qwen_astrology import (
+                        PROFILE_VERSION as ASTROLOGY_PROFILE_VERSION,
+                    )
+                    from app.games.tarot.groq_qwen_astrology import (
+                        build_groq_qwen_astrology_request,
+                    )
 
-                        effective_request, wire = build_groq_qwen_astrology_request(request)
-                        model = GROQ_ASTROLOGY_MODEL
-                        profile = GROQ_ASTROLOGY_PROFILE_VERSION
-                        output_cap = GROQ_ASTROLOGY_OUTPUT_CAP
-                    else:
-                        wire = build_groq_qwen_v2_request(wire)
+                    effective_request, wire = build_groq_qwen_astrology_request(request)
+                    profile = ASTROLOGY_PROFILE_VERSION
                 endpoint = ("https://api.groq.com/openai/v1/chat/completions" if provider == "groq"
                             else "https://api.cloudflare.com/client/v4/accounts/" +
                             config.cloudflare_account_id + "/ai/v1/chat/completions")
@@ -637,18 +628,23 @@ def generate_reading(
                 )}
                 cap = 30 if provider == "groq" else 60
             if queue:
-                reserve = minimum[queue[0]]
+                reserve = sum(reserved[next_provider] + 1 for next_provider in queue[:maximum - attempt])
                 if remaining >= minimum[provider] + reserve:
                     cap = min(cap, remaining - reserve)
             # Every fallback and correction consumes its own global application reservation.
             if before_attempt:
                 before_attempt()
             counts[provider] = counts.get(provider, 0) + 1
+            progress("writing", provider, attempt)
+            # Persistence may take time: calculate the actual network slot only
+            # after budget reservation and the writing milestone have completed.
             remaining = deadline - time.monotonic()
             if remaining <= 0:
                 raise ReadingOutputError("deadline_exhausted")
+            if attempt > 1 and remaining < minimum[provider]:
+                break
             if queue:
-                reserve = minimum[queue[0]]
+                reserve = sum(reserved[next_provider] + 1 for next_provider in queue[:maximum - attempt])
                 if remaining >= minimum[provider] + reserve:
                     cap = min(cap, remaining - reserve)
             logger.info("games.ai.preflight provider=%s model=%s prompt_version=%s attempt=%s",
@@ -667,6 +663,7 @@ def generate_reading(
                     body = response.json()
                 except ValueError:
                     raise ReadingOutputError("invalid_envelope") from None
+                progress("checking", provider, attempt)
                 if provider == "gemini":
                     _log_usage(body, model, attempt)
                     return _parse_output(body, card_ids, astrology_chart, candidates=candidates)
@@ -688,6 +685,7 @@ def generate_reading(
                     raise
                 if queue and attempt < maximum:
                     logger.info("games.ai.fallback provider=%s next_provider=%s", provider, queue[0])
+                    progress("retrying", queue[0], attempt + 1)
                     continue
                 if attempt >= maximum or counts[provider] >= 2:
                     raise
@@ -697,16 +695,18 @@ def generate_reading(
                     except ValueError:
                         delay = random.uniform(1, 3)
                     remaining = deadline - time.monotonic()
-                    if delay <= 10 and remaining - delay >= 10:
+                    if delay <= 10 and remaining - delay >= minimum[provider]:
+                        progress("retrying", provider, attempt + 1)
                         time.sleep(delay)
                         queue.append(provider)
                         continue
-                if (isinstance(error, ReadingOutputError) and error.retryable and not astrology_chart
-                        and time.monotonic() < deadline):
+                if (isinstance(error, ReadingOutputError) and error.retryable
+                        and deadline - time.monotonic() >= minimum[provider]):
                     # Feed back only a safe classification; never rejected provider prose.
                     request["input"] = json.dumps({**context, "validation_feedback": error.reason},
                                                   ensure_ascii=False, separators=(",", ":"))
                     queue.append(provider)
+                    progress("retrying", provider, attempt + 1)
                     continue
                 raise
     if failures:
@@ -769,4 +769,5 @@ class ReadingView(BaseModel):
     reading: Reading | None = None
     message: str = ""
     failure: ReadingFailure | None = Field(default=None, exclude_if=lambda value: value is None)
+    progress: ReadingProgress | None = Field(default=None, exclude_if=lambda value: value is None)
     astrology_chart: AstrologyChart | None = Field(default=None, exclude_if=lambda value: value is None)

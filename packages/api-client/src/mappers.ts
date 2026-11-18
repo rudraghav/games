@@ -174,6 +174,36 @@ export function mapSavedReading(wire: Wire['SavedReadingView']) {
   };
 }
 
+const readingProgressGate = z.object({
+  stage: z.enum(['preparing', 'matching', 'writing', 'retrying', 'checking', 'saving']),
+  provider: z.enum(['Gemini', 'Groq', 'Cloudflare']).nullable().optional(),
+  attempt: z.number().int().min(0).max(12),
+  max_attempts: z.number().int().min(1).max(12),
+  started_at: z.number().finite().nonnegative(),
+  updated_at: z.number().finite().nonnegative(),
+  estimated_percent: z.number().int().min(1).max(99),
+  estimated_seconds_remaining: z.number().int().positive().nullable().optional(),
+});
+
+function mapReadingProgress(wire: NonNullable<Wire['ReadingView']['progress']>) {
+  const parsed = readingProgressGate.parse(wire);
+  return {
+    stage: parsed.stage,
+    provider: parsed.provider ?? null,
+    attempt: parsed.attempt,
+    maxAttempts: parsed.max_attempts,
+    startedAt: parsed.started_at,
+    updatedAt: parsed.updated_at,
+    estimatedPercent: parsed.estimated_percent,
+    estimatedSecondsRemaining: parsed.estimated_seconds_remaining ?? null,
+  };
+}
+
+export function mapReading(wire: Wire['ReadingView']): ReadingView {
+  const { progress, ...rest } = wire;
+  return { ...rest, ...(progress ? { progress: mapReadingProgress(progress) } : {}) };
+}
+
 export type Room = ReturnType<typeof mapRoom>;
 export type Match = NonNullable<Room['game']>;
 export type Card = ReturnType<typeof mapCard>;
@@ -181,5 +211,7 @@ export type Player = Match['players'][number];
 export type Action = Wire['Action'];
 export type ActionOption = Match['actions'][number];
 export type Me = ReturnType<typeof mapMe>;
-export type ReadingView = Wire['ReadingView'];
+export type ReadingView = Omit<Wire['ReadingView'], 'progress'> & {
+  progress?: ReturnType<typeof mapReadingProgress>;
+};
 export type SavedReading = ReturnType<typeof mapSavedReading>;

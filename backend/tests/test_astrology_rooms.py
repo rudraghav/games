@@ -112,7 +112,7 @@ def test_preview_and_city_search_are_private_current_solo_match_only(client, pri
 def test_astrology_generation_saves_only_computed_chart_and_refresh_is_idempotent(client, private_services, monkeypatch, ai_caplog):
     room, owner, path = spread(client)
 
-    def provider(cards, question, *, before_attempt=None, astrology_chart=None):
+    def provider(cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None):
         assert not private_services["session"].in_transaction()
         private_services["provider"] += 1
         before_attempt()
@@ -157,7 +157,7 @@ def test_failure_retains_only_private_computed_draft_for_explicit_resume_or_opt_
         assert secret not in stored and secret not in ai_caplog.text and secret not in result.text
     lookup_count = private_services["lookups"]
 
-    def ordinary(cards, question, *, before_attempt=None):
+    def ordinary(cards, question, *, before_attempt=None, on_progress=None):
         before_attempt()
         return completed(cards)
 
@@ -176,7 +176,7 @@ def test_explicit_resume_uses_saved_chart_without_another_place_lookup(client, p
     assert client.post(path + "/reading", headers=owner, json={"match_id": room["match_id"], "astrology": ASTRO}).status_code == 502
     lookups = private_services["lookups"]
 
-    def resumed(cards, question, *, before_attempt=None, astrology_chart=None):
+    def resumed(cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None):
         assert astrology_chart is not None
         before_attempt()
         return completed(cards, astrology_chart)
@@ -192,7 +192,7 @@ def test_active_generation_lease_returns_saved_chart_without_duplicate_provider(
     entered, release = threading.Event(), threading.Event()
     calls = []
 
-    def provider(cards, question, *, before_attempt=None, astrology_chart=None):
+    def provider(cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None):
         calls.append(True)
         before_attempt()
         entered.set()
@@ -221,7 +221,7 @@ def test_expired_lease_retry_cannot_be_overwritten_by_the_old_astrology_attempt(
     entered, release = threading.Event(), threading.Event()
     calls = []
 
-    def provider(cards, question, *, before_attempt=None, astrology_chart=None):
+    def provider(cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None):
         index = len(calls)
         calls.append(index)
         before_attempt()
@@ -253,7 +253,7 @@ def test_rematch_during_unlocked_astrology_generation_preserves_the_new_spread(c
     room, owner, path = spread(client)
     entered, release = threading.Event(), threading.Event()
 
-    def provider(cards, question, *, before_attempt=None, astrology_chart=None):
+    def provider(cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None):
         before_attempt()
         entered.set()
         assert release.wait(10)

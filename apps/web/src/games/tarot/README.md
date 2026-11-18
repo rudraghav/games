@@ -10,7 +10,25 @@
 - Spread position labels and card names are at least 11px and meanings 12px at every width.
 - The unsent question is a `useTableDraft` scoped to room and match, so it survives a refresh in that tab and never carries into the next spread; it clears when a reading is saved. Birth fields remain memory-only.
 - Loading the saved spread shows “Checking status…”; a failed read offers only “Check status”, a GET, and generation stays disabled until authoritative state returns. Paused/offline rooms cannot submit readings.
-- Writing and internal fallback share one “Writing your reading…” action state. A failed request first checks whether a reading was saved; only then can the same primary action become “Retry reading”. One concise failure message sits beside it.
+- Writing keeps the “Writing your reading…” action disabled. A compact loader beneath it reports the actual saved stage: preparing, matching character references, writing, retrying with a provider, checking, or saving. A failed request first checks whether a reading was saved; only then can the same primary action become “Retry reading”. One concise failure message sits beside it.
+
+`ReadingProgress` renders the server's optional progress snapshot, mapped at the
+API boundary. The percent is explicitly estimated and capped at99 while running;
+the remaining time uses coarse estimates and becomes “Taking longer than
+expected…” when the server can no longer estimate it. No browser timer invents
+stages, resets a saved attempt's start, or marks a pending reading complete.
+Before a snapshot arrives, the loader is indeterminate. Recovery reads say
+“Checking your saved reading” without replaying stale timing. Only stage changes
+are live-announced; numeric estimates do not repeatedly interrupt screen readers.
+
+Polling starts during the initial POST and continues every two seconds while
+generation/recovery is active, including after refresh. Success cancels in-flight
+status reads before caching the completed reading, so a late pending response
+cannot erase it. An explicit submission scrolls the compact progress area into
+view once; refresh and subsequent polls preserve the user's scroll position.
+The pattern follows Shikha's current server-driven ExamRunWatcher; its older
+timer-invented stages are not copied. Existing icons/tokens and reduced-motion
+rules provide the presentation without another dependency.
 
 ## After the reading
 
@@ -101,7 +119,7 @@ size bounded as the library grows. Real-person connections concern public work
 and achievements without inventing private beliefs or implying endorsement.
 The expanded registry is loaded with the Tarot table, not every game's table.
 
-Profile history opens `/readings/[matchId]`, preserving the specific saved
+Profile history opens `/games/tarot/readings/[matchId]`, preserving the specific saved
 question, cards, interpretation and optional charts after a new spread or room
 closure. Reading it never regenerates text. The participant-only endpoint returns
 404 to other people, including other room visitors. See
@@ -124,9 +142,9 @@ checks layout/privacy/persistence; real-provider quality is a separate gate.
 
 ## Mobile layout and controls
 
-Solo setup omits the one-option Seats field and multiplayer invite instructions.
-The phone room toolbar keeps rules and its existing options menu; chat and activity
-remain available inside that menu. Multiplayer rooms retain their toolbar actions.
+Solo entry starts directly without a setup form or multiplayer invite instructions.
+The phone toolbar keeps rules and Reading options, with saved readings and a
+return to Tarot. Multiplayer rooms retain their own toolbar actions.
 Icon controls have accessible names and native hover hints.
 
 On phones a portrait and subject name share one row, followed by a full-width

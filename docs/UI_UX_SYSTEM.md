@@ -332,3 +332,11 @@ control row. Card press/reveal and reading-entry motion are short and honor
 reduced motion. Optional device feedback confirms only a local committed pick,
 never a failed request or restored snapshot; unsupported devices keep the same
 visual and accessible feedback.
+
+Tarot generation uses a compact inline loader below its action, followed by one
+actual server-stage line and an accessible estimated progress bar. Percent and
+rounded remaining time share a row on320px screens. Slow estimates become Taking
+longer than expected; starting/status recovery is indeterminate. The live region
+announces stages without announcing every estimate tick. Only an explicit new
+submission scrolls this region into view; polling and restored sessions preserve
+scroll. Native reduced-motion preferences stop the spinner and meter transitions.

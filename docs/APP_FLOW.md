@@ -112,8 +112,12 @@ can resume it. The global advanced creation dialog remains compatible with solo 
 Loading a saved spread reports progress or a retryable error; retry only fetches
 the saved state. Generation stays disabled until that read succeeds and while
 the room is paused/offline. Completed readings show their exact saved question.
-Writing has one progress state, including bounded retries through approved alternate
-providers. A lost response first triggers a saved-reading check, blocking another
+Writing polls the saved attempt even while its original request is pending. The
+loader shows actual stages and names a provider when retrying; estimated percent
+and time remaining survive refresh and never show100% before saved completion.
+An exceeded estimate says Taking longer than expected. Reduced motion disables
+spinner/meter motion. A late progress response cannot replace a completed reading.
+A lost response first triggers a saved-reading check, blocking another
 submission until the check finishes. A failed check offers Check status. A saved
 generation failure offers Retry reading only when retryable and its server cooldown
 has elapsed. Cooldowns survive refresh and never submit automatically. Configuration

@@ -200,7 +200,7 @@ def test_tarot_ai_output_is_saved_and_reading_private(client, monkeypatch):
     monkeypatch.setattr(settings(), "gemini_api_key", "local-test-adapter-only")
     calls = []
 
-    def provider(cards, question, *, before_attempt=None):
+    def provider(cards, question, *, before_attempt=None, on_progress=None):
         from app.games.tarot.reading import validate_reading
 
         if before_attempt:
@@ -314,7 +314,7 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
         ).json()
     monkeypatch.setattr(settings(), "gemini_api_key", "local-failure-test-key")
 
-    def fail(_cards, question, *, before_attempt=None):
+    def fail(_cards, question, *, before_attempt=None, on_progress=None):
         if before_attempt:
             before_attempt()
         private = f"Private provider content: {question}; local-failure-test-key"
@@ -345,7 +345,7 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
         after_cooldown = status["failure"]["retry_at"] + 1
         monkeypatch.setattr("app.rooms.service.time.time", lambda: after_cooldown)
 
-    def recover(cards, _question, *, before_attempt=None):
+    def recover(cards, _question, *, before_attempt=None, on_progress=None):
         from app.games.tarot.reading import validate_reading
 
         if before_attempt:

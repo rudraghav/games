@@ -3436,6 +3436,89 @@
         ],
         "title": "ReadingInput"
       },
+      "ReadingProgress": {
+        "properties": {
+          "stage": {
+            "type": "string",
+            "enum": [
+              "preparing",
+              "matching",
+              "writing",
+              "retrying",
+              "checking",
+              "saving"
+            ],
+            "title": "Stage"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "Gemini",
+                  "Groq",
+                  "Cloudflare"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          },
+          "attempt": {
+            "type": "integer",
+            "maximum": 12.0,
+            "minimum": 0.0,
+            "title": "Attempt"
+          },
+          "max_attempts": {
+            "type": "integer",
+            "maximum": 12.0,
+            "minimum": 1.0,
+            "title": "Max Attempts"
+          },
+          "started_at": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Started At"
+          },
+          "updated_at": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Updated At"
+          },
+          "estimated_percent": {
+            "type": "integer",
+            "maximum": 99.0,
+            "minimum": 1.0,
+            "title": "Estimated Percent"
+          },
+          "estimated_seconds_remaining": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Estimated Seconds Remaining"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "stage",
+          "attempt",
+          "max_attempts",
+          "started_at",
+          "updated_at",
+          "estimated_percent"
+        ],
+        "title": "ReadingProgress"
+      },
       "ReadingView": {
         "properties": {
           "status": {
@@ -3481,6 +3564,16 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/ReadingFailure"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "progress": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReadingProgress"
               },
               {
                 "type": "null"

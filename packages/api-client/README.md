@@ -9,6 +9,12 @@ into frontend domain names. `index.ts` owns authenticated HTTP calls and safe
 error messages. Legal action inputs include server-owned amount steps and payable
 card IDs. Frontend modules render those choices without duplicating game rules.
 
+Current Tarot reading GET/POST responses map optional generated `ReadingProgress`
+wire fields into camelCase at this boundary. Stages, provider labels, attempt
+counts, finite timestamps, estimated1–99 percent and a positive/null remaining
+time are validated. Omitted/null progress remains compatible with old responses;
+invalid estimates are rejected rather than rendered as a completed reading.
+
 `astrology.ts` exports only generated wire aliases. Authenticated place search,
 chart preview and reading calls stay under the current solo Tarot room/match.
 Ordinary readings omit both astrology request fields; an explicit saved-chart

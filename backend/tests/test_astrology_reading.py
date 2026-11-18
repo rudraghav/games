@@ -122,7 +122,7 @@ def test_model_may_interpret_only_requested_systems_and_cannot_supply_chart_posi
         validate_reading(payload, CARDS, astrology_chart=synthetic_chart())
 
 
-def test_invalid_astrology_output_has_no_second_call_or_fake_fallback(monkeypatch):
+def test_invalid_astrology_output_has_one_bounded_correction_and_no_fake_fallback(monkeypatch):
     captured = []
     real_client = httpx.Client
 
@@ -134,7 +134,7 @@ def test_invalid_astrology_output_has_no_second_call_or_fake_fallback(monkeypatc
                         lambda **kwargs: real_client(transport=httpx.MockTransport(respond), **kwargs))
     with pytest.raises(ReadingOutputError):
         generate_reading(CARDS, "", astrology_chart=synthetic_chart())
-    assert len(captured) == 1
+    assert len(captured) == 2
 
 
 def test_astrology_recovers_once_only_from_definite_overload(monkeypatch):

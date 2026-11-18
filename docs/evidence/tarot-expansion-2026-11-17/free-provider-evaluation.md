@@ -1,5 +1,9 @@
 # Free-provider evaluation
 
+Historical phase: the decisions below belong to the original 41-request evaluation.
+The subsequent [mobile reliability release](../tarot-reliability-2026-11-18/README.md)
+records the separately bounded follow-up and current provider/mode decisions.
+
 Closed on 18 November 2026 after 41 direct attempts: Groq 25 and Cloudflare 16,
 including every failed and rate-limited attempt. No further direct evaluations
 are planned. The original comparison and subsequent explicitly bounded recovery

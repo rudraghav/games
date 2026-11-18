@@ -27,6 +27,7 @@ from app.astrology.models import (
 from app.auth import Identity
 from app.core.contracts import Action, RuleError
 from app.games.registry import ENGINES
+from app.games.tarot.progress import ProgressEvent, ProgressState, ReadingProgress
 from app.games.tarot.reading import (
     PROMPT_VERSION,
     Reading,
@@ -606,6 +607,7 @@ class RoomService:
                     question=saved.question,
                     message="Writing your reading…",
                     astrology_chart=self._saved_astrology_chart(saved),
+                    progress=self._saved_reading_progress(saved),
                 )
             if not data:
                 available = reading_available()
@@ -654,7 +656,8 @@ class RoomService:
             if saved and saved.status == "generating" and saved.lease_until > time.time():
                 return ReadingView(status="generating", question=saved.question,
                                    message="Writing your reading…",
-                                   astrology_chart=self._saved_astrology_chart(saved))
+                                   astrology_chart=self._saved_astrology_chart(saved),
+                                   progress=self._saved_reading_progress(saved))
             self._check_reading_retry(saved, question)
             attempt = str(uuid4())
             if saved is None:
@@ -664,6 +667,12 @@ class RoomService:
             saved.attempt_id, saved.lease_until = attempt, time.time() + 180
             saved.prompt_version = PROMPT_VERSION
             saved.payload = {"astrology_draft": astrology_chart.model_dump(mode="json")} if astrology_chart else None
+            mode = ("both" if astrology_chart and len(astrology_chart.charts) == 2 else
+                    astrology_chart.charts[0].system if astrology_chart else "ordinary")
+            saved.payload = {
+                **(saved.payload or {}),
+                "_progress": ProgressState.begin(time.time(), mode).model_dump(mode="json"),
+            }
             count = self.repo.rate(actor.id + ":tarot-reading", 3600)
             if count > 10:
                 rate_failure = ReadingFailure(
@@ -683,12 +692,23 @@ class RoomService:
             if count > settings().tarot_daily_limit:
                 raise ReadingLimitError("The daily reading budget is exhausted.")
 
+        last_progress = ProgressEvent("preparing")
+
+        def report_progress(event: ProgressEvent) -> None:
+            nonlocal last_progress
+            last_progress = event
+            self._update_reading_progress(room_id, match_id, attempt, event)
+
         try:
             if astrology_chart:
                 result = generate_reading(cards, question, before_attempt=reserve_attempt,
-                                          astrology_chart=astrology_chart)
+                                          astrology_chart=astrology_chart, on_progress=report_progress)
             else:
-                result = generate_reading(cards, question, before_attempt=reserve_attempt)
+                result = generate_reading(cards, question, before_attempt=reserve_attempt,
+                                          on_progress=report_progress)
+            report_progress(ProgressEvent(
+                "saving", last_progress.provider, last_progress.attempt, last_progress.max_attempts,
+            ))
         except Exception as error:
             failure = reading_failure(error)
             get_ai_logger().warning(
@@ -729,6 +749,39 @@ class RoomService:
             match.result = {"winners": [], "scores": {actor.id: 0}}
             room.status, room.revision = "finished", room.revision + 1
             return ReadingView(status="complete", question=question, reading=result)
+
+    def _update_reading_progress(
+        self, room_id: str, match_id: str, attempt_id: str, event: ProgressEvent,
+    ) -> None:
+        # Each milestone is a short committed transaction. Network calls hold no
+        # locks; a stale generation cannot rewrite a newer lease or rematch.
+        self.session.expire_all()
+        with self.session.begin():
+            room = self.repo.room(room_id, lock=True)
+            saved = self.repo.reading(match_id)
+            now = time.time()
+            if (room is None or room.match_id != match_id or saved is None
+                    or saved.status != "generating" or saved.attempt_id != attempt_id
+                    or saved.lease_until <= now):
+                return
+            current = ProgressState.model_validate((saved.payload or {})["_progress"])
+            saved.payload = {
+                **(saved.payload or {}),
+                "_progress": current.advance(event, now).model_dump(mode="json"),
+            }
+
+    @staticmethod
+    def _saved_reading_progress(saved: TarotReading) -> ReadingProgress:
+        value = (saved.payload or {}).get("_progress")
+        if value:
+            try:
+                return ProgressState.model_validate(value).view(time.time())
+            except ValidationError:
+                pass
+        # An older running lease remains readable across this additive release.
+        state = ProgressState.begin(max(0, saved.lease_until - 180))
+        state.stage = "writing"
+        return state.view(time.time())
 
     @staticmethod
     def _check_reading_retry(saved: TarotReading | None, question: str) -> None:

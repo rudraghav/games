@@ -1,7 +1,7 @@
 import createClient from 'openapi-fetch';
 import { z } from 'zod';
 import type { paths } from './generated/schema';
-import { mapMe, mapRoom, mapSavedReading, type Action } from './mappers';
+import { mapMe, mapRoom, mapReading, mapSavedReading, type Action } from './mappers';
 import type { AstrologyInput } from './astrology';
 export type {
   Room,
@@ -138,7 +138,9 @@ export function createApi(accessToken?: () => Promise<string | null>) {
       );
     },
     async reading(id: string) {
-      return unwrap(await client.GET('/v1/rooms/{room_id}/reading', { params: params(id) }));
+      return mapReading(
+        unwrap(await client.GET('/v1/rooms/{room_id}/reading', { params: params(id) })),
+      );
     },
     async savedReading(matchId: string) {
       return mapSavedReading(
@@ -154,16 +156,18 @@ export function createApi(accessToken?: () => Promise<string | null>) {
       astrology?: AstrologyInput,
       reuseSavedAstrology?: boolean,
     ) {
-      return unwrap(
-        await client.POST('/v1/rooms/{room_id}/reading', {
-          params: params(id),
-          body: {
-            match_id: matchId,
-            question,
-            ...(astrology ? { astrology } : {}),
-            ...(reuseSavedAstrology ? { reuse_saved_astrology: true } : {}),
-          },
-        }),
+      return mapReading(
+        unwrap(
+          await client.POST('/v1/rooms/{room_id}/reading', {
+            params: params(id),
+            body: {
+              match_id: matchId,
+              question,
+              ...(astrology ? { astrology } : {}),
+              ...(reuseSavedAstrology ? { reuse_saved_astrology: true } : {}),
+            },
+          }),
+        ),
       );
     },
     async astrologyPlaces(id: string, matchId: string, query: string) {

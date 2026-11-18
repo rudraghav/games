@@ -1198,6 +1198,28 @@ export interface components {
             /** Reuse Saved Astrology */
             reuse_saved_astrology?: boolean | null;
         };
+        /** ReadingProgress */
+        ReadingProgress: {
+            /**
+             * Stage
+             * @enum {string}
+             */
+            stage: "preparing" | "matching" | "writing" | "retrying" | "checking" | "saving";
+            /** Provider */
+            provider?: ("Gemini" | "Groq" | "Cloudflare") | null;
+            /** Attempt */
+            attempt: number;
+            /** Max Attempts */
+            max_attempts: number;
+            /** Started At */
+            started_at: number;
+            /** Updated At */
+            updated_at: number;
+            /** Estimated Percent */
+            estimated_percent: number;
+            /** Estimated Seconds Remaining */
+            estimated_seconds_remaining?: number | null;
+        };
         /** ReadingView */
         ReadingView: {
             /** Status */
@@ -1221,6 +1243,7 @@ export interface components {
              */
             message: string;
             failure?: components["schemas"]["ReadingFailure"] | null;
+            progress?: components["schemas"]["ReadingProgress"] | null;
             astrology_chart?: components["schemas"]["AstrologyChart"] | null;
         };
         /** Ready */

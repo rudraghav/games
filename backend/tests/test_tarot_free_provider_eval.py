@@ -1357,3 +1357,205 @@ def test_offline_revalidation_cli_cannot_turn_into_execution_or_other_scenario(e
     with pytest.raises(SystemExit) as error:
         evaluation.main([*offline_western_args(), *extra])
     assert error.value.code == 2
+
+
+@pytest.mark.parametrize("provider", evaluation.MODELS)
+@pytest.mark.parametrize("scenario", ("ordinary-grief", *evaluation.ASTROLOGY_SCENARIO_IDS))
+def test_grounded_eval_matches_runtime_wire_and_shared_validation(provider, scenario):
+    from test_tarot_grounded import grounded_envelope
+
+    from app.games.tarot.grounded import build_grounded_request
+
+    entry = prepared(provider, scenario, profile=evaluation.GROUNDED_PROFILE)
+    assert entry["body"] == build_grounded_request(provider, entry["canonical_request"])
+    assert entry["report"]["estimated_input_plus_output_cap"] <= 8000
+    result, diagnostic = evaluation.parse_response(
+        grounded_envelope(provider, entry["canonical_request"], entry["chart"]), entry)
+    assert result is not None and diagnostic["reason"] == "valid_contract"
+    if entry["chart"]:
+        assert result.astrology.chart == entry["chart"]
+
+
+@pytest.mark.parametrize("provider,groq,cloudflare,allowed", [
+    ("groq", 25, 16, True), ("cloudflare", 25, 16, True),
+    ("groq", 31, 16, False), ("cloudflare", 25, 22, False),
+    ("groq", 31, 22, False),
+])
+def test_grounded_budget_preserves_all_history_and_explicit_prior_ceilings(provider, groq, cloudflare, allowed):
+    evaluation.EVIDENCE.mkdir()
+    for name, count in (("groq", groq), ("cloudflare", cloudflare)):
+        for attempt in range(1, count + 1):
+            evaluation.private_json(evaluation.EVIDENCE / f"{name}-attempt-{attempt:03}-reserved.json",
+                                    {"provider": name, "attempt": attempt})
+    if allowed:
+        assert len(evaluation.check_budget(provider, 1, evaluation.GROUNDED_PROFILE)) == (groq if provider == "groq" else cloudflare)
+    else:
+        with pytest.raises(evaluation.EvaluationStop):
+            evaluation.check_budget(provider, 1, evaluation.GROUNDED_PROFILE)
+    with pytest.raises(evaluation.EvaluationStop):
+        evaluation.check_budget(provider, 1, evaluation.ASTROLOGY_PROFILE if provider == "groq" else "compact-v2")
+
+
+def old_grounded_length_failure(monkeypatch):
+    from test_tarot_grounded import grounded_envelope
+
+    from app.games.tarot import grounded
+
+    original_bound = grounded._bounded
+    with monkeypatch.context() as old:
+        old.setattr(grounded, "PROFILE_VERSION", "grounded-reading-2")
+        old.setattr(grounded, "_target", lambda _min, _max, preferred_min, preferred_max:
+                    grounded._prose(preferred_min, preferred_max))
+        def old_bound(value, field, minimum, maximum):
+            return original_bound(value, field, minimum, 350 if field == "introduction" else maximum)
+        old.setattr(grounded, "_bounded", old_bound)
+        entry = prepared("groq", "ordinary-grief", profile=evaluation.GROUNDED_PROFILE)
+        body = grounded_envelope("groq", entry["canonical_request"])
+        payload = json.loads(body["choices"][0]["message"]["content"])
+        payload["introduction"] = "A gentle possibility for reflection. " * 11
+        body["choices"][0]["message"]["content"] = json.dumps(payload)
+        calls = configure_execution(old, lambda _: httpx.Response(200, json=body))
+        assert evaluation.main([*compact_args(profile=evaluation.GROUNDED_PROFILE), "--capture-rejected-output"]) == 1
+    record = json.loads((evaluation.EVIDENCE / "groq-attempt-001-result.json").read_text())
+    assert record["reason"] == "invalid_text_length"
+    return record, calls
+
+
+def grounded_offline_args():
+    return ["--provider", "groq", "--profile", evaluation.GROUNDED_PROFILE,
+            "--revalidate-grounded-attempt", "1"]
+
+
+def test_grounded_offline_bounds_proof_preserves_failure_and_never_calls_provider(monkeypatch):
+    record, calls = old_grounded_length_failure(monkeypatch)
+    original = (evaluation.EVIDENCE / "groq-attempt-001-result.json").read_bytes()
+    monkeypatch.setattr(evaluation, "load_credentials", lambda *_: pytest.fail("Credential access"))
+    monkeypatch.setattr(evaluation.httpx, "Client", lambda *_args, **_kwargs: pytest.fail("Network access"))
+    assert evaluation.main(grounded_offline_args()) == 0
+    assert len(calls) == len(evaluation.combined_reservations()) == 1
+    assert (evaluation.EVIDENCE / "groq-attempt-001-result.json").read_bytes() == original
+    receipt = json.loads(evaluation.grounded_recheck_paths(record)[1].read_text())
+    assert receipt["provider_calls"] == receipt["attempts_reserved"] == 0
+    assert receipt["original_status"] == "failed" and not receipt["editorial_acceptance"]
+    entry = prepared("groq", "ordinary-grief", profile=evaluation.GROUNDED_PROFILE)
+    assert evaluation.grounded_recheck_matches(record, entry)
+    assert evaluation.smoke_passed("groq", "current", "none", evaluation.GROUNDED_PROFILE)
+    assert evaluation.main(grounded_offline_args()) == 1
+
+
+@pytest.mark.parametrize("tamper", ["system", "context", "model", "capture", "reservation", "preflight"])
+def test_grounded_offline_bounds_proof_rejects_unrelated_changes(monkeypatch, tamper):
+    from app.games.tarot import grounded
+
+    record, _calls = old_grounded_length_failure(monkeypatch)
+    if tamper == "system":
+        monkeypatch.setattr(grounded, "SYSTEM", grounded.SYSTEM + " Changed instruction.")
+    else:
+        folder = evaluation.EVIDENCE / record["run_id"]
+        path = (evaluation.EVIDENCE / "groq-attempt-001-reserved.json" if tamper == "reservation" else
+                folder / "preflight.json" if tamper == "preflight" else
+                folder / "ordinary-grief-rejected-final-private.json" if tamper == "capture" else
+                folder / "ordinary-grief-request-private.json")
+        data = json.loads(path.read_text())
+        if tamper == "context":
+            data["context"]["question"] = "Changed question"
+        elif tamper == "model":
+            data["request"]["model"] = "another-model"
+        elif tamper == "capture":
+            data["content"] += " "
+        elif tamper == "reservation":
+            data["contract_sha256"] = "different"
+        else:
+            data["scenarios"][0]["request_sha256"] = "different"
+        path.write_text(json.dumps(data))
+    assert evaluation.main(grounded_offline_args()) == 1
+    assert not evaluation.grounded_recheck_paths(record)[1].exists()
+
+
+@pytest.mark.parametrize("scenario", evaluation.ASTROLOGY_SCENARIO_IDS)
+def test_grounded_medium_preserves_source_facts_with_two_effective_candidates(scenario):
+    base = prepared("groq", scenario, profile=evaluation.GROUNDED_PROFILE)
+    medium = prepared("groq", scenario, profile=evaluation.GROUNDED_MEDIUM_PROFILE)
+    from app.games.tarot.grounded import build_grounded_request
+
+    assert medium["body"] == {**build_grounded_request("groq", medium["canonical_request"]), "reasoning_effort": "medium"}
+    assert medium["context"]["astrology"] == base["context"]["astrology"]
+    for selected, original in zip(medium["context"]["cards"], base["context"]["cards"], strict=True):
+        assert len(selected["reference_characters"]) <= 2
+        assert all(reference in original["reference_characters"] for reference in selected["reference_characters"])
+    assert medium["report"]["output_cap"] == 4096
+    for field in ("chart_sha256",):
+        if field != "request_bytes":
+            assert medium["report"][field] == base["report"][field]
+    assert medium["report"]["estimated_input_plus_output_cap"] <= 8000
+
+
+def test_grounded_medium_preserves_all_fifty_three_prior_reservations():
+    historical_reservations("groq", 31)
+    historical_reservations("cloudflare", 22)
+    assert len(evaluation.check_budget("groq", 4, evaluation.GROUNDED_MEDIUM_PROFILE)) == 31
+    with pytest.raises(evaluation.EvaluationStop):
+        evaluation.check_budget("groq", 5, evaluation.GROUNDED_MEDIUM_PROFILE)
+    with pytest.raises(evaluation.EvaluationStop):
+        evaluation.check_budget("groq", 1, evaluation.GROUNDED_PROFILE)
+    with pytest.raises(evaluation.EvaluationStop):
+        prepared("cloudflare", "western-rest", profile=evaluation.GROUNDED_MEDIUM_PROFILE)
+    with pytest.raises(evaluation.EvaluationStop):
+        prepared("groq", "ordinary-grief", profile=evaluation.GROUNDED_MEDIUM_PROFILE)
+
+
+@pytest.mark.parametrize("unit", ["TPM", "TPD"])
+def test_quota_diagnostics_retain_only_fixed_unit_and_bounded_counts(unit):
+    result = evaluation.http_diagnostics({"error": {
+        "code": "rate_limit_exceeded", "type": "tokens",
+        "message": f"PRIVATE organization token: gsk_PRIVATE. Rate limit reached ({unit}): Limit 8000, Requested 8123. max_tokens PRIVATE",
+    }}, {})
+    assert result["token_quota"] == {"unit": unit, "limit": 8000, "requested": 8123}
+    assert "PRIVATE" not in json.dumps(result)
+
+
+def test_quota_diagnostics_do_not_guess_unbounded_or_fractional_limits():
+    result = evaluation.http_diagnostics({"error": {
+        "code": "rate_limit_exceeded", "message": "Limit 12345678900; Requested 1.5; UnknownUnit PRIVATE",
+    }}, {})
+    assert "token_quota" not in result
+
+
+@pytest.mark.parametrize("scenario", evaluation.ASTROLOGY_SCENARIO_IDS)
+def test_grounded_json_transport_changes_only_wire_contract_location(scenario):
+    from app.games.tarot.grounded_json import json_contract_schema, json_transport
+
+    strict = prepared("groq", scenario, profile=evaluation.GROUNDED_MEDIUM_PROFILE)
+    entry = prepared("groq", scenario, profile=evaluation.GROUNDED_JSON_PROFILE)
+    assert entry["body"] == json_transport(strict["body"])
+    assert entry["canonical_request"] == strict["canonical_request"]
+    assert entry["body"]["response_format"] == {"type": "json_object"}
+    assert entry["body"]["reasoning_effort"] == "medium"
+    assert entry["body"]["max_completion_tokens"] == 4096
+    assert entry["wire_schema"] == json_contract_schema(strict["wire_schema"])
+    assert entry["body"]["messages"][1] == strict["body"]["messages"][1]
+    assert entry["report"]["estimated_input_plus_output_cap"] < 7000
+
+
+def test_grounded_json_budget_retires_unused_medium_slots(monkeypatch):
+    historical_reservations("groq", 33)
+    historical_reservations("cloudflare", 22)
+    assert len(evaluation.check_budget("groq", 4, evaluation.GROUNDED_JSON_PROFILE)) == 33
+    with pytest.raises(evaluation.EvaluationStop):
+        evaluation.check_budget("groq", 5, evaluation.GROUNDED_JSON_PROFILE)
+    monkeypatch.setattr(evaluation, "load_credentials", lambda *_: pytest.fail("Credential access"))
+    assert evaluation.main(compact_args(profile=evaluation.GROUNDED_MEDIUM_PROFILE, scenario="western-rest")) == 1
+
+
+def test_provider_failed_generation_shape_never_retains_unknown_fields_or_prose():
+    entry = prepared("groq", "western-rest", profile=evaluation.GROUNDED_JSON_PROFILE)
+    diagnostic = evaluation.http_diagnostics({"error": {
+        "code": "json_validate_failed", "failed_generation": json.dumps({
+            "title": "PRIVATE TITLE", "card_1": {"title": "PRIVATE CARD"}, "PRIVATE KEY": "PRIVATE VALUE",
+        }),
+    }}, {}, entry["wire_schema"])
+    shape = diagnostic["failed_generation"]["schema_shape"]
+    assert "card_2" in shape["missing_required_fields"]
+    assert "card_1.reflection_question" in shape["missing_required_fields"]
+    assert shape["unknown_field_count"] == 1
+    assert "PRIVATE" not in json.dumps(diagnostic)

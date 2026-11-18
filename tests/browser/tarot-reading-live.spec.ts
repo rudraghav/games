@@ -1,10 +1,10 @@
-import { expect, test, type BrowserContext, type Page } from '@playwright/test';
+import { expect, test, type BrowserContext, type Page, type Response } from '@playwright/test';
 import { createHash } from 'node:crypto';
 import { writeFile } from 'node:fs/promises';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import type { TarotCharacter } from '../../packages/api-client/src/tarot-characters';
 import registry from '../../packages/api-client/src/generated/tarot-characters.json' with { type: 'json' };
-import { openGameSetup, attachPreviewAccess, requestAs, roomAs } from './helpers';
+import { attachPreviewAccess, requestAs, roomAs } from './helpers';
 
 type ReadingView = components['schemas']['ReadingView'];
 type SavedReading = components['schemas']['SavedReadingView'];
@@ -104,6 +104,96 @@ async function savedReading(page: Page, matchId: string): Promise<SavedReading> 
   const response = await requestAs(page, `readings/${matchId}`);
   expect(response.status()).toBe(200);
   return response.json();
+}
+
+/** Observe the UI's own polling; never spend another generation request on QA. */
+async function observeGeneration(page: Page, mode: string, generate: () => Promise<void>) {
+  const received: Array<{ receivedAt: string; progress: ReadingView['progress'] }> = [];
+  const pending = new Set<Promise<void>>();
+  const onResponse = (response: Response) => {
+    if (
+      response.request().method() !== 'GET' ||
+      !/\/rooms\/[^/]+\/reading$/.test(new URL(response.url()).pathname)
+    )
+      return;
+    const capture = (async () => {
+      const view: ReadingView = await response.json();
+      if (view.status === 'generating' && view.progress)
+        received.push({ receivedAt: new Date().toISOString(), progress: view.progress });
+    })().catch(() => {
+      // A cancelled poll is expected when the completed POST wins the race.
+    });
+    pending.add(capture);
+    void capture.finally(() => pending.delete(capture));
+  };
+  page.on('response', onResponse);
+  let running = true;
+  const rendered: Array<{
+    observedAt: string;
+    text: string;
+    percent: number | null;
+    min: string | null;
+    max: string | null;
+    viewportWidth: number;
+    scrollWidth: number;
+  }> = [];
+  const observing = (async () => {
+    let previous = '';
+    while (running) {
+      const frame = await page
+        .evaluate(() => {
+          const panel = document.querySelector<HTMLElement>('.tarot-generation-progress');
+          const meter = panel?.querySelector('[role="progressbar"]');
+          if (!panel || !meter || !panel.getBoundingClientRect().height) return null;
+          const value = meter.getAttribute('aria-valuenow');
+          return {
+            observedAt: new Date().toISOString(),
+            text: panel.innerText,
+            percent: value === null ? null : Number(value),
+            min: meter.getAttribute('aria-valuemin'),
+            max: meter.getAttribute('aria-valuemax'),
+            viewportWidth: innerWidth,
+            scrollWidth: document.documentElement.scrollWidth,
+          };
+        })
+        .catch(() => null);
+      if (frame && frame.text !== previous) {
+        rendered.push(frame);
+        previous = frame.text;
+      }
+      await new Promise((resolve) => setTimeout(resolve, 150));
+    }
+  })();
+  try {
+    await generate();
+  } finally {
+    running = false;
+    page.off('response', onResponse);
+    await observing;
+    await Promise.all(pending);
+    await writeFile(
+      test.info().outputPath(`${mode}-progress-private.json`),
+      JSON.stringify({ mode, received, rendered, additionalApiCalls: 0 }, null, 2),
+      { flag: 'wx', mode: 0o600 },
+    );
+  }
+  expect(rendered.length, 'The loading state is visible during generation').toBeGreaterThan(0);
+  for (const frame of rendered) {
+    expect(frame.min).toBe('0');
+    expect(frame.max).toBe('100');
+    expect(frame.scrollWidth).toBeLessThanOrEqual(frame.viewportWidth);
+    if (frame.percent !== null) {
+      expect(frame.percent).toBeGreaterThan(0);
+      expect(frame.percent).toBeLessThan(100);
+      expect(frame.text).toContain('% estimated');
+      expect(frame.text).toMatch(/About \d+ (?:sec|min) remaining|Taking longer than expected/);
+    }
+  }
+  if (received.length)
+    expect(
+      rendered.some((frame) => frame.percent !== null),
+      'Saved backend progress reaches the visible loader',
+    ).toBe(true);
 }
 
 async function bothChart(page: Page) {
@@ -317,18 +407,16 @@ test('selected independent live readings retain exact private archives after new
       ).toBeVisible();
       continue;
     }
-    await room.page.goto('/');
-    await openGameSetup(room.page, 'tarot');
-    await room.page
-      .getByRole('textbox', { name: 'Your name', exact: true })
-      .fill(`Tarot live QA ${index + 1}`);
+    await room.page.setViewportSize({ width: 390, height: 844 });
+    await room.page.goto('/games/tarot');
     const creation = room.page
       .waitForResponse(
         (response) =>
-          response.url().endsWith('/v1/rooms') && response.request().method() === 'POST',
+          new URL(response.url()).pathname === '/api/backend/v1/games/tarot/play' &&
+          response.request().method() === 'POST',
       )
       .then(async (response) => {
-        if (response.status() === 201) {
+        if (response.ok()) {
           const created = await response.json();
           room.roomId = created.id;
           await writeFile(
@@ -349,9 +437,10 @@ test('selected independent live readings retain exact private archives after new
         }
         return response;
       });
-    await room.page.getByRole('button', { name: 'Create room', exact: true }).click();
+    await room.page.getByRole('button', { name: 'Start reading', exact: true }).click();
     const created = await creation;
-    expect(created.status()).toBe(201);
+    expect(created.status()).toBe(200);
+    expect(room.roomId).toBeTruthy();
     await expect(room.page).toHaveURL(new RegExp(`/games/tarot/play/${room.roomId}$`));
     await pickSpread(room.page);
   }
@@ -389,8 +478,11 @@ test('selected independent live readings retain exact private archives after new
       }
       expect((await requestAs(outsider, `rooms/${room.roomId}/reading`)).status()).toBe(404);
       expect((await requestAs(outsider, `readings/${matchId}`)).status()).toBe(404);
-      await actor.getByRole('button', { name: 'Read my cards', exact: true }).click();
-      await expect(actor.locator('.tarot-reading')).toBeVisible({ timeout: 125000 });
+      await actor.setViewportSize({ width: 390, height: 844 });
+      await observeGeneration(actor, mode, async () => {
+        await actor.getByRole('button', { name: 'Read my cards', exact: true }).click();
+        await expect(actor.locator('.tarot-reading')).toBeVisible({ timeout: 125000 });
+      });
       const response = await requestAs(actor, `rooms/${room.roomId}/reading`);
       expect(response.status()).toBe(200);
       const current: ReadingView = await response.json();

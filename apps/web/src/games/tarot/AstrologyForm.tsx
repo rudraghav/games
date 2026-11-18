@@ -343,8 +343,8 @@ export function AstrologyForm({
               <p className="small muted">Preview your chart before including it in the reading.</p>
             )}
             <p className="small muted">
-              Your date, time and selected place are used privately to calculate the chart. Gemini
-              receives the calculated placements, not these birth details.
+              Your date, time and selected place are used privately to calculate the chart. The
+              reading service receives the calculated placements, not these birth details.
             </p>
           </fieldset>
         ) : null}
