@@ -1,3 +1,29 @@
+## 2026-11-18 — Featured Tarot published; alternatives not adopted
+
+- Application53421e74a5b1d7cf1c55a1d117bef0726726371d is pushed to main;
+  fresh remote readback matches. This includes the full-row featured Tarot card,
+  successful-leave cache repair and the separate, bounded free-provider evaluator.
+- Stop alternative testing at7 Groq and8 Cloudflare requests. Groq's medium
+  grief request fails400 json_validate_failed/maxItems despite available quota;
+  its remaining medium astrology cases were not sent. Cloudflare's placeholder
+  medium smoke is sufficient rejection, so its remaining requests are not used.
+  Neither configuration meets quality/reliability acceptance; production stays
+  unchanged. Verified free credentials remain private and are not deployed.
+- All6170 runtime files retain tested fingerprint
+  fa785e49aaebbe6f5cce49b3751c4ee5ec933413952eacb8fea298009c8c959b.
+  Latest frontend243/browser85/backend6622/tooling44 gates remain valid; later
+  evaluator effort changes affected only backend/tooling and were rechecked.
+- Cleanup closes the three task-created account/setup tabs, stops the loopback
+  form and removes its3974-byte disposable helper. Credentials, source, owner
+  data and recovery evidence remain. Web3217/API8217/Storybook6105 return200.
+  Retain38MB current browser proof,1.8MB feature captures and756KB alternative
+  evaluation evidence; protected original image/model/recovery assets stay put.
+- Production remains65de797. Wait until08:01UTC/13:31IST for the already-authorized
+  final Gemini prose checks, then execute the prepared single production release
+  and actual hosted mobile reading/archive/privacy checks. Gemini72/80 attempts
+  used; the separate alternative evaluation used15/20 and has no further calls
+  planned. No paid billing, model setting, schema or production change occurred.
+
 ## 2026-11-18 — Featured Tarot verified; free-provider baseline evaluated
 
 - Evaluation-only medium reasoning is now supported with its own contract/smoke

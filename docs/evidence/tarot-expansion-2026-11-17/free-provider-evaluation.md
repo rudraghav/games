@@ -1,5 +1,9 @@
 # Free-provider evaluation
 
+Completed on 18 November 2026: neither tested configuration was adopted. The
+[actual outcomes](#actual-comparison-outcome--18-november-2026) below supersede
+the preparation plans; no further calls are required.
+
 ## Outcome and acceptance
 
 Evaluate the existing Tarot contract on Groq `openai/gpt-oss-120b` and
@@ -200,3 +204,55 @@ Groq's largest estimated input-plus-cap remains7757; Cloudflare's seven full-cap
 estimates still sum to4598 neurons. These runs read no credentials and make no
 inference requests. Live medium outcomes require the release operator's separate
 requests and editorial review.
+
+## Actual comparison outcome — 18 November 2026
+
+The release operator confirmed both accounts were on free plans and executed
+15 synthetic requests: **Groq 7/10** and **Cloudflare 8/10** across both efforts.
+Credentials stayed private. No paid upgrade, retry, fallback, production provider
+change or database write was made. The application/evaluator commit `53421e7`
+was pushed; these outcome notes are documentation of the separate evaluation,
+not a production-model adoption.
+
+| Provider / effort | Cases sent | Transport and local validation | Independent editorial assessment |
+| --- | --- | --- | --- |
+| Groq / low | Blank, grief, Nataraja, inbox, Western | First four valid in 2.413–2.687s. Western HTTP 400 `json_validate_failed`; safe diagnostics mention `required`. Run stopped. | Blank and grief: Block. Nataraja and inbox: Minor, with useful grounded connections but repeated names outside designated fields and some overcertain framing. |
+| Cloudflare / low | All seven | Four ordinary cases valid in 20.714–29.032s. Western (62.136s) and Vedic (28.875s) failed exact local validation. Both timed out at 90.005s. | All four available ordinary readings: Block for concrete grounding, reader-context or sensitive-tone failures. No editorial verdict inferred for rejected or absent text. |
+| Groq / medium | Blank, grief | Blank valid in 5.631s. Grief HTTP 400 after 4.605s, `json_validate_failed` mentioning `maxItems`; remaining token allowance was present. Run stopped. | Blank: Minor. Fact-first connections and reference placement improved, but blank-reader certainty and dropped attribution remained. No normalized grief prose was available. |
+| Cloudflare / medium | Blank | Locally valid in 30.716s. | Block: all three normal fields contained `normal_interpretation`, all quirky fields contained `quirky_interpretation_of_same_meaning_but_with_imagery`, and all connections ended mid-sentence. |
+
+The technical count is **10 locally valid outputs from 15 attempts**. Editorial
+review of those ten found **seven Block and three Minor**, with no full Pass.
+These categories distinguish observed quality from transport and schema failures;
+they are not a statistical reliability estimate.
+
+Grounding checks used only each card's exact supplied public context. The low
+blank outputs added unsupported details or a personal dilemma. Both low grief
+outputs turned Hildegard's non-singing Devil into a silent character; Cloudflare
+then used the analogy to limit grief's place in the song, contrary to the
+question's supportive intent. Cloudflare's Nataraja reading invented a wheel the
+figure dances upon, and its inbox reading added character-specific decisions
+absent the source. Groq's Nataraja and inbox readings were closer: relevant scene
+or tradition, specific factual connections and bounded next steps. Medium Groq
+improved blank-reading discipline, while medium Cloudflare demonstrated why
+length/schema checks alone cannot establish meaningful prose.
+
+Rejected output text was deliberately not retained. Accordingly, Cloudflare's
+Western/Vedic failures cannot be assigned to a particular body/sign/house anchor
+or reference field from the safe generic diagnostic, and Groq's HTTP 400 keyword
+mentions do not establish the exact invalid generated value. No missing prose
+was reconstructed for review.
+
+The operator stopped with **three Groq and two Cloudflare requests unused**.
+Groq low Vedic/Both and medium Western/Vedic/Both were not run. Cloudflare medium
+grief/Both were not run after the unusable blank output. There are no pending
+required calls for this comparison. Private assessments retain these gaps and
+the per-case reasons; public notes contain no keys, raw reasoning or private
+request artifacts.
+
+**Decision: neither tested provider configuration is adopted for this Tarot
+contract.** This is a scoped rejection of the observed configurations, not a
+general claim about GPT-OSS or either service. Production Gemini remains unchanged;
+the selected free-plan Gemini checks resume after its quota reset. The evaluator
+remains available for a separately authorized future comparison without resetting
+its durable reservation history.
