@@ -20,25 +20,19 @@ test.beforeEach(async ({ page }) => {
   await page.goto('/design/midgame');
 });
 
-test('boop graduation previews and clears without submitting before confirmation', async ({
+test('boop previews its only graduation before the single named action commits', async ({
   page,
 }) => {
   const item = await scenario(page, 'boop', 'graduating');
   const choice = item.room.game!.actions!.find((option) => option.action.type === 'graduate')!;
   const button = page.getByRole('button', { name: choice.label, exact: true });
-  await button.click();
-  await expect(button).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.boop-square[data-highlight="true"]')).toHaveCount(3);
   await expect(page.getByLabel('Submitted action', { exact: true })).toHaveText(
     'No action submitted',
   );
-  await page.getByRole('button', { name: 'Clear selection', exact: true }).click();
-  await expect(
-    page.getByRole('button', { name: 'Confirm graduation', exact: true }),
-  ).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Clear selection', exact: true })).toHaveCount(0);
   await button.focus();
   await page.keyboard.press('Enter');
-  await page.getByRole('button', { name: 'Confirm graduation', exact: true }).click();
   await expect(page.getByLabel('Submitted action', { exact: true })).toContainText(
     '"type":"graduate"',
   );

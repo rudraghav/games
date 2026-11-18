@@ -71,6 +71,7 @@ export function HorizontalRail({
   const root = useRef<HTMLDivElement>(null);
   const viewport = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
+  const pressedItem = useRef<Element | null>(null);
   const reduced = useReducedMotion();
   const railId = useId();
   const navigation = navigationLabel || `cards in ${label.toLowerCase()}`;
@@ -155,11 +156,36 @@ export function HorizontalRail({
         role="group"
         aria-label={label}
         onScroll={measure}
+        onPointerDownCapture={(event) => {
+          pressedItem.current = event.target instanceof Element ? event.target : null;
+        }}
+        onPointerCancelCapture={() => {
+          pressedItem.current = null;
+        }}
+        onKeyDownCapture={() => {
+          pressedItem.current = null;
+        }}
         onFocusCapture={(event) => {
           const frame = viewport.current;
           const target = event.target as HTMLElement;
           if (!frame || target === frame) return;
+          // Moving a square or card during pointer focus can send the click to its neighbour.
+          // Keyboard focus reveals immediately. A pointer reveals after activation instead.
+          if (target.contains(pressedItem.current) && !target.matches(':focus-visible')) return;
           revealWithin(frame, target, 'instant');
+        }}
+        onClick={(event) => {
+          const focused = document.activeElement;
+          const pressed = pressedItem.current;
+          pressedItem.current = null;
+          if (
+            focused instanceof HTMLElement &&
+            focused !== event.currentTarget &&
+            event.currentTarget.contains(focused) &&
+            focused.contains(pressed)
+          ) {
+            revealWithin(event.currentTarget, focused, 'instant');
+          }
         }}
       >
         <div

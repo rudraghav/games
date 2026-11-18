@@ -47,7 +47,6 @@ export function RummyDock({
   selfOut,
   discardTop,
   discardTopIsJoker,
-  onSelect,
   onDecide,
   onDrop,
   clear,
@@ -61,7 +60,6 @@ export function RummyDock({
   selfOut?: RummyOut;
   discardTop: Card | null;
   discardTopIsJoker: boolean;
-  onSelect: (id: string) => void;
   onDecide: (option: ActionOption) => void;
   onDrop: (option: ActionOption) => void;
   clear: () => void;
@@ -100,7 +98,7 @@ export function RummyDock({
   else if (discarding)
     context = !selectedCard
       ? winning.length
-        ? `You can declare now. Pick ${winning.length === 1 ? 'the winning discard' : 'a winning discard'} (marked Win), then Declare.`
+        ? 'You can declare now with a winning discard.'
         : taken
           ? `You took ${taken.label} from the discard. Select a different card to discard.`
           : drawn
@@ -136,18 +134,16 @@ export function RummyDock({
   if (discarding && !selectedCard && winning.length)
     choices.push(
       <div className="rummy-win-chips" role="group" aria-label="Winning discards" key="win">
-        {winning.map((card) => (
-          <Button
-            key={card.id}
-            size="sm"
-            variant="secondary"
-            disabled={blocked}
-            aria-label={`Select ${card.label} to declare`}
-            onClick={() => onSelect(card.id)}
-          >
-            {card.label}
-          </Button>
-        ))}
+        {winning.map((card) => {
+          const move = match.actions.find(
+            (item) => item.value.type === 'declare' && item.value.card === card.id,
+          );
+          return move ? (
+            <Button key={card.id} size="sm" disabled={blocked} onClick={() => onDecide(move)}>
+              {move.label}
+            </Button>
+          ) : null;
+        })}
       </div>,
     );
   if (discarding && selectedCard && !cannotDiscard) {

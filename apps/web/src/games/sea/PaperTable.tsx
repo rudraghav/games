@@ -180,18 +180,26 @@ export function PaperTable(props: TableProps) {
   const selectedHand = match.hand.filter(
     (card) => draft.includes(card.id) && eligible.has(card.id),
   );
-  const pair = pairs.find(
-    (option) =>
-      selectedHand.length === 2 &&
-      option.value.cards?.every((id) => selectedHand.some((card) => card.id === id)),
+  // Only offer a direct play when the projected options identify both cards.
+  const matchingPairs = pairs.filter((option) =>
+    selectedHand.every((card) => option.value.cards?.includes(card.id)),
   );
-  const kind = duoKind(selectedHand);
+  const pair = matchingPairs.length === 1 ? matchingPairs[0] : undefined;
+  const pairCards = pair ? match.hand.filter((card) => pair.value.cards?.includes(card.id)) : [];
+  const kind = duoKind(pairCards);
   const privateCards = data.private_options;
   const chosen = privateCards.find((card) => card.id === draft[0]) ?? null;
   const toggleHand = (id: string) =>
-    setDraft((old) =>
-      old.includes(id) ? old.filter((card) => card !== id) : [...old.slice(-1), id],
-    );
+    setDraft((old) => {
+      if (old.includes(id)) return old.filter((card) => card !== id);
+      const last = old.at(-1);
+      return last &&
+        pairs.some(
+          (option) => option.value.cards?.includes(last) && option.value.cards.includes(id),
+        )
+        ? [last, id]
+        : [id];
+    });
 
   const drawTurn = myTurn && phase === 'draw';
   const takeStock = drawTurn ? find('take_stock') : undefined;
@@ -538,9 +546,11 @@ export function PaperTable(props: TableProps) {
               {data.own_points} card points · {data.own_bonus} color bonus
             </span>
           </div>
-          <p className="small muted paper-hand-instruction" aria-hidden={!pairs.length}>
-            {pairs.length ? 'Select two matching duo cards to play their effect.' : ' '}
-          </p>
+          {pairs.length > 1 ? (
+            <p className="small muted paper-hand-instruction">
+              Choose a card to see its matching duo.
+            </p>
+          ) : null}
           <div
             className="paper-card-grid paper-hand-cards"
             role="group"
@@ -573,7 +583,7 @@ export function PaperTable(props: TableProps) {
                 <p className="paper-duo-summary" aria-live="polite">
                   {pair && kind ? (
                     <>
-                      <strong>{selectedHand.map(cardName).join(' + ')}</strong> {duoEffects[kind]}
+                      {duoEffects[kind]}
                       {duoAvailable(kind, match, selfId)
                         ? ''
                         : ' Nothing to take right now, but the pair still scores.'}
@@ -581,7 +591,7 @@ export function PaperTable(props: TableProps) {
                   ) : selectedHand.length === 1 ? (
                     `${cardName(selectedHand[0])} selected. Choose a matching card.`
                   ) : (
-                    'Select two matching cards in your hand: two crabs, boats or fish, or a shark with a swimmer.'
+                    'Choose a duo from your hand.'
                   )}
                 </p>
                 <div className="paper-actions">
@@ -590,15 +600,17 @@ export function PaperTable(props: TableProps) {
                     disabled={blocked || !pair}
                     onClick={() => pair && onAction(pair.value)}
                   >
-                    {pair?.label || 'Play selected duo'}
+                    {pair ? `Play ${pairCards.map(cardName).join(' + ')}` : 'Play selected duo'}
                   </Button>
-                  <Button
-                    variant="ghost"
-                    disabled={blocked || !selectedHand.length}
-                    onClick={() => setDraft([])}
-                  >
-                    Clear selection
-                  </Button>
+                  {pairs.length > 1 && (
+                    <Button
+                      variant="ghost"
+                      disabled={blocked || !selectedHand.length}
+                      onClick={() => setDraft([])}
+                    >
+                      Clear selection
+                    </Button>
+                  )}
                 </div>
               </section>
             ) : null}

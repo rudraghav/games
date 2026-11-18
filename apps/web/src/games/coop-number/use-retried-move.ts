@@ -22,6 +22,7 @@ export function useRetriedMove({
   pending,
   onAction,
   onCommitted,
+  retryKey,
 }: {
   match: Match;
   room: Room;
@@ -30,12 +31,15 @@ export function useRetriedMove({
   onAction: (action: Action) => void;
   /** Called once the server has recorded the viewer's move. */
   onCommitted?: () => void;
+  /** A retry must still refer to the same decision and visible consequences. */
+  retryKey: (action: Action) => string;
 }) {
   const [attempt, setAttempt] = useState<{
     action: Action;
     version: number;
     at: number;
     retried: boolean;
+    key: string;
   } | null>(null);
   const send = useRef(onAction);
   const committedCallback = useRef(onCommitted);
@@ -45,7 +49,7 @@ export function useRetriedMove({
   }, [onAction, onCommitted]);
   const version = room.matchVersion ?? 0;
   useEffect(() => {
-    if (!attempt || pending || version === attempt.version) return;
+    if (!attempt || pending || room.paused || version === attempt.version) return;
     const committed = room.activity.some(
       (event) =>
         event.actorId === selfId &&
@@ -53,7 +57,13 @@ export function useRetriedMove({
         event.type === attempt.action.type,
     );
     const offered = match.actions.find((option) => same(option.value, attempt.action));
-    if (committed || !offered || attempt.retried || Date.now() - attempt.at > 8000) {
+    if (
+      committed ||
+      !offered ||
+      retryKey(offered.value) !== attempt.key ||
+      attempt.retried ||
+      Date.now() - attempt.at > 8000
+    ) {
       const clear = window.setTimeout(() => {
         setAttempt(null);
         if (committed) committedCallback.current?.();
@@ -66,10 +76,10 @@ export function useRetriedMove({
       send.current(offered.value);
     }, 60);
     return () => window.clearTimeout(timer);
-  }, [attempt, pending, version, match.actions, room.activity, selfId]);
+  }, [attempt, pending, version, match.actions, room.activity, room.paused, selfId, retryKey]);
   return {
     submit(action: Action) {
-      setAttempt({ action, version, at: Date.now(), retried: false });
+      setAttempt({ action, version, at: Date.now(), retried: false, key: retryKey(action) });
       onAction(action);
     },
     retrying: Boolean(attempt?.retried && pending),

@@ -29,6 +29,9 @@ export function GangTable(props: TableProps) {
     `gang:${room.id}:${room.matchId}:${data.heist}:${data.street}`,
     null,
   );
+  const ownChip = data.chips[selfId];
+  const holderOf = (rank: number) => match.players.find((p) => data.chips[p.id] === rank)?.id;
+  const closesWithFreeChip = data.pending_players.length === 1 && ownChip === null;
   // A committed claim ends the choice; a rejected stale claim keeps it and is resent once.
   const { submit } = useRetriedMove({
     match,
@@ -37,23 +40,31 @@ export function GangTable(props: TableProps) {
     pending,
     onAction,
     onCommitted: () => setChosen(null),
+    retryKey: (action) =>
+      JSON.stringify([
+        room.matchId,
+        data.heist,
+        data.street,
+        ownChip,
+        holderOf(action.amount ?? 0),
+        closesWithFreeChip,
+      ]),
   });
-  const ownChip = data.chips[selfId];
   const option = match.actions.find(
     (o) => o.value.type === 'claim_chip' && o.value.amount === chosen,
   );
-  const owner = chosen === null ? null : match.players.find((p) => data.chips[p.id] === chosen)?.id;
-  const closesStreet = data.pending_players.length === 1 && ownChip === null && !owner;
+  const owner = chosen === null ? null : holderOf(chosen);
+  const closesStreet = closesWithFreeChip && !owner;
   const reveal = match.actions.find((o) => o.value.type === 'reveal_hand');
   const next = match.actions.find((o) => o.value.type === 'next_heist');
   const giveBack = match.actions.find((o) => o.value.type === 'return_chip');
   const simultaneous = match.phase === 'chips';
   const roundComplete = ['heist_review', 'finished'].includes(match.phase);
   const lost = taken[selfId] && ownChip === null ? taken[selfId] : null;
-  const instruction = !chosen
-    ? lost
-      ? `Choose another chip: ${playerName(room, lost.by)} took your ${lost.rank}-star chip.`
-      : 'Choose the chip that matches your hand.'
+  const instruction = !option
+    ? ownChip
+      ? 'Taking another chip returns yours to the center.'
+      : 'Take a chip to rank your hand.'
     : owner
       ? `This takes ${playerName(room, owner)}’s chip; they will need another.`
       : closesStreet
@@ -162,10 +173,14 @@ export function GangTable(props: TableProps) {
               >
                 {match.players.map((_, i) => {
                   const rank = i + 1;
-                  const holder = match.players.find((p) => data.chips[p.id] === rank)?.id;
-                  const available = match.actions.some(
+                  const holder = holderOf(rank);
+                  const move = match.actions.find(
                     (o) => o.value.type === 'claim_chip' && o.value.amount === rank,
                   );
+                  const review = Boolean(holder) || closesWithFreeChip;
+                  const location = holder
+                    ? `held by ${holder === selfId ? 'you' : playerName(room, holder)}`
+                    : 'in the center';
                   return (
                     <button
                       key={rank}
@@ -173,17 +188,30 @@ export function GangTable(props: TableProps) {
                       className="gang-chip-choice"
                       data-own={holder === selfId || undefined}
                       data-held={Boolean(holder) || undefined}
-                      aria-label={`${rank}-star chip${holder ? ` held by ${holder === selfId ? 'you' : playerName(room, holder)}` : ' in the center'}`}
-                      aria-pressed={chosen === rank}
-                      disabled={blocked || !available}
-                      onClick={() => setChosen(chosen === rank ? null : rank)}
+                      aria-label={`${move ? (review ? 'Review ' : 'Take ') : ''}${rank}-star chip ${location}`}
+                      aria-pressed={move && review ? chosen === rank : undefined}
+                      disabled={blocked || !move}
+                      onClick={() => {
+                        if (!move || blocked) return;
+                        if (review) setChosen(chosen === rank ? null : rank);
+                        else {
+                          setChosen(null);
+                          submit(move.value);
+                        }
+                      }}
                     >
                       <span className="gang-rank-chip">
                         <Star size={15} aria-hidden="true" />
                         {rank}
                       </span>
                       <small>
-                        {holder ? (holder === selfId ? 'You' : playerName(room, holder)) : 'Center'}
+                        {holder
+                          ? holder === selfId
+                            ? 'You'
+                            : playerName(room, holder)
+                          : closesWithFreeChip
+                            ? 'Review…'
+                            : 'Take'}
                       </small>
                     </button>
                   );
@@ -193,12 +221,11 @@ export function GangTable(props: TableProps) {
                 {instruction}
               </p>
               <div className="coop-number-actions">
-                <Button
-                  disabled={blocked || !option}
-                  onClick={() => option && submit(option.value)}
-                >
-                  {chosen ? `Take ${chosen}-star chip` : 'Choose a chip'}
-                </Button>
+                {option ? (
+                  <Button disabled={blocked} onClick={() => submit(option.value)}>
+                    Take {chosen}-star chip
+                  </Button>
+                ) : null}
                 {giveBack ? (
                   <Button variant="ghost" disabled={blocked} onClick={() => submit(giveBack.value)}>
                     Return my chip

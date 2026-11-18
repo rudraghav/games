@@ -17,7 +17,8 @@ personalized actions; nothing here infers a rule outcome.
 - **`RummyDock`** is the decision dock. Draw moves stay on their piles; the dock
   names the pile cards and offers Drop as a secondary button that opens a
   confirmation ("Drop for 20 points?", naming the winner when only one player
-  would remain). With a winning discard selected, **Declare** is the primary
+  would remain). A winning discard has a direct, named Declare action before selection. Tapping
+  the hand card still selects it for grouping or reviewing other moves. With a winning discard selected, **Declare** is the primary
   first button and Discard is secondary; otherwise Discard is primary and a
   false declaration still needs the 80-point confirmation. Commit buttons sit
   in a sticky `data-decision-actions` row so they never scroll out of the dock.

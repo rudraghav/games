@@ -29,13 +29,19 @@ export function CasinoDock({ match, room, selfId, onAction, pending }: TableProp
   }));
   const simple = choices.filter(({ choice, view }) => choice.input !== 'amount' && !view.hidden);
   const wagers = choices.filter(({ choice }) => choice.input === 'amount');
+  const teenBet =
+    match.id === 'teen-patti'
+      ? wagers.find(({ choice }) => choice.value.type === 'bet')?.choice
+      : undefined;
+  const directAmounts = teenBet ? shortWagerAmounts(teenBet) : [];
+  const editable = wagers.filter(({ choice }) => choice !== teenBet || !directAmounts.length);
   return (
     <DecisionDock
       className="action-panel casino-dock"
       label="Your actions"
       size="fit"
       pending={pending}
-      data-choices={simple.length + wagers.length}
+      data-choices={simple.length + directAmounts.length + editable.length}
     >
       <div className="action-context">
         <strong>{turn.label}</strong>
@@ -44,6 +50,17 @@ export function CasinoDock({ match, room, selfId, onAction, pending }: TableProp
       </div>
       {match.actions.length ? (
         <div className="action-choices casino-choices">
+          {teenBet &&
+            directAmounts.map((amount) => (
+              <Choice
+                key={`bet:${amount}`}
+                option={teenBet}
+                name={`${teenBet.label} ${amount} ${amount === 1 ? 'chip' : 'chips'}`}
+                tone="primary"
+                disabled={locked}
+                onPick={() => onAction({ ...teenBet.value, amount })}
+              />
+            ))}
           {simple.map(({ choice, view }, index) => (
             <Choice
               key={`${choice.value.type}:${index}`}
@@ -56,7 +73,7 @@ export function CasinoDock({ match, room, selfId, onAction, pending }: TableProp
               onPick={() => onAction(choice.value)}
             />
           ))}
-          {wagers.map(({ choice }, index) => (
+          {editable.map(({ choice }, index) => (
             <Wager
               key={`${choice.value.type}:${choice.minimum}:${choice.maximum}:${index}`}
               option={choice}
@@ -72,6 +89,14 @@ export function CasinoDock({ match, room, selfId, onAction, pending }: TableProp
       ) : null}
     </DecisionDock>
   );
+}
+
+/** Small Teen Patti stakes often have just two legal prices, including the seen-hand step. */
+function shortWagerAmounts(option: ActionOption) {
+  const { minimum, maximum, step } = option;
+  if (minimum == null || maximum == null || maximum < minimum || step <= 0) return [];
+  const count = Math.floor((maximum - minimum) / step) + 1;
+  return count <= 3 ? Array.from({ length: count }, (_, index) => minimum + index * step) : [];
 }
 
 function Choice({

@@ -174,10 +174,6 @@ test('legal split, insurance, declaration, challenge and round-closing continuat
       const index = item!.room.game!.hand.findIndex((card) => card.id === item!.next.action.card);
       await page.locator('.rummy-groups .card-hand > button').nth(index).click();
       await page.getByRole('button', { name: move.label, exact: true }).click();
-    } else if (game === 'boop') {
-      await page.getByRole('button', { name: move.label, exact: true }).click();
-      await expect(page.getByLabel('Submitted action')).toHaveText('No action submitted');
-      await page.getByRole('button', { name: 'Confirm graduation', exact: true }).click();
     } else if (game === 'sea-salt-paper') {
       const target = item!.room.members.find((member) => member.id === item!.next.action.target)!;
       await page.getByRole('button', { name: `${target.name} · random card`, exact: true }).click();
@@ -189,13 +185,10 @@ test('legal split, insurance, declaration, challenge and round-closing continuat
         ])
         .find((card) => card.id === item!.next.action.card)!;
       const name = card.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      // The response panel lists the cards to keep; the commit names the kept card.
       await page
-        .getByRole('radiogroup', { name: 'Keep one, hand out the rest', exact: true })
-        .getByRole('radio', { name: new RegExp(name) })
-        .first()
+        .getByRole('group', { name: 'Keep one, hand out the rest', exact: true })
+        .getByRole('button', { name: new RegExp('^Keep ' + name) })
         .click();
-      await page.getByRole('button', { name: /^Keep / }).click();
     } else {
       await page.getByRole('button', { name: move.label, exact: true }).click();
     }

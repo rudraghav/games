@@ -44,6 +44,10 @@ function Bed({ match, room, selfId, pending, onAction }: TableProps) {
   const myTurn = match.currentPlayer === selfId && match.actions.length > 0;
   const placing = match.phase === 'placing';
   const choosing = match.phase === 'graduating' && myTurn;
+  const soleLine =
+    choosing && match.actions.length === 1 && match.actions[0].value.type === 'graduate'
+      ? match.actions[0]
+      : null;
   const [kind, setKind] = useState<'kitten' | 'cat'>(ownPool?.kitten ? 'kitten' : 'cat');
   const [highlight, setHighlight] = useState<string>('');
   // The unsent graduation choice survives a refresh, but only for this decision.
@@ -61,9 +65,9 @@ function Bed({ match, room, selfId, pending, onAction }: TableProps) {
     match.actions.filter((o) => o.value.type === 'return_piece').map((o) => [o.value.choice, o]),
   );
   const graduations = match.actions.filter((o) => o.value.type === 'graduate');
-  const selectedChoice = match.actions.find(
-    (option) => `${option.value.type}:${option.value.choice}` === selected,
-  );
+  const selectedChoice =
+    soleLine ||
+    match.actions.find((option) => `${option.value.type}:${option.value.choice}` === selected);
   const focusSlots = new Set((highlight || selectedChoice?.value.choice || '').split(','));
   const myColor = COLOURS[selfSeat === 1 ? 1 : 0];
   const name = (id: string) => (id === selfId ? 'You' : playerName(room, id));
@@ -85,9 +89,14 @@ function Bed({ match, room, selfId, pending, onAction }: TableProps) {
     instruction =
       returns.size && !graduations.length
         ? 'All eight of your pieces are on the bed: choose one to bring back to your pool.'
-        : 'Choose a graduation.';
+        : soleLine
+          ? 'Return the highlighted three pieces to your pool as adult cats.'
+          : 'Choose a graduation.';
   } else if (myTurn) {
-    instruction = `Choose a ${ownPool?.cat ? 'kitten or cat' : 'kitten'}, then a marked square.`;
+    instruction =
+      ownPool?.kitten && ownPool.cat
+        ? `Place a ${kind} on a marked square, or switch pieces.`
+        : `Place a ${kind} on a marked square.`;
   } else {
     const current = match.currentPlayer;
     instruction = current
@@ -205,10 +214,9 @@ function Bed({ match, room, selfId, pending, onAction }: TableProps) {
           );
         })}
       </HorizontalRail>
-      {/* A fixed footprint below the bed: the bed never moves when a phase changes. */}
       <DecisionDock
         className="boop-graduation"
-        size="extended"
+        size={choosing && !soleLine ? 'extended' : 'fit'}
         label={choosing ? 'Graduation choices' : 'Turn status'}
       >
         <div className="board-status boop-status" aria-live="polite">
@@ -221,7 +229,13 @@ function Bed({ match, room, selfId, pending, onAction }: TableProps) {
                 </span>
               ))}
         </div>
-        {choosing ? (
+        {soleLine ? (
+          <div className="boop-commit">
+            <Button disabled={blocked} onClick={() => onAction(soleLine.value)}>
+              {soleLine.label}
+            </Button>
+          </div>
+        ) : choosing ? (
           <>
             <p className="small muted">
               Select a line to preview it, then confirm.
@@ -259,9 +273,7 @@ function Bed({ match, room, selfId, pending, onAction }: TableProps) {
                 <Button
                   disabled={blocked || !selectedChoice}
                   onClick={() => {
-                    if (!selectedChoice) return;
-                    setSelected('');
-                    onAction(selectedChoice.value);
+                    if (!blocked && selectedChoice) onAction(selectedChoice.value);
                   }}
                 >
                   {selectedChoice?.value.type === 'return_piece'

@@ -20,7 +20,7 @@ function props(game: string): TableProps {
 }
 
 describe('Card table decisions stay with their cards', () => {
-  it('marks only authoritative playable Uno cards and waits for a selection before card moves', () => {
+  it('marks the one authorized Uno card and offers its named play in the dock', () => {
     const p = props('uno');
     const playable = p.match.hand[0];
     const html = renderToStaticMarkup(
@@ -40,7 +40,7 @@ describe('Card table decisions stay with their cards', () => {
     );
     expect(html.match(/data-playable="true"/g)).toHaveLength(1);
     expect(html).not.toContain('>Play this card<');
-    expect(html).toContain('Tap a highlighted card to play it.');
+    expect(html).toContain(`>Play ${playable.label}<`);
     expect(html).not.toContain('or draw');
     expect(html).toContain('is the current colour');
     // The playable card leads the hand, so the card the instruction means is in view.
@@ -78,9 +78,7 @@ describe('Card table decisions stay with their cards', () => {
     expect(html).toMatch(/aria-label="Draw from stock"[^>]*disabled=""/);
     expect(html).toMatch(/aria-label="Take discard"[^>]*disabled=""/);
     // The dock points at the piles instead of repeating their draw buttons.
-    expect(renderToStaticMarkup(<RummyTable {...p} />)).toContain(
-      'Draw: tap the stock or the',
-    );
+    expect(renderToStaticMarkup(<RummyTable {...p} />)).toContain('Draw: tap the stock or the');
     expect(html).not.toContain('Move selected card');
   });
   it('puts the viewer’s Skyjo grid first even when the viewer is the last seat', () => {

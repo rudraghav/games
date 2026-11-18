@@ -205,32 +205,21 @@ test('crowded decisions support keyboard selection, clear, blocked states and ex
   const beforeGraduation = await geometry();
   const graduate = boop.room.game!.actions!.find((item) => item.action.type === 'graduate')!;
   const choice = page.getByRole('button', { name: graduate.label, exact: true });
-  await choice.focus();
-  await page.keyboard.press('Space');
-  await expect(choice).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.boop-square[data-highlight="true"]')).toHaveCount(
     graduate.action.choice.split(',').length,
   );
-  await page.getByRole('button', { name: 'Clear selection', exact: true }).click();
-  await expect(choice).toHaveAttribute('aria-pressed', 'false');
-  await expect(
-    page.getByRole('button', { name: 'Confirm graduation', exact: true }),
-  ).toBeDisabled();
-  await choice.click();
+  await choice.focus();
+  const focusedGraduation = await geometry();
+  for (const key of ['bedTop', 'bedHeight', 'dockHeight'] as const)
+    expect(Math.abs(focusedGraduation[key] - beforeGraduation[key])).toBeLessThanOrEqual(2);
   for (const state of ['Saving a move', 'Disconnected']) {
     await page.getByRole('checkbox', { name: state, exact: true }).check();
     await expect(choice).toBeDisabled();
-    await expect(
-      page.getByRole('button', { name: 'Confirm graduation', exact: true }),
-    ).toBeDisabled();
     await page.getByRole('checkbox', { name: state, exact: true }).uncheck();
   }
-  await page.getByRole('button', { name: 'Confirm graduation', exact: true }).focus();
-  await page.keyboard.press('Enter');
+  await expect(page.getByLabel('Submitted action')).toHaveText('No action submitted');
+  await choice.press('Enter');
   await recorded(page, graduate.action);
-  const afterGraduation = await geometry();
-  for (const key of ['bedTop', 'bedHeight', 'dockHeight'] as const)
-    expect(Math.abs(afterGraduation[key] - beforeGraduation[key])).toBeLessThanOrEqual(2);
 
   const clueScenario = midgameScenarios.find(
     (item) => item.game === 'word-agents' && item.seats === 10 && item.room.game!.phase === 'clue',

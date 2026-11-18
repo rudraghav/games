@@ -27,10 +27,11 @@ votes (+1)", "Ada chose A · …"), Most Likely rows are sorted by votes receive
 and say "voted for …". Seats and choices use one display name per seat (bots
 drop the "Bot" prefix and get a badge).
 
-Layout. The decision area is content-sized (`DecisionDock size="fit"`): Lock in,
-Pass and Next prompt are wrapped in `data-decision-actions` so they stay pinned
-at the bottom of the screen while the list scrolls with the page, and the dock
-is keyed by round and phase so a reveal always opens at its top. Most Likely
+Layout. The decision area is content-sized (`DecisionDock size="fit"`): The lock-in control stays within reach while the choice list scrolls. The reveal
+opens with its outcome and the host’s Next prompt button, or the name of the
+player who can advance. Individual votes and predictions follow. Spill or Chill
+uses the outcome alone because only one player answers. The dock is keyed by
+round and phase so a reveal opens at its top. Most Likely
 candidates use one column on phones and break names only at spaces/hyphens
 unless a single word cannot fit.
 

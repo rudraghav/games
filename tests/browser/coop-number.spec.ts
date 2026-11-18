@@ -25,7 +25,7 @@ test('cooperative and number-row tables fit both seat limits with readable contr
       if ((page.viewportSize()?.width || 0) <= 600) {
         const cta = page.locator(
           name === 'The Gang'
-            ? '.coop-number-actions > .button:first-child'
+            ? '.gang-chip-rack > .gang-chip-choice:first-child'
             : '.six-hand-panel > .button',
         );
         expect(
@@ -97,11 +97,12 @@ test('friends move ranking chips, reveal hands and lock private number selection
       await expect(actor.getByText(`${count}/3 chips taken`, { exact: true })).toBeVisible();
       await actor
         .getByRole('button', {
-          name: `${rank}-star chip${holder ? ` held by ${holder}` : ' in the center'}`,
+          name: `${holder ? 'Review' : 'Take'} ${rank}-star chip${holder ? ` held by ${holder}` : ' in the center'}`,
           exact: true,
         })
         .click();
-      await actor.getByRole('button', { name: `Take ${rank}-star chip`, exact: true }).click();
+      if (holder)
+        await actor.getByRole('button', { name: `Take ${rank}-star chip`, exact: true }).click();
       await expect
         .poll(
           async () =>
@@ -111,6 +112,48 @@ test('friends move ranking chips, reveal hands and lock private number selection
         )
         .toBe(rank);
     }
+    // Another player takes a free chip while the viewer's original request is
+    // in flight. A subsequent claim would steal it. It needs a new decision.
+    const path = `**/rooms/${roomId}/actions`;
+    let posts = 0;
+    await page.route(path, async (route) => {
+      if (++posts === 1) {
+        const view = await roomAs(players[1], roomId!);
+        const claim = view.game!.actions.find(
+          (option) => option.action.type === 'claim_chip' && option.action.amount === 2,
+        )!;
+        await checked(players[1], `rooms/${roomId}/actions`, 'POST', {
+          match_id: view.match_id,
+          expected_version: view.match_version,
+          action_id: crypto.randomUUID(),
+          action: claim.action,
+        });
+      }
+      await route.continue();
+    });
+    const stale = page.waitForResponse((response) =>
+      response.url().endsWith(`/rooms/${roomId}/actions`),
+    );
+    await page.getByRole('button', { name: 'Take 2-star chip in the center', exact: true }).click();
+    expect((await stale).status()).toBe(409);
+    await page
+      .getByRole('button', { name: 'Review 2-star chip held by Crew Friend 1', exact: true })
+      .click();
+    await expect(
+      page.getByText('This takes Crew Friend 1’s chip; they will need another.'),
+    ).toBeVisible();
+    await players[1].reload();
+    await players[1].getByRole('button', { name: 'Return my chip', exact: true }).click();
+    await expect
+      .poll(
+        async () =>
+          ((await roomAs(page, roomId!)).game!.detail.chips as Record<string, number | null>)[
+            ids[1]
+          ],
+      )
+      .toBeNull();
+    expect(posts).toBe(1);
+    await page.unroute(path);
     await chip(page, 1, 0);
     await chip(players[1], 1, 1, 'Crew Host');
     expect(
@@ -131,7 +174,9 @@ test('friends move ranking chips, reveal hands and lock private number selection
     await chip(players[1], 1, 0);
     await chip(players[2], 2, 1);
     await expect(page.getByText('2/3 chips taken', { exact: true })).toBeVisible();
-    await page.getByRole('button', { name: '3-star chip in the center', exact: true }).click();
+    await page
+      .getByRole('button', { name: 'Review 3-star chip in the center', exact: true })
+      .click();
     await expect(
       page.getByText(
         'Taking this last free chip closes the round and reveals more community cards.',

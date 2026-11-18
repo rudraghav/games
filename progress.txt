@@ -1,3 +1,30 @@
+## 2026-11-19 — Other games: turn simplifications verified locally
+
+- Reviewed all 25 games outside Deal at 390px and recorded their steps in
+  docs/evidence/simpler-turns-2026-11-19/README.md. Twelve games gained shorter
+  decisions or more reachable round controls. A shared rail fix also restores
+  the first tap on an edge Checkers piece and retains keyboard and swipe controls.
+- Shithead setup stays compact and stationary throughout selection at 320,
+  375, 390, 412 and 430px. Saved-game checks cover an exact final number, a
+  simultaneous chip conflict, phone wagers, a party reveal and an edge move.
+- Release gates passed against stable source: 273 frontend tests, types, lint,
+  production build, contracts and 44 workflow tests. Browser: 97 passed,
+  including 259 engine-derived states (189 outside Deal). The touch-specific
+  Checkers regression ran on phone and was skipped on desktop. Reports
+  verify-cd1149919c4348c9a4f49bc6e76e3e3a and verify-c4a1b40fc5864e5ebd18dc8c2b04b08e.
+- Read-only release schema check passed at a6e442b15d80, with zero drift.
+  This entry records the verified candidate. Hosted evidence follows after release.
+
+## 2026-11-19 — Simplify decisions across the other games
+
+- Walk through the 25 games outside Deal. Identify the player’s next decision
+  in draw, choose, target, submit and waiting states. Keep a deliberate tap for
+  irreversible private answers, bets and ambiguous moves. Apply changes where
+  there is concrete friction, using the server's legal actions.
+- Acceptance covers specific before/after paths, phone and desktop interaction,
+  saved gameplay and release verification. Catalogue-wide projection checks and
+  actually played decisions have separate evidence. Start at clean main fcc3b38.
+
 ## 2026-11-19 — Compact Deal actions live-verified and closed
 
 - Pushed application bb1093a624fb0402eb2145ed3c74cb6f12f1404e to main; one READY

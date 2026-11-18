@@ -56,6 +56,8 @@ only server-legal cards while leaving other cards inspectable; card moves appear
 after selection, and colour/draw/challenge instructions reflect the legal choices.
 Yellow-card ranks, corners and captions use measured contrasting ink.
 
+Both Uno tables offer a named play beside Draw when there is exactly one complete card play. Wild colour and swap-target choices stay explicit.
+
 Uno and Uno No Mercy retain the selected card while a move is saving or fails.
 The tab's room/match/version-scoped draft also survives refresh, so a failed
 same-version move can be retried deliberately. A saved version expires the

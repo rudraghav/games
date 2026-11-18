@@ -37,6 +37,8 @@ engine sentence written for someone else.
   shows the landing pit, captures or an extra turn before sowing.
 
 The instruction occupies a fixed two-line slot so previews never move the board
-under the pointer. Boards fit with 44px targets from 360px; 320px keeps the rail
-fallback. `apps/web/src/tests/board-perspective.test.tsx` covers seat-specific copy,
+under the pointer. Boards fit with 44px targets from 360px. At 320px the shared
+rail scrolls to keyboard focus immediately and reveals a tapped edge square
+after its action runs. A horizontal swipe moves the board without playing.
+`apps/web/src/tests/board-perspective.test.tsx` covers seat-specific copy,
 rotation and auto-selection.

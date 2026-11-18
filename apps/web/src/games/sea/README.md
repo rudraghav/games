@@ -29,8 +29,10 @@ rules for display only.
    phase for every seat. Tapping a discard opens the inspector, which never takes
    it; only an explicit “Take …” button (or the inspector’s Take) commits.
 6. **Your hand** shows every card at once: full cards on wider screens, a
-   three-column grid of compact cards on phones. Duo selection and its effect
-   summary stay until the move commits; a valid duo becomes the primary action.
+   three-column grid of compact cards on phones. When exactly one legal duo fits
+   the hand or selected cards, Play names both cards and shows the effect before
+   committing. With multiple partners, choose the second card to complete the
+   pair. Choosing an unrelated card starts a new selection.
 7. **Collections** of played duos; revealed (protected) hands open automatically
    with their card points.
 

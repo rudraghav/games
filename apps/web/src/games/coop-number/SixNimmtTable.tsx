@@ -95,11 +95,12 @@ export function SixNimmtTable(props: TableProps) {
     pending,
     onAction,
     onCommitted: () => setChosen(null),
+    retryKey: () => `${room.matchId}:${data.round}:${data.trick}`,
   });
-  const selectedOption = match.actions.find(
-    (o) => o.value.type === 'select_number' && o.value.card === chosen,
-  );
-  const selectedCard = match.hand.find((item) => item.id === chosen) ?? null;
+  const picks = match.actions.filter((option) => option.value.type === 'select_number');
+  const only = picks.length === 1 ? picks[0] : undefined;
+  const selectedOption = only ?? picks.find((option) => option.value.card === chosen);
+  const selectedCard = match.hand.find((item) => item.id === selectedOption?.value.card);
   const next = match.actions.find((o) => ['next_selection', 'next_round'].includes(o.value.type));
   const simultaneous = match.phase === 'selecting';
   const takeRows = match.actions.filter((o) => o.value.type === 'take_row');
@@ -257,7 +258,13 @@ export function SixNimmtTable(props: TableProps) {
             data-tray={!data.own_selection || undefined}
           >
             <div className="coop-number-heading">
-              <h3>{data.own_selection ? 'Your number is locked' : 'Choose one number'}</h3>
+              <h3>
+                {data.own_selection
+                  ? 'Your number is locked'
+                  : only
+                    ? 'Your last number'
+                    : 'Choose one number'}
+              </h3>
               <span className="small muted">
                 {data.selected_players.length}/{match.players.length} locked
               </span>
@@ -282,22 +289,26 @@ export function SixNimmtTable(props: TableProps) {
                     <NumberCard
                       key={item.id}
                       card={item}
-                      selected={chosen === item.id}
+                      selected={selectedCard?.id === item.id}
                       disabled={blocked}
-                      onClick={() => setChosen(chosen === item.id ? null : item.id)}
+                      onClick={
+                        only ? undefined : () => setChosen(chosen === item.id ? null : item.id)
+                      }
                     />
                   ))}
                 </div>
                 <p className="small muted six-hand-note" aria-live="polite">
-                  {selectedCard
-                    ? `${selectedCard.value} selected · ${penalties(Number(selectedCard.subtitle))} if a row takes it.`
-                    : 'Numbers reveal together, lowest first.'}
+                  {only
+                    ? 'Everyone reveals together once the last player locks.'
+                    : selectedCard
+                      ? `${selectedCard.value} selected · ${penalties(Number(selectedCard.subtitle))} if a row takes it.`
+                      : 'Numbers reveal together, lowest first.'}
                 </p>
                 <Button
                   disabled={blocked || !selectedOption}
                   onClick={() => selectedOption && submit(selectedOption.value)}
                 >
-                  Lock my number
+                  {only && selectedCard ? `Lock ${selectedCard.value}` : 'Lock my number'}
                 </Button>
               </>
             )}

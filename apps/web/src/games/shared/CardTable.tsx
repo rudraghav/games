@@ -121,10 +121,19 @@ export function CardTable(props: TableProps) {
     lastEvent?.type === 'draw' && lastEvent.actor === selfId && lastEvent.kind !== 'penalty';
   const stackable = penalty > 0 ? playable.size : 0;
   const counts = colourCounts(match.hand);
+  const playOptions = of('play');
+  const onlyPlay = playOptions.length === 1 ? playOptions[0].value : null;
+  // A complete, named move can sit beside Draw even before the hand is selected.
+  const soleCard =
+    onlyPlay && !onlyPlay.color && !onlyPlay.target
+      ? match.hand.find((card) => card.id === onlyPlay.card)
+      : undefined;
   // The card an instruction names (a stack on a penalty, the card just drawn) is
   // also a one-tap move here, so it never depends on finding it in a long hand.
   const shortcuts =
-    !selectedCard && current === selfId && (penalty > 0 || of('end_turn').length > 0 || justDrew)
+    !selectedCard &&
+    current === selfId &&
+    (soleCard || penalty > 0 || of('end_turn').length > 0 || justDrew)
       ? hand
           .filter((card) => playable.has(card.id))
           .filter(
@@ -231,6 +240,18 @@ export function CardTable(props: TableProps) {
       }
       if (of('end_turn').length) return 'Play the card you drew, or pass.';
       if (justDrew && playable.size) return 'Play the card you drew.';
+      if (soleCard) {
+        const consequence = cardConsequence(soleCard, {
+          ...context,
+          hand: match.hand,
+          color,
+          penalty,
+          direction,
+          sevenZero,
+          stackDrawTwo,
+        });
+        return consequence || `You can play ${soleCard.label}.`;
+      }
       if (playable.size)
         return `Tap a highlighted card to play it${of('draw').length ? ', or draw' : ''}.`;
       if (mercy && limit && held + 1 >= limit)

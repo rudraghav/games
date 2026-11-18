@@ -3,8 +3,10 @@
 The renderer consumes the public bed, authorized piece pool and server-enumerated
 placements, graduations and return choices. Placement remains a direct legal
 move. Graduation/return choices preview the affected cells, then require explicit
-confirmation; Clear selection resets only that preview. Pending and paused moves
-are disabled, and a new match version resets the local choice.
+confirmation. When the server offers exactly one graduation and no alternative
+return, its three squares are already highlighted and one Graduate button names
+them. When alternatives exist, Clear selection resets only the preview. Pending
+and paused moves are disabled, and a new match version resets the local choice.
 
 The bed uses the shared `HorizontalRail` with navigation below; on phones it
 borrows the page gutter so six 44px squares fit at 320px, and on laptops it sits
@@ -15,11 +17,11 @@ effects: booped pieces are listed by owner and marked on the bed (arrow on the n
 square, dashed "off" square when booped off), graduated or returned squares are
 dashed. The engine adds `last_graduation` (owner, cells, kittens) for this.
 
-While graduating, the choice panel replaces the piece pool above the bed in a
-content-sized dock; Confirm/Clear stay sticky in view. The selected line is a
-filled button with a focus ring. The unsent choice survives a refresh for the
-same match version (`useTableDraft`). Finished matches name the winner from the
-viewer's seat; engine end messages name a colour, never "you".
+While graduating, the choice panel replaces the piece pool. A sole graduation
+uses a compact dock. With alternative moves, Confirm and Clear stay in view
+and the selected line has a focus ring. The unsent choice survives a refresh
+for the same match version (`useTableDraft`). Finished matches name the winner
+from the viewer's seat; engine end messages name a colour, never "you".
 
 `tests/browser/crowded-board-party.spec.ts` checks ten legal two-player
 projections at 320, 390, 768 and 1440 pixels, including mixed pools and graduation

@@ -19,6 +19,7 @@ import { finishPlace, pileEvent, requirement, stageNames, topRun } from './shith
 
 /** Hands longer than this wrap into overlapped rows so every card stays in view. */
 const FAN_FROM = 9;
+const SETUP_LIMIT_HINT = 'You’ve chosen three. Tap a chosen card to swap it out first.';
 
 function ShitheadDecision(props: TableProps) {
   const { match, room, selfId, onAction, pending } = props;
@@ -60,6 +61,16 @@ function ShitheadDecision(props: TableProps) {
       o.value.cards?.length === selected.length &&
       o.value.cards.every((id) => selected.includes(id)),
   );
+  const selectedRank = pool.find((card) => card.id === selected[0])?.value;
+  const matchingRank = pool.filter((card) => card.value === selectedRank);
+  const allOfRank =
+    play && matchingRank.length > selected.length
+      ? options.find(
+          (option) =>
+            option.value.cards?.length === matchingRank.length &&
+            matchingRank.every((card) => option.value.cards?.includes(card.id)),
+        )
+      : undefined;
   const pickup = match.actions.find(
     (o) =>
       o.value.type === 'pickup' &&
@@ -122,7 +133,7 @@ function ShitheadDecision(props: TableProps) {
         if (kept.length >= 3) {
           setHint({
             version: room.matchVersion,
-            text: 'You’ve chosen three. Tap a chosen card to swap it out first.',
+            text: SETUP_LIMIT_HINT,
           });
           return kept;
         }
@@ -240,7 +251,24 @@ function ShitheadDecision(props: TableProps) {
               </Button>
             ) : null}
           </div>
-          <p className="small muted shithead-instruction">{instruction}</p>
+          {setup && !chosenFaceUp ? (
+            <p className="small muted shithead-instruction grid" aria-live="polite">
+              {[instruction, SETUP_LIMIT_HINT].map((text) => {
+                const visible = text === (shownHint || instruction);
+                return (
+                  <span
+                    key={text}
+                    className={`col-start-1 row-start-1${visible ? '' : ' invisible'}`}
+                    aria-hidden={!visible}
+                  >
+                    {text}
+                  </span>
+                );
+              })}
+            </p>
+          ) : (
+            <p className="small muted shithead-instruction">{instruction}</p>
+          )}
           {tableInWorkspace ? (
             faceRow(selfId)
           ) : (
@@ -271,10 +299,10 @@ function ShitheadDecision(props: TableProps) {
             <DecisionDock
               className="shithead-actions"
               label="Your Shithead actions"
-              size="standard"
+              size={setup ? 'fit' : 'standard'}
               pending={pending}
             >
-              {selectionNote ? (
+              {!setup && selectionNote ? (
                 <p className="small shithead-selection-note" role="status">
                   {selectionNote}
                 </p>
@@ -282,17 +310,32 @@ function ShitheadDecision(props: TableProps) {
               <div className="shithead-action-buttons" data-decision-actions="">
                 {setup ? (
                   <Button
+                    aria-label={
+                      arrange ? `Keep selected three face-up · ${selected.length}/3` : undefined
+                    }
                     disabled={!arrange || blocked || selected.length !== 3}
                     onClick={() => arrange && commit({ ...arrange.value, cards: selected })}
                   >
-                    {arrange
-                      ? `Keep selected three face-up · ${selected.length}/3`
-                      : `Picked ${selected.length}/3 · confirm on your turn`}
+                    <span>
+                      {arrange ? 'Keep face-up · ' : 'Picked '}
+                      <span className="inline-block w-[3ch] whitespace-nowrap">
+                        {selected.length}/3
+                      </span>
+                    </span>
                   </Button>
                 ) : null}
                 {options.length ? (
                   <Button disabled={blocked || !play} onClick={() => play && commit(play.value)}>
                     Play selected{selected.length ? ` · ${selected.length}` : ''}
+                  </Button>
+                ) : null}
+                {allOfRank ? (
+                  <Button
+                    variant="secondary"
+                    disabled={blocked}
+                    onClick={() => commit(allOfRank.value)}
+                  >
+                    Play all {matchingRank.length} {selectedRank}s
                   </Button>
                 ) : null}
                 {hasPickup ? (
@@ -308,16 +351,17 @@ function ShitheadDecision(props: TableProps) {
                       : `Take pile · ${data.pile_count} cards`}
                   </Button>
                 ) : null}
-                {selected.length ? (
+                {setup || selected.length ? (
                   <Button
                     variant="ghost"
                     onClick={() => {
                       setHint(null);
                       setDraft([]);
                     }}
-                    disabled={pending}
+                    aria-label="Clear selection"
+                    disabled={pending || !selected.length}
                   >
-                    Clear selection
+                    {setup ? 'Clear' : 'Clear selection'}
                   </Button>
                 ) : null}
               </div>

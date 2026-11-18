@@ -169,59 +169,57 @@ export function PartyTable(props: TableProps) {
           {result ? (
             <div className="party-reveal" aria-live="polite">
               <h3>{headline}</h3>
-              <div className="party-reveal__list">
-                {revealed.map((player) => {
-                  const seat = member(player.id);
-                  const choice = result.choices[player.id];
-                  const points = result.points[player.id];
-                  const hotSeat = mode === 'hot-seat' && player.id === data.spotlight;
-                  return (
-                    <div
-                      key={player.id}
-                      className="party-reveal__row"
-                      data-leader={mode === 'most-likely' && points > 0}
-                    >
-                      <Avatar name={seatName(seat)} seed={seat?.avatar} size="sm" />
-                      <span className="party-reveal__identity">
-                        <strong>{display(player.id)}</strong>
-                        <small>
-                          {mode === 'most-likely'
-                            ? choice === 'pass'
-                              ? 'passed'
-                              : `voted for ${choice === selfId ? 'you' : choiceLabel(choice)}`
-                            : mode === 'hot-seat'
-                              ? hotSeat
+              {next ? (
+                <Button onClick={() => onAction(next.value)} disabled={blocked}>
+                  {next.label}
+                </Button>
+              ) : match.phase !== 'finished' ? (
+                <p className="small muted">{spotlightName} can reveal the next prompt.</p>
+              ) : null}
+              {mode !== 'spill-or-chill' ? (
+                <div className="party-reveal__list mt-2">
+                  {revealed.map((player) => {
+                    const seat = member(player.id);
+                    const choice = result.choices[player.id];
+                    const points = result.points[player.id];
+                    const hotSeat = mode === 'hot-seat' && player.id === data.spotlight;
+                    return (
+                      <div
+                        key={player.id}
+                        className="party-reveal__row"
+                        data-leader={mode === 'most-likely' && points > 0}
+                      >
+                        <Avatar name={seatName(seat)} seed={seat?.avatar} size="sm" />
+                        <span className="party-reveal__identity">
+                          <strong>{display(player.id)}</strong>
+                          <small>
+                            {mode === 'most-likely'
+                              ? choice === 'pass'
+                                ? 'passed'
+                                : `voted for ${choice === selfId ? 'you' : choiceLabel(choice)}`
+                              : hotSeat
                                 ? `Hot seat answer: ${choiceLabel(choice)}`
-                                : `Predicted ${choiceLabel(choice)}`
-                              : choiceLabel(choice)}
-                        </small>
-                      </span>
-                      {mode === 'most-likely' ? (
-                        <span className="party-tally">
-                          {plural(result.tallies[player.id] || 0, 'vote')}
+                                : `Predicted ${choiceLabel(choice)}`}
+                          </small>
                         </span>
-                      ) : null}
-                      <b className="party-earned">
-                        {hotSeat ? 'answer' : points ? `+${points}` : '0'}
-                      </b>
-                    </div>
-                  );
-                })}
-              </div>
+                        {mode === 'most-likely' ? (
+                          <span className="party-tally">
+                            {plural(result.tallies[player.id] || 0, 'vote')}
+                          </span>
+                        ) : null}
+                        <b className="party-earned">
+                          {hotSeat ? 'answer' : points ? `+${points}` : '0'}
+                        </b>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : null}
               {data.sipPrompts && match.phase !== 'finished' ? (
                 <p className="party-sip">
                   <Coffee size={17} aria-hidden="true" />
                   Fancy a toast? Take an optional sip of any drink, or skip it.
                 </p>
-              ) : null}
-              {next ? (
-                <div data-decision-actions>
-                  <Button onClick={() => onAction(next.value)} disabled={blocked}>
-                    {next.label}
-                  </Button>
-                </div>
-              ) : match.phase !== 'finished' ? (
-                <p className="small muted">{spotlightName} can reveal the next prompt.</p>
               ) : null}
             </div>
           ) : (

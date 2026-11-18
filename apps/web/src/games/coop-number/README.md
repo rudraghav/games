@@ -6,12 +6,12 @@ server reveals them.
 
 ## Simultaneous decisions
 
-Chips (The Gang) and number locks (6 nimmt!) are chosen by several seats at once.
+Chip reviews (The Gang) and number locks (6 nimmt!) are chosen by several seats at once.
 The viewer's unsent choice is a `useTableDraft` scoped to room, match and the
 street or selection, so it survives a refresh and other seats' moves. When another
 seat commits first, the server rejects the stale move; `useRetriedMove` keeps the
 committed intent and, once the table refreshes without that move applied and the
-same action is still offered, sends it once more. The server validates it again;
+same action and its original consequences are still offered in the same round, sends it once more. The server validates it again;
 the selection clears only after the move is recorded.
 
 ## The Gang
@@ -19,6 +19,8 @@ the selection clears only after the move is recorded.
 - The decision dock grows with its content. On phones the chip rack becomes a list
   (chip, then the holder's full name), so six seats fit at 320px with the Take and
   Return buttons in normal flow.
+- A free chip is a one-tap Take. Choosing an occupied chip or the last free chip
+  opens a review with the holder or street-ending consequence before committing.
 - Your own chip is drawn as held (ring, bold “You”), not as unavailable.
 - `detail.taken_chips` (public: everyone sees the rack) tells a player whose chip
   was taken, by whom, until they choose again.
@@ -31,6 +33,8 @@ the selection clears only after the move is recorded.
 
 - During a selection the whole hand is shown at once; on phones it is a five-column
   grid in a tray that stays on screen while the rows scroll above it.
+- With just one legal number left, the lock button names the number immediately.
+  A larger hand still lets the player compare and change a choice before locking.
 - A forced row choice states the low card and labels each row with its cards and
   penalties, marking the cheapest.
 - `detail.resolution` and `detail.unresolved` (public) list where every revealed

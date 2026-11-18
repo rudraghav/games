@@ -27,8 +27,35 @@ describe('Cooperative poker and number-row decisions', () => {
       expect(html).toContain(
         room.gameId === 'the-gang' ? 'Your pocket cards' : 'Choose one number',
       );
-      expect(html).toContain('disabled=""');
+      if (room.gameId === 'the-gang') {
+        expect(html).toContain('aria-label="Take 1-star chip in the center"');
+      } else {
+        expect(html).toContain('disabled=""');
+      }
       expect(html).not.toContain('Current bet');
+    }
+  });
+
+  it('offers the last legal number as a named lock on the first view', () => {
+    const fixture = fixtures.find((f) => f.room.game_id === 'six-nimmt')!;
+    const room = mapRoom(fixture.room);
+    const match = room.game!;
+    const move = match.actions.find((item) => item.value.type === 'select_number')!;
+    const last = match.hand.find((item) => item.id === move.value.card)!;
+    for (const pending of [false, true]) {
+      const html = renderToStaticMarkup(
+        <SixNimmtTable
+          room={room}
+          match={{ ...match, hand: [last], actions: [move] }}
+          selfId={fixture.selfId}
+          onAction={() => undefined}
+          pending={pending}
+        />,
+      );
+      expect(html).toContain('Your last number');
+      const button = html.match(/<button[^>]*>Lock [0-9]+<\/button>/)?.[0];
+      expect(button).toContain(`>Lock ${last.value}<`);
+      expect(button?.includes('disabled=""')).toBe(pending);
     }
   });
 

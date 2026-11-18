@@ -108,6 +108,32 @@ test.describe('Local Uno fixtures', () => {
     }
   });
 
+  test('the only complete ordinary play is available beside Draw before selecting a card', async ({
+    page,
+  }) => {
+    const item = midgameScenarios.find((entry) => {
+      const game = entry.room.game!;
+      const plays = game.actions!.filter((option) => option.action.type === 'play');
+      return (
+        entry.game === 'uno' &&
+        !game.actions!.some((option) => ['end_turn', 'choose'].includes(option.action.type)) &&
+        plays.length === 1 &&
+        !plays[0].action.color &&
+        !plays[0].action.target &&
+        entry.next.action.card === plays[0].action.card
+      );
+    })!;
+    await scenario(page, item);
+    const card = item.room.game!.hand.find((face) => face.id === item.next.action.card)!;
+    const dock = page.getByRole('region', { name: 'Your actions' });
+    await expect(page.locator('.uno-hand [aria-pressed="true"]')).toHaveCount(0);
+    await expect(dock.getByRole('button', { name: 'Draw a card', exact: true })).toBeEnabled();
+    await dock.getByRole('button', { name: `Play ${card.label}`, exact: true }).click();
+    expect(JSON.parse((await page.getByLabel('Submitted action').textContent())!)).toEqual(
+      item.next.action,
+    );
+  });
+
   test('on a 320px phone the moves stay on screen after choosing a card', async ({ page }) => {
     const item = midgameScenarios.find(
       (entry) =>

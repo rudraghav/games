@@ -43,7 +43,6 @@ const dockProps = (p: TableProps) => ({
   winning: [] as Card[],
   discardTop: p.match.discard ?? null,
   discardTopIsJoker: false,
-  onSelect: () => undefined,
   onDecide: () => undefined,
   onDrop: () => undefined,
   clear: () => undefined,
@@ -85,7 +84,7 @@ describe('Rummy table decisions', () => {
     expect(html).not.toMatch(/Your hand: \d+ loss points/);
     for (const card of winning) {
       expect(html).toContain(`aria-label="${card.label} (discard it to declare)"`);
-      expect(html).toContain(`aria-label="Select ${card.label} to declare"`);
+      expect(html).toContain(`>Declare · discard ${card.label}<`);
     }
   });
 

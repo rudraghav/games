@@ -9,6 +9,9 @@ workspace and dock, their own table, and opponents through the shared
   explains why Play is disabled ("4 ♥ can't be played on 5. Play 5 or higher,
   or a 2 or 10, or take the pile."). With nothing playable the instruction says
   so and Take pile becomes the primary button.
+- **Matching ranks.** Selecting a playable card exposes a direct Play all button
+  when the server offers the entire same-rank stack. Players can still tap
+  individual cards to choose a smaller set.
 - **The pile.** A run of equal ranks on top (from the public pile tail) is
   fanned with "Q ×3 on top: one more Q burns". The pile note explains the last
   pile change from `last_play`: who burned how many cards and why (a 10, or four
@@ -22,7 +25,7 @@ workspace and dock, their own table, and opponents through the shared
 - **Long hands and setup.** Hands of 9+ cards wrap into overlapped rows sized
   to the container (12 corners per row on phones), so a 36-card pickup stays in
   view; the heading counts the hand. Setup shows all six cards at once.
-- **Setup choices** use `useTableDraft`, scoped to the room, match and setup
+- **Setup choices** keep the confirmation and clear controls together in a content-sized row. A fourth-pick hint replaces the setup instruction above the hand. Setup picks use `useTableDraft`, scoped to the room, match and setup
   round: a waiting player can pick early (confirmed on their turn) and a
   refresh keeps the picks. A fourth tap is refused with a hint instead of
   silently dropping the oldest pick. Play selections are scoped to the match

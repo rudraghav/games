@@ -168,7 +168,7 @@ export function RummyTable(props: TableProps) {
 
   function decide(option: ActionOption) {
     const action = option.value;
-    if (action.type === 'declare' && !preview?.valid) {
+    if (action.type === 'declare' && !data.discard_analyses[action.card]?.valid) {
       setConfirm({ kind: 'declare', action, version: room.matchVersion });
       return;
     }
@@ -385,7 +385,6 @@ export function RummyTable(props: TableProps) {
         selfOut={selfOut}
         discardTop={match.discard ?? null}
         discardTopIsJoker={discardTopIsJoker}
-        onSelect={(id) => select(id)}
         onDecide={decide}
         onDrop={(option) =>
           setConfirm({ kind: 'drop', action: option.value, version: room.matchVersion })

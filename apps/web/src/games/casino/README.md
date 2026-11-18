@@ -40,7 +40,10 @@ double/split cost); saving and paused states are a separate line, so the
 explanation stays readable. When calling already takes the whole stack, the
 duplicate "All in" is hidden and the call reads "Call all in · N".
 
-Wagers show their legal range beside the input, say why an amount cannot be sent
+Teen Patti exposes the exact affordable blind bet or Chaal prices as one-tap
+buttons when the server offers one, two or three amounts. Their labels name the
+wager and cost. Larger Teen Patti ranges, Hold’em and Blackjack
+wagers show their legal range beside the input, say why an amount cannot be sent
 ("Enter at least 4.", "Use an even amount."), name the amount on the commit
 button ("Raise to 10", "Place bet 10") and offer quick amounts (Min, ½ pot, Pot;
 Min/Max; 2/10/20/50). The accessible names stay the server labels; amounts and
