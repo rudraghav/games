@@ -31,12 +31,13 @@ import { RoomActivity } from './RoomActivity';
 import { Lobby } from './Lobby';
 import { RoomResults } from './RoomResults';
 import { TurnCoach } from '@/shared/tutorial/TurnCoach';
-import { IllustratedRules } from '@/shared/tutorial/RulesIllustrations';
+import { GameRulebook } from '@/shared/tutorial/RulesIllustrations';
 import { setGuideEnabled, useGuideEnabled } from '@/shared/tutorial/guide-preference';
 import { describeMove, latestMove } from './move-description';
 import { useMediaQuery } from '@/shared/use-media-query';
 import { forgetRoomMembership } from '@/shared/player-query';
 import { gamePath, roomPath } from '@/shared/game-paths';
+import './room-rules.css';
 
 /** The shortest time a failed-move note stays up once the table has moved on. */
 const ERROR_READ_MS = 6000;
@@ -53,8 +54,8 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
   const pathname = usePathname();
   const room = query.data;
   const selfId = me.data?.profile?.id || '';
-  const storedGuide = useGuideEnabled(room?.matchId, selfId);
-  const [dismissedGuide, setDismissedGuide] = useState<string | null>(null);
+  const guidePreference = useGuideEnabled(room?.matchId, selfId);
+  const openedRulesFromCoach = useRef(false);
   useEffect(() => {
     // A slug is navigation context, never permission or authority over the game.
     // Resolve legacy and stale links only from a successful member-only read.
@@ -144,15 +145,21 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
     host &&
     (solo || room.members.every((member) => member.id === selfId || member.isBot)),
   );
-  const guided =
-    guideAvailable &&
-    (storedGuide || (tutorialMatchId === room.matchId && dismissedGuide !== room.matchId));
+  const guided = guideAvailable && (guidePreference ?? tutorialMatchId === room.matchId);
+  const tutorialControlAvailable = guideAvailable && (room.status === 'playing' || guided);
+  const rulesLabel = tutorialControlAvailable ? 'Rules & tutorial' : 'Game rules';
   const enableGuide = (enable: boolean) => {
     if (!room.matchId) return;
-    setDismissedGuide(enable ? null : room.matchId);
     setGuideEnabled(room.matchId, selfId, enable);
-    if (!enable && tutorialMatchId) router.replace(roomPath(room), { scroll: false });
-    setPanel(null);
+    // Keep the choice across reload even when the browser restricts local storage.
+    const url = new URL(window.location.href);
+    if (enable) url.searchParams.set('tutorial', room.matchId);
+    else url.searchParams.delete('tutorial');
+    window.history.replaceState(null, '', url);
+  };
+  const openRules = (fromCoach: boolean) => {
+    openedRulesFromCoach.current = fromCoach;
+    setPanel('rules');
   };
   const self = room.members.find((member) => member.id === selfId);
   const Table = tableRegistry[room.gameId];
@@ -259,13 +266,22 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
                   : 'Connected'}
           </span>
           <Button
-            size="icon"
+            id="room-rulebook-button"
+            className="room-rulebook-button"
+            size="sm"
             variant="ghost"
-            aria-label="Game rules"
-            title="Game rules"
-            onClick={() => setPanel('rules')}
+            aria-label={rulesLabel}
+            title={rulesLabel}
+            aria-haspopup="dialog"
+            onClick={() => openRules(false)}
           >
-            <BookOpen size={19} />
+            <BookOpen size={17} aria-hidden="true" />
+            <span>
+              Rules
+              {tutorialControlAvailable && (
+                <span className="room-rulebook-long-label"> &amp; tutorial</span>
+              )}
+            </span>
           </Button>
           {!solo ? (
             <Button
@@ -384,8 +400,11 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
                   botFailed={Boolean(botError)}
                   onAction={move}
                   describeMove={describeMove}
-                  onRules={() => setPanel('rules')}
-                  onExit={() => enableGuide(false)}
+                  onRules={() => openRules(true)}
+                  onExit={() => {
+                    enableGuide(false);
+                    document.getElementById('room-rulebook-button')?.focus();
+                  }}
                 />
               ) : null}
               {resultsFirst ? (
@@ -447,27 +466,33 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
           if (!open) setPanel(null);
         }}
         title={`How to play ${game.name}`}
+        wide
+        stickyHeader
+        onCloseAutoFocus={(event) => {
+          if (openedRulesFromCoach.current && !guided) {
+            event.preventDefault();
+            document.getElementById('room-rulebook-button')?.focus({ preventScroll: true });
+          }
+        }}
       >
-        <IllustratedRules gameId={game.id} />
-        {guideAvailable && !guided && room.status === 'playing' ? (
-          <Button variant="secondary" onClick={() => enableGuide(true)}>
-            Turn on guide
-          </Button>
-        ) : null}
-        <details className="complete-game-rules">
-          <summary>More rules</summary>
-          <ol className="rules-list">
-            {game.rules.map((rule) => (
-              <li key={rule}>{rule}</li>
-            ))}
-          </ol>
-        </details>
-        <p className="small muted">
-          {game.maxPlayers === 1
-            ? 'Solo'
-            : `${game.minPlayers === game.maxPlayers ? game.minPlayers : `${game.minPlayers}–${game.maxPlayers}`} players`}{' '}
-          · {game.minutes} minutes
-        </p>
+        <GameRulebook
+          game={game}
+          tutorialControl={
+            tutorialControlAvailable && (
+              <Button
+                variant="secondary"
+                role="switch"
+                aria-label="Step-by-step tutorial"
+                aria-checked={guided}
+                className="room-tutorial-switch"
+                onClick={() => enableGuide(!guided)}
+              >
+                Step-by-step tutorial
+                <span aria-hidden="true">{guided ? 'On' : 'Off'}</span>
+              </Button>
+            )
+          }
+        />
       </Modal>
       <Modal
         open={panel === 'menu'}

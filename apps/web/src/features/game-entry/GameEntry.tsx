@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight,
+  BookOpen,
   Bot,
-  ChevronDown,
   GraduationCap,
   Clock3,
   Link2,
@@ -17,7 +17,7 @@ import type { Game } from '@games/api-client/catalog';
 import { SiteHeader } from '@/shared/SiteHeader';
 import { GameArt } from '@/shared/GameArt';
 import { RoomDialog } from '@/shared/RoomDialog';
-import { IllustratedRules } from '@/shared/tutorial/RulesIllustrations';
+import { GameRulebook } from '@/shared/tutorial/RulesIllustrations';
 import { useQuickPlay } from './useQuickPlay';
 
 export function GameEntry({
@@ -28,6 +28,14 @@ export function GameEntry({
   preferredMode?: 'friends' | 'bots';
 }) {
   const [dialog, setDialog] = useState<'create' | 'join' | null>(null);
+  const [rulesOpen, setRulesOpen] = useState(false);
+  const learningActions = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const actions = learningActions.current;
+    if (rulesOpen && actions && window.innerHeight - actions.getBoundingClientRect().bottom < 160) {
+      actions.scrollIntoView({ block: 'start' });
+    }
+  }, [rulesOpen]);
   const launch = useQuickPlay(game.id);
   const solo = game.playMode === 'solo';
   const quickPlay = solo || game.botsSupported;
@@ -99,25 +107,21 @@ export function GameEntry({
                 </>
               )}
             </div>
-            {launch.failure ? (
+            {launch.failure?.mode === 'play' ? (
               <p id="game-start-error" className="error-note" role="alert">
                 {launch.failure.message}
               </p>
             ) : null}
-            <div className="game-entry-secondary">
-              {quickPlay ? (
-                <Button
-                  variant="ghost"
-                  disabled={launch.pending !== null}
-                  pending={launch.pending === 'tutorial'}
-                  onClick={() => void launch.start('tutorial')}
-                  aria-describedby={
-                    launch.failure?.mode === 'tutorial' ? 'game-start-error' : undefined
-                  }
-                >
-                  <GraduationCap size={18} aria-hidden="true" /> {launch.label('tutorial')}
-                </Button>
-              ) : null}
+            <div className="game-entry-secondary" ref={learningActions}>
+              <Button
+                variant="ghost"
+                aria-expanded={rulesOpen}
+                aria-controls="game-entry-rulebook"
+                onClick={() => setRulesOpen((open) => !open)}
+              >
+                <BookOpen size={17} aria-hidden="true" />
+                {quickPlay ? 'Rules & tutorial' : 'Rules'}
+              </Button>
               {solo ? (
                 <Link href="/profile">Past readings</Link>
               ) : (
@@ -132,21 +136,36 @@ export function GameEntry({
             </div>
           </div>
         </section>
-        <details className="game-entry-rules">
-          <summary>
-            {solo ? 'How your reading works' : 'How to play'}
-            <ChevronDown size={18} aria-hidden="true" />
-          </summary>
-          <IllustratedRules gameId={game.id} />
-          <details className="complete-game-rules">
-            <summary>More rules</summary>
-            <ol className="game-entry-rule-details">
-              {game.rules.map((rule) => (
-                <li key={rule}>{rule}</li>
-              ))}
-            </ol>
-          </details>
-        </details>
+        <div className="game-entry-rules" id="game-entry-rulebook" hidden={!rulesOpen}>
+          <GameRulebook
+            game={game}
+            tutorialControl={
+              quickPlay && (
+                <>
+                  <Button
+                    variant="secondary"
+                    pending={launch.pending === 'tutorial'}
+                    disabled={launch.pending !== null}
+                    onClick={() => void launch.start('tutorial')}
+                    aria-describedby={
+                      launch.failure?.mode === 'tutorial' ? 'tutorial-start-error' : undefined
+                    }
+                  >
+                    {launch.pending !== 'tutorial' && (
+                      <GraduationCap size={18} aria-hidden="true" />
+                    )}
+                    {launch.label('tutorial')}
+                  </Button>
+                  {launch.failure?.mode === 'tutorial' && (
+                    <p id="tutorial-start-error" className="error-note" role="alert">
+                      {launch.failure.message}
+                    </p>
+                  )}
+                </>
+              )
+            }
+          />
+        </div>
       </main>
       {dialog ? (
         <RoomDialog

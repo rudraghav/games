@@ -1,3 +1,30 @@
+## 2026-11-19 — Optional rulebook tutorials locally verified
+
+- All 27 public entries keep ordinary play first. The secondary Rules & tutorial
+  control fits fully in the initial 320×640 viewport, beside Join a room or Past
+  readings. Reading the game objective, captioned pictures and complete topic
+  reference creates no session. Starting a tutorial is an explicit action.
+- The same document at the table offers a reversible coaching switch in eligible
+  games. Coaching starts off in ordinary matches. Reloads, old links, switching
+  on and off, keyboard focus and same-match continuity passed. Both players in
+  a friends match can read the rules. A blocked preference store no longer
+  prevents public browsing.
+- All 243 picture renders passed across 320, 390 and 1280px. WebKit saved-match
+  checks passed at five widths including 320px and with local storage denied.
+  Frontend types, lint, build, 285 frontend tests, 44 workflow tests and all
+  50 selected browser cases passed. Reports verify-f73de0a23e334b999502f675f6d77cb9
+  and verify-7626f015743349d89b35745a2e57c869. The read-only production schema
+  gate found no drift. Production verification follows the release.
+
+## 2026-11-19 — Optional tutorials in the rulebook
+
+- Keep normal play prominent. Group the explicit tutorial action with the
+  illustrated rules on every game page and make coaching switchable from the
+  same place in a supported match. Browsing rules must create no session.
+- Acceptance covers all 27 rulebooks, rich text and pictures on phones,
+  an ordinary start with coaching off, and switching coaching on and off in
+  the same saved game. No changes to game rules, saved moves or AI providers.
+
 ## 2026-11-19 — Guided play and illustrated astrology live
 
 - Application commit 910163961fdf09f8c962a269741f694e6972a772 reached production

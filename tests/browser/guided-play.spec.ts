@@ -4,19 +4,35 @@ import { attachPreviewAccess, requestAs, roomAs, type RoomView } from './helpers
 
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 
-async function withTutorial(page: Page, game: string, play: (room: RoomView) => Promise<void>) {
+async function withMatch(
+  page: Page,
+  game: string,
+  mode: 'play' | 'tutorial',
+  play: (room: RoomView) => Promise<void>,
+) {
   await attachPreviewAccess(page);
   await page.goto(`/games/${game}`);
+  if (mode === 'tutorial')
+    await page.getByRole('button', { name: 'Rules & tutorial', exact: true }).click();
   const created = page.waitForResponse(
     (r) => r.request().method() === 'POST' && r.url().endsWith(`/games/${game}/play`),
   );
-  await page.getByRole('button', { name: 'Play tutorial', exact: true }).click();
+  const action =
+    mode === 'tutorial' ? 'Play tutorial' : game === 'tarot' ? 'Start reading' : 'Play with bots';
+  await page.getByRole('button', { name: action, exact: true }).click();
   const response = await created;
   expect(response.ok()).toBe(true);
   const room = (await response.json()) as RoomView;
   try {
-    await expect(page.getByRole('region', { name: 'Tutorial coach' })).toBeVisible();
-    await expect(page).toHaveURL(new RegExp('tutorial=' + room.match_id));
+    await expect(page.getByRole('button', { name: 'Rules & tutorial', exact: true })).toBeVisible();
+    const coach = page.getByRole('region', { name: 'Tutorial coach' });
+    if (mode === 'tutorial') {
+      await expect(coach).toBeVisible();
+      await expect(page).toHaveURL(new RegExp('tutorial=' + room.match_id));
+    } else {
+      await expect(coach).toHaveCount(0);
+      await expect(page).not.toHaveURL(/tutorial=/);
+    }
     await play(room);
   } finally {
     if ((await roomAs(page, room.id)).status === 'playing') {
@@ -27,22 +43,38 @@ async function withTutorial(page: Page, game: string, play: (room: RoomView) => 
   }
 }
 
-test('all games offer three illustrated rules and a tutorial before starting a session', async ({
+test('all games group optional tutorials and illustrated rules without starting a session', async ({
   page,
 }, info) => {
   test.setTimeout(180000);
   await attachPreviewAccess(page);
-  if (info.project.name === 'phone') await page.setViewportSize({ width: 320, height: 740 });
+  if (info.project.name === 'phone') await page.setViewportSize({ width: 320, height: 640 });
   const writes: string[] = [];
   page.on('request', (r) => {
-    if (r.method() === 'POST' && new URL(r.url()).pathname.startsWith('/api/backend/v1/'))
-      writes.push(new URL(r.url()).pathname);
+    const path = new URL(r.url()).pathname;
+    if (
+      path === '/api/dev-session' ||
+      (!['GET', 'HEAD', 'OPTIONS'].includes(r.method()) &&
+        (path.startsWith('/api/') || path.includes('/auth/')))
+    )
+      writes.push(path);
   });
   for (const game of catalogue) {
     await page.goto(`/games/${game.id}`);
-    await expect(page.getByRole('button', { name: 'Play tutorial', exact: true })).toBeVisible();
-    await page.locator('.game-entry-rules > summary').click();
-    const rules = page.locator('.illustrated-rules');
+    const disclosure = page.getByRole('button', { name: 'Rules & tutorial', exact: true });
+    const tutorial = page.getByRole('button', { name: 'Play tutorial', exact: true });
+    await expect(disclosure).toHaveAttribute('aria-expanded', 'false');
+    await expect(disclosure).toBeInViewport({ ratio: 1 });
+    await expect(tutorial).toBeHidden();
+    await disclosure.click();
+    await expect(disclosure).toHaveAttribute('aria-expanded', 'true');
+    const rules = page.getByRole('article', { name: `${game.name} rulebook`, exact: true });
+    await expect(rules.getByRole('button', { name: 'Play tutorial', exact: true })).toBeVisible();
+    await expect(rules.getByRole('heading', { name: 'In pictures', exact: true })).toBeVisible();
+    await expect(
+      rules.getByRole('heading', { name: 'Rules reference', exact: true }),
+    ).toBeVisible();
+    for (const rule of game.rules) await expect(rules).toContainText(rule);
     await expect(rules.getByRole('img')).toHaveCount(3);
     for (const picture of await rules.getByRole('img').all()) {
       await expect(picture).toBeVisible();
@@ -55,14 +87,57 @@ test('all games offer three illustrated rules and a tutorial before starting a s
       await rules.scrollIntoViewIfNeeded();
       await page.screenshot({ path: info.outputPath('illustrated-boop.png') });
     }
+    await disclosure.click();
+    await expect(disclosure).toHaveAttribute('aria-expanded', 'false');
+    await expect(tutorial).toBeHidden();
   }
   expect(writes).toEqual([]);
 });
 
+for (const game of ['four-in-a-row', 'tarot']) {
+  test(`normal ${game} can turn the tutorial on and off in the same saved match`, async ({
+    page,
+  }) => {
+    await withMatch(page, game, 'play', async (room) => {
+      const coach = page.getByRole('region', { name: 'Tutorial coach' });
+      const open = page.getByRole('button', { name: 'Rules & tutorial', exact: true });
+      const dialog = page.getByRole('dialog');
+      const toggle = dialog.getByRole('switch', { name: 'Step-by-step tutorial', exact: true });
+      const ordinaryAction = game === 'tarot' ? /^Face-down card 1 of / : /^Drop in column 4$/;
+      await expect(page.getByRole('button', { name: ordinaryAction })).toBeEnabled();
+      const before = await roomAs(page, room.id);
+      let tutorialUrl: string;
+      for (const enable of [true, false, true]) {
+        await open.click();
+        await expect(dialog.getByRole('heading', { name: 'Rules reference' })).toBeVisible();
+        await expect(toggle).toBeChecked({ checked: !enable });
+        await toggle.click();
+        await expect(toggle).toBeChecked({ checked: enable });
+        await dialog.getByRole('button', { name: 'Close dialog' }).click();
+        await expect(coach).toBeVisible({ visible: enable });
+        if (enable) {
+          await expect(page).toHaveURL(new RegExp('tutorial=' + room.match_id));
+          tutorialUrl = page.url();
+          await page.reload();
+        } else {
+          await expect(page).not.toHaveURL(/tutorial=/);
+          // Opening an earlier saved tutorial link respects the player's later Off choice.
+          await page.goto(tutorialUrl!);
+        }
+        await expect(open).toBeVisible();
+        await expect(coach).toBeVisible({ visible: enable });
+      }
+      const after = await roomAs(page, room.id);
+      expect(after.match_id).toBe(before.match_id);
+      expect(after.match_version).toBe(before.match_version);
+    });
+  });
+}
+
 test('play beyond three real moves with a bot, resume the saved guide and continue the same game', async ({
   page,
 }, info) => {
-  await withTutorial(page, 'four-in-a-row', async (room) => {
+  await withMatch(page, 'four-in-a-row', 'tutorial', async (room) => {
     const coach = page.getByRole('region', { name: 'Tutorial coach' });
     expect(room.members.filter((member) => member.is_bot)).toHaveLength(1);
     for (let step = 1; step <= 4; step++) {
@@ -128,7 +203,7 @@ test('solo Tarot guides three real picks and leaves the reading and birth detail
       await route.abort();
     } else await route.continue();
   });
-  await withTutorial(page, 'tarot', async (room) => {
+  await withMatch(page, 'tarot', 'tutorial', async (room) => {
     expect(room.members).toHaveLength(1);
     const coach = page.getByRole('region', { name: 'Tutorial coach' });
     const tip = page.getByRole('complementary', { name: 'Tutorial tip' });
@@ -158,7 +233,7 @@ test('solo Tarot guides three real picks and leaves the reading and birth detail
         const drawn = (await roomAs(page, room.id)).game!.community![0];
         await expect(tip).toContainText(drawn.label);
         await page
-          .getByRole('button', { name: 'Game rules', exact: true })
+          .getByRole('button', { name: 'Rules & tutorial', exact: true })
           .evaluate((node) => (node as HTMLButtonElement).click());
         await expect(page.getByRole('dialog')).toBeVisible();
         await expect(page.locator('.turn-coach-float')).toBeHidden();

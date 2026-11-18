@@ -120,6 +120,9 @@ test('all game pages are public, readable and browse without creating a guest or
       page.getByRole('heading', { name: game.name, exact: true, level: 1 }),
     ).toBeVisible();
     await expect(page.getByRole('dialog')).toHaveCount(0);
+    await expect(page.locator('.game-entry-actions .button--primary')).toHaveText(
+      game.id === 'tarot' ? 'Start reading' : 'Play with friends',
+    );
     const action = page.getByRole('button', {
       name: game.id === 'tarot' ? 'Start reading' : 'Play with bots',
       exact: true,
@@ -324,6 +327,14 @@ test('friends create from the chosen game, join an invitation and follow changed
   await page.getByRole('button', { name: 'Start game', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Drop in column 4', exact: true })).toBeVisible();
   await expect(friend.getByRole('button', { name: 'Drop in column 4', exact: true })).toBeVisible();
+  for (const player of [page, friend]) {
+    await player.getByRole('button', { name: 'Game rules', exact: true }).click();
+    const rules = player.getByRole('dialog');
+    await expect(rules.getByRole('img')).toHaveCount(3);
+    await expect(rules.getByRole('heading', { name: 'Rules reference' })).toBeVisible();
+    await expect(rules.getByRole('switch', { name: 'Step-by-step tutorial' })).toHaveCount(0);
+    await rules.getByRole('button', { name: 'Close dialog' }).click();
+  }
   await fits(page);
   await page.screenshot({ path: info.outputPath('friends-game.png') });
   expect((await requestAs(page, `rooms/${room.id}/abandon`, 'POST')).ok()).toBe(true);

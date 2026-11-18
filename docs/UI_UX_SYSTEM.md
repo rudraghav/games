@@ -69,13 +69,17 @@ all choices and returns focus to search. One live result count follows the
 controls. Phone hero actions occupy full rows, and tile subtitles remain readable
 so unfamiliar games can be understood before opening their public game page.
 Game tiles are real links with an Open game accessible name. Game entry reuses
-GameArt, semantic Button variants and a native rules disclosure. The phone view
+GameArt, semantic Button variants and a labelled rules disclosure. The phone view
 keeps art, title and full-row play actions together without a large hero gap.
 Tarot starts from Start reading; multiplayer offers Play with friends and Play
 with bots. Bot-filter links emphasize bots without auto-starting. Pending buttons
 show Starting…; failed starts retain the request for Try again. An expired session
 requires the explicit Start a new reading/game action. Secondary history/join
-links stay below the main actions.
+links stay below the main actions. A closed, labelled **Rules & tutorial**
+disclosure opens the game objective, captioned pictures and a topic-organized
+rules reference. The optional tutorial action belongs inside the rulebook.
+The same document is available from the table, where eligible players get a
+switch for the current match.
 Room setup uses a compact profile row with an optional 44px avatar picker, a segmented Friends/Bots choice and a seat selector. Room-name and rule controls are inside Room options. Submit and Cancel occupy separate full rows, with the primary action first, at every width. Form changes preserve the same
 shared create/join/configure behavior and are documented with inspected captures
 in `evidence/browsing-2026-11-01`.

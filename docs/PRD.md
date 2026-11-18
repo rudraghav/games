@@ -6,8 +6,11 @@ ready → play → results → rematch/change game. The catalogue now contains 2
 
 ## Learn through play
 
-All 27 game pages offer a playable tutorial and three illustrated rules with worked
-examples. The 26 multiplayer tutorials put one learner at the real table with
+All 27 game pages keep normal play as the default. **Rules & tutorial** opens a
+public illustrated rulebook with the goal, three worked examples, the rules by
+topic and an optional **Play tutorial** action. Reading it creates no session.
+Players can turn coaching on or off in the same rulebook during a solo or
+bot-only game and continue their current match. The 26 multiplayer tutorials put one learner at the real table with
 ordinary bot seats. Tarot teaches the positions of a private three-card spread.
 Instructions follow the legal choices in the learner’s view. Feedback explains
 the committed action and the bot’s visible reply. Closing the tutor continues

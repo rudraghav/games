@@ -70,10 +70,19 @@
   }
   .game-entry-secondary {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 0 8px;
+    gap: 0 4px;
     margin-top: 8px;
+    scroll-margin-block-start: 12px;
+  }
+  .game-entry-secondary > .button {
+    min-height: 44px;
+    padding-inline: 8px;
+  }
+  .game-entry-secondary > [aria-expanded='true'] {
+    color: var(--color-pine);
+    background: var(--color-surface);
   }
   .game-entry-secondary > a {
     display: inline-flex;
@@ -85,36 +94,11 @@
     font-size: 14px;
   }
   .game-entry-rules {
-    margin-top: 28px;
+    margin-top: 20px;
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
-  .game-entry-rules > summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    min-height: 56px;
-    cursor: pointer;
-    font-weight: 650;
-    list-style: none;
-  }
-  .game-entry-rules > summary::-webkit-details-marker {
-    display: none;
-  }
-  .game-entry-rules[open] > summary svg {
-    rotate: 180deg;
-  }
-  .game-entry-rule-details {
-    padding: 0 4px 20px 22px;
-    line-height: 1.7;
-    list-style: decimal;
-  }
-  .game-entry-rule-details > li + li {
-    margin-top: 8px;
-  }
   .game-entry .button:focus-visible,
-  .game-entry summary:focus-visible,
   .game-entry a:focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 3px;
@@ -146,22 +130,12 @@
       margin-top: 18px;
     }
     .game-entry-rules {
-      margin-top: 18px;
+      margin-top: 8px;
     }
   }
 }
 
 @layer components {
-  .complete-game-rules {
-    margin-block: 8px;
-  }
-  .complete-game-rules > summary {
-    cursor: pointer;
-    min-height: 44px;
-    padding-block: 10px;
-    color: var(--color-pine);
-    font-weight: 600;
-  }
   .turn-coach {
     position: relative;
     min-width: 0;

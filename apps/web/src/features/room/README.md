@@ -83,5 +83,9 @@ Direct teaching buttons submit the exact projected move via the table's normal
 save. Decisions involving cards, targets, bets, optional effects or hidden
 information use the game controls where appropriate. The main teaching card and
 compact, dismissible scroll tip describe the move and applied rule. The modal
-rulebook includes the same illustrated examples as the public entry. The guide
-can be closed without leaving the match. Friends' rooms keep the ordinary table.
+rulebook shares its formatted rules, diagrams and examples with the public entry.
+Ordinary play opens with the tutorial off. The header's Rules & tutorial button
+opens the book with a Step-by-step tutorial switch for the host of a solo or
+bot-only match. The switch applies immediately, stays in the book, and preserves
+the current match and turn. Its choice survives reload. Short phone headers
+display Rules. Rooms shared with other humans offer the same illustrated book.

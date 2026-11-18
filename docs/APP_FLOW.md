@@ -110,9 +110,12 @@ needed. Grouping a Rummy hand cannot make its navigation arrows oscillate.
 
 A single complete Uno play and verified Rummy winning discards have named buttons on the first decision view. Teen Patti shows the legal chip amounts directly for small ranges. Sea Salt & Paper names the exact cards of a unique duo, and Boop highlights a sole graduation line before the player commits it. In scrollable hands and boards, a tap activates the touched item before bringing it fully into view. Keyboard focus reveals it immediately. For all 25 games outside Deal, the [decision review](evidence/simpler-turns-2026-11-19/README.md) describes the steps, including choices that remain editable before locking.
 
-Play tutorial starts the same saved bot game or solo Tarot spread as quick play,
-with coaching enabled for that match and player. A room's illustrated rulebook
-also lets the host enable coaching during solo or bot-only play. Players can follow
+The normal play buttons start an uncoached game. **Rules & tutorial** opens the
+same illustrated rulebook players can consult at the table. Opening it starts
+nothing. **Play tutorial** inside the rulebook starts a saved bot game or solo
+Tarot spread with coaching enabled for that match and player. In an active solo
+or bot-only game, the host can switch coaching on and off in the rulebook without
+losing a turn or starting a second game. Players can follow
 a named move or use the normal card, board and private-choice controls. The coach
 explains confirmed moves, names the responding bot, and keeps a short tip available
 on long tables. Closing the guide preserves the match. In Tarot the player chooses

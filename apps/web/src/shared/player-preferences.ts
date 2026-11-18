@@ -14,7 +14,7 @@ function subscribe(callback: () => void) {
 export function useHasPlayed() {
   return useSyncExternalStore(
     subscribe,
-    () => !!localStorage.getItem('games:player:v1'),
+    () => rememberedPlayer() !== null,
     () => false,
   );
 }

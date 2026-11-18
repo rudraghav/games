@@ -1,6 +1,64 @@
+.game-rulebook {
+  display: grid;
+  gap: clamp(18px, 2.5vw, 26px);
+  min-width: 0;
+  padding-block: 4px 16px;
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+}
+.game-rulebook__intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+}
+.game-rulebook__goal {
+  flex: 1 1 23rem;
+  margin: 0;
+  line-height: 1.45;
+  font-size: 1rem;
+  max-width: 64ch;
+}
+.game-rulebook__goal strong {
+  display: block;
+  color: var(--color-pine);
+  margin-block-end: 2px;
+}
+.game-rulebook__heading {
+  margin: 0 0 12px;
+  font: 650 1.22rem/1.25 var(--font-display);
+  color: var(--color-ink);
+}
+.game-rulebook__reference {
+  border-block-start: 1px solid var(--color-border);
+  padding-block-start: 16px;
+}
+.game-rulebook__topics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 16px 28px;
+}
+.game-rulebook__topics h3 {
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.25;
+  margin: 0 0 4px;
+}
+.game-rulebook__topics ul {
+  margin: 0;
+  padding-inline-start: 1.15em;
+  list-style: disc outside;
+  line-height: 1.5;
+  font-size: 0.9375rem;
+}
+.game-rulebook__topics li + li {
+  margin-block-start: 4px;
+}
+.game-rulebook__topics li::marker {
+  color: var(--color-ink-muted);
+}
 .illustrated-rules {
   container-type: inline-size;
-  padding-block: 2px 16px;
 }
 .illustrated-rules-grid {
   display: grid;
@@ -12,6 +70,7 @@
   align-content: start;
   min-width: 0;
   gap: 10px;
+  margin: 0;
 }
 .illustrated-rule h3 {
   color: var(--color-black);
@@ -253,7 +312,7 @@
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     gap: 6px 12px;
   }
-  .illustrated-rule > div:last-child {
+  .illustrated-rule > figcaption {
     display: contents;
   }
   .illustrated-rule h3 {

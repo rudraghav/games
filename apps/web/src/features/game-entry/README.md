@@ -2,8 +2,8 @@
 
 The public `/games/[gameId]` server route validates the generated catalogue and
 renders GameEntry. Opening it creates no guest, room or match. GameArt, Button,
-SiteHeader and RoomDialog are shared; the native rules disclosure needs no extra
-state. Friends setup fixes the selected game. `?mode=bots` only changes action
+SiteHeader and RoomDialog are shared. The rules disclosure sits in the secondary
+action row and controls the illustrated document below. Friends setup fixes the selected game. `?mode=bots` only changes action
 emphasis. Tarot has no setup form, invite or lobby before card selection.
 
 useQuickPlay starts only from an explicit click. It stores a launch UUID in
@@ -27,7 +27,10 @@ responses, profiles, invitations, private cards, refresh and old links without
 calling an AI provider. Archive and Tarot table suites cover saved-reading
 navigation and paused-session recovery separately.
 
-Play tutorial launches the same real match with its own idempotent intent. Both start
-buttons share one in-flight guard. The guide preference is scoped to the match
-and its owner. The explicit tutorial URL also works when storage is unavailable.
-How to play offers three illustrated examples followed by the original game rules.
+Normal play launches with coaching off. The closed **Rules & tutorial** disclosure
+opens the shared illustrated rulebook without creating a session. It contains
+the game objective, three worked examples, the rules reference and **Play tutorial**.
+Only that last action starts a guided session. An interrupted tutorial can be
+retried directly from the rulebook. Ordinary play and the tutorial keep separate
+request IDs and share one in-flight guard. The guide is scoped to the match
+and its player. The explicit tutorial URL also works when storage is unavailable.

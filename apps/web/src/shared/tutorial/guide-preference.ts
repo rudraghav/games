@@ -13,8 +13,8 @@ function key(matchId: string, playerId: string) {
 export function setGuideEnabled(matchId: string, playerId: string, enabled: boolean) {
   const name = key(matchId, playerId);
   try {
-    if (enabled) localStorage.setItem(name, '1');
-    else localStorage.removeItem(name);
+    // An explicit Off overrides an old tutorial URL, including in another tab.
+    localStorage.setItem(name, enabled ? '1' : '0');
     overrides.delete(name);
   } catch {
     overrides.set(name, enabled);
@@ -35,14 +35,17 @@ export function useGuideEnabled(matchId: string | null | undefined, playerId: st
   return useSyncExternalStore(
     subscribe,
     () => {
-      if (!matchId || !playerId) return false;
+      if (!matchId || !playerId) return null;
       const name = key(matchId, playerId);
+      const override = overrides.get(name);
+      if (override !== undefined) return override;
       try {
-        return overrides.get(name) ?? localStorage.getItem(name) === '1';
+        const value = localStorage.getItem(name);
+        return value === null ? null : value === '1';
       } catch {
-        return overrides.get(name) ?? false;
+        return null;
       }
     },
-    () => false,
+    () => null,
   );
 }

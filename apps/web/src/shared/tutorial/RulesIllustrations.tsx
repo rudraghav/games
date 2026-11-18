@@ -14,7 +14,8 @@ import {
   UsersRound,
   Vault,
 } from 'lucide-react';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
+import type { Game } from '@games/api-client/catalog';
 import {
   AzulTileArt,
   BoopPiece,
@@ -31,6 +32,7 @@ import {
 import { optimizeCardArt } from '@/shared/card-art';
 import { tutorialLessons } from './lessons';
 import type { LessonPicture, PicturePiece } from './lesson-pictures';
+import { rulebookTopics } from './rulebook-topics';
 import './illustrated-rules.css';
 
 const symbols = {
@@ -203,23 +205,63 @@ export function RulePicture({ picture }: { picture: LessonPicture }) {
   );
 }
 
-/** This compact primer is paired with the full rules and the live guided match. */
 export function IllustratedRules({ gameId }: { gameId: string }) {
   const lesson = tutorialLessons[gameId];
   if (!lesson) return null;
   return (
-    <div className="illustrated-rules" data-game={gameId}>
+    <section className="illustrated-rules" data-game={gameId} aria-label="In pictures">
+      <h2 className="game-rulebook__heading">In pictures</h2>
       <div className="illustrated-rules-grid">
         {lesson.rules.map((rule) => (
-          <article key={rule.title} className="illustrated-rule">
+          <figure key={rule.title} className="illustrated-rule">
             <RulePicture picture={rule.visual} />
-            <div>
+            <figcaption>
               <h3>{rule.title}</h3>
               <p>{rule.text}</p>
-            </div>
-          </article>
+            </figcaption>
+          </figure>
         ))}
       </div>
-    </div>
+    </section>
+  );
+}
+
+export function GameRulebook({
+  game,
+  tutorialControl,
+}: {
+  game: Game;
+  tutorialControl?: ReactNode;
+}) {
+  const lesson = tutorialLessons[game.id];
+  const topics = rulebookTopics[game.id] ?? [[0, 'Playing the game'] as const];
+  return (
+    <article className="game-rulebook" aria-label={`${game.name} rulebook`}>
+      <header className="game-rulebook__intro">
+        {lesson && (
+          <p className="game-rulebook__goal">
+            <strong>Your aim</strong>
+            {lesson.goal}
+          </p>
+        )}
+        {tutorialControl}
+      </header>
+      <IllustratedRules gameId={game.id} />
+      <section className="game-rulebook__reference" aria-label="Rules reference">
+        <h2 className="game-rulebook__heading">Rules reference</h2>
+        <div className="game-rulebook__topics">
+          {topics.map(([start, heading], index) => (
+            <div key={heading}>
+              <h3>{heading}</h3>
+              <ul>
+                {game.rules.slice(start, topics[index + 1]?.[0]).map((text) => (
+                  <li key={text}>{text}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+    </article>
   );
 }
