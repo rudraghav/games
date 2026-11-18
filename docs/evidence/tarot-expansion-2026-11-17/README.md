@@ -2,11 +2,12 @@
 
 ## Current source status — 18 November 2026
 
-Provider repairs, the full-row featured Tarot and tighter mobile spacing are
-pushed through095b0fc. The user subsequently adds automatic alternate-model
-recovery, bounded retries and concise actionable failures. Those changes are
-implemented locally, with the same strict reading validator and explicit
-per-provider mode approval; keys alone do not enable an alternative model.
+Provider repairs, the full-row featured Tarot, tighter mobile spacing and
+automatic alternate-model recovery are pushed to main and deployed through
+`14e5cfa`. The canonical production alias serves that exact revision in bom1.
+Bounded retries and concise actionable failures retain the same strict reading
+validator and explicit per-provider mode approval; keys alone do not enable an
+alternative model.
 
 The final frontend/backend/contracts gate passes244 frontend and6946 backend
 tests, types/lint/build and generated contracts. The unchanged persistence and
@@ -16,8 +17,29 @@ pass. Groq Qwen is accepted for ordinary and Western backup only; its Vedic/Both
 and Cloudflare modes remain disabled. The41-request alternative comparison is
 closed without changing billing. See [analysis evidence](analyses.md),
 [alternative-provider evidence](free-provider-evaluation.md) and root progress
-for exact acceptance boundaries. Production remains65de797 with its original
-provider settings; no production configuration or deployment change has occurred.
+for exact acceptance boundaries. Production uses Gemini first and Groq backup
+for ordinary/Western only. Fresh configuration readback preserves other settings
+and billing. A narrow logging follow-up passes6948 backend and183 persistence
+tests; actual hosted preflight and token metadata now appear at INFO without
+question or reading content.
+
+The hosted ordinary and final Both readings pass320/390/1440 layouts, exact
+selected images, saved refresh, rematch, closed-room archive, Profile access and
+outsider denial. Both completes on its first Gemini attempt and passes independent
+editorial review with minor wording concerns, including compressed chronology in
+one reference. This is a fixed-case acceptance sample, not exhaustive fact checking.
+
+Earlier failures remain recorded. Exact replay identifies transient chart sizing
+after390→320, settled by300ms; the harness now retains geometry and waits at most
+five seconds without accepting persistent overflow. No CSS change is required.
+A later provider HTTP failure correctly shows Retry reading with inputs intact;
+a navigation timeout occurs before generation. The resumed full flow passes.
+Complete logs contain that diagnosed provider failure and matching502 records,
+with no unrelated errors. Final owner fingerprints match, all five production
+QA rooms are closed, and local services remain healthy. See the sanitized
+[production receipt](production.json) and [analysis evidence](analyses.md).
+Closure changes only tests/docs; all6178 runtime files match the deployed build,
+so it does not create another deployment.
 
 ## Original expansion scope
 

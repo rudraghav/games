@@ -222,6 +222,11 @@ reflection. Vedic/Both Groq and all Cloudflare modes remain disabled after faile
 quality checks. Defaults still require explicit mode configuration to enable any
 alternative. Current profiles and decisions are tracked in the dated evaluation
 evidence; structural validation alone never constitutes production approval.
+Production14e5cfa verifies real ordinary/Both generation, mobile saved refresh,
+private archives and concise recovery after a provider HTTP failure. The dated
+evidence retains failures and minor editorial caveats; approved fallback behavior
+is covered locally and direct Groq evaluations pass for its enabled modes.
+No production provider outage is deliberately induced to claim a live fallback.
 Astrology anchor validation accepts decimal degree punctuation while retaining
 true sentence boundaries, other-body boundaries and exact computed sign/house.
 Fresh-output validation requires all new reading sections and rejects repeated
@@ -229,7 +234,7 @@ characters, unnamed sources, missing/oversized explanations and extra fields.
 Fresh name/source pairs must match the curated cast, including explicit aliases;
 substring matches are rejected. Each card receives a bounded rotating shortlist,
 while the provider schema lists only that request's candidate names. The public
-frontend registry is generated from this same cast and the licensed asset manifest
+frontend registry is generated from this same cast and the source-attributed asset manifest
 with `scripts/export_tarot_characters.py`; contract checks reject drift.
 The persisted/API model independently accepts older `pop_culture` paragraphs;
 loading those readings never fabricates quirky text or silently generates again.

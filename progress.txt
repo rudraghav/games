@@ -1,3 +1,80 @@
+## 2026-11-18 — Tarot provider recovery live-verified and closed
+
+- Application14e5cfa00864a8d71ff77111980c27eca0750d88 is READY in bom1 at
+  https://games-seven-black.vercel.app, deploymentdpl_J5mbpQZi867HmcREcpSYRnDu8At2.
+  Exact source metadata/alias agree. Gemini is primary; Groq Qwen is enabled
+  only for ordinary/Western backup. Vedic/Both alternatives and Cloudflare stay
+  disabled because their evaluated outputs failed quality/structure. Billing
+  remains free; provider configuration and other environment records are preserved.
+- Actual ordinary and final Both hosted flows pass: exact selected images,
+  320/390/1440 bounds, unchanged saved refresh, new-spread separation, private
+  archive after room closure, Profile access and outsider denial. Final Both
+  completes in one Gemini attempt (4423 input,1530 visible,857 thought tokens).
+  Full reading/chart validation and independent editorial review pass with minor
+  wording concerns, including compressed Kaprow chronology; this is not a claim
+  that every generated fact or every possible question has been exhaustively checked.
+- Preserve the earlier failed runs. Exact local replay resolves the apparent
+  phone overflow as viewport resize timing; the bounded settled check passes
+  without a CSS/runtime change. One subsequent provider HTTP failure displays
+  the real concise Retry state with inputs intact. A later navigation timeout
+  occurs before any provider submission. The final resumed live flow passes.
+  Operator Gemini total closes at80 within the explicitly revised81 ceiling;
+  direct alternative evaluation remains41 (25 Groq,16 Cloudflare). No more calls.
+- Stable final frontend gate passes244 tests, types/lint/build; the deployed
+  backend passes6948 and persistence/privacy183. Earlier contract/tooling and
+  95 Chromium/8 phone WebKit recovery checks remain applicable. Final logs retain
+  the one diagnosed provider failure, its proxy error and two502 request records;
+  complete classification finds zero unrelated error records. Never rewrite the
+  original nonzero log gate as an empty/error-free window.
+- Final readback preserves the permanent Google account/profile/identity and
+  all seven current owner rooms/memberships, with the reviewed schema unchanged.
+  The earlier newly created non-QA owner room remains preserved. All five exact
+  production QA rooms are closed with zero active memberships; three extra local
+  resize-replay rooms are closed. Local web3217/API8217/Storybook6105 return200.
+  Evidence, original assets, recovery files, credentials and user browser remain.
+- Closure changes tests/documentation only. All6178 runtime files still match
+  28d93e3487f09290dee800301893b5780828504636b2f54d3459b9989afd0755, the deployed
+  application fingerprint; no duplicate deployment is needed. Public receipt:
+  docs/evidence/tarot-expansion-2026-11-17/production.json. Exact private logs,
+  owner, cleanup and generated-reading receipts remain ignored.
+
+## 2026-11-18 — Hosted Both reading and narrow-phone follow-up
+
+- Corrective main14e5cfa is READY at the canonical production alias in bom1.
+  Exact source metadata and alias agree. The dedicated AI logger is deployed;
+  complete runtime warning/error and HTTP500+ queries are empty. The permanent
+  owner's account/profile, seven rooms/memberships and identity match the fresh
+  pre-release fingerprints; the reviewed schema head is unchanged.
+- A real Both reading is generated and saved, but its 320px viewport assertion
+  catches horizontal overflow before refresh/archive verification. Preserve the
+  original failed run and retrieve only this QA room's saved output for factual
+  review and a no-generation local reproduction. All owned QA rooms are closed.
+- Acceptance for the follow-up: identify the overflowing element from actual
+  geometry, apply the smallest shared layout fix if needed, cover the exact
+  reading and reconnect state at320/390px, retain generated-reading evidence
+  before later UI assertions, then verify the final saved flow on production.
+  No provider quality rule or budget is relaxed to repair a layout issue.
+- Exact image-scroll/resize replay reproduces the failure: after390→320, the
+  chart briefly retains its370px width and makes the root345px; by300ms the
+  same page fits320px, both healthy and reconnecting. No persistent overflow
+  or CSS correction is established. The harness now waits within five seconds
+  for the real bounds, preserving initial/final geometry, screenshots and the
+  successfully saved reading before assertions. Production runtime is unchanged.
+- The repeated hosted Both submission fails with a provider HTTPStatusError
+  after one transmission, not a local validator failure. The real UI retains
+  question/spread/chart and offers the concise Retry reading state. Preserve its
+  failed browser/log receipts; do not relabel it as reading acceptance. Backend
+  warning text retains its original severity although Vercel indexes it at INFO;
+  the proxy and request records correctly show the handled502 response.
+- Operator Gemini accounting is79/80. Explicitly permit one final hosted recovery
+  submission, with at most two existing bounded transmissions (revised cumulative
+  ceiling81), after this independently diagnosed provider failure. Preserve the
+  earlier80-attempt ceiling/history; no further direct evaluation, paid routing
+  or billing change. Stop this phase after that one submission, successful or not.
+- Stable frontend report verify-f44a471d799f4ca6bdf6b52fcfa9208a passes244 tests,
+  types/lint/build. Three exact saved-payload local replays pass and close their
+  three owned rooms. The changed test also passes browser types/lint/formatting.
+
 ## 2026-11-18 — First live verification and observability follow-up
 
 - Main 6ca478c is deployed as dpl_9XDQNUxYJgkNsQ7BQsafMpsVJ1nz; the canonical

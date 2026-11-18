@@ -1,0 +1,117 @@
+{
+  "recordedAt": "2026-11-18T11:10:24.066653+00:00",
+  "application": {
+    "applicationSha": "14e5cfa00864a8d71ff77111980c27eca0750d88",
+    "deploymentId": "dpl_J5mbpQZi867HmcREcpSYRnDu8At2",
+    "readyState": "READY",
+    "regions": [
+      "bom1"
+    ],
+    "canonicalAlias": "https://games-seven-black.vercel.app",
+    "canonicalAliasMatches": true,
+    "bothSourceMetadataFieldsMatch": true,
+    "gitSourceShaMatches": true,
+    "projectGitLinkUnchanged": true
+  },
+  "configuration": {
+    "primary": "gemini-4-hydrogen",
+    "providerOrder": [
+      "gemini",
+      "groq"
+    ],
+    "groqModel": "qwen/qwen3.8-27b",
+    "groqModes": [
+      "ordinary",
+      "western"
+    ],
+    "cloudflareModes": [],
+    "billingChanged": false,
+    "schemaMigrationRequired": false
+  },
+  "localVerification": {
+    "frontend": {
+      "report": "verify-f44a471d799f4ca6bdf6b52fcfa9208a",
+      "tests": 244,
+      "types": true,
+      "lint": true,
+      "build": true,
+      "sourceStable": true
+    },
+    "backend": {
+      "report": "verify-faa03992a6804c35a2b8b24fc1df4dae",
+      "tests": 6948,
+      "persistencePrivacyTests": 183,
+      "sourceStable": true
+    },
+    "contractsPassed": true,
+    "workflowTests": 44,
+    "responsiveRecoveryChromiumCases": 95,
+    "responsiveRecoveryPhoneWebKitCases": 8,
+    "exactSavedPayloadResizeReplays": 3
+  },
+  "liveVerification": {
+    "ordinaryFlow": "passed",
+    "bothFlow": "passed",
+    "widths": [
+      320,
+      390,
+      1440
+    ],
+    "exactSelectedImages": true,
+    "savedRefreshWithoutRegeneration": true,
+    "newSpreadSeparation": true,
+    "archiveAfterClosure": true,
+    "profileArchiveAccess": true,
+    "outsiderDenied": true,
+    "finalBothGenerationSubmissions": 1,
+    "finalBothProviderAttempts": 1,
+    "finalBothUsage": {
+      "input": 4423,
+      "visibleOutput": 1530,
+      "thought": 857
+    },
+    "independentEditorialVerdict": "MINOR / usable",
+    "editorialCaveat": "One reference compresses chronology; generated factual exactness is not guaranteed.",
+    "productionFallbackForced": false
+  },
+  "failureEvidence": {
+    "initialBothResize": "Exact replay showed transient370px chart after390-to320 resize; fits by300ms. Bounded5s settled assertion retains initial/final geometry.",
+    "providerFailure": "One actual Gemini HTTPStatusError retained inputs and displayed Retry reading.",
+    "navigationFailure": "One subsequent profile navigation timeout occurred before room creation or AI transmission.",
+    "rawLogGatePassed": false,
+    "handledProviderFailures": 1,
+    "matchingProxyErrorRecords": 1,
+    "matchingRequest502Records": 2,
+    "unexpectedErrorRecords": 0,
+    "completeLogWindow": {
+      "start": "2026-11-18T10:20:41.598683+00:00",
+      "end": "2026-11-18T11:07:19+00:00"
+    }
+  },
+  "evaluationAccounting": {
+    "geminiAttempts": 80,
+    "finalRecoveryCeiling": 81,
+    "groqDirectAttempts": 25,
+    "cloudflareDirectAttempts": 16,
+    "furtherCallsPlanned": false
+  },
+  "preservation": {
+    "ownerFingerprintsMatch": true,
+    "schemaHeadUnchanged": true,
+    "productionQaRoomsClosed": 5,
+    "activeProductionQaMemberships": 0,
+    "localServicesHealthy": [
+      3217,
+      8217,
+      6105
+    ],
+    "sourceArtworkRecoveryEvidenceCredentialsPreserved": true
+  },
+  "closure": {
+    "changes": "tests and documentation only",
+    "runtimeFiles": 6178,
+    "runtimeFingerprint": "28d93e3487f09290dee800301893b5780828504636b2f54d3459b9989afd0755",
+    "runtimeMatchesDeployedApplication": true,
+    "duplicateDeploymentRequired": false
+  }
+}

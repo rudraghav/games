@@ -195,14 +195,70 @@ async function inspectReading(
   }
   for (const width of [320, 390, 1440]) {
     await page.setViewportSize({ width, height: 900 });
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
-      true,
-    );
     await expect(page.locator('.tarot-reading > article')).toHaveCount(3);
-    // Nonpersonal generated content only; no room code, auth data or birth inputs.
+    const measure = () =>
+      page.evaluate(() => ({
+        viewportWidth: innerWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+        overflowingElements: [...document.querySelectorAll('body *')].flatMap((element) => {
+          const bounds = element.getBoundingClientRect();
+          const style = getComputedStyle(element);
+          return bounds.width &&
+            style.visibility !== 'hidden' &&
+            (bounds.right > innerWidth + 0.5 || bounds.left < -0.5)
+            ? [
+                {
+                  tag: element.tagName,
+                  className: element.getAttribute('class'),
+                  left: bounds.left,
+                  right: bounds.right,
+                  width: bounds.width,
+                  scrollWidth: element.scrollWidth,
+                  clientWidth: element.clientWidth,
+                  whiteSpace: style.whiteSpace,
+                },
+              ]
+            : [];
+        }),
+      }));
+    const geometry = await measure();
+    await writeFile(
+      test.info().outputPath(`${mode}-geometry-${width}-private.json`),
+      JSON.stringify(geometry, null, 2),
+      { flag: 'wx', mode: 0o600 },
+    );
+    // Save the rendered result before asserting geometry, so a layout failure
+    // retains both the successful reading and the actual overflowing surface.
     await page.locator('.tarot-reading').screenshot({
       path: test.info().outputPath(`${mode}-reading-${width}.png`),
     });
+    if (geometry.scrollWidth > width) {
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.screenshot({ path: test.info().outputPath(`${mode}-overflow-${width}.png`) });
+    }
+    let fits = false;
+    try {
+      // Viewport-relative chart sizing can settle after the resize command.
+      // Allow that render to settle without accepting persistent overflow.
+      await expect
+        .poll(() => page.evaluate(() => document.documentElement.scrollWidth), {
+          timeout: 5000,
+        })
+        .toBeLessThanOrEqual(width);
+      fits = true;
+    } finally {
+      await writeFile(
+        test.info().outputPath(`${mode}-settled-geometry-${width}-private.json`),
+        JSON.stringify({ fits, ...(await measure()) }, null, 2),
+        { flag: 'wx', mode: 0o600 },
+      );
+      if (!fits) {
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.screenshot({
+          path: test.info().outputPath(`${mode}-persistent-overflow-${width}.png`),
+        });
+      }
+    }
   }
   return references.map((reference) => {
     const artwork = referenceArtwork(reference.name, reference.source)!;
@@ -351,6 +407,23 @@ test('selected independent live readings retain exact private archives after new
           'western',
           'vedic',
         ]);
+      await writeFile(
+        test.info().outputPath(`${mode}-generated-reading-private.json`),
+        JSON.stringify(
+          {
+            mode,
+            receivedAt: new Date().toISOString(),
+            roomId: room.roomId,
+            matchId,
+            readingView: current,
+            readingSha256: digest(current.reading),
+            generationSubmissions: submissions.get(actor),
+          },
+          null,
+          2,
+        ),
+        { flag: 'wx', mode: 0o600 },
+      );
       const selectedReferences = await inspectReading(actor, current.reading!, mode);
       const visible = digest(await actor.locator('.tarot-reading').innerText());
       const readingHash = digest(current.reading);

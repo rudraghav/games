@@ -169,10 +169,15 @@ two generation submissions (at most six provider attempts across approved
 fallbacks), never mocks production responses and uses a fresh teardown budget.
 `GAMES_TEST_TAROT_MODE=ordinary` or `both` reruns only that mode with an
 independent outsider, preserving earlier accepted evidence and avoiding another
-generation. The Both fixture uses the verified London, UK city result for a
+generation for the unselected mode. The Both fixture uses the verified London, UK city result for a
 public benchmark date/time; it does not claim observatory coordinates. Private
 room/match receipts are written before generation, and cleanup is recorded even
 after a failure. Missing birthplace options retain bounded diagnostics.
+The exact generated reading and hash are retained before later UI assertions.
+Viewport checks save initial and settled geometry and allow up to five seconds
+for chart resizing; persistent overflow still fails with a screenshot. An exact
+saved-payload replay showed the Western wheel retaining its old width briefly
+after390→320, then fitting within300ms, without a runtime CSS change.
 Set `GAMES_TEST_TAROT_PROVIDERS` to the exact comma-separated display names of
 the deployed providers to verify their disclosure alongside the real reading.
 The retained receipt records that disclosure; it does not itself prove which

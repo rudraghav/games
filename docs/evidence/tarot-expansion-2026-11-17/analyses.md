@@ -2,6 +2,57 @@
 
 ## 18 November provider recovery investigation
 
+### Final hosted outcome
+
+Ordinary and final Both complete the real production flow: selected images,
+320/390/1440 settled bounds, exact saved refresh, new-spread separation, private
+archive after closure, Profile access and outsider denial. The final Both uses
+one Gemini attempt (4423 input,1530 visible and857 thought tokens). Its six
+Western/Vedic anchors match the saved computed chart and full domain validation
+passes. Independent editorial verdict is MINOR/usable: relevant comparisons and
+practical actions, with compressed Kaprow chronology that should not be described
+as exact factual reproduction. Earlier ordinary and Both reviews also retain
+their minor editorial qualifications.
+
+One intervening Gemini HTTPStatusError produces the real concise Retry reading
+state with question/cards/chart preserved. It supplies recovery evidence, not
+prose acceptance. A separate navigation timeout stops before room creation or any
+model call. After live home/profile/catalogue return200 again, the resumed Both
+flow passes. The operator total closes at80 Gemini attempts; the separately
+recorded final recovery ceiling is81, with its unused attempt left unused. The
+alternative comparison remains41 (25 Groq,16 Cloudflare); no further calls occur.
+
+Release logs retain the diagnosed provider failure: one proxy error and two502
+request records, with complete pagination and no unrelated errors. Backend
+warning text keeps its original severity prefix even where Vercel indexes it at
+INFO. Final owner fingerprints/schema are unchanged; five exact production QA
+rooms are closed with zero active memberships. Current release and check counts
+are in [production.json](production.json). The checkpoints below are historical
+and their pending/failed statuses have not been rewritten.
+
+### Hosted acceptance and narrow-phone follow-up
+
+Main`14e5cfa` is deployed at the canonical production alias. The ordinary hosted
+reading passes exact images,320/390/1440 layout, unchanged saved refresh, rematch,
+private closed-room archive and outsider denial. Its actual prose passes review
+with minor style concerns.
+
+A separate Both reading completes on Gemini's first attempt:4611 input,
+1455 visible output and881 thought tokens. Safe preflight/usage metadata appears
+at INFO in the hosted backend. The original UI run catches320px horizontal
+overflow before archive assertions, so it is not reported as a full-flow pass.
+Its exact saved reading is recovered through scoped read-only QA data access for
+factual review and a no-generation layout reproduction. The room is closed with
+zero active memberships. Operator Gemini accounting is78/80; two attempts remain
+for diagnosed hosted recovery. The41-request alternative comparison is closed.
+
+Exact image-scroll/resize replay reproduces transient root width345px immediately
+after390→320, while the wheel still measures370px. Both healthy and reconnecting
+states fit320px by300ms and remain stable at1s. The live harness retains the
+initial geometry and waits at most five seconds for settled bounds, with final
+failure diagnostics. This changes verification timing, not layout or validation.
+The final hosted saved-flow retry is still required.
+
 ### Latest boundary — verified release candidate
 
 The final local gate `verify-603160ca5d2a42538f56e174e3614445` passes244 frontend
