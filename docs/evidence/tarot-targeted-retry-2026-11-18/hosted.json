@@ -1,0 +1,96 @@
+{
+  "checkedAt": "2026-11-18T17:54:08.909918+00:00",
+  "status": "passed",
+  "production": {
+    "url": "https://games-seven-black.vercel.app",
+    "sourceSha": "ad5a6ddf41dd6c7b7913111da2b9765489f25c07",
+    "deploymentId": "dpl_6x5P9GcTn2pZrREwwEMJ6yPFYeMr",
+    "region": "bom1"
+  },
+  "test": {
+    "suite": "tests/browser/tarot-reading-live.spec.ts",
+    "browser": "Chromium",
+    "mode": "both",
+    "casesPassed": 1,
+    "suiteSeconds": 49.2,
+    "generationSubmissions": 1,
+    "automaticBrowserRetries": 0,
+    "entry": "Public /games/tarot at 390px -> Start reading -> three actual server-owned card choices",
+    "disclosedProviderOrder": ["Google Gemini", "Cloudflare", "Groq"]
+  },
+  "generation": {
+    "status": "complete",
+    "secondsFromFirstVisibleLoaderToCompleteReadback": 21.0,
+    "visibleStages": [
+      "Starting your reading.",
+      "Finding character connections.",
+      "Writing your reading."
+    ],
+    "estimatedPercentObserved": {
+      "minimum": 8,
+      "maximum": 31
+    },
+    "estimatedTimeObserved": ["About 2 min remaining"],
+    "renderedProgressFrames": 10,
+    "extraProgressApiCalls": 0,
+    "retryDetailObserved": false,
+    "relaxedCheckRecoveryExercised": false,
+    "productionLogConfirmation": {
+      "source": "Release owner correlated production logs",
+      "transmissions": 1,
+      "gemini": {
+        "transmissions": 1,
+        "result": "complete"
+      },
+      "cloudflare": {
+        "transmissions": 0
+      },
+      "groq": {
+        "transmissions": 0
+      },
+      "attemptFailures": 0,
+      "fallbacks": 0,
+      "validationFailures": 0,
+      "manualRetryRequired": false
+    }
+  },
+  "checks": [
+    "Both real calculated charts preview and persist with the generated analysis",
+    "All six selected reference images match exact catalogue name/source/image/alt and decode successfully; full-resolution mobile crops were visually reviewed",
+    "Complete card, astrology and next-step sections fit at 320px, 390px and 1440px after responsive sizing settles",
+    "The 320px resize initially measured a 345px chart footprint, then settled to 320px with no overflowing elements within the existing bounded wait; initial and settled receipts are retained",
+    "Saved reading data and visible text remain identical after refresh, a new spread and room closure",
+    "Independent outsider receives 404 and no private reading content; owner profile history retains the reading",
+    "One Gemini request completes with actual stages and explicitly estimated percentage and remaining time"
+  ],
+  "editorialReview": {
+    "scope": "One actual saved Both reading",
+    "observed": "Card interpretations, distinct imagery, six source-linked reference analogies and the final practical invitation connect to the supplied creative-community question. Both chart sections are present.",
+    "equalQualityOrExhaustiveCoverageClaimed": false
+  },
+  "limitations": [
+    "This natural hosted request completed with Gemini. It did not need fallback or relaxed validation and therefore does not establish live execution of the new failed-check recovery branch. That branch is covered by separate deterministic, persistence and synthetic browser checks.",
+    "Six selected images were inspected; this is not an audit of every catalogue image or every possible generated reading.",
+    "The duration includes browser observation and saved-result readback; it is not isolated provider inference latency.",
+    "A brief chart resize overflow settled before final layout acceptance; this was not a persistent mobile overflow."
+  ],
+  "cleanup": {
+    "ownedRooms": 1,
+    "closedRooms": 1,
+    "ownerReadbackStatus": 404,
+    "isolatedBrowserContextsClosed": 2,
+    "testBrowserClosed": true,
+    "activeHostedQaRoomsRemaining": 0,
+    "userBrowserUntouched": true,
+    "temporaryInspectionCropsRemoved": 3,
+    "temporaryInspectionBytesRemoved": 549785,
+    "finalScreenshotsAndPrivateReceiptsRetained": true
+  },
+  "evidence": {
+    "privateArtifactRoot": "output/playwright/tarot-targeted-retry-20261118/hosted",
+    "log": "output/playwright/tarot-targeted-retry-20261118/hosted.log",
+    "progress": "Timestamped rendered DOM frames and the UI natural GET responses",
+    "screenshots": "Saved Both analysis at320px,390px and1440px; initial resize diagnostic retained",
+    "privacy": "Private identifiers, questions and generated prose remain only in ignored artifacts."
+  }
+}

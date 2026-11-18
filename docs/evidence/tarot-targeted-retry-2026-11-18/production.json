@@ -1,0 +1,166 @@
+{
+  "checkedAt": "2026-11-18T17:54:45.798412+00:00",
+  "status": "pushed, deployed and live-verified",
+  "production": {
+    "url": "https://games-seven-black.vercel.app",
+    "applicationSha": "ad5a6ddf41dd6c7b7913111da2b9765489f25c07",
+    "deploymentId": "dpl_6x5P9GcTn2pZrREwwEMJ6yPFYeMr",
+    "region": "bom1",
+    "readyState": "READY",
+    "canonicalAliasAndSourceMatch": true,
+    "deploymentsCreated": 1
+  },
+  "behavior": {
+    "diagnostics": "Allowlisted check ID and exact known field; generic errors do not invent a missing part.",
+    "feedback": "Same-provider and next-provider retries receive the safe failure metadata.",
+    "relaxation": "Only question grammar for that exact field in this generation; new readings start strict.",
+    "retainedChecks": [
+      "complete structure",
+      "field bounds",
+      "placeholders",
+      "correct card order",
+      "allowed references and exact evidence",
+      "computed chart systems and placements",
+      "refusals",
+      "private authorization"
+    ],
+    "progress": "Optional bounded retry detail persists through retry/refresh and clears on checking/saving.",
+    "requestCharacterCeiling": 16000,
+    "retryReserveCharacters": 1200,
+    "maxTransmissions": 3,
+    "deadlineSeconds": 105
+  },
+  "verification": {
+    "backend": {
+      "tests": 7155,
+      "ruff": "passed",
+      "mypy": "passed",
+      "report": "verify-86fc31c5adc84dbdac17a4e9597d4a72"
+    },
+    "frontend": {
+      "tests": 266,
+      "types": "passed",
+      "lint": "passed",
+      "build": "passed",
+      "report": "verify-265f9c22929d4f67a0f19a3af2536d0b",
+      "reportBoundary": "Frontend checks passed; that run subsequently found a backend request-budget regression. Frontend inputs were unchanged by the fix."
+    },
+    "contractsPersistenceTooling": {
+      "report": "verify-4ef393bab38f41c289eb714b3e19ea6a",
+      "persistenceTests": 224,
+      "toolingTests": 44,
+      "contracts": "passed",
+      "schema": "fresh isolated migration/drift/privacy checks passed"
+    },
+    "browser": {
+      "report": "verify-967c04a7b7e04374a0008631d12c1ca0",
+      "cases": 48,
+      "projects": [
+        "desktop Chromium",
+        "phone Chromium"
+      ],
+      "focusedProgressExecutions": 3,
+      "retryDetail320pxVisuallyReviewed": true,
+      "boundaries": "Backend-only follow-ups compacted Gemini request metadata and refined generic diagnostic wording; frontend/browser source remained unchanged."
+    }
+  },
+  "hosted": {
+    "mode": "both",
+    "casesPassed": 1,
+    "generationSubmissions": 1,
+    "browserRetries": 0,
+    "transmissions": {
+      "gemini": 1,
+      "cloudflare": 0,
+      "groq": 0
+    },
+    "secondsFromLoaderToCompleteReadback": 21.0,
+    "suiteSeconds": 49.2,
+    "selectedReferenceImages": 6,
+    "settledWidths": [
+      320,
+      390,
+      1440
+    ],
+    "chartsRefreshRematchArchivesAndPrivacy": "passed",
+    "naturalFallbackObserved": false,
+    "naturalFormatRelaxationObserved": false,
+    "details": "hosted.json"
+  },
+  "preservation": {
+    "configurationRecordsUnchanged": 28,
+    "providerOrder": [
+      "gemini",
+      "cloudflare",
+      "groq"
+    ],
+    "allFourModesEnabled": true,
+    "modelsAndFreeTierUnchanged": true,
+    "ownerFreshFingerprintsMatch": true,
+    "ownerRooms": 7,
+    "ownerMemberships": 7,
+    "profile": 1,
+    "identity": 1,
+    "schemaHead": "a6e442b15d80",
+    "schemaDrift": 0,
+    "rlsTables": 8,
+    "grantsPassed": 112,
+    "grantsTotal": 112
+  },
+  "health": {
+    "tarot": 200,
+    "catalogue": 200,
+    "unauthenticatedPrivateProfile": 401
+  },
+  "logs": {
+    "start": "2026-11-18T17:48:17.753354+00:00",
+    "runtimeWindowEnd": "2026-11-18T17:53:06+00:00",
+    "aiWindowEnd": "2026-11-18T17:53:07+00:00",
+    "complete": true,
+    "runtimeWarningErrorFatal": 0,
+    "http500Plus": 0,
+    "attemptFailures": 0,
+    "fallbacks": 0,
+    "validationFailures": 0
+  },
+  "usage": {
+    "newProviderTransmissions": 1,
+    "newGemini": 1,
+    "newCloudflare": 0,
+    "newGroq": 0,
+    "cumulativeGeminiOperatorAttempts": 88,
+    "cumulativeGroqAttempts": 38,
+    "cumulativeCloudflareAttempts": 24,
+    "cumulativeAlternativeAttempts": 62,
+    "additionalCallsPlanned": false
+  },
+  "cleanup": {
+    "localBrowserRoomsClosed": 51,
+    "hostedRoomsClosed": 1,
+    "activeTaskQaRoomsRemaining": 0,
+    "temporaryBrowserContextsClosed": true,
+    "userBrowserUntouched": true,
+    "supersededScreenshotBytesRemoved": 8109,
+    "finalTaskEvidenceBytesRetained": 2589127,
+    "existingHealthyServices": [
+      3217,
+      8217,
+      6105
+    ],
+    "retention": "Small final screenshots, logs and regression evidence retained; prior history and production records preserved.",
+    "temporaryInspectionCropBytesRemoved": 549785,
+    "totalDisposableBytesRemoved": 557894
+  },
+  "runtime": {
+    "files": 6192,
+    "fingerprint": "b25bb8c11a63be6f29b0a904626ef5568afd3eb7308c937a3d052bfc4cbce753",
+    "documentationClosureOnly": true,
+    "duplicateDeploymentNeeded": false
+  },
+  "limitations": [
+    "Targeted relaxation was verified with deterministic provider transports, persistence and controlled mobile browser states. The hosted request succeeded on Gemini without triggering relaxation.",
+    "A first 320px resize measurement preceded settled chart layout; settled320/390/1440 captures passed without overflow.",
+    "This live run inspected six selected catalogue images, not every possible reference/output.",
+    "Required content/factual checks and bounded time/quota remain; removing a presentation rule does not guarantee a service can always return output."
+  ]
+}

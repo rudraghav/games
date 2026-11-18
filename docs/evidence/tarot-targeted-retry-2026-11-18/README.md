@@ -35,3 +35,21 @@ retaining character-range descriptions and local validation. Worst-case correcti
 metadata and complete character facts fit the existing request ceiling. Final
 backend checks passed after refining generic failure messages; frontend/browser
 inputs were unchanged by those backend-only follow-ups.
+
+## Production acceptance
+
+Released `ad5a6ddf41dd6c7b7913111da2b9765489f25c07` once to production with the
+canonical alias and source verified. All 28 configuration records, the owner
+account/rooms and the schema were preserved. Complete scoped runtime queries
+returned no warnings/errors/fatals or HTTP 500+ responses.
+
+One real combined reading completed through Gemini in 21 seconds from loader to
+saved-result readback. Both charts, six selected images, settled mobile/desktop
+layouts, refresh and archive privacy passed. No fallback occurred in that call;
+the new relaxation branch is established by controlled tests. See
+[production evidence](production.json) and [hosted evidence](hosted.json).
+
+All 52 task QA rooms were closed. Test contexts/browsers were closed and the user
+browser/local services retained. One superseded screenshot and three temporary inspection crops (557,894 bytes)
+were removed; final evidence and historical records remain. Documentation-only closure
+shares the deployed runtime fingerprint and does not create another deployment.

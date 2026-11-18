@@ -1,3 +1,35 @@
+## 2026-11-18 — Targeted retry pushed, deployed and live-verified
+
+- Application ad5a6ddf41dd6c7b7913111da2b9765489f25c07 is READY in bom1 at
+  https://games-seven-black.vercel.app, dpl_6x5P9GcTn2pZrREwwEMJ6yPFYeMr.
+  Canonical alias and source match. Exactly one deployment; no config changes.
+- Failed checks identify their safe part/rule. Same-provider and next-provider
+  retries carry that feedback, relaxing only an exact field's question grammar
+  within the active generation. New requests start strict; factual/required-data
+  bounds remain. Mobile retry detail persists across refresh and clears on success.
+- Passed 7155 backend, 266 frontend, 224 persistence, 44 tooling tests, generated
+  contracts and 48 browser cases plus three focused progress checks. The earlier
+  long-context budget failure and final fixes remain recorded in the prior entry.
+- Fresh hosted Both case passed in 49.2s; first loader to complete readback 21.0s.
+  Exactly 1 Gemini transmission, no fallback or validation failure. Both charts,
+  six selected images, settled 320/390/1440 layouts, refresh/rematch/archives and
+  outsider denial passed. Controlled tests establish targeted retry behavior;
+  the natural hosted call succeeded without exercising that branch.
+- All 28 configuration fingerprints unchanged; exact fresh owner/profile/identity
+  and 7 rooms/memberships match. Schema head a6e442b15d80 unchanged, drift 0,
+  8 RLS tables/112 grants pass. Public Tarot/catalogue 200, unauthenticated me 401.
+  Complete release log queries: zero runtime warning/error/fatal, HTTP500+,
+  attempt failures, fallbacks or validation_failed events.
+- Actual cumulative operator attempts Gemini 88/Groq 38/Cloudflare 24, alternatives 62.
+  Hosted budget used 1 of 3 transmissions; no further calls. Existing free plans kept.
+- Cleanup: 51 local QA rooms and 1 hosted room closed; temporary test contexts and
+  browsers closed. User browser and services 3217/8217/6105 retained/healthy.
+  Removed 557,894 bytes of superseded screenshot/inspection crops; final evidence kept.
+  Public evidence: docs/evidence/tarot-targeted-retry-2026-11-18/production.json
+  and hosted.json. Final documentation shares the deployed 6192-file fingerprint
+  b25bb8c11a63be6f29b0a904626ef5568afd3eb7308c937a3d052bfc4cbce753;
+  no duplicate deployment required.
+
 ## 2026-11-18 — Targeted retry release candidate verified
 
 - Safe failure metadata now identifies the failed check/part and reaches both
