@@ -24,6 +24,8 @@ downloads weights or sends questions to an embedding provider. See the module
 README for corpus/model integrity and offline relevance checks.
 
 Tarot generation routes only through configured, quality-approved provider modes.
+AI diagnostics use a dedicated metadata-only logger so plain ASGI hosts retain
+preflight, attempts and token usage without enabling HTTP or SQL debug output.
 The shared local validator remains authoritative across Gemini, Groq and Cloudflare;
 the alternative wire adapter restores trusted IDs instead of trusting copied names.
 Fallbacks share the generation deadline and daily budget. Safe failure metadata in

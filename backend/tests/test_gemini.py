@@ -98,28 +98,28 @@ def test_incomplete_provider_output_is_not_returned_as_a_reading(monkeypatch):
     assert error.value.reason == "not_completed"
 
 
-def test_usage_counts_thinking_without_logging_provider_content(caplog):
+def test_usage_counts_thinking_without_logging_provider_content(ai_caplog):
     from app.games.tarot.reading import _log_usage
 
-    with caplog.at_level("INFO", logger="uvicorn.error"):
+    with ai_caplog.at_level("INFO", logger="games.ai"):
         _log_usage({"usage": {"total_input_tokens": 1708, "total_output_tokens": 882,
                               "total_thought_tokens": 2702},
                     "steps": [{"signature": "private-thought-signature"}],
                     "output_text": "private-reading-content"}, "test-model", 1)
-    receipt = json.loads(caplog.records[-1].message)
+    receipt = json.loads(ai_caplog.records[-1].message)
     assert receipt["output_tokens"] == 882
     assert receipt["thought_tokens"] == 2702
     assert receipt["generated_tokens"] == 3584
-    assert "private-" not in caplog.text
+    assert "private-" not in ai_caplog.text
 
 
 @pytest.mark.parametrize("invalid", [-1, True, "private-provider-content", None, {}])
-def test_invalid_usage_is_not_logged(caplog, invalid):
+def test_invalid_usage_is_not_logged(ai_caplog, invalid):
     from app.games.tarot.reading import _log_usage
 
-    with caplog.at_level("INFO", logger="uvicorn.error"):
+    with ai_caplog.at_level("INFO", logger="games.ai"):
         _log_usage({"usage": {"total_thought_tokens": invalid}}, "test-model", 1)
-    assert not caplog.records
+    assert not ai_caplog.records
 
 
 @pytest.mark.parametrize("tier", ["free", "paid"])
@@ -158,7 +158,7 @@ def mock_provider(monkeypatch, responses):
 
 @pytest.mark.parametrize("failure", ["json", "too_long", "missing", "wrong_card", "extra", "truncated"])
 def test_one_fresh_generation_recovers_invalid_output_without_returning_or_logging_it(
-    monkeypatch, caplog, failure
+    monkeypatch, ai_caplog, failure
 ):
     invalid = example_reading(CARDS)
     if failure == "too_long":
@@ -185,8 +185,8 @@ def test_one_fresh_generation_recovers_invalid_output_without_returning_or_loggi
     assert feedback["validation_feedback"] in {
         "invalid_schema", "invalid_json", "incorrect_cards", "truncated"
     }
-    assert "private-rejected-content" not in calls[1]["input"] + caplog.text
-    assert "private-test-question" not in caplog.text
+    assert "private-rejected-content" not in calls[1]["input"] + ai_caplog.text
+    assert "private-test-question" not in ai_caplog.text
 
 
 def test_repeated_invalid_output_stops_after_two_attempts(monkeypatch):

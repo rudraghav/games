@@ -67,7 +67,7 @@ def qwen_envelope(canonical, chart=None):
 
 
 @pytest.mark.parametrize("mode", ["ordinary", "western", "vedic", "both"])
-def test_runtime_groq_matches_evaluated_wire_and_binds_exact_evidence(configured, monkeypatch, caplog, mode):
+def test_runtime_groq_matches_evaluated_wire_and_binds_exact_evidence(configured, monkeypatch, ai_caplog, mode):
     monkeypatch.setattr(configured, "tarot_provider_order", ["groq"])
     references = [find_character(*pair) for pair in (
         ("Chihiro", "Spirited Away"), ("Miles Morales", "Spider-Man: Into the Spider-Verse"),
@@ -84,7 +84,7 @@ def test_runtime_groq_matches_evaluated_wire_and_binds_exact_evidence(configured
         effective = canonical
         expected = build_groq_qwen_v2_request(build_alternative_request("groq", canonical))
     calls = transport(monkeypatch, lambda *_: httpx.Response(200, json=qwen_envelope(effective, chart)))
-    with caplog.at_level("INFO", logger="uvicorn.error"):
+    with ai_caplog.at_level("INFO", logger="games.ai"):
         result = reading.generate_reading(CARDS, "private-question", astrology_chart=chart)
     assert len(calls) == 1 and json.loads(calls[0].content) == expected
     assert expected["model"] == MODEL and expected["max_completion_tokens"] == OUTPUT_CAP
@@ -95,12 +95,12 @@ def test_runtime_groq_matches_evaluated_wire_and_binds_exact_evidence(configured
     assert all(len(card["reference_characters"]) == (2 if chart else 3) for card in context["cards"])
     for card, supplied in zip(result.cards, context["cards"], strict=True):
         assert card.characters[0].evidence == supplied["reference_characters"][0]["public_context"]
-    usage = [json.loads(record.message) for record in caplog.records if record.message.startswith("{")]
+    usage = [json.loads(record.message) for record in ai_caplog.records if record.message.startswith("{")]
     assert len(usage) == 1
     assert usage[0]["model"] == MODEL
     assert usage[0]["profile"] == (ASTROLOGY_PROFILE_VERSION if chart else PROFILE_VERSION)
     assert usage[0]["output_cap"] == OUTPUT_CAP
-    assert "private-" not in caplog.text and "PRIVATE" not in caplog.text
+    assert "private-" not in ai_caplog.text and "PRIVATE" not in ai_caplog.text
 
 
 def test_astro_effective_shortlist_is_used_for_domain_validation_and_later_provider(configured, monkeypatch):
@@ -177,7 +177,7 @@ def test_runtime_qwen_rejects_unbound_reference_or_model_evidence(configured, ta
 
 @pytest.mark.parametrize("failure", [400, 401, 403, 429, 500, 502, 503, "timeout", "invalid"])
 def test_eligible_failure_uses_alternate_once_with_same_cards_and_new_reservation(
-    configured, monkeypatch, caplog, failure,
+    configured, monkeypatch, ai_caplog, failure,
 ):
     canonical = reading.build_reading_request(CARDS, "private-question")
     def respond(request, attempt):
@@ -194,11 +194,11 @@ def test_eligible_failure_uses_alternate_once_with_same_cards_and_new_reservatio
         return httpx.Response(200, json=qwen_envelope(canonical))
     calls = transport(monkeypatch, respond)
     reservations = []
-    with caplog.at_level("INFO", logger="uvicorn.error"):
+    with ai_caplog.at_level("INFO", logger="games.ai"):
         result = reading.generate_reading(CARDS, "private-question", before_attempt=lambda: reservations.append(True))
     assert [card.card_id for card in result.cards] == CARDS
     assert len(calls) == len(reservations) == 2
-    assert "private-" not in caplog.text
+    assert "private-" not in ai_caplog.text
     assert "private-rejected" not in calls[1].content.decode()
 
 

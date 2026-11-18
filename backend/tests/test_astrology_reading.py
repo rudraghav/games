@@ -58,7 +58,7 @@ def provider_response(payload):
 
 
 @pytest.mark.parametrize("system", ["western", "vedic", "both"])
-def test_combined_reading_is_one_bounded_request_with_only_computed_placements(monkeypatch, caplog, system):
+def test_combined_reading_is_one_bounded_request_with_only_computed_placements(monkeypatch, ai_caplog, system):
     chart = synthetic_chart(system)
     captured, reservations = [], []
     real_client = httpx.Client
@@ -70,7 +70,7 @@ def test_combined_reading_is_one_bounded_request_with_only_computed_placements(m
 
     monkeypatch.setattr("app.games.tarot.reading.httpx.Client",
                         lambda **kwargs: real_client(transport=httpx.MockTransport(respond), **kwargs))
-    with caplog.at_level(logging.INFO):
+    with ai_caplog.at_level(logging.INFO):
         result = generate_reading(CARDS, "x" * 400, astrology_chart=chart,
                                   before_attempt=lambda: reservations.append(True))
     assert len(captured) == len(reservations) == 1
@@ -85,7 +85,7 @@ def test_combined_reading_is_one_bounded_request_with_only_computed_placements(m
                       "utc_offset", "time_resolution",
                       "2000-01-01", "12:00", "Greenwich", "London"]:
         assert forbidden not in serialized
-        assert forbidden not in caplog.text
+        assert forbidden not in ai_caplog.text
     assert "astrology_interpretation" in body["response_format"]["schema"]["required"]
     assert "astrology" not in body["response_format"]["schema"]["properties"]
 

@@ -167,6 +167,12 @@ and Both readings, then checks real images, responsive layouts, exact saved
 refresh, new-spread separation and private archives after room closure. It makes
 two generation submissions (at most six provider attempts across approved
 fallbacks), never mocks production responses and uses a fresh teardown budget.
+`GAMES_TEST_TAROT_MODE=ordinary` or `both` reruns only that mode with an
+independent outsider, preserving earlier accepted evidence and avoiding another
+generation. The Both fixture uses the verified London, UK city result for a
+public benchmark date/time; it does not claim observatory coordinates. Private
+room/match receipts are written before generation, and cleanup is recorded even
+after a failure. Missing birthplace options retain bounded diagnostics.
 Set `GAMES_TEST_TAROT_PROVIDERS` to the exact comma-separated display names of
 the deployed providers to verify their disclosure alongside the real reading.
 The retained receipt records that disclosure; it does not itself prove which

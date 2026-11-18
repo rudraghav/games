@@ -1,3 +1,37 @@
+## 2026-11-18 — First live verification and observability follow-up
+
+- Main 6ca478c is deployed as dpl_9XDQNUxYJgkNsQ7BQsafMpsVJ1nz; the canonical
+  alias serves that exact revision in bom1. The model-only patch and four new
+  provider environment records have acknowledged readbacks; existing records,
+  free tier and preview configuration are preserved. Fresh production schema
+  checks show the reviewed head, zero drift, eight RLS tables and correct grants.
+- The first real hosted ordinary reading passes 320/390/1440 layout, exact
+  images, refresh without regeneration, rematch, closed-room archive and outsider
+  denial. Actual prose passes independent factual/visual review with minor style
+  concerns. The second case stops before generation because Greenwich search
+  returns US locations; the test now uses verified London, UK and can rerun Both
+  alone. Early private room/match/cleanup receipts are added to that harness.
+- One hosted provider reservation is confirmed; the operator's Gemini total is
+  77/80, leaving three for hosted recovery. No further direct evaluations occur.
+  All first-run QA rooms are closed with zero active memberships and separate
+  guest owners. The permanent owner's original six rooms/memberships and account
+  remain unchanged. A seventh non-QA room is created during verification; the
+  aggregate fingerprint mismatch is explained in a separate read-only receipt,
+  retaining the original failed aggregate comparison rather than rewriting it.
+- Live logs reveal that AI INFO diagnostics are suppressed in plain ASGI hosting.
+  Add a dedicated, narrowly configured metadata logger so preflight, token usage,
+  attempt failures and fallback can be observed without question/reading/key data
+  or global HTTP/SQL verbosity. Acceptance includes isolated-host emission,
+  duplicate-handler prevention, unchanged request/reading behavior, local checks
+  and actual metadata readback after a separate reviewed corrective deployment.
+- The focused logger proof passes 173 checks plus three isolated persistence/
+  privacy cases. Stable report verify-faa03992a6804c35a2b8b24fc1df4dae passes
+  6948 backend and 183 persistence tests, Ruff and mypy. Independent review finds
+  no prompt, request, validator, retry or storage behavior change. INFO is routed
+  to stdout; actual failures use stderr with original severity retained, avoiding
+  false error records for routine usage. The Both-only London setup passes with
+  zero reading submissions; hosted generation remains the next acceptance step.
+
 ## 2026-11-18 — Provider recovery release candidate
 
 - The bounded comparison closes at 41 direct alternative attempts: 25 Groq and

@@ -1,7 +1,6 @@
 """Bounded AI contract. Never log the player's question or provider response."""
 
 import json
-import logging
 import random
 import re
 import time
@@ -19,6 +18,7 @@ from pydantic import (
     model_validator,
 )
 
+from app.ai_logging import get_ai_logger
 from app.astrology.models import (
     AstrologyChart,
     AstrologyInput,
@@ -566,7 +566,7 @@ def generate_reading(
         raise ReadingGenerationError(ReadingFailure(
             code="unavailable", message="Readings are unavailable.", retryable=False, retry_at=time.time() + 300,
         ))
-    logger = logging.getLogger("uvicorn.error")
+    logger = get_ai_logger()
     deadline = time.monotonic() + REQUEST_DEADLINE_SECONDS
     queue = providers.copy()
     maximum = 3 if len(providers) > 1 else MAX_ATTEMPTS
@@ -726,7 +726,7 @@ def _log_usage(body: object, model: str, attempt: int) -> None:
     thought = usage.get("total_thought_tokens", 0)
     if any(type(value) is not int or value < 0 for value in (tokens, cached, output, thought)):
         return
-    logging.getLogger("uvicorn.error").info(
+    get_ai_logger().info(
         json.dumps(
             {
                 "model": model,

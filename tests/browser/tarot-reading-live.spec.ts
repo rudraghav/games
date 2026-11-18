@@ -10,6 +10,10 @@ type ReadingView = components['schemas']['ReadingView'];
 type SavedReading = components['schemas']['SavedReadingView'];
 type OwnedRoom = { page: Page; roomId?: string; closed?: boolean };
 type OwnedRun = { rooms: OwnedRoom[]; contexts: BrowserContext[] };
+const liveMode = process.env.GAMES_TEST_TAROT_MODE || 'all';
+if (!['all', 'ordinary', 'both'].includes(liveMode))
+  throw new Error('GAMES_TEST_TAROT_MODE must be all, ordinary, or both.');
+const includesMode = (mode: string) => liveMode === 'all' || liveMode === mode;
 const cleanup = new WeakMap<Page, OwnedRun>();
 const digest = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const normalized = (value: string) =>
@@ -31,7 +35,7 @@ function referenceArtwork(name: string, source: string) {
 
 test.skip(
   !process.env.GAMES_TEST_URL || process.env.GAMES_TEST_AI !== '1',
-  'Explicit hosted AI acceptance only; two generation submissions, up to six provider attempts.',
+  'Explicit hosted AI acceptance only; one submission per selected mode, up to three provider attempts each.',
 );
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 
@@ -62,8 +66,25 @@ test.afterEach(async ({ page }) => {
     const failure = results.find((result) => result.status === 'rejected');
     if (failure?.status === 'rejected') throw failure.reason;
   } finally {
-    await Promise.all(owned.contexts.map((context) => context.close()));
-    cleanup.delete(page);
+    try {
+      await writeFile(
+        test.info().outputPath('cleanup-private.json'),
+        JSON.stringify(
+          {
+            checkedAt: new Date().toISOString(),
+            rooms: owned.rooms
+              .filter(({ roomId }) => !!roomId)
+              .map(({ roomId, closed }) => ({ roomId, closed: !!closed })),
+          },
+          null,
+          2,
+        ),
+        { flag: 'wx', mode: 0o600 },
+      );
+    } finally {
+      await Promise.all(owned.contexts.map((context) => context.close()));
+      cleanup.delete(page);
+    }
   }
 });
 
@@ -88,21 +109,53 @@ async function savedReading(page: Page, matchId: string): Promise<SavedReading> 
 async function bothChart(page: Page) {
   await page.getByRole('checkbox', { name: 'Include astrology', exact: true }).check();
   await page.getByRole('button', { name: 'Both', exact: true }).click();
-  // Public J2000 benchmark, not a person's birth details. The live lookup selects
-  // Greenwich city coordinates rather than pretending to be the observatory.
+  // Public J2000 date/time with London city coordinates, not a person's birth
+  // details or an observatory-coordinate claim. Greenwich's first six results
+  // currently contain only US cities, so it is not a stable UK search fixture.
   await page.getByLabel('Birth date', { exact: true }).fill('2000-01-01');
   await page.getByLabel('Birth time', { exact: true }).fill('12:00');
-  await page.getByRole('searchbox', { name: 'Birthplace', exact: true }).fill('Greenwich');
+  await page.getByRole('searchbox', { name: 'Birthplace', exact: true }).fill('London');
+  const searched = page.waitForResponse(
+    (response) =>
+      response.url().endsWith('/astrology/places') && response.request().method() === 'POST',
+  );
   await page.getByRole('button', { name: 'Search places', exact: true }).click();
+  const response = await searched;
+  const payload = await response.json().catch(() => null);
+  await expect(page.getByRole('button', { name: 'Search places', exact: true })).toBeEnabled();
   const places = page.getByRole('combobox', { name: 'Choose birthplace', exact: true });
-  await expect(places).toBeVisible();
-  const option = places
-    .locator('option')
-    .filter({ hasText: /Greenwich.*United Kingdom/ })
-    .first();
-  const value = await option.getAttribute('value');
-  expect(value, 'Live location search must return Greenwich in the United Kingdom').toBeTruthy();
-  await places.selectOption(value!);
+  const options = await places.locator('option').evaluateAll((nodes) =>
+    nodes.map((node) => ({
+      value: (node as HTMLOptionElement).value,
+      label: node.textContent || '',
+    })),
+  );
+  const option = options.find(
+    (item) => item.value === 'geo:2643743' && /London.*United Kingdom/.test(item.label),
+  );
+  if (!option)
+    await writeFile(
+      test.info().outputPath('both-location-options-private.json'),
+      JSON.stringify(
+        {
+          checkedAt: new Date().toISOString(),
+          query: 'London',
+          expectedPlaceId: 'geo:2643743',
+          status: response.status(),
+          renderedOptions: options,
+          places: Array.isArray(payload?.places) ? payload.places : [],
+        },
+        null,
+        2,
+      ),
+      { flag: 'wx', mode: 0o600 },
+    );
+  expect(response.status()).toBe(200);
+  expect(
+    option,
+    'Live location search must return London, UK (geo:2643743); see saved option diagnostics',
+  ).toBeTruthy();
+  await places.selectOption(option!.value);
   await page.getByRole('button', { name: 'Preview chart', exact: true }).click();
   const charts = page.getByRole('region', { name: 'Calculated birth charts', exact: true });
   await expect(charts).toBeVisible();
@@ -162,7 +215,7 @@ async function inspectReading(
   });
 }
 
-test('two independent live readings retain exact private archives after new spreads and closure', async ({
+test('selected independent live readings retain exact private archives after new spreads and closure', async ({
   page,
   browser,
   baseURL,
@@ -184,6 +237,7 @@ test('two independent live readings retain exact private archives after new spre
     [second, 0],
   ]);
   for (const [index, room] of owned.rooms.entries()) {
+    const mode = index === 0 ? 'ordinary' : 'both';
     await attachPreviewAccess(room.page);
     room.page.on('request', (request) => {
       if (
@@ -192,33 +246,87 @@ test('two independent live readings retain exact private archives after new spre
       )
         submissions.set(room.page, submissions.get(room.page)! + 1);
     });
+    if (!includesMode(mode)) {
+      await room.page.goto('/profile');
+      await expect(
+        room.page.getByRole('heading', { name: 'Your profile', exact: true }),
+      ).toBeVisible();
+      await expect.poll(async () => (await requestAs(room.page, 'me')).status()).toBe(200);
+      await room.page
+        .getByRole('textbox', { name: 'Your name', exact: true })
+        .fill('Tarot live outsider QA');
+      await room.page.getByRole('button', { name: 'Save profile', exact: true }).click();
+      await expect(
+        room.page.getByText('Looking good. Your profile is saved.', { exact: true }),
+      ).toBeVisible();
+      continue;
+    }
     await room.page.goto('/');
     await room.page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
     await room.page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill(`Tarot live QA ${index + 1}`);
-    const creation = room.page.waitForResponse(
-      (response) => response.url().endsWith('/v1/rooms') && response.request().method() === 'POST',
-    );
+    const creation = room.page
+      .waitForResponse(
+        (response) =>
+          response.url().endsWith('/v1/rooms') && response.request().method() === 'POST',
+      )
+      .then(async (response) => {
+        if (response.status() === 201) {
+          const created = await response.json();
+          room.roomId = created.id;
+          await writeFile(
+            test.info().outputPath(`${mode}-created-room-private.json`),
+            JSON.stringify(
+              {
+                mode,
+                createdAt: new Date().toISOString(),
+                roomId: created.id,
+                matchId: created.match_id,
+                ownerId: created.owner_id,
+              },
+              null,
+              2,
+            ),
+            { flag: 'wx', mode: 0o600 },
+          );
+        }
+        return response;
+      });
     await room.page.getByRole('button', { name: 'Create room', exact: true }).click();
     const created = await creation;
     expect(created.status()).toBe(201);
-    room.roomId = (await created.json()).id;
     await expect(room.page).toHaveURL(new RegExp(`/rooms/${room.roomId}$`));
     await pickSpread(room.page);
   }
-  expect((await roomAs(page, owned.rooms[0].roomId!)).owner_id).not.toBe(
-    (await roomAs(second, owned.rooms[1].roomId!)).owner_id,
+  expect((await (await requestAs(page, 'me')).json()).profile.id).not.toBe(
+    (await (await requestAs(second, 'me')).json()).profile.id,
   );
   for (const [index, room] of owned.rooms.entries()) {
     const actor = room.page,
       outsider = owned.rooms[1 - index].page;
     const mode = index === 0 ? 'ordinary' : 'both';
+    if (!includesMode(mode)) continue;
     const question =
       index === 0 ? '' : 'How could a community group make room for shared creative practice?';
     await test.step(`${mode}: generate once, refresh, inspect, archive and close`, async () => {
       const before = await roomAs(actor, room.roomId!);
       const matchId = before.match_id!;
+      await writeFile(
+        test.info().outputPath(`${mode}-spread-private.json`),
+        JSON.stringify(
+          {
+            mode,
+            preparedAt: new Date().toISOString(),
+            roomId: room.roomId,
+            matchId,
+            ownerId: before.owner_id,
+          },
+          null,
+          2,
+        ),
+        { flag: 'wx', mode: 0o600 },
+      );
       if (index === 1) {
         await actor.getByRole('textbox', { name: 'What’s on your mind?' }).fill(question);
         await bothChart(actor);
@@ -288,7 +396,8 @@ test('two independent live readings retain exact private archives after new spre
         outsider.getByRole('heading', { name: 'This reading isn’t available.', exact: true }),
       ).toBeVisible();
       await expect(outsider.locator('.tarot-reading')).toHaveCount(0);
-      if (index === 0) await outsider.goto(`/rooms/${owned.rooms[1].roomId}`);
+      if (index === 0 && owned.rooms[1].roomId)
+        await outsider.goto(`/rooms/${owned.rooms[1].roomId}`);
       await actor.goto('/profile');
       await actor.locator(`a.history-row[href="/readings/${matchId}"]`).click();
       await sameText();
@@ -313,4 +422,8 @@ test('two independent live readings retain exact private archives after new spre
       );
     });
   }
+  for (const [index, room] of owned.rooms.entries())
+    expect(submissions.get(room.page)).toBe(
+      includesMode(index === 0 ? 'ordinary' : 'both') ? 1 : 0,
+    );
 });

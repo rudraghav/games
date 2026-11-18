@@ -109,7 +109,7 @@ def test_preview_and_city_search_are_private_current_solo_match_only(client, pri
     assert private_services["lookups"] == lookup_count
 
 
-def test_astrology_generation_saves_only_computed_chart_and_refresh_is_idempotent(client, private_services, monkeypatch, caplog):
+def test_astrology_generation_saves_only_computed_chart_and_refresh_is_idempotent(client, private_services, monkeypatch, ai_caplog):
     room, owner, path = spread(client)
 
     def provider(cards, question, *, before_attempt=None, astrology_chart=None):
@@ -119,7 +119,7 @@ def test_astrology_generation_saves_only_computed_chart_and_refresh_is_idempoten
         return completed(cards, astrology_chart)
 
     monkeypatch.setattr("app.rooms.service.generate_reading", provider)
-    with caplog.at_level(logging.INFO):
+    with ai_caplog.at_level(logging.INFO):
         result = client.post(path + "/reading", headers=owner, json={
             "match_id": room["match_id"], "question": "A synthetic reflection", "astrology": ASTRO,
         })
@@ -134,18 +134,18 @@ def test_astrology_generation_saves_only_computed_chart_and_refresh_is_idempoten
     public = client.get(path, headers=owner).text
     for secret in [ASTRO["birth_date"], ASTRO["birth_time"], CITY.label, CITY.timezone,
                    "place_id", "birth_date", "utc_offset", "time_resolution"]:
-        assert secret not in stored and secret not in public and secret not in caplog.text
+        assert secret not in stored and secret not in public and secret not in ai_caplog.text
     assert client.get(path + "/reading", headers=player(client)).status_code == 404
 
 
-def test_failure_retains_only_private_computed_draft_for_explicit_resume_or_opt_out(client, private_services, monkeypatch, caplog):
+def test_failure_retains_only_private_computed_draft_for_explicit_resume_or_opt_out(client, private_services, monkeypatch, ai_caplog):
     room, owner, path = spread(client)
 
     def failed(*args, **kwargs):
         raise RuntimeError("PrivateBirthplaceCanary 1999-06-24 06:17")
 
     monkeypatch.setattr("app.rooms.service.generate_reading", failed)
-    with caplog.at_level(logging.WARNING):
+    with ai_caplog.at_level(logging.WARNING):
         result = client.post(path + "/reading", headers=owner, json={"match_id": room["match_id"], "astrology": ASTRO})
     assert result.status_code == 502
     ready = client.get(path + "/reading", headers=owner).json()
@@ -154,7 +154,7 @@ def test_failure_retains_only_private_computed_draft_for_explicit_resume_or_opt_
     with sessions()() as session:
         stored = json.dumps(session.get(TarotReading, room["match_id"]).payload)
     for secret in [ASTRO["birth_date"], ASTRO["birth_time"], CITY.label, "birth_date"]:
-        assert secret not in stored and secret not in caplog.text and secret not in result.text
+        assert secret not in stored and secret not in ai_caplog.text and secret not in result.text
     lookup_count = private_services["lookups"]
 
     def ordinary(cards, question, *, before_attempt=None):

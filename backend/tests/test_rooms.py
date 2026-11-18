@@ -301,7 +301,7 @@ def test_tarot_unavailable_does_not_fake_a_reading(client, monkeypatch):
 
 @pytest.mark.parametrize("failure,expected_status", [("output", 502), ("quota", 429)])
 def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
-    client, monkeypatch, caplog, failure, expected_status
+    client, monkeypatch, ai_caplog, failure, expected_status
 ):
     room, headers = seated_room(client, "tarot", 1)
     path = f"/v1/rooms/{room['id']}"
@@ -327,11 +327,11 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
     payload = {"match_id": room["match_id"], "question": "Private verification question"}
     response = client.post(path + "/reading", headers=headers[0], json=payload)
     assert response.status_code == expected_status
-    assert f"error_type={'HTTPStatusError' if failure == 'quota' else 'ValueError'}" in caplog.text
+    assert f"error_type={'HTTPStatusError' if failure == 'quota' else 'ValueError'}" in ai_caplog.text
     if failure == "quota":
         assert response.json()["detail"] == "Reading limit reached."
-    assert payload["question"] not in caplog.text + response.text
-    assert "local-failure-test-key" not in caplog.text + response.text
+    assert payload["question"] not in ai_caplog.text + response.text
+    assert "local-failure-test-key" not in ai_caplog.text + response.text
     restored = client.get(path, headers=headers[0]).json()
     assert restored["game"]["community"] == room["game"]["community"]
     assert restored["game"]["phase"] == "reading"

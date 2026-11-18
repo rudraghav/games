@@ -14,6 +14,7 @@ from fastapi import HTTPException
 from pydantic import ValidationError
 from sqlalchemy.orm import Session
 
+from app.ai_logging import get_ai_logger
 from app.astrology.chart import calculate_chart
 from app.astrology.geocoder import GeocoderUnavailable, resolve_place, search_places
 from app.astrology.models import (
@@ -632,7 +633,7 @@ class RoomService:
                 result = generate_reading(cards, question, before_attempt=reserve_attempt)
         except Exception as error:
             failure = reading_failure(error)
-            logging.getLogger("uvicorn.error").warning(
+            get_ai_logger().warning(
                 "games.ai.failure model=%s error_type=%s validation_errors=%s",
                 settings().tarot_model,
                 type(error).__name__,
