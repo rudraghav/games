@@ -183,6 +183,7 @@ const readingProgressGate = z.object({
   updated_at: z.number().finite().nonnegative(),
   estimated_percent: z.number().int().min(1).max(99),
   estimated_seconds_remaining: z.number().int().positive().nullable().optional(),
+  retry_detail: z.string().min(1).max(160).nullable().optional(),
 });
 
 function mapReadingProgress(wire: NonNullable<Wire['ReadingView']['progress']>) {
@@ -196,6 +197,7 @@ function mapReadingProgress(wire: NonNullable<Wire['ReadingView']['progress']>) 
     updatedAt: parsed.updated_at,
     estimatedPercent: parsed.estimated_percent,
     estimatedSecondsRemaining: parsed.estimated_seconds_remaining ?? null,
+    ...(parsed.retry_detail ? { retryDetail: parsed.retry_detail } : {}),
   };
 }
 

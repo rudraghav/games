@@ -20,6 +20,11 @@ stages, resets a saved attempt's start, or marks a pending reading complete.
 Before a snapshot arrives, the loader is indeterminate. Recovery reads say
 “Checking your saved reading” without replaying stale timing. Only stage changes
 are live-announced; numeric estimates do not repeatedly interrupt screen readers.
+A failed-check retry may include one bounded, server-authored explanation beneath
+its stage, naming the failed part and any relaxed presentation rule. This detail
+survives progress polls and refresh while that retry runs, then disappears during
+checking/saving. Saved-status recovery never repeats stale failure details. The
+browser displays the explanation as text and never exposes raw provider output.
 
 Polling starts during the initial POST and continues every two seconds while
 generation/recovery is active, including after refresh. Success cancels in-flight

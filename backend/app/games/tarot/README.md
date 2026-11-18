@@ -1,5 +1,33 @@
 # Pop Tarot
 
+## Targeted failed-check retries — 18 November 2026
+
+Validation failures carry a reviewed check ID and field path. The loader explains
+which part failed; the final failure message names it while retaining the Retry
+action. Logs contain only those bounded identifiers, never rejected prose or
+unknown response keys. Feedback now reaches the next provider as well as a
+same-provider correction, while preserving the original question/cards/chart.
+
+A failed question-format check grants only that field permission to use tentative
+reflective prose on the next attempt. The grant lives only in this generation's
+request; later failures can add their own exact field within the same maximum of
+three transmissions/105 seconds. New readings start strict. Grounded ordinary,
+Cloudflare astrology, Groq Vedic/Both and legacy Groq Western share this behavior.
+Required fields, bounds, placeholders, exact references/evidence, card order,
+computed chart anchors and refusals remain checked. Hard failures get correction
+feedback, never a bypass. The saved reading contract remains unchanged.
+
+The canonical request reserves 1,200 characters inside its existing 16,000-character
+limit for bounded retry feedback and instructions. The request removes an
+unreferenced chart definition and redundant string-length keys that Gemini ignores;
+all character-range descriptions and local bounds remain. This follows
+[Google's schema support guidance](https://aistudio.google.com/docs/structured-output).
+Alternative retry instructions map canonical card paths to their output field names.
+No rejected text is resent.
+Optional private `retry_detail` progress survives polling/refresh during the
+retry, clears when checking/saving, and is absent from legacy snapshots.
+
+
 ## Last fallback eligibility — 18 November 2026
 
 The latest requested preference is Gemini → Cloudflare → Groq. Configured

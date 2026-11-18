@@ -73,6 +73,13 @@ def test_large_cast_with_long_descriptions_and_combined_chart_stays_in_existing_
     assert 6 <= len(choices) <= 18
     names = request["response_format"]["schema"]["$defs"]["CharacterConnection"]["properties"]["name"]["enum"]
     assert set(names) == {c["name"] for c in choices}
+    from app.games.tarot.recovery import RETRY_INSTRUCTION, ValidationIssue, retry_request
+
+    retry = retry_request(request, ValidationIssue("question_form", "astrology_interpretation.western.focus_1.reflection_question"))
+    retry = retry_request(retry, ValidationIssue("question_form", "astrology_interpretation.western.focus_2.reflection_question"))
+    retry["system_instruction"] += RETRY_INSTRUCTION
+    assert len(json.dumps(retry, ensure_ascii=False, separators=(",", ":"))) <= 16000
+    assert "AstrologyInterpretationSection" not in request["response_format"]["schema"]["$defs"]
     assert "birth_date" not in request["input"]
     assert request["generation_config"] == {"thinking_level": "low", "max_output_tokens": 8192}
 

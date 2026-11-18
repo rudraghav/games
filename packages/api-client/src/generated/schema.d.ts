@@ -1219,6 +1219,8 @@ export interface components {
             estimated_percent: number;
             /** Estimated Seconds Remaining */
             estimated_seconds_remaining?: number | null;
+            /** Retry Detail */
+            retry_detail?: string | null;
         };
         /** ReadingView */
         ReadingView: {

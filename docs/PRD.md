@@ -26,8 +26,10 @@ Readings try Gemini, then Cloudflare, then Groq within one bounded request.
 Configured providers are eligible for all four reading options; less consistent
 models remain last fallbacks instead of having individual options disabled.
 Every returned reading must pass the same complete-output, card, reference and
-chart validation. A concise
-failure state preserves the spread and offers Retry only when useful; request
+chart validation. A failed check identifies its reading part. A retry may relax
+only that part's question-format rule; factual, required-content and length checks
+remain active. The loader explains the retry, and new readings start with all
+checks active. A concise failure state preserves the spread and offers Retry only when useful; request
 limits survive refresh, and checking for a lost response never submits again.
 The reading form names the services that may receive the question and chart.
 While writing, a compact loader shows the actual saved stage: preparing, matching

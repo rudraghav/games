@@ -28,6 +28,15 @@ from app.astrology.models import (
 from app.games.tarot.characters import find_character, reference_candidates
 from app.games.tarot.deck import BY_ID, POSITIONS
 from app.games.tarot.progress import ProgressEvent, ProgressStage, Provider, ReadingProgress
+from app.games.tarot.recovery import (
+    ALTERNATIVE_RETRY_MAPPING,
+    RETRY_INSTRUCTION,
+    ReadingValidationError,
+    ValidationIssue,
+    reason_issue,
+    retry_request,
+    schema_issue,
+)
 from app.settings import settings
 
 PROMPT_VERSION = "pop-tarot-11"
@@ -35,6 +44,8 @@ MAX_ATTEMPTS = 2
 # The provider's cap includes reasoning and visible JSON, not just the reading.
 MAX_OUTPUT_TOKENS = 8192
 THINKING_LEVEL = "low"
+MAX_REQUEST_CHARACTERS = 16000
+RECOVERY_RESERVE_CHARACTERS = 1200
 REQUEST_DEADLINE_SECONDS = 105
 ATTEMPT_TIMEOUT_SECONDS = 90
 SYSTEM = """Write a warm Tarot reflection in English for the three supplied cards,
@@ -130,18 +141,23 @@ class GeneratedReading(ReadingText):
     def distinct_characters(self) -> "GeneratedReading":
         supplied_names = [c.name.casefold() for card in self.cards for c in card.characters]
         if len(supplied_names) != len(set(supplied_names)):
-            raise ValueError("Use a different character for each connection in this spread.")
+            raise ReadingValidationError(ValidationIssue("reference_diversity", "cards"),
+                                       "Use a different character for each connection in this spread.")
         references = [find_character(c.name, c.source) for card in self.cards for c in card.characters]
         if any(c is None for c in references):
-            raise ValueError("Choose a name and source from the supplied character references.")
+            raise ReadingValidationError(ValidationIssue("reference", "cards"),
+                                       "Choose a name and source from the supplied character references.")
         names = [c["id"] for c in references if c is not None]
         if len(names) != len(set(names)):
-            raise ValueError("Use a different character for each connection in this spread.")
+            raise ReadingValidationError(ValidationIssue("reference_diversity", "cards"),
+                                       "Use a different character for each connection in this spread.")
         if sum(c.get("kind") == "meme" for c in references if c is not None) > 1:
-            raise ValueError("Use at most one meme connection across the spread.")
+            raise ReadingValidationError(ValidationIssue("reference_diversity", "cards"),
+                                       "Use at most one meme connection across the spread.")
         families = [c.get("identityFamily") or c["id"] for c in references if c is not None]
         if len(families) != len(set(families)):
-            raise ValueError("Use different reference families across the spread.")
+            raise ReadingValidationError(ValidationIssue("reference_diversity", "cards"),
+                                       "Use different reference families across the spread.")
         return self
 
 
@@ -157,33 +173,38 @@ def validate_reading(
     if [(c.card_id, c.position) for c in result.cards] != list(
         zip(card_ids, POSITIONS, strict=True)
     ):
-        raise ValueError("The reading did not match this spread.")
-    for section, choices in zip(
+        raise ReadingValidationError(ValidationIssue("cards", "cards"),
+                                       "The reading did not match this spread.")
+    for index, (section, choices) in enumerate(zip(
         result.cards, candidates if candidates is not None else [[] for _ in result.cards], strict=True,
-    ):
+    )):
         allowed_references = {
             reference["id"]: choice for choice in choices
             if (reference := find_character(choice["name"], choice["source"]))
         }
-        for character in section.characters:
+        for character_index, character in enumerate(section.characters):
             reference = find_character(character.name, character.source)
             if reference is None or (candidates is not None and reference["id"] not in allowed_references):
-                raise ValueError("Choose only from this card's supplied references.")
+                raise ReadingValidationError(ValidationIssue("reference", f"cards.{index}.characters.{character_index}"),
+                                       "Choose only from this card's supplied references.")
             supplied = allowed_references[reference["id"]] if candidates is not None else reference
             expected = supplied.get("public_context") or supplied.get("sourceContext") or supplied.get("description")
             if character.evidence is not None and character.evidence != expected:
-                raise ValueError("Reference evidence must exactly match the supplied source context.")
+                raise ReadingValidationError(ValidationIssue("reference_evidence", f"cards.{index}.characters.{character_index}.evidence"),
+                                       "Reference evidence must exactly match the supplied source context.")
     stored = result.model_dump()
     if astrology_chart is not None and isinstance(result, GeneratedAstrologyReading):
         interpretation = result.astrology_interpretation
         requested = {chart.system for chart in astrology_chart.charts}
         if {system for system in ("western", "vedic") if getattr(interpretation, system)} != requested:
-            raise ValueError("Interpret only the requested astrology systems.")
+            raise ReadingValidationError(ValidationIssue("chart", "astrology_interpretation"),
+                                       "Interpret only the requested astrology systems.")
         for chart in astrology_chart.charts:
             section = getattr(interpretation, chart.system)
             allowed = {p.id: p for p in [chart.ascendant, chart.midheaven, *chart.placements]}
             if len(set(section.focus_points)) != len(section.focus_points) or not set(section.focus_points) <= allowed.keys():
-                raise ValueError("Choose unique focus points from the computed chart.")
+                raise ReadingValidationError(ValidationIssue("chart", f"astrology_interpretation.{chart.system}.focus_points"),
+                                       "Choose unique focus points from the computed chart.")
             normal = section.normal.casefold()
             for ident in section.focus_points:
                 point = allowed[ident]
@@ -203,7 +224,8 @@ def validate_reading(
                 span = rf"(?:(?!\b(?:{other_names})\b)(?:[^.!?;]|(?<=\d)\.(?=\d)))"
                 anchor = rf"\b{re.escape(name)}\b{group}{span}{{0,90}}\b{re.escape(point.sign.casefold())}\b{span}{{0,60}}{house}"
                 if not re.search(anchor, normal):
-                    raise ValueError("Name every focus point's computed body, sign and house.")
+                    raise ReadingValidationError(ValidationIssue("chart", f"astrology_interpretation.{chart.system}.normal"),
+                                       "Name every focus point's computed body, sign and house.")
         stored.pop("astrology_interpretation")
         stored["astrology"] = AstrologyReading(chart=astrology_chart, interpretation=interpretation)
     return Reading.model_validate(stored)
@@ -231,9 +253,13 @@ class ReadingLimitError(RuntimeError):
 class ReadingOutputError(ValueError):
     """Safe classification; never retains rejected provider output."""
 
-    def __init__(self, reason: str, *, retryable: bool = False, errors: int = 0) -> None:
+    def __init__(
+        self, reason: str, *, retryable: bool = False, errors: int = 0,
+        issue: ValidationIssue | None = None,
+    ) -> None:
         super().__init__("The provider reading did not satisfy its contract.")
         self.reason, self.retryable, self.errors = reason, retryable, errors
+        self.issue = issue or reason_issue(reason)
 
 
 def provider_schema(
@@ -287,16 +313,23 @@ def provider_schema(
                 interpretation.setdefault("required", []).append(system)
             else:
                 interpretation["properties"].pop(system)
+        # Every requested system now has a dedicated definition with exact point
+        # enums; the original shared definition is no longer referenced.
+        definitions.pop("AstrologyInterpretationSection")
     def compact(value: object) -> object:
         if isinstance(value, dict):
+            described_bounds = value.get("description") == (
+                f"Use {value.get('minLength')}–{value.get('maxLength')} characters."
+            )
             return {key: compact(item) for key, item in value.items()
-                    if not (key == "title" and isinstance(item, str))}
+                    if not (key == "title" and isinstance(item, str))
+                    and not (described_bounds and key in {"minLength", "maxLength"})}
         if isinstance(value, list):
             return [compact(item) for item in value]
         return value
 
-    # JSON Schema title annotations are not constraints. Removing them keeps
-    # room for concrete reference evidence without weakening any validator.
+    # Titles and Gemini-ignored string bounds duplicate the descriptions. Keep
+    # length guidance and local validation while leaving space for retry feedback.
     result = compact(schema)
     assert isinstance(result, dict)
     return result
@@ -347,8 +380,10 @@ def _parse_output(
         )
     except ValidationError as error:
         raise ReadingOutputError(
-            "invalid_schema", retryable=True, errors=error.error_count()
+            "invalid_schema", retryable=True, errors=error.error_count(), issue=schema_issue(error)
         ) from None
+    except ReadingValidationError as error:
+        raise ReadingOutputError("incorrect_cards", retryable=True, issue=error.issue) from None
     except ValueError:
         raise ReadingOutputError("incorrect_cards", retryable=True) from None
 
@@ -402,7 +437,7 @@ def build_reading_request(
     }
     # Reserve feedback space. Rich combined charts can need a smaller shortlist;
     # this is local retrieval only, never another provider call or a larger cap.
-    if len(json.dumps(request, ensure_ascii=False, separators=(",", ":"))) > 15850:
+    if len(json.dumps(request, ensure_ascii=False, separators=(",", ":"))) > MAX_REQUEST_CHARACTERS - RECOVERY_RESERVE_CHARACTERS:
         if _candidate_limit > 2:
             return build_reading_request(
                 card_ids, question, astrology_chart=astrology_chart,
@@ -525,7 +560,7 @@ def reading_failure(error: Exception) -> ReadingFailure:
     if isinstance(error, ReadingOutputError):
         if error.reason == "refusal":
             return ReadingFailure(code="blocked", message="Try a different question.", retryable=False)
-        return ReadingFailure(code="invalid_output", message="Couldn't create a complete reading.", retryable=True)
+        return ReadingFailure(code="invalid_output", message=error.issue.message(), retryable=True)
     return ReadingFailure(code="temporary", message="Couldn't complete the reading.", retryable=True)
 
 
@@ -551,9 +586,12 @@ def _alternative_reading(
     except AlternativeOutputError as error:
         raise ReadingOutputError(
             error.reason, retryable=error.reason not in {"refusal", "not_completed", "invalid_envelope"},
+            issue=error.issue,
         ) from None
     except ValidationError as error:
-        raise ReadingOutputError("invalid_schema", retryable=True, errors=error.error_count()) from None
+        raise ReadingOutputError("invalid_schema", retryable=True, errors=error.error_count(), issue=schema_issue(error)) from None
+    except ReadingValidationError as error:
+        raise ReadingOutputError("incorrect_cards", retryable=True, issue=error.issue) from None
     except ValueError:
         raise ReadingOutputError("incorrect_cards", retryable=True) from None
 
@@ -567,9 +605,12 @@ def generate_reading(
     providers = configured_providers(astrology_chart)
     maximum = 3 if len(providers) > 1 else MAX_ATTEMPTS
 
-    def progress(stage: ProgressStage, provider: str | None = None, attempt: int = 0) -> None:
+    def progress(
+        stage: ProgressStage, provider: str | None = None, attempt: int = 0,
+        retry_detail: str | None = None,
+    ) -> None:
         if on_progress:
-            on_progress(ProgressEvent(stage, cast(Provider | None, provider), attempt, maximum))
+            on_progress(ProgressEvent(stage, cast(Provider | None, provider), attempt, maximum, retry_detail))
 
     progress("matching")
     request = build_reading_request(card_ids, question, astrology_chart=astrology_chart)
@@ -643,6 +684,12 @@ def generate_reading(
                     config.groq_api_key if provider == "groq" else config.cloudflare_api_token
                 )}
                 cap = 30 if provider == "groq" else 60
+            # Retry instructions are trusted and separate from model/user prose.
+            if "validation_feedback" in json.loads(request["input"]):
+                if provider == "gemini":
+                    wire = {**wire, "system_instruction": wire["system_instruction"] + RETRY_INSTRUCTION}
+                else:
+                    wire["messages"][0]["content"] += RETRY_INSTRUCTION + ALTERNATIVE_RETRY_MAPPING
             # Every fallback and correction consumes its own global application reservation.
             if before_attempt:
                 before_attempt()
@@ -698,9 +745,18 @@ def generate_reading(
                 # A refusal never seeks a more permissive provider.
                 if failure.code == "blocked":
                     raise
+                retry_detail = None
+                if isinstance(error, ReadingOutputError):
+                    issue = error.issue
+                    logger.info("games.ai.validation_failed provider=%s check=%s field=%s relaxable=%s",
+                                provider, issue.check, issue.field, issue.relaxable)
+                    # Carry specific feedback to a different provider too. Only
+                    # our own identified presentation checks can relax, locally.
+                    request = retry_request(request, issue)
+                    retry_detail = issue.message(retrying=True)
                 if queue and attempt < maximum:
                     logger.info("games.ai.fallback provider=%s next_provider=%s", provider, queue[0])
-                    progress("retrying", queue[0], attempt + 1)
+                    progress("retrying", queue[0], attempt + 1, retry_detail)
                     continue
                 if attempt >= maximum or counts[provider] >= 2:
                     raise
@@ -717,11 +773,8 @@ def generate_reading(
                         continue
                 if (isinstance(error, ReadingOutputError) and error.retryable
                         and deadline - time.monotonic() >= minimum[provider]):
-                    # Feed back only a safe classification; never rejected provider prose.
-                    request["input"] = json.dumps({**context, "validation_feedback": error.reason},
-                                                  ensure_ascii=False, separators=(",", ":"))
                     queue.append(provider)
-                    progress("retrying", provider, attempt + 1)
+                    progress("retrying", provider, attempt + 1, retry_detail)
                     continue
                 raise
     if failures:

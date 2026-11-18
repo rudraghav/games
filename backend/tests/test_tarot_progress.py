@@ -1,3 +1,6 @@
+import pytest
+from pydantic import ValidationError
+
 from app.games.tarot.progress import ProgressEvent, ProgressState
 
 
@@ -43,3 +46,33 @@ def test_saving_is_still_incomplete_and_clock_skew_stays_bounded():
     state = ProgressState.begin(1000).advance(ProgressEvent("saving", "groq", 1, 3), 1015)
     assert 97 <= state.view(1000).estimated_percent <= state.view(1100).estimated_percent == 99
     assert state.view(1100).estimated_seconds_remaining is None
+
+
+def test_retry_detail_survives_writing_and_refresh_then_clears():
+    detail = "Card 1 wording failed its question format. Retrying without that format."
+    original = ProgressState.begin(1000)
+    state = original.advance(ProgressEvent("retrying", "groq", 2, 3, detail), 1010)
+    assert original.retry_detail is None
+    assert state.view(1010).retry_detail == detail
+    state = state.advance(ProgressEvent("writing", "groq", 2, 3), 1011)
+    restored = ProgressState.model_validate_json(state.model_dump_json())
+    assert restored.view(1015).retry_detail == detail
+    assert restored.advance(ProgressEvent("checking", "groq", 2, 3), 1016).retry_detail is None
+    assert restored.advance(ProgressEvent("saving", "groq", 2, 3), 1017).retry_detail is None
+    assert restored.advance(ProgressEvent("retrying", "cloudflare", 3, 3), 1018).retry_detail is None
+    assert restored.advance(ProgressEvent("writing", "cloudflare", 3, 3), 1018).retry_detail is None
+
+
+def test_legacy_progress_omits_retry_detail_until_a_failed_check_is_reported():
+    state = ProgressState.begin(1000)
+    restored = ProgressState.model_validate_json(state.model_dump_json())
+    assert "retry_detail" not in restored.model_dump()
+    assert "retry_detail" not in restored.view(1001).model_dump()
+
+
+@pytest.mark.parametrize("detail", ["", "x" * 161])
+def test_retry_detail_bounds_apply_before_persisting_or_displaying(detail):
+    with pytest.raises(ValueError):
+        ProgressEvent("retrying", "groq", 2, 3, detail)
+    with pytest.raises(ValidationError):
+        ProgressState.model_validate({**ProgressState.begin(1000).model_dump(), "retry_detail": detail})

@@ -413,6 +413,8 @@ test('a held request polls actual stages and provider fallbacks without another 
       await expect(page.getByRole('checkbox', { name: 'Include astrology' })).toBeDisabled();
       expect(progressReads).toBeGreaterThan(0);
       const fallbackStart = Date.now() / 1000 - 30;
+      const retryDetail =
+        'Card 1 wording failed its question format. Retrying without that format.';
       for (const [provider, attempt, percent] of [
         ['Groq', 2, 61],
         ['Cloudflare', 3, 79],
@@ -426,9 +428,11 @@ test('a held request polls actual stages and provider fallbacks without another 
             started_at: fallbackStart,
             estimated_percent: percent,
             estimated_seconds_remaining: 25,
+            retry_detail: retryDetail,
           }),
         });
-        await expect(panel.getByRole('status')).toHaveText(`Retrying with ${provider}.`);
+        await expect(panel.getByRole('status')).toContainText(`Retrying with ${provider}.`);
+        await expect(panel.getByRole('status')).toContainText(retryDetail);
         await expect(meter).toHaveAttribute('aria-valuenow', String(percent));
         expect(await page.evaluate(() => scrollY)).toBe(0);
         expect(Number(await meter.getAttribute('aria-valuenow'))).toBeLessThan(100);
@@ -450,6 +454,7 @@ test('a held request polls actual stages and provider fallbacks without another 
           }),
         });
         await expect(panel.getByRole('status')).toHaveText(label);
+        await expect(panel).not.toContainText(retryDetail);
         await expect(meter).toHaveAttribute('aria-valuenow', String(percent));
       }
       await page
@@ -483,9 +488,13 @@ test('saved progress survives refresh and slow estimates never claim completion'
       astrology_chart: syntheticChart,
     };
     const startedAt = Date.now() / 1000 - 50;
+    const retryDetail = 'Card 1 wording failed its question format. Retrying without that format.';
     setView({
       ...saved,
-      progress: progress('writing', {
+      progress: progress('retrying', {
+        provider: 'Groq',
+        attempt: 2,
+        retry_detail: retryDetail,
         started_at: startedAt,
         estimated_percent: 74,
         estimated_seconds_remaining: 14,
@@ -497,6 +506,7 @@ test('saved progress survives refresh and slow estimates never claim completion'
       await page.reload();
       await expect(meter).toHaveAttribute('aria-valuenow', '74');
       await expect(panel).toContainText('About 15 sec remaining');
+      await expect(panel).toContainText(retryDetail);
       await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue(
         question,
       );
@@ -506,7 +516,10 @@ test('saved progress survives refresh and slow estimates never claim completion'
     }
     setView({
       ...saved,
-      progress: progress('writing', {
+      progress: progress('retrying', {
+        provider: 'Groq',
+        attempt: 2,
+        retry_detail: retryDetail,
         started_at: startedAt,
         estimated_percent: 94,
         estimated_seconds_remaining: null,
@@ -514,6 +527,7 @@ test('saved progress survives refresh and slow estimates never claim completion'
     });
     await expect(meter).toHaveAttribute('aria-valuenow', '94');
     await expect(panel).toContainText('Taking longer than expected…');
+    await expect(panel).toContainText(retryDetail);
     await expect(panel).not.toContainText('0 sec remaining');
     await expect(panel).not.toContainText('100%');
     await noOverflow(page);

@@ -37,6 +37,10 @@ def test_progress_is_private_durable_and_visible_during_the_original_post(client
         entered.set()
         assert switch.wait(10)
         before_attempt()
+        on_progress(ProgressEvent(
+            "retrying", "groq", 2, 3,
+            "Card 1 wording failed its question format. Retrying without that format.",
+        ))
         on_progress(ProgressEvent("writing", "groq", 2, 3))
         switched.set()
         assert finish.wait(10)
@@ -64,9 +68,14 @@ def test_progress_is_private_durable_and_visible_during_the_original_post(client
             assert changed["stage"] == "retrying" and changed["provider"] == "Groq"
             assert changed["attempt"] == 2 and changed["started_at"] == initial["started_at"]
             assert changed["estimated_percent"] >= initial["estimated_percent"]
+            assert changed["retry_detail"] == (
+                "Card 1 wording failed its question format. Retrying without that format."
+            )
+            assert "Private question canary" not in str(changed)
             with sessions()() as session:
                 stored = session.get(TarotReading, room["match_id"])
                 assert stored.payload["_progress"]["provider"] == "Groq"
+                assert stored.payload["_progress"]["retry_detail"] == changed["retry_detail"]
         finally:
             switch.set()
             finish.set()

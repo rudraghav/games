@@ -39,12 +39,19 @@ export function ReadingProgress({
   // A running attempt must never claim completion, even with an invalid estimate.
   const percent = current ? Math.max(0, Math.min(99, current.estimatedPercent)) : undefined;
   const remaining = current ? remainingEstimate(current.estimatedSecondsRemaining) : null;
+  const retryDetail = current?.stage === 'retrying' ? current.retryDetail : null;
 
   return (
     <section className="tarot-generation-progress" aria-label="Reading progress">
       <LoaderCircle className="spin" size={26} aria-hidden="true" />
       <p role="status" aria-live="polite" aria-atomic="true">
         {message}
+        {retryDetail ? (
+          <>
+            <br />
+            <span className="small muted">{retryDetail}</span>
+          </>
+        ) : null}
       </p>
       <div
         className="tarot-generation-meter"

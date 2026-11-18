@@ -21,6 +21,7 @@ from app.games.tarot.providers import (
     _prose,
     _text,
 )
+from app.games.tarot.recovery import ValidationIssue, question_relaxed
 
 PROFILE_VERSION = "grounded-reading-3"
 OUTPUT_CAP = 4096
@@ -125,19 +126,35 @@ def build_grounded_request(provider: str, source: dict[str, Any]) -> dict[str, A
     return body
 
 
-def _bounded(value: object, field: str, minimum: int, maximum: int) -> str:
-    text = _text(value, field)
+def _bounded(value: object, field: str, minimum: int, maximum: int, *, path: str | None = None) -> str:
+    try:
+        text = _text(value, field)
+    except AlternativeOutputError as error:
+        check = "placeholder" if error.reason == "placeholder_text" else "invalid_output"
+        raise AlternativeOutputError(error.reason, issue=ValidationIssue(check, path or field)) from None
     if not minimum <= len(text.strip()) <= maximum:
-        raise AlternativeOutputError("invalid_text_length")
+        raise AlternativeOutputError("invalid_text_length", issue=ValidationIssue("text_length", path or field))
     return text
 
 
-def _question(value: object, field: str, minimum: int, maximum: int) -> str:
-    text = _bounded(value, field, minimum, maximum)
-    if (not 1 <= text.count("?") <= 2 or not text.rstrip().endswith("?")
-            or not re.match(r"^(What|How|Where|Which|Could|Might|Would)\b", text.strip(), re.IGNORECASE)):
-        raise AlternativeOutputError("invalid_reflection_question")
+def _question(
+    value: object, field: str, minimum: int, maximum: int, *, source: dict[str, Any], path: str,
+) -> str:
+    text = _bounded(value, field, minimum, maximum, path=path)
+    if not question_relaxed(source, path) and (
+        not 1 <= text.count("?") <= 2 or not text.rstrip().endswith("?")
+        or not re.match(r"^(What|How|Where|Which|Could|Might|Would)\b", text.strip(), re.IGNORECASE)
+    ):
+        raise AlternativeOutputError("invalid_reflection_question", issue=ValidationIssue("question_form", path))
     return text
+
+
+def _fields(value: object, fields: set[str], path: str) -> dict[str, Any]:
+    try:
+        return _exact_fields(value, fields)
+    except AlternativeOutputError:
+        check = "required_fields" if not isinstance(value, dict) or fields - value.keys() else "unexpected_fields"
+        raise AlternativeOutputError("invalid_wire_schema", issue=ValidationIssue(check, path)) from None
 
 
 def decode_grounded_output(provider: str, body: object, source: dict[str, Any]) -> dict[str, Any]:
@@ -156,7 +173,7 @@ def decode_grounded_output(provider: str, body: object, source: dict[str, Any]) 
             raise
         raise AlternativeOutputError("invalid_json") from None
     context = _context(source)
-    _exact_fields(wire, set(_schema(context)["properties"]))
+    _fields(wire, set(_schema(context)["properties"]), "reading")
     result: dict[str, Any] = {
         "title": _bounded(wire["title"], "title", 1, 100),
         "introduction": _bounded(wire["introduction"], "introduction", 20, 600),
@@ -164,50 +181,58 @@ def decode_grounded_output(provider: str, body: object, source: dict[str, Any]) 
         "cards": [],
     }
     for index, card in enumerate(context["cards"], 1):
-        section = _exact_fields(wire[f"card_{index}"], {
+        path = f"cards.{index - 1}"
+        section = _fields(wire[f"card_{index}"], {
             "title", "reflection_question", "imagery", "reference_id", "connection_question",
-        })
+        }, path)
         supplied = {ref["reference_id"]: ref for ref in card["reference_characters"]}
         ident = section["reference_id"]
         reference = supplied.get(ident) if isinstance(ident, str) else None
         if reference is None:
-            raise AlternativeOutputError("invalid_reference_id")
+            raise AlternativeOutputError("invalid_reference_id", issue=ValidationIssue("reference", path + ".characters.0"))
         evidence = reference.get("public_context")
         if not isinstance(evidence, str) or not 1 <= len(evidence) <= 600:
-            raise AlternativeOutputError("invalid_reference_evidence")
+            raise AlternativeOutputError("invalid_reference_evidence", issue=ValidationIssue("reference_evidence", path + ".characters.0.evidence"))
         result["cards"].append({
             "card_id": card["card_id"], "position": card["position"],
-            "title": _bounded(section["title"], "title", 1, 90),
-            "interpretation": _question(section["reflection_question"], "reflection_question", 20, 850),
-            "quirky_interpretation": _bounded(section["imagery"], "imagery", 40, 500),
+            "title": _bounded(section["title"], "title", 1, 90, path=path + ".title"),
+            "interpretation": _question(section["reflection_question"], "reflection_question", 20, 850,
+                                        source=source, path=path + ".interpretation"),
+            "quirky_interpretation": _bounded(section["imagery"], "imagery", 40, 500, path=path + ".quirky_interpretation"),
             "characters": [{"name": reference["name"], "source": reference["source"],
-                            "connection": _question(section["connection_question"], "connection_question", 30, 300),
+                            "connection": _question(section["connection_question"], "connection_question", 30, 300,
+                                                    source=source, path=path + ".characters.0.connection"),
                             "evidence": evidence}],
         })
     charts = context.get("astrology", [])
     if charts:
-        wire_astrology = _exact_fields(wire["astrology_interpretation"],
-                                       {c["system"] for c in charts} | {"tarot_connection", "next_step"})
+        wire_astrology = _fields(wire["astrology_interpretation"],
+                                {c["system"] for c in charts} | {"tarot_connection", "next_step"},
+                                "astrology_interpretation")
         astrology: dict[str, Any] = {
-            "tarot_connection": _bounded(wire_astrology["tarot_connection"], "tarot_connection", 40, 650),
-            "next_step": _bounded(wire_astrology["next_step"], "next_step", 15, 300),
+            "tarot_connection": _bounded(wire_astrology["tarot_connection"], "tarot_connection", 40, 650,
+                                         path="astrology_interpretation.tarot_connection"),
+            "next_step": _bounded(wire_astrology["next_step"], "next_step", 15, 300,
+                                  path="astrology_interpretation.next_step"),
         }
         for chart in charts:
-            section = _exact_fields(wire_astrology[chart["system"]], {"focus_1", "focus_2", "imagery"})
+            path = "astrology_interpretation." + chart["system"]
+            section = _fields(wire_astrology[chart["system"]], {"focus_1", "focus_2", "imagery"}, path)
             points = {p[0]: p for p in chart["placements"]}
             ids, paragraphs = [], []
             for field in ("focus_1", "focus_2"):
-                focus = _exact_fields(section[field], {"point_id", "reflection_question"})
+                focus = _fields(section[field], {"point_id", "reflection_question"}, path + "." + field)
                 ident = focus["point_id"]
                 if not isinstance(ident, str) or ident not in points or ident in ids:
-                    raise AlternativeOutputError("invalid_focus_id")
+                    raise AlternativeOutputError("invalid_focus_id", issue=ValidationIssue("chart", path + "." + field))
                 point = points[ident]
-                reflection = _question(focus["reflection_question"], "reflection_question", 40, 270)
+                reflection = _question(focus["reflection_question"], "reflection_question", 40, 270,
+                                       source=source, path=path + "." + field + ".reflection_question")
                 ids.append(ident)
                 paragraphs.append(f"{point[1]} in {point[2]}, house {point[4]}: {reflection}")
             astrology[chart["system"]] = {
                 "focus_points": ids, "normal": "\n\n".join(paragraphs),
-                "quirky": _bounded(section["imagery"], "imagery", 40, 500),
+                "quirky": _bounded(section["imagery"], "imagery", 40, 500, path=path + ".quirky"),
             }
         result["astrology_interpretation"] = astrology
     return result

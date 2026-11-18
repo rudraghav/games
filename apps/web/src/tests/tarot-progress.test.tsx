@@ -45,6 +45,22 @@ describe('Saved reading progress presentation', () => {
     expect(html).not.toContain('Starting your reading.');
   });
 
+  it('announces the failed part and relaxed check only during its retry', () => {
+    const retryDetail = 'Card 1 wording failed its question format. Retrying without that format.';
+    const retry = { ...progress, stage: 'retrying' as const, retryDetail };
+    const html = renderToStaticMarkup(<ReadingProgress progress={retry} />);
+    expect(html).toContain(retryDetail);
+    expect(html).toContain('class="small muted"');
+    for (const stage of ['writing', 'checking', 'saving'] as const) {
+      expect(
+        renderToStaticMarkup(<ReadingProgress progress={{ ...retry, stage }} />),
+      ).not.toContain(retryDetail);
+    }
+    expect(renderToStaticMarkup(<ReadingProgress progress={retry} recovering />)).not.toContain(
+      retryDetail,
+    );
+  });
+
   it('never presents a pending reading as complete or promises an expired estimate', () => {
     const html = renderToStaticMarkup(
       <ReadingProgress

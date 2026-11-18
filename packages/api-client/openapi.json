@@ -3505,6 +3505,19 @@
               }
             ],
             "title": "Estimated Seconds Remaining"
+          },
+          "retry_detail": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retry Detail"
           }
         },
         "additionalProperties": false,

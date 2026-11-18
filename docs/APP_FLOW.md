@@ -117,7 +117,13 @@ Provider preference is Gemini, then Cloudflare, then Groq for ordinary, Western,
 Vedic and combined readings. Groq's Vedic/combined attempts disable reasoning
 and use a simpler JSON response format; other services get the first opportunity.
 An invalid response can trigger the next provider but never replace the exact
-selected cards or computed chart. Every network attempt has a bounded time slot.
+selected cards or computed chart. Safe check/field feedback reaches the next
+provider. A failed question-format rule may relax only for that exact field on
+the retry; required sections, text limits, character facts and chart checks remain.
+The loader names the failed part and explains the format relaxation. That message
+survives refresh during the retry, clears when checking/saving, and never includes
+raw provider errors. Final failure names the failed part beside the existing Retry
+action. Every network attempt has a bounded time slot.
 The loader shows actual stages and names a provider when retrying; estimated percent
 and time remaining survive refresh and never show100% before saved completion.
 An exceeded estimate says Taking longer than expected. Reduced motion disables

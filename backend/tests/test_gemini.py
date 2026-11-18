@@ -182,9 +182,12 @@ def test_one_fresh_generation_recovers_invalid_output_without_returning_or_loggi
     assert result.model_dump() == example_reading(CARDS)
     assert len(calls) == len(reservations) == 2
     feedback = json.loads(calls[1]["input"])
-    assert feedback["validation_feedback"] in {
-        "invalid_schema", "invalid_json", "incorrect_cards", "truncated"
-    }
+    assert feedback["validation_feedback"]["check"] == {
+        "json": "invalid_json", "too_long": "text_length", "missing": "required_fields",
+        "wrong_card": "cards", "extra": "unexpected_fields", "truncated": "incomplete",
+    }[failure]
+    assert feedback["validation_feedback"]["action"] == "correct_complete_output"
+    assert "validation_relaxations" not in feedback
     assert "private-rejected-content" not in calls[1]["input"] + ai_caplog.text
     assert "private-test-question" not in ai_caplog.text
 

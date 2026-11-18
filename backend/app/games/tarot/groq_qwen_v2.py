@@ -16,7 +16,8 @@ from app.games.tarot.groq_qwen import (
 from app.games.tarot.groq_qwen import (
     OUTPUT_CAP as OUTPUT_CAP,
 )
-from app.games.tarot.providers import COMPACT_ASTROLOGY_SYSTEM, AlternativeOutputError
+from app.games.tarot.providers import COMPACT_ASTROLOGY_SYSTEM, AlternativeOutputError, _text
+from app.games.tarot.recovery import ValidationIssue, question_relaxed
 
 PROFILE_VERSION = "compact-groq-qwen-evidence-3"
 SYSTEM = """Write a warm English Tarot reflection using the three supplied cards,
@@ -61,10 +62,15 @@ def build_groq_qwen_v2_request(source: dict[str, Any]) -> dict[str, Any]:
     return body
 
 
-def _question(value: object) -> str:
-    if not isinstance(value, str) or value.count("?") != 1 or not value.rstrip().endswith("?"):
-        raise AlternativeOutputError("invalid_reflection_question")
-    return value
+def _question(value: object, *, source: dict[str, Any], field: str, wire_field: str) -> str:
+    try:
+        text = _text(value, wire_field)
+    except AlternativeOutputError as error:
+        check = "placeholder" if error.reason == "placeholder_text" else "invalid_output"
+        raise AlternativeOutputError(error.reason, issue=ValidationIssue(check, field)) from None
+    if not question_relaxed(source, field) and (text.count("?") != 1 or not text.rstrip().endswith("?")):
+        raise AlternativeOutputError("invalid_reflection_question", issue=ValidationIssue("question_form", field))
+    return text
 
 
 def decode_groq_qwen_v2_output(body: object, canonical_request: dict[str, Any]) -> dict[str, Any]:
@@ -103,14 +109,18 @@ def decode_groq_qwen_v2_output(body: object, canonical_request: dict[str, Any]) 
         section = _exact_fields(payload.get(f"card_{index}"), {
             "title", "reflection_question", "imagery", "reference_id", "connection",
         })
-        section["interpretation"] = _question(section.pop("reflection_question"))
-        _question(section["connection"])
+        path = f"cards.{index - 1}"
+        section["interpretation"] = _question(section.pop("reflection_question"), source=canonical_request,
+                                               field=path + ".interpretation", wire_field="reflection_question")
+        _question(section["connection"], source=canonical_request,
+                  field=path + ".characters.0.connection", wire_field="connection")
         supplied = {reference["id"]: candidate for candidate in card["reference_characters"]
                     if (reference := find_character(candidate["name"], candidate["source"]))}
         selected = supplied.get(section["reference_id"]) if isinstance(section["reference_id"], str) else None
         fact = selected.get("public_context") if selected else None
         if not isinstance(fact, str) or not 1 <= len(fact) <= 600:
-            raise AlternativeOutputError("invalid_reference_evidence")
+            raise AlternativeOutputError("invalid_reference_evidence",
+                                         issue=ValidationIssue("reference_evidence", path + ".characters.0.evidence"))
         evidence.append(fact)
     adapted = deepcopy(body)
     adapted["choices"][0]["message"]["content"] = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))

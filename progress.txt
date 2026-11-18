@@ -1,3 +1,50 @@
+## 2026-11-18 — Targeted retry release candidate verified
+
+- Safe failure metadata now identifies the failed check/part and reaches both
+  same-provider and next-provider corrections. Only the exact failed question
+  format relaxes within this generation. New readings start strict; hard data
+  validation and the existing three-transmission/105-second budget remain.
+- Optional retry_detail persists privately through writing/refresh and clears
+  when checking/saving. The mobile loader renders concise part-specific detail;
+  final errors identify known failures without inventing a reason for a generic
+  provider format rejection. No rejected text or arbitrary keys enter logs.
+- Frontend types/lint/build and 266 tests passed in report
+  verify-265f9c22929d4f67a0f19a3af2536d0b before its backend budget regression.
+  Frontend inputs stayed unchanged afterward. The combined long-description case
+  exposed insufficient feedback headroom; removed an unused chart schema and
+  redundant Gemini-ignored string bounds, preserving descriptions/local bounds.
+  Both long-context and worst-case retry requests now fit the existing16000 cap.
+- Stable backend/contracts/persistence/tooling report
+  verify-4ef393bab38f41c289eb714b3e19ea6a passed7153 backend/224 persistence/44
+  tooling tests and generated contracts. Final diagnostic precision follow-up
+  passed7155 backend tests/Ruff/mypy in verify-86fc31c5adc84dbdac17a4e9597d4a72.
+  All48 browser cases passed in verify-967c04a7b7e04374a0008631d12c1ca0;
+  three focused progress browser executions also passed. All51 QA rooms closed.
+- Independent review found no privacy/factual bypass; generic schema failures
+  now avoid claiming missing data. Official Google schema documentation confirms
+  ignored length keys; local bounds remain unchanged. No new dependency/schema.
+- Free hosted acceptance budget: one Both submission, at most3 transmissions,
+  at most1 each Gemini/Cloudflare/Groq, browser retries0 and no forced failures.
+  Baseline operator counts Gemini87/Groq38/Cloudflare24. No inference yet.
+- Next: push exact scope, deploy once, verify source/alias/config/owner/health/logs
+  and real mobile charts/images/history. Earlier failure evidence is retained.
+
+## 2026-11-18 — Targeted failed-check retry kickoff
+
+- Outcome: name the failed reading part/check, then retry without that specific
+  presentation restriction. Keep correct spread/reference/chart, complete output,
+  authorization and private-data boundaries. Relaxations are scoped to this
+  generation, never global and never chosen by untrusted response text.
+- Acceptance: safe structured check/field diagnostics; feedback reaches the next
+  provider as well as same-provider correction; only failed question-format
+  requirements can relax while all field lengths/required data remain valid.
+  The loader explains what is being retried without exposing raw provider text.
+  Test ordinary/Western/Vedic/Both, request isolation, retained hard failures,
+  deadlines, persistence and mobile display. Push/deploy once after local gates.
+- Baseline clean main 47009fe, serving 0a783b8. Task tarot-targeted-retry-20261118;
+  scratch output/playwright/tarot-targeted-retry-20261118. No provider calls during
+  implementation; live validation gets a separate explicit bounded budget.
+
 ## 2026-11-18 — All-mode Tarot fallback pushed, deployed and live-verified
 
 - Application 0a783b8a1ef33059e635bc42c52bbac92570c53c is READY in bom1 at

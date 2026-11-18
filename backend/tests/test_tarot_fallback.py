@@ -409,7 +409,9 @@ def test_safe_correction_retains_all_context_and_reports_actual_stages(configure
             return httpx.Response(400, json={"error": {"code": "json_validate_failed", "message": "private-error"}})
         assert events[-1].stage == "writing" and events[-1].attempt == 2
         context = json.loads(json.loads(request.content)["messages"][1]["content"])
-        assert context.pop("validation_feedback") == "invalid_schema"
+        assert context.pop("validation_feedback") == {
+            "check": "invalid_output", "field": "reading", "action": "correct_complete_output",
+        }
         if provider == "groq" and mode in {"vedic", "both"}:
             original_wire = build_grounded_json_request(canonical, reasoning_effort="none")[1]
         elif provider == "groq" and chart:
@@ -540,3 +542,82 @@ def test_no_network_call_after_the_first_reservation_exhausts_deadline(configure
     with pytest.raises(reading.ReadingOutputError) as error:
         reading.generate_reading(CARDS, "", before_attempt=reserve)
     assert error.value.reason == "deadline_exhausted" and not calls
+
+
+@pytest.mark.parametrize("provider", ["groq", "cloudflare"])
+@pytest.mark.parametrize("mode", ["ordinary", "western", "vedic", "both"])
+def test_failed_question_format_retries_without_only_that_field_check(configured, monkeypatch, ai_caplog, provider, mode):
+    monkeypatch.setattr(configured, "tarot_provider_order", [provider])
+    chart = None if mode == "ordinary" else synthetic_chart(mode)
+    canonical = reading.build_reading_request(CARDS, "private-question", astrology_chart=chart)
+    body = qwen_envelope(canonical, chart) if provider == "groq" else grounded_envelope(provider, canonical, chart)
+    payload = json.loads(body["choices"][0]["message"]["content"])
+    reflection = "Consider one small possibility you might explore at your own pace."
+    payload["card_2"]["reflection_question"] = reflection
+    body["choices"][0]["message"]["content"] = json.dumps(payload)
+    events = []
+    def respond(request, attempt):
+        wire = json.loads(request.content)
+        context = json.loads(wire["messages"][1]["content"])
+        if attempt == 1:
+            assert "validation_feedback" not in context
+        else:
+            assert context["validation_feedback"] == {
+                "check": "question_form", "field": "cards.1.interpretation", "action": "allow_reflective_prose",
+            }
+            assert context["validation_relaxations"] == [{"check": "question_form", "field": "cards.1.interpretation"}]
+            assert "tentative reflective" in wire["messages"][0]["content"]
+            assert context["question"] == "private-question"
+        return httpx.Response(200, json=body)
+    calls = transport(monkeypatch, respond)
+    with ai_caplog.at_level("INFO", logger="games.ai"):
+        result = reading.generate_reading(CARDS, "private-question", astrology_chart=chart, on_progress=events.append)
+    assert len(calls) == 2 and result.cards[1].interpretation == reflection
+    assert result.astrology.chart == chart if chart else result.astrology is None
+    detail = next(event.retry_detail for event in events if event.stage == "retrying")
+    assert detail == "Card 2 wording didn't match the question format. Retrying without that format."
+    assert "check=question_form field=cards.1.interpretation relaxable=True" in ai_caplog.text
+    assert "private" not in repr(events) + ai_caplog.text and reflection not in ai_caplog.text
+
+
+@pytest.mark.parametrize("mode", ["ordinary", "western", "vedic", "both"])
+def test_failed_format_feedback_and_exact_relaxation_follow_next_provider(configured, monkeypatch, mode):
+    monkeypatch.setattr(configured, "tarot_provider_order", ["cloudflare", "groq"])
+    chart = None if mode == "ordinary" else synthetic_chart(mode)
+    canonical = reading.build_reading_request(CARDS, "", astrology_chart=chart)
+    def respond(request, attempt):
+        body = (grounded_envelope("cloudflare", canonical, chart) if attempt == 1
+                else qwen_envelope(canonical, chart))
+        payload = json.loads(body["choices"][0]["message"]["content"])
+        payload["card_1"]["reflection_question"] = "Consider a small possibility you might explore at your own pace."
+        body["choices"][0]["message"]["content"] = json.dumps(payload)
+        if attempt == 2:
+            context = json.loads(json.loads(request.content)["messages"][1]["content"])
+            assert request.url.host == "api.groq.com"
+            assert context["validation_feedback"]["field"] == "cards.0.interpretation"
+            assert context["validation_relaxations"] == [{"check": "question_form", "field": "cards.0.interpretation"}]
+        return httpx.Response(200, json=body)
+    calls = transport(monkeypatch, respond)
+    assert reading.generate_reading(CARDS, "", astrology_chart=chart).cards[0].interpretation.startswith("Consider")
+    assert len(calls) == 2
+
+
+def test_factual_failure_is_reported_corrected_and_never_relaxed(configured, monkeypatch):
+    monkeypatch.setattr(configured, "tarot_provider_order", ["cloudflare", "groq"])
+    canonical = reading.build_reading_request(CARDS, "")
+    def respond(request, attempt):
+        if attempt == 1:
+            body = grounded_envelope("cloudflare", canonical)
+            payload = json.loads(body["choices"][0]["message"]["content"])
+            payload["card_1"]["reference_id"] = "private-wrong-reference"
+            body["choices"][0]["message"]["content"] = json.dumps(payload)
+            return httpx.Response(200, json=body)
+        context = json.loads(json.loads(request.content)["messages"][1]["content"])
+        assert context["validation_feedback"]["check"] == "reference"
+        assert context["validation_feedback"]["action"] == "correct_complete_output"
+        assert "validation_relaxations" not in context
+        assert "private-wrong" not in json.dumps(context)
+        return httpx.Response(200, json=qwen_envelope(canonical))
+    calls = transport(monkeypatch, respond)
+    assert len(reading.generate_reading(CARDS, "").cards) == 3
+    assert len(calls) == 2

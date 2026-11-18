@@ -16,6 +16,13 @@ class ProgressEvent:
     provider: Provider | None = None
     attempt: int = 0
     max_attempts: int = 3
+    retry_detail: str | None = None
+
+    def __post_init__(self) -> None:
+        if self.retry_detail is not None and (
+            not isinstance(self.retry_detail, str) or not 1 <= len(self.retry_detail) <= 160
+        ):
+            raise ValueError("Retry detail must be a bounded server-authored message.")
 
 
 class ReadingProgress(BaseModel):
@@ -29,6 +36,9 @@ class ReadingProgress(BaseModel):
     updated_at: float = Field(ge=0, allow_inf_nan=False)
     estimated_percent: int = Field(ge=1, le=99)
     estimated_seconds_remaining: int | None = Field(default=None, ge=1)
+    retry_detail: str | None = Field(
+        default=None, min_length=1, max_length=160, exclude_if=lambda value: value is None,
+    )
 
 
 # These are rough duration priors, not measurements of a provider's hidden work.
@@ -65,6 +75,9 @@ class ProgressState(BaseModel):
     updated_at: float
     expected_finish_at: float
     percent_floor: int = 2
+    retry_detail: str | None = Field(
+        default=None, min_length=1, max_length=160, exclude_if=lambda value: value is None,
+    )
 
     @classmethod
     def begin(cls, now: float, mode: str = "ordinary") -> "ProgressState":
@@ -86,6 +99,7 @@ class ProgressState(BaseModel):
             max_attempts=self.max_attempts, started_at=self.started_at,
             updated_at=self.updated_at, estimated_percent=min(99, percent),
             estimated_seconds_remaining=max(1, round(remaining)) if remaining > 0 else None,
+            retry_detail=self.retry_detail if self.stage == "retrying" else None,
         )
 
     def advance(self, event: ProgressEvent, now: float) -> "ProgressState":
@@ -96,8 +110,14 @@ class ProgressState(BaseModel):
             finish = now + ESTIMATED_SECONDS[provider][self.mode]
         elif stage in {"checking", "saving"}:
             finish = now + (3 if stage == "checking" else 2)
+        detail = event.retry_detail if stage == "retrying" else None
+        if (event.stage == "writing" and stage == "retrying" and detail is None
+                and event.attempt == self.attempt and self.stage == "retrying"):
+            # The retry event explains the upcoming attempt; writing must retain
+            # it through polling/refresh, but a new retry never inherits stale detail.
+            detail = self.retry_detail
         return self.model_copy(update={
-            "stage": stage, "provider": provider,
+            "stage": stage, "provider": provider, "retry_detail": detail,
             "attempt": event.attempt, "max_attempts": event.max_attempts,
             "updated_at": now, "expected_finish_at": finish,
             "percent_floor": max(self.view(now).estimated_percent, FLOORS[stage]),

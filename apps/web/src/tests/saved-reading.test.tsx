@@ -56,6 +56,8 @@ it.each([
   { estimated_percent: 100 },
   { started_at: Number.NaN },
   { updated_at: Number.POSITIVE_INFINITY },
+  { retry_detail: 'x'.repeat(161) },
+  { retry_detail: '' },
 ])('rejects unsafe progress values before presentation: %j', (invalid) => {
   expect(() => mapReading({ ...generating, progress: { ...wireProgress, ...invalid } })).toThrow();
 });
@@ -89,4 +91,13 @@ it('allows only the exact read-only archive route and redacts its identity from 
   const diagnostic = proxyFailure(route, 'GET', 0, 404);
   expect(diagnostic.route).toBe('v1/readings/:match');
   expect(JSON.stringify(diagnostic)).not.toContain(id);
+});
+
+it('maps a bounded retry detail and preserves compatibility when absent or null', () => {
+  const detail = 'Card 1 wording failed its question format. Retrying without that format.';
+  const map = (retry_detail?: string | null) =>
+    mapReading({ ...generating, progress: { ...wireProgress, retry_detail } });
+  expect(map(detail).progress?.retryDetail).toBe(detail);
+  expect(map(null).progress).not.toHaveProperty('retryDetail');
+  expect(map().progress).not.toHaveProperty('retryDetail');
 });

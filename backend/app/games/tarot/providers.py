@@ -11,6 +11,7 @@ from collections.abc import Iterable
 from typing import Any
 
 from app.games.tarot.characters import find_character
+from app.games.tarot.recovery import ValidationIssue
 
 PROFILE_VERSION = "compact-reading-2"
 ALTERNATIVE_MODELS = {
@@ -66,9 +67,10 @@ not chart data."""
 class AlternativeOutputError(ValueError):
     """A fixed classification, never a provider message or rejected text."""
 
-    def __init__(self, reason: str) -> None:
+    def __init__(self, reason: str, *, issue: ValidationIssue | None = None) -> None:
         super().__init__("The alternative reading did not satisfy its contract.")
         self.reason = reason
+        self.issue = issue
 
 
 def _provider(provider: str) -> None:
