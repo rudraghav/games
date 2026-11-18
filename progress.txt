@@ -1,3 +1,35 @@
+## 2026-11-18 — Tarot mobile reliability pushed, deployed and live-verified
+
+- Application8c69c58815a88b120bb0ed9d9a31c91c69cd1482 is READY in bom1 at
+  https://games-seven-black.vercel.app (dpl_GbPYMNJHLripsUXUhruUmw6n8YWH).
+  Exact source SHA and canonical alias match. One production deployment created.
+- Real mobile ordinary reading completed with Gemini. Both astrology completed
+  through automatic Gemini→Cloudflare fallback after a temporary Gemini failure.
+  Loader showed actual stages,19–61% estimates and50–20sec remaining on fallback.
+  Two submissions consumed three transmissions (Gemini2/Cloudflare1); no browser
+  retry or further inference planned. Saved analyses/images/layouts pass320/390/
+  1440px; refresh/rematch/closure preserve output; outsider access denied.
+- Final checks: frontend262, backend7029, persistence224, tooling44, contracts and
+  75 local browser cases pass. Hosted case covers two independent real readings.
+  Full rollout logs: zero runtime warning/error/fatal and zero HTTP500+ records.
+- Added only two approved Games Cloudflare production credentials as sensitive
+  records; all26 existing records preserved. Updated provider order and CF modes;
+  all25 non-routing records preserved. Groq modes unchanged ordinary/Western.
+  No billing, model, API tier, preview or schema changes. Fresh owner account,
+  profile, seven rooms/memberships and identity fingerprints unchanged; schema
+  head a6e442b15d80,8 RLS tables and112 grants pass read-only checks.
+- Groq Vedic/Both remain gated. Cloudflare gives complete usable backups with
+  more generic, question-led prose; no claim of equal editorial depth. Earlier
+  Gemini503 tests remain recorded; this hosted ordinary success is new evidence.
+  Actual usage now Gemini86 operator attempts, alternatives58 (Groq35/CF23).
+- Cleanup: both hosted rooms closed and temporary contexts closed;59 local exact
+  closure receipts plus6 archive404 checks retained. Ten legacy local tests have
+  leave200 evidence only. Earlier43.4MB superseded captures removed; final logs,
+  screenshots and private evidence retained; services3217/8217/6105 preserved.
+  Public evidence: docs/evidence/tarot-reliability-2026-11-18/production.json.
+- Final closure is documentation only, with runtime fingerprint parity required
+  against the deployed application. No duplicate deployment for evidence updates.
+
 ## 2026-11-18 — Tarot reliability release candidate frozen
 
 - Mobile progress, all four astrology options, analyses, saved/refresh recovery,

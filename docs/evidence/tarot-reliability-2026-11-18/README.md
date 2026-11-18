@@ -105,3 +105,20 @@ Hosted acceptance is separately bounded to two submissions (ordinary and Both),
 at most six transmissions total: Gemini at most two, alternatives at most four.
 There are no browser retries or paid-plan changes. Production proof is recorded
 after the actual rollout, not inferred from these local tests or a successful push.
+
+## Production result
+
+[Production receipt](production.json) and [hosted mobile receipt](hosted.json)
+record the exact deployed application `8c69c58815a88b120bb0ed9d9a31c91c69cd1482`.
+Ordinary Tarot completed with Gemini. Combined astrology recovered automatically
+from a temporary Gemini failure through Cloudflare, with the retry provider,
+estimated percentage and time visible on the phone. Both readings retained exact
+images and private saved output across refresh, a new spread and room closure.
+
+Two submissions used three provider transmissions. Runtime warning/error/fatal
+and HTTP500+ log queries returned zero records. All seven permanent owner rooms,
+profile and identity remained unchanged; schema and grants passed read-only checks.
+The two hosted QA rooms and temporary contexts were closed. Existing development
+services and final evidence were retained; earlier cleanup removed43.4MB of
+superseded captures. Cloudflare's live analysis remains a more generic backup;
+Groq's unqualified astrology modes remain disabled.

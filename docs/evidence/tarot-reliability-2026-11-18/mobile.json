@@ -1,7 +1,7 @@
 {
   "checkedAt": "2026-11-18T15:47:04.141536+00:00",
   "scope": "Local Tarot mobile and desktop flow, saved reading, privacy, artwork rendering and generation progress",
-  "status": "passed-local; hosted reading execution pending deployment and bounded provider budget",
+  "status": "passed-local; production ordinary and Both acceptance passed in hosted.json",
   "runs": [
     {
       "browser": "Chromium",
@@ -61,7 +61,7 @@
     "actualProviderCalls": 0,
     "notProved": [
       "Provider editorial quality or live quota/latency from these constructed replies",
-      "Production deployment or production mobile behavior until the hosted suite runs"
+      "Production behavior is established separately, for the two real readings documented in hosted.json"
     ]
   },
   "imageAudit": {
@@ -94,7 +94,7 @@
     "file": "tests/browser/tarot-reading-live.spec.ts",
     "change": "Passively record real backend progress and visible stage/percentage/ETA during existing single submission per selected mode, at 390px",
     "additionalApiCalls": 0,
-    "executed": false,
+    "executed": true,
     "existingChecksPreserved": [
       "Exact selected-reference images",
       "320/390/1440 geometry",
@@ -103,7 +103,8 @@
       "Single generation submission",
       "Exact owned-room teardown"
     ],
-    "entry": "Public /games/tarot at 390px -> Start reading -> POST /v1/games/tarot/play; captures exact returned room, match and owner IDs for cleanup, without requiring a display name"
+    "entry": "Public /games/tarot at 390px -> Start reading -> POST /v1/games/tarot/play; captures exact returned room, match and owner IDs for cleanup, without requiring a display name",
+    "result": "Passed against production release 8c69c588; see hosted.json for the separate real-provider evidence and limits."
   },
   "cleanup": {
     "exactRoomReceipts": 59,
@@ -126,5 +127,6 @@
   "sourceFiles": {
     "tests/browser/tarot-astrology.spec.ts": "2fbfca610e6f2c3c7847520f0b66bf0d050bec5aa9cb9023c89648dd351648f4",
     "tests/browser/tarot-reading-live.spec.ts": "ac5ffbed8726087e69477255e9f777f10c543b7d1df532ecf59ad270bc73b69c"
-  }
+  },
+  "hostedReceipt": "docs/evidence/tarot-reliability-2026-11-18/hosted.json"
 }

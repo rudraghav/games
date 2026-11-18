@@ -1,0 +1,111 @@
+{
+  "checkedAt": "2026-11-18T16:33:13.002516+00:00",
+  "status": "pushed-deployed-live-verified",
+  "applicationSha": "8c69c58815a88b120bb0ed9d9a31c91c69cd1482",
+  "deploymentId": "dpl_GbPYMNJHLripsUXUhruUmw6n8YWH",
+  "productionUrl": "https://games-seven-black.vercel.app",
+  "region": [
+    "bom1"
+  ],
+  "ready": true,
+  "canonicalAliasMatches": true,
+  "singleDeployment": true,
+  "configuredProviderOrder": [
+    "gemini",
+    "groq",
+    "cloudflare"
+  ],
+  "enabledAlternativeModes": {
+    "groq": [
+      "ordinary",
+      "western"
+    ],
+    "cloudflare": [
+      "ordinary",
+      "western",
+      "vedic",
+      "both"
+    ]
+  },
+  "configuration": {
+    "addedSensitiveCredentialNames": [
+      "CLOUDFLARE_ACCOUNT_ID",
+      "CLOUDFLARE_API_TOKEN"
+    ],
+    "existingRecordsPreservedOnAddition": 26,
+    "routingChangedNames": [
+      "TAROT_PROVIDER_ORDER",
+      "TAROT_CLOUDFLARE_MODES"
+    ],
+    "otherRecordsPreservedOnRoutingUpdate": 25,
+    "paidSettingsChanged": false,
+    "previewChanged": false,
+    "credentialsDisclosed": false
+  },
+  "localChecks": {
+    "frontend": 262,
+    "backend": 7029,
+    "persistence": 224,
+    "tooling": 44,
+    "contracts": "passed:488 card faces,5636 portraits and reference index,27 games",
+    "browserCases": 75,
+    "frozenBackendReport": "verify-976dcbb2d0a84d3bbfe7f6e9060eab4c",
+    "stableFrontendPersistenceReport": "verify-ed154a06706341fcaacbf15f7059f6be"
+  },
+  "hosted": {
+    "modes": [
+      "ordinary",
+      "both"
+    ],
+    "submissions": 2,
+    "transmissions": {
+      "cloudflare": 1,
+      "gemini": 2
+    },
+    "automaticFallback": {
+      "gemini\u2192cloudflare": 1
+    },
+    "providerFailures": {
+      "gemini:temporary": 1
+    },
+    "additionalInferencePlanned": false,
+    "details": "hosted.json"
+  },
+  "logs": {
+    "runtimeWarningErrorFatal": 0,
+    "http500Plus": 0,
+    "complete": true
+  },
+  "preservation": {
+    "freshBeforeAfterMatch": true,
+    "permanentOwnerCounts": {
+      "profile": 1,
+      "ownedRooms": 7,
+      "memberships": 7,
+      "identities": 1
+    },
+    "schemaHead": "a6e442b15d80",
+    "schemaDrift": false,
+    "privateRlsTables": 8,
+    "grantChecksPassed": 112
+  },
+  "cleanup": {
+    "supersededBytesRemoved": 43367271,
+    "localAstrologyRoomClosureReceipts": 59,
+    "additionalArchive404Checks": 6,
+    "legacyLeave200ChecksWithoutExactClosureReceipts": 10,
+    "hostedRoomsClosed": 2,
+    "developmentServicesPreserved": [
+      3217,
+      8217,
+      6105
+    ],
+    "sourceAndPrivateEvidencePreserved": true
+  },
+  "limits": [
+    "Groq Vedic and combined modes remain hard-gated until accepted live output exists.",
+    "Cloudflare backup prose is complete but more generic and question-led than Gemini.",
+    "Unavailable services, exhausted quota and safety refusals cannot guarantee successful AI output; supported retry states remain honest.",
+    "Representative selected images and catalogue integrity were checked, not manual inspection of all5636 portraits."
+  ]
+}

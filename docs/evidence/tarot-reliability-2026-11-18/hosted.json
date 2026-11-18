@@ -1,0 +1,123 @@
+{
+  "checkedAt": "2026-11-18T16:33:45.975113+00:00",
+  "status": "passed",
+  "production": {
+    "url": "https://games-seven-black.vercel.app",
+    "sourceSha": "8c69c58815a88b120bb0ed9d9a31c91c69cd1482",
+    "deploymentId": "dpl_GbPYMNJHLripsUXUhruUmw6n8YWH",
+    "region": "bom1"
+  },
+  "browser": "Chromium",
+  "suite": "tests/browser/tarot-reading-live.spec.ts",
+  "testCasesPassed": 1,
+  "independentReadingsCompleted": 2,
+  "automaticBrowserRetries": 0,
+  "entry": "Public /games/tarot at 390px, Start reading, actual server-owned three-card selection",
+  "readings": [
+    {
+      "mode": "ordinary",
+      "status": "complete",
+      "generationSubmissions": 1,
+      "approxSecondsFromFirstVisibleLoaderToCompleteReadback": 12.5,
+      "visibleStages": ["Starting your reading.", "Writing your reading."],
+      "estimatedPercentObserved": {
+        "minimum": 19,
+        "maximum": 31
+      },
+      "estimatedTimeObserved": ["About 45 sec remaining", "About 40 sec remaining"],
+      "naturalBackendProgress": [
+        {
+          "stage": "writing",
+          "provider": "Gemini",
+          "attempt": 1
+        }
+      ],
+      "extraProgressApiCalls": 0,
+      "selectedReferenceImagesChecked": 3,
+      "sameSavedReadingAfterRefreshRematchAndClosure": true,
+      "widthsWithNoDocumentOverflow": [320, 390, 1440]
+    },
+    {
+      "mode": "both",
+      "status": "complete",
+      "generationSubmissions": 1,
+      "approxSecondsFromFirstVisibleLoaderToCompleteReadback": 36.4,
+      "visibleStages": [
+        "Starting your reading.",
+        "Finding character connections.",
+        "Retrying with Cloudflare."
+      ],
+      "estimatedPercentObserved": {
+        "minimum": 8,
+        "maximum": 61
+      },
+      "estimatedTimeObserved": [
+        "About 2 min remaining",
+        "About 50 sec remaining",
+        "About 45 sec remaining",
+        "About 40 sec remaining",
+        "About 35 sec remaining",
+        "About 30 sec remaining",
+        "About 25 sec remaining",
+        "About 20 sec remaining"
+      ],
+      "naturalBackendProgress": [
+        {
+          "stage": "matching",
+          "provider": null,
+          "attempt": 0
+        },
+        {
+          "stage": "retrying",
+          "provider": "Cloudflare",
+          "attempt": 2
+        }
+      ],
+      "extraProgressApiCalls": 0,
+      "selectedReferenceImagesChecked": 3,
+      "sameSavedReadingAfterRefreshRematchAndClosure": true,
+      "widthsWithNoDocumentOverflow": [320, 390, 1440]
+    }
+  ],
+  "actualProviderTransmissions": {
+    "source": "Release owner correlated production server logs",
+    "total": 3,
+    "gemini": 2,
+    "groq": 0,
+    "cloudflare": 1,
+    "geminiTemporaryFailures": 1,
+    "automaticCloudflareRecoverySucceeded": true,
+    "paidServicesEnabled": false
+  },
+  "checks": [
+    "Real ordinary and Both analyses completed without a manual retry or another submission",
+    "Live calculated Western and Vedic charts previewed and saved for the Both reading",
+    "Visible loader stages, estimated percentage and remaining time agreed with the UI natural GET polls",
+    "Exact registry-selected image URLs, accessible names and decoded image dimensions for all six selected references",
+    "Complete analyses and chart layouts at 320px, 390px and 1440px with no document overflow",
+    "Saved reading payload and visible text unchanged after refresh, a new spread and room closure",
+    "Another independent guest could not read either private reading; owner profile history retained both"
+  ],
+  "editorialAssessment": {
+    "ordinary": "Coherent, specific interpretations with distinct grounded and playful sections and relevant meme/character/person connections.",
+    "both": "Structurally complete, grounded in the selected card/reference/chart data, and readable. Most interpretation/connection lines are questions; some imagery and next steps are generic. This fallback is usable but less personal and actionable than the ordinary result.",
+    "limit": "Two actual outputs do not establish equal editorial quality for every model, chart combination, question or catalogue entry."
+  },
+  "imageAuditLimit": "All six references selected for these real readings were loaded and visually reviewed. No claim that every catalogue image was manually inspected.",
+  "cleanup": {
+    "ownedRooms": 2,
+    "closedRooms": 2,
+    "ownerReadbackStatus": 404,
+    "isolatedBrowserContextsClosed": 2,
+    "hostedQaRoomsRemainingActive": 0,
+    "testBrowserClosed": true,
+    "userBrowserUntouched": true
+  },
+  "evidence": {
+    "privateArtifactRoot": "output/playwright/tarot-reliability-20261118/hosted-final",
+    "log": "output/playwright/tarot-reliability-20261118/hosted-final.log",
+    "progressEvidence": "Timestamped rendered DOM frames and natural backend progress responses; no additional API polling",
+    "screenshots": "Ordinary and Both reading captures at 320px, 390px and 1440px",
+    "privacy": "Room/owner/match identifiers, reading text and questions remain only in ignored private artifacts."
+  }
+}
