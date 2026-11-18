@@ -372,6 +372,8 @@ export function AzulTable(props: TableProps) {
                 <button
                   key={color}
                   className="azul-draft-button"
+                  data-source={source}
+                  data-color={color}
                   type="button"
                   disabled={blocked || !option}
                   aria-pressed={option ? chosen : undefined}
@@ -563,7 +565,7 @@ export function AzulTable(props: TableProps) {
 
   return (
     <div className="table-layout stable-game-table modern-game">
-      <PlayerStrip {...props} playerCaption={(p) => `${p.score} points`} />
+      <PlayerStrip {...props} playerCaption={(p) => plural(p.score, 'point')} />
       <section className="azul-table" data-phase={match.phase} aria-label="Azul tile table">
         <div className="modern-game-heading">
           <div>
@@ -606,7 +608,7 @@ export function AzulTable(props: TableProps) {
                   key={preview.choice}
                   type="button"
                   className="azul-choice"
-                  data-azul-choice=""
+                  data-azul-choice={preview.choice}
                   data-overflow={preview.legal && preview.overflow > 0}
                   disabled={blocked || !preview.legal}
                   aria-label={previewName(preview)}
@@ -680,18 +682,20 @@ export function AzulTable(props: TableProps) {
                       const legal = Boolean(preview?.legal);
                       const [consequence, cost] = preview
                         ? previewFacts(preview)
-                        : [
-                            spaces ? `${spaces} ${spaces === 1 ? 'space' : 'spaces'} open` : 'full',
-                            null,
-                          ];
-                      const contents = line.length ? `${line.length} ${line[0]} tiles` : 'empty';
+                        : [spaces ? `${plural(spaces, 'space')} open` : 'full', null];
+                      const contents = line.length
+                        ? plural(line.length, `${line[0]} tile`)
+                        : 'empty';
+                      const placement = preview?.legal
+                        ? `; ${plural(preview.fits, 'tile')} ${preview.fits === 1 ? 'fits' : 'fit'}, ${preview.overflow} ${preview.overflow === 1 ? 'goes' : 'go'} to the floor${preview.overflow ? `, costing ${plural(preview.penalty, 'point')}` : ''}${preview.completes ? '; completes the line' : ''}`
+                        : '';
                       return (
                         <button
                           type="button"
                           className="azul-pattern-line"
                           key={row}
-                          data-azul-choice={own ? '' : undefined}
-                          aria-label={`Place on pattern line ${row + 1}, ${spaces} spaces available; ${contents}${legal ? `; ${preview!.fits} tiles fit, ${preview!.overflow} go to floor${preview!.overflow ? `, costing ${plural(preview!.penalty, 'point')}` : ''}${preview!.completes ? '; completes the line' : ''}` : ''}`}
+                          data-azul-choice={own ? String(row) : undefined}
+                          aria-label={`Place on pattern line ${row + 1}, ${plural(spaces, 'space')} available; ${contents}${placement}`}
                           disabled={blocked || !legal}
                           onClick={() => legal && choose(String(row))}
                         >
@@ -769,7 +773,7 @@ export function AzulTable(props: TableProps) {
                       <Button
                         size="sm"
                         variant="secondary"
-                        data-azul-choice=""
+                        data-azul-choice="floor"
                         disabled={blocked || !choiceColor || !choices.at(-1)?.legal}
                         onClick={() => choose('floor')}
                       >

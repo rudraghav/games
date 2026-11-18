@@ -19,6 +19,7 @@ export type PicturePiece =
     }
   | { kind: 'pit'; seeds: number; store: boolean }
   | { kind: 'property'; color: string; name: string; value: string }
+  | { kind: 'rank-chip'; rank: number; color: 'white' | 'yellow' | 'orange' | 'red' }
   | { kind: 'word'; word: string; revealed: boolean }
   | {
       kind: 'icon';
@@ -38,6 +39,7 @@ export type PicturePiece =
         | 'arrow';
       label: string;
     }
+  | { kind: 'full-number-row'; numbers: [number, number, number, number, number, number] }
   | { kind: 'number'; value: number; horns: number }
   | { kind: 'board'; rows: string[]; checkered: boolean };
 
@@ -71,7 +73,7 @@ export const flip = (value: string): PicturePiece => ({
   kind: 'card',
   family: 'flip',
   value,
-  color: 'coral',
+  color: 'yellow',
   suit: '✦',
 });
 export const back: PicturePiece = { kind: 'back' };
@@ -80,6 +82,10 @@ export const token = (
   color: Extract<PicturePiece, { kind: 'token' }>['color'],
   label?: string,
 ): PicturePiece => ({ kind: 'token', color, label });
+export const rankChip = (
+  rank: number,
+  color: Extract<PicturePiece, { kind: 'rank-chip' }>['color'],
+): PicturePiece => ({ kind: 'rank-chip', rank, color });
 export const cat = (grown: boolean): PicturePiece => ({ kind: 'cat', grown });
 export const tile = (color: string): PicturePiece => ({ kind: 'tile', color });
 export const gem = (color: string): PicturePiece => ({ kind: 'gem', color });
@@ -109,7 +115,7 @@ export const number = (value: number, horns = 1): PicturePiece => ({
   value,
   horns,
 });
-/** Board cutaways use r/g for coral/gold, b/w for ink/ivory, and . for an empty cell. */
+/** Board cutaways use r/g for coral/gold, b/w for ink/ivory, k/K for coral/blue kittens, and . for empty. */
 export const board = (rows: string[], checkered = false): PicturePiece => ({
   kind: 'board',
   rows,

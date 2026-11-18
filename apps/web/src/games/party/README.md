@@ -9,7 +9,8 @@ for this tab only), scoped to the room, match, mode, round and player. Another
 player's same-round submission preserves the draft, and so does a refresh. Lock
 in does not clear it: the choice stays selected ("Saving: …") until the saved
 round shows it as locked in, and stays selected if the save fails or is
-rejected as stale, so the player can simply press Lock in again. If the same
+rejected as stale. If another seat acts while the lock is being sent, the
+decision dock names the retained choice and asks the player to lock it in again. If the same
 identity commits in another tab, the authoritative locked state is shown. A
 later round cannot reuse the old draft, even when another tab advances the
 prompt or the spotlight rotates back to that player. Only the viewer's own

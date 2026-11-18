@@ -186,6 +186,7 @@ export function GangTable(props: TableProps) {
                       key={rank}
                       type="button"
                       className="gang-chip-choice"
+                      data-rank={rank}
                       data-own={holder === selfId || undefined}
                       data-held={Boolean(holder) || undefined}
                       aria-label={`${move ? (review ? 'Review ' : 'Take ') : ''}${rank}-star chip ${location}`}

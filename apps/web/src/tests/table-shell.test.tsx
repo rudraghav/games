@@ -142,8 +142,68 @@ describe('Last move line', () => {
       'You played: Red 7',
     );
   });
+  it('names the Sea Salt discard while the card kept in hand stays private', () => {
+    const keep = {
+      ...move,
+      type: 'keep',
+      actorId: selfId,
+      targets: [],
+      label: 'Kept one and discarded the other',
+      cards: [{ ...move.cards[0], label: 'Shark · Green' }],
+    };
+    expect(describeMove({ ...room, gameId: 'sea-salt-paper' }, keep, selfId)).toBe(
+      'You kept a card and discarded Shark · Green',
+    );
+  });
   it('reads a table-wide event as its own sentence', () => {
     const reveal = { ...move, label: 'Everyone’s numbers were revealed', targets: [] };
     expect(describeMove(room, reveal, selfId)).toBe('Everyone’s numbers were revealed: Red 7');
+  });
+  it('names the Flip 7 recipient before describing the faces revealed by the effect', () => {
+    const effect = { ...move, type: 'target_effect', label: 'Gave Flip Three' };
+    expect(describeMove({ ...room, gameId: 'flip-7' }, effect, selfId)).toBe(
+      `${other.name} gave Flip Three → you · Cards revealed: Red 7`,
+    );
+  });
+  it('renders a single tile accurately in an older saved Azul draft', () => {
+    const draft = {
+      ...move,
+      type: 'draft_tiles',
+      label: 'Drafted 1 tiles',
+      cards: [],
+      targets: [],
+    };
+    expect(describeMove({ ...room, gameId: 'azul' }, draft, selfId)).toBe(
+      `${other.name} drafted 1 tile`,
+    );
+  });
+  it('distinguishes the chips put in from the cards subsequently revealed', () => {
+    const poker = { ...room, gameId: 'holdem' };
+    const action = {
+      ...move,
+      actorId: selfId,
+      type: 'raise',
+      label: 'Raised with',
+      amount: 8,
+      targets: [],
+    };
+    expect(describeMove(poker, action, selfId)).toBe(
+      'You put in 8 chips to raise · Cards revealed: Red 7',
+    );
+    expect(
+      describeMove(
+        poker,
+        { ...action, type: 'call', label: 'Called', amount: 1, cards: [] },
+        selfId,
+      ),
+    ).toBe('You called 1 chip');
+  });
+  it('describes the viewer seeing their own Teen Patti cards without revealing faces', () => {
+    const patti = { ...room, gameId: 'teen-patti' };
+    const look = { ...move, type: 'peek', label: 'Looked at their cards', cards: [], targets: [] };
+    expect(describeMove(patti, look, selfId)).toBe(`${other.name} looked at their cards`);
+    expect(describeMove(patti, { ...look, actorId: selfId }, selfId)).toBe(
+      'You looked at your cards',
+    );
   });
 });

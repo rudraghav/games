@@ -277,10 +277,16 @@ def public_move(
         cards = [card for key, card in new.items() if old.get(key) != card]
         count = len(cards)
         label = "Everyone’s numbers were revealed"
+    if group == "flip-7" and kind == "target_effect":
+        effect_name = before.detail.get("pending_card")
+        if effect_name in ("Freeze", "Flip Three", "Second Chance") and all(
+            view.detail.get("pending_card") == effect_name for view in before_views.values()
+        ):
+            label = f"Gave {effect_name}"
     if group == "azul" and kind == "draft_tiles":
         draft = after.detail.get("draft")
         if isinstance(draft, list) and all(view.detail.get("draft") == draft for view in after_views.values()):
-            label = f"Drafted {len(draft)} tiles"
+            label = f"Drafted {len(draft)} {'tile' if len(draft) == 1 else 'tiles'}"
     if group == "gem-market":
         colors = action.choice.split(",")
         if kind == "take" and colors and all(color in GEM_RESOURCES for color in colors):

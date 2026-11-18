@@ -14,6 +14,7 @@ import {
   picture,
   pit,
   property,
+  rankChip,
   tarot,
   tile,
   token,
@@ -50,7 +51,7 @@ const unoCall = rule(
 );
 const unoMoves = {
   play: 'A matching colour, number or symbol makes a card playable. A wild can change the colour.',
-  draw: 'Drawing takes a card from the stock. If the new card is playable, you can play it this turn.',
+  draw: 'An ordinary draw takes one card. Taking a draw penalty instead adds the penalty cards and passes the turn.',
   uno: 'Calling UNO protects a one-card hand until the next ordinary move.',
   catch_uno: 'Catching a player who missed their UNO call gives that player a draw penalty.',
   choose: 'The chosen colour determines what can be played next.',
@@ -108,8 +109,8 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       unoMatch,
       rule(
         'Use the draw pile',
-        'If you cannot match, draw one. You may play that card immediately if it fits. A Skip makes the next player miss a turn.',
-        picture('The draw pile and a red Skip card.', back, uno('Skip', 'red')),
+        'Draw one card. If you draw a red 4 while red is in play, you can play that 4 immediately or pass. Only the newly drawn card can be played this turn.',
+        picture('A red 4 is drawn from the stock.', back, arrow, uno('4', 'red')),
       ),
       unoCall,
     ],
@@ -142,10 +143,10 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     ],
     actions: {
       ...unoMoves,
-      draw: 'Without a playable card you draw until you find one, unless your hand reaches the 25-card limit.',
+      draw: 'Ordinary draws continue until a match. A draw penalty makes you take the accumulated cards and pass. Reaching 25 cards puts you out.',
       play: 'Match the discard or play a wild. Against a draw stack, only an equal or higher draw value can pass it on.',
       choose:
-        'During colour roulette, reveal until a non-wild of the chosen colour appears. That colour stays in play.',
+        'The selected colour becomes active. In colour roulette, the player draws until a non-wild of that colour appears or they reach 25 cards.',
     },
   },
   deal: {
@@ -405,7 +406,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       ),
       rule(
         'Ask for your reading',
-        'After the third pick you can add a question, include astrology, or go straight to a reading. The cards offer prompts for reflection.',
+        'After the third pick, you can add a question, include astrology, or request a reading with just your cards. The cards offer prompts for reflection.',
         picture(
           'A chosen card and a personal question inform the reading.',
           tarot('major-01', 'The Magician'),
@@ -427,7 +428,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       ),
       rule(
         'Spot a threat',
-        'Three connected discs and an open fourth space can win on the next move. Drop your disc there first to block an opponent.',
+        'Check where a disc would land. If that square would give the other player four in a row, drop there to block.',
         picture('A coral disc blocks the open end of three gold discs.', board(['....', 'gggr'])),
       ),
       rule(
@@ -445,7 +446,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     rules: [
       rule(
         'Bracket a line',
-        'Place a disc so that an unbroken line of opposing discs sits between the new disc and one of yours.',
+        'Tap a marked square to preview which opposing discs it traps against one of yours. Tap the same square again to place and flip them.',
         picture(
           'Black can play the empty square beside the white disc because black anchors the far end.',
           board(['.wb']),
@@ -477,16 +478,17 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     rules: [
       rule(
         'Link words with one clue',
-        'The spymaster sees a secret key. Give one word and a number for how many of your agents it links. “Space, 2” could point to Moon and Orbit.',
+        'The spymaster sees a secret key. Give one word and a number for how many of your agents it links. “Space, 2” could link Moon and Comet.',
         picture(
-          'The clue Space, two links the board words Moon and Orbit.',
+          'The clue Space, two, links Moon and Comet.',
+          icon('message', 'Space · 2'),
           word('Moon'),
-          word('Orbit'),
+          word('Comet'),
         ),
       ),
       rule(
         'Guess together',
-        'Your team sees the words. Guessing your own agent keeps the turn alive. You may use up to the clue number plus one guess, or stop early.',
+        'Make at least one guess. After a friendly agent, stop or keep guessing, up to the clue number plus one.',
         picture('Moon revealed as a friendly agent.', word('Moon', true), icon('check', 'Agent')),
       ),
       rule(
@@ -501,7 +503,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       ),
     ],
     actions: {
-      clue: 'The one-word clue links the stated number of agents. Teammates may make up to one extra guess.',
+      clue: 'Give one word and the number of agents it links. Your team must guess once and may take one extra guess beyond that number.',
       guess:
         'A friendly agent lets the team continue within its guess limit. A bystander or enemy ends the turn, and the assassin ends the game.',
       end_guesses: 'Ending guesses passes the turn and leaves unrevealed words for later.',
@@ -512,7 +514,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     rules: [
       rule(
         'Collect your colours',
-        'Take three different available colours, or take two of one colour when its supply holds at least four. You may keep up to ten gems.',
+        'Take three different colours, or one of each available colour if fewer than three remain. You can take two alike when at least four of that colour remain. Return any gems over ten.',
         picture(
           'A ruby, emerald and sapphire are three different gems.',
           gem('ruby'),
@@ -598,7 +600,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     rules: [
       rule(
         'Sow one seed per pit',
-        'Pick a nonempty pit on your side. Lift all its seeds and place them one by one counterclockwise, including your store and skipping the opposite store.',
+        'Tap one of your nonempty pits to see where its last seed lands. Tap again to sow one seed per pit counterclockwise, including your store and skipping theirs.',
         picture(
           'Three lifted seeds are sown one each into the next three pits.',
           pit(1),
@@ -608,7 +610,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       ),
       rule(
         'Land in your store',
-        'If your last seed lands in your store, play again. Look for a pit whose count takes you exactly there.',
+        'Count the steps to your store. If your last seed lands there and neither side is empty, you sow again.',
         picture('A last seed lands in your store for another turn.', pit(1), arrow, pit(1, true)),
       ),
       rule(
@@ -697,7 +699,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     rules: [
       rule(
         'Take one colour',
-        'Take every tile of one colour from one factory or the centre. Tiles left in a factory slide into the centre.',
+        'Tap a colour in a factory or the centre to preview all its matching tiles. Choose a destination to commit. Tiles left in that factory slide into the centre.',
         picture(
           'Two matching blue ceramic tiles can be taken together.',
           tile('blue'),
@@ -730,7 +732,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       draft_tiles:
         'Draft all tiles of the chosen colour from one source. Leaving tiles in a factory sends those tiles to the centre.',
       place_tiles:
-        'The draft goes into one eligible pattern line. Overflow lands on the floor and costs points.',
+        'Choose one compatible pattern line or the floor. Tiles that do not fit go to the floor. Filled floor spaces cost points at round end.',
       next_round:
         'Completed pattern lines have scored on the wall. Unfinished lines stay for the next round.',
     },
@@ -740,7 +742,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     rules: [
       rule(
         'Read your spotlight prompt',
-        'One player gets the spotlight. Read the prompt aloud and decide whether to share, chill or pass. Spoken answers stay off the game record.',
+        'One player gets the spotlight. Read the prompt aloud and choose Spill, Chill or Pass. Spoken answers stay off the game record.',
         picture(
           'The spotlight passes one prompt to a player.',
           icon('message', 'Prompt'),
@@ -749,11 +751,11 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
         ),
       ),
       rule(
-        'Share or chill',
-        'Share and Chill each earn one participation point. Only the button choice is recorded. The spotlight player advances the round.',
+        'Spill or Chill',
+        'Spill and Chill each earn one participation point. Only the button choice is recorded. The spotlight player advances the round.',
         picture(
           'Either participation choice earns one point.',
-          icon('message', 'Share'),
+          icon('message', 'Spill'),
           icon('check', 'Chill'),
           icon('star', '+1'),
         ),
@@ -762,7 +764,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     ],
     actions: {
       respond:
-        'Share and Chill each earn one participation point. Pass earns zero. Your spoken answer is never recorded.',
+        'Spill and Chill each earn one participation point. Pass earns zero. Your spoken answer is never recorded.',
       next_prompt: nextPrompt,
     },
   },
@@ -854,19 +856,19 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
         'Rank your hand together',
         'You share a goal, but keep your pocket cards private. Take a star chip to show how strong you think your hand is compared with the others. One star is weakest.',
         picture(
-          'One-star and three-star chips show relative hand strength.',
-          token('poker', '★'),
-          token('poker', '★★★'),
+          'White one-star and three-star chips rank the opening hands.',
+          rankChip(1, 'white'),
+          rankChip(3, 'white'),
         ),
       ),
       rule(
         'Revise after each reveal',
-        'The flop, turn and river change everyone’s best poker hand. Change, take or return the current chips. As soon as everyone has one, that street ends.',
+        'Rank with white chips before the flop, yellow on the flop, orange on the turn and red on the river. You can change or return a chip until everyone holds one.',
         picture(
-          'A new community card can change your chip choice.',
-          face('A', '♥'),
+          'The flop brings a new estimate with a yellow two-star chip.',
+          icon('eye', 'Flop'),
           arrow,
-          token('poker', '★★'),
+          rankChip(2, 'yellow'),
         ),
       ),
       rule(
@@ -908,12 +910,10 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       ),
       rule(
         'Avoid the sixth spot',
-        'If your number would be sixth in a row, take its five cards as penalties. Your played card becomes the new starter. Bullheads give each card its penalty value.',
+        'The dashed 7 is the sixth card. Take the five cards before it and count their bullheads as penalties. The 7 stays as the new starter.',
         picture(
-          'The 55 card alone carries seven penalty points.',
-          number(55, 7),
-          arrow,
-          icon('flag', '7 points'),
+          'The full row holds 1, 2, 3, 4 and 6. Playing 7 after 6 takes those five cards and leaves 7 alone.',
+          {kind: 'full-number-row', numbers: [1, 2, 3, 4, 6, 7]},
         ),
       ),
     ],
@@ -932,7 +932,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     rules: [
       rule(
         'Take a card',
-        'Take the top of either discard pile. Or draw two from the stock, keep one privately and put the other on a discard pile.',
+        'Take a visible discard, or draw two from the stock. Choose one to keep. If a discard pile is empty, the other card must go there.',
         picture(
           'Two cards drawn from stock leave one card in hand.',
           back,
@@ -965,8 +965,8 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     ],
     actions: {
       take_discard: 'Take the publicly visible top card of the chosen discard pile.',
-      take_stock: 'Draw two privately, then keep one and choose a discard pile for the other.',
-      keep: 'The chosen card joins your private hand and the other goes face up on the chosen discard pile.',
+      take_stock: 'With two stock cards, choose one to keep and a legal pile for the other. An empty discard pile must be filled first. A lone stock card goes straight into your hand.',
+      keep: 'Your kept card stays private. The other goes face up on the selected discard pile.',
       pair: 'A legal duo leaves your hand, scores on the table and activates its pictured effect.',
       inspect: 'The crab duo lets you inspect one discard pile and take a card from it.',
       take_inspected: 'Take one card from the pile you inspected with your crabs.',
@@ -985,7 +985,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       rule(
         'Place and push',
         'Place a kitten or cat on an empty square. Adjacent pieces it can push move one space away. An occupied landing square blocks a push. Kittens cannot push adult cats.',
-        picture('A kitten boops an adjacent kitten one space away.', cat(false), arrow, cat(false)),
+        picture('The blue kitten starts in the middle. Placing coral on its left pushes blue one square to the right.', board(['.K.']), arrow, board(['k.K'])),
       ),
       rule(
         'Grow your kittens',

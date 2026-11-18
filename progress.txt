@@ -1,3 +1,22 @@
+## 2026-11-19 — Mobile tutorial playthroughs
+
+- Play at least four learner decisions in each tutorial, or complete a shorter
+  game or spread. Use the same mobile controls as a player, inspect the pictured
+  examples and compare each hint and saved result with the table.
+- Keep the public examples distinct from live choices, preserve ordinary play
+  and privacy, and close isolated test rooms after checking later steps.
+  Verify locally, then validate the pushed release on production phones.
+- All 27 local mobile tutorials advanced beyond their opening move. The formal
+  Chromium and small-screen WebKit runs recorded 186 learner decisions and 198
+  saved actions across 35 closed rooms. Additional hands exercised a six-move
+  Teen Patti sequence and Blackjack insurance and splitting. Tarot finished all
+  three picks and returned to the spread without generating a reading.
+- Corrected card, board and casino hints against the legal choices on the table,
+  preserved the learner's last action as bots respond, and aligned examples for
+  Boop, Six Nimmt, Word Agents and The Gang with the pieces and controls in play.
+  Simultaneous party votes preserve the selection for explicit confirmation.
+  Screenshot review also caught single-tile, point and Flip 7 reveal wording.
+
 ## 2026-11-19 — Optional rulebook tutorials live
 
 - Main application e2bfd2420671803f89855fbfa8af9b4882c35c3e is live at

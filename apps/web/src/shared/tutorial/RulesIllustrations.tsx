@@ -114,6 +114,15 @@ function PicturePieceView({ item }: { item: PicturePiece }) {
           <AzulTileArt color={item.color} />
         </span>
       );
+    case 'rank-chip':
+      return (
+        <span className="gang-chip-rack lesson-rank-chip" data-chip-color={item.color}>
+          <span className="gang-rank-chip">
+            <Star size={15} />
+            {item.rank}
+          </span>
+        </span>
+      );
     case 'cat':
       return (
         <BoopPiece
@@ -170,6 +179,14 @@ function PicturePieceView({ item }: { item: PicturePiece }) {
         </span>
       );
     }
+    case 'full-number-row':
+      return (
+        <span className="lesson-number-run">
+          {item.numbers.map((value) => (
+            <span key={value}>{value}</span>
+          ))}
+        </span>
+      );
     case 'board':
       return (
         <span
@@ -185,6 +202,13 @@ function PicturePieceView({ item }: { item: PicturePiece }) {
                 data-dark={(x + y) % 2 === 0 || undefined}
               >
                 {discs[value] && <TokenArt kind={discs[value]} />}
+                {(value === 'k' || value === 'K') && (
+                  <BoopPiece
+                    kind="kitten"
+                    color={value === 'k' ? 'coral' : 'blue'}
+                    label="Kitten"
+                  />
+                )}
               </span>
             )),
           )}

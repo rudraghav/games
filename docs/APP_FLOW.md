@@ -117,8 +117,10 @@ Tarot spread with coaching enabled for that match and player. In an active solo
 or bot-only game, the host can switch coaching on and off in the rulebook without
 losing a turn or starting a second game. Players can follow
 a named move or use the normal card, board and private-choice controls. The coach
-explains confirmed moves, names the responding bot, and keeps a short tip available
-on long tables. Closing the guide preserves the match. In Tarot the player chooses
+explains the learner's confirmed move alongside the public bot reply. On long
+tables the floating tip follows the next available choice. The card, board
+preview or stake on the table supplies the context for the hint. Closing the
+guide preserves the match. In Tarot the player chooses
 all three cards and decides separately whether to request a reading.
 
 Party decisions use select → lock → wait for friends → reveal → next prompt.

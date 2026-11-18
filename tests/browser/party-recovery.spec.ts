@@ -158,7 +158,26 @@ test('party drafts survive same-prompt updates but never carry into a new prompt
       await draft.click();
       await expect(draft).toHaveAttribute('aria-pressed', 'true');
       const versionBeforeInspect = (await roomAs(page, roomId)).match_version;
-      if (mode !== 'spill-or-chill') await submit(friends[0], /^Pass/);
+      if (mode !== 'spill-or-chill') {
+        // Hold the host's first lock in transit until a friend has locked on
+        // that version. The server rejects the old write; the choice stays editable.
+        const path = `**/rooms/${roomId}/actions`;
+        await page.route(
+          path,
+          async (route) => {
+            await submit(friends[0], /^Pass/);
+            await route.continue();
+          },
+          { times: 1 },
+        );
+        const staleLock = page.waitForResponse(
+          (r) => r.request().method() === 'POST' && r.url().endsWith(`/rooms/${roomId}/actions`),
+        );
+        await page.locator('.party-commit').click();
+        expect((await staleLock).status()).toBe(409);
+        await expect(page.locator('.party-decisions')).toContainText('Lock it in again.');
+        expect(partyDetails((await roomAs(page, roomId)).game!.detail).ownChoice).toBeNull();
+      }
       await receiveLatest(page);
       if (mode !== 'spill-or-chill')
         await expect(page.locator('.party-decisions')).toContainText('1 of 3 locked in');

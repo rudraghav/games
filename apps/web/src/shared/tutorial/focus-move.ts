@@ -10,8 +10,25 @@ export function focusMove(table: HTMLElement, match: Match, option: ActionOption
   const { value } = option;
   let target: HTMLElement | undefined = buttons.find((button) => label(button) === option.label);
   if (!target && match.id === 'checkers' && value.type === 'move') {
-    const source = value.choice?.split(':')[0];
-    target = buttons.find((button) => button.dataset.cell === source);
+    const [source, end] = value.choice.split(':');
+    const piece = buttons.find((button) => button.dataset.cell === source);
+    target =
+      piece?.getAttribute('aria-pressed') === 'true'
+        ? (buttons.find((button) => button.dataset.cell === end) ?? piece)
+        : piece;
+  }
+  if (!target && match.id === 'mancala' && value.type === 'sow') {
+    target = buttons.find((button) => label(button).startsWith(option.label + ' · '));
+  }
+  if (!target && match.id === 'six-nimmt' && value.type === 'take_row') {
+    target = buttons.find((button) => button.dataset.row === value.choice);
+  }
+  if (!target && match.id === 'azul') {
+    target = buttons.find((button) =>
+      value.type === 'draft_tiles'
+        ? button.dataset.source === value.choice && button.dataset.color === value.color
+        : value.type === 'place_tiles' && button.dataset.azulChoice === value.choice,
+    );
   }
   if (!target && match.id === 'tarot') {
     target = buttons.find((button) => label(button).startsWith('Face-down card '));
@@ -27,10 +44,26 @@ export function focusMove(table: HTMLElement, match: Match, option: ActionOption
       );
     }
   }
+  if (!target && match.id === 'word-agents' && value.type === 'clue') {
+    target = table.querySelector<HTMLInputElement>('.clue-form input:not(:disabled)') ?? undefined;
+  }
+  if (!target && ['spill-or-chill', 'hot-seat', 'most-likely'].includes(match.id)) {
+    target = buttons.find((button) => button.classList.contains('party-choice'));
+  }
+  if (!target && match.id === 'the-gang' && value.type === 'claim_chip') {
+    target = buttons.find(
+      (button) =>
+        button.classList.contains('gang-chip-choice') &&
+        button.dataset.rank === String(value.amount),
+    );
+  }
   if (!target && option.input === 'amount') {
     target = Array.from(
       table.querySelectorAll<HTMLInputElement>('input[type="number"]:not(:disabled)'),
     ).find((input) => input.getClientRects().length && !input.closest('[inert]'));
+  }
+  if (!target && match.id === 'teen-patti' && value.type === 'bet') {
+    target = buttons.find((button) => button.closest('.casino-choice[data-action="bet"]'));
   }
   const destination = target ?? table;
   destination.scrollIntoView({ block: target ? 'center' : 'start', inline: 'nearest' });

@@ -84,6 +84,18 @@
   font-size: 0.9rem;
   line-height: 1.45;
 }
+.lesson-pieces .lesson-rank-chip {
+  display: inline-grid;
+  grid-template-columns: auto;
+  margin: 0;
+}
+.lesson-rank-chip .gang-rank-chip {
+  width: var(--unit);
+  height: var(--unit);
+  gap: 1px;
+  border-width: 2px;
+  font-size: 14px;
+}
 .lesson-picture {
   container-type: inline-size;
   display: grid;
@@ -220,6 +232,15 @@
   padding: 6px;
   font-size: clamp(11px, 6cqi, 16px);
 }
+.lesson-pieces:has(> .word-tile + .word-tile) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.lesson-pieces:has(> .word-tile + .word-tile) > .lesson-symbol {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+}
 .lesson-number {
   position: relative;
   display: grid;
@@ -289,9 +310,33 @@
 .lesson-board[data-checkered] .lesson-square[data-dark] {
   background: #b9aa94;
 }
+.lesson-number-run {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 2px;
+  width: min(100%, 11rem);
+}
+.lesson-number-run > span {
+  text-align: center;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-white);
+  color: var(--color-ink);
+  padding-block: 5px;
+  font-weight: 650;
+  font-size: clamp(12px, 9cqi, 18px);
+}
+.lesson-number-run > span:last-child {
+  border: 2px dashed var(--color-pine);
+  background: var(--color-surface);
+}
+.lesson-square .boop-piece,
 .lesson-square .token-art {
   width: 91%;
   height: 91%;
+}
+.lesson-pieces:has(.lesson-square .boop-piece) .lesson-square {
+  width: clamp(13px, 13cqi, 32px);
 }
 @container (max-width: 610px) {
   .illustrated-rules-grid {
@@ -327,5 +372,12 @@
     grid-column: 2;
     grid-row: 1;
     min-height: 64px;
+  }
+  .illustrated-rule:has(.lesson-square .boop-piece) .lesson-picture {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .illustrated-rule:has(.lesson-square .boop-piece) h3 {
+    grid-column: 1 / -1;
   }
 }

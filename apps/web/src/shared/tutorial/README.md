@@ -19,4 +19,13 @@ availability, failed saves, paused tables, bot recovery and spectator privacy
 follow normal play. Local guide preferences contain match/player identifiers
 and progress only. Reading generation is always the player's explicit choice.
 
-Verify through the frontend group and `tests/browser/guided-play.spec.ts`.
+The floating hint names the current decision. The full coach shows the learner's
+confirmed action and any subsequent public bot reply. Azul counts a chosen offer
+and its destination as one guided decision. Card and board hints use the same
+authorized card effects, discard analysis and move previews as the table.
+
+Verify guide enrollment and persistence with `tests/browser/guided-play.spec.ts`.
+The phone suite in `tests/browser/tutorial-depth.spec.ts` opens the rulebook and
+plays multiple decisions per game. It compares the live suggestion with legal
+options and the feedback with the saved move, then exits the guide and closes
+the test room. Screenshots and private projections stay in local test output.

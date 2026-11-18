@@ -23,8 +23,8 @@ in results. Rematch uses a new shuffled match through the ordinary room flow.
 
 ## Spill or Chill
 
-A rotating spotlight player sees an open conversation prompt. Choose **Share**
-after answering aloud, **Chill** to decline answering, or **Pass** to skip. Share
+A rotating spotlight player sees an open conversation prompt. Choose **Spill**
+after answering aloud, **Chill** to decline answering, or **Pass** to skip. Spill
 and Chill both earn one participation point; Pass earns zero. Sharing is not
 recorded as text or evaluated by AI. The choice is public after submission.
 Any optional sip suggestion is a social extra and never a required action.

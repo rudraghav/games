@@ -5,6 +5,7 @@ import { mapRoom } from '@games/api-client/mappers';
 import { fixtures } from '@/stories/generated/rooms';
 import { midgameScenarios } from '@/stories/generated/midgame-scenarios';
 import { fourDrop } from '@/shared/tutorial/four-drop';
+import { casinoDirection } from '@/shared/tutorial/casino-direction';
 import { tutorialLessons } from '@/shared/tutorial/lessons';
 import { TurnCoach } from '@/shared/tutorial/TurnCoach';
 import {
@@ -117,6 +118,56 @@ describe('Guided practice uses the actual saved game', () => {
       games.add(match.id);
     }
     expect(games.size).toBe(27);
+  });
+
+  it('counts a complete Azul placement once when draft and placement save separately', () => {
+    const room = mapRoom(fixture('azul').room);
+    const self = room.ownerId;
+    room.activity = [event(self, 1, 'draft_tiles', 'Drafted two tiles')];
+    room.matchVersion = 1;
+    const partial = advancePractice(beginPractice(0), room, self);
+    expect(partial.moves).toBe(0);
+    room.activity.push(event(self, 2, 'place_tiles', 'Placed two tiles'));
+    room.matchVersion = 2;
+    const placed = advancePractice(partial, room, self);
+    expect(placed.moves).toBe(1);
+    expect(advancePractice({ ...placed, moves: 2 }, room, self)).toEqual(placed);
+    expect(advancePractice(placed, room, self)).toBe(placed);
+  });
+
+  it('teaches a safe blackjack hit from the active split hand and uses the offered wager limits', () => {
+    const room = mapRoom(fixture('blackjack').room);
+    const match = room.game!;
+    const base = mapRoom(fixture('four-in-a-row').room).game!.actions[0];
+    const stand = { ...base, value: { ...base.value, type: 'stand' }, label: 'Stand' };
+    const hit = { ...base, value: { ...base.value, type: 'hit' }, label: 'Hit' };
+    const hand = (ranks: string[]) => ({
+      bet: 2,
+      cards: ranks.map((value, index) => ({ id: 'c' + index, label: value, value })),
+    });
+    const split = {
+      ...match,
+      actions: [stand, hit],
+      detail: {
+        dealer_hidden: true,
+        hand_index: 1,
+        active_hand_index: 1,
+        hands: [hand(['10', 'Q']), hand(['3', '6'])],
+      },
+    };
+    expect(casinoDirection(split, stand, room.ownerId)).toMatchObject({
+      option: hit,
+      tip: expect.stringContaining('totals 9'),
+    });
+    expect(
+      casinoDirection(
+        { ...split, detail: { ...split.detail, active_hand_index: 0 } },
+        stand,
+        room.ownerId,
+      )?.tip,
+    ).toContain('your 20');
+    const wager = { ...stand, input: 'amount' as const, minimum: 2, maximum: 8, step: 2 };
+    expect(casinoDirection(match, wager, room.ownerId)?.tip).toContain('2–8 chips');
   });
 
   it('teaches the goal, offers a complete board move and pauses controls when saving or offline', () => {

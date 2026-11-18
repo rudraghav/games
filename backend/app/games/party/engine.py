@@ -31,8 +31,8 @@ class PartyEngine(BaseEngine):
         name, subtitle, color = META[mode]
         mode_rules = {
             "spill-or-chill": [
-                "The spotlight player answers aloud and chooses Share, Chill or Pass.",
-                "Share and Chill both earn one participation point. Pass earns zero.",
+                "The spotlight player answers aloud and chooses Spill, Chill or Pass.",
+                "Spill and Chill both earn one participation point. Pass earns zero.",
                 "No answers are recorded. The most participation points wins.",
             ],
             "most-likely": [
@@ -98,7 +98,7 @@ class PartyEngine(BaseEngine):
         if player not in self._eligible(s) or player in s["decisions"]:
             return []
         if self.mode == "spill-or-chill":
-            return [legal("Share · I answered aloud", "respond", choice="share"),
+            return [legal("Spill · I answered aloud", "respond", choice="share"),
                     legal("Chill · keep this one to myself", "respond", choice="chill"),
                     legal("Pass", "respond", choice="pass")]
         if self.mode == "most-likely":

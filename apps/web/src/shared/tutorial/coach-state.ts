@@ -35,14 +35,26 @@ export function advancePractice(
   selfId: string,
 ): PracticeProgress {
   const through = room.matchVersion ?? progress.through;
-  if (through <= progress.through) return progress;
+  if (through < progress.through) return progress;
+  // Azul saves the chosen offer and its destination together. Recount from
+  // enrollment when history still covers it, including guides saved before this change.
+  const azul = room.gameId === 'azul';
+  const recount = azul && (room.activity[0]?.version ?? Infinity) <= progress.start + 1;
+  if (!recount && through === progress.through) return progress;
+  const since = recount ? progress.start : progress.through;
   const committed = room.activity.filter(
-    (move) => move.actorId === selfId && move.version > progress.through && move.version <= through,
+    (move) =>
+      move.actorId === selfId &&
+      move.version > since &&
+      move.version <= through &&
+      !(azul && move.type === 'draft_tiles'),
   );
+  const moves = (recount ? 0 : progress.moves) + committed.length;
+  if (moves === progress.moves && through === progress.through) return progress;
   return {
     ...progress,
     through,
-    moves: progress.moves + committed.length,
+    moves,
   };
 }
 

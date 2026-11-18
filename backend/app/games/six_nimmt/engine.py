@@ -72,7 +72,12 @@ class SixNimmtEngine(BaseEngine):
         if player != s["order"][s["turn"]]:
             return []
         if s["phase"] == "take_row":
-            return [legal(f"Take row {i + 1} · {sum(map(penalty, row))} penalties", "take_row", choice=str(i)) for i, row in enumerate(s["rows"])]
+            options = []
+            for index, row in enumerate(s["rows"]):
+                points = sum(map(penalty, row))
+                label = f"Take row {index + 1} · {points} {'penalty' if points == 1 else 'penalties'}"
+                options.append(legal(label, "take_row", choice=str(index)))
+            return options
         return [legal("Next round", "next_round")] if s["phase"] == "round_over" else [legal("Next selection", "next_selection")]
 
     def _take(self, s: State, player: str, row: int, card: int, kind: str) -> None:

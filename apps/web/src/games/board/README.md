@@ -42,3 +42,7 @@ rail scrolls to keyboard focus immediately and reveals a tapped edge square
 after its action runs. A horizontal swipe moves the board without playing.
 `apps/web/src/tests/board-perspective.test.tsx` covers seat-specific copy,
 rotation and auto-selection.
+
+The tutorial reads the same public flip and sowing previews as the board. Its
+Mancala shortcut focuses the named pit; a Checkers shortcut points to the
+destination when the required piece is already selected.

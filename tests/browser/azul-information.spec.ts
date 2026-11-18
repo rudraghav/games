@@ -46,7 +46,9 @@ test('Azul explains fit, overflow, occupied floor penalties and the first-player
       name: new RegExp(`^Place on pattern line ${row + 1},`),
     });
     await expect(button).toHaveAccessibleName(
-      new RegExp(`${fits} tiles fit, ${overflow} go to floor`),
+      new RegExp(
+        `${fits} ${fits === 1 ? 'tile fits' : 'tiles fit'}, ${overflow} ${overflow === 1 ? 'goes' : 'go'} to the floor`,
+      ),
     );
     // Fit, completion and the exact floor cost are on the line before the move.
     await expect(button.locator('.azul-pattern-consequence')).toHaveText(

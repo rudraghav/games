@@ -102,6 +102,20 @@ def test_a_private_draw_never_logs_the_drawn_face_and_a_public_discard_take_can(
     assert event is not None and event.cards == [secret]
 
 
+def test_flip_seven_names_only_a_public_recognized_action_card():
+    state = view("flip-7", detail={"pending_card": "Freeze"})
+    action = Action(type="target_effect", target="q")
+    event = public_move(both(state), both(view("flip-7")), "p", action, 2)
+    assert event and event.label == "Gave Freeze" and event.targets == ["q"]
+
+    for other in [view("flip-7"), view("flip-7", detail={"pending_card": "PRIVATE_FACE"})]:
+        event = public_move({"p": state, "q": other}, both(view("flip-7")), "p", action, 2)
+        assert event and event.label == "Gave an action card"
+    private = view("flip-7", detail={"pending_card": "PRIVATE_FACE"})
+    event = public_move(both(private), both(view("flip-7")), "p", action, 2)
+    assert event and "PRIVATE_FACE" not in event.model_dump_json()
+
+
 def test_spymaster_key_is_private_but_a_committed_word_reveal_can_be_recorded():
     key = CardView(id="0", label="Harbor", color="assassin", subtitle="hidden")
     unknown = key.model_copy(update={"color": "unknown"})
@@ -174,10 +188,11 @@ def test_board_history_uses_each_games_actual_coordinate_system():
 
 def test_public_resource_and_tile_labels_do_not_mislabel_their_counts_as_cards():
     before = both(view("azul", detail={"draft": []}))
-    after = both(view("azul", detail={"draft": ["blue", "blue", "blue"]}))
-    event = public_move(before, after, "p", Action(type="draft_tiles", color="blue", choice="0"), 2)
-    assert event is not None and event.label == "Drafted 3 tiles" and event.count is None
-    assert event.destination == "Blue · factory 1"
+    for count, label in [(1, "Drafted 1 tile"), (3, "Drafted 3 tiles")]:
+        after = both(view("azul", detail={"draft": ["blue"] * count}))
+        event = public_move(before, after, "p", Action(type="draft_tiles", color="blue", choice="0"), 2)
+        assert event is not None and event.label == label and event.count is None
+        assert event.destination == "Blue · factory 1"
     projections = both(view("gem-market"))
     event = public_move(projections, projections, "p", Action(type="take", choice="ruby,pearl,onyx"), 3)
     assert event is not None and event.label == "Took ruby, pearl, onyx" and event.count is None

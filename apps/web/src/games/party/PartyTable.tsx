@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { Check, Coffee, MessageCircle, Sparkles } from 'lucide-react';
 import { partyDetails } from '@games/api-client';
 import { Avatar, Button, DecisionDock } from '@games/ui';
@@ -23,6 +24,16 @@ export function PartyTable(props: TableProps) {
     `party:${room.id}:${room.matchId}:${data.mode}:${data.round}:${selfId}`,
     null,
   );
+  const [lockAttempt, setLockAttempt] = useState<{
+    match: typeof room.matchId;
+    round: number;
+    version: typeof room.matchVersion;
+  } | null>(null);
+  const retryLock =
+    lockAttempt?.match === room.matchId &&
+    lockAttempt?.round === data.round &&
+    lockAttempt.version !== room.matchVersion &&
+    !pending;
   const member = (id: string) => room.members.find((item) => item.id === id);
   // One name per seat everywhere on this table: bots drop "Bot" and get a badge.
   const display = (id: string) => (id === selfId ? 'You' : seatName(member(id)));
@@ -254,7 +265,10 @@ export function PartyTable(props: TableProps) {
                           option.value.target ? playerName(room, option.value.target) : undefined
                         }
                         disabled={blocked}
-                        onClick={() => setSelected(key(option))}
+                        onClick={() => {
+                          setLockAttempt(null);
+                          setSelected(key(option));
+                        }}
                       >
                         {option.value.target ? (
                           <Avatar
@@ -272,9 +286,11 @@ export function PartyTable(props: TableProps) {
                   </div>
                   <div className="party-commit-bar" data-decision-actions>
                     <p className="small party-commit-note" aria-live="polite">
-                      {selectedOption
-                        ? `${pending ? 'Saving' : 'Selected'}: ${label(selectedOption)}${pending ? '…' : '. Not locked in yet.'}`
-                        : 'Choose an option, then lock it in.'}
+                      {retryLock && selectedOption
+                        ? `The table changed. ${label(selectedOption)} is still selected. Lock it in again.`
+                        : selectedOption
+                          ? `${pending ? 'Saving' : 'Selected'}: ${label(selectedOption)}${pending ? '…' : '. Not locked in yet.'}`
+                          : 'Choose an option, then lock it in.'}
                     </p>
                     <Button
                       className="party-commit"
@@ -282,7 +298,14 @@ export function PartyTable(props: TableProps) {
                       pending={pending}
                       onClick={() => {
                         // Keep the choice selected until the saved round shows it as locked in.
-                        if (selectedOption) onAction(selectedOption.value);
+                        if (selectedOption) {
+                          setLockAttempt({
+                            match: room.matchId,
+                            round: data.round,
+                            version: room.matchVersion,
+                          });
+                          onAction(selectedOption.value);
+                        }
                       }}
                     >
                       <MessageCircle size={17} aria-hidden="true" />

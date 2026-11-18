@@ -228,7 +228,10 @@ export function PaperTable(props: TableProps) {
 
   return (
     <div className="table-layout stable-game-table sea-cats-game">
-      <PlayerStrip {...props} playerCaption={(p) => `${p.score} points · ${p.count} in hand`} />
+      <PlayerStrip
+        {...props}
+        playerCaption={(p) => `${plural(p.score, 'point')} · ${p.count} in hand`}
+      />
       <section
         className="sea-cat-table paper-table"
         aria-label="Sea Salt and Paper table"
@@ -543,7 +546,7 @@ export function PaperTable(props: TableProps) {
           <div className="paper-heading">
             <h3>Your hand</h3>
             <span className="small muted">
-              {data.own_points} card points · {data.own_bonus} color bonus
+              {plural(data.own_points, 'card point')} · Color bonus {data.own_bonus}
             </span>
           </div>
           {pairs.length > 1 ? (

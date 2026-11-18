@@ -127,7 +127,7 @@ export function SixNimmtTable(props: TableProps) {
         {...props}
         match={simultaneous ? { ...match, currentPlayer: null } : match}
         playerCaption={(p) =>
-          `${data.total_penalties[p.id]} penalties · ${p.count} cards${data.selected_players.includes(p.id) ? ' · locked' : ''}`
+          `${penalties(data.total_penalties[p.id] ?? p.score)} · ${plural(p.count, 'card')}${data.selected_players.includes(p.id) ? ' · locked' : ''}`
         }
       />
       <section className="six-table" aria-label="6 nimmt! table" data-phase={match.phase}>
@@ -240,6 +240,7 @@ export function SixNimmtTable(props: TableProps) {
                     size="sm"
                     variant={cost === cheapest ? 'primary' : 'secondary'}
                     disabled={blocked}
+                    data-row={index}
                     aria-label={`Take row ${index + 1} · ${plural(row.length, 'card')} · ${penalties(cost)}`}
                     onClick={() => onAction(take.value)}
                   >

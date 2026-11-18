@@ -78,7 +78,9 @@ test('Azul exposes drafted colours, existing lines and every floor penalty befor
     const option = fixture.room.game!.actions!.find(
       (entry) => entry.action.type === 'place_tiles' && entry.action.choice === String(row),
     );
-    const contents = line.length ? `${line.length} ${line[0]} tiles` : 'empty';
+    const contents = line.length
+      ? `${line.length} ${line[0]} tile${line.length === 1 ? '' : 's'}`
+      : 'empty';
     const fits = Math.min(spaces, data.draft.length);
     const overflow = Math.max(0, data.draft.length - spaces);
     const floorHeld = data.floors[fixture.selfId].length;
@@ -86,9 +88,9 @@ test('Azul exposes drafted colours, existing lines and every floor penalty befor
       .slice(floorHeld, Math.min(7, floorHeld + overflow))
       .reduce((sum, value) => sum + value, 0);
     const fit = option
-      ? `; ${fits} tiles fit, ${overflow} go to floor${overflow ? `, costing ${cost} point${cost === 1 ? '' : 's'}` : ''}${line.length + fits === row + 1 ? '; completes the line' : ''}`
+      ? `; ${fits} ${fits === 1 ? 'tile fits' : 'tiles fit'}, ${overflow} ${overflow === 1 ? 'goes' : 'go'} to the floor${overflow ? `, costing ${cost} point${cost === 1 ? '' : 's'}` : ''}${line.length + fits === row + 1 ? '; completes the line' : ''}`
       : '';
-    const label = `Place on pattern line ${row + 1}, ${spaces} spaces available; ${contents}${fit}`;
+    const label = `Place on pattern line ${row + 1}, ${spaces} space${spaces === 1 ? '' : 's'} available; ${contents}${fit}`;
     await expect(own.getByRole('button', { name: label, exact: true })).toHaveCount(1);
     expect(tree).toContain(`button "${label}"`);
   }
@@ -155,7 +157,9 @@ test('Azul keeps accessible draft actions and full boards within narrow and wide
     ).toHaveCount(count);
     await expect(submitted).toHaveText('No action submitted');
     // Focus lands on the first legal destination; one key press drafts and places.
-    await expect(page.locator(':focus')).toHaveAttribute('data-azul-choice', '');
+    const firstDestination = page.locator('.azul-table [data-azul-choice]:enabled:visible').first();
+    await expect(firstDestination).toBeFocused();
+    await expect(firstDestination).toHaveAttribute('data-azul-choice', '0');
     await page.keyboard.press('Enter');
     await expect
       .poll(async () => {

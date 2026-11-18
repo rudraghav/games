@@ -230,6 +230,7 @@ test('solo Tarot guides three real picks and leaves the reading and birth detail
         await scrollToTable();
         await expect(tip).toBeInViewport();
         await expect(tip).toContainText('Where you are');
+        await expect(tip).toContainText('Pick your second card');
         const drawn = (await roomAs(page, room.id)).game!.community![0];
         await expect(tip).toContainText(drawn.label);
         await page

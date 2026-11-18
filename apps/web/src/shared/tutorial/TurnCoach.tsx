@@ -15,6 +15,9 @@ import {
 import { tutorialLessons } from './lessons';
 import { focusMove } from './focus-move';
 import { fourDrop } from './four-drop';
+import { boardDirection } from './board-direction';
+import { cardPracticeHint, cardPracticeMove } from './card-hint';
+import { casinoDirection } from './casino-direction';
 
 type CommittedMove = Room['activity'][number];
 
@@ -95,8 +98,10 @@ export function TurnCoach({
   const complete = (tarot && count === practiceMoves) || room.status === 'finished';
   const playOn = !tarot && !complete && count >= practiceMoves;
   const blocked = offline || room.paused || pending;
-  const tactical = fourDrop(match);
-  const option = tactical?.option ?? offeredMove(match, lesson);
+  const tactical = fourDrop(match) ?? boardDirection(match);
+  const suggested = tactical?.option ?? cardPracticeMove(match) ?? offeredMove(match, lesson);
+  const casino = casinoDirection(match, suggested, selfId);
+  const option = casino?.option ?? suggested;
   const direction = option && practiceDirection(option, match);
   const current = room.members.find((member) => member.id === match.currentPlayer);
   const events = room.activity.filter((event) => event.version > progress.start);
@@ -106,8 +111,16 @@ export function TurnCoach({
       event.version > (mine?.version ?? progress.start) &&
       room.members.some((member) => member.id === event.actorId && member.isBot),
   );
-  const latest = bot ?? mine;
-  const other = bot && mine ? mine : null;
+  const confirmed = mine ?? bot;
+  const draft =
+    room.gameId === 'azul' && mine?.type === 'place_tiles'
+      ? events.find(
+          (event) =>
+            event.version === mine.version - 1 &&
+            event.actorId === selfId &&
+            event.type === 'draft_tiles',
+        )
+      : undefined;
   const lastCard = tarot ? match.community.at(-1) : null;
   const explain = (type: string, effect?: string) => {
     const printed =
@@ -143,6 +156,8 @@ export function TurnCoach({
     title = direction.title;
     explanation =
       tactical?.tip ||
+      casino?.tip ||
+      cardPracticeHint(match, option, room, selfId) ||
       explain(
         option.value.type,
         match.hand.find((card) => card.id === option.value.card)?.effect,
@@ -170,16 +185,10 @@ export function TurnCoach({
     if (botFailed) title = 'The bot needs another try';
   }
   const canPlay = !complete && !blocked && !tarot && !!direction?.direct;
-  const latestRule = latest && explain(latest.type, latest.cards[0]?.effect);
-  const precedingRule = other && explain(other.type, other.cards[0]?.effect);
-  const floatTitle = blocked
-    ? title
-    : lastCard
-      ? `${lastCard.label} · ${positions[count - 1]}`
-      : latest
-        ? describeMove(room, latest, selfId)
-        : title;
-  const floatRule = !blocked && latest && !tarot ? latestRule || explanation : explanation;
+  const confirmedRule = confirmed && explain(confirmed.type, confirmed.cards[0]?.effect);
+  // At the table, lead with the decision that is currently available. Keep a
+  // revealed Tarot card paired with its actual spread position as the player picks again.
+  const floatingCard = !blocked && lastCard ? `${lastCard.label} · ${positions[count - 1]}` : '';
   return (
     <>
       <section
@@ -282,7 +291,7 @@ export function TurnCoach({
             )}
           </div>
         ) : null}
-        {lastCard || latest ? (
+        {lastCard || confirmed ? (
           <div
             className="turn-coach__feedback"
             aria-label="Move explained"
@@ -292,23 +301,14 @@ export function TurnCoach({
               <p>
                 <strong>{lastCard.label}</strong> · {positions[count - 1]}
               </p>
-            ) : latest ? (
+            ) : confirmed ? (
               <>
                 <p>
-                  <strong>{describeMove(room, latest, selfId)}</strong>
+                  {draft && <span>{describeMove(room, draft, selfId)} → </span>}
+                  <strong>{describeMove(room, confirmed, selfId)}</strong>
                 </p>
-                {latestRule && latestRule !== explanation ? <p>{latestRule}</p> : null}
-                {other ? (
-                  <details>
-                    <summary>Your preceding move</summary>
-                    <p>{describeMove(room, other, selfId)}</p>
-                    {precedingRule &&
-                    precedingRule !== latestRule &&
-                    precedingRule !== explanation ? (
-                      <p>{precedingRule}</p>
-                    ) : null}
-                  </details>
-                ) : null}
+                {confirmedRule && confirmedRule !== explanation ? <p>{confirmedRule}</p> : null}
+                {mine && bot ? <p>{describeMove(room, bot, selfId)}</p> : null}
               </>
             ) : null}
           </div>
@@ -317,8 +317,9 @@ export function TurnCoach({
       {floating ? (
         <aside className="turn-coach-float" aria-label="Tutorial tip">
           <div className="turn-coach-float__content" aria-live="polite" aria-atomic="true">
-            <strong>{floatTitle}</strong>
-            {floatRule && floatTitle !== floatRule ? <p>{floatRule}</p> : null}
+            <strong>{title}</strong>
+            {floatingCard ? <span>{floatingCard}</span> : null}
+            {explanation && explanation !== title ? <p>{explanation}</p> : null}
           </div>
           <div className="turn-coach-float__tools">
             <Button

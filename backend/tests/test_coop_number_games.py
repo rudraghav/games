@@ -95,10 +95,11 @@ def test_six_sixth_card_takes_only_prior_five_then_later_number_uses_new_row():
 
 def test_six_low_card_owner_chooses_row_before_other_cards_resolve():
     e = SixNimmtEngine()
-    s = six_position({"a": [2], "b": [3]}, [[10], [20], [30], [40]])
+    s = six_position({"a": [2], "b": [3]}, [[13], [20], [30], [40]])
     for player, card in [("b", 3), ("a", 2)]:
         s = e.apply_action(s, player, Action(type="select_number", card=f"number-{card}"))
     assert s["phase"] == "take_row" and s["order"][s["turn"]] == "a"
+    assert [option.label for option in e.legal_actions(s, "a")][:2] == ["Take row 1 · 1 penalty", "Take row 2 · 3 penalties"]
     assert [item["number"] for item in s["pending"]] == [2, 3]
     with pytest.raises(RuleError):
         e.apply_action(s, "b", Action(type="take_row", choice="3"))

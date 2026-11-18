@@ -38,7 +38,7 @@ describe('illustrated game lessons', () => {
           if (piece.kind === 'board') {
             expect(
               piece.rows.every(
-                (row) => row.length === piece.rows[0].length && /^[.brwg]+$/.test(row),
+                (row) => row.length === piece.rows[0].length && /^[.brwgkK]+$/.test(row),
               ),
               game.id,
             ).toBe(true);
