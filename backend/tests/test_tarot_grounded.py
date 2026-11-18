@@ -106,10 +106,10 @@ def test_grounded_adapter_rejects_invalid_output_without_salvage(canonical, tamp
 @pytest.mark.parametrize("location", ["reflection_question", "connection_question", "astrology"])
 @pytest.mark.parametrize("text", [
     "You are ready for change, and this card proves that something better is already coming.",
-    "What might you consider about this possibility? How might you change your direction?",
+    "What might you consider about this possibility? How might you change your direction? Where could you begin?",
     "Your struggles are ending. What might you consider about this new opportunity?",
 ])
-def test_question_subcontract_rejects_assertions_multiple_questions_and_prefaces(canonical, location, text):
+def test_question_subcontract_rejects_assertions_three_questions_and_prefaces(canonical, location, text):
     request, chart = canonical("western")
     body = grounded_envelope("groq", request, chart)
     payload = json.loads(body["choices"][0]["message"]["content"])
@@ -121,6 +121,28 @@ def test_question_subcontract_rejects_assertions_multiple_questions_and_prefaces
     with pytest.raises(AlternativeOutputError) as error:
         decode_grounded_output("groq", body, request)
     assert error.value.reason == "invalid_reflection_question"
+
+
+@pytest.mark.parametrize("location", ["reflection_question", "connection_question", "astrology"])
+def test_question_subcontract_preserves_two_complete_bounded_questions(canonical, location):
+    request, chart = canonical("western")
+    body = grounded_envelope("groq", request, chart)
+    payload = json.loads(body["choices"][0]["message"]["content"])
+    text = "What might you consider about this possibility? How could you explore it at your own pace?"
+    if location == "astrology":
+        payload["astrology_interpretation"]["western"]["focus_1"]["reflection_question"] = text
+    else:
+        payload["card_1"][location] = text
+    body["choices"][0]["message"]["content"] = json.dumps(payload)
+    result = decode_grounded_output("groq", body, request)
+    reading.validate_reading(result, CARDS, astrology_chart=chart,
+                             candidates=[c["reference_characters"] for c in json.loads(request["input"])["cards"]])
+    if location == "astrology":
+        assert text in result["astrology_interpretation"]["western"]["normal"]
+    elif location == "reflection_question":
+        assert result["cards"][0]["interpretation"] == text
+    else:
+        assert result["cards"][0]["characters"][0]["connection"] == text
 
 
 def test_astro_shortlist_keeps_three_distinct_choices_when_ranked_lists_overlap(canonical):
@@ -190,7 +212,54 @@ def test_json_astrology_fields_map_without_changing_any_generated_text(canonical
                              candidates=[c["reference_characters"] for c in json.loads(effective["input"])["cards"]])
 
 
-@pytest.mark.parametrize("tamper", ["old_parent_fields", "nested_chart_fields", "extra", "duplicate", "refusal"])
+@pytest.mark.parametrize("mode", ["vedic", "both"])
+def test_json_instruct_changes_only_supported_generation_controls(canonical, mode):
+    from app.games.tarot.grounded_json import (
+        build_grounded_json_request,
+        decode_grounded_json_output,
+    )
+
+    original, chart = canonical(mode)
+    effective, medium = build_grounded_json_request(original)
+    instruct_effective, instruct = build_grounded_json_request(original, reasoning_effort="none")
+    assert instruct_effective == effective
+    assert instruct == {**medium, "reasoning_effort": "none", "temperature": 0.7, "top_p": 0.8}
+    assert instruct["max_completion_tokens"] == 4096
+    assert instruct["reasoning_format"] == "hidden"
+    assert not {"presence_penalty", "frequency_penalty", "top_k", "min_p"} & set(instruct)
+    payload = decode_grounded_json_output(grounded_json_envelope(effective, chart), instruct_effective)
+    reading.validate_reading(payload, CARDS, astrology_chart=chart,
+                             candidates=[c["reference_characters"] for c in json.loads(effective["input"])["cards"]])
+
+
+@pytest.mark.parametrize("mode", ["western", "vedic", "both"])
+@pytest.mark.parametrize("placement", ["parent", "sole_chart"])
+def test_json_known_complete_placements_preserve_every_generated_string(canonical, mode, placement):
+    from app.games.tarot.grounded_json import (
+        build_grounded_json_request,
+        decode_grounded_json_output,
+    )
+
+    original, chart = canonical(mode)
+    effective, _wire = build_grounded_json_request(original, reasoning_effort="none")
+    body = grounded_json_envelope(effective, chart)
+    expected = decode_grounded_json_output(body, effective)
+    payload = json.loads(body["choices"][0]["message"]["content"])
+    target = payload["astrology_interpretation"]
+    if placement == "sole_chart":
+        target = target["western" if mode == "both" else mode]
+    for name in ("tarot_connection", "next_step"):
+        target[name] = payload.pop("astrology_" + name)
+    body["choices"][0]["message"]["content"] = json.dumps(payload)
+    if placement == "sole_chart" and mode == "both":
+        with pytest.raises(AlternativeOutputError) as error:
+            decode_grounded_json_output(body, effective)
+        assert error.value.reason == "invalid_wire_schema"
+    else:
+        assert decode_grounded_json_output(body, effective) == expected
+
+
+@pytest.mark.parametrize("tamper", ["conflicting_parent", "conflicting_nested", "partial_parent", "partial_nested", "extra", "duplicate", "refusal"])
 def test_json_astrology_decoder_requires_exact_shape_without_salvage(canonical, tamper):
     from app.games.tarot.grounded_json import (
         build_grounded_json_request,
@@ -201,12 +270,15 @@ def test_json_astrology_decoder_requires_exact_shape_without_salvage(canonical, 
     effective, _wire = build_grounded_json_request(original)
     body = grounded_json_envelope(effective, chart)
     payload = json.loads(body["choices"][0]["message"]["content"])
-    if tamper in ("old_parent_fields", "nested_chart_fields"):
+    if tamper in ("conflicting_parent", "conflicting_nested", "partial_parent", "partial_nested"):
         target = payload["astrology_interpretation"]
-        if tamper == "nested_chart_fields":
+        if tamper.endswith("nested"):
             target = target["western"]
         for name in ("tarot_connection", "next_step"):
-            target[name] = payload.pop("astrology_" + name)
+            target[name] = payload["astrology_" + name]
+        if tamper.startswith("partial"):
+            target.pop("next_step")
+            payload.pop("astrology_tarot_connection")
     elif tamper == "extra":
         payload["invented_field"] = "Unrequested"
     elif tamper == "refusal":

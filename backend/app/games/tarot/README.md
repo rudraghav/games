@@ -1,6 +1,35 @@
 # Pop Tarot
 
-## Grounded provider recovery — 18 November 2026
+## Last fallback eligibility — 18 November 2026
+
+The latest requested preference is Gemini → Cloudflare → Groq. Configured
+providers default to all four reading modes, and the hard-coded Groq Vedic/Both
+denial is removed. Explicit operational settings can still disable a provider;
+they do not make malformed responses acceptable.
+
+Ordinary Groq retains its grounded no-reasoning contract, and Western retains
+its established medium-reasoning contract. Vedic/Both use the compact JSON shape
+with reasoning disabled. Provider-specific formats map to the same exact card,
+reference and computed-chart contract. Only a complete valid reading is saved.
+The JSON decoder accepts three complete, known placements of common astrology
+text: the requested top-level fields, the astrology parent, or a sole requested
+chart section. It moves unchanged strings without inventing or dropping prose.
+Mixed/conflicting locations, missing fields, unknown extras and ambiguous
+placement inside a two-chart response remain invalid.
+Routing reserves time for later providers and their persistence overhead inside
+the existing 105-second, three-transmission limit. It recalculates network time
+after progress writes and can skip a slower provider when a faster one still fits.
+Less polished prose can remain a useful last fallback; no unsupported claim of
+equal quality or guaranteed delivery is implied. Quota or service outages can
+still fail the bounded attempt and expose the existing retry action.
+
+Source changes, actual evaluation results and rollout evidence are recorded in
+the root journal and `docs/evidence/tarot-last-fallback-2026-11-18/`.
+
+## Previous grounded provider recovery — 18 November 2026
+
+The section below records the earlier qualified-only policy and evaluation.
+Its Vedic/Both gate is superseded by the last-fallback policy above.
 
 The final release preserves Gemini's existing full contract and qualifies these
 alternative profiles. Environment configuration must still enable each mode:

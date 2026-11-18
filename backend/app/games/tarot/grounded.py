@@ -134,7 +134,7 @@ def _bounded(value: object, field: str, minimum: int, maximum: int) -> str:
 
 def _question(value: object, field: str, minimum: int, maximum: int) -> str:
     text = _bounded(value, field, minimum, maximum)
-    if (text.count("?") != 1 or not text.rstrip().endswith("?")
+    if (not 1 <= text.count("?") <= 2 or not text.rstrip().endswith("?")
             or not re.match(r"^(What|How|Where|Which|Could|Might|Would)\b", text.strip(), re.IGNORECASE)):
         raise AlternativeOutputError("invalid_reflection_question")
     return text

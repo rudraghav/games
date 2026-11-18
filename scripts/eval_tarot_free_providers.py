@@ -4,8 +4,9 @@ Dry-run by default; execution requires a verified free-only account, an explicit
 attempt budget and a new run ID. Never changes application settings or database
 records. Legacy runs retain their ten-attempt limit. The explicit compact profile
 shares all historical reservations, including failures and interrupted requests.
-The grounded phase permits twelve additional calls: cumulative53 combined,
-31 Groq and22 Cloudflare. Earlier profiles retain their original ceilings.
+Historical phases keep their original ceilings. The explicit instruct phase
+allows four new Groq calls after 57 direct attempts and one imported hosted
+Cloudflare attempt: cumulative62, Groq39 and Cloudflare23.
 """
 
 import argparse
@@ -48,8 +49,12 @@ GROUNDED_MEDIUM_MAX_COMBINED_ATTEMPTS = 57
 GROUNDED_JSON_PROFILE = "grounded-json-v1"
 GROUNDED_JSON_MAX_PROVIDER_ATTEMPTS = 37
 GROUNDED_JSON_MAX_COMBINED_ATTEMPTS = 59
+GROUNDED_INSTRUCT_PROFILE = "grounded-json-instruct-v1"
+GROUNDED_INSTRUCT_MAX_PROVIDER_ATTEMPTS = 39
+GROUNDED_INSTRUCT_MAX_COMBINED_ATTEMPTS = 62
+HISTORY_MAX_PROVIDER_ATTEMPTS = {"groq": 39, "cloudflare": 23}
 ASTROLOGY_PROFILE = "qwen-astrology-medium-v1"
-COMPACT_PROFILES = ("compact-v2", "compact-json-v1", "compact-medium-v1", "compact-high-v1", "qwen-none-v1", "qwen-evidence-v2", ASTROLOGY_PROFILE, GROUNDED_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE)
+COMPACT_PROFILES = ("compact-v2", "compact-json-v1", "compact-medium-v1", "compact-high-v1", "qwen-none-v1", "qwen-evidence-v2", ASTROLOGY_PROFILE, GROUNDED_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE, GROUNDED_INSTRUCT_PROFILE)
 PROFILES = ("legacy-v1", "compact-v1", *COMPACT_PROFILES)
 WIRE_VERSION = "free-provider-eval-1"
 SCENARIO_IDS = (
@@ -75,6 +80,8 @@ def digest(value):
 
 
 def profile_combined_limit(profile):
+    if profile == GROUNDED_INSTRUCT_PROFILE:
+        return GROUNDED_INSTRUCT_MAX_COMBINED_ATTEMPTS
     if profile == GROUNDED_JSON_PROFILE:
         return GROUNDED_JSON_MAX_COMBINED_ATTEMPTS
     if profile == GROUNDED_MEDIUM_PROFILE:
@@ -87,6 +94,8 @@ def profile_combined_limit(profile):
 
 
 def profile_scenarios(profile):
+    if profile == GROUNDED_INSTRUCT_PROFILE:
+        return ("vedic-resources", "both-boundaries")
     if profile == GROUNDED_PROFILE:
         return ("ordinary-grief", *ASTROLOGY_SCENARIO_IDS)
     return ASTROLOGY_SCENARIO_IDS if profile in (ASTROLOGY_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE) else SCENARIO_IDS
@@ -95,6 +104,15 @@ def profile_scenarios(profile):
 def profile_settings(provider, profile="legacy-v1", reasoning_effort=None):
     if provider not in MODELS or profile not in PROFILES:
         raise EvaluationStop("unsupported_evaluation_profile")
+    if profile == GROUNDED_INSTRUCT_PROFILE:
+        from app.games.tarot import grounded, grounded_json
+
+        if provider != "groq" or reasoning_effort not in (None, "none"):
+            raise EvaluationStop("grounded_instruct_requires_groq_none")
+        return {"profile": profile, "model": grounded.MODELS[provider],
+                "reasoning_effort": "none", "output_cap": grounded.OUTPUT_CAP,
+                "wire_version": grounded_json.INSTRUCT_PROFILE_VERSION, "smoke_scenario": "vedic-resources",
+                "max_attempts_provider_total": GROUNDED_INSTRUCT_MAX_PROVIDER_ATTEMPTS}
     if profile == GROUNDED_JSON_PROFILE:
         from app.games.tarot import grounded, grounded_json
 
@@ -191,7 +209,7 @@ def adapter_fingerprint(profile):
     from app.games.tarot import providers
 
     decoder = hashlib.sha256(Path(providers.__file__).read_bytes()).hexdigest()
-    if profile == GROUNDED_JSON_PROFILE:
+    if profile in (GROUNDED_JSON_PROFILE, GROUNDED_INSTRUCT_PROFILE):
         from app.games.tarot import grounded_json
 
         return digest({"base": adapter_fingerprint(GROUNDED_MEDIUM_PROFILE),
@@ -279,7 +297,7 @@ def prepare(provider, scenario, reasoning_effort=None, profile="legacy-v1"):
     from app.settings import Settings
 
     settings = profile_settings(provider, profile, reasoning_effort)
-    if profile in (ASTROLOGY_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE) and scenario.id not in ASTROLOGY_SCENARIO_IDS:
+    if profile in (ASTROLOGY_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE, GROUNDED_INSTRUCT_PROFILE) and scenario.id not in ASTROLOGY_SCENARIO_IDS:
         raise EvaluationStop("astrology_profile_requires_astrology_scenario")
     reasoning_effort, output_cap = settings["reasoning_effort"], settings["output_cap"]
     chart = chart_for(scenario)
@@ -317,7 +335,7 @@ def prepare(provider, scenario, reasoning_effort=None, profile="legacy-v1"):
     if profile in COMPACT_PROFILES:
         from app.games.tarot import providers
 
-        if profile in (GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE):
+        if profile in (GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE, GROUNDED_INSTRUCT_PROFILE):
             from app.games.tarot.grounded_astrology import (
                 build_grounded_astrology_request,
             )
@@ -343,13 +361,13 @@ def prepare(provider, scenario, reasoning_effort=None, profile="legacy-v1"):
         else:
             body = providers.build_alternative_request(provider, original)
         schema = body["response_format"]["json_schema"]["schema"]
-        if profile == GROUNDED_JSON_PROFILE:
+        if profile in (GROUNDED_JSON_PROFILE, GROUNDED_INSTRUCT_PROFILE):
             from app.games.tarot.grounded_json import (
                 json_contract_schema,
                 json_transport,
             )
 
-            body = json_transport(body)
+            body = json_transport(body, reasoning_effort=reasoning_effort)
             schema = json_contract_schema(schema)
         elif profile == "compact-json-v1":
             from app.games.tarot.groq_json import build_groq_json_request
@@ -404,7 +422,7 @@ def prepare(provider, scenario, reasoning_effort=None, profile="legacy-v1"):
         report["schema_adaptation"] += "; neutral imagery wire keys mapped exactly to canonical layers; explicit returned Qwen identity"
     elif profile == "qwen-evidence-v2":
         report["schema_adaptation"] += "; generated reflection questions and imagery; exact supplied source evidence injected server-side"
-    elif profile in (GROUNDED_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE):
+    elif profile in (GROUNDED_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE, GROUNDED_INSTRUCT_PROFILE):
         report["schema_adaptation"] += "; generated reflection and imagery; server-owned exact evidence and selected chart placement headers"
     elif profile == ASTROLOGY_PROFILE:
         report["schema_adaptation"] += "; same evidence-3 schema/prompt; two effective candidates per card and medium reasoning; exact local chart validation"
@@ -661,7 +679,7 @@ def parse_response(body, prepared):
         from app.games.tarot import providers
 
         try:
-            if prepared["report"]["profile"] == GROUNDED_JSON_PROFILE:
+            if prepared["report"]["profile"] in (GROUNDED_JSON_PROFILE, GROUNDED_INSTRUCT_PROFILE):
                 from app.games.tarot.grounded_json import decode_grounded_json_output
 
                 payload = decode_grounded_json_output(body, prepared["canonical_request"])
@@ -765,14 +783,14 @@ def reservations(provider):
                 or path.name != f"{provider}-attempt-{expected_attempt:03}-reserved.json"):
             raise EvaluationStop("reservation_history_is_invalid")
         rows.append(record)
-    if len(rows) > (GROUNDED_JSON_MAX_PROVIDER_ATTEMPTS if provider == "groq" else GROUNDED_MAX_PROVIDER_ATTEMPTS[provider]):
+    if len(rows) > HISTORY_MAX_PROVIDER_ATTEMPTS[provider]:
         raise EvaluationStop("provider_budget_already_exceeded")
     return rows
 
 
 def combined_reservations():
     rows = [row for provider in MODELS for row in reservations(provider)]
-    if len(rows) > GROUNDED_JSON_MAX_COMBINED_ATTEMPTS:
+    if len(rows) > GROUNDED_INSTRUCT_MAX_COMBINED_ATTEMPTS:
         raise EvaluationStop("combined_budget_already_exceeded")
     return rows
 
@@ -797,9 +815,10 @@ SMOKE_FIELDS = (
 def smoke_artifacts(record):
     """Resolve only the evaluator's fixed filenames beneath its private run."""
     run_id, provider, attempt = record["run_id"], record["provider"], record["attempt"]
-    scenario_id = "western-rest" if record.get("profile") in (ASTROLOGY_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE) else "ordinary-grief"
+    scenario_id = ("vedic-resources" if record.get("profile") == GROUNDED_INSTRUCT_PROFILE else
+                   "western-rest" if record.get("profile") in (ASTROLOGY_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE) else "ordinary-grief")
     if (not isinstance(run_id, str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,79}", run_id)
-            or provider not in MODELS or type(attempt) is not int or not 1 <= attempt <= (GROUNDED_JSON_MAX_PROVIDER_ATTEMPTS if provider == "groq" else GROUNDED_MAX_PROVIDER_ATTEMPTS[provider])
+            or provider not in MODELS or type(attempt) is not int or not 1 <= attempt <= HISTORY_MAX_PROVIDER_ATTEMPTS[provider]
             or record["id"] != scenario_id):
         raise EvaluationStop("invalid_smoke_artifact_identity")
     paths = {
@@ -1301,6 +1320,8 @@ def evaluate(args):
     }
     if args.execute and args.profile == GROUNDED_MEDIUM_PROFILE:
         raise EvaluationStop("grounded_medium_execution_retired")
+    if args.execute and args.profile == GROUNDED_JSON_PROFILE:
+        raise EvaluationStop("grounded_json_medium_execution_retired")
     if not args.execute:
         print(json.dumps(planned, indent=2))
         return 0
@@ -1310,7 +1331,8 @@ def evaluate(args):
         planned["reserved_combined_before_run"] = len(combined_reservations())
         if (not smoke_passed(args.provider, current_contract, effort, args.profile)
                 and selected != [settings["smoke_scenario"]]):
-            raise EvaluationStop("run_one_western_rest_smoke_before_matrix" if args.profile in (ASTROLOGY_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE) else
+            raise EvaluationStop("run_one_vedic_resources_smoke_before_matrix" if args.profile == GROUNDED_INSTRUCT_PROFILE else
+                                 "run_one_western_rest_smoke_before_matrix" if args.profile in (ASTROLOGY_PROFILE, GROUNDED_MEDIUM_PROFILE, GROUNDED_JSON_PROFILE) else
                                  "run_one_ordinary_grief_smoke_before_matrix" if args.profile in COMPACT_PROFILES
                                  else "run_one_ordinary_blank_smoke_before_matrix")
         credentials = load_credentials(args.provider)
@@ -1373,7 +1395,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--provider", required=True, choices=MODELS)
     parser.add_argument("--profile", choices=PROFILES, default="legacy-v1",
-                        help="Cumulative phase ceilings: original compact35/20, evidence38/24, astrology medium41/25, grounded53/31Groq/22Cloudflare, groundedmedium57/35Groq/22Cloudflare; all history counts")
+                        help="Historical phase ceilings unchanged; instruct62/39Groq/23Cloudflare includes the imported hosted call; all history counts")
     parser.add_argument("--reasoning-effort", choices=("none", "low", "medium", "high"),
                         help="Legacy default low; compact-v2 fixes Groq high and Cloudflare nonreasoning")
     parser.add_argument("--execute", action="store_true")
@@ -1404,7 +1426,8 @@ def main(argv=None):
         parser.error("Legacy evaluations support only low or medium reasoning.")
     if args.scenario and len(set(args.scenario)) != len(args.scenario):
         parser.error("Choose each scenario once; retries require a separate explicit run.")
-    limit = (GROUNDED_JSON_MAX_PROVIDER_ATTEMPTS if args.profile == GROUNDED_JSON_PROFILE else
+    limit = (GROUNDED_INSTRUCT_MAX_PROVIDER_ATTEMPTS if args.profile == GROUNDED_INSTRUCT_PROFILE else
+             GROUNDED_JSON_MAX_PROVIDER_ATTEMPTS if args.profile == GROUNDED_JSON_PROFILE else
              GROUNDED_MEDIUM_MAX_PROVIDER_ATTEMPTS if args.profile == GROUNDED_MEDIUM_PROFILE else
              GROUNDED_MAX_PROVIDER_ATTEMPTS[args.provider] if args.profile == GROUNDED_PROFILE else
              MAX_PROVIDER_ATTEMPTS if args.profile == ASTROLOGY_PROFILE else

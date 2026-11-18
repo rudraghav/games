@@ -1559,3 +1559,49 @@ def test_provider_failed_generation_shape_never_retains_unknown_fields_or_prose(
     assert "card_1.reflection_question" in shape["missing_required_fields"]
     assert shape["unknown_field_count"] == 1
     assert "PRIVATE" not in json.dumps(diagnostic)
+
+
+@pytest.mark.parametrize("scenario", ["vedic-resources", "both-boundaries"])
+def test_instruct_evaluation_matches_runtime_wire_without_reasoning(scenario):
+    from app.games.tarot.grounded_json import build_grounded_json_request
+
+    medium = prepared("groq", scenario, profile=evaluation.GROUNDED_JSON_PROFILE)
+    entry = prepared("groq", scenario, profile=evaluation.GROUNDED_INSTRUCT_PROFILE)
+    expected = {**medium["body"], "reasoning_effort": "none", "temperature": 0.7, "top_p": 0.8}
+    assert entry["body"] == expected
+    assert entry["canonical_request"] == medium["canonical_request"]
+    effective, runtime = build_grounded_json_request(entry["canonical_request"], reasoning_effort="none")
+    assert effective == entry["canonical_request"] and runtime == expected
+    assert entry["report"]["estimated_input_plus_output_cap"] < 8000
+    assert entry["report"]["wire_version"] == "grounded-qwen-json-instruct-1"
+    assert entry["report"]["smoke_scenario"] == "vedic-resources"
+    assert entry["wire_schema"] == medium["wire_schema"]
+    assert entry["context"] == medium["context"]
+
+
+def test_instruct_budget_counts_direct_and_imported_hosted_history(monkeypatch):
+    historical_reservations("groq", 35)
+    historical_reservations("cloudflare", 22)
+    evaluation.private_json(evaluation.EVIDENCE / "cloudflare-attempt-023-reserved.json", {
+        "provider": "cloudflare", "attempt": 23, "origin": "hosted_import",
+        "source": "verified_hosted_acceptance", "reserved_unix": 0,
+    })
+    assert len(evaluation.combined_reservations()) == 58
+    assert len(evaluation.check_budget("groq", 4, evaluation.GROUNDED_INSTRUCT_PROFILE)) == 35
+    with pytest.raises(evaluation.EvaluationStop):
+        evaluation.check_budget("groq", 5, evaluation.GROUNDED_INSTRUCT_PROFILE)
+    with pytest.raises(evaluation.EvaluationStop):
+        evaluation.check_budget("groq", 1, evaluation.GROUNDED_PROFILE)
+    with pytest.raises(evaluation.EvaluationStop):
+        prepared("cloudflare", "vedic-resources", profile=evaluation.GROUNDED_INSTRUCT_PROFILE)
+    with pytest.raises(evaluation.EvaluationStop):
+        prepared("groq", "vedic-resources", "medium", evaluation.GROUNDED_INSTRUCT_PROFILE)
+    monkeypatch.setattr(evaluation, "load_credentials", lambda *_: pytest.fail("Credential access"))
+    assert evaluation.main(compact_args(profile=evaluation.GROUNDED_JSON_PROFILE, scenario="western-rest")) == 1
+
+
+def test_instruct_requires_its_own_vedic_smoke_before_both(monkeypatch, capsys):
+    monkeypatch.setattr(evaluation, "load_credentials", lambda *_: pytest.fail("Credential access"))
+    args = compact_args(profile=evaluation.GROUNDED_INSTRUCT_PROFILE, scenario="both-boundaries")
+    assert evaluation.main(args) == 1
+    assert "run_one_vedic_resources_smoke_before_matrix" in capsys.readouterr().out

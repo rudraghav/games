@@ -16,6 +16,7 @@ from app.games.tarot.reading import (
     provider_schema,
     validate_reading,
 )
+from app.settings import settings
 
 CARDS = ["major-00", "cups-03", "swords-10"]
 
@@ -29,6 +30,10 @@ def transport_reference_candidates(monkeypatch):
              ("Leslie Knope", "Parks and Recreation")]
     monkeypatch.setattr("app.games.tarot.reading.reference_candidates",
                         lambda *_args, **_kwargs: [[find_character(*pair)] for pair in pairs])
+    # These cases exercise Gemini's own schema and single-provider correction.
+    # Cross-provider routing is covered separately, independent of local keys.
+    monkeypatch.setattr(settings(), "gemini_api_key", "local-test-adapter")
+    monkeypatch.setattr(settings(), "tarot_provider_order", ["gemini"])
 
 
 def synthetic_chart(system="both"):

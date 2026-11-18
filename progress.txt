@@ -1,3 +1,26 @@
+## 2026-11-18 — Last-resort Tarot provider recovery kickoff
+
+- User explicitly requests removing disabled Groq modes and preferring other
+  options first, using simpler reasoning/prompt controls where helpful. Replace
+  per-mode hard denials with eligible last-fallback attempts; preserve exact card,
+  chart, reference, privacy and complete-output validation. No fabricated result.
+- Route Gemini→Cloudflare→Groq for every reading option. Keep bounded time/attempt
+  accounting, refusal handling and useful retry messages. Evaluate a compact
+  no-reasoning Groq JSON format for the previously disabled Vedic/Both options.
+- Acceptance: deterministic tests prove all four modes reach Groq after earlier
+  providers fail; available live outputs are validated/read, quota failures remain
+  explicit; push exact scope and deploy once with narrow configuration readback.
+  No paid plan, new credentials, schema or UI rewrite is needed.
+- Evaluation budget: preserve86 Gemini operator attempts and58 alternatives
+  (Groq35/Cloudflare23). Permit up to4 new free Groq calls (ceiling62 alternatives,
+  Groq39), initially Vedic/Both once each and up to2 evidence-driven repairs.
+  Stop repeating on quota and use deterministic verification plus an honest live
+  limitation; the user's explicit last-resort instruction supersedes the earlier
+  product qualification gate. Do not weaken factual/schema validation.
+- Baseline clean main23156d5, serving8c69c58. Ownership tarot-last-fallback-20261118;
+  scratch output/playwright/tarot-last-fallback-20261118. Hosted acceptance gets a
+  separate bounded budget after the release candidate is ready.
+
 ## 2026-11-18 — Tarot mobile reliability pushed, deployed and live-verified
 
 - Application8c69c58815a88b120bb0ed9d9a31c91c69cd1482 is READY in bom1 at

@@ -22,8 +22,11 @@ Pop Tarot adds a solo 78-card modern pop-art deck and a three-card spread.
 Readings are AI-written around the selected cards and an optional personal
 question, with playful pop-culture analogies. The card system and AI contract
 remain reusable. No fabricated reading is shown when AI is unavailable.
-Readings can recover through another approved AI provider within one bounded
-request. Every provider must pass the same reading-quality checks. A concise
+Readings try Gemini, then Cloudflare, then Groq within one bounded request.
+Configured providers are eligible for all four reading options; less consistent
+models remain last fallbacks instead of having individual options disabled.
+Every returned reading must pass the same complete-output, card, reference and
+chart validation. A concise
 failure state preserves the spread and offers Retry only when useful; request
 limits survive refresh, and checking for a lost response never submits again.
 The reading form names the services that may receive the question and chart.

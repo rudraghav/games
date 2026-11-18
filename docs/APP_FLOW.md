@@ -112,8 +112,13 @@ can resume it. The global advanced creation dialog remains compatible with solo 
 Loading a saved spread reports progress or a retryable error; retry only fetches
 the saved state. Generation stays disabled until that read succeeds and while
 the room is paused/offline. Completed readings show their exact saved question.
-Writing polls the saved attempt even while its original request is pending. The
-loader shows actual stages and names a provider when retrying; estimated percent
+Writing polls the saved attempt even while its original request is pending.
+Provider preference is Gemini, then Cloudflare, then Groq for ordinary, Western,
+Vedic and combined readings. Groq's Vedic/combined attempts disable reasoning
+and use a simpler JSON response format; other services get the first opportunity.
+An invalid response can trigger the next provider but never replace the exact
+selected cards or computed chart. Every network attempt has a bounded time slot.
+The loader shows actual stages and names a provider when retrying; estimated percent
 and time remaining survive refresh and never show100% before saved completion.
 An exceeded estimate says Taking longer than expected. Reduced motion disables
 spinner/meter motion. A late progress response cannot replace a completed reading.

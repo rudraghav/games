@@ -32,8 +32,6 @@ from app.settings import settings
 
 PROMPT_VERSION = "pop-tarot-11"
 MAX_ATTEMPTS = 2
-# Environment configuration can enable only modes with accepted runtime evidence.
-GROQ_RUNTIME_MODES = frozenset({"ordinary", "western"})
 # The provider's cap includes reasoning and visible JSON, not just the reading.
 MAX_OUTPUT_TOKENS = 8192
 THINKING_LEVEL = "low"
@@ -420,7 +418,7 @@ def configured_providers(astrology_chart: AstrologyChart | None = None, *, mode:
                     else astrology_chart.charts[0].system)
     enabled = {
         "gemini": bool(config.gemini_api_key),
-        "groq": bool(config.groq_api_key) and mode in config.tarot_groq_modes and mode in GROQ_RUNTIME_MODES,
+        "groq": bool(config.groq_api_key) and mode in config.tarot_groq_modes,
         "cloudflare": bool(config.cloudflare_account_id and config.cloudflare_api_token)
                       and mode in config.tarot_cloudflare_modes,
     }
@@ -539,7 +537,11 @@ def _alternative_reading(
     from app.games.tarot.providers import AlternativeOutputError
 
     try:
-        if provider == "groq" and chart:
+        if provider == "groq" and chart and any(section.system == "vedic" for section in chart.charts):
+            from app.games.tarot.grounded_json import decode_grounded_json_output
+
+            payload = decode_grounded_json_output(body, request)
+        elif provider == "groq" and chart:
             from app.games.tarot.groq_qwen_astrology import decode_groq_qwen_astrology_output
 
             payload = decode_groq_qwen_astrology_output(body, request)
@@ -582,16 +584,22 @@ def generate_reading(
     queue = providers.copy()
     counts: dict[str, int] = {}
     failures: list[Exception] = []
+    minimum = {"gemini": 15, "groq": 15, "cloudflare": 30}
+    reserved = {"gemini": 15, "groq": 20, "cloudflare": 35}
+    # A later provider also needs its retry milestone, budget reservation and
+    # writing milestone persisted. Leave three seconds for each before its call.
+    fallback_overhead = 9
     with httpx.Client(timeout=httpx.Timeout(ATTEMPT_TIMEOUT_SECONDS, connect=5)) as client:
         for attempt in range(1, maximum + 1):
             if not queue:
                 break
             provider = queue.pop(0)
             remaining = deadline - time.monotonic()
-            minimum = {"gemini": 15, "groq": 15, "cloudflare": 30}
-            reserved = {"gemini": 15, "groq": 20, "cloudflare": 35}
-            if remaining <= 0 or (attempt > 1 and remaining < minimum[provider]):
+            if remaining <= 0:
                 break
+            if attempt > 1 and remaining < minimum[provider]:
+                # A later, faster provider can still fit even when this one cannot.
+                continue
             model = config.tarot_model
             effective_request = request
             if provider == "gemini":
@@ -610,7 +618,15 @@ def generate_reading(
 
                 model, profile, output_cap = MODELS[provider], PROFILE_VERSION, OUTPUT_CAP
                 wire = build_grounded_request(provider, request)
-                if provider == "groq" and astrology_chart:
+                if provider == "groq" and astrology_chart and any(section.system == "vedic" for section in astrology_chart.charts):
+                    from app.games.tarot.grounded_json import (
+                        INSTRUCT_PROFILE_VERSION,
+                        build_grounded_json_request,
+                    )
+
+                    effective_request, wire = build_grounded_json_request(request, reasoning_effort="none")
+                    profile = INSTRUCT_PROFILE_VERSION
+                elif provider == "groq" and astrology_chart:
                     from app.games.tarot.groq_qwen_astrology import (
                         PROFILE_VERSION as ASTROLOGY_PROFILE_VERSION,
                     )
@@ -627,10 +643,6 @@ def generate_reading(
                     config.groq_api_key if provider == "groq" else config.cloudflare_api_token
                 )}
                 cap = 30 if provider == "groq" else 60
-            if queue:
-                reserve = sum(reserved[next_provider] + 1 for next_provider in queue[:maximum - attempt])
-                if remaining >= minimum[provider] + reserve:
-                    cap = min(cap, remaining - reserve)
             # Every fallback and correction consumes its own global application reservation.
             if before_attempt:
                 before_attempt()
@@ -642,16 +654,19 @@ def generate_reading(
             if remaining <= 0:
                 raise ReadingOutputError("deadline_exhausted")
             if attempt > 1 and remaining < minimum[provider]:
-                break
+                continue
+            cap = min(cap, remaining)
             if queue:
-                reserve = sum(reserved[next_provider] + 1 for next_provider in queue[:maximum - attempt])
-                if remaining >= minimum[provider] + reserve:
-                    cap = min(cap, remaining - reserve)
+                reserve = sum(reserved[next_provider] + fallback_overhead
+                              for next_provider in queue[:maximum - attempt])
+                # Recompute after persistence every time. A stale pre-persistence
+                # cap must never consume a later provider's useful time slot.
+                cap = min(cap, max(minimum[provider], remaining - reserve))
             logger.info("games.ai.preflight provider=%s model=%s prompt_version=%s attempt=%s",
                         provider, model, PROMPT_VERSION, attempt)
             try:
                 response = client.post(endpoint, headers=headers, json=wire,
-                                       timeout=httpx.Timeout(min(cap, remaining), connect=5))
+                                       timeout=httpx.Timeout(cap, connect=5))
                 if time.monotonic() > deadline:
                     raise ReadingOutputError("deadline_exhausted")
                 if _provider_refusal(response):

@@ -20,15 +20,19 @@ class Settings(BaseSettings):
     tarot_model: str = "gemini-4-hydrogen"
     tarot_api_tier: Literal["free", "paid"] = "free"
     tarot_daily_limit: int = 100
-    # Only profiles accepted for the listed reading modes may be enabled.
+    # Prefer established providers; configured alternatives remain eligible last fallbacks.
     tarot_provider_order: list[Literal["gemini", "groq", "cloudflare"]] = Field(
-        default=["gemini"], max_length=3,
+        default=["gemini", "cloudflare", "groq"], max_length=3,
     )
     groq_api_key: str = ""
     cloudflare_account_id: str = Field(default="", pattern=r"^(?:[0-9a-f]{32})?$")
     cloudflare_api_token: str = ""
-    tarot_groq_modes: list[Literal["ordinary", "western", "vedic", "both"]] = Field(default_factory=list)
-    tarot_cloudflare_modes: list[Literal["ordinary", "western", "vedic", "both"]] = Field(default_factory=list)
+    tarot_groq_modes: list[Literal["ordinary", "western", "vedic", "both"]] = Field(
+        default=["ordinary", "western", "vedic", "both"],
+    )
+    tarot_cloudflare_modes: list[Literal["ordinary", "western", "vedic", "both"]] = Field(
+        default=["ordinary", "western", "vedic", "both"],
+    )
 
     def check(self) -> None:
         if not self.database_url or len(self.app_secret) < 32:
