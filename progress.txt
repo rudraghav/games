@@ -1,3 +1,75 @@
+## 2026-11-18 — Featured Tarot verified; free-provider baseline evaluated
+
+- Evaluation-only medium reasoning is now supported with its own contract/smoke
+  gate, unchanged prompts/context/schema/token caps and the same total request
+  limits. Final report367b439bab7c48ea864ef2a96024ba7d passes6622 backend tests
+  (65 evaluator safeguards) and44 tooling tests on stable source. Frontend/browser
+  runtime inputs are unchanged from the accepted reports below.
+- Medium blank responses complete in5.63s on Groq and30.72s on Cloudflare.
+  Groq's facts/section placement improve but its general framing has minor
+  concerns. Cloudflare returns literal placeholder interpretations and cut-off
+  connections despite structural validity: reject it at8/10 calls and preserve
+  the unused allowance. Groq's four remaining sensitive/astrology checks are
+  running; no adoption or production provider mutation is implied.
+- Home now puts Pop Tarot first in one full-width card with existing artwork,
+  a44px Start reading action and one keyboard target. It respects search/filter
+  choices and preserves all27 catalogue entries. Actual320/390/768/1440 captures
+  show no overflow or clipped art; the action fits the first phone viewport.
+- A real guest keyboard/create/pick/refresh check passed. The discovered stale
+  room shortcut after Leave is fixed by cancelling an older player read,
+  removing only the departed membership and refreshing authoritative state.
+  Other memberships, profile and history remain intact. Local QA rooms were
+  left; task browser closed and requested services retained.
+- Final stable verification8454f347df2f46a48983c069b370d210 passes243 frontend
+  tests/types/lint/build,6605 backend tests and44 tooling tests. Browser report
+  92c7196027764af8aa4a8ae6662c09f9 passes85 cases across eight specs, with one
+  intentional desktop skip. The initial room-entry unit fixture lacked its
+  real query provider; fixed without weakening identity-boundary assertions.
+- Both alternative providers work technically for ordinary readings. Groq's
+  first four complete requests take2.4–2.7s; its Western request then fails400
+  json_validate_failed. Cloudflare's four ordinary requests take20.7–29.0s;
+  Western/Vedic fail local validation and Both times out90s. No retries occurred.
+- Independent editorial review finds unsupported facts, overcertain blank-question
+  assumptions and grief-tone issues. Neither low-effort configuration is accepted
+  for production. Groq uses5/10 reserved attempts; Cloudflare7/10. A higher-reasoning
+  comparison uses only the remaining allowances, with identical facts/prompts.
+  No live app provider/configuration or deployment has changed.
+- State: these featured-home and evaluation additions are local only; previous
+  main1c703fb remains pushed. Gemini's final two checks remain scheduled no
+  earlier than08:01UTC, within its original80-attempt allowance.
+
+## 2026-11-18 — Featured Tarot dashboard and free-provider research kickoff
+
+- Actual phone keyboard/create/pick/refresh flow passes, but leaving a closed
+  room exposes a stale home membership cache: the departed room remains until
+  reload despite successful server leave. Add a narrow successful-leave cache
+  refresh and regression; preserve other rooms and failed-leave behavior.
+- User signs in to both providers and creates the Games Groq key; explicitly
+  approves the scoped Cloudflare token. Credentials are saved only in ignored
+  local Games configuration with0600 permissions. Groq Free and its30RPM/1K RPD/
+  8K TPM/200K TPD limits are verified; Cloudflare Workers Free is active, with no
+  payment method. Cloudflare token readback is active and limited to Workers AI
+  Read/Edit in the personal account. No inference or production change yet.
+  The temporary loopback credential form is stopped after successful storage.
+- User approves evaluating both Groq and Cloudflare on free accounts. Their
+  sign-in pages require account access/terms; tabs are ready for the user. Prepare
+  evaluation-only adapters first; production remains on the existing provider.
+  Add a separate bounded allowance of at most10 attempts per alternative
+  (20 total) for contract compatibility and seven editorial categories, including
+  sensitive tone and all astrology modes. Existing Gemini80-attempt budget and
+  08:01UTC resume remain unchanged. No purchased credits or paid fallback.
+- User adds a full-row Tarot card as the home dashboard's featured game. Preserve
+  all game discovery/create flows; reuse existing artwork, shared primitives and
+  semantic styling. Acceptance: a clear reading action, useful art/content density,
+  no horizontal overflow at320/390/1440, and keyboard/guest setup still works.
+- While keeping the already-selected free Gemini tier and08:01UTC resume time,
+  research actual recurring free inference alternatives, including Hugging Face.
+  Distinguish free hosted allowances, expiring trial credit and self-hosted weights.
+  Do not provision billing, switch production or infer a new provider's quality
+  from marketing. Adopt only after credentials, contract and real reading checks.
+- Parallel scope: home UI implementation, current official provider limits/privacy,
+  and read-only adapter feasibility. Existing main1c703fb is clean before this note.
+
 ## 2026-11-18 — Main published; free-tier reset selected
 
 - Application5dba29d81e7e9be962e06c8dd934789333d5aebb is pushed to main;

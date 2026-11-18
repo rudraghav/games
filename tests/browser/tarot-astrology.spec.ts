@@ -100,7 +100,7 @@ async function withReading(
   });
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).click();
+    await page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Synthetic chart QA');
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
     await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);

@@ -15,6 +15,10 @@ Readings are AI-written around the selected cards and an optional personal
 question, with playful pop-culture analogies. The card system and AI contract
 remain reusable. No fabricated reading is shown when AI is unavailable.
 
+Pop Tarot is the home catalogue's featured game, occupying the first full-width
+row with its own card artwork and a clear Start reading action. It remains one
+of the27 discoverable experiences and respects the active search and filters.
+
 Astrology is optional and off by default. Enabling it offers Western, Vedic or
 both (Both selected initially), using birth date, local time and a selected city.
 The server calculates planetary positions, angles, whole-sign houses and aspects

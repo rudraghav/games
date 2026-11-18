@@ -45,7 +45,7 @@ test('live charts, private saved readings, opt-out and Deal inspection', async (
     await attachPreviewAccess(actor);
     await actor.goto('/');
     await expect(actor.getByRole('navigation', { name: 'Main navigation' })).toHaveCount(0);
-    await actor.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).click();
+    await actor.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
     await actor.getByRole('textbox', { name: 'Your name', exact: true }).fill(name);
     await actor.getByRole('button', { name: 'Create room', exact: true }).click();
     await expect(actor).toHaveURL(/\/rooms\/[\da-f-]+$/);

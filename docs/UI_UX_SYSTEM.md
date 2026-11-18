@@ -55,6 +55,11 @@ metadata. Filters intersect and offer a reset from an empty state. Mancala pits
 and stores use a typed MancalaPit variant; Checkers extends the shared board
 renderer with source/destination selection and visible crowns.
 
+The home catalogue features Pop Tarot in one full-width GameTile variant. Its
+existing three-card artwork, short introduction and Start reading action share
+one padding layer; phones stack the art and copy while wider screens place them
+side by side. It remains a single keyboard action and respects catalogue filters.
+
 Browsing keeps search, category pills and group controls in deliberate rows.
 Phone category pills scroll inside their own rail; keyboard focus reveals the
 selected filter without widening the page. Co-op discovery reads the engine's

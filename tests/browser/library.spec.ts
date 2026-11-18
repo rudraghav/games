@@ -45,7 +45,7 @@ test('catalogue search, category and group size work with keyboard and reduced m
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  const tiles = page.getByRole('button', { name: /^Create .+ room$/ });
+  const tiles = page.getByRole('button', { name: /^(?:Start reading — )?Create .+ room$/ });
   await expect(tiles).toHaveCount(catalogue.length);
   await expect(page.getByText(`${catalogue.length} games`, { exact: true })).toBeVisible();
   await expect(

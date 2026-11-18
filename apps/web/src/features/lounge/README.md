@@ -7,6 +7,14 @@ fallback. Aliases include poker, draughts, Codenames, Splendor, Kalah and Palace
 while preserving the actual edition names. Just me/Solo + bots preserve Bots
 mode when opening supported games. Join accepts codes and full invite links.
 
+Pop Tarot is the first full-width catalogue row, using the shared GameTile's
+featured variant and the existing three-card GameArt. The visible Start reading
+action opens the same private solo setup as the rest of the catalogue. The entire
+card remains one keyboard/touch target. Search, category and player filters also
+apply to this featured entry; it is never duplicated in the remaining game rows,
+and the announced count still includes every matching game. Phones stack compact
+art and copy; desktop shows them side by side without an additional hero block.
+
 GameTile and ChoiceGroup are shared UI primitives; GameArt composes the same card
 and board vocabulary as the tables. Metadata comes from the generated backend
 catalogue, including fixed two-player and solo labels. Filter controls keep 44px

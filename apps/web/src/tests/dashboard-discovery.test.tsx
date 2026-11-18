@@ -1,13 +1,30 @@
 import { describe, expect, it } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { GameTile } from '@games/ui';
-import { gameById } from '@games/api-client/catalog';
+import { gameById, games } from '@games/api-client/catalog';
 import { roomInvite } from '@/shared/room-invite';
 import { GameArt } from '@/shared/GameArt';
 import { findGames } from '@/features/lounge/catalogue-search';
 import { RoomShortcut } from '@/features/lounge/RoomShortcut';
+import { GameLibrary } from '@/features/lounge/GameLibrary';
 
 describe('Dashboard discovery and private room entry', () => {
+  it('features one Tarot entry first while keeping the complete catalogue discoverable', () => {
+    const html = renderToStaticMarkup(<GameLibrary onChoose={() => undefined} />);
+    const choices = [
+      ...html.matchAll(/aria-label="(?:Start reading — )?Create ([^"]+) room"/g),
+    ].map((match) => match[1]);
+    expect(choices).toHaveLength(games.length);
+    expect(new Set(choices).size).toBe(games.length);
+    expect(choices[0]).toBe('Pop Tarot');
+    expect(html).toContain('aria-label="Start reading — Create Pop Tarot room"');
+    expect(html.match(/data-variant="featured"/g)).toHaveLength(1);
+    expect(html).toContain('Start reading');
+    expect(html).toContain('game-featured-label');
+    expect(html).toContain('The Magician');
+    expect(html).toContain('The High Priestess');
+    expect(html).toContain('The Fool');
+  });
   it('accepts raw codes and shared invite links without following the URL', () => {
     const token = 'A_private_invite_token_1234567890';
     expect(roomInvite('  ABCD1234  ')).toBe('ABCD1234');

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 import {
   BookOpen,
   MessageCircle,
@@ -31,11 +32,13 @@ import { Lobby } from './Lobby';
 import { RoomResults } from './RoomResults';
 import { latestMove } from './move-description';
 import { useMediaQuery } from '@/shared/use-media-query';
+import { forgetRoomMembership } from '@/shared/player-query';
 
 /** The shortest time a failed-move note stays up once the table has moved on. */
 const ERROR_READ_MS = 6000;
 
 export function RoomScreen({ id }: { id: string }) {
+  const cache = useQueryClient();
   const { room: query, me, live, connection, mutation, move, botError, retryBots } = useRoom(id);
   const desktop = useMediaQuery('(min-width: 1100px)');
   const [panel, setPanel] = useState<'chat' | 'activity' | 'rules' | 'menu' | 'configure' | null>(
@@ -468,7 +471,12 @@ export function RoomScreen({ id }: { id: string }) {
             variant="ghost"
             pending={mutation.isPending}
             onClick={() => {
-              mutation.mutate(() => api.leave(id), { onSuccess: () => router.push('/') });
+              mutation.mutate(() => api.leave(id), {
+                onSuccess: async () => {
+                  await forgetRoomMembership(cache, id);
+                  router.push('/');
+                },
+              });
             }}
           >
             <LogOut size={17} aria-hidden="true" />

@@ -43,6 +43,14 @@ to the version shown after that refresh and clears once the table moves on again
 but stays at least six seconds so it can be read while bots keep playing. Starting
 another move or dismissing it clears it at once.
 
+## Leaving a room
+
+Only a successful Leave removes that room from the cached membership list before
+returning to the lounge. Any older player read is cancelled so it cannot restore
+the departed shortcut; profile, history and other memberships stay intact while
+the player query refreshes. Failed leaves keep the room open and show the normal
+mutation error. The dashboard browser test checks the return without a reload.
+
 ## Bots
 
 A connected human's page drives the one due bot move at `room.botDueAt`. The

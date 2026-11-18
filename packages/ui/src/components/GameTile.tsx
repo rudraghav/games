@@ -12,6 +12,8 @@ export function GameTile({
   onChoose,
   edition = 'standard',
   soloMode = false,
+  variant = 'standard',
+  actionLabel = 'Play now',
 }: {
   name: string;
   subtitle: string;
@@ -23,22 +25,27 @@ export function GameTile({
   onChoose: () => void;
   edition?: 'standard' | 'house';
   soloMode?: boolean;
+  variant?: 'standard' | 'featured';
+  actionLabel?: string;
 }) {
+  const featured = variant === 'featured';
   return (
     <button
       type="button"
       className="game-tile"
       data-edition={edition}
+      data-variant={variant}
       onClick={onChoose}
-      aria-label={`Create ${name} room`}
+      aria-label={`${featured ? `${actionLabel} — ` : ''}Create ${name} room`}
     >
       <div className="game-poster" data-tone={tone}>
         {artwork}
       </div>
       <div className="game-tile-body">
+        {featured ? <span className="eyebrow game-featured-label">Featured</span> : null}
         <div className="game-tile-heading">
           <h3>{name}</h3>
-          <ArrowRight className="tile-arrow" size={16} aria-hidden="true" />
+          {!featured ? <ArrowRight className="tile-arrow" size={16} aria-hidden="true" /> : null}
         </div>
         <p>{subtitle}</p>
         <div className="game-meta">
@@ -61,6 +68,11 @@ export function GameTile({
             {minutes} min
           </span>
         </div>
+        {featured ? (
+          <span className="game-featured-action">
+            {actionLabel} <ArrowRight size={17} aria-hidden="true" />
+          </span>
+        ) : null}
       </div>
     </button>
   );

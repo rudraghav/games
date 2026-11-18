@@ -30,6 +30,9 @@ other choices; Reset filters clears all choices and returns focus to search.
 Phones keep both main home actions in full rows. Search and Players share the
 first control row; category pills scroll in a contained second row beside Reset.
 The live result count is announced without adding a heading above the games.
+When it matches the active filters, Pop Tarot appears once in the first
+full-width catalogue row. Its Start reading action opens the existing solo
+setup flow; the other26 games continue in the regular grid below it.
 Selecting a tile opens that game's existing shared room-creation flow. Just me
 and Solo + bots open supported multiplayer games with Bots already selected and
 label their tile metadata You + bots; Friends remains available in setup.

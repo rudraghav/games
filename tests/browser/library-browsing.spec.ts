@@ -7,7 +7,7 @@ test('browsing filters intersect, reset deliberately and keep keyboard focus', a
   await page.goto('/#games');
   const library = page.getByRole('region', { name: 'Games' });
   const search = library.getByRole('searchbox', { name: 'Search games' });
-  const tiles = library.getByRole('button', { name: /^Create .+ room$/ });
+  const tiles = library.getByRole('button', { name: /^(?:Start reading — )?Create .+ room$/ });
 
   await library.getByRole('button', { name: 'Cards', exact: true }).click();
   await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('4');

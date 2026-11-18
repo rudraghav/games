@@ -5,10 +5,10 @@ import gameCatalogue from '../../packages/api-client/src/generated/catalog.json'
 test('the complete catalogue and every table scenario fit the viewport', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Choose a game', exact: true })).toBeVisible();
-  await expect(page.getByRole('button', { name: /^Create .+ room$/ })).toHaveCount(
-    gameCatalogue.length,
-  );
-  await expect(page.getByRole('button', { name: 'Create Pop Tarot room' })).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: /^(?:Start reading — )?Create .+ room$/ }),
+  ).toHaveCount(gameCatalogue.length);
+  await expect(page.getByRole('button', { name: /Create Pop Tarot room$/ })).toBeVisible();
   for (const selector of ['.game-art--board', '.game-art--words']) {
     expect(
       await page
@@ -152,7 +152,7 @@ test('Tarot reveals three distinct cards and survives a refresh', async ({ page 
   let tarotRoomId: string | undefined;
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).click();
+    await page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Browser Reader');
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
     await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);

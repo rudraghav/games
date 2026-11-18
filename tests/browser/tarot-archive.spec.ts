@@ -108,7 +108,7 @@ for (const astrology of [false, true]) {
       });
     });
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).click();
+    await page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Archive QA');
     await openRoomOptions(page);
     await page.getByRole('textbox', { name: 'Room name', exact: true }).fill(roomName);

@@ -903,3 +903,114 @@
     height: min(11cqw, 23px);
   }
 }
+
+@layer components {
+  .game-library .game-tile[data-variant='featured'] {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
+    overflow: hidden;
+    padding: 0;
+    border-color: color-mix(in srgb, var(--color-plum) 30%, var(--color-border));
+  }
+  .game-library .game-tile[data-variant='featured'] .game-poster {
+    height: auto;
+    min-height: 260px;
+    border-radius: 0;
+  }
+  .game-library .game-tile[data-variant='featured'] .game-tile-body {
+    align-self: center;
+    min-width: 0;
+    padding: 24px;
+  }
+  .game-featured-label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--color-plum);
+  }
+  .game-library .game-tile[data-variant='featured'] h3 {
+    min-height: 0;
+    font: 500 36px/1.15 var(--font-display);
+  }
+  .game-library .game-tile[data-variant='featured'] .game-tile-body > p {
+    min-height: 0;
+    max-width: 44ch;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .game-library .game-tile[data-variant='featured'] .game-meta {
+    flex-wrap: wrap;
+    margin-top: 12px;
+    padding: 0;
+    border: 0;
+    gap: 16px;
+    font-size: 12px;
+  }
+  .game-featured-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 44px;
+    margin-top: 16px;
+    padding: 10px 16px;
+    border-radius: var(--radius-control);
+    background: var(--color-plum);
+    color: var(--color-white);
+    font-size: 14px;
+    font-weight: 650;
+  }
+  .game-library .game-tile[data-variant='featured'] .game-art--tarot {
+    padding: 0;
+  }
+  .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card {
+    width: clamp(88px, 26cqw, 126px);
+    padding: 5px;
+  }
+  .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card:nth-child(1) {
+    transform: translate(clamp(-76px, -16cqw, -38px), 4px) rotate(-13deg);
+  }
+  .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card:nth-child(2) {
+    transform: translate(clamp(38px, 16cqw, 76px), 4px) rotate(13deg);
+  }
+  .game-library .game-tile[data-variant='featured'] .tarot-name {
+    font-size: 10px;
+    min-height: 24px;
+    padding-top: 4px;
+  }
+  @media (max-width: 600px) {
+    .game-library .game-tile[data-variant='featured'] {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .game-library .game-tile[data-variant='featured'] .game-poster {
+      height: 156px;
+      min-height: 0;
+    }
+    .game-library .game-tile[data-variant='featured'] .game-tile-body {
+      padding: 14px;
+    }
+    .game-library .game-tile[data-variant='featured'] h3 {
+      font-size: 28px;
+    }
+    .game-library .game-tile[data-variant='featured'] .game-tile-body > p {
+      font-size: 14px;
+    }
+    .game-library .game-tile[data-variant='featured'] .game-featured-action {
+      width: 100%;
+    }
+    .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card {
+      width: 84px;
+      padding: 4px;
+    }
+    .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card:nth-child(1) {
+      transform: translate(-52px, 2px) rotate(-12deg);
+    }
+    .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card:nth-child(2) {
+      transform: translate(52px, 2px) rotate(12deg);
+    }
+    .game-library .game-tile[data-variant='featured'] .tarot-name {
+      font-size: 8px;
+      min-height: 20px;
+    }
+  }
+}

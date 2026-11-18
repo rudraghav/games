@@ -48,9 +48,9 @@ test('personal cloud: all games, private views, revisions and a saved reading', 
         );
     }
     await page.goto('/');
-    await expect(page.getByRole('button', { name: /^Create .+ room$/ })).toHaveCount(
-      gameCatalogue.length,
-    );
+    await expect(
+      page.getByRole('button', { name: /^(?:Start reading — )?Create .+ room$/ }),
+    ).toHaveCount(gameCatalogue.length);
     await page.getByRole('button', { name: 'Create Word Agents room', exact: true }).click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Cloud Test Host');
     await openRoomOptions(page);

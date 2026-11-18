@@ -10,3 +10,12 @@ export async function refreshPlayer(cache: QueryClient, load: () => Promise<Me>)
   await cache.cancelQueries({ queryKey: keys.me, exact: true });
   return cache.fetchQuery({ queryKey: keys.me, queryFn: load, staleTime: 0 });
 }
+
+/** Remove only the confirmed departed membership before returning to the lounge. */
+export async function forgetRoomMembership(cache: QueryClient, roomId: string) {
+  await cache.cancelQueries({ queryKey: keys.me, exact: true });
+  cache.setQueryData<Me>(keys.me, (current) =>
+    current ? { ...current, rooms: current.rooms.filter((room) => room.id !== roomId) } : current,
+  );
+  void cache.invalidateQueries({ queryKey: keys.me, exact: true });
+}

@@ -191,7 +191,7 @@ test('two independent live readings retain exact private archives after new spre
         submissions.set(room.page, submissions.get(room.page)! + 1);
     });
     await room.page.goto('/');
-    await room.page.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).click();
+    await room.page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
     await room.page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill(`Tarot live QA ${index + 1}`);

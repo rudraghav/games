@@ -11,7 +11,7 @@ test('the hosted Tarot deck preserves corrected symbols in delivered WebP frames
   let roomId: string | undefined;
   try {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).click();
+    await page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
     await page
       .getByRole('textbox', { name: 'Your name', exact: true })
       .fill('Artwork verification');

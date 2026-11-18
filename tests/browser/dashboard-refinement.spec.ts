@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { requestAs, roomAs, openRoomOptions } from './helpers';
+import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 test.use({ trace: 'off', screenshot: 'off' });
 
@@ -10,6 +11,22 @@ test('compact discovery preserves solo intent and clear private setup', async ({
     await page.evaluate(() => document.fonts.ready);
     const first = await page.locator('.game-tile').first().boundingBox();
     expect(first!.y).toBeLessThan(420);
+    const featured = page.getByRole('button', {
+      name: 'Start reading — Create Pop Tarot room',
+      exact: true,
+    });
+    await expect(featured).toHaveAttribute('data-variant', 'featured');
+    await expect(page.locator('.game-tile')).toHaveCount(catalogue.length);
+    await expect(page.locator('.game-tile').first()).toHaveAccessibleName(
+      'Start reading — Create Pop Tarot room',
+    );
+    await expect(featured.getByText('Featured', { exact: true })).toBeVisible();
+    await expect(featured.getByText('Start reading', { exact: true })).toBeVisible();
+    const grid = await page.locator('.catalogue-grid').boundingBox();
+    expect(Math.abs(first!.width - grid!.width)).toBeLessThanOrEqual(1);
+    const action = await featured.locator('.game-featured-action').boundingBox();
+    expect(action!.height).toBeGreaterThanOrEqual(44);
+    expect(action!.y + action!.height).toBeLessThanOrEqual(page.viewportSize()!.height);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,
     );
@@ -34,6 +51,33 @@ test('compact discovery preserves solo intent and clear private setup', async ({
     expect(clippedCovers).toEqual([]);
   }
   const library = page.getByRole('region', { name: 'Games', exact: true });
+  const featured = library.getByRole('button', {
+    name: 'Start reading — Create Pop Tarot room',
+    exact: true,
+  });
+  await featured.focus();
+  await page.keyboard.press('Enter');
+  const tarotSetup = page.getByRole('dialog', { name: 'Create room', exact: true });
+  await expect(tarotSetup.getByRole('combobox', { name: 'The game', exact: true })).toHaveValue(
+    'tarot',
+  );
+  await expect(tarotSetup.getByRole('combobox', { name: 'Seats', exact: true })).toHaveCount(0);
+  await tarotSetup.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await expect(featured).toBeFocused();
+  const search = library.getByRole('searchbox', { name: 'Search games' });
+  await search.fill('poker');
+  await expect(featured).toHaveCount(0);
+  await expect(
+    library.getByRole('button', { name: 'Create Texas Hold’em room', exact: true }),
+  ).toBeVisible();
+  await search.fill('tarot');
+  await expect(page.locator('.game-tile')).toHaveCount(1);
+  await expect(featured).toBeVisible();
+  await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('2');
+  await expect(featured).toHaveCount(0);
+  await expect(library.getByRole('heading', { name: 'No games found', exact: true })).toBeVisible();
+  await library.getByRole('button', { name: 'Reset filters', exact: true }).click();
+  await expect(page.locator('.game-tile')).toHaveCount(catalogue.length);
   await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('1');
   const uno = library.getByRole('button', { name: 'Create Uno room', exact: true });
   await expect(uno.getByText('You + bots', { exact: true })).toBeVisible();
@@ -122,6 +166,29 @@ test('private room shortcuts and pasted invite links stay membership-scoped', as
       outsider.getByRole('heading', { name: 'No rooms yet', exact: true }),
     ).toBeVisible();
     await expect(outsider.locator('.room-shortcut:visible')).toHaveCount(0);
+    await friend.getByRole('link', { name: 'Open Dashboard table, Uno', exact: true }).click();
+    await friend
+      .locator('.room-toolbar')
+      .getByRole('button', { name: 'Room options', exact: true })
+      .click();
+    const departed = friend.waitForResponse(
+      (response) =>
+        response.request().method() === 'POST' && response.url().endsWith(`/rooms/${id}/leave`),
+    );
+    await friend
+      .getByRole('dialog', { name: 'Your room', exact: true })
+      .getByRole('button', { name: 'Leave room', exact: true })
+      .click();
+    expect((await departed).status()).toBe(200);
+    friendJoined = false;
+    await expect(friend).toHaveURL(/\/$/);
+    await friend.getByRole('tab', { name: 'Rooms', exact: true }).click();
+    await expect(friend.getByRole('heading', { name: 'No rooms yet', exact: true })).toBeVisible();
+    await expect(friend.locator('.room-shortcut:visible')).toHaveCount(0);
+    expect((await roomAs(page, id)).members).toHaveLength(1);
+    await expect(
+      rooms.getByRole('link', { name: 'Open Dashboard table, Uno', exact: true }),
+    ).toBeVisible();
     await page.screenshot({ path: test.info().outputPath('member-dashboard.png') });
   } finally {
     if (id) {

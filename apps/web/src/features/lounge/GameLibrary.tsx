@@ -14,6 +14,8 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string, withBots: boo
   const categoryRail = useRef<HTMLDivElement>(null);
   const hasFilters = query.trim().length > 0 || players !== 0 || category !== 'all';
   const filtered = findGames(games, query, players, category);
+  const featured = filtered.find((game) => game.id === 'tarot');
+  const ordered = featured ? [featured, ...filtered.filter((game) => game !== featured)] : filtered;
   const reset = () => {
     setQuery('');
     setPlayers(0);
@@ -102,7 +104,7 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string, withBots: boo
       <div id="game-catalogue">
         {filtered.length ? (
           <div className="catalogue-grid">
-            {filtered.map((game) => (
+            {ordered.map((game) => (
               <GameTile
                 key={game.id}
                 name={game.name}
@@ -111,6 +113,8 @@ export function GameLibrary({ onChoose }: { onChoose: (id: string, withBots: boo
                 maxPlayers={game.maxPlayers}
                 minutes={game.minutes}
                 tone={game.color}
+                variant={game.id === 'tarot' ? 'featured' : 'standard'}
+                actionLabel={game.id === 'tarot' ? 'Start reading' : undefined}
                 soloMode={players === 1 || category === 'solo'}
                 edition={game.rulesVersion.startsWith('house-') ? 'house' : 'standard'}
                 artwork={<GameArt game={game} />}

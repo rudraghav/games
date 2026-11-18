@@ -9,8 +9,8 @@ try {
   const images = [];
   page.on('response', (response) => { if (/\/tarot\/major-\d+\.webp$/.test(response.url())) images.push(response.status()); });
   await page.goto(target.href);
-  await page.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).waitFor();
-  await page.getByRole('button', { name: 'Create Pop Tarot room', exact: true }).scrollIntoViewIfNeeded();
+  await page.getByRole('button', { name: /Create Pop Tarot room$/ }).waitFor();
+  await page.getByRole('button', { name: /Create Pop Tarot room$/ }).scrollIntoViewIfNeeded();
   await page.waitForFunction(() => document.fonts.status === 'loaded');
   await mkdir('docs/evidence/hosted', { recursive: true });
   await page.screenshot({ path: 'docs/evidence/hosted/lounge-desktop.png', fullPage: true });

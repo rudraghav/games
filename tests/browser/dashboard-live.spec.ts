@@ -248,7 +248,11 @@ test('two guests browse every setup, join a private room and play with the real 
     for (const width of widths) {
       await page.setViewportSize({ width, height: width === 1440 ? 1000 : 844 });
       for (const game of catalogue) {
-        await page.getByRole('button', { name: `Create ${game.name} room`, exact: true }).click();
+        const createButton =
+          game.id === 'tarot'
+            ? page.getByRole('button', { name: /Create Pop Tarot room$/ })
+            : page.getByRole('button', { name: `Create ${game.name} room`, exact: true });
+        await createButton.click();
         const dialog = page.getByRole('dialog', { name: 'Create room', exact: true });
         await expect(dialog.getByRole('combobox', { name: 'The game', exact: true })).toHaveValue(
           game.id,
