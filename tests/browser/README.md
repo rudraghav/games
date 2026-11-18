@@ -147,6 +147,17 @@ default, requires explicit `--execute --run-id`, caps provider attempts and save
 raw readings only in private ignored files. Its direct provider results do not
 establish room persistence or authorization.
 
+The astrology harness records a created room before navigation assertions and
+retires it in an `afterEach` hook with a fresh 45-second cleanup budget. Screenshot
+preparation scrolls each required image into view and bounds its load/decode checks
+before restoring the original scroll position; offscreen lazy images otherwise
+leave WebKit waiting indefinitely. WebKit's iPhone profile is Safari-engine
+emulation, not a physical iOS device; it does not establish native picker,
+assistive-technology or hardware-haptic behavior.
+The revealed-card navigation check uses WebKit's Option-Tab all-controls chord,
+since its default Tab policy skips ordinary buttons; the expected next control
+and all focus, saved-pick and reduced-motion assertions remain the same.
+
 `tarot-reading-live.spec.ts` is separately gated by both `GAMES_TEST_URL` and
 `GAMES_TEST_AI=1`. Its one desktop case uses two independent readers for ordinary
 and Both readings, then checks real images, responsive layouts, exact saved

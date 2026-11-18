@@ -1,3 +1,30 @@
+## 2026-11-18 — Safari-engine verification and release-access checkpoint
+
+- Targeted phone WebKit passes21 cases; the affected desktop/phone Chromium
+  regression passes38. Featured home at320/390 has one full-width Tarot, all27
+  games, a44px action and no overflow, clipped artwork or identity/backend calls.
+  This is Safari-engine emulation, not physical iOS/VoiceOver/haptic proof.
+- Two test assumptions are corrected: capture loads and decodes required lazy
+  images within bounded waits; WebKit uses its native Option-Tab all-controls
+  chord. Product behavior and focus/saved-card assertions are unchanged. Browser
+  TypeScript, scoped formatting and whitespace checks pass.
+- Astrology tests now retain their created room ID before navigation and use
+  a fresh45-second afterEach cleanup budget. The one initial timeout room was
+  retired through normal local abandon/leave endpoints: final404, closed and
+  zero active memberships; all other protected-state fingerprints match.
+- Cleanup restores the exact two older browser revisions unexpectedly removed
+  by the installer, preserves the pre-existing third and retains required new
+  WebKit2370 (299,531,327bytes). Verified disposable download archives and
+  superseded captures reclaim221,115,862bytes. Current proof/logs56,298,577bytes
+  remain under output/playwright/tarot-webkit-20261118; requested services stay up.
+- Read-only release preflight finds no GitHub login connection in the personal
+  Vercel account; namespace/repository discovery fails. The account connection
+  page is handed to the user for authorization. Project Git link remains null,
+  production65de797 is unchanged and no deployment attempt has been made.
+- Runtime inputs remain unchanged. Final Gemini checks remain gated until
+  08:01UTC/13:31IST within the remaining8 attempts; the hosted production flow,
+  owner preservation and release logs still require verification after rollout.
+
 ## 2026-11-18 — Featured Tarot published; alternatives not adopted
 
 - Application53421e74a5b1d7cf1c55a1d117bef0726726371d is pushed to main;

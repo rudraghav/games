@@ -16,6 +16,29 @@ import { requestAs, roomAs } from './helpers';
 test.use({ trace: 'off', screenshot: 'off' });
 test.skip(!!process.env.GAMES_TEST_URL, 'Synthetic provider tests use local development only.');
 
+const cleanup = new WeakMap<Page, { roomId?: string }>();
+test.afterEach(async ({ page }) => {
+  test.setTimeout(45000);
+  const owned = cleanup.get(page);
+  if (!owned) return;
+  try {
+    if (owned.roomId) {
+      await page.unrouteAll({ behavior: 'ignoreErrors' });
+      const response = await requestAs(page, `rooms/${owned.roomId}`);
+      if (response.ok()) {
+        if ((await response.json()).status === 'playing')
+          expect((await requestAs(page, `rooms/${owned.roomId}/abandon`, 'POST')).status()).toBe(
+            200,
+          );
+        expect((await requestAs(page, `rooms/${owned.roomId}/leave`, 'POST')).status()).toBe(200);
+      }
+      expect((await requestAs(page, `rooms/${owned.roomId}`)).status()).toBe(404);
+    }
+  } finally {
+    cleanup.delete(page);
+  }
+});
+
 type ReadingRequest = {
   match_id: string;
   question: string;
@@ -34,6 +57,8 @@ async function withReading(
   }) => Promise<void>,
 ) {
   page.setDefaultTimeout(15000);
+  const owned: { roomId?: string } = {};
+  cleanup.set(page, owned);
   let roomId: string | undefined;
   let view: ReadingView = {
     status: 'ready',
@@ -102,9 +127,19 @@ async function withReading(
     await page.goto('/');
     await page.getByRole('button', { name: /Create Pop Tarot room$/ }).click();
     await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Synthetic chart QA');
+    const created = page
+      .waitForResponse(
+        (response) =>
+          response.request().method() === 'POST' &&
+          new URL(response.url()).pathname === '/api/backend/v1/rooms',
+      )
+      .then(async (response) => {
+        if (response.ok()) owned.roomId = (await response.json()).id;
+      });
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
+    await created;
+    roomId = owned.roomId!;
     await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/);
-    roomId = new URL(page.url()).pathname.split('/').at(-1)!;
     for (let card = 1; card <= 3; card++) {
       await expect(page.getByRole('heading', { name: `Choose card ${card} of 3` })).toBeVisible();
       await page
@@ -136,13 +171,6 @@ async function withReading(
     ).toBe(false);
   } finally {
     page.off('request', recordUrl);
-    if (roomId) {
-      const response = await requestAs(page, `rooms/${roomId}`);
-      if (response.ok() && (await response.json()).status === 'playing')
-        expect((await requestAs(page, `rooms/${roomId}/abandon`, 'POST')).status()).toBe(200);
-      expect((await requestAs(page, `rooms/${roomId}/leave`, 'POST')).status()).toBe(200);
-      expect((await requestAs(page, `rooms/${roomId}`)).status()).toBe(404);
-    }
   }
 }
 async function details(page: Page) {
@@ -159,14 +187,37 @@ async function noOverflow(page: Page) {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 }
 async function capture(page: Page, name: string) {
-  await page.evaluate(async () => {
-    await document.fonts.ready;
-    await Promise.all(
-      [...document.images]
-        .filter((image) => image.getBoundingClientRect().height > 0)
-        .map((image) => image.decode().catch(() => {})),
-    );
-  });
+  await page.evaluate(() => document.fonts.ready);
+  const scroll = await page.evaluate(() => ({ x: scrollX, y: scrollY }));
+  try {
+    // WebKit does not start an offscreen lazy image merely because decode() was called.
+    for (const image of await page.locator('.tarot-table img:visible').all()) {
+      await image.scrollIntoViewIfNeeded();
+      await expect
+        .poll(
+          () =>
+            image.evaluate(
+              (element: HTMLImageElement) =>
+                element.complete && element.naturalWidth > 0 && element.naturalHeight > 0,
+            ),
+          { timeout: 10000 },
+        )
+        .toBe(true);
+      expect(
+        await image.evaluate((element: HTMLImageElement) =>
+          Promise.race([
+            element.decode().then(
+              () => true,
+              () => false,
+            ),
+            new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 3000)),
+          ]),
+        ),
+      ).toBe(true);
+    }
+  } finally {
+    await page.evaluate(({ x, y }) => window.scrollTo(x, y), scroll);
+  }
   await page.locator('.tarot-table').screenshot({ path: test.info().outputPath(`${name}.png`) });
 }
 

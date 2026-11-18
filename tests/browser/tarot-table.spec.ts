@@ -102,6 +102,7 @@ test('solo setup omits seats and invitations while room options keep chat and ac
 
 test('each pick is revealed in its slot, named and focused; the deck is one Tab stop', async ({
   page,
+  browserName,
 }) => {
   await page.setViewportSize({ width: 320, height: 640 });
   await page.emulateMedia({ reducedMotion: 'no-preference' });
@@ -197,7 +198,8 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     await expect(second.locator('.tarot-name')).not.toBeEmpty();
     await expect(second).toBeFocused();
     await expect.poll(pulses).toEqual([12, 12]);
-    await page.keyboard.press('Tab');
+    // WebKit's native Tab policy skips ordinary buttons; Option-Tab includes all controls.
+    await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
     await expect(page.locator(':focus')).toHaveText('Choose card 3 of 3');
 
     // A refresh mid-spread keeps both cards and does not replay the reveal.
