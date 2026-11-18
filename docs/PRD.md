@@ -4,6 +4,16 @@ Choose a game before choosing how to play. Tarot opens directly into a private
 reading; bot play starts immediately. Friends use game → setup → invite lobby →
 ready → play → results → rematch/change game. The catalogue now contains 27 games.
 
+## Learn through play
+
+All 27 game pages offer a playable tutorial and three illustrated rules with worked
+examples. The 26 multiplayer tutorials put one learner at the real table with
+ordinary bot seats. Tarot teaches the positions of a private three-card spread.
+Instructions follow the legal choices in the learner’s view. Feedback explains
+the committed action and the bot’s visible reply. Closing the tutor continues
+the same game. Western and Vedic astrology show named sign illustrations on
+the chart and in the placements and houses tables.
+
 ## Confirmed decisions
 
 Every game has a public `/games/[gameId]` page with rules and clear play actions.

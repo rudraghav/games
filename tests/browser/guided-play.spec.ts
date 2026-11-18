@@ -1,0 +1,180 @@
+import { expect, test, type Page } from '@playwright/test';
+import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
+import { attachPreviewAccess, requestAs, roomAs, type RoomView } from './helpers';
+
+test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
+
+async function withTutorial(page: Page, game: string, play: (room: RoomView) => Promise<void>) {
+  await attachPreviewAccess(page);
+  await page.goto(`/games/${game}`);
+  const created = page.waitForResponse(
+    (r) => r.request().method() === 'POST' && r.url().endsWith(`/games/${game}/play`),
+  );
+  await page.getByRole('button', { name: 'Play tutorial', exact: true }).click();
+  const response = await created;
+  expect(response.ok()).toBe(true);
+  const room = (await response.json()) as RoomView;
+  try {
+    await expect(page.getByRole('region', { name: 'Tutorial coach' })).toBeVisible();
+    await expect(page).toHaveURL(new RegExp('tutorial=' + room.match_id));
+    await play(room);
+  } finally {
+    if ((await roomAs(page, room.id)).status === 'playing') {
+      expect((await requestAs(page, `rooms/${room.id}/abandon`, 'POST')).ok()).toBe(true);
+    }
+    expect((await requestAs(page, `rooms/${room.id}/leave`, 'POST')).ok()).toBe(true);
+    expect((await requestAs(page, `rooms/${room.id}`)).status()).toBe(404);
+  }
+}
+
+test('all games offer three illustrated rules and a tutorial before starting a session', async ({
+  page,
+}, info) => {
+  test.setTimeout(180000);
+  await attachPreviewAccess(page);
+  if (info.project.name === 'phone') await page.setViewportSize({ width: 320, height: 740 });
+  const writes: string[] = [];
+  page.on('request', (r) => {
+    if (r.method() === 'POST' && new URL(r.url()).pathname.startsWith('/api/backend/v1/'))
+      writes.push(new URL(r.url()).pathname);
+  });
+  for (const game of catalogue) {
+    await page.goto(`/games/${game.id}`);
+    await expect(page.getByRole('button', { name: 'Play tutorial', exact: true })).toBeVisible();
+    await page.locator('.game-entry-rules > summary').click();
+    const rules = page.locator('.illustrated-rules');
+    await expect(rules.getByRole('img')).toHaveCount(3);
+    for (const picture of await rules.getByRole('img').all()) {
+      await expect(picture).toBeVisible();
+      await expect(picture).toHaveAccessibleName(/\S/);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    if (game.id === 'boop') {
+      await rules.scrollIntoViewIfNeeded();
+      await page.screenshot({ path: info.outputPath('illustrated-boop.png') });
+    }
+  }
+  expect(writes).toEqual([]);
+});
+
+test('play beyond three real moves with a bot, resume the saved guide and continue the same game', async ({
+  page,
+}, info) => {
+  await withTutorial(page, 'four-in-a-row', async (room) => {
+    const coach = page.getByRole('region', { name: 'Tutorial coach' });
+    expect(room.members.filter((member) => member.is_bot)).toHaveLength(1);
+    for (let step = 1; step <= 4; step++) {
+      await expect(coach).toContainText(step <= 3 ? `Guided move ${step} of 3` : 'Guided move 4');
+      if (step === 4) {
+        await expect(coach.getByRole('button', { name: 'Finish tutorial' })).toBeVisible();
+        await page.reload();
+        await expect(coach).toContainText('Guided move 4');
+      }
+      const before = await roomAs(page, room.id);
+      const selfMoves = (before.activity ?? []).filter(
+        (move) => move.actor_id === room.owner_id,
+      ).length;
+      // Start through the teaching card, then use the normal board control for the same lesson.
+      const surface = step === 2 ? page.locator('#tutorial-game-table') : coach;
+      await surface
+        .getByRole('button', { name: /^Drop in column /i })
+        .first()
+        .click();
+      await expect
+        .poll(
+          async () =>
+            ((await roomAs(page, room.id)).activity ?? []).filter(
+              (move) => move.actor_id === room.owner_id,
+            ).length,
+        )
+        .toBe(selfMoves + 1);
+      if (step === 1) {
+        await expect
+          .poll(async () =>
+            ((await roomAs(page, room.id)).activity ?? []).some((move) =>
+              room.members.some((member) => member.is_bot && member.id === move.actor_id),
+            ),
+          )
+          .toBe(true);
+        await expect(coach.locator('.turn-coach__feedback')).toBeVisible();
+        await page.reload();
+        await expect(coach).toContainText('Guided move 2 of 3');
+        await coach.getByRole('button', { name: 'Illustrated rules' }).click();
+        await expect(page.getByRole('dialog').getByRole('img')).toHaveCount(3);
+        await page.getByRole('button', { name: 'Close dialog' }).click();
+        await coach.scrollIntoViewIfNeeded();
+        await page.screenshot({ path: info.outputPath('saved-bot-lesson.png') });
+      }
+    }
+    await coach.getByRole('button', { name: 'Finish tutorial' }).click();
+    await expect(coach).toHaveCount(0);
+    await expect(page).not.toHaveURL(/tutorial=/);
+    await page.reload();
+    await expect(page.locator('.room-table-frame')).toBeVisible();
+    await expect(coach).toHaveCount(0);
+    expect((await roomAs(page, room.id)).match_id).toBe(room.match_id);
+  });
+});
+
+test('solo Tarot guides three real picks and leaves the reading and birth details optional', async ({
+  page,
+}) => {
+  let generations = 0;
+  await page.route('**/api/backend/v1/rooms/*/reading', async (route) => {
+    if (route.request().method() === 'POST') {
+      generations++;
+      await route.abort();
+    } else await route.continue();
+  });
+  await withTutorial(page, 'tarot', async (room) => {
+    expect(room.members).toHaveLength(1);
+    const coach = page.getByRole('region', { name: 'Tutorial coach' });
+    const tip = page.getByRole('complementary', { name: 'Tutorial tip' });
+    const firstCard = page.getByRole('button', { name: /^Face-down card 1 of / });
+    await page.setViewportSize({ width: page.viewportSize()!.width, height: 600 });
+    await coach.getByRole('link', { name: 'Go to cards' }).click();
+    await expect(firstCard).toBeFocused();
+    expect((await roomAs(page, room.id)).match_version).toBe(room.match_version);
+    const scrollToTable = () =>
+      page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await scrollToTable();
+    await expect(tip).toBeInViewport();
+    await expect(tip).toContainText('Pick your first card');
+    await tip.getByRole('button', { name: 'Back to full guide' }).click();
+    await expect(coach).toBeFocused();
+    await expect(tip).toHaveCount(0);
+    for (let step = 1; step <= 3; step++) {
+      await expect(coach).toContainText(`Card ${step} of 3`);
+      await page.getByRole('button', { name: /^Face-down card 1 of / }).click();
+      await expect
+        .poll(async () => (await roomAs(page, room.id)).game!.community!.length)
+        .toBe(step);
+      if (step === 1) {
+        await scrollToTable();
+        await expect(tip).toBeInViewport();
+        await expect(tip).toContainText('Where you are');
+        const drawn = (await roomAs(page, room.id)).game!.community![0];
+        await expect(tip).toContainText(drawn.label);
+        await page
+          .getByRole('button', { name: 'Game rules', exact: true })
+          .evaluate((node) => (node as HTMLButtonElement).click());
+        await expect(page.getByRole('dialog')).toBeVisible();
+        await expect(page.locator('.turn-coach-float')).toBeHidden();
+        await page.getByRole('button', { name: 'Close dialog' }).click();
+        await scrollToTable();
+        await expect(tip).toBeInViewport();
+        await page.screenshot({ path: test.info().outputPath('floating-turn-rule.png') });
+        await tip.getByRole('button', { name: 'Hide floating tip' }).click();
+        await expect(tip).toHaveCount(0);
+      }
+    }
+    await expect(coach).toContainText('Your spread is ready');
+    await page.reload();
+    await expect(coach).toContainText('Your spread is ready');
+    await coach.getByRole('button', { name: 'Continue to spread' }).click();
+    await expect(coach).toHaveCount(0);
+    expect(generations).toBe(0);
+  });
+});

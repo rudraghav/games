@@ -10,7 +10,10 @@ import { keys } from '@/shared/query-keys';
 import { rememberPlayer } from '@/shared/player-preferences';
 import { refreshPlayer } from '@/shared/player-query';
 
-type LaunchFailure = { message: string; newLaunch: boolean };
+import { setGuideEnabled } from '@/shared/tutorial/guide-preference';
+
+type LaunchMode = 'play' | 'tutorial';
+type LaunchFailure = { mode: LaunchMode; message: string; newLaunch: boolean };
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 function storedRequest(key: string) {
@@ -25,12 +28,11 @@ function storedRequest(key: string) {
 export function useQuickPlay(gameId: string) {
   const router = useRouter();
   const cache = useQueryClient();
-  const [pending, setPending] = useState(false);
+  const [pending, setPending] = useState<LaunchMode | null>(null);
   const [failure, setFailure] = useState<LaunchFailure | null>(null);
-  const request = useRef<string | null>(null);
+  const request = useRef<Partial<Record<LaunchMode, string>>>({});
   const busy = useRef(false);
   const mounted = useRef(true);
-  const key = `games:launch:${gameId}`;
   const reading = gameId === 'tarot';
 
   useEffect(() => {
@@ -40,21 +42,22 @@ export function useQuickPlay(gameId: string) {
     };
   }, []);
 
-  async function start() {
+  async function start(mode: LaunchMode = 'play') {
     // The ref closes the gap before React paints the disabled button.
     if (busy.current) return;
     busy.current = true;
-    setPending(true);
+    setPending(mode);
     setFailure(null);
-    if (failure?.newLaunch) request.current = crypto.randomUUID();
-    request.current ??= storedRequest(key) ?? crypto.randomUUID();
+    const key = mode === 'tutorial' ? `games:launch:tutorial:${gameId}` : `games:launch:${gameId}`;
+    if (failure?.mode === mode && failure.newLaunch) request.current[mode] = crypto.randomUUID();
+    const requestId = (request.current[mode] ??= storedRequest(key) ?? crypto.randomUUID());
     try {
-      sessionStorage.setItem(key, request.current);
+      sessionStorage.setItem(key, requestId);
     } catch {
       // Storage restrictions still permit same-page recovery with the ref.
     }
     try {
-      const room = await api.quickPlay(gameId, request.current);
+      const room = await api.quickPlay(gameId, requestId);
       cache.setQueryData(keys.room(room.id), room);
       if (!mounted.current) return;
       const player = room.members.find((member) => member.id === room.ownerId);
@@ -74,14 +77,20 @@ export function useQuickPlay(gameId: string) {
       } catch {
         // The server still recognizes the same request if it remains stored.
       }
-      router.push(roomPath(room));
+      if (mode === 'tutorial' && room.matchId) {
+        setGuideEnabled(room.matchId, room.ownerId, true);
+        router.push(`${roomPath(room)}?tutorial=${encodeURIComponent(room.matchId)}`);
+      } else {
+        router.push(roomPath(room));
+      }
     } catch (error) {
       if (!mounted.current) return;
       const status = error instanceof ApiError ? error.status : undefined;
       setFailure(
         status === 409 || status === 410
-          ? { message: 'That session has ended or changed.', newLaunch: true }
+          ? { mode, message: 'That session has ended or changed.', newLaunch: true }
           : {
+              mode,
               message:
                 status === 429
                   ? 'Too many starts. Try again later.'
@@ -93,7 +102,7 @@ export function useQuickPlay(gameId: string) {
       );
     } finally {
       busy.current = false;
-      if (mounted.current) setPending(false);
+      if (mounted.current) setPending(null);
     }
   }
 
@@ -101,14 +110,17 @@ export function useQuickPlay(gameId: string) {
     start,
     pending,
     failure,
-    label: pending
-      ? 'Starting…'
-      : failure?.newLaunch
-        ? `Start a new ${reading ? 'reading' : 'game'}`
-        : failure
-          ? 'Try again'
-          : reading
-            ? 'Start reading'
-            : 'Play with bots',
+    label(mode: LaunchMode) {
+      if (pending === mode) return 'Starting…';
+      if (failure?.mode === mode) {
+        if (failure.newLaunch)
+          return mode === 'tutorial'
+            ? 'Start a new tutorial'
+            : `Start a new ${reading ? 'reading' : 'game'}`;
+        return 'Try again';
+      }
+      if (mode === 'tutorial') return 'Play tutorial';
+      return reading ? 'Start reading' : 'Play with bots';
+    },
   };
 }

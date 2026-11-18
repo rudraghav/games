@@ -65,6 +65,13 @@ Astrology starts off. Turning it on offers Both, Western or Vedic, then requires
 
 Both diagrams use the server’s whole-sign houses. Calculation version, source and precision note remain available under “How this chart was calculated”. Native hover hints repeat the chart selection labels; touch and keyboard inspection remain available without hover. Contract types come from generated OpenAPI through `@games/api-client`.
 
+The wheel, North Indian diamond, inspection panel and placement/house tables
+use original square WebP illustrations from `public/art/zodiac`. Each marker
+uses the sign index returned for that system and placement. Vedic placements
+show the rashi name alongside its English counterpart. Mithuna, Dhanu, Makara
+and Kumbha have their own illustrated emblems. The other eight share a motif
+across traditions. [Rashi names](https://www.drikpanchang.com/astrology/prediction/info/find-rashi-with-name.html?lang=en)
+
 ## Privacy and recovery
 
 Birth fields exist only in component memory. They are never query keys, URLs, browser storage or logs. Search and calculation use authenticated POST bodies. The provider receives computed placements rather than raw date/time/place. Off requests omit both astrology fields and the saved-chart reuse flag.

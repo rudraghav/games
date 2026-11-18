@@ -75,3 +75,13 @@ pacing itself.
 and the move line helpers; `room-presentation.test.tsx` covers banner and
 results wording. Browser coverage: `tests/browser/room-layout.spec.ts`,
 `hand-navigation.spec.ts`, `table-density.spec.ts`, `stable-game-tables.spec.ts`.
+
+## Guided play
+
+The opt-in TurnCoach uses the authorized table and committed public activity.
+Direct teaching buttons submit the exact projected move via the table's normal
+save. Decisions involving cards, targets, bets, optional effects or hidden
+information use the game controls where appropriate. The main teaching card and
+compact, dismissible scroll tip describe the move and applied rule. The modal
+rulebook includes the same illustrated examples as the public entry. The guide
+can be closed without leaving the match. Friends' rooms keep the ordinary table.

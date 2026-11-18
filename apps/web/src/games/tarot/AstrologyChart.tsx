@@ -1,16 +1,44 @@
 'use client';
 import { useId, useState } from 'react';
+import Image from 'next/image';
 import { SegmentedTabs } from '@games/ui';
 import type { AstrologyChart as ChartData, AstrologySystemChart } from '@games/api-client';
 import {
   formatDegree,
   planetLabels,
   planetSymbols,
-  signSymbols,
   wheelPoint,
+  zodiacSign,
 } from './astrology-presentation';
 
 type Selection = `planet:${string}` | `house:${number}`;
+type Sign = ReturnType<typeof zodiacSign>;
+
+function SignPortrait({ sign, size = 26 }: { sign: Sign; size?: number }) {
+  return sign.image ? (
+    <Image
+      className="astro-sign-portrait"
+      src={sign.image}
+      width={size}
+      height={size}
+      unoptimized
+      alt=""
+    />
+  ) : null;
+}
+
+function SignCell({ sign, detail }: { sign: Sign; detail?: string }) {
+  return (
+    <span className="astro-sign-cell">
+      <SignPortrait sign={sign} />
+      <span>
+        {sign.label}
+        {detail && <small>{detail}</small>}
+      </span>
+    </span>
+  );
+}
+
 const vedicHouses = [
   { number: 1, points: '200,20 290,110 200,200 110,110', x: 200, y: 95 },
   { number: 2, points: '20,20 200,20 110,110', x: 110, y: 47 },
@@ -72,11 +100,11 @@ function WesternWheel({
         Signs surround the chart. Dots show calculated positions; leaders connect separated planet
         labels. Choose a planet, or use Inspect chart below.
       </desc>
-      <circle cx="240" cy="240" r="211" className="astro-zodiac-ring" />
+      <circle cx="240" cy="240" r="224" className="astro-zodiac-ring" />
       <circle cx="240" cy="240" r="179" className="astro-inner-ring" />
       <circle cx="240" cy="240" r="164" className="astro-inner-ring" />
       {chart.houses.map((house) => {
-        const outer = wheelPoint(house.start_longitude, ascendant, 211);
+        const outer = wheelPoint(house.start_longitude, ascendant, 224);
         const inner = wheelPoint(house.start_longitude, ascendant, 150);
         const label = wheelPoint(house.start_longitude + 15, ascendant, 171);
         return (
@@ -95,18 +123,20 @@ function WesternWheel({
         );
       })}
       {signOrder.map((house) => {
-        const label = wheelPoint(house.start_longitude + 15, ascendant, 195);
+        const label = wheelPoint(house.start_longitude + 15, ascendant, 201);
+        const sign = zodiacSign(house, chart.system);
         return (
-          <text
+          <image
             key={house.sign_index}
-            x={label.x}
-            y={label.y + 7}
-            className="astro-sign"
-            aria-label={house.sign}
+            href={sign.image}
+            x={label.x - 16}
+            y={label.y - 16}
+            width="32"
+            height="32"
+            role="img"
           >
-            {signSymbols[house.sign_index]}
-            {String.fromCodePoint(0xfe0e)}
-          </text>
+            <title>{sign.label}</title>
+          </image>
         );
       })}
       {aspects
@@ -176,7 +206,7 @@ function WesternWheel({
           </g>
         );
       })}
-      <text x="22" y="244" className="astro-angle-label">
+      <text x="66" y="244" className="astro-angle-label">
         ASC
       </text>
       <text x="240" y="244" className="astro-centre-label">
@@ -210,8 +240,9 @@ function VedicDiamond({
       </desc>
       {vedicHouses.map((geometry) => {
         const house = chart.houses.find((entry) => entry.number === geometry.number)!;
+        const sign = zodiacSign(house, chart.system);
         const planets = chart.placements.filter((point) => point.house === house.number);
-        const description = `House ${house.number}, ${house.sign}: ${planets.map((point) => point.name).join(', ') || 'no planets'}`;
+        const description = `House ${house.number}, ${sign.label}: ${planets.map((point) => point.name).join(', ') || 'no planets'}`;
         const chosen =
           selection === `house:${house.number}` ||
           planets.some((point) => selection === `planet:${point.id}`);
@@ -233,10 +264,21 @@ function VedicDiamond({
           >
             <title>{description}</title>
             <polygon points={geometry.points} />
-            <text x={geometry.x} y={geometry.y - 8} className="astro-vedic-sign">
-              {house.number} · {house.sign.slice(0, 3)}
+            <image
+              href={sign.image}
+              x={geometry.x - 19}
+              y={geometry.y - 23}
+              width="24"
+              height="24"
+              aria-hidden="true"
+            />
+            <text x={geometry.x + 13} y={geometry.y - 6} className="astro-vedic-number">
+              {house.number}
             </text>
-            <text x={geometry.x} y={geometry.y + 15} className="astro-vedic-planets">
+            <text x={geometry.x} y={geometry.y + 14} className="astro-vedic-sign">
+              {sign.name}
+            </text>
+            <text x={geometry.x} y={geometry.y + 32} className="astro-vedic-planets">
               {planets
                 .slice(0, 3)
                 .map((point) => planetSymbols[point.id] || point.name.slice(0, 2))
@@ -255,6 +297,8 @@ function SystemChart({ chart }: { chart: AstrologySystemChart }) {
   const [aspects, setAspects] = useState(false);
   const selectedPoint = chart.placements.find((point) => selection === `planet:${point.id}`);
   const selectedHouse = chart.houses.find((house) => selection === `house:${house.number}`);
+  const selected = selectedPoint || selectedHouse;
+  const sign = selected && zodiacSign(selected, chart.system);
   const names = new Map(chart.placements.map((point) => [point.id, point.name]));
   return (
     <section className="astrology-system" aria-label={chart.label}>
@@ -295,43 +339,52 @@ function SystemChart({ chart }: { chart: AstrologySystemChart }) {
               <optgroup label="Houses">
                 {chart.houses.map((house) => (
                   <option key={house.number} value={`house:${house.number}`}>
-                    House {house.number} · {house.sign}
+                    House {house.number} · {zodiacSign(house, chart.system).label}
                   </option>
                 ))}
               </optgroup>
             </select>
           </label>
           <div className="astrology-inspection" aria-live="polite">
-            <h4>{selectedPoint?.name || `House ${selectedHouse?.number}`}</h4>
-            {selectedPoint ? (
-              <p>
-                {selectedPoint.sign} · {formatDegree(selectedPoint.degree)}
-                <br />
-                House {selectedPoint.house}
-                {selectedPoint.retrograde ? ' · Retrograde' : ''}
-              </p>
-            ) : (
-              <p>
-                {selectedHouse?.sign}
-                <br />
-                {chart.placements
-                  .filter((point) => point.house === selectedHouse?.number)
-                  .map((point) => point.name)
-                  .join(', ') || 'No planets in this house.'}
-              </p>
-            )}
+            {sign && <SignPortrait sign={sign} size={52} />}
+            <div>
+              <h4>{selectedPoint?.name || `House ${selectedHouse?.number}`}</h4>
+              {selectedPoint ? (
+                <p>
+                  {sign?.label} · {formatDegree(selectedPoint.degree)}
+                  <br />
+                  House {selectedPoint.house}
+                  {selectedPoint.retrograde ? ' · Retrograde' : ''}
+                </p>
+              ) : (
+                <p>
+                  {sign?.label}
+                  <br />
+                  {chart.placements
+                    .filter((point) => point.house === selectedHouse?.number)
+                    .map((point) => point.name)
+                    .join(', ') || 'No planets in this house.'}
+                </p>
+              )}
+            </div>
           </div>
           <dl className="astrology-angles">
             <div>
               <dt>{chart.system === 'vedic' ? 'Lagna / ascendant' : 'Ascendant'}</dt>
               <dd>
-                {chart.ascendant.sign} · {formatDegree(chart.ascendant.degree)}
+                <SignCell
+                  sign={zodiacSign(chart.ascendant, chart.system)}
+                  detail={formatDegree(chart.ascendant.degree)}
+                />
               </dd>
             </div>
             <div>
               <dt>Midheaven</dt>
               <dd>
-                {chart.midheaven.sign} · {formatDegree(chart.midheaven.degree)}
+                <SignCell
+                  sign={zodiacSign(chart.midheaven, chart.system)}
+                  detail={formatDegree(chart.midheaven.degree)}
+                />
               </dd>
             </div>
             {chart.moon_nakshatra ? (
@@ -355,7 +408,7 @@ function SystemChart({ chart }: { chart: AstrologySystemChart }) {
           ) : null}
           <details className="astrology-data">
             <summary>All placements</summary>
-            <table>
+            <table className="astro-placements-table">
               <caption>Calculated planet positions</caption>
               <thead>
                 <tr>
@@ -372,9 +425,10 @@ function SystemChart({ chart }: { chart: AstrologySystemChart }) {
                       {point.retrograde ? <small>Retrograde</small> : null}
                     </th>
                     <td>
-                      {point.sign}
-                      <br />
-                      {formatDegree(point.degree)}
+                      <SignCell
+                        sign={zodiacSign(point, chart.system)}
+                        detail={formatDegree(point.degree)}
+                      />
                     </td>
                     <td>{point.house}</td>
                   </tr>
@@ -393,7 +447,9 @@ function SystemChart({ chart }: { chart: AstrologySystemChart }) {
                 {chart.houses.map((house) => (
                   <tr key={house.number}>
                     <th scope="row">{house.number}</th>
-                    <td>{house.sign}</td>
+                    <td>
+                      <SignCell sign={zodiacSign(house, chart.system)} />
+                    </td>
                   </tr>
                 ))}
               </tbody>

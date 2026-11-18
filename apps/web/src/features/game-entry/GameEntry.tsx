@@ -2,12 +2,22 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Bot, ChevronDown, Clock3, Link2, Sparkles, UsersRound } from 'lucide-react';
+import {
+  ArrowRight,
+  Bot,
+  ChevronDown,
+  GraduationCap,
+  Clock3,
+  Link2,
+  Sparkles,
+  UsersRound,
+} from 'lucide-react';
 import { Button } from '@games/ui';
 import type { Game } from '@games/api-client/catalog';
 import { SiteHeader } from '@/shared/SiteHeader';
 import { GameArt } from '@/shared/GameArt';
 import { RoomDialog } from '@/shared/RoomDialog';
+import { IllustratedRules } from '@/shared/tutorial/RulesIllustrations';
 import { useQuickPlay } from './useQuickPlay';
 
 export function GameEntry({
@@ -25,20 +35,21 @@ export function GameEntry({
     <Button
       size="lg"
       variant={solo || preferredMode === 'bots' ? 'primary' : 'secondary'}
-      pending={launch.pending}
+      pending={launch.pending === 'play'}
+      disabled={launch.pending !== null}
       onClick={() => void launch.start()}
-      aria-describedby={launch.failure ? 'game-start-error' : undefined}
+      aria-describedby={launch.failure?.mode === 'play' ? 'game-start-error' : undefined}
     >
-      {!launch.pending ? solo ? <Sparkles size={18} /> : <Bot size={18} /> : null}
-      {launch.label}
-      {!launch.pending ? <ArrowRight size={18} /> : null}
+      {launch.pending !== 'play' ? solo ? <Sparkles size={18} /> : <Bot size={18} /> : null}
+      {launch.label('play')}
+      {launch.pending !== 'play' ? <ArrowRight size={18} /> : null}
     </Button>
   ) : null;
   const friends = !solo ? (
     <Button
       size="lg"
       variant={preferredMode === 'bots' && game.botsSupported ? 'secondary' : 'primary'}
-      disabled={launch.pending}
+      disabled={launch.pending !== null}
       onClick={() => setDialog('create')}
     >
       <UsersRound size={18} />
@@ -94,10 +105,27 @@ export function GameEntry({
               </p>
             ) : null}
             <div className="game-entry-secondary">
+              {quickPlay ? (
+                <Button
+                  variant="ghost"
+                  disabled={launch.pending !== null}
+                  pending={launch.pending === 'tutorial'}
+                  onClick={() => void launch.start('tutorial')}
+                  aria-describedby={
+                    launch.failure?.mode === 'tutorial' ? 'game-start-error' : undefined
+                  }
+                >
+                  <GraduationCap size={18} aria-hidden="true" /> {launch.label('tutorial')}
+                </Button>
+              ) : null}
               {solo ? (
                 <Link href="/profile">Past readings</Link>
               ) : (
-                <Button variant="ghost" disabled={launch.pending} onClick={() => setDialog('join')}>
+                <Button
+                  variant="ghost"
+                  disabled={launch.pending !== null}
+                  onClick={() => setDialog('join')}
+                >
                   <Link2 size={16} /> Join a room
                 </Button>
               )}
@@ -109,11 +137,15 @@ export function GameEntry({
             {solo ? 'How your reading works' : 'How to play'}
             <ChevronDown size={18} aria-hidden="true" />
           </summary>
-          <ol>
-            {game.rules.map((rule) => (
-              <li key={rule}>{rule}</li>
-            ))}
-          </ol>
+          <IllustratedRules gameId={game.id} />
+          <details className="complete-game-rules">
+            <summary>More rules</summary>
+            <ol className="game-entry-rule-details">
+              {game.rules.map((rule) => (
+                <li key={rule}>{rule}</li>
+              ))}
+            </ol>
+          </details>
         </details>
       </main>
       {dialog ? (

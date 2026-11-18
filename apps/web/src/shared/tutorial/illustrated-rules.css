@@ -1,0 +1,272 @@
+.illustrated-rules {
+  container-type: inline-size;
+  padding-block: 2px 16px;
+}
+.illustrated-rules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 2.5%, 24px);
+}
+.illustrated-rule {
+  display: grid;
+  align-content: start;
+  min-width: 0;
+  gap: 10px;
+}
+.illustrated-rule h3 {
+  color: var(--color-black);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.25;
+  margin: 0 0 4px;
+}
+.illustrated-rule p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.lesson-picture {
+  container-type: inline-size;
+  display: grid;
+  place-items: center;
+  align-self: start;
+  width: 100%;
+  min-width: 0;
+  min-height: 88px;
+  background: var(--color-surface, #f4f1e9);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+.lesson-pieces {
+  --unit: clamp(27px, 19cqi, 43px);
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2px, 1.8cqi, 7px);
+  padding: 5px;
+}
+.lesson-pieces .playing-card,
+.lesson-pieces .tarot-card {
+  width: var(--unit);
+  height: calc(var(--unit) * 1.4);
+  border-radius: 5px;
+  min-width: 0;
+  min-height: 0;
+  pointer-events: none;
+}
+.lesson-pieces .playing-card--property {
+  width: clamp(40px, 40cqi, 70px);
+  height: clamp(52px, 43cqi, 76px);
+}
+.lesson-pieces .playing-card--property {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  align-items: center;
+  padding: 10px 3px 3px;
+}
+.lesson-pieces .playing-card--property .deal-card-meta,
+.lesson-pieces .playing-card--property .deal-card-foot,
+.lesson-pieces .playing-card--property .property-color-label {
+  display: none;
+}
+.lesson-pieces .playing-card--property .property-name {
+  font-size: clamp(8px, 5cqi, 11px);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.lesson-pieces .tarot-card {
+  padding: 2px;
+}
+.lesson-pieces .tarot-art {
+  border-radius: 3px;
+}
+.lesson-pieces .tarot-name {
+  display: none;
+}
+.lesson-pieces[data-column] {
+  flex-direction: column;
+  gap: 1px;
+  padding: 3px;
+}
+.lesson-pieces[data-column] .playing-card {
+  width: 23px;
+  height: 25px;
+}
+.lesson-pieces[data-column] .playing-card .card-corner {
+  display: none;
+}
+.lesson-symbol,
+.lesson-token {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  min-width: 0;
+  flex: 0 1 auto;
+}
+.lesson-symbol > svg {
+  width: clamp(18px, 11cqi, 26px);
+  height: auto;
+  color: var(--color-accent, #41654e);
+  stroke-width: 1.8;
+}
+.lesson-symbol[data-connector] > svg {
+  width: clamp(12px, 7cqi, 18px);
+  color: var(--color-muted);
+}
+.lesson-pieces small {
+  font-size: clamp(9px, 5.5cqi, 12px);
+  line-height: 1.05;
+  font-weight: 650;
+  color: var(--color-ink, #263329);
+}
+.lesson-token > .token-art,
+.lesson-pieces .boop-piece,
+.lesson-pieces .paper-card-art,
+.lesson-pieces .gem-district-art,
+.lesson-tile {
+  width: var(--unit);
+  height: var(--unit);
+  display: inline-grid;
+  place-items: center;
+  flex: 0 1 auto;
+}
+.lesson-pieces .atlas-art,
+.lesson-tile > *,
+.lesson-pieces .paper-card-art > svg {
+  width: 100%;
+  height: 100%;
+}
+.lesson-pieces .resource-token {
+  min-width: 0;
+  width: var(--unit);
+  height: var(--unit);
+  padding: 2px;
+}
+.lesson-pieces .mancala-pit {
+  min-height: 0;
+  min-width: 0;
+  width: clamp(25px, 19cqi, 43px);
+  height: 50px;
+  font-size: 11px;
+  padding: 2px;
+}
+.lesson-pieces .word-tile {
+  min-height: 0;
+  min-width: 0;
+  width: auto;
+  height: auto;
+  padding: 6px;
+  font-size: clamp(11px, 6cqi, 16px);
+}
+.lesson-number {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.lesson-number > small {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  position: absolute;
+  bottom: 2px;
+  background: var(--color-white);
+  border-radius: 4px;
+  padding: 0 3px;
+  font-variant-numeric: tabular-nums;
+}
+.lesson-pieces .mancala-pit {
+  display: grid;
+  grid-template-rows: 16px 14px 10px;
+  align-content: center;
+  justify-content: stretch;
+  text-align: center;
+}
+.lesson-pieces .mancala-pit .mancala-seeds {
+  position: static;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+.lesson-pieces .mancala-pit .mancala-seed {
+  width: 7px;
+  height: 7px;
+}
+.lesson-pieces .mancala-pit > strong {
+  font-size: 12px;
+  line-height: 1;
+}
+.lesson-pieces .mancala-pit > span:last-child {
+  font-size: 8px;
+  line-height: 1;
+}
+.lesson-pieces .tarot-back {
+  border-width: 1px;
+}
+.lesson-pieces .tarot-back .tarot-back-orbit {
+  font-size: 15px;
+}
+.lesson-pieces .tarot-back i {
+  display: none;
+}
+.lesson-board {
+  display: grid;
+  width: max-content;
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.lesson-square {
+  width: clamp(13px, 8cqi, 21px);
+  aspect-ratio: 1;
+  border: 1px solid var(--color-border);
+  display: grid;
+  place-items: center;
+}
+.lesson-board[data-checkered] .lesson-square[data-dark] {
+  background: #b9aa94;
+}
+.lesson-square .token-art {
+  width: 91%;
+  height: 91%;
+}
+@container (max-width: 610px) {
+  .illustrated-rules-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .illustrated-rule {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    align-items: center;
+    gap: 12px;
+  }
+  .lesson-picture {
+    align-self: center;
+  }
+}
+@container (max-width: 370px) {
+  .illustrated-rule {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 6px 12px;
+  }
+  .illustrated-rule > div:last-child {
+    display: contents;
+  }
+  .illustrated-rule h3 {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+  }
+  .illustrated-rule p {
+    grid-column: 1 / -1;
+  }
+  .illustrated-rule .lesson-picture {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 64px;
+  }
+}

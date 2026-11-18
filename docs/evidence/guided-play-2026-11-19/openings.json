@@ -1,0 +1,137 @@
+[
+  {
+    "game": "azul",
+    "confirmedAction": "draft_tiles",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "blackjack",
+    "confirmedAction": "bet",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "boop",
+    "confirmedAction": "place",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "checkers",
+    "confirmedAction": "move",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "deal",
+    "confirmedAction": "play",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "deal-no-mercy",
+    "confirmedAction": "property",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "flip-7",
+    "confirmedAction": "hit",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "four-in-a-row",
+    "confirmedAction": "drop",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "gem-market",
+    "confirmedAction": "reserve",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "holdem",
+    "confirmedAction": "call",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "hot-seat",
+    "confirmedAction": "choose",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "mancala",
+    "confirmedAction": "sow",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "most-likely",
+    "confirmedAction": "vote",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "reversi",
+    "confirmedAction": "place",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "rummy",
+    "confirmedAction": "draw_stock",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "sea-salt-paper",
+    "confirmedAction": "take_discard",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "shithead",
+    "confirmedAction": "arrange",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "six-nimmt",
+    "confirmedAction": "select_number",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "skyjo",
+    "confirmedAction": "reveal",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "spill-or-chill",
+    "confirmedAction": "respond",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "tarot",
+    "confirmedAction": "pick",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "teen-patti",
+    "confirmedAction": "bet",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "the-gang",
+    "confirmedAction": "claim_chip",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "trio",
+    "confirmedAction": "reveal_table",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "uno",
+    "confirmedAction": "draw",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "uno-no-mercy",
+    "confirmedAction": "play",
+    "savedFeedbackVisible": true
+  },
+  {
+    "game": "word-agents",
+    "confirmedAction": "clue",
+    "savedFeedbackVisible": true
+  }
+]

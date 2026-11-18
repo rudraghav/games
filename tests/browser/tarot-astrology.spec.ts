@@ -1238,6 +1238,10 @@ test('both calculated charts are inspectable, saved and hideable without regener
     await page.getByRole('button', { name: 'Preview chart', exact: true }).click();
     const charts = page.getByRole('region', { name: 'Calculated birth charts', exact: true });
     await expect(charts).toBeVisible();
+    await expect(charts.locator('.astrology-wheel image')).toHaveCount(12);
+    await expect(
+      charts.locator('.astrology-wheel').getByRole('img', { name: 'Capricorn' }),
+    ).toHaveAttribute('href', '/art/zodiac/capricorn.webp');
     await charts
       .getByRole('combobox', { name: 'Inspect chart' })
       .first()
@@ -1250,9 +1254,24 @@ test('both calculated charts are inspectable, saved and hideable without regener
     await charts.getByRole('tab', { name: 'Vedic', exact: true }).focus();
     await page.keyboard.press('Enter');
     await expect(charts.locator('.astrology-diamond')).toBeVisible();
+    await expect(charts.locator('.astrology-diamond image')).toHaveCount(12);
+    const makara = charts.getByRole('button', { name: /^House \d+, Makara \(Capricorn\)/ });
+    await makara.click();
+    await expect(charts.locator('.astrology-inspection:visible img')).toHaveAttribute(
+      'src',
+      '/art/zodiac/makara.webp',
+    );
     await charts.getByRole('combobox', { name: 'Inspect chart' }).last().selectOption('house:1');
     await charts.locator('.astrology-data:visible > summary').first().click();
     await expect(charts.getByRole('table', { name: 'Calculated planet positions' })).toHaveCount(1);
+    const sunRow = charts
+      .getByRole('table', { name: 'Calculated planet positions' })
+      .getByRole('row', { name: /Sun/ });
+    await expect(sunRow).toContainText('Dhanu (Sagittarius)');
+    await expect(sunRow.locator('img')).toHaveAttribute('src', '/art/zodiac/dhanu.webp');
+    await expect(
+      charts.getByRole('table', { name: 'Whole-sign houses' }).locator('img'),
+    ).toHaveCount(12);
     await expect(
       charts.getByRole('table', { name: 'Whole-sign houses' }).locator('tbody tr'),
     ).toHaveCount(12);

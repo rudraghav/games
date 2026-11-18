@@ -2,11 +2,37 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { AstrologyChart } from '@/games/tarot/AstrologyChart';
 import { TarotReading } from '@/games/tarot/TarotReading';
-import { formatDegree, planetLabels, wheelPoint } from '@/games/tarot/astrology-presentation';
+import {
+  formatDegree,
+  planetLabels,
+  wheelPoint,
+  zodiacSign,
+} from '@/games/tarot/astrology-presentation';
 import { syntheticChart, syntheticAstrologyReading } from '@/stories/fixtures/astrology';
 import { tarotReadingCards, tarotReadingExample } from '@/stories/fixtures/tarot-reading';
 
 describe('authoritative astrology presentation', () => {
+  it('uses the returned sign in each system and preserves the distinct Vedic emblems', () => {
+    const [western, vedic] = syntheticChart.charts;
+    const sunIn = (chart: typeof western) => chart.placements.find((point) => point.id === 'sun')!;
+    expect(zodiacSign(sunIn(western), 'western')).toMatchObject({
+      image: '/art/zodiac/capricorn.webp',
+      label: 'Capricorn',
+    });
+    expect(zodiacSign(sunIn(vedic), 'vedic')).toMatchObject({
+      image: '/art/zodiac/dhanu.webp',
+      label: 'Dhanu (Sagittarius)',
+    });
+    const vedicArt = new Map(vedic.houses.map((house) => [house.sign, zodiacSign(house, 'vedic')]));
+    expect(vedicArt.get('Gemini')?.image).toBe('/art/zodiac/mithuna.webp');
+    expect(vedicArt.get('Capricorn')?.image).toBe('/art/zodiac/makara.webp');
+    expect(vedicArt.get('Aquarius')?.image).toBe('/art/zodiac/kumbha.webp');
+    for (const chart of [western, vedic]) {
+      const images = chart.houses.map((house) => zodiacSign(house, chart.system).image);
+      expect(new Set(images).size).toBe(12);
+      expect(images).not.toContain(undefined);
+    }
+  });
   it('formats sign-relative degrees without inventing the next sign', () => {
     expect(formatDegree(29.999999)).toBe('29° 59′');
     expect(formatDegree(29.99999999999999)).toBe('29° 59′');

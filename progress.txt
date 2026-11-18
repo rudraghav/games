@@ -1,3 +1,35 @@
+## 2026-11-19 — Guided turns and sign art passed release checks
+
+- All 27 entries offer a playable tutorial and three game-specific illustrated
+  rules. Real phone guest sessions played an opening move in all 26 bot games
+  and the solo Tarot spread. All 27 rooms in the final sweep closed after
+  confirmed saves and visible feedback. An interrupted launch recovered its
+  original guided match; a normal start opened a separate, unguided game.
+- Four in a Row continues guiding after three moves. A fourth action, bot reply,
+  reload and explicit guide exit passed on phone and desktop. Tarot's focus
+  shortcut selects nothing, three real picks teach the spread, and visible
+  scrolling tips respect open dialogs. No reading was auto-generated.
+- Original sign art totals 16 tiles for the 12 signs in each chart tradition.
+  The square markers, labels, inspectors and placement/house tables were checked
+  at 320, 390 and 1440px, including iPhone WebKit. Private saved charts reload.
+- 284 frontend tests, types, lint, build, contracts, 224 multiplayer tests,
+  44 workflow tests and 94 browser cases passed with stable source.
+  Reports verify-123f5c7d48a742dbaaf8caee0b8bfcd2 and verify-302616006ef14504a6b2e9d5ac510490.
+  The release database schema check was read-only and found no drift.
+- Evidence: docs/evidence/guided-play-2026-11-19/README.md and openings.json.
+  This entry records local checks ahead of the production verification.
+
+## 2026-11-19 — Guided games and illustrated astrology
+
+- Outcome: teach each catalogue game at its own playable table. An explicit guide
+  starts a real bot match, or a private solo spread for Tarot. Show an illustrated
+  quick reference, the current decision and its rule, and feedback from saved moves.
+- Preserve ordinary launches, hidden hands, free choice of legal actions, existing
+  retry/reconnect controls and explicit reading generation. Show Western and Vedic
+  sign pictures with readable names in charts and tables.
+- Acceptance: cover every catalogue entry and sign, phone layout, actual guest
+  play, bot response, refresh, guide completion and normal play. Started at 6ab79d6.
+
 ## 2026-11-19 — Other-game improvements live and verified
 
 - Pushed application 8c9b7669e478add7d3a4c1ddef64b1f412b9e7c2 to main.

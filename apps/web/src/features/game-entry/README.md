@@ -26,3 +26,8 @@ browsing across all 27 games, mobile geometry, direct starts, duplicate/lost
 responses, profiles, invitations, private cards, refresh and old links without
 calling an AI provider. Archive and Tarot table suites cover saved-reading
 navigation and paused-session recovery separately.
+
+Play tutorial launches the same real match with its own idempotent intent. Both start
+buttons share one in-flight guard. The guide preference is scoped to the match
+and its owner. The explicit tutorial URL also works when storage is unavailable.
+How to play offers three illustrated examples followed by the original game rules.

@@ -1,4 +1,4 @@
-import type { AstrologyPoint } from '@games/api-client';
+import type { AstrologyPoint, AstrologySystemChart } from '@games/api-client';
 
 export const planetSymbols: Record<string, string> = {
   sun: '☉',
@@ -14,7 +14,35 @@ export const planetSymbols: Record<string, string> = {
   north_node: '☊',
   south_node: '☋',
 };
-export const signSymbols = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
+const zodiacSigns = [
+  { art: 'aries', rashi: 'Mesha' },
+  { art: 'taurus', rashi: 'Vrishabha' },
+  { art: 'gemini', rashi: 'Mithuna', vedicArt: 'mithuna' },
+  { art: 'cancer', rashi: 'Karka' },
+  { art: 'leo', rashi: 'Simha' },
+  { art: 'virgo', rashi: 'Kanya' },
+  { art: 'libra', rashi: 'Tula' },
+  { art: 'scorpio', rashi: 'Vrishchika' },
+  { art: 'sagittarius', rashi: 'Dhanu', vedicArt: 'dhanu' },
+  { art: 'capricorn', rashi: 'Makara', vedicArt: 'makara' },
+  { art: 'aquarius', rashi: 'Kumbha', vedicArt: 'kumbha' },
+  { art: 'pisces', rashi: 'Meena' },
+];
+
+/** A house and a planet each carry their own tropical or sidereal sign index. */
+export function zodiacSign(
+  point: Pick<AstrologyPoint, 'sign_index' | 'sign'>,
+  system: AstrologySystemChart['system'],
+) {
+  const entry = zodiacSigns[point.sign_index];
+  if (!entry) return { name: point.sign, label: point.sign, image: undefined };
+  const vedic = system === 'vedic';
+  return {
+    name: vedic ? entry.rashi : point.sign,
+    label: vedic ? `${entry.rashi} (${point.sign})` : point.sign,
+    image: `/art/zodiac/${(vedic && entry.vedicArt) || entry.art}.webp`,
+  };
+}
 
 /** Formatting only: never round a returned 29.99° into the next sign. */
 export function formatDegree(degree: number) {

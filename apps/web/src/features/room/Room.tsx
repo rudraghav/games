@@ -30,7 +30,10 @@ import { Chat } from './Chat';
 import { RoomActivity } from './RoomActivity';
 import { Lobby } from './Lobby';
 import { RoomResults } from './RoomResults';
-import { latestMove } from './move-description';
+import { TurnCoach } from '@/shared/tutorial/TurnCoach';
+import { IllustratedRules } from '@/shared/tutorial/RulesIllustrations';
+import { setGuideEnabled, useGuideEnabled } from '@/shared/tutorial/guide-preference';
+import { describeMove, latestMove } from './move-description';
 import { useMediaQuery } from '@/shared/use-media-query';
 import { forgetRoomMembership } from '@/shared/player-query';
 import { gamePath, roomPath } from '@/shared/game-paths';
@@ -38,7 +41,7 @@ import { gamePath, roomPath } from '@/shared/game-paths';
 /** The shortest time a failed-move note stays up once the table has moved on. */
 const ERROR_READ_MS = 6000;
 
-export function RoomScreen({ id }: { id: string }) {
+export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchId?: string }) {
   const cache = useQueryClient();
   const { room: query, me, live, connection, mutation, move, botError, retryBots } = useRoom(id);
   const desktop = useMediaQuery('(min-width: 1100px)');
@@ -50,6 +53,8 @@ export function RoomScreen({ id }: { id: string }) {
   const pathname = usePathname();
   const room = query.data;
   const selfId = me.data?.profile?.id || '';
+  const storedGuide = useGuideEnabled(room?.matchId, selfId);
+  const [dismissedGuide, setDismissedGuide] = useState<string | null>(null);
   useEffect(() => {
     // A slug is navigation context, never permission or authority over the game.
     // Resolve legacy and stale links only from a successful member-only read.
@@ -133,6 +138,22 @@ export function RoomScreen({ id }: { id: string }) {
   const game = gameById(room.gameId);
   const solo = game.maxPlayers === 1;
   const host = room.ownerId === selfId;
+  const guideAvailable = Boolean(
+    room.game &&
+    room.matchId &&
+    host &&
+    (solo || room.members.every((member) => member.id === selfId || member.isBot)),
+  );
+  const guided =
+    guideAvailable &&
+    (storedGuide || (tutorialMatchId === room.matchId && dismissedGuide !== room.matchId));
+  const enableGuide = (enable: boolean) => {
+    if (!room.matchId) return;
+    setDismissedGuide(enable ? null : room.matchId);
+    setGuideEnabled(room.matchId, selfId, enable);
+    if (!enable && tutorialMatchId) router.replace(roomPath(room), { scroll: false });
+    setPanel(null);
+  };
   const self = room.members.find((member) => member.id === selfId);
   const Table = tableRegistry[room.gameId];
   const turn = room.game ? turnState(room.game, room, selfId) : null;
@@ -338,7 +359,7 @@ export function RoomScreen({ id }: { id: string }) {
           ) : null}
           {room.game ? (
             <>
-              {game.family !== 'tarot' || offline || room.paused ? (
+              {(!guided && game.family !== 'tarot') || offline || room.paused ? (
                 <TurnNotice
                   label={turn!.label}
                   tone={offline ? 'paused' : turn!.tone}
@@ -353,6 +374,20 @@ export function RoomScreen({ id }: { id: string }) {
                   pending={mutation.isPending && !mutation.isPaused}
                 />
               ) : null}
+              {guided ? (
+                <TurnCoach
+                  key={`${room.matchId}:${selfId}`}
+                  room={tableRoom}
+                  selfId={selfId}
+                  pending={mutation.isPending}
+                  offline={offline}
+                  botFailed={Boolean(botError)}
+                  onAction={move}
+                  describeMove={describeMove}
+                  onRules={() => setPanel('rules')}
+                  onExit={() => enableGuide(false)}
+                />
+              ) : null}
               {resultsFirst ? (
                 <>
                   <RoomResults room={room} game={game} />
@@ -360,7 +395,13 @@ export function RoomScreen({ id }: { id: string }) {
                   <h2 className="final-table-heading">Final table</h2>
                 </>
               ) : null}
-              <div className="room-table-frame" data-offline={offline} inert={offline}>
+              <div
+                className="room-table-frame"
+                id={guided ? 'tutorial-game-table' : undefined}
+                tabIndex={guided ? -1 : undefined}
+                data-offline={offline}
+                inert={offline}
+              >
                 <Table
                   key={room.matchId}
                   match={room.game}
@@ -407,11 +448,20 @@ export function RoomScreen({ id }: { id: string }) {
         }}
         title={`How to play ${game.name}`}
       >
-        <ol className="rules-list">
-          {game.rules.map((rule) => (
-            <li key={rule}>{rule}</li>
-          ))}
-        </ol>
+        <IllustratedRules gameId={game.id} />
+        {guideAvailable && !guided && room.status === 'playing' ? (
+          <Button variant="secondary" onClick={() => enableGuide(true)}>
+            Turn on guide
+          </Button>
+        ) : null}
+        <details className="complete-game-rules">
+          <summary>More rules</summary>
+          <ol className="rules-list">
+            {game.rules.map((rule) => (
+              <li key={rule}>{rule}</li>
+            ))}
+          </ol>
+        </details>
         <p className="small muted">
           {game.maxPlayers === 1
             ? 'Solo'
