@@ -55,6 +55,8 @@ test.afterEach(async ({ page }) => {
   test.setTimeout(45000);
   const owned = cleanup.get(page);
   if (!owned) return;
+  // API requests use the context timeout, not page.setDefaultTimeout.
+  for (const room of owned.rooms) room.page.context().setDefaultTimeout(5000);
   try {
     const results = await Promise.allSettled(owned.rooms.map(closeRoom));
     const failure = results.find((result) => result.status === 'rejected');

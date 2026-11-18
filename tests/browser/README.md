@@ -148,7 +148,10 @@ raw readings only in private ignored files. Its direct provider results do not
 establish room persistence or authorization.
 
 The astrology harness records a created room before navigation assertions and
-retires it in an `afterEach` hook with a fresh 45-second cleanup budget. Screenshot
+retires it in an `afterEach` hook with a fresh 45-second cleanup budget. Both this
+suite and the live-reading suite set each owned context's request timeout to five
+seconds during teardown; page action timeouts alone do not bound API cleanup.
+Generation and action timeouts remain unchanged. Screenshot
 preparation scrolls each required image into view and bounds its load/decode checks
 before restoring the original scroll position; offscreen lazy images otherwise
 leave WebKit waiting indefinitely. WebKit's iPhone profile is Safari-engine
@@ -162,5 +165,5 @@ and all focus, saved-pick and reduced-motion assertions remain the same.
 `GAMES_TEST_AI=1`. Its one desktop case uses two independent readers for ordinary
 and Both readings, then checks real images, responsive layouts, exact saved
 refresh, new-spread separation and private archives after room closure. It makes
-two generation submissions (at most three provider attempts with production
+two generation submissions (at most four provider attempts with production
 retry), never mocks production responses and uses a fresh teardown budget.

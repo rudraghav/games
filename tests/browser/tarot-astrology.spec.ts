@@ -21,6 +21,8 @@ test.afterEach(async ({ page }) => {
   test.setTimeout(45000);
   const owned = cleanup.get(page);
   if (!owned) return;
+  // Bound cleanup API requests inside the independent teardown budget.
+  page.context().setDefaultTimeout(5000);
   try {
     if (owned.roomId) {
       await page.unrouteAll({ behavior: 'ignoreErrors' });

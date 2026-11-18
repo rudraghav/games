@@ -1,5 +1,15 @@
 ## 2026-11-18 — Safari-engine verification and release-access checkpoint
 
+- Safari harness changes are pushed asdd1ec70. A final live-test review also
+  bounds each owned context's teardown requests to5s inside its45s cleanup
+  budget; page action timeouts do not control API requests. The isolated delay
+  server verifies timeout at5004ms with one request, no app data or provider call.
+  Browser TypeScript/formatting pass; generation behavior remains unchanged.
+- The user completes the personal Vercel GitHub connection asrudraghav; exact
+  repository access is being checked read-only. The release owner readback now
+  requires an explicit fresh baseline from within15 minutes before deployment
+  and reports older pre-release drift separately. Seven offline safety cases pass;
+  no configuration or deployment mutation is performed by those checks.
 - Targeted phone WebKit passes21 cases; the affected desktop/phone Chromium
   regression passes38. Featured home at320/390 has one full-width Tarot, all27
   games, a44px action and no overflow, clipped artwork or identity/backend calls.
