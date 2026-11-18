@@ -1,5 +1,12 @@
 'use client';
-import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from 'react';
 import Link from 'next/link';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useReducedMotion } from 'motion/react';
@@ -18,6 +25,7 @@ import { useTableDraft } from '../shared/table-draft';
 import { TarotReading } from './TarotReading';
 import { AstrologyForm } from './AstrologyForm';
 import { ReadingProgress } from './ReadingProgress';
+import { ReadingAction } from './ReadingAction';
 
 const positions = ['Where you are', 'What is shifting', 'Your next move'];
 
@@ -46,6 +54,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const [drawnNote, setDrawnNote] = useState('');
   const [fresh, setFresh] = useState<number | null>(null);
   const [recovering, setRecovering] = useState(false);
+  const [animateAction, setAnimateAction] = useState(false);
   const [clockNow, setClockNow] = useState(() => Date.now() / 1000);
   const localPick = useRef(false);
   const reduced = useReducedMotion();
@@ -102,14 +111,14 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   });
   const reading = saved.data?.reading;
   const writing = (generate.isPending && !recovering) || saved.data?.status === 'generating';
-  useEffect(() => {
-    if (!writing || !showRequestedProgress.current) return;
+  const revealProgress = useCallback(() => {
+    if (!showRequestedProgress.current) return;
     showRequestedProgress.current = false;
     progressArea.current?.scrollIntoView({
       block: 'nearest',
       behavior: reduced ? 'auto' : 'smooth',
     });
-  }, [writing, reduced]);
+  }, [reduced]);
   const checking = !reading && (recovering || saved.isPending || saved.isFetching);
   const unavailable = saved.data?.status === 'unavailable';
   const failure = saved.data?.failure ?? undefined;
@@ -415,6 +424,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
             event.preventDefault();
             if (cannotGenerate) return;
             showRequestedProgress.current = true;
+            setAnimateAction(true);
             generate.mutate();
           }}
         >
@@ -480,52 +490,54 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
                 : null}
             </p>
           ) : null}
-          <div className="tarot-submit">
-            {accessStatus === 401 ? (
-              <Link href="/profile" className="button button--secondary button--lg">
-                Open profile
-              </Link>
-            ) : accessStatus === 403 || accessStatus === 404 ? (
-              <Link href="/" className="button button--secondary button--lg">
-                Back to games
-              </Link>
-            ) : saved.isError ? (
-              <Button
-                type="button"
-                size="lg"
-                pending={saved.isFetching}
-                onClick={() => void saved.refetch()}
-              >
-                Check status
-              </Button>
-            ) : (
-              <Button
-                type="submit"
-                size="lg"
-                pending={writing || checking}
-                disabled={cannotGenerate}
-                aria-live="polite"
-              >
-                {!writing && !checking ? <Sparkles size={17} /> : null}
-                {writing
-                  ? 'Writing your reading…'
-                  : checking
-                    ? 'Checking status…'
-                    : retryReading
-                      ? 'Retry reading'
-                      : 'Read my cards'}
-                {!writing && !checking ? <ArrowRight size={17} /> : null}
-              </Button>
-            )}
-          </div>
-          {writing || recovering ? (
-            <div ref={progressArea}>
+          <div className="tarot-submit" ref={progressArea}>
+            <ReadingAction
+              processing={writing || recovering}
+              animate={animateAction}
+              onExpanded={revealProgress}
+              action={
+                accessStatus === 401 ? (
+                  <Link href="/profile" className="button button--secondary button--lg">
+                    Open profile
+                  </Link>
+                ) : accessStatus === 403 || accessStatus === 404 ? (
+                  <Link href="/" className="button button--secondary button--lg">
+                    Back to games
+                  </Link>
+                ) : saved.isError ? (
+                  <Button
+                    type="button"
+                    size="lg"
+                    pending={saved.isFetching}
+                    onClick={() => void saved.refetch()}
+                  >
+                    Check status
+                  </Button>
+                ) : (
+                  <Button
+                    type="submit"
+                    size="lg"
+                    pending={checking && !writing && !recovering}
+                    disabled={cannotGenerate}
+                    aria-live="polite"
+                  >
+                    {!checking ? <Sparkles size={17} /> : null}
+                    {checking
+                      ? 'Checking status…'
+                      : retryReading
+                        ? 'Retry reading'
+                        : 'Read my cards'}
+                    {!checking ? <ArrowRight size={17} /> : null}
+                  </Button>
+                )
+              }
+            >
               <ReadingProgress
                 progress={saved.data?.status === 'generating' ? saved.data.progress : undefined}
                 recovering={recovering || saved.isError}
               />
-            </div>
-          ) : null}
+            </ReadingAction>
+          </div>
         </form>
       )}
       <p className="tarot-footnote">

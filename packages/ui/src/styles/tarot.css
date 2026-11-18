@@ -680,6 +680,92 @@
     white-space: normal;
     margin: 6px 0 10px;
   }
+  .tarot-action-surface {
+    display: grid;
+    isolation: isolate;
+    min-width: 0;
+    margin: 6px 0 10px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-control);
+    background: var(--color-sage);
+  }
+  .tarot-action-surface:focus-visible,
+  .tarot-action-surface:has(:focus-visible) {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+  .tarot-action-control,
+  .tarot-action-expander {
+    grid-area: 1 / 1;
+    min-width: 0;
+    border-radius: inherit;
+  }
+  .tarot-action-control {
+    display: grid;
+    z-index: 1;
+  }
+  .tarot-action-control > .button {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    min-width: 0;
+    white-space: normal;
+    border-radius: inherit;
+  }
+  .tarot-action-expander {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .tarot-action-content {
+    min-height: 0;
+    overflow: hidden;
+  }
+  .tarot-action-surface:not([data-processing]):has(.button:disabled) {
+    background: transparent;
+  }
+  .tarot-action-surface[data-processing] {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+  }
+  .tarot-action-surface[data-processing] .tarot-action-control {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .tarot-action-surface[data-processing] .tarot-action-expander {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
+  }
+  .tarot-action-content .tarot-generation-progress {
+    padding: 18px 16px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tarot-action-surface[data-animate] {
+      transition:
+        background-color 360ms ease,
+        border-color 360ms ease,
+        border-radius 420ms cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 360ms ease;
+    }
+    .tarot-action-surface[data-animate] .tarot-action-expander {
+      transition:
+        grid-template-rows 420ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 180ms ease;
+    }
+    .tarot-action-surface[data-animate] .tarot-action-control {
+      transition: opacity 140ms ease;
+    }
+    .tarot-action-surface[data-processing][data-animate] .tarot-action-expander {
+      transition:
+        grid-template-rows 420ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 240ms ease 80ms;
+    }
+  }
   .tarot-generation-progress {
     display: grid;
     justify-items: center;

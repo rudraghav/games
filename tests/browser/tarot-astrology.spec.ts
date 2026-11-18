@@ -361,6 +361,136 @@ for (const system of ['western', 'vedic'] as const)
     });
   });
 
+test('the reading CTA morphs in place into progress and returns keyboard focus on retry', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 740 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await withReading(page, async ({ roomId, requests, setView }) => {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    let posts = 0;
+    await page.route(`**/api/backend/v1/rooms/${roomId}/reading`, async (route) => {
+      if (route.request().method() !== 'POST') return route.fallback();
+      posts++;
+      if (posts > 1) return route.fallback();
+      await gate;
+      setView({
+        status: 'failed',
+        reading: null,
+        api_tier: 'paid',
+        question: '',
+        message: '',
+        failure: { code: 'temporary', message: 'The reading couldn’t finish.', retryable: true },
+      });
+      return route.fulfill({ status: 503, json: { detail: 'Synthetic reading failure.' } });
+    });
+    try {
+      await page.evaluate(() => document.fonts.ready);
+      const button = page.getByRole('button', { name: 'Read my cards', exact: true });
+      const surface = page.locator('.tarot-action-surface');
+      await button.scrollIntoViewIfNeeded();
+      await button.focus();
+      await expect(button).toBeFocused();
+      const original = await surface.elementHandle();
+      expect(original).not.toBeNull();
+      const before = await surface.boundingBox();
+      expect(before).not.toBeNull();
+      await page.screenshot({ path: test.info().outputPath('cta-before-320.png') });
+      // Sample the actual rendered frame sizes, without changing animation speed.
+      const framesPromise = surface.evaluate(
+        (element) =>
+          new Promise<{ time: number; height: number; width: number; overflow: boolean }[]>(
+            (resolve) => {
+              const frames: { time: number; height: number; width: number; overflow: boolean }[] =
+                [];
+              const waitingAt = performance.now();
+              let startedAt: number | undefined;
+              const sample = (now: number) => {
+                if (element.getAttribute('data-processing') === 'true') startedAt ??= now;
+                if (startedAt !== undefined) {
+                  const rect = element.getBoundingClientRect();
+                  frames.push({
+                    time: now - startedAt,
+                    height: rect.height,
+                    width: rect.width,
+                    overflow: document.documentElement.scrollWidth > innerWidth,
+                  });
+                }
+                if (
+                  (startedAt !== undefined && now - startedAt >= 650) ||
+                  now - waitingAt >= 4000
+                ) {
+                  resolve(frames);
+                } else requestAnimationFrame(sample);
+              };
+              requestAnimationFrame(sample);
+            },
+          ),
+      );
+      await button.press('Enter');
+      await expect(surface).toHaveAttribute('data-processing', 'true');
+      await expect(surface).toBeFocused();
+      await expect(page.getByRole('region', { name: 'Reading progress', exact: true })).toHaveCount(
+        1,
+      );
+      await expect(
+        page.getByRole('button', { name: /Read my cards|Writing your reading/ }),
+      ).toHaveCount(0);
+      await expect(page.locator('.tarot-action-control')).toHaveAttribute('inert', '');
+      await expect
+        .poll(async () => (await surface.boundingBox())!.height)
+        .toBeGreaterThan(before!.height + 4);
+      await page.screenshot({
+        path: test.info().outputPath('cta-transition-320.png'),
+        animations: 'allow',
+      });
+      const frames = await framesPromise;
+      const after = await surface.boundingBox();
+      expect(after).not.toBeNull();
+      expect(after!.height).toBeGreaterThan(before!.height + 30);
+      expect(
+        frames.some(({ height }) => height > before!.height + 2 && height < after!.height - 2),
+      ).toBe(true);
+      expect(frames.every(({ width, overflow }) => width <= 320 && !overflow)).toBe(true);
+      expect(await surface.evaluate((element, previous) => element === previous, original)).toBe(
+        true,
+      );
+      expect(after!.y).toBeGreaterThanOrEqual(0);
+      expect(after!.y + after!.height).toBeLessThanOrEqual(740);
+      await page.screenshot({ path: test.info().outputPath('cta-processing-320.png') });
+      await writeFile(
+        test.info().outputPath('cta-transition-frames.json'),
+        JSON.stringify({ before, frames, after }),
+      );
+      await page
+        .locator('form.tarot-question')
+        .evaluate((form: HTMLFormElement) => form.requestSubmit());
+      expect(posts).toBe(1);
+      release();
+      const retry = page.getByRole('button', { name: 'Retry reading', exact: true });
+      await expect(retry).toBeEnabled();
+      await expect(retry).toBeFocused();
+      await expect(surface).not.toHaveAttribute('data-processing', 'true');
+      await expect(page.getByRole('region', { name: 'Reading progress', exact: true })).toHaveCount(
+        0,
+      );
+      expect(await surface.evaluate((element, previous) => element === previous, original)).toBe(
+        true,
+      );
+      await retry.press('Enter');
+      await expect(page.locator('.tarot-reading')).toBeVisible();
+      expect(posts).toBe(2);
+      expect(requests).toHaveLength(1);
+      await noOverflow(page);
+    } finally {
+      release();
+    }
+  });
+});
+
 test('a held request polls actual stages and provider fallbacks without another submission', async ({
   page,
 }) => {
@@ -406,9 +536,22 @@ test('a held request polls actual stages and provider fallbacks without another 
       expect(
         await panel.locator('.spin').evaluate((element) => getComputedStyle(element).animationName),
       ).toBe('none');
+      await expect(page.locator('.tarot-action-surface')).toHaveAttribute(
+        'data-processing',
+        'true',
+      );
       await expect(
-        page.getByRole('button', { name: 'Writing your reading…', exact: true }),
-      ).toBeDisabled();
+        page.getByRole('button', { name: /Read my cards|Writing your reading/ }),
+      ).toHaveCount(0);
+      expect(
+        await page
+          .locator('.tarot-action-expander')
+          .evaluate((element) =>
+            Math.max(
+              ...getComputedStyle(element).transitionDuration.split(',').map(Number.parseFloat),
+            ),
+          ),
+      ).toBeLessThanOrEqual(0.001);
       await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toBeDisabled();
       await expect(page.getByRole('checkbox', { name: 'Include astrology' })).toBeDisabled();
       expect(progressReads).toBeGreaterThan(0);
@@ -507,6 +650,18 @@ test('saved progress survives refresh and slow estimates never claim completion'
       await expect(meter).toHaveAttribute('aria-valuenow', '74');
       await expect(panel).toContainText('About 15 sec remaining');
       await expect(panel).toContainText(retryDetail);
+      await expect(page.locator('.tarot-action-surface')).toHaveAttribute(
+        'data-processing',
+        'true',
+      );
+      await expect(
+        page.getByRole('button', { name: /Read my cards|Writing your reading/ }),
+      ).toHaveCount(0);
+      expect(
+        await page
+          .locator('.tarot-action-expander')
+          .evaluate((element) => getComputedStyle(element).transitionDuration),
+      ).toBe('0s');
       await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue(
         question,
       );
@@ -670,7 +825,16 @@ for (const chart of [false, true])
       setView({ ...saved, status: 'generating' });
       for (let reload = 0; reload < 2; reload++) {
         await page.reload();
-        await expect(page.getByRole('button', { name: /Writing your reading/ })).toBeDisabled();
+        await expect(
+          page.getByRole('region', { name: 'Reading progress', exact: true }),
+        ).toBeVisible();
+        await expect(page.locator('.tarot-action-surface')).toHaveAttribute(
+          'data-processing',
+          'true',
+        );
+        await expect(
+          page.getByRole('button', { name: /Read my cards|Writing your reading/ }),
+        ).toHaveCount(0);
         await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue(
           question,
         );
@@ -766,8 +930,15 @@ test('a failed request checks saved status before offering a manual retry', asyn
       await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
       await expect.poll(() => checks).toBe(1);
       await expect(
-        page.getByRole('button', { name: 'Checking status…', exact: true }),
-      ).toBeDisabled();
+        page.getByRole('region', { name: 'Reading progress', exact: true }),
+      ).toContainText('Checking your saved reading.');
+      await expect(page.locator('.tarot-action-surface')).toHaveAttribute(
+        'data-processing',
+        'true',
+      );
+      await expect(page.getByRole('button', { name: 'Checking status…', exact: true })).toHaveCount(
+        0,
+      );
       await expect(page.getByRole('button', { name: 'Retry reading', exact: true })).toHaveCount(0);
       await page
         .locator('form.tarot-question')

@@ -333,10 +333,15 @@ reduced motion. Optional device feedback confirms only a local committed pick,
 never a failed request or restored snapshot; unsupported devices keep the same
 visual and accessible feedback.
 
-Tarot generation uses a compact inline loader below its action, followed by one
-actual server-stage line and an accessible estimated progress bar. Percent and
+Tarot generation morphs its primary action into one compact processing card. A
+420ms grid expansion preserves text size while color, corners and content fade
+between states. The previous action is inert/hidden; keyboard focus follows the
+surface and returns to the available action on failure. Requests and completed
+results never wait for animation. Restored progress appears fully expanded.
+The card contains one actual server-stage line and an accessible estimated progress bar. Percent and
 rounded remaining time share a row on320px screens. Slow estimates become Taking
 longer than expected; starting/status recovery is indeterminate. The live region
 announces stages without announcing every estimate tick. Only an explicit new
-submission scrolls this region into view; polling and restored sessions preserve
-scroll. Native reduced-motion preferences stop the spinner and meter transitions.
+submission scrolls this region into view after expansion; polling and restored
+sessions preserve scroll. Native reduced-motion preferences make the state change
+immediate and stop the spinner and meter transitions.

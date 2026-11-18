@@ -1,3 +1,37 @@
+## 2026-11-18 — Reading CTA morph locally verified
+
+- One persistent CTA surface now expands into the processing card with a short
+  grid-height, color/corner and content transition. The hidden CTA is inert;
+  requests and completed results remain immediate. Keyboard focus follows the
+  surface and returns to retry. Reduced motion and refresh skip the entrance.
+- Passed frontend types/lint/build and 266 tests, contracts/catalogue/assets and
+  44 tooling tests in verify-2f29b9129dbe498e9409ad2e4e2a5395. All 60 Tarot table
+  and astrology browser cases passed in verify-0aee19d7199943c2ae326604b56612e6.
+  Both source fingerprints stable. Six focused cases also passed; seven fixture
+  rooms closed. Initial reduced-motion test assertion was corrected for the
+  shared theme's existing 0.01ms value, with no application change needed.
+- Visually inspected before/during/after at 320px. Measured 54 to 141px expansion,
+  constant 296px width, intermediate frames and no overflow. Same DOM, recovery,
+  duplicate submission guard, retry focus and immediate completion pass.
+- Runtime 6,193 files fingerprint d80b27451bf356db424bd4225a4c80e67a6f0801a791e8879332cf81cdc0c3f8.
+  Ready for scoped main push and one production deployment. No provider calls,
+  backend/schema/config changes. Hosted proof will use intercepted UI responses.
+
+## 2026-11-18 — Reading CTA morph kickoff
+
+- Outcome: the reading CTA itself expands into the processing card, replacing
+  the current duplicate disabled button plus separate loader. Reuse shared Button,
+  existing progress content and semantic tokens; no dependency/backend changes.
+- Acceptance: one persistent surface; smooth height/background/radius and content
+  transition on submit/retry; no delayed request or result; no actionable hidden
+  CTA. Respect reduced motion, restored generating states and keyboard focus.
+  Verify320px/desktop geometry through the transition, recovery and retry states,
+  then push/deploy the scoped change and confirm the exact live revision.
+- Baseline clean main7abd71c, servingad5a6dd. Ownership tarot-cta-morph-20261118;
+  scratch output/playwright/tarot-cta-morph-20261118. No provider calls required
+  for deterministic motion coverage; production checks use controlled UI responses
+  unless new inference is justified separately. Preserve accounts/config/schema.
+
 ## 2026-11-18 — Targeted retry pushed, deployed and live-verified
 
 - Application ad5a6ddf41dd6c7b7913111da2b9765489f25c07 is READY in bom1 at

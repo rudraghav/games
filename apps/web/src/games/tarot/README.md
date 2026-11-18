@@ -10,7 +10,8 @@
 - Spread position labels and card names are at least 11px and meanings 12px at every width.
 - The unsent question is a `useTableDraft` scoped to room and match, so it survives a refresh in that tab and never carries into the next spread; it clears when a reading is saved. Birth fields remain memory-only.
 - Loading the saved spread shows “Checking status…”; a failed read offers only “Check status”, a GET, and generation stays disabled until authoritative state returns. Paused/offline rooms cannot submit readings.
-- Writing keeps the “Writing your reading…” action disabled. A compact loader beneath it reports the actual saved stage: preparing, matching character references, writing, retrying with a provider, checking, or saving. A failed request first checks whether a reading was saved; only then can the same primary action become “Retry reading”. One concise failure message sits beside it.
+- `ReadingAction` keeps one surface mounted: the primary action expands into the processing card, with a short height, color, corner and content transition. The old action becomes inert and hidden from assistive technology. The card reports the actual saved stage: preparing, matching character references, writing, retrying with a provider, checking, or saving. A failed request first checks whether a reading was saved; only then does the surface return to “Retry reading”. One concise failure message sits beside it.
+- Motion never delays a request or a completed reading. Reduced motion changes state immediately; refresh restores the expanded card without replaying the morph. Keyboard focus moves from the submitted action to the processing surface and returns to the available action after failure, unless the user moved focus elsewhere.
 
 `ReadingProgress` renders the server's optional progress snapshot, mapped at the
 API boundary. The percent is explicitly estimated and capped at99 while running;
@@ -29,8 +30,9 @@ browser displays the explanation as text and never exposes raw provider output.
 Polling starts during the initial POST and continues every two seconds while
 generation/recovery is active, including after refresh. Success cancels in-flight
 status reads before caching the completed reading, so a late pending response
-cannot erase it. An explicit submission scrolls the compact progress area into
-view once; refresh and subsequent polls preserve the user's scroll position.
+cannot erase it. An explicit submission scrolls the processing card into view
+once, after expansion; refresh and subsequent polls preserve the user's scroll
+position. Reduced motion performs this one scroll immediately.
 The pattern follows Shikha's current server-driven ExamRunWatcher; its older
 timer-invented stages are not copied. Existing icons/tokens and reduced-motion
 rules provide the presentation without another dependency.

@@ -112,6 +112,12 @@ can resume it. The global advanced creation dialog remains compatible with solo 
 Loading a saved spread reports progress or a retryable error; retry only fetches
 the saved state. Generation stays disabled until that read succeeds and while
 the room is paused/offline. Completed readings show their exact saved question.
+On submission the reading action itself expands into the processing card; no
+second disabled CTA remains visible. Requests and results never wait for motion.
+Reduced motion changes state immediately; restored progress does not replay the
+transition. Keyboard focus follows the surface and returns to the retry action
+after failure unless the user moved it elsewhere. Only explicit submission
+scrolls the card into view once its expansion completes.
 Writing polls the saved attempt even while its original request is pending.
 Provider preference is Gemini, then Cloudflare, then Groq for ordinary, Western,
 Vedic and combined readings. Groq's Vedic/combined attempts disable reasoning
