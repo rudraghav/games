@@ -110,8 +110,12 @@ export function cardPracticeHint(match: Match, option: ActionOption, room: Room,
     const info = rummyDetails(match.detail).discard_analyses[move.card];
     if (info?.valid)
       return 'This discard leaves all 13 cards in valid groups, including two sequences and a pure sequence. Declaring now wins the deal.';
-    if (info && move.type === 'discard')
-      return `After this discard, your unmatched cards count for ${info.deadwood} loss points. You can keep building your groups on your next turn.`;
+    if (info && move.type === 'discard') {
+      const loss = `After this discard, your projected loss is ${info.deadwood} ${info.deadwood === 1 ? 'point' : 'points'}.`;
+      return info.scoring_gate
+        ? `${loss} You have two sequences including a pure one, so only unmatched cards count, up to 80 points.`
+        : `${loss} Until you have two sequences including a pure one, all non-joker cards count, up to 80 points.`;
+    }
   }
   return undefined;
 }

@@ -1,5 +1,11 @@
 ## 2026-11-19 — Mobile tutorial playthroughs
 
+- The first production walkthrough at 37ad8e10c020ec4ee726df98636bf0b8edd23189
+  completed 191 learner decisions and 203 saved actions in 38 rooms. Reviewing
+  those screenshots exposed two follow-up fixes. Rummy's explanation needs to
+  distinguish an unmet sequence requirement from scoring unmatched cards.
+  On a 320px screen, the floating guide could cover the completed Tarot spread
+  or overlap the full guide. Verify both before closing the release.
 - Play at least four learner decisions in each tutorial, or complete a shorter
   game or spread. Use the same mobile controls as a player, inspect the pictured
   examples and compare each hint and saved result with the table.

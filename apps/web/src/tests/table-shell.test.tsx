@@ -177,6 +177,25 @@ describe('Last move line', () => {
       `${other.name} drafted 1 tile`,
     );
   });
+  it('distinguishes revealing your Gang hand from turning the board after a chip claim', () => {
+    const game = { ...room, gameId: 'the-gang' };
+    const reveal = {
+      ...move,
+      cards: [{ ...move.cards[0], label: '7 ♣' }],
+      type: 'reveal_hand',
+      targets: [],
+      label: 'Revealed their pocket cards',
+    };
+    expect(describeMove(game, { ...reveal, actorId: selfId }, selfId)).toBe(
+      'You revealed your pocket cards: 7 ♣',
+    );
+    expect(describeMove(game, reveal, selfId)).toBe(
+      `${other.name} revealed their pocket cards: 7 ♣`,
+    );
+    expect(
+      describeMove(game, { ...reveal, type: 'claim_chip', label: 'Claimed a 2-star chip' }, selfId),
+    ).toBe(`${other.name} claimed a 2-star chip · Cards revealed: 7 ♣`);
+  });
   it('distinguishes the chips put in from the cards subsequently revealed', () => {
     const poker = { ...room, gameId: 'holdem' };
     const action = {

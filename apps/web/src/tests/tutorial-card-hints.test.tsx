@@ -83,14 +83,45 @@ describe('card tutorial guidance follows the visible decision', () => {
     };
     match.detail = {
       ...match.detail,
-      discard_analyses: { A: analysis, B: { ...analysis, deadwood: 2 } },
+      discard_analyses: { A: analysis, B: { ...analysis, deadwood: 2, raw_points: 2 } },
     };
     expect(cardPracticeMove(match)).toBe(second);
-    expect(cardPracticeHint(match, second, room, room.ownerId)).toContain('2 loss points');
+    expect(cardPracticeHint(match, second, room, room.ownerId)).toBe(
+      'After this discard, your projected loss is 2 points. Until you have two sequences including a pure one, all non-joker cards count, up to 80 points.',
+    );
     match.detail = {
       ...match.detail,
-      discard_analyses: { A: analysis, B: { ...analysis, deadwood: 0, valid: true } },
+      discard_analyses: {
+        A: analysis,
+        B: {
+          ...analysis,
+          deadwood: 1,
+          scoring_gate: true,
+          sequence_count: 2,
+          pure_sequence_count: 1,
+        },
+      },
+    };
+    expect(cardPracticeHint(match, second, room, room.ownerId)).toBe(
+      'After this discard, your projected loss is 1 point. You have two sequences including a pure one, so only unmatched cards count, up to 80 points.',
+    );
+    match.detail = {
+      ...match.detail,
+      discard_analyses: {
+        A: analysis,
+        B: {
+          ...analysis,
+          deadwood: 0,
+          valid: true,
+          scoring_gate: true,
+          sequence_count: 2,
+          pure_sequence_count: 1,
+        },
+      },
     };
     expect(cardPracticeMove(match)).toBe(winning);
+    expect(cardPracticeHint(match, winning, room, room.ownerId)).toBe(
+      'This discard leaves all 13 cards in valid groups, including two sequences and a pure sequence. Declaring now wins the deal.',
+    );
   });
 });

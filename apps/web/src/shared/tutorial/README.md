@@ -19,10 +19,14 @@ availability, failed saves, paused tables, bot recovery and spectator privacy
 follow normal play. Local guide preferences contain match/player identifiers
 and progress only. Reading generation is always the player's explicit choice.
 
-The floating hint names the current decision. The full coach shows the learner's
+While the full coach is offscreen, the compact hint names the current decision
+and offers a return to the full explanation. Finishing the lesson clears the
+floating hint so the spread or game table stays visible. The full coach shows the learner's
 confirmed action and any subsequent public bot reply. Azul counts a chosen offer
 and its destination as one guided decision. Card and board hints use the same
 authorized card effects, discard analysis and move previews as the table.
+Rummy uses the projected hand after the suggested discard to explain whether
+all non-jokers count toward the loss or only unmatched cards count.
 
 Verify guide enrollment and persistence with `tests/browser/guided-play.spec.ts`.
 The phone suite in `tests/browser/tutorial-depth.spec.ts` opens the rulebook and

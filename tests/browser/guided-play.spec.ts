@@ -208,7 +208,7 @@ test('solo Tarot guides three real picks and leaves the reading and birth detail
     const coach = page.getByRole('region', { name: 'Tutorial coach' });
     const tip = page.getByRole('complementary', { name: 'Tutorial tip' });
     const firstCard = page.getByRole('button', { name: /^Face-down card 1 of / });
-    await page.setViewportSize({ width: page.viewportSize()!.width, height: 600 });
+    await page.setViewportSize({ width: 320, height: 640 });
     await coach.getByRole('link', { name: 'Go to cards' }).click();
     await expect(firstCard).toBeFocused();
     expect((await roomAs(page, room.id)).match_version).toBe(room.match_version);
@@ -233,6 +233,15 @@ test('solo Tarot guides three real picks and leaves the reading and birth detail
         await expect(tip).toContainText('Pick your second card');
         const drawn = (await roomAs(page, room.id)).game!.community![0];
         await expect(tip).toContainText(drawn.label);
+        await expect(tip).not.toContainText(await coach.locator('.turn-coach__body p').innerText());
+        expect(await tip.evaluate((n) => n.scrollHeight <= n.clientHeight + 1)).toBe(true);
+        // Return by scrolling as well as via the shortcut. A stale observation
+        // must not leave the compact hint on top of the full explanation.
+        await coach.evaluate((n) => n.scrollIntoView({ block: 'center' }));
+        await expect(coach).toBeInViewport();
+        await expect(tip).toHaveCount(0);
+        await scrollToTable();
+        await expect(tip).toBeInViewport();
         await page
           .getByRole('button', { name: 'Rules & tutorial', exact: true })
           .evaluate((node) => (node as HTMLButtonElement).click());
@@ -244,9 +253,17 @@ test('solo Tarot guides three real picks and leaves the reading and birth detail
         await page.screenshot({ path: test.info().outputPath('floating-turn-rule.png') });
         await tip.getByRole('button', { name: 'Hide floating tip' }).click();
         await expect(tip).toHaveCount(0);
+        await page.reload();
+      } else if (step === 2) {
+        await scrollToTable();
+        await expect(tip).toContainText('Pick your third card');
       }
     }
     await expect(coach).toContainText('Your spread is ready');
+    await scrollToTable();
+    await expect(tip).toHaveCount(0);
+    await coach.scrollIntoViewIfNeeded();
+    await expect(tip).toHaveCount(0);
     await page.reload();
     await expect(coach).toContainText('Your spread is ready');
     await coach.getByRole('button', { name: 'Continue to spread' }).click();

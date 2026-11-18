@@ -63,16 +63,22 @@ export function TurnCoach({
   const [muted, setMuted] = useState(false);
   useEffect(() => {
     const element = panel.current;
-    if (!element || typeof IntersectionObserver !== 'function') return;
-    const observer = new IntersectionObserver(([entry]) => {
-      setAbove(
-        !entry.isIntersecting && entry.boundingClientRect.bottom <= (entry.rootBounds?.top ?? 0),
-      );
-    });
-    observer.observe(element);
-    return () => observer.disconnect();
+    if (!element) return;
+    // A fast return to the guide can leave older intersection records queued in
+    // mobile Safari. Use current geometry for scrolling and for layout changes.
+    const measure = () => setAbove(element.getBoundingClientRect().bottom <= 0);
+    const observer =
+      typeof IntersectionObserver === 'function' ? new IntersectionObserver(measure) : undefined;
+    observer?.observe(element);
+    window.addEventListener('scroll', measure, { passive: true });
+    window.addEventListener('resize', measure);
+    measure();
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('scroll', measure);
+      window.removeEventListener('resize', measure);
+    };
   }, []);
-  const floating = above && !muted;
   const key = `games:tutorial:progress:${room.matchId}:${selfId}`;
   const version = room.matchVersion ?? 0;
   const [previous, setPrevious] = useState(() => loadPractice(key, version));
@@ -96,6 +102,7 @@ export function TurnCoach({
   const tarot = room.gameId === 'tarot';
   const count = tarot ? Math.min(match.community.length, practiceMoves) : progress.moves;
   const complete = (tarot && count === practiceMoves) || room.status === 'finished';
+  const floating = above && !muted && !complete;
   const playOn = !tarot && !complete && count >= practiceMoves;
   const blocked = offline || room.paused || pending;
   const tactical = fourDrop(match) ?? boardDirection(match);
@@ -319,7 +326,6 @@ export function TurnCoach({
           <div className="turn-coach-float__content" aria-live="polite" aria-atomic="true">
             <strong>{title}</strong>
             {floatingCard ? <span>{floatingCard}</span> : null}
-            {explanation && explanation !== title ? <p>{explanation}</p> : null}
           </div>
           <div className="turn-coach-float__tools">
             <Button
