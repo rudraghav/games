@@ -45,7 +45,10 @@ export async function runTutorial(
   expect(created.ok()).toBe(true);
   const room: RoomView = await created.json();
   const coach = page.getByRole('region', { name: 'Tutorial coach' });
-  const targetSteps = gameId === 'tarot' ? 3 : 6;
+  // A two-player Azul round uses twenty tiles. Follow it through scoring so the
+  // transition is covered even when small drafts take more than six decisions.
+  const targetSteps = gameId === 'azul' ? 22 : gameId === 'tarot' ? 3 : 6;
+  let reachedSecondRound = false;
   let finished = false;
   let closed = false;
   let generationRequests = 0;
@@ -161,8 +164,13 @@ export async function runTutorial(
         finished = true;
         break;
       }
+      if (gameId === 'azul' && Number(after.game?.detail.round) >= 2) {
+        reachedSecondRound = true;
+        if (i >= 6) break;
+      }
     }
     if (gameId === 'tarot') await expect(coach).toContainText('Your spread is ready');
+    if (gameId === 'azul') expect(reachedSecondRound).toBe(true);
     expect(steps.length >= 4 || (gameId === 'tarot' && steps.length === 3) || finished).toBe(true);
     await coach
       .getByRole('button', {

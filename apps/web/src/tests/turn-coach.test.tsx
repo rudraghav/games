@@ -120,6 +120,24 @@ describe('Guided practice uses the actual saved game', () => {
     expect(games.size).toBe(27);
   });
 
+  it('offers the Azul round advance directly and leaves drafts and placements on the table', () => {
+    const scenarios = midgameScenarios.filter((sample) => sample.game === 'azul');
+    for (const phase of ['drafting', 'placing', 'round_over']) {
+      const sample = scenarios.find((sample) => sample.room.game?.phase === phase)!;
+      const room = mapRoom(sample.room);
+      const match = room.game!;
+      const option = offeredMove(match, tutorialLessons.azul)!;
+      expect(practiceDirection(option, match).direct).toBe(phase === 'round_over');
+      const html = markup(room, sample.selfId);
+      if (phase === 'round_over') {
+        expect(option.value.type).toBe('next_round');
+        expect(html).toMatch(/<button[^>]*>Next round<\/button>/);
+      } else {
+        expect(html).toContain('Go to table');
+      }
+    }
+  });
+
   it('counts a complete Azul placement once when draft and placement save separately', () => {
     const room = mapRoom(fixture('azul').room);
     const self = room.ownerId;

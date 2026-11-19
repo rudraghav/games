@@ -64,6 +64,7 @@ const directTypes: Record<string, readonly string[]> = {
   uno: ['play', 'draw'],
   'uno-no-mercy': ['play', 'draw'],
   'four-in-a-row': ['drop'],
+  azul: ['next_round'],
   rummy: ['draw_stock', 'draw_discard'],
   holdem: ['check'],
   skyjo: ['draw_stock', 'draw_discard'],

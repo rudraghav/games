@@ -27,6 +27,8 @@ and its destination as one guided decision. Card and board hints use the same
 authorized card effects, discard analysis and move previews as the table.
 Rummy uses the projected hand after the suggested discard to explain whether
 all non-jokers count toward the loss or only unmatched cards count.
+After scoring an Azul round, the starter can begin the next round directly from
+the coach. Tile and pattern-line choices still use the board.
 
 Verify guide enrollment and persistence with `tests/browser/guided-play.spec.ts`.
 The phone suite in `tests/browser/tutorial-depth.spec.ts` opens the rulebook and

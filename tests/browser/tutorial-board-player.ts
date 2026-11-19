@@ -84,7 +84,11 @@ export async function playBoardDecision(page: Page, before: RoomView, step: numb
     }
     case 'azul': {
       if (first.action.type === 'next_round') {
-        await button(first.label).tap();
+        await expect(button(/^Start round \d+$/)).toBeVisible();
+        await page
+          .getByRole('region', { name: 'Tutorial coach' })
+          .getByRole('button', { name: first.label, exact: true })
+          .tap({ timeout: 10000 });
         return;
       }
       if (first.action.type === 'draft_tiles') await button(/^Take .*from (factory|center)/i).tap();

@@ -33,15 +33,21 @@ for (const game of boardTutorials) drivers.set(game, playBoardDecision);
 for (const game of parties) drivers.set(game, playPartyDecision);
 
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
-// Each worker reuses only its own authenticated guest, in memory. Every game has a new
-// room and browser context, and the final read verifies that the learner left the room.
+// Three independent titles per test learner, each with at most four hands, fit
+// the ordinary twelve-room allowance. Every title gets its own browser context.
 let guestCookies: Awaited<ReturnType<BrowserContext['cookies']>> = [];
+let titlesPlayed = 0;
 for (const game of catalogue) {
   test(`mobile tutorial decisions in ${game.id}`, async ({ page }, info) => {
     test.skip(info.project.name !== 'phone', 'This walkthrough exercises touch controls.');
     test.setTimeout(240000);
+    page.setDefaultTimeout(20000);
     const driver = drivers.get(game.id);
     if (!driver) throw new Error('Missing mobile tutorial walkthrough for ' + game.id);
+    if (titlesPlayed === 3) {
+      guestCookies = [];
+      titlesPlayed = 0;
+    }
     if (guestCookies.length) await page.context().addCookies(guestCookies);
     let longest = 0;
     // A blackjack natural or an early fold can end a short hand before a second decision.
@@ -51,6 +57,7 @@ for (const game of catalogue) {
       longest = Math.max(longest, turns);
     }
     expect(longest, 'A tutorial must be exercised past its opening decision').toBeGreaterThan(1);
+    titlesPlayed++;
     guestCookies = (await page.context().cookies()).filter((c) =>
       /^sb-.+-auth-token(?:\.\d+)?$/.test(c.name),
     );
