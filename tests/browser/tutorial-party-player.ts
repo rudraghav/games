@@ -1,8 +1,75 @@
-import { expect, type Locator } from '@playwright/test';
-import { roomAs } from './helpers';
+import { expect, type Locator, type Page, type Response } from '@playwright/test';
+import { roomAs, type RoomView } from './helpers';
 import type { TutorialDriver } from './tutorial-depth-run';
 
 const button = (table: Locator, name: RegExp) => table.getByRole('button', { name }).first();
+
+async function claimRankingChip(page: Page, table: Locator, before: RoomView) {
+  const free = button(table, /^(Take|Review) \d-star chip in the cent(er|re)$/);
+  const confirm = button(table, /^Take \d-star chip$/);
+  let conflict = false;
+  const observe = (response: Response) => {
+    if (
+      response.request().method() === 'POST' &&
+      response.url().endsWith(`/rooms/${before.id}/actions`)
+    )
+      conflict ||= response.status() === 409;
+  };
+  page.on('response', observe);
+  try {
+    await free.click();
+    // The rack can change from a direct claim to a review as a bot acts.
+    // Read the visible confirmation after tapping, and only retry an unsaved
+    // conflict once all bot ranks are in and the last free chip needs review.
+    for (let attempt = 0; attempt < 3; attempt++) {
+      let state = 'waiting';
+      await expect
+        .poll(
+          async () => {
+            const room = await roomAs(page, before.id);
+            expect(room.match_id).toBe(before.match_id);
+            const saved = room.activity?.some(
+              (m) =>
+                m.actor_id === before.owner_id &&
+                m.version > before.match_version! &&
+                m.type === 'claim_chip',
+            );
+            if (saved) state = 'saved';
+            else {
+              const game = room.game!;
+              expect([game.phase, game.detail.heist, game.detail.street]).toEqual([
+                'chips',
+                before.game!.detail.heist,
+                before.game!.detail.street,
+              ]);
+              if ((await confirm.isVisible()) && (await confirm.isEnabled())) state = 'confirm';
+              else if (
+                conflict &&
+                Array.isArray(game.detail.pending_players) &&
+                game.detail.pending_players.length === 1 &&
+                game.detail.pending_players[0] === before.owner_id
+              )
+                state = 'review';
+            }
+            return state;
+          },
+          { timeout: 30000 },
+        )
+        .not.toBe('waiting');
+      if (state === 'saved') return;
+      if (state === 'confirm') await confirm.click();
+      else {
+        conflict = false;
+        await button(table, /^Review \d-star chip in the cent(er|re)$/).click();
+        await expect(confirm).toBeVisible();
+        await confirm.click();
+      }
+    }
+    throw Error('The reviewed chip claim was not saved');
+  } finally {
+    page.off('response', observe);
+  }
+}
 
 /** Play through private choices, wagers, chip streets, clue turns and the three-card spread. */
 export const playPartyDecision: TutorialDriver = async (page, before, step) => {
@@ -118,11 +185,7 @@ export const playPartyDecision: TutorialDriver = async (page, before, step) => {
         return;
       }
       // Prefer a free chip to progress the street. The closing chip needs explicit review.
-      const chip = button(table, /^(Take|Review) \d-star chip in the cent(er|re)$/);
-      await chip.waitFor({ state: 'visible' });
-      const review = (await chip.getAttribute('aria-label'))?.startsWith('Review');
-      await chip.click();
-      if (review) await click(/^Take \d-star chip$/);
+      await claimRankingChip(page, table, before);
       // Leave the claim on the rack while the other crew members rank. Repeatedly
       // swapping free chips keeps resetting the bot timer and never reaches the flop.
       await expect

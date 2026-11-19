@@ -1,3 +1,33 @@
+## 2026-11-19 — Mobile tutorials verified in production
+
+- Main application 1d03330e4d0fdbf5c8488bbe6208a688b12390bf serves
+  games-seven-black.vercel.app on dpl_Bj8pvriN75wxtnDC5VY4pMUJ4xoM.
+  All 27 tutorials were played beyond the opening move on 390px Chromium.
+  Five were also played on 320px WebKit. Across 38 completed hosted sessions
+  there were 196 learner decisions, 209 saved actions and 38 fresh room-closure
+  reads. All 81 illustrated examples were checked, alongside the table and coach.
+- Azul entered round two in both browsers. Rummy displayed the correct scoring
+  condition. Two further narrow-phone checks verified Tarot's three picks,
+  one-tap return to the guide, and unobstructed completed spread. No AI reading
+  was requested. The Gang confirmed two chip claims after intervening bot moves
+  and completed six decisions. Its earlier diagnostic rooms also closed.
+- Final frontend checks passed 302 tests, types, lint and the production build.
+  The workflow, backend and generated-contract checks passed, including 7,156
+  backend tests and 259 legal mid-game snapshots. The final update to the Gang
+  test driver passed browser type-checking, a local deliberate conflict, and a
+  live replay. The evidence and test-only closeout match all 6,224 deployed
+  runtime files. Production settings, owner data and schema head were preserved;
+  deployment logs had zero warnings/errors and zero 5xx for the full test window.
+- Cleanup recovered 56,012,800 allocated bytes from duplicate captures and fixture
+  copies. During workstation sleep, 26 unfinished local QA rooms needed normal
+  closure; all 36 rooms in that run's verified QA cohort are now closed and its
+  22 recorded moves were preserved. A separate interrupted hosted Azul room was
+  closed after identifying its unique learner, round and history, preserving all
+  20 moves and receipts. No records were deleted. The dev web, API and Storybook
+  services were retained.
+- Per-game outcomes and two production rulebook captures are in
+  docs/evidence/tutorial-depth-2026-11-19/README.md.
+
 ## 2026-11-19 — Mobile tutorial playthroughs
 
 - The next hosted pass confirmed the revised Rummy explanation, The Gang's
