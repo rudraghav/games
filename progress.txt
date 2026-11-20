@@ -4,6 +4,10 @@
 
 - The completed table and archive now open on the saved style. The alternate style uses an authenticated GET, with authorization before matching. Original responses bypass matching. Fun resolves three source-backed illustrated choices from the saved cards and question; Classic pairs canonical card meanings with the stored grounded interpretation. The original title, question, astrology and next step stay with the same spread.
 
+- Released `3297079832c933039961bad67d2646034eec78cc` to Games production after the frontend, backend, contracts, multiplayer and tooling checks passed. Mobile Chromium and WebKit covered switching, retry and returning to the original during a pending request. The 320px layout kept the hint on one line and its info target at 44px.
+
+- Verified both directions on the live finished table and again in its closed-room archive, starting with an ordinary Fun reading and a Classic reading with Western and Vedic charts. The saved responses matched exactly after switching. Each test spread recorded three draws and closed with zero active members. The requested existing spread also matched its pre-release fingerprint, and its Fun view resolved all three cards without an AI request. Production recorded zero server errors or runtime warnings during these checks. Removed task-created intermediate screenshots and retained the final mobile captures.
+
 ## 2026-11-21 — Fun mode on by default
 
 - Show Fun as an enabled switch on each fresh Tarot reading form. Place an info icon and one short explanation of Fun and Classic under the switch. Verify switching, draft and retry recovery, archived readings and the layout on narrow phones before release.
