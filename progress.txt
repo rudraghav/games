@@ -12,6 +12,9 @@
 
 - The correction includes 118 edited scene/choice pairs. All 9,204 figure/card combinations preserved their own chosen source phrase within the visible excerpt. A fresh free Cloudflare reading confirmed that each card showed its exact edited comparison on the first attempt, next to a newly generated spread interpretation.
 
+- Released corrected Fun readings from `5fb1e1d6c050f17234ed52b1a35dad31efdf5c49` to the canonical Games production address. The final local frontend, backend, contracts, multiplayer and tooling checks passed on the same source. Independently generated ordinary and both-chart Fun readings each completed from one submission while showing an automatic fallback. All six displayed source-and-choice pairs exactly matched the edited catalogue. Portraits loaded and layouts fit 320, 390 and 1440 pixels. Refresh, starting another spread, archive reopening after room closure, and denial of another identity were verified live.
+- Both synthetic rooms closed with zero active members. The original signed-in reading matched its private pre-release fingerprint. Production configuration and schema matched baseline, and the scoped release log review reported zero warning/error entries or server-error responses. The test-only WebKit runner was removed; private verification records were retained locally.
+
 ## 2026-11-20 — Dimensional oracle table
 
 - Create the centerpiece and foil artwork with GPT Image first. Add depth to the
