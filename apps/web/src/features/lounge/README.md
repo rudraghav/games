@@ -9,7 +9,7 @@ supported game links carry `?mode=bots` without creating anything. Join accepts
 codes and full invite links.
 
 Pop Tarot is the first full-width catalogue row, using the shared GameTile's
-featured variant and the existing three-card GameArt. The visible Start reading
+featured variant. The poster arranges the three illustrated cards beside the crystal and its full brass stand on velvet. The visible Start reading
 action links to `/games/tarot`, whose Start reading starts without setup. The entire
 card remains one keyboard/touch link target. Search, category and player filters also
 apply to this featured entry; it is never duplicated in the remaining game rows,

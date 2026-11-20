@@ -4,7 +4,7 @@ The public `/games/[gameId]` server route validates the generated catalogue and
 renders GameEntry. Opening it creates no guest, room or match. GameArt, Button,
 SiteHeader and RoomDialog are shared. The rules disclosure sits in the secondary
 action row and controls the illustrated document below. Friends setup fixes the selected game. `?mode=bots` only changes action
-emphasis. Tarot has no setup form, invite or lobby before card selection.
+emphasis. Tarot places the crystal-and-brass still life beside the start action on desktop and above it on phones. Starting opens card selection directly.
 
 useQuickPlay starts only from an explicit click. It stores a launch UUID in
 sessionStorage per game, blocks duplicate taps and reuses the UUID after a lost

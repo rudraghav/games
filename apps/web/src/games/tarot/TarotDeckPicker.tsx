@@ -11,6 +11,7 @@ import {
   type RefObject,
 } from 'react';
 import { HorizontalRail, TarotCard } from '@games/ui';
+import { OracleTableScene } from './OracleTableScene';
 import type { Action, ActionOption } from '@games/api-client';
 
 interface TarotDeckPickerProps {
@@ -45,6 +46,11 @@ export function TarotDeckPicker({
   const selected =
     lift?.turn === drawn ? actions.findIndex((opt) => opt.value.choice === lift.choice) : -1;
   const roving = Math.min(focusIndex, actions.length - 1);
+  const activeCard = preview?.turn === drawn ? preview.index : selected;
+  const fanStart = Math.floor(Math.max(0, activeCard) / perFan) * perFan;
+  const fanLength = Math.min(perFan, actions.length - fanStart);
+  const aim =
+    activeCard < 0 || fanLength < 2 ? 0 : (2 * (activeCard - fanStart)) / (fanLength - 1) - 1;
 
   useLayoutEffect(() => {
     const element = rail.current;
@@ -139,6 +145,7 @@ export function TarotDeckPicker({
       <div
         ref={rail}
         className="tarot-fan-stage"
+        style={{ '--oracle-aim': aim } as CSSProperties}
         onScrollCapture={(event) => {
           if (
             event.target instanceof HTMLElement &&
@@ -148,6 +155,7 @@ export function TarotDeckPicker({
           }
         }}
       >
+        <OracleTableScene stage={rail} />
         <HorizontalRail
           label="Choose from your shuffled 78-card deck"
           navigationLabel="tarot cards"

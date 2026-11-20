@@ -1,7 +1,7 @@
 'use client';
 import { cn } from '../lib/cn';
 import { tarotArtwork } from '../lib/tarot-artwork';
-const backArtwork = '/tarot/celestial-back-v1.webp';
+const backArtwork = '/tarot/astrolabe-foil-back.webp';
 
 interface TarotCardProps {
   id?: string;

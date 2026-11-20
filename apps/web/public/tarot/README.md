@@ -19,12 +19,14 @@ in `docs/DESIGN_REFERENCES.md`.
 
 ## Face-down fan
 
-The draw fan and the illustrated rules share one original card back, made for
-Games in November 2026. The two-tone celestial print pairs mirrored crescents
-with a central star on plum. Every position uses the same 384×576 WebP
-(`celestial-back-v1.webp`), independent of the card underneath. The draw table uses a second original image,
-`oracle-table-v1.webp`: one opalescent sphere on dark velvet. It is shared by
-all fan pages and scales independently of the interactive cards.
+The current instrument, velvet plate and reversible card back use three original
+GPT Image illustrations. The live WebPs are `oracle-armillary.webp` (361×540
+with transparency), `oracle-velvet.webp` (1120×747), and
+`astrolabe-foil-back.webp` (420×630). The moving foil highlight follows the engraving on the shared card back. The composited sphere is decorative;
+all card positions have identical artwork until a confirmed draw.
+
+The earlier November design used `celestial-back-v1.webp` and the single
+`oracle-table-v1.webp` scene.
 
 ## Delivery derivatives
 

@@ -960,24 +960,6 @@
     font-size: 14px;
     font-weight: 650;
   }
-  .game-library .game-tile[data-variant='featured'] .game-art--tarot {
-    padding: 0;
-  }
-  .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card {
-    width: clamp(88px, 26cqw, 126px);
-    padding: 5px;
-  }
-  .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card:nth-child(1) {
-    transform: translate(clamp(-76px, -16cqw, -38px), 4px) rotate(-13deg);
-  }
-  .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card:nth-child(2) {
-    transform: translate(clamp(38px, 16cqw, 76px), 4px) rotate(13deg);
-  }
-  .game-library .game-tile[data-variant='featured'] .tarot-name {
-    font-size: 10px;
-    min-height: 24px;
-    padding-top: 4px;
-  }
   @media (max-width: 600px) {
     .game-library .game-tile[data-variant='featured'] {
       grid-template-columns: minmax(0, 1fr);
@@ -998,19 +980,79 @@
     .game-library .game-tile[data-variant='featured'] .game-featured-action {
       width: 100%;
     }
-    .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card {
-      width: 84px;
-      padding: 4px;
-    }
-    .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card:nth-child(1) {
-      transform: translate(-52px, 2px) rotate(-12deg);
-    }
-    .game-library .game-tile[data-variant='featured'] .game-art--tarot > .tarot-card:nth-child(2) {
-      transform: translate(52px, 2px) rotate(12deg);
-    }
-    .game-library .game-tile[data-variant='featured'] .tarot-name {
-      font-size: 8px;
-      min-height: 20px;
-    }
+  }
+  /* The surface, full brass stand and printed faces share one light direction. */
+  :is(.game-library .game-tile[data-variant='featured'], .game-entry[data-game='tarot'])
+    .game-poster:has(> .game-art--tarot) {
+    background: var(--color-plum) url('/tarot/oracle-velvet.webp') center / cover no-repeat;
+  }
+  :is(.game-library .game-tile[data-variant='featured'], .game-entry[data-game='tarot'])
+    .game-poster:has(> .game-art--tarot)::after {
+    display: none;
+  }
+  :is(.game-library .game-tile[data-variant='featured'], .game-entry[data-game='tarot'])
+    .game-art--tarot {
+    container-type: size;
+    isolation: isolate;
+    padding: 0;
+    scale: 1;
+  }
+  :is(.game-library .game-tile[data-variant='featured'], .game-entry[data-game='tarot'])
+    .game-art--tarot::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: 32%;
+    bottom: 11%;
+    height: 82%;
+    aspect-ratio: 361 / 540;
+    transform: translateX(-50%);
+    background: url('/tarot/oracle-armillary.webp') center / contain no-repeat;
+  }
+  :is(.game-library .game-tile[data-variant='featured'], .game-entry[data-game='tarot'])
+    .game-art--tarot::after {
+    content: '';
+    position: absolute;
+    left: 32%;
+    bottom: 8%;
+    width: 28%;
+    height: 8%;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, #120a14c4 0%, transparent 70%);
+  }
+  :is(.game-library .game-tile[data-variant='featured'], .game-entry[data-game='tarot'])
+    .game-art--tarot
+    > .tarot-card {
+    z-index: 2;
+    left: 67%;
+    bottom: 10%;
+    width: min(21cqw, 45cqh, 140px);
+    padding: clamp(2px, 1.5cqh, 6px);
+    border: 1px solid #d6bea1;
+    border-radius: clamp(4px, 2.4cqh, 9px);
+    background: var(--color-white);
+    box-shadow:
+      1px 2px #81694e,
+      3px 5px 8px #170b1eab;
+    transform-origin: center 90%;
+    transform: translateX(-50%) perspective(500px) rotateY(-8deg) rotateZ(-2deg);
+  }
+  :is(.game-library .game-tile[data-variant='featured'], .game-entry[data-game='tarot'])
+    .game-art--tarot
+    > .tarot-card:nth-child(1) {
+    transform: translateX(-76%) perspective(500px) rotateY(-14deg) rotateZ(-18deg);
+  }
+  :is(.game-library .game-tile[data-variant='featured'], .game-entry[data-game='tarot'])
+    .game-art--tarot
+    > .tarot-card:nth-child(2) {
+    transform: translateX(-24%) perspective(500px) rotateY(10deg) rotateZ(16deg);
+  }
+  :is(.game-library .game-tile[data-variant='featured'], .game-entry[data-game='tarot'])
+    .game-art--tarot
+    .tarot-name {
+    min-height: 0;
+    padding-top: 2px;
+    font-size: clamp(8px, 3cqh, 11px);
+    white-space: nowrap;
   }
 }

@@ -456,11 +456,88 @@
   }
   .tarot-fan-stage {
     container-type: inline-size;
+    position: relative;
+    isolation: isolate;
+  }
+  .tarot-oracle-scene,
+  .tarot-fan {
+    --fan-width: clamp(102px, 28cqi, 144px);
+    --fan-clearance: clamp(109px, 30cqi, 161px);
+    --fan-bottom: 18px;
+  }
+  .tarot-oracle-scene {
+    position: absolute;
+    z-index: -1;
+    inset: 0 0 auto;
+    height: calc(var(--fan-clearance) + var(--fan-width) * 1.5 + var(--fan-bottom));
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    pointer-events: none;
+    perspective: 750px;
+    background: var(--color-plum) url('/tarot/oracle-velvet.webp') center 48% / cover;
+  }
+  .tarot-oracle-instrument {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    height: clamp(154px, 40cqi, 223px);
+    aspect-ratio: 361 / 540;
+    transform: translateX(-50%);
+  }
+  .tarot-oracle-shadow {
+    position: absolute;
+    inset: 92% -14% -3%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgb(12 7 18 / 62%), transparent 70%);
+  }
+  .tarot-oracle-crystal {
+    position: absolute;
+    inset: 0;
+    background: url('/tarot/oracle-armillary.webp') center / contain no-repeat;
+  }
+  /* Both halves of the equatorial circle share one tilt; the stone occludes
+     its far arc while the near edge crosses the front of the glass. */
+  .tarot-oracle-ring {
+    position: absolute;
+    left: 43%;
+    top: 38%;
+    width: 116%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1.6px solid #d4a65e;
+    border-left-color: #f7e6ad;
+    border-bottom-color: #b77e3c;
+    box-shadow:
+      0 1px 0 #674324,
+      inset 0 1px 0 #fff1c8;
+    transform: translate(-50%, -50%) rotateZ(-16deg) rotateX(63deg);
+  }
+  .tarot-oracle-ring--far {
+    clip-path: inset(-4% -4% 49.9%);
+  }
+  .tarot-oracle-ring--near {
+    clip-path: inset(50% -4% -4%);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tarot-oracle-instrument,
+    .tarot-oracle-ring {
+      transition: transform 120ms ease-out;
+    }
+    .tarot-oracle-instrument {
+      transform: translateX(calc(-50% + var(--oracle-look-x, 0) * -6px))
+        translateY(calc(var(--oracle-look-y, 0) * -2px))
+        rotateY(calc(var(--oracle-look-x, 0) * -5deg + var(--oracle-aim, 0) * 5deg));
+    }
+    .tarot-oracle-ring {
+      transform: translate(-50%, -50%)
+        rotateZ(calc(-16deg + var(--oracle-look-x, 0) * 5deg + var(--oracle-aim, 0) * 7deg))
+        rotateX(calc(63deg + var(--oracle-look-y, 0) * 8deg));
+    }
   }
   .tarot-fan-stage .tarot-deck {
     padding: 0;
     border-radius: var(--radius-card);
-    background: var(--color-plum) url('/tarot/oracle-table-v1.webp') center / cover no-repeat;
+    background: transparent;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
@@ -471,12 +548,11 @@
     gap: 0;
   }
   .tarot-fan {
-    --fan-width: clamp(102px, 28cqi, 144px);
     display: flex;
     flex: 0 0 100cqi;
     justify-content: center;
     align-items: center;
-    padding: clamp(103px, 26cqi, 151px) calc(var(--fan-width) * 0.17) 18px;
+    padding: var(--fan-clearance) calc(var(--fan-width) * 0.17) var(--fan-bottom);
     overflow: clip;
     isolation: isolate;
     scroll-snap-align: start;
@@ -529,7 +605,10 @@
   .tarot-fan-face .tarot-card {
     width: 100%;
     border: 1px solid var(--color-ochre-light);
-    box-shadow: -2px 3px 5px color-mix(in srgb, var(--color-black) 45%, transparent);
+    box-shadow:
+      0 1px 0 var(--color-ochre),
+      0 2px 0 color-mix(in srgb, var(--color-ochre) 40%, var(--color-ink)),
+      1px 4px 5px color-mix(in srgb, var(--color-black) 45%, transparent);
   }
   .tarot-fan-hit:is([aria-pressed='true'], [data-preview], :focus-visible) .tarot-fan-face {
     z-index: 20;
@@ -540,8 +619,36 @@
     pointer-events: auto;
   }
   .tarot-fan-hit[aria-pressed='true'] .tarot-fan-face .tarot-card {
-    outline: 2px solid var(--color-ochre-light);
+    outline: 1px solid var(--color-ochre-light);
     outline-offset: 2px;
+    box-shadow:
+      1px 1px 0 var(--color-ochre-light),
+      1px 2px 0 var(--color-ochre),
+      1px 3px 0 color-mix(in srgb, var(--color-ochre) 45%, var(--color-ink)),
+      3px 8px 12px color-mix(in srgb, var(--color-black) 60%, transparent);
+  }
+  /* Brighten the engraved artwork itself, so the foil catches light while
+     the dark paper in the same band stays matte. */
+  .tarot-fan-hit[aria-pressed='true'] .tarot-back {
+    position: relative;
+    isolation: isolate;
+  }
+  .tarot-fan-hit[aria-pressed='true'] .tarot-back::after {
+    --foil-center: 46%;
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    mix-blend-mode: color-dodge;
+    opacity: 0.68;
+    mask-image: linear-gradient(
+      117deg,
+      transparent calc(var(--foil-center) - 22%),
+      black var(--foil-center),
+      transparent calc(var(--foil-center) + 16%)
+    );
+    pointer-events: none;
   }
   .tarot-fan-hit:focus-visible .tarot-fan-face .tarot-card {
     outline: 3px solid var(--color-white);
@@ -557,17 +664,21 @@
     .tarot-pointer-hint {
       display: inline;
     }
-    .tarot-fan-hit:enabled:hover .tarot-fan-face {
+    .tarot-fan-hit:enabled:not([aria-pressed='true']):hover .tarot-fan-face {
       z-index: 20;
       transform: translateY(-9px) rotate(0deg);
-    }
-    .tarot-fan-hit[aria-pressed='true']:enabled:hover .tarot-fan-face {
-      transform: translateY(-12px) rotate(0deg);
     }
   }
   @media (prefers-reduced-motion: no-preference) {
     .tarot-fan-face {
       transition: transform 190ms cubic-bezier(0.22, 0.72, 0.24, 1);
+    }
+    .tarot-fan-hit[aria-pressed='true'] .tarot-fan-face .tarot-card {
+      transform: perspective(570px) rotateX(calc(-5deg - 3deg * var(--oracle-look-y, 0)))
+        rotateY(calc(2deg + 6deg * var(--oracle-look-x, 0)));
+    }
+    .tarot-fan-hit[aria-pressed='true'] .tarot-back::after {
+      --foil-center: calc(46% + 28% * var(--oracle-look-x, 0) + 8% * var(--oracle-look-y, 0));
     }
   }
   .tarot-fan-stage .tarot-lift-hint {
@@ -650,12 +761,12 @@
     outline-offset: 3px;
   }
   @media (prefers-reduced-motion: no-preference) {
-    button.tarot-card {
+    button.tarot-card:not(.tarot-fan-hit) {
       transition:
         translate 0.2s ease-out,
         scale 0.12s ease-out;
     }
-    button.tarot-card:not(:disabled):active {
+    button.tarot-card:not(.tarot-fan-hit):enabled:active {
       scale: 0.97;
     }
     .tarot-spread-slot[data-fresh] .tarot-card {
@@ -674,7 +785,7 @@
       animation: tarot-reading-arrive 0.18s ease-out;
     }
     @media (hover: hover) and (pointer: fine) {
-      button.tarot-card:not(:disabled):hover {
+      button.tarot-card:not(.tarot-fan-hit):enabled:hover {
         translate: 0 -6px;
       }
     }

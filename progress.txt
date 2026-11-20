@@ -1,3 +1,18 @@
+## 2026-11-20 — Dimensional oracle table
+
+- Create the centerpiece and foil artwork with GPT Image first. Add depth to the
+  playing surface, keeping the position title, original card faces, saved draws
+  and private reading flow intact. Check actual touch, mouse, keyboard and
+  reduced-motion play on narrow and wide screens before shipping.
+- Reviewed Higgsfield’s Arc Left gallery and NVIDIA’s glass-rendering examples.
+  Created three original artwork layers. The full instrument appears beside the
+  illustrated cards in the featured and entry posters. At the table its equatorial
+  ring passes around the stone, and only the lifted card catches moving foil light.
+- Local responsive checks completed three-card draws at 320px on WebKit, 390px
+  on touch Chromium and 1440px on desktop Chromium. Corrected generic card hover
+  lifting the hit button. Target widths stayed at least 44px. The table suite
+  passed 12 applicable cases and the separate tutorial completed on narrow WebKit.
+
 ## 2026-11-20 — Tactile Tarot draw and reading variety
 
 - Outcome sought: let a player browse an overlapping face-down deck, lift a card,

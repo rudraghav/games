@@ -2,6 +2,16 @@
 
 `TarotTable` owns the shuffled three-card selection, optional question, private reading request and saved reading. `TarotReading` preserves each card’s grounded read, quirky read and character connections. Existing readings without astrology render unchanged.
 
+## Oracle table
+
+The velvet, transparent crystal instrument and engraved printed backs are three
+original GPT Image assets. The decorative equatorial ring is projected in CSS
+3D and passes behind and in front of the crystal. The ring leans toward a lifted
+or previewed card. A mouse shifts the apparent viewpoint, card pitch and foil
+highlight. Paper edges and the raised outline also communicate selection when
+motion is reduced. Only the pictured surfaces tilt; hit lanes retain their
+positions, and pointer rendering does not run while the table is idle.
+
 ## Choosing and revealing
 
 - The face-down deck comes first. Each page fans the same illustrated back in front of the oracle sphere and leaves finger-width strips exposed. Tap a back or slide across the fan and release to lift a card. The highlighted card stays face-down. Tap another to change your choice, or tap the lifted card again to reveal it in the named spread position.

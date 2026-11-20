@@ -84,6 +84,17 @@ even when movement or vibration is unavailable. The back illustration is origina
 - [W3C guidance on alternatives to dragging](https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html)
 - [MDN on browser touch gestures](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/touch-action) and [vibration support](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate)
 
+### Dimensional oracle table
+
+Higgsfield’s Arc Left gallery shows how a small change in viewpoint separates a
+subject from the background. The Tarot table applies that principle to the crystal,
+its brass equator and the card in the player's hand. NVIDIA’s glass-rendering
+examples informed the bright rim and internal reflections in the crystal. Both the
+instrument and printed foil were created for this game with GPT Image.
+
+- [Higgsfield Arc Left gallery](https://higgsfield.ai/motion/2a5d8f86-aef3-4b34-b5ee-fb2020daa131)
+- [NVIDIA glass and transparent backgrounds](https://docs.omniverse.nvidia.com/materials-and-rendering/latest/rtx_post-processing.html#transparent-backgrounds-and-glass)
+
 ## Reusable foundations
 
 - Radix Primitives (MIT): https://www.radix-ui.com/primitives/docs/overview/introduction — accessible dialogs, focus management and composable behaviour. Adopted.

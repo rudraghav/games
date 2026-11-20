@@ -310,6 +310,57 @@ test('a phone scrub lifts the card under the finger and a vertical swipe scrolls
   });
 });
 
+test('the oracle and foil respond to the pointer while the lifted card stays playable', async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(isMobile, 'Checks a fine pointer. The touch gesture is covered separately.');
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await soloRoom(page, async (roomId) => {
+    const stage = page.locator('.tarot-fan-stage');
+    const scene = stage.locator('.tarot-oracle-scene');
+    const instrument = scene.locator('.tarot-oracle-instrument');
+    const card = deck(page).getByRole('button', { name: /^Face-down card 3 of 78,/ });
+    const surface = card.locator('.tarot-fan-face .tarot-card');
+    const transform = () => surface.evaluate((element) => getComputedStyle(element).transform);
+    await expect(instrument).toBeVisible();
+    await expect(scene).toHaveAttribute('aria-hidden', 'true');
+    await expect(scene).toHaveCSS('pointer-events', 'none');
+    await card.click();
+    await expect(card).toHaveAttribute('aria-pressed', 'true');
+    const area = (await scene.boundingBox())!;
+    const lane = (await card.boundingBox())!;
+    const move = (fraction: number) =>
+      page.mouse.move(area.x + area.width * fraction, area.y + area.height * 0.3);
+    await move(0.2);
+    await expect.poll(transform).toMatch(/^matrix3d\(/);
+    const look = () =>
+      stage.evaluate(
+        (element) =>
+          Number.parseFloat(getComputedStyle(element).getPropertyValue('--oracle-look-x')) || 0,
+      );
+    await expect.poll(look).toBeLessThan(0);
+    const firstAngle = await transform();
+    const firstOrbit = await instrument.evaluate((element) => getComputedStyle(element).transform);
+    await move(0.8);
+    await expect.poll(look).toBeGreaterThan(0);
+    await expect.poll(transform).not.toBe(firstAngle);
+    await expect(instrument).not.toHaveCSS('transform', firstOrbit);
+    expect(await card.boundingBox()).toEqual(lane);
+    expect((await roomAs(page, roomId)).game!.community).toHaveLength(0);
+
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await move(0.25);
+    await expect.poll(transform).toBe('none');
+    await expect.poll(look).toBe(0);
+    await expect(instrument).toBeVisible();
+    await expect(card).toHaveAttribute('aria-pressed', 'true');
+    await card.press('Enter');
+    await expect(page.locator('.tarot-spread-slot .tarot-name')).toHaveCount(1);
+    expect((await roomAs(page, roomId)).game!.community).toHaveLength(1);
+  });
+});
+
 test('an unsent question survives a refresh and the deck filter stays pinned', async ({ page }) => {
   await soloRoom(page, async () => {
     for (let card = 0; card < 3; card++) await drawTarotCard(page);
