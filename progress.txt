@@ -4,6 +4,9 @@
 
 - The switch defaults on for fresh and never-submitted spreads. Previously submitted readings that predate style selection keep Classic. The info button shows or hides “Fun for pop culture, Classic for reflection.” independently of the switch.
 
+- Pushed application `25e11b44104978457adea1868b7749fa8c056022` to main and verified the production alias served that revision. All five affected verification groups passed on the final source. The 32 local browser checks covered touch, keyboard, legacy archives and refresh. Reviewed the 320px WebKit capture with the single-line hint above the optional question.
+- On production, leaving the switch untouched produced a Fun reading. Turning it off produced Classic with both charts. Each reading retained its style after refresh, rematch and archive reopening. Both synthetic rooms closed, the release configuration matched its baseline and the scoped logs had zero warning, error or server-error entries. Disposable screenshots were pruned and current verification receipts retained.
+
 ## 2026-11-20 — Recognizable Tarot references and Fun readings
 
 - Review the owning player’s latest completed reading without changing it or recording its personal content. Compare fictional, historical and familiar casts in synthetic spreads. Test an optional Fun reading with recognizable scenes and clear possible outcomes, alongside Classic and previously saved readings. Verify the choice with mobile play, retry and private archive access.
