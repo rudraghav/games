@@ -208,7 +208,22 @@ test('solo Tarot guides three real picks and leaves the reading and birth detail
     const coach = page.getByRole('region', { name: 'Tutorial coach' });
     const tip = page.getByRole('complementary', { name: 'Tutorial tip' });
     const firstCard = page.getByRole('button', { name: /^Face-down card 1 of / });
+    const touchCard = () =>
+      test.info().project.use.hasTouch ? firstCard.tap() : firstCard.click();
     await page.setViewportSize({ width: 320, height: 640 });
+    await coach.getByRole('button', { name: 'Illustrated rules' }).click();
+    const rulebook = page.getByRole('dialog');
+    const example = rulebook.getByRole('img', {
+      name: /A face-down card lifts above its neighbour/,
+    });
+    const backs = example.locator('.tarot-card--back');
+    await expect(backs).toHaveCount(2);
+    const covered = (await backs.first().boundingBox())!;
+    const lifted = (await backs.last().boundingBox())!;
+    expect(lifted.y).toBeLessThan(covered.y);
+    expect(lifted.x).toBeLessThan(covered.x + covered.width);
+    await expect(rulebook).toContainText('Tap the lifted card again to reveal it.');
+    await rulebook.getByRole('button', { name: 'Close dialog' }).click();
     await coach.getByRole('link', { name: 'Go to cards' }).click();
     await expect(firstCard).toBeFocused();
     expect((await roomAs(page, room.id)).match_version).toBe(room.match_version);
@@ -222,7 +237,13 @@ test('solo Tarot guides three real picks and leaves the reading and birth detail
     await expect(tip).toHaveCount(0);
     for (let step = 1; step <= 3; step++) {
       await expect(coach).toContainText(`Card ${step} of 3`);
-      await page.getByRole('button', { name: /^Face-down card 1 of / }).click();
+      await expect(coach).toContainText('again');
+      await touchCard();
+      await expect(firstCard).toHaveAttribute('aria-pressed', 'true');
+      await expect(coach).toContainText(`Card ${step} of 3`);
+      await coach.getByRole('link', { name: 'Go to cards' }).click();
+      await expect(firstCard).toBeFocused();
+      await touchCard();
       await expect
         .poll(async () => (await roomAs(page, room.id)).game!.community!.length)
         .toBe(step);

@@ -1,6 +1,8 @@
 'use client';
 import { cn } from '../lib/cn';
 import { tarotArtwork } from '../lib/tarot-artwork';
+const backArtwork = '/tarot/celestial-back-v1.webp';
+
 interface TarotCardProps {
   id?: string;
   name?: string;
@@ -31,10 +33,13 @@ export function TarotCard({
   const content = (
     <>
       {!id ? (
-        <span className="tarot-back">
-          <span className="tarot-back-orbit">✳</span>
-          <i>g.</i>
-        </span>
+        <span
+          className="tarot-back"
+          aria-hidden="true"
+          style={{
+            backgroundImage: `url("${imageLoader ? imageLoader(backArtwork) : backArtwork}")`,
+          }}
+        />
       ) : (
         <>
           <span className="tarot-art" data-suit={id.split('-')[0]}>

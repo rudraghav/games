@@ -1,6 +1,19 @@
-import { expect, type Locator, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
+
+/** The first activation lifts a back. A second activation on that back reveals it. */
+export async function drawTarotCard(page: Page, index = 0) {
+  const cards = page.getByRole('button', { name: /^Face-down card \d+ of \d+/ });
+  const card = cards.nth(index);
+  await expect(card).toBeVisible();
+  const before = await cards.count();
+  const activate = () => (test.info().project.use.hasTouch ? card.tap() : card.click());
+  await activate();
+  await expect(card).toHaveAttribute('aria-pressed', 'true');
+  await activate();
+  await expect(cards).not.toHaveCount(before);
+}
 
 // FastAPI emits response defaults, although OpenAPI marks defaulted fields optional.
 export type RoomView = Omit<components['schemas']['RoomView'], 'game'> & {

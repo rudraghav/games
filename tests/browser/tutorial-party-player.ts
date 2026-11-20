@@ -1,5 +1,5 @@
 import { expect, type Locator, type Page, type Response } from '@playwright/test';
-import { roomAs, type RoomView } from './helpers';
+import { drawTarotCard, roomAs, type RoomView } from './helpers';
 import type { TutorialDriver } from './tutorial-depth-run';
 
 const button = (table: Locator, name: RegExp) => table.getByRole('button', { name }).first();
@@ -206,7 +206,7 @@ export const playPartyDecision: TutorialDriver = async (page, before, step) => {
       return;
     }
     case 'tarot':
-      await click(/^Face-down card 1 of /);
+      await drawTarotCard(page);
       return;
     default:
       throw Error('Unsupported party tutorial');

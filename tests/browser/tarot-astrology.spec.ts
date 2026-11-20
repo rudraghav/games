@@ -13,7 +13,7 @@ import {
 } from '../../apps/web/src/stories/fixtures/astrology';
 import dstChart from '../../apps/web/src/stories/fixtures/astrology-dst-synthetic.json' with { type: 'json' };
 import { tarotReadingExample } from '../../apps/web/src/stories/fixtures/tarot-reading';
-import { requestAs, roomAs } from './helpers';
+import { drawTarotCard, requestAs, roomAs } from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off' });
 test.skip(!!process.env.GAMES_TEST_URL, 'Synthetic provider tests use local development only.');
@@ -194,11 +194,7 @@ async function withReading(
     await expect(page).toHaveURL(/\/games\/tarot\/play\/[\da-f-]+$/);
     for (let card = 1; card <= 3; card++) {
       await expect(page.getByRole('heading', { name: `Choose card ${card} of 3` })).toBeVisible();
-      await page
-        .getByRole('group', { name: 'Choose from your shuffled 78-card deck' })
-        .getByRole('button')
-        .first()
-        .click();
+      await drawTarotCard(page);
     }
     await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeEnabled();
     await run({

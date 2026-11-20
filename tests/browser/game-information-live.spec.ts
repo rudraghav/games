@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
-import { openGameSetup, attachPreviewAccess, requestAs, roomAs } from './helpers';
+import { drawTarotCard, openGameSetup, attachPreviewAccess, requestAs, roomAs } from './helpers';
 
 // Explicit live evaluation: two guests, two bounded provider calls, three owned rooms.
 test.skip(
@@ -55,11 +55,7 @@ test('live charts, private saved readings, opt-out and Deal inspection', async (
       await expect(
         actor.getByRole('heading', { name: `Choose card ${number} of 3` }),
       ).toBeVisible();
-      await actor
-        .getByRole('group', { name: 'Choose from your shuffled 78-card deck' })
-        .getByRole('button')
-        .first()
-        .click();
+      await drawTarotCard(actor);
     }
     return id;
   }

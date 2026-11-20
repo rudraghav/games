@@ -17,6 +17,15 @@ No Dribbble, licensed commercial deck, franchise artwork or third-party card
 illustrations are bundled. Research and reusable-library licence decisions live
 in `docs/DESIGN_REFERENCES.md`.
 
+## Face-down fan
+
+The draw fan and the illustrated rules share one original card back, made for
+Games in November 2026. The two-tone celestial print pairs mirrored crescents
+with a central star on plum. Every position uses the same 384×576 WebP
+(`celestial-back-v1.webp`), independent of the card underneath. The draw table uses a second original image,
+`oracle-table-v1.webp`: one opalescent sphere on dark velvet. It is shared by
+all fan pages and scales independently of the interactive cards.
+
 ## Delivery derivatives
 
 The original PNG masters remain intact. `pnpm exec node scripts/prepare_card_art.mjs`

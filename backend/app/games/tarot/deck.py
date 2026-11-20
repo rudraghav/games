@@ -141,3 +141,20 @@ DECK = [
 ]
 BY_ID = {card.id: card for card in DECK}
 POSITIONS = ("Where you are", "What is shifting", "Your next move")
+
+
+def spread_links(card_ids: list[str]) -> list[str]:
+    """Observable connections in draw order, without assigning a personal meaning."""
+    cards = [BY_ID[card_id] for card_id in card_ids]
+    links = []
+    for suit in dict.fromkeys(card.suit for card in cards):
+        names = [card.name for card in cards if card.suit == suit]
+        if len(names) > 1:
+            theme = "Major Arcana" if suit == "major" else f"{suit.title()} ({SUITS[suit][0]})"
+            links.append(f"{', '.join(names)} share {theme}.")
+    minors = [card for card in cards if card.suit != "major"]
+    for rank in dict.fromkeys(card.rank for card in minors):
+        names = [card.name for card in minors if card.rank == rank]
+        if len(names) > 1:
+            links.append(f"{', '.join(names)} share the rank {RANKS[rank - 1]} across suits.")
+    return links

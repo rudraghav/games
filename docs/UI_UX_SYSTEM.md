@@ -329,13 +329,14 @@ Boop graduation requires preview/confirm; Paper public inspection never takes a
 card. Five corrected Tarot cards opt into full-frame SVG fitting. Acceptance
 uses normal-height browser frames, not only tall catalogue captures.
 
-Tarot's first phone viewport prioritizes enlarged card choices and the current
-selection step. Its local heading replaces redundant normal-turn chrome; paused
-and offline notices remain explicit. Rail arrows and the swipe hint share one
-control row. Card press/reveal and reading-entry motion are short and honor
-reduced motion. Optional device feedback confirms only a local committed pick,
-never a failed request or restored snapshot; unsupported devices keep the same
-visual and accessible feedback.
+Tarot puts the current spread position above a single oracle-sphere scene. The face-down fan sits in front of the sphere in the first phone viewport. The fan adjusts the number of exposed backs to the width of the table.
+The pictured card may overlap its neighbour, while each touch target keeps its own
+strip. A horizontal stroke previews backs under the finger. Lifting a card still
+leaves it face-down until the player taps the raised card again. Page controls and
+keyboard navigation reach every remaining back. Vertical swipes scroll the page.
+Reduced motion retains the raised selection without an animated transition. A
+supported device can pulse when a local draw is confirmed. The illuminated slot
+and spoken card name communicate the same result on every device.
 
 Tarot generation morphs its primary action into one compact processing card. A
 420ms grid expansion preserves text size while color, corners and content fade

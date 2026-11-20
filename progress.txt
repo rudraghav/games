@@ -1,3 +1,24 @@
+## 2026-11-20 — Tactile Tarot draw and reading variety
+
+- Outcome sought: let a player browse an overlapping face-down deck, lift a card,
+  and draw it deliberately into the next spread position. Verify touch, keyboard,
+  reduced motion, the three saved picks and mobile reading completion.
+- Check private shuffle and character retrieval against contrasting questions,
+  card combinations and positions. Keep existing saved readings readable and
+  keep unrevealed cards and randomness on the server.
+- Refined after a mobile review: one scene with an oracle sphere and reversible
+  celestial backs. A second tap or key activation on the raised card confirms it.
+  Switching cards, sliding to preview and scrolling the page should never draw.
+- Added a shared celestial back and an oracle-sphere setting. On phone and desktop
+  the stage, the position title and the illustrated tutorial use the same draw.
+  The raised card accepts the second tap across its entire visible face.
+- Tested the server shuffle across 4,096 decks. Fixed backup references
+  displacing another card’s lead. In 12 comparison spreads, lead agreement at
+  different shortlist sizes rose from 21/36 to 36/36. Both synthetic free live
+  readings (ordinary and Vedic) returned concise two-card introductions after
+  tightening the provider instruction. Details, limits and a phone capture are
+  in docs/evidence/tarot-oracle-2026-11-20/README.md.
+
 ## 2026-11-19 — Mobile tutorials verified in production
 
 - Main application 1d03330e4d0fdbf5c8488bbe6208a688b12390bf serves

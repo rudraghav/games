@@ -203,3 +203,41 @@ def test_unusually_long_source_quote_is_explicitly_shortened_with_balanced_punct
     assert len(excerpt) <= 320
     assert excerpt.endswith('…"') and excerpt.count('"') == 2
     assert excerpt[:-2] in reference["sourceContext"]
+
+
+def test_later_cards_keep_their_leads_when_a_provider_accepts_more_backups():
+    references, vectors = toy_cast()
+    neutral = np.zeros((3, 384), dtype=np.float32)
+    for size in (1, 2):
+        compact = rank_candidates(references, vectors, neutral, neutral, vectors[0], CARDS, "Painting", per_card=size)
+        full = rank_candidates(references, vectors, neutral, neutral, vectors[0], CARDS, "Painting", per_card=6)
+        assert compact == [row[:size] for row in full]
+
+
+def test_contested_character_goes_to_the_card_that_has_fewer_close_alternatives():
+    references, vectors = toy_cast()
+    vectors.fill(0)
+    vectors[0, :2] = (1, 1)
+    vectors[1, 0] = 0.99
+    vectors[2, 1] = 0.3
+    vectors[3, 2] = 1
+    directions = np.eye(384, dtype=np.float32)[:3]
+    selected = rank_candidates(references, vectors, directions, np.zeros_like(directions),
+                               None, CARDS, "", per_card=1)
+    assert selected[0][0]["id"] == "reference-1"
+    assert selected[1][0]["id"] == "reference-0"
+
+
+def test_neighbour_meaning_breaks_a_tie_between_equally_strong_card_matches():
+    references, vectors = toy_cast()
+    vectors.fill(0)
+    vectors[0, :2] = (1, 0.75)
+    vectors[1, [0, 2]] = (1, 0.75)
+    for index in (1, 2, 3):
+        vectors[index + 1, index] = 1
+    axes = np.eye(384, dtype=np.float32)
+    neutral = np.zeros((3, 384), dtype=np.float32)
+    first = rank_candidates(references, vectors, axes[[0, 1, 3]], neutral, None, CARDS, "", per_card=1)
+    second = rank_candidates(references, vectors, axes[[0, 2, 3]], neutral, None, CARDS, "", per_card=1)
+    assert first[0][0]["id"] == "reference-0"
+    assert second[0][0]["id"] == "reference-1"

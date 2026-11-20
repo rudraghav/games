@@ -131,7 +131,7 @@ to the current match, mode, round and player: a submission or next prompt from
 another tab cannot make an old choice the next round's selected answer. Reload
 restores committed state and requires a fresh choice for an uncommitted turn.
 Optional sip prompts are set before starting; every mode always permits Pass.
-Solo Tarot starts directly at card selection. Its Pop Tarot header and Reading
+Solo Tarot opens on a fan of overlapping face-down cards. The player taps or slides to lift one, can switch cards freely, and taps the same lifted card again to reveal it in the next position. Only that confirmation saves a pick. The arrows page through the deck. Keyboard users can move among the backs, lift one and confirm the same way. Its Pop Tarot header and Reading
 options menu omit multiplayer invite, host, chat and membership controls. Back
 to Tarot returns to the game page without abandoning the saved spread; Your games
 can resume it. The global advanced creation dialog remains compatible with solo play.

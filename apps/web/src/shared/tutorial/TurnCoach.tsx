@@ -36,14 +36,17 @@ interface CoachProps {
 const positions = ['Where you are', 'What is shifting', 'Your next move'];
 
 const spread = [
-  ['Pick your first card', 'Tap any face-down card. This position reflects where you are now.'],
+  [
+    'Pick your first card',
+    'Tap a face-down card to lift it. Tap the lifted card again to reveal where you are now.',
+  ],
   [
     'Pick your second card',
-    'Choose another face-down card. Read it as what is shifting around you.',
+    'Lift any card. You can try a different one, then tap the lifted card again to reveal what is shifting.',
   ],
   [
     'Pick your third card',
-    'Choose the last card in your spread. This position suggests a next move.',
+    'Lift your final card and tap it again to reveal a possible next move.',
   ],
 ] as const;
 

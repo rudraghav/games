@@ -4,7 +4,9 @@ import hashlib
 import json
 import re
 from collections import Counter
-from functools import lru_cache
+from dataclasses import dataclass, field
+from functools import lru_cache, partial
+from itertools import islice
 from pathlib import Path
 
 import numpy as np
@@ -139,6 +141,17 @@ def _relative(values: FloatMatrix) -> FloatMatrix:
     return np.maximum((values - low) / max(float(high - low), 0.02), 0)
 
 
+@dataclass
+class _CardMatches:
+    relevance: FloatMatrix
+    rotation: FloatMatrix
+    order: list[int]
+    meme_pool: set[int]
+    choices: list[dict] = field(default_factory=list)
+    categories: Counter[str] = field(default_factory=Counter)
+    sources: Counter[str] = field(default_factory=Counter)
+
+
 def rank_candidates(
     references: list[dict], vectors: FloatMatrix, card_vectors: FloatMatrix,
     role_vectors: FloatMatrix, question_vector: FloatMatrix | None,
@@ -146,81 +159,103 @@ def rank_candidates(
 ) -> list[list[dict]]:
     """Pure ranking over supplied public vectors; no I/O, model or user-state lookup."""
     question_scores = _relative(vectors @ question_vector) if question_vector is not None else None
+    question_meme_floor = float(np.percentile(question_scores, 98)) if question_scores is not None else 0.0
     question_words = words(question)
     seed = hashlib.sha256(json.dumps([card_ids, question]).encode()).digest()
+    cast_boost = np.zeros(len(references), dtype=np.float32)
+    for index, reference in enumerate(references):
+        # Regional editorial tiers avoid an English-pageview popularity contest.
+        cast_boost[index] = {"major": 0.035, "regional": 0.025}.get(reference.get("recognizability", ""), 0.0)
+        if question_words:
+            names = [reference["name"], *reference.get("aliases", []), reference["source"]]
+            if any(tokens and tokens <= question_words for tokens in map(words, names)):
+                cast_boost[index] += 0.08
+
+    card_scores = [_relative(vectors @ vector) for vector in card_vectors]
+    matches = []
+    for position, card_id in enumerate(card_ids):
+        card_score = card_scores[position]
+        role_score = _relative(vectors @ role_vectors[position])
+        # A bridge must fit this card first. The middle position can connect
+        # either neighbour without averaging away a contrast between the two.
+        neighbours = card_scores[max(0, position - 1):position] + card_scores[position + 1:position + 2]
+        bridge = np.minimum(card_score, np.maximum.reduce(neighbours)) if neighbours else card_score
+        relevance = (0.61 * card_score + 0.23 * role_score + 0.16 * bridge) if question_scores is None else (
+            0.54 * question_scores + 0.28 * card_score + 0.08 * role_score + 0.10 * bridge
+        )
+        relevance += cast_boost
+        rotation = np.empty(len(references), dtype=np.float32)
+        for index, reference in enumerate(references):
+            tie = hashlib.sha256(seed + card_id.encode() + reference["id"].encode()).digest()
+            rotation[index] = int.from_bytes(tie[:2]) / 65535
+        # Rotate close comparisons between spreads; 0.12 is the maximum seeded
+        # advantage for a lead, regardless of the size of the public catalogue.
+        relevance += 0.12 * rotation
+        order = [int(index) for index in np.argsort(-relevance, kind="stable")
+                 if references[int(index)]["id"] not in NEW_READING_EXCLUSIONS]
+        # A comic scene is an optional comparison. With a question, it
+        # must be among the strongest topical matches as well as fitting the card.
+        meme_pool = {index for index in order[:12]
+                     if question_scores is None or question_scores[index] >= question_meme_floor}
+        matches.append(_CardMatches(np.asarray(relevance, dtype=np.float32), rotation, order, meme_pool))
+
     used_ids: set[str] = set()
     used_names: set[str] = set()
     used_families: set[str] = set()
-    used_vectors: list[int] = []
+    similarity = np.zeros(len(references), dtype=np.float32)
     spread_categories: Counter[str] = Counter()
-    results = []
     meme_selected = False
-    for position, card_id in enumerate(card_ids):
-        card_score = _relative(vectors @ card_vectors[position])
-        role_score = _relative(vectors @ role_vectors[position])
-        relevance = (0.76 * card_score + 0.24 * role_score) if question_scores is None else (
-            0.62 * question_scores + 0.32 * card_score + 0.06 * role_score
+
+    def available(index: int, card: _CardMatches) -> bool:
+        ref = references[index]
+        return (ref["id"] not in used_ids and ref["name"].casefold() not in used_names
+                and (ref.get("identityFamily") or ref["id"]) not in used_families
+                and (ref.get("kind") != "meme" or (bool(card.choices) and not meme_selected and index in card.meme_pool)))
+
+    def score(index: int, card: _CardMatches) -> float:
+        ref = references[index]
+        category = ref.get("category", "fiction")
+        # Alternatives can range a little more widely than the primary match.
+        variation = 0.08 * float(card.rotation[index]) if card.choices else 0.0
+        return float(card.relevance[index]) + variation - (
+            0.10 * max(0.0, float(similarity[index]) - 0.55) + 0.10 * card.categories[category]
+            + 0.025 * spread_categories[category] + 0.07 * card.sources[ref["source"]]
         )
-        # A named interest is useful context, never a request to ignore the card.
-        for index, reference in enumerate(references):
-            names = [reference["name"], *reference.get("aliases", []), reference["source"]]
-            if any(len(words(name)) >= 1 and words(name) <= question_words for name in names):
-                relevance[index] += 0.08
-            # Regional editorial tiers avoid an English-pageview popularity contest.
-            prominence = reference.get("recognizability", "supporting")
-            relevance[index] += {"major": 0.035, "regional": 0.025}.get(prominence, 0.0)
-            # Stable tiny near-tie variation, not a random pool that ignores meaning.
-            tie = hashlib.sha256(seed + card_id.encode() + reference["id"].encode()).digest()
-            relevance[index] += int.from_bytes(tie[:2]) / 65535 * 0.008
-        # Filter the shared ranked order before either the bounded or expanded
-        # candidate pool is built; fallback must not reintroduce reviewed holds.
-        order = [int(index) for index in np.argsort(-relevance, kind="stable")
-                 if references[int(index)]["id"] not in NEW_READING_EXCLUSIONS]
-        meme_pool = set(order[:12])
-        pool = order[:180]
-        choices: list[dict] = []
-        categories: Counter[str] = Counter()
-        sources: Counter[str] = Counter()
-        while len(choices) < per_card:
-            eligible = [index for index in pool if (not meme_selected or references[index].get("kind") != "meme")
-                        and (references[index].get("kind") != "meme" or index in meme_pool)
-                        and references[index]["name"].casefold() not in used_names
-                        and references[index]["id"] not in used_ids
-                        and (references[index].get("identityFamily") or references[index]["id"]) not in used_families]
-            if not eligible:
-                pool = order[:]
-                eligible = [index for index in pool if (not meme_selected or references[index].get("kind") != "meme")
-                            and (references[index].get("kind") != "meme" or index in meme_pool)
-                        and references[index]["name"].casefold() not in used_names
-                        and references[index]["id"] not in used_ids
-                            and (references[index].get("identityFamily") or references[index]["id"]) not in used_families]
-            if not eligible:
-                break
 
-            def score(index: int, relevance: FloatMatrix = relevance,
-                      categories: Counter[str] = categories, sources: Counter[str] = sources) -> float:
-                reference = references[index]
-                category = reference.get("category", "fiction")
-                similarity = max((float(vectors[index] @ vectors[prior]) for prior in used_vectors), default=0.0)
-                return float(relevance[index]) - (
-                    0.10 * max(0.0, similarity - 0.55) + 0.10 * categories[category]
-                    + 0.025 * spread_categories[category] + 0.07 * sources[reference["source"]]
-                )
+    # Give every position its best available lead before reserving backups.
+    # A two-candidate provider now sees the same pairs as a six-candidate one.
+    def lead_advantage(position: int) -> float:
+        card = matches[position]
+        leads = list(islice((index for index in card.order if references[index].get("kind") != "meme"), 2))
+        if len(leads) < 2:
+            return 0.0
+        return float(card.relevance[leads[0]] - card.relevance[leads[1]])
 
-            chosen = max(eligible, key=score)
+    # Let the position with the clearest first choice claim a contested identity.
+    # Return rows in draw order regardless of the reservation order.
+    positions = sorted(range(len(matches)), key=lead_advantage, reverse=True)
+    for _ in range(per_card):
+        for position in positions:
+            card = matches[position]
+            eligible = [index for index in card.order[:180] if available(index, card)]
+            if not eligible:
+                eligible = [index for index in card.order[180:] if available(index, card)]
+            if not eligible:
+                continue
+            chosen = max(eligible, key=partial(score, card=card))
             reference = references[chosen]
-            context = question + " " + BY_ID[card_id].meaning + " " + ROLE_CONTEXTS[position]
-            choices.append({**reference, "public_context": evidence_excerpt(reference, context)})
+            context = question + " " + BY_ID[card_ids[position]].meaning + " " + ROLE_CONTEXTS[position]
+            card.choices.append({**reference, "public_context": evidence_excerpt(reference, context)})
             meme_selected = meme_selected or reference.get("kind") == "meme"
             used_ids.add(reference["id"])
             used_names.add(reference["name"].casefold())
             used_families.add(reference.get("identityFamily") or reference["id"])
-            used_vectors.append(chosen)
-            categories[reference.get("category", "fiction")] += 1
-            spread_categories[reference.get("category", "fiction")] += 1
-            sources[reference["source"]] += 1
-        results.append(choices)
-    return results
+            np.maximum(similarity, vectors @ vectors[chosen], out=similarity)
+            category = reference.get("category", "fiction")
+            card.categories[category] += 1
+            card.sources[reference["source"]] += 1
+            spread_categories[category] += 1
+    return [card.choices for card in matches]
 
 
 def retrieve(references: list[dict], card_ids: list[str], question: str, *, per_card: int = 6) -> list[list[dict]]:

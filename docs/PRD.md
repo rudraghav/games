@@ -33,7 +33,7 @@ classic Skyjo. Every game has its own rules document and automated tests.
 
 Pop Tarot adds a solo 78-card modern pop-art deck and a three-card spread.
 Readings are AI-written around the selected cards and an optional personal
-question, with playful pop-culture analogies. The card system and AI contract
+question, with playful pop-culture analogies. The reading opens by connecting named cards in their spread positions. Character suggestions account for the question and each card before additional options are allocated; a repeated suit or rank can inform the interpretation. The card system and AI contract
 remain reusable. No fabricated reading is shown when AI is unavailable.
 Readings try Gemini, then Cloudflare, then Groq within one bounded request.
 Configured providers are eligible for all four reading options; less consistent

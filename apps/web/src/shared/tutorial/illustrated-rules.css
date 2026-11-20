@@ -149,6 +149,10 @@
 .lesson-pieces .tarot-card {
   padding: 2px;
 }
+.lesson-pieces > .tarot-card--back + .tarot-card--back {
+  margin-inline-start: calc(var(--unit) * -0.65);
+  transform: translateY(-14%) rotate(6deg);
+}
 .lesson-pieces .tarot-art {
   border-radius: 3px;
 }
@@ -281,15 +285,6 @@
 .lesson-pieces .mancala-pit > span:last-child {
   font-size: 8px;
   line-height: 1;
-}
-.lesson-pieces .tarot-back {
-  border-width: 1px;
-}
-.lesson-pieces .tarot-back .tarot-back-orbit {
-  font-size: 15px;
-}
-.lesson-pieces .tarot-back i {
-  display: none;
 }
 .lesson-board {
   display: grid;

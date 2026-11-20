@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { tarotReadingExample } from '../../apps/web/src/stories/fixtures/tarot-reading';
-import { openGameSetup, requestAs, roomAs } from './helpers';
+import { drawTarotCard, openGameSetup, requestAs, roomAs } from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off' });
 test.skip(!!process.env.GAMES_TEST_URL, 'Synthetic reading responses use local development only.');
@@ -149,7 +149,28 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
       'Your next card lands here',
     );
 
-    // A rejected tap does not confirm a card or produce feedback.
+    // Lifting a card, then changing your mind, never sends a draw to the server.
+    const lifted = deck(page).getByRole('button', { pressed: true });
+    const submissions: string[] = [];
+    page.on('request', (request) => {
+      if (request.method() === 'POST' && request.url().endsWith(`/rooms/${roomId}/actions`))
+        submissions.push(request.url());
+    });
+    await expect(lifted).toHaveCount(0);
+    await cards.first().click();
+    await expect(cards.first()).toHaveAttribute('aria-pressed', 'true');
+    await page.getByRole('button', { name: 'Next tarot cards' }).click();
+    await expect(lifted).toHaveCount(0);
+    await page.getByRole('button', { name: 'Previous tarot cards' }).click();
+    await expect(cards.first()).toBeInViewport();
+    await cards.nth(2).click();
+    await expect(cards.first()).toHaveAttribute('aria-pressed', 'false');
+    await expect(cards.nth(2)).toHaveAttribute('aria-pressed', 'true');
+    await expect(lifted).toHaveCount(1);
+    expect(submissions).toHaveLength(0);
+    expect((await roomAs(page, roomId)).game!.community).toHaveLength(0);
+
+    // A rejected confirmation retains the lifted choice for a retry.
     await page.route(
       `**/api/backend/v1/rooms/${roomId}/actions`,
       (route) => route.fulfill({ status: 503, json: { detail: 'Synthetic failed card pick.' } }),
@@ -157,11 +178,17 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     );
     await cards.nth(2).click();
     await expect(page.locator('.room-error')).toBeVisible();
+    await expect(cards.nth(2)).toHaveAttribute('aria-pressed', 'true');
+    expect(submissions).toHaveLength(1);
     await expect(cards).toHaveCount(78);
     await expect(page.locator('.tarot-spread .tarot-name')).toHaveCount(0);
     expect(await pulses()).toEqual([]);
 
-    await cards.nth(2).click();
+    // Two rapid confirmations during the same render must save only one card.
+    await cards.nth(2).evaluate((button: HTMLButtonElement) => {
+      button.click();
+      button.click();
+    });
     const first = page.locator('.tarot-spread-slot').first();
     await expect(first.locator('.tarot-name')).not.toBeEmpty();
     const name = (await first.locator('.tarot-name').textContent())!;
@@ -178,15 +205,26 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     }
     expect((await roomAs(page, roomId)).game!.community).toHaveLength(1);
     await expect.poll(pulses).toEqual([12]);
+    expect(submissions).toHaveLength(2);
 
     // Back to the deck, then a keyboard pick with arrow keys.
     await page.getByRole('button', { name: 'Choose card 2 of 3', exact: true }).click();
     await expect(deck(page).locator('button.tarot-card[tabindex="0"]')).toBeFocused();
-    await page.keyboard.press('ArrowRight');
-    await page.keyboard.press('ArrowRight');
-    await expect(page.locator(':focus')).toHaveAccessibleName(/^Face-down card \d+ of 77/);
+    await page.keyboard.press('End');
+    await expect(cards.last()).toBeFocused();
+    await expect(cards.last()).toBeInViewport();
+    await page.keyboard.press('ArrowLeft');
+    await expect(page.locator(':focus')).toHaveAccessibleName(/^Face-down card 76 of 77/);
     expect(await pulses()).toEqual([12]);
-    await page.keyboard.press('Enter');
+    // Native repeat on a held Enter key must not turn one keypress into two activations.
+    await page.keyboard.down('Enter');
+    await page.keyboard.down('Enter');
+    await page.keyboard.down('Enter');
+    await page.keyboard.up('Enter');
+    await expect(cards.nth(75)).toHaveAttribute('aria-pressed', 'true');
+    expect((await roomAs(page, roomId)).game!.community).toHaveLength(1);
+    expect(submissions).toHaveLength(2);
+    await cards.nth(75).press('Space');
     const second = page.locator('.tarot-spread-slot').nth(1);
     await expect(second.locator('.tarot-name')).not.toBeEmpty();
     await expect(second).toBeFocused();
@@ -202,7 +240,7 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     await expect(page.locator('[data-fresh]')).toHaveCount(0);
     expect(await pulses()).toEqual([]);
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await deck(page).locator('button.tarot-card').first().click();
+    await drawTarotCard(page);
     await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
     await expect(page.locator('.tarot-spread .tarot-name')).toHaveCount(3);
     expect(await pulses()).toEqual([]);
@@ -219,10 +257,62 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
   });
 });
 
+test('a phone scrub lifts the card under the finger and a vertical swipe scrolls the table', async ({
+  page,
+  browserName,
+  isMobile,
+}) => {
+  test.skip(!isMobile || browserName !== 'chromium', 'Sends native touch input through Chromium.');
+  await page.setViewportSize({ width: 390, height: 680 });
+  await soloRoom(page, async (roomId) => {
+    const cards = deck(page).locator('button.tarot-card');
+    await expect(cards).toHaveCount(78);
+    const target = cards.nth(3);
+    const face = target.locator('.tarot-fan-face');
+    const initialFace = await face.boundingBox();
+    const start = await cards.first().boundingBox();
+    const end = await target.boundingBox();
+    expect(start).not.toBeNull();
+    expect(end).not.toBeNull();
+    const x = start!.x + start!.width / 2;
+    const y = start!.y + start!.height * 0.6;
+    const lastX = end!.x + end!.width / 2;
+    const session = await page.context().newCDPSession(page);
+    const touch = (type: 'touchStart' | 'touchMove' | 'touchEnd', px = x, py = y) =>
+      session.send('Input.dispatchTouchEvent', {
+        type,
+        touchPoints: type === 'touchEnd' ? [] : [{ x: px, y: py }],
+      });
+    try {
+      await touch('touchStart');
+      for (let step = 1; step <= 6; step++) await touch('touchMove', x + ((lastX - x) * step) / 6);
+      await touch('touchEnd');
+      await expect(target).toHaveAttribute('aria-pressed', 'true');
+      await expect.poll(async () => (await face.boundingBox())!.y).toBeLessThan(initialFace!.y - 5);
+      await expect(page.locator('.tarot-spread .tarot-name')).toHaveCount(0);
+
+      const previousTop = await page.evaluate(() => scrollY);
+      await touch('touchStart');
+      for (let step = 1; step <= 8; step++) await touch('touchMove', x, y - step * 15);
+      await touch('touchEnd');
+      await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(previousTop);
+      await expect(target).toHaveAttribute('aria-pressed', 'true');
+      expect((await roomAs(page, roomId)).game!.community).toHaveLength(0);
+      // The lifted picture itself is the target, including the side that used to overlap a neighbour.
+      await target.scrollIntoViewIfNeeded();
+      const raised = (await face.boundingBox())!;
+      await page.touchscreen.tap(raised.x + raised.width * 0.78, raised.y + raised.height * 0.4);
+      await expect(cards).toHaveCount(77);
+      expect((await roomAs(page, roomId)).game!.community).toHaveLength(1);
+    } finally {
+      await session.detach();
+    }
+  });
+});
+
 test('an unsent question survives a refresh and the deck filter stays pinned', async ({ page }) => {
   await soloRoom(page, async () => {
-    for (let card = 0; card < 3; card++)
-      await deck(page).locator('button.tarot-card').first().click();
+    for (let card = 0; card < 3; card++) await drawTarotCard(page);
     const question = page.getByRole('textbox', { name: /What’s on your mind/ });
     await question.fill('Which small habit should I start this month?');
     await page.reload();
@@ -269,8 +359,7 @@ test('a failed saved-reading check retries only GET and restores the question an
         json: { status: 'ready', reading: null, api_tier: 'paid', question: '', message: '' },
       });
     });
-    for (let card = 0; card < 3; card++)
-      await deck(page).locator('button.tarot-card').first().click();
+    for (let card = 0; card < 3; card++) await drawTarotCard(page);
     const spreadNames = page.locator('.tarot-spread .tarot-name');
     await expect(spreadNames).toHaveCount(3);
     const names = await spreadNames.allTextContents();
@@ -302,8 +391,7 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
 }) => {
   await page.setViewportSize({ width: 320, height: 640 });
   await soloRoom(page, async (roomId) => {
-    for (let card = 0; card < 3; card++)
-      await deck(page).locator('button.tarot-card').first().click();
+    for (let card = 0; card < 3; card++) await drawTarotCard(page);
     await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
     const room = await roomAs(page, roomId);
     const cards = room.game!.community;

@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { openGameSetup, requestAs, roomAs, openRoomOptions } from './helpers';
+import type { components } from '../../packages/api-client/src/generated/schema';
+import { drawTarotCard, openGameSetup, requestAs, roomAs, openRoomOptions } from './helpers';
 import gameCatalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 test('the complete catalogue and every table scenario fit the viewport', async ({ page }) => {
@@ -232,17 +233,21 @@ test('Tarot reveals three distinct cards and survives a refresh', async ({ page 
     const deck = page.getByRole('button', { name: /^Face-down card \d+ of \d+/ });
     for (const [pick, position] of [4, 17, 65].entries()) {
       const before = await deck.count();
-      await deck.nth(position - 1).click();
+      await drawTarotCard(page, position - 1);
       // The deck leaves the table once the third card completes the spread.
       await expect(deck).toHaveCount(pick === 2 ? 0 : before - 1);
     }
     await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
-    await expect(
-      page.getByText(/may be sent to Google Gemini to write this reading/),
-    ).toBeVisible();
-    await expect(
-      page.getByText(/Google’s free tier may use questions and readings to improve its products/),
-    ).toBeVisible();
+    const response = await requestAs(page, `rooms/${tarotRoomId}/reading`);
+    expect(response.ok()).toBe(true);
+    const status: components['schemas']['ReadingView'] = await response.json();
+    const providers = status.provider_names ?? ['Google Gemini'];
+    const disclosure = page.locator('#tarot-data-use');
+    for (const name of providers) await expect(disclosure).toContainText(name);
+    if (status.api_tier === 'free' && providers.includes('Google Gemini'))
+      await expect(disclosure).toContainText(
+        'Google’s free tier may use questions and readings to improve its products',
+      );
     const names = await page.locator('.tarot-spread .tarot-name').allTextContents();
     expect(new Set(names).size).toBe(3);
     await page.reload();

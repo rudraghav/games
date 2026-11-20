@@ -305,6 +305,8 @@ test('crowded decisions support keyboard selection, clear, blocked states and ex
   // Fractional card/rail borders can clip less than one CSS pixel at the end.
   await expect(last).toBeInViewport({ ratio: 0.99 });
   await page.keyboard.press('Enter');
+  await expect(last).toHaveAttribute('aria-pressed', 'true');
+  await page.keyboard.press('Space');
   await recorded(page, tarot.room.game!.actions!.at(-1)!.action);
   await reset(page);
   const opener = page.getByRole('button', { name: 'Explore the deck', exact: true });

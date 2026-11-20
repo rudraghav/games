@@ -4,7 +4,7 @@ import { writeFile } from 'node:fs/promises';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import type { TarotCharacter } from '../../packages/api-client/src/tarot-characters';
 import registry from '../../packages/api-client/src/generated/tarot-characters.json' with { type: 'json' };
-import { attachPreviewAccess, requestAs, roomAs } from './helpers';
+import { drawTarotCard, attachPreviewAccess, requestAs, roomAs } from './helpers';
 
 type ReadingView = components['schemas']['ReadingView'];
 type SavedReading = components['schemas']['SavedReadingView'];
@@ -91,11 +91,7 @@ test.afterEach(async ({ page }) => {
 async function pickSpread(page: Page) {
   for (let number = 1; number <= 3; number++) {
     await expect(page.getByRole('heading', { name: `Choose card ${number} of 3` })).toBeVisible();
-    await page
-      .getByRole('group', { name: 'Choose from your shuffled 78-card deck' })
-      .getByRole('button')
-      .first()
-      .click();
+    await drawTarotCard(page);
   }
   await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeEnabled();
 }

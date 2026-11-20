@@ -1,7 +1,14 @@
 import { expect, test, type BrowserContext, type Page } from '@playwright/test';
 import { writeFile } from 'node:fs/promises';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
-import { attachPreviewAccess, openRoomOptions, requestAs, roomAs, type RoomView } from './helpers';
+import {
+  drawTarotCard,
+  attachPreviewAccess,
+  openRoomOptions,
+  requestAs,
+  roomAs,
+  type RoomView,
+} from './helpers';
 
 // Entry, persistence and authorization use real local services. No reading is generated.
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
@@ -195,11 +202,7 @@ test('Tarot starts once, keeps cards private, survives refresh and protects name
   expect(room.game!.detail.order).toBeUndefined();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(page.getByRole('heading', { name: /^Choose card 1 of 3/ })).toBeVisible();
-  await page
-    .getByRole('group', { name: 'Choose from your shuffled 78-card deck' })
-    .getByRole('button')
-    .first()
-    .click();
+  await drawTarotCard(page);
   await expect(page.getByRole('heading', { name: /^Choose card 2 of 3/ })).toBeVisible();
   const picked = await roomAs(page, id);
   expect(picked.match_version).toBe(room.match_version! + 1);

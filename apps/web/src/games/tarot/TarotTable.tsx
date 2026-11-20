@@ -1,17 +1,10 @@
 'use client';
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type KeyboardEvent,
-} from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useReducedMotion } from 'motion/react';
 import { Sparkles, ArrowRight, ArrowUp, RotateCcw, Layers3 } from 'lucide-react';
-import { Button, ChoiceGroup, Modal, HorizontalRail, TarotCard, tarotArtwork } from '@games/ui';
+import { Button, ChoiceGroup, Modal, TarotCard, tarotArtwork } from '@games/ui';
 import {
   ApiError,
   type AstrologyInput,
@@ -26,6 +19,7 @@ import { TarotReading } from './TarotReading';
 import { AstrologyForm } from './AstrologyForm';
 import { ReadingProgress } from './ReadingProgress';
 import { ReadingAction } from './ReadingAction';
+import { TarotDeckPicker } from './TarotDeckPicker';
 
 const positions = ['Where you are', 'What is shifting', 'Your next move'];
 
@@ -50,7 +44,6 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const [chart, setChart] = useState<ChartData | null>(null);
   const [exploreDeck, setExploreDeck] = useState(false);
   const [deckSuit, setDeckSuit] = useState('all');
-  const [deckFocus, setDeckFocus] = useState(0);
   const [drawnNote, setDrawnNote] = useState('');
   const [fresh, setFresh] = useState<number | null>(null);
   const [recovering, setRecovering] = useState(false);
@@ -247,33 +240,6 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
     };
   }, [exploreDeck]);
 
-  const deckCards = () =>
-    Array.from(deck.current?.querySelectorAll<HTMLButtonElement>('button.tarot-card') || []);
-  const focusDeck = (index: number) => {
-    const cards = deckCards();
-    if (!cards.length) return;
-    const next = Math.max(0, Math.min(cards.length - 1, index));
-    setDeckFocus(next);
-    cards[next].focus({ preventScroll: true });
-    cards[next].scrollIntoView({ block: 'nearest', inline: 'nearest' });
-  };
-  // One Tab stop for the whole deck; arrow keys, Home and End move between cards.
-  const deckKeys = (event: KeyboardEvent<HTMLDivElement>) => {
-    const index = deckCards().indexOf(event.target as HTMLButtonElement);
-    if (index < 0) return;
-    const step: Record<string, number> = {
-      ArrowRight: index + 1,
-      ArrowDown: index + 1,
-      ArrowLeft: index - 1,
-      ArrowUp: index - 1,
-      Home: 0,
-      End: Infinity,
-    };
-    if (!(event.key in step)) return;
-    event.preventDefault();
-    focusDeck(step[event.key]);
-  };
-  const rovingIndex = Math.min(deckFocus, Math.max(0, match.actions.length - 1));
   const drawAgain = canDrawAgain ? (
     <Button
       size="lg"
@@ -291,12 +257,20 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
       <div className="tarot-intro">
         <div className="tarot-intro-header">
           <div>
-            <p className="eyebrow">Three-card reading</p>
-            <h2>
+            <p className="eyebrow">
+              {match.phase === 'choosing' ? `Card ${drawn + 1} of 3` : 'Three-card reading'}
+            </p>
+            <h2
+              aria-label={
+                match.phase === 'choosing'
+                  ? `Choose card ${drawn + 1} of 3 · ${positions[drawn]}`
+                  : undefined
+              }
+            >
               {reading
                 ? reading.title
                 : match.phase === 'choosing'
-                  ? 'Pick three cards'
+                  ? positions[drawn]
                   : 'Your three-card spread'}
             </h2>
           </div>
@@ -322,39 +296,19 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
         ) : null}
       </div>
       {match.phase === 'choosing' ? (
-        <section className="tarot-pick-area" aria-busy={pending}>
-          <div className="section-heading">
-            <h3>
-              Choose card {drawn + 1} of 3 · {positions[drawn]}
-            </h3>
-          </div>
-          <HorizontalRail
-            label="Choose from your shuffled 78-card deck"
-            navigationLabel="tarot cards"
-            navigationPosition="below"
-            className="tarot-deck-rail"
-            viewportClassName="tarot-deck"
-            contentClassName="tarot-deck-content"
-          >
-            <div className="tarot-deck-cards" ref={deck} onKeyDown={deckKeys}>
-              {match.actions.map((option, index) => (
-                <TarotCard
-                  compact
-                  key={option.value.choice}
-                  label={`Face-down card ${index + 1} of ${match.actions.length}, for ${positions[drawn].toLowerCase()}`}
-                  tabIndex={index === rovingIndex ? 0 : -1}
-                  onFocus={() => setDeckFocus(index)}
-                  onClick={() => {
-                    localPick.current = true;
-                    onAction(option.value);
-                  }}
-                  disabled={pending || room.paused}
-                />
-              ))}
-            </div>
-          </HorizontalRail>
-          <p className="small muted">Swipe, scroll or use arrow keys to explore.</p>
-        </section>
+        <TarotDeckPicker
+          key={room.matchId}
+          actions={match.actions}
+          drawn={drawn}
+          position={positions[drawn]}
+          pending={pending}
+          paused={room.paused}
+          deckRef={deck}
+          onDraw={(action) => {
+            localPick.current = true;
+            onAction(action);
+          }}
+        />
       ) : null}
       <div className="tarot-spread">
         {positions.map((position, i) => {
@@ -383,7 +337,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
                 <TarotCard id={card.id} name={card.label} imageLoader={imageLoader} />
               ) : (
                 <div className="tarot-slot-empty" aria-hidden="true">
-                  <span>{next ? 'Your next card lands here' : 'Lands here'}</span>
+                  {next ? <span>Your next card lands here</span> : null}
                 </div>
               )}
               <p className="tarot-card-meaning" aria-hidden={!card}>
@@ -400,7 +354,12 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
         <>
           {drawn ? (
             <div className="tarot-back-to-deck">
-              <Button variant="secondary" onClick={() => focusDeck(rovingIndex)}>
+              <Button
+                variant="secondary"
+                onClick={() =>
+                  deck.current?.querySelector<HTMLButtonElement>('button[tabindex="0"]')?.focus()
+                }
+              >
                 <ArrowUp size={16} />
                 Choose card {drawn + 1} of 3
               </Button>

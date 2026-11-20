@@ -50,7 +50,11 @@ def test_actual_selection_is_stable_distinct_and_question_sensitive():
     assert all(0 < len(reference["public_context"]) <= 320 for reference in selected)
 
 
-def test_large_cast_with_long_descriptions_and_combined_chart_stays_in_existing_budget(monkeypatch):
+@pytest.mark.parametrize("cards", [
+    ["major-00", "cups-03", "swords-10"],
+    ["pentacles-11", "pentacles-12", "swords-11"],
+])
+def test_large_cast_with_long_descriptions_and_combined_chart_stays_in_existing_budget(monkeypatch, cards):
     calls = []
     # Long canonical names, sources and full evidence exercise actual payload
     # bounds; a spy proves shortlist trimming never reruns private retrieval.
@@ -64,7 +68,7 @@ def test_large_cast_with_long_descriptions_and_combined_chart_stays_in_existing_
         } for index in range(6)] for position in range(3)]
     monkeypatch.setattr(reading, "reference_candidates", retrieve_once)
     request = build_reading_request(
-        ["major-00", "cups-03", "swords-10"], "A" * 400, astrology_chart=synthetic_chart(),
+        cards, "A" * 400, astrology_chart=synthetic_chart(),
     )
     assert len(calls) == 1
     assert len(json.dumps(request, ensure_ascii=False, separators=(",", ":"))) <= 15850
@@ -105,3 +109,33 @@ def test_expanded_catalogue_has_over_five_thousand_distinct_image_backed_referen
     assert len(characters.CHARACTERS) > 5000
     assert len({c["id"] for c in characters.CHARACTERS}) == len(characters.CHARACTERS)
     assert {"person", "character", "religious_figure", "meme"} <= {c.get("kind", "character") for c in characters.CHARACTERS}
+
+
+def test_spread_links_describe_only_observed_matches_in_order():
+    from app.games.tarot.deck import spread_links
+
+    assert spread_links(["cups-02", "wands-02", "cups-08"]) == [
+        "Two of Cups, Eight of Cups share Cups (relationships, feelings and connection).",
+        "Two of Cups, Two of Wands share the rank Two across suits.",
+    ]
+    assert spread_links(["major-02", "swords-02", "major-09"]) == [
+        "The High Priestess, The Hermit share Major Arcana.",
+    ]
+    assert spread_links(["swords-01", "cups-06", "pentacles-04"]) == []
+
+
+def test_spread_links_reach_every_active_provider_wire_without_changing_saved_shape():
+    from app.games.tarot.groq_qwen_astrology import build_groq_qwen_astrology_request
+    from app.games.tarot.grounded import build_grounded_request
+    from app.games.tarot.grounded_json import build_grounded_json_request
+
+    cards = ["cups-02", "wands-02", "cups-08"]
+    request = build_reading_request(cards, "", astrology_chart=synthetic_chart())
+    links = json.loads(request["input"])["spread_links"]
+    for wire in [build_grounded_request("groq", request), build_grounded_request("cloudflare", request),
+                 build_groq_qwen_astrology_request(request)[1], build_grounded_json_request(request)[1]]:
+        assert json.loads(wire["messages"][1]["content"])["spread_links"] == links
+        assert "spread_links" in wire["messages"][0]["content"]
+        assert "15–35 word sentence" in wire["messages"][0]["content"]
+    assert "spread_links" in request["system_instruction"]
+    assert "spread_links" not in Reading.model_fields

@@ -6,7 +6,7 @@ import { tarotReadingExample } from '../../apps/web/src/stories/fixtures/tarot-r
 import { syntheticAstrologyReading } from '../../apps/web/src/stories/fixtures/astrology';
 import type { TarotCharacter } from '../../packages/api-client/src/tarot-characters';
 import registry from '../../packages/api-client/src/generated/tarot-characters.json' with { type: 'json' };
-import { openGameSetup, openRoomOptions, requestAs, roomAs } from './helpers';
+import { drawTarotCard, openGameSetup, openRoomOptions, requestAs, roomAs } from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off' });
 test.skip(!!process.env.GAMES_TEST_URL, 'Archive fixture writes are local development only.');
@@ -179,11 +179,7 @@ for (const astrology of [false, true]) {
     await expect(page).toHaveURL(/\/games\/tarot\/play\/[\da-f-]+$/);
     for (let card = 1; card <= 3; card++) {
       await expect(page.getByRole('heading', { name: `Choose card ${card} of 3` })).toBeVisible();
-      await page
-        .getByRole('group', { name: 'Choose from your shuffled 78-card deck' })
-        .getByRole('button')
-        .first()
-        .click();
+      await drawTarotCard(page);
     }
     await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeEnabled();
     const room = await roomAs(page, roomId);
@@ -315,10 +311,14 @@ for (const astrology of [false, true]) {
       can_resume: false,
     });
     await inspectBackground(page);
-    await page.evaluate(async () => {
-      await document.fonts.ready;
-      await Promise.all([...document.images].map((image) => image.decode().catch(() => {})));
-    });
+    await page.evaluate(() => document.fonts.ready);
+    // Walk the reopened archive like a reader, so below-fold lazy images load before capture.
+    for (const image of await page.locator('.tarot-reading img:visible').all()) {
+      await image.scrollIntoViewIfNeeded();
+      await expect
+        .poll(() => image.evaluate((img: HTMLImageElement) => img.naturalWidth))
+        .toBeGreaterThan(0);
+    }
     await page.screenshot({
       path: test.info().outputPath('closed-room-archive.png'),
       fullPage: true,

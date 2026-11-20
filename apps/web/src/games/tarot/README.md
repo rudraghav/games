@@ -4,8 +4,9 @@
 
 ## Choosing and revealing
 
-- The deck precedes the spread in both visual and keyboard order. The deck rail is one Tab stop (roving focus): arrow keys, Home and End move between cards, Enter or a tap picks. Labels say what a card is and what it will fill: “Face-down card 5 of 77, for what is shifting”. The heading names the next position: “Choose card 2 of 3 · What is shifting”.
-- Empty spread slots are dashed drop targets (“Lands here”), never card backs; the next slot is highlighted.
+- The face-down deck comes first. Each page fans the same illustrated back in front of the oracle sphere and leaves finger-width strips exposed. Tap a back or slide across the fan and release to lift a card. The highlighted card stays face-down. Tap another to change your choice, or tap the lifted card again to reveal it in the named spread position.
+- Previous and next controls reach the full deck. The deck uses one Tab stop. Arrows, Home and End move focus, Space or Enter lifts the focused card. Release the key and activate that card again to draw it. The screen reader hears the card’s ordinal and destination. Paging a lifted card out of view lowers it. A lifted card belongs only to the current draw on this device.
+- Empty spread slots have dashed outlines. Only the next slot is highlighted and labelled.
 - After a committed pick, the filled slot scrolls into view, takes focus and briefly highlights, and a polite live region says “You drew <card> for <position>.” A refresh starts from the saved spread without replaying a reveal. On phones a “Choose card N of 3” button below the spread returns to the deck. The public activity line still never names the card.
 - Spread position labels and card names are at least 11px and meanings 12px at every width.
 - The unsent question is a `useTableDraft` scoped to room and match, so it survives a refresh in that tab and never carries into the next spread; it clears when a reading is saved. Birth fields remain memory-only.

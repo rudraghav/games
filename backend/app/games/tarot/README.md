@@ -1,5 +1,11 @@
 # Pop Tarot
 
+## Reading a spread together
+
+The server shuffles the 78 distinct cards once per match with fresh randomness. The player chooses positions in that saved deck; previewing a back is local. Prompt `pop-tarot-12` asks the introduction to connect two named cards through their positions. When the draw actually contains a repeated suit, rank across suits, or several Major Arcana, the request includes those observable links. These are optional interpretive cues.
+
+Character retrieval balances the card, the position and the question. It allocates one lead to each spread position before allocating backups in rounds. When cards compete for the same reference, the card with the clearest lead goes first. Changing the shortlist size preserves every smaller shortlist as a prefix. A meme can appear as a secondary option if it fits; names and identity families stay distinct across the spread. A saved reading retains its original text and reference evidence.
+
 ## Targeted failed-check retries — 18 November 2026
 
 Validation failures carry a reviewed check ID and field path. The loader explains
