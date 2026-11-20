@@ -126,6 +126,20 @@ class Reading(ReadingText):
     astrology: AstrologyReading | None = Field(default=None, exclude_if=lambda value: value is None)
 
 
+def alternate_view(reading: Reading, style: ReadingStyle, card_ids: list[str], question: str) -> Reading:
+    """Project a completed spread without replacing any part of its saved reading."""
+    if [section.card_id for section in reading.cards] != card_ids or len(set(card_ids)) != 3:
+        raise ValueError("The saved sections and the drawn cards do not match.")
+    rows = reference_candidates(card_ids, question, per_card=1, reading_style="fun") if style == "fun" else None
+    if rows is not None and len(rows) != len(reading.cards):
+        raise ValueError("Each Fun card needs a matched portrait.")
+    sections = []
+    for index, section in enumerate(reading.cards):
+        characters = [CharacterConnection.model_validate(editorial_portrait(rows[index])[1])] if rows is not None else []
+        sections.append(section.model_copy(update={"characters": characters, "pop_culture": None}))
+    return reading.model_copy(update={"cards": sections})
+
+
 class GeneratedSection(Section):
     """Fresh output must contain every requested layer; legacy defaults do not apply."""
 

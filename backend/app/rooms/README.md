@@ -103,6 +103,8 @@ backwards-compatible reading and a current-room return flag. Closed rooms and
 rematches cannot be resumed from an old archive entry. Responses are private and
 non-cacheable; archive reads never generate output or change the saved record.
 
+The optional `style=fun|classic` query on this GET applies only to completed readings. The original request and an explicit request for the saved style return the original. A different style returns a participant-only presentation with the same cards and chart, plus `original_reading_style`. Reading a different style reserves no attempt, calls no generation provider and writes no data.
+
 Complete legacy readings keep their original text and optional missing layers.
 Missing, failed and expired attempts are explicitly incomplete; a live lease is
 generating. Invalid stored output is explicitly unavailable and emits only a safe

@@ -165,6 +165,7 @@ class SavedReadingView(BaseModel):
     created_at: float
     status: Literal["complete", "generating", "incomplete", "unavailable"]
     reading_style: ReadingStyle = Field(default_factory=lambda: "classic")
+    original_reading_style: ReadingStyle | None = Field(default=None, exclude_if=lambda value: value is None)
     question: str
     cards: list[CardView] = Field(max_length=3)
     reading: Reading | None

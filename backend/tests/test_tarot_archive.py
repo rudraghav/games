@@ -217,3 +217,87 @@ def test_unmarked_older_spreads_resolve_style_before_first_submission_and_retry(
     assert result.json()["reading_style"] == expected
     assert client.get(archive, headers=owner).json()["reading_style"] == expected
     assert calls == [expected, expected]
+
+
+@pytest.mark.parametrize("original_style", ["fun", "classic"])
+def test_alternate_style_is_a_private_read_only_projection_of_the_saved_cards(client, monkeypatch, original_style):
+    from sqlalchemy import select
+    from test_astrology_reading import interpretation, synthetic_chart
+
+    from app.games.tarot.characters import editorial_portrait, reference_candidates
+    from app.models import RateBucket
+
+    room, owner = spread(client)
+    ids = [card["id"] for card in room["game"]["community"]]
+    payload = example_reading(ids)
+    chart = synthetic_chart("both")
+    payload["astrology"] = {"chart": chart.model_dump(mode="json"), "interpretation": interpretation(chart=chart)}
+    for card in payload["cards"]:
+        card["pop_culture"] = "An authentic historical comparison preserved in the original."
+        if original_style == "classic":
+            card.pop("characters")
+    store(room, legacy_style=original_style == "classic", payload=payload)
+    path = f"/v1/readings/{room['match_id']}"
+    alternate = "fun" if original_style == "classic" else "classic"
+    assert client.post(f"/v1/rooms/{room['id']}/leave", headers=owner).status_code == 200
+    other = player(client)
+
+    def snapshot():
+        with sessions()() as session:
+            saved = session.get(TarotReading, room["match_id"])
+            match = session.get(Match, room["match_id"])
+            return (saved.status, saved.question, saved.payload, saved.attempt_id, saved.lease_until, saved.prompt_version,
+                    match.state, match.version, match.result, session.get(Room, room["id"]).revision,
+                    session.execute(select(RateBucket.key, RateBucket.window, RateBucket.count).order_by(
+                        RateBucket.key, RateBucket.window)).all())
+
+    calls = []
+    def match(card_ids, question, *, per_card, reading_style):
+        calls.append((card_ids, question, per_card, reading_style))
+        return reference_candidates(card_ids, question, per_card=per_card, reading_style=reading_style)
+    monkeypatch.setattr("app.games.tarot.reading.reference_candidates", match)
+    before = snapshot()
+    original = client.get(path, headers=owner).json()
+    assert original["reading_style"] == original_style and not original["can_resume"]
+    assert "original_reading_style" not in original
+    assert client.get(path, params={"style": alternate}).status_code == 401
+    assert client.get(path, headers=other, params={"style": alternate}).status_code == 404
+    assert client.get(path, headers=owner, params={"style": "bogus"}).status_code == 422
+    assert client.get(path, headers=owner, params={"style": original_style}).json() == original
+    assert not calls
+    response = client.get(path, headers=owner, params={"style": alternate})
+    assert response.status_code == 200, response.text
+    assert response.headers["cache-control"] == "private, no-store"
+    derived = response.json()
+    assert derived["original_reading_style"] == original_style and derived["reading_style"] == alternate
+    assert derived["cards"] == original["cards"] and derived["question"] == original["question"]
+    assert {k: v for k, v in derived["reading"].items() if k != "cards"} == {
+        k: v for k, v in original["reading"].items() if k != "cards"
+    }
+    if alternate == "fun":
+        assert calls == [(ids, original["question"], 1, "fun")]
+        rows = reference_candidates(ids, original["question"], per_card=1, reading_style="fun")
+        portraits = [[editorial_portrait(row)[1]] for row in rows]
+    else:
+        assert calls == []
+        portraits = [[], [], []]
+    for section, old, characters in zip(derived["reading"]["cards"], original["reading"]["cards"], portraits, strict=True):
+        assert section == {**old, "characters": characters, "pop_culture": None}
+    assert client.get(path, headers=owner).json() == original
+    assert snapshot() == before
+
+
+def test_unavailable_alternate_never_hides_or_changes_the_saved_reading(client, monkeypatch, caplog):
+    room, owner = spread(client)
+    path = f"/v1/readings/{room['match_id']}"
+    def broken(*args, **kwargs):
+        raise ValueError("PRIVATE-LOOKUP-CANARY")
+    monkeypatch.setattr("app.rooms.service.alternate_view", broken)
+    pending = client.get(path, headers=owner).json()
+    assert client.get(path, headers=owner, params={"style": "classic"}).json() == pending
+    store(room, legacy_style=True)
+    original = client.get(path, headers=owner).json()
+    failed = client.get(path, headers=owner, params={"style": "fun"})
+    assert failed.status_code == 503 and failed.headers["cache-control"] == "private, no-store"
+    assert "PRIVATE-LOOKUP-CANARY" not in failed.text + caplog.text
+    assert client.get(path, headers=owner, params={"style": "classic"}).json() == original

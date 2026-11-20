@@ -12,6 +12,8 @@ Fun is the default for an unsubmitted spread. The Classic shortlist pairs famili
 
 Starting with `pop-tarot-14`, each selected portrait has a reviewed choice and possible consequence in `familiar-connections.json`. Across the cast, 291 source phrases were reviewed. Each connection uses one phrase from its own figure, and the visible source excerpt includes that phrase. The service attaches the edited connection when it writes a new Fun reading. The provider still interprets the actual spread, question, each card and any selected charts. The saved payload keeps the exact text that was shown, including earlier versions. The archive returns the submitted style beside the analysis. A previously submitted reading without a recorded style retains Classic.
 
+Completed spreads can also be viewed in the other style. The Fun view matches the stored card order and private question against the existing reviewed scenes. The Classic view of a Fun spread retains its grounded card interpretations while leaving out the Fun comparisons. The original payload remains the source for returning to the saved style.
+
 ## Targeted failed-check retries — 18 November 2026
 
 Validation failures carry a reviewed check ID and field path. The loader explains

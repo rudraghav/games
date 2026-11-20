@@ -1358,6 +1358,8 @@ export interface components {
              * @enum {string}
              */
             reading_style?: "classic" | "fun";
+            /** Original Reading Style */
+            original_reading_style?: ("classic" | "fun") | null;
             /** Question */
             question: string;
             /** Cards */
@@ -1733,7 +1735,9 @@ export interface operations {
     };
     saved_reading_v1_readings__match_id__get: {
         parameters: {
-            query?: never;
+            query?: {
+                style?: ("classic" | "fun") | null;
+            };
             header?: {
                 authorization?: string | null;
             };

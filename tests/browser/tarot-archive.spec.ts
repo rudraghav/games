@@ -1,12 +1,15 @@
 import { randomUUID } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
-import { expect, test, type BrowserContext, type Page } from '@playwright/test';
+import { expect, test, type Browser, type BrowserContext, type Page } from '@playwright/test';
 import { tarotReadingExample } from '../../apps/web/src/stories/fixtures/tarot-reading';
 import { syntheticAstrologyReading } from '../../apps/web/src/stories/fixtures/astrology';
 import type { TarotCharacter } from '../../packages/api-client/src/tarot-characters';
 import registry from '../../packages/api-client/src/generated/tarot-characters.json' with { type: 'json' };
 import { drawTarotCard, openGameSetup, openRoomOptions, requestAs, roomAs } from './helpers';
+import { checkBothReadingViews } from './tarot-saved-view';
+import funConnections from '../../backend/app/games/tarot/familiar-connections.json' with { type: 'json' };
+import sourceLenses from '../../backend/app/games/tarot/reference-lenses.json' with { type: 'json' };
 
 test.use({ trace: 'off', screenshot: 'off' });
 test.skip(!!process.env.GAMES_TEST_URL, 'Archive fixture writes are local development only.');
@@ -138,85 +141,117 @@ test.afterEach(async ({ page }) => {
   }
 });
 
+async function makeArchive(
+  page: Page,
+  browser: Browser,
+  baseURL: string | undefined,
+  astrology: boolean,
+  originalStyle: 'legacy' | 'fun' = 'legacy',
+) {
+  const outsider = await browser.newContext({ baseURL });
+  const owned: { roomId?: string; outsider: BrowserContext } = { outsider };
+  cleanup.set(page, owned);
+  const other = await outsider.newPage();
+  const roomName = `Archive QA ${randomUUID()}`;
+  const question = `Synthetic archive question ${astrology ? 'with chart' : 'without chart'}`;
+  let generationRequests = 0;
+  await page.route('**/api/backend/v1/rooms/*/reading', async (route) => {
+    if (route.request().method() !== 'POST') return route.continue();
+    generationRequests++;
+    await route.fulfill({
+      status: 500,
+      json: { detail: 'Archive tests never generate readings.' },
+    });
+  });
+  await page.goto('/');
+  await openGameSetup(page, 'tarot');
+  await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Archive QA');
+  await openRoomOptions(page);
+  await page.getByRole('textbox', { name: 'Room name', exact: true }).fill(roomName);
+  const created = page
+    .waitForResponse(
+      (response) =>
+        response.request().method() === 'POST' &&
+        new URL(response.url()).pathname === '/api/backend/v1/rooms',
+    )
+    .then(async (response) => {
+      if (response.ok()) owned.roomId = (await response.json()).id;
+    });
+  await page.getByRole('button', { name: 'Create room', exact: true }).click();
+  await created;
+  const roomId = owned.roomId!;
+  await expect(page).toHaveURL(/\/games\/tarot\/play\/[\da-f-]+$/);
+  for (let card = 1; card <= 3; card++) {
+    await expect(page.getByRole('heading', { name: `Choose card ${card} of 3` })).toBeVisible();
+    await drawTarotCard(page);
+  }
+  await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeEnabled();
+  const room = await roomAs(page, roomId);
+  expect(new Set(references.map((reference) => reference.imageType)).size).toBe(6);
+  const storyIds = ['joy', 'rani', 'sherlock'] as const;
+  const storyReferences = storyIds.map((id) => {
+    const reference = (registry as readonly TarotCharacter[]).find((item) => item.id === id)!;
+    return {
+      name: reference.name,
+      source: reference.source,
+      connection: funConnections[id].connection,
+      evidence: sourceLenses[id].sourceContext,
+    };
+  });
+  const reading = {
+    ...tarotReadingExample,
+    title: `Saved ${astrology ? 'Both astrology' : 'ordinary'} archive fixture`,
+    cards: tarotReadingExample.cards.map((card, index) => ({
+      ...card,
+      card_id: room.game!.community[index].id,
+      title: room.game!.community[index].label,
+      characters:
+        originalStyle === 'fun'
+          ? [storyReferences[index]]
+          : references.slice(index * 2, index * 2 + 2).map((reference) => ({
+              name: reference.name,
+              source: reference.source,
+              ...(reference.id === references[0].id ? { evidence: backgroundEvidence } : {}),
+              connection:
+                'Synthetic layout example: this reference checks the portrait, long identity label, and explanatory paragraph in a saved reading.',
+            })),
+    })),
+    ...(astrology ? { astrology: syntheticAstrologyReading } : {}),
+  };
+  execFileSync(
+    resolve('backend/.venv/bin/python'),
+    [resolve('tests/browser/seed-tarot-archive.py')],
+    {
+      cwd: resolve('.'),
+      input: JSON.stringify({
+        room_id: room.id,
+        match_id: room.match_id,
+        actor_id: room.owner_id,
+        room_name: roomName,
+        original_style: originalStyle,
+        question,
+        reading,
+      }),
+      stdio: ['pipe', 'pipe', 'pipe'],
+    },
+  );
+  return { room, roomId, other, reading, question, generationRequests: () => generationRequests };
+}
+
 for (const astrology of [false, true]) {
   test(`private ${astrology ? 'Both astrology' : 'ordinary'} archive survives refresh, rematch and room closure`, async ({
     page,
     browser,
     baseURL,
   }) => {
-    const outsider = await browser.newContext({ baseURL });
-    const owned: { roomId?: string; outsider: BrowserContext } = { outsider };
-    cleanup.set(page, owned);
-    const other = await outsider.newPage();
-    const roomName = `Archive QA ${randomUUID()}`;
-    const question = `Synthetic archive question ${astrology ? 'with chart' : 'without chart'}`;
-    let generationRequests = 0;
-    await page.route('**/api/backend/v1/rooms/*/reading', async (route) => {
-      if (route.request().method() !== 'POST') return route.continue();
-      generationRequests++;
-      await route.fulfill({
-        status: 500,
-        json: { detail: 'Archive tests never generate readings.' },
-      });
-    });
-    await page.goto('/');
-    await openGameSetup(page, 'tarot');
-    await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Archive QA');
-    await openRoomOptions(page);
-    await page.getByRole('textbox', { name: 'Room name', exact: true }).fill(roomName);
-    const created = page
-      .waitForResponse(
-        (response) =>
-          response.request().method() === 'POST' &&
-          new URL(response.url()).pathname === '/api/backend/v1/rooms',
-      )
-      .then(async (response) => {
-        if (response.ok()) owned.roomId = (await response.json()).id;
-      });
-    await page.getByRole('button', { name: 'Create room', exact: true }).click();
-    await created;
-    const roomId = owned.roomId!;
-    await expect(page).toHaveURL(/\/games\/tarot\/play\/[\da-f-]+$/);
-    for (let card = 1; card <= 3; card++) {
-      await expect(page.getByRole('heading', { name: `Choose card ${card} of 3` })).toBeVisible();
-      await drawTarotCard(page);
-    }
-    await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeEnabled();
-    const room = await roomAs(page, roomId);
-    expect(new Set(references.map((reference) => reference.imageType)).size).toBe(6);
-    const reading = {
-      ...tarotReadingExample,
-      title: `Saved ${astrology ? 'Both astrology' : 'ordinary'} archive fixture`,
-      cards: tarotReadingExample.cards.map((card, index) => ({
-        ...card,
-        card_id: room.game!.community[index].id,
-        title: room.game!.community[index].label,
-        characters: references.slice(index * 2, index * 2 + 2).map((reference) => ({
-          name: reference.name,
-          source: reference.source,
-          ...(reference.id === references[0].id ? { evidence: backgroundEvidence } : {}),
-          connection:
-            'Synthetic layout example: this reference checks the portrait, long identity label, and explanatory paragraph in a saved reading.',
-        })),
-      })),
-      ...(astrology ? { astrology: syntheticAstrologyReading } : {}),
-    };
-    execFileSync(
-      resolve('backend/.venv/bin/python'),
-      [resolve('tests/browser/seed-tarot-archive.py')],
-      {
-        cwd: resolve('.'),
-        input: JSON.stringify({
-          room_id: room.id,
-          match_id: room.match_id,
-          actor_id: room.owner_id,
-          room_name: roomName,
-          question,
-          reading,
-        }),
-        stdio: ['pipe', 'pipe', 'pipe'],
-      },
+    const { room, roomId, other, reading, question, generationRequests } = await makeArchive(
+      page,
+      browser,
+      baseURL,
+      astrology,
     );
+    await page.reload();
+    await checkBothReadingViews(page, room.match_id!, 'classic');
     await page.goto('/profile');
     const history = page.locator(`a.history-row[href="/games/tarot/readings/${room.match_id}"]`);
     await expect(history).toBeVisible();
@@ -278,6 +313,9 @@ for (const astrology of [false, true]) {
     await expect.poll(async () => (await requestAs(other, 'me')).status()).toBe(200);
     expect((await requestAs(other, `rooms/${roomId}/reading`)).status()).toBe(404);
     expect((await requestAs(other, archivePath)).status()).toBe(404);
+    for (const style of ['fun', 'classic']) {
+      expect((await requestAs(other, archivePath + '?style=' + style)).status()).toBe(404);
+    }
     await other.goto(`/readings/${room.match_id}`);
     await expect(
       other.getByRole('heading', { name: 'This reading isn’t available.' }),
@@ -320,6 +358,8 @@ for (const astrology of [false, true]) {
       ...originalSaved,
       can_resume: false,
     });
+    if (test.info().project.use.hasTouch) await page.setViewportSize({ width: 320, height: 740 });
+    await checkBothReadingViews(page, room.match_id!, 'classic', !astrology);
     await inspectBackground(page);
     await page.evaluate(() => document.fonts.ready);
     // Walk the reopened archive like a reader, so below-fold lazy images load before capture.
@@ -333,6 +373,38 @@ for (const astrology of [false, true]) {
       path: test.info().outputPath('closed-room-archive.png'),
       fullPage: true,
     });
-    expect(generationRequests).toBe(0);
+    expect(generationRequests()).toBe(0);
   });
 }
+
+test('completed Fun room and closed archive can show Classic and return to their exact saved Fun reading', async ({
+  page,
+  browser,
+  baseURL,
+}) => {
+  const { room, roomId, other, generationRequests } = await makeArchive(
+    page,
+    browser,
+    baseURL,
+    true,
+    'fun',
+  );
+  await page.reload();
+  if (test.info().project.use.hasTouch) await page.setViewportSize({ width: 320, height: 740 });
+  await checkBothReadingViews(page, room.match_id!, 'fun');
+  expect((await requestAs(page, `rooms/${roomId}/leave`, 'POST')).status()).toBe(200);
+  expect((await requestAs(page, `rooms/${roomId}`)).status()).toBe(404);
+  const archive = `readings/${room.match_id}`;
+  await page.goto(`/games/tarot/${archive}`);
+  await expect(page.getByRole('link', { name: 'Return to spread' })).toHaveCount(0);
+  if (test.info().project.use.hasTouch) await page.setViewportSize({ width: 320, height: 740 });
+  await checkBothReadingViews(page, room.match_id!, 'fun', true);
+  await page.reload();
+  await expect(page.getByRole('switch', { name: 'Fun mode' })).toBeChecked();
+  await other.goto('/profile');
+  await expect.poll(async () => (await requestAs(other, 'me')).status()).toBe(200);
+  for (const style of ['fun', 'classic']) {
+    expect((await requestAs(other, archive + '?style=' + style)).status()).toBe(404);
+  }
+  expect(generationRequests()).toBe(0);
+});

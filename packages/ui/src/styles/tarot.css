@@ -325,6 +325,23 @@
     margin: 0;
     line-height: 1.45;
   }
+  .tarot-completed-style {
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: 12px;
+    text-align: start;
+  }
+  @media (max-width: 380px) {
+    .tarot-completed-style .tarot-style-help {
+      margin-inline: -6px;
+    }
+  }
+  .tarot-view-error {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
   /* Keep the form still and its directly referenced switch description available. */
   .tarot-style-help [aria-expanded='false'] + [role='tooltip'] {
     visibility: hidden;

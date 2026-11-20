@@ -223,6 +223,8 @@ Across the catalogue, permanent decision areas preserve the table and hand while
 
 After the third draw, **Fun mode** appears above the optional question and is on by default. Turning the switch off selects Classic. An info icon and one short line beneath it explain both styles. In a Fun reading, **How it could play out** comes first on each card. The portrait, source and background sit with the example. Refresh, retry and the private archive retain the submitted style. Each new spread starts with Fun on.
 
+On the completed table or in Profile → reading history, the switch opens in the style that was saved. The other view keeps the same three cards, question, astrology and next step. Players can return to the original with one switch, even after the room has closed. Looking at the alternate style makes a private read-only request. A temporary failure leaves the original accessible and allows a retry.
+
 Tarot astrology is off by default. Opting in offers Both, Western or Vedic, then
 birth date, local time and a city search with an explicit place selection. The
 server resolves the historical timezone and asks which occurrence was intended

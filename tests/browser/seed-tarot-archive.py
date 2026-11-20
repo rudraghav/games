@@ -47,8 +47,11 @@ with sessions()() as session, session.begin():
         attempt_id=str(uuid4()), lease_until=0,
         payload=reading.model_dump(mode="json"), prompt_version="archive-browser-fixture",
     ))
-    # This fixture represents a completed reading written before styles were stored.
+    assert fixture["original_style"] in {"legacy", "fun"}
+    # Legacy cases reproduce a completed reading written before styles were stored.
     legacy_state = {key: value for key, value in match.state.items() if key != "reading_style"}
+    if fixture["original_style"] == "fun":
+        legacy_state["reading_style"] = "fun"
     match.state = {**legacy_state, "phase": "finished"}
     match.result = {"winners": [], "scores": {fixture["actor_id"]: 0}}
     match.version += 1

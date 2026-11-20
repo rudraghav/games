@@ -79,16 +79,18 @@ function CharacterConnections({ card, fun }: { card: Reading['cards'][number]; f
 export function TarotReading({
   reading,
   readingStyle = 'classic',
+  cardMeanings = false,
   cards,
   imageLoader,
 }: {
   reading: Reading;
   readingStyle?: ReadingStyle;
-  cards: readonly { id: string; label: string }[];
+  cardMeanings?: boolean;
+  cards: readonly { id: string; label: string; subtitle?: string }[];
   imageLoader?: (path: string) => string;
 }) {
   const fun = readingStyle === 'fun';
-  const cardNames = new Map(cards.map((card) => [card.id, card.label]));
+  const deckCards = new Map(cards.map((card) => [card.id, card]));
   const portraits = [
     ...new Map(
       reading.cards
@@ -104,19 +106,20 @@ export function TarotReading({
       {reading.cards.map((card) => (
         <article key={card.card_id}>
           <header className="tarot-reading-card-heading">
-            {cardNames.has(card.card_id) ? (
+            {deckCards.has(card.card_id) ? (
               <TarotCard
                 compact
                 id={card.card_id}
-                name={cardNames.get(card.card_id)}
+                name={deckCards.get(card.card_id)?.label}
                 imageLoader={imageLoader}
               />
             ) : null}
             <div>
               <span className="eyebrow">
                 {card.position}
-                {card.title.toLocaleLowerCase() !== cardNames.get(card.card_id)?.toLocaleLowerCase()
-                  ? ` · ${cardNames.get(card.card_id) || card.card_id}`
+                {card.title.toLocaleLowerCase() !==
+                deckCards.get(card.card_id)?.label.toLocaleLowerCase()
+                  ? ` · ${deckCards.get(card.card_id)?.label || card.card_id}`
                   : ''}
               </span>
               <h3>{card.title}</h3>
@@ -125,13 +128,23 @@ export function TarotReading({
           {fun ? <CharacterConnections card={card} fun /> : null}
           <div
             className="tarot-perspectives"
-            data-variant={card.quirky_interpretation ? 'split' : 'single'}
+            data-variant={
+              (cardMeanings ? deckCards.get(card.card_id)?.subtitle : card.quirky_interpretation)
+                ? 'split'
+                : 'single'
+            }
           >
+            {cardMeanings && deckCards.get(card.card_id)?.subtitle ? (
+              <section aria-labelledby={`${card.card_id}-meaning`}>
+                <h4 id={`${card.card_id}-meaning`}>Card meaning</h4>
+                <p>{deckCards.get(card.card_id)?.subtitle}</p>
+              </section>
+            ) : null}
             <section aria-labelledby={`${card.card_id}-grounded`}>
               <h4 id={`${card.card_id}-grounded`}>The grounded read</h4>
               <p>{card.interpretation}</p>
             </section>
-            {card.quirky_interpretation ? (
+            {!cardMeanings && card.quirky_interpretation ? (
               <section className="tarot-quirky-read" aria-labelledby={`${card.card_id}-quirky`}>
                 <h4 id={`${card.card_id}-quirky`}>
                   <Sparkles size={16} aria-hidden="true" /> The plot twist
@@ -140,7 +153,7 @@ export function TarotReading({
               </section>
             ) : null}
           </div>
-          {!fun ? <CharacterConnections card={card} fun={false} /> : null}
+          {!fun && !cardMeanings ? <CharacterConnections card={card} fun={false} /> : null}
         </article>
       ))}
       {portraits.length ? (

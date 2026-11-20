@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
 import { proxyFailure } from '@/lib/proxy-diagnostics';
-import { isBackendRoute } from '@/lib/backend-routes';
+import { isBackendRoute, savedReadingRoute } from '@/lib/backend-routes';
 
 async function proxy(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
   const path = (await context.params).path.join('/');
@@ -27,18 +27,23 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
     return new Response('Session required', { status: 401 });
   const headers = new Headers({ 'Content-Type': 'application/json' });
   if (authorization || dev) headers.set('Authorization', authorization || `Bearer ${dev}`);
+  const target = new URL(`/${path}`, process.env.BACKEND_INTERNAL_URL || 'http://127.0.0.1:8217');
+  if (savedReadingRoute.test(path)) {
+    const styles = request.nextUrl.searchParams.getAll('style');
+    if (styles.length > 1 || styles.some((style) => style !== 'classic' && style !== 'fun')) {
+      return Response.json({ detail: 'Choose Fun or Classic.' }, { status: 422 });
+    }
+    if (styles.length) target.searchParams.set('style', styles[0]);
+  }
   const started = performance.now();
   try {
-    const response = await fetch(
-      new URL(`/${path}`, process.env.BACKEND_INTERNAL_URL || 'http://127.0.0.1:8217'),
-      {
-        method: request.method,
-        headers,
-        body: ['GET', 'HEAD'].includes(request.method) ? undefined : await request.text(),
-        cache: 'no-store',
-        signal: AbortSignal.timeout(path.endsWith('/reading') ? 120000 : 15000),
-      },
-    );
+    const response = await fetch(target, {
+      method: request.method,
+      headers,
+      body: ['GET', 'HEAD'].includes(request.method) ? undefined : await request.text(),
+      cache: 'no-store',
+      signal: AbortSignal.timeout(path.endsWith('/reading') ? 120000 : 15000),
+    });
     if (response.status >= 500)
       console.error('[games/proxy]', proxyFailure(path, request.method, started, response.status));
     return new Response(response.body, {

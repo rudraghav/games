@@ -22,3 +22,5 @@ redaction. `tests/browser/tarot-archive.spec.ts` uses two independent guests and
 guarded local constructed readings to check ordinary/Both astrology, Profile
 navigation, reload, rematch, closure and outsider denial on desktop and phone.
 The fixture writer refuses hosted/non-loopback databases and existing readings.
+
+A completed reading opens in its saved style. The shared completed-reading switch can request a second presentation of the same match with `api.savedReading(matchId, style)`. Closing the room has no effect on the participant’s access. Switching back renders the original response.

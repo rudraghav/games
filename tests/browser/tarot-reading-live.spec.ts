@@ -7,6 +7,7 @@ import registry from '../../packages/api-client/src/generated/tarot-characters.j
 import funConnections from '../../backend/app/games/tarot/familiar-connections.json' with { type: 'json' };
 import { drawTarotCard, attachPreviewAccess, requestAs, roomAs } from './helpers';
 
+import { checkBothReadingViews } from './tarot-saved-view';
 type ReadingView = components['schemas']['ReadingView'];
 type SavedReading = components['schemas']['SavedReadingView'];
 type OwnedRoom = { page: Page; roomId?: string; closed?: boolean };
@@ -543,6 +544,8 @@ test('selected independent live readings retain exact private archives after new
         { flag: 'wx', mode: 0o600 },
       );
       const selectedReferences = await inspectReading(actor, current.reading!, mode);
+      await checkBothReadingViews(actor, matchId, liveStyle as 'classic' | 'fun');
+      expect(submissions.get(actor)).toBe(1);
       const visible = digest(await actor.locator('.tarot-reading').innerText());
       const readingHash = digest(current.reading);
       const sameText = () =>
@@ -583,6 +586,13 @@ test('selected independent live readings retain exact private archives after new
       await closeRoom(room);
       await actor.reload();
       await sameText();
+      await checkBothReadingViews(actor, matchId, liveStyle as 'classic' | 'fun');
+      expect(submissions.get(actor)).toBe(1);
+      for (const style of ['fun', 'classic']) {
+        expect((await requestAs(outsider, `readings/${matchId}?style=${style}`)).status()).toBe(
+          404,
+        );
+      }
       expect(digest((await savedReading(actor, matchId)).reading)).toBe(readingHash);
       expect((await requestAs(outsider, `readings/${matchId}`)).status()).toBe(404);
       await outsider.goto(`/readings/${matchId}`);

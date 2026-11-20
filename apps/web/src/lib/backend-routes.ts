@@ -1,9 +1,10 @@
+export const savedReadingRoute = /^v1\/readings\/[\da-f-]{36}$/;
 const routes: [RegExp, readonly string[]][] = [
   [/^v1\/games$/, ['GET']],
   [/^v1\/games\/[a-z][a-z0-9-]{0,31}\/play$/, ['POST']],
   [/^v1\/me$/, ['GET']],
   [/^v1\/profile$/, ['PUT']],
-  [/^v1\/readings\/[\da-f-]{36}$/, ['GET']],
+  [savedReadingRoute, ['GET']],
   [/^v1\/rooms$/, ['POST']],
   [/^v1\/rooms\/join$/, ['POST']],
   [/^v1\/rooms\/[\da-f-]{36}$/, ['GET']],

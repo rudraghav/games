@@ -148,7 +148,7 @@ export function mapMe(wire: Wire['MeView']) {
   };
 }
 
-const readingStyleGate = z.enum(['classic', 'fun']).default('classic');
+const readingStyleGate = z.enum(['classic', 'fun']);
 
 const savedReadingGate = z.object({
   match_id: z.string().uuid(),
@@ -158,7 +158,8 @@ const savedReadingGate = z.object({
   question: z.string().max(400),
   cards: z.array(cardSchema).max(3),
   can_resume: z.boolean(),
-  reading_style: readingStyleGate,
+  reading_style: readingStyleGate.default('classic'),
+  original_reading_style: readingStyleGate.nullish(),
 });
 
 export function mapSavedReading(wire: Wire['SavedReadingView']) {
@@ -175,6 +176,7 @@ export function mapSavedReading(wire: Wire['SavedReadingView']) {
     reading: wire.reading,
     canResume: parsed.can_resume,
     readingStyle: parsed.reading_style,
+    originalReadingStyle: parsed.original_reading_style ?? parsed.reading_style,
   };
 }
 
@@ -209,7 +211,7 @@ export function mapReading(wire: Wire['ReadingView']): ReadingView {
   const { progress, ...rest } = wire;
   return {
     ...rest,
-    reading_style: readingStyleGate.parse(wire.reading_style),
+    reading_style: readingStyleGate.parse(wire.reading_style ?? 'classic'),
     ...(progress ? { progress: mapReadingProgress(progress) } : {}),
   };
 }

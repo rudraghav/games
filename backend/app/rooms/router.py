@@ -13,6 +13,7 @@ from app.astrology.models import (
 from app.auth import Identity, identity
 from app.db import sessions
 from app.games.tarot.reading import ReadingInput, ReadingView
+from app.games.tarot.style import ReadingStyle
 from app.rooms.schemas import (
     AddBots,
     ChatInput,
@@ -84,8 +85,8 @@ def reading(room_id: str, actor: Actor, svc: Service) -> ReadingView:
 
 
 @router.get("/readings/{match_id}", response_model=SavedReadingView)
-def saved_reading(match_id: UUID, actor: Actor, svc: Service) -> SavedReadingView:
-    return svc.saved_reading(actor, str(match_id))
+def saved_reading(match_id: UUID, actor: Actor, svc: Service, style: ReadingStyle | None = None) -> SavedReadingView:
+    return svc.saved_reading(actor, str(match_id), style=style)
 
 
 @router.post("/rooms/{room_id}/reading", response_model=ReadingView)

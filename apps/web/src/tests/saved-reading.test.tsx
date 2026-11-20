@@ -1,4 +1,6 @@
-import { expect, it } from 'vitest';
+import { NextRequest } from 'next/server';
+import { expect, it, vi } from 'vitest';
+import { GET as proxyGet } from '@/app/api/backend/[...path]/route';
 import { mapReading, mapSavedReading } from '@games/api-client/mappers';
 import { isBackendRoute } from '@/lib/backend-routes';
 import { proxyFailure } from '@/lib/proxy-diagnostics';
@@ -75,8 +77,15 @@ it('maps an incomplete saved spread without inventing a reading or enabling room
     reading: null,
     canResume: false,
     readingStyle: 'classic',
+    originalReadingStyle: 'classic',
   });
-  expect(mapSavedReading({ ...saved, reading_style: 'fun' }).readingStyle).toBe('fun');
+  expect(mapSavedReading({ ...saved, reading_style: 'fun' }).originalReadingStyle).toBe('fun');
+  expect(
+    mapSavedReading({ ...saved, reading_style: 'fun', original_reading_style: 'classic' }),
+  ).toMatchObject({
+    readingStyle: 'fun',
+    originalReadingStyle: 'classic',
+  });
   expect(() => mapSavedReading({ ...saved, status: 'complete' })).toThrow('incomplete');
   expect(() => mapSavedReading({ ...saved, match_id: 'not-a-match' })).toThrow();
 });
@@ -104,4 +113,33 @@ it('maps a bounded retry detail and preserves compatibility when absent or null'
   expect(map(detail).progress?.retryDetail).toBe(detail);
   expect(map(null).progress).not.toHaveProperty('retryDetail');
   expect(map().progress).not.toHaveProperty('retryDetail');
+});
+
+it('forwards only the selected style through the authenticated saved reading proxy', async () => {
+  const path = ['v1', 'readings', id];
+  const send = (query: string, headers?: HeadersInit) =>
+    proxyGet(
+      new NextRequest('https://example.test/api/backend/' + path.join('/') + query, { headers }),
+      { params: Promise.resolve({ path }) },
+    );
+  vi.stubEnv('DEV_AUTH_ENABLED', 'false');
+  const upstream = vi.spyOn(globalThis, 'fetch').mockImplementation(async () => Response.json({}));
+  try {
+    const headers = { authorization: 'Bearer test-session' };
+    expect((await send('?style=fun')).status).toBe(401);
+    for (const query of ['?style=other', '?style=fun&style=classic']) {
+      expect((await send(query, headers)).status).toBe(422);
+    }
+    expect(upstream).not.toHaveBeenCalled();
+    const response = await send('?style=fun&question=private', headers);
+    expect(response.headers.get('cache-control')).toBe('private, no-store');
+    const [url, init] = upstream.mock.calls[0];
+    expect(new URL(String(url)).search).toBe('?style=fun');
+    expect(new Headers(init?.headers).get('authorization')).toBe(headers.authorization);
+    await send('?question=private', headers);
+    expect(new URL(String(upstream.mock.calls[1][0])).search).toBe('');
+  } finally {
+    upstream.mockRestore();
+    vi.unstubAllEnvs();
+  }
 });

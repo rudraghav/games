@@ -528,6 +528,26 @@
             }
           },
           {
+            "name": "style",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "classic",
+                    "fun"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Style"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -3902,6 +3922,21 @@
               "fun"
             ],
             "title": "Reading Style"
+          },
+          "original_reading_style": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "classic",
+                  "fun"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Reading Style"
           },
           "question": {
             "type": "string",

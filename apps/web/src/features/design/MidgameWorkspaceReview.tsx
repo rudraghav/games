@@ -153,11 +153,13 @@ function PreviewTable({
     const cache = new QueryClient({
       defaultOptions: { queries: { staleTime: Infinity, retry: false } },
     });
-    cache.setQueryData(['tarot-reading', fixture.room.id, fixture.room.match_id], {
-      status: 'unavailable',
-      reading: null,
-      api_tier: 'free',
-      message: 'AI generation is disabled in this local preview.',
+    cache.setQueryDefaults(['tarot-reading', fixture.room.id, fixture.room.match_id], {
+      initialData: {
+        status: 'unavailable',
+        reading: null,
+        api_tier: 'free',
+        message: 'AI generation is disabled in this local preview.',
+      },
     });
     return cache;
   });

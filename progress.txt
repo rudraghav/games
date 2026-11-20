@@ -1,3 +1,9 @@
+## 2026-11-21 — Switch styles on a finished Tarot spread
+
+- Add a reversible Fun switch to both the current completed reading and its private archive. Keep the original reading intact. Verify the same cards, question, chart, and original words on return, including old readings and closed rooms. Switching views must work without drawing cards, calling an AI provider or spending reading quota.
+
+- The completed table and archive now open on the saved style. The alternate style uses an authenticated GET, with authorization before matching. Original responses bypass matching. Fun resolves three source-backed illustrated choices from the saved cards and question; Classic pairs canonical card meanings with the stored grounded interpretation. The original title, question, astrology and next step stay with the same spread.
+
 ## 2026-11-21 — Fun mode on by default
 
 - Show Fun as an enabled switch on each fresh Tarot reading form. Place an info icon and one short explanation of Fun and Classic under the switch. Verify switching, draft and retry recovery, archived readings and the layout on narrow phones before release.

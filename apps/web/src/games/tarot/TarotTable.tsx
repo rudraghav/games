@@ -3,7 +3,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import Link from 'next/link';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useReducedMotion } from 'motion/react';
-import { Sparkles, ArrowRight, ArrowUp, RotateCcw, Layers3, Info } from 'lucide-react';
+import { Sparkles, ArrowRight, ArrowUp, RotateCcw, Layers3 } from 'lucide-react';
 import { Button, ChoiceGroup, Modal, TarotCard, tarotArtwork } from '@games/ui';
 import {
   ApiError,
@@ -17,6 +17,12 @@ import { keys } from '@/shared/query-keys';
 import type { TableProps } from '../types';
 import { useTableDraft } from '../shared/table-draft';
 import { TarotReading } from './TarotReading';
+import { ReadingStyleSwitch } from './ReadingStyleSwitch';
+import {
+  CompletedReadingControls,
+  useCompletedReadingView,
+  usePrivateReadingScope,
+} from './completed-reading-view';
 import { AstrologyForm } from './AstrologyForm';
 import { ReadingProgress } from './ReadingProgress';
 import { ReadingAction } from './ReadingAction';
@@ -44,7 +50,6 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
     `tarot-style:${room.id}:${room.matchId}`,
     null,
   );
-  const [styleHelpOpen, setStyleHelpOpen] = useState(true);
   const [astrology, setAstrology] = useState<AstrologyInput>();
   const [astrologyChoice, setAstrologyChoice] = useState<'auto' | 'off' | 'new'>('auto');
   const [chart, setChart] = useState<ChartData | null>(null);
@@ -61,7 +66,8 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const deck = useRef<HTMLDivElement>(null);
   const filter = useRef<HTMLDivElement>(null);
   const cache = useQueryClient();
-  const queryKey = ['tarot-reading', room.id, room.matchId];
+  const scope = usePrivateReadingScope(selfId);
+  const queryKey = ['tarot-reading', room.id, room.matchId, scope];
   const progressArea = useRef<HTMLDivElement>(null);
   const showRequestedProgress = useRef(false);
   const generate = useMutation<ReadingView>({
@@ -99,7 +105,8 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const saved = useQuery<ReadingView>({
     queryKey,
     queryFn: () => api.reading(room.id),
-    enabled: match.community.length === 3,
+    enabled: match.community.length === 3 && !!scope,
+    gcTime: 0,
     refetchInterval: (query): number | false =>
       generate.isPending || recovering || query.state.data?.status === 'generating' ? 2000 : false,
   });
@@ -120,6 +127,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
     onError: () => void cache.invalidateQueries({ queryKey: keys.room(room.id) }),
   });
   const reading = saved.data?.reading;
+  const view = useCompletedReadingView(room.matchId, scope, savedStyle, reading);
   const writing = (generate.isPending && !recovering) || saved.data?.status === 'generating';
   const revealProgress = useCallback(() => {
     if (!showRequestedProgress.current) return;
@@ -277,9 +285,13 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
             <p className="eyebrow">
               {match.phase === 'choosing'
                 ? `Card ${drawn + 1} of 3`
-                : reading && savedStyle === 'fun'
-                  ? 'Fun Tarot reading'
-                  : 'Three-card reading'}
+                : view.alternate
+                  ? view.style === 'fun'
+                    ? 'Fun view'
+                    : 'Classic view'
+                  : reading && savedStyle === 'fun'
+                    ? 'Fun Tarot reading'
+                    : 'Three-card reading'}
             </p>
             <h2
               aria-label={
@@ -305,6 +317,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
             <Layers3 size={20} />
           </Button>
         </div>
+        {reading ? <CompletedReadingControls view={view} /> : null}
         {reading ? <p className="tarot-reading-introduction">{reading.introduction}</p> : null}
         {reading && saved.data?.question ? (
           <p className="tarot-saved-question">{saved.data.question}</p>
@@ -389,12 +402,15 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
         </>
       ) : reading ? (
         <>
-          <TarotReading
-            reading={reading}
-            readingStyle={savedStyle}
-            cards={match.community}
-            imageLoader={imageLoader}
-          />
+          {view.reading ? (
+            <TarotReading
+              reading={view.reading}
+              readingStyle={view.style}
+              cardMeanings={view.alternate && view.style === 'classic'}
+              cards={match.community}
+              imageLoader={imageLoader}
+            />
+          ) : null}
           {drawAgain ? (
             <div className="tarot-again">
               <p className="small muted">Ready for another question?</p>
@@ -413,44 +429,11 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
             generate.mutate();
           }}
         >
-          <div className="tarot-reading-style">
-            <Button
-              type="button"
-              variant="ghost"
-              className="tarot-style-switch"
-              role="switch"
-              aria-checked={readingStyle === 'fun'}
-              aria-describedby="tarot-style-hint"
-              onClick={() => setStyle(readingStyle === 'fun' ? 'classic' : 'fun')}
-              disabled={writing || recovering || !saved.data}
-            >
-              <span className="tarot-style-track" aria-hidden="true" />
-              Fun mode
-            </Button>
-            <div className="tarot-style-help">
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon"
-                aria-label="About Fun mode"
-                aria-controls="tarot-style-hint"
-                aria-describedby={styleHelpOpen ? 'tarot-style-hint' : undefined}
-                aria-expanded={styleHelpOpen}
-                onClick={() => setStyleHelpOpen((open) => !open)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Escape' && styleHelpOpen) {
-                    event.stopPropagation();
-                    setStyleHelpOpen(false);
-                  }
-                }}
-              >
-                <Info size={17} aria-hidden="true" />
-              </Button>
-              <p id="tarot-style-hint" className="small muted" role="tooltip">
-                Fun for pop culture, Classic for reflection.
-              </p>
-            </div>
-          </div>
+          <ReadingStyleSwitch
+            value={readingStyle}
+            onChange={setStyle}
+            disabled={writing || recovering || !saved.data}
+          />
           <label className="field">
             <span className="tarot-question-label">
               What’s on your mind? <span className="muted small">Optional</span>

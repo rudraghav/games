@@ -402,7 +402,7 @@ test('Fun style survives refresh and retry, then opens the same character scenes
     await retry.click();
     const scenes = page.getByRole('heading', { name: 'How it could play out' });
     await expect(scenes).toHaveCount(3);
-    await expect(fun).toHaveCount(0);
+    await expect(fun).toBeChecked();
     expect(requests.map((request) => request.reading_style)).toEqual(['fun']);
     await page.reload();
     await expect(scenes).toHaveCount(3);
@@ -444,7 +444,7 @@ test('Fun style survives refresh and retry, then opens the same character scenes
     await page.goto(`/games/tarot/readings/${room.match_id}`);
     await expect(page.getByText('Saved Fun Tarot reading', { exact: true })).toBeVisible();
     await inspectScene();
-    await expect(fun).toHaveCount(0);
+    await expect(fun).toBeChecked();
     await page.locator('.tarot-image-credits summary').click();
     await expect(page.locator('.tarot-image-credits li').first()).toBeVisible();
     await noOverflow(page);

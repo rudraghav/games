@@ -36,11 +36,12 @@ from app.games.tarot.reading import (
     ReadingLimitError,
     ReadingOutputError,
     ReadingView,
+    alternate_view,
     generate_reading,
     reading_available,
     reading_failure,
 )
-from app.games.tarot.style import saved_style
+from app.games.tarot.style import ReadingStyle, saved_style
 from app.models import Match, Member, Message, Profile, Receipt, Room, TarotReading
 from app.rooms.bots import BOT_DELAY_SECONDS, BOT_NAMES, bot_delay, next_bot_view
 from app.rooms.public_actions import PUBLIC_ACTIONS, public_action
@@ -545,7 +546,7 @@ class RoomService:
             raise HTTPException(503, "City lookup is temporarily unavailable. Please try again.") from None
         return calculate_chart(data.astrology, place)
 
-    def saved_reading(self, actor: Identity, match_id: str) -> SavedReadingView:
+    def saved_reading(self, actor: Identity, match_id: str, *, style: ReadingStyle | None = None) -> SavedReadingView:
         # A room can move on or close without taking its participant's reading
         # away. The saved sole participant, not current membership, authorizes it.
         with self.session.begin():
@@ -574,7 +575,7 @@ class RoomService:
                     status = "unavailable"
             elif saved and saved.status == "generating" and saved.lease_until > time.time():
                 status = "generating"
-            return SavedReadingView(
+            original = SavedReadingView(
                 match_id=match.id,
                 room_id=match.room_id,
                 created_at=match.created_at,
@@ -585,6 +586,19 @@ class RoomService:
                 reading=reading,
                 can_resume=can_resume,
             )
+
+        if not style or style == original.reading_style or original.reading is None:
+            return original
+        # Local matching can be CPU-intensive. Run it only after authorization
+        # and after releasing the database transaction used to load the original.
+        try:
+            alternate = alternate_view(original.reading, style, [card.id for card in original.cards], original.question)
+        except Exception:
+            logging.getLogger("uvicorn.error").warning("games.reading_archive.alternate_unavailable")
+            raise HTTPException(503, "Couldn’t open this reading style. Try again.") from None
+        return original.model_copy(update={
+            "reading_style": style, "original_reading_style": original.reading_style, "reading": alternate,
+        })
 
     def reading(
         self, actor: Identity, room_id: str, data: ReadingInput | None = None

@@ -150,10 +150,12 @@ export function createApi(accessToken?: () => Promise<string | null>) {
         unwrap(await client.GET('/v1/rooms/{room_id}/reading', { params: params(id) })),
       );
     },
-    async savedReading(matchId: string) {
+    async savedReading(matchId: string, style?: ReadingStyle) {
       return mapSavedReading(
         unwrap(
-          await client.GET('/v1/readings/{match_id}', { params: { path: { match_id: matchId } } }),
+          await client.GET('/v1/readings/{match_id}', {
+            params: { path: { match_id: matchId }, query: { style } },
+          }),
         ),
       );
     },

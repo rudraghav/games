@@ -9,20 +9,34 @@ import { api } from '@/lib/session';
 import { SiteHeader } from '@/shared/SiteHeader';
 import { optimizeCardArt } from '@/shared/card-art';
 import { TarotReading } from '@/games/tarot/TarotReading';
+import {
+  CompletedReadingControls,
+  useCompletedReadingView,
+  usePrivateReadingScope,
+} from '@/games/tarot/completed-reading-view';
 import { gamePath, readingPath, roomPath } from '@/shared/game-paths';
 
 /** An exact saved spread. Reading this page never requests another interpretation. */
 export function SavedReadingScreen({ matchId }: { matchId: string }) {
   const pathname = usePathname();
   const router = useRouter();
+  const scope = usePrivateReadingScope();
   const saved = useQuery({
-    queryKey: ['saved-tarot-reading', matchId],
+    queryKey: ['saved-tarot-reading', scope, matchId],
     queryFn: () => api.savedReading(matchId),
+    enabled: !!scope,
+    gcTime: 0,
     staleTime: 0,
     refetchOnWindowFocus: true,
     refetchInterval: (query) => (query.state.data?.status === 'generating' ? 3000 : false),
   });
   const data = saved.isError ? undefined : saved.data;
+  const view = useCompletedReadingView(
+    matchId,
+    scope,
+    data?.readingStyle ?? 'classic',
+    data?.reading,
+  );
   useEffect(() => {
     if (!data) return;
     const canonical = readingPath(data.matchId);
@@ -74,7 +88,13 @@ export function SavedReadingScreen({ matchId }: { matchId: string }) {
           <div className="tarot-table stable-tarot-table">
             <header className="tarot-intro">
               <p className="eyebrow">
-                {data.readingStyle === 'fun' ? 'Saved Fun Tarot reading' : 'Saved Tarot reading'}
+                {view.alternate
+                  ? view.style === 'fun'
+                    ? 'Fun view'
+                    : 'Classic view'
+                  : data.readingStyle === 'fun'
+                    ? 'Saved Fun Tarot reading'
+                    : 'Saved Tarot reading'}
               </p>
               <h1 className="heading-md">{data.reading?.title || 'Your saved spread'}</h1>
               <p className="small muted">
@@ -85,15 +105,21 @@ export function SavedReadingScreen({ matchId }: { matchId: string }) {
                 }).format(new Date(data.createdAt * 1000))}
               </p>
               {data.question ? <p>Your question: {data.question}</p> : null}
+              {data.status === 'complete' && data.reading ? (
+                <CompletedReadingControls view={view} />
+              ) : null}
               {data.reading ? <p className="muted">{data.reading.introduction}</p> : null}
             </header>
             {data.status === 'complete' && data.reading ? (
-              <TarotReading
-                reading={data.reading}
-                readingStyle={data.readingStyle}
-                cards={data.cards}
-                imageLoader={optimizeCardArt}
-              />
+              view.reading ? (
+                <TarotReading
+                  reading={view.reading}
+                  readingStyle={view.style}
+                  cardMeanings={view.alternate && view.style === 'classic'}
+                  cards={data.cards}
+                  imageLoader={optimizeCardArt}
+                />
+              ) : null
             ) : (
               <section className="center-state" role="status">
                 <h2 className="heading-md">
