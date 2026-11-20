@@ -621,3 +621,40 @@ def test_factual_failure_is_reported_corrected_and_never_relaxed(configured, mon
     calls = transport(monkeypatch, respond)
     assert len(reading.generate_reading(CARDS, "").cards) == 3
     assert len(calls) == 2
+
+
+def test_fun_retry_preserves_the_editorial_move_and_retries_only_the_ai_sections(configured, monkeypatch):
+    from app.games.tarot.reference_retrieval import reviewed_connections
+
+    monkeypatch.setattr(configured, "tarot_provider_order", ["gemini", "cloudflare"])
+    canonical = reading.build_reading_request(CARDS, "How can I learn with a friend?", reading_style="fun")
+    reservations = []
+
+    def respond(request, attempt):
+        wire = json.loads(request.content)
+        if attempt == 1:
+            assert all("reference_characters" not in c for c in json.loads(wire["input"])["cards"])
+            assert "CharacterConnection" not in json.dumps(wire["response_format"])
+            return httpx.Response(503)
+        assert "reference_characters" not in wire["messages"][1]["content"]
+        # Legacy/unrequested bad comparison text on the fallback is irrelevant.
+        body = grounded_envelope("cloudflare", canonical)
+        generated = json.loads(body["choices"][0]["message"]["content"])
+        for index in range(1, 4):
+            section = generated[f"card_{index}"]
+            section.pop("reference_id")
+            section.pop("connection_question")
+            section["connection"] = "xx"
+        body["choices"][0]["message"]["content"] = json.dumps(generated)
+        return httpx.Response(200, json=body)
+
+    calls = transport(monkeypatch, respond)
+    result = reading.generate_reading(CARDS, "How can I learn with a friend?", reading_style="fun",
+                                      before_attempt=lambda: reservations.append(True))
+    assert len(calls) == len(reservations) == 2
+    for section in result.cards:
+        character = section.characters[0]
+        ident = find_character(character.name, character.source)["id"]
+        assert character.connection == reviewed_connections()[ident]["connection"]
+        assert reviewed_connections()[ident]["anchor"] in character.evidence
+        assert section.interpretation.endswith("?")

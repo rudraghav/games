@@ -52,10 +52,12 @@ def json_transport(
     body["messages"][0]["content"] = (body["messages"][0]["content"]
         .replace("tarot_connection links", "astrology_tarot_connection links")
         .replace("next_step is one practical invitation", "astrology_next_step is one practical invitation"))
+    identifiers = ("Use each chart's point IDs from the input." if "reference_id" not in schema["properties"]["card_1"]["properties"]
+                   else "Use only the matching card's reference IDs and each chart's point IDs from the input.")
     body["messages"][0]["content"] += (
         "\nReturn ONE JSON object with exactly this shape and every field, including astrology. "
         "The strings below describe values to write; never copy these descriptions. "
-        "Use only the matching card's reference IDs and each chart's point IDs from the input. "
+        + identifiers + " "
         "astrology_tarot_connection and astrology_next_step are top-level fields, beside cards and next_step; "
         "astrology_interpretation contains only the requested chart sections.\n" + contract
     )

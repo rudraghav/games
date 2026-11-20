@@ -8,6 +8,10 @@
 
 - A bounded Cloudflare reading on a public, question-free spread exposed two failure modes: borrowed names and generic advice. Each Fun card now sends one illustrated subject and source phrases. The corrected run used Sherlock Holmes’s close observation, Lara Croft learning to climb and Pooh reaching for honey with a balloon; it completed on its second attempt.
 
+- The first release passed live ordinary and both-chart checks, including the closed-room archive. Reading the copy revealed a semantic mismatch that a quoted detail could not catch: the choice sometimes contradicted the story. For the correction, pair each familiar figure with an edited choice and a plausible tradeoff or consequence from its own scene. Keep the overall spread, card and astrology interpretations responsive to the question. Verify all 118 pairs and reopen completed readings without changing their stored wording.
+
+- The correction includes 118 edited scene/choice pairs. All 9,204 figure/card combinations preserved their own chosen source phrase within the visible excerpt. A fresh free Cloudflare reading confirmed that each card showed its exact edited comparison on the first attempt, next to a newly generated spread interpretation.
+
 ## 2026-11-20 — Dimensional oracle table
 
 - Create the centerpiece and foil artwork with GPT Image first. Add depth to the

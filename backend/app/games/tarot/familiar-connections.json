@@ -1,0 +1,474 @@
+{
+  "mulan": {
+    "anchor": "returns to warn them",
+    "connection": "If you notice a problem after someone has waved you off, point to the one thing they can still change. That gives them a chance to act without reopening the whole argument."
+  },
+  "moana": {
+    "anchor": "learns wayfinding from Maui",
+    "connection": "Before handing a tricky job to the expert, ask which sign tells them they're on course. You could try the next stretch yourself with something real to steer by."
+  },
+  "elsa": {
+    "anchor": "isolated ice palace",
+    "connection": "If taking space helped you cool down, tell the person outside the door when you'll check back in. You can keep the quiet without leaving them guessing."
+  },
+  "joy": {
+    "anchor": "gives Sadness control",
+    "connection": "When someone says they miss how things were, pause before cheering them up. Asking what they miss most gives them room to tell you what would actually help."
+  },
+  "shrek": {
+    "anchor": "Donkey accompanying him",
+    "connection": "If company sounds exhausting, invite someone along for just one errand. A walk with an end point lets you try out the company and still get your quiet afternoon."
+  },
+  "miguel": {
+    "anchor": "teaches himself guitar",
+    "connection": "Pick one song you’d happily play badly in private. Ten minutes with it could tell you whether you enjoy making music as much as you enjoy imagining being good."
+  },
+  "mirabel": {
+    "anchor": "house begins to crack",
+    "connection": "When a routine looks fine from the outside, ask the person who keeps it running what nearly fell apart this week. Their answer could change what you offer to take on."
+  },
+  "chihiro": {
+    "anchor": "refuses No-Face's gold",
+    "connection": "Before saying yes to a tempting offer, ask what the giver expects back. The answer might make it much easier to accept the gift or leave it on the table."
+  },
+  "geet": {
+    "anchor": "Aditya later helps her recover",
+    "connection": "If you’re usually the one picking someone up, try being the one who asks for a lift. A specific favor gives your friend an easy way to return the care."
+  },
+  "rancho": {
+    "anchor": "pursue photography",
+    "connection": "Give the thing you’d choose for yourself one real afternoon. Making a contact sheet or a rough first draft tells you more about wanting that life than another argument about it."
+  },
+  "poo": {
+    "anchor": "reunite the separated family",
+    "connection": "If two people miss each other, ask each privately whether they want an introduction back into the conversation. You might open a door both would hate to be pushed through."
+  },
+  "rani": {
+    "anchor": "returns his ring",
+    "connection": "If someone wants another chance, ask how they’d handle the very choice they criticized. Their answer may tell you more about going back than the apology did."
+  },
+  "bunny": {
+    "anchor": "declines a job in Paris",
+    "connection": "Put the opportunity and the ordinary Tuesday you'd give up on the same page. Seeing who you’d stop having dinner with could change what you ask for before accepting."
+  },
+  "circuit": {
+    "anchor": "support outside campus",
+    "connection": "Offer to cover one backstage job for someone under pressure. Picking them up is easier to stand behind than inventing an excuse on their behalf."
+  },
+  "pushpa": {
+    "anchor": "their father's surname",
+    "connection": "If being left out makes you want to prove your worth, wait before accepting the next dare. Tomorrow you can decide whether the prize is something you actually want."
+  },
+  "michael-scott": {
+    "anchor": "treats workplace relationships as personal friendships",
+    "connection": "If you’re the one in charge, make the social invitation easy to decline. Saying exactly that may spare someone an evening they thought was secretly mandatory."
+  },
+  "leslie-knope": {
+    "anchor": "dangerous construction pit",
+    "connection": "Pick one thing your group keeps walking around and ask who it bothers most. Their answer could turn “someone should fix this” into a job small enough to start."
+  },
+  "fleabag": {
+    "anchor": "jokes and asides",
+    "connection": "If a joke gets you out of a difficult moment, try one honest sentence after the laugh. A friend might hear the part you ordinarily leave out."
+  },
+  "ted-lasso": {
+    "anchor": "accepts help from therapist Sharon Fieldstone",
+    "connection": "If you’re always the person others lean on, tell one trusted person what has been hard for you. Give them one small way to show up this week."
+  },
+  "phoebe-buffay": {
+    "anchor": "replaces her voice",
+    "connection": "Before someone shares your work, ask to see the version that will carry your name. A quick listen now could save an awkward conversation after it’s out."
+  },
+  "chidi": {
+    "anchor": "hurting others through indecision",
+    "connection": "Tell the person waiting when you’ll decide, and what one piece of information you still need. Even an imperfect deadline lets them plan their own next move."
+  },
+  "holt": {
+    "anchor": "challenges him to develop discipline",
+    "connection": "Ask the quick problem-solver to show a teammate how they got there. If someone else can repeat the steps, a one-person rescue becomes a skill the group can use."
+  },
+  "wednesday": {
+    "anchor": "uses her psychic visions",
+    "connection": "When a hunch feels convincing, write down one detail that would prove it wrong. Checking that detail could save someone an accusation they didn’t earn."
+  },
+  "link": {
+    "anchor": "Midna's help",
+    "connection": "If the usual way through suddenly stops working, ask someone who knows this version of the terrain to take the next turn with you. You can learn while moving."
+  },
+  "zelda": {
+    "anchor": "leads a pirate crew",
+    "connection": "Try running one small part of the plan before anyone settles the question of titles. Seeing who already follows your directions may make the bigger conversation easier."
+  },
+  "lara-croft": {
+    "anchor": "choice of route",
+    "connection": "If someone taught you the ropes, sketch your own route and ask where they would turn back. You keep the wheel and gain a second pair of eyes on the risky bit."
+  },
+  "peach": {
+    "anchor": "takes the lead in Super Princess Peach",
+    "connection": "If people keep solving a problem for you, claim the first move and name the help you’ll ask for later. That gives them a role without giving away yours."
+  },
+  "kratos": {
+    "anchor": "confronting his own rage",
+    "connection": "When someone repeats a mistake you recognize, explain what happened the last time you made it. A story they can use might land better than the warning you wish you’d heard."
+  },
+  "mario": {
+    "anchor": "confronts Bowser to rescue Princess Peach",
+    "connection": "Before chasing the next obstacle, name who you’re trying to help and ask what would count as done. You might find a shorter route than clearing the whole level."
+  },
+  "leia": {
+    "anchor": "hides the stolen Death Star plans",
+    "connection": "If the next step depends on information only you have, leave a clear copy with someone you trust. They can keep things moving if you get pulled away."
+  },
+  "shuri": {
+    "anchor": "spare him and offer an alliance",
+    "connection": "If you have the upper hand in an argument, ask for one change you could both live with. Winning the point may feel good, but an agreement gives tomorrow somewhere to start."
+  },
+  "rey": {
+    "anchor": "chooses the Skywalker name",
+    "connection": "If an old label keeps steering the conversation, name the person whose example you actually want to follow. Borrowing one of their habits gives the choice some weight."
+  },
+  "spock": {
+    "anchor": "diplomacy to prevent war with the Klingons",
+    "connection": "Ask the person across the argument what a workable ending would look like for them. A shared answer could give you both a reason to lower the temperature."
+  },
+  "gandalf": {
+    "anchor": "investigates the One Ring",
+    "connection": "Before passing along an alarming claim, trace one detail back to where it came from. Even a missing piece is worth knowing before everyone reorganizes their day around it."
+  },
+  "tony-stark": {
+    "anchor": "Ultron program",
+    "connection": "Before building a fix for everyone, let one person try a reversible version. Their first surprise might reveal a problem your grand solution would only make bigger."
+  },
+  "miles-morales": {
+    "anchor": "trains with Peter B. Parker",
+    "connection": "Try the move your mentor showed you, then change one part to suit how you work. Comparing the two attempts can show you which part was instruction and which was just their style."
+  },
+  "sherlock": {
+    "anchor": "tests explanations against evidence",
+    "connection": "When two explanations both sound convincing, find the one detail they predict differently and check it. The answer might save you from sending a very confident message to the wrong person."
+  },
+  "beth-harmon": {
+    "anchor": "learns chess from the orphanage custodian",
+    "connection": "If the usual teacher feels out of reach, ask the person quietly doing the work to show you one move. A single game together could open a lesson you'd otherwise miss."
+  },
+  "katniss": {
+    "anchor": "organizers to accept two",
+    "connection": "If a rule makes you compete with someone who wants the same change, compare notes before either of you answers. A joint proposal could put a third option on the table."
+  },
+  "eleven": {
+    "anchor": "living in hiding with Hopper",
+    "connection": "If your plan to protect someone has started deciding their whole day, ask which part they want back. Keeping one agreed check-in could make more room for trust."
+  },
+  "hermione": {
+    "anchor": "overloaded class schedule",
+    "connection": "Put both commitments on an actual calendar, travel time included. If they collide, asking for a change today could spare someone a last-minute cancellation."
+  },
+  "harry-potter": {
+    "anchor": "Ron and Hermione at Hogwarts",
+    "connection": "At a new place, ask one person to join you for a small first task. Finding your way to lunch together gives you a reason to say hello again tomorrow."
+  },
+  "matilda": {
+    "anchor": "support from Miss Honey",
+    "connection": "Show one page of what you’ve been working on to someone who takes your interest seriously. They may spot a next step you couldn’t see while doing everything alone."
+  },
+  "elizabeth-bennet": {
+    "anchor": "Reading Darcy's letter",
+    "connection": "Before you reply to a message that challenges your first impression, reread the line you were quickest to dismiss. You might change one question even if you keep your conclusion."
+  },
+  "frodo": {
+    "anchor": "Sam's help",
+    "connection": "If something is yours to finish, name the part someone else can actually carry today. Company on the hard stretch may matter more than advice from the finish line."
+  },
+  "paddington": {
+    "anchor": "hard stares",
+    "connection": "When a joke lands badly, leave a beat before anyone laughs it off. A quiet “What did you mean?” can give the speaker room to hear what everyone else heard."
+  },
+  "munna-bhai-q6936780": {
+    "anchor": "the cleaner goes unthanked",
+    "connection": "Think of the person who makes a busy place usable again after everyone leaves. Thank them for one specific thing today, so the work gets seen while they’re there to hear it."
+  },
+  "chitti-q58057393": {
+    "anchor": "upgrades the robot Chitti",
+    "connection": "If you add a new power to a tool or a role, try it on something small first. The first surprising use may tell you which boundary you forgot to set."
+  },
+  "bhallaladeva-q38805060": {
+    "anchor": "defend the people they each hope to rule",
+    "connection": "If two of you want the lead, do one useful job together before the vote. The people relying on you get some help while the title is still undecided."
+  },
+  "aang-q1640011": {
+    "anchor": "joining new friends Katara and Sokka",
+    "connection": "Facing a skill too big to learn alone, ask two people what they could each show you. Their different starting points might make a first practice session possible."
+  },
+  "arya-stark-q3624677": {
+    "anchor": "parting gift from her half-brother Jon Snow",
+    "connection": "If you want to support someone leaving familiar ground, ask what they'd actually carry. A small gift chosen for their plans can travel further than advice about yours."
+  },
+  "brienne-of-tarth-q11680307": {
+    "anchor": "barred from serving as a knight",
+    "connection": "If a title keeps a capable person out, ask them to demonstrate the work and agree beforehand how it will be judged. That gives everyone something concrete to answer for."
+  },
+  "woody-q2290907": {
+    "anchor": "turns on Buzz",
+    "connection": "If a newcomer is getting the attention you miss, invite them onto a task you know well. Working side by side could show where you fit without making either of you audition."
+  },
+  "buzz-lightyear-q1986193": {
+    "anchor": "team up to find their way home",
+    "connection": "When a disagreement is going in circles, name the one destination you both still want. You can share the next ride before you settle who had the better map."
+  },
+  "chandler-bing-q745284": {
+    "anchor": "meets Phoebe Buffay through her",
+    "connection": "If an introduction feels awkward, ask the friend who knows you both to join the first coffee. One familiar face gives the conversation somewhere easy to begin."
+  },
+  "darth-vader-q12206942": {
+    "anchor": "lured to the dark side",
+    "connection": "If someone offers you power in return for a quick show of loyalty, ask what you would have to do next. The second favor may reveal the real price of the first."
+  },
+  "dr-watson-q187349": {
+    "anchor": "narrator of almost the entire series",
+    "connection": "Offer to write down what the group actually saw before anyone explains it away. A clear account gives quieter witnesses something they can correct or add to."
+  },
+  "dwight-schrute-q4169030": {
+    "anchor": "attempts to become regional manager",
+    "connection": "If you want the next role, ask which decisions you could practice making now. The answer tells you more about your chances than another month of guessing what impresses the boss."
+  },
+  "han-solo-q51802": {
+    "anchor": "joins the Rebel Alliance",
+    "connection": "If a one-off favor has become something you care about, say what part you’re willing to stay for. People can plan around a real commitment and you can set an end point."
+  },
+  "hulk-q188760": {
+    "anchor": "transformed into the Hulk",
+    "connection": "If you notice yourself getting louder, ask for ten minutes and name when you’ll come back. That gives the conversation a chance to survive the feeling that started it."
+  },
+  "jim-halpert-q2013030": {
+    "anchor": "pranks on fellow salesman Dwight Schrute",
+    "connection": "Before making a colleague the punchline, ask whether they'd tell the same story at lunch. If the fun only works for the audience, you still have time to skip it."
+  },
+  "joey-tribbiani-q746277": {
+    "anchor": "Chandler moved out to move in with Monica",
+    "connection": "When a friend's routine changes, pick one small tradition you can keep on purpose. A regular sandwich together could do more for the friendship than an ambitious reunion plan."
+  },
+  "jon-snow-q3183235": {
+    "anchor": "joins a scouting party",
+    "connection": "Before choosing a side in an unfamiliar dispute, spend time with someone who has seen the other side up close. You may come back with a better question than the one you left with."
+  },
+  "luke-skywalker-q51746": {
+    "anchor": "trains as a Jedi Knight",
+    "connection": "If a new skill feels impossibly far from your day job, ask someone who does it to watch one attempt. Their correction gives you a specific thing to practice tomorrow."
+  },
+  "monkey-d-luffy-q477948": {
+    "anchor": "befriends the inhabitants of several islands",
+    "connection": "At your next unfamiliar stop, ask a local what they wish visitors understood. Their answer could change what you offer to do while you’re there."
+  },
+  "neville-longbottom-q190366": {
+    "anchor": "highly gifted at Herbology",
+    "connection": "If the usual task makes you look clumsy, volunteer for the part you know unusually well. A team that sees you in your element may start asking you different questions."
+  },
+  "obi-wan-kenobi-q51740": {
+    "anchor": "trains Luke Skywalker",
+    "connection": "After showing someone a new move, let them try it while you watch quietly. Their first stumble tells you which instruction needs explaining a different way."
+  },
+  "pam-beesly-q2027359": {
+    "anchor": "becomes a saleswoman",
+    "connection": "If another role keeps catching your eye, ask to try one ordinary task from it. A real afternoon doing the job can tell you whether you want the unglamorous parts too."
+  },
+  "peter-pan-q107190": {
+    "anchor": "leader of the Lost Boys",
+    "connection": "If you’re always picking the adventure, let someone else choose the next stop. You may discover who’s been happily following and who has simply never been asked."
+  },
+  "pinocchio-q6502703": {
+    "anchor": "long nose",
+    "connection": "If a small exaggeration is starting to need a sequel, correct one detail now. A mildly awkward correction is easier to remember than the next version of the story."
+  },
+  "po-q3307548": {
+    "anchor": "student of Master Shifu",
+    "connection": "Before ruling yourself out because you look different from the regulars, take one beginner lesson. You’ll leave with a skill to practice and a better sense of whether you enjoy the room."
+  },
+  "rapunzel-q4902053": {
+    "anchor": "hair's healing powers",
+    "connection": "If someone mostly seeks you out for what you can do for them, try declining one small favor. How they spend time with you afterwards may tell you something about the relationship."
+  },
+  "snoopy-q207369": {
+    "anchor": "short stories on his typewriter",
+    "connection": "Give one of your elaborate daydreams a page of its own. A messy first paragraph gives you something you can return to after the daydream wears off."
+  },
+  "spider-man-q79037": {
+    "anchor": "secret identity is Peter Benjamin Parker",
+    "connection": "If two parts of your life are colliding, tell someone when you’ll be unavailable. They can plan around your absence even if you keep the reason private."
+  },
+  "winnie-the-pooh-q188574": {
+    "anchor": "Owl’s bell-pull",
+    "connection": "Before buying what your idea needs, look for something you’ve given another job. The mug holding your pens could be the paint pot that lets you start today."
+  },
+  "amitabh-bachchan-q9570": {
+    "anchor": "field visits",
+    "connection": "Try the field-visit part of Bachchan’s campaign. Ask someone what gets in their way, and you might discover that another reminder is the last thing they need."
+  },
+  "a-p-j-abdul-kalam-q9513": {
+    "anchor": "lighter leg calipers",
+    "connection": "Kalam’s team found a second job for a rocket material. Borrow one tool you already use elsewhere and see whether it makes the hardest part of this task lighter."
+  },
+  "dolly-parton-q180453": {
+    "anchor": "receive books at home without cost",
+    "connection": "Borrow Dolly’s delivery idea. Put the book, invitation or supplies straight into someone’s hands, and see what changes when they can skip the sign-up."
+  },
+  "aamir-khan-q9557": {
+    "anchor": "hosted the television talk show Satyamev Jayate",
+    "connection": "Take the host’s seat for one conversation. Ask a question you genuinely want answered and let the other person finish, even if it takes the discussion somewhere you didn’t plan."
+  },
+  "alia-bhatt-q4725343": {
+    "anchor": "sustainable clothing brand",
+    "connection": "Try taking one value from the mission statement to the clothes rack. Before your next purchase, check how it was made and see whether that changes which one you pick."
+  },
+  "irrfan-khan-q360927": {
+    "anchor": "student films such as Reconnaissance",
+    "connection": "Is there a student-film-sized version of the role you want? You could take a small part with people who are still learning and come away with something you’ve actually made together."
+  },
+  "madhuri-dixit-q232451": {
+    "anchor": "action drama Tezaab",
+    "connection": "Give an idea that fell flat a change of genre. Try it once as a lively demonstration and watch where people lean in or lose interest."
+  },
+  "rajinikanth-q60068": {
+    "anchor": "portraying antagonistic characters",
+    "connection": "If you usually play the critic, volunteer to develop one suggestion you would normally pick apart. Someone might start bringing you their early ideas."
+  },
+  "a-r-rahman-q108560": {
+    "anchor": "donating and raising money",
+    "connection": "You can put something in the collection yourself or use your next performance to invite others in. The second move takes more nerve, but the cause could gain another supporter."
+  },
+  "lata-mangeshkar-q156347": {
+    "anchor": "never listened to her own songs after their release",
+    "connection": "Decide what counts as your final take before you press send. Let it stand overnight and you’ll get to hear someone else’s reaction before writing your own list of flaws."
+  },
+  "charlie-chaplin-q882": {
+    "anchor": "slapstick combined with pathos",
+    "connection": "You can tell the funny part of an awkward moment and still say what hurt. Leaving room for both gives the person listening a chance to do more than laugh."
+  },
+  "hayao-miyazaki-q55400": {
+    "anchor": "wrote and illustrated the manga Nausicaä",
+    "connection": "Give your big idea a manga-sized first outing by sketching three panels for a friend. Hand them over without explaining, and see which parts of the story come through."
+  },
+  "jackie-chan-q36970": {
+    "anchor": "as a stuntman",
+    "connection": "Try bringing one backstage skill into the spotlight. Showing someone the trickiest bit of your process could help them picture you doing the whole job."
+  },
+  "walt-disney-q8704": {
+    "anchor": "job as a commercial illustrator",
+    "connection": "Ask someone for a small drawing brief, even if you only do a rough sketch. A real request gives you a way to tell whether your work does what they needed."
+  },
+  "beyonce-q36153": {
+    "anchor": "country record Cowboy Carter",
+    "connection": "Take something familiar into a genre you rarely try. Share your version with someone who loves that genre and you could discover both a fresh idea and a teacher."
+  },
+  "taylor-swift-q26876": {
+    "anchor": "autobiographical songwriting",
+    "connection": "Write one line about the exact moment that’s still on your mind. You can keep the verse private and use it to find the one detail you do want to say out loud."
+  },
+  "malala-yousafzai-q32732": {
+    "anchor": "banned girls from attending school",
+    "connection": "Think of someone who is meant to have a place in the room but can’t get there. Ask what would help them take part before offering to speak on their behalf."
+  },
+  "marie-curie-q7186": {
+    "anchor": "developed mobile radiography units",
+    "connection": "Try Curie’s practical question in your own setting. Could you bring the tool to the person who needs it and spare them a trip?"
+  },
+  "satyajit-ray-q8873": {
+    "anchor": "designed his own credit titles",
+    "connection": "Take charge of the opening credits for your idea. Give someone just the title and first line, then ask what they expect next before you spend time polishing the rest."
+  },
+  "michelangelo-q5592": {
+    "anchor": "ceiling of the Sistine Chapel",
+    "connection": "Try your idea on an unfamiliar canvas. A small mock-up costs you an afternoon and lets you see whether the new format deserves a ceiling-sized commitment."
+  },
+  "yayoi-kusama-q231121": {
+    "anchor": "repeated dots",
+    "connection": "Pick one mark, sound or phrase you like and repeat it across a rough page. You might discover a pattern you couldn’t see in a single dot."
+  },
+  "banksy-q133600": {
+    "anchor": "Exit Through the Gift Shop",
+    "connection": "Turn the camera on the making of your next piece, with everyone’s permission. Showing one discarded attempt could help someone understand a choice they’d miss in the finished work."
+  },
+  "meme-this-is-fine-gunshow-2013": {
+    "anchor": "calmly drinks in a burning room",
+    "connection": "Before taking another imaginary sip, name the part that’s wearing you out. Asking someone to take that one job could give you an actual break."
+  },
+  "meme-two-buttons-jake-clark-2014": {
+    "anchor": "two competing buttons",
+    "connection": "Label each button with what you’d give up by pressing it. Seeing the two costs side by side might tell you which one you can live with."
+  },
+  "meme-spider-man-pointing-double-identity-1967": {
+    "anchor": "an impersonator point at each other",
+    "connection": "If you catch yourself pointing, ask whether you’ve done something similar. Owning your half first could turn a round of finger-pointing into a conversation."
+  },
+  "meme-surprised-pikachu-1997": {
+    "anchor": "open-mouthed expression",
+    "connection": "Write down the result that would earn your best surprised Pikachu face, then check what happened the last time. That little look back could change your next move."
+  },
+  "meme-control-uday-welcome-2007": {
+    "anchor": "tells himself to stay in control",
+    "connection": "Give yourself one Uday pause before sending the reply. Read it back and keep only the line you’d be willing to say to their face tomorrow."
+  },
+  "meme-majnu-painting-welcome-2007": {
+    "anchor": "donkey on a horse",
+    "connection": "Try putting your two least compatible ideas in the same sketch. Even if the pairing looks as odd as Majnu’s painting, someone might spot a use for it you missed."
+  },
+  "meme-baburao-no-risk-hera-pheri-2000": {
+    "anchor": "refusing an unnecessary gamble",
+    "connection": "Give your inner Baburao a concrete limit. If the idea can be tested inside that limit, you can learn something without staking the whole plan on it."
+  },
+  "meme-kill-bill-pandey-race-gurram-2014": {
+    "anchor": "exaggerated entrance",
+    "connection": "Who would you actually like to see make that big entrance? Invite them to help with one specific task so they know what to do once the applause dies down."
+  },
+  "meme-padmasri-yes-dookudu-2011": {
+    "anchor": "Padmasri’s nod",
+    "connection": "Follow your confident nod with what you can do and when. The other person gets something they can plan around, and you can catch a promise you meant only halfway."
+  },
+  "simone-biles-q7520267": {
+    "anchor": "continued supporting her teammates",
+    "connection": "If one part feels like too much today, hand it off and offer a way to stay involved. Keeping someone company from the sidelines can still count as showing up."
+  },
+  "mary-kom-q328951": {
+    "anchor": "win the World Amateur Boxing Championship six times",
+    "connection": "Give yourself a second round at something you want to learn. Pick one thing to change between attempts so you can tell what actually got better."
+  },
+  "ms-dhoni-q470774": {
+    "anchor": "moved himself up the batting order",
+    "connection": "Swap the order of two turns. Going first could give your partner just the opening they need, especially if each of you brings a different strength."
+  },
+  "sachin-tendulkar-q9488": {
+    "anchor": "lost the 2003 final",
+    "connection": "After a near miss, ask which part of the goal you would still chase with this team. That answer can help you decide whether another attempt is worth the work."
+  },
+  "mithali-raj-q3520476": {
+    "anchor": "captained the national team",
+    "connection": "If you’re both leading and doing the work, tell the group which part you’ll take yourself. Naming your own turn makes it easier for someone else to claim theirs."
+  },
+  "smriti-mandhana-q16224802": {
+    "anchor": "led them to WPL titles",
+    "connection": "Before your group tries for a repeat, ask everyone which part of the last win they’d keep. You might discover the quiet assist that made the headline moment possible."
+  },
+  "sunil-chhetri-q561004": {
+    "anchor": "plays as a forward",
+    "connection": "Make yourself available for a pass. A simple “send me the draft when it’s ready” gives someone a clear next move and gives you a real part to play."
+  },
+  "lionel-messi-q615": {
+    "anchor": "turn their attention to the next game",
+    "connection": "When a promising start ends in a loss, get the group together and name the next play you can make together. It gives the conversation somewhere to go after the replay."
+  },
+  "naomi-osaka-q17466583": {
+    "anchor": "WTA Tour debut",
+    "connection": "Put your name down for one round with someone more experienced. You might lose the round and still find out which part of your game already holds up."
+  },
+  "michael-jordan-q41421": {
+    "anchor": "rode the team bus",
+    "connection": "Try being the rookie at something again. Taking the beginner’s seat for one session could show you whether you like the work enough to come back on an ordinary day."
+  },
+  "rahul-dravid-q470772": {
+    "anchor": "captained and head-coached the Indian national cricket team",
+    "connection": "Trade the player’s seat for the coach’s for one turn. Talking someone through a skill and then letting them try can show you exactly where your explanation needs work."
+  },
+  "usain-bolt-q1189": {
+    "anchor": "4 × 100 metres relay",
+    "connection": "Rehearse the handoff as well as your own sprint. Agreeing who picks up the next step could save the whole group from racing ahead and dropping the baton."
+  }
+}

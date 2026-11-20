@@ -22,12 +22,13 @@ from app.games.tarot.providers import (
     _text,
 )
 from app.games.tarot.recovery import ValidationIssue, question_relaxed
-from app.games.tarot.style import FUN_CONNECTION
+from app.games.tarot.style import FUN_CONNECTION, model_context
 
 PROFILE_VERSION = "grounded-reading-3"
 OUTPUT_CAP = 4096
 MODELS = {"groq": GROQ_MODEL, "cloudflare": ALTERNATIVE_MODELS["cloudflare"]}
-CLASSIC_CONNECTION = """connection_question is
+CLASSIC_CONNECTION = """Choose one distinct reference_id from each card's candidates. The app identifies
+it and displays its exact public_context as Background. connection_question is
 ONE invitational question beginning What, How, Where, Which, Could, Might or Would,
 using a relevant motif from that background. Do not mention the reference's name,
 retell or expand the biography/plot, or attribute opinions, lessons, virtues,
@@ -46,8 +47,7 @@ Each imagery is one complete imaginative sentence conveying that SAME possibilit
 not something happening to the person. For vulnerable questions use gentle imagery
 without ridicule, comic exaggeration or pressure. Avoid repetitive words and advice.
 Card titles are short thematic phrases, not repetitions of card names or positions.
-Choose one distinct reference_id from each card's candidates. The app identifies
-it and displays its exact public_context as Background. {connection}
+{connection}
 An analogy implies no endorsement or equivalence. Preserve religious forms and
 traditions respectfully; infer no faith or divine message. Memes concern the scene,
 not the actor: use at most one and none for vulnerable questions.
@@ -82,18 +82,16 @@ def _schema(context: dict[str, Any]) -> dict[str, Any]:
         "introduction": _target(20, 600, 40, 350),
     }
     for index, card in enumerate(context["cards"], 1):
-        fun = context.get("reading_style") == "fun"
-        connection = _target(30, 300, 40, 240)
-        if fun:
-            connection["description"] += " Two sentences: scene with one exact scene_phrases phrase, then your choice and its possible payoff."
-        properties[f"card_{index}"] = _closed({
+        fields = {
             "title": _prose(1, 90),
             "reflection_question": _target(20, 850, 60, 420),
             "imagery": _target(40, 500, 60, 260),
-            "reference_id": {"type": "string", "enum": list(dict.fromkeys(
-                ref["reference_id"] for ref in card["reference_characters"]))},
-            ("connection" if fun else "connection_question"): connection,
-        })
+        }
+        if context.get("reading_style") != "fun":
+            fields["reference_id"] = {"type": "string", "enum": list(dict.fromkeys(
+                ref["reference_id"] for ref in card["reference_characters"]))}
+            fields["connection_question"] = _target(30, 300, 40, 240)
+        properties[f"card_{index}"] = _closed(fields)
     properties["next_step"] = _target(15, 400, 30, 280)
     if context.get("astrology"):
         astrology = {}
@@ -120,7 +118,7 @@ def build_grounded_request(provider: str, source: dict[str, Any]) -> dict[str, A
         "model": MODELS[provider], "stream": False,
         "messages": [
             {"role": "system", "content": system + (ASTROLOGY_SYSTEM if context.get("astrology") else "")},
-            {"role": "user", "content": json.dumps(context, ensure_ascii=False, separators=(",", ":"))},
+            {"role": "user", "content": json.dumps(model_context(context), ensure_ascii=False, separators=(",", ":"))},
         ],
         "response_format": {"type": "json_schema", "json_schema": {
             "name": "tarot_grounded_reading", "strict": True, "schema": _schema(context),
@@ -191,30 +189,35 @@ def decode_grounded_output(provider: str, body: object, source: dict[str, Any]) 
     for index, card in enumerate(context["cards"], 1):
         path = f"cards.{index - 1}"
         fun = context.get("reading_style") == "fun"
-        connection_key = "connection" if fun else "connection_question"
-        section = _fields(wire[f"card_{index}"], {
-            "title", "reflection_question", "imagery", "reference_id", connection_key,
-        }, path)
-        supplied = {ref["reference_id"]: ref for ref in card["reference_characters"]}
-        ident = section["reference_id"]
-        reference = supplied.get(ident) if isinstance(ident, str) else None
-        if reference is None:
-            raise AlternativeOutputError("invalid_reference_id", issue=ValidationIssue("reference", path + ".characters.0"))
-        evidence = reference.get("public_context")
-        if not isinstance(evidence, str) or not 1 <= len(evidence) <= 600:
-            raise AlternativeOutputError("invalid_reference_evidence", issue=ValidationIssue("reference_evidence", path + ".characters.0.evidence"))
-        connection_path = path + ".characters.0.connection"
-        connection = (_bounded(section[connection_key], connection_key, 30, 300, path=connection_path) if fun else
-                      _question(section[connection_key], connection_key, 30, 300, source=source, path=connection_path))
+        expected_fields = {"title", "reflection_question", "imagery"}
+        raw = wire[f"card_{index}"]
+        if fun and isinstance(raw, dict):
+            # Some JSON-mode models volunteer the old portrait fields. Only
+            # trusted editorial content reaches this card's public projection.
+            raw = {k: v for k, v in raw.items() if k not in {"reference_id", "connection", "connection_question"}}
+        if not fun:
+            expected_fields |= {"reference_id", "connection_question"}
+        section = _fields(raw, expected_fields, path)
+        characters = []
+        if not fun:
+            supplied = {ref["reference_id"]: ref for ref in card["reference_characters"]}
+            ident = section["reference_id"]
+            reference = supplied.get(ident) if isinstance(ident, str) else None
+            if reference is None:
+                raise AlternativeOutputError("invalid_reference_id", issue=ValidationIssue("reference", path + ".characters.0"))
+            evidence = reference.get("public_context")
+            if not isinstance(evidence, str) or not 1 <= len(evidence) <= 600:
+                raise AlternativeOutputError("invalid_reference_evidence", issue=ValidationIssue("reference_evidence", path + ".characters.0.evidence"))
+            connection = _question(section["connection_question"], "connection_question", 30, 300,
+                                   source=source, path=path + ".characters.0.connection")
+            characters = [{"name": reference["name"], "source": reference["source"], "connection": connection, "evidence": evidence}]
         result["cards"].append({
             "card_id": card["card_id"], "position": card["position"],
             "title": _bounded(section["title"], "title", 1, 90, path=path + ".title"),
             "interpretation": _question(section["reflection_question"], "reflection_question", 20, 850,
                                         source=source, path=path + ".interpretation"),
             "quirky_interpretation": _bounded(section["imagery"], "imagery", 40, 500, path=path + ".quirky_interpretation"),
-            "characters": [{"name": reference["name"], "source": reference["source"],
-                            "connection": connection,
-                            "evidence": evidence}],
+            "characters": characters,
         })
     charts = context.get("astrology", [])
     if charts:

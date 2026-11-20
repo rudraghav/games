@@ -4,6 +4,7 @@ import { writeFile } from 'node:fs/promises';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import type { TarotCharacter } from '../../packages/api-client/src/tarot-characters';
 import registry from '../../packages/api-client/src/generated/tarot-characters.json' with { type: 'json' };
+import funConnections from '../../backend/app/games/tarot/familiar-connections.json' with { type: 'json' };
 import { drawTarotCard, attachPreviewAccess, requestAs, roomAs } from './helpers';
 
 type ReadingView = components['schemas']['ReadingView'];
@@ -272,6 +273,12 @@ async function inspectReading(
     if (liveStyle === 'fun') {
       const scene = reference.evidence?.trim() || '';
       expect(scene.length).toBeGreaterThan(0);
+      const edited = (funConnections as Record<string, { anchor: string; connection: string }>)[
+        artwork!.id
+      ];
+      expect(edited).toBeDefined();
+      expect(scene).toContain(edited.anchor);
+      expect(reference.connection).toBe(edited.connection);
       const move = reference.connection.startsWith(scene)
         ? reference.connection.slice(scene.length).trim()
         : reference.connection;

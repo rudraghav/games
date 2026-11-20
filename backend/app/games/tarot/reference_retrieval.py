@@ -68,6 +68,11 @@ def contexts() -> dict[str, dict]:
 def reviewed_phrases() -> dict[str, list[str]]:
     return json.loads((ROOT / "familiar-scenes.json").read_text())
 
+@lru_cache(maxsize=1)
+def reviewed_connections() -> dict[str, dict[str, str]]:
+    return json.loads((ROOT / "familiar-connections.json").read_text())
+
+
 
 def enriched(references: list[dict]) -> list[dict]:
     lenses = contexts()
@@ -352,7 +357,8 @@ def rank_candidates(
             chosen = max(eligible, key=partial(score, card=card))
             reference = references[chosen]
             context = question + " " + BY_ID[card_ids[position]].meaning + " " + ROLE_CONTEXTS[position]
-            hints = reviewed_phrases().get(reference["id"], []) if reading_style == "fun" else []
+            guide = reviewed_connections().get(reference["id"]) if reading_style == "fun" else None
+            hints = [guide["anchor"]] if guide else []
             card.choices.append({**reference, "public_context": evidence_excerpt(reference, context, scene_phrases=hints)})
             meme_selected = meme_selected or reference.get("kind") == "meme"
             used_ids.add(reference["id"])

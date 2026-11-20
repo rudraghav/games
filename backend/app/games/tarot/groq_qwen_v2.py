@@ -4,7 +4,7 @@ import json
 from copy import deepcopy
 from typing import Any
 
-from app.games.tarot.characters import find_character
+from app.games.tarot.characters import editorial_portrait, find_character
 from app.games.tarot.groq_qwen import (
     MODEL,
     _exact_fields,
@@ -18,10 +18,11 @@ from app.games.tarot.groq_qwen import (
 )
 from app.games.tarot.providers import COMPACT_ASTROLOGY_SYSTEM, AlternativeOutputError, _text
 from app.games.tarot.recovery import ValidationIssue, question_relaxed
-from app.games.tarot.style import FUN_CONNECTION
+from app.games.tarot.style import FUN_CONNECTION, model_context
 
 PROFILE_VERSION = "compact-groq-qwen-evidence-3"
-CLASSIC_CONNECTION = """connection is ONE invitational question
+CLASSIC_CONNECTION = """Choose one distinct reference_id from each card's candidates. The app displays
+its exact public_context as background. connection is ONE invitational question
 about the stated topic using a relevant motif, without retelling the biography
 or plot or attributing a lesson or opinion to that person or work."""
 SYSTEM = """Write a warm English Tarot reflection using the three supplied cards,
@@ -38,8 +39,7 @@ asserting it is happening. Each imagery field is one complete descriptive
 sentence, aiming for 80–180 characters. For vulnerable questions use gentle imagery without
 ridicule, comic exaggeration or pressure. Avoid repeated advice. End with one
 small practical step fitting the question, or a general step when blank.
-Choose one distinct reference_id from each card's candidates. The app displays
-its exact public_context as background. {connection}
+{connection}
 Do not infer virtues, motives or private struggles.
 Add no outside facts. Named references belong only beside their matching images.
 Analogies imply neither endorsement nor equivalence. Preserve religious forms
@@ -59,7 +59,15 @@ def build_groq_qwen_v2_request(source: dict[str, Any]) -> dict[str, Any]:
     for index in range(1, 4):
         _rename_schema(schema["properties"][f"card_{index}"], "interpretation", "reflection_question")
     astrology = schema["properties"].get("astrology_interpretation")
-    fun = json.loads(body["messages"][1]["content"]).get("reading_style") == "fun"
+    context = json.loads(body["messages"][1]["content"])
+    fun = context.get("reading_style") == "fun"
+    if fun:
+        body["messages"][1]["content"] = json.dumps(model_context(context), ensure_ascii=False, separators=(",", ":"))
+        for index in range(1, 4):
+            card = schema["properties"][f"card_{index}"]
+            for field in ("reference_id", "connection"):
+                del card["properties"][field]
+                card["required"].remove(field)
     body["messages"][0]["content"] = SYSTEM.format(
         connection=FUN_CONNECTION if fun else CLASSIC_CONNECTION,
         reference_fields="separate name, source and evidence fields" if fun else "reference names/sources and evidence",
@@ -113,7 +121,13 @@ def decode_groq_qwen_v2_output(body: object, canonical_request: dict[str, Any]) 
     context = json.loads(canonical_request["input"])
     evidence = []
     for index, card in enumerate(context["cards"], 1):
-        section = _exact_fields(payload.get(f"card_{index}"), {
+        raw = payload.get(f"card_{index}")
+        if context.get("reading_style") == "fun" and isinstance(raw, dict):
+            # The shared Qwen decoder expects a complete projection. Fill its
+            # legacy slots exclusively from the card's server-selected portrait.
+            ident, portrait = editorial_portrait(card["reference_characters"])
+            raw.update(reference_id=ident, connection=portrait["connection"])
+        section = _exact_fields(raw, {
             "title", "reflection_question", "imagery", "reference_id", "connection",
         })
         path = f"cards.{index - 1}"

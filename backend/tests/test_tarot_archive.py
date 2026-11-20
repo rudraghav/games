@@ -154,3 +154,20 @@ def test_incomplete_or_unreadable_archive_is_explicit_and_never_rewritten(client
     with sessions()() as session:
         record = session.get(TarotReading, room["match_id"])
         assert (record.payload if record else None) == before
+
+
+def test_archived_v13_fun_comparisons_keep_their_original_words(client):
+    room, owner = spread(client)
+    payload = store(room)
+    with sessions()() as session, session.begin():
+        match = session.get(Match, room["match_id"])
+        match.state = {**match.state, "reading_style": "fun"}
+        stored = session.get(TarotReading, match.id)
+        stored.prompt_version = "pop-tarot-13"
+    expected = Reading.model_validate(payload).model_dump(mode="json")
+    for path in (f"/v1/readings/{room['match_id']}", f"/v1/rooms/{room['id']}/reading"):
+        response = client.get(path, headers=owner)
+        assert response.status_code == 200
+        assert response.json()["reading_style"] == "fun" and response.json()["reading"] == expected
+    with sessions()() as session:
+        assert session.get(TarotReading, room["match_id"]).payload == payload

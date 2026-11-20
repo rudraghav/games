@@ -80,8 +80,12 @@ def test_large_cast_with_long_descriptions_and_combined_chart_stays_in_existing_
         assert all(len(card["reference_characters"]) == 1 for card in context["cards"])
     else:
         assert 6 <= len(choices) <= 18
-    names = request["response_format"]["schema"]["$defs"]["CharacterConnection"]["properties"]["name"]["enum"]
-    assert set(names) == {c["name"] for c in choices}
+    definitions = request["response_format"]["schema"].get("$defs", {})
+    if style == "classic":
+        names = definitions["CharacterConnection"]["properties"]["name"]["enum"]
+        assert set(names) == {c["name"] for c in choices}
+    else:
+        assert "CharacterConnection" not in definitions
     from app.games.tarot.recovery import RETRY_INSTRUCTION, ValidationIssue, retry_request
 
     retry = retry_request(request, ValidationIssue("question_form", "astrology_interpretation.western.focus_1.reflection_question"))

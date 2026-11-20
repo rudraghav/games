@@ -128,10 +128,6 @@ def question_relaxed(source: dict[str, Any], field: str) -> bool:
 def retry_request(request: dict[str, Any], issue: ValidationIssue) -> dict[str, Any]:
     context = json.loads(request["input"])
     context["validation_feedback"] = issue.feedback()
-    if issue.check == "scene_detail":
-        context["validation_feedback"]["instruction"] = (
-            "Use one exact scene_phrases phrase from that portrait (or a short action phrase from public_context if empty). Relate that scene to your choice."
-        )
     if issue.relaxable:
         relaxations = context.get("validation_relaxations", [])
         entry = {"check": issue.check, "field": issue.field}

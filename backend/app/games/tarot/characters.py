@@ -5,7 +5,7 @@ import re
 import unicodedata
 from pathlib import Path
 
-from app.games.tarot.reference_retrieval import enriched, retrieve
+from app.games.tarot.reference_retrieval import enriched, retrieve, reviewed_connections
 from app.games.tarot.style import ReadingStyle
 
 CHARACTERS = enriched(json.loads(Path(__file__).with_name("characters.json").read_text()))
@@ -35,6 +35,21 @@ _IDENTITIES = _identity_index()
 
 def find_character(name: str, source: str) -> dict | None:
     return _IDENTITIES.get((normalized(name), normalized(source)))
+
+
+def editorial_portrait(choices: list[dict]) -> tuple[str, dict[str, str]]:
+    """Bind the reviewed move and its exact supplied scene to the preselected portrait."""
+    if len(choices) != 1:
+        raise ValueError("A Fun card needs its one selected portrait.")
+    choice = choices[0]
+    figure = find_character(choice["name"], choice["source"])
+    guide = reviewed_connections().get(figure["id"]) if figure else None
+    evidence = choice.get("public_context") or choice.get("sourceContext")
+    if not figure or not guide or not isinstance(evidence, str) or guide["anchor"] not in evidence:
+        raise ValueError("A reviewed portrait needs its matching source scene.")
+    return figure["id"], {
+        "name": figure["name"], "source": figure["source"], "connection": guide["connection"], "evidence": evidence,
+    }
 
 
 def lane_characters(lane: str) -> list[dict[str, str]]:
