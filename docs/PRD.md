@@ -2,11 +2,11 @@
 
 Choose a game before choosing how to play. Tarot opens directly into a private
 reading; bot play starts immediately. Friends use game → setup → invite lobby →
-ready → play → results → rematch/change game. The catalogue now contains 27 games.
+ready → play → results → rematch/change game. The catalogue now contains 29 games.
 
 ## Learn through play
 
-All 27 game pages keep normal play as the default. **Rules & tutorial** opens a
+All 29 game pages keep normal play as the default. **Rules & tutorial** opens a
 public illustrated rulebook with the goal, three worked examples, the rules by
 topic and an optional **Play tutorial** action. Reading it creates no session.
 Players can turn coaching on or off in the same rulebook during a solo or
@@ -59,7 +59,7 @@ background even if the catalogue is later corrected.
 
 Pop Tarot is the home catalogue's featured game, occupying the first full-width
 row with its own card artwork and a clear Start reading action. It remains one
-of the27 discoverable experiences and respects the active search and filters.
+of the 29 discoverable experiences and respects the active search and filters.
 
 Astrology is optional and off by default. Enabling it offers Western, Vedic or
 both (Both selected initially), using birth date, local time and a selected city.
@@ -84,6 +84,10 @@ The host selects rules before a match. All seated players must be ready. Late
 arrivals wait until the next match. No turn clock. A lost presence lease pauses
 play until reconnection; the host can abandon the match. A replacement host can
 claim hosting after 90 seconds. Host departure transfers to a connected member.
+
+## Solo casino tables
+
+Roulette and Slots open directly from their game pages. Each session starts with 100 free chips and allows five spins. The server settles one confirmed wager at a time. Both games have illustrated rules, optional tutorials, and a private history of the return, net change and remaining balance for every spin. Opening a finished session from the profile still shows that original result after a rematch.
 
 ## Library expansion
 

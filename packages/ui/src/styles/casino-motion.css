@@ -310,7 +310,7 @@
   }
   .casino-layout .casino-dock .casino-choices {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 128px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 114px), 1fr));
     gap: 8px;
     width: 100%;
     max-height: none;
@@ -322,6 +322,12 @@
   .casino-choice {
     display: grid;
     min-width: 0;
+  }
+  .casino-choice-note {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 500;
   }
   .casino-choice > .button,
   .casino-wager-row > .button {
@@ -366,12 +372,11 @@
     border-color: var(--color-danger);
   }
   .casino-wager-presets {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 52px), 1fr));
     gap: 6px;
   }
   .casino-wager-presets > .button {
-    flex: 1 1 60px;
     min-width: 44px;
     min-height: 44px;
     padding: 4px 8px;
@@ -381,10 +386,17 @@
     border-color: var(--color-sage);
     background: var(--color-sage-light);
   }
-  .casino-wager-problem {
+  .casino-wager-problem,
+  .casino-wager-impact {
     margin: 0;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 650;
+  }
+  .casino-wager-impact {
+    color: var(--color-ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .casino-wager-problem {
     color: var(--color-danger);
   }
   @container casino-dock (min-width: 520px) {
@@ -394,7 +406,8 @@
       column-gap: 12px;
     }
     .casino-wager-range,
-    .casino-wager-problem {
+    .casino-wager-problem,
+    .casino-wager-impact {
       grid-column: 1 / -1;
     }
   }

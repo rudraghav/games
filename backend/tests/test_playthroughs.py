@@ -72,6 +72,9 @@ def test_complete_match_at_each_player_limit(game_id, maximum):
         if not state["winners"]:
             scores = {player.score for player in engine.project_view(state, players[0]).players}
             assert len(scores) == 1  # The team shares its result on defeat too.
+    elif engine.manifest.play_mode == "solo":
+        view = engine.project_view(state, players[0])
+        assert view.winners == (players if view.players[0].score > 0 else [])
     else:
         assert state["winners"] or state.get("draw")
     assert all(not engine.legal_actions(state, player) for player in players)

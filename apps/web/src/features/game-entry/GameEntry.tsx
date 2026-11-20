@@ -38,6 +38,7 @@ export function GameEntry({
   }, [rulesOpen]);
   const launch = useQuickPlay(game.id);
   const solo = game.playMode === 'solo';
+  const reading = game.id === 'tarot';
   const quickPlay = solo || game.botsSupported;
   const start = quickPlay ? (
     <Button
@@ -48,7 +49,13 @@ export function GameEntry({
       onClick={() => void launch.start()}
       aria-describedby={launch.failure?.mode === 'play' ? 'game-start-error' : undefined}
     >
-      {launch.pending !== 'play' ? solo ? <Sparkles size={18} /> : <Bot size={18} /> : null}
+      {launch.pending !== 'play' ? (
+        reading ? (
+          <Sparkles size={18} />
+        ) : solo ? null : (
+          <Bot size={18} />
+        )
+      ) : null}
       {launch.label('play')}
       {launch.pending !== 'play' ? <ArrowRight size={18} /> : null}
     </Button>
@@ -77,16 +84,18 @@ export function GameEntry({
           <div className="game-entry-content">
             <h1 id="game-entry-title">{game.name}</h1>
             <p className="game-entry-description">
-              {solo ? 'Choose three cards for a fresh perspective.' : game.subtitle}
+              {reading ? 'Choose three cards for a fresh perspective.' : game.subtitle}
             </p>
-            {solo ? (
+            {reading ? (
               <p className="game-entry-detail">Add a question or astrology after you draw.</p>
             ) : (
               <p className="game-entry-meta">
                 <span>
                   <UsersRound size={15} aria-hidden="true" />
                   {game.minPlayers === game.maxPlayers
-                    ? `${game.minPlayers} players`
+                    ? game.maxPlayers === 1
+                      ? '1 player'
+                      : `${game.minPlayers} players`
                     : `${game.minPlayers}–${game.maxPlayers} players`}
                 </span>
                 <span>
@@ -123,7 +132,7 @@ export function GameEntry({
                 {quickPlay ? 'Rules & tutorial' : 'Rules'}
               </Button>
               {solo ? (
-                <Link href="/profile">Past readings</Link>
+                <Link href="/profile">{reading ? 'Past readings' : 'Past games'}</Link>
               ) : (
                 <Button
                   variant="ghost"

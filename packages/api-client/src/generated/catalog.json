@@ -206,6 +206,52 @@
     ]
   },
   {
+    "id": "roulette",
+    "name": "Roulette",
+    "subtitle": "Play the single-zero wheel",
+    "family": "casino",
+    "min_players": 1,
+    "max_players": 1,
+    "minutes": "2\u20134",
+    "icon": "circle-dot",
+    "color": "pine",
+    "bots_supported": false,
+    "play_mode": "solo",
+    "score_label": "Net chips",
+    "score_order": "high",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Start with 100 free chips. Choose one bet and stake per spin.",
+      "A single number pays 35 to 1. Red or black, odd or even, and either half pay 1 to 1.",
+      "Zero is green and wins only a bet on 0. Each spin is independent.",
+      "Finish above 100 after five spins to win. An empty stack ends the round early."
+    ]
+  },
+  {
+    "id": "slots",
+    "name": "Slots",
+    "subtitle": "Spin three reels on one payline",
+    "family": "casino",
+    "min_players": 1,
+    "max_players": 1,
+    "minutes": "1\u20133",
+    "icon": "cherry",
+    "color": "coral",
+    "bots_supported": false,
+    "play_mode": "solo",
+    "score_label": "Net chips",
+    "score_order": "high",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Start with 100 free chips. Stake 1\u201310 chips on each of five spins.",
+      "Read the middle line. Three matching symbols or exactly two cherries pay.",
+      "Multiply your stake by the listed return. It includes the stake.",
+      "Finish above 100 chips to win. A new match starts with 100 chips."
+    ]
+  },
+  {
     "id": "skyjo",
     "name": "Skyjo",
     "subtitle": "Reveal your grid. Lowest score wins.",

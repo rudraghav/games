@@ -1,5 +1,5 @@
 {
-  "games": 27,
+  "games": 29,
   "kind": "Legally reached engine projections, not saved API rooms",
   "limits": [
     "Only generated legal trajectories are claimed; no guarantee that every rare action appears.",
@@ -566,7 +566,7 @@
       "physicalInventoryChecked": true,
       "seats": 6,
       "seed": 31,
-      "steps": 28,
+      "steps": 29,
       "stress": false,
       "supplemental": false
     },
@@ -639,6 +639,114 @@
       "seats": 7,
       "seed": 31,
       "steps": 18,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "spin"
+      ],
+      "capturedPhases": [
+        "betting"
+      ],
+      "chosenActionTypes": [
+        "spin"
+      ],
+      "finished": true,
+      "game": "roulette",
+      "offeredActionTypes": [
+        "spin"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "betting"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 1,
+      "seed": 17,
+      "steps": 5,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "spin"
+      ],
+      "capturedPhases": [
+        "betting"
+      ],
+      "chosenActionTypes": [
+        "spin"
+      ],
+      "finished": true,
+      "game": "roulette",
+      "offeredActionTypes": [
+        "spin"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "betting"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 1,
+      "seed": 31,
+      "steps": 5,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "spin"
+      ],
+      "capturedPhases": [
+        "spinning"
+      ],
+      "chosenActionTypes": [
+        "spin"
+      ],
+      "finished": true,
+      "game": "slots",
+      "offeredActionTypes": [
+        "spin"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "spinning"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 1,
+      "seed": 17,
+      "steps": 5,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "spin"
+      ],
+      "capturedPhases": [
+        "spinning"
+      ],
+      "chosenActionTypes": [
+        "spin"
+      ],
+      "finished": true,
+      "game": "slots",
+      "offeredActionTypes": [
+        "spin"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "spinning"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 1,
+      "seed": 31,
+      "steps": 5,
       "stress": false,
       "supplemental": false
     },
@@ -2402,5 +2510,5 @@
       "supplemental": true
     }
   ],
-  "scenarios": 259
+  "scenarios": 271
 }

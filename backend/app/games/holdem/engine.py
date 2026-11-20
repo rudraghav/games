@@ -87,26 +87,31 @@ class HoldemEngine(BaseEngine):
     def _active(self, s: State) -> list[str]:
         return [p for p in s["order"] if not s["players"][p]["folded"]]
 
-    def _pot_layers(self, s: State) -> list[dict]:
-        """Exact contribution layers; settlement awards each one separately."""
+    def _settlement_pots(self, s: State) -> list[dict]:
+        """Separate pots by eligibility, retaining uncalled excess as a refund."""
         previous = 0
-        layers = []
+        pots: list[dict] = []
         active = self._active(s)
         for level in sorted({p["total"] for p in s["players"].values() if p["total"]}):
             contributors = [p for p in s["order"] if s["players"][p]["total"] >= level]
             eligible = [p for p in active if s["players"][p]["total"] >= level] or active
-            layers.append({"amount": (level - previous) * len(contributors),
-                           "contributors": contributors, "eligible": eligible,
-                           "refund_to": contributors[0] if len(contributors) == 1 else None})
+            amount = (level - previous) * len(contributors)
+            refund_to = contributors[0] if len(contributors) == 1 else None
+            if pots and refund_to is None and pots[-1]["eligible"] == eligible:
+                # Folded contributions add dead money to the same pot. Splitting
+                # each contribution separately can award a tied seat extra chips.
+                pots[-1]["amount"] += amount
+            else:
+                pots.append({"amount": amount, "eligible": eligible, "refund_to": refund_to})
             previous = level
-        return layers
+        return pots
 
     def _live_pots(self, s: State) -> list[dict]:
         """Pots as the table sees them while betting: one pot until someone is all in.
 
         A pot splits only at an all-in player's total. Everyone still in the hand
         who has matched that level, or still holds chips to match it, can win it.
-        Settlement keeps using the exact contribution layers in `_pot_layers`.
+        Settlement uses final contributions and eligibility in `_settlement_pots`.
         """
         players = s["players"]
         active = self._active(s)
@@ -212,7 +217,7 @@ class HoldemEngine(BaseEngine):
             else {}
         )
         winners = set()
-        for layer in self._pot_layers(s):
+        for layer in self._settlement_pots(s):
             amount = layer["amount"]
             if layer["refund_to"] is not None:
                 # Returning an unmatched wager is not winning a side pot.

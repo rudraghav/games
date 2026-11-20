@@ -54,6 +54,18 @@ Exact latest test counts, production source and hosted results belong in
 `progress.txt` and the release evidence. This audit is scoped regression evidence,
 not a proof of every possible strategy or an untested edition's printed inventory.
 
+## Roulette and Slots
+
+The single-zero wheel offers 37 straight bets and six outside groups. Tests settle all 43 choices against every pocket, including all six losing on zero. Slots tests enumerate each of the 1,728 equiprobable reel-stop triples at two stakes. Both engines retain each settled gross return, net change and closing balance and project only completed spins. Idempotent action receipts prevent a retry from spinning twice. [Roulette](../backend/app/games/roulette/README.md) · [Slots](../backend/app/games/slots/README.md)
+
+## Card odds and settlement checks, 21 November 2026
+
+The independent PokerKit check in `backend/tests/verify_pokerkit.py` compares the exact ordering of all 2,598,960 five-card deals and 1,024 seeded seven-card deals. A five-seat replay checks that a tied 22-chip Hold’em pot awards 11 to each player. Contributions from folded players can enter one pot at several amounts. The payout splits each actual pot once. Existing completed ledgers retain their recorded awards. [PokerKit](https://github.com/uoftcprg/pokerkit) · [Poker TDA rules](https://www.pokertda.com/view-poker-tda-rules/)
+
+The deterministic table tests enumerate all 22,100 Teen Patti hands with the Games sequence ordering. The six-deck Blackjack test counts 2,304 naturals among 48,516 possible opening pairs. The player's hit preview has a separate test enumerating the legal hidden-card and hit-card pairs from the visible table. Its percentage describes one hit from the active hand. Winning against the dealer is a different event.
+
+For future strategy experiments, OpenSpiel supplies imperfect-information environments and game-theory algorithms. Its Blackjack model offers Hit and Stand and has a different action space from Games’ insurance, split and double table. The current bots use bounded estimates from each seat’s own view. For a proposed dice game, Icepool can evaluate exact integer-weighted distributions offline. Neither tool is required to run these tables. [OpenSpiel game list](https://openspiel.readthedocs.io/en/stable/games.html) · [Icepool](https://github.com/HighDiceRoller/icepool)
+
 ## 2 November 2026 implementation follow-through
 
 The independent evidence and decisions are preserved in

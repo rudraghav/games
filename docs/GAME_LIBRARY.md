@@ -1,6 +1,6 @@
 # Games library
 
-The catalogue has 26 multiplayer games and Pop Tarot. The owner authorized
+The catalogue has 26 multiplayer games plus Pop Tarot, Roulette and Slots for solo play. The owner authorized
 main/production and the expanded acceptance run on 1 November 2026.
 Additions reuse private rooms, profiles, action retries, chat,
 presence, results and rematches, with independent rules engines and renderers.
@@ -28,6 +28,31 @@ choices are not represented as Splendor's printed deck. An edition-faithful
 Splendor module needs a verified inventory of all 90 development cards and ten
 nobles, in addition to the published rules. Publisher resources:
 https://www.spacecowboys-games.com/game/splendor/.
+
+## Objects and decisions across the current catalogue
+
+| What the player handles | Games | Decision to support |
+| --- | --- | --- |
+| Private cards and public rows, piles or sets | Uno and No Mercy, Rummy, Shithead, Skyjo, Trio, Flip 7, 6 nimmt!, Sea Salt & Paper | Inspect a card, compare legal destinations and keep hidden values unknown. In simultaneous play any row forecast depends on the other reveals. |
+| Cards used as money, property and actions | Both Deal editions | Distinguish banking a card from playing its effect. No Mercy also uses debt chips that track unpaid bills. |
+| Cards and spendable casino chips | Blackjack, Texas Hold’em, Teen Patti | Show the additional cost and remaining stack before a wager. The same table can contain forced contributions, optional stakes and split payouts. |
+| Wheel and betting chips | Roulette | Pick a single pocket or outside group, change the stake locally, then spin. Reopen each settled pocket and payout from the profile. |
+| Three reels and betting chips | Slots | Price one payline, compare the paytable and review each stop and payout after a session. |
+| Poker cards and numbered signal chips | The Gang | A chip expresses relative hand strength. Taking an occupied chip displaces a teammate. Taking the final free chip can reveal the next street. |
+| Market cards and spendable tokens | Gem Market | The purchase quote includes discounts, matching chips, wild gold and the balance after purchase. |
+| Wooden pieces, discs, tiles or seeds | Four in a Row, Checkers, Reversi, boop., Azul, Mancala | Show legal destinations and visible consequences such as flipping, sowing, pushing or overflow. |
+| Words, prompts and private selections | Word Agents, Spill or Chill, Most Likely, Hot Seat | Identify who can see the answer and when the group will see the reveal. |
+| Oracle cards | Pop Tarot | Draw once, then revisit the saved spread in either reading style. |
+
+## Odds references for wheels, reels and dice
+
+The current catalogue includes three casino card tables and two single-player chance games. Both chance games use free session chips. Roulette has 37 pockets and pays an even-money bet zero when zero lands. Slots uses three original 12-stop strips and one payline. Its 1,728 stop combinations give 492 winning lines and a theoretical gross return of 93.75%. Each completed session retains its own private spin history after a rematch or room closure. Dice-wager games remain a candidate. Uno No Mercy's colour roulette is a draw from a card deck. See the [Roulette rules](../backend/app/games/roulette/README.md) and [Slots paytable](../backend/app/games/slots/README.md).
+
+| Format | Table interaction | Probability reference |
+| --- | --- | --- |
+| Single-zero roulette | Select a pocket or an outside bet, see the stake, change it, then lock it by spinning. Keep the committed bets visible beside the result. | Enumerate all 37 pockets. A straight hits 1/37 and returns 36 chips including a 1-chip stake. Red hits 18/37. Set the zero rule explicitly since some tables refund half on even-money bets. [Monte-Carlo wheel and payout rules](https://asset.montecarlosbm.com/2018-09/rules-of-games-european-roulette-EN.pdf) |
+| Independent reels | Show the active line, stake and paytable before a spin. At rest, mark the paid line and give the total return separately from net chips. | In a separate worked example the regulator's three 20-stop reels give 8,000 equally likely stop triples. A symbol at two stops on each reel appears three across on 8 of them. A full return percentage also needs every payout, line and bonus rule. [Gambling Commission worked example](https://www.gamblingcommission.gov.uk/authorities/guide/page/la-bulletin-august-2020-feature-article) |
+| Two dice and a point marker | Show the current point and which totals resolve the chosen bet; retain them when players review the last roll. | Two fair six-sided dice give 36 ordered rolls. Six sum to seven, one sums to two. Bet resolution also depends on the point and phase. [AnyDice probability distributions](https://www.anydice.com/docs/introduction/) |
 
 ## Further candidates
 

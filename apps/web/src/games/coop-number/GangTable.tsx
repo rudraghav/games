@@ -25,13 +25,26 @@ export function GangTable(props: TableProps) {
   const blocked = pending || room.paused;
   const name = (id: string) => (id === selfId ? 'you' : playerName(room, id));
   // The viewer's unsent chip survives refresh and other seats' moves, within this street only.
-  const [chosen, setChosen] = useTableDraft<number | null>(
+  const [review, setReview] = useTableDraft<{ rank: number; context: string } | null>(
     `gang:${room.id}:${room.matchId}:${data.heist}:${data.street}`,
     null,
   );
   const ownChip = data.chips[selfId];
   const holderOf = (rank: number) => match.players.find((p) => data.chips[p.id] === rank)?.id;
   const closesWithFreeChip = data.pending_players.length === 1 && ownChip === null;
+  const chipContext = (rank: number) => {
+    const holder = holderOf(rank);
+    return JSON.stringify([
+      room.matchId,
+      data.heist,
+      data.street,
+      ownChip,
+      holder,
+      !holder && closesWithFreeChip,
+    ]);
+  };
+  // Older tabs saved only a rank. A fresh review establishes the current holder and stakes.
+  const chosen = review && review.context === chipContext(review.rank) ? review.rank : null;
   // A committed claim ends the choice; a rejected stale claim keeps it and is resent once.
   const { submit } = useRetriedMove({
     match,
@@ -39,16 +52,8 @@ export function GangTable(props: TableProps) {
     selfId,
     pending,
     onAction,
-    onCommitted: () => setChosen(null),
-    retryKey: (action) =>
-      JSON.stringify([
-        room.matchId,
-        data.heist,
-        data.street,
-        ownChip,
-        holderOf(action.amount ?? 0),
-        closesWithFreeChip,
-      ]),
+    onCommitted: () => setReview(null),
+    retryKey: (action) => chipContext(action.amount ?? 0),
   });
   const option = match.actions.find(
     (o) => o.value.type === 'claim_chip' && o.value.amount === chosen,
@@ -62,9 +67,11 @@ export function GangTable(props: TableProps) {
   const roundComplete = ['heist_review', 'finished'].includes(match.phase);
   const lost = taken[selfId] && ownChip === null ? taken[selfId] : null;
   const instruction = !option
-    ? ownChip
-      ? 'Taking another chip returns yours to the center.'
-      : 'Take a chip to rank your hand.'
+    ? review && chosen === null
+      ? 'The chip rack changed. Choose a chip again.'
+      : ownChip
+        ? 'Taking another chip returns yours to the center.'
+        : 'Take a chip to rank your hand.'
     : owner
       ? `This takes ${playerName(room, owner)}’s chip; they will need another.`
       : closesStreet
@@ -161,7 +168,7 @@ export function GangTable(props: TableProps) {
                   before the round can end.
                 </p>
               ) : null}
-              <div className="gang-rank-scale" aria-hidden="true">
+              <div className="gang-rank-scale">
                 <span>1 · weakest hand</span>
                 <span>{match.players.length} · strongest hand</span>
               </div>
@@ -177,7 +184,7 @@ export function GangTable(props: TableProps) {
                   const move = match.actions.find(
                     (o) => o.value.type === 'claim_chip' && o.value.amount === rank,
                   );
-                  const review = Boolean(holder) || closesWithFreeChip;
+                  const needsReview = Boolean(holder) || closesWithFreeChip;
                   const location = holder
                     ? `held by ${holder === selfId ? 'you' : playerName(room, holder)}`
                     : 'in the center';
@@ -189,14 +196,15 @@ export function GangTable(props: TableProps) {
                       data-rank={rank}
                       data-own={holder === selfId || undefined}
                       data-held={Boolean(holder) || undefined}
-                      aria-label={`${move ? (review ? 'Review ' : 'Take ') : ''}${rank}-star chip ${location}`}
-                      aria-pressed={move && review ? chosen === rank : undefined}
+                      aria-label={`${move ? (needsReview ? 'Review ' : 'Take ') : ''}${rank}-star chip ${location}`}
+                      aria-pressed={move && needsReview ? chosen === rank : undefined}
                       disabled={blocked || !move}
                       onClick={() => {
                         if (!move || blocked) return;
-                        if (review) setChosen(chosen === rank ? null : rank);
+                        if (needsReview)
+                          setReview(chosen === rank ? null : { rank, context: chipContext(rank) });
                         else {
-                          setChosen(null);
+                          setReview(null);
                           submit(move.value);
                         }
                       }}

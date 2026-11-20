@@ -89,6 +89,45 @@ describe('Cooperative poker and number-row decisions', () => {
     expect(html).not.toContain('Revealed, in order');
   });
 
+  it('previews the cost of taking a full row rather than the penalty on the selected card', () => {
+    const scenario = midgameScenarios.find((item) => item.id === 'six-nimmt-2-17-21')!;
+    const room = mapRoom(scenario.room);
+    const match = room.game!;
+    const data = sixNimmtDetails(match.detail);
+    const card = match.hand.find((item) => item.value === '40')!;
+    // Row one ends in 39 with five cards. Resolve 40 against these exact public rows.
+    const html = renderToStaticMarkup(
+      <SixNimmtTable
+        room={room}
+        match={{
+          ...match,
+          phase: 'selecting',
+          hand: [card],
+          actions: [
+            {
+              ...match.actions[0],
+              label: 'Select 40',
+              value: {
+                ...match.actions[0].value,
+                type: 'select_number',
+                card: card.id,
+                choice: '',
+              },
+            },
+          ],
+          detail: { ...match.detail, own_selection: null },
+        }}
+        selfId={scenario.selfId}
+        pending={false}
+        onAction={() => undefined}
+      />,
+    );
+    expect(html).toContain(
+      `If 40 goes first, it takes row 1 for ${data.row_penalties[0]} penalties.`,
+    );
+    expect(html).toContain('data-preview="true"');
+  });
+
   it('tells a player whose chip was taken, and shows their own chip as held', () => {
     const scenario = midgameScenarios.find((item) => item.id === 'the-gang-6-31-7')!;
     const room = mapRoom(scenario.room);

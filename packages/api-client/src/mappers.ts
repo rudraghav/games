@@ -25,7 +25,7 @@ export function mapCard(card: CompatibleCard) {
   return cardSchema.parse(card);
 }
 
-function mapGame(game: Wire['GameView']) {
+export function mapGame(game: Wire['GameView']) {
   return {
     id: game.game_id,
     phase: game.phase,

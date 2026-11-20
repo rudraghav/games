@@ -9,6 +9,8 @@ from sqlalchemy.orm import Session
 
 from app.models import Match, Member, Message, Profile, RateBucket, Receipt, Room, TarotReading
 
+CHANCE_GAME_IDS = ("roulette", "slots")
+
 
 class Repository:
     def __init__(self, session: Session):
@@ -128,8 +130,7 @@ class Repository:
         )
 
     def history(self, user_id: str) -> list[Match]:
-        # Keep completed solo readings discoverable even if an old membership
-        # is absent. The service still validates the saved participants.
+        # A saved solo match can outlive its room membership.
         return list(
             self.session.scalars(
                 select(Match)
@@ -137,7 +138,15 @@ class Repository:
                 .where(
                     or_(
                         Member.user_id == user_id,
-                        and_(Match.game_id == "tarot", Match.participants[0].as_string() == user_id),
+                        and_(
+                            Match.participants[0].as_string() == user_id,
+                            or_(
+                                Match.game_id == "tarot",
+                                and_(Match.game_id.in_(CHANCE_GAME_IDS),
+                                     func.json_array_length(Match.participants) == 1,
+                                     Match.state["phase"].as_string() == "finished"),
+                            ),
+                        ),
                     ),
                     Match.result.is_not(None),
                 )

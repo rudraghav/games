@@ -5,6 +5,7 @@ export const categories = [
   { value: 'all', label: 'All games' },
   { value: 'modern', label: 'Modern favourites' },
   { value: 'cards', label: 'Cards' },
+  { value: 'casino', label: 'Casino' },
   { value: 'boards', label: 'Board games' },
   { value: 'party', label: 'Party' },
   { value: 'cooperative', label: 'Co-op' },
@@ -29,7 +30,6 @@ const families: Record<Category, readonly string[]> = {
     'palace',
     'shedding',
     'property',
-    'casino',
     'rummy',
     'grid',
     'flip-seven',
@@ -38,6 +38,7 @@ const families: Record<Category, readonly string[]> = {
     'number-rows',
     'paper',
   ],
+  casino: ['casino'],
   boards: ['board', 'mancala', 'gems', 'azul', 'boop'],
   party: [
     'palace',
@@ -75,6 +76,8 @@ export function discoveryRank(id: string) {
 const aliases: Record<string, string> = {
   holdem: 'poker texas hold em',
   'teen-patti': 'poker flush',
+  roulette: 'european roulette wheel single zero red black straight up',
+  slots: 'slot machine fruit machine one armed bandit reels payline',
   rummy: 'indian 13 card',
   'word-agents': 'codenames words teams',
   'gem-market': 'splendor gems',
@@ -104,7 +107,12 @@ function searchableText(value: string) {
 }
 
 export function matchesGame(game: Game, query: string, players: number, category: Category) {
-  const text = searchableText(`${game.name} ${game.subtitle} ${aliases[game.id] || ''}`);
+  const casino = game.family === 'casino';
+  const text = searchableText(
+    `${game.name} ${game.subtitle} ${aliases[game.id] || ''} ${casino ? 'casino' : ''}`,
+  );
+  const casinoCards =
+    category === 'cards' && casino && ['holdem', 'teen-patti', 'blackjack'].includes(game.id);
   return (
     searchableText(query)
       .split(/\s+/)
@@ -117,7 +125,7 @@ export function matchesGame(game: Game, query: string, players: number, category
         ? game.minPlayers === 1 || game.botsSupported
         : category === 'cooperative'
           ? game.playMode === 'cooperative'
-          : families[category].includes(game.family))) &&
+          : casinoCards || families[category].includes(game.family))) &&
     (category !== 'solo' || game.minPlayers === 1 || game.botsSupported)
   );
 }

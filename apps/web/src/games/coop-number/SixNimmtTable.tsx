@@ -38,6 +38,24 @@ const penalties = (count: number) => plural(count, 'penalty', 'penalties');
 const ordinal = (n: number) =>
   `${n}${n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th'}`;
 
+/** A comparison against the four public rows before any other number resolves. */
+function firstPlacement(card: Card, data: ReturnType<typeof sixNimmtDetails>) {
+  const ends = data.rows.map((row) => Number(row[row.length - 1].value));
+  const closest = Math.max(...ends.filter((end) => end < Number(card.value)));
+  const row = ends.indexOf(closest);
+  const prefix = `If ${card.value} goes first, `;
+  if (row === -1)
+    return {
+      row,
+      text: `${prefix}choose a row to take (from ${penalties(Math.min(...data.row_penalties))}).`,
+    };
+  const text =
+    data.rows[row].length === 5
+      ? `it takes row ${row + 1} for ${penalties(data.row_penalties[row])}.`
+      : `it follows ${closest} in row ${row + 1}.`;
+  return { row, text: prefix + text };
+}
+
 function NumberCard({
   card,
   selected,
@@ -101,6 +119,7 @@ export function SixNimmtTable(props: TableProps) {
   const only = picks.length === 1 ? picks[0] : undefined;
   const selectedOption = only ?? picks.find((option) => option.value.card === chosen);
   const selectedCard = match.hand.find((item) => item.id === selectedOption?.value.card);
+  const preview = selectedCard && !data.own_selection ? firstPlacement(selectedCard, data) : null;
   const next = match.actions.find((o) => ['next_selection', 'next_round'].includes(o.value.type));
   const simultaneous = match.phase === 'selecting';
   const takeRows = match.actions.filter((o) => o.value.type === 'take_row');
@@ -210,6 +229,7 @@ export function SixNimmtTable(props: TableProps) {
                 className="six-row"
                 data-full={row.length === 5}
                 data-cheapest={(take && cost === cheapest) || undefined}
+                data-preview={preview?.row === index || undefined}
               >
                 <header>
                   <h3>Row {index + 1}</h3>
@@ -299,11 +319,7 @@ export function SixNimmtTable(props: TableProps) {
                   ))}
                 </div>
                 <p className="small muted six-hand-note" aria-live="polite">
-                  {only
-                    ? 'Everyone reveals together once the last player locks.'
-                    : selectedCard
-                      ? `${selectedCard.value} selected · ${penalties(Number(selectedCard.subtitle))} if a row takes it.`
-                      : 'Numbers reveal together, lowest first.'}
+                  {preview?.text ?? 'Numbers reveal together, lowest first.'}
                 </p>
                 <Button
                   disabled={blocked || !selectedOption}

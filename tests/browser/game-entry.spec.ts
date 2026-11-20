@@ -31,7 +31,16 @@ function own(run: Run, room: RoomView, actor: Page) {
     run.rooms.push({ id: room.id, actors: [actor] });
 }
 
+function normalAction(game: (typeof catalogue)[number]) {
+  return game.id === 'tarot'
+    ? 'Start reading'
+    : game.play_mode === 'solo'
+      ? 'Play solo'
+      : 'Play with bots';
+}
+
 async function start(page: Page, run: Run, gameId: string) {
+  const game = catalogue.find((item) => item.id === gameId)!;
   await page.goto(`/games/${gameId}`);
   const created = page.waitForResponse(
     (response) =>
@@ -39,7 +48,7 @@ async function start(page: Page, run: Run, gameId: string) {
   );
   await page
     .getByRole('button', {
-      name: gameId === 'tarot' ? 'Start reading' : 'Play with bots',
+      name: normalAction(game),
       exact: true,
     })
     .click();
@@ -48,7 +57,7 @@ async function start(page: Page, run: Run, gameId: string) {
   const room = (await response.json()) as RoomView;
   own(run, room, page);
   await expect(page).toHaveURL(
-    new RegExp(`/games/${gameId}/${gameId === 'tarot' ? 'play' : 'rooms'}/${room.id}$`),
+    new RegExp(`/games/${gameId}/${game.play_mode === 'solo' ? 'play' : 'rooms'}/${room.id}$`),
   );
   return room;
 }
@@ -128,19 +137,19 @@ test('all game pages are public, readable and browse without creating a guest or
     ).toBeVisible();
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(page.locator('.game-entry-actions .button--primary')).toHaveText(
-      game.id === 'tarot' ? 'Start reading' : 'Play with friends',
+      game.play_mode === 'solo' ? normalAction(game) : 'Play with friends',
     );
     const action = page.getByRole('button', {
-      name: game.id === 'tarot' ? 'Start reading' : 'Play with bots',
+      name: normalAction(game),
       exact: true,
     });
-    if (game.id === 'tarot' || game.bots_supported) {
+    if (game.play_mode === 'solo' || game.bots_supported) {
       await expect(action).toBeVisible();
       const box = await action.boundingBox();
       expect(box!.height).toBeGreaterThanOrEqual(44);
       expect(box!.y + box!.height).toBeLessThanOrEqual(page.viewportSize()!.height);
     }
-    if (game.id === 'tarot') {
+    if (game.play_mode === 'solo') {
       await expect(
         page.getByRole('button', { name: 'Play with friends', exact: true }),
       ).toHaveCount(0);

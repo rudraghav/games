@@ -1,4 +1,5 @@
 'use client';
+import { usePrivateViewScope } from '@/shared/use-private-view-scope';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -12,7 +13,6 @@ import { TarotReading } from '@/games/tarot/TarotReading';
 import {
   CompletedReadingControls,
   useCompletedReadingView,
-  usePrivateReadingScope,
 } from '@/games/tarot/completed-reading-view';
 import { gamePath, readingPath, roomPath } from '@/shared/game-paths';
 
@@ -20,7 +20,7 @@ import { gamePath, readingPath, roomPath } from '@/shared/game-paths';
 export function SavedReadingScreen({ matchId }: { matchId: string }) {
   const pathname = usePathname();
   const router = useRouter();
-  const scope = usePrivateReadingScope();
+  const scope = usePrivateViewScope();
   const saved = useQuery({
     queryKey: ['saved-tarot-reading', scope, matchId],
     queryFn: () => api.savedReading(matchId),

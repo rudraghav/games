@@ -9,6 +9,7 @@ import { CasinoDock } from './CasinoDock';
 import { casinoPhaseLabel } from './casino-transitions';
 import { useCasinoMotion } from './useCasinoMotion';
 import { blackjackValueLabel, visibleBlackjackValue } from './hand-value';
+import { blackjackHitBustChance } from './blackjack-hit-odds';
 import {
   blackjackSeatHands,
   feltCue,
@@ -173,6 +174,7 @@ export function CasinoTable(props: TableProps) {
   const callAmount = holdemCall(match, selfId);
   const activeHand =
     match.phase === 'playing' && match.currentPlayer === selfId ? blackjack?.activeHand : null;
+  const hitChance = activeHand != null ? blackjackHitBustChance(match) : null;
   const wager = teenPatti ? match.actions.find((option) => option.value.type === 'bet') : undefined;
   const showOwnHand = blackjack ? blackjack.hands.length > 0 : match.hand.length > 0;
   const viewer = Math.max(
@@ -618,6 +620,20 @@ export function CasinoTable(props: TableProps) {
                       );
                     })}
                   </HorizontalRail>
+                  {hitChance != null && activeHand != null ? (
+                    <details className="blackjack-hit-preview">
+                      <summary>
+                        What if I hit{blackjack.hands.length > 1 ? ` hand ${activeHand + 1}` : ''}?
+                      </summary>
+                      <p>
+                        <strong>
+                          {(100 * hitChance).toFixed(1).replace(/\.0$/, '')}% chance of busting
+                        </strong>{' '}
+                        on the next card. Based on the cards showing and the dealer’s blackjack
+                        check.
+                      </p>
+                    </details>
+                  ) : null}
                 </div>
               ) : (
                 <CasinoCardRow

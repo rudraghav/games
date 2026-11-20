@@ -15,6 +15,7 @@ import {
   pit,
   property,
   rankChip,
+  reel,
   tarot,
   tile,
   token,
@@ -298,6 +299,77 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
         'Accepting a sideshow compares both hands. The weaker hand packs and the requester loses a tie.',
       decline: 'Declining a sideshow keeps both hands in the game.',
       fold: 'Packing gives up the pot and keeps your cards hidden.',
+    },
+  },
+  roulette: {
+    goal: 'Finish the session with more than your starting 100 chips.',
+    rules: [
+      rule(
+        'Choose your bet',
+        'Choose one number or an outside bet such as red. You can change the bet and stake until you spin.',
+        picture('A two-chip bet on red.', token('gold', '2'), arrow, token('coral', 'Red')),
+      ),
+      rule(
+        'Read the pocket',
+        'There are 37 pockets. Zero wins a straight bet on zero. Every outside bet loses on zero.',
+        picture(
+          'Zero lands in the green pocket.',
+          icon('flag', '0'),
+          arrow,
+          icon('check', 'Zero wins'),
+        ),
+      ),
+      rule(
+        'Count the return',
+        'A winning straight bet returns 36 times your stake. A winning outside bet returns twice your stake. Both totals include the chips you put in.',
+        picture(
+          'A five-chip winning bet on red returns ten chips.',
+          token('coral', '5'),
+          arrow,
+          token('gold', '10'),
+        ),
+      ),
+    ],
+    actions: {
+      spin: 'Choose the pocket or group, check the stake and tap Spin once. The history shows the pocket, returned chips and net result.',
+    },
+  },
+  slots: {
+    goal: 'See where your 100 chips finish after five spins on one payline.',
+    rules: [
+      rule(
+        'Pick a stake',
+        'Choose 1 to 10 chips. The stake stays editable until you spin.',
+        picture(
+          'Select five chips for one spin.',
+          token('poker', '5'),
+          arrow,
+          icon('hand', 'Spin'),
+        ),
+      ),
+      rule(
+        'Read the center line',
+        'A line of three identical symbols pays the multiplier shown in the paytable. Exactly two cherries anywhere on the line also pay.',
+        picture(
+          'Two cherries and a star pay twice the stake.',
+          reel('cherry'),
+          reel('cherry'),
+          reel('star'),
+        ),
+      ),
+      rule(
+        'Check the receipt',
+        'A five-chip spin paying twice the stake returns ten chips, a net gain of five. Each new spin is independent.',
+        picture(
+          'Pay five chips and get ten chips back.',
+          token('coral', '5'),
+          arrow,
+          token('gold', '10'),
+        ),
+      ),
+    ],
+    actions: {
+      spin: 'Choose a stake and tap Spin. Check the three center symbols against the paytable and read the change in your balance.',
     },
   },
   blackjack: {
@@ -914,7 +986,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
         'The dashed 7 is the sixth card. Take the five cards before it and count their bullheads as penalties. The 7 stays as the new starter.',
         picture(
           'The full row holds 1, 2, 3, 4 and 6. Playing 7 after 6 takes those five cards and leaves 7 alone.',
-          {kind: 'full-number-row', numbers: [1, 2, 3, 4, 6, 7]},
+          { kind: 'full-number-row', numbers: [1, 2, 3, 4, 6, 7] },
         ),
       ),
     ],
@@ -966,7 +1038,8 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     ],
     actions: {
       take_discard: 'Take the publicly visible top card of the chosen discard pile.',
-      take_stock: 'With two stock cards, choose one to keep and a legal pile for the other. An empty discard pile must be filled first. A lone stock card goes straight into your hand.',
+      take_stock:
+        'With two stock cards, choose one to keep and a legal pile for the other. An empty discard pile must be filled first. A lone stock card goes straight into your hand.',
       keep: 'Your kept card stays private. The other goes face up on the selected discard pile.',
       pair: 'A legal duo leaves your hand, scores on the table and activates its pictured effect.',
       inspect: 'The crab duo lets you inspect one discard pile and take a card from it.',
@@ -986,7 +1059,12 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       rule(
         'Place and push',
         'Place a kitten or cat on an empty square. Adjacent pieces it can push move one space away. An occupied landing square blocks a push. Kittens cannot push adult cats.',
-        picture('The blue kitten starts in the middle. Placing coral on its left pushes blue one square to the right.', board(['.K.']), arrow, board(['k.K'])),
+        picture(
+          'The blue kitten starts in the middle. Placing coral on its left pushes blue one square to the right.',
+          board(['.K.']),
+          arrow,
+          board(['k.K']),
+        ),
       ),
       rule(
         'Grow your kittens',

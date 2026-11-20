@@ -153,9 +153,17 @@ test('every game finishes at both seat limits, renders results, rematches and ke
     await page
       .getByRole('textbox', { name: 'Room name', exact: true })
       .fill('Acceptance full matches');
-    await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption(String(maxSeats));
+    if (initialGame.max_players > 1)
+      await page
+        .getByRole('combobox', { name: 'Seats', exact: true })
+        .selectOption(String(maxSeats));
     await page.getByRole('button', { name: 'Create room', exact: true }).click();
-    await expect(page).toHaveURL(/\/rooms\/[\da-f-]+$/, { timeout: 45000 });
+    await expect(page).toHaveURL(
+      new RegExp(
+        `/games/${initialGame.id}/${initialGame.play_mode === 'solo' ? 'play' : 'rooms'}/[\\da-f-]+$`,
+      ),
+      { timeout: 45000 },
+    );
     roomId = new URL(page.url()).pathname.split('/').at(-1)!;
     const code = maxSeats > 1 ? await page.locator('.room-code').innerText() : '';
     for (let seat = 1; seat < maxSeats; seat++) {
@@ -179,7 +187,7 @@ test('every game finishes at both seat limits, renders results, rematches and ke
       players.map(async (player) => (await checked(player, 'me', 'GET')).profile.id),
     );
     const playerById = new Map(identities.map((id, index) => [id, players[index]]));
-    // Solo Tarot creation starts immediately; configure the controlled match
+    // Solo game creation starts immediately; configure the controlled match
     // below from the lobby just as with the other initial-game choices.
     if ((await roomAs(page, roomId!)).status === 'playing')
       await checked(page, `rooms/${roomId}/abandon`);
@@ -408,7 +416,14 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           // the server catalogue's semantics, never the frontend formatter.
           const roomURL = page.url();
           await page.goto('/profile');
-          const historyRow = page.locator(`.history-row[href="/rooms/${roomId}"]`).first();
+          const chance = game.play_mode === 'solo' && game.family === 'casino';
+          const historyPath =
+            game.id === 'tarot'
+              ? `/games/tarot/readings/${finishedId}`
+              : chance
+                ? `/games/${game.id}/results/${finishedId}`
+                : `/games/${game.id}/rooms/${roomId}`;
+          const historyRow = page.locator(`.history-row[href="${historyPath}"]`).first();
           await expect(historyRow.locator('strong')).toHaveText(game.name);
           const historyOutcome = historyRow.locator(':scope > span');
           const won = savedResult!.winners.includes(identities[0]);
@@ -416,6 +431,13 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           const units = (game.score_label || 'Points').toLocaleLowerCase();
           if (game.id === 'tarot') {
             await expect(historyOutcome).toHaveText('A little perspective');
+          } else if (chance) {
+            const net = savedResult!.score;
+            await expect(historyOutcome).toHaveText(
+              net === 0
+                ? 'Broke even'
+                : `${net > 0 ? '+' : ''}${net} ${Math.abs(net) === 1 ? 'chip' : 'chips'}`,
+            );
           } else if (game.play_mode === 'cooperative') {
             await expect(historyOutcome).toContainText(won ? 'You won together' : 'Team defeat');
             if (scoreOrder !== 'none')
@@ -456,11 +478,15 @@ test('every game finishes at both seat limits, renders results, rematches and ke
             await checked(playerById.get(member.id)!, `rooms/${roomId}/ready`, 'PUT', {
               ready: true,
             });
-          await page.getByRole('button', { name: 'I’m ready', exact: true }).click();
-          await expect(
-            page.getByRole('button', { name: 'Start rematch', exact: true }),
-          ).toBeEnabled();
-          await page.getByRole('button', { name: 'Start rematch', exact: true }).click();
+          if (game.play_mode === 'solo') {
+            const restart = game.id === 'tarot' ? 'Draw a new spread' : 'Play again';
+            await page.getByRole('button', { name: restart, exact: true }).first().click();
+          } else {
+            await page.getByRole('button', { name: 'I’m ready', exact: true }).click();
+            const restart = page.getByRole('button', { name: 'Start rematch', exact: true });
+            await expect(restart).toBeEnabled();
+            await restart.click();
+          }
           await expect
             .poll(async () => (await roomAs(page, roomId!)).match_id !== finishedId)
             .toBe(true);
@@ -469,13 +495,28 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           // change-game sheet to prove the same group can continue together.
           await checked(page, `rooms/${roomId}/abandon`);
           await page.reload();
-          await page.getByRole('button', { name: 'Change game and settings', exact: true }).click();
           const next = catalogue[(index + 1) % catalogue.length];
-          await page.getByRole('combobox', { name: 'The game', exact: true }).selectOption(next.id);
-          await page
-            .getByRole('combobox', { name: 'Seats', exact: true })
-            .selectOption(String(next.min_players));
-          await page.getByRole('button', { name: 'Choose game', exact: true }).click();
+          if (game.play_mode === 'solo') {
+            // The solo room has no group configuration panel; reconfigure the QA lobby
+            // to keep the original participants for the next independent match case.
+            await checked(page, `rooms/${roomId}/settings`, 'PUT', {
+              game_id: next.id,
+              capacity: next.min_players,
+              settings: {},
+            });
+          } else {
+            await page
+              .getByRole('button', { name: 'Change game and settings', exact: true })
+              .click();
+            await page
+              .getByRole('combobox', { name: 'The game', exact: true })
+              .selectOption(next.id);
+            if (next.max_players > 1)
+              await page
+                .getByRole('combobox', { name: 'Seats', exact: true })
+                .selectOption(String(next.min_players));
+            await page.getByRole('button', { name: 'Choose game', exact: true }).click();
+          }
           await expect.poll(async () => (await roomAs(page, roomId!)).game_id).toBe(next.id);
           const changed = await roomAs(page, roomId!);
           expect(changed.members.length).toBe(maxSeats);

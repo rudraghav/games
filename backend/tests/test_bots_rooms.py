@@ -17,6 +17,8 @@ from app.models import Match, Member, Profile, Receipt
 from app.rooms.service import RoomService
 from app.settings import settings
 
+MULTIPLAYER = [game_id for game_id, engine in ENGINES.items() if engine.manifest.play_mode != "solo"]
+
 
 @pytest.fixture
 def client():
@@ -341,7 +343,7 @@ def test_bot_policy_receives_only_its_projection_and_its_choice_stays_private(cl
         assert db.get(Match, room["match_id"]).bot_memory[bot_id]["seed"] == private_seed
 
 
-@pytest.mark.parametrize("game_id", [game for game in ENGINES if game != "tarot"])
+@pytest.mark.parametrize("game_id", MULTIPLAYER)
 def test_one_human_with_bots_starts_every_game_at_its_maximum_capacity(client, game_id):
     seats = ENGINES[game_id].manifest.max_players
     room, host = create_bots(client, game=game_id, seats=seats, count=seats - 1)
@@ -417,7 +419,7 @@ def test_bot_uno_announcement_precedes_another_bots_catch(client, monkeypatch):
         assert receipt.actor_id == bots[0]
 
 
-@pytest.mark.parametrize("game_id", [game for game in ENGINES if game != "tarot"])
+@pytest.mark.parametrize("game_id", MULTIPLAYER)
 def test_one_human_and_bots_finish_every_multiplayer_game_through_http(
     client, monkeypatch, game_id
 ):

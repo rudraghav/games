@@ -5,7 +5,13 @@ import type { ActionOption } from '@games/api-client';
 import type { TableProps } from '../types';
 import { turnState } from '../shared/turn-state';
 import { useTableDraft } from '../shared/table-draft';
-import { casinoInstruction, choiceView, wagerProblem, wagerView } from './casino-guidance';
+import {
+  casinoInstruction,
+  choiceView,
+  wagerImpact,
+  wagerProblem,
+  wagerView,
+} from './casino-guidance';
 
 /**
  * The casino decision dock. It grows with its choices, so Raise, All in, Split
@@ -51,16 +57,20 @@ export function CasinoDock({ match, room, selfId, onAction, pending }: TableProp
       {match.actions.length ? (
         <div className="action-choices casino-choices">
           {teenBet &&
-            directAmounts.map((amount) => (
-              <Choice
-                key={`bet:${amount}`}
-                option={teenBet}
-                name={`${teenBet.label} ${amount} ${amount === 1 ? 'chip' : 'chips'}`}
-                tone="primary"
-                disabled={locked}
-                onPick={() => onAction({ ...teenBet.value, amount })}
-              />
-            ))}
+            directAmounts.map((amount) => {
+              const impact = wagerImpact(match, selfId, amount);
+              return (
+                <Choice
+                  key={`bet:${amount}`}
+                  option={teenBet}
+                  name={`${teenBet.label} ${amount} ${amount === 1 ? 'chip' : 'chips'}`}
+                  note={impact ? `${impact.remaining} left unbet` : undefined}
+                  tone="primary"
+                  disabled={locked}
+                  onPick={() => onAction({ ...teenBet.value, amount })}
+                />
+              );
+            })}
           {simple.map(({ choice, view }, index) => (
             <Choice
               key={`${choice.value.type}:${index}`}
@@ -103,6 +113,7 @@ function Choice({
   option,
   name,
   suffix,
+  note,
   description,
   tone,
   disabled,
@@ -111,6 +122,7 @@ function Choice({
   option: ActionOption;
   name: string;
   suffix?: string;
+  note?: string;
   description?: string;
   tone: 'primary' | 'secondary';
   disabled: boolean;
@@ -122,17 +134,22 @@ function Choice({
       <Button
         variant={tone}
         disabled={disabled}
-        aria-describedby={description ? id : undefined}
+        aria-describedby={description || note ? id : undefined}
         onClick={onPick}
       >
         <span>
           {name}
           {suffix ? <span aria-hidden="true"> {suffix.trim()}</span> : null}
+          {note ? (
+            <small aria-hidden="true" className="casino-choice-note">
+              {note}
+            </small>
+          ) : null}
         </span>
       </Button>
-      {description ? (
+      {description || note ? (
         <span id={id} className="sr-only">
-          {description}
+          {description ?? note}
         </span>
       ) : null}
     </div>
@@ -156,6 +173,7 @@ function Wager({
   );
   const amount = draft.trim() === '' ? Number.NaN : Number(draft);
   const problem = wagerProblem(amount, view);
+  const impact = problem ? null : wagerImpact(match, selfId, amount);
   const send = () => {
     if (!problem && !locked) onAction({ ...option.value, amount });
   };
@@ -184,12 +202,16 @@ function Wager({
             value={draft}
             disabled={locked}
             aria-invalid={problem ? true : undefined}
-            aria-describedby={`${id}-range${problem ? ` ${id}-problem` : ''}`}
+            aria-describedby={`${id}-range ${id}-feedback`}
             onChange={(event) => setDraft(event.target.value)}
           />
           <span aria-hidden="true">chips</span>
         </label>
-        <Button type="submit" disabled={locked || Boolean(problem)}>
+        <Button
+          type="submit"
+          aria-describedby={`${id}-feedback`}
+          disabled={locked || Boolean(problem)}
+        >
           <span>
             {option.label}
             {Number.isFinite(amount) && !problem ? <span aria-hidden="true"> {amount}</span> : null}
@@ -214,11 +236,17 @@ function Wager({
           ))}
         </div>
       ) : null}
-      {problem ? (
-        <p className="casino-wager-problem" id={`${id}-problem`} aria-live="polite">
-          {problem}
-        </p>
-      ) : null}
+      <p
+        className={problem ? 'casino-wager-problem' : 'casino-wager-impact'}
+        id={`${id}-feedback`}
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {problem ??
+          (impact
+            ? `Add ${impact.added} ${impact.added === 1 ? 'chip' : 'chips'} · ${impact.remaining} left unbet`
+            : null)}
+      </p>
     </form>
   );
 }

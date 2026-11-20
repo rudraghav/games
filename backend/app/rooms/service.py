@@ -25,7 +25,7 @@ from app.astrology.models import (
     AstrologyPreviewInput,
 )
 from app.auth import Identity
-from app.core.contracts import Action, RuleError
+from app.core.contracts import Action, GameView, RuleError
 from app.games.registry import ENGINES
 from app.games.tarot.progress import ProgressEvent, ProgressState, ReadingProgress
 from app.games.tarot.reading import (
@@ -46,7 +46,7 @@ from app.models import Match, Member, Message, Profile, Receipt, Room, TarotRead
 from app.rooms.bots import BOT_DELAY_SECONDS, BOT_NAMES, bot_delay, next_bot_view
 from app.rooms.public_actions import PUBLIC_ACTIONS, public_action
 from app.rooms.public_history import public_move
-from app.rooms.repository import Repository
+from app.rooms.repository import CHANCE_GAME_IDS, Repository
 from app.rooms.schemas import (
     AddBots,
     ChatInput,
@@ -545,6 +545,20 @@ class RoomService:
         except GeocoderUnavailable:
             raise HTTPException(503, "City lookup is temporarily unavailable. Please try again.") from None
         return calculate_chart(data.astrology, place)
+
+    def saved_chance_session(self, actor: Identity, match_id: str) -> GameView:
+        with self.session.begin():
+            match = self.repo.match(match_id)
+            if (
+                match is None
+                or match.game_id not in CHANCE_GAME_IDS
+                or match.participants != [actor.id]
+                or not match.result
+                or match.result.get("abandoned")
+                or match.state.get("phase") != "finished"
+            ):
+                raise HTTPException(404, "This session is unavailable to your player account.")
+            return ENGINES[match.game_id].project_view(match.state, actor.id)
 
     def saved_reading(self, actor: Identity, match_id: str, *, style: ReadingStyle | None = None) -> SavedReadingView:
         # A room can move on or close without taking its participant's reading

@@ -6,6 +6,8 @@ PUBLIC_ACTIONS = {
     "holdem": {"fold", "check", "call", "raise", "all_in"},
     "teen-patti": {"fold", "peek", "bet", "show", "sideshow", "accept", "decline"},
     "blackjack": {"bet", "accept", "decline", "hit", "stand", "split", "double"},
+    "roulette": {"spin"},
+    "slots": {"spin"},
 }
 
 
@@ -16,7 +18,7 @@ def public_action(view: GameView, actor: str, action: Action, version: int) -> d
     if player is None:
         return None
     amount: int | None = None
-    if action.type == "bet":
+    if action.type in {"bet", "spin"}:
         amount = action.amount
     elif view.game_id == "holdem":
         if action.type == "call":

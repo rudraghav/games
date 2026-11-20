@@ -1,5 +1,8 @@
 """Basic blackjack strategy and bounded information-set poker sampling."""
 
+from itertools import combinations
+from math import comb
+
 from app.bots.context import Context
 from app.core.cards import RANKS, blackjack_total, poker_rank, standard_deck, teen_rank
 from app.core.contracts import Action
@@ -97,9 +100,12 @@ def _blackjack(ctx: Context) -> Action:
 def _holdem(ctx: Context) -> Action:
     equity = _equity(ctx)
     own = ctx.own
-    assert own is not None
-    call = max(0, int(ctx.detail.get("current_bet", 0)) - own.bet)
-    odds = call / max(1, ctx.view.pot + call)
+    assert own is not None and own.chips is not None
+    call = min(own.chips, max(0, int(ctx.detail.get("current_bet", 0)) - own.bet))
+    contributions = ctx.detail["contributions"]
+    limit = contributions[ctx.player] + call
+    contestable = sum(min(paid, limit) for paid in contributions.values())
+    odds = call / max(1, contestable + call)
     if ctx.memory.get("poker_street") != ctx.view.phase:
         ctx.memory.update(poker_street=ctx.view.phase, poker_raises=0)
     raises = int(ctx.memory.get("poker_raises", 0))
@@ -120,19 +126,34 @@ def _holdem(ctx: Context) -> Action:
     return ctx.action(ctx.options[0])
 
 
+def _teen_comparison_chance(ctx: Context, *, responding: bool = False) -> float:
+    """Chance against one uniformly dealt unseen hand, under the show's tie rule."""
+    own = [card.id for card in ctx.view.hand]
+    rank = teen_rank(own)
+    remaining = [card for card in standard_deck() if card not in own]
+    wins = 0
+    for hand in combinations(remaining, 3):
+        opponent = teen_rank(list(hand))
+        if rank > opponent or responding and rank == opponent:
+            wins += 1
+    return wins / comb(len(remaining), 3)
+
+
 def _teen(ctx: Context) -> Action:
     if options := ctx.of("peek"):
         return ctx.action(options[0])
-    equity = _equity(ctx, three_card=True)
     if options := ctx.of("accept", "decline"):
-        wanted = "accept" if equity > 0.28 else "decline"
+        wanted = "accept" if _teen_comparison_chance(ctx, responding=True) > 0.28 else "decline"
         return ctx.action(next((o for o in options if o.action.type == wanted), options[0]))
-    if options := ctx.of("show"):
-        return ctx.action(options[0])
-    if (options := ctx.of("sideshow")) and equity > 0.65:
-        return ctx.action(options[0])
     bets = ctx.of("bet")
     price = bets[0].minimum or 0 if bets else 0
+    if options := ctx.of("show"):
+        if _teen_comparison_chance(ctx) * (ctx.view.pot + price) >= price:
+            return ctx.action(options[0])
+        return ctx.action(ctx.of("fold")[0])
+    if (options := ctx.of("sideshow")) and _teen_comparison_chance(ctx) > 0.65:
+        return ctx.action(options[0])
+    equity = _equity(ctx, three_card=True)
     if equity < 0.17 and (price > 4 or ctx.view.pot > 30) and ctx.of("fold"):
         return ctx.action(ctx.of("fold")[0])
     if bets:

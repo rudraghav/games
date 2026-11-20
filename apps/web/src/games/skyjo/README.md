@@ -7,6 +7,10 @@ and scoring stay in `backend/app/games/skyjo`.
   (after a private draw the discard pile becomes "Discard & reveal"), and grid cards
   are the swap and reveal targets. The dock carries one instruction and never a
   control that can scroll out of view.
+- With a card in hand, **Compare swaps** shows the immediate change to grid points
+  at each legal target, including removal of an equal column. A hidden target's
+  point change stays unknown, even when its column would clear. Opening and
+  closing the comparison leaves the draw in hand. Tapping a grid card still swaps it.
 - The dock speaks to the viewer: the server's instruction for the seat that can
   act, or what a waiting seat is waiting for, from public information only (for
   example "Ana drew from the deck and is deciding where it goes"). A private draw

@@ -1,4 +1,5 @@
 'use client';
+import { usePrivateViewScope } from '@/shared/use-private-view-scope';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -18,11 +19,7 @@ import type { TableProps } from '../types';
 import { useTableDraft } from '../shared/table-draft';
 import { TarotReading } from './TarotReading';
 import { ReadingStyleSwitch } from './ReadingStyleSwitch';
-import {
-  CompletedReadingControls,
-  useCompletedReadingView,
-  usePrivateReadingScope,
-} from './completed-reading-view';
+import { CompletedReadingControls, useCompletedReadingView } from './completed-reading-view';
 import { AstrologyForm } from './AstrologyForm';
 import { ReadingProgress } from './ReadingProgress';
 import { ReadingAction } from './ReadingAction';
@@ -66,7 +63,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const deck = useRef<HTMLDivElement>(null);
   const filter = useRef<HTMLDivElement>(null);
   const cache = useQueryClient();
-  const scope = usePrivateReadingScope(selfId);
+  const scope = usePrivateViewScope(selfId);
   const queryKey = ['tarot-reading', room.id, room.matchId, scope];
   const progressArea = useRef<HTMLDivElement>(null);
   const showRequestedProgress = useRef(false);

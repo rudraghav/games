@@ -21,6 +21,7 @@ the selection clears only after the move is recorded.
   Return buttons in normal flow.
 - A free chip is a one-tap Take. Choosing an occupied chip or the last free chip
   opens a review with the holder or street-ending consequence before committing.
+- A reviewed chip follows its current holder and whether taking it would end the street. If either changes, the stale confirmation disappears and the player can choose again.
 - Your own chip is drawn as held (ring, bold “You”), not as unavailable.
 - `detail.taken_chips` (public: everyone sees the rack) tells a player whose chip
   was taken, by whom, until they choose again.
@@ -35,6 +36,10 @@ the selection clears only after the move is recorded.
   grid in a tray that stays on screen while the rows scroll above it.
 - With just one legal number left, the lock button names the number immediately.
   A larger hand still lets the player compare and change a choice before locking.
+- Selecting a number previews where it would land if it resolved first. The
+  current row is outlined. A full row shows its capture cost; a card below
+  every row shows the minimum cost of choosing one. Other players' secret
+  numbers can change the rows before the chosen number resolves.
 - A forced row choice states the low card and labels each row with its cards and
   penalties, marking the cheapest.
 - `detail.resolution` and `detail.unresolved` (public) list where every revealed

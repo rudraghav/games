@@ -1,3 +1,13 @@
+## 2026-11-21 — Card, chip and chance decisions
+
+- Review the shipped card and casino tables by the objects and decisions players actually use. Make the cost or likely consequence visible before a move where the public state supports it. Confirm that inspecting or changing a selection sends no move, unknown cards stay private, and controls work on a narrow phone. Check the implemented odds and house rules against independent calculations and distinguish playable games from wheel, reel and dice formats considered for the catalogue.
+
+- Fixed a reproducible 22-chip tied Hold’em payout, short-stack bot call pricing, Teen Patti sideshow comparisons and the seen-wager limit. Blackjack now offers optional one-hit bust odds. Casino wager drafts show the additional cost and chips left. Six Nimmt and Skyjo gained conditional previews and The Gang closes a stale confirmation when chip ownership or its consequence changes. The catalogue documents wheel, reel and dice candidates and their exact sample spaces. PokerKit independently checked every five-card hand and replayed the tied pot.
+
+- The owner requested playable Roulette and Slots in this release. Ship two real solo tables with editable stakes, clear gross and net returns, independent server-owned outcomes, illustrated tutorials and a permanent owner-only result for each finished session. Verify normal entry, five spins, rematch, privacy and historical readback on a phone.
+
+- Implemented both tables with 100 starting chips and five manual spins, numbered wheel and payline, editable bets, illustrated optional lessons and owner-only receipts. Independently verified all 1,591 roulette bet/pocket pairs and 1,728 slot stop triples. Both normal mobile sessions and their guided tutorials completed five spins locally. Tested 320px WebKit with the server response held and with reduced motion. Production verification follows the combined release.
+
 ## 2026-11-21 — Switch styles on a finished Tarot spread
 
 - Add a reversible Fun switch to both the current completed reading and its private archive. Keep the original reading intact. Verify the same cards, question, chart, and original words on return, including old readings and closed rooms. Switching views must work without drawing cards, calling an AI provider or spending reading quota.

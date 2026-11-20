@@ -1,8 +1,35 @@
 import { describe, expect, it } from 'vitest';
 import { games } from '@games/api-client/catalog';
-import { matchesGame } from './catalogue-search';
+import { categories, findGames, matchesGame } from './catalogue-search';
 
 describe('catalogue discovery', () => {
+  it('finds wheel and reel tables under Casino while the Cards filter keeps the three card tables', () => {
+    expect(categories).toContainEqual({ value: 'casino', label: 'Casino' });
+    const casino = findGames(games, '', 0, 'casino')
+      .map((game) => game.id)
+      .sort();
+    expect(casino).toEqual(['blackjack', 'holdem', 'roulette', 'slots', 'teen-patti']);
+    expect(
+      findGames(games, 'casino', 0, 'all')
+        .map((game) => game.id)
+        .sort(),
+    ).toEqual(casino);
+    expect(
+      findGames(games, '', 0, 'cards')
+        .map((game) => game.id)
+        .filter((id) => casino.includes(id))
+        .sort(),
+    ).toEqual(['blackjack', 'holdem', 'teen-patti']);
+    for (const [query, id] of [
+      ['wheel', 'roulette'],
+      ['single zero', 'roulette'],
+      ['slot machine', 'slots'],
+      ['fruit machine', 'slots'],
+    ]) {
+      expect(findGames(games, query, 1, 'casino').map((game) => game.id)).toEqual([id]);
+      expect(findGames(games, query, 2, 'casino').map((game) => game.id)).not.toContain(id);
+    }
+  });
   it('finds familiar alternate game names without changing catalogue identities', () => {
     for (const [query, id] of [
       ['poker', 'holdem'],

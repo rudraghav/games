@@ -11,7 +11,7 @@ interface RoomShortcutProps {
 export function RoomShortcut({ room }: RoomShortcutProps) {
   const game = gameById(room.gameId);
   const solo = game.playMode === 'solo';
-  const title = solo ? 'Your reading' : room.name;
+  const title = game.id === 'tarot' ? 'Your reading' : room.name;
   return (
     <Link
       className="room-shortcut"

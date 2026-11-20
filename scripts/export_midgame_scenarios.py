@@ -119,7 +119,8 @@ def project(engine, state, viewer, players):
             allowed.update(visible_cards(data["detail"].get("last_play")))
         if private and all(isinstance(card, str) for card in private):
             assert not (set(private) - allowed).intersection(shown), f"Other hand leaked: {engine.manifest.id}"
-    assert "_shuffle_key" not in json.dumps(data) and "_shuffle_nonce" not in json.dumps(data)
+    payload = json.dumps(data)
+    assert not any(f'"{field}"' in payload for field in ("_shuffle_key", "_shuffle_nonce", "_stops", "_pockets"))
     return view
 
 
@@ -155,6 +156,12 @@ def generate():
             view = project(engine, state, actor, players)
             if game == "tarot":
                 action = view.actions[0].action
+            elif game in {"slots", "roulette"}:
+                # Script only public bet choices. This exercises bets on zero,
+                # another straight and outside bets across independent legal runs.
+                choice = ("0", "black", "odd", "17", "low")[step - 1] if game == "roulette" else ""
+                option = next(o for o in view.actions if o.action.choice == choice)
+                action = option.action.model_copy(update={"amount": min(step, option.maximum)})
             else:
                 decision = choose_action(view, actor, memory[actor])
                 memory[actor] = decision.memory
@@ -183,6 +190,11 @@ def generate():
             classification = action.type if action.type in INTERESTING else "decision"
             if game == "tarot":
                 classification = f"spread-{len(view.community)}"
+            if game in {"roulette", "slots"} and step > 1:
+                net = view.detail["history"][-1]["net"]
+                classification = "after-win" if net > 0 else "after-loss"
+                if view.detail["spins_remaining"] == 1:
+                    classification += ":last-spin"
             if game == "teen-patti":
                 classification += ":blind" if view.detail.get("blind") else ":seen"
             if game == "skyjo" and view.detail.get("finisher") and phase != "between_rounds":

@@ -4,6 +4,7 @@ import type { paths } from './generated/schema';
 import {
   mapMe,
   mapRoom,
+  mapGame,
   mapReading,
   mapSavedReading,
   type Action,
@@ -25,6 +26,13 @@ export type {
 export { boardDetails, wordsDetails, gemsDetails } from './game-details';
 export { trioDetails, flipSevenDetails, azulDetails } from './modern-details';
 export { partyDetails } from './party-details';
+export {
+  rouletteDetails,
+  slotsDetails,
+  type RouletteSpin,
+  type SlotSpin,
+  type SlotSymbol,
+} from './chance-details';
 export { gangDetails, sixNimmtDetails } from './coop-number-details';
 export { paperDetails, boopDetails } from './sea-cats-details';
 export {
@@ -148,6 +156,15 @@ export function createApi(accessToken?: () => Promise<string | null>) {
     async reading(id: string) {
       return mapReading(
         unwrap(await client.GET('/v1/rooms/{room_id}/reading', { params: params(id) })),
+      );
+    },
+    async savedChanceSession(matchId: string) {
+      return mapGame(
+        unwrap(
+          await client.GET('/v1/chance-sessions/{match_id}', {
+            params: { path: { match_id: matchId } },
+          }),
+        ),
       );
     },
     async savedReading(matchId: string, style?: ReadingStyle) {

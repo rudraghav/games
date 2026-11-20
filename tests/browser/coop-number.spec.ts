@@ -142,6 +142,9 @@ test('friends move ranking chips, reveal hands and lock private number selection
     await expect(
       page.getByText('This takes Crew Friend 1’s chip; they will need another.'),
     ).toBeVisible();
+    await page.reload();
+    const reviewedClaim = page.getByRole('button', { name: 'Take 2-star chip', exact: true });
+    await expect(reviewedClaim).toBeVisible();
     await players[1].reload();
     await players[1].getByRole('button', { name: 'Return my chip', exact: true }).click();
     await expect
@@ -152,6 +155,11 @@ test('friends move ranking chips, reveal hands and lock private number selection
           ],
       )
       .toBeNull();
+    await expect(page.getByText('The chip rack changed. Choose a chip again.')).toBeVisible();
+    await expect(reviewedClaim).toHaveCount(0);
+    await expect(
+      page.getByRole('button', { name: 'Take 2-star chip in the center', exact: true }),
+    ).toBeVisible();
     expect(posts).toBe(1);
     await page.unroute(path);
     await chip(page, 1, 0);
@@ -230,6 +238,19 @@ test('friends move ranking chips, reveal hands and lock private number selection
       await expect(actor.getByText(`${i}/3 locked`, { exact: true })).toBeVisible();
       const view = await roomAs(actor, roomId);
       const card = view.game!.hand[0];
+      if (i === 0) {
+        const other = view.game!.hand[1];
+        const compare = actor.getByRole('button', { name: other.label, exact: true });
+        await compare.click();
+        await expect(actor.locator('.six-hand-note')).toContainText(
+          `If ${other.value} goes first,`,
+        );
+        await compare.click();
+        await expect(
+          actor.getByRole('button', { name: 'Lock my number', exact: true }),
+        ).toBeDisabled();
+        expect((await roomAs(actor, roomId)).match_version).toBe(view.match_version);
+      }
       await actor.getByRole('button', { name: card.label, exact: true }).click();
       await actor.getByRole('button', { name: 'Lock my number', exact: true }).click();
       if (i < 2) {

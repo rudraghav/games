@@ -5,6 +5,7 @@ import { fixtures } from '@/stories/generated/rooms';
 import { CardTable } from '@/games/shared/CardTable';
 import { RummyTable } from '@/games/rummy/RummyTable';
 import { SkyjoTable } from '@/games/skyjo/SkyjoTable';
+import { swapImpact } from '@/games/skyjo/swap-impact';
 import type { TableProps } from '@/games/types';
 
 function props(game: string): TableProps {
@@ -18,6 +19,16 @@ function props(game: string): TableProps {
     pending: false,
   };
 }
+
+it('compares immediate Skyjo grid changes, including negative and hidden column clears', () => {
+  const grid = (a: string | null, b: string, c: string) =>
+    [a, null, null, null, b, null, null, null, c].map((v) => (v === null ? null : { value: v }));
+  expect(swapImpact(grid('8', '1', '2'), 0, '4').label).toBe('-4');
+  expect(swapImpact(grid('8', '4', '4'), 0, '4').label).toBe('Clears · -16');
+  expect(swapImpact(grid('1', '-2', '-2'), 0, '-2').label).toBe('Clears · +3');
+  expect(swapImpact(grid(null, '4', '4'), 0, '4').label).toBe('Clears · ?');
+  expect(swapImpact(grid(null, '4', '1'), 0, '4').label).toBe('?');
+});
 
 describe('Card table decisions stay with their cards', () => {
   it('marks the one authorized Uno card and offers its named play in the dock', () => {

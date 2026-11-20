@@ -32,6 +32,20 @@ function card(
   };
 }
 export function GameArt({ game }: { game: Game }) {
+  if (game.id === 'roulette' || game.id === 'slots')
+    return (
+      <span
+        className="game-art game-art--chance"
+        aria-hidden="true"
+        style={{
+          backgroundImage: `url(/game-art/${game.id}-cover.webp)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          position: 'absolute',
+          inset: 0,
+        }}
+      />
+    );
   if (game.id === 'shithead')
     return (
       <div className="game-art game-art--palace" aria-hidden="true">

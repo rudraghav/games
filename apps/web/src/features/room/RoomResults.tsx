@@ -15,15 +15,21 @@ export function RoomResults({ room, game }: { room: Room; game: Game }) {
       : 'Player';
   };
   const cooperative = game.playMode === 'cooperative';
-  const title = cooperative
-    ? match.winners.length
-      ? 'You won together!'
-      : 'The team didn’t make it this time.'
-    : match.detail.draw === true
-      ? 'An even match. It’s a draw.'
-      : match.winners.length
-        ? `${nameList(match.winners.map(name), 3)} ${match.winners.length === 1 ? 'wins' : 'win'}!`
-        : 'A good round, well played.';
+  const net = match.players[0]?.score ?? 0;
+  const title =
+    game.playMode === 'solo' && game.family === 'casino'
+      ? net === 0
+        ? 'You broke even.'
+        : `You finished ${net > 0 ? 'up' : 'down'} ${Math.abs(net)} ${Math.abs(net) === 1 ? 'chip' : 'chips'}.`
+      : cooperative
+        ? match.winners.length
+          ? 'You won together!'
+          : 'The team didn’t make it this time.'
+        : match.detail.draw === true
+          ? 'An even match. It’s a draw.'
+          : match.winners.length
+            ? `${nameList(match.winners.map(name), 3)} ${match.winners.length === 1 ? 'wins' : 'win'}!`
+            : 'A good round, well played.';
   // "1 point", never "1 points"; plural labels lose their final s for a single unit.
   const unit = (score: number, label = game.scoreLabel) =>
     Math.abs(score) === 1 ? label.replace(/s$/, '') : label;

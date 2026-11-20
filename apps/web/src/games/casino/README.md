@@ -50,6 +50,13 @@ Min/Max; 2/10/20/50). The accessible names stay the server labels; amounts and
 costs are visual suffixes plus descriptions. A typed amount survives a refresh of
 the same decision through `useTableDraft`, scoped to room, match and version.
 
+Editing an amount or choosing a preset previews the chips added and the stack
+left unbet. A Hold'em raise already counts the player's bet on this street.
+Pot-sized presets appear only when that size is legal. Small Teen Patti wager
+buttons show the chips left unbet at each price. Before looking, the dock shows
+the seen bet the player could actually afford, including the table limit, even
+stake rule and the case where looking leaves only Pack.
+
 ## Layout
 
 Seats sit in explicit bands. A seat centre is clamped inside the ring, so a top
@@ -76,7 +83,8 @@ paused; Escape returns focus to the opener.
 
 The live Hold'em panel shows one pot until someone is all in, then the server's
 pots split at each all-in total with everyone still able to win them. Settled
-pots that the same players could win are shown together; a side pot is named
+pots that the same players could win are shown together, including contribution
+layers in older saved hands; a side pot is named
 only when eligibility changes, with the all-in player who caused it.
 
 ## Tests
@@ -90,3 +98,7 @@ button, presets, priced split) and the sideshow parties.
 calls, raise cues, seat results, pot grouping and own-ledger order. These local
 projection checks complement saved-room and motion tests; they do not claim every
 possible deal or certify a complete live match.
+
+## One-hit Blackjack odds
+
+An optional disclosure beneath the active player's hands shows the chance that drawing exactly one card would bust the active hand. It uses all exposed cards across all seats and split hands, the six-deck inventory and the dealer's completed natural check. Every permitted pair of hidden dealer card and hit card has equal weight. The preview also checks the projected shoe count before rendering. Opening or closing it never issues a game action. The unit oracle explicitly deals all permitted hidden-card/hit-card pairs, including ace and ten upcards and soft hands.

@@ -11,6 +11,7 @@ from app.astrology.models import (
     AstrologyPreviewInput,
 )
 from app.auth import Identity, identity
+from app.core.contracts import GameView
 from app.db import sessions
 from app.games.tarot.reading import ReadingInput, ReadingView
 from app.games.tarot.style import ReadingStyle
@@ -87,6 +88,11 @@ def reading(room_id: str, actor: Actor, svc: Service) -> ReadingView:
 @router.get("/readings/{match_id}", response_model=SavedReadingView)
 def saved_reading(match_id: UUID, actor: Actor, svc: Service, style: ReadingStyle | None = None) -> SavedReadingView:
     return svc.saved_reading(actor, str(match_id), style=style)
+
+
+@router.get("/chance-sessions/{match_id}", response_model=GameView)
+def saved_chance_session(match_id: UUID, actor: Actor, svc: Service) -> GameView:
+    return svc.saved_chance_session(actor, str(match_id))
 
 
 @router.post("/rooms/{room_id}/reading", response_model=ReadingView)

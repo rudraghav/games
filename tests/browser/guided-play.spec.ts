@@ -18,7 +18,13 @@ async function withMatch(
     (r) => r.request().method() === 'POST' && r.url().endsWith(`/games/${game}/play`),
   );
   const action =
-    mode === 'tutorial' ? 'Play tutorial' : game === 'tarot' ? 'Start reading' : 'Play with bots';
+    mode === 'tutorial'
+      ? 'Play tutorial'
+      : game === 'tarot'
+        ? 'Start reading'
+        : catalogue.find((entry) => entry.id === game)?.play_mode === 'solo'
+          ? 'Play solo'
+          : 'Play with bots';
   await page.getByRole('button', { name: action, exact: true }).click();
   const response = await created;
   expect(response.ok()).toBe(true);

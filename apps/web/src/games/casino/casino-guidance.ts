@@ -21,6 +21,28 @@ const own = (match: Match, selfId: string) => match.players.find((p) => p.id ===
 const option = (match: Match, type: string) =>
   match.actions.find((item) => item.value.type === type);
 
+/** Seen stakes double a legal blind stake and must fit, in even chips, in this stack. */
+function peekConsequence(match: Match, selfId: string) {
+  const blind = option(match, 'bet');
+  const chips = own(match, selfId)?.chips;
+  if (chips == null) return 'Looking ends blind play. Seen bets cost twice the blind stake.';
+  if (blind?.minimum == null || blind.maximum == null || chips < 2 * blind.minimum)
+    return 'After looking, you can only pack. Your stack cannot cover a seen bet.';
+  const min = 2 * blind.minimum;
+  const max = Math.min(2 * blind.maximum, chips - (chips % 2));
+  const price = min === max ? plural(min) : `${min}–${max} chips in even amounts`;
+  return `Looking ends blind play. Your seen bet would cost ${price}.`;
+}
+
+/** Hold’em raises target the street total. Other table wagers spend the entered amount. */
+export function wagerImpact(match: Match, selfId: string, amount: number) {
+  const player = own(match, selfId);
+  if (player?.chips == null) return null;
+  const added = match.id === 'holdem' ? amount - player.bet : amount;
+  if (!Number.isSafeInteger(added) || added < 0 || added > player.chips) return null;
+  return { added, remaining: player.chips - added };
+}
+
 /** Hold'em chips needed to call, capped by the stack (the engine's call amount). */
 export function holdemCall(match: Match, selfId: string) {
   const player = own(match, selfId);
@@ -80,12 +102,7 @@ export function choiceView(match: Match, selfId: string, choice: ActionOption): 
       };
   }
   if (match.id === 'teen-patti') {
-    const data = teenPattiDetails(match.detail);
-    if (type === 'peek')
-      return {
-        ...view,
-        description: `After looking, bets cost ${data.stake * 2}–${data.stake * 4} (even).`,
-      };
+    if (type === 'peek') return { ...view, description: peekConsequence(match, selfId) };
     if (type === 'fold') return { ...view, name: 'Pack (fold)' };
   }
   return view;
@@ -101,16 +118,13 @@ export type WagerView = {
 
 export function wagerView(match: Match, selfId: string, choice: ActionOption): WagerView {
   const min = choice.minimum ?? 0;
-  const max = choice.maximum ?? min;
   const step = choice.step || 1;
-  const fit = (value: number) => {
-    const bounded = Math.min(max, Math.max(min, Math.round(value)));
-    return bounded - ((bounded - min) % step);
-  };
+  const limit = choice.maximum ?? min;
+  const max = limit - ((limit - min) % step);
   const presets: { label: string; value: number }[] = [];
   const add = (label: string, value: number) => {
-    const fitted = fit(value);
-    if (!presets.some((item) => item.value === fitted)) presets.push({ label, value: fitted });
+    if (value >= min && value <= max && !presets.some((item) => item.value === value))
+      presets.push({ label, value });
   };
   let range = `${min}–${max} chips`;
   if (match.id === 'holdem') {
@@ -138,7 +152,7 @@ export function wagerView(match: Match, selfId: string, choice: ActionOption): W
     max,
     step,
     range,
-    presets: presets.filter((item) => item.value >= min && item.value <= max).slice(0, 4),
+    presets,
   };
 }
 
@@ -171,9 +185,11 @@ export function casinoInstruction(match: Match, room: Room, selfId: string): str
     if (option(match, 'call')) {
       if (callIsAllIn(match, selfId))
         return `Calling puts your last ${plural(player.chips ?? 0)} in, so you can’t bet again this hand. ${forfeit}`;
-      return `${plural(call)} to call.${raise ? ' A raise makes everyone else match your total or fold.' : ''} ${forfeit}`;
+      return `${plural(call)} to call.${raise ? ' A raise sets a new total to call.' : ''} ${forfeit}`;
     }
-    return `Nothing to call, so checking is free.${raise ? ` A bet of ${raise.minimum}+ makes everyone else match it or fold.` : ''}`;
+    return player.bet
+      ? 'Your bet is already matched. You can check for free.'
+      : 'Checking keeps you in the hand for free.';
   }
   if (match.id === 'teen-patti') {
     const data = teenPattiDetails(match.detail);
@@ -188,13 +204,9 @@ export function casinoInstruction(match: Match, room: Room, selfId: string): str
     }
     if (!match.actions.length) return null;
     const bet = option(match, 'bet');
-    const parts = [
-      bet
-        ? data.blind
-          ? `Blind bets cost ${bet.minimum}–${bet.maximum}; after looking they cost ${data.stake * 2}–${data.stake * 4}.`
-          : `Chaal ${bet.minimum}–${bet.maximum} chips (even).`
-        : 'You can’t afford the stake; you can pack.',
-    ];
+    const parts: string[] = [];
+    if (!bet && !data.blind) parts.push('You can’t afford a seen bet. You can only pack.');
+    if (option(match, 'peek')) parts.push(peekConsequence(match, selfId));
     if (option(match, 'sideshow') && data.sideshow_target)
       parts.push(
         `A sideshow (${data.sideshow_cost ?? bet?.minimum ?? 0}) compares your hand privately with ${who(data.sideshow_target)}’s; the weaker hand packs and ties pack you.`,
@@ -203,15 +215,13 @@ export function casinoInstruction(match: Match, room: Room, selfId: string): str
       parts.push(
         'A show reveals both hands; the better hand takes the pot and ties go against you.',
       );
-    return parts.join(' ');
+    return parts.length ? parts.join(' ') : 'Packing gives up the chips you’ve put in.';
   }
   // Blackjack
   const data = blackjackDetails(match.detail);
   if (!match.actions.length) return null;
-  if (match.phase === 'betting') {
-    const bet = option(match, 'bet');
-    return `Bet ${bet?.minimum ?? 2}–${bet?.maximum ?? player.chips ?? 0} chips in even amounts. Blackjack pays 3:2; a tie returns your bet.`;
-  }
+  if (match.phase === 'betting')
+    return 'A win pays 1:1, a natural blackjack 3:2. A tie returns your bet.';
   if (match.phase === 'insurance') {
     const insure = option(match, 'accept');
     const cost = Math.floor(player.bet / 2);

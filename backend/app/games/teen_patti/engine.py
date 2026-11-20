@@ -97,19 +97,21 @@ class TeenPattiEngine(BaseEngine):
         if s["order"][s["turn"]] != player:
             return []
         p = s["players"][player]
-        minimum = s["stake"] * (2 if p["seen"] else 1)
+        multiplier = 2 if p["seen"] else 1
+        minimum = s["stake"] * multiplier
         actions = [legal("Pack / fold", "fold")]
         if not p["seen"]:
             actions.append(legal("See my cards", "peek"))
         if p["chips"] >= minimum:
+            maximum = min(minimum * 2, 64 * multiplier, p["chips"])
             actions.append(
                 legal(
                     "Chaal" if p["seen"] else "Blind bet",
                     "bet",
                     input="amount",
                     minimum=minimum,
-                    maximum=min(minimum * 2, 128 if p["seen"] else 64, p["chips"]),
-                    step=2 if p["seen"] else 1,
+                    maximum=maximum - maximum % multiplier,
+                    step=multiplier,
                 )
             )
             active = self._active(s)

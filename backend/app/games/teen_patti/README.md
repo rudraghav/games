@@ -39,3 +39,10 @@ responding neighbour), and at the end the comparison that decided it ("Show:
 colour beats pair.", "Pot limit reached, so every hand was shown: both hands are
 high card; the third card decides."). The bet is labelled "Blind bet" or "Chaal"
 (seen bet). Rules and outcomes are unchanged.
+
+Every endpoint of the seen-bet range respects the even-chip rule, including
+when the seat has an odd number of chips left. The three-card evaluator is
+checked against all 22,100 physical hands. These produce 52 trails, 48 pure
+sequences, 720 other sequences, 1,096 other colours, 3,744 pairs and 16,440
+high cards. These frequencies count deals. An individual show is a separate
+comparison against the 18,424 hands remaining once a player's cards are known.

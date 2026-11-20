@@ -375,3 +375,21 @@
     }
   }
 }
+@layer components {
+  .skyjo-compare {
+    margin-block-start: 8px;
+  }
+  .skyjo-compare p {
+    margin-block: 6px 0;
+  }
+  .skyjo-swap-cell {
+    display: grid;
+    align-content: start;
+    gap: 3px;
+    min-width: 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+  }
+}

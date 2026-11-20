@@ -12,11 +12,13 @@ from app.games.flip_seven.engine import FlipSevenEngine
 from app.games.gem_market.engine import GemMarketEngine
 from app.games.holdem.engine import HoldemEngine
 from app.games.party.engine import PartyEngine
+from app.games.roulette.engine import RouletteEngine
 from app.games.rummy.engine import RummyEngine
 from app.games.sea_salt_paper.engine import PaperEngine
 from app.games.shithead.engine import ShitheadEngine
 from app.games.six_nimmt.engine import SixNimmtEngine
 from app.games.skyjo.engine import SkyjoEngine
+from app.games.slots.engine import SlotsEngine
 from app.games.tarot.engine import TarotEngine
 from app.games.teen_patti.engine import TeenPattiEngine
 from app.games.the_gang.engine import GangEngine
@@ -33,6 +35,8 @@ ALL_ENGINES: list[Engine] = [
     RummyEngine(),
     TeenPattiEngine(),
     BlackjackEngine(),
+    RouletteEngine(),
+    SlotsEngine(),
     SkyjoEngine(),
     TarotEngine(),
     FourEngine(),

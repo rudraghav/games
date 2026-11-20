@@ -27,3 +27,5 @@ subprocess.run([sys.executable, str(root / "scripts/check_tarot_reference_index.
 subprocess.run([sys.executable, str(root / "scripts/export_casino_motion.py"), "--check"], cwd=root, check=True)
 subprocess.run([sys.executable, str(root / "scripts/export_deal_scenarios.py"), "--check"], cwd=root, check=True)
 subprocess.run([sys.executable, str(root / "scripts/export_midgame_scenarios.py"), "--check"], cwd=root, check=True)
+subprocess.run([sys.executable, str(root / "scripts/export_fixtures.py"), "--game", "roulette",
+                "--game", "slots", "--check"], cwd=root, check=True)

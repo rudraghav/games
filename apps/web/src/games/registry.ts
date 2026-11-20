@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import { games } from '@games/api-client/catalog';
 import type { TableProps } from './types';
 import { CardTable } from './shared/CardTable';
+import { ChanceTable } from './chance/ChanceTable';
 import { CasinoTable } from './casino/CasinoTable';
 import { DealTable } from './deal/DealTable';
 import { SkyjoTable } from './skyjo/SkyjoTable';
@@ -47,7 +48,8 @@ const familyTables: Record<string, ComponentType<TableProps>> = {
 };
 export const tableRegistry = Object.fromEntries(
   games.map((game) => {
-    const table = familyTables[game.family];
+    const table =
+      game.id === 'roulette' || game.id === 'slots' ? ChanceTable : familyTables[game.family];
     if (!table) throw new Error(`No table renderer is registered for ${game.family}.`);
     return [game.id, table];
   }),

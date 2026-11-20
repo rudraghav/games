@@ -18,6 +18,28 @@ const fixtures = midgameScenarios.filter((item) => games.includes(item.game));
 test.skip(Boolean(process.env.GAMES_TEST_URL), 'Legal projection density review is local-only.');
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 
+test('a player can inspect Blackjack hit odds and return to the same hand at 320px', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('/design/midgame');
+  const fixture = fixtures.find((item) => item.id === 'blackjack-7-31-8')!;
+  await scenario(page, fixture);
+  const preview = page.locator('.blackjack-hit-preview');
+  const summary = preview.locator('summary');
+  const cards = page.locator('.blackjack-hand[data-active="true"] .playing-card');
+  const faces = await cards.allTextContents();
+  expect(faces.length).toBe(2);
+  await summary.click();
+  await expect(preview.getByText(/chance of busting/)).toBeVisible();
+  expect((await summary.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await summary.press('Enter');
+  await expect(preview.locator('p')).toBeHidden();
+  expect(await cards.allTextContents()).toEqual(faces);
+  await expect(page.getByRole('button', { name: 'Hit', exact: true })).toBeEnabled();
+});
+
 async function scenario(page: Page, item: MidgameScenario) {
   await page.getByRole('combobox', { name: 'Game', exact: true }).selectOption(item.game);
   await page

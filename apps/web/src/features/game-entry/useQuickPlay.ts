@@ -1,4 +1,5 @@
 'use client';
+import { gameById } from '@games/api-client/catalog';
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -120,7 +121,11 @@ export function useQuickPlay(gameId: string) {
         return 'Try again';
       }
       if (mode === 'tutorial') return 'Play tutorial';
-      return reading ? 'Start reading' : 'Play with bots';
+      return reading
+        ? 'Start reading'
+        : gameById(gameId).playMode === 'solo'
+          ? 'Play solo'
+          : 'Play with bots';
     },
   };
 }

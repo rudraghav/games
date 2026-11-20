@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 import { midgameScenarios } from '../../apps/web/src/stories/generated/midgame-scenarios';
 
 test.skip(Boolean(process.env.GAMES_TEST_URL), 'Local engine-projected reviews.');
@@ -8,6 +8,18 @@ async function open(page: Page, id: string) {
   await page.getByRole('combobox', { name: 'Game', exact: true }).selectOption(fixture.game);
   await page.getByRole('combobox', { name: 'Mid-game scenario' }).selectOption(fixture.id);
   return fixture;
+}
+
+async function checkPhoneTargets(group: Locator) {
+  if (group.page().viewportSize()!.width > 600) return;
+  expect(
+    await group.getByRole('button').evaluateAll((buttons) =>
+      buttons.every((button) => {
+        const r = button.getBoundingClientRect();
+        return r.width >= 44 && r.height >= 44 && r.left >= 0 && r.right <= innerWidth;
+      }),
+    ),
+  ).toBe(true);
 }
 
 test('winning Rummy discard offers the exact declaration in one tap', async ({ page }) => {
@@ -30,6 +42,63 @@ test('winning Rummy discard offers the exact declaration in one tap', async ({ p
     fixture.next.action,
   );
   await expect(page.getByRole('region', { name: 'Rummy score explanation' })).toBeVisible();
+});
+
+test('comparing Skyjo swaps shows known and hidden targets while leaving the drawn card in hand', async ({
+  page,
+}) => {
+  const fixture = await open(page, 'skyjo-2-17-6');
+  const compare = page.getByRole('button', { name: 'Compare swaps' });
+  const own = page.getByRole('group', { name: 'Your Skyjo grid' });
+  await compare.click();
+  const replacement = own.getByRole('button', {
+    name: 'Replace, row 2, column 1, 8, -4 grid points',
+    exact: true,
+  });
+  await expect(replacement).toBeVisible();
+  await expect(own.getByRole('button', { name: /point change unknown/ })).toHaveCount(10);
+  await checkPhoneTargets(own);
+  await compare.click();
+  await expect(own.getByRole('button', { name: /grid points|point change unknown/ })).toHaveCount(
+    0,
+  );
+  await expect(page.getByLabel('Submitted action')).toHaveText('No action submitted');
+  await compare.click();
+  await replacement.click();
+  expect(JSON.parse((await page.getByLabel('Submitted action').textContent())!)).toEqual(
+    fixture.next.action,
+  );
+  await expect(compare).toHaveCount(0);
+});
+
+test('a 6 nimmt! card can be compared, changed and cleared before locking', async ({ page }) => {
+  const fixture = await open(page, 'six-nimmt-2-17-2');
+  const hand = page.getByRole('group', { name: 'Your number cards' });
+  const card = (value: string) =>
+    hand.getByRole('button', {
+      name: fixture.room.game!.hand.find((item) => item.value === value)!.label,
+      exact: true,
+    });
+  await card('20').click();
+  await expect(page.getByText('If 20 goes first, it follows 5 in row 1.')).toBeVisible();
+  await expect(page.locator('.six-row[data-preview="true"] h3')).toHaveText('Row 1');
+  await card('1').click();
+  await expect(page.getByText(/^If 1 goes first, choose a row to take/)).toBeVisible();
+  if (page.viewportSize()!.width <= 600) {
+    expect(
+      await page
+        .locator('.six-hand-note')
+        .evaluate(
+          (note) =>
+            note.scrollWidth <= note.clientWidth && note.scrollHeight <= note.clientHeight + 1,
+        ),
+    ).toBe(true);
+  }
+  await checkPhoneTargets(hand);
+  await expect(page.locator('.six-row[data-preview="true"]')).toHaveCount(0);
+  await card('1').click();
+  await expect(page.getByRole('button', { name: 'Lock my number' })).toBeDisabled();
+  await expect(page.getByLabel('Submitted action')).toHaveText('No action submitted');
 });
 
 test('one selected Shithead card offers its exact full rank and still allows a smaller play', async ({

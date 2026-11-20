@@ -32690,5 +32690,2063 @@ export const fixtures = [
       "last_action": null,
       "activity": []
     }
+  },
+  {
+    "label": "Roulette \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "31cefc87-90c0-5405-8cd5-d26d932f44dc",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "roulette",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 1,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "95bd701e-3bf0-58e4-95b0-c532e9d2ef55",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "roulette",
+        "phase": "betting",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": 100,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Choose your bet and stake.",
+        "actions": [
+          {
+            "label": "Red",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "red",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Black",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "black",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Odd",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "odd",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Even",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "even",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1\u201318",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "low",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "19\u201336",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "high",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 0",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 1",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 2",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 3",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 4",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 5",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "5",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 6",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "6",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 7",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "7",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 8",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "8",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 9",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "9",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 10",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "10",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 11",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "11",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 12",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "12",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 13",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "13",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 14",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "14",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 15",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "15",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 16",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "16",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 17",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "17",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 18",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "18",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 19",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "19",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 20",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "20",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 21",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "21",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 22",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "22",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 23",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "23",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 24",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "24",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 25",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "25",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 26",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "26",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 27",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "27",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 28",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "28",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 29",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "29",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 30",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "30",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 31",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "31",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 32",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "32",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 33",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "33",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 34",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "34",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 35",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "35",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 36",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "36",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "spin_limit": 5,
+          "spins_remaining": 5,
+          "history": []
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null,
+      "last_action": null,
+      "activity": []
+    }
+  },
+  {
+    "label": "Roulette \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "58e8f806-63c2-51ce-8acd-4d99d26d7432",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "roulette",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 1,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "95bd701e-3bf0-58e4-95b0-c532e9d2ef55",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "roulette",
+        "phase": "betting",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": 100,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Choose your bet and stake.",
+        "actions": [
+          {
+            "label": "Red",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "red",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Black",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "black",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Odd",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "odd",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Even",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "even",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "1\u201318",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "low",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "19\u201336",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "high",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 0",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "0",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 1",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "1",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 2",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "2",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 3",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "3",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 4",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "4",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 5",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "5",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 6",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "6",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 7",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "7",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 8",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "8",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 9",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "9",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 10",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "10",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 11",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "11",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 12",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "12",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 13",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "13",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 14",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "14",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 15",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "15",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 16",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "16",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 17",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "17",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 18",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "18",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 19",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "19",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 20",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "20",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 21",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "21",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 22",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "22",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 23",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "23",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 24",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "24",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 25",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "25",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 26",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "26",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 27",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "27",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 28",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "28",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 29",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "29",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 30",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "30",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 31",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "31",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 32",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "32",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 33",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "33",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 34",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "34",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 35",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "35",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Number 36",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "36",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 100,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "spin_limit": 5,
+          "spins_remaining": 5,
+          "history": []
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null,
+      "last_action": null,
+      "activity": []
+    }
+  },
+  {
+    "label": "Slots \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "fe9357b7-1799-5a78-bf54-c397a701cd12",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "slots",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 1,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "d2c81003-da30-55e0-b910-394fab333b4f",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "slots",
+        "phase": "spinning",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": 100,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Choose your stake and spin.",
+        "actions": [
+          {
+            "label": "Spin",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 10,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "chips": 100,
+          "starting_chips": 100,
+          "spin_limit": 5,
+          "spins_remaining": 5,
+          "history": [],
+          "paytable": [
+            {
+              "result": "triple_seven",
+              "label": "Three sevens",
+              "multiplier": 100,
+              "ways": 1
+            },
+            {
+              "result": "triple_star",
+              "label": "Three stars",
+              "multiplier": 15,
+              "ways": 8
+            },
+            {
+              "result": "triple_bell",
+              "label": "Three bells",
+              "multiplier": 12,
+              "ways": 8
+            },
+            {
+              "result": "triple_lemon",
+              "label": "Three lemons",
+              "multiplier": 8,
+              "ways": 27
+            },
+            {
+              "result": "triple_cherry",
+              "label": "Three cherries",
+              "multiplier": 5,
+              "ways": 64
+            },
+            {
+              "result": "two_cherries",
+              "label": "Exactly two cherries",
+              "multiplier": 2,
+              "ways": 384
+            },
+            {
+              "result": "miss",
+              "label": "All other lines",
+              "multiplier": 0,
+              "ways": 1236
+            }
+          ],
+          "total_outcomes": 1728,
+          "winning_outcomes": 492,
+          "return_numerator": 1620
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null,
+      "last_action": null,
+      "activity": []
+    }
+  },
+  {
+    "label": "Slots \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "a2761fc8-3d07-5a19-90f7-72572aa815b3",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "slots",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 1,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "d2c81003-da30-55e0-b910-394fab333b4f",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "slots",
+        "phase": "spinning",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": 100,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Choose your stake and spin.",
+        "actions": [
+          {
+            "label": "Spin",
+            "action": {
+              "type": "spin",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 1,
+            "maximum": 10,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "chips": 100,
+          "starting_chips": 100,
+          "spin_limit": 5,
+          "spins_remaining": 5,
+          "history": [],
+          "paytable": [
+            {
+              "result": "triple_seven",
+              "label": "Three sevens",
+              "multiplier": 100,
+              "ways": 1
+            },
+            {
+              "result": "triple_star",
+              "label": "Three stars",
+              "multiplier": 15,
+              "ways": 8
+            },
+            {
+              "result": "triple_bell",
+              "label": "Three bells",
+              "multiplier": 12,
+              "ways": 8
+            },
+            {
+              "result": "triple_lemon",
+              "label": "Three lemons",
+              "multiplier": 8,
+              "ways": 27
+            },
+            {
+              "result": "triple_cherry",
+              "label": "Three cherries",
+              "multiplier": 5,
+              "ways": 64
+            },
+            {
+              "result": "two_cherries",
+              "label": "Exactly two cherries",
+              "multiplier": 2,
+              "ways": 384
+            },
+            {
+              "result": "miss",
+              "label": "All other lines",
+              "multiplier": 0,
+              "ways": 1236
+            }
+          ],
+          "total_outcomes": 1728,
+          "winning_outcomes": 492,
+          "return_numerator": 1620
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null,
+      "last_action": null,
+      "activity": []
+    }
   }
 ] satisfies { label: string; selfId: string; room: components["schemas"]["RoomView"] }[];

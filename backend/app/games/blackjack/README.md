@@ -32,3 +32,7 @@ split; it never includes the dealer. `insured` lists public insurance stakes.
 `message` is the instruction for the seat that can act ("Hand 2 of 2 is 12: hit
 or stand.", "The dealer shows an ace: insure for 5 or decline.") and at the end
 the dealer's result for everyone ("Dealer busts with 24; wagers settled.").
+
+For a fresh six-deck shoe, `test_table_rules.py` enumerates all 48,516 possible
+unordered two-card starts. The 24 aces pair with 96 ten-value cards for exactly
+2,304 natural blackjacks (4.749%). The count applies before any cards are exposed.

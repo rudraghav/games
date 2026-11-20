@@ -21,9 +21,8 @@ const sameSet = (a: string[], b: string[]) =>
   a.length === b.length && a.every((id) => b.includes(id));
 
 /**
- * The engine settles every contribution layer separately. Layers that the same
- * players could win are one pot to a player, so they are shown together and only
- * a change in who could win starts a side pot.
+ * Older saved hands recorded each contribution layer separately. Group layers
+ * with identical eligibility while preserving the chips actually awarded.
  */
 export function groupSettledPots(pots: SettledPot[]): PotGroup[] {
   const groups: PotGroup[] = [];

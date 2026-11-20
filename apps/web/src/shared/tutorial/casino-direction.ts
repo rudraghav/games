@@ -1,9 +1,32 @@
-import { blackjackDetails, type ActionOption, type Match } from '@games/api-client';
+import {
+  rouletteDetails,
+  slotsDetails,
+  blackjackDetails,
+  type ActionOption,
+  type Match,
+} from '@games/api-client';
 import { choiceView, wagerView } from '@/games/casino/casino-guidance';
 import { visibleBlackjackValue } from '@/games/casino/hand-value';
 
 /** Explain the current player's visible hand or the price offered in the existing wager dock. */
 export function casinoDirection(match: Match, suggested: ActionOption | undefined, selfId: string) {
+  if (suggested?.value.type === 'spin' && (match.id === 'roulette' || match.id === 'slots')) {
+    const wheel = match.id === 'roulette';
+    const history = wheel
+      ? rouletteDetails(match.detail).history
+      : slotsDetails(match.detail).history;
+    const last = history.at(-1);
+    const tip = !last
+      ? wheel
+        ? 'Red covers 18 of the 37 pockets. Select Red or choose a number, then set your stake and spin.'
+        : 'Start with one chip. Read the three center symbols after they stop.'
+      : history.length === 1
+        ? `Your first spin returned ${last.payout} on a stake of ${last.stake}. Open Spin history to see how the balance changed.`
+        : wheel
+          ? 'A new spin has the same 37 possible pockets. Open Payouts and odds to compare an outside bet with a single number.'
+          : 'Open Paytable and odds to compare two cherries with three matching symbols, then choose your next stake.';
+    return { option: suggested, tip };
+  }
   if (!suggested || !['blackjack', 'holdem', 'teen-patti'].includes(match.id)) return;
   if (suggested.input === 'amount') {
     return {

@@ -2,7 +2,14 @@
 
 Routine `pnpm test:browser` checks independent sessions and responsive controls.
 
-The four `crowded-*.spec.ts` suites cover all 27 experiences at 320/390/768/1440px
+`chance-sessions.spec.ts` covers Slots and Roulette on a 320px touch screen.
+It compares local wager edits with saved versions, settles five spins, checks
+every payout, and reopens the original private result after a rematch and room
+closure. An independent guest completes two tutorial spins and verifies archive
+access boundaries. Hosted execution requires `GAMES_CHANCE_LIVE=1`.
+
+
+The four `crowded-*.spec.ts` suites cover the 27 original experiences at 320/390/768/1440px
 using natural legal midgame projections and separately labelled controlled Deal
 density probes. They measure card contents inside player areas, multirow overlap,
 expanded collections, final-item reachability, exact action callbacks and relevant

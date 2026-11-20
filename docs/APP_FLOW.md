@@ -15,7 +15,7 @@ Trio's Lowest/Highest requests identify the target player in their accessible
 names without including hidden ranks. Keyboard moves retain the server's legal
 request and saved public reveals agree across all seats after refresh.
 
-- `/`: public, server-rendered lounge with 26 multiplayer games and Pop Tarot; search/category/group-size discovery, create/join and member-only room shortcuts.
+- `/`: public, server-rendered lounge with 26 multiplayer games, Pop Tarot, Roulette and Slots; search/category/group-size discovery, create/join and member-only room shortcuts.
 - `/games/[gameId]`: public game introduction, rules and play choices; opening or refreshing it never starts a session.
 - `/games/[gameId]/rooms/[id]`: authenticated membership-only multiplayer lobby, live table, results and room chat.
 - `/games/tarot/play/[id]`: private active Tarot spread, opened directly by Start reading.
@@ -246,3 +246,9 @@ organization is explicitly nonbinding and declaration guidance follows the chose
 discard; casino/Skyjo/Gang results explain score changes. Paper inspection and
 boop graduation preview are separate from confirmation. Narrow boards expose
 panning and a read-only whole-board overview; Uno colour choices occupy two columns.
+
+In Blackjack, the active hand has an optional “What if I hit?” explanation. Opening it calculates the chance of busting on the next card from the visible six-deck table, including what the dealer's initial check establishes. The wager preview distinguishes chips already committed from the next payment. Teen Patti shows the affordable seen-hand price before a player looks at their cards.
+
+In The Gang, a pending chip review survives refresh if the holder and consequences still match. When another player changes them, the old confirmation disappears. In 6 nimmt!, selecting a number previews its destination and penalty on the current rows before locking. Skyjo can compare the drawn card with visible swap targets and leaves face-down values unknown.
+
+Roulette and Slots start at `/games/[gameId]` with Play solo. Normal play opens the table at `/games/[gameId]/play/[id]`. A player can adjust the bet and stake, inspect the odds and submit one spin. On completion, Play again starts a new match at the same table. Profile history opens the owner’s immutable spin receipts at `/games/[gameId]/results/[matchId]`, including after the table closes.

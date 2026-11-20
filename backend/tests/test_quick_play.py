@@ -40,7 +40,8 @@ def test_every_game_quick_starts_at_default_capacity_with_one_human(client, game
     response = play(client, headers, game_id)
     assert response.status_code == 200, response.text
     room = response.json()
-    count = 1 if game_id == "tarot" else max(2, ENGINES[game_id].manifest.min_players)
+    manifest = ENGINES[game_id].manifest
+    count = 1 if manifest.play_mode == "solo" else max(2, manifest.min_players)
     assert room["status"] == "playing" and room["match_version"] == 1
     assert room["capacity"] == count and room["game_id"] == game_id
     assert len(room["members"]) == len(room["game"]["players"]) == count
@@ -57,6 +58,11 @@ def test_every_game_quick_starts_at_default_capacity_with_one_human(client, game
         assert len(room["game"]["actions"]) == 78
         with sessions()() as session:
             assert session.get(TarotReading, room["match_id"]) is None
+    if game_id in {"roulette", "slots"}:
+        assert room["game"]["players"][0]["chips"] == 100
+        assert room["game"]["detail"]["history"] == []
+        assert room["game"]["detail"]["spins_remaining"] == 5
+        assert '"_pockets"' not in response.text and '"_stops"' not in response.text
 
 
 def test_concurrent_repeated_intent_commits_one_room_match_and_bot_group(client):

@@ -81,6 +81,7 @@ const choiceTitles: Record<string, string> = {
   select_number: 'Choose a number to lock',
   arrange: 'Choose your face-up cards',
   bet: 'Choose your stake',
+  spin: 'Choose your stake and spin',
   raise: 'Choose a raise',
   pay: 'Choose how to pay',
 };

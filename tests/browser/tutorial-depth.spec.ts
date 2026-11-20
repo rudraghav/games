@@ -32,6 +32,13 @@ for (const game of cards) drivers.set(game, playCardDecision);
 for (const game of boardTutorials) drivers.set(game, playBoardDecision);
 for (const game of parties) drivers.set(game, playPartyDecision);
 
+for (const game of ['roulette', 'slots']) {
+  drivers.set(game, async (page) => {
+    if (game === 'roulette') await page.getByRole('button', { name: 'Red', exact: true }).click();
+    await page.getByRole('button', { name: 'Spin', exact: true }).click();
+  });
+}
+
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 // Three independent titles per test learner, each with at most four hands, fit
 // the ordinary twelve-room allowance. Every title gets its own browser context.

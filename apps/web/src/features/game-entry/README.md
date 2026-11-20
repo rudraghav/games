@@ -22,7 +22,7 @@ unfinished spread saved for Your games.
 
 Verify with the frontend, contracts and multiplayer groups, plus
 `tests/browser/game-entry.spec.ts`. The browser suite checks public no-write
-browsing across all 27 games, mobile geometry, direct starts, duplicate/lost
+browsing across the registered catalogue, mobile geometry, direct starts, duplicate/lost
 responses, profiles, invitations, private cards, refresh and old links without
 calling an AI provider. Archive and Tarot table suites cover saved-reading
 navigation and paused-session recovery separately.
@@ -34,3 +34,5 @@ Only that last action starts a guided session. An interrupted tutorial can be
 retried directly from the rulebook. Ordinary play and the tutorial keep separate
 request IDs and share one in-flight guard. The guide is scoped to the match
 and its player. The explicit tutorial URL also works when storage is unavailable.
+
+Roulette and Slots use Play solo to start a private five-spin table. The game-specific play URL supports refresh, and Past games links to the profile. A completed spin history has its own game-specific results URL keyed by the original match.

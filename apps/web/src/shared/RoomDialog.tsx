@@ -82,7 +82,7 @@ export function RoomDialog({
               });
       if (
         mode === 'create' &&
-        (game.family === 'tarot' || (!friendsOnly && playWith === 'bots' && game.botsSupported))
+        (game.playMode === 'solo' || (!friendsOnly && playWith === 'bots' && game.botsSupported))
       ) {
         // Creation is already committed; failed auto-start recovers in this room.
         try {

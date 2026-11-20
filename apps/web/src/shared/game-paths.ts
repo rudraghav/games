@@ -12,7 +12,7 @@ export function gamePath(gameId: string) {
 
 /** The server's authorized room projection decides which game this session belongs to. */
 export function roomPath(room: { id: string; gameId: string }) {
-  const route = room.gameId === 'tarot' ? 'play' : 'rooms';
+  const route = gameById(room.gameId).playMode === 'solo' ? 'play' : 'rooms';
   return `${gamePath(room.gameId)}/${route}/${segment(room.id)}`;
 }
 

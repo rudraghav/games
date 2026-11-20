@@ -39,6 +39,8 @@ LABELS: dict[str, dict[str, str]] = {
     "blackjack": {"bet": "Placed a bet", "accept": "Took insurance", "decline": "Declined insurance",
                   "hit": "Drew a card", "stand": "Stood", "split": "Split their hand",
                   "double": "Doubled down"},
+    "roulette": {"spin": "Spun the wheel"},
+    "slots": {"spin": "Spun the reels"},
     # Read as "Dev discarded and declared: 4 ♥"; a false declaration shows on the seat.
     "rummy": {"draw_stock": "Drew from the stock", "draw_discard": "Took the discard",
               "discard": "Discarded", "declare": "Discarded and declared",
@@ -216,6 +218,20 @@ def public_move(
         targets = [after.current_player]
     cue = public_action(before, actor, action, version)
     amount = cue["amount"] if cue else None
+    if group in {"roulette", "slots"} and kind == "spin":
+        # These are solo games. The movement in the confirmed visible balance
+        # describes settlement without copying the wager choice or reel stops.
+        if set(before_views) == set(after_views) == {actor}:
+            prior_balance = next((p.chips for p in before.players if p.id == actor), None)
+            balance = next((p.chips for p in after.players if p.id == actor), None)
+            if prior_balance is not None and balance is not None:
+                net = balance - prior_balance
+                chips = "chip" if abs(net) == 1 else "chips"
+                if net:
+                    label += f" and {'gained' if net > 0 else 'lost'} {abs(net)} {chips}"
+                else:
+                    label += " and broke even"
+        return PublicMoveView(version=version, actor_id=actor, type=kind, label=label, amount=amount)
     if group == "deal":
         source = after if kind == "play" else before
         effect = source.detail.get("pending_action")

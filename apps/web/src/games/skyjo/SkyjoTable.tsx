@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { Button, CardPile, PlayingCard, Seat } from '@games/ui';
 import { skyjoDetails, type Player } from '@games/api-client';
 import { OpponentPanel } from '../shared/OpponentPanel';
@@ -6,6 +7,7 @@ import { ActionPanel } from '../shared/ActionPanel';
 import { TablePile } from '../shared/TablePile';
 import { playerName, type TableProps } from '../types';
 import { useRecentSlots } from './recent-slots';
+import { swapImpact } from './swap-impact';
 
 /** Moves made on the table itself: piles, grid cards and the round review. */
 const TABLE_MOVES = ['reveal', 'swap', 'draw_stock', 'draw_discard', 'discard', 'next_round'];
@@ -46,6 +48,8 @@ export function SkyjoTable(props: TableProps) {
   const nextRound = find('next_round');
   const current = match.currentPlayer;
   const review = ['between_rounds', 'finished'].includes(match.phase);
+  const [compare, setCompare] = useState(false);
+  const canCompare = Boolean(match.drawn && find('swap'));
   const name = (id: string) => (id === selfId ? 'You' : playerName(room, id));
 
   /** What a waiting seat can know about the current move, from public information only. */
@@ -90,7 +94,11 @@ export function SkyjoTable(props: TableProps) {
                   ['reveal', 'swap'].includes(option.value.type) && option.value.slot === slot,
               )
             : undefined;
-          return (
+          const impact =
+            compare && match.drawn && action?.value.type === 'swap'
+              ? swapImpact(player.cards, slot, match.drawn.value)
+              : null;
+          const face = (
             <PlayingCard
               key={slot}
               card={card || undefined}
@@ -99,10 +107,18 @@ export function SkyjoTable(props: TableProps) {
               compact
               playable={!!action}
               className={changed.includes(slot) ? 'skyjo-recent' : undefined}
-              label={`${action ? (action.value.type === 'swap' ? 'Replace' : 'Reveal') : card?.label || 'Face-down card'}, ${position(slot)}${action && card ? `, ${card.label}` : ''}`}
+              label={`${action ? (action.value.type === 'swap' ? 'Replace' : 'Reveal') : card?.label || 'Face-down card'}, ${position(slot)}${action && card ? `, ${card.label}` : ''}${impact ? `, ${impact.description}` : ''}`}
               onClick={action ? () => onAction(action.value) : undefined}
               disabled={blocked}
             />
+          );
+          return impact ? (
+            <div className="skyjo-swap-cell" key={slot}>
+              {face}
+              <span aria-hidden="true">{impact.label}</span>
+            </div>
+          ) : (
+            face
           );
         })}
       </div>
@@ -192,8 +208,8 @@ export function SkyjoTable(props: TableProps) {
               <div className="skyjo-review-heading">
                 <h3>Round {data.round} scores</h3>
                 <p className="small muted">
-                  Grid total after removed columns. A closer who isn’t strictly lowest scores
-                  double.
+                  Removed columns score zero. The closer doubles a positive grid total if another
+                  player ties or beats it.
                 </p>
               </div>
               <ol>
@@ -247,6 +263,24 @@ export function SkyjoTable(props: TableProps) {
                   connected={room.members.find((m) => m.id === own.id)?.connected ?? false}
                 />
                 {badges(own)}
+                {canCompare ? (
+                  <div className="skyjo-compare">
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      aria-pressed={compare}
+                      onClick={() => setCompare(!compare)}
+                    >
+                      Compare swaps
+                    </Button>
+                    {compare ? (
+                      <p className="small muted">
+                        Change in grid points with your {match.drawn?.value}. Lower is better. A
+                        hidden card’s change is unknown. Tap a card to swap.
+                      </p>
+                    ) : null}
+                  </div>
+                ) : null}
                 {grid(own, true)}
               </article>
             </div>

@@ -25,8 +25,8 @@ engine's shuffle seed. No projection is saved wholesale.
 | boop. | Public push simulation, immediate adult wins, opponent one-move threats, graduation and bounded repeat avoidance |
 | Uno editions | Color retention, action pressure, swap hand counts, penalty stacking and legal UNO/catch reactions |
 | Deal editions | Property-set completion, action value and opponent pressure; minimum-cost bank-first payments preserving sets |
-| Hold'em | Small independent samples from the unknown card pool, pot odds and bounded raises |
-| Teen Patti | Legal peek, independent three-card strength samples, affordable wagers/show/sideshow decisions |
+| Hold'em | Samples unseen cards, prices the affordable call against contestable contributions, and bounds raises |
+| Teen Patti | Samples multiway hand strength for ordinary wagers and counts all 18,424 possible single-opponent hands for shows and sideshows. Equal hands favour the responder. A paid show must justify its cost. |
 | Blackjack | Multi-deck basic hard/soft/pair strategy; no insurance, ordinary small room-only wagers |
 | Rummy | One meld enumeration per hand, disjoint coverage search, pure/two-sequence priorities and genuine declarations |
 | Skyjo | Visible-card replacement, unknown-card expectation, matching-column removal and reveal decisions |

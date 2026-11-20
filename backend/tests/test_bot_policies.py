@@ -7,6 +7,8 @@ from time import perf_counter
 import pytest
 
 from app.bots import choose_action, observe_view, supports_bots
+from app.bots.casino import _teen_comparison_chance
+from app.bots.context import Context
 from app.bots.policy import BOT_GAMES
 from app.bots.words import LEXICON
 from app.core.cards import card_view
@@ -23,7 +25,7 @@ from app.games.word_agents.engine import WORDS, WordAgentsEngine
 
 
 def test_registry_covers_every_multiplayer_experience_and_no_tarot_opponent():
-    assert BOT_GAMES == set(ENGINES) - {"tarot"}
+    assert BOT_GAMES == {game_id for game_id, engine in ENGINES.items() if engine.manifest.play_mode != "solo"}
     assert not supports_bots("tarot")
     assert not supports_bots("unknown")
 
@@ -147,6 +149,44 @@ def test_blackjack_uses_hard_soft_and_pair_strategy(hand, dealer, expected):
     )
     decision = choose_action(e.project_view(s, "a"), "a")
     assert decision.action.type == expected
+
+
+@pytest.mark.parametrize("stack, totals, bets, equity, expected", [
+    (10, [20, 70, 10], [20, 70, 10], 0.22, "call"),
+    (8, [2, 100, 100], [2, 100, 100], 0.15, "fold"),
+])
+def test_short_holdem_bot_prices_only_the_call_and_chips_it_can_win(
+    stack, totals, bets, equity, expected, monkeypatch,
+):
+    engine = ENGINES["holdem"]
+    state = engine.setup(list("abc"), {}, seed=2)
+    state.update(turn=0, current_bet=max(bets))
+    for player, total, bet in zip("abc", totals, bets, strict=True):
+        state["players"][player].update(total=total, bet=bet)
+    state["players"]["a"]["chips"] = stack
+    monkeypatch.setattr("app.bots.casino._equity", lambda ctx: equity)
+    assert choose_action(engine.project_view(state, "a"), "a").action.type == expected
+
+
+def test_teen_comparison_counts_an_equal_hand_for_responder_only():
+    engine = ENGINES["teen-patti"]
+    state = engine.setup(list("abcd"), {}, seed=1)
+    state["players"]["a"].update(cards=["2S:0", "3H:0", "5D:0"], seen=True)
+    ctx = Context(engine.project_view(state, "a"), "a", {})
+    # The lowest non-run cannot beat anything. Of the 27 remaining 2-3-5
+    # holdings, only the all-clubs hand is a colour; the other 26 tie.
+    assert _teen_comparison_chance(ctx) == 0
+    assert _teen_comparison_chance(ctx, responding=True) == 26 / 18424
+
+
+def test_seen_teen_bot_packs_a_losing_show_and_requests_a_favourable_one():
+    engine = ENGINES["teen-patti"]
+    state = engine.setup(list("ab"), {}, seed=1)
+    state["players"]["b"]["seen"] = True
+    state["players"]["a"].update(cards=["2S:0", "3H:0", "5D:0"], seen=True)
+    assert choose_action(engine.project_view(state, "a"), "a").action.type == "fold"
+    state["players"]["a"]["cards"] = ["AS:0", "AH:0", "AD:0"]
+    assert choose_action(engine.project_view(state, "a"), "a").action.type == "show"
 
 
 def test_rummy_declares_a_real_two_sequence_hand_instead_of_folding():

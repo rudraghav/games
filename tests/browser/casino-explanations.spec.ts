@@ -8,13 +8,10 @@ import {
 } from '../../packages/api-client/src/index';
 import { openGameSetup, openRoomOptions, requestAs, roomAs } from './helpers';
 
-test.skip(
-  Boolean(process.env.GAMES_TEST_URL),
-  'Local explanation acceptance uses deterministic public fixtures.',
-);
 test.use({ reducedMotion: 'reduce', trace: 'off' });
 
 async function scenario(page: Page, id: string) {
+  test.skip(Boolean(process.env.GAMES_TEST_URL), 'Deterministic fixtures run on the local app.');
   const fixture = midgameScenarios.find((item) => item.id === id)!;
   await page.goto('/design/midgame');
   await page.getByRole('combobox', { name: 'Game', exact: true }).selectOption(fixture.game);
@@ -188,6 +185,61 @@ test('casino docks show every choice, its cost and why a wager cannot be sent ye
   await fits(page);
 });
 
+test('casino chip previews stay local until a bet is committed', async ({ page }, info) => {
+  if (info.project.use.hasTouch) await page.setViewportSize({ width: 320, height: 700 });
+  const dock = page.getByRole('region', { name: 'Your actions' });
+  const submitted = page.getByLabel('Submitted action');
+  await scenario(page, 'holdem-2-17-2'); // The acting player has already posted two chips.
+  const raise = dock.getByRole('spinbutton', { name: 'Raise to amount' });
+  await raise.fill('10');
+  await expect(dock).toContainText('Add 8 chips · 190 left unbet');
+  await raise.fill('200');
+  await expect(dock).toContainText('Add 198 chips · 0 left unbet');
+  await dock.getByRole('button', { name: 'Min 4', exact: true }).click();
+  await expect(dock).toContainText('Add 2 chips · 196 left unbet');
+  await expect(submitted).toHaveText('No action submitted');
+  await fits(page);
+
+  await scenario(page, 'blackjack-7-31-2');
+  const presets = dock.getByRole('group', { name: 'Place bet amounts' }).getByRole('button');
+  if (info.project.use.hasTouch) {
+    const boxes = await presets.evaluateAll((buttons) =>
+      buttons.map((button) => {
+        const { top, height, width } = button.getBoundingClientRect();
+        return { top, height, width };
+      }),
+    );
+    expect(new Set(boxes.map((box) => box.top)).size).toBe(1);
+    expect(boxes.every((box) => box.width >= 44 && box.height >= 44)).toBe(true);
+  }
+  await dock.getByRole('button', { name: '20', exact: true }).click();
+  await expect(dock).toContainText('Add 20 chips · 180 left unbet');
+  const amount = dock.getByRole('spinbutton', { name: 'Place bet amount' });
+  await amount.fill('21');
+  await expect(dock).toContainText('Use an even amount.');
+  await expect(dock.getByText(/left unbet/)).toHaveCount(0);
+  await amount.fill('50');
+  await expect(submitted).toHaveText('No action submitted');
+  await expect(dock).toContainText('Add 50 chips · 150 left unbet');
+  await dock.getByRole('button', { name: 'Place bet', exact: true }).click();
+  expect(JSON.parse((await submitted.textContent())!)).toMatchObject({ type: 'bet', amount: 50 });
+
+  await scenario(page, 'teen-patti-2-17-3');
+  const direct = dock.getByRole('button', { name: 'Blind bet 2 chips', exact: true });
+  if (info.project.use.hasTouch) {
+    const first = dock.getByRole('button', { name: 'Blind bet 1 chip', exact: true });
+    expect((await first.boundingBox())!.y).toBe((await direct.boundingBox())!.y);
+  }
+  await expect(direct).toHaveAccessibleDescription('197 left unbet');
+  await expect(dock).toContainText('Looking ends blind play. Your seen bet would cost 2–4 chips');
+  await expect(dock.getByRole('button', { name: 'See my cards' })).toHaveAccessibleDescription(
+    /2–4 chips/,
+  );
+  await fits(page);
+  await direct.click();
+  expect(JSON.parse((await submitted.textContent())!)).toMatchObject({ type: 'bet', amount: 2 });
+});
+
 test('Skyjo exposes remaining final turns and the settled round calculation', async ({ page }) => {
   const closing = midgameScenarios.find(
     (item) => item.game === 'skyjo' && skyjoDetails(item.room.game!.detail ?? {}).remaining.length,
@@ -235,6 +287,10 @@ test('Gang switches privacy copy after reveal and explains the public hand order
 });
 
 test('a natural Blackjack round shows a saved per-hand ledger after refresh', async ({ page }) => {
+  test.skip(
+    Boolean(process.env.GAMES_TEST_URL) && process.env.GAMES_TEST_CASINO_SAVED !== '1',
+    'Enable the saved Blackjack round explicitly for a hosted test.',
+  );
   let id: string | undefined;
   try {
     await page.goto('/');
@@ -252,14 +308,30 @@ test('a natural Blackjack round shows a saved per-hand ledger after refresh', as
       await page.getByRole('button', { name: 'I’m ready', exact: true }).click();
       await page.getByRole('button', { name: 'Start game', exact: true }).click();
     }
+    const dock = page.getByRole('region', { name: 'Your actions' });
+    const quickBet = dock.getByRole('button', { name: '20', exact: true });
+    await expect(quickBet).toBeEnabled();
+    const betVersion = (await roomAs(page, id)).match_version;
+    await quickBet.click();
+    await expect(dock).toContainText('Add 20 chips · 180 left unbet');
+    await page.reload();
+    await expect(dock.getByRole('spinbutton', { name: 'Place bet amount' })).toHaveValue('20');
+    await expect(dock).toContainText('Add 20 chips · 180 left unbet');
+    expect((await roomAs(page, id)).match_version).toBe(betVersion);
     await page.getByRole('button', { name: 'Place bet', exact: true }).click();
     for (let step = 0; step < 5; step++) {
       const room = await roomAs(page, id);
       if (room.status === 'finished') break;
       if (room.game!.phase === 'insurance')
         await page.getByRole('button', { name: 'No insurance', exact: true }).click();
-      else if (room.game!.phase === 'playing')
+      else if (room.game!.phase === 'playing') {
+        const hitPreview = page.locator('.blackjack-hit-preview');
+        await hitPreview.locator('summary').click();
+        await expect(hitPreview.getByText(/chance of busting/)).toBeVisible();
+        expect((await roomAs(page, id)).match_version).toBe(room.match_version);
+        await hitPreview.locator('summary').click();
         await page.getByRole('button', { name: 'Stand', exact: true }).click();
+      }
       await expect
         .poll(async () => (await roomAs(page, id!)).match_version)
         .toBeGreaterThan(room.match_version!);

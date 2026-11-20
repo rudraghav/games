@@ -12,6 +12,7 @@ import {
   choiceView,
   feltCue,
   seatResult,
+  wagerImpact,
   wagerProblem,
   wagerView,
 } from '@/games/casino/casino-guidance';
@@ -26,6 +27,48 @@ const option = (match: Match, type: string) =>
   match.actions.find((item) => item.value.type === type)!;
 
 describe('Casino decision guidance', () => {
+  it('deducts only new chips for a Hold’em raise-to, and the full amount for a new bet', () => {
+    const blind = scenario('holdem-2-17-2');
+    expect(wagerImpact(blind.match, blind.selfId, 10)).toEqual({ added: 8, remaining: 190 });
+    expect(wagerImpact(blind.match, blind.selfId, 200)).toEqual({ added: 198, remaining: 0 });
+    expect(wagerImpact(blind.match, blind.selfId, 201)).toBeNull();
+    const blackjack = scenario('blackjack-7-31-2');
+    expect(wagerImpact(blackjack.match, blackjack.selfId, 20)).toEqual({
+      added: 20,
+      remaining: 180,
+    });
+    const patti = scenario('teen-patti-2-17-2');
+    expect(wagerImpact(patti.match, patti.selfId, 4)).toEqual({ added: 4, remaining: 195 });
+  });
+  it('offers a pot preset only when the actual pot-sized raise fits the stack', () => {
+    const { match, selfId } = scenario('holdem-2-17-2');
+    const capped = { ...option(match, 'raise'), maximum: 5 };
+    expect(wagerView(match, selfId, capped).presets).toEqual([{ label: 'Min 4', value: 4 }]);
+  });
+  it('prices an irreversible Teen Patti peek from the offered blind limit and affordable even chips', () => {
+    const { match, room, selfId } = scenario('teen-patti-2-17-3');
+    const projected = (chips: number) => ({
+      ...match,
+      players: match.players.map((p) => (p.id === selfId ? { ...p, chips } : p)),
+      actions: match.actions.map((a) =>
+        a.value.type === 'bet' ? { ...a, minimum: 48, maximum: Math.min(64, chips) } : a,
+      ),
+    });
+    for (const [stack, phrase] of [
+      [199, '96–128 chips'],
+      [99, '96–98 chips'],
+      [97, 'cost 96 chips.'],
+      [95, 'you can only pack'],
+    ] as const) {
+      const view = projected(stack);
+      const instruction = casinoInstruction(view, room, selfId);
+      expect(instruction).toContain(phrase);
+      expect(choiceView(view, selfId, option(view, 'peek')).description).toContain(phrase);
+    }
+    const seen = scenario('teen-patti-2-17-2');
+    const narrow = { ...option(seen.match, 'bet'), maximum: 3 };
+    expect(wagerView(seen.match, seen.selfId, narrow).max).toBe(2);
+  });
   it('states the call, the raise range and the cost of folding, never a raw phase', () => {
     const { room, match, selfId } = scenario('holdem-9-31-2');
     const line = casinoInstruction(match, room, selfId)!;
@@ -64,7 +107,12 @@ describe('Casino decision guidance', () => {
     expect(wagerProblem(5, even)).toBe('Use an even amount.');
   });
   it('addresses the sideshow responder as you and states the tie rule', () => {
-    const { room, match, selfId } = scenario('teen-patti-6-31-26');
+    const responder = midgameScenarios.find(
+      (item) =>
+        item.game === 'teen-patti' &&
+        item.room.game?.actions?.some((move) => move.action.type === 'accept'),
+    )!;
+    const { room, match, selfId } = scenario(responder.id);
     const line = casinoInstruction(match, room, selfId)!;
     expect(line).toContain('asks you for a sideshow');
     expect(line).toMatch(/equal hands: .+ packs/);

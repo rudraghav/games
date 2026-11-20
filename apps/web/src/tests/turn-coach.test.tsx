@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { games as catalog } from '@games/api-client/catalog';
 import type { ActionOption, Room } from '@games/api-client';
 import { mapRoom } from '@games/api-client/mappers';
 import { fixtures } from '@/stories/generated/rooms';
@@ -117,7 +118,7 @@ describe('Guided practice uses the actual saved game', () => {
       }
       games.add(match.id);
     }
-    expect(games.size).toBe(27);
+    expect(games).toEqual(new Set(catalog.map((game) => game.id)));
   });
 
   it('offers the Azul round advance directly and leaves drafts and placements on the table', () => {

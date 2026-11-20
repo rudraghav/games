@@ -11,7 +11,7 @@ import { keys } from '@/shared/query-keys';
 import { rememberPlayer } from '@/shared/player-preferences';
 import { AccountSection } from './AccountSection';
 import { historyResult } from './history-result';
-import { readingPath, roomPath } from '@/shared/game-paths';
+import { gamePath, readingPath, roomPath } from '@/shared/game-paths';
 
 export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }) {
   const cache = useQueryClient();
@@ -110,7 +110,9 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
                       href={
                         match.gameId === 'tarot'
                           ? readingPath(match.id)
-                          : roomPath({ id: match.roomId, gameId: match.gameId })
+                          : ['roulette', 'slots'].includes(match.gameId)
+                            ? `${gamePath(match.gameId)}/results/${encodeURIComponent(match.id)}`
+                            : roomPath({ id: match.roomId, gameId: match.gameId })
                       }
                     >
                       <div>

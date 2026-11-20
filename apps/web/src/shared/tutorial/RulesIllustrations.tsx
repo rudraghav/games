@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   Check,
+  Cherry,
   CircleMinus,
   Crown,
   Eye,
@@ -96,6 +97,12 @@ function PicturePieceView({ item }: { item: PicturePiece }) {
             rentLadder: [3, 8],
           }}
         />
+      );
+    case 'reel':
+      return (
+        <span className="lesson-reel" data-symbol={item.symbol}>
+          {item.symbol === 'cherry' ? <Cherry /> : <Star />}
+        </span>
       );
     case 'back':
       return <PlayingCard faceDown compact />;

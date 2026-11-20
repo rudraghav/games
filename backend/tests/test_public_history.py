@@ -53,6 +53,25 @@ def test_every_registered_game_has_real_legal_move_history_without_copying_priva
     assert events, game_id
 
 
+@pytest.mark.parametrize(("game", "landed"), [("roulette", "wheel"), ("slots", "reels")])
+def test_spin_summary_uses_only_the_stake_and_the_settled_balance(game, landed):
+    engine = ENGINES[game]
+    state = engine.setup(["p"], {}, seed=31)
+    before = engine.project_view(state, "p")
+    submitted = before.actions[0].action.model_copy(update={"amount": 2})
+    state = engine.apply_action(state, "p", submitted)
+    after = engine.project_view(state, "p")
+    # Summary formatting is allowlisted even if extra data is presented to it.
+    junk = submitted.model_copy(update={"choice": "SECRET_CHOICE", "card": "SECRET_CARD", "target": "p"})
+    after.detail["future"] = "SECRET_STOPS"
+    event = public_move({"p": before}, {"p": after}, "p", junk, 2)
+    net = after.players[0].chips - before.players[0].chips
+    assert event.label == f"Spun the {landed} and {'gained' if net > 0 else 'lost'} {abs(net)} chips"
+    assert event.type == "spin" and event.amount == 2
+    assert event.cards == [] and event.targets == [] and event.destination is None
+    assert "SECRET" not in event.model_dump_json()
+
+
 @pytest.mark.parametrize("game", ["hot-seat", "most-likely", "spill-or-chill", "six-nimmt", "tarot"])
 def test_private_locked_choices_do_not_copy_submitted_ids_text_targets_or_own_projection(game):
     secret = CardView(id="PRIVATE_CARD_CANARY", label="PRIVATE_FACE_CANARY", value="secret")

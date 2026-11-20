@@ -5,6 +5,7 @@ const routes: [RegExp, readonly string[]][] = [
   [/^v1\/me$/, ['GET']],
   [/^v1\/profile$/, ['PUT']],
   [savedReadingRoute, ['GET']],
+  [/^v1\/chance-sessions\/[\da-f-]{36}$/, ['GET']],
   [/^v1\/rooms$/, ['POST']],
   [/^v1\/rooms\/join$/, ['POST']],
   [/^v1\/rooms\/[\da-f-]{36}$/, ['GET']],

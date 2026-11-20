@@ -63,7 +63,7 @@ uncommitted free text, engine messages, deck order, bot memory and random state
 are never copied. A Word Agents clue is recorded only from the authoritative
 published clue after every participant projection agrees on the same text.
 
-Verification lives in `test_public_history.py` (all 27 games and secrecy
+Verification lives in `test_public_history.py` (the full catalogue and secrecy
 canaries), `test_public_actions.py` (unchanged casino amounts) and
 `test_public_actions_rooms.py` (real HTTP moves, durable readback, membership,
 waiting guests, retries, conflicts, rejected moves, bounds, rematch and bots).
@@ -111,3 +111,15 @@ generating. Invalid stored output is explicitly unavailable and emits only a saf
 warning, leaving the original payload intact. Profile history also discovers a
 completed solo Tarot match when its old membership row is absent.
 `test_tarot_archive.py` verifies these boundaries in an isolated database.
+
+## Saved wheel and reel sessions
+
+`GET /v1/chance-sessions/{match_id}` returns the completed Roulette or Slots
+projection for its original sole participant, including settled spins, final
+balance and score. The service authorizes the participant and completion before
+calling the engine. Missing, active, abandoned, unrelated and other players'
+matches return the same 404. Responses use private, no-store caching.
+
+Archived results remain available after a new round, room closure and loss of the
+old membership row. Reopening one creates no moves or receipts. The isolated
+`test_chance_archive.py` suite checks these paths against both games.

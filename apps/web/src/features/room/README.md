@@ -5,7 +5,7 @@ results, rematch lobby and the table itself. Game tables render inside it and
 never duplicate these pieces.
 
 Named multiplayer `/games/[gameId]/rooms/[id]` and solo
-`/games/tarot/play/[id]` routes share this renderer. The old `/rooms/[id]`
+`/games/[gameId]/play/[id]` routes share this renderer for Tarot, Roulette and Slots. The old `/rooms/[id]`
 route remains compatible. RoomScreen replaces legacy or stale game paths only
 after successful authorized room and player reads; a slug grants no access.
 

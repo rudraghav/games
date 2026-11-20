@@ -8,6 +8,7 @@ export type PicturePiece =
       suit: string;
     }
   | { kind: 'back' }
+  | { kind: 'reel'; symbol: 'cherry' | 'star' }
   | { kind: 'tarot'; id?: string; name?: string }
   | { kind: 'token'; color: 'ink' | 'ivory' | 'gold' | 'coral' | 'poker'; label?: string }
   | { kind: 'cat'; grown: boolean }
@@ -76,6 +77,7 @@ export const flip = (value: string): PicturePiece => ({
   color: 'yellow',
   suit: '✦',
 });
+export const reel = (symbol: 'cherry' | 'star'): PicturePiece => ({ kind: 'reel', symbol });
 export const back: PicturePiece = { kind: 'back' };
 export const tarot = (id?: string, name?: string): PicturePiece => ({ kind: 'tarot', id, name });
 export const token = (

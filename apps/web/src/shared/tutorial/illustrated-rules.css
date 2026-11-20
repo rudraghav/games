@@ -376,3 +376,17 @@
     grid-column: 1 / -1;
   }
 }
+
+.lesson-reel {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 44px;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+.lesson-reel[data-symbol='cherry'] {
+  color: var(--color-coral);
+}

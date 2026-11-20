@@ -1,5 +1,7 @@
 # Games design system
 
+On Roulette and Slots, the wheel or payline shows the saved server result. Editing a stake or bet updates its preview. Spin commits the wager and locks the controls until the result arrives. Reduced motion keeps the same outcome and receipt. Wager controls have at least a 44px touch target on a 320px phone.
+
 Read-only board cells use named semantic elements, not labels on generic empty
 containers. Four in a Row exposes every square and occupant as a named image.
 Mancala labels include the public owner, pit/store and seed count on both the

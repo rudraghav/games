@@ -77,7 +77,9 @@ export function Lobby({
       {!canStart && host ? (
         <p className="small muted">
           {solo
-            ? 'Mark yourself ready, then open your deck.'
+            ? game.id === 'tarot'
+              ? 'Mark yourself ready, then open your deck.'
+              : 'Mark yourself ready, then start your game.'
             : seated.length < game.minPlayers
               ? `Bring at least ${game.minPlayers} players to the table.`
               : 'Everyone seated needs to be connected and ready.'}
@@ -95,7 +97,9 @@ export function Lobby({
               <GameArt game={game} />
             </div>
             <div>
-              <h2 className="heading-md">{solo ? 'Your reading space' : 'Players'}</h2>
+              <h2 className="heading-md">
+                {game.id === 'tarot' ? 'Your reading space' : solo ? 'Your table' : 'Players'}
+              </h2>
               {!solo ? (
                 <p className="small muted">
                   {seated.length} of {room.capacity} seats

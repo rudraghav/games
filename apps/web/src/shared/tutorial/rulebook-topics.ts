@@ -38,6 +38,14 @@ export const rulebookTopics: Record<string, RuleTopic[]> = {
     [0, 'Playing blind or seen'],
     [1, 'Hands and stakes'],
   ],
+  roulette: [
+    [0, 'Choosing a bet'],
+    [2, 'Zero and the final balance'],
+  ],
+  slots: [
+    [0, 'Stakes and symbols'],
+    [2, 'Returns and the final balance'],
+  ],
   blackjack: [
     [0, 'Totals and payouts'],
     [2, 'Splitting and doubling'],

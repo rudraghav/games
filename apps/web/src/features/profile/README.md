@@ -19,6 +19,8 @@ linking must be configured on the dedicated Games Supabase project before live
 Google connection can succeed. See `docs/GOOGLE_SIGN_IN.md` for setup and evidence.
 
 Completed Tarot history links to `/readings/{matchId}` so a later spread or closed
-room cannot replace the saved reading. Other game history retains its room link.
+room cannot replace the saved reading. Roulette and Slots open the owner’s saved
+spin receipts at `/games/{gameId}/results/{matchId}`, including after a rematch
+or room closure. Other game history retains its room link.
 The archive authorizes the saved participant on every request; switching to a
 different existing account does not make the earlier guest's readings public.

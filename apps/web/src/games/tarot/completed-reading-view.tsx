@@ -1,24 +1,10 @@
 'use client';
-import { useEffect, useId, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, type ReadingStyle, type ReadingView } from '@games/api-client';
 import { Button } from '@games/ui';
-import { api, supabase } from '@/lib/session';
+import { api } from '@/lib/session';
 import { ReadingStyleSwitch } from './ReadingStyleSwitch';
-
-/** Separate private query results across account changes, including changes in another tab. */
-export function usePrivateReadingScope(localPlayer?: string) {
-  const screen = useId();
-  const [identity, setIdentity] = useState<string>();
-  useEffect(() => {
-    if (!supabase) return;
-    const { data } = supabase.auth.onAuthStateChange((_, session) => {
-      setIdentity(session?.user.id ?? 'signed-out');
-    });
-    return () => data.subscription.unsubscribe();
-  }, []);
-  return supabase ? identity : (localPlayer ?? screen);
-}
 
 export function useCompletedReadingView(
   matchId: string | null | undefined,

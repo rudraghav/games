@@ -3,6 +3,8 @@
 import json
 import random
 from collections import Counter
+from itertools import combinations
+from math import comb
 
 import pytest
 
@@ -98,6 +100,53 @@ def test_holdem_split_pot_odd_chip_starts_left_of_button():
     assert [state["players"][p]["chips"] for p in state["order"]] == [202, 203, 195]
     assert state["winners"] == ["a", "b"]
     assert not engine.project_view(state, "a").players[2].cards
+
+
+def test_folds_at_different_amounts_do_not_create_extra_odd_chips():
+    engine = HoldemEngine()
+    state = engine.setup(list("abcde"), {}, seed=5)
+    # Two blinds fold to 5. The opener folds on the flop. The remaining
+    # players reach showdown with equal hands and exactly one 22-chip pot.
+    for kind, amount in [
+        ("raise", 5), ("call", 0), ("call", 0), ("fold", 0), ("fold", 0),
+        ("check", 0), ("raise", 2), ("call", 0), ("fold", 0),
+    ]:
+        state = action(engine, state, kind, amount=amount)
+    while state["phase"] != "finished":
+        state = action(engine, state, "check")
+    assert state["pots"] == [{
+        "amount": 22, "winners": ["e", "a"], "eligible": ["a", "e"],
+        "awards": {"e": 11, "a": 11}, "odd_chips": [],
+    }]
+    assert sum(p["chips"] for p in state["players"].values()) == 1000
+
+
+def test_all_three_card_hands_match_independent_category_counts():
+    counts = Counter(teen_rank(list(hand))[0] for hand in combinations(standard_deck(), 3))
+    # 12 runs include both AKQ and A23. Exclude those runs from colours;
+    # the other 60 suit assignments for each run are ordinary sequences.
+    assert counts == {5: 13 * comb(4, 3), 4: 12 * 4, 3: 12 * 60,
+                      2: 4 * (comb(13, 3) - 12), 1: 13 * comb(4, 2) * 48, 0: 16440}
+    assert counts.total() == comb(52, 3)
+
+
+def test_six_deck_blackjack_opening_naturals_match_physical_card_count():
+    hands = combinations(standard_deck(6), 2)
+    assert sum(blackjack_total(list(hand))[0] == 21 for hand in hands) == 24 * 96
+
+
+def test_seen_teen_wager_maximum_is_affordable_and_even():
+    engine = TeenPattiEngine()
+    state = engine.setup(list("abc"), {}, seed=2)
+    # At a base stake of 32, a has 117 left after four rounds of blind bets.
+    for amount in [2, 4, 8, 16, 32, 32, 32, 32, 32, 32, 32, 32]:
+        state = action(engine, state, "bet", amount=amount)
+    state = action(engine, state, "peek")
+    assert state["players"]["a"]["chips"] == 117
+    bet = next(o for o in engine.legal_actions(state, "a") if o.action.type == "bet")
+    assert (bet.minimum, bet.maximum, bet.step) == (64, 116, 2)
+    state = action(engine, state, "bet", amount=bet.maximum)
+    assert state["players"]["a"]["chips"] == 1
 
 
 def test_poker_rank_categories_wheel_and_kickers():

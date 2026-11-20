@@ -6,6 +6,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import { attachPreviewAccess, requestAs, roomAs, type RoomView } from './helpers';
 import { matchPlayer } from './fullmatch-player';
+import { roomPath } from '../../apps/web/src/shared/game-paths';
 import publishedGames from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 type Manifest = components['schemas']['GameManifest'];
@@ -281,10 +282,12 @@ test('one human plays every multiplayer game with the real bot driver', async ({
     await run.close(setupId);
     await run.record();
 
-    const catalogue = (await checked<Manifest[]>('games')).filter((game) => game.id !== 'tarot');
+    const catalogue = (await checked<Manifest[]>('games')).filter(
+      (game) => game.play_mode !== 'solo',
+    );
     expect(catalogue.map((game) => game.id).sort()).toEqual(
       publishedGames
-        .filter((game) => game.id !== 'tarot')
+        .filter((game) => game.play_mode !== 'solo')
         .map((game) => game.id)
         .sort(),
     );
@@ -393,7 +396,10 @@ test('one human plays every multiplayer game with the real bot driver', async ({
           ).toBe(true);
           await page.goto('/profile');
           await expect(
-            page.locator(`.history-row[href="/rooms/${roomId}"]`).first().locator('strong'),
+            page
+              .locator(`.history-row[href="${roomPath({ id: roomId, gameId: game.id })}"]`)
+              .first()
+              .locator('strong'),
           ).toHaveText(game.name);
           await page.goto(`/rooms/${roomId}`);
           await page.getByRole('button', { name: 'I’m ready', exact: true }).click();

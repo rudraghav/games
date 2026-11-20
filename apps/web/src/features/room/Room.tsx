@@ -138,6 +138,8 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
     );
   const game = gameById(room.gameId);
   const solo = game.maxPlayers === 1;
+  const reading = game.id === 'tarot';
+  const optionsLabel = reading ? 'Reading options' : solo ? 'Table options' : 'Room options';
   const host = room.ownerId === selfId;
   const guideAvailable = Boolean(
     room.game &&
@@ -186,7 +188,7 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
   );
   const lobby = solo ? (
     <section className="center-state">
-      <h2 className="heading-md">Your next spread</h2>
+      <h2 className="heading-md">{reading ? 'Your next spread' : game.name}</h2>
       <Button
         pending={mutation.isPending}
         onClick={() =>
@@ -196,7 +198,7 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
           })
         }
       >
-        Start reading
+        {reading ? 'Start reading' : room.status === 'finished' ? 'Play again' : 'Start game'}
       </Button>
     </section>
   ) : (
@@ -240,7 +242,7 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
         </Link>
         <div className="room-title">
           <h1>{solo ? game.name : room.name}</h1>
-          <span>{solo ? 'Your private reading' : game.name}</span>
+          <span>{reading ? 'Your private reading' : solo ? 'Your private table' : game.name}</span>
         </div>
         <div className="room-toolbar">
           <span
@@ -299,8 +301,8 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
           <Button
             size="icon"
             variant="ghost"
-            aria-label={solo ? 'Reading options' : 'Room options'}
-            title={solo ? 'Reading options' : 'Room options'}
+            aria-label={optionsLabel}
+            title={optionsLabel}
             onClick={() => setPanel('menu')}
           >
             <MoreVertical size={21} />
@@ -502,16 +504,20 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
             setConfirmAbandon(false);
           }
         }}
-        title={solo ? 'Reading options' : 'Your room'}
+        title={solo ? optionsLabel : 'Your room'}
         description={
-          solo ? 'Completed readings stay in your profile.' : 'Manage this room or leave the table.'
+          solo
+            ? reading
+              ? 'Completed readings stay in your profile.'
+              : 'Your profile keeps the results of each finished session.'
+            : 'Manage this room or leave the table.'
         }
       >
         <div className="menu-actions">
           {solo ? (
             <Link href="/profile" className="button button--secondary button--md">
               <History size={17} />
-              Saved readings
+              {reading ? 'Saved readings' : 'Past games'}
             </Link>
           ) : (
             <Button variant="secondary" onClick={() => setPanel('activity')}>
@@ -576,7 +582,7 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
           {solo ? (
             <Link href={gamePath(room.gameId)} className="button button--ghost button--md">
               <ArrowLeft size={17} aria-hidden="true" />
-              Back to Tarot
+              Back to {game.name === 'Pop Tarot' ? 'Tarot' : game.name}
             </Link>
           ) : (
             <Button
