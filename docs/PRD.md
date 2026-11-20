@@ -35,6 +35,8 @@ Pop Tarot adds a solo 78-card modern pop-art deck and a three-card spread.
 Readings are AI-written around the selected cards and an optional personal
 question, with playful pop-culture analogies. The reading opens by connecting named cards in their spread positions. Character suggestions account for the question and each card before additional options are allocated; a repeated suit or rank can inform the interpretation. The card system and AI contract
 remain reusable. No fabricated reading is shown when AI is unavailable.
+After the draw, the player can choose **Classic** or **Fun**. Classic keeps the reflective reading and gives familiar figures a place among the suggestions. Fun uses a recognizable story, sporting moment or public example to illustrate a choice and a possible consequence. The explanation should make sense even to someone unfamiliar with its source. The choice applies with or without astrology.
+
 Readings try Gemini, then Cloudflare, then Groq within one bounded request.
 Configured providers are eligible for all four reading options; less consistent
 models remain last fallbacks instead of having individual options disabled.
@@ -50,7 +52,7 @@ references, writing, retrying a provider, checking or saving. Percentage and tim
 remaining are explicitly estimates; neither claims completion before the reading
 is saved. Refresh resumes the original attempt and elapsed time. Slow attempts
 say they are taking longer, without a false zero-second countdown.
-Reference connections may include a compact Background disclosure containing
+Fun displays the source scene directly beside the choice it illustrates. Classic reference connections may include a compact Background disclosure containing
 the exact catalogue context, stored separately from the generated reflection.
 The model cannot rewrite that evidence, and saved readings keep their original
 background even if the catalogue is later corrected.

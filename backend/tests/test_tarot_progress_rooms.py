@@ -30,7 +30,8 @@ def test_progress_is_private_durable_and_visible_during_the_original_post(client
     entered, switch, switched, finish = (threading.Event() for _ in range(4))
     calls = []
 
-    def provider(cards, question, *, before_attempt=None, on_progress=None):
+    def provider(cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic"):
+        assert reading_style == "fun"
         calls.append(True)
         before_attempt()
         on_progress(ProgressEvent("writing", "gemini", 1, 3))
@@ -49,18 +50,20 @@ def test_progress_is_private_durable_and_visible_during_the_original_post(client
 
     monkeypatch.setattr("app.rooms.service.generate_reading", provider)
     with ThreadPoolExecutor(max_workers=1) as pool:
-        payload = {"match_id": room["match_id"], "question": "Private question canary"}
+        payload = {"match_id": room["match_id"], "question": "Private question canary", "reading_style": "fun"}
         result = pool.submit(client.post, path + "/reading", headers=owner, json=payload)
         try:
             assert entered.wait(10)
             first = client.get(path + "/reading", headers=owner)
             assert first.status_code == 200
+            assert first.json()["reading_style"] == "fun"
             initial = first.json()["progress"]
             assert initial["stage"] == "writing" and initial["provider"] == "Gemini"
             assert "private, no-store" == first.headers["cache-control"]
             assert "Private question canary" not in str(initial)
             assert client.get(path + "/reading", headers=player(client)).status_code == 404
-            duplicate = client.post(path + "/reading", headers=owner, json=payload).json()
+            duplicate = client.post(path + "/reading", headers=owner, json={**payload, "reading_style": "classic"}).json()
+            assert duplicate["reading_style"] == "fun"
             assert duplicate["status"] == "generating" and len(calls) == 1
             switch.set()
             assert switched.wait(10)
@@ -82,6 +85,8 @@ def test_progress_is_private_durable_and_visible_during_the_original_post(client
         response = result.result()
         assert response.status_code == 200 and response.json()["status"] == "complete"
         assert "progress" not in response.json()
+    assert response.json()["reading_style"] == "fun"
+    assert client.get(f"/v1/readings/{room['match_id']}", headers=owner).json()["reading_style"] == "fun"
     assert client.get(path + "/reading", headers=owner).json() == response.json()
     with sessions()() as session:
         assert "_progress" not in session.get(TarotReading, room["match_id"]).payload

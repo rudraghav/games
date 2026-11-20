@@ -2,6 +2,10 @@
 
 `TarotTable` owns the shuffled three-card selection, optional question, private reading request and saved reading. `TarotReading` preserves each card’s grounded read, quirky read and character connections. Existing readings without astrology render unchanged.
 
+## Reading style
+
+After the third pick the shared segmented control selects Classic or Fun for this spread. The choice stays with the question draft through refresh. The submitted style comes back from the reading service for recovery, retry and archive rendering. Fun moves the illustrated character connection before the card interpretation under **How it could play out**. A new spread defaults to Classic. The opt-in hosted browser check accepts `GAMES_TEST_TAROT_STYLE=fun` to exercise the full result, images, refresh, private archive and closed-room flow with a real provider.
+
 ## Oracle table
 
 The velvet, transparent crystal instrument and engraved printed backs are three

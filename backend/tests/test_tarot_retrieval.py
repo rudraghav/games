@@ -1,14 +1,114 @@
 """Reference relevance, source evidence and identity invariants, independently of AI."""
 
 import importlib.util
+import json
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
 import pytest
 
-from app.games.tarot.reference_retrieval import _relative, evidence_excerpt, rank_candidates
+from app.games.tarot.reference_retrieval import (
+    FAMILIAR_CAST,
+    SUPPORT_SCENES,
+    _relative,
+    evidence_excerpt,
+    rank_candidates,
+)
 
 CARDS = ["pentacles-08", "major-08", "wands-11"]
+
+
+def test_editorial_cast_has_distinct_canonical_identities_sourced_facts_and_matching_art():
+    from app.games.tarot.characters import CHARACTERS
+    from app.games.tarot.reference_retrieval import ROOT
+
+    catalogue = {entry["id"]: entry for entry in CHARACTERS}
+    repo = Path(__file__).resolve().parents[2]
+    images = {row["id"]: row for row in json.loads((repo / "packages/api-client/src/generated/tarot-characters.json").read_text())}
+    groups = json.loads((ROOT / "familiar-cast.json").read_text())
+    scenes = json.loads((ROOT / "familiar-scenes.json").read_text())
+    assert len(FAMILIAR_CAST) == sum(map(len, groups.values()))
+    assert set(scenes) == FAMILIAR_CAST
+    assert SUPPORT_SCENES <= FAMILIAR_CAST
+    for identity in FAMILIAR_CAST:
+        entry, art = catalogue[identity], images[identity]
+        assert entry["name"] == art["name"] and entry["source"] == art["source"]
+        assert entry["sourceContext"] and entry["contextSourceUrl"].startswith("https://")
+        anchors = scenes[identity]
+        assert 1 <= len(anchors) == len(set(anchors)) <= 3
+        assert all(len(anchor.split()) >= 2 and anchor in entry["sourceContext"] for anchor in anchors)
+        assert art["origin"] == "sourced" and art["sourcePage"]
+        assert (repo / "apps/web/public" / art["image"].lstrip("/")).is_file()
+
+
+def test_short_and_full_fun_lists_only_offer_familiar_distinct_choices():
+    from app.games.tarot.characters import reference_candidates
+
+    question = "Practising football with a team"
+    full = reference_candidates(CARDS, question, reading_style="fun")
+    compact = reference_candidates(CARDS, question, reading_style="fun", per_card=2)
+    assert compact == [row[:2] for row in full]
+    assert len({item["id"] for row in full for item in row}) == 18
+    assert all(item["id"] in FAMILIAR_CAST for row in full for item in row)
+    classic = reference_candidates(CARDS, question)
+    assert all(item["id"] in FAMILIAR_CAST for row in classic for item in row[:2])
+    assert any(item["id"] not in FAMILIAR_CAST for row in classic for item in row)
+
+
+def test_all_fun_figure_and_card_pairs_retain_a_reviewed_action_in_the_source_excerpt():
+    from app.games.tarot.characters import CHARACTERS
+    from app.games.tarot.deck import DECK
+    from app.games.tarot.reference_retrieval import reviewed_phrases
+
+    for figure in CHARACTERS:
+        if hints := reviewed_phrases().get(figure["id"]):
+            for card in DECK:
+                excerpt = evidence_excerpt(figure, card.meaning, scene_phrases=hints)
+                assert any(hint in excerpt for hint in hints)
+                assert len(excerpt) <= 320 and excerpt.strip("…") in figure["sourceContext"]
+
+
+def test_an_explicitly_named_specialist_can_still_lead_a_classic_card():
+    from app.games.tarot.characters import reference_candidates
+
+    classic = reference_candidates(CARDS, "How does the philosophy of Pierre de Fermat help me think about dividing rewards?")
+    assert any(row[0]["name"] == "Pierre de Fermat" for row in classic)
+
+
+def test_different_questions_and_spreads_do_not_all_lead_with_the_same_generalist():
+    from app.games.tarot.characters import reference_candidates
+
+    leads = Counter()
+    for cards, question in [
+        (["major-11", "major-09", "wands-01"], ""),
+        (["wands-11", "pentacles-08", "major-08"], "What is a small first step for sharing my sketches with friends?"),
+        (["cups-05", "major-17", "cups-03"], "How could I ask for company while grieving?"),
+        (["swords-02", "pentacles-06", "major-14"], "How can a group split work fairly?"),
+        (["major-07", "wands-07", "swords-04"], "How can I pace myself when training for a race?"),
+        (["major-00", "major-16", "major-21"], ""),
+    ]:
+        leads.update(row[0]["id"] for row in reference_candidates(cards, question, reading_style="fun", per_card=1))
+    assert len(leads) >= 13
+    assert max(leads.values()) <= 3
+
+
+@pytest.mark.parametrize("style", ["classic", "fun"])
+def test_hardship_overrides_requested_comedy_in_every_candidate(style):
+    from app.games.tarot.characters import reference_candidates
+
+    rows = reference_candidates(CARDS, "Can you give me a meme about grieving my friend?", reading_style=style)
+    assert all(len(row) == 6 for row in rows)
+    assert all(item.get("kind") != "meme" for row in rows for item in row)
+    if style == "fun":
+        assert all(item["id"] in SUPPORT_SCENES for row in rows for item in row)
+
+
+@pytest.mark.parametrize("phrase", ["Dr. Watson", "Mr. Darcy", "U.S. Navy", "J. R. R. Tolkien"])
+def test_cited_excerpt_never_breaks_an_abbreviation_from_its_subject(phrase):
+    sentence = f"The observer shared the most important clue with {phrase}."
+    ref = {"sourceContext": f"{sentence} A separate description of the evidence follows in the published account."}
+    assert evidence_excerpt(ref, "observer important clue", limit=len(sentence) + 1) == sentence
 
 
 @pytest.mark.parametrize("excluded_position", [0, 180])

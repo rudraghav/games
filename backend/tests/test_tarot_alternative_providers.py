@@ -33,9 +33,9 @@ def canonical(monkeypatch):
     )]
     monkeypatch.setattr(reading, "reference_candidates", lambda *_args, **_kwargs: refs)
     monkeypatch.setattr(reading, "settings", lambda: SimpleNamespace(tarot_model="gemini-4-hydrogen"))
-    def make(mode="ordinary"):
+    def make(mode="ordinary", *, reading_style="classic"):
         chart = None if mode == "ordinary" else synthetic_chart(mode)
-        return reading.build_reading_request(CARDS, "", astrology_chart=chart), chart
+        return reading.build_reading_request(CARDS, "", astrology_chart=chart, reading_style=reading_style), chart
     return make
 
 

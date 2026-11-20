@@ -6,6 +6,10 @@ The server shuffles the 78 distinct cards once per match with fresh randomness. 
 
 Character retrieval balances the card, the position and the question. It allocates one lead to each spread position before allocating backups in rounds. When cards compete for the same reference, the card with the clearest lead goes first. Changing the shortlist size preserves every smaller shortlist as a prefix. A meme can appear as a secondary option if it fits; names and identity families stay distinct across the spread. A saved reading retains its original text and reference evidence.
 
+## Classic and Fun readings
+
+From `pop-tarot-13`, optional `reading_style` selects the candidate pool and prompt tone for every configured provider and chart system. Classic stays the default. Its shortlist makes room for both familiar figures and specialists. Fun picks from 118 reviewed figures and reactions, with a smaller set of supportive scenes for recognized sensitive questions. Ranking balances how well a source matches this card against how broadly it matches the rest of the deck. Fun connects a supplied public detail to a decision and what might follow in ordinary language. Card IDs, portraits, sources, chart placements and source background still use the same validation and catalogue. Each Fun card sends its highest-ranked eligible portrait and the public detail for that figure. The 118 figures and reactions have 291 reviewed source phrases. The model receives phrases present in the actual excerpt and must connect a detail to a choice and possible consequence. A fresh response that clearly borrows another familiar subject is retried. A companion mentioned in the source may appear in the explanation. The archive returns the submitted style beside the saved analysis. Older matches default to Classic.
+
 ## Targeted failed-check retries — 18 November 2026
 
 Validation failures carry a reviewed check ID and field path. The loader explains

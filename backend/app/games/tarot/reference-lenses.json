@@ -100,8 +100,8 @@
     "contextSourceUrl": "https://en.wikipedia.org/wiki/Princess_Zelda"
   },
   "lara-croft": {
-    "sourceContext": "Lara Croft is an archaeologist who investigates ancient sites and dangerous ruins. In the 2013 Tomb Raider continuity, an expedition searching for Yamatai leaves her stranded among human and supernatural dangers. The inexperienced explorer develops survival skills through that ordeal; this origin is distinct from the earlier games' continuity.",
-    "contextSourceUrl": "https://en.wikipedia.org/wiki/Lara_Croft"
+    "sourceContext": "Lara Croft learns to climb from her mentor Conrad Roth. On the search for Yamatai their roles shift: Roth backs Lara's choice of route for their ship, trusting her navigation.",
+    "contextSourceUrl": "https://www.tombraider.com/news/video-games/tomb-raider-survivor-trilogy-lore-conrad-roth"
   },
   "peach": {
     "sourceContext": "Princess Peach rules the Mushroom Kingdom and is repeatedly kidnapped by Bowser in the main Mario adventures. She also takes the lead in Super Princess Peach and Princess Peach: Showtime!, shifting from the person being rescued to the playable hero. Her role changes across these games rather than being limited to one passive story.",
@@ -230,5 +230,41 @@
   "hedy-lamarr-q49034": {
     "sourceContext": "Lamarr collaborated with composer George Antheil on a frequency-hopping communications technique, receiving a patent in 1942 under the name Hedy Kiesler Markey.",
     "contextSourceUrl": "https://www.invent.org/inductees/hedy-lamarr"
+  },
+  "woody-q2290907": {
+    "sourceContext": "In Toy Story, Woody worries that Andy likes his new space ranger better and turns on Buzz. Once both toys are lost, getting back to Andy depends on working with the very toy Woody was trying to push away.",
+    "contextSourceUrl": "https://www.pixar.com/toy-story"
+  },
+  "buzz-lightyear-q1986193": {
+    "sourceContext": "In Toy Story, Buzz arrives in Andy's room believing he is on a real space mission. When he and Woody are separated from Andy, the two rivals have to team up to find their way home.",
+    "contextSourceUrl": "https://www.pixar.com/toy-story"
+  },
+  "munna-bhai-q6936780": {
+    "sourceContext": "At the hospital, Munna notices that patients thank the doctors while the cleaner goes unthanked. He stops to thank the man for his work and gives him a hug. The cleaner hesitates, then hugs him back.",
+    "contextSourceUrl": "https://images.assettype.com/filmcompanion/2022-10/2d818002-a1ca-49e8-a508-0a605a68acf5/MUNNABHAI_M_B_B_S__SCREENPLAY.pdf"
+  },
+  "chitti-q58057393": {
+    "sourceContext": "In Enthiran, Vaseegaran upgrades the robot Chitti so he can understand human feelings. Chitti falls for Sana, Vaseegaran's girlfriend. Giving the robot this new ability brings a feeling its inventor did not anticipate.",
+    "contextSourceUrl": "https://www.youtube.com/watch?v=22gobhdavRw"
+  },
+  "bhallaladeva-q38805060": {
+    "sourceContext": "In Baahubali: The Lost Legends, the young princes Bhallaladeva and Baahubali compete for the throne of Mahishmati. On their travels the same two rivals must defend the people they each hope to rule.",
+    "contextSourceUrl": "https://baahubali.com/animated-series/story.html"
+  },
+  "ms-dhoni-q470774": {
+    "sourceContext": "During India's chase in the 2011 cricket World Cup final, captain MS Dhoni moved himself up the batting order. Batting alongside Gautam Gambhir kept one right-hander and one left-hander at the crease. Dhoni stayed in and hit the winning six.",
+    "contextSourceUrl": "https://www.icc-cricket.com/news/ms-dhoni-the-man-for-a-crisis-top-odi-knocks"
+  },
+  "sachin-tendulkar-q9488": {
+    "sourceContext": "Sachin Tendulkar wanted to win the cricket World Cup from childhood. India lost the 2003 final. Eight years later, after winning with his teammates, he described what it felt like to have kept chasing that same dream.",
+    "contextSourceUrl": "https://www.icc-cricket.com/news/we-were-not-under-pressure-to-win-the-world-cup-dhoni-x2813"
+  },
+  "lionel-messi-q615": {
+    "sourceContext": "Lionel Messi scored the opening goal against Saudi Arabia at the 2022 football World Cup, but Argentina lost the match. Afterwards he urged his teammates to stay together and turn their attention to the next game.",
+    "contextSourceUrl": "https://www.fifa.com/en/articles/lionel-messi-argentina-lionel-scaloni-saudi-arabia-fifa-world-cup-qatar-2022"
+  },
+  "michael-jordan-q41421": {
+    "sourceContext": "After three NBA titles, Michael Jordan tried another sport. In 1994 he joined the Birmingham Barons, rode the team bus and played 127 minor-league baseball games.",
+    "contextSourceUrl": "https://www.mlb.com/milb/history/michael-jordan"
   }
 }

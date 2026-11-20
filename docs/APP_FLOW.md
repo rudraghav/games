@@ -221,6 +221,8 @@ the final player loses. Shared results retain the group for rematch/change game.
 
 Across the catalogue, permanent decision areas preserve the table and hand while choosing. Overflowing hands have separate Previous/Next controls, touch scrolling and keyboard reveal without vertical page jumps. Public opponent summaries stay outside their optional inspectors; required own decisions remain exposed. Rummy reserves its grouping lane, Azul keeps sources/boards fixed through placement, and split blackjack hands navigate inside their own rail. `/design/midgame` is development-only and reviews reproducible legal states; it returns 404 in hosted builds.
 
+After the third draw, **Reading style** offers Classic (the default) and Fun alongside the optional question and astrology. In a Fun reading, **How it could play out** comes first on each card. The portrait, source and background sit with the example. Refresh, retry and the private archive retain the submitted style. Each new spread starts in Classic.
+
 Tarot astrology is off by default. Opting in offers Both, Western or Vedic, then
 birth date, local time and a city search with an explicit place selection. The
 server resolves the historical timezone and asks which occurrence was intended

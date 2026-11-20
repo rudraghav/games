@@ -11,6 +11,9 @@ type SavedReading = components['schemas']['SavedReadingView'];
 type OwnedRoom = { page: Page; roomId?: string; closed?: boolean };
 type OwnedRun = { rooms: OwnedRoom[]; contexts: BrowserContext[] };
 const liveMode = process.env.GAMES_TEST_TAROT_MODE || 'all';
+const liveStyle = process.env.GAMES_TEST_TAROT_STYLE || 'classic';
+if (!['classic', 'fun'].includes(liveStyle))
+  throw new Error('GAMES_TEST_TAROT_STYLE must be classic or fun.');
 if (!['all', 'ordinary', 'both'].includes(liveMode))
   throw new Error('GAMES_TEST_TAROT_MODE must be all, ordinary, or both.');
 const includesMode = (mode: string) => liveMode === 'all' || liveMode === mode;
@@ -266,6 +269,16 @@ async function inspectReading(
     const row = rows.nth(index);
     await expect(row.locator('.tarot-character-name')).toContainText(reference.name);
     await expect(row.locator('.tarot-character-name span')).toHaveText(reference.source);
+    if (liveStyle === 'fun') {
+      const scene = reference.evidence?.trim() || '';
+      expect(scene.length).toBeGreaterThan(0);
+      const move = reference.connection.startsWith(scene)
+        ? reference.connection.slice(scene.length).trim()
+        : reference.connection;
+      expect(move.length).toBeGreaterThan(0);
+      await expect(row.getByText(scene, { exact: true })).toBeVisible();
+      await expect(row.getByText(move, { exact: true })).toBeVisible();
+    }
     const image = row.locator('.tarot-character-portrait img');
     await expect(image).toHaveAttribute('src', artwork!.image);
     await expect(image).toHaveAttribute('alt', artwork!.alt!);
@@ -472,6 +485,16 @@ test('selected independent live readings retain exact private archives after new
         await actor.getByRole('textbox', { name: 'What’s on your mind?' }).fill(question);
         await bothChart(actor);
       }
+      const choices = actor.getByRole('group', { name: 'Choose a reading style' });
+      await expect(choices.getByRole('button', { name: 'Classic', exact: true })).toHaveAttribute(
+        'aria-pressed',
+        'true',
+      );
+      if (liveStyle === 'fun') {
+        const fun = choices.getByRole('button', { name: 'Fun', exact: true });
+        await fun.click();
+        await expect(fun).toHaveAttribute('aria-pressed', 'true');
+      }
       expect((await requestAs(outsider, `rooms/${room.roomId}/reading`)).status()).toBe(404);
       expect((await requestAs(outsider, `readings/${matchId}`)).status()).toBe(404);
       await actor.setViewportSize({ width: 390, height: 844 });
@@ -483,6 +506,9 @@ test('selected independent live readings retain exact private archives after new
       expect(response.status()).toBe(200);
       const current: ReadingView = await response.json();
       expect(current.status).toBe('complete');
+      expect(current.reading_style).toBe(liveStyle);
+      if (liveStyle === 'fun')
+        await expect(actor.getByRole('heading', { name: 'How it could play out' })).toHaveCount(3);
       if (process.env.GAMES_TEST_TAROT_PROVIDERS)
         expect(current.provider_names).toEqual(process.env.GAMES_TEST_TAROT_PROVIDERS.split(','));
       expect(current.question).toBe(question);
@@ -540,6 +566,7 @@ test('selected independent live readings retain exact private archives after new
       expect(nextSaved.reading).toBeNull();
       const archived = await savedReading(actor, matchId);
       expect(digest(archived.reading)).toBe(readingHash);
+      expect(archived.reading_style).toBe(liveStyle);
       expect(archived.question).toBe(question);
       expect(archived.can_resume).toBe(false);
       await actor.goto(`/readings/${matchId}`);

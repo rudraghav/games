@@ -1194,6 +1194,11 @@ export interface components {
              * @default
              */
             question: string;
+            /**
+             * Reading Style
+             * @enum {string}
+             */
+            reading_style?: "classic" | "fun";
             astrology?: components["schemas"]["AstrologyInput"] | null;
             /** Reuse Saved Astrology */
             reuse_saved_astrology?: boolean | null;
@@ -1226,6 +1231,11 @@ export interface components {
         ReadingView: {
             /** Status */
             status: string;
+            /**
+             * Reading Style
+             * @enum {string}
+             */
+            reading_style?: "classic" | "fun";
             /**
              * Api Tier
              * @enum {string}
@@ -1343,6 +1353,11 @@ export interface components {
              * @enum {string}
              */
             status: "complete" | "generating" | "incomplete" | "unavailable";
+            /**
+             * Reading Style
+             * @enum {string}
+             */
+            reading_style?: "classic" | "fun";
             /** Question */
             question: string;
             /** Cards */

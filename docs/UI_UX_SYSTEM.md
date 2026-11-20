@@ -338,6 +338,8 @@ Reduced motion retains the raised selection without an animated transition. A
 supported device can pulse when a local draw is confirmed. The illuminated slot
 and spoken card name communicate the same result on every device.
 
+The Classic/Fun selector uses the shared segmented choice beneath the question. Completed Fun cards put the example and its possible consequence first under **How it could play out**. The active room and archive use the same reading component so the order and source images survive reopening.
+
 Tarot generation morphs its primary action into one compact processing card. A
 420ms grid expansion preserves text size while color, corners and content fade
 between states. The previous action is inert/hidden; keyboard focus follows the

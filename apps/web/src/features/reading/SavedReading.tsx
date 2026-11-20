@@ -73,7 +73,9 @@ export function SavedReadingScreen({ matchId }: { matchId: string }) {
         ) : data ? (
           <div className="tarot-table stable-tarot-table">
             <header className="tarot-intro">
-              <p className="eyebrow">Saved Tarot reading</p>
+              <p className="eyebrow">
+                {data.readingStyle === 'fun' ? 'Saved Fun Tarot reading' : 'Saved Tarot reading'}
+              </p>
               <h1 className="heading-md">{data.reading?.title || 'Your saved spread'}</h1>
               <p className="small muted">
                 {new Intl.DateTimeFormat('en', {
@@ -88,6 +90,7 @@ export function SavedReadingScreen({ matchId }: { matchId: string }) {
             {data.status === 'complete' && data.reading ? (
               <TarotReading
                 reading={data.reading}
+                readingStyle={data.readingStyle}
                 cards={data.cards}
                 imageLoader={optimizeCardArt}
               />

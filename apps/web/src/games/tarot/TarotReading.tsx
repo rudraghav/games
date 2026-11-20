@@ -1,6 +1,6 @@
 import { Sparkles } from 'lucide-react';
 import { TarotCard } from '@games/ui';
-import type { ReadingView } from '@games/api-client';
+import type { ReadingStyle, ReadingView } from '@games/api-client';
 import { tarotCharacter } from '@games/api-client/characters';
 import { TarotCharacterImage } from './TarotCharacterImage';
 import { AstrologyReading } from './AstrologyReading';
@@ -28,15 +28,66 @@ export function readableCredit(credit: string) {
   });
 }
 
+function CharacterConnections({ card, fun }: { card: Reading['cards'][number]; fun: boolean }) {
+  return card.characters?.length ? (
+    <div className="tarot-character-connections">
+      <h4>{fun ? 'How it could play out' : 'Your connections'}</h4>
+      <ul>
+        {card.characters.map((character) => {
+          const portrait = characterArtwork(character.name, character.source);
+          const scene = fun ? character.evidence?.trim() : undefined;
+          const move =
+            scene && character.connection.startsWith(scene)
+              ? character.connection.slice(scene.length).trimStart()
+              : character.connection;
+          return (
+            <li
+              key={`${character.name}-${character.source}`}
+              data-has-portrait={!!portrait}
+              data-reference-kind={portrait?.kind}
+              data-artwork-type={portrait?.imageType}
+            >
+              {portrait ? <TarotCharacterImage character={portrait} /> : null}
+              <div className="tarot-character-identity">
+                <p className="tarot-character-name">
+                  {character.name} <span>{character.source}</span>
+                </p>
+                {scene ? <p className="tarot-character-scene">{scene}</p> : null}
+              </div>
+              <div className="tarot-character-copy">
+                {move ? <p>{move}</p> : null}
+                {!fun && character.evidence ? (
+                  <details className="tarot-character-evidence">
+                    <summary aria-label={`Background for ${character.name}`}>Background</summary>
+                    <p>{character.evidence}</p>
+                  </details>
+                ) : null}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  ) : card.pop_culture ? (
+    <div className="culture-note">
+      <Sparkles size={19} aria-hidden="true" />
+      <p>{card.pop_culture}</p>
+    </div>
+  ) : null;
+}
+
 export function TarotReading({
   reading,
+  readingStyle = 'classic',
   cards,
   imageLoader,
 }: {
   reading: Reading;
+  readingStyle?: ReadingStyle;
   cards: readonly { id: string; label: string }[];
   imageLoader?: (path: string) => string;
 }) {
+  const fun = readingStyle === 'fun';
   const cardNames = new Map(cards.map((card) => [card.id, card.label]));
   const portraits = [
     ...new Map(
@@ -71,6 +122,7 @@ export function TarotReading({
               <h3>{card.title}</h3>
             </div>
           </header>
+          {fun ? <CharacterConnections card={card} fun /> : null}
           <div
             className="tarot-perspectives"
             data-variant={card.quirky_interpretation ? 'split' : 'single'}
@@ -88,45 +140,7 @@ export function TarotReading({
               </section>
             ) : null}
           </div>
-          {card.characters?.length ? (
-            <div className="tarot-character-connections">
-              <h4>Your connections</h4>
-              <ul>
-                {card.characters.map((character) => {
-                  const portrait = characterArtwork(character.name, character.source);
-                  return (
-                    <li
-                      key={`${character.name}-${character.source}`}
-                      data-has-portrait={!!portrait}
-                      data-reference-kind={portrait?.kind}
-                      data-artwork-type={portrait?.imageType}
-                    >
-                      {portrait ? <TarotCharacterImage character={portrait} /> : null}
-                      <p className="tarot-character-name">
-                        {character.name} <span>{character.source}</span>
-                      </p>
-                      <div className="tarot-character-copy">
-                        <p>{character.connection}</p>
-                        {character.evidence ? (
-                          <details className="tarot-character-evidence">
-                            <summary aria-label={`Background for ${character.name}`}>
-                              Background
-                            </summary>
-                            <p>{character.evidence}</p>
-                          </details>
-                        ) : null}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          ) : card.pop_culture ? (
-            <div className="culture-note">
-              <Sparkles size={19} aria-hidden="true" />
-              <p>{card.pop_culture}</p>
-            </div>
-          ) : null}
+          {!fun ? <CharacterConnections card={card} fun={false} /> : null}
         </article>
       ))}
       {portraits.length ? (

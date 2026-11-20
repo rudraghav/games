@@ -200,7 +200,7 @@ def test_tarot_ai_output_is_saved_and_reading_private(client, monkeypatch):
     monkeypatch.setattr(settings(), "gemini_api_key", "local-test-adapter-only")
     calls = []
 
-    def provider(cards, question, *, before_attempt=None, on_progress=None):
+    def provider(cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic"):
         from app.games.tarot.reading import validate_reading
 
         if before_attempt:
@@ -314,9 +314,10 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
         ).json()
     monkeypatch.setattr(settings(), "gemini_api_key", "local-failure-test-key")
 
-    def fail(_cards, question, *, before_attempt=None, on_progress=None):
+    def fail(_cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic"):
         if before_attempt:
             before_attempt()
+        assert reading_style == "fun"
         private = f"Private provider content: {question}; local-failure-test-key"
         if failure == "quota":
             raise httpx.HTTPStatusError(private, request=httpx.Request("POST", "https://provider.invalid"),
@@ -324,7 +325,7 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
         raise ValueError(private)
 
     monkeypatch.setattr("app.rooms.service.generate_reading", fail)
-    payload = {"match_id": room["match_id"], "question": "Private verification question"}
+    payload = {"match_id": room["match_id"], "question": "Private verification question", "reading_style": "fun"}
     response = client.post(path + "/reading", headers=headers[0], json=payload)
     assert response.status_code == expected_status
     assert f"error_type={'HTTPStatusError' if failure == 'quota' else 'ValueError'}" in ai_caplog.text
@@ -337,6 +338,7 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
     assert restored["game"]["phase"] == "reading"
     status = client.get(path + "/reading", headers=headers[0]).json()
     assert status["status"] == "failed"
+    assert status["reading_style"] == "fun"
     assert status["failure"]["retryable"] is True
     assert status["failure"]["code"] == ("rate_limited" if failure == "quota" else "temporary")
     if failure == "quota":
@@ -345,7 +347,8 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
         after_cooldown = status["failure"]["retry_at"] + 1
         monkeypatch.setattr("app.rooms.service.time.time", lambda: after_cooldown)
 
-    def recover(cards, _question, *, before_attempt=None, on_progress=None):
+    def recover(cards, _question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic"):
+        assert reading_style == "fun"
         from app.games.tarot.reading import validate_reading
 
         if before_attempt:
@@ -353,8 +356,10 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
         return validate_reading(example_reading(cards), cards)
 
     monkeypatch.setattr("app.rooms.service.generate_reading", recover)
+    payload.pop("reading_style")  # A retry from an older client preserves the saved choice.
     recovered = client.post(path + "/reading", headers=headers[0], json=payload)
     assert recovered.status_code == 200 and recovered.json()["status"] == "complete"
+    assert recovered.json()["reading_style"] == "fun"
     assert client.get(path + "/reading", headers=headers[0]).json() == recovered.json()
 
 

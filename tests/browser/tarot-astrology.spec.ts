@@ -19,6 +19,7 @@ test.use({ trace: 'off', screenshot: 'off' });
 test.skip(!!process.env.GAMES_TEST_URL, 'Synthetic provider tests use local development only.');
 
 type ReadingView = components['schemas']['ReadingView'];
+const michaelScene = 'Michael leaves his job in Scranton to build a life with Holly in Colorado.';
 
 const cleanup = new WeakMap<Page, { roomId?: string }>();
 test.afterEach(async ({ page }, info) => {
@@ -52,12 +53,7 @@ test.afterEach(async ({ page }, info) => {
   }
 });
 
-type ReadingRequest = {
-  match_id: string;
-  question: string;
-  astrology?: AstrologyInput;
-  reuse_saved_astrology?: boolean;
-};
+type ReadingRequest = components['schemas']['ReadingInput'];
 
 function chartFor(system: AstrologyInput['system'] = 'both'): AstrologyChart {
   return {
@@ -101,6 +97,7 @@ async function withReading(
   run: (state: {
     roomId: string;
     requests: ReadingRequest[];
+    getView: () => ReadingView;
     setView: (value: ReadingView) => void;
     setChart: (handler: (input: AstrologyInput) => Promise<AstrologyPreview>) => void;
     setPlaces: (handler: (query: string) => Promise<unknown>) => void;
@@ -141,6 +138,15 @@ async function withReading(
         ...card,
         card_id: room.game!.community[index].id,
         title: room.game!.community[index].label,
+        characters: card.characters.map((character) =>
+          body.reading_style === 'fun' && character.name === 'Michael Scott'
+            ? {
+                ...character,
+                evidence: michaelScene,
+                connection: `${michaelScene} ${character.connection}`,
+              }
+            : character,
+        ),
       }));
       const astrologyChart = body.astrology
         ? chartFor(body.astrology.system)
@@ -151,6 +157,7 @@ async function withReading(
         status: 'complete',
         api_tier: 'paid',
         question: body.question,
+        reading_style: body.reading_style,
         message: '',
         reading: {
           ...tarotReadingExample,
@@ -200,6 +207,7 @@ async function withReading(
     await run({
       roomId,
       requests,
+      getView: () => view,
       chartInputs,
       setView: (value) => {
         view = value;
@@ -289,15 +297,117 @@ test('ordinary Tarot stays optional and preserves all three reading layers', asy
     await capture(page, 'configured-reading-providers');
     await expect(page.getByRole('checkbox', { name: 'Include astrology' })).not.toBeChecked();
     await expect(page.getByLabel('Birth date', { exact: true })).toHaveCount(0);
+    await expect(page.getByRole('button', { name: 'Classic', exact: true })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
     await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
     await expect(page.locator('.tarot-reading > article')).toHaveCount(3);
     await expect(page.locator('.tarot-character-connections')).toHaveCount(3);
     await expect(page.locator('.tarot-quirky-read')).toHaveCount(3);
     expect(requests).toHaveLength(1);
+    expect(requests[0].reading_style ?? 'classic').toBe('classic');
     expect(requests[0]).not.toHaveProperty('astrology');
     expect(requests[0]).not.toHaveProperty('reuse_saved_astrology');
     await expect(page.getByRole('region', { name: 'Saved astrology reading' })).toHaveCount(0);
     await noOverflow(page);
+  });
+});
+
+test('Fun style survives refresh and retry, then opens the same character scenes in the archive', async ({
+  page,
+}) => {
+  if (test.info().project.use.hasTouch) await page.setViewportSize({ width: 320, height: 700 });
+  await withReading(page, async ({ roomId, requests, setView, getView }) => {
+    const styles = page.getByRole('group', { name: 'Choose a reading style' });
+    const fun = styles.getByRole('button', { name: 'Fun', exact: true });
+    await fun.click();
+    await page.reload();
+    await expect(fun).toHaveAttribute('aria-pressed', 'true');
+    await noOverflow(page);
+
+    const room = await roomAs(page, roomId);
+    const failures: string[] = [];
+    await page.route(`**/api/backend/v1/rooms/${roomId}/reading`, async (route) => {
+      if (route.request().method() !== 'POST' || failures.length) return route.fallback();
+      const body: ReadingRequest = route.request().postDataJSON();
+      failures.push(body.reading_style ?? 'classic');
+      setView({
+        ...getView(),
+        reading_style: body.reading_style,
+        status: 'failed',
+        failure: { code: 'temporary', message: 'The reading couldn’t finish.', retryable: true },
+      });
+      await route.fulfill({ status: 503, json: { detail: 'Synthetic interruption.' } });
+    });
+    await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
+    const retry = page.getByRole('button', { name: 'Retry reading', exact: true });
+    await expect(retry).toBeEnabled();
+    expect(failures).toEqual(['fun']);
+    // A fresh tab has no draft. The prior attempt must restore its saved style.
+    await page.evaluate(
+      (key) => sessionStorage.removeItem(key),
+      `games:draft:tarot-style:${roomId}:${room.match_id}`,
+    );
+    await page.reload();
+    await expect(fun).toHaveAttribute('aria-pressed', 'true');
+    await retry.click();
+    const scenes = page.getByRole('heading', { name: 'How it could play out' });
+    await expect(scenes).toHaveCount(3);
+    await expect(styles).toHaveCount(0);
+    expect(requests.map((request) => request.reading_style)).toEqual(['fun']);
+    await page.reload();
+    await expect(scenes).toHaveCount(3);
+
+    const firstCard = page.locator('.tarot-reading article').first();
+    const cast = firstCard.locator('.tarot-character-connections');
+    const character = cast.getByRole('listitem').filter({ hasText: 'Michael Scott' });
+    const inspectScene = async () => {
+      const scene = character.locator('.tarot-character-scene');
+      await expect(scene).toHaveText(michaelScene);
+      await expect(scene).toBeVisible();
+      await expect(character.locator('details')).toHaveCount(0);
+      expect((await character.innerText()).split(michaelScene)).toHaveLength(2);
+      const move = character.locator('.tarot-character-copy > p');
+      await expect(move).toHaveText(tarotReadingExample.cards[0].characters[0].connection);
+      const [imageBounds, sceneBounds, moveBounds] = await Promise.all(
+        [character.locator('img'), scene, move].map((element) => element.boundingBox()),
+      );
+      expect(sceneBounds!.x).toBeGreaterThanOrEqual(imageBounds!.x + imageBounds!.width);
+      expect(moveBounds!.y).toBeGreaterThanOrEqual(sceneBounds!.y + sceneBounds!.height - 1);
+    };
+    await inspectScene();
+    await expect(cast.locator('img').first()).toBeVisible();
+    await expect(firstCard.locator('h4').first()).toHaveText('How it could play out');
+    let archiveStyle: 'fun' | undefined = 'fun';
+    await page.route(`**/api/backend/v1/readings/${room.match_id}`, (route) =>
+      route.fulfill({
+        json: {
+          ...getView(),
+          reading_style: archiveStyle,
+          match_id: room.match_id,
+          room_id: roomId,
+          created_at: Date.now() / 1000,
+          cards: room.game!.community,
+          can_resume: false,
+        },
+      }),
+    );
+    await page.goto(`/games/tarot/readings/${room.match_id}`);
+    await expect(page.getByText('Saved Fun Tarot reading', { exact: true })).toBeVisible();
+    await inspectScene();
+    await expect(styles).toHaveCount(0);
+    await page.locator('.tarot-image-credits summary').click();
+    await expect(page.locator('.tarot-image-credits li').first()).toBeVisible();
+    await noOverflow(page);
+    archiveStyle = undefined;
+    await page.reload();
+    await expect(page.getByText('Saved Tarot reading', { exact: true })).toBeVisible();
+    await expect(scenes).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Your connections' })).toHaveCount(3);
+    await expect(character.locator('details')).not.toHaveAttribute('open');
+    await expect(character.locator('.tarot-character-scene')).toHaveCount(0);
+    expect(requests).toHaveLength(1);
   });
 });
 
@@ -752,6 +862,7 @@ test('saved progress survives refresh and slow estimates never claim completion'
     const question = 'What would make a new hobby easier to begin?';
     const saved = {
       status: 'generating',
+      reading_style: 'fun' as const,
       reading: null,
       api_tier: 'paid' as const,
       question,
@@ -793,6 +904,11 @@ test('saved progress survives refresh and slow estimates never claim completion'
       await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue(
         question,
       );
+      await expect(page.getByRole('button', { name: 'Fun', exact: true })).toHaveAttribute(
+        'aria-pressed',
+        'true',
+      );
+      await expect(page.getByRole('button', { name: 'Classic', exact: true })).toBeDisabled();
       await expect(page.getByRole('checkbox', { name: 'Include astrology' })).toBeChecked();
       await expect(page.getByLabel('Birth date', { exact: true })).toHaveCount(0);
       expect(requests).toHaveLength(0);
@@ -826,6 +942,9 @@ test('saved progress survives refresh and slow estimates never claim completion'
     await expect(page.locator('.tarot-reading')).toBeVisible();
     expect(requests).toHaveLength(1);
     expect(requests[0].reuse_saved_astrology).toBe(true);
+    expect(requests[0].reading_style).toBe('fun');
+    await expect(page.getByRole('heading', { name: 'How it could play out' })).toHaveCount(3);
+    await expect(page.getByRole('region', { name: 'Saved astrology reading' })).toBeVisible();
     expect(requests[0]).not.toHaveProperty('astrology');
   });
 });

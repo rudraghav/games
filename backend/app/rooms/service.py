@@ -40,6 +40,7 @@ from app.games.tarot.reading import (
     reading_available,
     reading_failure,
 )
+from app.games.tarot.style import saved_style
 from app.models import Match, Member, Message, Profile, Receipt, Room, TarotReading
 from app.rooms.bots import BOT_DELAY_SECONDS, BOT_NAMES, bot_delay, next_bot_view
 from app.rooms.public_actions import PUBLIC_ACTIONS, public_action
@@ -577,6 +578,7 @@ class RoomService:
                 match_id=match.id,
                 room_id=match.room_id,
                 created_at=match.created_at,
+                reading_style=saved_style(match.state),
                 status=status,
                 question=saved.question if saved else "",
                 cards=ENGINES["tarot"].project_view(match.state, actor.id).community,
@@ -597,12 +599,14 @@ class RoomService:
             saved = self.repo.reading(match.id)
             if saved and saved.status == "complete":
                 return ReadingView(
+                    reading_style=saved_style(match.state),
                     status="complete",
                     question=saved.question,
                     reading=Reading.model_validate(saved.payload),
                 )
             if saved and saved.status == "generating" and saved.lease_until > time.time():
                 return ReadingView(
+                    reading_style=saved_style(match.state),
                     status="generating",
                     question=saved.question,
                     message="Writing your reading…",
@@ -613,6 +617,7 @@ class RoomService:
                 available = reading_available()
                 failure = self._saved_reading_failure(saved) if available else None
                 return ReadingView(
+                    reading_style=saved_style(match.state),
                     status="failed" if failure else "ready" if available else "unavailable",
                     message=failure.message if failure else "" if available else "Readings are unavailable.",
                     failure=failure,
@@ -651,14 +656,18 @@ class RoomService:
                 raise HTTPException(409, "This spread has changed. Open your current spread.")
             saved = self.repo.reading(match_id)
             if saved and saved.status == "complete":
-                return ReadingView(status="complete", question=saved.question,
+                return ReadingView(status="complete", question=saved.question, reading_style=saved_style(match.state),
                                    reading=Reading.model_validate(saved.payload))
             if saved and saved.status == "generating" and saved.lease_until > time.time():
-                return ReadingView(status="generating", question=saved.question,
+                return ReadingView(status="generating", question=saved.question, reading_style=saved_style(match.state),
                                    message="Writing your reading…",
                                    astrology_chart=self._saved_astrology_chart(saved),
                                    progress=self._saved_reading_progress(saved))
             self._check_reading_retry(saved, question)
+            # The private match outlives its room and keeps completed reading JSON backwards compatible.
+            reading_style = data.reading_style if "reading_style" in data.model_fields_set else saved_style(match.state)
+            if reading_style != saved_style(match.state):
+                match.state = {**match.state, "reading_style": reading_style}
             attempt = str(uuid4())
             if saved is None:
                 saved = TarotReading(match_id=match_id)
@@ -700,12 +709,10 @@ class RoomService:
             self._update_reading_progress(room_id, match_id, attempt, event)
 
         try:
-            if astrology_chart:
-                result = generate_reading(cards, question, before_attempt=reserve_attempt,
-                                          astrology_chart=astrology_chart, on_progress=report_progress)
-            else:
-                result = generate_reading(cards, question, before_attempt=reserve_attempt,
-                                          on_progress=report_progress)
+            result = generate_reading(
+                cards, question, before_attempt=reserve_attempt, astrology_chart=astrology_chart,
+                on_progress=report_progress, reading_style=reading_style,
+            )
             report_progress(ProgressEvent(
                 "saving", last_progress.provider, last_progress.attempt, last_progress.max_attempts,
             ))
@@ -748,7 +755,7 @@ class RoomService:
             match.version += 1
             match.result = {"winners": [], "scores": {actor.id: 0}}
             room.status, room.revision = "finished", room.revision + 1
-            return ReadingView(status="complete", question=question, reading=result)
+            return ReadingView(status="complete", question=question, reading_style=reading_style, reading=result)
 
     def _update_reading_progress(
         self, room_id: str, match_id: str, attempt_id: str, event: ProgressEvent,

@@ -14,7 +14,7 @@ from pydantic import ValidationError
 CHECKS = frozenset({
     "question_form", "text_length", "required_fields", "unexpected_fields",
     "duplicate_fields", "invalid_json", "cards", "reference", "reference_evidence",
-    "reference_diversity", "chart", "placeholder", "incomplete", "invalid_output",
+    "reference_diversity", "scene_detail", "chart", "placeholder", "incomplete", "invalid_output",
 })
 _PATH = re.compile(
     r"^(?:reading|title|introduction|next_step|cards(?:\.[0-2](?:\.(?:card_id|position|title|"
@@ -71,6 +71,7 @@ class ValidationIssue:
             "reference": "used an unmatched character",
             "reference_evidence": "didn't match the character source",
             "reference_diversity": "repeated a character connection",
+            "scene_detail": "missed the detail from its scene",
             "chart": "didn't match the computed chart",
             "placeholder": "contained unfinished text",
             "incomplete": "was incomplete",
@@ -127,6 +128,10 @@ def question_relaxed(source: dict[str, Any], field: str) -> bool:
 def retry_request(request: dict[str, Any], issue: ValidationIssue) -> dict[str, Any]:
     context = json.loads(request["input"])
     context["validation_feedback"] = issue.feedback()
+    if issue.check == "scene_detail":
+        context["validation_feedback"]["instruction"] = (
+            "Use one exact scene_phrases phrase from that portrait (or a short action phrase from public_context if empty). Relate that scene to your choice."
+        )
     if issue.relaxable:
         relaxations = context.get("validation_relaxations", [])
         entry = {"check": issue.check, "field": issue.field}

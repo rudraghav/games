@@ -6,6 +6,7 @@ import unicodedata
 from pathlib import Path
 
 from app.games.tarot.reference_retrieval import enriched, retrieve
+from app.games.tarot.style import ReadingStyle
 
 CHARACTERS = enriched(json.loads(Path(__file__).with_name("characters.json").read_text()))
 REFERENCE_LANES = tuple(dict.fromkeys(c["lane"] for c in CHARACTERS))
@@ -42,10 +43,11 @@ def lane_characters(lane: str) -> list[dict[str, str]]:
 
 def reference_candidates(
     card_ids: list[str], question: str = "", *, per_card: int = REFERENCES_PER_CARD,
+    reading_style: ReadingStyle = "classic",
 ) -> list[list[dict]]:
     """Choose bounded, evidence-backed references by meaning, then diversify.
 
     The local index contains public reference facts only. The optional question
     is encoded in memory once; no profile, history, logging or remote embedding.
     """
-    return retrieve(CHARACTERS, card_ids, question, per_card=per_card)
+    return retrieve(CHARACTERS, card_ids, question, per_card=per_card, reading_style=reading_style)

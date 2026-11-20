@@ -121,6 +121,7 @@ def test_legacy_reading_keeps_its_saved_text_without_fabricating_new_layers(clie
     store(room, payload=payload)
     response = client.get(f"/v1/readings/{room['match_id']}", headers=owner)
     assert response.status_code == 200 and response.json()["status"] == "complete"
+    assert response.json()["reading_style"] == "classic"
     for card in response.json()["reading"]["cards"]:
         assert card["pop_culture"] == payload["cards"][0]["pop_culture"]
         assert not card["characters"] and card["quirky_interpretation"] is None

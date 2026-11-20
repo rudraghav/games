@@ -32,13 +32,15 @@ const wireProgress: NonNullable<Parameters<typeof mapReading>[0]['progress']> = 
 };
 
 it('keeps legacy readings usable when progress is omitted or null', () => {
-  expect(mapReading(generating)).toEqual(generating);
-  expect(mapReading({ ...generating, progress: null })).toEqual(generating);
+  const legacy = { ...generating, reading_style: 'classic' };
+  expect(mapReading(generating)).toEqual(legacy);
+  expect(mapReading({ ...generating, progress: null })).toEqual(legacy);
 });
 
 it('maps authoritative progress while preserving the reading response', () => {
-  expect(mapReading({ ...generating, progress: wireProgress })).toEqual({
+  expect(mapReading({ ...generating, reading_style: 'fun', progress: wireProgress })).toEqual({
     ...generating,
+    reading_style: 'fun',
     progress: {
       stage: 'retrying',
       provider: 'Groq',
@@ -72,7 +74,9 @@ it('maps an incomplete saved spread without inventing a reading or enabling room
     cards: [],
     reading: null,
     canResume: false,
+    readingStyle: 'classic',
   });
+  expect(mapSavedReading({ ...saved, reading_style: 'fun' }).readingStyle).toBe('fun');
   expect(() => mapSavedReading({ ...saved, status: 'complete' })).toThrow('incomplete');
   expect(() => mapSavedReading({ ...saved, match_id: 'not-a-match' })).toThrow();
 });

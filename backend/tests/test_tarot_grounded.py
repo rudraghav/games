@@ -291,3 +291,126 @@ def test_json_astrology_decoder_requires_exact_shape_without_salvage(canonical, 
         decode_grounded_json_output(body, effective)
     assert error.value.reason == ("refusal" if tamper == "refusal" else
                                   "duplicate_wire_key" if tamper == "duplicate" else "invalid_wire_schema")
+
+
+@pytest.mark.parametrize("provider", ["gemini", "groq", "cloudflare"])
+@pytest.mark.parametrize("mode", ["ordinary", "western", "vedic", "both"])
+def test_fun_connections_accept_statements_and_keep_supplied_evidence(canonical, provider, mode):
+    from test_astrology_reading import interpretation
+    from test_tarot import example_reading
+
+    from app.games.tarot.groq_qwen_astrology import build_groq_qwen_astrology_request
+    from app.games.tarot.grounded_json import build_grounded_json_request
+    from app.games.tarot.style import FUN_CONNECTION
+
+    source, chart = canonical(mode, reading_style="fun")
+    connections = [
+        "Chihiro cleans a polluted river spirit. Start with one visible mess and you could make a busy shift manageable.",
+        "Miles trains with Peter B. Parker. A short first attempt with a coach could show you which part needs another try.",
+        "Leslie tackles a dangerous construction pit. If you turn one complaint into a specific request, someone could act on it.",
+    ]
+    if provider == "gemini":
+        payload = example_reading(CARDS)
+        for section, connection in zip(payload["cards"], connections, strict=True):
+            section["characters"][0]["connection"] = connection
+        if chart:
+            payload["astrology_interpretation"] = interpretation(chart=chart)
+        candidates = [card["reference_characters"] for card in json.loads(source["input"])["cards"]]
+        assert FUN_CONNECTION in source["system_instruction"]
+        result = reading._parse_output({
+            "status": "completed", "steps": [{"type": "model_output", "content": [
+                {"type": "text", "text": json.dumps(payload)},
+            ]}],
+        }, CARDS, chart, candidates=candidates, reading_style="fun")
+    else:
+        if provider == "groq" and mode == "western":
+            source, wire = build_groq_qwen_astrology_request(source)
+            payload = wire_payload(source, chart)
+            for index in range(1, 4):
+                card = payload[f"card_{index}"]
+                card.pop("interpretation")
+                card["reflection_question"] = "Which possibility could fit the question?"
+                card["imagery"] = card.pop("quirky_interpretation")
+            western = payload["astrology_interpretation"]["western"]
+            western["imagery"] = western.pop("quirky")
+        else:
+            if provider == "groq" and mode in {"vedic", "both"}:
+                source, wire = build_grounded_json_request(source, reasoning_effort="none")
+            else:
+                wire = build_grounded_request(provider, source)
+            payload = grounded_payload(source, chart)
+            for index in range(1, 4):
+                payload[f"card_{index}"].pop("connection_question")
+        for index, connection in enumerate(connections, 1):
+            payload[f"card_{index}"]["connection"] = connection
+        assert FUN_CONNECTION in wire["messages"][0]["content"]
+        assert "connection_question" not in wire["messages"][0]["content"]
+        body = envelope(provider, payload)
+        body["model"] = MODELS[provider]
+        candidates = [card["reference_characters"] for card in json.loads(source["input"])["cards"]]
+        result = reading._alternative_reading(provider, body, source, CARDS, chart, candidates)
+    for index, section in enumerate(result.cards):
+        character = section.characters[0]
+        assert character.connection == connections[index]
+        assert character.evidence == candidates[index][0]["public_context"]
+    assert (result.astrology is not None) == (chart is not None)
+
+
+def test_fun_connections_bind_the_named_figure_to_its_own_scene():
+    from test_tarot import example_reading
+
+    from app.games.tarot.characters import find_character
+    from app.games.tarot.recovery import ReadingValidationError
+
+    payload = example_reading(CARDS)
+    holmes = find_character("Sherlock Holmes", "Sherlock Holmes")
+    kalam = find_character("A. P. J. Abdul Kalam", "Science and invention")
+    assert holmes and kalam
+    for index, figure in [(0, holmes), (2, kalam)]:
+        payload["cards"][index]["characters"][0].update(name=figure["name"], source=figure["source"])
+    connections = [card["characters"][0] for card in payload["cards"]]
+    connections[0]["connection"] = (
+        "Sherlock and Dr. Watson examine evidence together. You could ask a friend to check one clue before choosing."
+    )
+    connections[1]["connection"] = "Miles trains with Peter B. Parker. You could practice one skill with a friend until you can use it with confidence."
+    connections[2]["connection"] = (
+        "Kalam's team reused rocket material for lighter leg calipers. You could try a tool you already have."
+    )
+    supplied = [[find_character(c["name"], c["source"])] for c in connections]
+    supplied[0] = [{**holmes, "public_context": "Sherlock Holmes and Watson examine evidence together."}]
+    reading.validate_reading(payload, CARDS, reading_style="fun", candidates=supplied)
+    for index, line in [
+        (0, "Reflect on the consequences, like the financial independence that allowed Charlie Chaplin to perfect his craft."),
+        (2, "You could try applying knowledge to practical problems like Rancho from 3 Idiots."),
+    ]:
+        saved = connections[index]["connection"]
+        connections[index]["connection"] = line
+        with pytest.raises(ReadingValidationError) as failure:
+            reading.validate_reading(payload, CARDS, reading_style="fun", candidates=supplied)
+        assert failure.value.issue.field == f"cards.{index}.characters.0.connection"
+        assert not failure.value.issue.relaxable
+        connections[index]["connection"] = saved
+
+
+def test_fun_scene_check_rejects_generic_advice_and_returns_actionable_field_feedback():
+    from app.games.tarot.characters import find_character
+    from app.games.tarot.recovery import ValidationIssue, retry_request
+    from app.games.tarot.reference_mentions import scene_hints, uses_scene_detail
+
+    for name, source, prose in [
+        ("Sherlock Holmes", "Sherlock Holmes", "You could try using a journal to track the effects of your decisions."),
+        ("Lara Croft", "Tomb Raider", "You could try taking a short walk outside without your phone to clear your mind."),
+        ("Winnie-the-Pooh", "Winnie-the-Pooh by A. A. Milne", "You could try setting aside 10 minutes to brainstorm new ideas."),
+    ]:
+        figure = find_character(name, source)
+        assert figure is not None
+        evidence = figure["sourceContext"]
+        assert not uses_scene_detail(prose, figure, evidence)
+        if name == "Winnie-the-Pooh":
+            assert not uses_scene_detail("Pooh has small adventures. You might enjoy one too.", figure, evidence)
+        assert all(uses_scene_detail(hint, figure, evidence) for hint in scene_hints(evidence, figure))
+    issue = ValidationIssue("scene_detail", "cards.0.characters.0.connection")
+    corrected = json.loads(retry_request({"input": "{}"}, issue)["input"])
+    assert corrected["validation_feedback"]["check"] == "scene_detail"
+    assert "scene_phrases" in corrected["validation_feedback"]["instruction"]
+    assert "validation_relaxations" not in corrected

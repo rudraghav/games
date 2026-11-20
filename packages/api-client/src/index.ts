@@ -1,7 +1,14 @@
 import createClient from 'openapi-fetch';
 import { z } from 'zod';
 import type { paths } from './generated/schema';
-import { mapMe, mapRoom, mapReading, mapSavedReading, type Action } from './mappers';
+import {
+  mapMe,
+  mapRoom,
+  mapReading,
+  mapSavedReading,
+  type Action,
+  type ReadingStyle,
+} from './mappers';
 import type { AstrologyInput } from './astrology';
 export type {
   Room,
@@ -12,6 +19,7 @@ export type {
   ActionOption,
   Me,
   ReadingView,
+  ReadingStyle,
   SavedReading,
 } from './mappers';
 export { boardDetails, wordsDetails, gemsDetails } from './game-details';
@@ -155,6 +163,7 @@ export function createApi(accessToken?: () => Promise<string | null>) {
       question: string,
       astrology?: AstrologyInput,
       reuseSavedAstrology?: boolean,
+      readingStyle?: ReadingStyle,
     ) {
       return mapReading(
         unwrap(
@@ -163,6 +172,7 @@ export function createApi(accessToken?: () => Promise<string | null>) {
             body: {
               match_id: matchId,
               question,
+              ...(readingStyle ? { reading_style: readingStyle } : {}),
               ...(astrology ? { astrology } : {}),
               ...(reuseSavedAstrology ? { reuse_saved_astrology: true } : {}),
             },

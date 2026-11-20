@@ -148,6 +148,8 @@ export function mapMe(wire: Wire['MeView']) {
   };
 }
 
+const readingStyleGate = z.enum(['classic', 'fun']).default('classic');
+
 const savedReadingGate = z.object({
   match_id: z.string().uuid(),
   room_id: z.string().uuid(),
@@ -156,6 +158,7 @@ const savedReadingGate = z.object({
   question: z.string().max(400),
   cards: z.array(cardSchema).max(3),
   can_resume: z.boolean(),
+  reading_style: readingStyleGate,
 });
 
 export function mapSavedReading(wire: Wire['SavedReadingView']) {
@@ -171,6 +174,7 @@ export function mapSavedReading(wire: Wire['SavedReadingView']) {
     cards: parsed.cards,
     reading: wire.reading,
     canResume: parsed.can_resume,
+    readingStyle: parsed.reading_style,
   };
 }
 
@@ -203,7 +207,11 @@ function mapReadingProgress(wire: NonNullable<Wire['ReadingView']['progress']>) 
 
 export function mapReading(wire: Wire['ReadingView']): ReadingView {
   const { progress, ...rest } = wire;
-  return { ...rest, ...(progress ? { progress: mapReadingProgress(progress) } : {}) };
+  return {
+    ...rest,
+    reading_style: readingStyleGate.parse(wire.reading_style),
+    ...(progress ? { progress: mapReadingProgress(progress) } : {}),
+  };
 }
 
 export type Room = ReturnType<typeof mapRoom>;
@@ -213,6 +221,7 @@ export type Player = Match['players'][number];
 export type Action = Wire['Action'];
 export type ActionOption = Match['actions'][number];
 export type Me = ReturnType<typeof mapMe>;
+export type ReadingStyle = NonNullable<Wire['ReadingInput']['reading_style']>;
 export type ReadingView = Omit<Wire['ReadingView'], 'progress'> & {
   progress?: ReturnType<typeof mapReadingProgress>;
 };

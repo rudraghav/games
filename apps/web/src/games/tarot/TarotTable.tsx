@@ -9,6 +9,7 @@ import {
   ApiError,
   type AstrologyInput,
   type AstrologyChart as ChartData,
+  type ReadingStyle,
   type ReadingView,
 } from '@games/api-client';
 import { api } from '@/lib/session';
@@ -39,6 +40,10 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
     `tarot-question:${room.id}:${room.matchId}`,
     null,
   );
+  const [styleDraft, setStyle] = useTableDraft<ReadingStyle | null>(
+    `tarot-style:${room.id}:${room.matchId}`,
+    null,
+  );
   const [astrology, setAstrology] = useState<AstrologyInput>();
   const [astrologyChoice, setAstrologyChoice] = useState<'auto' | 'off' | 'new'>('auto');
   const [chart, setChart] = useState<ChartData | null>(null);
@@ -60,11 +65,19 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const showRequestedProgress = useRef(false);
   const generate = useMutation<ReadingView>({
     mutationFn: (): Promise<ReadingView> =>
-      api.generateReading(room.id, room.matchId!, question, astrology, reuseSavedAstrology),
+      api.generateReading(
+        room.id,
+        room.matchId!,
+        question,
+        astrology,
+        reuseSavedAstrology,
+        readingStyle,
+      ),
     onSuccess: async (result) => {
       // A late progress poll cannot replace the completed reading with a pending state.
       await cache.cancelQueries({ queryKey, exact: true });
       setQuestion(null);
+      setStyle(null);
       setAstrology(undefined);
       setAstrologyChoice('auto');
       setChart(null);
@@ -91,6 +104,9 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   });
   // An explicit empty draft is a user's edit; a missing draft restores the saved question.
   const question: string = questionDraft ?? saved.data?.question ?? '';
+  const savedStyle = saved.data?.reading_style ?? 'classic';
+  const readingStyle =
+    saved.data?.status === 'generating' ? savedStyle : (styleDraft ?? savedStyle);
   const reuseSavedAstrology: boolean =
     astrologyChoice === 'auto' && !astrology && !!saved.data?.astrology_chart;
   // A solo reading starts its next spread in one tap: ready, then start, as room creation does.
@@ -258,7 +274,11 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
         <div className="tarot-intro-header">
           <div>
             <p className="eyebrow">
-              {match.phase === 'choosing' ? `Card ${drawn + 1} of 3` : 'Three-card reading'}
+              {match.phase === 'choosing'
+                ? `Card ${drawn + 1} of 3`
+                : reading && savedStyle === 'fun'
+                  ? 'Fun Tarot reading'
+                  : 'Three-card reading'}
             </p>
             <h2
               aria-label={
@@ -368,7 +388,12 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
         </>
       ) : reading ? (
         <>
-          <TarotReading reading={reading} cards={match.community} imageLoader={imageLoader} />
+          <TarotReading
+            reading={reading}
+            readingStyle={savedStyle}
+            cards={match.community}
+            imageLoader={imageLoader}
+          />
           {drawAgain ? (
             <div className="tarot-again">
               <p className="small muted">Ready for another question?</p>
@@ -405,6 +430,22 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
               disabled={writing || recovering}
             />
           </label>
+          <fieldset className="tarot-reading-style" disabled={writing || recovering || !saved.data}>
+            <legend>Reading style</legend>
+            <ChoiceGroup<ReadingStyle>
+              label="Choose a reading style"
+              variant="segmented"
+              value={readingStyle}
+              onChange={setStyle}
+              options={[
+                { value: 'classic', label: 'Classic' },
+                { value: 'fun', label: 'Fun' },
+              ]}
+            />
+            <p className="small muted">
+              Fun shows what familiar characters might try in your shoes, and where that could lead.
+            </p>
+          </fieldset>
           <AstrologyForm
             searchPlaces={(query) => api.astrologyPlaces(room.id, room.matchId!, query)}
             calculateChart={(input) => api.astrologyChart(room.id, room.matchId!, input)}

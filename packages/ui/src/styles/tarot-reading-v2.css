@@ -18,7 +18,7 @@
   }
   .tarot-character-connections
     li[data-has-portrait='true']
-    > :is(.tarot-character-name, .tarot-character-copy) {
+    > :is(.tarot-character-identity, .tarot-character-copy) {
     grid-column: 2;
   }
   .tarot-character-portrait {
@@ -52,6 +52,13 @@
   }
   .tarot-character-copy {
     min-width: 0;
+  }
+  .tarot-character-scene {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-ink-muted);
+    overflow-wrap: anywhere;
   }
   .tarot-character-copy > p {
     font-size: 14px;
@@ -110,7 +117,7 @@
     }
     .tarot-character-connections
       li:is([data-reference-kind='meme'], [data-artwork-type='artwork'])
-      > .tarot-character-name {
+      > .tarot-character-identity {
       grid-column: 1;
     }
     .tarot-character-portrait:is([data-reference-kind='meme'], [data-artwork-type='artwork']) {

@@ -1,3 +1,13 @@
+## 2026-11-20 — Recognizable Tarot references and Fun readings
+
+- Review the owning player’s latest completed reading without changing it or recording its personal content. Compare fictional, historical and familiar casts in synthetic spreads. Test an optional Fun reading with recognizable scenes and clear possible outcomes, alongside Classic and previously saved readings. Verify the choice with mobile play, retry and private archive access.
+
+- Classic offers familiar leads alongside the full catalogue. Fun has 118 curated choices with matched art and one specific source scene per card. The private style follows refresh, retry and closed-room archive. A sensitive question can still use Fun and receive a gentle comparison.
+- A shuffled-deck check placed all 78 card IDs once across 26 open spreads and surfaced 50 distinct familiar leads. All 118 reviewed portraits matched their catalogue hashes.
+- Six synthetic spreads and four further prompts exercised open draws, creative work, teamwork, sports, friendship and hardship. Reduced broad biography bias, repaired incomplete source excerpts, and caught unrelated figures in generated connections. Additional regression coverage spans the three provider formats, four chart options, phone layout and existing archives.
+
+- A bounded Cloudflare reading on a public, question-free spread exposed two failure modes: borrowed names and generic advice. Each Fun card now sends one illustrated subject and source phrases. The corrected run used Sherlock Holmes’s close observation, Lara Croft learning to climb and Pooh reaching for honey with a balloon; it completed on its second attempt.
+
 ## 2026-11-20 — Dimensional oracle table
 
 - Create the centerpiece and foil artwork with GPT Image first. Add depth to the

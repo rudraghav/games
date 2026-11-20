@@ -261,6 +261,22 @@
   .tarot-question textarea {
     resize: vertical;
   }
+  .tarot-reading-style {
+    min-inline-size: 0;
+    margin: 16px 0 0;
+    padding: 0;
+    border: 0;
+  }
+  .tarot-reading-style legend {
+    margin-block-end: 4px;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 650;
+  }
+  .tarot-reading-style p {
+    margin: 6px 0 0;
+    line-height: 1.45;
+  }
   .tarot-reading {
     max-width: 700px;
     margin: 20px auto;

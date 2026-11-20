@@ -5,6 +5,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from app.core.contracts import Action, CardView, GameView
 from app.games.tarot.reading import Reading
+from app.games.tarot.style import ReadingStyle
 
 
 class Request(BaseModel):
@@ -163,6 +164,7 @@ class SavedReadingView(BaseModel):
     room_id: str
     created_at: float
     status: Literal["complete", "generating", "incomplete", "unavailable"]
+    reading_style: ReadingStyle = Field(default_factory=lambda: "classic")
     question: str
     cards: list[CardView] = Field(max_length=3)
     reading: Reading | None
