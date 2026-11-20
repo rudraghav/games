@@ -419,12 +419,10 @@ def test_tarot_regeneration_is_budgeted_and_saved_or_recoverable(
         context = json.loads(json.loads(request.content)["input"])
         calls.append(True)
         reading = example_reading([card["card_id"] for card in context["cards"]])
-        # Keep the budget/retry fixture valid for this request's exact shortlist.
+        assert context["reading_style"] == "fun"
         for section, card in zip(reading["cards"], context["cards"], strict=True):
-            reference = card["reference_characters"][0]
-            section["characters"][0].update(
-                name=reference["name"], source=reference["source"],
-            )
+            assert "reference_characters" not in card
+            section.pop("characters")
         if len(calls) == 1:
             del reading["cards"][0]["interpretation"]
         return httpx.Response(200, json={"status": "completed", "steps": [{
@@ -448,6 +446,8 @@ def test_tarot_regeneration_is_budgeted_and_saved_or_recoverable(
         assert after - before == 2  # The rejected reservation is rate-limited too.
         assert saved.status == ("complete" if budget_allows_retry else "failed")
     if budget_allows_retry:
+        assert result.json()["reading_style"] == "fun"
+        assert all(card["characters"][0]["evidence"] for card in result.json()["reading"]["cards"])
         assert client.get(path + "/reading", headers=headers[0]).json() == result.json()
         assert client.post(path + "/reading", headers=headers[0], json=payload).json() == result.json()
         assert len(calls) == 2

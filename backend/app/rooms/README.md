@@ -4,7 +4,7 @@ Room services authorize human identities, lock the current room/match and apply
 the pure engine. State, version, result, action receipt and public notification
 commit atomically. Repository methods own SQL; the projection owns visibility.
 
-Tarot generation reserves the selected Classic/Fun style as private match metadata with the request. The current and saved reading endpoints return it as `reading_style`. Older matches use Classic. Reopening the archive reads the original result without another provider call.
+Tarot generation reserves the selected Classic/Fun style as private match metadata with the request. The current and saved reading endpoints return it as `reading_style`. Fresh spreads use Fun. Older submitted readings without a recorded choice retain Classic. Reopening the archive reads the original result without another provider call.
 
 ## Direct solo and bot starts
 

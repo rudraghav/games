@@ -12,7 +12,7 @@ type SavedReading = components['schemas']['SavedReadingView'];
 type OwnedRoom = { page: Page; roomId?: string; closed?: boolean };
 type OwnedRun = { rooms: OwnedRoom[]; contexts: BrowserContext[] };
 const liveMode = process.env.GAMES_TEST_TAROT_MODE || 'all';
-const liveStyle = process.env.GAMES_TEST_TAROT_STYLE || 'classic';
+const liveStyle = process.env.GAMES_TEST_TAROT_STYLE || 'fun';
 if (!['classic', 'fun'].includes(liveStyle))
   throw new Error('GAMES_TEST_TAROT_STYLE must be classic or fun.');
 if (!['all', 'ordinary', 'both'].includes(liveMode))
@@ -492,15 +492,12 @@ test('selected independent live readings retain exact private archives after new
         await actor.getByRole('textbox', { name: 'What’s on your mind?' }).fill(question);
         await bothChart(actor);
       }
-      const choices = actor.getByRole('group', { name: 'Choose a reading style' });
-      await expect(choices.getByRole('button', { name: 'Classic', exact: true })).toHaveAttribute(
-        'aria-pressed',
-        'true',
-      );
-      if (liveStyle === 'fun') {
-        const fun = choices.getByRole('button', { name: 'Fun', exact: true });
+      const fun = actor.getByRole('switch', { name: 'Fun mode', exact: true });
+      await expect(fun).toBeChecked();
+      await expect(fun).toHaveAccessibleDescription('Fun for pop culture, Classic for reflection.');
+      if (liveStyle === 'classic') {
         await fun.click();
-        await expect(fun).toHaveAttribute('aria-pressed', 'true');
+        await expect(fun).not.toBeChecked();
       }
       expect((await requestAs(outsider, `rooms/${room.roomId}/reading`)).status()).toBe(404);
       expect((await requestAs(outsider, `readings/${matchId}`)).status()).toBe(404);
@@ -571,6 +568,8 @@ test('selected independent live readings retain exact private archives after new
         await requestAs(actor, `rooms/${room.roomId}/reading`)
       ).json();
       expect(nextSaved.reading).toBeNull();
+      expect(nextSaved.reading_style).toBe('fun');
+      await expect(fun).toBeChecked();
       const archived = await savedReading(actor, matchId);
       expect(digest(archived.reading)).toBe(readingHash);
       expect(archived.reading_style).toBe(liveStyle);

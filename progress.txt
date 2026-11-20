@@ -1,3 +1,9 @@
+## 2026-11-21 — Fun mode on by default
+
+- Show Fun as an enabled switch on each fresh Tarot reading form. Place an info icon and one short explanation of Fun and Classic under the switch. Verify switching, draft and retry recovery, archived readings and the layout on narrow phones before release.
+
+- The switch defaults on for fresh and never-submitted spreads. Previously submitted readings that predate style selection keep Classic. The info button shows or hides “Fun for pop culture, Classic for reflection.” independently of the switch.
+
 ## 2026-11-20 — Recognizable Tarot references and Fun readings
 
 - Review the owning player’s latest completed reading without changing it or recording its personal content. Compare fictional, historical and familiar casts in synthetic spreads. Test an optional Fun reading with recognizable scenes and clear possible outcomes, alongside Classic and previously saved readings. Verify the choice with mobile play, retry and private archive access.

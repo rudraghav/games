@@ -3,6 +3,7 @@
 from typing import Any, Literal
 
 ReadingStyle = Literal["classic", "fun"]
+DEFAULT_READING_STYLE: ReadingStyle = "fun"
 
 FUN_CONNECTION = """Write lively, concrete card reflections and one practical next step tied to the
 question. Keep the tone gentle in hardship. The app adds the illustrated comparisons after
@@ -17,5 +18,10 @@ def model_context(context: dict[str, Any]) -> dict[str, Any]:
     ]}
 
 
-def saved_style(state: dict) -> ReadingStyle:
-    return "fun" if state.get("reading_style") == "fun" else "classic"
+def saved_style(state: dict, *, submitted: bool) -> ReadingStyle:
+    if state.get("reading_style") == "classic":
+        return "classic"
+    if state.get("reading_style") == "fun":
+        return "fun"
+    # Before style was recorded, every submitted reading used Classic.
+    return "classic" if submitted else DEFAULT_READING_STYLE

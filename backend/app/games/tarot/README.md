@@ -8,9 +8,9 @@ Character retrieval balances the card, the position and the question. It allocat
 
 ## Classic and Fun readings
 
-Classic is the default. Its shortlist pairs familiar figures with specialists from the full catalogue. Fun ranks 118 reviewed figures and reactions against the player's question, cards and spread positions. Ranking discounts sources that match the whole deck indiscriminately. Recognized sensitive questions use a smaller set of supportive scenes.
+Fun is the default for an unsubmitted spread. The Classic shortlist pairs familiar figures with specialists from the full catalogue. Fun ranks 118 reviewed figures and reactions against the player's question, cards and spread positions. Ranking discounts sources that match the whole deck indiscriminately. Recognized sensitive questions use a smaller set of supportive scenes.
 
-Starting with `pop-tarot-14`, each selected portrait has a reviewed choice and possible consequence in `familiar-connections.json`. Across the cast, 291 source phrases were reviewed. Each connection uses one phrase from its own figure, and the visible source excerpt includes that phrase. The service attaches the edited connection when it writes a new Fun reading. The provider still interprets the actual spread, question, each card and any selected charts. The saved payload keeps the exact text that was shown, including earlier versions. The archive returns the submitted style beside the analysis. Older matches default to Classic.
+Starting with `pop-tarot-14`, each selected portrait has a reviewed choice and possible consequence in `familiar-connections.json`. Across the cast, 291 source phrases were reviewed. Each connection uses one phrase from its own figure, and the visible source excerpt includes that phrase. The service attaches the edited connection when it writes a new Fun reading. The provider still interprets the actual spread, question, each card and any selected charts. The saved payload keeps the exact text that was shown, including earlier versions. The archive returns the submitted style beside the analysis. A previously submitted reading without a recorded style retains Classic.
 
 ## Targeted failed-check retries — 18 November 2026
 

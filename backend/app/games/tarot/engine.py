@@ -11,6 +11,7 @@ from app.core.contracts import (
     validate_action,
 )
 from app.games.tarot.deck import BY_ID, DECK, POSITIONS
+from app.games.tarot.style import DEFAULT_READING_STYLE
 
 
 class TarotEngine(BaseEngine):
@@ -47,6 +48,7 @@ class TarotEngine(BaseEngine):
             "order": players,
             "turn": 0,
             "phase": "choosing",
+            "reading_style": DEFAULT_READING_STYLE,
             "deck": deck,
             "picks": [],
             "winners": [],

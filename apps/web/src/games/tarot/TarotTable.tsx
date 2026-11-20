@@ -3,7 +3,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import Link from 'next/link';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useReducedMotion } from 'motion/react';
-import { Sparkles, ArrowRight, ArrowUp, RotateCcw, Layers3 } from 'lucide-react';
+import { Sparkles, ArrowRight, ArrowUp, RotateCcw, Layers3, Info } from 'lucide-react';
 import { Button, ChoiceGroup, Modal, TarotCard, tarotArtwork } from '@games/ui';
 import {
   ApiError,
@@ -44,6 +44,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
     `tarot-style:${room.id}:${room.matchId}`,
     null,
   );
+  const [styleHelpOpen, setStyleHelpOpen] = useState(true);
   const [astrology, setAstrology] = useState<AstrologyInput>();
   const [astrologyChoice, setAstrologyChoice] = useState<'auto' | 'off' | 'new'>('auto');
   const [chart, setChart] = useState<ChartData | null>(null);
@@ -104,7 +105,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   });
   // An explicit empty draft is a user's edit; a missing draft restores the saved question.
   const question: string = questionDraft ?? saved.data?.question ?? '';
-  const savedStyle = saved.data?.reading_style ?? 'classic';
+  const savedStyle = saved.data?.reading_style ?? 'fun';
   const readingStyle =
     saved.data?.status === 'generating' ? savedStyle : (styleDraft ?? savedStyle);
   const reuseSavedAstrology: boolean =
@@ -412,6 +413,44 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
             generate.mutate();
           }}
         >
+          <div className="tarot-reading-style">
+            <Button
+              type="button"
+              variant="ghost"
+              className="tarot-style-switch"
+              role="switch"
+              aria-checked={readingStyle === 'fun'}
+              aria-describedby="tarot-style-hint"
+              onClick={() => setStyle(readingStyle === 'fun' ? 'classic' : 'fun')}
+              disabled={writing || recovering || !saved.data}
+            >
+              <span className="tarot-style-track" aria-hidden="true" />
+              Fun mode
+            </Button>
+            <div className="tarot-style-help">
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                aria-label="About Fun mode"
+                aria-controls="tarot-style-hint"
+                aria-describedby={styleHelpOpen ? 'tarot-style-hint' : undefined}
+                aria-expanded={styleHelpOpen}
+                onClick={() => setStyleHelpOpen((open) => !open)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Escape' && styleHelpOpen) {
+                    event.stopPropagation();
+                    setStyleHelpOpen(false);
+                  }
+                }}
+              >
+                <Info size={17} aria-hidden="true" />
+              </Button>
+              <p id="tarot-style-hint" className="small muted" role="tooltip">
+                Fun for pop culture, Classic for reflection.
+              </p>
+            </div>
+          </div>
           <label className="field">
             <span className="tarot-question-label">
               What’s on your mind? <span className="muted small">Optional</span>
@@ -430,22 +469,6 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
               disabled={writing || recovering}
             />
           </label>
-          <fieldset className="tarot-reading-style" disabled={writing || recovering || !saved.data}>
-            <legend>Reading style</legend>
-            <ChoiceGroup<ReadingStyle>
-              label="Choose a reading style"
-              variant="segmented"
-              value={readingStyle}
-              onChange={setStyle}
-              options={[
-                { value: 'classic', label: 'Classic' },
-                { value: 'fun', label: 'Fun' },
-              ]}
-            />
-            <p className="small muted">
-              Fun shows what familiar characters might try in your shoes, and where that could lead.
-            </p>
-          </fieldset>
           <AstrologyForm
             searchPlaces={(query) => api.astrologyPlaces(room.id, room.matchId!, query)}
             calculateChart={(input) => api.astrologyChart(room.id, room.matchId!, input)}

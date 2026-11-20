@@ -37,7 +37,7 @@ from app.games.tarot.recovery import (
     retry_request,
     schema_issue,
 )
-from app.games.tarot.style import FUN_CONNECTION, ReadingStyle, model_context
+from app.games.tarot.style import DEFAULT_READING_STYLE, FUN_CONNECTION, ReadingStyle, model_context
 from app.settings import settings
 
 PROMPT_VERSION = "pop-tarot-14"
@@ -856,7 +856,7 @@ class ReadingInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
     match_id: str = Field(min_length=36, max_length=36)
     question: str = Field(default="", max_length=400)
-    reading_style: ReadingStyle = Field(default_factory=lambda: "classic")
+    reading_style: ReadingStyle = Field(default_factory=lambda: DEFAULT_READING_STYLE)
     astrology: AstrologyInput | None = None
     reuse_saved_astrology: bool | None = None
 

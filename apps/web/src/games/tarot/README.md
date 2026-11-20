@@ -4,7 +4,7 @@
 
 ## Reading style
 
-After the third pick the shared segmented control selects Classic or Fun for this spread. The choice stays with the question draft through refresh. The submitted style comes back from the reading service for recovery, retry and archive rendering. Fun moves the illustrated character connection before the card interpretation under **How it could play out**. A new spread defaults to Classic. The opt-in hosted browser check accepts `GAMES_TEST_TAROT_STYLE=fun` to exercise the full result, images, refresh, private archive and closed-room flow with a real provider.
+After the third pick the Fun mode switch is on for a fresh spread. Its visible info hint describes both styles. Turning the switch off selects Classic. The choice stays with the question draft through refresh. The submitted style comes back from the reading service for recovery, retry and archive rendering. Fun moves the illustrated character connection before the card interpretation under **How it could play out**. The opt-in hosted browser check accepts `GAMES_TEST_TAROT_STYLE=fun` to exercise the full result, images, refresh, private archive and closed-room flow with a real provider.
 
 ## Oracle table
 

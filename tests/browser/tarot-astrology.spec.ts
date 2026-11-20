@@ -110,6 +110,7 @@ async function withReading(
   let roomId: string | undefined;
   let view: ReadingView = {
     status: 'ready',
+    reading_style: 'fun',
     reading: null,
     api_tier: 'paid',
     question: '',
@@ -280,10 +281,13 @@ async function capture(page: Page, name: string) {
   await page.locator('.tarot-table').screenshot({ path: test.info().outputPath(`${name}.png`) });
 }
 
-test('ordinary Tarot stays optional and preserves all three reading layers', async ({ page }) => {
+test('opting out of Fun preserves Classic across refresh and shows all three reading layers', async ({
+  page,
+}) => {
   await withReading(page, async ({ requests, setView }) => {
     setView({
       status: 'ready',
+      reading_style: 'fun',
       reading: null,
       api_tier: 'paid',
       question: '',
@@ -297,16 +301,22 @@ test('ordinary Tarot stays optional and preserves all three reading layers', asy
     await capture(page, 'configured-reading-providers');
     await expect(page.getByRole('checkbox', { name: 'Include astrology' })).not.toBeChecked();
     await expect(page.getByLabel('Birth date', { exact: true })).toHaveCount(0);
-    await expect(page.getByRole('button', { name: 'Classic', exact: true })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    );
+    const fun = page.getByRole('switch', { name: 'Fun mode', exact: true });
+    await expect(fun).toBeChecked();
+    if (test.info().project.use.hasTouch) await fun.tap();
+    else {
+      await fun.focus();
+      await page.keyboard.press('Space');
+    }
+    await expect(fun).not.toBeChecked();
+    await page.reload();
+    await expect(fun).not.toBeChecked();
     await page.getByRole('button', { name: 'Read my cards', exact: true }).click();
     await expect(page.locator('.tarot-reading > article')).toHaveCount(3);
     await expect(page.locator('.tarot-character-connections')).toHaveCount(3);
     await expect(page.locator('.tarot-quirky-read')).toHaveCount(3);
     expect(requests).toHaveLength(1);
-    expect(requests[0].reading_style ?? 'classic').toBe('classic');
+    expect(requests[0].reading_style).toBe('classic');
     expect(requests[0]).not.toHaveProperty('astrology');
     expect(requests[0]).not.toHaveProperty('reuse_saved_astrology');
     await expect(page.getByRole('region', { name: 'Saved astrology reading' })).toHaveCount(0);
@@ -319,11 +329,49 @@ test('Fun style survives refresh and retry, then opens the same character scenes
 }) => {
   if (test.info().project.use.hasTouch) await page.setViewportSize({ width: 320, height: 700 });
   await withReading(page, async ({ roomId, requests, setView, getView }) => {
-    const styles = page.getByRole('group', { name: 'Choose a reading style' });
-    const fun = styles.getByRole('button', { name: 'Fun', exact: true });
-    await fun.click();
+    const fun = page.getByRole('switch', { name: 'Fun mode', exact: true });
+    const hint = page
+      .getByRole('tooltip')
+      .filter({ hasText: 'Fun for pop culture, Classic for reflection.' });
+    await expect(fun).toBeChecked();
+    await expect(fun).toHaveAccessibleDescription('Fun for pop culture, Classic for reflection.');
+    const info = page.getByRole('button', { name: 'About Fun mode', exact: true });
+    await expect(hint).toBeVisible();
+    await expect(info).toHaveAttribute('aria-expanded', 'true');
+    const metrics = await hint.evaluate((element) => {
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      const lines = Array.from(range.getClientRects()).filter((line) => line.width > 0);
+      return {
+        rows: new Set(lines.map((line) => Math.round(line.top))).size,
+        inBounds: lines.every((line) => line.left >= 0 && line.right <= innerWidth),
+      };
+    });
+    expect(metrics).toEqual({ rows: 1, inBounds: true });
+    await hint.evaluate((element) =>
+      element.scrollIntoView({ block: 'center', behavior: 'instant' }),
+    );
+    await expect(fun).toBeInViewport();
+    await expect(hint).toBeInViewport();
+    await page.screenshot({ path: test.info().outputPath('fun-switch-and-help.png') });
+    if (test.info().project.use.hasTouch) await info.tap();
+    else await info.click();
+    await expect(hint).toBeHidden();
+    await expect(info).toHaveAttribute('aria-expanded', 'false');
+    await expect(fun).toHaveAccessibleDescription('Fun for pop culture, Classic for reflection.');
+    if (test.info().project.use.hasTouch) await info.tap();
+    else await info.press('Enter');
+    await expect(hint).toBeVisible();
+    await expect(fun).toBeChecked();
+    await info.focus();
+    await info.press('Escape');
+    await expect(hint).toBeHidden();
+    await expect(info).toBeFocused();
+    await info.press('Space');
+    await expect(hint).toBeVisible();
+    await expect(fun).toBeChecked();
     await page.reload();
-    await expect(fun).toHaveAttribute('aria-pressed', 'true');
+    await expect(fun).toBeChecked();
     await noOverflow(page);
 
     const room = await roomAs(page, roomId);
@@ -350,11 +398,11 @@ test('Fun style survives refresh and retry, then opens the same character scenes
       `games:draft:tarot-style:${roomId}:${room.match_id}`,
     );
     await page.reload();
-    await expect(fun).toHaveAttribute('aria-pressed', 'true');
+    await expect(fun).toBeChecked();
     await retry.click();
     const scenes = page.getByRole('heading', { name: 'How it could play out' });
     await expect(scenes).toHaveCount(3);
-    await expect(styles).toHaveCount(0);
+    await expect(fun).toHaveCount(0);
     expect(requests.map((request) => request.reading_style)).toEqual(['fun']);
     await page.reload();
     await expect(scenes).toHaveCount(3);
@@ -396,7 +444,7 @@ test('Fun style survives refresh and retry, then opens the same character scenes
     await page.goto(`/games/tarot/readings/${room.match_id}`);
     await expect(page.getByText('Saved Fun Tarot reading', { exact: true })).toBeVisible();
     await inspectScene();
-    await expect(styles).toHaveCount(0);
+    await expect(fun).toHaveCount(0);
     await page.locator('.tarot-image-credits summary').click();
     await expect(page.locator('.tarot-image-credits li').first()).toBeVisible();
     await noOverflow(page);
@@ -904,11 +952,9 @@ test('saved progress survives refresh and slow estimates never claim completion'
       await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveValue(
         question,
       );
-      await expect(page.getByRole('button', { name: 'Fun', exact: true })).toHaveAttribute(
-        'aria-pressed',
-        'true',
-      );
-      await expect(page.getByRole('button', { name: 'Classic', exact: true })).toBeDisabled();
+      const fun = page.getByRole('switch', { name: 'Fun mode', exact: true });
+      await expect(fun).toBeChecked();
+      await expect(fun).toBeDisabled();
       await expect(page.getByRole('checkbox', { name: 'Include astrology' })).toBeChecked();
       await expect(page.getByLabel('Birth date', { exact: true })).toHaveCount(0);
       expect(requests).toHaveLength(0);
@@ -1630,6 +1676,7 @@ for (const draft of [undefined, '', 'A deliberate revised question'])
       await page.reload();
       const question = page.getByRole('textbox', { name: 'What’s on your mind?' });
       await expect(question).toHaveValue('How can I make time for drawing?');
+      await expect(page.getByRole('switch', { name: 'Fun mode', exact: true })).not.toBeChecked();
       if (draft !== undefined) {
         await question.fill(draft);
         // A background refresh must not clobber an explicit edit, including empty.
@@ -1639,6 +1686,7 @@ for (const draft of [undefined, '', 'A deliberate revised question'])
       await page.getByRole('button', { name: 'Retry reading', exact: true }).click();
       await expect(page.locator('.tarot-reading')).toBeVisible();
       expect(requests[0].question).toBe(draft ?? 'How can I make time for drawing?');
+      expect(requests[0].reading_style).toBe('classic');
       expect(requests[0]).not.toHaveProperty('astrology');
     });
   });

@@ -291,7 +291,17 @@ for (const astrology of [false, true]) {
     const rematch = await requestAs(page, `rooms/${roomId}/start`, 'POST');
     expect(rematch.status()).toBe(200);
     expect((await rematch.json()).match_id).not.toBe(room.match_id);
-    await page.reload();
+    const archiveUrl = page.url();
+    await page.goto(`/games/tarot/play/${roomId}`);
+    for (let card = 1; card <= 3; card++) {
+      await expect(page.getByRole('heading', { name: `Choose card ${card} of 3` })).toBeVisible();
+      await drawTarotCard(page);
+    }
+    await expect(page.getByRole('switch', { name: 'Fun mode', exact: true })).toBeChecked();
+    expect((await (await requestAs(page, `rooms/${roomId}/reading`)).json()).reading_style).toBe(
+      'fun',
+    );
+    await page.goto(archiveUrl);
     await expect.poll(() => page.locator('.tarot-reading').innerText()).toBe(original);
     await expect(page.getByRole('link', { name: 'Return to spread', exact: true })).toHaveCount(0);
     expect(await (await requestAs(page, archivePath)).json()).toEqual({

@@ -39,7 +39,7 @@ def spread(client):
     return room, headers[0]
 
 
-def store(room, *, status="complete", payload=None, lease_until=0):
+def store(room, *, status="complete", payload=None, lease_until=0, legacy_style=False):
     card_ids = [card["id"] for card in room["game"]["community"]]
     if payload is None and status == "complete":
         payload = example_reading(card_ids)
@@ -49,8 +49,10 @@ def store(room, *, status="complete", payload=None, lease_until=0):
             attempt_id=str(uuid4()), lease_until=lease_until, payload=payload,
             prompt_version="archive-test",
         ))
+        match = session.get(Match, room["match_id"])
+        if legacy_style:
+            match.state = {k: v for k, v in match.state.items() if k != "reading_style"}
         if status == "complete":
-            match = session.get(Match, room["match_id"])
             match.state = {**match.state, "phase": "finished"}
             match.result = {"winners": [], "scores": {room["owner_id"]: 0}}
             current = session.get(Room, room["id"])
@@ -87,7 +89,7 @@ def test_archive_is_exact_private_read_only_and_excludes_unpicked_cards(client):
 
 def test_archive_and_profile_history_survive_rematch_closure_and_absent_membership(client):
     room, owner = spread(client)
-    store(room)
+    store(room, legacy_style=True)
     path = f"/v1/readings/{room['match_id']}"
     original = client.get(path, headers=owner).json()
     assert client.put(f"/v1/rooms/{room['id']}/ready", headers=owner, json={"ready": True}).status_code == 200
@@ -95,7 +97,9 @@ def test_archive_and_profile_history_survive_rematch_closure_and_absent_membersh
     assert rematch.status_code == 200 and rematch.json()["match_id"] != room["match_id"]
     archived = client.get(path, headers=owner).json()
     assert archived == {**original, "can_resume": False}
-    assert client.get(f"/v1/rooms/{room['id']}/reading", headers=owner).json()["reading"] is None
+    assert archived["reading_style"] == "classic"
+    fresh = client.get(f"/v1/rooms/{room['id']}/reading", headers=owner).json()
+    assert fresh["reading"] is None and fresh["reading_style"] == "fun"
     assert client.post(f"/v1/rooms/{room['id']}/leave", headers=owner).status_code == 200
     assert client.get(f"/v1/rooms/{room['id']}", headers=owner).status_code == 404
     assert client.get(path, headers=owner).json() == archived
@@ -118,7 +122,7 @@ def test_legacy_reading_keeps_its_saved_text_without_fabricating_new_layers(clie
         card.pop("characters")
         card.pop("quirky_interpretation")
         card["pop_culture"] = "An original analogy from the earlier saved reading."
-    store(room, payload=payload)
+    store(room, payload=payload, legacy_style=True)
     response = client.get(f"/v1/readings/{room['match_id']}", headers=owner)
     assert response.status_code == 200 and response.json()["status"] == "complete"
     assert response.json()["reading_style"] == "classic"
@@ -171,3 +175,45 @@ def test_archived_v13_fun_comparisons_keep_their_original_words(client):
         assert response.json()["reading_style"] == "fun" and response.json()["reading"] == expected
     with sessions()() as session:
         assert session.get(TarotReading, room["match_id"]).payload == payload
+
+@pytest.mark.parametrize("previous_attempt,choice,expected", [
+    (False, None, "fun"),
+    (False, "classic", "classic"),
+    (True, None, "classic"),
+    (True, "fun", "fun"),
+])
+def test_unmarked_older_spreads_resolve_style_before_first_submission_and_retry(
+    client, monkeypatch, previous_attempt, choice, expected,
+):
+    from app.settings import settings
+
+    room, owner = spread(client)
+    if previous_attempt:
+        store(room, status="failed", legacy_style=True)
+    else:
+        with sessions()() as session, session.begin():
+            match = session.get(Match, room["match_id"])
+            match.state = {k: v for k, v in match.state.items() if k != "reading_style"}
+    monkeypatch.setattr(settings(), "gemini_api_key", "test-archive-no-provider")
+    live, archive = f"/v1/rooms/{room['id']}/reading", f"/v1/readings/{room['match_id']}"
+    for path in (live, archive):
+        assert client.get(path, headers=owner).json()["reading_style"] == ("classic" if previous_attempt else "fun")
+    calls = []
+
+    def provider(cards, question, *, reading_style, **_kwargs):
+        calls.append(reading_style)
+        if len(calls) == 1:
+            raise ValueError("temporary")
+        return Reading.model_validate(example_reading(cards))
+
+    monkeypatch.setattr("app.rooms.service.generate_reading", provider)
+    body = {"match_id": room["match_id"]}
+    if choice:
+        body["reading_style"] = choice
+    assert client.post(live, headers=owner, json=body).status_code == 502
+    assert client.get(live, headers=owner).json()["reading_style"] == expected
+    result = client.post(live, headers=owner, json={"match_id": room["match_id"]})
+    assert result.status_code == 200
+    assert result.json()["reading_style"] == expected
+    assert client.get(archive, headers=owner).json()["reading_style"] == expected
+    assert calls == [expected, expected]

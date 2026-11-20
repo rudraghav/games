@@ -578,7 +578,7 @@ class RoomService:
                 match_id=match.id,
                 room_id=match.room_id,
                 created_at=match.created_at,
-                reading_style=saved_style(match.state),
+                reading_style=saved_style(match.state, submitted=saved is not None),
                 status=status,
                 question=saved.question if saved else "",
                 cards=ENGINES["tarot"].project_view(match.state, actor.id).community,
@@ -597,16 +597,17 @@ class RoomService:
             if data and (match.id != data.match_id or len(match.state["picks"]) != 3):
                 raise HTTPException(409, "Choose all three cards in your current spread first.")
             saved = self.repo.reading(match.id)
+            style = saved_style(match.state, submitted=saved is not None)
             if saved and saved.status == "complete":
                 return ReadingView(
-                    reading_style=saved_style(match.state),
+                    reading_style=style,
                     status="complete",
                     question=saved.question,
                     reading=Reading.model_validate(saved.payload),
                 )
             if saved and saved.status == "generating" and saved.lease_until > time.time():
                 return ReadingView(
-                    reading_style=saved_style(match.state),
+                    reading_style=style,
                     status="generating",
                     question=saved.question,
                     message="Writing your reading…",
@@ -617,7 +618,7 @@ class RoomService:
                 available = reading_available()
                 failure = self._saved_reading_failure(saved) if available else None
                 return ReadingView(
-                    reading_style=saved_style(match.state),
+                    reading_style=style,
                     status="failed" if failure else "ready" if available else "unavailable",
                     message=failure.message if failure else "" if available else "Readings are unavailable.",
                     failure=failure,
@@ -655,18 +656,19 @@ class RoomService:
             if room.match_id != match_id:
                 raise HTTPException(409, "This spread has changed. Open your current spread.")
             saved = self.repo.reading(match_id)
+            style = saved_style(match.state, submitted=saved is not None)
             if saved and saved.status == "complete":
-                return ReadingView(status="complete", question=saved.question, reading_style=saved_style(match.state),
+                return ReadingView(status="complete", question=saved.question, reading_style=style,
                                    reading=Reading.model_validate(saved.payload))
             if saved and saved.status == "generating" and saved.lease_until > time.time():
-                return ReadingView(status="generating", question=saved.question, reading_style=saved_style(match.state),
+                return ReadingView(status="generating", question=saved.question, reading_style=style,
                                    message="Writing your reading…",
                                    astrology_chart=self._saved_astrology_chart(saved),
                                    progress=self._saved_reading_progress(saved))
             self._check_reading_retry(saved, question)
             # The private match outlives its room and keeps completed reading JSON backwards compatible.
-            reading_style = data.reading_style if "reading_style" in data.model_fields_set else saved_style(match.state)
-            if reading_style != saved_style(match.state):
+            reading_style = data.reading_style if "reading_style" in data.model_fields_set else style
+            if match.state.get("reading_style") != reading_style:
                 match.state = {**match.state, "reading_style": reading_style}
             attempt = str(uuid4())
             if saved is None:

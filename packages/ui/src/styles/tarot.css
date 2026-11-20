@@ -263,19 +263,80 @@
   }
   .tarot-reading-style {
     min-inline-size: 0;
-    margin: 16px 0 0;
-    padding: 0;
-    border: 0;
+    margin-bottom: 12px;
   }
-  .tarot-reading-style legend {
-    margin-block-end: 4px;
-    padding: 0;
-    font-size: 14px;
+  .tarot-reading-style .tarot-style-switch {
+    min-height: 44px;
+    padding: 0 4px 0 0;
+    gap: 10px;
+    color: var(--color-ink);
     font-weight: 650;
   }
-  .tarot-reading-style p {
-    margin: 6px 0 0;
+  .tarot-style-track {
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 38px;
+    height: 22px;
+    padding-inline: 3px;
+    border: 1px solid var(--color-ink-muted);
+    border-radius: 999px;
+    background: var(--color-surface);
+  }
+  .tarot-style-track::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    margin-inline-start: 0;
+    border-radius: 50%;
+    background: var(--color-ink-muted);
+  }
+  .tarot-style-switch[aria-checked='true'] .tarot-style-track {
+    border-color: var(--color-plum);
+    background: var(--color-plum);
+  }
+  .tarot-style-switch[aria-checked='true'] .tarot-style-track::before {
+    background: var(--color-white);
+    margin-inline-start: 16px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tarot-style-track {
+      transition: background-color 140ms;
+    }
+    .tarot-style-track::before {
+      transition: margin-inline-start 140ms ease-out;
+    }
+  }
+  .tarot-style-help {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .tarot-style-help .button {
+    flex: none;
+    border-color: transparent;
+    color: var(--color-plum);
+  }
+  .tarot-style-help .button:is(:hover, :focus-visible) {
+    background: var(--color-plum-light);
+  }
+  .tarot-style-help p {
+    min-inline-size: 0;
+    margin: 0;
     line-height: 1.45;
+  }
+  /* Keep the form still and its directly referenced switch description available. */
+  .tarot-style-help [aria-expanded='false'] + [role='tooltip'] {
+    visibility: hidden;
+  }
+  @media (forced-colors: active) {
+    .tarot-style-track::before {
+      background: ButtonText;
+      forced-color-adjust: none;
+    }
+    .tarot-style-switch[aria-checked='true'] .tarot-style-track::before {
+      background: Highlight;
+    }
   }
   .tarot-reading {
     max-width: 700px;
