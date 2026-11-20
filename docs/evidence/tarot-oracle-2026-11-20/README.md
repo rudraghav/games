@@ -46,3 +46,23 @@ An earlier ordinary trial timed out at Gemini, then both alternatives missed
 the introduction length. The final prompt asks for one short connecting
 sentence. Reading samples show possible output, and a provider outage can
 still require the existing retry.
+
+## Production
+
+Application commit `01e1922af60a608de0f94c8b7ad1d5f3623f613c` is served by
+[Pop Tarot](https://games-seven-black.vercel.app/games/tarot). Both artwork files
+were fetched from that deployment and matched the local WebPs byte for byte.
+
+- The 320px WebKit touch tutorial completed all three picks and the illustrated
+  rule sequence. The two independent phone-sized Chromium sessions completed
+  an ordinary reading and a combined Western/Vedic reading. Each submitted
+  once, rendered three portraits, and reopened the same private reading after
+  refresh, a new spread and room closure. An unrelated guest was denied access.
+- Both live reading flows displayed Gemini followed by a Cloudflare retry.
+  Each saved a complete reading. A read-only check of their exact matches found
+  three pick receipts each, closed rooms and no active memberships.
+- Type checks, lint, the build, 302 frontend tests, 7,162 backend tests and
+  generated contract checks passed locally. The targeted local phone suite passed
+  41 cases, including simulated provider failures and saved-state recovery.
+  Production schema and configuration checks passed. The deployment log search
+  found no warning/error records or HTTP 5xx during the verification window.

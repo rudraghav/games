@@ -19,6 +19,23 @@
   tightening the provider instruction. Details, limits and a phone capture are
   in docs/evidence/tarot-oracle-2026-11-20/README.md.
 
+- Released application 01e1922af60a608de0f94c8b7ad1d5f3623f613c on main to
+  dpl_5mKQQUDi4PHTYzSqLwWiRHhQaBGi. The production alias serves that revision;
+  the oracle scene and backs match the verified assets byte for byte. A 320px
+  touch WebKit tutorial completed all three draws. Two independent Chromium
+  sessions completed ordinary and combined Western/Vedic readings and opened
+  their private saved results after refresh, rematch and closure. Both visibly
+  retried through Cloudflare after Gemini. Read-only checks found exactly three
+  saved picks per test spread, complete readings and zero active memberships.
+- 302 frontend and 7,162 backend tests, types, lint, build and contracts passed
+  on stable source. The local phone suite passed 41 cases. Production schema,
+  configuration and owner fingerprints matched. Log checks found zero warnings,
+  errors or HTTP 5xx in the deployment verification window.
+- Cleanup removed 98,459,648 allocated bytes of superseded browser captures,
+  including four intermediate design previews, plus 24,001 bytes of local study
+  scratch files. The final phone image, original generated artwork, private QA
+  receipts and established local services were retained.
+
 ## 2026-11-19 — Mobile tutorials verified in production
 
 - Main application 1d03330e4d0fdbf5c8488bbe6208a688b12390bf serves
