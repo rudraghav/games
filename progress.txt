@@ -13,6 +13,20 @@
   lifting the hit button. Target widths stayed at least 44px. The table suite
   passed 12 applicable cases and the separate tutorial completed on narrow WebKit.
 
+- Application abd3f03bf080b1792393aac71a4c8641d52ba6ec is live on the public
+  Games alias. The 320px WebKit, 390px touch Chromium and 1440px desktop
+  Chromium hosted runs opened the featured game, confirmed three picks each and
+  restored them on refresh. All three QA rooms closed; nine receipts, zero
+  active memberships and zero reading submissions were verified. Hosted artwork
+  matched the shipped files. Config, schema and owner checks passed. The log
+  window contained zero warnings/errors or 5xx responses. Frontend types, lint,
+  302 tests, production build and 44 workflow checks passed locally.
+- Independent code and screenshot review covered the full instrument in both
+  public posters and the raised card on the private table. See
+  docs/evidence/tarot-oracle-2026-11-20/README.md for the live phone capture.
+  Removed 3,248,128 allocated bytes of superseded task previews and diagnostics;
+  retained original GPT artwork, production assets and scoped release evidence.
+
 ## 2026-11-20 — Tactile Tarot draw and reading variety
 
 - Outcome sought: let a player browse an overlapping face-down deck, lift a card,

@@ -66,3 +66,26 @@ were fetched from that deployment and matched the local WebPs byte for byte.
   41 cases, including simulated provider failures and saved-state recovery.
   Production schema and configuration checks passed. The deployment log search
   found no warning/error records or HTTP 5xx during the verification window.
+
+## Dimensional instrument and foil
+
+The next release, `abd3f03bf080b1792393aac71a4c8641d52ba6ec`, carries the new
+crystal, velvet and foil artwork. The featured lounge card and game entry show
+the complete brass instrument. At the table the fan sits in front, a projected
+brass ring turns around the crystal, and the lifted back responds to the mouse
+with a change of pitch and foil highlight. The card's hit area stays in place.
+Reduced motion keeps the instrument visible and uses a stationary highlight.
+
+[Entry still life](./instrument-entry.webp) · [Live phone draw](./instrument-live-phone.webp)
+
+The three WebPs total 149,076 bytes and matched their production downloads.
+Three independent live guests opened the featured game, lifted and confirmed
+three cards each, and recovered the same spread after reload. The browsers were
+320px WebKit with reduced motion, 390px touch Chromium, and 1440px Chromium
+with a mouse. Desktop checks measured the instrument moving while the selected
+card’s target stayed fixed. All nine picks were found again in a read-only check.
+Every test room closed. This visual release required zero AI reading submissions.
+
+The local Tarot table suite passed 12 applicable cases. Frontend types, lint,
+302 tests, production build and 44 workflow checks passed. The release window
+contained zero reported warnings, errors or HTTP 5xx responses.
