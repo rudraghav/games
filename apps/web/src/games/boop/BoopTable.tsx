@@ -188,6 +188,17 @@ function Bed({ match, room, selfId, pending, onAction }: TableProps) {
                 returns.has(String(slot)) ? selected === `return_piece:${slot}` : undefined
               }
               aria-label={label}
+              data-tip={
+                arrived
+                  ? `Booped here from ${square(arrived.from)}`
+                  : left && !occupied
+                    ? left.to < 0
+                      ? 'A piece was booped off the bed from here'
+                      : `Booped from here to ${square(left.to)}`
+                    : graduated.has(slot) && !occupied
+                      ? 'A kitten graduated from here'
+                      : undefined
+              }
               disabled={blocked || !move}
               onClick={() => {
                 if (!move) return;
@@ -312,7 +323,11 @@ export function BoopTable(props: TableProps) {
           return `${colourName(seat)} · ${data.retired[p.id]} of 8 graduated`;
         }}
       />
-      <section className="sea-cat-table boop-table" aria-label="boop bed table">
+      <section
+        className="sea-cat-table boop-table"
+        aria-label="boop bed table"
+        data-pending={props.pending || undefined}
+      >
         <div className="paper-heading boop-heading">
           {selfSeat >= 0 ? (
             <span className="board-identity">

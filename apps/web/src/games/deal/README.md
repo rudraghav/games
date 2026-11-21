@@ -14,6 +14,16 @@ control, including inside an opponent’s public-table inspector.
 
 A decision belongs to one player and match version. A failed save keeps the chosen move, open panel and selected assets available after reload. A successful save advances the version and clears that decision. Closing card information returns focus to the button the player tapped.
 
+## Card faces (21 November 2026)
+
+Faces are drawn by `PlayingCard` (`family="property"`) and styled only in
+`packages/ui/src/styles/deal-cards.css`: colour header with kind and value,
+body, rent ladder with the full-set step filled in the set colour. Colours are
+paired fill/text tokens that meet 4.5:1; wilds and Rent use gradients (two
+colours as a pair, ten as a spectrum); money is tinted by denomination. Compact
+faces carry their instruction as a `data-tip` tooltip. See
+`docs/UI_UX_SYSTEM.md` for the shared states, tooltips and notifications.
+
 ## Table layout (3 November 2026)
 
 - **Opponents.** Each opponent card shows the name (two lines at most), hand

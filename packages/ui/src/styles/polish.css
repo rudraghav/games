@@ -1,0 +1,265 @@
+/*
+ * Shared finish for every table: card and button feedback (hover, press, selected,
+ * processing), the app tooltip, and the bottom-right action notifications. Glass
+ * surfaces keep an opaque fallback so text contrast never depends on what is behind.
+ */
+@layer components {
+  :root {
+    --glass-light: color-mix(in srgb, var(--color-surface) 82%, transparent);
+    --glass-dark: #1d211ee8;
+    --glass-blur: blur(16px) saturate(1.5);
+    --shadow-rest: 0 1px 2px #12291b1f, 0 3px 8px #12291b1a;
+    --shadow-lift: 0 2px 4px #12291b1f, 0 12px 24px #12291b33;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ---------- Cards ---------- */
+  .playing-card {
+    box-shadow: var(--shadow-rest);
+    transition:
+      box-shadow 180ms var(--ease-out),
+      border-color 180ms var(--ease-out),
+      filter 180ms var(--ease-out);
+  }
+  button.playing-card {
+    cursor: pointer;
+  }
+  button.playing-card:not(:disabled):hover {
+    box-shadow: var(--shadow-lift);
+  }
+  button.playing-card:not(:disabled):active {
+    box-shadow: var(--shadow-rest);
+    filter: brightness(0.97);
+  }
+  button.playing-card:disabled {
+    cursor: default;
+  }
+  /* Selected: a ring in the focus colour plus a lifted shadow, so the choice reads at a glance. */
+  .playing-card.playing-card--selected,
+  button.playing-card.playing-card--selected:not(:disabled):is(:hover, :active) {
+    outline: 2px solid transparent;
+    box-shadow:
+      0 0 0 2px var(--color-surface),
+      0 0 0 5px var(--color-focus),
+      var(--shadow-lift);
+  }
+  /* Processing: while a move is saving, light sweeps across the card that was played. */
+  :is(
+      .room-main:has(.turn-notice[aria-busy='true']),
+      :is(.table-layout, .deal-workspace):has(.decision-dock[aria-busy='true'])
+    )
+    .playing-card--selected::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    background: linear-gradient(105deg, transparent 30%, #ffffffb3 50%, transparent 70%);
+    background-size: 250% 100%;
+    animation: card-processing 1.1s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes card-processing {
+    from {
+      background-position: 120% 0;
+    }
+    to {
+      background-position: -130% 0;
+    }
+  }
+
+  /* ---------- Buttons ---------- */
+  .button {
+    transition:
+      background 160ms var(--ease-out),
+      border-color 160ms var(--ease-out),
+      box-shadow 160ms var(--ease-out),
+      transform 160ms var(--ease-out);
+  }
+  .button--primary:not(:disabled) {
+    box-shadow:
+      0 1px 0 #ffffff33 inset,
+      0 1px 2px #12291b33;
+  }
+  .button--primary:hover:not(:disabled) {
+    box-shadow:
+      0 1px 0 #ffffff33 inset,
+      0 6px 14px #21493c4d;
+  }
+  .button--secondary:hover:not(:disabled) {
+    border-color: color-mix(in srgb, var(--color-sage) 55%, var(--color-border));
+    background: #fff;
+    box-shadow: 0 4px 10px #12291b14;
+  }
+  .button--ghost:hover:not(:disabled) {
+    background: var(--color-surface-muted);
+    color: var(--color-ink);
+  }
+  .button:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+    box-shadow: none;
+  }
+  .button[aria-busy='true'] {
+    opacity: 0.85;
+    cursor: progress;
+  }
+  /* While a move saves, its commit button stays solid and shows the same sweep. */
+  :is(.decision-dock, .deal-composer, .table-decision-panel)[aria-busy='true']
+    .button--primary:disabled {
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
+    cursor: progress;
+  }
+  :is(.decision-dock, .deal-composer, .table-decision-panel)[aria-busy='true']
+    .button--primary:disabled::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 32%, #ffffff59 50%, transparent 68%);
+    background-size: 250% 100%;
+    animation: card-processing 1.1s linear infinite;
+  }
+
+  /* ---------- Tooltip ---------- */
+  .tooltip {
+    position: fixed;
+    z-index: 1000;
+    max-width: min(260px, calc(100vw - 24px));
+    padding: 7px 10px;
+    border: 1px solid #ffffff24;
+    border-radius: 9px;
+    background: var(--glass-dark);
+    color: #fff;
+    box-shadow: 0 8px 24px #0000003d;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.35;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+    animation: tooltip-in 140ms var(--ease-out);
+    backdrop-filter: var(--glass-blur);
+  }
+  .tooltip[data-below] {
+    transform: translate(-50%, 0);
+  }
+  @keyframes tooltip-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  /* ---------- Action notifications ---------- */
+  .action-toasts {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 30;
+    display: grid;
+    gap: 8px;
+    width: min(320px, calc(100vw - 24px));
+    pointer-events: none;
+  }
+  .room-content[data-chat-open='true'] > .action-toasts {
+    right: 330px;
+  }
+  .action-toast {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 8px 9px 11px;
+    border: 1px solid #ffffffb3;
+    border-radius: 14px;
+    background: var(--color-surface);
+    background: var(--glass-light);
+    color: var(--color-ink);
+    box-shadow:
+      0 0 0 1px #1d211e14,
+      0 12px 32px #12291b33;
+    pointer-events: auto;
+    backdrop-filter: var(--glass-blur);
+  }
+  .action-toast > p {
+    display: grid;
+    gap: 2px;
+    grid-column: 2;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+  .action-toast > p > strong {
+    color: var(--color-danger);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .action-toast[data-for-you] {
+    border-color: color-mix(in srgb, var(--color-danger) 45%, #fff);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-danger) 35%, transparent),
+      0 12px 32px #12291b40;
+  }
+  .action-toast > button {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-ink-muted);
+    transition: background 140ms;
+  }
+  .action-toast > button:hover {
+    background: #1d211e14;
+    color: var(--color-ink);
+  }
+  /* A thumbnail of the public card that was played, drawn with the real face. */
+  .action-toast-card {
+    position: relative;
+    width: 33px;
+    height: 46px;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px #0000003d;
+  }
+  .action-toast-card > .playing-card {
+    position: absolute;
+    inset: 0 auto auto 0;
+    transform: scale(0.6);
+    transform-origin: top left;
+    box-shadow: none;
+  }
+  .action-toast-card[data-family='property'] > .playing-card {
+    transform: scale(0.41);
+  }
+  @media (max-width: 700px) {
+    /* Phones keep the bottom edge for the action dock: one notice at a time, up top. */
+    .action-toasts {
+      top: 62px;
+      right: 8px;
+      bottom: auto;
+      width: min(280px, calc(100vw - 16px));
+    }
+    .action-toast:not(:last-child) {
+      display: none;
+    }
+    .action-toast > p {
+      font-size: 12px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .playing-card--selected::after,
+    .button--primary:disabled::after,
+    .tooltip {
+      animation: none;
+    }
+  }
+  @media (forced-colors: active) {
+    .playing-card.playing-card--selected {
+      outline: 3px solid Highlight;
+    }
+  }
+}

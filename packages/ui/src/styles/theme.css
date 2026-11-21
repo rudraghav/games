@@ -27,12 +27,16 @@
 @import './stable-tables.css';
 @import './hand-navigation.css';
 @import './card-faces.css';
+@import './deal-cards.css';
+@import './polish.css';
+@import './card-motion.css';
+@import './piece-depth.css';
 @theme static {
   --color-canvas: #f6f3ed;
   --color-surface: #fffcf7;
   --color-surface-muted: #ede9e1;
   --color-ink: #272a25;
-  --color-ink-muted: #77796e;
+  --color-ink-muted: #62665b;
   --color-border: #dddcd2;
   --color-sage: #4d6550;
   --color-sage-light: #e3e9dd;
@@ -552,49 +556,6 @@
   }
   .playing-card--compact .card-center {
     font-size: 29px;
-  }
-  .playing-card--property {
-    padding: 13px 8px 8px;
-    text-align: left;
-    background: var(--color-white);
-    color: var(--color-ink);
-  }
-  .property-band {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 12px;
-    background: var(--card-color);
-  }
-  .property-value {
-    font-size: 12px;
-    font-weight: 700;
-  }
-  .property-symbol {
-    display: block;
-    text-align: center;
-    font-size: 32px;
-    margin-top: 7px;
-    color: var(--card-color);
-  }
-  .property-name {
-    position: absolute;
-    bottom: 8px;
-    left: 7px;
-    right: 6px;
-    font-size: 9px;
-    font-weight: 750;
-    text-transform: uppercase;
-    line-height: 1.15;
-  }
-  .playing-card--compact .property-symbol {
-    font-size: 22px;
-    margin-top: 0;
-  }
-  .playing-card--compact .property-name {
-    font-size: 7px;
-    bottom: 4px;
   }
   /* Number faces scale with their frame; table rules may still set a size per context. The
      white frame thins on small cards so three-digit numbers keep their padding. */

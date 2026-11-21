@@ -50,7 +50,7 @@
     border-radius: 13px;
     background: var(--paper-wash);
     color: var(--color-ink);
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-rest);
     text-align: center;
   }
   .paper-playing-card[data-color='navy'] {
@@ -177,11 +177,12 @@
     line-height: 1.4;
     box-shadow: 0 0 0 1px var(--paper-edge);
   }
+  /* Just arrived: an ochre edge and the "New" tab. The focus-colour ring is kept for the
+     card you have chosen, so the two never look alike. */
   .paper-playing-card[data-fresh='true'] {
     box-shadow:
-      0 0 0 3px var(--color-ochre-light),
-      0 0 0 5px var(--color-focus),
-      var(--shadow-card);
+      0 0 0 3px var(--color-ochre),
+      var(--shadow-rest);
   }
   .paper-playing-card > strong {
     font-size: 14px;
@@ -209,18 +210,59 @@
   .paper-playing-card--compact > strong {
     font-size: 13px;
   }
+  /* Hover lifts, press settles, and a chosen card wears the same ring as every other
+     card in the app (polish.css): paper gap, focus colour, lifted shadow. */
   button.paper-playing-card {
+    cursor: pointer;
     transition:
-      box-shadow 0.15s,
-      transform 0.15s;
+      box-shadow 180ms var(--ease-out),
+      transform 180ms var(--ease-out),
+      filter 180ms var(--ease-out);
   }
   button.paper-playing-card:not(:disabled):hover {
     transform: translateY(-3px);
+    box-shadow: var(--shadow-lift);
   }
-  .paper-playing-card--selected {
-    outline: 3px solid var(--color-focus);
-    outline-offset: 3px;
+  button.paper-playing-card:not(:disabled):active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: var(--shadow-rest);
+    filter: brightness(0.97);
+  }
+  button.paper-playing-card:disabled {
+    cursor: default;
+  }
+  .paper-playing-card.paper-playing-card--selected,
+  button.paper-playing-card.paper-playing-card--selected:not(:disabled):is(:hover, :active) {
+    outline: 2px solid transparent;
+    box-shadow:
+      0 0 0 2px var(--color-surface),
+      0 0 0 5px var(--color-focus),
+      var(--shadow-lift);
     transform: translateY(-4px);
+  }
+  @media (forced-colors: active) {
+    .paper-playing-card.paper-playing-card--selected {
+      outline: 3px solid Highlight;
+    }
+  }
+  /* Processing: while a move is saving, the same light sweep as every other card
+     (polish.css) crosses the cards you chose. */
+  .sea-cats-game:has(.decision-dock[aria-busy='true']) .paper-playing-card--selected::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    border-radius: inherit;
+    background: linear-gradient(105deg, transparent 30%, #ffffffb3 50%, transparent 70%);
+    background-size: 250% 100%;
+    animation: card-processing 1.1s linear infinite;
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sea-cats-game:has(.decision-dock[aria-busy='true']) .paper-playing-card--selected::after {
+      animation: none;
+      background: #ffffff59;
+    }
   }
   .paper-actions {
     display: flex;

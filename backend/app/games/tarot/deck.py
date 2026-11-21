@@ -141,6 +141,15 @@ DECK = [
 ]
 BY_ID = {card.id: card for card in DECK}
 POSITIONS = ("Where you are", "What is shifting", "Your next move")
+# What each position asks of its card. Sent with the spread as data, phrased as a
+# possibility: a reading reflects on a position, it does not assert a situation.
+POSITION_FOCUS = {
+    "Where you are": "a starting point to reflect on",
+    "What is shifting": "what could be changing or asking for attention",
+    "Your next move": "one possible direction to consider",
+}
+# The deck is dealt and read upright. Every saved meaning is the upright meaning.
+ORIENTATION = "upright"
 
 
 def spread_links(card_ids: list[str]) -> list[str]:

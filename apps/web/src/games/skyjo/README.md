@@ -23,5 +23,9 @@ and scoring stay in `backend/app/games/skyjo`.
   phones; from an 860px table they sit beside your grid. Inspect opens the full grid.
 - The slots changed by the latest public move are outlined (`recent-slots.ts`),
   compared only between public faces in the same round.
+- A revealed slot turns over from its back once the server has sent its face
+  (`PlayingCard` turn-over, `card-motion.css`); revealed cards keep their band colour
+  in full rather than being desaturated as "not playable". Slots you may act on wear a
+  sage ring; the discard settles onto a pile drawn as a stack.
 - Round review is a ranked list (lowest round score first) with grid total,
   removed columns, doubling and total; only the closer gets "Next round".

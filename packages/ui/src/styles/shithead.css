@@ -276,13 +276,18 @@
     }
   }
 
-  /* Server-legal cards stay bright; the rest dim but remain inspectable. */
-  .shithead-game .playing-card[data-playable='false'] {
-    opacity: 0.55;
-    filter: saturate(0.4);
+  /* Server-legal cards stay bright and lift (card-faces.css); the rest are muted but stay
+     opaque, so an overlapped fan never shows the card beneath, and remain inspectable. */
+  .shithead-game .playing-card.playing-card--standard[data-playable='false'] {
+    opacity: 1;
+    filter: saturate(0.3) brightness(0.9);
   }
-  .shithead-game .playing-card[data-playable='false'].playing-card--selected {
-    opacity: 0.8;
+  .shithead-game
+    .playing-card.playing-card--standard[data-playable='false']:is(
+      :hover,
+      .playing-card--selected
+    ) {
+    filter: saturate(0.7);
   }
   /* Setup shows all six cards at once; long hands wrap into overlapped rows
      so every rank corner stays in view instead of scrolling away. */

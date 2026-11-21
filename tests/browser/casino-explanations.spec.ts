@@ -256,7 +256,7 @@ test('Skyjo exposes remaining final turns and the settled round calculation', as
   await scenario(page, review.id);
   const ledger = page.getByRole('region', { name: 'Skyjo round score explanation', exact: true });
   await expect(ledger.getByRole('listitem')).toHaveCount(review.seats);
-  await expect(ledger).toContainText('removed columns');
+  await expect(ledger).toContainText(/removed columns/i);
   await fits(page);
 });
 

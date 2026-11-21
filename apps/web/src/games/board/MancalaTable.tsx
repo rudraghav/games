@@ -35,6 +35,18 @@ export function MancalaTable(props: TableProps) {
   const farStore = near === 0 ? 13 : 6;
   const sow = preview ? extras.previews[preview] : undefined;
   const blocked = pending || room.paused;
+  // The public path of the last sowing, in order, so seeds can land one pit at a time.
+  const hops = new Map<number, number>();
+  const landed = match.detail.last_move;
+  if (extras.lastSource !== null && typeof landed === 'number' && landed >= 0 && landed < 14) {
+    const skipped = owner(extras.lastSource) === 0 ? 13 : 6;
+    for (let index = extras.lastSource, step = 0; step < 14;) {
+      index = (index + 1) % 14;
+      if (index === skipped) continue;
+      hops.set(index, step++);
+      if (index === landed) break;
+    }
+  }
 
   function positionLabel(index: number) {
     const card = match.community[index];
@@ -60,6 +72,18 @@ export function MancalaTable(props: TableProps) {
         store={store}
         caption={store ? (seatId(owner(index)) === selfId ? 'your store' : 'store') : undefined}
         highlighted={match.detail.last_move === index}
+        hop={hops.get(index)}
+        tip={
+          capture?.pit === index
+            ? 'The last seed landed here and captured'
+            : capture?.opposite === index
+              ? 'Seeds captured from this pit'
+              : extras.lastSource === index
+                ? 'The last sowing started here'
+                : match.detail.last_move === index
+                  ? 'The last seed landed here'
+                  : undefined
+        }
         marker={
           sow?.landing === index
             ? 'landing'
@@ -140,7 +164,11 @@ export function MancalaTable(props: TableProps) {
         {...props}
         playerCaption={(player) => `${plural(player.score, 'seed')} stored`}
       />
-      <section className="classic-board mancala-table" aria-label="Mancala board">
+      <section
+        className="classic-board mancala-table"
+        aria-label="Mancala board"
+        data-pending={pending || undefined}
+      >
         <div className="board-status" aria-live="polite">
           <span className="board-instruction">{instruction}</span>
           {event ? <span className="board-event">{event}</span> : null}

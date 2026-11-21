@@ -1,3 +1,15 @@
+## 2026-11-21 — Visual polish across all games
+
+- Owner asked for better Deal colours and contrast, gradients instead of colour dots on any-colour Rent, refined faces, hover/click/processing states, tooltips and bottom-right action notifications; then the same for other games with depth, animation, and Tarot gaps and reading improvements.
+
+- Deal faces rebuilt in one stylesheet with paired fill/text colours (every pair 4.5:1 or more; sky and yellow were about 2:1), gradient wilds and Rent, denomination-tinted money. Shared hover, press, selection ring and processing sweep; an app-wide tooltip layer; bottom-right notifications for notable public moves only. Card games, boards and pieces, and Tarot were each refined by an agent limited to its own files; the shared muted text colour was raised from 4.0:1 to 5.3:1.
+
+- Local checks passed on the final source: frontend, backend, contracts, tooling, multiplayer and migrations. Evidence, contrast table and the browser-suite status are in docs/evidence/visual-polish-2026-11-21.
+
+- Browser suite on the final source: 454 passed, 61 skipped, 9 failed. Five distinct tests also fail on the previous commit (Mancala board dialog, saved Deal placement, crowded Sly Deal, saved Azul move, two-guest dashboard); the split-Blackjack steadiness check is intermittent under full-suite load and passes alone. Local QA rooms closed.
+
+- State: verified locally; owner approved shipping. Next: push, one deployment, live verification.
+
 ## 2026-11-21 — Gem Market and Deal decisions on a phone
 
 - Review Gem Market and both Deal editions for reversible previews and accurate payment, reservation, bank and debt decisions. Exercise actual options on a narrow phone, then verify what is committed and retained. Keep hidden information private and current house rules intact.

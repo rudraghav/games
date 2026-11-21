@@ -77,6 +77,7 @@ function NumberCard({
       data-small={small}
       data-digits={card.value.length}
       data-fresh={fresh || undefined}
+      data-tip={`Card ${card.value}: ${penalties(Number(card.subtitle))} for whoever takes its row`}
     >
       <PlayingCard
         card={card}

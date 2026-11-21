@@ -59,3 +59,13 @@ When the engine offers only a pass, the actor can pass from the supply controls.
 Gem picks and the inspected card belong to the specific seat, room, match and
 decision. An unsuccessful request keeps the choice available for retry, including
 after reload. A successful new version opens a fresh decision.
+
+## Token and card depth
+
+Gem tokens are turned discs (`piece-depth.css`): a lit face, an edge in the gem's
+own colour and, in the shared supply, a two-disc stack. Supply choices lift on
+hover and stay lifted while picked. Pearl and gold, the two pale gems, use a
+darker edge so every token still ends on a 3:1 line against the table. Each
+token's `data-tip` prints the gem's name and count, so the cut and colour are
+never the only cue. An affordable development card sits slightly prouder than
+its row.

@@ -1,5 +1,5 @@
 'use client';
-import type { ComponentType } from 'react';
+import { useEffect, useState, type ComponentType, type CSSProperties } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { cn } from '../lib/cn';
 import {
@@ -77,6 +77,8 @@ interface PlayingCardProps {
   className?: string;
   label?: string;
   playable?: boolean;
+  /** What the card does, for the app tooltip. Tables pass rule-aware wording. */
+  tip?: string;
 }
 
 const shortPropertyNames: Record<string, string> = {
@@ -115,19 +117,40 @@ const effectIcons = {
 
 /* ---------- Deal ---------- */
 
+const dealVar = (color: string) => `var(--deal-${color})`;
+/** Two printed colours as CSS variables; ten (any colour) use the stylesheet's spectrum. */
+function dealBlend(first?: string, second?: string) {
+  return first && second
+    ? ({ '--deal-a': dealVar(first), '--deal-b': dealVar(second) } as CSSProperties)
+    : undefined;
+}
+
+/** A property's colour header. A wild leads with the colour it is being played as. */
 function PropertyBands({ colors, active }: { colors: readonly string[]; active?: string }) {
+  const other = colors.find((color) => color !== active);
   return (
-    <span className="property-band" data-wild={active ? 'true' : undefined} aria-hidden="true">
+    <span
+      className="property-band"
+      data-wild={active ? 'true' : undefined}
+      data-count={colors.length || undefined}
+      style={colors.length === 2 ? dealBlend(active, other) : undefined}
+      aria-hidden="true"
+    >
       {colors.map((color) => (
         <span key={color} data-property-color={color} data-active={color === active} />
       ))}
     </span>
   );
 }
-/** Rent is an action: a plum action band carrying the colours it charges, never a property band. */
+/** Rent is an action: an action header carrying a ribbon of the colours it charges. */
 function RentBand({ colors }: { colors: readonly string[] }) {
   return (
-    <span className="property-band deal-rent-band" data-count={colors.length} aria-hidden="true">
+    <span
+      className="property-band deal-rent-band"
+      data-count={colors.length}
+      style={colors.length === 2 ? dealBlend(colors[0], colors[1]) : undefined}
+      aria-hidden="true"
+    >
       {colors.map((color) => (
         <span key={color} data-property-color={color} />
       ))}
@@ -146,10 +169,10 @@ function DealFace({ card }: { card: CardPresentation }) {
   const ladder = card.rentLadder || card.rent_ladder || [];
   const setSize = card.setSize || card.set_size;
   const noCashValue = card.value === '✧';
-  const colorLabel =
-    colors.length === 10
-      ? 'Any colour'
-      : colors.map((color) => propertyNames[color] || color).join(' / ');
+  const spectrum = colors.length === 10;
+  const colorLabel = spectrum
+    ? 'Any colour'
+    : colors.map((color) => propertyNames[color] || color).join(' / ');
   return (
     <>
       {rent ? (
@@ -157,7 +180,11 @@ function DealFace({ card }: { card: CardPresentation }) {
       ) : (
         <PropertyBands colors={colors} active={wild ? card.color : undefined} />
       )}
-      <span className="deal-card-meta">
+      <span
+        className="deal-card-meta"
+        data-property-color={property && !spectrum ? card.color : undefined}
+        data-spectrum={property && spectrum ? 'true' : undefined}
+      >
         <span>
           {money ? 'BANK' : property ? (wild ? 'WILD' : 'PROPERTY') : rent ? 'RENT' : 'ACTION'}
         </span>
@@ -190,6 +217,8 @@ function DealFace({ card }: { card: CardPresentation }) {
               <span
                 className="deal-action-art"
                 data-effect={effect || 'legacy-action'}
+                data-rent={rent ? (spectrum ? 'spectrum' : 'pair') : undefined}
+                style={rent && colors.length === 2 ? dealBlend(colors[0], colors[1]) : undefined}
                 aria-hidden="true"
               >
                 <Icon />
@@ -197,8 +226,13 @@ function DealFace({ card }: { card: CardPresentation }) {
               </span>
             ) : null}
             <span className="property-name">{card.label}</span>
-            {wild || (colors.length > 0 && !property) ? (
-              <span className="property-color-label">{colorLabel}</span>
+            {colors.length > 0 ? (
+              <span
+                className="property-color-label"
+                data-property-color={property && !wild ? card.color : undefined}
+              >
+                {colorLabel}
+              </span>
             ) : null}
             {wild ? (
               <span className="property-active-label" data-property-color={card.color}>
@@ -213,13 +247,13 @@ function DealFace({ card }: { card: CardPresentation }) {
           </>
         )}
       </span>
-      <span className="deal-card-foot">
+      <span className="deal-card-foot" data-property-color={property ? card.color : undefined}>
         {property && ladder.length ? (
           <>
             <span className="deal-rent-label">RENT · {setSize} TO COMPLETE</span>
             <span className="deal-rent-ladder">
               {ladder.map((rent, index) => (
-                <span key={index}>
+                <span key={index} data-full={index === ladder.length - 1 || undefined}>
                   <small>{index + 1}</small>
                   <b>{rent}M</b>
                 </span>
@@ -233,6 +267,7 @@ function DealFace({ card }: { card: CardPresentation }) {
     </>
   );
 }
+
 function propertyAccessibleName(card: CardPresentation) {
   const colors = card.colors || [];
   const value = card.value === '✧' ? 'not bankable' : `bank value ${card.value}`;
@@ -357,6 +392,14 @@ function flipKind(card: CardPresentation): FlipKind {
   if (/^[×x]\d+$/.test(card.value)) return 'multiplier';
   return 'number';
 }
+/** Flip 7 faces whose meaning is a symbol or one word at row size. */
+const flipTips: Record<Exclude<FlipKind, 'number'>, (value: string) => string> = {
+  modifier: (value) => `${value} points on top of your number cards`,
+  multiplier: () => 'Doubles your number cards before bonuses',
+  freeze: () => 'Freeze: ends that player’s round and banks their points',
+  'flip-three': () => 'Flip Three: that player flips three cards; a repeated number busts them',
+  'second-chance': () => 'Second Chance: saves that player from one repeated number',
+};
 /** A front card printed 3 over two fanned cards: "the target flips three cards". */
 function FlipThreeMark() {
   return (
@@ -518,12 +561,7 @@ function CardContents({
   family: CardFamily;
   faceDown?: boolean;
 }) {
-  if (faceDown || !card)
-    return (
-      <span className="card-back-pattern">
-        <span>g.</span>
-      </span>
-    );
+  if (faceDown || !card) return <CardBack className="card-back-pattern" />;
   if (family === 'property') return <DealFace card={card} />;
   if (family === 'grid') return <GridFace card={card} />;
   if (family === 'flip') return <FlipFace card={card} />;
@@ -532,9 +570,42 @@ function CardContents({
   return <LegacyFace card={card} />;
 }
 
+/** The printed back, also laid over a face for the first half of a turn-over. */
+function CardBack({ className }: { className: string }) {
+  return (
+    <span className={className} aria-hidden={className === 'card-turn-back' || undefined}>
+      <span>g.</span>
+    </span>
+  );
+}
+
+/**
+ * Which way a card has just turned, for as long as the turn-over plays. A face only
+ * ever arrives here once the table has been sent it, and the turn starts from the back,
+ * so nothing shows early. The mark is dropped afterwards so a re-rendered card (a slot
+ * that becomes a button on your turn) does not turn over again.
+ */
+function useTurn(hidden: boolean) {
+  const [state, setState] = useState<{ hidden: boolean; turn?: 'up' | 'down' }>({ hidden });
+  if (state.hidden !== hidden) setState({ hidden, turn: hidden ? 'down' : 'up' });
+  const turn = state.hidden === hidden ? state.turn : undefined;
+  useEffect(() => {
+    if (!turn) return;
+    const timer = window.setTimeout(() => setState((now) => ({ hidden: now.hidden })), 360);
+    return () => window.clearTimeout(timer);
+  }, [turn]);
+  return turn;
+}
+
 function faceAttributes(card: CardPresentation | undefined, family: CardFamily, faceDown: boolean) {
   if (faceDown || !card) return {};
-  if (family === 'flip') return { 'data-flip-kind': flipKind(card) };
+  if (family === 'flip') {
+    const kind = flipKind(card);
+    return {
+      'data-flip-kind': kind,
+      'data-tip': kind === 'number' ? undefined : flipTips[kind](card.value),
+    };
+  }
   if (family === 'standard')
     return standardCardAsset(card)
       ? { 'data-standard-face': standardFace(card), 'data-ink': standardInk(card) }
@@ -561,8 +632,10 @@ export function PlayingCard(props: PlayingCardProps) {
     className,
     label,
     playable,
+    tip: tableTip,
   } = props;
   const reduced = useReducedMotion();
+  const turn = useTurn(faceDown || !card);
   const family = faceFamily(faceDown ? undefined : card, requestedFamily);
   const classes = cn(
     'playing-card',
@@ -572,12 +645,25 @@ export function PlayingCard(props: PlayingCardProps) {
     selected && 'playing-card--selected',
     className,
   );
-  const content = <CardContents card={card} family={family} faceDown={faceDown} />;
+  // Compact Deal faces have no room for their instruction; a tooltip carries it.
+  const tip =
+    !faceDown && compact && family === 'property' && card
+      ? [card.label, dealInstructions[card.effect || '']].filter(Boolean).join(' · ')
+      : undefined;
+  const content = (
+    <>
+      <CardContents card={card} family={family} faceDown={faceDown} />
+      {turn === 'up' && !reduced ? <CardBack className="card-turn-back" /> : null}
+    </>
+  );
   const appearance = {
     className: classes,
+    'data-tip': tip,
     'data-playable': playable,
     'data-color': !faceDown && card ? card.color : 'neutral',
     'data-effect': !faceDown && family === 'property' ? card?.effect : undefined,
+    'data-denomination':
+      !faceDown && family === 'property' && card?.subtitle === 'MONEY' ? card.value : undefined,
     'data-card-kind':
       !faceDown && family === 'property' && card
         ? card.subtitle === 'MONEY'
@@ -587,6 +673,8 @@ export function PlayingCard(props: PlayingCardProps) {
             : 'action'
         : undefined,
     ...faceAttributes(card, family, faceDown),
+    ...(tableTip && !faceDown ? { 'data-tip': tableTip } : {}),
+    'data-turn': reduced ? undefined : turn,
   };
   const accessibleName =
     label ||
@@ -606,7 +694,8 @@ export function PlayingCard(props: PlayingCardProps) {
         disabled={disabled}
         onClick={onClick}
         animate={{ y: selected ? -12 : 0 }}
-        whileHover={reduced ? undefined : { y: selected ? -14 : -5 }}
+        whileHover={reduced || disabled ? undefined : { y: selected ? -14 : -5 }}
+        whileTap={reduced || disabled ? undefined : { scale: 0.97 }}
         transition={{ duration: reduced ? 0 : 0.18 }}
       >
         {content}

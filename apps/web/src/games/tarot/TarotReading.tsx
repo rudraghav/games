@@ -1,9 +1,15 @@
-import { Sparkles } from 'lucide-react';
+'use client';
+import { useId, useState } from 'react';
+import { ArrowDown, Sparkles } from 'lucide-react';
 import { TarotCard } from '@games/ui';
 import type { ReadingStyle, ReadingView } from '@games/api-client';
 import { tarotCharacter } from '@games/api-client/characters';
 import { TarotCharacterImage } from './TarotCharacterImage';
 import { AstrologyReading } from './AstrologyReading';
+import { TarotCardDetail, type DetailCard } from './TarotCardDetail';
+import { ReadingShare } from './ReadingShare';
+import { readingAsText } from './reading-text';
+import { positionMeaning } from './spread';
 
 type Reading = NonNullable<ReadingView['reading']>;
 
@@ -76,19 +82,51 @@ function CharacterConnections({ card, fun }: { card: Reading['cards'][number]; f
   ) : null;
 }
 
+/** A quiet placeholder with the reading's shape while a saved view is being opened. */
+export function ReadingSkeleton({ label }: { label?: string }) {
+  return (
+    <div
+      className="tarot-reading-skeleton"
+      role={label ? 'status' : undefined}
+      aria-hidden={label ? undefined : true}
+    >
+      {label ? <span className="sr-only">{label}</span> : null}
+      {[0, 1, 2].map((block) => (
+        <div key={block} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function TarotReading({
   reading,
   readingStyle = 'classic',
   cardMeanings = false,
   cards,
   imageLoader,
+  summary = false,
+  question,
+  savedHref,
 }: {
   reading: Reading;
   readingStyle?: ReadingStyle;
   cardMeanings?: boolean;
   cards: readonly { id: string; label: string; subtitle?: string }[];
   imageLoader?: (path: string) => string;
+  /** Open with "In short": the one-sentence synthesis, the three cards and the next step. */
+  summary?: boolean;
+  /** The saved question, included when the reading is copied or shared. */
+  question?: string;
+  /** Where this viewer's private saved copy lives. */
+  savedHref?: string;
 }) {
+  const [detail, setDetail] = useState<DetailCard | null>(null);
+  const summaryId = useId();
   const fun = readingStyle === 'fun';
   const deckCards = new Map(cards.map((card) => [card.id, card]));
   const portraits = [
@@ -102,16 +140,44 @@ export function TarotReading({
     ).values(),
   ];
   return (
-    <div className="tarot-reading">
+    <div className="tarot-reading" data-summary={summary || undefined}>
+      {summary ? (
+        <section className="tarot-summary" aria-labelledby={summaryId}>
+          <h3 className="eyebrow" id={summaryId}>
+            In short
+          </h3>
+          <p className="tarot-summary-lead">{reading.introduction}</p>
+          <div className="tarot-summary-step">
+            <span className="eyebrow">Next small move</span>
+            <p>{reading.next_step}</p>
+          </div>
+          <ol className="tarot-summary-cards" aria-label="Jump to a card">
+            {reading.cards.map((card) => (
+              <li key={card.card_id}>
+                <a href={`#reading-${card.card_id}`}>
+                  <span>{card.position}</span>
+                  <strong>{deckCards.get(card.card_id)?.label || card.title}</strong>
+                  <ArrowDown size={14} aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ) : null}
       {reading.cards.map((card) => (
-        <article key={card.card_id}>
+        <article key={card.card_id} id={`reading-${card.card_id}`}>
           <header className="tarot-reading-card-heading">
             {deckCards.has(card.card_id) ? (
               <TarotCard
                 compact
                 id={card.card_id}
                 name={deckCards.get(card.card_id)?.label}
+                label={`View ${deckCards.get(card.card_id)?.label} card`}
+                tip="Open the full card"
                 imageLoader={imageLoader}
+                onClick={() =>
+                  setDetail({ ...deckCards.get(card.card_id)!, position: card.position })
+                }
               />
             ) : null}
             <div>
@@ -123,6 +189,12 @@ export function TarotReading({
                   : ''}
               </span>
               <h3>{card.title}</h3>
+              {positionMeaning(card.position) ? (
+                <p className="tarot-position-meaning">
+                  <span>Upright</span>
+                  {positionMeaning(card.position)}
+                </p>
+              ) : null}
             </div>
           </header>
           {fun ? <CharacterConnections card={card} fun /> : null}
@@ -156,6 +228,21 @@ export function TarotReading({
           {!fun && !cardMeanings ? <CharacterConnections card={card} fun={false} /> : null}
         </article>
       ))}
+      {reading.astrology ? <AstrologyReading astrology={reading.astrology} /> : null}
+      <div className="tarot-next-step">
+        <span className="eyebrow">Your next small move</span>
+        <p>{reading.next_step}</p>
+        {reading.astrology?.interpretation.next_step ? (
+          <p className="tarot-next-step-chart">
+            <strong>From your chart:</strong> {reading.astrology.interpretation.next_step}
+          </p>
+        ) : null}
+      </div>
+      <ReadingShare
+        title={reading.title}
+        savedHref={savedHref}
+        text={() => readingAsText({ reading, cards, question })}
+      />
       {portraits.length ? (
         <details className="tarot-image-credits">
           <summary>Image credits</summary>
@@ -188,16 +275,7 @@ export function TarotReading({
           </ul>
         </details>
       ) : null}
-      {reading.astrology ? <AstrologyReading astrology={reading.astrology} /> : null}
-      <div className="tarot-next-step">
-        <span className="eyebrow">Your next small move</span>
-        <p>{reading.next_step}</p>
-        {reading.astrology?.interpretation.next_step ? (
-          <p className="tarot-next-step-chart">
-            <strong>From your chart:</strong> {reading.astrology.interpretation.next_step}
-          </p>
-        ) : null}
-      </div>
+      <TarotCardDetail card={detail} onClose={() => setDetail(null)} imageLoader={imageLoader} />
     </div>
   );
 }

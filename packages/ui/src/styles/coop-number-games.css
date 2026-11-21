@@ -578,10 +578,11 @@
     place-items: center;
     flex: 0 0 52px;
     height: 70px;
-    border: 1px dashed #bcb8ab;
+    /* An empty place still has to read as a place: 3:1 edge, 4.5:1 position number. */
+    border: 1px dashed #8f8b7d;
     border-radius: 7px;
     background: #eeece626;
-    color: #989488;
+    color: var(--color-ink-muted);
     font-size: 11px;
   }
   .six-row[data-full='true'] {

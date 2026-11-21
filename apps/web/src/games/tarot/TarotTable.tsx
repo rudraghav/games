@@ -1,6 +1,13 @@
 'use client';
 import { usePrivateViewScope } from '@/shared/use-private-view-scope';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from 'react';
 import Link from 'next/link';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useReducedMotion } from 'motion/react';
@@ -17,7 +24,10 @@ import { api } from '@/lib/session';
 import { keys } from '@/shared/query-keys';
 import type { TableProps } from '../types';
 import { useTableDraft } from '../shared/table-draft';
-import { TarotReading } from './TarotReading';
+import { readingPath } from '@/shared/game-paths';
+import { ReadingSkeleton, TarotReading } from './TarotReading';
+import { TarotCardDetail, type DetailCard } from './TarotCardDetail';
+import { spreadPositions } from './spread';
 import { ReadingStyleSwitch } from './ReadingStyleSwitch';
 import { CompletedReadingControls, useCompletedReadingView } from './completed-reading-view';
 import { AstrologyForm } from './AstrologyForm';
@@ -25,7 +35,16 @@ import { ReadingProgress } from './ReadingProgress';
 import { ReadingAction } from './ReadingAction';
 import { TarotDeckPicker } from './TarotDeckPicker';
 
-const positions = ['Where you are', 'What is shifting', 'Your next move'];
+const positions = spreadPositions.map((position) => position.name);
+
+function subscribeToNetwork(notify: () => void) {
+  window.addEventListener('online', notify);
+  window.addEventListener('offline', notify);
+  return () => {
+    window.removeEventListener('online', notify);
+    window.removeEventListener('offline', notify);
+  };
+}
 
 function readingErrorMessage(error: unknown) {
   const status = error instanceof ApiError ? error.status : undefined;
@@ -51,6 +70,12 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const [astrologyChoice, setAstrologyChoice] = useState<'auto' | 'off' | 'new'>('auto');
   const [chart, setChart] = useState<ChartData | null>(null);
   const [exploreDeck, setExploreDeck] = useState(false);
+  const [detail, setDetail] = useState<DetailCard | null>(null);
+  const offline = useSyncExternalStore(
+    subscribeToNetwork,
+    () => !navigator.onLine,
+    () => false,
+  );
   const [deckSuit, setDeckSuit] = useState('all');
   const [drawnNote, setDrawnNote] = useState('');
   const [fresh, setFresh] = useState<number | null>(null);
@@ -120,7 +145,11 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
       await api.ready(room.id, true);
       return api.start(room.id);
     },
-    onSuccess: (next) => cache.setQueryData(keys.room(room.id), next),
+    onSuccess: (next) => {
+      // The new deck replaces a long reading: start at the top, where the first pick is.
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      cache.setQueryData(keys.room(room.id), next);
+    },
     onError: () => void cache.invalidateQueries({ queryKey: keys.room(room.id) }),
   });
   const reading = saved.data?.reading;
@@ -195,11 +224,30 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
     room.paused ||
     (!!astrology && !chart);
   const drawn = match.community.length;
+  // A finished room's saved reading is on its way: show its shape, not the question form.
+  const openingReading = room.status === 'finished' && !saved.data && !saved.isError;
+  // What the table itself says while there is no reading to show yet.
+  const tableState =
+    reading || openingReading || match.phase === 'choosing'
+      ? undefined
+      : writing
+        ? 'writing'
+        : offline
+          ? 'offline'
+          : unavailable || activeFailure?.code === 'unavailable'
+            ? 'unavailable'
+            : 'ready';
   const canDrawAgain =
     room.status === 'finished' && room.ownerId === selfId && match.phase !== 'choosing';
 
   // Reveal each pick where it lands: the spread slot scrolls into view, takes focus
   // and its card is announced. A refresh starts from the saved spread without a reveal.
+  // Mark the new card before its first paint, so it never shows face-up ahead of its turn.
+  const [shownDrawn, setShownDrawn] = useState(drawn);
+  if (drawn !== shownDrawn) {
+    setShownDrawn(drawn);
+    if (drawn > shownDrawn) setFresh(drawn - 1);
+  }
   const seen = useRef(drawn);
   useEffect(() => {
     if (drawn > seen.current) {
@@ -262,20 +310,26 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
     };
   }, [exploreDeck]);
 
-  const drawAgain = canDrawAgain ? (
-    <Button
-      size="lg"
-      className="tarot-draw-again"
-      pending={again.isPending}
-      disabled={room.paused}
-      onClick={() => again.mutate()}
-    >
-      <RotateCcw size={17} />
-      Draw a new spread
-    </Button>
-  ) : null;
+  const drawAgain = (top: boolean) =>
+    canDrawAgain ? (
+      <Button
+        size={top ? 'md' : 'lg'}
+        variant={top ? 'secondary' : 'primary'}
+        className="tarot-draw-again"
+        pending={again.isPending}
+        disabled={room.paused}
+        onClick={() => again.mutate()}
+      >
+        <RotateCcw size={17} />
+        Draw a new spread
+      </Button>
+    ) : null;
   return (
-    <div className="tarot-table stable-tarot-table" data-phase={match.phase}>
+    <div
+      className="tarot-table stable-tarot-table"
+      data-phase={match.phase}
+      data-reading-state={reading ? 'complete' : tableState}
+    >
       <div className="tarot-intro">
         <div className="tarot-intro-header">
           <div>
@@ -301,7 +355,13 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
                 ? reading.title
                 : match.phase === 'choosing'
                   ? positions[drawn]
-                  : 'Your three-card spread'}
+                  : tableState === 'writing'
+                    ? 'Writing your reading…'
+                    : tableState === 'offline'
+                      ? 'You’re offline'
+                      : tableState === 'unavailable'
+                        ? 'Readings are unavailable right now'
+                        : 'Your three-card spread'}
             </h2>
           </div>
           <Button
@@ -314,12 +374,35 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
             <Layers3 size={20} />
           </Button>
         </div>
-        {reading ? <CompletedReadingControls view={view} /> : null}
-        {reading ? <p className="tarot-reading-introduction">{reading.introduction}</p> : null}
-        {reading && saved.data?.question ? (
-          <p className="tarot-saved-question">{saved.data.question}</p>
+        {tableState ? (
+          // One line in every state, so asking for a reading never moves the form below.
+          <p
+            className="tarot-reading-status"
+            data-state={tableState}
+            // Progress announces its own stages; the paused states speak here.
+            role={tableState === 'unavailable' || tableState === 'offline' ? 'status' : undefined}
+          >
+            {tableState === 'writing'
+              ? 'Your three cards are saved while the reading is written.'
+              : tableState === 'offline'
+                ? 'Your cards are saved. Reconnect to ask for your reading.'
+                : tableState === 'unavailable'
+                  ? 'Your cards are saved. You can ask for your reading once the service is back.'
+                  : 'Add a question if you like, then ask for your reading.'}
+          </p>
         ) : null}
-        {drawAgain ? <div className="tarot-intro-actions">{drawAgain}</div> : null}
+        {reading && saved.data?.question ? (
+          <div className="tarot-asked">
+            <span className="eyebrow">You asked</span>
+            <p className="tarot-saved-question">{saved.data.question}</p>
+          </div>
+        ) : null}
+        {reading ? (
+          <div className="tarot-intro-actions">
+            <CompletedReadingControls view={view} />
+            {drawAgain(true)}
+          </div>
+        ) : null}
         {again.error ? (
           <p className="error-note" role="alert">
             Couldn’t start a new spread.
@@ -365,7 +448,29 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
                 0{i + 1} · {position}
               </p>
               {card ? (
-                <TarotCard id={card.id} name={card.label} imageLoader={imageLoader} />
+                <div className="tarot-flip">
+                  <TarotCard
+                    id={card.id}
+                    name={card.label}
+                    imageLoader={imageLoader}
+                    // Once the spread is complete, a card opens at full size.
+                    {...(match.phase === 'choosing'
+                      ? {}
+                      : {
+                          label: `View ${card.label} card`,
+                          tip: 'Open the full card',
+                          onClick: () =>
+                            setDetail({
+                              id: card.id,
+                              label: card.label,
+                              subtitle: card.subtitle ?? undefined,
+                              position,
+                            }),
+                        })}
+                  />
+                  {/* The viewer's own pick turns over from the back they chose. */}
+                  {fresh === i ? <span className="tarot-flip-back" aria-hidden="true" /> : null}
+                </div>
               ) : (
                 <div className="tarot-slot-empty" aria-hidden="true">
                   {next ? <span>Your next card lands here</span> : null}
@@ -406,15 +511,22 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
               cardMeanings={view.alternate && view.style === 'classic'}
               cards={match.community}
               imageLoader={imageLoader}
+              summary
+              question={saved.data?.question || undefined}
+              savedHref={room.matchId ? readingPath(room.matchId) : undefined}
             />
+          ) : view.loading ? (
+            <ReadingSkeleton />
           ) : null}
-          {drawAgain ? (
+          {canDrawAgain ? (
             <div className="tarot-again">
               <p className="small muted">Ready for another question?</p>
-              {drawAgain}
+              {drawAgain(false)}
             </div>
           ) : null}
         </>
+      ) : openingReading ? (
+        <ReadingSkeleton label="Opening your reading…" />
       ) : (
         <form
           className="tarot-question"
@@ -480,7 +592,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
                 : null}
             </p>
           ) : null}
-          {statusMessage ? (
+          {statusMessage && tableState !== 'unavailable' ? (
             <p className="error-note" role={unavailable ? 'status' : 'alert'}>
               {statusMessage}
               {coolingDown && activeFailure?.retryable && retryAt !== undefined
@@ -546,6 +658,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
       <p className="tarot-footnote">
         A playful reflection, not a prediction. You’re the one writing your story.
       </p>
+      <TarotCardDetail card={detail} onClose={() => setDetail(null)} imageLoader={imageLoader} />
       <Modal
         open={exploreDeck}
         onOpenChange={setExploreDeck}

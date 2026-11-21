@@ -322,6 +322,18 @@ class RoomService:
                 raise HTTPException(404, "This invite is invalid or has been replaced.")
             members = self.repo.members(room.id)
             existing = self.repo.member(room.id, actor.id)
+            engine = ENGINES.get(room.game_id)
+            if (engine is not None and engine.manifest.play_mode == "solo"
+                    and not (existing and existing.active)):
+                # A solo table has one seat and nothing public to watch; an invite
+                # replaced or shared by mistake must not add a silent spectator.
+                raise HTTPException(409, (
+                    "This is a private Tarot reading, so it can't be joined. "
+                    "Start your own reading from the games library."
+                    if room.game_id == "tarot" else
+                    "This is a private solo table, so it can't be joined. "
+                    "Start your own from the games library."
+                ))
             if len(members) >= 20 and not (existing and existing.active):
                 raise HTTPException(409, "This room is full.")
             self.repo.save_profile(actor.id, data.name, data.avatar)

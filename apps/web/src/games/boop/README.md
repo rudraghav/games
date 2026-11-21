@@ -29,3 +29,14 @@ states. Keyboard placement, preview, clear, pending/paused controls and exact
 commit payloads are verified. The current fixtures contain one graduation option
 per graduating state; simultaneous overlapping graduation lines and eight-cat
 wins are not newly certified by this layout change.
+
+## Depth and motion
+
+The bed is a quilted surface: each square is a soft cushion and pieces cast a
+shadow on it (`piece-depth.css`). After a move the placed piece plops down and
+every booped piece slides in from the square it was pushed off, using the same
+public `last_pushes` that draw the arrows. The bed remounts per match version,
+so each move plays once; nothing moves under `prefers-reduced-motion`. Pushed,
+vacated and graduated squares explain themselves through `data-tip`, the pool
+choices lift on hover and press, and `data-pending` shows the saving bar.
+Coordinates are 4.7:1 or more on every cushion.

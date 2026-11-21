@@ -24,3 +24,14 @@ navigation, reload, rematch, closure and outsider denial on desktop and phone.
 The fixture writer refuses hosted/non-loopback databases and existing readings.
 
 A completed reading opens in its saved style. The shared completed-reading switch can request a second presentation of the same match with `api.savedReading(matchId, style)`. Closing the room has no effect on the participant’s access. Switching back renders the original response.
+
+## Reading polish — 21 November 2026
+
+The archive inherits the shared `TarotReading` changes: card thumbnails open the
+full card, each section states its position, what it asks and `Upright`, text
+follows the 16px/64-character measure and Tarot's 4.5:1 muted ink, and “Copy
+reading” copies the saved text. The page keeps its own header (date, question,
+introduction), so it does not pass `summary`. It also does not pass `question`
+or `savedHref`: the copied text omits the question here, and there is no “Saved
+reading” link to the page already open. Passing `question={data.question}` to
+`TarotReading` in `SavedReading.tsx` would add the question to the copied text.

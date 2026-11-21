@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { Check, Coffee, MessageCircle, Sparkles } from 'lucide-react';
 import { partyDetails } from '@games/api-client';
 import { Avatar, Button, DecisionDock } from '@games/ui';
@@ -189,8 +189,14 @@ export function PartyTable(props: TableProps) {
               ) : null}
               {mode !== 'spill-or-chill' ? (
                 <div className="party-reveal__list mt-2">
-                  {revealed.map((player) => {
+                  {revealed.map((player, row) => {
                     const seat = member(player.id);
+                    // Public tallies only: the bar is this player's share of the votes cast.
+                    const cast = Object.values(result.tallies).reduce((sum, n) => sum + n, 0);
+                    const share =
+                      mode === 'most-likely' && cast
+                        ? (result.tallies[player.id] || 0) / cast
+                        : undefined;
                     const choice = result.choices[player.id];
                     const points = result.points[player.id];
                     const hotSeat = mode === 'hot-seat' && player.id === data.spotlight;
@@ -199,6 +205,8 @@ export function PartyTable(props: TableProps) {
                         key={player.id}
                         className="party-reveal__row"
                         data-leader={mode === 'most-likely' && points > 0}
+                        data-share={share === undefined ? undefined : ''}
+                        style={{ '--row': row, '--share': share ?? 0 } as CSSProperties}
                       >
                         <Avatar name={seatName(seat)} seed={seat?.avatar} size="sm" />
                         <span className="party-reveal__identity">

@@ -38,6 +38,10 @@ The player strip spans the full grid on wide tables. Engine messages are
 instructions for the acting seat; the room banner's Last move line attributes
 the previous move.
 
+Legal cards lift inside a sage ring; the rest are muted but opaque (an overlapped
+fan never shows the card beneath) and stay inspectable. A played card settles onto
+the pile and drawn cards arrive in the hand (`card-motion.css`).
+
 Tests: `src/tests/shithead.test.tsx` (zones, privacy, dimming, pile run and burn
 reason, face-up workspace, long hand, outcome) and
 `tests/browser/shithead.spec.ts`.

@@ -18,7 +18,7 @@ test('all table projections keep readable card content, touch controls and reach
       () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
     );
     const report = await page.evaluate(() => {
-      const root = document.querySelector('.table-layout,.tarot-table')!;
+      const root = document.querySelector('.table-layout,.tarot-table,.chance-table')!;
       const top = root.getBoundingClientRect().top;
       const visible = (node: Element) => (node as HTMLElement).checkVisibility();
       const clipping = [...root.querySelectorAll('.playing-card')].flatMap((card) => {

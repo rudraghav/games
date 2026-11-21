@@ -59,8 +59,8 @@ rules provide the presentation without another dependency.
 ## After the reading
 
 - The completed reading displays its exact saved question.
-- A finished solo room shows “Draw a new spread” at the top of the reading and after its last section. It readies the player and starts the next match in one tap (as room creation does); only the room owner sees it.
-- Each card section shows that card as a small thumbnail. With astrology, the chart’s next step is folded into the single “Your next small move” block.
+- A finished solo room shows “Draw a new spread” twice: a quiet secondary button beside the Fun switch at the top, and the primary button after the last section. It readies the player and starts the next match in one tap (as room creation does); only the room owner sees it.
+- Each card section shows that card as a small thumbnail button that opens the full card. With astrology, the chart’s next step is folded into the single “Your next small move” block.
 - Image credits wrap on phones; a credit that is only a URL reads as its site name while the link keeps the full source.
 - The Explore-the-deck dialog keeps its heading and suit filter pinned (one swipeable row on phones).
 
@@ -215,3 +215,91 @@ Only card prominence, typography hierarchy and restrained depth informed this
 implementation; source artwork remains the app's existing assets. Optional
 haptics follow the [Vibration API](https://www.w3.org/TR/vibration/) visibility
 and browser-activation behavior.
+
+## Reading polish — 21 November 2026
+
+### What the table says
+
+Once three cards are drawn the spread sits on the same velvet as the deck, with
+gilt position labels and light meanings. The heading states what is happening,
+and one status line beneath it says the cards are safe:
+
+| State               | Heading                            | Status line                                                                  |
+| ------------------- | ---------------------------------- | ---------------------------------------------------------------------------- |
+| Ready               | Your three-card spread             | Add a question if you like, then ask for your reading.                       |
+| Writing             | Writing your reading…              | Your three cards are saved while the reading is written.                     |
+| Service unavailable | Readings are unavailable right now | Your cards are saved. You can ask for your reading once the service is back. |
+| Browser offline     | You’re offline                     | Your cards are saved. Reconnect to ask for your reading.                     |
+
+The line is present in every state, so asking for a reading changes its words in
+place and never pushes the form down. `data-reading-state` on `.tarot-table`
+carries the same state for styling. While
+writing, a slow light passes over each saved card and the status marker breathes;
+`ReadingProgress` keeps the only live announcement. The unavailable and offline
+lines are `role="status"`, and the unavailable state no longer repeats the
+server's message beside the disabled button. A finished room whose saved reading
+is still loading shows `ReadingSkeleton` instead of the question form.
+
+### The finished reading
+
+Order: title, “You asked” with the exact saved question, the Fun switch and a
+secondary “Draw a new spread”, the spread, then `TarotReading` with `summary`:
+
+- **In short** floats over the lower edge of the velvet as glass (opaque surface
+  fallback). It holds the introduction as the one-sentence synthesis, the next
+  small move, and three jump links to the card sections. On phones the links are
+  a three-line contents list with 44px rows.
+- **Card sections** state the position, the card, `Upright` and what the position
+  asks (`spread.ts`, worded to match the service's `POSITION_FOCUS`). The grounded
+  read is plain 16px text at a 64-character measure; the plot twist is a tinted
+  aside; Fun connections come first as before.
+- **Thumbnails and spread cards** are buttons that open `TarotCardDetail`: the
+  full card, its position, the orientation note and the card meaning. Only cards
+  already drawn by this viewer can be opened. Spread cards become buttons after
+  the third pick, so the deck's single Tab stop is unchanged while choosing.
+- **Your next small move** closes the reading, followed by `ReadingShare`: Copy
+  reading (plain text from `reading-text.ts`: title, question, synthesis, each
+  position and card with its grounded read, the next step; no portraits, credits
+  or charts), the device share sheet when the browser has one, and a link to the
+  private saved copy. Image credits come last.
+
+The deck has no reversed cards, so `Upright` is a fact of the deck, not a saved
+field. The saved-reading page uses the same component without `summary`,
+`question` or `savedHref`; its own header already shows the question and
+introduction.
+
+### Motion
+
+All motion is transform/opacity, 320ms or less for transitions, and off under
+reduced motion. A local pick turns over in its slot: the chosen back swings away,
+then the face swings in (`tarot-flip-back`, `tarot-flip-face`). The new card is
+marked during render, so its face is never painted before the turn. The back is
+decoration over a card the server has already returned to this viewer. The deck
+fans out once when it is first laid down (`data-entering`, removed after 700ms);
+cards that regroup after a pick do not replay it. Openable cards lift on hover
+and press on tap.
+
+### Contrast and type
+
+Computed pairs, recorded at the top of the polish block in `tarot-reading-v2.css`:
+
+- The shared muted ink (#77796e) is 4.0:1 on the canvas. Inside Tarot scopes
+  `--color-ink-muted` is #5c5f55: 5.9:1 on canvas, 6.4:1 on surface, 5.2:1 on
+  ochre-light, 5.0:1 on plum-light.
+- On velvet (72% dark wash; brightest pixel #4f333f): labels 7.8:1, meanings
+  8.7:1, body 9.4:1.
+- The glass panel is 90% surface: over velvet, ink 11.5:1, muted 5.2:1, plum 5.6:1.
+- Plot-twist text is #4f3a53 on plum-light, 7.8:1. Next-step label 5.6:1.
+
+Astrology: weights are 500/600, table sub-labels are 11px, wheel house lines and
+aspect lines are 3.6:1 and 3.8:1 against the surface (were 2.2:1 and 2.3:1), and
+interpretation text follows the reading's 16px/1.7 measure.
+
+### Verification
+
+`tests/browser/tarot-table.spec.ts` covers the summary, jump links, position
+lines, the card dialog from a thumbnail and from the spread, focus return, the
+clipboard text, the flip and its reduced-motion fallback, the three table states
+with constructed responses, velvet text contrast, and the refused-invite message.
+`apps/web/src/tests/tarot-reading.test.tsx` covers the summary, copy text,
+skeleton and position lines. No reading is requested by any of them.

@@ -1,9 +1,4 @@
 @layer components {
-  .playing-card--shedding[data-color='yellow'] .shedding-face,
-  .playing-card--shedding[data-color='yellow'] .shedding-index,
-  .playing-card--shedding[data-color='yellow'] .card-action-name {
-    color: #624509;
-  }
   .table-pile-button.button {
     display: block;
     min-height: 44px;

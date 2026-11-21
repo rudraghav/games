@@ -82,6 +82,40 @@ export function BoardTable(props: TableProps) {
       ? extras.landing[String(column)]
       : undefined;
   const current = match.currentPlayer;
+  // Where a square is drawn, so a moved piece can slide in from its old square.
+  const place = (index: number) => {
+    const shown = rotate ? size - 1 - index : index;
+    return { column: shown % board.columns, row: Math.floor(shown / board.columns) };
+  };
+  const moverColor = board.lastMove !== null ? match.community[board.lastMove]?.color : undefined;
+  // The captured piece is gone from the board; its colour only tints the lift-away.
+  const capturedColor =
+    checkers && extras.lastCaptured !== null && moverColor
+      ? sides.discs.find((color) => color !== moverColor)
+      : undefined;
+  /** Public marks whose meaning is not printed on the square. */
+  const squareTip = (index: number, king: boolean) => {
+    if (board.winningCells.includes(index)) return 'Part of the winning line';
+    if (checkers && extras.lastCaptured === index) return 'A piece was captured here';
+    if (checkers && extras.lastFrom === index) return 'The last move started here';
+    if (reversi && lastFlips.has(index)) return 'Flipped by the last placement';
+    if (board.lastMove === index)
+      return four ? 'Last disc dropped' : reversi ? 'Last placement' : 'Last piece moved';
+    if (king) return 'King: moves and jumps diagonally in every direction';
+    return undefined;
+  };
+  const motion = (index: number): CSSProperties | undefined => {
+    if (board.lastMove !== index) return undefined;
+    if (four) return { '--drop-rows': Math.floor(index / board.columns) + 1 } as CSSProperties;
+    if (checkers && extras.lastFrom !== null) {
+      const [from, to] = [place(extras.lastFrom), place(index)];
+      return {
+        '--from-dx': from.column - to.column,
+        '--from-dy': from.row - to.row,
+      } as CSSProperties;
+    }
+    return undefined;
+  };
 
   function commit(choice: string) {
     const option = options.get(choice);
@@ -164,6 +198,7 @@ export function BoardTable(props: TableProps) {
       <section
         className={`classic-board classic-board--${four ? 'four' : checkers ? 'checkers' : 'reversi'}`}
         aria-label={boardLabel}
+        data-pending={pending || undefined}
         data-mover={current ? sides.discs[seatOf(current)] : undefined}
         style={{ '--board-columns': board.columns, '--board-rows': board.rows } as CSSProperties}
       >
@@ -221,6 +256,7 @@ export function BoardTable(props: TableProps) {
                       variant="ghost"
                       size="icon"
                       className="board-drop"
+                      data-tip={option ? `Drop in column ${index + 1}` : undefined}
                       data-active={Boolean(option) && !blocked}
                       data-color={sides.discs[Math.max(selfSeat, 0)]}
                       aria-label={`Drop in column ${index + 1}`}
@@ -284,12 +320,20 @@ export function BoardTable(props: TableProps) {
                   const option = options.get(choice);
                   const selectable = checkers && sources.has(cell.id);
                   const label = cellLabel(cell);
+                  const king = cell.subtitle === 'King';
                   const content = (
-                    <span className="board-disc" data-color={cell.color}>
+                    // Keyed by colour: a disc that changes sides is a new piece, so its
+                    // flip plays again even when the same square flips twice running.
+                    <span
+                      key={cell.color}
+                      className="board-disc"
+                      data-color={cell.color}
+                      data-king={king || undefined}
+                    >
                       {cell.value && ['coral', 'gold', 'ivory', 'ink'].includes(cell.color) ? (
                         <TokenArt kind={cell.color as TokenKind} />
                       ) : null}
-                      {cell.subtitle === 'King' ? <Crown size={20} aria-hidden="true" /> : null}
+                      {king ? <Crown size={20} aria-hidden="true" /> : null}
                     </span>
                   );
                   return four ? (
@@ -303,6 +347,8 @@ export function BoardTable(props: TableProps) {
                       data-ghost={ghost === index ? sides.discs[Math.max(selfSeat, 0)] : undefined}
                       data-last={board.lastMove === index}
                       data-winning={board.winningCells.includes(index)}
+                      data-tip={squareTip(index, false)}
+                      style={motion(index)}
                     >
                       {content}
                     </div>
@@ -329,6 +375,11 @@ export function BoardTable(props: TableProps) {
                       data-flipped={lastFlips.has(index)}
                       data-last-from={extras.lastFrom === index}
                       data-captured={checkers && extras.lastCaptured === index}
+                      data-captured-color={
+                        checkers && extras.lastCaptured === index ? capturedColor : undefined
+                      }
+                      data-tip={squareTip(index, king)}
+                      style={motion(index)}
                       data-dark={
                         (Math.floor(index / board.columns) + (index % board.columns)) % 2 === 1
                       }

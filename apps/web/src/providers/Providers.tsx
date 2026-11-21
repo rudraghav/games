@@ -3,6 +3,7 @@ import { useState, type ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MotionConfig } from 'motion/react';
 import { ApiError } from '@games/api-client';
+import { TooltipLayer } from '@/shared/TooltipLayer';
 
 export function Providers({ children }: { children: ReactNode }) {
   const [client] = useState(
@@ -22,6 +23,7 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={client}>
       <MotionConfig reducedMotion="user">{children}</MotionConfig>
+      <TooltipLayer />
     </QueryClientProvider>
   );
 }

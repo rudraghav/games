@@ -167,6 +167,14 @@ export function FlipSevenTable(props: TableProps) {
             className="flip-chip"
             data-kind={kind(item)}
             data-duplicate={isNumber(item) && pair.includes(item.value) ? 'true' : undefined}
+            data-tip={
+              effectText[item.label] ??
+              (kind(item) === 'modifier'
+                ? item.value.startsWith('+')
+                  ? `${item.value} points on top of the number cards`
+                  : 'Doubles the number cards before bonuses'
+                : undefined)
+            }
             aria-hidden="true"
           >
             {chipText[item.label] ?? item.label}

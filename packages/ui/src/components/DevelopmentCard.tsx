@@ -61,6 +61,8 @@ export function ResourceToken({
       data-gem={color}
       role="img"
       aria-label={label || `${count ?? ''} ${color}`.trim()}
+      // The gem is drawn as a shape and a colour; the tip prints its name.
+      data-tip={label || `${count ?? ''} ${color}`.trim()}
     >
       <span aria-hidden="true">
         <GemShape color={color} size={compact ? 11 : 14} />

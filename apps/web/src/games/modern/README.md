@@ -71,6 +71,16 @@ count and floor loss. On phones the factories form a compact one-row-per-factory
 list instead of a two-wide carousel, so every offer can be compared at once.
 Consequences, floor penalties and the floor total use at least 12px text.
 
+## Azul tile finish and motion
+
+Tiles are glazed ceramic (`piece-depth.css`): a highlight across the top-left
+and a fired edge along the bottom, over the illustrated motif. An unfilled wall
+space is a recess, not a faded tile, and factories are shallow plates. A tile
+that joins a pattern line or the floor slides in from the supply side and a wall
+tile is set down; staged tiles lift in their factory. Every tile's `data-tip`
+prints its colour name (and what the first-player marker does), so the glaze is
+never the only cue. Motion is skipped under `prefers-reduced-motion`.
+
 ## Azul decision information
 
 Tile art is decorative; named semantic objects expose the public state needed
@@ -87,3 +97,12 @@ and paused moves disabled. Shared artwork, dimensions and responsive composition
 remain unchanged. Browser checks inspect the accessibility tree, keyboard moves,
 saved refresh and another seat's public view. Native screen-reader user studies
 remain separate evidence. See `backend/app/games/azul/README.md` for the rules.
+
+## Flip 7 and Trio finish
+
+Flip 7 cards and the opponents' compact chips take the same fill and print pairs
+(`card-faces.css`); action and modifier cards and chips explain themselves through
+`data-tip`. A busted player's panel is desaturated, not faded, so "Busted on 8" stays
+above 4.5:1. A hit arrives in the row; a Trio table card turns over from its back when
+the server reveals it and turns back when the reveal ends. Captions inside both tables
+use the darker muted ink set in `stable-tables.css`.

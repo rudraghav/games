@@ -28,6 +28,7 @@ import { turnState } from '@/games/shared/turn-state';
 import { useRoom } from './useRoom';
 import { Chat } from './Chat';
 import { RoomActivity } from './RoomActivity';
+import { ActionToasts } from './ActionToasts';
 import { Lobby } from './Lobby';
 import { RoomResults } from './RoomResults';
 import { TurnCoach } from '@/shared/tutorial/TurnCoach';
@@ -346,7 +347,9 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
                 <strong>You’re offline.</strong>{' '}
                 {mutation.isPaused
                   ? 'Your move will be sent when you reconnect.'
-                  : 'This is your last saved table. Moves resume when you reconnect.'}
+                  : solo
+                    ? 'Your cards are saved.'
+                    : 'This is your last saved table. Moves resume when you reconnect.'}
               </span>
             </div>
           ) : query.isError ? (
@@ -451,6 +454,9 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
         </div>
         {!solo && desktop && (panel === 'chat' || panel === 'activity') ? (
           <aside className="desktop-chat">{tablePanel}</aside>
+        ) : null}
+        {room.game && room.status === 'playing' ? (
+          <ActionToasts room={room} selfId={selfId} />
         ) : null}
       </main>
       <Modal

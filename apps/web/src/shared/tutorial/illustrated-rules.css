@@ -131,10 +131,11 @@
   height: clamp(52px, 43cqi, 76px);
 }
 .lesson-pieces .playing-card--property {
+  --deal-head: 14px;
   display: grid;
   grid-template-rows: minmax(0, 1fr);
   align-items: center;
-  padding: 10px 3px 3px;
+  padding: 14px 0 0;
 }
 .lesson-pieces .playing-card--property .deal-card-meta,
 .lesson-pieces .playing-card--property .deal-card-foot,

@@ -102,3 +102,14 @@ possible deal or certify a complete live match.
 ## One-hit Blackjack odds
 
 An optional disclosure beneath the active player's hands shows the chance that drawing exactly one card would bust the active hand. It uses all exposed cards across all seats and split hands, the six-deck inventory and the dealer's completed natural check. Every permitted pair of hidden dealer card and hit card has equal weight. The preview also checks the projected shoe count before rendering. Opening or closing it never issues a game action. The unit oracle explicitly deals all permitted hidden-card/hit-card pairs, including ace and ten upcards and soft hands.
+
+## Felt, chips and floating notes
+
+`piece-depth.css` adds the table finish: a padded rail around the felt (lit top
+edge, thickness below, vignette inside), a pot drawn as a vertical stack whose
+chips show their edges, bet chips as cream pills with a gold edge, and a dealer
+button that casts a shadow. Notes that float on the felt (last action, dealer
+total) are dark glass with a solid fallback colour declared first, so white text
+keeps 9:1 or more whether or not the blur is supported. Result chips keep their
+own win/loss/push fills. The dealer button and blind markers carry `data-tip`.
+Chip travel is unchanged and still owned by `CasinoMotion`.

@@ -148,3 +148,117 @@ def test_spread_links_reach_every_active_provider_wire_without_changing_saved_sh
         assert "15–35 word sentence" in wire["messages"][0]["content"]
     assert "spread_links" in request["system_instruction"]
     assert "spread_links" not in Reading.model_fields
+
+
+POSITION_HINTS = [
+    ("Where you are", "a starting point to reflect on"),
+    ("What is shifting", "what could be changing or asking for attention"),
+    ("Your next move", "one possible direction to consider"),
+]
+
+
+def without_position_hints(request):
+    context = json.loads(request["input"])
+    context.pop("card_orientation", None)
+    for card in context["cards"]:
+        card.pop("position_focus", None)
+    return {**request, "input": json.dumps(context, ensure_ascii=False, separators=(",", ":"))}
+
+
+@pytest.mark.parametrize("style", ["classic", "fun"])
+@pytest.mark.parametrize("question", ["", "How can I make room for a creative hobby?"])
+def test_each_position_says_what_it_asks_and_the_deck_is_read_upright(style, question):
+    cards = ["major-00", "cups-03", "swords-10"]
+    request = build_reading_request(cards, question, reading_style=style)
+    context = json.loads(request["input"])
+    # The question, each drawn card, its upright meaning and its position travel together.
+    assert context["question"] == question
+    assert [(card["position"], card["position_focus"]) for card in context["cards"]] == POSITION_HINTS
+    assert [card["card_id"] for card in context["cards"]] == cards
+    assert all(card["meaning"] == reading.BY_ID[card["card_id"]].meaning for card in context["cards"])
+    # Each focus sits beside the position it explains, before the reference shortlist.
+    for card in context["cards"]:
+        keys = list(card)
+        assert keys[keys.index("position") + 1] == "position_focus"
+    assert context["card_orientation"] == "upright"
+    # Fixed spread vocabulary only: nothing here derives from the player or the provider.
+    assert "reversed" not in request["input"].casefold()
+    assert reading.PROMPT_VERSION == "pop-tarot-15"
+
+
+@pytest.mark.parametrize("style", ["classic", "fun"])
+@pytest.mark.parametrize("question", ["", "How can I make room for a creative hobby?", "A" * 400])
+def test_chart_requests_carry_all_position_hints_or_none(style, question):
+    request = build_reading_request(
+        ["major-00", "cups-03", "swords-10"], question, astrology_chart=synthetic_chart(), reading_style=style,
+    )
+    context = json.loads(request["input"])
+    present = [(card["position"], card.get("position_focus")) for card in context["cards"]]
+    assert present in (POSITION_HINTS, [(position, None) for position, _ in POSITION_HINTS])
+    assert ("card_orientation" in context) == (present == POSITION_HINTS)
+    assert len(json.dumps(request, ensure_ascii=False, separators=(",", ":"))) <= (
+        reading.MAX_REQUEST_CHARACTERS - reading.RECOVERY_RESERVE_CHARACTERS
+    )
+    # Fun sends one portrait per card, which always leaves room for the hints.
+    if style == "fun":
+        assert present == POSITION_HINTS
+
+
+@pytest.mark.parametrize("style", ["classic", "fun"])
+@pytest.mark.parametrize("chart", [False, True])
+def test_position_hints_never_change_the_shortlist_links_or_any_other_part(monkeypatch, style, chart):
+    cards = ["pentacles-11", "pentacles-12", "swords-11"]
+    arguments = {"astrology_chart": synthetic_chart() if chart else None, "reading_style": style}
+    hinted = build_reading_request(cards, "Practising football with a team", **arguments)
+    assert "position_focus" in hinted["input"] and "spread_links" in hinted["input"]
+    # A hint too large to fit is left out; everything else is the same request.
+    monkeypatch.setattr(reading, "ORIENTATION", "u" * reading.MAX_REQUEST_CHARACTERS)
+    bare = build_reading_request(cards, "Practising football with a team", **arguments)
+    assert "position_focus" not in bare["input"] and "card_orientation" not in bare["input"]
+    assert without_position_hints(hinted) == bare
+
+
+def test_a_request_at_its_budget_keeps_its_question_and_references_instead_of_hints(monkeypatch):
+    def long_references(card_ids, question, *, reading_style):
+        return [[{
+            "name": f"Public reference {position}-{index}" + "x" * 45,
+            "source": "A long source identity " + "y" * 75,
+            "lane": "Public work", "kind": "person",
+            "public_context": "A documented public project involving practical action. " + "z" * 260,
+        } for index in range(6)] for position in range(3)]
+    monkeypatch.setattr(reading, "reference_candidates", long_references)
+    cards = ["major-00", "cups-03", "swords-10"]
+    arguments = {"astrology_chart": synthetic_chart(), "reading_style": "classic"}
+    with monkeypatch.context() as patch:
+        patch.setattr(reading, "ORIENTATION", "u" * reading.MAX_REQUEST_CHARACTERS)
+        bare = build_reading_request(cards, "A" * 400, **arguments)
+    size = len(json.dumps(bare, ensure_ascii=False, separators=(",", ":")))
+    # Leave exactly no room: the same request must come back, never a failure or a trim.
+    monkeypatch.setattr(reading, "RECOVERY_RESERVE_CHARACTERS", reading.MAX_REQUEST_CHARACTERS - size)
+    request = build_reading_request(cards, "A" * 400, **arguments)
+    assert request == bare
+    context = json.loads(request["input"])
+    assert context["question"] == "A" * 400 and len(context["astrology"]) == 2
+    assert all(len(card["reference_characters"]) == 2 for card in context["cards"])
+    assert "card_orientation" not in context
+    assert all("position_focus" not in card for card in context["cards"])
+
+
+@pytest.mark.parametrize("chart", [False, True])
+def test_every_provider_profile_receives_the_same_position_hints(chart):
+    from app.games.tarot.groq_qwen_v2 import build_groq_qwen_v2_request
+    from app.games.tarot.grounded import MODELS, build_grounded_request
+    from app.games.tarot.providers import ALTERNATIVE_MODELS, build_alternative_request
+
+    cards = ["major-00", "cups-03", "swords-10"]
+    request = build_reading_request(
+        cards, "How can I make room for a creative hobby?",
+        astrology_chart=synthetic_chart() if chart else None,
+    )
+    wires = [build_grounded_request(provider, request) for provider in MODELS]
+    wires += [build_alternative_request(provider, request) for provider in ALTERNATIVE_MODELS]
+    wires.append(build_groq_qwen_v2_request(build_alternative_request("groq", request)))
+    for wire in wires:
+        context = json.loads(wire["messages"][1]["content"])
+        assert context["card_orientation"] == "upright"
+        assert [(card["position"], card["position_focus"]) for card in context["cards"]] == POSITION_HINTS

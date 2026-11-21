@@ -1,0 +1,152 @@
+/*
+ * Card motion and depth: a card arriving in a hand or row, a played card settling on
+ * its pile, a card turning over, and a pile that reads as a stack. Transform and
+ * opacity only, 160-320ms on var(--ease-out), and nothing waits for it: the card is
+ * interactive from its first frame. A turn-over only plays on a card whose face the
+ * table has already been sent, and starts from the back, so it never shows a face
+ * early. Everything here is switched off under prefers-reduced-motion.
+ */
+@layer components {
+  /* ---------- A pile is a stack: card edges show below the top card ---------- */
+  .card-pile .pile-shadow {
+    --pile-edge: #c9c5b8;
+    --pile-paper: #fffdf8;
+    position: relative;
+    /* The stack is exactly as wide as its card, however long the pile's label is. */
+    width: max-content;
+    margin-inline: auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px -6px #0000004d;
+    transition: box-shadow 200ms var(--ease-out);
+  }
+  .card-pile .pile-shadow[data-depth='1'] {
+    box-shadow:
+      0 1px 0 var(--pile-paper),
+      0 2px 0 var(--pile-edge),
+      0 8px 12px -6px #0000004d;
+  }
+  .card-pile .pile-shadow[data-depth='2'] {
+    box-shadow:
+      0 1px 0 var(--pile-paper),
+      0 2px 0 var(--pile-edge),
+      0 3px 0 var(--pile-paper),
+      0 4px 0 var(--pile-edge),
+      0 10px 14px -6px #00000052;
+  }
+  .card-pile .pile-shadow[data-depth='3'] {
+    box-shadow:
+      0 1px 0 var(--pile-paper),
+      0 2px 0 var(--pile-edge),
+      0 3px 0 var(--pile-paper),
+      0 4px 0 var(--pile-edge),
+      0 5px 0 var(--pile-paper),
+      0 6px 0 var(--pile-edge),
+      0 13px 16px -6px #0000005c;
+  }
+  .card-pile .pile-shadow:has(> .playing-card--compact) {
+    border-radius: 7px;
+  }
+  .card-pile .pile-shadow:has(> .playing-card--empty) {
+    box-shadow: none;
+  }
+  /* The stack carries the depth, so the top card keeps only a contact shadow. */
+  .card-pile .pile-shadow > .playing-card:not(.playing-card--selected) {
+    box-shadow: 0 0 0 1px #1d211e14;
+  }
+
+  /* ---------- Arrive: a card dealt into a hand or a public row ---------- */
+  /* No scale: a card keeps its measured size from its first frame. */
+  @keyframes card-arrive {
+    from {
+      opacity: 0;
+      translate: 0 10px;
+    }
+  }
+  /* ---------- Settle: a played card dropping onto its pile ---------- */
+  @keyframes card-settle {
+    from {
+      opacity: 0.35;
+      translate: 0 -14px;
+      rotate: -5deg;
+      scale: 1.07;
+    }
+  }
+  /* ---------- Turn over: back first, edge-on at the midpoint, then the face ---------- */
+  @keyframes card-turn {
+    0% {
+      transform: perspective(520px) rotateY(0deg);
+    }
+    49.9% {
+      transform: perspective(520px) rotateY(88deg);
+    }
+    50% {
+      transform: perspective(520px) rotateY(-88deg);
+    }
+    100% {
+      transform: perspective(520px) rotateY(0deg);
+    }
+  }
+  @keyframes card-turn-back {
+    0%,
+    49.9% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+  /* Turning face-down again only shows the back coming round. */
+  @keyframes card-turn-down {
+    from {
+      transform: perspective(520px) rotateY(-88deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :is(
+        .card-hand,
+        .flip-card-row,
+        .gang-community,
+        .gang-pocket-cards,
+        .gang-revealed-cards,
+        .trio-reveal,
+        .shithead-table-cards,
+        .opponent-public-cards
+      )
+      > .playing-card:not(.playing-card--property),
+    .paper-hand-cards > .paper-playing-card,
+    .paper-choice-cards > .paper-playing-card,
+    .six-number-card {
+      animation: card-arrive 240ms var(--ease-out) backwards;
+    }
+    .card-pile .pile-shadow > .playing-card:not(.playing-card--back),
+    .shithead-pile-top > .playing-card:last-child,
+    .paper-discard > .paper-playing-card {
+      animation: card-settle 280ms var(--ease-out) backwards;
+    }
+    /* Even pacing, so the back is seen leaving before the face is seen arriving. */
+    .playing-card[data-turn='up'] {
+      animation: card-turn 320ms cubic-bezier(0.4, 0, 0.3, 1);
+    }
+    .playing-card[data-turn='down'] {
+      animation: card-turn-down 180ms var(--ease-out);
+    }
+    .playing-card[data-turn='up'] > .card-turn-back {
+      animation: card-turn-back 320ms cubic-bezier(0.4, 0, 0.3, 1) forwards;
+    }
+  }
+  /* The back that covers the face for the first half of a turn-over. */
+  .playing-card > .card-turn-back {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .playing-card > .card-turn-back {
+      display: none;
+    }
+  }
+}

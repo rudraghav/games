@@ -108,6 +108,15 @@ function Tile({
           ? undefined
           : label || (color === 'first' ? 'First-player marker' : `${color} tile`)
       }
+      // Colour is named for everyone: the tip prints what the glaze shows.
+      data-tip={
+        decorative
+          ? undefined
+          : label ||
+            (color === 'first'
+              ? 'First-player marker: starts next round and costs a floor space'
+              : `${color} tile`)
+      }
     >
       <AzulTileArt color={color} />
     </span>

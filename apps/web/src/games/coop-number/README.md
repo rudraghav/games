@@ -47,3 +47,5 @@ the selection clears only after the move is recorded.
   penalties; cards placed this selection are ringed in the rows.
 - Round ends show sorted standings with this round's penalties and the 66
   threshold; during play a collapsed standings line names the leader and your place.
+- Number cards arrive in a row or hand with a short motion and carry a `data-tip`
+  naming their penalty; an empty row place keeps a 3:1 edge and a 4.5:1 number.

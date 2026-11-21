@@ -6,6 +6,49 @@ The server shuffles the 78 distinct cards once per match with fresh randomness. 
 
 Character retrieval balances the card, the position and the question. It allocates one lead to each spread position before allocating backups in rounds. When cards compete for the same reference, the card with the clearest lead goes first. Changing the shortlist size preserves every smaller shortlist as a prefix. A meme can appear as a secondary option if it fits; names and identity families stay distinct across the spread. A saved reading retains its original text and reference evidence.
 
+## Position focus and orientation — `pop-tarot-15`, 21 November 2026
+
+Every request already carried the question, each card's name, upright meaning and
+position name. It now also says what each position asks and that the deck has no
+reversals:
+
+- each card gains `position_focus` beside `position`: "a starting point to reflect
+  on", "what could be changing or asking for attention", "one possible direction
+  to consider" (`POSITION_FOCUS` in `deck.py`). The wording is a possibility, in
+  line with the instruction not to assert a situation or a change under way;
+- the context gains `card_orientation: "upright"` (`ORIENTATION`).
+
+These are fixed spread vocabulary, never derived from the player or a provider.
+All provider profiles receive them through the shared context; no system prompt,
+schema, validator, safety wording or privacy rule changed. The web table shows the
+same three sentences under each card heading.
+
+The hints ride along only when they fit beside the shortlist already chosen: the
+request is built exactly as before, then the hints are added if the result is
+still inside the 16,000-character limit less the 1,200-character retry reserve.
+They never shrink a reference shortlist, drop `spread_links` or turn a request
+that fits into one that does not. Ordinary and Fun requests always have room;
+a Classic request with two charts and a long question can be sent without them.
+`test_tarot_selection.py` proves presence, order, all-or-none delivery, an
+unchanged request otherwise, the at-budget case and identical hints on every
+provider wire.
+
+This is verified structurally only. No provider was called for this change, so
+the effect on real output is not evaluated; saved readings keep their own
+`prompt_version`.
+
+## A solo reading cannot be joined
+
+`RoomService.join` refuses an invite to any solo table (Tarot, Roulette, Slots)
+unless the caller is already an active member: 409, "This is a private Tarot
+reading, so it can't be joined. Start your own reading from the games library."
+The refusal adds no member, seat or spectator and returns nothing about the room.
+The owner's own invite still returns them to the table. Reading and archive
+endpoints were already participant-only; this closes the remaining path where a
+shared code produced a silent, seatless visitor. Covered in
+`test_tarot_archive.py` (disposable database) and shown to the visitor by the
+join dialog (`tests/browser/tarot-table.spec.ts`).
+
 ## Classic and Fun readings
 
 Fun is the default for an unsubmitted spread. The Classic shortlist pairs familiar figures with specialists from the full catalogue. Fun ranks 118 reviewed figures and reactions against the player's question, cards and spread positions. Ranking discounts sources that match the whole deck indiscriminately. Recognized sensitive questions use a smaller set of supportive scenes.

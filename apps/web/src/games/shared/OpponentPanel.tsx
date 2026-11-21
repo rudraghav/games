@@ -59,6 +59,7 @@ export function OpponentPanel({
             size="icon"
             variant="ghost"
             aria-label={`Inspect ${name}`}
+            data-tip={`See ${name}’s public cards`}
             onClick={() => setOpen(true)}
           >
             <Maximize2 size={15} />

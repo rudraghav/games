@@ -1078,9 +1078,14 @@ test('an unavailable provider and a paused room keep the spread readable without
     await page.reload();
     const read = page.getByRole('button', { name: 'Read my cards', exact: true });
     await expect(read).toBeDisabled();
+    // The table itself states the pause, once, and that nothing was lost.
     await expect(
-      page.getByRole('status').filter({ hasText: 'Readings are unavailable.' }),
-    ).toHaveText('Readings are unavailable.');
+      page.getByRole('heading', { name: 'Readings are unavailable right now', exact: true }),
+    ).toBeVisible();
+    await expect(page.locator('.tarot-reading-status[role="status"]')).toHaveText(
+      'Your cards are saved. You can ask for your reading once the service is back.',
+    );
+    await expect(page.locator('.tarot-question .error-note')).toHaveCount(0);
     await page.getByRole('textbox', { name: 'What’s on your mind?' }).fill('A new question');
     await expect(read).toBeDisabled();
     await expect(page.getByRole('button', { name: 'Retry reading', exact: true })).toHaveCount(0);
@@ -1180,9 +1185,13 @@ test('an unavailable reading rechecks availability without generating automatica
     await page.reload();
     const read = page.getByRole('button', { name: 'Read my cards', exact: true });
     await expect(read).toBeDisabled();
-    await expect(page.locator('.tarot-question [role="alert"]')).toHaveText(
-      'Readings are unavailable.',
+    await expect(
+      page.getByRole('heading', { name: 'Readings are unavailable right now', exact: true }),
+    ).toBeVisible();
+    await expect(page.locator('.tarot-reading-status[role="status"]')).toContainText(
+      'Your cards are saved.',
     );
+    await expect(page.locator('.tarot-question [role="alert"]')).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Retry reading', exact: true })).toHaveCount(0);
     setView({
       status: 'ready',

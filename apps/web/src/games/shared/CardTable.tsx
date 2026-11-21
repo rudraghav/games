@@ -407,6 +407,9 @@ export function CardTable(props: TableProps) {
             selectedId={selectedCard?.id ?? null}
             disabled={pending || room.paused}
             revealKey={`${current}:${[...playable].join(',')}:${extras.youDrew.join(',')}`}
+            tip={(card) =>
+              sheddingCardInformation(card, mercy, room.settings, active.length) || undefined
+            }
             onSelect={(id) => {
               setSelected(id === selected ? null : id);
               setDismissedSwap(null);
@@ -593,9 +596,12 @@ function UnoHand({
   selectedId,
   disabled,
   revealKey,
+  tip,
   onSelect,
 }: {
   cards: Card[];
+  /** What an action card does under this room's rules, for the tooltip. */
+  tip: (card: Card) => string | undefined;
   family: 'shedding' | 'standard';
   playable: ReadonlySet<string>;
   drawn: ReadonlySet<string>;
@@ -663,6 +669,7 @@ function UnoHand({
               family={family}
               className={isNew ? 'uno-card--new' : undefined}
               label={`${card.label}${canPlay ? ', playable' : ''}${isNew ? ', just drawn' : ''}`}
+              tip={tip(card)}
               selected={card.id === selectedId}
               playable={playable.size ? canPlay : undefined}
               disabled={disabled}

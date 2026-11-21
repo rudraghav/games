@@ -94,7 +94,8 @@ export function PaperPlayingCard({
     'data-color': card.color,
     'data-fresh': fresh || undefined,
     'aria-label': label || `${card.label}. ${card.subtitle}`,
-    title: card.subtitle,
+    // The rule is not printed on a compact card; the app tooltip carries it.
+    'data-tip': card.subtitle || undefined,
   };
   return onClick ? (
     <button

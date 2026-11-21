@@ -96,7 +96,8 @@ async function verifyPlayerBoard(page: Page, view: RoomView, playerId: string) {
       name: new RegExp(`^Place on pattern line ${row + 1},`),
     });
     await expect(line).toHaveAccessibleName(
-      new RegExp(tiles.length ? `; ${tiles.length} ${tiles[0]} tiles` : '; empty'),
+      // One tile is named in the singular: "1 blue tile".
+      new RegExp(tiles.length ? `; ${tiles.length} ${tiles[0]} tiles?$` : '; empty'),
     );
   }
   const floor = board.locator('.azul-floor');

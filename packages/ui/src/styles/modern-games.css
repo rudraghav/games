@@ -1355,8 +1355,11 @@
   .flip-seven-table .flip-player[data-own='true'] {
     padding-block: 12px;
   }
+  /* A busted player's panel loses its colour, not its legibility: fading it put the
+     "Busted on 8" caption at 4.1:1. */
   .flip-seven-table .flip-player[data-status='busted'] {
-    opacity: 0.85;
+    opacity: 1;
+    filter: saturate(0.45);
   }
   .flip-seven-table .flip-player[data-own='true'] > .flip-player-name {
     cursor: default;
@@ -1432,20 +1435,27 @@
     height: 24px;
     padding: 0 5px;
     border-radius: 5px;
-    background: #f1c55a;
-    color: #3b2a05;
+    /* The same fill and print pairs as the Flip 7 faces (card-faces.css). */
+    background: var(--face-amber);
+    box-shadow: inset 0 0 0 1px #946e24;
+    color: var(--face-yellow-on);
     font-size: 12px;
     font-weight: 700;
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
   .flip-chip[data-kind='modifier'] {
-    background: #346a9c;
+    background: var(--face-blue);
+    box-shadow: none;
     color: #fff;
   }
   .flip-chip[data-kind='action'] {
-    background: #b5442f;
+    background: var(--face-red);
+    box-shadow: none;
     color: #fff;
+  }
+  .flip-chip[data-tip] {
+    cursor: help;
   }
   .flip-chip[data-duplicate='true'],
   .flip-seven-table .flip-number-card.flip-duplicate {

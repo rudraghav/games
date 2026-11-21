@@ -15,6 +15,8 @@ interface TarotCardProps {
   /** Roving focus for a deck of choices: only one card is a Tab stop. */
   tabIndex?: number;
   onFocus?: () => void;
+  /** A short hint for the app tooltip, for a card that does something when pressed. */
+  tip?: string;
 }
 export function TarotCard({
   id,
@@ -27,6 +29,7 @@ export function TarotCard({
   imageLoader,
   tabIndex,
   onFocus,
+  tip,
 }: TarotCardProps) {
   const artwork = id ? tarotArtwork[id] : undefined;
   const displayName = name || artwork?.name;
@@ -74,6 +77,7 @@ export function TarotCard({
       compact && 'tarot-card--compact',
     ),
     'aria-label': label || displayName || 'Choose a face-down Tarot card',
+    'data-tip': tip,
   };
   return onClick ? (
     <button

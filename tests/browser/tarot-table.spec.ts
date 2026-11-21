@@ -191,6 +191,14 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     });
     const first = page.locator('.tarot-spread-slot').first();
     await expect(first.locator('.tarot-name')).not.toBeEmpty();
+    // The viewer's own pick turns over from the back they chose; nothing else is shown.
+    expect(
+      await first
+        .locator('.tarot-card')
+        .evaluate((element) => getComputedStyle(element).animationName),
+    ).toBe('tarot-flip-face');
+    await expect(first.locator('.tarot-flip-back')).toHaveAttribute('aria-hidden', 'true');
+    await expect(page.locator('.tarot-flip-back')).toHaveCount(1);
     const name = (await first.locator('.tarot-name').textContent())!;
     await expect(first).toBeFocused();
     await expect(first).toBeInViewport({ ratio: 0.9 });
@@ -251,6 +259,14 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
         .locator('.tarot-card')
         .evaluate((element) => getComputedStyle(element).animationName),
     ).toBe('none');
+    // With reduced motion the back never appears over the revealed face.
+    expect(
+      await page
+        .locator('.tarot-spread-slot')
+        .nth(2)
+        .locator('.tarot-flip-back')
+        .evaluateAll((backs) => backs.every((back) => getComputedStyle(back).opacity === '0')),
+    ).toBe(true);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,
     );
@@ -439,6 +455,7 @@ test('a failed saved-reading check retries only GET and restores the question an
 
 test('a finished solo reading offers a one-tap new spread and wraps credits on a phone', async ({
   page,
+  browserName,
 }) => {
   await page.setViewportSize({ width: 320, height: 640 });
   await soloRoom(page, async (roomId) => {
@@ -519,6 +536,91 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
     await expect(again).toHaveCount(2);
     await expect(again.first()).toBeInViewport();
     await expect(page.locator('.tarot-reading-card-heading .tarot-card')).toHaveCount(3);
+    // The reading opens with its question, then "In short": synthesis, next step, three jumps.
+    await expect(page.locator('.tarot-asked')).toHaveText(`You asked${savedQuestion}`);
+    const summary = page.getByRole('region', { name: 'In short', exact: true });
+    await expect(summary.locator('.tarot-summary-lead')).toHaveText(
+      tarotReadingExample.introduction,
+    );
+    await expect(summary.locator('.tarot-summary-step p')).toHaveText(
+      tarotReadingExample.next_step,
+    );
+    expect(
+      await summary.evaluate(
+        (panel) =>
+          panel.getBoundingClientRect().top <
+          document.querySelector('.tarot-spread')!.getBoundingClientRect().bottom,
+      ),
+      'the summary floats over the lower edge of the table',
+    ).toBe(true);
+    const jumps = summary.getByRole('list', { name: 'Jump to a card' }).getByRole('link');
+    await expect(jumps).toHaveText(
+      cards.map(
+        (card, index) =>
+          `${['Where you are', 'What is shifting', 'Your next move'][index]}${card.label}`,
+      ),
+    );
+    for (const jump of await jumps.all())
+      expect((await jump.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    await jumps.nth(2).click();
+    await expect(page.locator(`#reading-${cards[2].id}`)).toBeInViewport();
+    // Each section names its position, what it asks, and that the card is upright.
+    await expect(page.locator('.tarot-position-meaning')).toHaveText([
+      'UprightA starting point to reflect on.',
+      'UprightWhat could be changing or asking for attention.',
+      'UprightOne possible direction to consider.',
+    ]);
+    for (const selector of ['.tarot-perspectives p', '.tarot-summary-step p', '.tarot-next-step p'])
+      expect(
+        await page
+          .locator(selector)
+          .first()
+          .evaluate((element) => parseFloat(getComputedStyle(element).fontSize)),
+        selector,
+      ).toBeGreaterThanOrEqual(15);
+    // A thumbnail and a spread card both open the full card; closing returns focus.
+    const thumbnail = page
+      .locator('.tarot-reading-card-heading')
+      .first()
+      .getByRole('button', { name: `View ${cards[0].label} card`, exact: true });
+    await thumbnail.click();
+    const detail = page.getByRole('dialog', { name: cards[0].label, exact: true });
+    await expect(detail).toContainText('Where you are. A starting point to reflect on.');
+    await expect(detail).toContainText('Upright. This deck reads every card upright.');
+    await expect(detail).toContainText(cards[0].subtitle!);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    await page.keyboard.press('Escape');
+    await expect(detail).toHaveCount(0);
+    await expect(thumbnail).toBeFocused();
+    await page
+      .locator('.tarot-spread')
+      .getByRole('button', { name: `View ${cards[1].label} card`, exact: true })
+      .click();
+    await expect(page.getByRole('dialog', { name: cards[1].label, exact: true })).toContainText(
+      'What is shifting.',
+    );
+    await page.keyboard.press('Escape');
+    // Keeping it: plain text to the clipboard, and the private saved copy.
+    const keep = page.getByRole('group', { name: 'Keep this reading', exact: true });
+    await expect(keep.getByRole('link', { name: 'Saved reading', exact: true })).toHaveAttribute(
+      'href',
+      `/games/tarot/readings/${(await roomAs(page, roomId)).match_id}`,
+    );
+    if (browserName === 'chromium') {
+      await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
+      await keep.getByRole('button', { name: 'Copy reading', exact: true }).click();
+      await expect(keep.getByRole('button', { name: 'Copied', exact: true })).toBeVisible();
+      await expect(keep.getByRole('status')).toHaveText('Reading copied.');
+      const copied = await page.evaluate(() => navigator.clipboard.readText());
+      expect(
+        copied.startsWith(`${tarotReadingExample.title}\n\nQuestion: ${savedQuestion}\n\n`),
+      ).toBe(true);
+      expect(copied).toContain(`1. Where you are: ${cards[0].label} (upright)`);
+      expect(copied).toContain(`Next small move: ${tarotReadingExample.next_step}`);
+      expect(copied).not.toContain('Michael Scott');
+    }
     await page.locator('.tarot-image-credits summary').click();
     await expect(page.locator('.tarot-image-credits li').first()).toContainText(
       'Michael Scott: nbc.com',
@@ -534,5 +636,143 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
     expect(sent).toEqual(['ready']);
     await again.first().click();
     await expect.poll(() => sent).toEqual(['ready', 'ready', 'start']);
+  });
+});
+
+test('the table says when a reading is being written, unavailable or offline', async ({
+  page,
+  context,
+}) => {
+  await page.setViewportSize({ width: 390, height: 760 });
+  await soloRoom(page, async (roomId) => {
+    for (let card = 0; card < 3; card++) await drawTarotCard(page);
+    await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
+    const names = await page.locator('.tarot-spread .tarot-name').allTextContents();
+    const table = page.locator('.tarot-table');
+    const heading = table.getByRole('heading', { level: 2 });
+    const status = page.locator('.tarot-reading-status');
+    await expect(heading).toHaveText('Your three-card spread');
+    const ready = 'Add a question if you like, then ask for your reading.';
+    await expect(status).toHaveText(ready);
+    const readyBox = (await status.boundingBox())!;
+    // The complete spread sits on its table; every label and meaning stays readable there.
+    for (const selector of ['.tarot-spread-slot > .eyebrow', '.tarot-card-meaning'])
+      expect(
+        await page
+          .locator(`.tarot-spread ${selector}`)
+          .first()
+          .evaluate((element) => {
+            const rgb = getComputedStyle(element).color.match(/\d+/g)!.map(Number);
+            const channel = (value: number) =>
+              value / 255 <= 0.03928 ? value / 255 / 12.92 : ((value / 255 + 0.055) / 1.055) ** 2.4;
+            const light =
+              0.2126 * channel(rgb[0]) + 0.7152 * channel(rgb[1]) + 0.0722 * channel(rgb[2]);
+            // Against the brightest velvet pixel under the stage's dark wash (#4f333f).
+            return (light + 0.05) / (0.0418 + 0.05);
+          }),
+        selector,
+      ).toBeGreaterThanOrEqual(4.5);
+
+    // Constructed: synthetic saved-reading states; no reading is requested.
+    let view: Record<string, unknown> = {};
+    await page.route(`**/api/backend/v1/rooms/${roomId}/reading`, (route) =>
+      route.request().method() === 'GET'
+        ? route.fulfill({
+            json: { api_tier: 'paid', question: '', message: '', reading: null, ...view },
+          })
+        : route.abort(),
+    );
+    const now = Date.now() / 1000;
+    view = {
+      status: 'generating',
+      progress: {
+        stage: 'writing',
+        provider: 'Gemini',
+        attempt: 1,
+        max_attempts: 2,
+        started_at: now - 10,
+        updated_at: now,
+        estimated_percent: 40,
+        estimated_seconds_remaining: 20,
+      },
+    };
+    await page.reload();
+    await expect(heading).toHaveText('Writing your reading…');
+    await expect(heading).toBeInViewport();
+    await expect(status).toHaveText('Your three cards are saved while the reading is written.');
+    await expect(table).toHaveAttribute('data-reading-state', 'writing');
+    // The same line changes in place: asking for a reading does not push the form down.
+    expect(Math.abs((await status.boundingBox())!.height - readyBox.height)).toBeLessThanOrEqual(1);
+    // Progress keeps the one live announcement; the heading does not repeat it aloud.
+    await expect(status).not.toHaveAttribute('role', 'status');
+    await expect(
+      page.getByRole('region', { name: 'Reading progress' }).getByRole('status'),
+    ).toHaveText('Writing your reading.');
+    await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(names);
+
+    view = { status: 'unavailable', message: 'Readings are unavailable.' };
+    await page.reload();
+    await expect(heading).toHaveText('Readings are unavailable right now');
+    await expect(status).toHaveText(
+      'Your cards are saved. You can ask for your reading once the service is back.',
+    );
+    await expect(status).toHaveAttribute('role', 'status');
+    await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeDisabled();
+    await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(names);
+
+    view = { status: 'ready' };
+    await page.reload();
+    await expect(heading).toHaveText('Your three-card spread');
+    await context.setOffline(true);
+    try {
+      await expect(heading).toHaveText('You’re offline');
+      await expect(status).toHaveText('Your cards are saved. Reconnect to ask for your reading.');
+      await expect(page.locator('.tarot-spread .tarot-name')).toHaveText(names);
+      await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeDisabled();
+    } finally {
+      await context.setOffline(false);
+    }
+    await expect(heading).toHaveText('Your three-card spread');
+    await expect(status).toHaveText(ready);
+    await expect(status).not.toHaveAttribute('role', 'status');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+  });
+});
+
+test('a refused solo-reading invite explains itself and stays on the join page', async ({
+  page,
+  browser,
+}) => {
+  const refusal =
+    "This is a private Tarot reading, so it can't be joined. Start your own reading from the games library.";
+  await soloRoom(page, async (roomId) => {
+    const room = await roomAs(page, roomId);
+    const visitorContext = await browser.newContext();
+    try {
+      const visitor = await visitorContext.newPage();
+      // Constructed: the service's own refusal (backend/tests/test_tarot_archive.py proves the
+      // rule in a disposable database). Nothing reaches the room, so no visitor is ever added.
+      let attempts = 0;
+      await visitor.route('**/api/backend/v1/rooms/join', (route) => {
+        attempts++;
+        return route.fulfill({ status: 409, json: { detail: refusal } });
+      });
+      await visitor.goto(`/join/${room.code}`);
+      const join = visitor.getByRole('dialog');
+      await join.getByRole('textbox', { name: 'Your name', exact: true }).fill('Visitor');
+      await join.getByRole('button', { name: 'Join the room', exact: true }).click();
+      await expect(join.getByRole('alert')).toHaveText(refusal);
+      await expect(visitor).toHaveURL(/\/join\//);
+      expect(attempts).toBe(1);
+      expect(await visitor.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+        true,
+      );
+    } finally {
+      await visitorContext.close();
+    }
+    // The owner's table is unchanged: one member, no spectator.
+    expect((await roomAs(page, roomId)).members).toHaveLength(1);
   });
 });

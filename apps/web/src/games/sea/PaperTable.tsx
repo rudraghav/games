@@ -511,6 +511,8 @@ export function PaperTable(props: TableProps) {
                   </span>
                   {top ? (
                     <PaperPlayingCard
+                      // A new top card is a new element, so it settles onto the pile.
+                      key={top.id}
                       card={top}
                       compact
                       label={`Inspect discard ${index + 1}: ${top.label}. ${top.subtitle}`}

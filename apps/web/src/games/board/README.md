@@ -46,3 +46,38 @@ rotation and auto-selection.
 The tutorial reads the same public flip and sowing previews as the board. Its
 Mancala shortcut focuses the named pit; a Checkers shortcut points to the
 destination when the required piece is already selected.
+
+## Depth, motion and contrast
+
+`packages/ui/src/styles/piece-depth.css` owns the finish for these boards (CSS
+only): Four in a Row is a moulded frame with wells, Reversi a felt with a
+bevelled edge, Checkers a walnut-framed board, Mancala a carved tray whose pits
+are shaded hollows. Illustrated pieces cast a shadow; a king is two stacked
+pieces under its crown.
+
+A piece is separated from its board either directly or by its own rim. Measured
+from the art: ink on the Reversi felt 3.3:1; ivory on the dark Checkers square
+4.0:1; coral and gold against the Four in a Row well 3.3:1 and 6.6:1; the coral
+checker and the ivory Reversi disc carry a dark rim (3.6:1 and 8.3:1 against
+their own faces). Legal marks, last-move rings and Mancala markers are 3:1 or
+more against the surface they sit on. Colour never stands alone: sides are named
+in the status line, kings carry a crown, markers differ by shape (solid, dashed).
+
+Motion replays only what the public state already says, 320ms or less per
+step, never delays input and is skipped under `prefers-reduced-motion`:
+
+- Four in a Row: the new disc falls down its column (`--drop-rows`).
+- Reversi: the placed disc sets down and each disc in `last_flips` turns over.
+  Discs are keyed by colour so a square that flips twice running replays.
+- Checkers: the moved piece slides from `last_from` (`--from-dx/--from-dy`,
+  already turned for the second seat) and the captured piece lifts away
+  (`data-captured-color`, drawn only during the lift).
+- Mancala: one seed lands in each pit from `last_source` to `last_move`, in
+  sowing order (`hop` on `MancalaPit`); the count ticks as it lands.
+
+States: movable checkers carry a gold ring that hugs the piece, the chosen one
+lifts with a double ring, own Mancala pits rise on hover and sink on press, and
+keyboard focus is a two-tone ring that holds on light and dark squares.
+`data-pending` on the table shows a quiet saving bar while a move is in flight.
+Marks whose meaning is not printed (last move, flipped, captured, move start,
+king, Mancala landing/capture) carry `data-tip` for the app tooltip.

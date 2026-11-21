@@ -128,6 +128,8 @@ its print with container units (`packages/ui/src/styles/card-faces.css`):
   Freeze, Flip Three and Second Chance have distinct pictograms and names.
 - Uno prints an R/Y/G/B colour letter beside every corner index, so colours never
   rely on hue; captions drop below 55px (discards, activity) instead of colliding.
+  A wild is an ink card whose white well is ringed by all four colours, so its print
+  sits on one dark background instead of a gradient.
 - Skyjo (five value bands), Trio (one colour per number, gold 7) and 6 nimmt!
   (penalty colours) take their palettes from card data, with AA-contrast numerals.
 - Standard faces draw compact WebP derivatives of the pinned SVG masters
@@ -136,6 +138,21 @@ its print with container units (`packages/ui/src/styles/card-faces.css`):
 - Deal Rent cards carry an action band with colour dots; a wild's active half is
   solid and the inactive half hatched; the any-colour wild says "No cash value".
 - An emptied pile (a taken discard, a drained stock) is an empty slot, never a back.
+  A pile with cards is drawn as a stack whose edges thicken with its count.
+- Every colour is a set, as on the Deal faces: the fill, the print on the fill, the
+  same hue as print on the white well, and a keyline where the fill meets the white
+  frame (`--card-color`, `--card-on`, `--card-deep`, `--card-edge`). Small print is
+  5.2:1 or more and the keyline 4:1 or more, measured on the inventory; fills only
+  shade darker towards the foot and yellows shade to amber, never to olive.
+- A legal card lifts inside a ring (ink on Uno, sage on white-framed decks); the rest
+  are muted but stay opaque and at full print contrast. No table fades or veils a card.
+- Motion lives in `card-motion.css`: a card arrives in a hand or row, a played card
+  settles on its pile, and a card the table has just been sent turns over from its
+  back (Skyjo reveal, Trio reveal, casino reveals). It is transform and opacity only,
+  320ms at most, never delays input, and is off under reduced motion.
+- `data-tip` explains faces whose meaning is a symbol: Flip 7 actions and modifiers
+  (cards and opponent chips), Uno action cards with this room's rule wording, 6 nimmt!
+  penalty marks and compact Sea Salt & Paper cards. Face-down cards never carry one.
 
 PlayingCard also owns the shared 24-effect symbols, all 28 named US properties with
 rent schedules and accessible orientation labels. Renderers forward validated

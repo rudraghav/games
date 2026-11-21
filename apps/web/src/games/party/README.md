@@ -46,3 +46,12 @@ rooms across all three modes on desktop and phone. It uses independent guests
 and a sibling tab sharing the host identity, checks exact version increments,
 and closes only its own rooms while preserving match history. Private traces
 and screenshots are disabled.
+
+## Choice and reveal finish
+
+Option chips lift on hover and press back down; the chosen one keeps an accent
+ring, a tint and a tick, so the choice never rests on colour alone. In Most
+Likely each reveal row carries a bar for that player's share of the public vote
+tally (`--share`), and rows arrive in order (`--row`); both are skipped under
+`prefers-reduced-motion`. The Spill or Chill accent is `#a5444a` (5.2:1 on its
+tint; the previous value measured 4.45:1).

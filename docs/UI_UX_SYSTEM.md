@@ -156,6 +156,28 @@ and rank No Mercy eliminations below the players still in, last out first. A
 failed move appears in a dismissible note pinned to the top of the viewport and
 clears once the table moves on.
 
+Deal faces live in one stylesheet (`packages/ui/src/styles/deal-cards.css`). A
+face is a colour header (kind and value pill), a body and a rent-ladder foot,
+and the card is its own size container, so one set of rules serves the hand,
+compact, board-row and cover sizes. Each property colour is a trio: a fill, the
+text colour that sits on that fill, and a deep shade for the same hue as text on
+the cream card; every pair is 4.5:1 or more and each property also names its
+colour in words. A two-colour wild leads with the colour it is played as, an
+any-colour wild and any-colour Rent use the ten-colour spectrum as a gradient,
+Rent keeps the action header with a gradient ribbon and disc, and money keeps a
+paper header tinted by denomination so it never reads as a set or an action.
+
+Shared finish (`polish.css`): cards and buttons share hover lift, press,
+selected ring and a processing sweep shown on the played card and the commit
+button while a move saves. `TooltipLayer` gives any element with `data-tip`, and
+any button or link with a `title`, one styled tooltip on hover or keyboard focus
+(never on touch). `ActionToasts` shows at most three small notifications in the
+bottom-right corner (top-right, one at a time, on phones) for notable public
+moves only: anything aimed at a player, counters, steals, raises, declarations
+and Deal actions; routine draws, banks and passes stay quiet. They repeat public
+room history, never private state, and never replay on reload. Glass surfaces
+(tooltips, notifications) always keep an opaque fallback.
+
 Result composition follows the server winner IDs and catalogue play/score
 metadata: cooperative defeat is a team result, penalty scores sort low first,
 and games without meaningful scores retain player identities without invented

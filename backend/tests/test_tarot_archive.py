@@ -87,6 +87,31 @@ def test_archive_is_exact_private_read_only_and_excludes_unpicked_cards(client):
     assert client.get(f"/v1/readings/{other['match_id']}", headers=owner).status_code == 404
 
 
+def test_a_solo_reading_cannot_be_joined_and_stays_private_to_its_owner(client):
+    room, owner = spread(client)
+    store(room)
+    path = f"/v1/rooms/{room['id']}"
+    outsider = player(client)
+    for invite in (room["code"], room["invite_token"]):
+        refused = client.post("/v1/rooms/join", headers=outsider, json={"name": "Visitor", "invite": invite})
+        assert refused.status_code == 409
+        assert refused.json()["detail"] == (
+            "This is a private Tarot reading, so it can't be joined. "
+            "Start your own reading from the games library."
+        )
+        assert "Private archive question canary" not in refused.text
+    # The refusal added no member, seat or spectator, and opened nothing to the outsider.
+    with sessions()() as session:
+        assert [member.user_id for member in session.query(Member).filter_by(room_id=room["id"])] == [room["owner_id"]]
+    assert client.get(path, headers=outsider).status_code == 404
+    assert client.get(path + "/reading", headers=outsider).status_code == 404
+    assert client.get(f"/v1/readings/{room['match_id']}", headers=outsider).status_code == 404
+    # The owner's own invite still returns them to the same private table.
+    again = client.post("/v1/rooms/join", headers=owner, json={"name": "Host", "invite": room["code"]})
+    assert again.status_code == 200 and again.json()["id"] == room["id"]
+    assert [member["id"] for member in again.json()["members"]] == [room["owner_id"]]
+
+
 def test_archive_and_profile_history_survive_rematch_closure_and_absent_membership(client):
     room, owner = spread(client)
     store(room, legacy_style=True)

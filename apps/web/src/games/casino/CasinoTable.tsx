@@ -409,7 +409,11 @@ export function CasinoTable(props: TableProps) {
                         caption={caption}
                       />
                       {match.id === 'holdem' && match.detail.button === player.id ? (
-                        <span className="casino-dealer-button" aria-label="Dealer button">
+                        <span
+                          className="casino-dealer-button"
+                          aria-label="Dealer button"
+                          data-tip="Dealer button"
+                        >
                           <TokenArt kind="ivory" />
                           <b>D</b>
                         </span>
@@ -496,7 +500,12 @@ export function CasinoTable(props: TableProps) {
                         <TokenArt kind="poker" />
                         {player.bet}
                         {blindSeats[player.id] ? (
-                          <span className="casino-blind-marker">{blindSeats[player.id]}</span>
+                          <span
+                            className="casino-blind-marker"
+                            data-tip={blindSeats[player.id] === 'SB' ? 'Small blind' : 'Big blind'}
+                          >
+                            {blindSeats[player.id]}
+                          </span>
                         ) : null}
                       </motion.span>
                     ) : teen?.paid && !finished && !player.folded ? (

@@ -57,3 +57,8 @@ notices for thief and victim, round summaries and Last Chance stakes;
 `crowded-modern.spec.ts`, `modern-board-fixes.spec.ts`, `stable-game-tables.spec.ts`
 and `sea-cats.spec.ts` exercise legal harness states and live rooms. These checks do
 not by themselves prove every combined game state.
+
+Paper cards lift on hover, settle on press and wear the shared selection ring
+(surface gap, focus colour); a just-arrived card has an ochre edge and its "New" tab
+instead, so the two never look alike. The rule a compact card cannot print is its
+`data-tip`. A new discard top settles onto its pile.

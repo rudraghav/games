@@ -1,0 +1,1227 @@
+/*
+ * Depth, state and motion for boards, pieces, chips and tiles. Layout stays in the
+ * owning game sheets; this sheet is only the finish, in CSS alone: lit tops, rims,
+ * wells and cast shadows, plus the short moves that explain what just happened.
+ *
+ * Contrast rule: a piece is separated from its board either directly (3:1 or more)
+ * or by its own rim, which is 3:1 or more against the piece face. The measured
+ * pairs are listed beside each board. Motion only ever plays on public results the
+ * server already sent, runs 320ms or less per step, never blocks input and is
+ * skipped under prefers-reduced-motion.
+ */
+@layer components {
+  /* ================= Classic boards: shared piece ================= */
+  /*
+   * The illustrated disc covers about 80% of its box, so the box itself reads as
+   * the piece's rim. Faces (measured from the art): coral #cc3a25, gold #d99825,
+   * ivory #e1c9a3, ink #3b3631.
+   */
+  .board-square > .board-disc {
+    --disc-rim: transparent;
+    --disc-side: transparent;
+  }
+  .board-square > .board-disc[data-color='coral'] {
+    /* coral face on rim 3.6:1 */
+    --disc-rim: #2b0b07;
+    --disc-side: #8f1f12;
+  }
+  .board-square > .board-disc[data-color='gold'] {
+    --disc-rim: #3a2505;
+    --disc-side: #a86b0c;
+  }
+  .board-square > .board-disc[data-color='ivory'] {
+    /* ivory face on rim 8.3:1 */
+    --disc-rim: #3d2c17;
+    --disc-side: #b89a70;
+  }
+  .board-square > .board-disc[data-color='ink'] {
+    --disc-rim: #14110f;
+    --disc-side: #24201c;
+  }
+  .classic-board--reversi .board-square > .board-disc:not([data-color='empty']),
+  .classic-board--checkers .board-square > .board-disc:not([data-color='empty']) {
+    background: var(--disc-rim);
+    box-shadow:
+      0 2px 2px #00000052,
+      0 6px 9px -3px #00000073;
+    transition:
+      transform 180ms var(--ease-out),
+      box-shadow 180ms var(--ease-out);
+  }
+
+  /* ================= Four in a Row ================= */
+  /* A moulded frame with holes: discs sit inside the wells, so the well is their rim.
+     Well #0d2329: coral face 3.3:1, gold face 6.6:1. */
+  .classic-board--four .board-grid {
+    border-radius: 18px;
+    background: linear-gradient(180deg, #2f6976 0%, #24525c 46%, #1d444d 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffff52,
+      inset 0 0 0 1px #ffffff14,
+      inset 0 -4px 0 #00000033,
+      0 6px 0 #16353c,
+      0 10px 10px -6px #14262aa6;
+  }
+  .classic-board--four .board-square {
+    background: transparent;
+    transition: background 140ms var(--ease-out);
+  }
+  .classic-board--four .board-square > .board-disc {
+    background: radial-gradient(circle at 50% 28%, #091a1f 0%, #0d2329 55%, #123039 100%);
+    box-shadow:
+      inset 0 4px 6px #000000b3,
+      inset 0 -1px 0 #ffffff1f,
+      0 1px 0 #ffffff29;
+  }
+  .classic-board--four .board-square[data-column-active='true'] {
+    background: #ffffff21;
+  }
+  /* The lit column is one band: each cell also fills the 3px gap beneath it. */
+  @media (min-width: 601px) {
+    .classic-board--four .board-square[data-column-active='true'] {
+      box-shadow: 0 3px 0 #ffffff21;
+    }
+    .classic-board--four .board-square[data-column-active='true']:nth-last-child(-n + 7) {
+      box-shadow: none;
+    }
+  }
+  /* The disc that just landed: a warm ring on the well instead of a box round the cell. */
+  .classic-board--four .board-square[data-last='true'] {
+    outline: none;
+  }
+  .classic-board--four .board-square[data-last='true'] > .board-disc {
+    box-shadow:
+      inset 0 4px 6px #000000b3,
+      0 0 0 2.5px #ffe7a3,
+      0 0 12px #ffe7a380;
+  }
+  .classic-board--four .board-square[data-winning='true'] {
+    outline: none;
+    box-shadow: none;
+  }
+  .classic-board--four .board-square[data-winning='true'] > .board-disc {
+    box-shadow:
+      0 0 0 3px #fff3c4,
+      0 0 0 6px #f2b437,
+      0 0 16px 4px #f2b43799;
+  }
+  .classic-board .board-drops .board-drop[data-active='true'] {
+    box-shadow:
+      inset 0 1px 0 #ffffff59,
+      0 2px 0 #00000033,
+      0 4px 8px #0000002e;
+    transition:
+      transform 140ms var(--ease-out),
+      box-shadow 140ms var(--ease-out);
+  }
+  .classic-board .board-drops .board-drop[data-active='true']:hover {
+    transform: translateY(2px);
+    box-shadow:
+      inset 0 1px 0 #ffffff59,
+      0 1px 0 #00000033,
+      0 6px 12px #00000040;
+  }
+  .classic-board .board-drops .board-drop[data-active='true']:active {
+    transform: translateY(3px) scale(0.96);
+  }
+
+  /* ================= Reversi ================= */
+  /* Felt #429569: ink face 3.3:1 directly; ivory is carried by its rim (8.3:1). */
+  .classic-board--reversi .board-grid {
+    background:
+      radial-gradient(120% 90% at 50% 0%, #ffffff24 0%, transparent 60%),
+      linear-gradient(180deg, #47a072 0%, #429569 50%, #3a865d 100%);
+    box-shadow:
+      inset 0 0 0 4px #1f5139,
+      inset 0 5px 0 #ffffff33,
+      0 0 0 1px #17402c,
+      0 5px 0 #1c4a34,
+      0 9px 10px -6px #14261c99;
+  }
+  .classic-board--reversi .board-square {
+    background: transparent;
+    box-shadow: inset 0 0 0 0.5px #123b2861;
+    transition: background 140ms var(--ease-out);
+  }
+  .classic-board--reversi .board-square[data-legal='true']:hover,
+  .classic-board--reversi .board-square[data-preview='true'] {
+    background: #ffffff24;
+  }
+  .classic-board--reversi .board-square[data-legal='true']:active {
+    background: #0000001f;
+  }
+  /* Legal square: a cream dot (3.4:1 on the felt) with a dark keyline. */
+  .classic-board--reversi .board-square[data-legal='true']::after {
+    background: #fff6d6;
+    box-shadow:
+      0 0 0 2px #173d2b,
+      0 2px 4px #00000059;
+  }
+  .classic-board--reversi .board-square[data-preview='true']::after {
+    box-shadow:
+      0 0 0 2px #173d2b,
+      0 4px 8px #00000059;
+  }
+  .classic-board--reversi .board-square[data-last='true'] {
+    outline: 2px solid #fff6d6;
+    outline-offset: -3px;
+  }
+  .classic-board--reversi .board-square[data-flipped='true'] > .board-disc {
+    box-shadow:
+      0 0 0 2.5px #ffd76a,
+      0 2px 2px #00000052,
+      0 6px 9px -3px #00000073;
+  }
+
+  /* ================= Checkers ================= */
+  /* Dark squares #46664f: ivory face 4.0:1 directly; coral is carried by its rim. */
+  .classic-board--checkers .board-grid {
+    border: 0;
+    background: linear-gradient(180deg, #7b5837 0%, #5e4127 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffff4d,
+      0 5px 0 #46301c,
+      0 9px 10px -6px #2e1f1099;
+  }
+  .classic-board--checkers .board-square {
+    background: linear-gradient(180deg, #f3ecde, #e9e0cd);
+    transition: background 140ms var(--ease-out);
+  }
+  .classic-board--checkers .board-square[data-dark='true'] {
+    background: linear-gradient(180deg, #4b6d55, #416049);
+    box-shadow: inset 0 0 0 0.5px #00000033;
+  }
+  .classic-board--checkers .board-square[data-legal='true']:hover {
+    background: linear-gradient(180deg, #5b8066, #4f735a);
+  }
+  /* A king is two pieces stacked: the lower one shows under the crown. */
+  .classic-board--checkers .board-square > .board-disc[data-king] {
+    box-shadow:
+      0 4px 0 var(--disc-side),
+      0 5.5px 0 var(--disc-rim),
+      0 7px 3px #00000059,
+      0 11px 12px -3px #00000080;
+    transform: translateY(-2px);
+  }
+  .classic-board--checkers .board-disc > svg {
+    filter: drop-shadow(0 1px 0 #ffffff66);
+  }
+  /* Movable pieces carry a gold ring that hugs the piece (4.6:1 on the dark square). */
+  .classic-board--checkers .board-square[data-source='true']:not(:focus-visible),
+  .classic-board--checkers .board-square[aria-pressed='true']:not(:focus-visible),
+  .classic-board--checkers .board-square[data-last='true']:not(:focus-visible) {
+    outline: none;
+  }
+  .classic-board--checkers .board-square[data-source='true'] > .board-disc:not([data-king]) {
+    box-shadow:
+      0 0 0 3px #ffd76a,
+      0 2px 2px #00000052,
+      0 6px 9px -3px #00000073;
+  }
+  .classic-board--checkers .board-square[data-source='true'] > .board-disc[data-king] {
+    box-shadow:
+      0 0 0 3px #ffd76a,
+      0 4px 0 3px #c79a2e,
+      0 11px 12px -3px #00000080;
+  }
+  .classic-board--checkers .board-square[data-source='true']:hover > .board-disc {
+    transform: translateY(-3px);
+  }
+  /* The chosen piece is lifted off the board with a brighter double ring. */
+  .classic-board--checkers .board-square[aria-pressed='true'] {
+    box-shadow: inset 0 0 0 100px #0000002e;
+  }
+  .classic-board--checkers .board-square[aria-pressed='true'] > .board-disc,
+  .classic-board--checkers .board-square[aria-pressed='true'] > .board-disc[data-king] {
+    transform: translateY(-4px) scale(1.06);
+    box-shadow:
+      0 0 0 2px #fff3c4,
+      0 0 0 5px #ffd76a,
+      0 14px 16px -4px #000000a6;
+  }
+  .classic-board--checkers .board-square[data-legal='true']::after {
+    background: #ffd76a;
+    box-shadow:
+      0 0 0 2px #1f3327,
+      0 2px 4px #00000059;
+    transition: transform 140ms var(--ease-out);
+  }
+  .classic-board--checkers .board-square[data-legal='true']:hover::after {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+  /* The piece that just moved, unless it is the viewer's to move again. */
+  .classic-board--checkers
+    .board-square[data-last='true']:not([aria-pressed='true'], [data-source='true'])
+    > .board-disc:not([data-king]) {
+    box-shadow:
+      0 0 0 2px #fff3c4,
+      0 2px 2px #00000052,
+      0 6px 9px -3px #00000073;
+  }
+  .classic-board--checkers
+    .board-square[data-last='true']:not([aria-pressed='true'], [data-source='true'])
+    > .board-disc[data-king] {
+    box-shadow:
+      0 0 0 2px #fff3c4,
+      0 4px 0 2px var(--disc-side),
+      0 5.5px 0 2px var(--disc-rim),
+      0 11px 12px -3px #00000080;
+  }
+  /* Keyboard focus keeps a two-tone ring that holds on light and dark squares alike. */
+  .classic-board .board-square:focus-visible {
+    z-index: 3;
+    outline: 3px solid #fff;
+    outline-offset: -3px;
+    box-shadow: inset 0 0 0 6px #1d211e;
+  }
+
+  /* ================= Board motion ================= */
+  @media (prefers-reduced-motion: no-preference) {
+    /* Four in a Row: the new disc falls down its column and settles with one small bounce. */
+    .classic-board--four .board-square[data-last='true'] > .board-disc > .token-art {
+      animation: disc-drop 300ms cubic-bezier(0.33, 0, 0.67, 0.33) both;
+    }
+    /* Reversi: the placed disc sets down; each captured disc turns over to the new colour. */
+    .classic-board--reversi .board-square[data-last='true'] > .board-disc {
+      animation: disc-place 220ms var(--ease-out) both;
+    }
+    .classic-board--reversi .board-square[data-flipped='true'] > .board-disc {
+      animation: disc-flip 320ms ease-in-out both;
+    }
+    .classic-board--reversi .board-square[data-flipped='true'] > .board-disc::after {
+      animation: disc-flip-face 320ms ease-in-out both;
+    }
+    /* Checkers: the moved piece slides in from its old square; the captured one lifts away. */
+    .classic-board--checkers .board-square[data-last='true'] > .board-disc {
+      animation: disc-slide 260ms var(--ease-out) both;
+    }
+    .classic-board--checkers .board-square[data-captured-color]:not([data-legal='true'])::after {
+      animation: disc-lift 320ms var(--ease-out) both;
+    }
+  }
+  /* A piece in flight is drawn above the squares it crosses. */
+  .classic-board--checkers .board-square[data-last='true'],
+  .classic-board--checkers .board-square[data-captured-color],
+  .classic-board--reversi .board-square[data-flipped='true'] {
+    z-index: 2;
+  }
+  /* The old face of a flipped disc: shown for the first half turn only. */
+  .classic-board--reversi .board-square[data-flipped='true'] > .board-disc::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .classic-board--reversi .board-square[data-flipped='true'] > [data-color='ink']::after {
+    background: radial-gradient(circle at 40% 32%, #f6ead2, #d9bf94);
+  }
+  .classic-board--reversi .board-square[data-flipped='true'] > [data-color='ivory']::after {
+    background: radial-gradient(circle at 40% 32%, #57504a, #2a2622);
+  }
+  /* A captured checker: drawn only while it lifts away, never left on the square. */
+  .classic-board--checkers .board-square[data-captured-color]:not([data-legal='true'])::after {
+    content: '';
+    position: absolute;
+    inset: 14%;
+    left: 14%;
+    top: 14%;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    opacity: 0;
+    transform: none;
+    pointer-events: none;
+    box-shadow: 0 10px 14px -4px #00000080;
+  }
+  .classic-board--checkers
+    .board-square[data-captured-color='coral']:not([data-legal='true'])::after {
+    background: radial-gradient(circle at 40% 32%, #e2553f, #a82a19);
+  }
+  .classic-board--checkers
+    .board-square[data-captured-color='ivory']:not([data-legal='true'])::after {
+    background: radial-gradient(circle at 40% 32%, #f3e6cb, #c9ad82);
+  }
+  @keyframes disc-drop {
+    from {
+      transform: translateY(calc(var(--drop-rows, 1) * -112%));
+    }
+    72% {
+      transform: translateY(0);
+      animation-timing-function: ease-out;
+    }
+    86% {
+      transform: translateY(-7%);
+      animation-timing-function: ease-in;
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes disc-place {
+    from {
+      opacity: 0;
+      transform: translateY(-8px) scale(1.18);
+    }
+  }
+  @keyframes disc-flip {
+    from {
+      transform: perspective(260px) rotateY(180deg);
+    }
+    50% {
+      transform: perspective(260px) rotateY(90deg) scale(1.08);
+    }
+    to {
+      transform: perspective(260px) rotateY(0deg);
+    }
+  }
+  @keyframes disc-flip-face {
+    from,
+    49.9% {
+      opacity: 1;
+    }
+    50%,
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes disc-slide {
+    from {
+      transform: translate(
+        calc(var(--from-dx, 0) * (100% + 12px)),
+        calc(var(--from-dy, 0) * (100% + 12px))
+      );
+    }
+  }
+  @keyframes disc-lift {
+    from {
+      opacity: 0.95;
+      transform: translateY(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-16px) scale(1.2);
+    }
+  }
+  @media (forced-colors: active) {
+    .classic-board--checkers .board-square[data-source='true'],
+    .classic-board--checkers .board-square[aria-pressed='true'],
+    .classic-board--four .board-square[data-last='true'],
+    .classic-board--four .board-square[data-winning='true'] {
+      outline: 3px solid Highlight;
+      outline-offset: -4px;
+    }
+  }
+
+  /* Boards cast their shadow inside the rail, so the rail gives it room and the
+     overview button gives the same room back: the page height does not change. */
+  .board-rail > .horizontal-rail-viewport {
+    padding-bottom: 12px;
+  }
+  .board-viewport > .board-overview-tools {
+    padding-top: 0;
+  }
+
+  /* Saving a move: a quiet bar runs along the top of the table until the server answers. */
+  .classic-board[data-pending],
+  .boop-table[data-pending] {
+    position: relative;
+    cursor: progress;
+  }
+  .classic-board[data-pending]::after,
+  .boop-table[data-pending]::after {
+    content: '';
+    position: absolute;
+    inset: 6px 24px auto;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, var(--color-sage) 50%, transparent) 0 0 / 45%
+      100% no-repeat;
+    opacity: 0.9;
+    pointer-events: none;
+    animation: table-saving 1.1s linear infinite;
+  }
+  @keyframes table-saving {
+    from {
+      background-position: -80% 0;
+    }
+    to {
+      background-position: 180% 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .classic-board[data-pending]::after,
+    .boop-table[data-pending]::after {
+      background: var(--color-sage);
+      opacity: 0.5;
+      animation: none;
+    }
+  }
+
+  /* ================= Mancala ================= */
+  /*
+   * A carved tray. Marble #217891 on the pit floor #e3d5b3 is 3.5:1; the count
+   * (#272a25) is 8:1 or more and the caption (#4f4838) 5:1 or more on every pit.
+   */
+  .mancala-board {
+    border-color: #b39763;
+    background: linear-gradient(180deg, #ecdcb9 0%, #dcc698 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffffcc,
+      inset 0 -4px 0 #6a4f2224,
+      0 5px 0 #b0935d,
+      0 9px 9px -6px #4a36188c;
+  }
+  .mancala-pit {
+    border-color: #a98e5c;
+    background: linear-gradient(180deg, #dccba3 0%, #e3d5b3 38%, #ebdfc2 100%);
+    box-shadow:
+      inset 0 5px 5px -1px #5b431f5c,
+      inset 0 -2px 2px #ffffff99,
+      0 1px 0 #ffffffb3;
+    transition:
+      transform 160ms var(--ease-out),
+      box-shadow 160ms var(--ease-out),
+      background 160ms var(--ease-out);
+  }
+  .mancala-pit strong {
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  .mancala-pit span {
+    color: #4f4838;
+    font-weight: 500;
+  }
+  /* Pits the viewer may sow: a lighter hollow with a pine edge (4:1 on the tray). */
+  button.mancala-pit:not(:disabled) {
+    border-color: #3a6546;
+    background: linear-gradient(180deg, #cfdfc8 0%, #dfe9d9 38%, #edf4e8 100%);
+    box-shadow:
+      inset 0 5px 5px -1px #2f4a3352,
+      inset 0 -2px 2px #ffffffb3,
+      0 1px 0 #ffffffb3,
+      0 3px 6px #3a654629;
+  }
+  button.mancala-pit:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 5px 5px -1px #2f4a3352,
+      inset 0 -2px 2px #ffffffb3,
+      0 0 0 3px #3a654633,
+      0 8px 12px -4px #3a654666;
+  }
+  button.mancala-pit:not(:disabled):active {
+    transform: translateY(0);
+    box-shadow:
+      inset 0 7px 8px -1px #2f4a3373,
+      inset 0 -1px 1px #ffffff80;
+  }
+  /* Markers keep their shapes (solid, dashed) and now clear 3:1 on the tray. */
+  .mancala-pit[data-last='true'],
+  .mancala-pit[data-marker='source'] {
+    outline-color: #6f5524;
+  }
+  .mancala-pit[data-marker='landing'] {
+    outline-color: #3a6546;
+  }
+  .mancala-pit[data-marker='captured'] {
+    outline-color: #9c3f2c;
+  }
+  .mancala-pit[data-marker='last-source'] {
+    outline-color: #6f5524;
+  }
+  .mancala-pit .mancala-seed {
+    filter: drop-shadow(0 1px 1px #0b2f38b3);
+  }
+  /* Seeds stay inside the narrow top of the oval on phones. */
+  @media (max-width: 600px) {
+    .classic-board > .board-viewport .mancala-pit:not(.mancala-pit--store) .mancala-seeds {
+      inset-inline: 14%;
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    /* Sowing: one seed lands in each pit along the path, in order. */
+    .mancala-seeds[data-hop] > .mancala-seed:last-child {
+      animation: seed-hop 280ms var(--ease-out) both;
+      animation-delay: calc(var(--hop, 0) * 70ms);
+    }
+    .mancala-seeds[data-hop] ~ strong {
+      animation: count-tick 240ms var(--ease-out) both;
+      animation-delay: calc(var(--hop, 0) * 70ms + 80ms);
+    }
+  }
+  @keyframes seed-hop {
+    from {
+      opacity: 0;
+      transform: translate(-9px, -16px) scale(0.7);
+    }
+    60% {
+      opacity: 1;
+      transform: translate(0, 2px) scale(1.08);
+    }
+  }
+  @keyframes count-tick {
+    from {
+      transform: scale(1.28);
+    }
+  }
+
+  /* ================= boop ================= */
+  /* A quilted bed: each square is a soft cushion, pieces rest on it with a shadow. */
+  .boop-bed {
+    border-color: #b98f72;
+    background: linear-gradient(180deg, #f1e7d8 0%, #e6d9c6 100%);
+    box-shadow:
+      inset 0 2px 0 #ffffffb3,
+      inset 0 -3px 6px #a37c6233,
+      0 0 0 1px #9b7458,
+      0 8px 0 #a37c62,
+      0 10px 6px -3px #5a3d2a73;
+  }
+  .boop-square {
+    background: radial-gradient(130% 120% at 50% 18%, #fffaf0 0%, #f6edde 62%, #ecdfca 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffff,
+      inset 0 -3px 4px #b89f7e3d;
+    transition:
+      background 140ms var(--ease-out),
+      box-shadow 140ms var(--ease-out),
+      transform 140ms var(--ease-out);
+  }
+  .boop-square:nth-child(12n + 2),
+  .boop-square:nth-child(12n + 4),
+  .boop-square:nth-child(12n + 6),
+  .boop-square:nth-child(12n + 7),
+  .boop-square:nth-child(12n + 9),
+  .boop-square:nth-child(12n + 11) {
+    background: radial-gradient(130% 120% at 50% 18%, #f8f1e2 0%, #eee5d2 62%, #e4d8c1 100%);
+  }
+  .boop-square:not(:disabled):hover {
+    background: radial-gradient(130% 120% at 50% 18%, #f3f8ee 0%, #e3e9dd 70%, #d5dfcd 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffff,
+      0 4px 8px -2px #4d655059;
+  }
+  .boop-square:not(:disabled):active {
+    transform: scale(0.96);
+  }
+  /* Coordinates: 4.7:1 on the darkest cushion. */
+  .boop-square-coordinate {
+    color: #6d604b;
+    font-weight: 500;
+  }
+  .boop-square .boop-piece {
+    filter: drop-shadow(0 3px 2px #5a3d2a66);
+  }
+  .boop-pool-choice {
+    box-shadow: var(--shadow-rest);
+    transition:
+      transform 160ms var(--ease-out),
+      box-shadow 160ms var(--ease-out),
+      border-color 160ms var(--ease-out),
+      background 160ms var(--ease-out);
+  }
+  .boop-pool-choice:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+  }
+  .boop-pool-choice:not(:disabled):active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: var(--shadow-rest);
+  }
+  .boop-pool-choice[aria-pressed='true'] {
+    background: var(--color-sage-light);
+    box-shadow: var(--shadow-rest);
+  }
+  .boop-pool-choice:disabled {
+    box-shadow: none;
+  }
+  .boop-square[data-pushed] {
+    --nx: 0;
+    --ny: 0;
+    z-index: 2;
+  }
+  .boop-square[data-pushed^='n'] {
+    --ny: -1;
+  }
+  .boop-square[data-pushed^='s'] {
+    --ny: 1;
+  }
+  .boop-square[data-pushed$='e'] {
+    --nx: 1;
+  }
+  .boop-square[data-pushed$='w'] {
+    --nx: -1;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    /* A booped piece slides in from the square it was pushed off; the new one plops down. */
+    .boop-square[data-pushed] > .boop-piece {
+      animation: boop-nudge 300ms var(--ease-out) both;
+    }
+    .boop-square[data-last='true'] > .boop-piece {
+      animation: boop-plop 260ms var(--ease-out) both;
+    }
+  }
+  @keyframes boop-nudge {
+    from {
+      transform: translate(calc(var(--nx) * -100%), calc(var(--ny) * -100%));
+    }
+    70% {
+      transform: translate(calc(var(--nx) * 5%), calc(var(--ny) * 5%));
+    }
+  }
+  @keyframes boop-plop {
+    from {
+      opacity: 0;
+      transform: translateY(-12px) scale(0.72);
+    }
+    70% {
+      opacity: 1;
+      transform: translateY(0) scale(1.06);
+    }
+  }
+
+  /* ================= Azul ================= */
+  /* Ceramic: a glaze highlight across the top-left and a fired edge along the bottom. */
+  .azul-tile:has(.azul-tile-art) {
+    position: relative;
+    border-color: #ffffff8c;
+    box-shadow:
+      0 1px 0 #0000003d,
+      0 2px 4px #2034443d;
+  }
+  .azul-tile:has(.azul-tile-art)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(140deg, #ffffff80 0%, #ffffff00 36%, #ffffff00 60%, #00000033 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffffb3,
+      inset 1px 0 0 #ffffff40,
+      inset 0 -2px 0 #0000003d,
+      inset -1px 0 0 #0000001f;
+    pointer-events: none;
+  }
+  /* An unfilled wall space is a recess in the board, not a faded tile. */
+  .azul-tile[data-ghost='true']:has(.azul-tile-art) {
+    box-shadow: none;
+  }
+  .azul-tile[data-ghost='true']:has(.azul-tile-art)::after {
+    background: none;
+    box-shadow: inset 0 2px 4px #000000a6;
+  }
+  .azul-tile--empty {
+    background: #c5d1d859;
+    box-shadow: inset 0 2px 3px #4b5f6b38;
+  }
+  .azul-factory {
+    background: radial-gradient(120% 100% at 50% 0%, #ffffff 0%, #fbf7ee 70%, #f4eee1 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffff,
+      inset 0 -2px 0 #0000000d,
+      var(--shadow-rest);
+  }
+  .azul-draft-button {
+    transition:
+      background 140ms var(--ease-out),
+      border-color 140ms var(--ease-out),
+      box-shadow 140ms var(--ease-out);
+  }
+  .azul-draft-button > .azul-tile {
+    transition: transform 160ms var(--ease-out);
+  }
+  .azul-draft-button:not(:disabled):hover > .azul-tile {
+    transform: translateY(-2px);
+  }
+  .azul-draft-button:not(:disabled):active > .azul-tile {
+    transform: translateY(0) scale(0.94);
+  }
+  .azul-draft-button[aria-pressed='true'] > .azul-tile {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 #0000003d,
+      0 6px 8px -2px #20344466;
+  }
+  .azul-pattern-line:not(:disabled) {
+    transition:
+      background 140ms var(--ease-out),
+      box-shadow 140ms var(--ease-out);
+  }
+  .azul-pattern-line:not(:disabled):hover {
+    box-shadow: 0 0 0 2px #b0833680;
+  }
+  .azul-pattern-line:not(:disabled):active {
+    box-shadow: inset 0 2px 4px #0000002e;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    /* A tile that joins a line slides in from the supply side; a wall tile is set down. */
+    .azul-pattern-tiles > .azul-tile:not(.azul-tile--empty),
+    .azul-floor-cell > .azul-tile {
+      animation: tile-slide 260ms var(--ease-out) both;
+    }
+    .azul-wall > .azul-tile[data-ghost='false'] {
+      animation: tile-set 300ms var(--ease-out) both;
+    }
+    .azul-dock-tiles > .azul-tile:not(.azul-tile--empty) {
+      animation: tile-set 220ms var(--ease-out) both;
+    }
+  }
+  @keyframes tile-slide {
+    from {
+      opacity: 0;
+      transform: translateX(-16px);
+    }
+  }
+  @keyframes tile-set {
+    from {
+      opacity: 0.3;
+      transform: translateY(-6px) scale(1.2);
+    }
+  }
+
+  /* ================= Gem Market ================= */
+  /* Tokens are turned discs: a lit face, a coloured edge and, in the supply, a short stack. */
+  .resource-token {
+    --gem-edge: color-mix(in srgb, var(--gem-ring, var(--gem-color)) 68%, #1d211e);
+    background: radial-gradient(circle at 50% 24%, #ffffff 0%, var(--gem-wash) 64%);
+    box-shadow:
+      inset 0 1px 0 #ffffffe6,
+      inset 0 -3px 5px color-mix(in srgb, var(--gem-color) 26%, transparent),
+      0 2px 0 var(--gem-edge),
+      0 5px 7px -2px #1d211e52;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+  /* The two pale gems get a darker edge so the token still ends on a 3:1 line. */
+  .resource-token[data-gem='pearl'] {
+    --gem-edge: #776a4b;
+  }
+  .resource-token[data-gem='gold'] {
+    --gem-edge: #7a5714;
+  }
+  .resource-token--compact {
+    background: var(--gem-wash);
+    box-shadow:
+      inset 0 1px 0 #ffffffcc,
+      0 1px 1px #1d211e33;
+  }
+  .gem-supply-choice > .resource-token,
+  .gem-supply-gold > .resource-token {
+    box-shadow:
+      inset 0 1px 0 #ffffffe6,
+      inset 0 -3px 5px color-mix(in srgb, var(--gem-color) 26%, transparent),
+      0 2px 0 var(--gem-edge),
+      0 3px 0 var(--gem-wash),
+      0 5px 0 var(--gem-edge),
+      0 9px 10px -3px #1d211e66;
+  }
+  .gem-supply-choice {
+    transition:
+      transform 160ms var(--ease-out),
+      background 160ms var(--ease-out);
+  }
+  .gem-supply-choice:not(:disabled):hover {
+    transform: translateY(-3px);
+  }
+  .gem-supply-choice:not(:disabled):active {
+    transform: translateY(1px);
+  }
+  .gem-supply-choice[aria-pressed='true'] {
+    background: #ffffffb3;
+    transform: translateY(-3px);
+  }
+  .gem-supply-choice:disabled > .resource-token {
+    box-shadow:
+      inset 0 1px 0 #ffffffe6,
+      0 2px 0 var(--gem-edge),
+      0 4px 5px -2px #1d211e40;
+  }
+  .gem-return-choice {
+    transition:
+      transform 160ms var(--ease-out),
+      box-shadow 160ms var(--ease-out);
+  }
+  .gem-return-choice:not(:disabled):hover {
+    transform: translateY(-2px);
+  }
+  .gem-return-choice:not(:disabled):active {
+    transform: translateY(0) scale(0.98);
+  }
+  /* A card you can afford sits a little prouder than the rest of the row. */
+  .gem-card-row > .development-card:has([data-status='affordable']) {
+    box-shadow:
+      0 0 0 1px #4d655066,
+      var(--shadow-lift);
+  }
+
+  /* ================= Word Agents ================= */
+  /*
+   * Tiles are small blocks with a lit face and a solid edge. Team is never colour
+   * alone: Red carries a diamond, Blue a disc, bystanders a ring and the assassin a
+   * cross, on tiles and on the score chips, beside the printed name.
+   * Text on face: white on red 5.4:1, on blue 5.8:1, on assassin 14:1; ink on
+   * bystander 5.9:1; ink on unknown 9.4:1.
+   */
+  .stable-game-table .word-tile {
+    border-color: #cdbf9f;
+    background: linear-gradient(180deg, #f6efe1 0%, #ebe2cf 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffff,
+      0 3px 0 #cdbf9f,
+      0 7px 10px -5px #5a3d1a59;
+    transition:
+      transform 150ms var(--ease-out),
+      box-shadow 150ms var(--ease-out),
+      background 150ms var(--ease-out);
+  }
+  .stable-game-table .word-tile strong {
+    font-weight: 800;
+  }
+  .stable-game-table .word-tile > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+  }
+  .stable-game-table .word-tile[data-tone='coral'] {
+    border-color: #8f392b;
+    background: linear-gradient(180deg, #b85040 0%, #a54132 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffff40,
+      0 3px 0 #7a3023,
+      0 7px 10px -5px #3d140c80;
+  }
+  .stable-game-table .word-tile[data-tone='blue'] {
+    border-color: #275478;
+    background: linear-gradient(180deg, #3b7099 0%, #2f5f85 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffff40,
+      0 3px 0 #1f4563,
+      0 7px 10px -5px #0f263880;
+  }
+  .stable-game-table .word-tile[data-tone='neutral'] {
+    border-color: #9a8e77;
+    background: linear-gradient(180deg, #c4b9a3 0%, #b3a78f 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffff66,
+      0 3px 0 #94886f,
+      0 7px 10px -5px #3d341f66;
+  }
+  .stable-game-table .word-tile[data-tone='assassin'] {
+    border-color: #0f1311;
+    background: linear-gradient(180deg, #343a36 0%, #1f2421 100%);
+    box-shadow:
+      inset 0 1px 0 #ffffff26,
+      0 3px 0 #0f1311,
+      0 7px 10px -5px #00000099;
+  }
+  .stable-game-table button.word-tile:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 #ffffff,
+      0 5px 0 #cdbf9f,
+      0 12px 14px -6px #5a3d1a73;
+  }
+  .stable-game-table button.word-tile:not(:disabled):active {
+    transform: translateY(2px);
+    box-shadow:
+      inset 0 1px 0 #ffffff,
+      0 1px 0 #cdbf9f;
+  }
+  .stable-game-table .word-tile.word-tile--selected {
+    transform: translateY(-2px);
+    background: linear-gradient(180deg, #fffaf0 0%, #f6efe1 100%);
+  }
+  /* Found words are pressed flat and hatched; the hatch is dark so text contrast only rises. */
+  .stable-game-table .word-tile[data-revealed='true'] {
+    background-image: repeating-linear-gradient(135deg, #0000001f 0 5px, transparent 5px 11px);
+    box-shadow: inset 0 2px 4px #00000040;
+    transform: none;
+  }
+  .stable-game-table .word-tile[data-tone='coral'][data-revealed='true'] {
+    background-color: #a54132;
+  }
+  .stable-game-table .word-tile[data-tone='blue'][data-revealed='true'] {
+    background-color: #2f5f85;
+  }
+  .stable-game-table .word-tile[data-tone='neutral'][data-revealed='true'] {
+    background-color: #b8ac96;
+  }
+  .stable-game-table .word-tile[data-tone='assassin'][data-revealed='true'] {
+    background-color: #1f2421;
+  }
+  .stable-game-table .word-tile[data-revealed='true'] strong {
+    opacity: 1;
+  }
+  /* Just revealed: a cream and bronze double ring (bronze 3.4:1 on the table). */
+  .stable-game-table .word-tile[data-last='true'] {
+    outline: 3px solid #8a5f00;
+    box-shadow:
+      inset 0 2px 4px #00000040,
+      0 0 0 2px #fff8e1;
+  }
+  .word-tile[data-tone] > span::before,
+  .word-score__team[data-tone]::before,
+  .word-last__identity[data-tone]::before {
+    content: '';
+    flex: none;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 0.62em;
+    height: 0.62em;
+    background: currentColor;
+  }
+  .word-score__team[data-tone]::before,
+  .word-last__identity[data-tone]::before {
+    margin-right: 0.45em;
+  }
+  .word-tile[data-tone='unknown'] > span::before {
+    content: none;
+  }
+  .word-tile[data-tone='coral'] > span::before,
+  .word-score__team[data-tone='coral']::before,
+  .word-last__identity[data-tone='coral']::before {
+    transform: rotate(45deg) scale(0.9);
+  }
+  .word-tile[data-tone='blue'] > span::before,
+  .word-score__team[data-tone='blue']::before,
+  .word-last__identity[data-tone='blue']::before {
+    border-radius: 50%;
+  }
+  .word-tile[data-tone='neutral'] > span::before,
+  .word-last__identity[data-tone='neutral']::before {
+    border: 0.13em solid currentColor;
+    border-radius: 50%;
+    background: none;
+  }
+  .word-tile[data-tone='assassin'] > span::before,
+  .word-last__identity[data-tone='assassin']::before {
+    background:
+      linear-gradient(45deg, transparent 42%, currentColor 42% 58%, transparent 58%),
+      linear-gradient(-45deg, transparent 42%, currentColor 42% 58%, transparent 58%);
+  }
+  /* Narrow tiles keep the whole label: the mark moves to the corner opposite the tick. */
+  @media (max-width: 600px) {
+    .stable-game-table .word-tile > span {
+      display: inline;
+    }
+    .stable-game-table .word-tile[data-tone] > span::before {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 7px;
+      height: 7px;
+    }
+  }
+  .stable-game-table .word-score__team {
+    box-shadow:
+      inset 0 1px 0 #ffffff33,
+      0 1px 2px #1d211e40;
+  }
+  .stable-game-table .word-score__team[data-active='true'] {
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 0 4px #34372f,
+      0 4px 8px #1d211e40;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .stable-game-table .word-tile[data-last='true'] {
+      animation: word-reveal 300ms var(--ease-out) both;
+    }
+  }
+  @keyframes word-reveal {
+    from {
+      transform: perspective(500px) rotateX(-70deg);
+      opacity: 0.4;
+    }
+  }
+
+  /* ================= Casino felt, chips and pots ================= */
+  /* A padded rail around the felt: lit top edge, thickness below, vignette inside. */
+  .casino-felt {
+    box-shadow:
+      inset 0 0 0 2px #c8aa6c80,
+      inset 0 14px 34px #00000073,
+      inset 0 -8px 22px #0000004d,
+      0 -1px 0 #9a8a63,
+      0 0 0 1px #3f3622,
+      0 5px 0 #4a4029,
+      0 18px 26px -10px #18271b80;
+  }
+  .casino-felt .pot strong {
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 1px 0 #00000059;
+  }
+  /* The pot is a real stack: each chip shows its edge above the one below. */
+  .casino-chip-stack .token-art {
+    left: 2.5px;
+    filter: drop-shadow(0 1.5px 0 #12301f) drop-shadow(0 2px 1.5px #00000080);
+  }
+  .casino-chip-stack .token-art:nth-child(2) {
+    left: 2.5px;
+    bottom: 3.5px;
+  }
+  .casino-chip-stack .token-art:nth-child(3) {
+    left: 2.5px;
+    bottom: 7px;
+  }
+  .casino-layout .seat-bet:not(.casino-seat-result) {
+    padding: 2px 9px 2px 5px;
+    border: 1px solid #c8aa6c;
+    background: #fffaf0;
+    box-shadow: var(--shadow-rest);
+    font-variant-numeric: tabular-nums;
+  }
+  .seat-bet > .token-art {
+    filter: drop-shadow(0 1px 0 #12301f);
+  }
+  .casino-dealer-button {
+    filter: drop-shadow(0 2px 2px #00000059);
+  }
+  /* Notes that float on the felt are dark glass, with a solid fallback first. */
+  .casino-last-action > span,
+  .casino-dealer-total {
+    border: 1px solid #ffffff29;
+    background: #0c241c;
+    background: #0c241cc7;
+    box-shadow: 0 4px 12px #0000004d;
+    backdrop-filter: var(--glass-blur);
+  }
+  .casino-dealer-total {
+    border-color: #c8aa6c99;
+    font-variant-numeric: tabular-nums;
+  }
+  .casino-turn-halo {
+    box-shadow:
+      0 0 0 3px #a784421f,
+      0 0 16px #e3bd7580;
+  }
+  .casino-seat[data-winner='true'] .seat {
+    box-shadow:
+      0 0 0 2px #a7844266,
+      0 6px 14px #a7844240;
+  }
+  .casino-wager-presets > .button[aria-pressed='true'] {
+    box-shadow:
+      inset 0 0 0 1px var(--color-sage),
+      0 0 0 2px #4d655033;
+  }
+
+  /* ================= Roulette and Slots ================= */
+  .chance-dock .button[aria-pressed='true'] {
+    box-shadow:
+      inset 0 0 0 1px var(--color-sage),
+      0 0 0 3px #4d655029;
+  }
+
+  /* ================= Party games ================= */
+  .party-table {
+    /* Accent on tint: 5.1:1 (was 4.45:1). */
+    --party-accent: #a5444a;
+  }
+  .party-choice.button {
+    box-shadow: var(--shadow-rest);
+    transition:
+      transform 160ms var(--ease-out),
+      box-shadow 160ms var(--ease-out),
+      border-color 160ms var(--ease-out),
+      background 160ms var(--ease-out);
+  }
+  .party-choice.button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: var(--party-accent);
+    box-shadow: var(--shadow-lift);
+  }
+  .party-choice.button:active:not(:disabled) {
+    transform: translateY(0) scale(0.985);
+    box-shadow: var(--shadow-rest);
+  }
+  /* Chosen: accent ring, tint and a tick, so the choice never rests on colour alone. */
+  .party-choice.button[aria-pressed='true'] {
+    border-color: var(--party-accent);
+    background: var(--party-tint);
+    box-shadow:
+      inset 0 0 0 1px var(--party-accent),
+      0 0 0 3px color-mix(in srgb, var(--party-accent) 22%, transparent);
+  }
+  .party-choice.button[aria-pressed='true']::after {
+    content: '✓';
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    margin-left: auto;
+    border-radius: 50%;
+    background: var(--party-accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .party-locked {
+    border: 1px solid color-mix(in srgb, var(--party-accent) 35%, transparent);
+    box-shadow: var(--shadow-rest);
+    font-weight: 600;
+  }
+  .party-locked > svg {
+    color: var(--party-accent);
+  }
+  .party-prompt {
+    box-shadow:
+      inset 0 0 0 1px #ffffff99,
+      inset 0 -1px 0 #0000000f,
+      var(--shadow-rest);
+  }
+  /* Reveal: each row carries a bar for its share of the votes, behind the words. */
+  .party-reveal__row {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .party-reveal__row[data-share]::before {
+    content: '';
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: -1;
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      var(--party-accent) calc(var(--share) * 100%),
+      color-mix(in srgb, var(--party-accent) 14%, transparent) 0
+    );
+  }
+  .party-reveal__row[data-leader='true'] {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--party-accent) 30%, transparent);
+  }
+  .party-earned {
+    font-variant-numeric: tabular-nums;
+    font-weight: 800;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .party-reveal__row {
+      animation: party-row-in 260ms var(--ease-out) both;
+      animation-delay: calc(var(--row, 0) * 50ms);
+    }
+    .party-reveal__row[data-share]::before {
+      animation: party-bar 320ms var(--ease-out) both;
+      animation-delay: calc(var(--row, 0) * 50ms + 120ms);
+      transform-origin: left center;
+    }
+  }
+  @keyframes party-row-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  }
+  @keyframes party-bar {
+    from {
+      transform: scaleX(0);
+    }
+  }
+}

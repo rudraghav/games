@@ -21,6 +21,26 @@ Read-only `MancalaPit` instances expose a named image, keeping the supplied owne
 store and seed-count label in the accessibility tree. Interactive pits remain
 native buttons; decorative seeds do not create additional announcements or stops.
 
+`styles/piece-depth.css` is the finish for boards, pieces, chips and tiles, in
+CSS only: wells, rims, bevels and cast shadows, the state rings, and the short
+moves that replay a public result (a falling disc, a flipping disc, a sliding
+or captured checker, hopping seeds, a nudged boop piece, a sliding tile). Layout
+stays in each game's sheet. Its rule for contrast: a piece is separated from its
+board directly (3:1 or more) or by its own rim (3:1 or more against the piece
+face); the measured pairs sit beside each board in the sheet. `MancalaPit` takes
+`hop` (its place along the last sowing) and `tip`; `ResourceToken` prints its
+gem name and count through `data-tip`.
+
+`styles/card-faces.css` prints every card face except Deal (`deal-cards.css`), and
+the shared card back. A colour is a set of four values (fill, print on the fill, the
+hue as print on white, and the keyline against the white frame); add a colour by
+adding the set, and measure it before use. `styles/card-motion.css` owns card motion
+and pile depth: arrive, settle, turn-over and the stack under a pile. `PlayingCard`
+marks a card `data-turn` only while a card it has just been handed turns face-up
+(or back down), covering the face with the back for the first half; `CardPile` sets
+`data-depth` from its count and remounts its top card so it settles; `PlayingCard`
+and `PaperPlayingCard` take their tooltip through `tip` / `data-tip`.
+
 Tarot masters remain intact. An optional image loader lets the app request compact
 static WebP derivatives while Storybook can use the original PNG atlases.
 Change tokens and shared variants to improve a family, then inspect the component

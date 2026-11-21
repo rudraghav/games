@@ -117,6 +117,7 @@ export function SavedReadingScreen({ matchId }: { matchId: string }) {
                   readingStyle={view.style}
                   cardMeanings={view.alternate && view.style === 'classic'}
                   cards={data.cards}
+                  question={data.question || undefined}
                   imageLoader={optimizeCardArt}
                 />
               ) : null

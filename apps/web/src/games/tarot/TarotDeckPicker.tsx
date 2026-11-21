@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  useEffect,
   useId,
   useLayoutEffect,
   useRef,
@@ -35,6 +36,8 @@ export function TarotDeckPicker({
 }: TarotDeckPickerProps) {
   const hintId = useId();
   const [perFan, setPerFan] = useState(2);
+  // The deck fans out once when it is laid down, never again as cards regroup.
+  const [entering, setEntering] = useState(true);
   const [focusIndex, setFocusIndex] = useState(0);
   const [lift, setLift] = useState<{ turn: number; choice: string } | null>(null);
   const [preview, setPreview] = useState<{ turn: number; index: number } | null>(null);
@@ -51,6 +54,11 @@ export function TarotDeckPicker({
   const fanLength = Math.min(perFan, actions.length - fanStart);
   const aim =
     activeCard < 0 || fanLength < 2 ? 0 : (2 * (activeCard - fanStart)) / (fanLength - 1) - 1;
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setEntering(false), 700);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useLayoutEffect(() => {
     const element = rail.current;
@@ -145,6 +153,7 @@ export function TarotDeckPicker({
       <div
         ref={rail}
         className="tarot-fan-stage"
+        data-entering={entering || undefined}
         style={{ '--oracle-aim': aim } as CSSProperties}
         onScrollCapture={(event) => {
           if (

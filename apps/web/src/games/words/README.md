@@ -39,3 +39,17 @@ and spymaster views. Keyboard clue/guess selection, clearing, pending/paused
 states and exact action payloads are checked separately. This is mounted
 projection evidence; saved multiplayer and full-match behavior have separate
 verification suites.
+
+## Tile depth and team marks
+
+Tiles are small blocks with a lit face and a solid edge (`piece-depth.css`); a
+guessable tile rises on hover and sinks on press, the selected tile stays
+raised, and a found word is pressed flat with a dark hatch (the hatch only
+raises text contrast). The latest reveal tips in once and keeps a cream and
+bronze double ring (bronze is 3.4:1 on the table).
+
+Team is never colour alone. Beside the printed identity each tile, the score
+chips and the last-reveal chip carry a shape: Red a diamond, Blue a disc,
+bystanders a ring, the assassin a cross. Text on tile faces: white on red
+5.4:1, on blue 5.8:1, on the assassin 14:1; ink on bystanders 5.9:1 and on
+unknown tiles 9.4:1.

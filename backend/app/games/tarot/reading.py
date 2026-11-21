@@ -26,7 +26,7 @@ from app.astrology.models import (
     AstrologyReading,
 )
 from app.games.tarot.characters import editorial_portrait, find_character, reference_candidates
-from app.games.tarot.deck import BY_ID, POSITIONS, spread_links
+from app.games.tarot.deck import BY_ID, ORIENTATION, POSITION_FOCUS, POSITIONS, spread_links
 from app.games.tarot.progress import ProgressEvent, ProgressStage, Provider, ReadingProgress
 from app.games.tarot.recovery import (
     ALTERNATIVE_RETRY_MAPPING,
@@ -40,7 +40,7 @@ from app.games.tarot.recovery import (
 from app.games.tarot.style import DEFAULT_READING_STYLE, FUN_CONNECTION, ReadingStyle, model_context
 from app.settings import settings
 
-PROMPT_VERSION = "pop-tarot-14"
+PROMPT_VERSION = "pop-tarot-15"
 MAX_ATTEMPTS = 2
 # The provider's cap includes reasoning and visible JSON, not just the reading.
 MAX_OUTPUT_TOKENS = 8192
@@ -489,7 +489,19 @@ def build_reading_request(
             if len(json.dumps(request, ensure_ascii=False, separators=(",", ":"))) <= MAX_REQUEST_CHARACTERS - RECOVERY_RESERVE_CHARACTERS:
                 return request
         raise ValueError("The reading input exceeds its request budget.")
-    return request
+    # What each position asks, and that this deck has no reversals. These hints ride
+    # along only when they fit beside the shortlist already chosen; they never shrink
+    # it, drop a pattern link or turn a request that fits into one that does not.
+    hinted = {**context, "card_orientation": ORIENTATION, "cards": [
+        {key: value for name, item in card.items() for key, value in (
+            ((name, item), ("position_focus", POSITION_FOCUS[item])) if name == "position" else ((name, item),)
+        )}
+        for card in context["cards"]
+    ]}
+    with_hints = {**request, "input": json.dumps(hinted, ensure_ascii=False, separators=(",", ":"))}
+    if len(json.dumps(with_hints, ensure_ascii=False, separators=(",", ":"))) > MAX_REQUEST_CHARACTERS - RECOVERY_RESERVE_CHARACTERS:
+        return request
+    return with_hints
 
 
 def configured_providers(astrology_chart: AstrologyChart | None = None, *, mode: str | None = None) -> list[str]:

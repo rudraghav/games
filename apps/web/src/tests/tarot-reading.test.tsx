@@ -1,6 +1,8 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { TarotReading, readableCredit } from '@/games/tarot/TarotReading';
+import { ReadingSkeleton, TarotReading, readableCredit } from '@/games/tarot/TarotReading';
+import { readingAsText } from '@/games/tarot/reading-text';
+import { positionMeaning, spreadPositions } from '@/games/tarot/spread';
 import { tarotReadingCards, tarotReadingExample } from '@/stories/fixtures/tarot-reading';
 import { syntheticAstrologyReading } from '@/stories/fixtures/astrology';
 import * as characterCatalogue from '@games/api-client/characters';
@@ -432,7 +434,101 @@ describe('saved Tarot reading presentation', () => {
       <TarotReading reading={tarotReadingExample} cards={tarotReadingCards} />,
     );
     expect(html.match(/class="tarot-reading-card-heading"/g)).toHaveLength(3);
-    for (const card of tarotReadingCards) expect(html).toContain(`aria-label="${card.label}"`);
+    // Each thumbnail is a button that opens the full card.
+    for (const card of tarotReadingCards)
+      expect(html).toContain(
+        `<button class="tarot-card tarot-card--compact" aria-label="View ${card.label} card" data-tip="Open the full card"`,
+      );
+  });
+
+  it('states each position, what it asks and that the card is upright', () => {
+    const html = renderToStaticMarkup(
+      <TarotReading reading={tarotReadingExample} cards={tarotReadingCards} />,
+    );
+    for (const meaning of spreadPositions.map((position) => position.meaning))
+      expect(html).toContain(`<span>Upright</span>${meaning}</p>`);
+    expect(positionMeaning('An older saved position')).toBeUndefined();
+  });
+
+  it('opens with a short summary only where the page asks for one', () => {
+    const plain = renderToStaticMarkup(
+      <TarotReading reading={tarotReadingExample} cards={tarotReadingCards} />,
+    );
+    expect(plain).not.toContain('tarot-summary');
+    const html = renderToStaticMarkup(
+      <TarotReading reading={tarotReadingExample} cards={tarotReadingCards} summary />,
+    );
+    expect(html.indexOf('In short')).toBeLessThan(html.indexOf('<article'));
+    expect(html).toContain(`<p class="tarot-summary-lead">${tarotReadingExample.introduction}</p>`);
+    // The summary repeats the step once; the closing block stays the single full version.
+    expect(html.match(/class="tarot-next-step"/g)).toHaveLength(1);
+    expect(html.split(tarotReadingExample.next_step)).toHaveLength(3);
+    for (const card of tarotReadingCards) {
+      expect(html).toContain(`href="#reading-${card.id}"`);
+      expect(html).toContain(`<article id="reading-${card.id}">`);
+    }
+    expect(html.match(/<article/g)).toHaveLength(3);
+  });
+
+  it('offers the saved copy only when the page knows where it lives', () => {
+    const plain = renderToStaticMarkup(
+      <TarotReading reading={tarotReadingExample} cards={tarotReadingCards} />,
+    );
+    expect(plain).toContain('Copy reading');
+    expect(plain).not.toContain('Saved reading');
+    const html = renderToStaticMarkup(
+      <TarotReading
+        reading={tarotReadingExample}
+        cards={tarotReadingCards}
+        savedHref="/games/tarot/readings/example"
+      />,
+    );
+    expect(html).toContain('href="/games/tarot/readings/example"');
+    // Share appears only after the browser reports a share sheet.
+    expect(html).not.toContain('>Share<');
+  });
+
+  it('copies the reading as plain text with the question, positions and one next step', () => {
+    const text = readingAsText({
+      reading: {
+        ...tarotReadingExample,
+        cards: tarotReadingExample.cards.map((card, index) =>
+          index === 1 ? { ...card, title: 'A spark that wants an outlet' } : card,
+        ),
+      },
+      cards: tarotReadingCards,
+      question: '  How can I make room for a hobby?  ',
+    });
+    const blocks = text.split('\n\n');
+    expect(blocks[0]).toBe(tarotReadingExample.title);
+    expect(blocks[1]).toBe('Question: How can I make room for a hobby?');
+    expect(blocks[2]).toBe(`In short: ${tarotReadingExample.introduction}`);
+    expect(blocks[3]).toBe(
+      `1. Where you are: The Fool (upright)\n${tarotReadingExample.cards[0].interpretation}`,
+    );
+    expect(blocks[4].split('\n').slice(0, 2)).toEqual([
+      '2. What is shifting: Ace of Wands (upright)',
+      'A spark that wants an outlet',
+    ]);
+    expect(blocks.at(-2)).toBe(`Next small move: ${tarotReadingExample.next_step}`);
+    expect(blocks.at(-1)).toBe('A playful reflection, not a prediction.');
+    // Portrait names, credits and the playful layer stay on the page.
+    expect(text).not.toContain('Michael Scott');
+    expect(text).not.toContain(tarotReadingExample.cards[0].quirky_interpretation);
+    expect(readingAsText({ reading: tarotReadingExample, cards: tarotReadingCards })).not.toContain(
+      'Question:',
+    );
+  });
+
+  it('shows the shape of a reading while a saved view opens', () => {
+    const waiting = renderToStaticMarkup(<ReadingSkeleton label="Opening your reading…" />);
+    expect(waiting).toContain('role="status"');
+    expect(waiting).toContain('<span class="sr-only">Opening your reading…</span>');
+    // Beside another status line, the placeholder is decoration only.
+    const quiet = renderToStaticMarkup(<ReadingSkeleton />);
+    expect(quiet).toContain('aria-hidden="true"');
+    expect(quiet).not.toContain('role="status"');
+    for (const html of [waiting, quiet]) expect(html).not.toContain('class="tarot-reading"');
   });
 
   it('ends with one next move that folds in the chart advice', () => {
