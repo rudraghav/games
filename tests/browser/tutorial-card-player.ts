@@ -81,21 +81,14 @@ export const playCardDecision: TutorialDriver = async (page, before, step) => {
         if (!(await dialog.isVisible()))
           await click(/^View pending action|^Choose payment|^View .*bill/i);
         if (option('pay')) {
-          await button(dialog, /^Select bank money$|^Select everything$/).click();
-          if (!(await button(dialog, /^Pay [0-9]+M$/).count())) {
-            await button(dialog, 'View table').click();
-            const own = table.getByRole('region', { name: 'Your bank and property sets' });
-            const properties = own.locator(
-              '.deal-collection-cards button:not([aria-pressed="true"])',
-            );
-            const propertyCount = await properties.count();
-            for (let index = 0; index < propertyCount; index++) {
-              await properties.first().click();
-              if (await button(table, /^Pay [0-9]+M/).count()) break;
-            }
-            await click(/^Pay [0-9]+M/);
-            return;
-          }
+          const shortcut = button(dialog, /^Select bank money$|^Select everything$/);
+          if (await shortcut.count()) await shortcut.click();
+          const pay = button(dialog, /^Pay [0-9]+M$/);
+          const assets = dialog.getByRole('checkbox', { checked: false, disabled: false });
+          const available = await assets.count();
+          for (let i = 0; i < available && !(await pay.count()); i++) await assets.first().check();
+          await pay.click();
+          return;
         }
         await button(
           dialog,

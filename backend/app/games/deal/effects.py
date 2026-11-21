@@ -1,7 +1,7 @@
 from app.core.contracts import Action, RuleError, State
 from app.games.deal.deck import DealCard
 from app.games.deal.payments import combine_payment_bundles, payment_bundles
-from app.games.deal.table import assets, locate, transfer, transfer_cards
+from app.games.deal.table import assets, groups_for, locate, transfer, transfer_cards
 
 
 def public_transfers(s: State, effect: dict, cards: dict[str, DealCard]) -> list[dict]:
@@ -72,8 +72,14 @@ def resolve(s: State, effect: dict, cards: dict[str, DealCard], mercy: bool) -> 
         if kind == "forced":
             transfer(s, actor, target, effect["give"], cards)
     elif kind == "breaker":
-        for c in list(s["properties"][target].get(effect["color"], [])):
-            transfer(s, target, actor, c, cards)
+        source = effect["color"]
+        color = source.split(":")[0]
+        destination = next(key for key in groups_for(s, actor, color, cards)
+                           if not s["properties"][actor].get(key))
+        # A Deal Breaker moves a whole collection, including building anchors.
+        # Filling the actor's partial piles individually would split the set.
+        s["properties"][actor][destination] = s["properties"][target][source]
+        s["properties"][target][source] = []
     elif kind == "heist":
         transfer(s, target, actor, effect["take"], cards)
     elif kind == "forced_debt":

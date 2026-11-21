@@ -123,3 +123,5 @@ matches return the same 404. Responses use private, no-store caching.
 Archived results remain available after a new round, room closure and loss of the
 old membership row. Reopening one creates no moves or receipts. The isolated
 `test_chance_archive.py` suite checks these paths against both games.
+
+The private profile summary uses each game’s completed-match score for the requesting participant. Deal recalculates their distinct completed colours from the final public properties, because older results could retain the previous owner’s score after a winning transfer. Other games keep their saved score. This read preserves the archive and stored winners; abandoned matches stay out of player history.

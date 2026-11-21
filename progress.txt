@@ -1,3 +1,9 @@
+## 2026-11-21 — Gem Market and Deal decisions on a phone
+
+- Review Gem Market and both Deal editions for reversible previews and accurate payment, reservation, bank and debt decisions. Exercise actual options on a narrow phone, then verify what is committed and retained. Keep hidden information private and current house rules intact.
+
+- Implemented individual bank and property choices, linked-building totals and the No Mercy debt limit in the payment panel. Deal Breaker now transfers a whole set with its buildings, final scores reflect the resulting collections, and a finished match cannot demand another payment. Market Crash skips a standalone Shack and recovers old stalled turns. Gem Market gained its missing Pass button and shows reservation consequences. Both games retain a viewer’s draft across a failed request. A read-only comparison found three saved Deal seat scores that disagreed with the final holdings among 50 seats in 19 completed games. Profile history must use the final public properties for those scores while retaining the original records. Independent enumeration checked 155,520 purchase quotes and 1,024 token supplies. Production verification follows the combined release.
+
 ## 2026-11-21 — Card, chip and chance decisions
 
 - Review the shipped card and casino tables by the objects and decisions players actually use. Make the cost or likely consequence visible before a move where the public state supports it. Confirm that inspecting or changing a selection sends no move, unknown cards stay private, and controls work on a narrow phone. Check the implemented odds and house rules against independent calculations and distinguish playable games from wheel, reel and dice formats considered for the catalogue.

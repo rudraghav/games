@@ -118,6 +118,7 @@ class Engine(Protocol):
     def legal_actions(self, state: State, player: str) -> list[LegalAction]: ...
     def apply_action(self, state: State, player: str, action: Action) -> State: ...
     def project_view(self, state: State, player: str) -> GameView: ...
+    def history_score(self, state: State, player: str, stored: int) -> int: ...
 
 
 @dataclass
@@ -138,6 +139,10 @@ class BaseEngine:
 
     def copy(self, state: State) -> State:
         return deepcopy(state)
+
+    def history_score(self, state: State, player: str, stored: int) -> int:
+        """Score shown for this participant in their completed-match history."""
+        return stored
 
     def outcome(self, state: State) -> list[str]:
         return list(state.get("winners", []))

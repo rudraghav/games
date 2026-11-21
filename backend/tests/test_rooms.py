@@ -43,6 +43,42 @@ def test_every_game_starts_and_roundtrips_persisted_match_at_both_seat_limits(cl
     assert len(saved.json()["game"]["players"]) == count
 
 
+@pytest.mark.parametrize("game", ["deal", "deal-no-mercy"])
+def test_profile_reads_legacy_deal_score_from_public_sets_without_rewriting_the_archive(client, game):
+    from app.games.deal.deck import make_deck
+
+    room, (owner, guest) = seated_room(client, game, 2)
+    match_id, previous_id = room["match_id"], str(uuid4())
+    with sessions()() as db, db.begin():
+        active = db.get(Match, match_id)
+        winner, other = active.participants
+        cards = make_deck(game == "deal-no-mercy")
+        piles = {color + ":0": [c.id for c in cards.values() if c.colors == (color,)
+                                 and c.kind == "property"] for color in ("brown", "blue", "utility")}
+        used = {c for group in piles.values() for c in group}
+        state = {**active.state, "phase": "finished", "winners": [winner],
+                 "properties": {winner: piles, other: {}},
+                 "deck": [c for c in active.state["deck"] if c not in used],
+                 "hands": {p: [c for c in hand if c not in used] for p, hand in active.state["hands"].items()},
+                 "scores": {winner: 3, other: 1}}
+        stored = {"winners": [winner], "scores": state["scores"]}
+        db.add(Match(id=previous_id, room_id=active.room_id, game_id=game,
+                     rules_version=active.rules_version, state=state, participants=active.participants,
+                     version=17, result=stored))
+    assert client.post(f"/v1/rooms/{room['id']}/abandon", headers=owner).status_code == 200
+    for headers, expected in [(owner, 3), (guest, 0)]:
+        response = client.get("/v1/me", headers=headers)
+        assert response.status_code == 200
+        assert [(m["id"], m["score"], m["winners"]) for m in response.json()["history"]] == [
+            (previous_id, expected, [winner])]
+        assert '"properties"' not in response.text and '"hands"' not in response.text
+    assert client.get("/v1/me", headers=player(client)).json()["history"] == []
+    with sessions()() as db:
+        archived = db.get(Match, previous_id)
+        assert (archived.state, archived.result, archived.version) == (state, stored, 17)
+        assert db.get(Match, match_id).result == {"abandoned": True, "winners": [], "scores": {}}
+
+
 def test_room_auth_hidden_hands_late_join_and_no_cache(client):
     room, headers = seated_room(client)
     outsider = player(client)

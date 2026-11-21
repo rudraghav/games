@@ -93,6 +93,13 @@ def transfer(s: State, source: str, target: str, ident: str, cards: dict[str, De
         s["properties"][target][destination].append(building)
 
 
+def take_candidates(s: State, target: str, kind: str, cards: dict[str, DealCard]) -> list[str]:
+    if kind == "heist":
+        return s["banks"][target]
+    return [card for group in s["properties"][target].values() for card in group
+            if cards[card].kind == "property"]
+
+
 def assets(s: State, player: str, cards: dict[str, DealCard]) -> list[str]:
     return s["banks"][player] + [
         c for group in s["properties"][player].values() for c in group if cards[c].value
@@ -133,14 +140,20 @@ def collection_details(s: State, cards: dict[str, DealCard]) -> list[JsonValue]:
     return result
 
 
+def completed_colors(groups: dict[str, list[str]], cards: dict[str, DealCard]) -> int:
+    return len({
+        key.split(":")[0] for key, group in groups.items()
+        if complete(group, cards, key.split(":")[0])
+    })
+
+
+def set_scores(s: State, cards: dict[str, DealCard]) -> dict[str, int]:
+    return {p: completed_colors(s["properties"][p], cards) for p in s["order"]}
+
+
 def finish(s: State, cards: dict[str, DealCard]) -> None:
+    s["scores"] = set_scores(s, cards)
     for player in s["order"]:
-        colors = {
-            key.split(":")[0]
-            for key, group in s["properties"][player].items()
-            if complete(group, cards, key.split(":")[0])
-        }
-        s["scores"][player] = len(colors)
-        if len(colors) >= 3:
+        if s["scores"][player] >= 3:
             s["winners"], s["phase"] = [player], "finished"
             return

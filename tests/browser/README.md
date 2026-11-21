@@ -189,3 +189,5 @@ Set `GAMES_TEST_TAROT_PROVIDERS` to the exact comma-separated display names of
 the deployed providers to verify their disclosure alongside the real reading.
 The retained receipt records that disclosure; it does not itself prove which
 provider completed a request. Release-scoped server logs establish that separately.
+
+`deal-retry.spec.ts` interrupts one card submission before it reaches the server, reloads the selected move and commits it once in each Deal edition. Use `GAMES_MARKET_DEAL_LIVE=1` with an explicit `GAMES_TEST_URL` for hosted sessions. `deal-payment-panel.spec.ts` covers linked-building payments in public engine replays. The Gem Market case in `expansion.spec.ts` plays a reservation and mandatory token return across two private seats.

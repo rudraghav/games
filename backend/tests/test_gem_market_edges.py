@@ -147,3 +147,35 @@ def test_messages_instruct_the_acting_seat_and_labels_name_consequences():
     state = engine.apply_action(state, "b", option.action)
     assert state["phase"] == "finished"
     assert "your" not in state["message"].lower() and "fewer developments" in state["message"]
+
+
+def test_no_available_move_projects_a_pass_and_consecutive_passes_finish():
+    engine = GemMarketEngine()
+    state = engine.setup(["a", "b"], {}, seed=19)
+    # All twenty coloured gems are held, both reservation rows are full, and
+    # none of the available developments fits either player's particular wallet.
+    for color, count in zip(COLORS, [4, 4, 2, 0, 0], strict=True):
+        state["tokens"]["a"][color] = count
+        state["tokens"]["b"][color] = state["bank"][color] - count
+        state["bank"][color] = 0
+    for tier, row in state["market"].items():
+        stock = state["decks"][tier] + row
+        unavailable = [card for card in stock if all(
+            not purchase_quote(state, player, card)["affordable"] for player in ("a", "b")
+        )]
+        row[:] = unavailable[:4]
+        state["decks"][tier] = [card for card in stock if card not in row]
+    for player in ("a", "b"):
+        stock = state["decks"]["3"]
+        reserve = [card for card in stock if not purchase_quote(state, player, card)["affordable"]][:3]
+        assert len(reserve) == 3
+        state["reserved"][player] = reserve
+        state["decks"]["3"] = [card for card in stock if card not in reserve]
+
+    for player in ("a", "b"):
+        view = engine.project_view(state, player)
+        assert [option.action.type for option in view.actions] == ["pass"]
+        assert view.message.startswith("Pass your turn")
+        assert not engine.project_view(state, "b" if player == "a" else "a").actions
+        state = engine.apply_action(state, player, view.actions[0].action)
+    assert state["phase"] == "finished" and state["winners"] == ["a", "b"]

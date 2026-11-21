@@ -12,7 +12,17 @@ from app.core.contracts import (
 from app.games.deal import effects, options
 from app.games.deal.deck import make_deck, property_groups
 from app.games.deal.payments import payment_bundles
-from app.games.deal.table import collection_details, draw_cards, finish, locate, place, rent
+from app.games.deal.table import (
+    collection_details,
+    completed_colors,
+    draw_cards,
+    finish,
+    locate,
+    place,
+    rent,
+    set_scores,
+    take_candidates,
+)
 
 
 class DealEngine(BaseEngine):
@@ -78,8 +88,31 @@ class DealEngine(BaseEngine):
         s["hands"][players[0]].extend(draw_cards(s, 2))
         return s
 
+    def history_score(self, state: State, player: str, stored: int) -> int:
+        groups = state.get("properties", {}).get(player)
+        if state.get("phase") == "finished" and groups is not None:
+            return completed_colors(groups, self.cards)
+        return stored
+
     def legal_actions(self, s: State, player: str) -> list[LegalAction]:
-        return options.legal_actions(s, player, self.cards, self.mercy)
+        return options.legal_actions(self._recover_empty_crash(s), player, self.cards, self.mercy)
+
+    def _recover_empty_crash(self, state: State) -> State:
+        # Old Market Crash moves sometimes queued a seat with only a Shack.
+        # Project and resume the normal next decision without writing on reads.
+        if state["phase"] == "finished" or not state["queue"]:
+            return state
+
+        def empty(event: dict) -> bool:
+            return (event["kind"] == "crash" and bool(event.get("select")) and
+                    not take_candidates(state, event["target"], "crash", self.cards))
+
+        if not empty(state["queue"][0]):
+            return state
+        s = self.copy(state)
+        s["queue"] = [event for event in s["queue"] if not empty(event)]
+        self._after(s)
+        return s
 
     def _after(self, s: State) -> None:
         finish(s, self.cards)
@@ -157,7 +190,7 @@ class DealEngine(BaseEngine):
             )
         elif kind in ("heist", "crash"):
             for target in others:
-                if s["banks"][target] if kind == "heist" else any(s["properties"][target].values()):
+                if take_candidates(s, target, kind, self.cards):
                     effects.queue(s, player, target, kind, select=True)
         elif kind == "super_sly":
             for target in others:
@@ -172,16 +205,17 @@ class DealEngine(BaseEngine):
         s["message"] = f"Played {card.view().label}."
 
     def apply_action(self, state: State, player: str, action: Action) -> State:
-        options = self.legal_actions(state, player)
+        state = self._recover_empty_crash(state)
+        moves = options.legal_actions(state, player, self.cards, self.mercy)
         if action.type in {"property", "rearrange"} and not action.choice:
             # Pre-destination clients chose only a color. Resolve their action to
             # the same first available pile, without admitting an illegal move.
             action = next(
-                (option.action for option in options
+                (option.action for option in moves
                  if option.action.model_copy(update={"choice": ""}) == action),
                 action,
             )
-        validate_action(options, action)
+        validate_action(moves, action)
         s = self.copy(state)
         if s["queue"]:
             effects.act(s, player, action, self.cards, self.mercy)
@@ -247,10 +281,14 @@ class DealEngine(BaseEngine):
         return f"Play up to {s['moves']} more card{'s' if s['moves'] != 1 else ''}, or end your turn."
 
     def project_view(self, s: State, player: str) -> GameView:
-        current = s["order"][s["turn"]]
+        s = self._recover_empty_crash(s)
+        finished = s["phase"] == "finished"
+        current = None if finished else s["order"][s["turn"]]
+        event = s["queue"][0] if s["queue"] and not finished else None
+        scores = set_scores(s, self.cards) if finished else s["scores"]
         pending = None
-        if s["queue"]:
-            e = s["queue"][0]
+        if event:
+            e = event
             pending = {
                 "kind": e["kind"], "actor": e["actor"], "target": e["target"],
                 "responder": e["responder"], "amount": e.get("amount"),
@@ -274,7 +312,7 @@ class DealEngine(BaseEngine):
                 if e.get("payment") or e.get("distribution")
                 else e["responder"]
             )
-        elif s["gift"]:
+        elif not finished and s["gift"]:
             current = s["gift"]["recipient"]
         hand = list(s["hands"].get(player, []))
         if s["gift"] and s["gift"]["recipient"] == player:
@@ -287,7 +325,7 @@ class DealEngine(BaseEngine):
                 PlayerView(
                     id=p,
                     count=len(s["hands"][p]),
-                    score=s["scores"][p],
+                    score=scores[p],
                     bank=[self.cards[c].view() for c in s["banks"][p]],
                     properties={
                         key: [self.cards[c].view(key.split(":")[0]) for c in group]
@@ -300,21 +338,19 @@ class DealEngine(BaseEngine):
             hand=[self.cards[c].view() for c in hand],
             discard=self.cards[s["discard"][-1]].view() if s["discard"] else None,
             draw_count=len(s["deck"]),
-            actions=self.legal_actions(s, player),
+            actions=options.legal_actions(s, player, self.cards, self.mercy),
             message=self.instruction(s),
             winners=s["winners"],
             detail={
                 "moves": s["moves"],
                 "rent_multiplier": s["boost"],
                 "debts": s["debts"],
-                "pending": s["queue"][0]["kind"] if s["queue"] else None,
-                "payment_amount": s["queue"][0].get("amount", 0)
-                if s["queue"] and s["queue"][0].get("payment") else 0,
+                "pending": event["kind"] if event else None,
+                "payment_amount": event.get("amount", 0) if event and event.get("payment") else 0,
                 "property_groups": property_groups(),
                 "collections": collection_details(s, self.cards),
                 "pending_action": pending,
                 "payment_bundles": [bundle for bundle in payment_bundles(s, player, self.cards)]
-                if s["queue"] and s["queue"][0].get("payment")
-                and s["queue"][0]["target"] == player else [],
+                if event and event.get("payment") and event["target"] == player else [],
             },
         )

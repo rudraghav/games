@@ -12,6 +12,8 @@ information when clicked. A separate **Card info** control inspects a card witho
 paying, banking or submitting it. Each public property set also has an **Info**
 control, including inside an opponent’s public-table inspector.
 
+A decision belongs to one player and match version. A failed save keeps the chosen move, open panel and selected assets available after reload. A successful save advances the version and clears that decision. Closing card information returns focus to the button the player tapped.
+
 ## Table layout (3 November 2026)
 
 - **Opponents.** Each opponent card shows the name (two lines at most), hand
@@ -163,7 +165,12 @@ the viewer's own hand. `DealComposer.tsx` and `DealResolution.tsx` render it.
   3/3 → 2/3 · breaks a complete set and its House rent"). When your assets cannot
   cover a bill the panel says so and offers **Select everything**. A partial
   payment survives a refresh (`useTableDraft`, scoped to room, match and
-  version).
+  version). The payment panel itself offers each payable bank card or property. Selecting
+  a linked deed checks the buildings it carries and counts each card once. Review the
+  selected total and overpayment beside Pay while the asset list scrolls. The bank
+  shortcut fills the rest of a mixed payment while preserving the bank notes and property already selected.
+  Before accepting a short or empty bill, the responder sees what can actually be paid.
+  A No Mercy shortfall issues one chip up to the three-chip limit.
 - **Double the Rent and No Mercy debts.** While Double the Rent is armed the dock
   reads "Rent ×2 armed" and explains why End turn is gone. A creditor handed a
   debt card sees "Received: <card>".

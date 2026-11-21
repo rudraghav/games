@@ -270,3 +270,11 @@ Public move-history labels: accepting is "Let the last play stand" (it covers
 both an accepted action and an accepted block), choosing is "Chose a card to
 take" and a debt settlement is "Gave a hand card to settle a debt" (the card
 stays private to the two players).
+
+## Whole-set transfers and final scoring
+
+In both editions, accepting Deal Breaker moves the complete pile into a separate collection of its current colour. Existing collections of the same colour keep their cards. Any House, Hotel or Shack travels in the stolen collection with its property anchor. This preserves the documented whole-set action and the publisher’s building rule. [Hasbro Deal Breaker FAQ](https://hasbro-new.custhelp.com/app/answers/detail_uk/a_id/928)
+
+A winning transfer settles every seat’s distinct-colour score immediately. A finished table has no acting player or remaining counter/payment prompts, even if another opponent was originally queued for the same bill. Saved final tables and each participant’s private profile history display scores from their actual collections, including older finals whose cached score still counted a stolen set.
+
+Market Crash offers a choice only for opponents who hold a property. A Shack left alone after a free rearrangement cannot be taken as a property. Older saved turns that queued a building-only seat resume at the next legal choice.

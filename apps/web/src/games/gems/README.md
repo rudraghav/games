@@ -52,3 +52,10 @@ and the player strip tell every seat whether this is their last turn, they have
 one more, or their turns are done; waiting seats see who is returning gems or
 choosing a patron, never the actor's instruction. At match end a ranked "Final
 collections" list gives prestige, developments and patrons per seat.
+
+Reservations show a warning beside both the face-up and face-down controls when
+the card fills the last reservation slot or its gold forces a token return.
+When the engine offers only a pass, the actor can pass from the supply controls.
+Gem picks and the inspected card belong to the specific seat, room, match and
+decision. An unsuccessful request keeps the choice available for retry, including
+after reload. A successful new version opens a fresh decision.

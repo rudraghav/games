@@ -82,3 +82,13 @@ export function suggestBankPayment(bank: Card[], eligible: string[], due: number
   const amount = [...sums.keys()].filter((value) => value >= due).sort((a, b) => a - b)[0];
   return amount === undefined ? candidates.map((card) => card.id) : sums.get(amount)!;
 }
+
+/** Top up the current payment while preserving every card the player already chose. */
+export function bankTopUp(bank: Card[], eligible: string[], paid: string[], remaining: number) {
+  if (remaining <= 0) return [];
+  return suggestBankPayment(
+    bank.filter((card) => !paid.includes(card.id)),
+    eligible,
+    remaining,
+  );
+}

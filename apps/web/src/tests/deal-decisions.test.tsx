@@ -219,4 +219,39 @@ describe('Deal decisions name the exact card, its colour and its set', () => {
     expect(html).toContain('You can’t cover 5M. Give everything you have (2M)');
     expect(html).toContain('Select everything');
   });
+  it('quotes bills from the public table before a player spends their counter', () => {
+    const ctx = deal('counter').ctx;
+    expect(describePending(ctx)?.accept).toMatch(/all payable assets \(1M\)/);
+    expect(describePending(ctx)?.acceptLabel).toBe('Accept and choose payment');
+    const empty = {
+      ...ctx,
+      match: {
+        ...ctx.match,
+        players: ctx.match.players.map((p) =>
+          p.id === ctx.selfId ? { ...p, bank: [], properties: {} } : p,
+        ),
+      },
+    };
+    expect(describePending(empty)?.accept).toBe('You have no payable assets and the bill clears.');
+    expect(describePending(empty)?.acceptLabel).toBe('Accept bill');
+    const mercy = { ...empty, match: { ...empty.match, id: 'deal-no-mercy' } };
+    expect(describePending(mercy)?.accept).toContain('You take one debt chip');
+    const actor = ctx.details.pendingAction!.actor;
+    const atLimit = {
+      ...mercy,
+      details: { ...ctx.details, debts: { [ctx.selfId]: [actor, actor, actor] } },
+    };
+    expect(describePending(atLimit)?.accept).toContain('No new chip is added.');
+    expect(describePending(atLimit)?.accept).not.toContain('take one debt chip');
+    const forced = {
+      ...atLimit,
+      details: {
+        ...atLimit.details,
+        pendingAction: { ...ctx.details.pendingAction!, kind: 'forced_debt' },
+      },
+    };
+    expect(describePending(forced)?.accept).toBe(
+      'You already have 3 debt chips. No new chip is added.',
+    );
+  });
 });

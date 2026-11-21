@@ -73,6 +73,13 @@ def invite() -> tuple[str, str]:
     return token, hashlib.sha256(token.encode()).hexdigest()
 
 
+def saved_player_score(match: Match, player: str) -> int:
+    assert match.result is not None
+    stored: int = match.result["scores"].get(player, 0)
+    engine = ENGINES.get(match.game_id)
+    return engine.history_score(match.state, player, stored) if engine else stored
+
+
 def room_code() -> str:
     return "".join(secrets.choice("ABCDEFGHJKMNPQRSTVWXYZ23456789") for _ in range(8))
 
@@ -938,7 +945,7 @@ class RoomService:
                         room_id=m.room_id,
                         game_id=m.game_id,
                         winners=m.result["winners"],
-                        score=m.result["scores"].get(actor.id, 0),
+                        score=saved_player_score(m, actor.id),
                         created_at=m.created_at,
                     )
                     for m in self.repo.history(actor.id)

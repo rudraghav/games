@@ -48,7 +48,7 @@ export function GemsTable(props: TableProps) {
   const seated = match.players.some((player) => player.id === selfId);
   // The viewer's unsent picks survive a refresh but never a later decision.
   const [draft, setDraft] = useTableDraft<Draft>(
-    `gem-market:${room.id}:${room.matchId}:${room.matchVersion}`,
+    `gem-market:${room.id}:${room.matchId}:${selfId}:${room.matchVersion}`,
     { card: null, gems: {} },
   );
   const [notice, setNotice] = useState<string | null>(null);
@@ -129,9 +129,9 @@ export function GemsTable(props: TableProps) {
   }
 
   function submit(action: Action) {
+    // Only a saved version advances the draft. A rejected or interrupted move can be retried.
     onAction(action);
     setNotice(null);
-    setDraft({ card: null, gems: {} });
   }
 
   useEffect(() => {
@@ -233,6 +233,15 @@ export function GemsTable(props: TableProps) {
         (option) => option.value.type === 'reserve' && option.value.card === selectedCard.id,
       )
     : undefined;
+  const pass = match.actions.find((option) => option.value.type === 'pass');
+  const reserveNote = [
+    match.hand.length === 2 ? 'Reserving fills your last slot.' : '',
+    held === HOLD_LIMIT && data.bank.gold > 0
+      ? 'With the gold you’ll hold 11 gems and must return one.'
+      : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
   const returnOptions = match.actions.filter((option) => option.value.type === 'return');
   const patronOptions = match.actions.filter((option) => option.value.type === 'patron');
 
@@ -370,10 +379,16 @@ export function GemsTable(props: TableProps) {
               variant="secondary"
               disabled={blocked}
               aria-label={`${actionText(reserve.label, selectedCard.label)} · ${selectedCard.label}`}
+              aria-describedby={reserveNote ? `${trayId}-reserve-note` : undefined}
               onClick={() => submit(reserve.value)}
             >
               {actionText(reserve.label, selectedCard.label)}
             </Button>
+          ) : null}
+          {reserve && reserveNote ? (
+            <p className="small gem-tray-reason" id={`${trayId}-reserve-note`}>
+              {reserveNote}
+            </p>
           ) : null}
           {!buy && !reserve ? (
             <p className="small gem-tray-reason">
@@ -544,6 +559,14 @@ export function GemsTable(props: TableProps) {
             ),
           )}
         </div>
+        {pass ? (
+          <div className="gem-take-controls">
+            <p className="small gem-take-hint">If everyone passes in turn, the game ends.</p>
+            <Button disabled={blocked} onClick={() => submit(pass.value)}>
+              Pass turn
+            </Button>
+          </div>
+        ) : null}
         {canTake ? (
           <div className="gem-take-controls">
             <p
@@ -574,12 +597,18 @@ export function GemsTable(props: TableProps) {
         {match.actions.some((option) => option.value.type === 'reserve_blind') ? (
           <details className="gem-secondary-actions">
             <summary>Reserve a face-down card</summary>
+            {reserveNote ? (
+              <p className="small gem-tray-reason" id={`${trayId}-blind-note`}>
+                {reserveNote}
+              </p>
+            ) : null}
             <div>
               {match.actions
                 .filter((option) => option.value.type === 'reserve_blind')
                 .map((option) => (
                   <Button
                     key={String(option.value.choice)}
+                    aria-describedby={reserveNote ? `${trayId}-blind-note` : undefined}
                     variant="secondary"
                     disabled={blocked}
                     onClick={() => submit(option.value)}

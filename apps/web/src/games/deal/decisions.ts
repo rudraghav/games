@@ -97,6 +97,15 @@ export function progress(ctx: DealContext, owner: string, key: string) {
 export function name(ctx: DealContext, id: string) {
   return id === ctx.selfId ? 'you' : playerName(ctx.room, id);
 }
+/** Under the No Mercy house rules one unpaid bill earns at most one chip, up to three. */
+export function debtChipOutcome(ctx: DealContext, debtor: string, creditor: string) {
+  if (ctx.match.id !== 'deal-no-mercy') return '';
+  const you = debtor === ctx.selfId;
+  const subject = capital(name(ctx, debtor));
+  if ((ctx.details.debts[debtor] || []).length >= 3)
+    return `${subject} already ${you ? 'have' : 'has'} 3 debt chips. No new chip is added.`;
+  return `${subject} ${you ? 'take' : 'takes'} one debt chip and ${you ? 'owe' : 'owes'} ${name(ctx, creditor)} a hand card on ${you ? 'your' : 'their'} turn.`;
+}
 export function possessive(ctx: DealContext, id: string) {
   return id === ctx.selfId ? 'your' : `${playerName(ctx.room, id)}’s`;
 }
@@ -158,7 +167,16 @@ export function setImpact(ctx: DealContext, owner: string, key: string, leaving:
   const gone = before.cards.filter((card) => leaving.includes(card.id) && isProperty(card)).length;
   const after = before.count - gone;
   const lost = before.complete && after < before.size;
-  const buildings = before.cards.filter((card) => !isProperty(card)).map((card) => card.label);
+  const keepsRentBase = before.cards.some(
+    (card) => isProperty(card) && bankValue(card) && !leaving.includes(card.id),
+  );
+  const buildings = before.cards
+    .filter(
+      (card) =>
+        !isProperty(card) &&
+        (card.effect !== 'shack' || leaving.includes(card.id) || !keepsRentBase),
+    )
+    .map((card) => card.label);
   return {
     text: `${setName(key, ctx.details)}: ${before.count}/${before.size} → ${after}/${before.size}${
       lost
@@ -297,9 +315,13 @@ export function describeOption(option: ActionOption, ctx: DealContext): OptionTe
     const cards =
       ctx.match.players.find((player) => player.id === target)?.properties[action.color] || [];
     const total = cards.reduce((sum, item) => sum + bankValue(item), 0);
+    const alreadyComplete = ctx.details.collections.some(
+      (pile) =>
+        pile.player === ctx.selfId && pile.color === action.color.split(':')[0] && pile.complete,
+    );
     return {
       title: `${who(target)}’s ${setName(action.color, ctx.details)} (complete)`,
-      detail: `Take ${cards.map((item) => cardTitle(item, ctx.details)).join(', ')} · ${total}M · +1 complete set for you`,
+      detail: `Take ${cards.map((item) => cardTitle(item, ctx.details)).join(', ')} · ${total}M · ${alreadyComplete ? 'you already count this colour toward winning' : '+1 complete colour for you'}`,
       colors: [action.color.split(':')[0]],
     };
   }
@@ -324,8 +346,7 @@ export function describeOption(option: ActionOption, ctx: DealContext): OptionTe
     debt: 'Pays you 5M',
     yoink: 'Pays you 10M',
     birthday: 'Each other player pays you 2M',
-    forced_debt:
-      'Gets a debt chip: on their turn they give you a card from their hand before playing',
+    forced_debt: debtChipOutcome(ctx, action.target, ctx.selfId),
     unfair: 'Swap your bank with theirs',
     tax: 'Keeps one bank card and hands out the rest',
     repossession: 'Keeps one property and hands out the rest',
@@ -484,6 +505,7 @@ export function describePending(ctx: DealContext): PendingText | null {
     ].map((key) => `${capital(possessive(ctx, owner))} ${setImpact(ctx, owner, key, ids).text}`);
   let object = '';
   let outcome = '';
+  let acceptLabel = `Accept ${title}`;
   switch (effect.kind) {
     case 'sly':
     case 'crash':
@@ -526,21 +548,40 @@ export function describePending(ctx: DealContext): PendingText | null {
       object = 'banks';
       outcome = 'the two banks swap';
       break;
-    case 'bill':
-      object = `${effect.amount ?? 0}M`;
-      outcome = `${target === ctx.selfId ? 'you choose' : `${capital(name(ctx, target))} chooses`} ${effect.amount ?? 0}M from bank or properties to pay`;
+    case 'bill': {
+      const due = effect.amount ?? 0;
+      const debtor = ctx.match.players.find((player) => player.id === target);
+      const available = [
+        ...(debtor?.bank || []),
+        ...Object.values(debtor?.properties || {}).flat(),
+      ].reduce((sum, item) => sum + bankValue(item), 0);
+      const you = target === ctx.selfId;
+      const subject = name(ctx, target);
+      object = `${due}M`;
+      acceptLabel = available ? 'Accept and choose payment' : 'Accept bill';
+      if (available >= due) {
+        outcome = `${subject} ${you ? 'choose' : 'chooses'} bank cards or properties worth at least ${due}M`;
+      } else {
+        outcome = available
+          ? `${subject} ${you ? 'give' : 'gives'} all payable assets (${available}M)`
+          : `${subject} ${you ? 'have' : 'has'} no payable assets`;
+        if (ctx.match.id === 'deal-no-mercy')
+          outcome += '. ' + debtChipOutcome(ctx, target, actor).replace(/\.$/, '');
+        else if (!available) outcome += ' and the bill clears';
+      }
       if (effect.source_collection)
         facts.push(
           `Rent on ${pileText(ctx, actor, effect.source_collection)}${effect.multiplier > 1 ? ` ×${effect.multiplier}` : ''}`,
         );
       break;
+    }
     case 'tough':
       object = `every ${effect.category || ''} card in ${possessive(ctx, target)} hand`;
       outcome = `${Actor} ${actor === ctx.selfId ? 'take' : 'takes'} them`;
       break;
     case 'forced_debt':
       object = 'a debt chip';
-      outcome = `${target === ctx.selfId ? 'you owe' : `${capital(name(ctx, target))} owes`} ${name(ctx, actor)} a card from hand at the start of ${target === ctx.selfId ? 'your' : 'their'} turn`;
+      outcome = debtChipOutcome(ctx, target, actor).replace(/\.$/, '');
       break;
     case 'tax':
     case 'repossession':
@@ -601,8 +642,7 @@ export function describePending(ctx: DealContext): PendingText | null {
     headline,
     facts,
     accept: effect.kind === 'bill' ? capital(`${outcome}.`) : `${capital(outcome)}.`,
-    acceptLabel:
-      effect.kind === 'bill' ? `Accept and pay ${effect.amount ?? 0}M` : `Accept ${title}`,
+    acceptLabel,
     no: `${
       (
         {

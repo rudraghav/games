@@ -1,6 +1,6 @@
 from app.core.contracts import LegalAction, State, legal
 from app.games.deal.deck import RENTS, SET_NAMES, DealCard
-from app.games.deal.table import assets, complete, groups_for
+from app.games.deal.table import assets, complete, groups_for, take_candidates
 
 
 def card_options(
@@ -141,7 +141,7 @@ def card_options(
                                 )
                             )
         if kind in ("heist", "crash") and any(
-            s["banks"][p] if kind == "heist" else any(s["properties"][p].values()) for p in others
+            take_candidates(s, p, kind, cards) for p in others
         ):
             options.append(legal(card.view().label, "play", card=ident))
     return options
@@ -153,16 +153,7 @@ def effect_options(s: State, player: str, cards: dict[str, DealCard], mercy: boo
     if effect.get("select"):
         if player != actor:
             return []
-        candidates = (
-            s["banks"][target]
-            if effect["kind"] == "heist"
-            else [
-                c
-                for group in s["properties"][target].values()
-                for c in group
-                if cards[c].kind == "property"
-            ]
-        )
+        candidates = take_candidates(s, target, effect["kind"], cards)
         return [legal(f"Take {cards[c].view().label}", "choose", card=c) for c in candidates]
     if effect.get("payment"):
         return (

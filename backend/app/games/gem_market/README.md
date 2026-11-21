@@ -50,3 +50,8 @@ your last turn"; on a return, how many gems to give back). The room shows other
 seats whom it is waiting for and the attributed last public move. Reserve actions
 state whether a gold is gained ("Reserve … · +1 gold" or "no gold left"), and
 patrons are named by their three required colours.
+
+If the player cannot collect, reserve or buy, the projection offers a single
+pass and the turn prompt names it. The consecutive-pass regression distributes
+all twenty coloured gems between two ten-chip wallets and fills both reservation
+rows with unaffordable developments before checking the shared final result.

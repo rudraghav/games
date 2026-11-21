@@ -247,6 +247,8 @@ discard; casino/Skyjo/Gang results explain score changes. Paper inspection and
 boop graduation preview are separate from confirmation. Narrow boards expose
 panning and a read-only whole-board overview; Uno colour choices occupy two columns.
 
+In Gem Market, a reservation preview shows when the gold grant will require a token return or use the last reservation space. Players can pass when it is their only legal move. In both Deal editions, players can select individual bank cards and properties in the payment panel and see which linked buildings travel with them. The total, shortfall or overpayment stays with the Pay button. Accepting a No Mercy bill explains whether the shortfall adds a debt chip, including at the three-chip limit. A failed save leaves the same player’s selected card or tokens available to retry after reload. A saved move starts a new decision. Deal profile history counts the player’s completed property colours from the final table, including older matches.
+
 In Blackjack, the active hand has an optional “What if I hit?” explanation. Opening it calculates the chance of busting on the next card from the visible six-deck table, including what the dealer's initial check establishes. The wager preview distinguishes chips already committed from the next payment. Teen Patti shows the affordable seen-hand price before a player looks at their cards.
 
 In The Gang, a pending chip review survives refresh if the holder and consequences still match. When another player changes them, the old confirmation disappears. In 6 nimmt!, selecting a number previews its destination and penalty on the current rows before locking. Skyjo can compare the drawn card with visible swap targets and leaves face-down values unknown.

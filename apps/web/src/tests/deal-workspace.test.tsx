@@ -6,6 +6,7 @@ import { DealTable } from '@/games/deal/DealTable';
 import { DealComposer } from '@/games/deal/DealComposer';
 import {
   actionLabel,
+  bankTopUp,
   bankValue,
   paymentSelection,
   suggestBankPayment,
@@ -166,6 +167,29 @@ describe('Engine-projected Deal workspace', () => {
       );
       expect(label).not.toContain(option.value.choice);
     }
+  });
+
+  it('tops up a hand-picked deed and bank note without exchanging either', () => {
+    const props = scenario('linked-payment-no-mercy');
+    const details = dealDetails(props.match.detail);
+    const bank = props.match.players.find((player) => player.id === props.selfId)!.bank;
+    const pay = props.match.actions.find((option) => option.value.type === 'pay')!;
+    const anchor = details.paymentBundles.find((bundle) => bundle.transfers.length > 1)!.card;
+    const picked = [anchor, bank.find((note) => bankValue(note) === 5)!.id];
+    const value = paymentSelection(details.paymentBundles, picked).amount;
+    expect(value).toBe(11);
+    const extra = bankTopUp(bank, pay.eligibleCards, picked, 14 - value);
+    expect(extra).toEqual([bank.find((note) => bankValue(note) === 4)!.id]);
+    expect(paymentSelection(details.paymentBundles, [...picked, ...extra]).amount).toBe(15);
+    expect(bankTopUp(bank, pay.eligibleCards, picked, 0)).toEqual([]);
+    expect(
+      bankTopUp(
+        bank,
+        pay.eligibleCards,
+        bank.map((note) => note.id),
+        8,
+      ),
+    ).toEqual([]);
   });
 
   it.each(['payment-bank', 'payment-exact', 'payment-insolvent'])(

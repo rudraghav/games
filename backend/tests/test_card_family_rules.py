@@ -747,6 +747,52 @@ def test_no_mercy_collection_attacks_take_actor_choice_from_every_player(kind, z
     assert_inventory(engine, state)
 
 
+def test_market_crash_skips_a_bare_shack_and_recovers_an_old_empty_selection():
+    engine, state = deal_case(True)
+    state["turn"] = 1
+    deed = deal_card(engine, state, "p1", kind="property", color="brown", zone="properties")
+    shack = deal_card(engine, state, "p1", action="shack")
+    state = engine.apply_action(state, "p1", Action(type="play", card=shack, color="brown:0"))
+    state = engine.apply_action(state, "p1", Action(type="rearrange", card=deed, color="brown", choice="brown:1"))
+    state = engine.apply_action(state, "p1", Action(type="end_turn"))
+    state = engine.apply_action(state, "p2", Action(type="end_turn"))
+    deal_card(engine, state, "p0", kind="property", color="brown", zone="properties")
+    rent_card = deal_card(engine, state, "p0", action="rent")
+    state = engine.apply_action(state, "p0", Action(type="play", card=rent_card, color="brown:0"))
+    state = engine.apply_action(state, "p1", Action(type="accept"))
+    state = engine.apply_action(state, "p1", Action(type="pay", cards=[deed]))
+    state = engine.apply_action(state, "p2", Action(type="accept"))
+    assert state["properties"]["p1"]["brown:0"] == [shack]
+    crash = deal_card(engine, state, "p0", action="crash")
+    play = Action(type="play", card=crash)
+    assert play not in [o.action for o in engine.legal_actions(state, "p0")]
+    other = deal_card(engine, state, "p2", kind="property", color="red", zone="properties")
+    state = engine.apply_action(state, "p0", play)
+    assert [event["target"] for event in state["queue"]] == ["p2"]
+    legacy = deepcopy(state)
+    legacy["queue"].insert(0, {**legacy["queue"][0], "target": "p1", "responder": "p1"})
+    original = deepcopy(legacy)
+    view = engine.project_view(legacy, "p0")
+    assert view.detail["pending_action"]["target"] == "p2"
+    assert [o.action.card for o in view.actions] == [other]
+    assert legacy == original
+    choose = Action(type="choose", card=other)
+    assert engine.apply_action(legacy, "p0", choose) == engine.apply_action(state, "p0", choose)
+    # If the impossible choice was the final play, the old room must advance
+    # once, including the incoming player's draw, and persist it on their move.
+    legacy["queue"].pop()
+    legacy["moves"] = 0
+    before = deepcopy(legacy)
+    recovered = engine.project_view(legacy, "p1")
+    assert recovered.current_player == "p1" and recovered.detail["pending"] is None
+    assert len(recovered.hand) == len(legacy["hands"]["p1"]) + (2 if legacy["hands"]["p1"] else 5)
+    assert engine.project_view(legacy, "p1") == recovered and legacy == before
+    after = engine.apply_action(legacy, "p1", next(o.action for o in recovered.actions
+                                                   if o.action.type == "end_turn"))
+    assert after["hands"]["p1"] == [c.id for c in recovered.hand]
+    assert_inventory(engine, after)
+
+
 def test_no_mercy_super_sly_takes_matching_inactive_wild_and_rainbow():
     engine, state = deal_case(True)
     action = deal_card(engine, state, "p0", action="super_sly")
@@ -820,6 +866,61 @@ def test_classic_complete_set_protected_from_sly_and_breaker_includes_buildings(
     assert len(state["properties"]["p0"]["brown:0"]) == 3
     assert house in state["properties"]["p0"]["brown:0"]
     assert_inventory(engine, state)
+
+
+@pytest.mark.parametrize("mercy", [False, True])
+def test_deal_breaker_keeps_the_acquired_set_intact_and_scores_both_seats(mercy):
+    engine, state = deal_case(mercy)
+    for color in ("blue", "utility"):
+        for _ in range(2):
+            deal_card(engine, state, "p0", kind="property", color=color, zone="properties")
+    own = deal_card(engine, state, "p0", kind="property", color="brown", zone="properties")
+    deed = deal_card(engine, state, "p1", kind="property", color="brown", zone="properties")
+    wild = next(c.id for c in engine.cards.values() if c.colors == ("brown", "sky") and c.kind == "property")
+    state["deck"].remove(wild)
+    place(state, "p1", wild, engine.cards, "brown")
+    state["turn"] = 1
+    building = deal_card(engine, state, "p1", action="shack" if mercy else "house")
+    state = engine.apply_action(state, "p1", Action(type="play", card=building, color="brown:0"))
+    state["turn"], state["moves"] = 0, 3
+    breaker = deal_card(engine, state, "p0", action="breaker")
+    state = engine.apply_action(state, "p0", Action(type="play", card=breaker, target="p1", color="brown:0"))
+    before = deepcopy(state)
+    preview = engine.project_view(state, "p1").detail["pending_action"]
+    assert set(preview["transfers"][0]["cards"]) == {deed, wild, building}
+    after = engine.apply_action(state, "p1", Action(type="accept"))
+    assert state == before
+    assert after["properties"]["p0"]["brown:0"] == [own]
+    assert after["properties"]["p0"]["brown:1"] == [deed, wild, building]
+    assert after["links"][building] == deed
+    assert rent(after, "p0", "brown:1", engine.cards) == (7 if mercy else 5)
+    assert after["winners"] == ["p0"] and after["scores"] == {"p0": 3, "p1": 0, "p2": 0}
+    assert_inventory(engine, after)
+    # Earlier saved finals sometimes retained the victim's previous score.
+    legacy = deepcopy(after)
+    legacy["scores"]["p1"] = 1
+    assert {p.id: p.score for p in engine.project_view(legacy, "p1").players} == after["scores"]
+    assert legacy["scores"]["p1"] == 1
+
+
+def test_winning_payment_during_group_rent_closes_other_seats_pending_responses():
+    engine, state = deal_case()
+    for color in ("blue", "utility"):
+        for _ in range(2):
+            deal_card(engine, state, "p0", kind="property", color=color, zone="properties")
+    deal_card(engine, state, "p0", kind="property", color="brown", zone="properties")
+    last = deal_card(engine, state, "p1", kind="property", color="brown", zone="properties")
+    birthday = deal_card(engine, state, "p0", action="birthday")
+    state = engine.apply_action(state, "p0", Action(type="play", card=birthday))
+    state = engine.apply_action(state, "p1", Action(type="accept"))
+    after = engine.apply_action(state, "p1", Action(type="pay", cards=[last]))
+    assert after["winners"] == ["p0"]
+    for player in after["order"]:
+        view = engine.project_view(after, player)
+        assert view.current_player is None and view.actions == []
+        assert view.detail["pending_action"] is None and view.detail["pending"] is None
+        assert view.detail["payment_amount"] == 0 and view.detail["payment_bundles"] == []
+    assert_inventory(engine, after)
 
 
 def test_no_mercy_debt_property_can_win_immediately_for_creditor_outside_their_turn():

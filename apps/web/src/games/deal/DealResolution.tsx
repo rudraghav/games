@@ -9,10 +9,9 @@ import {
   describeOption,
   describePending,
   locate,
-  setImpact,
   type DealContext,
 } from './decisions';
-import { paymentSelection, suggestBankPayment } from './presentation';
+import { DealPayment } from './DealPayment';
 
 export interface ChoiceRow {
   key: string;
@@ -98,9 +97,21 @@ export function DealResolution({ ctx, blocked, onCommit, onInspect, paid, onPaid
   const no = counter.find((option) => option.value.type === 'no');
   const noCount = match.hand.filter((card) => card.effect === 'no').length;
   const cards = [...new Set(effect.transfers.flatMap((transfer) => transfer.cards))];
-  const heading = pay
-    ? `You owe ${details.paymentAmount}M`
-    : effect.stage === 'select'
+  if (pay) {
+    return (
+      <DealPayment
+        ctx={ctx}
+        pay={pay}
+        blocked={blocked}
+        paid={paid}
+        onPaid={onPaid}
+        onCommit={onCommit}
+        onInspect={onInspect}
+      />
+    );
+  }
+  const heading =
+    effect.stage === 'select'
       ? responding
         ? 'Choose the card to take'
         : 'Choosing a card'
@@ -113,25 +124,6 @@ export function DealResolution({ ctx, blocked, onCommit, onInspect, paid, onPaid
           : responding
             ? 'Your response'
             : 'Pending action';
-
-  // Payment: the bill, what leaves the table, and what each property costs in sets.
-  const quote = paymentSelection(details.paymentBundles, paid);
-  const allPayable = pay ? paymentSelection(details.paymentBundles, pay.eligibleCards) : null;
-  const insolvent = Boolean(allPayable && allPayable.amount < details.paymentAmount);
-  const paymentValid =
-    pay &&
-    quote.valid &&
-    details.paymentBundles.length > 0 &&
-    (quote.amount >= details.paymentAmount ||
-      pay.eligibleCards.every((id) => quote.ids.includes(id)));
-  const impacts = [
-    ...new Set(
-      quote.ids
-        .map((id) => locate(match, selfId, id))
-        .filter((place) => place?.zone === 'set' && place.setKey)
-        .map((place) => place!.setKey!),
-    ),
-  ].map((key) => setImpact(ctx, selfId, key, quote.ids));
 
   const stageRows = stage.map((option) => ({
     key: optionKey(option),
@@ -179,97 +171,7 @@ export function DealResolution({ ctx, blocked, onCommit, onInspect, paid, onPaid
         </ul>
       ) : null}
 
-      {pay ? (
-        <>
-          <p>
-            Pay {ctx.room.members.find((member) => member.id === effect.actor)?.name || 'them'} from
-            your bank or properties on the table. No change is given.
-          </p>
-          {insolvent ? (
-            <p className="deal-resolution-warning" role="status">
-              You can’t cover {details.paymentAmount}M. Give everything you have (
-              {allPayable!.amount}M) to settle the bill
-              {ctx.match.id === 'deal-no-mercy' ? '; the shortfall becomes a debt chip' : ''}.
-            </p>
-          ) : null}
-          <div className="deal-payment-total">
-            <strong>{quote.amount}M selected</strong>
-            <span>
-              {quote.amount > details.paymentAmount
-                ? `${quote.amount - details.paymentAmount}M overpayment`
-                : `${Math.max(0, details.paymentAmount - quote.amount)}M remaining`}
-            </span>
-          </div>
-          {quote.ids.length ? (
-            <div aria-label="Payment transfer preview">
-              <p className="small">{quote.amount}M will leave your table:</p>
-              <ul className="deal-transfer-list">
-                {quote.ids.map((id) => (
-                  <li key={id}>
-                    <span>
-                      {cardPhrase(ctx, id)}
-                      {quote.carried.includes(id) ? ' · goes with its property' : ''}
-                    </span>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      aria-label="Card info"
-                      onClick={() => onInspect(id)}
-                    >
-                      <Info size={15} />
-                    </Button>
-                  </li>
-                ))}
-              </ul>
-              {impacts.map((impact) => (
-                <p key={impact.text} className={impact.lost ? 'deal-resolution-warning' : 'small'}>
-                  {impact.text}
-                </p>
-              ))}
-            </div>
-          ) : (
-            <p className="small">Tap bank notes or properties on your table to pay with them.</p>
-          )}
-          <div className="deal-resolution-actions" data-decision-actions>
-            {paid.length ? (
-              <Button variant="ghost" disabled={blocked} onClick={() => onPaid([])}>
-                Clear payment
-              </Button>
-            ) : null}
-            {insolvent ? (
-              <Button
-                variant="secondary"
-                disabled={blocked}
-                onClick={() => onPaid([...pay.eligibleCards])}
-              >
-                Select everything
-              </Button>
-            ) : (
-              <Button
-                variant="secondary"
-                disabled={blocked}
-                onClick={() =>
-                  onPaid(
-                    suggestBankPayment(
-                      match.players.find((player) => player.id === selfId)?.bank || [],
-                      pay.eligibleCards,
-                      details.paymentAmount,
-                    ),
-                  )
-                }
-              >
-                Select bank money
-              </Button>
-            )}
-            <Button
-              disabled={blocked || !paymentValid}
-              onClick={() => onCommit({ ...pay.value, cards: paid })}
-            >
-              Pay {quote.amount}M
-            </Button>
-          </div>
-        </>
-      ) : counter.length ? (
+      {counter.length ? (
         <div className="deal-resolution-answers" data-decision-actions>
           {accept ? (
             <div>

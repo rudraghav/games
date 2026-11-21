@@ -20,18 +20,12 @@ export function DealTable(props: TableProps) {
   const informationCards = dealInfoEntries(match, room, selfId, details);
   const [inspected, setInspected] = useState<string | null>(null);
   const infoOpener = useRef<HTMLElement | null>(null);
-  const inspect = (id: string) => {
-    infoOpener.current =
-      document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    setInspected(id);
-  };
+  const draft = `deal:${room.id}:${room.matchId}:${selfId}:${room.matchVersion}`;
   const resolutionKey = details.pending
-    ? `${room.matchVersion}:${details.pendingAction?.stage || details.pending}`
+    ? `${draft}:${details.pendingAction?.stage || details.pending}`
     : null;
   const [dismissedResolution, setDismissedResolution] = useState<string | null>(null);
-  const [decisionOpen, setDecisionOpen] = useState(false);
-  // The viewer's unsent card choice survives a refresh, but only for this exact table version.
-  const draft = `deal:${room.id}:${room.matchId}:${room.matchVersion}`;
+  const [decisionOpen, setDecisionOpen] = useTableDraft(`${draft}:panel`, false);
   const [selected, setSelected] = useTableDraft<string | null>(`${draft}:card`, null);
   const [target, setTarget] = useTableDraft(`${draft}:target`, '');
   const [takeId, setTakeId] = useTableDraft<string | null>(`${draft}:take`, null);
@@ -79,7 +73,7 @@ export function DealTable(props: TableProps) {
     } else {
       const moves = match.actions.filter((option) => option.value.card === id);
       if (!moves.length) {
-        inspect(id);
+        setInspected(id);
         return;
       }
       // Selecting reveals the concrete legal actions, including property destinations
@@ -93,9 +87,9 @@ export function DealTable(props: TableProps) {
   };
   const commit: TableProps['onAction'] = (action) => {
     if (pending || room.paused) return;
+    // A saved move advances the version and closes this decision. A failed
+    // request leaves the same card, targets and payment available to retry.
     props.onAction(action);
-    clear();
-    setPayment([]);
   };
   const end = match.actions.find((option) => option.value.type === 'end_turn');
   const counter = match.actions.filter((option) => ['accept', 'no'].includes(option.value.type));
@@ -118,7 +112,7 @@ export function DealTable(props: TableProps) {
     placements,
     candidate,
     onSelect: select,
-    onInspect: inspect,
+    onInspect: setInspected,
     onDestination: (option: ActionOption) => commit(option.value),
     previewIds: [
       ...(takeId ? [takeId] : []),
@@ -156,7 +150,15 @@ export function DealTable(props: TableProps) {
       ? [discard.color]
       : [];
   return (
-    <div className="deal-stage-container">
+    <div
+      className="deal-stage-container"
+      onClickCapture={(event) => {
+        // Safari can leave keyboard focus elsewhere when a button is tapped.
+        // Keep the actual opener while the card inspector is open.
+        if (!inspected && event.target instanceof Element)
+          infoOpener.current = event.target.closest<HTMLElement>('button');
+      }}
+    >
       <div
         className="table-layout deal-workspace"
         data-pending={Boolean(details.pending) && !finished}
@@ -196,7 +198,7 @@ export function DealTable(props: TableProps) {
                       : 'action'
                 }
                 aria-label={`Top of the discard pile: ${discard.label}, ${discard.value}. Card info`}
-                onClick={() => inspect(discard.id)}
+                onClick={() => setInspected(discard.id)}
               >
                 <span className="deal-discard-band" aria-hidden="true">
                   {discardColors.map((color) => (
@@ -262,7 +264,7 @@ export function DealTable(props: TableProps) {
               variant="ghost"
               aria-label="Card info"
               disabled={!informationCards.length}
-              onClick={() => inspect(selected || match.hand[0]?.id || informationCards[0].card.id)}
+              onClick={() => setInspected(selected || match.hand[0]?.id || informationCards[0].card.id)}
             >
               <Info size={16} />
               <span className="deal-hand-info-label">Card info</span>
@@ -315,7 +317,7 @@ export function DealTable(props: TableProps) {
                     size="icon"
                     variant="ghost"
                     aria-label={`Info about ${card.label}`}
-                    onClick={() => inspect(card.id)}
+                    onClick={() => setInspected(card.id)}
                   >
                     <Info size={17} />
                   </Button>
@@ -426,7 +428,7 @@ export function DealTable(props: TableProps) {
               ctx={ctx}
               blocked={pending || room.paused}
               onCommit={commit}
-              onInspect={inspect}
+              onInspect={setInspected}
               paid={paid}
               onPaid={setPayment}
               stageChoice={

@@ -192,8 +192,10 @@ class GemMarketEngine(BaseEngine):
             "return_count": max(0, sum(s["tokens"].get(player, {}).values()) - 10),
             "reservation_limit": len(s["reserved"].get(player, [])) >= 3,
         }
+        actions = self.legal_actions(s, player)
+        prompt = "Pass your turn. You have no available move." if actions and actions[0].action.type == "pass" else s["message"]
         return GameView(
-            game_id=self.manifest.id, phase=s["phase"], message=s["message"],
+            game_id=self.manifest.id, phase=s["phase"], message=prompt,
             current_player=s["order"][s["turn"]] if s["phase"] != "finished" else None,
             players=[PlayerView(id=p, count=len(s["reserved"][p]), score=score(s, p),
                          cards=[None] * len(s["reserved"][p]),
@@ -202,6 +204,6 @@ class GemMarketEngine(BaseEngine):
             hand=[CARDS[c].view() for c in s["reserved"].get(player, [])],
             community=[CARDS[c].view() for c in market] + [patron_view(c) for c in s["patrons"]],
             draw_count=sum(len(cards) for cards in s["decks"].values()),
-            actions=self.legal_actions(s, player), winners=s["winners"],
+            actions=actions, winners=s["winners"],
             detail=details,
         )

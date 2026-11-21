@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { openGameSetup, requestAs, roomAs } from './helpers';
+import { playGemDecisions } from './gem-market-decisions';
 
 for (const [game, count] of [
   ['Four in a Row', 2],
@@ -93,12 +94,9 @@ for (const [game, count] of [
           )
           .toBe(1);
       } else if (game === 'Gem Market') {
-        for (const color of ['pearl', 'sapphire', 'ruby'])
-          await page.getByRole('button', { name: `Select ${color}`, exact: true }).click();
-        await expect(
-          page.getByRole('button', { name: 'Take selected gems', exact: true }),
-        ).toBeEnabled();
-        await page.getByRole('button', { name: 'Take selected gems', exact: true }).click();
+        if ((page.viewportSize()?.width ?? 0) < 600)
+          await page.setViewportSize({ width: 320, height: 640 });
+        await playGemDecisions(page, players[1], initial);
       } else {
         const decision = initial.game!.actions[0];
         await page.getByRole('button', { name: decision.label, exact: true }).click();

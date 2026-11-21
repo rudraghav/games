@@ -85,6 +85,44 @@ describe('Azul decisions', () => {
 });
 
 describe('Gem Market decisions', () => {
+  it('offers the sole pass action to its actor and locks it while a move is pending', () => {
+    const props = scenario('gem-market-4-31-99-crowded');
+    const pass = { ...props.match.actions[0], label: 'Pass', value: { ...props.match.actions[0].value, type: 'pass' } };
+    const match = { ...props.match, currentPlayer: props.selfId, actions: [pass] };
+    expect(render(GemsTable, { ...props, match })).toContain('Pass turn</button>');
+    const sending = renderToStaticMarkup(
+      <GemsTable {...props} match={match} pending onAction={() => undefined} />,
+    );
+    expect(sending).toMatch(/<button[^>]*disabled[^>]*>Pass turn<\/button>/);
+    const waiting = seenBy(
+      { ...props, match },
+      props.match.players.find((p) => p.id !== props.selfId)!.id,
+    );
+    expect(render(GemsTable, waiting)).not.toContain('Pass turn');
+  });
+
+  it('reserving without available gold does not promise a token or require a return', () => {
+    const props = scenario('gem-market-4-31-99-crowded');
+    const match = {
+      ...props.match,
+      detail: {
+        ...props.match.detail,
+        bank: { gold: 0 },
+        tokens: { [props.selfId]: { pearl: 10 } },
+      },
+      actions: [
+        {
+          ...props.match.actions[0],
+          label: 'Reserve face-down from tier 2 · no gold left',
+          value: { ...props.match.actions[0].value, type: 'reserve_blind', choice: '2' },
+        },
+      ],
+    };
+    const html = render(GemsTable, { ...props, match });
+    expect(html).toContain('no gold left');
+    expect(html).not.toContain('must return one');
+  });
+
   it('marks affordable cards from the server quotes and gives patrons no discount token', () => {
     const props = scenario('gem-market-4-31-99-crowded');
     const data = gemsDetails(props.match.detail);
