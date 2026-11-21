@@ -8,7 +8,10 @@
 
 - Browser suite on the final source: 454 passed, 61 skipped, 9 failed. Five distinct tests also fail on the previous commit (Mancala board dialog, saved Deal placement, crowded Sly Deal, saved Azul move, two-guest dashboard); the split-Blackjack steadiness check is intermittent under full-suite load and passes alone. Local QA rooms closed.
 
-- State: verified locally; owner approved shipping. Next: push, one deployment, live verification.
+- Released `cf935ddf845c46a31a19aa6fb3acb5b047ab23f7` to main and Games production as dpl_4Kd6SBgH1dtjhqTEFbhtHgBbfzi1 (READY, bom1, both source metadata fields match). Two earlier upload attempts were refused by the provider's 5,000-files-per-day upload limit and created no deployment; the release went up as a single archive (`--archive=tgz`).
+- Live: HTTP, auth and design-404 checks pass; a Deal bot room showed the new faces, shared tokens and bottom-right notifications and was left through the app; 17 saved-room desktop flows passed (room layout and rematch, boards, Uno, Gem Market, Reversi, Word Agents). Four phone flows stopped at the auth provider's anonymous sign-in limit before creating a room and were not rerun. Runtime and owner fingerprints unchanged; runtime and 5xx request logs since release start returned zero records.
+- One private Deal test room (a guest and two bots) from the first live script is still open in production: its cleanup call was unauthenticated and the guest session is gone. Not closed, pending the owner's choice.
+- State: released.
 
 ## 2026-11-21 — Gem Market and Deal decisions on a phone
 
