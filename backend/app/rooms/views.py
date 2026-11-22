@@ -8,7 +8,20 @@ from app.models import Room
 from app.rooms.bots import next_bot_view
 from app.rooms.public_actions import PUBLIC_ACTIONS
 from app.rooms.repository import Repository
-from app.rooms.schemas import MemberView, MessageView, PublicActionView, PublicMoveView, RoomView
+from app.rooms.schemas import (
+    BotLevel,
+    MemberView,
+    MessageView,
+    PendingInviteView,
+    PublicActionView,
+    PublicMoveView,
+    RoomView,
+)
+
+
+def bot_level(stored: str | None) -> BotLevel:
+    """A bot's playing level. Bots seated before levels existed play the full policy."""
+    return "easy" if stored == "easy" else "medium" if stored == "medium" else "hard"
 
 
 def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> RoomView:
@@ -75,6 +88,7 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
                 connected=m.is_bot or now - m.seen_at < 45,
                 last_seen=m.seen_at,
                 is_bot=m.is_bot,
+                bot_level=bot_level(m.bot_level) if m.is_bot else None,
             )
             for m, p in members
         ],
@@ -90,6 +104,12 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
         invite_token=cipher.decrypt(room.invite_ciphertext.encode()).decode()
         if room.owner_id == user_id
         else None,
+        # Only members receive a room view, so only they see who has been asked.
+        pending_invites=[
+            PendingInviteView(username=p.username, name=p.name, avatar=p.avatar)
+            for _, p in repo.room_invites(room.id)
+            if p.username
+        ][:20],
         bot_pending=pending_bot,
         bot_due_at=match.bot_due_at if match and pending_bot else None,
         last_action=PublicActionView.model_validate(cue) if cue else None,

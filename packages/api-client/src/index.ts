@@ -5,12 +5,18 @@ import {
   mapMe,
   mapRoom,
   mapGame,
+  mapProfile,
+  mapPlayerSearch,
+  mapRoomLookup,
   mapReading,
   mapSavedReading,
   type Action,
+  type BotLevel,
+  type BotSeat,
   type ReadingStyle,
 } from './mappers';
 import type { AstrologyInput } from './astrology';
+import { mapSantaLinks, mapSantaReveal } from './secret-santa-details';
 export type {
   Room,
   Match,
@@ -19,10 +25,17 @@ export type {
   Action,
   ActionOption,
   Me,
+  Profile,
+  Invitation,
+  BotLevel,
+  BotSeat,
+  PlayerHit,
+  RoomLookup,
   ReadingView,
   ReadingStyle,
   SavedReading,
 } from './mappers';
+export { botLevels } from './mappers';
 export { boardDetails, wordsDetails, gemsDetails } from './game-details';
 export { trioDetails, flipSevenDetails, azulDetails } from './modern-details';
 export { partyDetails } from './party-details';
@@ -45,6 +58,15 @@ export {
 export { sheddingDetails } from './shedding-details';
 export { shitheadDetails } from './shithead-details';
 export { dealDetails, type DealGroup, type DealDetails } from './deal-details';
+export {
+  santaDetails,
+  santaTokenPattern,
+  type SantaDetails,
+  type SantaPerson,
+  type SantaGroup,
+  type SantaLink,
+  type SantaReveal,
+} from './secret-santa-details';
 export type {
   AstrologyInput,
   AstrologyPlace,
@@ -66,6 +88,19 @@ export class ApiError extends Error {
     this.name = 'ApiError';
   }
 }
+/**
+ * A rejected field carries the server's own sentence after "Value error, ".
+ * Schema-level complaints ("String should have at least…") stay generic.
+ */
+function validationMessage(error: unknown) {
+  const parsed = z
+    .object({ detail: z.array(z.object({ msg: z.string() })).min(1) })
+    .safeParse(error);
+  if (!parsed.success) return null;
+  const prefix = 'Value error, ';
+  const message = parsed.data.detail.find((item) => item.msg.startsWith(prefix))?.msg;
+  return message ? message.slice(prefix.length).slice(0, 200) : null;
+}
 function unwrap<T>({
   data,
   error,
@@ -77,12 +112,15 @@ function unwrap<T>({
 }): T {
   if (!response.ok || data === undefined) {
     const detail = z.object({ detail: z.string() }).safeParse(error);
+    const invalid = response.status === 422 ? validationMessage(error) : null;
     const message =
       response.status < 500 && detail.success
         ? detail.data.detail
-        : response.status === 401
-          ? 'Please reconnect your player session.'
-          : 'We could not reach the table. Please try again.';
+        : invalid
+          ? invalid
+          : response.status === 401
+            ? 'Please reconnect your player session.'
+            : 'We could not reach the table. Please try again.';
     throw new ApiError(response.status, message);
   }
   return data;
@@ -103,7 +141,30 @@ export function createApi(accessToken?: () => Promise<string | null>) {
       return mapMe(unwrap(await client.GET('/v1/me')));
     },
     async profile(name: string, avatar: number) {
-      return unwrap(await client.PUT('/v1/profile', { body: { name, avatar } }));
+      return mapProfile(unwrap(await client.PUT('/v1/profile', { body: { name, avatar } })));
+    },
+    /** The handle friends can find this player by. Stored lowercase, without the @. */
+    async setUsername(username: string) {
+      return mapProfile(unwrap(await client.PUT('/v1/profile/username', { body: { username } })));
+    },
+    async clearUsername() {
+      return mapProfile(unwrap(await client.DELETE('/v1/profile/username')));
+    },
+    /** Prefix search over usernames; at least two characters, at most eight players. */
+    async searchPlayers(query: string) {
+      return mapPlayerSearch(
+        unwrap(await client.GET('/v1/players/search', { params: { query: { q: query } } })),
+      );
+    },
+    async acceptInvitation(roomId: string) {
+      return mapRoom(
+        unwrap(await client.POST('/v1/invitations/{room_id}/accept', { params: params(roomId) })),
+      );
+    },
+    async declineInvitation(roomId: string) {
+      return mapMe(
+        unwrap(await client.DELETE('/v1/invitations/{room_id}', { params: params(roomId) })),
+      );
     },
     async quickPlay(gameId: string, requestId: string) {
       return mapRoom(
@@ -123,6 +184,8 @@ export function createApi(accessToken?: () => Promise<string | null>) {
       capacity: number;
       settings: Record<string, boolean>;
       bots?: number;
+      /** One entry per bot. When present it replaces the plain `bots` count. */
+      botSeats?: readonly BotSeat[];
     }) {
       return mapRoom(
         unwrap(
@@ -134,7 +197,10 @@ export function createApi(accessToken?: () => Promise<string | null>) {
               room_name: input.roomName,
               capacity: input.capacity,
               settings: input.settings,
-              bots: input.bots ?? 0,
+              bots: input.botSeats?.length ?? input.bots ?? 0,
+              ...(input.botSeats?.length
+                ? { bot_seats: input.botSeats.map(({ name, level }) => ({ name, level })) }
+                : {}),
             },
           }),
         ),
@@ -143,6 +209,12 @@ export function createApi(accessToken?: () => Promise<string | null>) {
     async join(invite: string, name: string, avatar: number) {
       return mapRoom(
         unwrap(await client.POST('/v1/rooms/join', { body: { invite, name, avatar } })),
+      );
+    },
+    /** Answers only for a player already in that room; everyone else gets a 404. */
+    async lookup(invite: string) {
+      return mapRoomLookup(
+        unwrap(await client.GET('/v1/rooms/lookup/{invite}', { params: { path: { invite } } })),
       );
     },
     async room(id: string) {
@@ -156,6 +228,18 @@ export function createApi(accessToken?: () => Promise<string | null>) {
     async reading(id: string) {
       return mapReading(
         unwrap(await client.GET('/v1/rooms/{room_id}/reading', { params: params(id) })),
+      );
+    },
+    /** The organiser's private links, one per person. Refused until names are drawn. */
+    async santaLinks(id: string) {
+      return mapSantaLinks(
+        unwrap(await client.GET('/v1/rooms/{room_id}/secret-santa/links', { params: params(id) })),
+      );
+    },
+    /** One person's own draw. The token travels only in this request's path. */
+    async santaReveal(token: string) {
+      return mapSantaReveal(
+        unwrap(await client.GET('/v1/secret-santa/{token}', { params: { path: { token } } })),
       );
     },
     async savedChanceSession(matchId: string) {
@@ -302,10 +386,47 @@ export function createApi(accessToken?: () => Promise<string | null>) {
         ),
       );
     },
-    async addBots(id: string, count = 1) {
+    async addBots(id: string, count = 1, level?: BotLevel, name?: string) {
       return mapRoom(
         unwrap(
-          await client.POST('/v1/rooms/{room_id}/bots', { params: params(id), body: { count } }),
+          await client.POST('/v1/rooms/{room_id}/bots', {
+            params: params(id),
+            // The server defaults a missing level to hard and names the bot itself.
+            body: {
+              count,
+              ...(level ? { level } : {}),
+              ...(name && count === 1 ? { name } : {}),
+            } as { count: number; level: BotLevel; name?: string },
+          }),
+        ),
+      );
+    },
+    async updateBot(id: string, botId: string, change: { name?: string; level?: BotLevel }) {
+      return mapRoom(
+        unwrap(
+          await client.PATCH('/v1/rooms/{room_id}/bots/{bot_id}', {
+            params: { path: { room_id: id, bot_id: botId } },
+            body: change,
+          }),
+        ),
+      );
+    },
+    async invite(id: string, username: string) {
+      return mapRoom(
+        unwrap(
+          await client.POST('/v1/rooms/{room_id}/invites', {
+            params: params(id),
+            body: { username },
+          }),
+        ),
+      );
+    },
+    async cancelInvite(id: string, username: string) {
+      return mapRoom(
+        unwrap(
+          await client.DELETE('/v1/rooms/{room_id}/invites/{username}', {
+            params: { path: { room_id: id, username } },
+          }),
         ),
       );
     },

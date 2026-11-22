@@ -199,3 +199,32 @@ which closes an open dialog and drops an unsent step such as Azul's queued
 placement. `stable-game-tables.spec.ts` also checks that the row reserved for
 the blackjack hand arrows arrives in the same frame as the arrows under reduced
 motion, by measuring the rail when `data-overflow` changes.
+
+`room-setup-invites.spec.ts` covers room setup and invitations on both device
+projects. Two tests use real rooms with independent guests: a mixed table with a
+renamed Easy bot, bot level and name changes in the lobby, the invite panel's
+grouped code, short link and copy confirmations, a wrong code, joining through
+`/r/<code>` and a member landing on the table; then claiming a username, being
+found by search, and cancelling, declining and accepting an invitation from the
+home page. Each closes its own room and removes its test username from an
+`afterEach`. Three local-only tests render a lobby from mocked responses for
+states a real run cannot reach on demand: the share sheet payload, the copies
+without one, search that is empty, failing or rate-limited, and a non-host's
+read-only view. Room codes read from `.room-code` are grouped ("482 913"); the
+join field accepts them as they are.
+
+`secret-santa.spec.ts` covers Secret Santa on both device projects. Mocked
+tests render states a real run cannot reach on demand: the private link page
+(name hidden until tapped, one request with the token only in its path, the
+outdated, rate-limited and unreachable messages, 320px) and the organiser page
+(a blocked draw, a pasted list sent one name at a time, the share sheet
+payload, copy with and without a clipboard, pass the phone, a reload
+mid-reveal, 320px and 44px targets). One real test runs the whole flow: six
+names including a pasted list, the event details, an individual exclusion, a
+group, the draw, a second guest opening two links and checking each recipient
+against the rules, Opened on the organiser's page with no giver and recipient
+pairing anywhere, pass the phone, redraw (the old link stops working) and
+finish. It closes its room from `afterEach`. The catalogue-wide specs know the
+organiser family: `Organise a draw` on the game page, `.santa-table` in place
+of the turn banner, a tutorial driver in `tutorial-depth.spec.ts`, and a
+shortest-event policy in `fullmatch-player.ts`.

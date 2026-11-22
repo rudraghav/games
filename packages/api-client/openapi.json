@@ -89,7 +89,274 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProfileView"
+                  "$ref": "#/components/schemas/OwnProfileView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/profile/username": {
+      "put": {
+        "summary": "Set Username",
+        "operationId": "set_username_v1_profile_username_put",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsernameInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OwnProfileView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Clear Username",
+        "operationId": "clear_username_v1_profile_username_delete",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OwnProfileView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/players/search": {
+      "get": {
+        "summary": "Search Players",
+        "operationId": "search_players_v1_players_search_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 21,
+              "title": "Q"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerSearch"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/invitations/{room_id}/accept": {
+      "post": {
+        "summary": "Accept Invitation",
+        "operationId": "accept_invitation_v1_invitations__room_id__accept_post",
+        "parameters": [
+          {
+            "name": "room_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Room Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoomView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/invitations/{room_id}": {
+      "delete": {
+        "summary": "Decline Invitation",
+        "operationId": "decline_invitation_v1_invitations__room_id__delete",
+        "parameters": [
+          {
+            "name": "room_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Room Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeView"
                 }
               }
             }
@@ -267,6 +534,61 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RoomView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/rooms/lookup/{invite}": {
+      "get": {
+        "summary": "Lookup",
+        "operationId": "lookup_v1_rooms_lookup__invite__get",
+        "parameters": [
+          {
+            "name": "invite",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Invite"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoomLookup"
                 }
               }
             }
@@ -774,6 +1096,116 @@
         }
       }
     },
+    "/v1/rooms/{room_id}/secret-santa/links": {
+      "get": {
+        "summary": "Santa Links",
+        "operationId": "santa_links_v1_rooms__room_id__secret_santa_links_get",
+        "parameters": [
+          {
+            "name": "room_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Room Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SantaLinks"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/secret-santa/{token}": {
+      "get": {
+        "summary": "Santa Reveal",
+        "operationId": "santa_reveal_v1_secret_santa__token__get",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SantaReveal"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/rooms/{room_id}/ready": {
       "put": {
         "summary": "Ready",
@@ -1065,6 +1497,209 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoomView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/rooms/{room_id}/bots/{bot_id}": {
+      "patch": {
+        "summary": "Update Bot",
+        "operationId": "update_bot_v1_rooms__room_id__bots__bot_id__patch",
+        "parameters": [
+          {
+            "name": "room_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Room Id"
+            }
+          },
+          {
+            "name": "bot_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Bot Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBot"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoomView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/rooms/{room_id}/invites": {
+      "post": {
+        "summary": "Invite Player",
+        "operationId": "invite_player_v1_rooms__room_id__invites_post",
+        "parameters": [
+          {
+            "name": "room_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Room Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoomInviteInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoomView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/rooms/{room_id}/invites/{username}": {
+      "delete": {
+        "summary": "Cancel Invite",
+        "operationId": "cancel_invite_v1_rooms__room_id__invites__username__delete",
+        "parameters": [
+          {
+            "name": "room_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Room Id"
+            }
+          },
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -1641,6 +2276,29 @@
             "minimum": 1.0,
             "title": "Count",
             "default": 1
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ],
+            "title": "Level",
+            "default": "hard"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 30,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
           }
         },
         "additionalProperties": false,
@@ -2350,6 +3008,37 @@
         ],
         "title": "AstrologyTimeResolution"
       },
+      "BotSeat": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 30,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ],
+            "title": "Level",
+            "default": "hard"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "BotSeat",
+        "description": "One bot the host seats: an optional name of their own and how well it plays."
+      },
       "CardView": {
         "properties": {
           "id": {
@@ -2558,6 +3247,21 @@
             "minimum": 0.0,
             "title": "Bots",
             "default": 0
+          },
+          "bot_seats": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/BotSeat"
+                },
+                "type": "array",
+                "maxItems": 9
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bot Seats"
           }
         },
         "additionalProperties": false,
@@ -2830,6 +3534,55 @@
         ],
         "title": "Health"
       },
+      "InvitationView": {
+        "properties": {
+          "room_id": {
+            "type": "string",
+            "title": "Room Id"
+          },
+          "room_name": {
+            "type": "string",
+            "title": "Room Name"
+          },
+          "game_id": {
+            "type": "string",
+            "title": "Game Id"
+          },
+          "from_name": {
+            "type": "string",
+            "title": "From Name"
+          },
+          "from_avatar": {
+            "type": "integer",
+            "title": "From Avatar"
+          },
+          "players": {
+            "type": "integer",
+            "title": "Players"
+          },
+          "capacity": {
+            "type": "integer",
+            "title": "Capacity"
+          },
+          "created_at": {
+            "type": "number",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "room_id",
+          "room_name",
+          "game_id",
+          "from_name",
+          "from_avatar",
+          "players",
+          "capacity",
+          "created_at"
+        ],
+        "title": "InvitationView",
+        "description": "An invitation waiting for the signed-in player."
+      },
       "JoinRoom": {
         "properties": {
           "name": {
@@ -2975,7 +3728,7 @@
           "profile": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/ProfileView"
+                "$ref": "#/components/schemas/OwnProfileView"
               },
               {
                 "type": "null"
@@ -2999,6 +3752,14 @@
             },
             "type": "array",
             "title": "History"
+          },
+          "invitations": {
+            "items": {
+              "$ref": "#/components/schemas/InvitationView"
+            },
+            "type": "array",
+            "maxItems": 20,
+            "title": "Invitations"
           }
         },
         "type": "object",
@@ -3044,6 +3805,22 @@
             "type": "boolean",
             "title": "Is Bot",
             "default": false
+          },
+          "bot_level": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "easy",
+                  "medium",
+                  "hard"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bot Level"
           }
         },
         "type": "object",
@@ -3121,6 +3898,103 @@
           "action"
         ],
         "title": "Move"
+      },
+      "OwnProfileView": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "avatar": {
+            "type": "integer",
+            "title": "Avatar"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "avatar"
+        ],
+        "title": "OwnProfileView",
+        "description": "A player's own profile. The username is never part of another player's view of them."
+      },
+      "PendingInviteView": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "avatar": {
+            "type": "integer",
+            "title": "Avatar"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "name",
+          "avatar"
+        ],
+        "title": "PendingInviteView",
+        "description": "Someone invited to this room by username who has not answered yet."
+      },
+      "PlayerHit": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "avatar": {
+            "type": "integer",
+            "title": "Avatar"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "name",
+          "avatar"
+        ],
+        "title": "PlayerHit",
+        "description": "A player found by username. Carries no account or room identifier."
+      },
+      "PlayerSearch": {
+        "properties": {
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerHit"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Players"
+          }
+        },
+        "type": "object",
+        "title": "PlayerSearch"
       },
       "PlayerView": {
         "properties": {
@@ -3231,29 +4105,6 @@
           "name"
         ],
         "title": "ProfileInput"
-      },
-      "ProfileView": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "name": {
-            "type": "string",
-            "title": "Name"
-          },
-          "avatar": {
-            "type": "integer",
-            "title": "Avatar"
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "name",
-          "avatar"
-        ],
-        "title": "ProfileView"
       },
       "PublicActionView": {
         "properties": {
@@ -3731,6 +4582,41 @@
         ],
         "title": "Ready"
       },
+      "RoomInviteInput": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 21,
+            "minLength": 3,
+            "title": "Username"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "username"
+        ],
+        "title": "RoomInviteInput"
+      },
+      "RoomLookup": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "game_id": {
+            "type": "string",
+            "title": "Game Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "game_id"
+        ],
+        "title": "RoomLookup",
+        "description": "Where a room code or invite leads for a player who is already in that room."
+      },
       "RoomSettings": {
         "properties": {
           "game_id": {
@@ -3906,6 +4792,14 @@
             ],
             "title": "Invite Token"
           },
+          "pending_invites": {
+            "items": {
+              "$ref": "#/components/schemas/PendingInviteView"
+            },
+            "type": "array",
+            "maxItems": 20,
+            "title": "Pending Invites"
+          },
           "bot_pending": {
             "type": "boolean",
             "title": "Bot Pending",
@@ -3961,6 +4855,91 @@
           "missing_players"
         ],
         "title": "RoomView"
+      },
+      "SantaLink": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "token": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 20,
+            "title": "Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "token"
+        ],
+        "title": "SantaLink",
+        "description": "One person's private Secret Santa link. Only the organiser receives these."
+      },
+      "SantaLinks": {
+        "properties": {
+          "links": {
+            "items": {
+              "$ref": "#/components/schemas/SantaLink"
+            },
+            "type": "array",
+            "maxItems": 30,
+            "title": "Links"
+          }
+        },
+        "type": "object",
+        "title": "SantaLinks"
+      },
+      "SantaReveal": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "day": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day"
+          },
+          "location": {
+            "type": "string",
+            "title": "Location",
+            "default": ""
+          },
+          "budget": {
+            "type": "string",
+            "title": "Budget",
+            "default": ""
+          },
+          "giver_name": {
+            "type": "string",
+            "title": "Giver Name"
+          },
+          "recipient_name": {
+            "type": "string",
+            "title": "Recipient Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "giver_name",
+          "recipient_name"
+        ],
+        "title": "SantaReveal",
+        "description": "What one person's private link shows: their own draw and the event, nothing else."
       },
       "SavedReadingView": {
         "properties": {
@@ -4162,6 +5141,58 @@
           "default"
         ],
         "title": "Setting"
+      },
+      "UpdateBot": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 30,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "level": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "easy",
+                  "medium",
+                  "hard"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Level"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "UpdateBot"
+      },
+      "UsernameInput": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 21,
+            "minLength": 3,
+            "title": "Username"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "username"
+        ],
+        "title": "UsernameInput"
       },
       "ValidationError": {
         "properties": {

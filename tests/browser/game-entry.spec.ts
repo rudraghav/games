@@ -34,9 +34,11 @@ function own(run: Run, room: RoomView, actor: Page) {
 function normalAction(game: (typeof catalogue)[number]) {
   return game.id === 'tarot'
     ? 'Start reading'
-    : game.play_mode === 'solo'
-      ? 'Play solo'
-      : 'Play with bots';
+    : game.family === 'organiser'
+      ? 'Organise a draw'
+      : game.play_mode === 'solo'
+        ? 'Play solo'
+        : 'Play with bots';
 }
 
 async function start(page: Page, run: Run, gameId: string) {

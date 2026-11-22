@@ -80,6 +80,18 @@ LABELS: dict[str, dict[str, str]] = {
     # Read as "Dev played: 5 ♣, 5 ♦"; burns and failed flips get their own label below.
     "shithead": {"arrange": "Chose three face-up cards", "play": "Played",
                  "flip": "Flipped a hidden card", "pickup": "Picked up the pile"},
+    # Fixed wording only: a typed name, place or date never enters history, and
+    # nothing here says who was shown or who drew whom.
+    "secret-santa": {"add_name": "Added a name", "rename": "Changed a name",
+                     "remove_name": "Removed a name",
+                     "set_exclusions": "Changed who someone can't draw",
+                     "add_group": "Added a group", "rename_group": "Renamed a group",
+                     "remove_group": "Removed a group", "set_group": "Changed who is in a group",
+                     "set_title": "Set the title", "set_location": "Set the location",
+                     "set_budget": "Set the budget", "set_day": "Set the date",
+                     "clear": "Cleared a detail", "draw": "Drew the names",
+                     "reveal": "Showed one person their name", "hide": "Hid the name again",
+                     "redraw": "Went back to change the list", "finish": "Finished the draw"},
 }
 
 PRIVATE_CARD_MOVES = {
@@ -216,6 +228,9 @@ def public_move(
             targets = [other] if isinstance(other, str) and other in before_views else []
     if group == "teen-patti" and kind == "sideshow" and isinstance(after.current_player, str) and after.current_player in after_views:
         targets = [after.current_player]
+    if group == "secret-santa":
+        # The label alone: no person id, typed text, date or count is copied.
+        return PublicMoveView(version=version, actor_id=actor, type=kind, label=label)
     cue = public_action(before, actor, action, version)
     amount = cue["amount"] if cue else None
     if group in {"roulette", "slots"} and kind == "spin":

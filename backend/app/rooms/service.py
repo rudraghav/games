@@ -12,6 +12,7 @@ from uuid import UUID, uuid4, uuid5
 from cryptography.fernet import Fernet
 from fastapi import HTTPException
 from pydantic import ValidationError
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.ai_logging import get_ai_logger
@@ -27,6 +28,7 @@ from app.astrology.models import (
 from app.auth import Identity
 from app.core.contracts import Action, GameView, RuleError
 from app.games.registry import ENGINES
+from app.games.secret_santa.engine import SecretSantaEngine
 from app.games.tarot.engine import drawn_orientations
 from app.games.tarot.progress import ProgressEvent, ProgressState, ReadingProgress
 from app.games.tarot.reading import (
@@ -43,29 +45,40 @@ from app.games.tarot.reading import (
     reading_failure,
 )
 from app.games.tarot.style import ReadingStyle, saved_style
-from app.models import Match, Member, Message, Profile, Receipt, Room, TarotReading
+from app.models import Match, Member, Message, Profile, Receipt, Room, RoomInvite, TarotReading
 from app.rooms.bots import BOT_DELAY_SECONDS, BOT_NAMES, bot_delay, next_bot_view
 from app.rooms.public_actions import PUBLIC_ACTIONS, public_action
 from app.rooms.public_history import public_move
 from app.rooms.repository import CHANCE_GAME_IDS, Repository
+from app.rooms.santa_links import link_token, opens, read_token
 from app.rooms.schemas import (
     AddBots,
+    BotSeat,
     ChatInput,
     CreateRoom,
     DriveBots,
+    InvitationView,
     JoinRoom,
     MatchSummary,
     MeView,
     Move,
+    OwnProfileView,
+    PlayerHit,
+    PlayerSearch,
     ProfileInput,
-    ProfileView,
     QuickPlay,
+    RoomLookup,
     RoomSettings,
     RoomSummary,
     RoomView,
+    SantaLink,
+    SantaLinks,
+    SantaReveal,
     SavedReadingView,
+    UpdateBot,
+    clean_username,
 )
-from app.rooms.views import room_view
+from app.rooms.views import bot_level, room_view
 from app.settings import settings
 
 
@@ -81,8 +94,64 @@ def saved_player_score(match: Match, player: str) -> int:
     return engine.history_score(match.state, player, stored) if engine else stored
 
 
+def guessable(code: str) -> bool:
+    """Codes someone would try first: one repeated digit, or a straight run."""
+    steps = {int(b) - int(a) for a, b in zip(code, code[1:], strict=False)}
+    return steps in ({0}, {1}, {-1})
+
+
 def room_code() -> str:
+    """Six digits, easy to read aloud; the first is never zero."""
+    while True:
+        code = str(100_000 + secrets.randbelow(900_000))
+        if not guessable(code):
+            return code
+
+
+def retired_code() -> str:
+    """The older 8-character format. A closed room's number is swapped for one of
+    these, so the number is free again and the closed room answers to nothing typed."""
     return "".join(secrets.choice("ABCDEFGHJKMNPQRSTVWXYZ23456789") for _ in range(8))
+
+
+# Six digits is a small space, so wrong codes are counted separately from joins.
+WRONG_INVITE_LIMIT = 10
+WRONG_INVITE_WINDOW_SECONDS = 600
+WRONG_CODES = "Too many wrong codes. Wait ten minutes, then try again."
+# Secret Santa links that open nothing are counted the same way, on their own.
+SANTA_MISSES = "wrong-santa-link"
+SANTA_NO_LINK = "This link doesn't open a name. Ask the organiser for a new one."
+SANTA_SLOW_DOWN = "Too many links that didn't work. Wait ten minutes, then try again."
+MAX_PENDING_INVITES = 20
+RESERVED_USERNAMES = frozenset(
+    {
+        "admin",
+        "administrator",
+        "moderator",
+        "mod",
+        "support",
+        "help",
+        "system",
+        "games",
+        "bot",
+        "guest",
+        "anonymous",
+        "null",
+        "undefined",
+        "me",
+        "you",
+        "host",
+        "owner",
+        "staff",
+        "official",
+        "everyone",
+        "player",
+    }
+)
+
+
+class _WrongInvite(Exception):
+    """A code or token that opens nothing for this caller; counted after rollback."""
 
 
 QUICK_PLAY_NAMESPACE = UUID("80b8112a-4a30-4c3f-9222-77e480956729")
@@ -101,6 +170,55 @@ class RoomService:
             count = self.repo.rate(actor.id + ":" + scope, seconds)
         if count > maximum:
             raise HTTPException(429, "Please slow down and try again shortly.")
+
+    def _check_wrong_invites(
+        self, actor: Identity, scope: str = "wrong-invite", slow_down: str = WRONG_CODES
+    ) -> None:
+        with self.session.begin():
+            count = self.repo.rate_count(f"{actor.id}:{scope}", WRONG_INVITE_WINDOW_SECONDS)
+        if count > WRONG_INVITE_LIMIT:
+            raise HTTPException(429, slow_down)
+
+    def _wrong_invite(
+        self, actor: Identity, message: str, scope: str = "wrong-invite",
+        slow_down: str = WRONG_CODES,
+    ) -> HTTPException:
+        """Count one failed lookup, committed on its own, and choose its answer."""
+        with self.session.begin():
+            count = self.repo.rate(f"{actor.id}:{scope}", WRONG_INVITE_WINDOW_SECONDS)
+        if count > WRONG_INVITE_LIMIT:
+            return HTTPException(429, slow_down)
+        return HTTPException(404, message)
+
+    def _fresh_code(self, retired: bool = False) -> str:
+        """A code no room holds, reserved until this transaction commits.
+
+        `retired` draws the older 8-character format, for rooms nobody can join by
+        number: a closed room and a solo table."""
+        for _ in range(64):
+            code = retired_code() if retired else room_code()
+            if self.repo.claim_code(code):
+                return code
+        raise HTTPException(503, "Couldn't open a room just now. Please try again.")
+
+    def _close(self, room: Room) -> None:
+        room.status = "closed"
+        # The six digits go back into circulation; nothing typed reaches this room.
+        room.code = self._fresh_code(retired=True)
+        self.repo.delete_room_invites(room.id)
+
+    @staticmethod
+    def _solo_refusal(room: Room) -> str | None:
+        engine = ENGINES.get(room.game_id)
+        if engine is None or engine.manifest.play_mode != "solo":
+            return None
+        return (
+            "This is a private Tarot reading, so it can't be joined. "
+            "Start your own reading from the games library."
+            if room.game_id == "tarot" else
+            "This is a private solo table, so it can't be joined. "
+            "Start your own from the games library."
+        )
 
     def _room(self, room_id: str, actor: Identity, lock: bool = False, host: bool = False) -> Room:
         room = self.repo.room(room_id, lock)
@@ -126,35 +244,53 @@ class RoomService:
             raise HTTPException(404, "Player membership is unavailable.")
         return member
 
-    def _add_bots(self, room: Room, count: int) -> None:
+    def _add_bots(self, room: Room, seats: list[BotSeat]) -> None:
         from app.bots import supports_bots
 
         members = self.repo.members(room.id)
+        count = len(seats)
         if not supports_bots(room.game_id) or count > room.capacity - sum(
             m.seated for m, _ in members
         ):
             raise HTTPException(422, "Choose a bot for each available multiplayer seat.")
         if len(members) + count > 20:
             raise HTTPException(422, "This room has no room for more players.")
-        used = {p.name for _, p in members}
+        # Names are compared without case so "ada" and "Ada" never sit together.
+        used = {p.name.casefold() for _, p in members}
+        for seat in seats:
+            if seat.name is not None:
+                self._free_name(seat.name, used)
+                used.add(seat.name.casefold())
         choices = [
             (f"Bot {name}{f' {cycle + 1}' if cycle else ''}", i % 8)
             for cycle in range(3)
             for i, name in enumerate(BOT_NAMES)
         ]
-        for _ in range(count):
-            choice = next((item for item in choices if item[0] not in used), None)
-            if choice is None:
-                raise HTTPException(422, "This room already has the maximum number of bots.")
-            name, avatar = choice
-            used.add(name)
+        for seat in seats:
+            if seat.name is not None:
+                name = seat.name
+                avatar = sum(name.encode()) % 8
+            else:
+                choice = next((item for item in choices if item[0].casefold() not in used), None)
+                if choice is None:
+                    raise HTTPException(422, "This room already has the maximum number of bots.")
+                name, avatar = choice
+                used.add(name.casefold())
             bot_id = "bot:" + uuid4().hex
             self.repo.add(Profile(id=bot_id, name=name, avatar=avatar))
             self.repo.flush()
             self.repo.add(
-                Member(room_id=room.id, user_id=bot_id, is_bot=True, ready=True, seated=True)
+                Member(
+                    room_id=room.id, user_id=bot_id, is_bot=True, ready=True, seated=True,
+                    bot_level=seat.level,
+                )
             )
         self.repo.flush()
+
+    @staticmethod
+    def _free_name(name: str, used: set[str]) -> None:
+        if name.casefold() in used:
+            raise HTTPException(422, f"Someone at this table is already called {name}.")
 
     def _connected(self, room_id: str, match: Match) -> bool:
         available = {
@@ -246,7 +382,8 @@ class RoomService:
             room = Room(
                 id=str(uuid4()),
                 name=data.room_name.strip() or "Game night",
-                code=room_code(),
+                # A solo table cannot be joined, so it takes no six-digit number.
+                code=self._fresh_code(retired=ENGINES[data.game_id].manifest.play_mode == "solo"),
                 owner_id=actor.id,
                 game_id=data.game_id,
                 capacity=data.capacity,
@@ -258,8 +395,9 @@ class RoomService:
             self.repo.flush()
             self.repo.add(Member(room_id=room.id, user_id=actor.id))
             self.repo.flush()
-            if data.bots:
-                self._add_bots(room, data.bots)
+            seats = data.bot_seats if data.bot_seats is not None else [BotSeat()] * data.bots
+            if seats:
+                self._add_bots(room, seats)
             return room_view(self.repo, room, actor.id, self.cipher)
 
     def quick_play(self, actor: Identity, game_id: str, data: QuickPlay) -> RoomView:
@@ -302,7 +440,8 @@ class RoomService:
             token, hashed = invite()
             room = Room(
                 id=room_id, name=f"{profile.name}'s {engine.manifest.name}"[:60],
-                code=room_code(), owner_id=actor.id, game_id=game_id,
+                code=self._fresh_code(retired=engine.manifest.play_mode == "solo"),
+                owner_id=actor.id, game_id=game_id,
                 capacity=capacity, settings=values, invite_hash=hashed,
                 invite_ciphertext=self.cipher.encrypt(token.encode()).decode(),
             )
@@ -311,49 +450,76 @@ class RoomService:
             self.repo.add(Member(room_id=room.id, user_id=actor.id, ready=True))
             self.repo.flush()
             if capacity > 1:
-                self._add_bots(room, capacity - 1)
+                self._add_bots(room, [BotSeat()] * (capacity - 1))
             self._start_match(room, match_id=match_id)
             return room_view(self.repo, room, actor.id, self.cipher)
 
     def join(self, actor: Identity, data: JoinRoom) -> RoomView:
         self._rate(actor, "join", 30)
+        self._check_wrong_invites(actor)
+        try:
+            with self.session.begin():
+                room = self.repo.invite(data.invite)
+                if room is None or room.status == "closed":
+                    # A wrong code and a closed room get one answer and one count.
+                    raise _WrongInvite
+                self._enter(room, actor, data)
+                return room_view(self.repo, room, actor.id, self.cipher)
+        except _WrongInvite:
+            raise self._wrong_invite(
+                actor, "This invite is invalid or has been replaced."
+            ) from None
+
+    def _enter(self, room: Room, actor: Identity, profile: ProfileInput | None = None) -> None:
+        """Bring a person into a locked, open room: by code, link or accepted invitation."""
+        members = self.repo.members(room.id)
+        existing = self.repo.member(room.id, actor.id)
+        returning = bool(existing and existing.active)
+        refusal = self._solo_refusal(room)
+        if refusal and not returning:
+            # A solo table has one seat and nothing public to watch; an invite
+            # replaced or shared by mistake must not add a silent spectator.
+            raise HTTPException(409, refusal)
+        if len(members) >= 20 and not returning:
+            raise HTTPException(409, "This room is full.")
+        if profile is not None:
+            self.repo.save_profile(actor.id, profile.name, profile.avatar)
+        seated = room.status != "playing" and sum(m.seated for m, _ in members) < room.capacity
+        if room.status != "playing" and not seated and not returning:
+            # Friends can replace a lobby bot; never alter a running match.
+            replacement = next((m for m, _ in reversed(members) if m.is_bot and m.seated), None)
+            if replacement:
+                replacement.active, replacement.seated, replacement.ready = False, False, False
+                seated = True
+        if existing:
+            if not existing.active:
+                existing.active, existing.seated, existing.ready = True, seated, False
+            existing.seen_at = time.time()
+        else:
+            self.repo.add(Member(room_id=room.id, user_id=actor.id, seated=seated))
+        # However they arrived, an invitation to this room has been answered.
+        self.repo.delete_invite(room.id, actor.id)
+        room.revision += 1
+        self.repo.flush()
+
+    def lookup(self, actor: Identity, invite: str) -> RoomLookup:
+        """Where a code leads, only for someone already inside that room."""
+        self._rate(actor, "lookup", 30)
+        self._check_wrong_invites(actor)
         with self.session.begin():
-            room = self.repo.invite(data.invite.strip())
-            if room is None or room.status == "closed":
-                raise HTTPException(404, "This invite is invalid or has been replaced.")
-            members = self.repo.members(room.id)
-            existing = self.repo.member(room.id, actor.id)
-            engine = ENGINES.get(room.game_id)
-            if (engine is not None and engine.manifest.play_mode == "solo"
-                    and not (existing and existing.active)):
-                # A solo table has one seat and nothing public to watch; an invite
-                # replaced or shared by mistake must not add a silent spectator.
-                raise HTTPException(409, (
-                    "This is a private Tarot reading, so it can't be joined. "
-                    "Start your own reading from the games library."
-                    if room.game_id == "tarot" else
-                    "This is a private solo table, so it can't be joined. "
-                    "Start your own from the games library."
-                ))
-            if len(members) >= 20 and not (existing and existing.active):
-                raise HTTPException(409, "This room is full.")
-            self.repo.save_profile(actor.id, data.name, data.avatar)
-            seated = room.status != "playing" and sum(m.seated for m, _ in members) < room.capacity
-            if room.status != "playing" and not seated and not (existing and existing.active):
-                # Friends can replace a lobby bot; never alter a running match.
-                replacement = next((m for m, _ in reversed(members) if m.is_bot and m.seated), None)
-                if replacement:
-                    replacement.active, replacement.seated, replacement.ready = False, False, False
-                    seated = True
-            if existing:
-                if not existing.active:
-                    existing.active, existing.seated, existing.ready = True, seated, False
-                existing.seen_at = time.time()
-            else:
-                self.repo.add(Member(room_id=room.id, user_id=actor.id, seated=seated))
-            room.revision += 1
-            self.repo.flush()
-            return room_view(self.repo, room, actor.id, self.cipher)
+            room = self.repo.invite(invite, lock=False)
+            open_room = room is not None and room.status != "closed"
+            member = self.repo.member(room.id, actor.id) if room else None
+            if open_room and room and member and member.active and not member.is_bot:
+                return RoomLookup(id=room.id, game_id=room.game_id)
+        message = "No room of yours matches that code or invite."
+        if open_room:
+            # A friend's link opened before joining is not a wrong guess: the answer is
+            # the same, but it spends none of the wrong-code allowance. It tells the
+            # caller nothing a join with that code would not.
+            raise HTTPException(404, message)
+        # An unknown code and a closed room spend the same allowance as a failed join.
+        raise self._wrong_invite(actor, message)
 
     def get(self, actor: Identity, room_id: str) -> RoomView:
         with self.session.begin():
@@ -471,12 +637,37 @@ class RoomService:
 
     def add_bots(self, actor: Identity, room_id: str, data: AddBots) -> RoomView:
         self._rate(actor, "bots", 30)
+        if data.name is not None and data.count != 1:
+            raise HTTPException(422, "A name can be given to one bot at a time.")
         with self.session.begin():
             room = self._room(room_id, actor, lock=True, host=True)
             if room.status == "playing":
                 raise HTTPException(409, "Bots can be added between matches.")
-            self._add_bots(room, data.count)
+            self._add_bots(room, [BotSeat(name=data.name, level=data.level)] * data.count)
             room.revision += 1
+            return room_view(self.repo, room, actor.id, self.cipher)
+
+    def update_bot(self, actor: Identity, room_id: str, bot_id: str, data: UpdateBot) -> RoomView:
+        self._rate(actor, "bots", 30)
+        if data.name is None and data.level is None:
+            raise HTTPException(422, "Choose a new name or level for this bot.")
+        with self.session.begin():
+            room = self._room(room_id, actor, lock=True, host=True)
+            if room.status == "playing":
+                raise HTTPException(409, "Bots can be changed between matches.")
+            bot = self.repo.member(room_id, bot_id)
+            profile = self.repo.profile(bot_id) if bot and bot.active and bot.is_bot else None
+            if bot is None or profile is None:
+                raise HTTPException(404, "That bot is not at this table.")
+            if data.name is not None:
+                self._free_name(data.name, {
+                    p.name.casefold() for m, p in self.repo.members(room_id) if m.user_id != bot_id
+                })
+                profile.name = data.name
+            if data.level is not None:
+                bot.bot_level = data.level
+            room.revision += 1
+            self.repo.flush()
             return room_view(self.repo, room, actor.id, self.cipher)
 
     def drive_bots(self, actor: Identity, room_id: str, data: DriveBots) -> RoomView:
@@ -508,7 +699,13 @@ class RoomService:
 
             bot_id, view = selected
             memory = self._bot_memory(match, bot_id)
-            decision = choose_action(view, bot_id, memory)
+            level = bot_level(next(m.bot_level for m in bots if m.user_id == bot_id))
+            # A hard bot is the plain policy call it has always been.
+            decision = (
+                choose_action(view, bot_id, memory)
+                if level == "hard"
+                else choose_action(view, bot_id, memory, level)
+            )
             serialized = json.dumps(decision.memory, allow_nan=False)
             if len(serialized) > 16384:
                 raise HTTPException(503, "This bot could not finish its move. Please try again.")
@@ -888,7 +1085,7 @@ class RoomService:
                 room.invite_hash, room.invite_ciphertext, room.code = (
                     hashed,
                     self.cipher.encrypt(token.encode()).decode(),
-                    room_code(),
+                    self._fresh_code(),
                 )
             elif action == "abandon":
                 match = self.repo.match(room.match_id)
@@ -907,6 +1104,8 @@ class RoomService:
                 victim = self.repo.member(room_id, target)
                 if victim:
                     victim.active, victim.seated, victim.ready = False, False, False
+                # Removing someone also withdraws any invitation still waiting for them.
+                self.repo.delete_invite(room_id, target)
             elif action == "leave":
                 self._member(room_id, actor.id).active = False
                 humans = [m for m, _ in members if not m.is_bot and m.user_id != actor.id]
@@ -914,7 +1113,7 @@ class RoomService:
                     match = self.repo.match(room.match_id)
                     if match and room.status == "playing":
                         match.result = {"abandoned": True, "winners": [], "scores": {}}
-                    room.status = "closed"
+                    self._close(room)
                     for member, _ in members:
                         if member.is_bot:
                             member.active, member.seated, member.ready = False, False, False
@@ -930,43 +1129,241 @@ class RoomService:
             self.repo.flush()
             return room_view(self.repo, room, actor.id, self.cipher)
 
-    def profile(self, actor: Identity, data: ProfileInput) -> ProfileView:
+    @staticmethod
+    def _own_profile(profile: Profile) -> OwnProfileView:
+        return OwnProfileView(
+            id=profile.id, name=profile.name, avatar=profile.avatar, username=profile.username
+        )
+
+    def profile(self, actor: Identity, data: ProfileInput) -> OwnProfileView:
         self._rate(actor, "profile", 20)
         with self.session.begin():
-            profile = self.repo.save_profile(actor.id, data.name, data.avatar)
-            return ProfileView(id=profile.id, name=profile.name, avatar=profile.avatar)
+            return self._own_profile(self.repo.save_profile(actor.id, data.name, data.avatar))
+
+    def set_username(self, actor: Identity, username: str | None) -> OwnProfileView:
+        self._rate(actor, "username", 20)
+        if username is not None and (username in RESERVED_USERNAMES or username.startswith("bot")):
+            raise HTTPException(422, "That username is reserved. Choose another.")
+        try:
+            with self.session.begin():
+                profile = self.repo.profile(actor.id)
+                if profile is None:
+                    raise HTTPException(409, "Choose a display name before picking a username.")
+                if profile.username == username:
+                    return self._own_profile(profile)
+                if username is not None and self.repo.profile_by_username(username) is not None:
+                    raise HTTPException(409, "That username is taken.")
+                # Rooms that have invited this player show the invitation by username.
+                for room_id in self.repo.invited_rooms(actor.id):
+                    room = self.repo.room(room_id, lock=True)
+                    if room is None:
+                        continue
+                    if username is None:
+                        # Nobody could see or cancel an invitation to a player with
+                        # no username, so the ones still waiting are withdrawn.
+                        self.repo.delete_invite(room_id, actor.id)
+                    room.revision += 1
+                profile.username = username
+                self.repo.flush()
+                return self._own_profile(profile)
+        except IntegrityError:
+            # Two people asked for the same free name at once; the first one has it.
+            raise HTTPException(409, "That username is taken.") from None
+
+    def search_players(self, actor: Identity, query: str) -> PlayerSearch:
+        self._rate(actor, "player-search", 30)
+        prefix = query.strip().removeprefix("@").lower()
+        if not 2 <= len(prefix) <= 20 or any(
+            c not in "abcdefghijklmnopqrstuvwxyz0123456789_" for c in prefix
+        ):
+            return PlayerSearch()
+        with self.session.begin():
+            return PlayerSearch(players=[
+                PlayerHit(username=p.username, name=p.name, avatar=p.avatar)
+                for p in self.repo.search_players(prefix, actor.id)
+                if p.username
+            ])
+
+    def invite_player(self, actor: Identity, room_id: str, username: str) -> RoomView:
+        self._rate(actor, "invite-player", 20, 3600)
+        with self.session.begin():
+            room = self._room(room_id, actor, lock=True)
+            if room.status == "closed":
+                raise HTTPException(409, "This room has closed.")
+            if refusal := self._solo_refusal(room):
+                raise HTTPException(409, refusal)
+            target = self.repo.profile_by_username(username)
+            if target is None:
+                raise HTTPException(404, "No player has that username.")
+            if target.id == actor.id:
+                raise HTTPException(409, "You are already in this room.")
+            member = self.repo.member(room_id, target.id)
+            if member and member.active:
+                raise HTTPException(409, "That player is already in this room.")
+            if self.repo.room_invite(room_id, target.id) is None:
+                if len(self.repo.room_invites(room_id)) >= MAX_PENDING_INVITES:
+                    raise HTTPException(
+                        409, "This room already has 20 invitations waiting. Cancel one first."
+                    )
+                self.repo.add(RoomInvite(room_id=room_id, user_id=target.id, invited_by=actor.id))
+                room.revision += 1
+                self.repo.flush()
+            return room_view(self.repo, room, actor.id, self.cipher)
+
+    def cancel_invite(self, actor: Identity, room_id: str, username: str) -> RoomView:
+        self._rate(actor, "manage", 30)
+        try:
+            username = clean_username(username)
+        except ValueError:
+            raise HTTPException(404, "That invitation is no longer waiting.") from None
+        with self.session.begin():
+            room = self._room(room_id, actor, lock=True)
+            target = self.repo.profile_by_username(username)
+            pending = self.repo.room_invite(room_id, target.id) if target else None
+            if pending is None:
+                raise HTTPException(404, "That invitation is no longer waiting.")
+            if actor.id not in (room.owner_id, pending.invited_by):
+                raise HTTPException(
+                    403, "Only the host or the player who sent this invitation can cancel it."
+                )
+            self.repo.delete_invite(room_id, pending.user_id)
+            room.revision += 1
+            self.repo.flush()
+            return room_view(self.repo, room, actor.id, self.cipher)
+
+    def accept_invitation(self, actor: Identity, room_id: str) -> RoomView:
+        self._rate(actor, "join", 30)
+        with self.session.begin():
+            room = self.repo.room(room_id, lock=True)
+            if (
+                room is None
+                or room.status == "closed"
+                or self.repo.room_invite(room_id, actor.id) is None
+            ):
+                raise HTTPException(404, "This invitation is no longer available.")
+            # The same door as a code: same seats, bot replacement and full-room rules.
+            self._enter(room, actor)
+            return room_view(self.repo, room, actor.id, self.cipher)
+
+    def decline_invitation(self, actor: Identity, room_id: str) -> MeView:
+        self._rate(actor, "manage", 30)
+        with self.session.begin():
+            room = self.repo.room(room_id, lock=True)
+            if room and self.repo.delete_invite(room_id, actor.id):
+                room.revision += 1
+            self.repo.flush()
+            return self._me(actor)
+
+    # Secret Santa's private links. A token is derived from the saved draw, never
+    # stored, and neither a token, a name nor a pairing is ever written to a log.
+    def santa_links(self, actor: Identity, room_id: str) -> SantaLinks:
+        """Every person's link, for the organiser of the room's current draw only."""
+        self._rate(actor, "santa-links")
+        with self.session.begin():
+            room = self._room(room_id, actor)
+            match = self.repo.match(room.match_id)
+            if match is None or match.game_id != "secret-santa":
+                raise HTTPException(409, "Start a Secret Santa table and draw the names first.")
+            if match.participants != [actor.id]:
+                raise HTTPException(404, "This room is unavailable to your player session.")
+            if not SecretSantaEngine.is_drawn(match.state):
+                raise HTTPException(409, "Draw the names first. The links appear after the draw.")
+            secret, number = settings().app_secret, match.state["draw_number"]
+            return SantaLinks(links=[
+                SantaLink(id=person["id"], name=person["name"],
+                          token=link_token(secret, match.id, number, person["id"]))
+                for person in match.state["people"]
+            ])
+
+    def santa_reveal(self, actor: Identity, token: str) -> SantaReveal:
+        """One person's own draw, for whoever holds that person's current link.
+
+        The link is the permission: any signed-in session may use it, the organiser
+        need not be present and the room may have closed. A token that is malformed,
+        forged, from an earlier draw or for nobody gets one answer and one count.
+        """
+        self._rate(actor, "santa-reveal", 30)
+        self._check_wrong_invites(actor, SANTA_MISSES, SANTA_SLOW_DOWN)
+        named = read_token(token)
+        if named is not None:
+            with self.session.begin():
+                reveal = self._open_santa_link(*named, token)
+            if reveal is not None:
+                return reveal
+        raise self._wrong_invite(actor, SANTA_NO_LINK, SANTA_MISSES, SANTA_SLOW_DOWN)
+
+    def _open_santa_link(self, match_id: str, person_id: str, token: str) -> SantaReveal | None:
+        match = self.repo.match(match_id)
+        if match is None or match.game_id != "secret-santa":
+            return None
+        # Every move holds this row lock, so the draw cannot change between checking
+        # the link and recording that it was opened.
+        room = self.repo.room(match.room_id, lock=True)
+        self.session.refresh(match)
+        draw = SecretSantaEngine.private_draw(match.state, person_id)
+        if draw is None or not opens(token, link_token(
+            settings().app_secret, match.id, match.state["draw_number"], person_id
+        )):
+            return None
+        opened = SecretSantaEngine.mark_opened(match.state, person_id)
+        if opened is not None:
+            # The organiser's table shows who has looked. That is all it learns: no
+            # receipt or activity entry is written, so nothing else records the visit.
+            match.state = opened
+            # The match version is the organiser's move counter and stays as it is, so
+            # a move they are in the middle of is not refused because someone looked.
+            # The room revision alone tells their open table to refresh.
+            if room is not None and room.status != "closed" and room.match_id == match.id:
+                room.revision += 1
+            self.repo.flush()
+        return SantaReveal.model_validate(draw)
 
     def me(self, actor: Identity) -> MeView:
         with self.session.begin():
-            profile = self.repo.profile(actor.id)
-            return MeView(
-                profile=ProfileView(id=profile.id, name=profile.name, avatar=profile.avatar)
-                if profile
-                else None,
-                anonymous=actor.anonymous,
-                rooms=[
-                    RoomSummary(
-                        id=r.id,
-                        name=r.name,
-                        game_id=r.game_id,
-                        status=r.status,
-                        players=count,
-                        capacity=r.capacity,
-                    )
-                    for r, count in self.repo.recent_rooms(actor.id)
-                ],
-                history=[
-                    MatchSummary(
-                        id=m.id,
-                        room_id=m.room_id,
-                        game_id=m.game_id,
-                        winners=m.result["winners"],
-                        score=saved_player_score(m, actor.id),
-                        created_at=m.created_at,
-                    )
-                    for m in self.repo.history(actor.id)
-                    if m.result is not None
-                    and actor.id in m.participants
-                    and not m.result.get("abandoned")
-                ],
-            )
+            return self._me(actor)
+
+    def _me(self, actor: Identity) -> MeView:
+        profile = self.repo.profile(actor.id)
+        return MeView(
+            profile=self._own_profile(profile) if profile else None,
+            anonymous=actor.anonymous,
+            rooms=[
+                RoomSummary(
+                    id=r.id,
+                    name=r.name,
+                    game_id=r.game_id,
+                    status=r.status,
+                    players=count,
+                    capacity=r.capacity,
+                )
+                for r, count in self.repo.recent_rooms(actor.id)
+            ],
+            history=[
+                MatchSummary(
+                    id=m.id,
+                    room_id=m.room_id,
+                    game_id=m.game_id,
+                    winners=m.result["winners"],
+                    score=saved_player_score(m, actor.id),
+                    created_at=m.created_at,
+                )
+                for m in self.repo.history(actor.id)
+                if m.result is not None
+                and actor.id in m.participants
+                and not m.result.get("abandoned")
+            ],
+            # Enough to recognise and answer an invitation; never the room's code or token.
+            invitations=[
+                InvitationView(
+                    room_id=room.id,
+                    room_name=room.name,
+                    game_id=room.game_id,
+                    from_name=sender.name,
+                    from_avatar=sender.avatar,
+                    players=seated,
+                    capacity=room.capacity,
+                    created_at=invite.created_at,
+                )
+                for invite, room, sender, seated in self.repo.invitations(actor.id)
+            ],
+        )

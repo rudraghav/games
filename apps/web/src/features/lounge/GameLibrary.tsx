@@ -116,6 +116,7 @@ export function GameLibrary({ initialSolo = false }: { initialSolo?: boolean }) 
                 tone={game.color}
                 variant={game.id === 'tarot' ? 'featured' : 'standard'}
                 actionLabel={game.id === 'tarot' ? 'Start reading' : undefined}
+                groupLabel={game.family === 'organiser' ? 'Any group' : undefined}
                 soloMode={players === 1 || category === 'solo'}
                 edition={game.rulesVersion.startsWith('house-') ? 'house' : 'standard'}
                 artwork={<GameArt game={game} />}

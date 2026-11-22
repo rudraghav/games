@@ -38,6 +38,75 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/profile/username": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Set Username */
+        put: operations["set_username_v1_profile_username_put"];
+        post?: never;
+        /** Clear Username */
+        delete: operations["clear_username_v1_profile_username_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/players/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Search Players */
+        get: operations["search_players_v1_players_search_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/invitations/{room_id}/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Accept Invitation */
+        post: operations["accept_invitation_v1_invitations__room_id__accept_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/invitations/{room_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Decline Invitation */
+        delete: operations["decline_invitation_v1_invitations__room_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/rooms": {
         parameters: {
             query?: never;
@@ -83,6 +152,23 @@ export interface paths {
         put?: never;
         /** Join */
         post: operations["join_v1_rooms_join_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/rooms/lookup/{invite}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Lookup */
+        get: operations["lookup_v1_rooms_lookup__invite__get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -209,6 +295,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/rooms/{room_id}/secret-santa/links": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Santa Links */
+        get: operations["santa_links_v1_rooms__room_id__secret_santa_links_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/secret-santa/{token}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Santa Reveal */
+        get: operations["santa_reveal_v1_secret_santa__token__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/rooms/{room_id}/ready": {
         parameters: {
             query?: never;
@@ -289,6 +409,57 @@ export interface paths {
         /** Add Bots */
         post: operations["add_bots_v1_rooms__room_id__bots_post"];
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/rooms/{room_id}/bots/{bot_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update Bot */
+        patch: operations["update_bot_v1_rooms__room_id__bots__bot_id__patch"];
+        trace?: never;
+    };
+    "/v1/rooms/{room_id}/invites": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Invite Player */
+        post: operations["invite_player_v1_rooms__room_id__invites_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/rooms/{room_id}/invites/{username}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Cancel Invite */
+        delete: operations["cancel_invite_v1_rooms__room_id__invites__username__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -514,6 +685,14 @@ export interface components {
              * @default 1
              */
             count: number;
+            /**
+             * Level
+             * @default hard
+             * @enum {string}
+             */
+            level: "easy" | "medium" | "hard";
+            /** Name */
+            name?: string | null;
         };
         /** AstrologyAspect */
         AstrologyAspect: {
@@ -756,6 +935,20 @@ export interface components {
             /** Utc Offset */
             utc_offset: string;
         };
+        /**
+         * BotSeat
+         * @description One bot the host seats: an optional name of their own and how well it plays.
+         */
+        BotSeat: {
+            /** Name */
+            name?: string | null;
+            /**
+             * Level
+             * @default hard
+             * @enum {string}
+             */
+            level: "easy" | "medium" | "hard";
+        };
         /** CardView */
         CardView: {
             /** Id */
@@ -850,6 +1043,8 @@ export interface components {
              * @default 0
              */
             bots: number;
+            /** Bot Seats */
+            bot_seats?: components["schemas"]["BotSeat"][] | null;
         };
         /** DriveBots */
         DriveBots: {
@@ -963,6 +1158,28 @@ export interface components {
             /** Status */
             status: string;
         };
+        /**
+         * InvitationView
+         * @description An invitation waiting for the signed-in player.
+         */
+        InvitationView: {
+            /** Room Id */
+            room_id: string;
+            /** Room Name */
+            room_name: string;
+            /** Game Id */
+            game_id: string;
+            /** From Name */
+            from_name: string;
+            /** From Avatar */
+            from_avatar: number;
+            /** Players */
+            players: number;
+            /** Capacity */
+            capacity: number;
+            /** Created At */
+            created_at: number;
+        };
         /** JoinRoom */
         JoinRoom: {
             /** Name */
@@ -1012,13 +1229,15 @@ export interface components {
         };
         /** MeView */
         MeView: {
-            profile: components["schemas"]["ProfileView"] | null;
+            profile: components["schemas"]["OwnProfileView"] | null;
             /** Anonymous */
             anonymous: boolean;
             /** Rooms */
             rooms: components["schemas"]["RoomSummary"][];
             /** History */
             history: components["schemas"]["MatchSummary"][];
+            /** Invitations */
+            invitations?: components["schemas"]["InvitationView"][];
         };
         /** MemberView */
         MemberView: {
@@ -1041,6 +1260,8 @@ export interface components {
              * @default false
              */
             is_bot: boolean;
+            /** Bot Level */
+            bot_level?: ("easy" | "medium" | "hard") | null;
         };
         /** MessageView */
         MessageView: {
@@ -1070,6 +1291,49 @@ export interface components {
             /** Expected Version */
             expected_version: number;
             action: components["schemas"]["Action"];
+        };
+        /**
+         * OwnProfileView
+         * @description A player's own profile. The username is never part of another player's view of them.
+         */
+        OwnProfileView: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Avatar */
+            avatar: number;
+            /** Username */
+            username?: string | null;
+        };
+        /**
+         * PendingInviteView
+         * @description Someone invited to this room by username who has not answered yet.
+         */
+        PendingInviteView: {
+            /** Username */
+            username: string;
+            /** Name */
+            name: string;
+            /** Avatar */
+            avatar: number;
+        };
+        /**
+         * PlayerHit
+         * @description A player found by username. Carries no account or room identifier.
+         */
+        PlayerHit: {
+            /** Username */
+            username: string;
+            /** Name */
+            name: string;
+            /** Avatar */
+            avatar: number;
+        };
+        /** PlayerSearch */
+        PlayerSearch: {
+            /** Players */
+            players?: components["schemas"]["PlayerHit"][];
         };
         /** PlayerView */
         PlayerView: {
@@ -1121,15 +1385,6 @@ export interface components {
              * Avatar
              * @default 0
              */
-            avatar: number;
-        };
-        /** ProfileView */
-        ProfileView: {
-            /** Id */
-            id: string;
-            /** Name */
-            name: string;
-            /** Avatar */
             avatar: number;
         };
         /** PublicActionView */
@@ -1282,6 +1537,21 @@ export interface components {
             /** Ready */
             ready: boolean;
         };
+        /** RoomInviteInput */
+        RoomInviteInput: {
+            /** Username */
+            username: string;
+        };
+        /**
+         * RoomLookup
+         * @description Where a room code or invite leads for a player who is already in that room.
+         */
+        RoomLookup: {
+            /** Id */
+            id: string;
+            /** Game Id */
+            game_id: string;
+        };
         /** RoomSettings */
         RoomSettings: {
             /** Game Id */
@@ -1345,6 +1615,8 @@ export interface components {
             missing_players: string[];
             /** Invite Token */
             invite_token?: string | null;
+            /** Pending Invites */
+            pending_invites?: components["schemas"]["PendingInviteView"][];
             /**
              * Bot Pending
              * @default false
@@ -1355,6 +1627,47 @@ export interface components {
             last_action?: components["schemas"]["PublicActionView"] | null;
             /** Activity */
             activity?: components["schemas"]["PublicMoveView"][];
+        };
+        /**
+         * SantaLink
+         * @description One person's private Secret Santa link. Only the organiser receives these.
+         */
+        SantaLink: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Token */
+            token: string;
+        };
+        /** SantaLinks */
+        SantaLinks: {
+            /** Links */
+            links?: components["schemas"]["SantaLink"][];
+        };
+        /**
+         * SantaReveal
+         * @description What one person's private link shows: their own draw and the event, nothing else.
+         */
+        SantaReveal: {
+            /** Title */
+            title: string;
+            /** Day */
+            day?: number | null;
+            /**
+             * Location
+             * @default
+             */
+            location: string;
+            /**
+             * Budget
+             * @default
+             */
+            budget: string;
+            /** Giver Name */
+            giver_name: string;
+            /** Recipient Name */
+            recipient_name: string;
         };
         /**
          * SavedReadingView
@@ -1426,6 +1739,18 @@ export interface components {
             label: string;
             /** Default */
             default: boolean;
+        };
+        /** UpdateBot */
+        UpdateBot: {
+            /** Name */
+            name?: string | null;
+            /** Level */
+            level?: ("easy" | "medium" | "hard") | null;
+        };
+        /** UsernameInput */
+        UsernameInput: {
+            /** Username */
+            username: string;
         };
         /** ValidationError */
         ValidationError: {
@@ -1501,7 +1826,172 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ProfileView"];
+                    "application/json": components["schemas"]["OwnProfileView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    set_username_v1_profile_username_put: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UsernameInput"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OwnProfileView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    clear_username_v1_profile_username_delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OwnProfileView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    search_players_v1_players_search_get: {
+        parameters: {
+            query: {
+                q: string;
+            };
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlayerSearch"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    accept_invitation_v1_invitations__room_id__accept_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                room_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoomView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    decline_invitation_v1_invitations__room_id__delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                room_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MeView"];
                 };
             };
             /** @description Validation Error */
@@ -1609,6 +2099,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["RoomView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    lookup_v1_rooms_lookup__invite__get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                invite: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoomLookup"];
                 };
             };
             /** @description Validation Error */
@@ -1900,6 +2423,72 @@ export interface operations {
             };
         };
     };
+    santa_links_v1_rooms__room_id__secret_santa_links_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                room_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SantaLinks"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    santa_reveal_v1_secret_santa__token__get: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                token: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SantaReveal"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     ready_v1_rooms__room_id__ready_put: {
         parameters: {
             query?: never;
@@ -2060,6 +2649,115 @@ export interface operations {
                 "application/json": components["schemas"]["AddBots"];
             };
         };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoomView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_bot_v1_rooms__room_id__bots__bot_id__patch: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                room_id: string;
+                bot_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateBot"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoomView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    invite_player_v1_rooms__room_id__invites_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                room_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RoomInviteInput"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoomView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    cancel_invite_v1_rooms__room_id__invites__username__delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                room_id: string;
+                username: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
         responses: {
             /** @description Successful Response */
             200: {

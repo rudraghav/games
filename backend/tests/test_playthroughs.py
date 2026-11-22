@@ -36,6 +36,11 @@ def choose(view, randomizer):
     elif view.game_id == "gem-market":
         buys = [o for o in options if o.action.type == "buy"]
         option = randomizer.choice(buys or options)
+    elif view.game_id == "secret-santa":
+        # Nothing forces an organiser to draw, so take the draw whenever the list
+        # allows one; every other step stays a random legal edit.
+        draws = [o for o in options if o.action.type == "draw"]
+        option = randomizer.choice(draws or options)
     else:
         option = randomizer.choice(options)
     action = option.action

@@ -36,3 +36,6 @@ request IDs and share one in-flight guard. The guide is scoped to the match
 and its player. The explicit tutorial URL also works when storage is unavailable.
 
 Roulette and Slots use Play solo to start a private five-spin table. The game-specific play URL supports refresh, and Past games links to the profile. A completed spin history has its own game-specific results URL keyed by the original match.
+
+Secret Santa uses Organise a draw to open the organiser's private page, with a
+short description in place of the player count.

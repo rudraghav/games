@@ -59,6 +59,11 @@ export const rulebookTopics: Record<string, RuleTopic[]> = {
     [0, 'Choosing your cards'],
     [2, 'Reading your spread'],
   ],
+  'secret-santa': [
+    [0, 'People and rules'],
+    [2, 'Drawing and sharing'],
+    [4, 'Privacy and redrawing'],
+  ],
   'four-in-a-row': [
     [0, 'Dropping a disc'],
     [1, 'Wins and draws'],

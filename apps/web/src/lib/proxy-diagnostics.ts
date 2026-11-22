@@ -9,7 +9,9 @@ export function proxyFailure(
   const route = path
     .replace(/(rooms\/)(?!join(?:\/|$))[^/]+/, '$1:room')
     .replace(/(readings\/)[^/]+/, '$1:match')
-    .replace(/(members\/)[^/]+/, '$1:member');
+    .replace(/(members\/)[^/]+/, '$1:member')
+    // A Secret Santa link token opens one person's draw; it never reaches a log.
+    .replace(/^(v1\/secret-santa\/)[^/]+/, '$1:token');
   const name = error instanceof Error ? error.name : '';
   const cause =
     error instanceof Error && error.cause && typeof error.cause === 'object'

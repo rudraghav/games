@@ -35,6 +35,8 @@ export function useQuickPlay(gameId: string) {
   const busy = useRef(false);
   const mounted = useRef(true);
   const reading = gameId === 'tarot';
+  const organising = gameById(gameId).family === 'organiser';
+  const noun = reading ? 'reading' : organising ? 'draw' : 'game';
 
   useEffect(() => {
     mounted.current = true;
@@ -97,7 +99,7 @@ export function useQuickPlay(gameId: string) {
                   ? 'Too many starts. Try again later.'
                   : status === 401
                     ? 'Reconnect to start.'
-                    : `Couldn’t start your ${reading ? 'reading' : 'game'}.`,
+                    : `Couldn’t start your ${noun}.`,
               newLaunch: false,
             },
       );
@@ -115,17 +117,17 @@ export function useQuickPlay(gameId: string) {
       if (pending === mode) return 'Starting…';
       if (failure?.mode === mode) {
         if (failure.newLaunch)
-          return mode === 'tutorial'
-            ? 'Start a new tutorial'
-            : `Start a new ${reading ? 'reading' : 'game'}`;
+          return mode === 'tutorial' ? 'Start a new tutorial' : `Start a new ${noun}`;
         return 'Try again';
       }
       if (mode === 'tutorial') return 'Play tutorial';
       return reading
         ? 'Start reading'
-        : gameById(gameId).playMode === 'solo'
-          ? 'Play solo'
-          : 'Play with bots';
+        : organising
+          ? 'Organise a draw'
+          : gameById(gameId).playMode === 'solo'
+            ? 'Play solo'
+            : 'Play with bots';
     },
   };
 }

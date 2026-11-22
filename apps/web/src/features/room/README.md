@@ -89,3 +89,43 @@ opens the book with a Step-by-step tutorial switch for the host of a solo or
 bot-only match. The switch applies immediately, stays in the book, and preserves
 the current match and turn. Its choice survives reload. Short phone headers
 display Rules. Rooms shared with other humans offer the same illustrated book.
+
+## Lobby: bots, invite panel and short links
+
+`Lobby.tsx` composes `BotSeat`, `InvitePanel` and `InviteByUsername`.
+
+- `BotSeat`: for the host, a level select ("<name> difficulty"), "Rename <name>"
+  (inline edit; Enter saves, Escape cancels, a name already at the table is
+  refused in place) and "Remove <name> bot". Changes go through `api.updateBot`
+  and the room's shared mutation, so a refusal shows in the room's error note.
+  Other players see the level as the seat badge. "Add bot" still seats a Hard bot.
+- `InvitePanel` (group "Invite friends"): `.room-code` holds the grouped code,
+  `.invite-link` the short link, then Share (only when `navigator.share` exists),
+  "Copy link" and "Copy code" with a status line. The copied link is
+  `<origin>/r/<code>`; the long invite token is no longer copied.
+- `InviteByUsername`: searchbox "Find a friend by username" (2+ characters,
+  250ms debounce, `api.searchPlayers`), results with "Invite <name> (@username)",
+  and the "Invited" list from `room.pendingInvites` with "Cancel invitation to
+  <name>". Invite and cancel update the room cache from the returned room and
+  report inline. `pending_invites` does not say who sent an invitation, so the
+  Cancel button shows for the host and for invitations sent from this browser
+  tab (kept in `sessionStorage`); the server remains the authority.
+- A member without a username sees "Let friends find you: choose a username",
+  which opens the shared `UsernameField`.
+- `ShortRoomLink` serves `/r/[code]`. `findOwnRoom` reads the player passively
+  (no guest is created); a visitor with no session or in no room is not looked
+  up at all. Otherwise it calls `passiveApi.lookup` once per page open (a ref
+  guards React's development remount; there is no retry or refetch), then
+  `router.replace(roomPath(...))` for a member or `Join` with the code filled
+  in. `/join/[token]` is unchanged. Solo tables have no invite panel, so nothing
+  here assumes their code is six digits.
+- A Cancel the server refuses (a guest who did not send that invitation) shows
+  the server's sentence and leaves the invitation listed.
+
+Unit coverage: `apps/web/src/tests/room-setup-invites.test.tsx`. Browser
+coverage: `tests/browser/room-setup-invites.spec.ts` (two real multi-guest
+flows per device, plus mocked lobby states for sharing and search errors).
+
+An `organiser` game (Secret Santa) is a solo room whose table states its own
+progress: like Tarot it has no turn banner, results panel or rematch lobby, and
+its saved moves read as plain sentences ("You added a name").

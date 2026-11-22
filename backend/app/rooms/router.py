@@ -2,7 +2,7 @@ from collections.abc import Iterator
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 
 from app.astrology.models import (
     AstrologyPlaces,
@@ -23,13 +23,20 @@ from app.rooms.schemas import (
     JoinRoom,
     MeView,
     Move,
+    OwnProfileView,
+    PlayerSearch,
     ProfileInput,
-    ProfileView,
     QuickPlay,
     Ready,
+    RoomInviteInput,
+    RoomLookup,
     RoomSettings,
     RoomView,
+    SantaLinks,
+    SantaReveal,
     SavedReadingView,
+    UpdateBot,
+    UsernameInput,
 )
 from app.rooms.service import RoomService
 
@@ -50,9 +57,36 @@ def me(actor: Actor, svc: Service) -> MeView:
     return svc.me(actor)
 
 
-@router.put("/profile", response_model=ProfileView)
-def profile(data: ProfileInput, actor: Actor, svc: Service) -> ProfileView:
+@router.put("/profile", response_model=OwnProfileView)
+def profile(data: ProfileInput, actor: Actor, svc: Service) -> OwnProfileView:
     return svc.profile(actor, data)
+
+
+@router.put("/profile/username", response_model=OwnProfileView)
+def set_username(data: UsernameInput, actor: Actor, svc: Service) -> OwnProfileView:
+    return svc.set_username(actor, data.username)
+
+
+@router.delete("/profile/username", response_model=OwnProfileView)
+def clear_username(actor: Actor, svc: Service) -> OwnProfileView:
+    return svc.set_username(actor, None)
+
+
+@router.get("/players/search", response_model=PlayerSearch)
+def search_players(
+    actor: Actor, svc: Service, q: Annotated[str, Query(min_length=2, max_length=21)]
+) -> PlayerSearch:
+    return svc.search_players(actor, q)
+
+
+@router.post("/invitations/{room_id}/accept", response_model=RoomView)
+def accept_invitation(room_id: str, actor: Actor, svc: Service) -> RoomView:
+    return svc.accept_invitation(actor, room_id)
+
+
+@router.delete("/invitations/{room_id}", response_model=MeView)
+def decline_invitation(room_id: str, actor: Actor, svc: Service) -> MeView:
+    return svc.decline_invitation(actor, room_id)
 
 
 @router.post("/rooms", response_model=RoomView, status_code=201)
@@ -68,6 +102,11 @@ def quick_play(game_id: str, data: QuickPlay, actor: Actor, svc: Service) -> Roo
 @router.post("/rooms/join", response_model=RoomView)
 def join(data: JoinRoom, actor: Actor, svc: Service) -> RoomView:
     return svc.join(actor, data)
+
+
+@router.get("/rooms/lookup/{invite}", response_model=RoomLookup)
+def lookup(invite: str, actor: Actor, svc: Service) -> RoomLookup:
+    return svc.lookup(actor, invite)
 
 
 @router.get("/rooms/{room_id}", response_model=RoomView)
@@ -114,6 +153,16 @@ def astrology_chart(
     return svc.astrology_preview(actor, room_id, data)
 
 
+@router.get("/rooms/{room_id}/secret-santa/links", response_model=SantaLinks)
+def santa_links(room_id: str, actor: Actor, svc: Service) -> SantaLinks:
+    return svc.santa_links(actor, room_id)
+
+
+@router.get("/secret-santa/{token}", response_model=SantaReveal)
+def santa_reveal(token: str, actor: Actor, svc: Service) -> SantaReveal:
+    return svc.santa_reveal(actor, token)
+
+
 @router.put("/rooms/{room_id}/ready", response_model=RoomView)
 def ready(room_id: str, data: Ready, actor: Actor, svc: Service) -> RoomView:
     return svc.ready(actor, room_id, data.ready)
@@ -137,6 +186,23 @@ def move(room_id: str, data: Move, actor: Actor, svc: Service) -> RoomView:
 @router.post("/rooms/{room_id}/bots", response_model=RoomView)
 def add_bots(room_id: str, data: AddBots, actor: Actor, svc: Service) -> RoomView:
     return svc.add_bots(actor, room_id, data)
+
+
+@router.patch("/rooms/{room_id}/bots/{bot_id}", response_model=RoomView)
+def update_bot(
+    room_id: str, bot_id: str, data: UpdateBot, actor: Actor, svc: Service
+) -> RoomView:
+    return svc.update_bot(actor, room_id, bot_id, data)
+
+
+@router.post("/rooms/{room_id}/invites", response_model=RoomView)
+def invite_player(room_id: str, data: RoomInviteInput, actor: Actor, svc: Service) -> RoomView:
+    return svc.invite_player(actor, room_id, data.username)
+
+
+@router.delete("/rooms/{room_id}/invites/{username}", response_model=RoomView)
+def cancel_invite(room_id: str, username: str, actor: Actor, svc: Service) -> RoomView:
+    return svc.cancel_invite(actor, room_id, username)
 
 
 @router.post("/rooms/{room_id}/bots/drive", response_model=RoomView)

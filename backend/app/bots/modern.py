@@ -86,14 +86,24 @@ def _trio(ctx: Context) -> Action:
             if o.action.choice == ("high" if goal is not None and goal >= 7 else "low")
         ] or unknown
     option = ctx.pick(options or ctx.options)
-    a = option.action
-    ctx.memory["trio_last"] = {
-        "kind": a.type,
-        "owner": a.target,
-        "edge": a.choice,
-        "count": len(reveals),
-    }
+    _remember_reveal(ctx, option.action)
     return ctx.action(option)
+
+
+def _remember_reveal(ctx: Context, action: Action) -> None:
+    ctx.memory["trio_last"] = {
+        "kind": action.type,
+        "owner": action.target,
+        "edge": action.choice,
+        "count": len(ctx.detail.get("revealed", [])),
+    }
+
+
+def forget_plan(ctx: Context, action: Action) -> None:
+    """Keep memory true to the move actually made when a slip replaced the plan."""
+    if ctx.view.game_id == "trio" and "trio_last" in ctx.memory:
+        # The next observation must read the card this bot really turned over.
+        _remember_reveal(ctx, action)
 
 
 def _flip(ctx: Context) -> Action:

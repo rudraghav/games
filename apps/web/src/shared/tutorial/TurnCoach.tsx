@@ -16,6 +16,7 @@ import { tutorialLessons } from './lessons';
 import { focusMove } from './focus-move';
 import { fourDrop } from './four-drop';
 import { boardDirection } from './board-direction';
+import { organiserDirection } from './organiser-direction';
 import { cardPracticeHint, cardPracticeMove } from './card-hint';
 import { casinoDirection } from './casino-direction';
 
@@ -108,7 +109,7 @@ export function TurnCoach({
   const floating = above && !muted && !complete;
   const playOn = !tarot && !complete && count >= practiceMoves;
   const blocked = offline || room.paused || pending;
-  const tactical = fourDrop(match) ?? boardDirection(match);
+  const tactical = fourDrop(match) ?? boardDirection(match) ?? organiserDirection(match);
   const suggested = tactical?.option ?? cardPracticeMove(match) ?? offeredMove(match, lesson);
   const casino = casinoDirection(match, suggested, selfId);
   const option = casino?.option ?? suggested;

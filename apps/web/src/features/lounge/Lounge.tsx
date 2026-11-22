@@ -11,6 +11,10 @@ import { keys } from '@/shared/query-keys';
 import { useHasPlayed } from '@/shared/player-preferences';
 import { GameLibrary } from './GameLibrary';
 import { RoomShortcut } from './RoomShortcut';
+import { Invitations } from './Invitations';
+
+/** How often the home page checks for a new invitation while it is in view. */
+const INVITATION_REFRESH_MS = 20000;
 
 type ShortcutRoom = ComponentProps<typeof RoomShortcut>['room'];
 
@@ -85,7 +89,15 @@ export function Lounge() {
   const [tab, setTab] = useState<'games' | 'rooms'>('games');
   const [soloRequest, setSoloRequest] = useState(0);
   const played = useHasPlayed();
-  const me = useQuery({ queryKey: keys.me, queryFn: () => passiveApi.me(), enabled: played });
+  // Returning to the tab and a modest interval bring a new invitation without a
+  // reload. A hidden tab does not poll, and a visitor who never played is not read.
+  const me = useQuery({
+    queryKey: keys.me,
+    queryFn: () => passiveApi.me(),
+    enabled: played,
+    refetchInterval: INVITATION_REFRESH_MS,
+    refetchOnWindowFocus: 'always',
+  });
   return (
     <>
       <SiteHeader showGamesLink={false} onHomeClick={() => setTab('games')}>
@@ -123,6 +135,7 @@ export function Lounge() {
             </div>
           </div>
         </section>
+        <Invitations invitations={me.data?.invitations || []} />
         <SegmentedTabs
           label="Browse"
           value={tab}

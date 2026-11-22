@@ -26,6 +26,19 @@ export function matchPlayer(seed = 73) {
     const modernAction = modern(game, pick);
     if (modernAction) return modernAction;
     const ofType = (...types: string[]) => options.filter((o) => types.includes(o.action.type));
+    if (game.game_id === 'secret-santa') {
+      // The shortest complete event: enough names, one draw, then finish.
+      const [next] = ofType('finish').length
+        ? ofType('finish')
+        : ofType('draw').length
+          ? ofType('draw')
+          : ofType('add_name');
+      const people = Array.isArray(game.detail?.people) ? game.detail.people.length : 0;
+      return {
+        ...next.action,
+        ...(next.input === 'text' ? { choice: `Guest ${people + 1}` } : {}),
+      };
+    }
     let choices: Option[];
     if (game.game_id.startsWith('uno')) {
       choices = ofType('uno');

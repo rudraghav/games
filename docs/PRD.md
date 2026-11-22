@@ -2,11 +2,11 @@
 
 Choose a game before choosing how to play. Tarot opens directly into a private
 reading; bot play starts immediately. Friends use game → setup → invite lobby →
-ready → play → results → rematch/change game. The catalogue now contains 29 games.
+ready → play → results → rematch/change game. The catalogue now contains 30 entries: 29 games and Secret Santa, a name draw run by one organiser.
 
 ## Learn through play
 
-All 29 game pages keep normal play as the default. **Rules & tutorial** opens a
+All 30 game pages keep normal play as the default. **Rules & tutorial** opens a
 public illustrated rulebook with the goal, three worked examples, the rules by
 topic and an optional **Play tutorial** action. Reading it creates no session.
 Players can turn coaching on or off in the same rulebook during a solo or

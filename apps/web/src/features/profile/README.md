@@ -24,3 +24,14 @@ spin receipts at `/games/{gameId}/results/{matchId}`, including after a rematch
 or room closure. Other game history retains its room link.
 The archive authorizes the saved participant on every request; switching to a
 different existing account does not make the earlier guest's readings public.
+
+## Username
+
+"Let friends find you" in Player details holds the shared `UsernameField`
+(`shared/UsernameField.tsx`): 3 to 20 letters, numbers or underscores, lowercase
+as typed, with the @ shown beside the field and never sent. Save calls
+`api.setUsername`, Remove calls `api.clearUsername`, and both update the cached
+player. The server's message is shown for a taken, reserved or invalid name. The
+field is disabled until a profile exists ("Save your name first, then choose a
+username."); guests can choose one too. The same field opens from the lobby's
+invite panel.

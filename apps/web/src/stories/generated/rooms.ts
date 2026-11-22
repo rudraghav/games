@@ -7534,7 +7534,8 @@ export const fixtures = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -8393,6 +8394,7 @@ export const fixtures = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -8423,7 +8425,8 @@ export const fixtures = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -9282,6 +9285,7 @@ export const fixtures = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -9312,7 +9316,8 @@ export const fixtures = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -9422,6 +9427,7 @@ export const fixtures = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -9452,7 +9458,8 @@ export const fixtures = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -9562,6 +9569,7 @@ export const fixtures = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -34757,6 +34765,530 @@ export const fixtures = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "bot_pending": false,
+      "bot_due_at": null,
+      "last_action": null,
+      "activity": []
+    }
+  },
+  {
+    "label": "Secret Santa \u00b7 minimum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "cf0588b2-4c11-5f74-8d08-5968a862cea2",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "secret-santa",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 1,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "7e7f51b0-3331-5761-8f17-14f76a4525d7",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false,
+          "bot_level": null
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "secret-santa",
+        "phase": "setup",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Add the people taking part.",
+        "actions": [
+          {
+            "label": "Add a name",
+            "action": {
+              "type": "add_name",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "text",
+            "minimum": 1,
+            "maximum": 30,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Add a group",
+            "action": {
+              "type": "add_group",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "text",
+            "minimum": 1,
+            "maximum": 30,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Set the title",
+            "action": {
+              "type": "set_title",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "text",
+            "minimum": 1,
+            "maximum": 60,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Set the location",
+            "action": {
+              "type": "set_location",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "text",
+            "minimum": 1,
+            "maximum": 80,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Set the budget",
+            "action": {
+              "type": "set_budget",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "text",
+            "minimum": 1,
+            "maximum": 30,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Set the date",
+            "action": {
+              "type": "set_day",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 0,
+            "maximum": 40000,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Clear the day",
+            "action": {
+              "type": "clear",
+              "card": "",
+              "target": "day",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Clear the location",
+            "action": {
+              "type": "clear",
+              "card": "",
+              "target": "location",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Clear the budget",
+            "action": {
+              "type": "clear",
+              "card": "",
+              "target": "budget",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "title": "Secret Santa",
+          "day": null,
+          "location": "",
+          "budget": "",
+          "people": [],
+          "pairs": [],
+          "groups": [],
+          "drawn": false,
+          "draw_number": 0,
+          "can_draw": false,
+          "blocked": "Add at least 3 people.",
+          "showing": null,
+          "limits": {
+            "people": 30,
+            "groups": 8,
+            "name": 30,
+            "title": 60,
+            "location": 80,
+            "budget": 30
+          }
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null,
+      "pending_invites": [],
+      "bot_pending": false,
+      "bot_due_at": null,
+      "last_action": null,
+      "activity": []
+    }
+  },
+  {
+    "label": "Secret Santa \u00b7 maximum seats",
+    "selfId": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+    "room": {
+      "id": "f424f265-c85a-5f2e-846e-fc17b7d789f6",
+      "name": "Component preview",
+      "code": "PREVIEW1",
+      "game_id": "secret-santa",
+      "owner_id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+      "capacity": 1,
+      "settings": {},
+      "status": "playing",
+      "revision": 1,
+      "match_id": "7e7f51b0-3331-5761-8f17-14f76a4525d7",
+      "match_version": 1,
+      "members": [
+        {
+          "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+          "name": "Alexandra with a rather long name",
+          "avatar": 0,
+          "ready": false,
+          "seated": true,
+          "connected": true,
+          "last_seen": 0.0,
+          "is_bot": false,
+          "bot_level": null
+        }
+      ],
+      "messages": [],
+      "game": {
+        "game_id": "secret-santa",
+        "phase": "setup",
+        "current_player": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+        "players": [
+          {
+            "id": "1bc5a28a-44c7-5d31-a2ed-aa2a4904b5d5",
+            "count": 0,
+            "score": 0,
+            "chips": null,
+            "bet": 0,
+            "folded": false,
+            "eliminated": false,
+            "removed_slots": [],
+            "cards": [],
+            "bank": [],
+            "properties": {}
+          }
+        ],
+        "hand": [],
+        "community": [],
+        "discard": null,
+        "drawn": null,
+        "draw_count": 0,
+        "pot": 0,
+        "message": "Add the people taking part.",
+        "actions": [
+          {
+            "label": "Add a name",
+            "action": {
+              "type": "add_name",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "text",
+            "minimum": 1,
+            "maximum": 30,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Add a group",
+            "action": {
+              "type": "add_group",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "text",
+            "minimum": 1,
+            "maximum": 30,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Set the title",
+            "action": {
+              "type": "set_title",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "text",
+            "minimum": 1,
+            "maximum": 60,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Set the location",
+            "action": {
+              "type": "set_location",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "text",
+            "minimum": 1,
+            "maximum": 80,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Set the budget",
+            "action": {
+              "type": "set_budget",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "text",
+            "minimum": 1,
+            "maximum": 30,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Set the date",
+            "action": {
+              "type": "set_day",
+              "card": "",
+              "target": "",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": "amount",
+            "minimum": 0,
+            "maximum": 40000,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Clear the day",
+            "action": {
+              "type": "clear",
+              "card": "",
+              "target": "day",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Clear the location",
+            "action": {
+              "type": "clear",
+              "card": "",
+              "target": "location",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          },
+          {
+            "label": "Clear the budget",
+            "action": {
+              "type": "clear",
+              "card": "",
+              "target": "budget",
+              "color": "",
+              "choice": "",
+              "amount": 0,
+              "slot": 0,
+              "cards": [],
+              "groups": []
+            },
+            "input": null,
+            "minimum": null,
+            "maximum": null,
+            "step": 1,
+            "eligible_cards": []
+          }
+        ],
+        "winners": [],
+        "detail": {
+          "title": "Secret Santa",
+          "day": null,
+          "location": "",
+          "budget": "",
+          "people": [],
+          "pairs": [],
+          "groups": [],
+          "drawn": false,
+          "draw_number": 0,
+          "can_draw": false,
+          "blocked": "Add at least 3 people.",
+          "showing": null,
+          "limits": {
+            "people": 30,
+            "groups": 8,
+            "name": 30,
+            "title": 60,
+            "location": 80,
+            "budget": 30
+          }
+        }
+      },
+      "paused": false,
+      "missing_players": [],
+      "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,

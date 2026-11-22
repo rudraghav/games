@@ -39,6 +39,30 @@ for (const game of ['roulette', 'slots']) {
   });
 }
 
+// Secret Santa: three names, the draw, then one pass-the-phone reveal and its Hide.
+drivers.set('secret-santa', async (page, before) => {
+  const game = before.game!;
+  const table = page.locator('#tutorial-game-table');
+  const has = (type: string) => game.actions.some((option) => option.action.type === type);
+  if (has('hide')) {
+    await table.getByRole('button', { name: /^(Hide|Cancel)$/ }).click();
+  } else if (has('draw')) {
+    await table.getByRole('button', { name: 'Draw names', exact: true }).click();
+    await page.getByRole('dialog').getByRole('button', { name: 'Draw names', exact: true }).click();
+  } else if (has('add_name')) {
+    const added = (game.detail.people as unknown[]).length;
+    const field = table.getByRole('textbox', { name: 'Add a name', exact: true });
+    await field.fill(['Sam', 'Priya', 'Jo', 'Mateo'][added] ?? `Guest ${added + 1}`);
+    await field.press('Enter');
+  } else {
+    await table
+      .getByRole('button', { name: /^Show on this phone for / })
+      .first()
+      .click();
+    await table.getByRole('button', { name: /^I’m .+, show who I drew$/ }).click();
+  }
+});
+
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 // Three independent titles per test learner, each with at most four hands, fit
 // the ordinary twelve-room allowance. Every title gets its own browser context.

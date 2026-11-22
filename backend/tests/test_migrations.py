@@ -12,7 +12,7 @@ def test_all_private_tables_have_rls_and_no_public_grants():
             FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
             WHERE n.nspname='games' AND c.relkind='r'""")
         ).all()
-        assert len(tables) == 8
+        assert len(tables) == 9
         assert all(rls for _, rls in tables)
         assert not session.execute(
             text("""SELECT 1 FROM information_schema.table_privileges

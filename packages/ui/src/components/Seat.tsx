@@ -23,6 +23,8 @@ interface SeatProps {
   displayName?: string;
   /** A short public status shown before the caption, such as "Next". */
   badge?: string;
+  /** Replaces the visible name while it is being edited in place. */
+  nameEditor?: ReactNode;
 }
 export function Seat({
   name,
@@ -39,6 +41,7 @@ export function Seat({
   action,
   displayName,
   badge,
+  nameEditor,
 }: SeatProps) {
   const plainName = bot ? name?.replace(/^Bot\s+/i, '') : name;
   const status = !name
@@ -68,16 +71,20 @@ export function Seat({
         <span className="empty-avatar">+</span>
       )}
       <div className="seat-copy">
-        <strong title={name}>
-          <span className="seat-name">{displayName || plainName || 'Open seat'}</span>
-          {name && you ? <span className="seat-self">you</span> : null}
-          {name && bot ? (
-            <span className="seat-kind">
-              <Bot size={12} aria-hidden="true" />
-              <span className="seat-kind-label">Bot</span>
-            </span>
-          ) : null}
-        </strong>
+        {nameEditor ? (
+          <div className="seat-name-editor">{nameEditor}</div>
+        ) : (
+          <strong title={name}>
+            <span className="seat-name">{displayName || plainName || 'Open seat'}</span>
+            {name && you ? <span className="seat-self">you</span> : null}
+            {name && bot ? (
+              <span className="seat-kind">
+                <Bot size={12} aria-hidden="true" />
+                <span className="seat-kind-label">Bot</span>
+              </span>
+            ) : null}
+          </strong>
+        )}
         <span>
           {name && badge ? <b className="seat-badge">{badge}</b> : null}
           {status}

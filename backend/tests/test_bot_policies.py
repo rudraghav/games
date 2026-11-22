@@ -51,7 +51,9 @@ def test_decisions_are_reproducible_immutable_and_memory_bounded(game_id):
 
 @pytest.mark.parametrize("game_id", sorted(BOT_GAMES))
 @pytest.mark.parametrize("maximum,seed", [(False, 17), (True, 31), (False, 73), (True, 93)])
-def test_bots_complete_normal_matches_at_every_seat_limit(game_id, maximum, seed):
+@pytest.mark.parametrize("level", ["hard", "medium", "easy"])
+def test_bots_complete_normal_matches_at_every_seat_limit(game_id, maximum, seed, level):
+    # Whole tables of slipping bots must still finish within the same step bound.
     e = ENGINES[game_id]
     n = e.manifest.max_players if maximum else e.manifest.min_players
     players = [f"p{i}" for i in range(n)]
@@ -74,7 +76,7 @@ def test_bots_complete_normal_matches_at_every_seat_limit(game_id, maximum, seed
         view = e.project_view(s, actor)
         old = view.model_dump_json()
         start = perf_counter()
-        decision = choose_action(view, actor, memory[actor])
+        decision = choose_action(view, actor, memory[actor], level)
         peak = max(peak, perf_counter() - start)
         assert old == view.model_dump_json()
         memory[actor] = decision.memory
@@ -83,7 +85,7 @@ def test_bots_complete_normal_matches_at_every_seat_limit(game_id, maximum, seed
         if game_id in {"trio", "flip-7"}:
             for p in players:
                 memory[p] = observe_view(e.project_view(s, p), p, memory[p])
-    assert s["phase"] == "finished", (game_id, maximum, s["phase"])
+    assert s["phase"] == "finished", (game_id, maximum, level, s["phase"])
     assert (
         e.outcome(s)
         or s.get("draw")

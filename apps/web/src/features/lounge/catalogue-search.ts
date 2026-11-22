@@ -50,6 +50,7 @@ const families: Record<Category, readonly string[]> = {
     'trio',
     'cooperative-poker',
     'number-rows',
+    'organiser',
   ],
   cooperative: [],
   solo: ['tarot', 'casino'],
@@ -95,6 +96,8 @@ const aliases: Record<string, string> = {
   'sea-salt-paper': 'sea salt and paper origami cards collection',
   boop: 'cats kittens bed board',
   shithead: 'shit head palace china hand ten two slide shedding',
+  'secret-santa':
+    'secret santa gift exchange draw names drawnames name draw kris kringle kriskindle christmas xmas presents organiser organizer party group',
 };
 function searchableText(value: string) {
   return value
@@ -118,6 +121,8 @@ export function matchesGame(game: Game, query: string, players: number, category
       .split(/\s+/)
       .every((word) => text.includes(word)) &&
     (!players ||
+      // One organiser runs a draw for the whole group, whatever its size.
+      game.family === 'organiser' ||
       (game.maxPlayers >= players &&
         (game.minPlayers <= players || (players === 1 && game.botsSupported)))) &&
     (category === 'all' ||

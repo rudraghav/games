@@ -18,6 +18,9 @@ class Profile(Base):
     name: Mapped[str] = mapped_column(String(30))
     avatar: Mapped[int] = mapped_column(Integer, default=0)
     created_at: Mapped[float] = mapped_column(Float, default=time.time)
+    # A handle friends can search for. Stored lowercase; only its owner sees it
+    # outside player search and room invitations.
+    username: Mapped[str | None] = mapped_column(String(20), unique=True, nullable=True)
 
 
 class Room(Base):
@@ -48,8 +51,24 @@ class Member(Base):
     seated: Mapped[bool] = mapped_column(Boolean, default=True)
     active: Mapped[bool] = mapped_column(Boolean, default=True)
     is_bot: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")
+    # "easy", "medium" or "hard" for a bot. NULL is the full policy (shown as hard).
+    bot_level: Mapped[str | None] = mapped_column(String(8), nullable=True)
     joined_at: Mapped[float] = mapped_column(Float, default=time.time)
     seen_at: Mapped[float] = mapped_column(Float, default=time.time)
+
+
+class RoomInvite(Base):
+    """A member asked this player, found by username, to join the room."""
+
+    __tablename__ = "room_invites"
+    room_id: Mapped[str] = mapped_column(
+        ForeignKey("games.rooms.id", ondelete="CASCADE"), primary_key=True
+    )
+    user_id: Mapped[str] = mapped_column(
+        ForeignKey("games.profiles.id"), primary_key=True, index=True
+    )
+    invited_by: Mapped[str] = mapped_column(ForeignKey("games.profiles.id"))
+    created_at: Mapped[float] = mapped_column(Float, default=time.time)
 
 
 class Match(Base):

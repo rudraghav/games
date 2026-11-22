@@ -14,6 +14,36 @@ Trio and Flip7, whose policies remember public reveals. Memory is bounded to 16K
 and policy randomness uses a separate private bot seed plus decision cursor, never the
 engine's shuffle seed. No projection is saved wholesale.
 
+## Levels
+
+`choose_action(view, player_id, memory, level="hard")`. `hard` is each game's
+policy below, unchanged: the same decisions and memory as a call without a level.
+`medium` and `easy` first let the policy decide, then with a fixed chance
+(`SLIP_CHANCE`: medium 0.18, easy 0.5) play a uniformly random ordinary legal
+move instead. The slip is drawn from the same seeded decision cursor after the
+policy has used it, so a given memory and view always slip the same way, and the
+step and memory accounting are those of the hard decision.
+
+A slip never replaces the policy's move when it is one of `STEADY_ACTIONS`:
+advancing a review or round (`continue`, `next_round`, `next_prompt`,
+`next_selection`, `next_heist`, `reveal_hand`, `reveal_mermaids`), calling or
+catching UNO (`uno`, `catch_uno`), a forced `pass`, the Spill or Chill `respond`
+(a bot never claims it answered aloud), and moves the policy composes from
+several cards or text (`declare`, `clue`, `arrange`, `pay`, and any option whose
+input is cards or text).
+
+A slip never lands on those, nor on `fold` (leaving a hand or deal), `all_in`,
+Deal's free `rearrange`, The Gang's `return_chip`, or a party "pass" choice. In
+The Gang it only takes a free chip, never a crewmate's. Amount inputs use the
+option's minimum, as `Context.action` already does. When a Trio slip turns a
+different card, the bot's memory records the card it actually turned.
+
+`test_bot_levels.py` checks that hard equals the level-free call for every game,
+that levels repeat for a seed, that slips are legal ordinary moves and that the
+steady actions are never replaced. `test_bot_policies.py` finishes every bot
+game with all-hard, all-medium and all-easy tables within the same 4,000-step
+bound.
+
 ## Policies
 
 | Family | Decision method |
@@ -90,9 +120,9 @@ supported seat limit. HTTP tests separately verify persistence, scheduling,
 ownership and concurrency. Exact passing counts/timings belong in progress.txt;
 this module documentation does not itself claim a completed production release.
 
-Current local policy acceptance: `test_bot_policies.py` passes 144 cases, including
-100 natural matches across every multiplayer game at both player limits and two
-independent seeds per limit. Other cases prove deterministic immutable decisions,
+Current local policy acceptance: `test_bot_policies.py` passes 362 cases, including
+312 natural matches: every multiplayer game at both player limits, two independent
+seeds per limit, at each of the three levels. Other cases prove deterministic immutable decisions,
 hidden-hand/key parity, memory bounds, real rummy declarations, board wins/blocks,
 hard/soft/pair blackjack choices, bank-first payments, Gang free-chip estimates,
 Trio observation and transparent party behavior. Each natural scenario asserts a

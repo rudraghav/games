@@ -1,3 +1,37 @@
+## 2026-11-22 — Secret Santa: names, date and location, exclusions by person and by group, private links
+
+- Owner asked for a Secret Santa game with names, a location and a date, and exclusions for anyone in a group or individually, after looking at how DrawNames does it.
+
+- Added as a solo organiser game (secret-santa, new family organiser). The organiser types 3 to 30 names, sets title, date, location and budget, ticks who must not draw whom (both ways) and makes groups whose members never draw each other, then draws. The server makes the draw; when the exclusions leave none, the table says why.
+
+- Each person gets a private link that shows only their own draw and the event details; a pass-the-phone reveal covers people in the room. The organiser's table never lists the pairs and shows who has opened their name. A redraw stops old links; finishing keeps them working. Opening a link no longer invalidates the organiser's next move.
+
+- Wish lists and anonymous questions, which DrawNames also has, are not included.
+
+- Local checks with room setup and Secret Santa together: frontend (433 unit tests), backend (8,053), contracts, tooling, multiplayer (328) and migrations pass. Browser suite: 505 passed, 76 skipped, 3 failed; all three were test faults (the density check did not know the new table; a Tarot keyboard test raced the deck's tap guard) and pass after the fix. Evidence: docs/evidence/secret-santa-2026-11-22.
+
+- The Secret Santa work ran under the room-setup task claim because the task tool refuses a second claim on the same paths by the same owner.
+
+- State: verified locally; not committed or released.
+
+## 2026-11-22 — Room setup: bot count, level and names; six-digit codes and short links; usernames and invitations
+
+- Owner asked for: choosing the number of bots, their difficulty and names; sharing a link with friends; finding friends by username to invite them; an easy six-digit access code and simpler room links, all with easy controls.
+
+- Create room now has a Bots stepper and a per-bot name and Easy / Medium / Hard; the lobby lets the host change a bot's level, rename or remove it. Hard is the existing play, unchanged; Medium and Easy replace 18% and 50% of real decisions with a random legal one.
+
+- New multiplayer rooms get a six-digit code and the link /r/<code>; the lobby offers Share, Copy link and Copy code. The table's own address is unchanged. Wrong codes are limited to 10 per player in 10 minutes, a closed room's number is retired, and solo tables take no six-digit number.
+
+- Any player can claim a username on their profile. From a lobby, a member searches by username and invites; the friend sees the invitation on their home page (refreshed about every 20 seconds) and joins or declines. Usernames are not shown to other players in a room.
+
+- Migration c4d19e7b52a6 adds profiles.username, room_members.bot_level and room_invites.
+
+- Docker Desktop stopped during the work because the disk was full. Database-backed checks ran against a temporary PostgreSQL in the session's scratch folder; the Docker development database has not received the migration yet.
+
+- Local checks: frontend (409 unit tests), backend (7,878), contracts, tooling, multiplayer (314) and migrations pass. Real two-guest browser flows for every new feature pass on desktop and phone. Full browser suite: 481 passed, 75 skipped, none failed. Evidence: docs/evidence/room-setup-invites-2026-11-22.
+
+- State: verified locally; not committed or released. Releasing needs the production migration first.
+
 ## 2026-11-22 — Tarot table: one-tap draws, deck rows, drawn-card preview, Groq first
 
 - Owner asked for: one click to pick a card instead of two; more cards in view with a way to scroll by finger on a phone; hover and click on drawn cards (hover enlarges with a little more information, click opens the full details); and the recommended reading provider if keys and usage allow.

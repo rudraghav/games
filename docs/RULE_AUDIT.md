@@ -36,6 +36,7 @@ No Mercy house deck are not advertised as exact reproductions of another deck.
 | Sea Salt & Paper | 2–4 | Exact 58-card/color inventory, private stock/discard choices, duo effects, protected Last Chance hands, scoring and mermaid finish | [Sea Salt & Paper](../backend/app/games/sea_salt_paper/README.md) |
 | boop. | 2 | 32-piece conservation, kitten/cat displacement, blocked lines, active-player graduation and win timing | [boop.](../backend/app/games/boop/README.md) |
 | Shithead | 2–5 | 52-card conservation, three-card setup, ascending/same-rank plays, reset twos, ten/four-kind burns, refills, face-up pickup and blind failure, final loser; optional seven-low/transparent-three off by default | [Shithead](../backend/app/games/shithead/README.md) |
+| Secret Santa | 1 organiser, 3–30 names | Naming and limits, pair and group upkeep, exact can-draw answer (too few, one person stuck, Hall's condition), every draw a rule-abiding permutation over 120 random lists, nine-outcome fairness band, view independent of the draw, link tokens bound to match, draw and person | [Secret Santa](../backend/app/games/secret_santa/README.md) |
 
 `test_card_family_rules.py`, `test_table_rules.py`, `test_new_boards.py` and existing
 edge tests assert independent exact states/results, not merely acceptance of an

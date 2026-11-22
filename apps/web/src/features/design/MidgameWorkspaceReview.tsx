@@ -161,6 +161,23 @@ function PreviewTable({
         message: 'AI generation is disabled in this local preview.',
       },
     });
+    // A drawn Secret Santa lists a link per person. The review gives it placeholder
+    // links, so this page never asks a server (or opens a session) for real ones.
+    const people = fixture.room.game?.detail?.people;
+    if (fixture.game === 'secret-santa' && Array.isArray(people))
+      cache.setQueryDefaults(['secret-santa-links', fixture.room.id], {
+        initialData: people.flatMap((person) =>
+          person && typeof person === 'object' && 'id' in person && 'name' in person
+            ? [
+                {
+                  id: String(person.id),
+                  name: String(person.name),
+                  token: `preview-only-link-${String(person.id).padStart(8, '0')}`,
+                },
+              ]
+            : [],
+        ),
+      });
     return cache;
   });
   const Table = tableRegistry[fixture.game];

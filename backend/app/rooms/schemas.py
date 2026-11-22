@@ -12,6 +12,25 @@ class Request(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
 
+# "hard" is each game's full policy; "medium" and "easy" make deliberate slips.
+BotLevel = Literal["easy", "medium", "hard"]
+
+
+def readable_name(value: str) -> str:
+    value = " ".join(value.split())
+    if not value or any(ord(c) < 32 for c in value):
+        raise ValueError("Choose a readable display name.")
+    return value
+
+
+def clean_username(value: str) -> str:
+    """A handle people can be found by: 3 to 20 of a-z, 0-9 and underscore."""
+    value = value.strip().removeprefix("@").lower()
+    if not 3 <= len(value) <= 20 or any(c not in "abcdefghijklmnopqrstuvwxyz0123456789_" for c in value):
+        raise ValueError("Use 3 to 20 letters, numbers or underscores.")
+    return value
+
+
 class ProfileInput(Request):
     name: str = Field(min_length=1, max_length=30)
     avatar: int = Field(default=0, ge=0, le=7)
@@ -19,10 +38,28 @@ class ProfileInput(Request):
     @field_validator("name")
     @classmethod
     def clean_name(cls, value: str) -> str:
-        value = " ".join(value.split())
-        if not value or any(ord(c) < 32 for c in value):
-            raise ValueError("Choose a readable display name.")
-        return value
+        return readable_name(value)
+
+
+class UsernameInput(Request):
+    username: str = Field(min_length=3, max_length=21)
+
+    @field_validator("username")
+    @classmethod
+    def clean(cls, value: str) -> str:
+        return clean_username(value)
+
+
+class BotSeat(Request):
+    """One bot the host seats: an optional name of their own and how well it plays."""
+
+    name: str | None = Field(default=None, min_length=1, max_length=30)
+    level: BotLevel = "hard"
+
+    @field_validator("name")
+    @classmethod
+    def clean_name(cls, value: str | None) -> str | None:
+        return None if value is None else readable_name(value)
 
 
 class CreateRoom(ProfileInput):
@@ -31,6 +68,8 @@ class CreateRoom(ProfileInput):
     capacity: int = Field(default=4, ge=1, le=10)
     settings: dict[str, bool] = Field(default_factory=dict)
     bots: int = Field(default=0, ge=0, le=9)
+    # When given, these seats replace the plain `bots` count.
+    bot_seats: list[BotSeat] | None = Field(default=None, max_length=9)
 
 
 class QuickPlay(Request):
@@ -53,6 +92,33 @@ class Ready(Request):
 
 class AddBots(Request):
     count: int = Field(default=1, ge=1, le=9)
+    level: BotLevel = "hard"
+    # A name of the host's choosing; only for a single bot.
+    name: str | None = Field(default=None, min_length=1, max_length=30)
+
+    @field_validator("name")
+    @classmethod
+    def clean_name(cls, value: str | None) -> str | None:
+        return None if value is None else readable_name(value)
+
+
+class UpdateBot(Request):
+    name: str | None = Field(default=None, min_length=1, max_length=30)
+    level: BotLevel | None = None
+
+    @field_validator("name")
+    @classmethod
+    def clean_name(cls, value: str | None) -> str | None:
+        return None if value is None else readable_name(value)
+
+
+class RoomInviteInput(Request):
+    username: str = Field(min_length=3, max_length=21)
+
+    @field_validator("username")
+    @classmethod
+    def clean(cls, value: str) -> str:
+        return clean_username(value)
 
 
 class DriveBots(Request):
@@ -78,12 +144,83 @@ class ProfileView(BaseModel):
     avatar: int
 
 
+class OwnProfileView(ProfileView):
+    """A player's own profile. The username is never part of another player's view of them."""
+
+    username: str | None = None
+
+
+class PlayerHit(BaseModel):
+    """A player found by username. Carries no account or room identifier."""
+
+    username: str
+    name: str
+    avatar: int
+
+
+class PlayerSearch(BaseModel):
+    players: list[PlayerHit] = Field(default_factory=list, max_length=8)
+
+
 class MemberView(ProfileView):
     ready: bool
     seated: bool
     connected: bool
     last_seen: float
     is_bot: bool = False
+    bot_level: BotLevel | None = None
+
+
+class PendingInviteView(BaseModel):
+    """Someone invited to this room by username who has not answered yet."""
+
+    username: str
+    name: str
+    avatar: int
+
+
+class InvitationView(BaseModel):
+    """An invitation waiting for the signed-in player."""
+
+    room_id: str
+    room_name: str
+    game_id: str
+    from_name: str
+    from_avatar: int
+    players: int
+    capacity: int
+    created_at: float
+
+
+class SantaLink(BaseModel):
+    """One person's private Secret Santa link. Only the organiser receives these."""
+
+    id: str
+    name: str
+    token: str = Field(min_length=20, max_length=120)
+
+
+class SantaLinks(BaseModel):
+    links: list[SantaLink] = Field(default_factory=list, max_length=30)
+
+
+class SantaReveal(BaseModel):
+    """What one person's private link shows: their own draw and the event, nothing else."""
+
+    title: str
+    # Days since 1 January 2020, or None when no date is set.
+    day: int | None = None
+    location: str = ""
+    budget: str = ""
+    giver_name: str
+    recipient_name: str
+
+
+class RoomLookup(BaseModel):
+    """Where a room code or invite leads for a player who is already in that room."""
+
+    id: str
+    game_id: str
 
 
 class MessageView(BaseModel):
@@ -133,6 +270,7 @@ class RoomView(BaseModel):
     paused: bool
     missing_players: list[str]
     invite_token: str | None = None
+    pending_invites: list[PendingInviteView] = Field(default_factory=list, max_length=20)
     bot_pending: bool = False
     bot_due_at: float | None = None
     last_action: PublicActionView | None = None
@@ -173,7 +311,8 @@ class SavedReadingView(BaseModel):
 
 
 class MeView(BaseModel):
-    profile: ProfileView | None
+    profile: OwnProfileView | None
     anonymous: bool
     rooms: list[RoomSummary]
     history: list[MatchSummary]
+    invitations: list[InvitationView] = Field(default_factory=list, max_length=20)

@@ -14,6 +14,7 @@ amount steps/payment eligibility. Shared visual vocabulary lives in `@games/ui`.
 - `board`: public-board composition shared by Four in a Row, Reversi and Checkers; Kalah/Mancala composes shared numeric pits/stores.
 - `words`: private spymaster key, one-word clues and confirmed team guesses.
 - `gems`: resource selection, development/patron cards, private reservations and prestige.
+- `secret-santa` (family `organiser`): one organiser's page for names, exclusions, the draw and a private link per person. It has no seats, hand or turn banner; see its README.
 
 Typed detail parsers in the API client validate new-family metadata. The renderer
 registry fails on an unknown family. PlayerStrip accepts a caption variant for

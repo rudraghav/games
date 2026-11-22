@@ -32,6 +32,47 @@ UNO_RULES = [
 ]
 
 
+def santa_plan(crowded):
+    """Secret Santa has no bot: one organiser's scripted evening, as (action, label).
+
+    A labelled step is captured as a scenario showing the table just before it.
+    Every name, place and amount here is invented for the preview.
+    """
+    names = ["Asha", "Ben", "Chen", "Dara", "Eli"]
+    pairs, groups = [("p1", ["p2"])], [("Flat 2", ["p3", "p4"])]
+    title, place, budget = "Office Secret Santa", "The Crown, upstairs room", "£15"
+    if crowded:
+        names += ["Alexandra Featherstonehaugh-Li", "Farid", "Grace", "Hana", "Ines", "Jo", "Kofi"]
+        pairs.append(("p7", ["p8", "p9"]))
+        groups.append(("The Okafor household", ["p10", "p11", "p12"]))
+        title, place = "Maple Street neighbours' gift swap", "Community hall, 14 Maple Street (side door)"
+        budget = "About £20, nothing breakable"
+    last, others = f"p{len(names)}", [f"p{i}" for i in range(1, len(names))]
+    plan = [(Action(type="add_name", choice=name), "too few people" if i == 2 and not crowded else None)
+            for i, name in enumerate(names)]
+    plan += [(Action(type="set_exclusions", target=person, cards=barred), None) for person, barred in pairs]
+    for index, (label, members) in enumerate(groups, 1):
+        plan += [(Action(type="add_group", choice=label), None),
+                 (Action(type="set_group", target=f"g{index}", cards=members), None)]
+    plan += [
+        (Action(type="set_title", choice=title), None),
+        # 18 December 2026, counted in days from 1 January 2020.
+        (Action(type="set_day", amount=2543), None),
+        (Action(type="set_location", choice=place), None),
+        (Action(type="set_budget", choice=budget), None),
+        # One person barred from everyone, then put right: the table explains why it cannot draw.
+        (Action(type="set_exclusions", target=last, cards=others), None),
+        (Action(type="set_exclusions", target=last, cards=[]), "cannot draw yet"),
+        (Action(type="draw"), "ready to draw"),
+        (Action(type="reveal", target="p1"), "links to share"),
+        (Action(type="hide"), "showing one name"),
+        (Action(type="reveal", target="p3"), None),
+        (Action(type="hide"), None),
+        (Action(type="finish"), "some names seen"),
+    ]
+    return plan
+
+
 def inventory(game, s):
     """Physical-card inventory, independent of each engine's projection."""
     if game.startswith("uno") or game.startswith("deal"):
@@ -131,6 +172,10 @@ def project(engine, state, viewer, players):
             assert not (set(private) - allowed).intersection(shown), f"Other hand leaked: {engine.manifest.id}"
     payload = json.dumps(data)
     assert not any(f'"{field}"' in payload for field in ("_shuffle_key", "_shuffle_nonce", "_stops", "_pockets"))
+    if engine.manifest.id == "secret-santa":
+        # Who drew whom stays in the saved state; one recipient shows only while shown.
+        assert '"assignment"' not in payload, "Secret Santa draw leaked"
+        assert ("recipient_name" in payload) == bool(state["showing"]), "Secret Santa recipient leaked"
     return view
 
 
@@ -159,6 +204,8 @@ def generate():
         exercised = set()
         density_case, density_peak = None, 0
         seen, phases, action_types, offered_types, captured, peak = set(), set(), set(), set(), [], 0
+        scripted = santa_plan(crowded=seed == 31) if game == "secret-santa" else []
+        scripted_label = None
         for step in range(1, 4001):
             if state["phase"] == "finished" or game == "tarot" and state["phase"] == "reading":
                 break
@@ -166,6 +213,8 @@ def generate():
             view = project(engine, state, actor, players)
             if game == "tarot":
                 action = view.actions[0].action
+            elif game == "secret-santa":
+                action, scripted_label = scripted[step - 1]
             elif game in {"slots", "roulette"}:
                 # Script only public bet choices. This exercises bets on zero,
                 # another straight and outside bets across independent legal runs.
@@ -200,6 +249,8 @@ def generate():
             classification = action.type if action.type in INTERESTING else "decision"
             if game == "tarot":
                 classification = f"spread-{len(view.community)}"
+            if game == "secret-santa":
+                classification = scripted_label or "list edit"
             if game in {"roulette", "slots"} and step > 1:
                 net = view.detail["history"][-1]["net"]
                 classification = "after-win" if net > 0 else "after-loss"
@@ -262,6 +313,8 @@ def generate():
             worth_recording = step > 1 and signature not in seen and len(captured) < limit
             if stress:
                 worth_recording = worth_recording and len(view.hand) >= 20
+            if game == "secret-santa":
+                worth_recording = worth_recording and scripted_label is not None
             if supplemental:
                 worth_recording = (action.type == target_type or phase == target_type) and not captured
             if worth_recording:

@@ -113,12 +113,29 @@ Migration `a6e442b15d80` adds three columns to existing private tables, with
 backfills preserving all human memberships and old matches. It changes neither
 public grants nor membership/Broadcast policies.
 
+Migration `c4d19e7b52a6` adds nullable `profiles.username` (unique, stored
+lowercase), nullable `room_members.bot_level` (NULL plays and shows as hard) and
+the private table `room_invites` (room, invited player, inviter, time). The new
+table has RLS enabled and no grant to PUBLIC, `anon` or `authenticated`, like
+every Games table except the existing membership read. Existing rows are
+unchanged and no policy is added. It is forward-only.
+
 | Wire operation | Authorization and behavior |
 | --- | --- |
 | `POST /v1/rooms`, optional `bots` | Existing creation; atomically fills requested open seats with 0–9 bots |
 | `POST /v1/rooms/{id}/bots`, `{count}` | Human host; adds 1–9 bots to available lobby seats |
 | `DELETE /v1/rooms/{id}/members/{bot_id}` | Existing human-host removal between matches; preserves the retired profile/history |
 | `POST /v1/rooms/{id}/bots/drive`, `{match_id, expected_version}` | Human member; at most one due bot move; stale/concurrent calls are safe no-ops |
+| `POST /v1/rooms` with `bot_seats`; `POST .../bots` with `level`, `name`; `PATCH /v1/rooms/{id}/bots/{bot_id}` | Human host, between matches; each bot's name and easy/medium/hard level |
+| `PUT`/`DELETE /v1/profile/username`, `GET /v1/players/search?q=` | Own username; prefix search returning username, name and avatar only |
+| `POST /v1/rooms/{id}/invites`, `DELETE .../invites/{username}` | Active member invites by username; host or sender cancels |
+| `POST /v1/invitations/{room_id}/accept`, `DELETE /v1/invitations/{room_id}` | The invited player joins as by code, or declines |
+| `GET /v1/rooms/lookup/{invite}` | Room id and game only for an active member of that room; otherwise one 404 |
+| `GET /v1/rooms/{id}/secret-santa/links` | The organiser of the room's current Secret Santa draw; one private link token per person |
+| `GET /v1/secret-santa/{token}` | Any signed-in session holding a current token; that person's own draw and the event details |
+
+Room setup, six-digit codes, the wrong-code limit and invitations are described
+in `backend/app/rooms/README.md`; bot levels in `backend/app/bots/README.md`.
 
 `MemberView.is_bot` is explicit; `bot_due_at` is epoch seconds and is returned
 only when safe bot work is pending. The normal pacing interval is 800ms after a
@@ -134,6 +151,18 @@ only its authorized view and stores at most 64 own/public rank signatures to
 vary legal choices when a pickup cycle repeats. There is no forced turn limit,
 hidden-state search or model request. An unscored outcome lists all escaped
 players as winners and the final remaining player as the loser.
+
+Secret Santa's `organiser` family is a solo table with no bot and no score. The
+organiser types the people, pairs and groups; the engine decides exactly whether
+a complete draw exists and draws from its own saved random number. Who drew whom
+stays in the saved match state. The organiser's projection names a recipient
+only while showing one person their name, and public history uses fixed labels.
+Each person's link token is derived from the match, the draw number and the
+person, signed with a key derived from the application secret, and never
+stored; drawing again invalidates every earlier token. Opening a link marks
+that person as having looked, under the room lock, without a receipt or an
+activity entry. No schema migration was needed. See
+`backend/app/games/secret_santa/README.md` and `backend/app/rooms/README.md`.
 
 ## Optional Tarot astrology
 

@@ -1,5 +1,5 @@
 {
-  "games": 29,
+  "games": 30,
   "kind": "Legally reached engine projections, not saved API rooms",
   "limits": [
     "Only generated legal trajectories are claimed; no guarantee that every rare action appears.",
@@ -2114,6 +2114,129 @@
       "supplemental": false
     },
     {
+      "captured": 6,
+      "capturedActionTypes": [
+        "add_name",
+        "draw",
+        "finish",
+        "hide",
+        "reveal",
+        "set_exclusions"
+      ],
+      "capturedPhases": [
+        "drawn",
+        "setup"
+      ],
+      "chosenActionTypes": [
+        "add_group",
+        "add_name",
+        "draw",
+        "finish",
+        "hide",
+        "reveal",
+        "set_budget",
+        "set_day",
+        "set_exclusions",
+        "set_group",
+        "set_location",
+        "set_title"
+      ],
+      "finished": true,
+      "game": "secret-santa",
+      "offeredActionTypes": [
+        "add_group",
+        "add_name",
+        "clear",
+        "draw",
+        "finish",
+        "hide",
+        "redraw",
+        "remove_group",
+        "remove_name",
+        "rename",
+        "rename_group",
+        "reveal",
+        "set_budget",
+        "set_day",
+        "set_exclusions",
+        "set_group",
+        "set_location",
+        "set_title"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "drawn",
+        "setup"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 1,
+      "seed": 17,
+      "steps": 20,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 5,
+      "capturedActionTypes": [
+        "draw",
+        "finish",
+        "hide",
+        "reveal",
+        "set_exclusions"
+      ],
+      "capturedPhases": [
+        "drawn",
+        "setup"
+      ],
+      "chosenActionTypes": [
+        "add_group",
+        "add_name",
+        "draw",
+        "finish",
+        "hide",
+        "reveal",
+        "set_budget",
+        "set_day",
+        "set_exclusions",
+        "set_group",
+        "set_location",
+        "set_title"
+      ],
+      "finished": true,
+      "game": "secret-santa",
+      "offeredActionTypes": [
+        "add_group",
+        "add_name",
+        "clear",
+        "draw",
+        "finish",
+        "hide",
+        "redraw",
+        "remove_group",
+        "remove_name",
+        "rename",
+        "rename_group",
+        "reveal",
+        "set_budget",
+        "set_day",
+        "set_exclusions",
+        "set_group",
+        "set_location",
+        "set_title"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "drawn",
+        "setup"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 1,
+      "seed": 31,
+      "steps": 30,
+      "stress": false,
+      "supplemental": false
+    },
+    {
       "captured": 0,
       "capturedActionTypes": [],
       "capturedPhases": [],
@@ -2585,5 +2708,5 @@
       "supplemental": true
     }
   ],
-  "scenarios": 289
+  "scenarios": 300
 }

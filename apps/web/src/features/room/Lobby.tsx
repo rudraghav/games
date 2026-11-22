@@ -1,10 +1,11 @@
 'use client';
-import { useState } from 'react';
-import { Copy, Check, Link2, ArrowRight, Settings2, Bot, X } from 'lucide-react';
+import { Check, ArrowRight, Settings2, Bot } from 'lucide-react';
 import { Button, Seat } from '@games/ui';
-import type { Room } from '@games/api-client';
+import type { BotLevel, Room } from '@games/api-client';
 import { gameById } from '@games/api-client/catalog';
 import { GameArt } from '@/shared/GameArt';
+import { BotSeat } from './BotSeat';
+import { InvitePanel } from './InvitePanel';
 
 interface LobbyProps {
   room: Room;
@@ -15,6 +16,8 @@ interface LobbyProps {
   pending: boolean;
   addBots?: (count: number) => void;
   removeBot?: (id: string) => void;
+  /** Host only: rename a bot or change how well it plays. */
+  updateBot?: (id: string, change: { name?: string; level?: BotLevel }) => void;
 }
 export function Lobby({
   room,
@@ -25,9 +28,8 @@ export function Lobby({
   pending,
   addBots,
   removeBot,
+  updateBot,
 }: LobbyProps) {
-  const [copied, setCopied] = useState('');
-  const [copyError, setCopyError] = useState('');
   const game = gameById(room.gameId);
   const solo = game.maxPlayers === 1;
   const seated = room.members.filter((member) => member.seated);
@@ -35,18 +37,6 @@ export function Lobby({
   const host = room.ownerId === selfId;
   const canStart =
     seated.length >= game.minPlayers && seated.every((member) => member.ready && member.connected);
-  async function copy(kind: 'link' | 'code') {
-    try {
-      await navigator.clipboard.writeText(
-        kind === 'link' ? `${location.origin}/join/${room.inviteToken || room.code}` : room.code,
-      );
-      setCopied(kind);
-      setCopyError('');
-      window.setTimeout(() => setCopied(''), 2500);
-    } catch {
-      setCopyError('Copy isn’t available here. Select the room code below.');
-    }
-  }
   // After a match the rematch controls come first, right under the results;
   // the seats and invite details follow for anyone who wants them.
   const rematch = room.status === 'finished';
@@ -123,6 +113,18 @@ export function Lobby({
         <div className="lobby-seats">
           {Array.from({ length: room.capacity }, (_, i) => {
             const member = seated[i];
+            if (member?.isBot)
+              return (
+                <BotSeat
+                  key={member.id}
+                  bot={member}
+                  others={room.members.filter((m) => m.id !== member.id).map((m) => m.name)}
+                  editable={host}
+                  pending={pending}
+                  onUpdate={updateBot ? (change) => updateBot(member.id, change) : undefined}
+                  onRemove={host && removeBot ? () => removeBot(member.id) : undefined}
+                />
+              );
             return (
               <Seat
                 key={member?.id || i}
@@ -130,20 +132,6 @@ export function Lobby({
                 nameLayout="wrap"
                 you={member?.id === selfId}
                 avatar={member?.avatar}
-                bot={member?.isBot}
-                action={
-                  host && member?.isBot && removeBot ? (
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      disabled={pending}
-                      aria-label={`Remove ${member.name} bot`}
-                      onClick={() => removeBot(member.id)}
-                    >
-                      <X size={15} />
-                    </Button>
-                  ) : undefined
-                }
                 ready={member?.ready}
                 connected={member?.connected}
               />
@@ -171,26 +159,7 @@ export function Lobby({
           <p className="small muted">Bots use simulated answers and votes.</p>
         ) : null}
         {!solo ? (
-          <div className="invite-panel" role="group" aria-label="Invite friends">
-            <div>
-              <span className="eyebrow">Your room code</span>
-              <strong className="room-code">{room.code}</strong>
-            </div>
-            <div className="invite-actions">
-              <Button variant="secondary" size="sm" onClick={() => void copy('code')}>
-                {copied === 'code' ? <Check size={15} /> : <Copy size={15} />}Code
-              </Button>
-              <Button size="sm" onClick={() => void copy('link')}>
-                {copied === 'link' ? <Check size={15} /> : <Link2 size={15} />}
-                {copied === 'link' ? 'Copied!' : 'Copy invite'}
-              </Button>
-            </div>
-          </div>
-        ) : null}
-        {copyError ? (
-          <p className="small muted" role="status">
-            {copyError}
-          </p>
+          <InvitePanel room={room} host={host} openSeats={room.capacity - seated.length} />
         ) : null}
         <div className="lobby-rules">
           {game.settings

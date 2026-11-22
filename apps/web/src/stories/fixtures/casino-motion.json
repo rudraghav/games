@@ -23,7 +23,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -33,7 +34,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -43,7 +45,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -53,7 +56,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -63,7 +67,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -73,7 +78,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -83,7 +89,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -93,7 +100,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -103,7 +111,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -311,6 +320,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": null,
@@ -337,7 +347,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -347,7 +358,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -357,7 +369,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -367,7 +380,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -377,7 +391,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -387,7 +402,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -397,7 +413,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -407,7 +424,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -417,7 +435,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -626,6 +645,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -657,7 +677,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -667,7 +688,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -677,7 +699,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -687,7 +710,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -697,7 +721,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -707,7 +732,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -717,7 +743,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -727,7 +754,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -737,7 +765,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -945,6 +974,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -976,7 +1006,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -986,7 +1017,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -996,7 +1028,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -1006,7 +1039,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -1016,7 +1050,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -1026,7 +1061,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -1036,7 +1072,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -1046,7 +1083,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -1056,7 +1094,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -1265,6 +1304,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -1296,7 +1336,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -1306,7 +1347,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -1316,7 +1358,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -1326,7 +1369,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -1336,7 +1380,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -1346,7 +1391,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -1356,7 +1402,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -1366,7 +1413,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -1376,7 +1424,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -1586,6 +1635,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -1617,7 +1667,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -1627,7 +1678,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -1637,7 +1689,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -1647,7 +1700,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -1657,7 +1711,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -1667,7 +1722,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -1677,7 +1733,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -1687,7 +1744,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -1697,7 +1755,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -1908,6 +1967,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -1939,7 +1999,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -1949,7 +2010,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -1959,7 +2021,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -1969,7 +2032,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -1979,7 +2043,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -1989,7 +2054,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -1999,7 +2065,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -2009,7 +2076,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -2019,7 +2087,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -2308,6 +2377,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -2339,7 +2409,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -2349,7 +2420,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -2359,7 +2431,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -2369,7 +2442,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -2379,7 +2453,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -2389,7 +2464,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -2399,7 +2475,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -2409,7 +2486,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -2419,7 +2497,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -2632,6 +2711,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -2663,7 +2743,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -2673,7 +2754,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -2683,7 +2765,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -2693,7 +2776,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -2703,7 +2787,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -2713,7 +2798,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -2723,7 +2809,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -2733,7 +2820,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -2743,7 +2831,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -2956,6 +3045,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -2987,7 +3077,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -2997,7 +3088,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -3007,7 +3099,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -3017,7 +3110,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -3027,7 +3121,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -3037,7 +3132,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -3047,7 +3143,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -3057,7 +3154,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -3067,7 +3165,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -3320,6 +3419,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -3351,7 +3451,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -3361,7 +3462,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -3371,7 +3473,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -3381,7 +3484,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -3391,7 +3495,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -3401,7 +3506,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -3411,7 +3517,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -3421,7 +3528,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -3431,7 +3539,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -3684,6 +3793,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -3715,7 +3825,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -3725,7 +3836,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -3735,7 +3847,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -3745,7 +3858,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -3755,7 +3869,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -3765,7 +3880,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -3775,7 +3891,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -3785,7 +3902,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -3795,7 +3913,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -4048,6 +4167,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -4079,7 +4199,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -4089,7 +4210,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -4099,7 +4221,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -4109,7 +4232,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -4119,7 +4243,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -4129,7 +4254,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -4139,7 +4265,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -4149,7 +4276,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -4159,7 +4287,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -4412,6 +4541,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -4443,7 +4573,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -4453,7 +4584,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -4463,7 +4595,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -4473,7 +4606,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -4483,7 +4617,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -4493,7 +4628,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -4503,7 +4639,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -4513,7 +4650,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -4523,7 +4661,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -4776,6 +4915,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -4807,7 +4947,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -4817,7 +4958,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -4827,7 +4969,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -4837,7 +4980,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -4847,7 +4991,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -4857,7 +5002,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -4867,7 +5013,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -4877,7 +5024,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -4887,7 +5035,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -5140,6 +5289,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -5171,7 +5321,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -5181,7 +5332,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -5191,7 +5343,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -5201,7 +5354,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -5211,7 +5365,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -5221,7 +5376,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -5231,7 +5387,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -5241,7 +5398,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -5251,7 +5409,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -5504,6 +5663,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -5535,7 +5695,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -5545,7 +5706,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -5555,7 +5717,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -5565,7 +5728,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -5575,7 +5739,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -5585,7 +5750,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -5595,7 +5761,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -5605,7 +5772,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -5615,7 +5783,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -5945,6 +6114,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -5976,7 +6146,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -5986,7 +6157,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -5996,7 +6168,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -6006,7 +6179,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -6016,7 +6190,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -6026,7 +6201,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -6036,7 +6212,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -6046,7 +6223,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -6056,7 +6234,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -6322,6 +6501,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -6353,7 +6533,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -6363,7 +6544,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -6373,7 +6555,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -6383,7 +6566,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -6393,7 +6577,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -6403,7 +6588,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -6413,7 +6599,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -6423,7 +6610,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -6433,7 +6621,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -6699,6 +6888,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -6730,7 +6920,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -6740,7 +6931,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -6750,7 +6942,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -6760,7 +6953,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -6770,7 +6964,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -6780,7 +6975,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -6790,7 +6986,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -6800,7 +6997,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -6810,7 +7008,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -7076,6 +7275,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -7107,7 +7307,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -7117,7 +7318,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -7127,7 +7329,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -7137,7 +7340,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -7147,7 +7351,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -7157,7 +7362,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -7167,7 +7373,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -7177,7 +7384,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -7187,7 +7395,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -7453,6 +7662,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -7484,7 +7694,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -7494,7 +7705,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -7504,7 +7716,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -7514,7 +7727,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -7524,7 +7738,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -7534,7 +7749,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -7544,7 +7760,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -7554,7 +7771,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -7564,7 +7782,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -7830,6 +8049,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -7861,7 +8081,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -7871,7 +8092,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -7881,7 +8103,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -7891,7 +8114,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -7901,7 +8125,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -7911,7 +8136,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -7921,7 +8147,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -7931,7 +8158,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -7941,7 +8169,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -8207,6 +8436,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -8238,7 +8468,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -8248,7 +8479,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -8258,7 +8490,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -8268,7 +8501,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -8278,7 +8512,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -8288,7 +8523,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -8298,7 +8534,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -8308,7 +8545,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -8318,7 +8556,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -8584,6 +8823,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -8615,7 +8855,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -8625,7 +8866,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -8635,7 +8877,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -8645,7 +8888,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -8655,7 +8899,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -8665,7 +8910,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -8675,7 +8921,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -8685,7 +8932,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -8695,7 +8943,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -9038,6 +9287,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -9069,7 +9319,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -9079,7 +9330,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -9089,7 +9341,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -9099,7 +9352,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -9109,7 +9363,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -9119,7 +9374,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -9129,7 +9385,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -9139,7 +9396,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -9149,7 +9407,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -9428,6 +9687,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -9459,7 +9719,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -9469,7 +9730,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -9479,7 +9741,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -9489,7 +9752,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -9499,7 +9763,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -9509,7 +9774,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -9519,7 +9785,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -9529,7 +9796,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -9539,7 +9807,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -9818,6 +10087,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -9849,7 +10119,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -9859,7 +10130,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -9869,7 +10141,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -9879,7 +10152,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -9889,7 +10163,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -9899,7 +10174,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -9909,7 +10185,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -9919,7 +10196,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -9929,7 +10207,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -10208,6 +10487,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -10239,7 +10519,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -10249,7 +10530,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -10259,7 +10541,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -10269,7 +10552,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -10279,7 +10563,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -10289,7 +10574,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -10299,7 +10585,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -10309,7 +10596,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -10319,7 +10607,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -10598,6 +10887,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -10629,7 +10919,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -10639,7 +10930,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -10649,7 +10941,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -10659,7 +10952,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -10669,7 +10963,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -10679,7 +10974,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -10689,7 +10985,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -10699,7 +10996,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -10709,7 +11007,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -10988,6 +11287,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -11019,7 +11319,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -11029,7 +11330,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -11039,7 +11341,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -11049,7 +11352,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -11059,7 +11363,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -11069,7 +11374,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -11079,7 +11385,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -11089,7 +11396,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -11099,7 +11407,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -11378,6 +11687,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -11409,7 +11719,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -11419,7 +11730,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -11429,7 +11741,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -11439,7 +11752,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -11449,7 +11763,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -11459,7 +11774,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -11469,7 +11785,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -11479,7 +11796,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -11489,7 +11807,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -11768,6 +12087,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -11799,7 +12119,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -11809,7 +12130,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -11819,7 +12141,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -11829,7 +12152,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -11839,7 +12163,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -11849,7 +12174,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -11859,7 +12185,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -11869,7 +12196,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -11879,7 +12207,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -12235,6 +12564,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -12266,7 +12596,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -12276,7 +12607,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -12286,7 +12618,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "3f9bd094-039a-58f9-a557-781d6ca49cb4",
@@ -12296,7 +12629,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "8d2c9931-c076-52e0-a572-a351ff5da59f",
@@ -12306,7 +12640,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e981e0fe-a803-5439-8ce0-fc64067e9f6a",
@@ -12316,7 +12651,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "535fe5de-0a87-5604-b2db-01481edb7e36",
@@ -12326,7 +12662,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "1f3502e1-c188-5796-8522-085306a0f049",
@@ -12336,7 +12673,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "000a1f52-7cf4-5a52-bc76-96b6d13aed84",
@@ -12346,7 +12684,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -13462,6 +13801,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -13498,7 +13838,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -13508,7 +13849,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -13518,7 +13860,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -13660,6 +14003,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": null,
@@ -13686,7 +14030,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -13696,7 +14041,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -13706,7 +14052,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -13879,6 +14226,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -13910,7 +14258,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -13920,7 +14269,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -13930,7 +14280,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -14064,6 +14415,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -14095,7 +14447,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -14105,7 +14458,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -14115,7 +14469,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -14249,6 +14604,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -14280,7 +14636,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -14290,7 +14647,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -14300,7 +14658,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -14434,6 +14793,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -14465,7 +14825,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -14475,7 +14836,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -14485,7 +14847,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -14619,6 +14982,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -14650,7 +15014,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -14660,7 +15025,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -14670,7 +15036,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -14862,6 +15229,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -14893,7 +15261,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -14903,7 +15272,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -14913,7 +15283,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -15047,6 +15418,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -15078,7 +15450,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -15088,7 +15461,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -15098,7 +15472,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -15234,6 +15609,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -15265,7 +15641,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "e94b0f9a-ca10-5670-b9db-5284a6904b81",
@@ -15275,7 +15652,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           },
           {
             "id": "5b066c6e-ad2f-5fd1-b455-9aa1907df33d",
@@ -15285,7 +15663,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -15527,6 +15906,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -15563,7 +15943,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -15636,6 +16017,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": null,
@@ -15662,7 +16044,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -15906,6 +16289,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -15937,7 +16321,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -16232,6 +16617,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -16263,7 +16649,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -16584,6 +16971,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {
@@ -16615,7 +17003,8 @@
             "seated": true,
             "connected": true,
             "last_seen": 0.0,
-            "is_bot": false
+            "is_bot": false,
+            "bot_level": null
           }
         ],
         "messages": [],
@@ -17063,6 +17452,7 @@
         "paused": false,
         "missing_players": [],
         "invite_token": null,
+        "pending_invites": [],
         "bot_pending": false,
         "bot_due_at": null,
         "last_action": {

@@ -2,15 +2,19 @@
 import { useRef, useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { ArrowRight, ChevronDown, Link2 } from 'lucide-react';
+import { ArrowRight, ChevronDown, Minus, Plus } from 'lucide-react';
 import { Avatar, Button, Modal, ChoiceGroup } from '@games/ui';
 import { games, gameById } from '@games/api-client/catalog';
 import { api } from '@/lib/session';
 import { keys } from './query-keys';
 import { rememberedPlayer, rememberPlayer } from './player-preferences';
 import { refreshPlayer } from './player-query';
-import { roomInvite } from './room-invite';
+import { formatInviteInput, roomInvite } from './room-invite';
 import { roomPath } from './game-paths';
+import { botNameProblem, emptyBotRows, type BotRow } from './bot-seats';
+import { createRoomInput, setupBotCount, startsImmediately } from './room-setup';
+import { BotPlayersFields } from './BotPlayersFields';
+import { RoomCodeField } from './RoomCodeField';
 
 interface RoomDialogProps {
   open: boolean;
@@ -46,7 +50,10 @@ export function RoomDialog({
   const [name, setName] = useState<string>();
   const [avatar, setAvatar] = useState<number>();
   const [roomName, setRoomName] = useState('');
-  const [code, setCode] = useState(invite);
+  const [code, setCode] = useState(() => formatInviteInput(invite));
+  // Bots seated beside friends. Bots mode ignores this and fills every other seat.
+  const [friendBots, setFriendBots] = useState(0);
+  const [botRows, setBotRows] = useState<BotRow[]>(emptyBotRows);
   const [capacity, setCapacity] = useState(
     withBots && !friendsOnly
       ? gameById(gameId).minPlayers
@@ -59,8 +66,15 @@ export function RoomDialog({
   const displayName =
     name ?? me.data?.profile?.name ?? (open ? rememberedPlayer()?.name : '') ?? '';
   const chosenAvatar = avatar ?? me.data?.profile?.avatar ?? rememberedPlayer()?.avatar ?? 0;
+  const choice = { game, playWith, capacity, friendBots, friendsOnly };
+  const botCount = mode === 'create' ? setupBotCount(choice) : 0;
+  const bots = botRows.slice(0, botCount);
+  const botProblem = botCount ? botNameProblem(bots, displayName) : null;
+  const autoStart = mode === 'create' && startsImmediately(choice);
   async function submit(event: FormEvent) {
     event.preventDefault();
+    // The clash is already explained beside the bot names.
+    if (botProblem) return;
     setPending(true);
     setError('');
     try {
@@ -69,21 +83,18 @@ export function RoomDialog({
           ? await api.join(roomInvite(code), displayName.trim(), chosenAvatar)
           : mode === 'configure' && roomId
             ? await api.configure(roomId, game.id, capacity, settings)
-            : await api.create({
-                name: displayName.trim(),
-                avatar: chosenAvatar,
-                gameId: game.id,
-                roomName:
-                  roomName.trim() ||
-                  `${displayName.trim()}'s ${game.family === 'tarot' ? 'reading' : 'game night'}`,
-                capacity,
-                settings,
-                bots: !friendsOnly && playWith === 'bots' && game.botsSupported ? capacity - 1 : 0,
-              });
-      if (
-        mode === 'create' &&
-        (game.playMode === 'solo' || (!friendsOnly && playWith === 'bots' && game.botsSupported))
-      ) {
+            : await api.create(
+                createRoomInput({
+                  ...choice,
+                  name: displayName,
+                  avatar: chosenAvatar,
+                  roomName,
+                  settings,
+                  botRows,
+                }),
+              );
+      // A room with a seat left for a friend opens its lobby instead.
+      if (autoStart) {
         // Creation is already committed; failed auto-start recovers in this room.
         try {
           await api.ready(room.id, true);
@@ -139,20 +150,7 @@ export function RoomDialog({
     >
       <form className="room-setup-form room-setup-form--simple" onSubmit={submit}>
         {mode === 'join' ? (
-          <label className="field">
-            <span>
-              <Link2 size={14} className="inline-icon" /> Room code
-            </span>
-            <input
-              className="input"
-              value={code}
-              onChange={(event) => setCode(event.target.value)}
-              placeholder="Code or invite link"
-              required
-              autoComplete="off"
-              spellCheck={false}
-            />
-          </label>
+          <RoomCodeField value={code} onChange={setCode} />
         ) : (
           <>
             {!fixedGame ? (
@@ -215,6 +213,39 @@ export function RoomDialog({
                     ))}
                   </select>
                 </label>
+                {mode === 'create' &&
+                game.botsSupported &&
+                (friendsOnly || playWith === 'friends') ? (
+                  <div className="bot-stepper" role="group" aria-label="Bots">
+                    <div>
+                      <span className="field-label">Bots</span>
+                      <span className="small muted">Fill some seats with computer players.</span>
+                    </div>
+                    <div className="bot-stepper-controls">
+                      <button
+                        type="button"
+                        className="icon-button"
+                        aria-label="Fewer bots"
+                        disabled={botCount <= 0}
+                        onClick={() => setFriendBots(botCount - 1)}
+                      >
+                        <Minus size={18} aria-hidden="true" />
+                      </button>
+                      <output aria-live="polite" aria-label={`${botCount} bots`}>
+                        {botCount}
+                      </output>
+                      <button
+                        type="button"
+                        className="icon-button"
+                        aria-label="More bots"
+                        disabled={botCount >= capacity - 1}
+                        onClick={() => setFriendBots(botCount + 1)}
+                      >
+                        <Plus size={18} aria-hidden="true" />
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
               </div>
             ) : null}
           </>
@@ -257,6 +288,18 @@ export function RoomDialog({
               </div>
             </details>
           </div>
+        ) : null}
+        {botCount ? (
+          <BotPlayersFields
+            rows={bots}
+            hostName={displayName}
+            problem={botProblem}
+            onChange={(index, change) =>
+              setBotRows((rows) =>
+                rows.map((row, at) => (at === index ? { ...row, ...change } : row)),
+              )
+            }
+          />
         ) : null}
         {mode !== 'join' && (mode === 'create' || game.settings.length > 0) ? (
           <details className="room-extra-options">
@@ -306,7 +349,7 @@ export function RoomDialog({
               ? 'Join the room'
               : mode === 'configure'
                 ? 'Choose game'
-                : playWith === 'bots'
+                : playWith === 'bots' || (autoStart && game.playMode !== 'solo')
                   ? 'Play game'
                   : 'Create room'}
             <ArrowRight size={16} />

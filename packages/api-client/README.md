@@ -42,3 +42,9 @@ bounded chosen cards and explicit complete/generating/incomplete/unavailable
 states. Complete output uses the backend's backwards-compatible saved parser;
 opening the archive never requests fresh generation. `canResume` controls the
 optional return link to the same current, open room and spread.
+
+`santaDetails` validates the Secret Santa organiser's view with strict objects:
+any field beyond the contract (for example who drew whom) is refused. The only
+recipient it accepts is inside `showing`. `santaLinks(roomId)` and
+`santaReveal(token)` map the organiser's links and one person's own draw; the
+token is checked against `santaTokenPattern` and travels only in the path.

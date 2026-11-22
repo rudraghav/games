@@ -4,10 +4,10 @@ import type { Me } from '@games/api-client';
 import { forgetRoomMembership, refreshPlayer } from '@/shared/player-query';
 import { keys } from '@/shared/query-keys';
 
-const empty: Me = { profile: null, anonymous: true, rooms: [], history: [] };
+const empty: Me = { profile: null, anonymous: true, invitations: [], rooms: [], history: [] };
 const joined: Me = {
   ...empty,
-  profile: { id: 'qa-player', name: 'A new friend', avatar: 0 },
+  profile: { id: 'qa-player', name: 'A new friend', avatar: 0, username: null },
 };
 
 describe('Authoritative player refresh after room entry', () => {

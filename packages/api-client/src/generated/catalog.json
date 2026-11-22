@@ -745,5 +745,29 @@
       "Every player who clears all cards escapes. Play continues until the last remaining player loses. No points.",
       "Optional house rules: 7 asks for seven or lower; transparent 3 looks through to the previous comparison. Both start off."
     ]
+  },
+  {
+    "id": "secret-santa",
+    "name": "Secret Santa",
+    "subtitle": "Draw names for a gift exchange",
+    "family": "organiser",
+    "min_players": 1,
+    "max_players": 1,
+    "minutes": "5\u201310",
+    "icon": "sparkles",
+    "color": "coral",
+    "bots_supported": false,
+    "play_mode": "solo",
+    "score_label": "Points",
+    "score_order": "none",
+    "rules_version": "1",
+    "settings": [],
+    "rules": [
+      "Add everyone taking part, then a date, a place and a budget if you like.",
+      "Say who must not draw whom: one pair at a time, or a whole group such as a household.",
+      "Draw the names. Nobody draws themselves, an excluded person or someone in their group.",
+      "Send each person their private link, or pass the phone round and show one name at a time.",
+      "You never see the full list. Changing the people means drawing again, which replaces every link."
+    ]
   }
 ]

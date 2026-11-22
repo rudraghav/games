@@ -15,6 +15,7 @@ export function GameTile({
   soloMode = false,
   variant = 'standard',
   actionLabel = 'Play now',
+  groupLabel,
 }: {
   name: string;
   subtitle: string;
@@ -29,6 +30,8 @@ export function GameTile({
   soloMode?: boolean;
   variant?: 'standard' | 'featured';
   actionLabel?: string;
+  /** Who it is for, when seat counts would mislead (one organiser, a whole group). */
+  groupLabel?: string;
 }) {
   const featured = variant === 'featured';
   const content = (
@@ -50,13 +53,15 @@ export function GameTile({
             ) : (
               <UsersRound size={12} aria-hidden="true" />
             )}
-            {soloMode && minPlayers > 1
-              ? 'You + bots'
-              : minPlayers === maxPlayers
-                ? minPlayers === 1
-                  ? 'Solo'
-                  : `${minPlayers} players`
-                : `${minPlayers}–${maxPlayers} players`}
+            {groupLabel
+              ? groupLabel
+              : soloMode && minPlayers > 1
+                ? 'You + bots'
+                : minPlayers === maxPlayers
+                  ? minPlayers === 1
+                    ? 'Solo'
+                    : `${minPlayers} players`
+                  : `${minPlayers}–${maxPlayers} players`}
           </span>
           <span>
             <Clock3 size={12} aria-hidden="true" />

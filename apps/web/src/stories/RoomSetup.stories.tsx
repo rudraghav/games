@@ -7,8 +7,14 @@ import { RoomDialog } from '@/shared/RoomDialog';
 import { keys } from '@/shared/query-keys';
 
 const player: Me = {
-  profile: { id: '00000000-0000-4000-8000-000000000001', name: 'Jamie', avatar: 3 },
+  profile: {
+    id: '00000000-0000-4000-8000-000000000001',
+    name: 'Jamie',
+    avatar: 3,
+    username: null,
+  },
   anonymous: true,
+  invitations: [],
   rooms: [],
   history: [],
 };

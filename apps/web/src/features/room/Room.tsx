@@ -147,7 +147,17 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
   const game = gameById(room.gameId);
   const solo = game.maxPlayers === 1;
   const reading = game.id === 'tarot';
-  const optionsLabel = reading ? 'Reading options' : solo ? 'Table options' : 'Room options';
+  // One organiser sets up a draw for people who never join the room.
+  const organising = game.family === 'organiser';
+  // These pages state their own progress and end on their own result.
+  const ownsStatus = game.family === 'tarot' || organising;
+  const optionsLabel = reading
+    ? 'Reading options'
+    : organising
+      ? 'Event options'
+      : solo
+        ? 'Table options'
+        : 'Room options';
   const host = room.ownerId === selfId;
   const guideAvailable = Boolean(
     room.game &&
@@ -182,7 +192,7 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
   const tableRoom = offline ? { ...room, paused: true } : room;
   // At the end of a match the result and the rematch come first; the final
   // table stays below for review. Tarot's reading is itself the result.
-  const resultsFirst = room.status === 'finished' && Boolean(room.game) && room.gameId !== 'tarot';
+  const resultsFirst = room.status === 'finished' && Boolean(room.game) && !ownsStatus;
   const operate = (operation: () => ReturnType<typeof api.room>) => mutation.mutate(operation);
   const chat = (
     <Chat
@@ -206,7 +216,13 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
           })
         }
       >
-        {reading ? 'Start reading' : room.status === 'finished' ? 'Play again' : 'Start game'}
+        {reading
+          ? 'Start reading'
+          : organising
+            ? 'Start organising'
+            : room.status === 'finished'
+              ? 'Play again'
+              : 'Start game'}
       </Button>
     </section>
   ) : (
@@ -219,6 +235,7 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
       pending={mutation.isPending}
       addBots={(count) => operate(() => api.addBots(id, count))}
       removeBot={(botId) => operate(() => api.kick(id, botId))}
+      updateBot={(botId, change) => operate(() => api.updateBot(id, botId, change))}
     />
   );
   const tablePanel = (
@@ -250,7 +267,15 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
         </Link>
         <div className="room-title">
           <h1>{solo ? game.name : room.name}</h1>
-          <span>{reading ? 'Your private reading' : solo ? 'Your private table' : game.name}</span>
+          <span>
+            {reading
+              ? 'Your private reading'
+              : organising
+                ? 'You’re the organiser'
+                : solo
+                  ? 'Your private table'
+                  : game.name}
+          </span>
         </div>
         <div className="room-toolbar">
           <span
@@ -354,9 +379,11 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
                 <strong>You’re offline.</strong>{' '}
                 {mutation.isPaused
                   ? 'Your move will be sent when you reconnect.'
-                  : solo
-                    ? 'Your cards are saved.'
-                    : 'This is your last saved table. Moves resume when you reconnect.'}
+                  : organising
+                    ? 'Everything you saved is here.'
+                    : solo
+                      ? 'Your cards are saved.'
+                      : 'This is your last saved table. Moves resume when you reconnect.'}
               </span>
             </div>
           ) : query.isError ? (
@@ -387,7 +414,7 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
           ) : null}
           {room.game ? (
             <>
-              {(!guided && game.family !== 'tarot') || offline || room.paused ? (
+              {(!guided && !ownsStatus) || offline || room.paused ? (
                 <TurnNotice
                   label={turn!.label}
                   tone={offline ? 'paused' : turn!.tone}
@@ -523,7 +550,9 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
           solo
             ? reading
               ? 'Completed readings stay in your profile.'
-              : 'Your profile keeps the results of each finished session.'
+              : organising
+                ? 'This event stays under Your games on the home page.'
+                : 'Your profile keeps the results of each finished session.'
             : 'Manage this room or leave the table.'
         }
       >

@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
 import { proxyFailure } from '@/lib/proxy-diagnostics';
-import { isBackendRoute, savedReadingRoute } from '@/lib/backend-routes';
+import { isBackendRoute, playerSearchRoute, savedReadingRoute } from '@/lib/backend-routes';
 
 async function proxy(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
   const path = (await context.params).path.join('/');
@@ -35,6 +35,13 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
     }
     if (styles.length) target.searchParams.set('style', styles[0]);
   }
+  if (playerSearchRoute.test(path)) {
+    // Only the search text travels on; the backend checks its length and rate.
+    const terms = request.nextUrl.searchParams.getAll('q');
+    if (terms.length !== 1 || terms[0].length > 32)
+      return Response.json({ detail: 'Type at least 2 letters to search.' }, { status: 422 });
+    target.searchParams.set('q', terms[0]);
+  }
   const started = performance.now();
   try {
     const response = await fetch(target, {
@@ -58,4 +65,4 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
     );
   }
 }
-export { proxy as GET, proxy as POST, proxy as PUT, proxy as DELETE };
+export { proxy as GET, proxy as POST, proxy as PUT, proxy as PATCH, proxy as DELETE };

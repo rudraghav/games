@@ -1,6 +1,6 @@
 # Games library
 
-The catalogue has 26 multiplayer games plus Pop Tarot, Roulette and Slots for solo play. The owner authorized
+The catalogue has 26 multiplayer games plus Pop Tarot, Roulette and Slots for solo play, and Secret Santa, a solo organiser table. The owner authorized
 main/production and the expanded acceptance run on 1 November 2026.
 Additions reuse private rooms, profiles, action retries, chat,
 presence, results and rematches, with independent rules engines and renderers.
@@ -43,6 +43,7 @@ https://www.spacecowboys-games.com/game/splendor/.
 | Wooden pieces, discs, tiles or seeds | Four in a Row, Checkers, Reversi, boop., Azul, Mancala | Show legal destinations and visible consequences such as flipping, sowing, pushing or overflow. |
 | Words, prompts and private selections | Word Agents, Spill or Chill, Most Likely, Hot Seat | Identify who can see the answer and when the group will see the reveal. |
 | Oracle cards | Pop Tarot | Draw once, then revisit the saved spread in either reading style. |
+| A list of names and who must not draw whom | Secret Santa | Build the list, see why a draw is not yet possible, draw once, then hand each person only their own name. |
 
 ## Odds references for wheels, reels and dice
 
@@ -117,3 +118,18 @@ loss. Optional seven-low and transparent-three rules both default off. Every
 escaped player wins; results are unscored. A private-view-only deterministic bot
 plays complete matches without an AI service. Local rule/browser/solo evidence
 is recorded in [Shithead verification](evidence/shithead-2026-11-01/README.md).
+
+## Secret Santa — 22 November 2026
+
+Secret Santa is a solo organiser table for a gift exchange, modelled on how
+DrawNames runs one. The organiser types 3 to 30 names, an optional title, date,
+place and budget, and says who must not draw whom: one pair at a time or a whole
+group such as a household. The server draws; nobody draws themselves, an
+excluded person or a group mate. Each person then opens a private link that
+shows only their own name, or the organiser passes the phone round and shows one
+name at a time. The organiser never sees the full list, and drawing again
+replaces every link. The people in the draw need no account and are not room
+members. Its [owning rules](../backend/app/games/secret_santa/README.md) record
+the action list, the exact can-draw test, how fairness is tested and the link
+token scheme. Backend rule and HTTP tests are local; the web table and browser
+evidence are recorded separately in progress.txt.

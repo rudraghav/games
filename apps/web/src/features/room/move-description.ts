@@ -40,6 +40,10 @@ export function describeMove(room: Room, move: PublicMove, selfId: string) {
       : room.members.find((member) => member.id === id)?.name || 'A player';
   // A table-wide event ("Everyone’s numbers were revealed") reads as its own
   // sentence; an ordinary move reads "<Player> <did something>".
+  // An organiser's history is about typed names and saved details, not players,
+  // cards or chips: the saved label is the whole line.
+  if (family === 'organiser')
+    return `${name(move.actorId, true)} ${move.label.charAt(0).toLocaleLowerCase()}${move.label.slice(1)}`;
   const event = TABLE_EVENT.test(move.label);
   // Earlier Azul games persisted the plural even for a single drafted tile.
   const correctedLabel =

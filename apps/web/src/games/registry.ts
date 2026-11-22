@@ -21,6 +21,7 @@ import { SixNimmtTable } from './coop-number/SixNimmtTable';
 import { PaperTable } from './sea/PaperTable';
 import { BoopTable } from './boop/BoopTable';
 import { ShitheadTable } from './shithead/ShitheadTable';
+import { SecretSantaTable } from './secret-santa/SecretSantaTable';
 
 // The expanded illustrated reference library is needed only by Tarot players.
 const TarotTable = dynamic(() => import('./tarot/TarotTable').then((module) => module.TarotTable));
@@ -45,6 +46,7 @@ const familyTables: Record<string, ComponentType<TableProps>> = {
   paper: PaperTable,
   boop: BoopTable,
   palace: ShitheadTable,
+  organiser: SecretSantaTable,
 };
 export const tableRegistry = Object.fromEntries(
   games.map((game) => {

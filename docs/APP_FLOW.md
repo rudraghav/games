@@ -15,12 +15,15 @@ Trio's Lowest/Highest requests identify the target player in their accessible
 names without including hidden ranks. Keyboard moves retain the server's legal
 request and saved public reveals agree across all seats after refresh.
 
-- `/`: public, server-rendered lounge with 26 multiplayer games, Pop Tarot, Roulette and Slots; search/category/group-size discovery, create/join and member-only room shortcuts.
+- `/`: public, server-rendered lounge with 26 multiplayer games, Pop Tarot, Roulette, Slots and Secret Santa; search/category/group-size discovery, create/join and member-only room shortcuts.
 - `/games/[gameId]`: public game introduction, rules and play choices; opening or refreshing it never starts a session.
 - `/games/[gameId]/rooms/[id]`: authenticated membership-only multiplayer lobby, live table, results and room chat.
 - `/games/tarot/play/[id]`: private active Tarot spread, opened directly by Start reading.
+- `/games/secret-santa/play/[id]`: the organiser's private Secret Santa page, opened by Organise a draw.
+- `/santa/[token]`: one person's private Secret Santa link. Any session may open it; it shows only that person's own draw and never links to the organiser's page.
 - `/rooms/[id]`: compatible old link; redirects to the named game route only after authorized room loading.
-- `/join/[token]`: guest identity and explicit join; navigate to the stable room URL after joining.
+- `/r/[code]`: the short room link friends share. A player already in that room goes straight to its table; everyone else sees the join screen with the code filled in. The lookup never creates a guest, answers only for a member, runs once per page open and is skipped for a visitor who is in no room.
+- `/join/[token]`: older invite links; guest identity and explicit join; navigate to the stable room URL after joining.
 - `/profile`: Google signup/sign-in, guest-preserving account/email linking, saved name/avatar and match results.
 - `/games/tarot/readings/[matchId]`: the original participant's saved Tarot spread and analysis, independent of the room's current spread or membership; no generation on open. Old `/readings/[matchId]` links redirect after authorized loading.
 - `/auth/callback`: private PKCE exchange and safe account success/cancel/conflict status.
@@ -254,3 +257,67 @@ In Blackjack, the active hand has an optional “What if I hit?” explanation. 
 In The Gang, a pending chip review survives refresh if the holder and consequences still match. When another player changes them, the old confirmation disappears. In 6 nimmt!, selecting a number previews its destination and penalty on the current rows before locking. Skyjo can compare the drawn card with visible swap targets and leaves face-down values unknown.
 
 Roulette and Slots start at `/games/[gameId]` with Play solo. Normal play opens the table at `/games/[gameId]/play/[id]`. A player can adjust the bet and stake, inspect the odds and submit one spin. On completion, Play again starts a new match at the same table. Profile history opens the owner’s immutable spin receipts at `/games/[gameId]/results/[matchId]`, including after the table closes.
+
+## Room setup, room codes and invitations
+
+Create room keeps Play with (Friends or Bots) and Seats. In Friends mode a Bots
+stepper seats 0 to seats-1 bots beside friends; Bots mode fills every other seat.
+A game page's Play with friends dialog has the same stepper and no Bots mode.
+Each chosen bot has a row under **Bot players**: an editable name, prefilled with
+the name the server would give it, and Easy / Medium / Hard (Hard by default,
+which is how bots have always played; Easy often slips, Medium sometimes slips).
+"Set all" appears with two or more bots. A repeated name is explained in the
+dialog and nothing is sent. The room starts on its own only when every other
+seat is a bot; a table with a seat left for a friend opens its lobby.
+
+New rooms have a six-digit code, shown in two groups ("482 913"). Older rooms
+keep their 8-character code. The lobby's invite panel shows the code, the short
+link `<origin>/r/<code>`, and Share (only where the browser has a share sheet),
+Copy link and Copy code, each with a visible and announced confirmation. The
+copied link is the short one. The join field takes the six digits with or
+without a space or dash, a pasted `/r/…` or `/join/…` link, an older code or a
+long invite token, and shows the server's message for a wrong code or too many
+attempts. The room's own address stays `/games/<game>/rooms/<id>`.
+
+In the lobby the host changes a bot's level from its chip, renames it in place
+(Enter saves, Escape cancels) or removes it. Other players read the level as text.
+
+A player may choose a username (3 to 20 letters, numbers or underscores, stored
+lowercase) on the profile page or from the invite panel. Any room member can
+search usernames by their first letters and invite a player; the panel lists
+who is invited, and the host or the sender can cancel. Invitations appear at the
+top of the home page ("Sam invited you to Friday game night · Uno · 2 of 4
+players") with Join and Decline. Home re-reads the player on focus and every 20
+seconds while visible, so an invitation arrives without a reload. Join seats the
+player and opens the table; Decline removes the invitation and joins nothing.
+
+## Secret Santa
+
+Secret Santa is a solo organiser entry in the catalogue (Party and Solo + bots,
+found by "secret santa", "gift exchange", "draw names" or "kris kringle", and
+shown for any group size). Its game page offers **Organise a draw**, which opens
+a private page at `/games/secret-santa/play/<id>`. The people in the draw are
+names the organiser types; none of them joins the room or needs an account.
+
+Setup is one page: the event (title, date, location, budget; each saves on blur
+or Enter and the date, location and budget can be cleared), the people (type a
+name and press Enter, or paste a list separated by commas or new lines; rename
+or remove), who can't draw whom (a checklist per person, shown as chips on both
+people) and groups (people in a group never draw each other). **Draw names** is
+disabled until a complete draw exists and the reason is shown under it. One
+confirmation precedes the draw.
+
+After the draw the event stays editable and the page lists every person with
+Opened or Not opened yet and three actions: Share (where the browser has a
+share sheet), Copy link, and Show on this phone. Show on this phone asks for
+the phone to be handed over, shows that one person their name after they
+confirm, and Hide removes it. The organiser's page never lists who drew whom.
+**Redraw** goes back to the list (people and rules kept); the links already
+shared stop working straight away and the next draw makes new ones. **Finish**
+closes the event and the links keep working. A finished event has no rematch;
+another draw starts from the game page.
+
+A person opens `/santa/<token>`: "Hi Sam" and one button, **Show who I’m buying
+for**, then the name with the event title, date, location and budget. A
+mistyped or outdated link and too many wrong links each get one plain message.
+Profile history lists a finished event as "Names drawn".

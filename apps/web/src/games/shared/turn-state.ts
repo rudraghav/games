@@ -28,6 +28,7 @@ export function nameList(names: string[], limit = 3) {
 function finishedLabel(match: Match, room: Room, selfId: string) {
   const game = gameById(room.gameId);
   if (game.family === 'tarot') return 'Reading complete';
+  if (game.family === 'organiser') return 'Event finished';
   if (game.playMode === 'cooperative')
     return match.winners.length ? 'You won together' : 'The team didn’t make it';
   if (match.detail.draw === true) return 'It’s a draw';

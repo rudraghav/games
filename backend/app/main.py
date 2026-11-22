@@ -1,3 +1,5 @@
+import logging
+import re
 from collections.abc import AsyncIterator, Awaitable, Callable
 from contextlib import asynccontextmanager
 
@@ -20,6 +22,21 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 app = FastAPI(title="Games API", version="0.1.0", lifespan=lifespan)
 app.include_router(router)
+
+SANTA_LINK_PATH = re.compile(r"(/v1/secret-santa/)[^/?\s]+")
+
+
+class HidePrivateLinks(logging.Filter):
+    """A Secret Santa link is its own permission: the access log keeps the route only."""
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        args = record.args
+        if isinstance(args, tuple) and len(args) > 2 and isinstance(args[2], str):
+            record.args = (*args[:2], SANTA_LINK_PATH.sub(r"\1[link]", args[2]), *args[3:])
+        return True
+
+
+logging.getLogger("uvicorn.access").addFilter(HidePrivateLinks())
 
 
 @app.middleware("http")

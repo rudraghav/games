@@ -27,7 +27,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -37,7 +38,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -47,7 +49,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -57,7 +60,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -480,6 +484,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -520,7 +525,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -530,7 +536,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -540,7 +547,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -550,7 +558,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -954,6 +963,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -994,7 +1004,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -1004,7 +1015,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -1014,7 +1026,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -1024,7 +1037,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -1477,6 +1491,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -1511,7 +1526,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -1521,7 +1537,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -1531,7 +1548,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -1541,7 +1559,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -1935,6 +1954,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -1975,7 +1995,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -1985,7 +2006,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -1995,7 +2017,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -2005,7 +2028,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -2350,6 +2374,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -2384,7 +2409,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -2394,7 +2420,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -2404,7 +2431,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -2414,7 +2442,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -2950,6 +2979,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -2992,7 +3022,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -3002,7 +3033,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -3012,7 +3044,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -3022,7 +3055,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -3423,6 +3457,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -3465,7 +3500,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -3475,7 +3511,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -3485,7 +3522,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -3495,7 +3533,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -3896,6 +3935,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -3938,7 +3978,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -3948,7 +3989,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -3958,7 +4000,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -3968,7 +4011,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -4369,6 +4413,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -4411,7 +4456,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -4421,7 +4467,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -4431,7 +4478,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -4441,7 +4489,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -4842,6 +4891,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -4876,7 +4926,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -4886,7 +4937,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -4896,7 +4948,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -4906,7 +4959,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -5341,6 +5395,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -5381,7 +5436,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -5391,7 +5447,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -5401,7 +5458,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -5411,7 +5469,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -5798,6 +5857,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -5832,7 +5892,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -5842,7 +5903,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -5852,7 +5914,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -5862,7 +5925,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -6205,6 +6269,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -6245,7 +6310,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -6255,7 +6321,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -6265,7 +6332,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -6275,7 +6343,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -6566,6 +6635,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -6606,7 +6676,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -6616,7 +6687,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -6626,7 +6698,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -6636,7 +6709,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -6972,6 +7046,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -7006,7 +7081,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -7016,7 +7092,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -7026,7 +7103,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -7036,7 +7114,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -7366,6 +7445,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -7406,7 +7486,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -7416,7 +7497,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -7426,7 +7508,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -7436,7 +7519,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -7713,6 +7797,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -7753,7 +7838,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -7763,7 +7849,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -7773,7 +7860,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -7783,7 +7871,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -8100,6 +8189,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -8134,7 +8224,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -8144,7 +8235,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -8154,7 +8246,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -8164,7 +8257,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -8550,6 +8644,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -8593,7 +8688,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -8603,7 +8699,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -8613,7 +8710,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -8623,7 +8721,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -8954,6 +9053,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -8988,7 +9088,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -8998,7 +9099,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -9008,7 +9110,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -9018,7 +9121,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -9427,6 +9531,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -9471,7 +9576,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -9481,7 +9587,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -9491,7 +9598,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -9501,7 +9609,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -9845,6 +9954,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -9888,7 +9998,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -9898,7 +10009,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -9908,7 +10020,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -9918,7 +10031,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -10263,6 +10377,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -10305,7 +10420,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -10315,7 +10431,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -10325,7 +10442,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -10335,7 +10453,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -10680,6 +10799,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -10714,7 +10834,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -10724,7 +10845,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -10734,7 +10856,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -10744,7 +10867,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -11135,6 +11259,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -11178,7 +11303,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -11188,7 +11314,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -11198,7 +11325,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -11208,7 +11336,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -11556,6 +11685,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -11590,7 +11720,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -11600,7 +11731,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -11610,7 +11742,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -11620,7 +11753,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -12039,6 +12173,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -12072,7 +12207,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -12082,7 +12218,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -12092,7 +12229,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -12102,7 +12240,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -12495,6 +12634,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -12528,7 +12668,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -12538,7 +12679,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -12548,7 +12690,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -12558,7 +12701,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -12946,6 +13090,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -12986,7 +13131,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -12996,7 +13142,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -13006,7 +13153,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -13016,7 +13164,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -13384,6 +13533,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -13418,7 +13568,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -13428,7 +13579,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -13438,7 +13590,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -13448,7 +13601,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -14229,6 +14383,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -14262,7 +14417,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -14272,7 +14428,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -14282,7 +14439,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -14668,6 +14826,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -14708,7 +14867,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -14718,7 +14878,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -14728,7 +14889,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -15062,6 +15224,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -15096,7 +15259,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -15106,7 +15270,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -15116,7 +15281,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -16399,6 +16565,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -16442,7 +16609,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -16452,7 +16620,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -16462,7 +16631,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -17601,6 +17771,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -17635,7 +17806,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -17645,7 +17817,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -17655,7 +17828,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -18641,6 +18815,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -18683,7 +18858,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -18693,7 +18869,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -18703,7 +18880,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -19593,6 +19771,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -19627,7 +19806,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -19637,7 +19817,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -19647,7 +19828,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -19657,7 +19839,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -20886,6 +21069,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -20919,7 +21103,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -20929,7 +21114,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -20939,7 +21125,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -20949,7 +21136,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -21721,6 +21909,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -21754,7 +21943,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -21764,7 +21954,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -21774,7 +21965,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -21784,7 +21976,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -22906,6 +23099,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -22946,7 +23140,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -22956,7 +23151,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -22966,7 +23162,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -22976,7 +23173,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -23794,6 +23992,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -23828,7 +24027,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -23838,7 +24038,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -23848,7 +24049,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -23858,7 +24060,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -24702,6 +24905,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -24742,7 +24946,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -24752,7 +24957,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -24762,7 +24968,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -24772,7 +24979,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -25557,6 +25765,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -25597,7 +25806,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -25607,7 +25817,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -25617,7 +25828,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -25627,7 +25839,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -26418,6 +26631,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -26452,7 +26666,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -26462,7 +26677,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -26472,7 +26688,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -26482,7 +26699,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -27300,6 +27518,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -27333,7 +27552,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -27343,7 +27563,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -27353,7 +27574,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -27363,7 +27585,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -28220,6 +28443,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -28260,7 +28484,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -28270,7 +28495,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -28280,7 +28506,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -28290,7 +28517,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -29145,6 +29373,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -29185,7 +29414,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -29195,7 +29425,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -29205,7 +29436,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             },
             {
               "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -29215,7 +29447,8 @@ export const dealScenarios: DealScenario[] = [
               "seated": true,
               "connected": true,
               "last_seen": 0.0,
-              "is_bot": false
+              "is_bot": false,
+              "bot_level": null
             }
           ],
           "messages": [],
@@ -30020,6 +30253,7 @@ export const dealScenarios: DealScenario[] = [
           "paused": false,
           "missing_players": [],
           "invite_token": null,
+          "pending_invites": [],
           "bot_pending": false,
           "bot_due_at": null,
           "last_action": null,
@@ -30054,7 +30288,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -30064,7 +30299,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -30074,7 +30310,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -30084,7 +30321,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -31313,6 +31551,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,
@@ -31346,7 +31585,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "baf691ac-60ab-5cf4-b394-02f24342044e",
@@ -31356,7 +31596,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "29420896-d26f-5a05-9f4c-8daf0c6adb27",
@@ -31366,7 +31607,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         },
         {
           "id": "c96f7e8a-ae0d-5d93-bd8b-69a15d5ac117",
@@ -31376,7 +31618,8 @@ export const dealScenarios: DealScenario[] = [
           "seated": true,
           "connected": true,
           "last_seen": 0.0,
-          "is_bot": false
+          "is_bot": false,
+          "bot_level": null
         }
       ],
       "messages": [],
@@ -32148,6 +32391,7 @@ export const dealScenarios: DealScenario[] = [
       "paused": false,
       "missing_players": [],
       "invite_token": null,
+      "pending_invites": [],
       "bot_pending": false,
       "bot_due_at": null,
       "last_action": null,

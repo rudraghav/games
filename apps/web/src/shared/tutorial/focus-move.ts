@@ -34,6 +34,24 @@ export function focusMove(table: HTMLElement, match: Match, option: ActionOption
     const cards = buttons.filter((button) => label(button).startsWith('Face-down card '));
     target = cards.find((button) => button.tabIndex === 0);
   }
+  if (!target && match.id === 'secret-santa') {
+    // The organiser's page names its main controls; a suggestion lands on the right one.
+    const control =
+      value.type === 'add_name'
+        ? 'santa-new-name'
+        : value.type === 'draw'
+          ? 'santa-draw-button'
+          : value.type === 'reveal' && value.target
+            ? `santa-show-${value.target}`
+            : '';
+    const named = control ? document.getElementById(control) : null;
+    target =
+      (named && table.contains(named) && !named.hasAttribute('disabled') ? named : undefined) ??
+      (value.type === 'hide' ? buttons.find((button) => label(button) === 'Hide') : undefined) ??
+      (value.type === 'reveal'
+        ? buttons.find((button) => label(button).startsWith('Show on this phone'))
+        : undefined);
+  }
   if (!target && value.card) {
     const card = match.hand.find((item) => item.id === value.card);
     target = buttons.find((button) => button.dataset.card === value.card);

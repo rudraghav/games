@@ -9,6 +9,7 @@ import type { AccountNotice } from '@/lib/account-auth';
 import { SiteHeader } from '@/shared/SiteHeader';
 import { keys } from '@/shared/query-keys';
 import { rememberPlayer } from '@/shared/player-preferences';
+import { UsernameField } from '@/shared/UsernameField';
 import { AccountSection } from './AccountSection';
 import { historyResult } from './history-result';
 import { gamePath, readingPath, roomPath } from '@/shared/game-paths';
@@ -83,6 +84,15 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
                   Save profile
                 </Button>
               </form>
+              <div className="profile-username">
+                <h3 className="heading-sm">Let friends find you</h3>
+                <UsernameField
+                  username={me.data?.profile?.username ?? null}
+                  unavailable={
+                    me.data?.profile ? undefined : 'Save your name first, then choose a username.'
+                  }
+                />
+              </div>
               <AccountSection
                 anonymous={me.data?.anonymous ?? true}
                 preserveGuest={Boolean(me.data?.profile)}

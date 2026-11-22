@@ -39,3 +39,22 @@ home brand reveals the Games panel; there is no duplicate top-level Games item
 on home. Inner pages retain their navigation. Focused browser checks exercise tab keys,
 filter retention, no-account browsing, member-only shortcuts, errors/retry and
 phone first-fold spacing. Current captures: `docs/evidence/dashboard-tabs-2026-11-02`.
+
+## Invitations
+
+`Invitations.tsx` shows `me.invitations` above the tabs: "<name> invited you to
+<room>", the game and "N of M players", with "Join <room>" and "Decline
+invitation to <room>". Join calls `api.acceptInvitation`, stores the returned
+room, refreshes the player and opens `roomPath(room)`. Decline stores the
+returned player. A refusal (room full or closed) is shown in place and the
+player is re-read. The lounge's player query refetches on window focus and every
+20 seconds while the tab is visible, only for someone who has played, so an
+invitation appears without a reload and browsing still never creates a guest.
+
+The join entry takes a six-digit code (grouped as typed, numeric keyboard), a
+pasted `/r/…` or `/join/…` link, an older 8-character code or an invite token;
+parsing lives in `shared/room-invite.ts`.
+
+Secret Santa (family `organiser`) is listed under Party and Solo + bots, matches
+any group size because one organiser runs it for the whole group, and its tile
+reads "Any group" through GameTile's `groupLabel` instead of a seat count.

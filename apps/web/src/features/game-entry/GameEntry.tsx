@@ -8,6 +8,7 @@ import {
   Bot,
   GraduationCap,
   Clock3,
+  Gift,
   Link2,
   Sparkles,
   UsersRound,
@@ -39,6 +40,7 @@ export function GameEntry({
   const launch = useQuickPlay(game.id);
   const solo = game.playMode === 'solo';
   const reading = game.id === 'tarot';
+  const organising = game.family === 'organiser';
   const quickPlay = solo || game.botsSupported;
   const start = quickPlay ? (
     <Button
@@ -52,6 +54,8 @@ export function GameEntry({
       {launch.pending !== 'play' ? (
         reading ? (
           <Sparkles size={18} />
+        ) : organising ? (
+          <Gift size={18} />
         ) : solo ? null : (
           <Bot size={18} />
         )
@@ -88,6 +92,11 @@ export function GameEntry({
             </p>
             {reading ? (
               <p className="game-entry-detail">Add a question or astrology after you draw.</p>
+            ) : organising ? (
+              <p className="game-entry-detail">
+                Add names, say who can’t draw whom, then send each person a private link. Only you
+                need to be here: nobody else needs an account.
+              </p>
             ) : (
               <p className="game-entry-meta">
                 <span>

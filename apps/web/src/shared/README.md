@@ -6,6 +6,15 @@ and player name visible; avatar colours and room-name/rule options are optional
 disclosures. The bot mode fills seats through the authoritative API; no client
 engine or AI decision logic is introduced here.
 
+Friends mode adds a Bots stepper; any chosen bot gets a row in `BotPlayersFields`
+(name and Easy / Medium / Hard, plus "Set all" for two or more). `bot-seats.ts`
+holds the level wording, the default names and the duplicate check;
+`room-setup.ts` builds the create request (`bot_seats`, with `null` names for
+bots that keep their default) and decides whether the room starts at once.
+`RoomCodeField` is the join field: numeric keyboard, digits grouped as typed,
+links and older codes accepted (`room-invite.ts`). `UsernameField` and
+`username.ts` serve the profile page and the lobby's invite panel.
+
 The native avatar disclosure closes on selection and restores focus. Its Escape
 key is handled through `Modal.onEscapeKeyDown`, preserving the parent dialog.
 Selections and optional values survive mode changes; game changes clamp capacity

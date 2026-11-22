@@ -35,3 +35,7 @@ The phone suite in `tests/browser/tutorial-depth.spec.ts` opens the rulebook and
 plays multiple decisions per game. It compares the live suggestion with legal
 options and the feedback with the saved move, then exits the guide and closes
 the test room. Screenshots and private projections stay in local test output.
+
+Secret Santa offers many edits at once, so `organiser-direction.ts` picks the
+one that moves the draw forward: add a name until a draw is offered, then draw,
+then show or hide one name. `focusMove` lands on the matching control.

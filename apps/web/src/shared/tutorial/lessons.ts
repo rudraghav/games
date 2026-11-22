@@ -492,6 +492,66 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       pick: 'Each pick fills the next position, from where you are to what is shifting and then your next move.',
     },
   },
+  'secret-santa': {
+    goal: 'Give everyone one person to buy a gift for, without anyone seeing the whole list. That includes you.',
+    rules: [
+      rule(
+        'Add everyone taking part',
+        'Type each name, or paste a whole list. The people you add are only names: none of them needs an account. Give the event a title, and a date, place and budget if you like.',
+        picture(
+          'Sam, Priya and Jo go into the draw.',
+          word('Sam'),
+          word('Priya'),
+          word('Jo'),
+          arrow,
+          icon('people', '3 people'),
+        ),
+      ),
+      rule(
+        'Say who can’t draw whom',
+        'Tick the people one person must not be paired with, or put a couple, household or team in a group. Nobody in a group draws another member, and nobody ever draws their own name.',
+        picture(
+          'Sam and Priya share a group, so neither draws the other.',
+          word('Sam'),
+          icon('shield', 'Same group'),
+          word('Priya'),
+        ),
+      ),
+      rule(
+        'Draw, then share private links',
+        'Draw names when the button is ready. Each person gets their own link, which shows only the name they drew. Your page never lists who drew whom. Share a link, copy it, or pass your phone.',
+        picture(
+          'After the draw, each person opens a private link that only they should see.',
+          icon('lock', 'Private link'),
+          arrow,
+          icon('eye', 'Only Sam looks'),
+        ),
+      ),
+    ],
+    actions: {
+      draw: 'Drawing gives every person exactly one name to buy for. Nobody draws their own name, anyone they can’t draw, or someone in their group.',
+      hide: 'Hide takes the name off this phone before you hand it back.',
+      reveal:
+        'Show on this phone is for someone who is with you. Hand them the phone, let them look, then tap Hide.',
+      add_name:
+        'Each name is one person in the draw. A name used twice comes back numbered, so you can tell them apart.',
+      set_title: 'The title is what people see at the top of their link.',
+      set_day: 'The date appears on each person’s link. You can change it after the draw.',
+      set_location: 'The location appears on each person’s link.',
+      set_budget: 'The budget tells everyone roughly how much to spend.',
+      clear: 'Clearing removes the date, location or budget from the event.',
+      set_exclusions: 'The two people you pair here will not draw each other. It works both ways.',
+      add_group: 'A group keeps its members apart: none of them draws another member.',
+      set_group: 'Tick everyone who belongs to this group. A person can be in more than one.',
+      rename: 'Renaming changes how the person appears on the list and on the links.',
+      remove_name: 'Removing a person also removes the rules that mention them.',
+      rename_group: 'Renaming a group does not change who is in it.',
+      remove_group: 'Removing a group lets its members draw each other again.',
+      redraw:
+        'Redrawing takes you back to the list so you can change it. The links you already sent stop working, and the next draw makes new ones.',
+      finish: 'Finishing closes the event. The links keep working.',
+    },
+  },
   'four-in-a-row': {
     goal: 'Connect four of your discs in an unbroken line.',
     rules: [

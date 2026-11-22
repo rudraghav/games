@@ -6,6 +6,105 @@ commit atomically. Repository methods own SQL; the projection owns visibility.
 
 Tarot generation reserves the selected Classic/Fun style as private match metadata with the request. The current and saved reading endpoints return it as `reading_style`. Fresh spreads use Fun. Older submitted readings without a recorded choice retain Classic. Reopening the archive reads the original result without another provider call.
 
+## Room codes, links and the wrong-code limit
+
+A new room, a quick-play room and a rotated invite (`POST .../invite`) get a
+six-digit code from `secrets`: first digit 1-9, never one repeated digit or a
+straight run such as 123456 or 654321. `Repository.claim_code` takes a
+non-blocking transaction advisory lock on the drawn code and checks that no
+room holds it; a taken or contended code is redrawn, so two rooms created at
+once cannot share a code and no claim waits on another.
+
+`POST /v1/rooms/join` accepts a six-digit code (also typed as `482 913` or
+`482-913`), an older eight-character code, or the long invite token. Rooms
+created before this change keep their eight-character code and it keeps working.
+
+When the last person leaves, the room becomes `closed`, its code is replaced by
+a random eight-character value and its pending invitations are deleted. The
+number is free for a new room at once and opens nothing.
+
+Each actor may miss at most 10 code or token lookups in a 10-minute window
+(`rate_buckets`, scope `wrong-invite`). The eleventh miss and every join or
+lookup after it in that window answer 429 "Too many wrong codes. Wait ten
+minutes, then try again." A wrong code and a closed room give the same 404 and
+spend the same allowance. The existing 30-per-minute join limit is unchanged.
+A valid code for a solo table still answers its own 409 and is not a miss.
+
+`GET /v1/rooms/lookup/{invite}` returns `{id, game_id}` only when the caller is
+an active human member of the room that code or token belongs to. An unknown
+code, a closed room and a room the caller is not in all answer the same 404.
+An unknown code and a closed room count as misses; an open room the caller is
+not in does not, so opening a friend's link before joining costs nothing (it
+tells the caller no more than joining with that code would). A lookup never adds
+the caller to a room.
+
+A solo table (Tarot, the wheel and reel games, Secret Santa) cannot be joined,
+so it is given an eight-character code from the start and takes no six-digit number.
+
+## Bots: count, names and level
+
+`CreateRoom.bot_seats`, when given, replaces the plain `bots` count: one bot per
+entry with its `level` (`easy`, `medium`, `hard`) and optional `name`.
+`POST .../bots` applies one `level` to every bot it adds; `name` is allowed only
+with `count` 1. `PATCH /v1/rooms/{id}/bots/{bot_id}` lets the host rename a bot
+or change its level between matches (409 while playing, 404 for anything that
+is not an active bot of that room, 422 for an empty change).
+
+A host-chosen name is stored as given and must differ, ignoring case, from every
+current member's name (422). Default names stay `Bot Ada`, `Bot Bo` and so on,
+skipping names already in use. The level is stored on `room_members.bot_level`;
+rows from before levels existed are NULL and are shown and played as hard.
+`MemberView.bot_level` is the level for a bot and null for a person. Quick play
+seats hard bots. `drive_bots` passes the acting bot's level to its policy.
+
+## Usernames and player search
+
+`PUT /v1/profile/username` sets the caller's username: 3 to 20 of a-z, 0-9 and
+underscore, stored lowercase, unique. The caller needs a profile first (409).
+Reserved names and anything starting with `bot` are refused (422); a taken name
+answers 409 "That username is taken.", including when two requests race for it.
+Setting the current username again succeeds unchanged. `DELETE` clears it and
+withdraws invitations still waiting for that player. Limit: 20 a minute.
+
+Only `GET /v1/me` and the profile endpoints return a username, and only the
+caller's own. It is never part of `MemberView` or any room member list. Another
+player sees it in two places: search results and a room's pending invitations.
+
+`GET /v1/players/search?q=` is a case-insensitive prefix match (a leading `@`
+is ignored, LIKE wildcards are escaped). It returns at most 8 players, an exact
+match first and then alphabetically, never the caller, never a bot and only
+profiles that have a username. Each hit is username, display name and avatar.
+Fewer than two usable characters return an empty list. Limit: 30 a minute.
+
+## Invitations by username
+
+`POST /v1/rooms/{id}/invites {username}`: the caller must be an active human
+member. A closed room and a solo table answer 409 (the solo wording is the one
+join uses); an unknown username 404 "No player has that username."; the caller
+themselves or an active member 409; more than 20 pending invitations 409.
+Inviting someone already invited changes nothing. Limit: 20 an hour. A new
+invitation bumps the room revision.
+
+`RoomView.pending_invites` lists each invitee's username, name and avatar for
+members of the room. `DELETE /v1/rooms/{id}/invites/{username}` cancels one;
+only the host or the member who sent it may (403 otherwise, 404 for non-members).
+
+`MeView.invitations` lists the caller's pending invitations to rooms that are
+not closed, newest first: room id and name, game, the inviter's display name
+and avatar, seated players and capacity. It never carries a code or token, and
+an invitation alone gives no access to the room.
+
+`POST /v1/invitations/{room_id}/accept` joins through the same path as a code
+(`RoomService._enter`: seats, lobby-bot replacement, watcher during a match,
+full room, solo refusal) with the caller's saved profile, then deletes the
+invitation; 404 without one. `DELETE /v1/invitations/{room_id}` declines and
+returns the fresh `MeView`; declining twice is a no-op. An invitation is also
+deleted when its room closes, when the invitee joins by any route, when the
+host removes that player, and when the invitee clears their username.
+
+Tests: `test_room_codes.py`, `test_bot_setup_rooms.py`, `test_usernames_rooms.py`
+and `test_room_invitations.py` run in the `multiplayer` verification group.
+
 ## Direct solo and bot starts
 
 `POST /v1/games/{game_id}/play` takes a UUID `request_id`. An intentional start
@@ -111,6 +210,50 @@ generating. Invalid stored output is explicitly unavailable and emits only a saf
 warning, leaving the original payload intact. Profile history also discovers a
 completed solo Tarot match when its old membership row is absent.
 `test_tarot_archive.py` verifies these boundaries in an isolated database.
+
+## Secret Santa private links
+
+The people in a Secret Santa draw are names the organiser typed, not room
+members. Each person reads their own draw through a private link. Rules and the
+token scheme are in `app/games/secret_santa/README.md`.
+
+`GET /v1/rooms/{room_id}/secret-santa/links` returns `SantaLinks`: one
+`{id, name, token}` per person. Only the organiser gets them: an active human
+member of the room who is the sole participant of its current match. Anyone
+else gets the usual room 404. A room whose current match is not Secret Santa,
+or has no match, answers 409 "Start a Secret Santa table and draw the names
+first."; a table still being set up answers 409 "Draw the names first. The
+links appear after the draw." Tokens are derived on each request, never stored.
+
+`GET /v1/secret-santa/{token}` returns `SantaReveal`: title, day, location,
+budget, the person's own name and the name they drew. The token is the
+permission: any signed-in session may use it, a guest session included, without
+a profile or a room. It works while that match is in the `drawn` or `finished`
+phase, also after the organiser has left and the room has closed, and after the
+table was abandoned. It stops working when the organiser goes back and draws
+again.
+
+A malformed, forged, outdated or unknown token gets one answer, 404 "This link
+doesn't open a name. Ask the organiser for a new one." Each actor may miss 10
+times in 10 minutes (`rate_buckets`, scope `wrong-santa-link`, counted apart
+from wrong room codes); the eleventh miss and every read after it in that
+window answer 429. Reads are also limited to 30 a minute per actor. Responses
+are private and non-cacheable.
+
+The first time a link is opened the service marks that person as having looked
+(`SecretSantaEngine.mark_opened`) under the room's row lock and, unless the
+room is closed or has moved on to another match, adds one to the room revision,
+so the organiser's table refreshes. The match version is the organiser's move
+counter and is left alone, so a move they were choosing at that moment still
+goes through. No receipt, activity entry or message is written for a visit, and
+opening the same link again changes nothing.
+
+The organiser's `RoomView` and its activity never contain a recipient, except
+`detail.showing` while the organiser shows one person their name. Tokens, names
+and draws are never written to a log; the access log keeps the route and
+replaces the token (`app.main.HidePrivateLinks`). The hosting platform's own
+request log still records request paths. `test_secret_santa_rooms.py` covers
+these routes in the `multiplayer` verification group.
 
 ## Saved wheel and reel sessions
 

@@ -380,3 +380,75 @@ can keep that locally requested, focused card visible; scrolling or interacting
 elsewhere stops following. Unchanged-height polls and restored sessions preserve
 scroll. Native reduced-motion preferences make the state change
 immediate and stop the spinner and meter transitions.
+
+## Room setup and invitations
+
+Styles live in `packages/ui/src/styles/room-setup.css`; no new tokens.
+
+- **Bots stepper**: two 44px round buttons ("Fewer bots", "More bots") around an
+  `output` that announces the count. Shown in Friends mode only.
+- **Bot players**: one row per bot, a name input and a segmented Easy / Medium /
+  Hard `ChoiceGroup`; side by side from 441px, stacked below it. One line states
+  what each level means. A name clash is an inline alert under the rows.
+- **Bot seat (lobby)**: `Seat` with a chip-shaped native select for the level, a
+  Rename icon button and Remove. Renaming replaces the name with an input through
+  the `nameEditor` prop, with Save and Cancel buttons; focus returns to Rename.
+  On phones the controls take their own row inside the seat. Non-hosts see the
+  level as the seat badge.
+- **Invite panel**: the centre of an unfilled lobby (sage tint while a seat is
+  open). Code at 30 to 42px in tabular figures, the short link as selectable
+  text, then Share / Copy link / Copy code. On phones each action is a full
+  row, like Ready and Start; from 760px they sit in one row. A reserved status
+  line confirms each action, so nothing moves.
+- **Username search**: a labelled search field, 250ms debounce, at most eight
+  rows (avatar, name, @username, Invite). The results area has a fixed height
+  and keeps earlier matches, dimmed, until new ones arrive, so the Ready and
+  Start buttons below never shift. Empty, failed and rate-limited searches are
+  one plain sentence each. Invited players are listed with a Cancel button.
+- **Username field**: a label, an @ drawn beside the input (never sent), the
+  rule as helper text, Save and Remove, a status line and the server's message
+  for a taken, reserved or invalid name.
+- **Room code field**: numeric keyboard, digits grouped as typed, a helper line
+  and "My code has letters" for an older code.
+- **Home invitations**: sage cards above the tabs with the inviter's avatar, one
+  sentence, and Join / Decline; the buttons take a full row on phones.
+
+Every control is at least 44px high, has a visible label or accessible name and
+the shared focus ring; confirmations use `role="status"` and refusals
+`role="alert"`. Layouts hold at 320px without horizontal scrolling.
+
+## Secret Santa
+
+Styles live in `packages/ui/src/styles/secret-santa.css`; no new tokens. The
+cover (`SantaArtwork`) is an original inline SVG of two wrapped gifts and a name
+tag with a question mark, drawn with the shared colour tokens.
+
+- **Organiser page**: a centred intro (step, the event title, one sentence) and
+  a reserved status line (`role="status"`) that says what was saved: "Added
+  Sam.", "Title saved.", "Names drawn. Each person now has a private link.".
+  Cards stack in one column; from 960px the event and groups sit beside the
+  people (or the links). The room's turn banner and results panel are not used.
+- **Event card**: a sage summary of the saved date, location and budget, then
+  labelled inputs. A native date input, with the saved date in words under it.
+  Clear is a 44px icon button named for its field. An unsaved value keeps an
+  ochre border and a one-line note.
+- **People and groups**: rows of avatar, name, chips ("Can’t draw: Priya" in
+  coral, "Group: Household" in sky) and actions. On phones the actions take
+  their own row. Removing a person who has rules asks once in place.
+- **Checklists and confirmations** use the shared `Modal`: 48px rows with a 24px
+  tick box whose label is the whole row, a count, then Save and Cancel.
+- **Draw names** is the one large primary button. Disabled, it carries the
+  server's reason in an ochre note linked with `aria-describedby`.
+- **Links list**: name, Opened (pine, with a tick) or Not opened yet, then the
+  actions. On phones two actions share a row and a third takes its own; from
+  560px they sit on the name's row. A reserved status line confirms copies.
+- **Pass the phone**: one pine card that replaces the page content while it is
+  open, with the name at 34 to 60px and a full-width Hide. Focus moves to the
+  card and back to the opener.
+- **Private link page**: one centred card. The name is not in the page until
+  the person taps; details are a two-column list; the page links only home.
+
+Every control is at least 44px, has a visible label or an accessible name that
+includes the person or group it acts on, and the shared focus ring. Layouts
+hold at 320px without horizontal scrolling. Reduced motion removes the button
+lift and uses instant scrolling.

@@ -22,9 +22,11 @@ async function withMatch(
       ? 'Play tutorial'
       : game === 'tarot'
         ? 'Start reading'
-        : catalogue.find((entry) => entry.id === game)?.play_mode === 'solo'
-          ? 'Play solo'
-          : 'Play with bots';
+        : catalogue.find((entry) => entry.id === game)?.family === 'organiser'
+          ? 'Organise a draw'
+          : catalogue.find((entry) => entry.id === game)?.play_mode === 'solo'
+            ? 'Play solo'
+            : 'Play with bots';
   await page.getByRole('button', { name: action, exact: true }).click();
   const response = await created;
   expect(response.ok()).toBe(true);

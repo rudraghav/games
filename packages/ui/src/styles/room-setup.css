@@ -150,3 +150,518 @@
     }
   }
 }
+
+/*
+ * Room setup and invitations: bot rows in the create dialog, bot controls in the
+ * lobby, the invite panel, username search, the username field and home
+ * invitations. Every control here keeps a 44px target and the shared focus ring.
+ */
+@layer components {
+  /* Create dialog: how many bots, their names and how well they play. */
+  .bot-stepper {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 0;
+  }
+  .bot-stepper > div:first-child {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+  .bot-stepper .field-label,
+  .bot-setup .field-label {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .bot-stepper-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: none;
+  }
+  .bot-stepper-controls > .icon-button {
+    background: var(--color-surface);
+    color: var(--color-ink);
+  }
+  .bot-stepper-controls > .icon-button:disabled {
+    opacity: 0.4;
+  }
+  .bot-stepper-controls > output {
+    min-width: 28px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .bot-setup {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background: var(--color-canvas);
+  }
+  .bot-setup-heading {
+    display: grid;
+    gap: 2px;
+  }
+  .bot-setup-list {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .bot-setup-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 196px);
+    align-items: center;
+    gap: 8px;
+  }
+  /* The shared pill group spans a whole grid row by default; here it is one cell. */
+  .bot-setup-row > .choice-group {
+    grid-column: auto;
+  }
+  .bot-setup-row--all {
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .bot-setup-all-label {
+    font-size: 13px;
+    color: var(--color-ink-muted);
+  }
+  .bot-setup .choice-group[data-variant='segmented'] {
+    background: var(--color-surface-muted);
+  }
+  .bot-setup .choice-group[data-variant='segmented'] > button {
+    padding: 9px 4px;
+    font-size: 12px;
+  }
+  .bot-setup .error-note {
+    margin: 0;
+  }
+  .room-code-field {
+    display: grid;
+    gap: 4px;
+  }
+  .room-code-field > .field {
+    margin: 0;
+  }
+  .room-code-field .input {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+  }
+  .room-code-field .input::placeholder {
+    font-weight: 400;
+    opacity: 0.6;
+  }
+  .room-code-help {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 10px;
+    margin: 0;
+  }
+
+  /* Lobby: a bot's level, rename and remove controls. */
+  .seat:has(.bot-seat-controls),
+  .seat:has(.bot-rename) {
+    flex-wrap: wrap;
+  }
+  .seat:has(.bot-seat-controls) > .seat-copy {
+    flex: 1 1 96px;
+  }
+  .seat:has(.bot-rename) > .seat-copy {
+    flex: 1 1 200px;
+  }
+  /* The level menu may shrink; the rename and remove buttons never leave the seat. */
+  .seat:has(.bot-seat-controls) > .seat-action {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .bot-seat-controls {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2px;
+    max-width: 100%;
+  }
+  .bot-level-chip {
+    appearance: none;
+    min-height: 44px;
+    min-width: 0;
+    max-width: 100%;
+    padding: 0 30px 0 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    color: var(--color-ink);
+    font-size: 12px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    background:
+      linear-gradient(45deg, transparent 50%, var(--color-ink-muted) 50%) calc(100% - 17px) 50% /
+        5px 5px no-repeat,
+      linear-gradient(135deg, var(--color-ink-muted) 50%, transparent 50%) calc(100% - 12px) 50% /
+        5px 5px no-repeat,
+      var(--color-surface);
+    cursor: pointer;
+  }
+  .bot-level-chip:hover:not(:disabled) {
+    border-color: var(--color-sage);
+  }
+  .bot-level-chip:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .bot-rename {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 8px;
+  }
+  .bot-rename > .input {
+    flex: 1 1 120px;
+    width: auto;
+    min-width: 0;
+    min-height: 44px;
+    padding-block: 8px;
+  }
+  .bot-rename > .button {
+    width: 44px;
+    height: 44px;
+    flex: none;
+  }
+  /* Icon buttons are outlined by default; Save keeps the primary fill. */
+  .bot-rename > .button--primary {
+    border-color: transparent;
+    background: var(--color-sage);
+    color: var(--color-white);
+  }
+  .bot-rename-problem {
+    flex-basis: 100%;
+    margin: 0;
+    color: var(--color-danger);
+  }
+
+  /* Lobby: the invite panel. */
+  .lobby .invite-panel.invite-hub {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 18px 28px;
+    margin: 16px 0;
+    padding: 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    background: var(--color-canvas);
+  }
+  .lobby .invite-panel.invite-hub[data-open-seats] {
+    border-color: var(--color-sage);
+    background: var(--color-sage-light);
+  }
+  .invite-hub-share,
+  .invite-hub-friends {
+    display: grid;
+    gap: 12px;
+    min-width: 0;
+  }
+  .invite-hub-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .invite-hub-heading > h3 {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .invite-hub-code {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+  }
+  .invite-hub .room-code {
+    margin: 0;
+    font-size: clamp(30px, 9vw, 42px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+  }
+  .invite-link {
+    font-size: 14px;
+    color: var(--color-ink-muted);
+    overflow-wrap: anywhere;
+    user-select: all;
+  }
+  /* On phones every invite action is a full row, like Ready and Start below. */
+  .invite-hub .invite-hub-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+  .invite-hub .invite-hub-actions > .button {
+    min-height: 46px;
+    padding-inline: 10px;
+  }
+  .invite-hub .invite-hub-actions > .button > svg {
+    flex: none;
+  }
+  .invite-status,
+  .username-status {
+    min-height: 21px;
+    margin: 0;
+    font-weight: 600;
+    color: var(--color-pine);
+  }
+  .invite-own-username {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 6px;
+    margin: 0;
+  }
+
+  /* Username search, results and pending invitations. */
+  .friend-invite {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+  }
+  .friend-invite > .field,
+  .username-form > .field {
+    margin: 0;
+  }
+  .username-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .username-input > span,
+  .username-input > svg {
+    position: absolute;
+    left: 14px;
+    color: var(--color-ink-muted);
+    pointer-events: none;
+  }
+  .username-input > .input {
+    padding-left: 30px;
+  }
+  .friend-search-input > .input {
+    padding-left: 38px;
+  }
+  .friend-search-hint {
+    margin: 0;
+  }
+  /* A fixed height, so results arriving never move the buttons below. */
+  .friend-results {
+    height: 176px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 4px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+  }
+  .friend-results[aria-busy='true'] > .friend-list {
+    opacity: 0.55;
+  }
+  .friend-results-state {
+    margin: 0;
+    padding: 10px;
+  }
+  .friend-results-state[role='alert'] {
+    color: var(--color-danger);
+  }
+  .friend-list {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .friend-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 4px 6px;
+    border-radius: 10px;
+  }
+  .friend-row > .avatar {
+    flex: none;
+  }
+  .friend-copy {
+    display: grid;
+    flex: 1;
+    min-width: 0;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+  .friend-copy > strong,
+  .friend-copy > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .friend-copy > strong {
+    font-weight: 600;
+  }
+  .friend-copy > span {
+    font-size: 12px;
+    color: var(--color-ink-muted);
+  }
+  .friend-row > .button {
+    min-height: 44px;
+    flex: none;
+  }
+  .pending-invites {
+    display: grid;
+    gap: 6px;
+  }
+  .pending-invites > .friend-list {
+    padding: 4px;
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+  }
+
+  /* The username field, on the profile page and in the invite panel. */
+  .username-form {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+  }
+  .username-form > p {
+    margin: 0;
+  }
+  .username-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .username-actions > .button {
+    min-height: 44px;
+  }
+  .profile-username {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 25px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Home: invitations waiting for an answer. */
+  .invitations {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .invitation-list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .invitation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 14px;
+    padding: 14px 16px;
+    border: 1px solid var(--color-sage);
+    border-radius: var(--radius-card);
+    background: var(--color-sage-light);
+  }
+  .invitation > .avatar {
+    flex: none;
+  }
+  .invitation-copy {
+    display: grid;
+    flex: 1 1 200px;
+    gap: 2px;
+    min-width: 0;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  .invitation-copy > strong {
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  .invitation-copy > span {
+    font-size: 13px;
+    color: var(--color-ink-muted);
+  }
+  .invitation-actions {
+    display: flex;
+    gap: 8px;
+    flex: none;
+  }
+  .invitation-actions > .button {
+    min-height: 46px;
+  }
+  .invitations > .error-note {
+    margin: 0;
+  }
+
+  @media (min-width: 760px) {
+    .lobby .invite-panel.invite-hub {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      padding: 22px;
+    }
+    .invite-hub .invite-hub-actions {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    /* Room for "Link copied" and "Code copied", so the row never reflows. */
+    .invite-hub .invite-hub-actions > .button {
+      min-width: 138px;
+    }
+  }
+  @media (max-width: 600px) {
+    .seat:has(.bot-seat-controls) > .seat-action {
+      flex-basis: 100%;
+      margin-left: 0;
+    }
+    .seat:has(.bot-seat-controls) .bot-seat-controls {
+      display: flex;
+      width: 100%;
+    }
+    .seat:has(.bot-seat-controls) .bot-level-chip {
+      flex: 1;
+      margin-right: auto;
+    }
+    .invitation-actions {
+      flex: 1 1 100%;
+    }
+    .invitation-actions > .button {
+      flex: 1;
+    }
+    .username-actions > .button {
+      flex: 1 1 auto;
+    }
+  }
+  /* On a phone each bot is a name with its difficulty directly underneath. */
+  @media (max-width: 440px) {
+    .bot-setup-list {
+      gap: 12px;
+    }
+    .bot-setup-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 6px;
+    }
+    .bot-setup-row--all {
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+    }
+  }
+}

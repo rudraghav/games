@@ -216,7 +216,10 @@ test('every game finishes at both seat limits, renders results, rematches and ke
             });
           snapshot = await checked(page, `rooms/${roomId}/start`);
           await page.reload();
-          await expect(page.locator('.table-announcement')).toBeVisible();
+          // An organiser's page states its own progress instead of the turn banner.
+          await expect(
+            page.locator(game.family === 'organiser' ? '.santa-table' : '.table-announcement'),
+          ).toBeVisible();
           let moves = 0;
           const midgameChecks: {
             phase: string;
@@ -316,7 +319,9 @@ test('every game finishes at both seat limits, renders results, rematches and ke
             ) {
               sampled.add(sampleKey);
               await actor.reload();
-              await expect(actor.locator('.table-layout,.tarot-table').first()).toBeVisible();
+              await expect(
+                actor.locator('.table-layout,.tarot-table,.santa-table').first(),
+              ).toBeVisible();
               await actor.evaluate(() => document.fonts.ready);
               expect(
                 await actor.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
@@ -420,12 +425,15 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           const roomURL = page.url();
           await page.goto('/profile');
           const chance = game.play_mode === 'solo' && game.family === 'casino';
+          const organiser = game.family === 'organiser';
           const historyPath =
             game.id === 'tarot'
               ? `/games/tarot/readings/${finishedId}`
               : chance
                 ? `/games/${game.id}/results/${finishedId}`
-                : `/games/${game.id}/rooms/${roomId}`;
+                : organiser
+                  ? `/games/${game.id}/play/${roomId}`
+                  : `/games/${game.id}/rooms/${roomId}`;
           const historyRow = page.locator(`.history-row[href="${historyPath}"]`).first();
           await expect(historyRow.locator('strong')).toHaveText(game.name);
           const historyOutcome = historyRow.locator(':scope > span');
@@ -434,6 +442,8 @@ test('every game finishes at both seat limits, renders results, rematches and ke
           const units = (game.score_label || 'Points').toLocaleLowerCase();
           if (game.id === 'tarot') {
             await expect(historyOutcome).toHaveText('A little perspective');
+          } else if (organiser) {
+            await expect(historyOutcome).toHaveText('Names drawn');
           } else if (chance) {
             const net = savedResult!.score;
             await expect(historyOutcome).toHaveText(
@@ -462,6 +472,10 @@ test('every game finishes at both seat limits, renders results, rematches and ke
             await expect(page.locator('.tarot-reading')).toHaveText(tarotReadingText!, {
               useInnerText: true,
             });
+          } else if (organiser) {
+            // The finished event is its own result: no scoreboard, no winner.
+            await expect(page.locator('.santa-table[data-phase="finished"]')).toBeVisible();
+            await expect(page.locator('.results')).toHaveCount(0);
           } else {
             await expect(page.locator('.results .scoreboard > div')).toHaveCount(seats);
             if (seats > 1) {
@@ -481,7 +495,12 @@ test('every game finishes at both seat limits, renders results, rematches and ke
             await checked(playerById.get(member.id)!, `rooms/${roomId}/ready`, 'PUT', {
               ready: true,
             });
-          if (game.play_mode === 'solo') {
+          if (organiser) {
+            // A finished event keeps its links, so it offers a new event from the game
+            // page instead of a rematch here. Start the next match for this QA room directly.
+            await checked(page, `rooms/${roomId}/ready`, 'PUT', { ready: true });
+            await checked(page, `rooms/${roomId}/start`);
+          } else if (game.play_mode === 'solo') {
             const restart = game.id === 'tarot' ? 'Draw a new spread' : 'Play again';
             await page.getByRole('button', { name: restart, exact: true }).first().click();
           } else {

@@ -340,7 +340,9 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     expect((await roomAs(page, roomId)).game!.community).toHaveLength(1);
     expect(submissions).toHaveLength(2);
     // Enter reveals the focused card. Native repeat on a held key must not turn one
-    // keypress into two draws.
+    // keypress into two draws. The deck drops activations for 400ms after a draw, and
+    // on a fast machine this script reaches here sooner than that: wait the window out.
+    await page.waitForTimeout(450);
     await page.keyboard.down('Enter');
     await page.keyboard.down('Enter');
     await page.keyboard.down('Enter');
