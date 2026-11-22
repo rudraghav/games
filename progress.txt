@@ -16,7 +16,11 @@
 
 - AGENTS.md has an uncommitted "Required task cleanup" section that this work did not write; it is followed above and left out of this work's commits.
 
-- State: verified locally; not committed or released. Releasing needs the production migration first.
+- Owner approved shipping. Production migration applied first (head 3002383be1bd, no drift, private-table RLS and grants verified); the owner's rooms, memberships and identities were unchanged across it. Released `4d52789dd40ebbe172aad798122509c6d5b6fdec` to main and Games production as dpl_Er8A1GpQ5bCTmo6XGJQZnW9ayFqf (READY, bom1, both source metadata fields match), one deployment, sent as a single archive. AGENTS.md's uncommitted cleanup section was left out of the commit.
+- Live, two phone-sized guests: a new visitor's home showed all five collections with Create room, Join a room and Play solo and no page overflow; For teams listed 12 games, none a casino game, with the corrected note. After one solo Slots session progress read 25 XP, level 1, no win, First game earned, Gold frame locked, and a forced redeem was refused (409). After a second solo game the rewards page showed level 2; Gold frame went Redeem, Use, In use. A new Uno lobby showed the six-digit code in the ticket. A second guest joined by the short link, saw the host's gold frame on the seat, received nothing else about the host's progress, had zero XP of their own and was refused the host's reward (409). The returning host's home showed the strip (level 2, 1-day streak, 1 of 14 badges) and the room under Continue.
+- Runtime fingerprint unchanged; owner data unchanged since the migration; runtime and 5xx request logs since release start returned zero records; the three test rooms are closed with no active memberships.
+- Not verified live: card backs on a table (level 3 is out of reach of a short run), browsers other than Chromium. Docker on the development machine is still down, so the local Docker database has neither of the last two migrations.
+- State: released.
 
 ## 2026-11-22 — Secret Santa: names, date and location, exclusions by person and by group, private links
 

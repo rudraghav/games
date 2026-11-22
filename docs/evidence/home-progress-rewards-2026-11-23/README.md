@@ -66,3 +66,15 @@ PostgreSQL 17 cluster in the session's scratch folder, migrated to `3002383be1bd
 - Browsers other than Chromium (the ticket notches use CSS masks) and forced-colours
   mode.
 - The Storybook story was type-checked, not rendered.
+
+## Release
+
+- Production migration to `3002383be1bd` applied first, then commit
+  `4d52789dd40ebbe172aad798122509c6d5b6fdec`, deployment
+  `dpl_Er8A1GpQ5bCTmo6XGJQZnW9ayFqf` (production, READY).
+- Live with two phone-sized guests: the new home for a new visitor and a returning
+  player; the teams collection (12 games, no casino game); progress after real solo
+  sessions (25 XP and no win after one, level 2 after two); a forced redeem refused;
+  Gold frame redeemed and worn; the frame seen by a second guest who received nothing
+  else about the host's progress and was refused the host's reward.
+- Runtime errors and 5xx requests since release start: none. Test rooms closed.
