@@ -1,0 +1,326 @@
+/*
+ * A drawn Tarot card on the table: its hover, press and focus states, and the preview
+ * that grows out of it while a mouse rests on it or keyboard focus is on it. The preview
+ * is a larger picture beside a few lines, the first page of the card's full guide. It is
+ * supplementary: it takes no pointer events and never holds focus.
+ *
+ * The panel is an opaque surface (#fffcf7), so its contrast never depends on the table
+ * behind it. Text pairs are computed (WCAG relative luminance):
+ *   ink #272a25                 14.2:1 surface (name, meaning, position)
+ *   muted #5c5f55               6.4:1 surface (essence, "Drawn as", the last line)
+ *   plum #69506d                6.9:1 surface (family label)
+ *   #fffdf8 on plum #69506d     7.0:1 (Upright pill)
+ *   #fffdf8 on --tarot-ochre-deep #6f5522   6.9:1 (Reversed pill)
+ *   --tarot-plum-deep #4f3a53   7.8:1 on plum-light (upright keywords)
+ *   --tarot-ochre-deep #6f5522  5.6:1 on ochre-light (reversed keywords)
+ *   The card sits on the same darkened velvet as the card page's stage.
+ *   The focus ring #af7535 is 3.5:1 on the canvas while choosing (non-text, 3:1 needed);
+ *   on the velvet it is the light --tarot-on-velvet ring set in tarot-reading-v2.css.
+ */
+@layer components {
+  /* ---------- The drawn card itself ---------- */
+  .tarot-spread button.tarot-card {
+    appearance: none;
+    text-align: center;
+  }
+  /* While choosing, the spread lies on the light canvas, not the velvet. */
+  .tarot-table[data-phase='choosing'] .tarot-spread button.tarot-card:focus-visible {
+    outline-color: var(--color-focus);
+  }
+  .tarot-spread button.tarot-card:enabled:active {
+    box-shadow:
+      0 0 0 1px #00000040,
+      0 1px 3px #00000059;
+  }
+  /* A card whose preview is open keeps its lifted look, from the keyboard too. */
+  .tarot-table[data-phase='choosing'] .tarot-spread [data-preview-open] > button.tarot-card {
+    border-color: var(--color-ochre);
+    box-shadow: var(--shadow-lift);
+  }
+  .tarot-table:not([data-phase='choosing']) .tarot-spread [data-preview-open] > button.tarot-card {
+    box-shadow:
+      0 0 0 1px #00000059,
+      0 4px 8px #00000066,
+      0 24px 36px -14px #000000e6;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .tarot-table[data-phase='choosing'] .tarot-spread button.tarot-card:enabled:hover {
+      border-color: var(--color-ochre);
+      box-shadow: var(--shadow-lift);
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tarot-spread button.tarot-card {
+      transition:
+        translate 200ms var(--ease-out),
+        scale 120ms var(--ease-out),
+        box-shadow 200ms var(--ease-out),
+        border-color 200ms var(--ease-out);
+    }
+    .tarot-spread [data-preview-open] > button.tarot-card:not(:active) {
+      translate: 0 -6px;
+    }
+  }
+
+  /* ---------- The preview panel ---------- */
+  .tarot-preview {
+    --color-ink-muted: #5c5f55;
+    --tarot-on-velvet: #f3ead8;
+    --tarot-gilt: #e6d6ae;
+    --tarot-plum-deep: #4f3a53;
+    --tarot-ochre-deep: #6f5522;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1100;
+    display: grid;
+    grid-template-columns: minmax(0, 47%) minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas:
+      'stage head'
+      'stage more';
+    gap: 12px 20px;
+    box-sizing: border-box;
+    width: 640px;
+    padding: 10px;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--color-ink) 16%, var(--color-surface));
+    border-radius: 22px;
+    background: var(--color-surface);
+    box-shadow:
+      var(--shadow-lift),
+      0 36px 72px -28px #1c0f22a6;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-align: left;
+    /* It describes the card under the pointer and must never take the click meant for it. */
+    pointer-events: none;
+    user-select: none;
+    animation: tarot-preview-in 160ms var(--ease-out) both;
+  }
+
+  /* The picture, on the card page's velvet. */
+  .tarot-preview-stage {
+    grid-area: stage;
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    padding: 12px;
+    border-radius: 14px;
+    background:
+      linear-gradient(#1c0f22b8, #1c0f22b8),
+      var(--color-plum) url('/tarot/oracle-velvet.webp') center / cover;
+    box-shadow:
+      inset 0 1px 0 #ffffff1f,
+      inset 0 0 0 1px #00000040;
+  }
+  .tarot-preview-stage > .tarot-card {
+    width: 100%;
+    border-color: var(--tarot-gilt);
+    box-shadow:
+      0 0 0 1px #00000059,
+      0 2px 4px #00000066,
+      0 16px 28px -12px #000000cc;
+  }
+  .tarot-preview-stage .tarot-name {
+    min-height: 38px;
+    font-size: 14px;
+  }
+  .tarot-preview-stage .tarot-reversed-word {
+    padding-bottom: 3px;
+    font-size: 11px;
+  }
+
+  /* Name, number, how it was drawn and its keywords. */
+  .tarot-preview-head {
+    grid-area: head;
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    min-width: 0;
+    padding: 10px 10px 0 0;
+  }
+  .tarot-preview-family {
+    color: var(--color-plum);
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  .tarot-preview-name {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+  .tarot-preview-drawn {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin-top: 6px;
+    font-size: 13.5px;
+    line-height: 1.4;
+  }
+  .tarot-preview-orientation {
+    padding: 3px 11px;
+    border-radius: 999px;
+    background: var(--color-plum);
+    color: var(--color-white);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .tarot-preview[data-orientation='reversed'] .tarot-preview-orientation {
+    background: var(--tarot-ochre-deep);
+  }
+  .tarot-preview-position {
+    font-weight: 650;
+  }
+  .tarot-preview-position > span {
+    color: var(--color-ink-muted);
+    font-weight: 500;
+  }
+  .tarot-preview-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tarot-preview-keywords > li {
+    padding: 4px 11px;
+    border-radius: 999px;
+    background: var(--color-plum-light);
+    color: var(--tarot-plum-deep);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .tarot-preview[data-orientation='reversed'] .tarot-preview-keywords > li {
+    background: var(--color-ochre-light);
+    color: var(--tarot-ochre-deep);
+  }
+
+  /* The one-line meaning, the essence and where the rest lives. */
+  .tarot-preview-more {
+    grid-area: more;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    padding: 0 10px 4px 0;
+  }
+  .tarot-preview-short {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+  }
+  .tarot-preview-essence {
+    color: var(--color-ink-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+  }
+  .tarot-preview-hint {
+    margin-top: auto;
+    padding-top: 9px;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-ink-muted);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  /* Narrow rooms: the picture and the heading share a row, the rest runs underneath. */
+  .tarot-preview:is([data-layout='stack'], [data-layout='compact']) {
+    grid-template-columns: minmax(0, 46%) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'stage head'
+      'more more';
+    gap: 12px 14px;
+    width: 400px;
+    border-radius: 18px;
+  }
+  .tarot-preview:is([data-layout='stack'], [data-layout='compact']) .tarot-preview-stage {
+    padding: 10px;
+    border-radius: 12px;
+  }
+  .tarot-preview:is([data-layout='stack'], [data-layout='compact'])
+    .tarot-preview-stage
+    .tarot-name {
+    min-height: 30px;
+    font-size: 12px;
+  }
+  .tarot-preview:is([data-layout='stack'], [data-layout='compact']) .tarot-preview-head {
+    gap: 5px;
+    padding: 6px 4px 0 0;
+  }
+  .tarot-preview:is([data-layout='stack'], [data-layout='compact']) .tarot-preview-name {
+    font-size: 22px;
+  }
+  .tarot-preview:is([data-layout='stack'], [data-layout='compact']) .tarot-preview-drawn {
+    margin-top: 4px;
+    font-size: 13px;
+  }
+  .tarot-preview:is([data-layout='stack'], [data-layout='compact']) .tarot-preview-keywords {
+    gap: 5px;
+    margin-top: 6px;
+  }
+  .tarot-preview:is([data-layout='stack'], [data-layout='compact']) .tarot-preview-keywords > li {
+    padding: 3px 9px;
+    font-size: 12.5px;
+  }
+  .tarot-preview:is([data-layout='stack'], [data-layout='compact']) .tarot-preview-more {
+    padding: 0 6px 4px;
+  }
+  .tarot-preview:is([data-layout='stack'], [data-layout='compact']) .tarot-preview-short {
+    font-size: 16px;
+  }
+  .tarot-preview:is([data-layout='stack'], [data-layout='compact']) .tarot-preview-essence {
+    font-size: 13.5px;
+  }
+  /* When neither side of the card has the height: three keywords and no essence line. */
+  .tarot-preview[data-layout='compact'] .tarot-preview-keywords > li:nth-child(n + 4),
+  .tarot-preview[data-layout='compact'] .tarot-preview-essence {
+    display: none;
+  }
+
+  @keyframes tarot-preview-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+  }
+  @keyframes tarot-preview-fade {
+    from {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tarot-preview {
+      animation: tarot-preview-fade 100ms linear both;
+    }
+  }
+  @media (forced-colors: active) {
+    .tarot-preview {
+      border-color: CanvasText;
+    }
+    .tarot-preview-orientation,
+    .tarot-preview-keywords > li {
+      border: 1px solid CanvasText;
+    }
+  }
+}

@@ -570,8 +570,10 @@ associated with the question field for screen readers. Paid-tier configuration
 retains the general Gemini transmission notice without the free-tier statement.
 See https://ai.google.dev/gemini-api/docs/pricing.
 
-Provider routing is configured by `TAROT_PROVIDER_ORDER`, with alternatives off
-by default. `TAROT_GROQ_MODES` and `TAROT_CLOUDFLARE_MODES` explicitly approve
+Provider routing is configured by `TAROT_PROVIDER_ORDER`. The default order is Groq,
+Gemini, Cloudflare (Groq was fastest and tied each portrait to the question most
+directly in the November 2026 evaluation; its free tier allows about one reading a
+minute and 1,000 requests a day, so a busy minute falls through to the next provider). `TAROT_GROQ_MODES` and `TAROT_CLOUDFLARE_MODES` explicitly approve
 ordinary/Western/Vedic/Both modes only after real editorial acceptance. Keys alone
 never enable a provider. Missing credentials and unapproved modes are skipped.
 Groq additionally permits only ordinary and Western in the runtime allowlist;

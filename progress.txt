@@ -1,3 +1,19 @@
+## 2026-11-22 — Tarot table: one-tap draws, deck rows, drawn-card preview, Groq first
+
+- Owner asked for: one click to pick a card instead of two; more cards in view with a way to scroll by finger on a phone; hover and click on drawn cards (hover enlarges with a little more information, click opens the full details); and the recommended reading provider if keys and usage allow.
+
+- Deck: one tap or click on a face-down back reveals it; the lift-then-confirm step is gone. The rest of a double click or tap burst is dropped for 400ms so one gesture never reveals two cards. The deck lies in three overlapped rows (each back keeps a 44px target): about 23 backs in view on a 390px phone instead of 8, and about 60 on a desktop instead of 30. A finger still swipes the deck sideways; a bar under the deck can also be dragged through all 78. Arrow keys move along and between rows; Enter reveals.
+
+- Drawn cards: every revealed card opens its full page on click in every phase (before, only once the spread was complete). With a mouse or keyboard focus it shows a larger picture beside the card with the position, orientation, up to five keywords, the short meaning and one line of essence. Touch never shows the preview; a tap opens the page.
+
+- Readings: default provider order is now Groq, Gemini, Cloudflare. Production already holds a Groq key; its free tier reports 1,000 requests a day and 8,000 tokens a minute, and one reading used about 2,000 tokens, so several readings a minute fit and anything over falls through to Gemini. A real local reading on a synthetic question came back from Groq in 2 seconds with all three portrait bridges on the question. Production still has TAROT_PROVIDER_ORDER set to Gemini first; it changes with the release.
+
+- Tutorial copy, rules illustration text, app flow and UI system docs, and both Tarot READMEs describe the one-tap pick.
+
+- Local checks: frontend (396 unit tests), backend (7,534), contracts and tooling pass. Browser suite: 468 passed, 75 skipped, 1 failed (a phone Uno saved-selection test that depends on the dealt hand; it passed 4 of 4 repeated alone, and no Uno file changed). Real local rooms on phone and desktop confirmed single-tap draws, finger scrolling, the bar, the hover preview and the card page. Evidence: docs/evidence/tarot-table-touch-2026-11-22.
+
+- State: verified locally; not committed or released.
+
 ## 2026-11-22 — Tarot readings that answer the question, reversed cards, card guide, Uno stacking, test repairs
 
 - Owner asked to finish the items left open after the visual polish release, then: make Tarot readings contextual (a player's reading "made no sense"), add a full card guide with both orientations, reversed draws, clickable gallery cards and a scrollable deck, and new Uno rules (stacking toggle on both games, missed turn after a caught UNO).

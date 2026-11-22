@@ -32,9 +32,7 @@ export function focusMove(table: HTMLElement, match: Match, option: ActionOption
   }
   if (!target && match.id === 'tarot') {
     const cards = buttons.filter((button) => label(button).startsWith('Face-down card '));
-    target =
-      cards.find((button) => button.getAttribute('aria-pressed') === 'true') ??
-      cards.find((button) => button.tabIndex === 0);
+    target = cards.find((button) => button.tabIndex === 0);
   }
   if (!target && value.card) {
     const card = match.hand.find((item) => item.id === value.card);

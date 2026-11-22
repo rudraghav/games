@@ -446,11 +446,13 @@ describe('saved Tarot reading presentation', () => {
       <TarotReading reading={tarotReadingExample} cards={tarotReadingCards} />,
     );
     expect(html.match(/class="tarot-reading-card-heading"/g)).toHaveLength(3);
-    // Each thumbnail is a button that opens the full card.
+    // Each thumbnail is a button that opens the full card. Its hover preview replaces the
+    // plain tooltip, so the two never show together.
     for (const card of tarotReadingCards)
       expect(html).toContain(
-        `<button class="tarot-card tarot-card--compact" aria-label="View ${card.label} card" data-tip="Open the full card"`,
+        `<button class="tarot-card tarot-card--compact" aria-label="View ${card.label} card" type="button"`,
       );
+    expect(html).not.toContain('data-tip="Open the full card"');
   });
 
   it('states each position, what it asks and that the card is upright', () => {

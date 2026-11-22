@@ -353,12 +353,14 @@ Boop graduation requires preview/confirm; Paper public inspection never takes a
 card. Five corrected Tarot cards opt into full-frame SVG fitting. Acceptance
 uses normal-height browser frames, not only tall catalogue captures.
 
-Tarot puts the current spread position above a layered crystal-and-brass instrument on velvet. The equatorial ring turns toward the active card. With a mouse, perspective and foil light follow the pointer. A reduced-motion preference uses the original art, fixed highlight, and raised edge. The face-down fan sits in front of the sphere in the first phone viewport. The fan adjusts the number of exposed backs to the width of the table.
-The pictured card may overlap its neighbour, while each touch target keeps its own
-strip. A horizontal stroke previews backs under the finger. Lifting a card still
-leaves it face-down until the player taps the raised card again. Page controls and
+Tarot puts the current spread position above a layered crystal-and-brass instrument on velvet. The equatorial ring turns toward the active card. With a mouse, perspective and foil light follow the pointer. A reduced-motion preference uses the original art, fixed highlight, and raised edge. The face-down deck sits in front of the sphere in the first phone viewport, in three
+overlapped rows: about 24 backs across a phone and most of the deck across a wide table.
+The pictured card may overlap its neighbours, while each touch target keeps its own
+strip of at least 44px. One tap or click on a back reveals it; a back that is pointed
+at, pressed or focused comes up above the others first. A sideways swipe scrolls the
+deck, the bar under it can be dragged through every card, and page controls and
 keyboard navigation reach every remaining back. Vertical swipes scroll the page.
-Reduced motion retains the raised selection without an animated transition. A
+Reduced motion raises the back without an animated transition. A
 supported device can pulse when a local draw is confirmed. The illuminated slot
 and spoken card name communicate the same result on every device.
 

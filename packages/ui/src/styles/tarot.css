@@ -561,21 +561,30 @@
   }
   .tarot-fan-stage .tarot-deck,
   .tarot-oracle-scene,
-  .tarot-fan {
-    --fan-width: clamp(102px, 28cqi, 144px);
-    --fan-clearance: clamp(109px, 30cqi, 161px);
+  .tarot-fan,
+  .tarot-deck-scrub {
+    --fan-width: clamp(98px, 27cqi, 128px);
+    --fan-clearance: clamp(104px, 29cqi, 150px);
     --fan-bottom: 18px;
-    /* The strip of each overlapped back that stays in view. It is the card's tap target,
-       so it never drops below 44px: about 8 backs across a phone and 30 across a
-       desktop table, with the rest one scroll away. */
+    /* The deck lies in overlapped rows. Each back keeps a strip that is its tap target:
+       --fan-step wide and, behind the front row, --fan-row-step tall, never under 44px.
+       Three rows put about 24 backs on a phone and the whole deck on a wide table. */
+    --fan-rows: 3;
     --fan-step: 44px;
+    --fan-row-step: 46px;
+    --fan-stack: calc((var(--fan-rows) - 1) * var(--fan-row-step));
+    /* Each row starts a little further right than the one behind it. */
+    --fan-stagger: calc(var(--fan-step) / var(--fan-rows));
     --fan-inset: calc(var(--fan-width) * 0.17);
+    --fan-height: calc(
+      var(--fan-clearance) + var(--fan-stack) + var(--fan-width) * 1.5 + var(--fan-bottom)
+    );
   }
   .tarot-oracle-scene {
     position: absolute;
     z-index: -1;
     inset: 0 0 auto;
-    height: calc(var(--fan-clearance) + var(--fan-width) * 1.5 + var(--fan-bottom));
+    height: var(--fan-height);
     border-radius: var(--radius-card);
     overflow: hidden;
     pointer-events: none;
@@ -640,7 +649,7 @@
         rotateX(calc(63deg + var(--oracle-look-y, 0) * 8deg));
     }
   }
-  /* One ribbon of every remaining card. Scrolling is the browser's own: wheel,
+  /* Every remaining card in a few overlapped rows. Scrolling is the browser's own: wheel,
      trackpad and touch drag with momentum, settling on a card edge. */
   .tarot-fan-stage .tarot-deck {
     padding: 0;
@@ -658,28 +667,39 @@
     gap: 0;
   }
   .tarot-fan {
-    display: flex;
+    display: grid;
     flex: 0 0 auto;
-    /* A nearly empty deck still sits in the middle of the table. */
+    box-sizing: border-box;
+    grid-auto-columns: var(--fan-step);
+    grid-auto-rows: var(--fan-row-step);
+    /* A nearly empty deck still sits in the middle of the table, at the same height. */
     min-width: 100cqi;
+    height: var(--fan-height);
     justify-content: center;
-    align-items: center;
-    padding: var(--fan-clearance) var(--fan-inset) var(--fan-bottom);
+    align-content: start;
+    /* The last column shows whole cards, and the front row reaches furthest right. */
+    padding: var(--fan-clearance)
+      calc(
+        var(--fan-inset) + var(--fan-width) - var(--fan-step) + var(--fan-stagger) *
+          (var(--fan-rows) - 1)
+      )
+      var(--fan-bottom) var(--fan-inset);
     overflow: clip;
     isolation: isolate;
-    /* A finger drags the ribbon sideways or the page up and down. */
+    /* A finger drags the deck sideways or the page up and down. */
     touch-action: pan-x pan-y pinch-zoom;
     user-select: none;
     -webkit-user-select: none;
   }
-  /* Browsing uses stable lanes. A lift opens one card-width gap, so the
-     entire raised picture and every neighbouring strip have their own target. */
+  /* A lane is the strip of a back that stays in view, and is that card's whole target:
+     one tap or click on it reveals the card. */
   .tarot-fan .tarot-fan-hit.tarot-card {
-    flex: 0 0 var(--fan-step);
+    position: relative;
+    left: calc(var(--fan-row) * var(--fan-stagger));
+    align-self: start;
     min-width: 0;
-    scroll-snap-align: start;
-    width: auto;
-    height: calc(var(--fan-width) * 1.5);
+    width: var(--fan-step);
+    height: var(--fan-row-step);
     aspect-ratio: auto;
     padding: 0;
     border: 0;
@@ -692,18 +712,21 @@
     outline: none;
     -webkit-tap-highlight-color: transparent;
   }
-  .tarot-fan-hit::before {
+  .tarot-fan .tarot-fan-hit[data-row='0'] {
+    scroll-snap-align: start;
+  }
+  /* Nothing lies over the front row, so the whole height of each back is its target. */
+  .tarot-fan .tarot-fan-hit[data-front-row] {
+    height: calc(var(--fan-width) * 1.5);
+  }
+  .tarot-fan-hit[data-row='0']::before,
+  .tarot-fan-hit[data-front-row]::after {
     content: '';
     position: absolute;
-    inset: -12px 0;
+    inset: -12px 0 100%;
   }
-  .tarot-fan:not([data-has-lift]) .tarot-fan-hit:last-child,
-  .tarot-fan .tarot-fan-hit[aria-pressed='true'] {
-    flex-basis: var(--fan-width);
-  }
-  .tarot-fan-hit[data-after-lift] .tarot-fan-face {
-    left: auto;
-    right: 0;
+  .tarot-fan-hit[data-front-row]::after {
+    inset: 100% 0 -12px;
   }
   .tarot-fan-face {
     position: absolute;
@@ -723,16 +746,16 @@
       0 2px 0 color-mix(in srgb, var(--color-ochre) 40%, var(--color-ink)),
       1px 4px 5px color-mix(in srgb, var(--color-black) 45%, transparent);
   }
-  /* Above every layer of a full 78-card ribbon. */
-  .tarot-fan-hit:is([aria-pressed='true'], [data-preview], :focus-visible) .tarot-fan-face {
-    z-index: 100;
+  /* A back that is pointed at, pressed, focused or being drawn comes up above every
+     layer of the deck, so the whole of it shows. */
+  .tarot-fan-hit:is([data-picked], :focus-visible, :enabled:active) .tarot-fan-face {
+    z-index: 1000;
     transform: translateY(-12px) rotate(0deg);
   }
-  .tarot-fan .tarot-fan-hit[aria-pressed='true'] .tarot-fan-face {
-    z-index: 102;
-    pointer-events: auto;
+  .tarot-fan .tarot-fan-hit[data-picked] .tarot-fan-face {
+    z-index: 1002;
   }
-  .tarot-fan-hit[aria-pressed='true'] .tarot-fan-face .tarot-card {
+  .tarot-fan-hit[data-picked] .tarot-fan-face .tarot-card {
     outline: 1px solid var(--color-ochre-light);
     outline-offset: 2px;
     box-shadow:
@@ -743,11 +766,11 @@
   }
   /* Brighten the engraved artwork itself, so the foil catches light while
      the dark paper in the same band stays matte. */
-  .tarot-fan-hit[aria-pressed='true'] .tarot-back {
+  .tarot-fan-hit[data-picked] .tarot-back {
     position: relative;
     isolation: isolate;
   }
-  .tarot-fan-hit[aria-pressed='true'] .tarot-back::after {
+  .tarot-fan-hit[data-picked] .tarot-back::after {
     --foil-center: 46%;
     content: '';
     position: absolute;
@@ -764,6 +787,10 @@
     );
     pointer-events: none;
   }
+  /* The back being drawn keeps its full strength while the deck waits. */
+  .tarot-fan .tarot-fan-hit[data-picked]:disabled {
+    opacity: 1;
+  }
   .tarot-fan-hit:focus-visible .tarot-fan-face .tarot-card {
     outline: 3px solid var(--color-white);
     outline-offset: 2px;
@@ -778,22 +805,84 @@
     .tarot-pointer-hint {
       display: inline;
     }
-    .tarot-fan-hit:enabled:not([aria-pressed='true']):hover .tarot-fan-face {
-      z-index: 100;
-      transform: translateY(-9px) rotate(0deg);
+    .tarot-fan-hit:enabled:hover {
+      cursor: pointer;
+    }
+    .tarot-fan-hit:enabled:hover .tarot-fan-face {
+      z-index: 1000;
+      transform: translateY(-12px) rotate(0deg);
+    }
+    .tarot-fan-hit:enabled:hover .tarot-fan-face .tarot-card {
+      outline: 1px solid var(--color-ochre-light);
+      outline-offset: 2px;
+      box-shadow:
+        1px 2px 0 var(--color-ochre),
+        3px 8px 12px color-mix(in srgb, var(--color-black) 60%, transparent);
     }
   }
   @media (prefers-reduced-motion: no-preference) {
     .tarot-fan-face {
       transition: transform 190ms cubic-bezier(0.22, 0.72, 0.24, 1);
     }
-    .tarot-fan-hit[aria-pressed='true'] .tarot-fan-face .tarot-card {
+    .tarot-fan-hit[data-picked] .tarot-fan-face .tarot-card {
       transform: perspective(570px) rotateX(calc(-5deg - 3deg * var(--oracle-look-y, 0)))
         rotateY(calc(2deg + 6deg * var(--oracle-look-x, 0)));
     }
-    .tarot-fan-hit[aria-pressed='true'] .tarot-back::after {
+    .tarot-fan-hit[data-picked] .tarot-back::after {
       --foil-center: calc(46% + 28% * var(--oracle-look-x, 0) + 8% * var(--oracle-look-y, 0));
     }
+  }
+  /* A bar under the deck that a finger or the pointer drags to move through every card. */
+  .tarot-deck-scrub {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: calc(100% - 112px);
+    height: 44px;
+    margin: -44px 56px 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: grab;
+    /* Sideways movement belongs to the bar; up and down still scrolls the page. */
+    touch-action: pan-y;
+  }
+  .tarot-deck-scrub:active {
+    cursor: grabbing;
+  }
+  .tarot-deck-scrub::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-ink) 16%, transparent);
+  }
+  .tarot-deck-scrub::-moz-range-track {
+    height: 6px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-ink) 16%, transparent);
+  }
+  .tarot-deck-scrub::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 56px;
+    height: 14px;
+    margin-top: -4px;
+    border: 1px solid color-mix(in srgb, var(--color-ochre) 55%, var(--color-ink));
+    border-radius: 999px;
+    background: var(--color-ochre);
+    box-shadow: var(--shadow-rest, 0 1px 2px #0003);
+  }
+  .tarot-deck-scrub::-moz-range-thumb {
+    width: 56px;
+    height: 12px;
+    border: 1px solid color-mix(in srgb, var(--color-ochre) 55%, var(--color-ink));
+    border-radius: 999px;
+    background: var(--color-ochre);
+  }
+  .tarot-deck-scrub:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: -6px;
+    border-radius: 12px;
   }
   /* Where the view sits in the deck: quiet gilt on the velvet, never a live region. */
   .tarot-deck-range {
@@ -823,6 +912,11 @@
   }
   .tarot-deck-rail[data-overflow='true'] + .tarot-lift-hint {
     margin-top: -44px;
+  }
+  /* With the bar between the arrows, the hint takes its own line below. */
+  .tarot-deck-scrub + .tarot-lift-hint {
+    min-height: 0;
+    margin: 2px 12px 0;
   }
   .tarot-spread-slot:not([aria-label]) .tarot-card-meaning {
     display: none;

@@ -38,15 +38,15 @@ const positions = ['Where you are', 'What is shifting', 'Your next move'];
 const spread = [
   [
     'Pick your first card',
-    'Tap a face-down card to lift it. Tap the lifted card again to reveal where you are now.',
+    'Tap any face-down card to reveal where you are now. One tap turns it over.',
   ],
   [
     'Pick your second card',
-    'Lift any card. You can try a different one, then tap the lifted card again to reveal what is shifting.',
+    'Browse the deck, then tap any card to reveal what is shifting.',
   ],
   [
     'Pick your third card',
-    'Lift your final card and tap it again to reveal a possible next move.',
+    'Tap your final card to reveal a possible next move.',
   ],
 ] as const;
 

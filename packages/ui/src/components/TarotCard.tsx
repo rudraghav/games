@@ -22,6 +22,8 @@ interface TarotCardProps {
    * way up, the word "Reversed" sits under it and the accessible name says so.
    */
   reversed?: boolean;
+  /** The id of text that says a little more about this card, read after its name. */
+  describedBy?: string;
 }
 export function TarotCard({
   id,
@@ -36,6 +38,7 @@ export function TarotCard({
   onFocus,
   tip,
   reversed,
+  describedBy,
 }: TarotCardProps) {
   const artwork = id ? tarotArtwork[id] : undefined;
   const displayName = name || artwork?.name;
@@ -87,6 +90,7 @@ export function TarotCard({
     'aria-label':
       (label || displayName || 'Choose a face-down Tarot card') +
       (id && reversed ? ', reversed' : ''),
+    'aria-describedby': describedBy,
     'data-tip': tip,
   };
   return onClick ? (

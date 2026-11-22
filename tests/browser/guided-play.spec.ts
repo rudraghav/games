@@ -220,7 +220,7 @@ test('solo Tarot guides three real picks and leaves the reading and birth detail
     await coach.getByRole('button', { name: 'Illustrated rules' }).click();
     const rulebook = page.getByRole('dialog');
     const example = rulebook.getByRole('img', {
-      name: /A face-down card lifts above its neighbour/,
+      name: /A face-down card comes up above its neighbour/,
     });
     const backs = example.locator('.tarot-card--back');
     await expect(backs).toHaveCount(2);
@@ -228,7 +228,7 @@ test('solo Tarot guides three real picks and leaves the reading and birth detail
     const lifted = (await backs.last().boundingBox())!;
     expect(lifted.y).toBeLessThan(covered.y);
     expect(lifted.x).toBeLessThan(covered.x + covered.width);
-    await expect(rulebook).toContainText('Tap the lifted card again to reveal it.');
+    await expect(rulebook).toContainText('One tap turns it over');
     await rulebook.getByRole('button', { name: 'Close dialog' }).click();
     await coach.getByRole('link', { name: 'Go to cards' }).click();
     await expect(firstCard).toBeFocused();
@@ -243,12 +243,12 @@ test('solo Tarot guides three real picks and leaves the reading and birth detail
     await expect(tip).toHaveCount(0);
     for (let step = 1; step <= 3; step++) {
       await expect(coach).toContainText(`Card ${step} of 3`);
-      await expect(coach).toContainText('again');
-      await touchCard();
-      await expect(firstCard).toHaveAttribute('aria-pressed', 'true');
-      await expect(coach).toContainText(`Card ${step} of 3`);
+      await expect(coach).toContainText(/tap/i);
       await coach.getByRole('link', { name: 'Go to cards' }).click();
       await expect(firstCard).toBeFocused();
+      // One tap or click reveals the card. The deck drops the rest of a tap burst for
+      // 400ms after a draw; a script is faster than a person, so wait that window out.
+      await page.waitForTimeout(450);
       await touchCard();
       await expect
         .poll(async () => (await roomAs(page, room.id)).game!.community!.length)

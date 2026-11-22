@@ -76,9 +76,9 @@ and provenance are checked against the curated reference cast.
 ## Handling the Tarot deck
 
 The overlapping backs and separate moment of choosing draw on the face-down
-fan described by Tarot author Yoav Ben-Dov. The browser version keeps a tap
-alternative to sliding, preserves vertical page scroll and shows the lifted card
-even when movement or vibration is unavailable. The back illustration is original.
+fan described by Tarot author Yoav Ben-Dov. The browser version lays the backs in
+overlapped rows, reveals a card with one tap, preserves vertical page scroll and
+raises the chosen card even when movement or vibration is unavailable. The back illustration is original.
 
 - [Yoav Ben-Dov on shuffling and offering a face-down fan](https://cbdtarot.com/the-book/table-of-contents/shuffling-the-deck/)
 - [W3C guidance on alternatives to dragging](https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html)

@@ -38,7 +38,7 @@ Specifics make the reading more useful." The form keeps its height, because the
 progress card that replaces the button must still open on screen at 320 by 740;
 a count appears only for the last 100 characters.
 
-## Reversed cards, card pages and the deck ribbon — 22 November 2026
+## Reversed cards, card pages and the deck rows — 22 November 2026
 
 ### Reversed cards
 
@@ -81,26 +81,80 @@ is not part of the first paint; the gallery preloads it when it opens).
   the dialog. Every gallery page shows both orientations and opens on Upright: the
   gallery knows nothing about the shuffled deck.
 
-### The deck ribbon
+### Drawn cards: hover preview and click
 
-`TarotDeckPicker` lays every remaining card in one row inside `HorizontalRail`'s
-native scroller: wheel, trackpad and touch drag with the browser's own momentum,
-`scroll-snap-type: x proximity` on card edges, no custom physics. The arrows page by
-about a screenful (instantly under reduced motion). `--fan-step` is the strip of
-each overlapped back that stays visible: about 12 backs across a 390px phone and 30
-across a 1440px desktop (the old fan showed 6 to 16 a page).
+A drawn card is a button from the moment it lands, in every phase (choosing, ready,
+reading): `View <name> card`, with `, reversed` when it was drawn that way. A click, tap,
+Enter or Space opens its full page (`TarotCardDetail`) and Escape returns focus to the
+card. After a draw the slot still takes focus, so Tab from a revealed slot reaches its
+card first.
 
-- The strip is 27–31px, narrower than a finger on purpose. The first tap only lifts
-  a back, the lifted card's own lane is a full card wide (102–144px) for the
-  confirming tap, and one face-down back is as good as its neighbour, so a near
-  miss costs nothing.
+`TarotCardPreview` wraps each spread card and each reading thumbnail and shows a
+preview while a mouse rests on the card or keyboard focus is on it: more than the
+table shows, clearly less than the page.
+
+- **What it shows**: a larger picture in the drawn orientation (the art turns, the
+  name stays upright and the word "Reversed" is printed), "Major Arcana · XIII" or
+  "Suit of Wands · Nine", the name, an Upright / Reversed pill, "Drawn as <position>",
+  up to five keywords for the drawn side, the one-line `short` meaning, the `essence`
+  line and "Click for the full card". Love, work, self, advice, symbols,
+  correspondences and questions stay on the page.
+- **When**: about 120ms after a mouse arrives (at once when moving from one card to
+  the next) or after keyboard focus that shows a focus ring. It closes on pointer
+  leave, blur, Escape, any scroll, a window resize and a press. A touch or pen never
+  opens it, nor does a device without hover: a tap goes straight to the page. After
+  the page closes, focus returns to the card without reopening the preview; it comes
+  back when the pointer or focus leaves and returns.
+- **Where** (`placePreview`): rendered in a portal with fixed positioning. Beside the
+  card, right first and then left, in the wide layout (640px, narrowing to 500px);
+  above or below when there is no room beside; in a narrow window the picture and
+  heading share a row and the rest runs underneath (400px at most). It always stays
+  8px inside the viewport and 12px clear of its card, and grows out of the card's
+  centre. When neither side has the height it drops the essence line and shows three
+  keywords before anything is cut.
+- **Accessibility**: the panel is a `role="tooltip"` with `pointer-events: none`; it is
+  never a dialog and never takes focus. The picture is `aria-hidden`. The card's
+  `aria-describedby` points at hidden text, "Keywords: … . <short meaning>", so the
+  same line is heard on focus whether or not the panel is on screen (until the guide
+  has loaded it is the drawn meaning alone). The plain "Open the full card" tooltip is
+  gone from these cards, so two popups never show together.
+- **Motion**: a 160ms scale-in on `--ease-out`; with reduced motion a 100ms fade.
+- **Loading**: the preview needs the card guide (about 300 KB). It is fetched when the
+  page is idle after a drawn card appears, or at the first hover or focus, and is the
+  same chunk the card page uses.
+
+Styles are in `packages/ui/src/styles/tarot-preview.css`, with the drawn card's own
+hover (lift and stronger shadow), press and focus states. While choosing, the spread
+lies on the light canvas, so its focus ring is `--color-focus`, not the velvet's.
+
+### The deck rows
+
+`TarotDeckPicker` lays every remaining card in three overlapped rows inside
+`HorizontalRail`'s native scroller: wheel, trackpad and touch drag with the browser's
+own momentum, `scroll-snap-type: x proximity` on card edges, no custom physics. Cards
+fill each column from the back row to the front, then the next column, and each row
+starts a little further right than the one behind it. About 24 backs show across a
+390px phone and about 60 across a 1440px desktop (one row showed 8 and 30).
+
+- One tap or click on a back reveals it. There is no separate lift-then-confirm step.
+  The rest of a double click or a burst of taps is dropped for 400ms, so one gesture
+  never reveals two cards; a rejected save re-arms the deck at once.
+- Each back's target is its visible strip: `--fan-step` (44px) wide and, behind the
+  front row, `--fan-row-step` (46px) tall. The front row, and the very last card, use
+  the whole height of the back.
+- A back that is pointed at, pressed, focused or being drawn comes up above every
+  other card, so the whole of it shows. While its draw is saved it stays raised with
+  the foil highlight.
 - "Cards 14–42 of 77" on the velvet follows the scroll. It is not a live region:
   each back already says "Face-down card N of M, for <position>".
-- A lifted card is brought fully into view; scrolling it out of view puts it down.
-- One Tab stop; arrow keys, Home and End move focus and scroll the ribbon with it;
-  the first activation lifts and the second reveals, as before.
-- A finger drags the ribbon (sideways) or the page (vertically). The press-and-slide
-  preview remains for mouse and pen.
+- The bar under the deck (`.tarot-deck-scrub`, a native range input named "Scroll the
+  deck") can be dragged by a finger or the pointer through every card; the arrows
+  beside it page by about a screenful (instantly under reduced motion). It is hidden
+  when the whole deck is in view.
+- One Tab stop for the backs. Left and Right move along a row, Up and Down between
+  rows, Home and End to the first and last card (`deckStep`); focus scrolls the deck
+  with it, and Enter or Space reveals the focused card.
+- A finger drags the deck (sideways) or the page (vertically).
 
 ## Reading style
 
@@ -112,16 +166,16 @@ The completed table and saved archive offer the same Fun switch. Both open on th
 
 The velvet, transparent crystal instrument and engraved printed backs are three
 original GPT Image assets. The decorative equatorial ring is projected in CSS
-3D and passes behind and in front of the crystal. The ring leans toward a lifted
-or previewed card. A mouse shifts the apparent viewpoint, card pitch and foil
-highlight. Paper edges and the raised outline also communicate selection when
+3D and passes behind and in front of the crystal. The ring leans toward the card
+being drawn. A mouse shifts the apparent viewpoint, card pitch and foil
+highlight. Paper edges and the raised outline also mark the chosen card when
 motion is reduced. Only the pictured surfaces tilt; hit lanes retain their
 positions, and pointer rendering does not run while the table is idle.
 
 ## Choosing and revealing
 
-- The face-down deck comes first: one ribbon of every remaining back in front of the oracle sphere (see "The deck ribbon" below). Tap a back to lift it; with a mouse or pen you can also press and slide across the backs and release. The highlighted card stays face-down. Tap another to change your choice, or tap the lifted card again to reveal it in the named spread position.
-- Previous and next controls page through the full deck. The deck uses one Tab stop. Arrows, Home and End move focus, Space or Enter lifts the focused card. Release the key and activate that card again to draw it. The screen reader hears the card’s ordinal and destination. Paging a lifted card out of view lowers it. A lifted card belongs only to the current draw on this device.
+- The face-down deck comes first: every remaining back in overlapped rows in front of the oracle sphere (see "The deck rows" above). Tap or click a back to reveal it in the named spread position. One tap is the whole pick, and a revealed card stays.
+- Previous and next controls page through the full deck. The deck uses one Tab stop. Arrows, Home and End move focus, and Space or Enter reveals the focused card (a held key never repeats the draw). The screen reader hears the card’s ordinal and destination.
 - Empty spread slots have dashed outlines. Only the next slot is highlighted and labelled.
 - After a committed pick, the filled slot scrolls into view, takes focus and briefly highlights, and a polite live region says “You drew <card> for <position>.” A refresh starts from the saved spread without replaying a reveal. On phones a “Choose card N of 3” button below the spread returns to the deck. The public activity line still never names the card.
 - Spread position labels and card names are at least 11px and meanings 12px at every width.
@@ -365,7 +419,7 @@ secondary “Draw a new spread”, the spread, then `TarotReading` with `summary
   private saved copy. Image credits come last.
 
 Orientation is saved with each drawn card and each reading section (see
-"Reversed cards, card pages and the deck ribbon"). The saved-reading page uses the same component without `summary`,
+"Reversed cards, card pages and the deck rows"). The saved-reading page uses the same component without `summary`,
 `question` or `savedHref`; its own header already shows the question and
 introduction.
 

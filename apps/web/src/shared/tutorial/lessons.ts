@@ -459,9 +459,9 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     rules: [
       rule(
         'Choose a card',
-        'Tap a face-down card to lift it, or slide over the fan and let go. Tap the lifted card again to reveal it. Your first card describes where you are now.',
+        'Swipe or scroll through the face-down deck, then tap a card to reveal it. One tap turns it over, and a revealed card stays. Your first card describes where you are now.',
         picture(
-          'A face-down card lifts above its neighbour. A second tap reveals it. The Fool is an example.',
+          'A face-down card comes up above its neighbour and one tap reveals it. The Fool is an example.',
           tarot(),
           tarot(),
           arrow,

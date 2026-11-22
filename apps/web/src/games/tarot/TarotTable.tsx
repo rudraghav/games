@@ -20,6 +20,7 @@ import { useTableDraft } from '../shared/table-draft';
 import { readingPath } from '@/shared/game-paths';
 import { ReadingSkeleton, TarotReading } from './TarotReading';
 import { TarotCardDetail, type DetailCard } from './TarotCardDetail';
+import { TarotCardPreview } from './TarotCardPreview';
 import { spreadPositions } from './spread';
 import { ReadingStyleSwitch } from './ReadingStyleSwitch';
 import { CompletedReadingControls, useCompletedReadingView } from './completed-reading-view';
@@ -425,32 +426,44 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
                 0{i + 1} · {position}
               </p>
               {card ? (
-                <div className="tarot-flip">
-                  <TarotCard
-                    id={card.id}
-                    name={card.label}
-                    // The picture lands the way it was drawn; the name stays readable.
-                    reversed={orientation === 'reversed'}
-                    imageLoader={imageLoader}
-                    // Once the spread is complete, a card opens its full page.
-                    {...(match.phase === 'choosing'
-                      ? {}
-                      : {
-                          label: `View ${card.label} card`,
-                          tip: 'Open the full card',
-                          onClick: () =>
-                            setDetail({
-                              id: card.id,
-                              label: card.label,
-                              subtitle: card.subtitle ?? undefined,
-                              position,
-                              orientation,
-                            }),
-                        })}
-                  />
-                  {/* The viewer's own pick turns over from the back they chose. */}
-                  {fresh === i ? <span className="tarot-flip-back" aria-hidden="true" /> : null}
-                </div>
+                // A drawn card opens its full page in every phase, and previews it on hover.
+                <TarotCardPreview
+                  className="tarot-flip"
+                  card={{
+                    id: card.id,
+                    label: card.label,
+                    subtitle: card.subtitle ?? undefined,
+                    position,
+                    orientation,
+                  }}
+                  paused={detail !== null}
+                  imageLoader={imageLoader}
+                >
+                  {(describedBy) => (
+                    <>
+                      <TarotCard
+                        id={card.id}
+                        name={card.label}
+                        // The picture lands the way it was drawn; the name stays readable.
+                        reversed={orientation === 'reversed'}
+                        imageLoader={imageLoader}
+                        label={`View ${card.label} card`}
+                        describedBy={describedBy}
+                        onClick={() =>
+                          setDetail({
+                            id: card.id,
+                            label: card.label,
+                            subtitle: card.subtitle ?? undefined,
+                            position,
+                            orientation,
+                          })
+                        }
+                      />
+                      {/* The viewer's own pick turns over from the back they chose. */}
+                      {fresh === i ? <span className="tarot-flip-back" aria-hidden="true" /> : null}
+                    </>
+                  )}
+                </TarotCardPreview>
               ) : (
                 <div className="tarot-slot-empty" aria-hidden="true">
                   {next ? <span>Your next card lands here</span> : null}

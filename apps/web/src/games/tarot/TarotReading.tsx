@@ -7,6 +7,7 @@ import { tarotCharacter } from '@games/api-client/characters';
 import { TarotCharacterImage } from './TarotCharacterImage';
 import { AstrologyReading } from './AstrologyReading';
 import { TarotCardDetail, type DetailCard } from './TarotCardDetail';
+import { TarotCardPreview } from './TarotCardPreview';
 import { ReadingShare } from './ReadingShare';
 import { asksOnly, readingAsText } from './reading-text';
 import { positionMeaning } from './spread';
@@ -276,44 +277,62 @@ export function TarotReading({
       ) : null}
       {reading.cards.map((card) => (
         <article key={card.card_id} id={`reading-${card.card_id}`}>
-          <header className="tarot-reading-card-heading">
-            {deckCards.has(card.card_id) ? (
-              <TarotCard
-                compact
-                id={card.card_id}
-                name={deckCards.get(card.card_id)?.label}
-                label={`View ${deckCards.get(card.card_id)?.label} card`}
-                reversed={drawnAs(card) === 'reversed'}
-                tip="Open the full card"
-                imageLoader={imageLoader}
-                onClick={() =>
-                  setDetail({
+          <TarotCardPreview
+            as="header"
+            className="tarot-reading-card-heading"
+            card={
+              deckCards.has(card.card_id)
+                ? {
                     ...deckCards.get(card.card_id)!,
                     position: card.position,
                     orientation: drawnAs(card),
-                  })
-                }
-              />
-            ) : null}
-            <div>
-              <span className="eyebrow">
-                {card.position}
-                {card.title.toLocaleLowerCase() !==
-                deckCards.get(card.card_id)?.label.toLocaleLowerCase()
-                  ? ` · ${nameWithOrientation(deckCards.get(card.card_id)?.label || card.card_id, drawnAs(card))}`
-                  : drawnAs(card) === 'reversed'
-                    ? ' · Reversed'
-                    : ''}
-              </span>
-              <h3>{card.title}</h3>
-              {positionMeaning(card.position) ? (
-                <p className="tarot-position-meaning" data-orientation={drawnAs(card)}>
-                  <span>{orientationLabel[drawnAs(card)]}</span>
-                  {positionMeaning(card.position)}
-                </p>
-              ) : null}
-            </div>
-          </header>
+                  }
+                : undefined
+            }
+            paused={detail !== null}
+            imageLoader={imageLoader}
+          >
+            {(describedBy) => (
+              <>
+                {deckCards.has(card.card_id) ? (
+                  <TarotCard
+                    compact
+                    id={card.card_id}
+                    name={deckCards.get(card.card_id)?.label}
+                    label={`View ${deckCards.get(card.card_id)?.label} card`}
+                    reversed={drawnAs(card) === 'reversed'}
+                    describedBy={describedBy}
+                    imageLoader={imageLoader}
+                    onClick={() =>
+                      setDetail({
+                        ...deckCards.get(card.card_id)!,
+                        position: card.position,
+                        orientation: drawnAs(card),
+                      })
+                    }
+                  />
+                ) : null}
+                <div>
+                  <span className="eyebrow">
+                    {card.position}
+                    {card.title.toLocaleLowerCase() !==
+                    deckCards.get(card.card_id)?.label.toLocaleLowerCase()
+                      ? ` · ${nameWithOrientation(deckCards.get(card.card_id)?.label || card.card_id, drawnAs(card))}`
+                      : drawnAs(card) === 'reversed'
+                        ? ' · Reversed'
+                        : ''}
+                  </span>
+                  <h3>{card.title}</h3>
+                  {positionMeaning(card.position) ? (
+                    <p className="tarot-position-meaning" data-orientation={drawnAs(card)}>
+                      <span>{orientationLabel[drawnAs(card)]}</span>
+                      {positionMeaning(card.position)}
+                    </p>
+                  ) : null}
+                </div>
+              </>
+            )}
+          </TarotCardPreview>
           <CardSections
             card={card}
             fun={fun}

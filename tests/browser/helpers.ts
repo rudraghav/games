@@ -3,15 +3,20 @@ import type { components } from '../../packages/api-client/src/generated/schema'
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 /** The first activation lifts a back. A second activation on that back reveals it. */
+const lastTarotDraw = new WeakMap<Page, number>();
+
 export async function drawTarotCard(page: Page, index = 0) {
   const cards = page.getByRole('button', { name: /^Face-down card \d+ of \d+/ });
   const card = cards.nth(index);
   await expect(card).toBeVisible();
   const before = await cards.count();
-  const activate = () => (test.info().project.use.hasTouch ? card.tap() : card.click());
-  await activate();
-  await expect(card).toHaveAttribute('aria-pressed', 'true');
-  await activate();
+  // The deck drops the rest of a tap burst for 400ms after a draw, so one gesture never
+  // reveals two cards. A script draws faster than a person can: wait that window out.
+  const wait = (lastTarotDraw.get(page) ?? 0) + 450 - Date.now();
+  if (wait > 0) await page.waitForTimeout(wait);
+  // One tap or click reveals the card.
+  await (test.info().project.use.hasTouch ? card.tap() : card.click());
+  lastTarotDraw.set(page, Date.now());
   await expect(cards).not.toHaveCount(before);
 }
 

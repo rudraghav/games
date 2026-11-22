@@ -512,7 +512,7 @@
     .tarot-fan-stage[data-entering] .tarot-fan-face {
       animation: tarot-fan-in 320ms var(--ease-out) backwards;
       /* The cards in view arrive in a quick run; the rest of the ribbon is already down. */
-      animation-delay: calc(min(var(--fan-layer), 32) * 12ms);
+      animation-delay: calc(min(var(--fan-column), 32) * 12ms);
     }
     .tarot-reading-skeleton span {
       animation: tarot-status-pulse 1.1s ease-in-out infinite alternate;

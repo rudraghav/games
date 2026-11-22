@@ -20,9 +20,11 @@ class Settings(BaseSettings):
     tarot_model: str = "gemini-4-hydrogen"
     tarot_api_tier: Literal["free", "paid"] = "free"
     tarot_daily_limit: int = 100
-    # Prefer established providers; configured alternatives remain eligible last fallbacks.
+    # Groq answers first: in the November 2026 evaluation it was the fastest (about 2s) and
+    # tied each portrait to the question most directly. Its free tier allows roughly one
+    # reading a minute, so a busy minute falls through to Gemini, then Cloudflare.
     tarot_provider_order: list[Literal["gemini", "groq", "cloudflare"]] = Field(
-        default=["gemini", "cloudflare", "groq"], max_length=3,
+        default=["groq", "gemini", "cloudflare"], max_length=3,
     )
     groq_api_key: str = ""
     cloudflare_account_id: str = Field(default="", pattern=r"^(?:[0-9a-f]{32})?$")

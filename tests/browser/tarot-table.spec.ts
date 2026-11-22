@@ -143,7 +143,11 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     const firstCardBox = await cards.first().boundingBox();
     expect(firstCardBox!.y).toBeGreaterThanOrEqual(0);
     expect(firstCardBox!.y).toBeLessThan(250);
-    expect(firstCardBox!.height).toBeGreaterThanOrEqual(140);
+    // The first back lies in the back row: its tap strip is short, its picture a full card.
+    expect(firstCardBox!.height).toBeGreaterThanOrEqual(44);
+    expect((await cards.first().locator('.tarot-fan-face').boundingBox())!.height).toBeGreaterThan(
+      140,
+    );
     expect(
       await page
         .locator('.tarot-pick-area, .tarot-spread')
@@ -163,37 +167,71 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
       'Your next card lands here',
     );
 
-    // Lifting a card, then changing your mind, never sends a draw to the server.
-    const lifted = deck(page).getByRole('button', { pressed: true });
+    // Browsing the deck never sends a draw to the server.
     const submissions: string[] = [];
     page.on('request', (request) => {
       if (request.method() === 'POST' && request.url().endsWith(`/rooms/${roomId}/actions`))
         submissions.push(request.url());
     });
-    await expect(lifted).toHaveCount(0);
-    // One ribbon of all 78 backs in a native scroller; the readout says which are in view.
+    // No back is a toggle: there is no lifted state to confirm.
+    await expect(deck(page).locator('button[aria-pressed]')).toHaveCount(0);
+    // All 78 backs in three overlapped rows in a native scroller; the readout says which
+    // are in view.
     const ribbon = page.locator('.tarot-deck');
     const range = page.locator('.tarot-deck-range');
     await expect(range).toHaveText(/^Cards 1–\d+ of 78$/);
     const shownAtStart = Number((await range.textContent())!.match(/–(\d+) of/)![1]);
-    // Each back keeps a 44px tap strip, so even the narrowest phone shows six at once.
-    expect(shownAtStart).toBeGreaterThanOrEqual(6);
+    // Even the narrowest phone shows fifteen or more backs at once.
+    expect(shownAtStart).toBeGreaterThanOrEqual(15);
+    expect(await cards.evaluateAll((backs) => new Set(backs.map((back) => back.getAttribute('data-row'))).size)).toBe(3);
+    // Every back keeps a tap strip of at least 44px each way.
     expect(
-      await page
-        .locator('.tarot-deck button.tarot-card')
-        .evaluateAll((backs) =>
-          Math.min(...backs.map((back) => back.getBoundingClientRect().width)),
+      await cards.evaluateAll((backs) =>
+        Math.min(
+          ...backs.flatMap((back) => {
+            const box = back.getBoundingClientRect();
+            return [box.width, box.height];
+          }),
         ),
+      ),
     ).toBeGreaterThanOrEqual(44);
-    expect(await ribbon.evaluate((view) => view.scrollWidth > view.clientWidth * 4)).toBe(true);
+    // The strips never overlap, so a tap always belongs to exactly one back.
+    expect(
+      await cards.evaluateAll((backs) => {
+        const boxes = backs.map((back) => back.getBoundingClientRect());
+        return boxes.some((a, i) =>
+          boxes.some(
+            (b, j) =>
+              j > i &&
+              a.left < b.right - 0.5 &&
+              b.left < a.right - 0.5 &&
+              a.top < b.bottom - 0.5 &&
+              b.top < a.bottom - 0.5,
+          ),
+        );
+      }),
+    ).toBe(false);
+    expect(await ribbon.evaluate((view) => view.scrollWidth > view.clientWidth * 2)).toBe(true);
     expect(await ribbon.evaluate((view) => getComputedStyle(view).overflowX)).toBe('auto');
     expect(await ribbon.evaluate((view) => getComputedStyle(view).scrollSnapType)).toContain('x');
-    await cards.first().click();
-    await expect(cards.first()).toHaveAttribute('aria-pressed', 'true');
-    // An arrow pages by about a screenful; a lift that leaves the view is put down.
+    // An arrow pages by about a screenful.
     await page.getByRole('button', { name: 'Next tarot cards' }).click();
-    await expect(lifted).toHaveCount(0);
     await expect(range).not.toHaveText(/^Cards 1–/);
+    // The page turn glides; read where it comes to rest.
+    await ribbon.evaluate(
+      (view) =>
+        new Promise<void>((resolve) => {
+          let last = -1;
+          let still = 0;
+          const check = () => {
+            still = view.scrollLeft === last ? still + 1 : 0;
+            last = view.scrollLeft;
+            if (still >= 8) resolve();
+            else requestAnimationFrame(check);
+          };
+          check();
+        }),
+    );
     const paged = Number((await range.textContent())!.match(/^Cards (\d+)–/)![1]);
     expect(paged).toBeGreaterThan(shownAtStart / 2);
     expect(paged).toBeLessThanOrEqual(shownAtStart + 1);
@@ -208,14 +246,23 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     await page.getByRole('button', { name: 'Previous tarot cards' }).click();
     await expect(cards.first()).toBeInViewport();
     await expect(range).toHaveText(/^Cards 1–\d+ of 78$/);
-    await cards.nth(2).click();
-    await expect(cards.first()).toHaveAttribute('aria-pressed', 'false');
-    await expect(cards.nth(2)).toHaveAttribute('aria-pressed', 'true');
-    await expect(lifted).toHaveCount(1);
+    // The bar under the deck moves through every card and follows the deck back.
+    const bar = page.getByRole('slider', { name: 'Scroll the deck', exact: true });
+    expect((await bar.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    await expect(bar).toHaveValue('0');
+    await bar.focus();
+    await page.keyboard.press('End');
+    await expect(range).toHaveText(/^Cards \d+–78 of 78$/);
+    await expect(bar).toHaveAttribute('aria-valuetext', /^Cards \d+ to 78 of 78$/);
+    await page.keyboard.press('Home');
+    await expect(range).toHaveText(/^Cards 1–\d+ of 78$/);
+    await ribbon.evaluate((view) => view.scrollTo({ left: 132, behavior: 'instant' }));
+    await expect(bar).toHaveValue('132');
+    await ribbon.evaluate((view) => view.scrollTo({ left: 0, behavior: 'instant' }));
     expect(submissions).toHaveLength(0);
     expect((await roomAs(page, roomId)).game!.community).toHaveLength(0);
 
-    // A rejected confirmation retains the lifted choice for a retry.
+    // A rejected save leaves the deck as it was, and the same back can be tried again.
     await page.route(
       `**/api/backend/v1/rooms/${roomId}/actions`,
       (route) => route.fulfill({ status: 503, json: { detail: 'Synthetic failed card pick.' } }),
@@ -223,13 +270,14 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     );
     await cards.nth(2).click();
     await expect(page.locator('.room-error')).toBeVisible();
-    await expect(cards.nth(2)).toHaveAttribute('aria-pressed', 'true');
     expect(submissions).toHaveLength(1);
     await expect(cards).toHaveCount(78);
+    await expect(cards.nth(2)).toBeEnabled();
     await expect(page.locator('.tarot-spread .tarot-name')).toHaveCount(0);
     expect(await pulses()).toEqual([]);
 
-    // Two rapid confirmations during the same render must save only one card.
+    // One click reveals the card. The rest of a double click in the same burst is dropped,
+    // so one gesture never saves two cards.
     await cards.nth(2).evaluate((button: HTMLButtonElement) => {
       button.click();
       button.click();
@@ -277,24 +325,39 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     await expect(cards.last()).toBeFocused();
     await expect(cards.last()).toBeInViewport();
     await expect(page.locator('.tarot-deck-range')).toHaveText(/^Cards \d+–77 of 77$/);
-    await page.keyboard.press('ArrowLeft');
+    // Cards fill each column from the back row to the front: 77 backs end with card 77
+    // in the middle row. Up and Down move between rows, Left and Right along a row.
+    await page.keyboard.press('ArrowUp');
     await expect(page.locator(':focus')).toHaveAccessibleName(/^Face-down card 76 of 77/);
+    await page.keyboard.press('ArrowLeft');
+    await expect(page.locator(':focus')).toHaveAccessibleName(/^Face-down card 73 of 77/);
+    await page.keyboard.press('ArrowDown');
+    await expect(page.locator(':focus')).toHaveAccessibleName(/^Face-down card 74 of 77/);
+    await page.keyboard.press('ArrowRight');
+    await expect(page.locator(':focus')).toHaveAccessibleName(/^Face-down card 77 of 77/);
+    await expect(page.locator(':focus')).toBeInViewport();
     expect(await pulses()).toEqual([12]);
-    // Native repeat on a held Enter key must not turn one keypress into two activations.
+    expect((await roomAs(page, roomId)).game!.community).toHaveLength(1);
+    expect(submissions).toHaveLength(2);
+    // Enter reveals the focused card. Native repeat on a held key must not turn one
+    // keypress into two draws.
     await page.keyboard.down('Enter');
     await page.keyboard.down('Enter');
     await page.keyboard.down('Enter');
     await page.keyboard.up('Enter');
-    await expect(cards.nth(75)).toHaveAttribute('aria-pressed', 'true');
-    expect((await roomAs(page, roomId)).game!.community).toHaveLength(1);
-    expect(submissions).toHaveLength(2);
-    await cards.nth(75).press('Space');
     const second = page.locator('.tarot-spread-slot').nth(1);
     await expect(second.locator('.tarot-name')).not.toBeEmpty();
     await expect(second).toBeFocused();
     await expect.poll(pulses).toEqual([12, 12]);
+    expect((await roomAs(page, roomId)).game!.community).toHaveLength(2);
+    expect(submissions).toHaveLength(3);
     // WebKit's native Tab policy skips ordinary buttons; Option-Tab includes all controls.
-    await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
+    const tab = browserName === 'webkit' ? 'Alt+Tab' : 'Tab';
+    // The revealed card is the next stop: it opens its own page.
+    await page.keyboard.press(tab);
+    await expect(page.locator(':focus')).toHaveAccessibleName(/^View .+ card/);
+    await expect(second.locator('button.tarot-card')).toBeFocused();
+    await page.keyboard.press(tab);
     await expect(page.locator(':focus')).toHaveText('Choose card 3 of 3');
 
     // A refresh mid-spread keeps both cards and does not replay the reveal.
@@ -329,7 +392,7 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
   });
 });
 
-test('a phone swipe scrolls the deck, a tap lifts a card and a vertical swipe scrolls the table', async ({
+test('a phone swipe or the bar scrolls the deck, a vertical swipe scrolls the table and one tap reveals a card', async ({
   page,
   browserName,
   isMobile,
@@ -342,11 +405,14 @@ test('a phone swipe scrolls the deck, a tap lifts a card and a vertical swipe sc
     const ribbon = page.locator('.tarot-deck');
     const range = page.locator('.tarot-deck-range');
     await expect(range).toHaveText(/^Cards 1–\d+ of 78$/);
-    // Eight or so backs across a phone, each a full 44px tap strip; the rest scroll.
+    // Three rows of about eight backs across a phone, each with a 44px tap strip.
     const shown = Number((await range.textContent())!.match(/–(\d+) of/)![1]);
-    expect(shown).toBeGreaterThanOrEqual(7);
-    expect(shown).toBeLessThanOrEqual(10);
-    const start = (await cards.nth(5).boundingBox())!;
+    expect(shown).toBeGreaterThanOrEqual(20);
+    expect(shown).toBeLessThanOrEqual(30);
+    await expect(page.locator('.tarot-lift-hint')).toContainText(
+      'Swipe the cards or drag the bar. Tap a card to reveal it.',
+    );
+    const start = (await cards.nth(14).boundingBox())!;
     const x = start.x + start.width / 2;
     const y = start.y + start.height * 0.6;
     const session = await page.context().newCDPSession(page);
@@ -356,46 +422,54 @@ test('a phone swipe scrolls the deck, a tap lifts a card and a vertical swipe sc
         touchPoints: type === 'touchEnd' ? [] : [{ x: px, y: py }],
       });
     try {
-      // A sideways drag moves the ribbon itself; it neither lifts nor draws a card.
+      // A sideways drag moves the deck itself; it never reveals a card.
       await touch('touchStart');
       for (let step = 1; step <= 8; step++) await touch('touchMove', x - step * 22);
       await touch('touchEnd');
       await expect.poll(() => ribbon.evaluate((view) => view.scrollLeft)).toBeGreaterThan(100);
       await expect(range).not.toHaveText(/^Cards 1–/);
-      await expect(deck(page).getByRole('button', { pressed: true })).toHaveCount(0);
+      await expect(cards).toHaveCount(78);
       expect((await roomAs(page, roomId)).game!.community).toHaveLength(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
         true,
       );
 
-      // A tap lifts the back under the finger and keeps it in view.
-      const first = Number((await range.textContent())!.match(/^Cards (\d+)–/)![1]);
-      const target = cards.nth(first + 3);
-      const face = target.locator('.tarot-fan-face');
-      const resting = (await face.boundingBox())!;
-      await target.tap();
-      await expect(target).toHaveAttribute('aria-pressed', 'true');
-      await expect.poll(async () => (await face.boundingBox())!.y).toBeLessThan(resting.y - 5);
-      await expect(target).toBeInViewport();
-      await expect(page.locator('.tarot-spread .tarot-name')).toHaveCount(0);
+      // A finger dragged along the bar under the deck moves through every card.
+      const bar = page.getByRole('slider', { name: 'Scroll the deck', exact: true });
+      const track = (await bar.boundingBox())!;
+      const barY = track.y + track.height / 2;
+      await touch('touchStart', track.x + track.width * 0.5, barY);
+      for (let step = 1; step <= 8; step++)
+        await touch('touchMove', track.x + track.width * (0.5 + step * 0.06), barY);
+      await touch('touchEnd');
+      await expect(range).toHaveText(/^Cards \d+–78 of 78$/);
+      await expect(cards.last()).toBeInViewport();
+      await touch('touchStart', track.x + track.width * 0.9, barY);
+      for (let step = 1; step <= 8; step++)
+        await touch('touchMove', track.x + track.width * (0.9 - step * 0.11), barY);
+      await touch('touchEnd');
+      await expect(range).toHaveText(/^Cards 1–\d+ of 78$/);
+      await expect(cards).toHaveCount(78);
 
-      // A vertical drag that starts on the backs still scrolls the page, lift intact.
+      // A vertical drag that starts on the backs still scrolls the page, and draws nothing.
       await page.evaluate(() => window.scrollTo(0, 0));
-      const backs = (await cards.nth(first + 6).boundingBox())!;
+      const backs = (await cards.nth(11).boundingBox())!;
       const dragX = backs.x + backs.width / 2;
       const dragY = backs.y + backs.height * 0.6;
       await touch('touchStart', dragX, dragY);
       for (let step = 1; step <= 8; step++) await touch('touchMove', dragX, dragY - step * 15);
       await touch('touchEnd');
       await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(0);
-      await expect(target).toHaveAttribute('aria-pressed', 'true');
+      await expect(cards).toHaveCount(78);
       expect((await roomAs(page, roomId)).game!.community).toHaveLength(0);
-      // The lifted picture itself is the target: a full card wide, far more than a finger.
+
+      // One tap on a back, here in the back row, reveals it.
+      const target = cards.nth(9);
       await target.scrollIntoViewIfNeeded();
-      const raised = (await face.boundingBox())!;
-      expect((await target.boundingBox())!.width).toBeGreaterThanOrEqual(88);
-      await page.touchscreen.tap(raised.x + raised.width * 0.78, raised.y + raised.height * 0.4);
+      await expect(target).toHaveAttribute('data-row', '0');
+      await target.tap();
       await expect(cards).toHaveCount(77);
+      await expect(page.locator('.tarot-spread .tarot-name')).toHaveCount(1);
       expect((await roomAs(page, roomId)).game!.community).toHaveLength(1);
     } finally {
       await session.detach();
@@ -403,7 +477,7 @@ test('a phone swipe scrolls the deck, a tap lifts a card and a vertical swipe sc
   });
 });
 
-test('the oracle and foil respond to the pointer while the lifted card stays playable', async ({
+test('a pointed-at back comes up, the oracle follows the pointer and one click reveals', async ({
   page,
   isMobile,
 }) => {
@@ -414,41 +488,62 @@ test('the oracle and foil respond to the pointer while the lifted card stays pla
     const scene = stage.locator('.tarot-oracle-scene');
     const instrument = scene.locator('.tarot-oracle-instrument');
     const card = deck(page).getByRole('button', { name: /^Face-down card 3 of 78,/ });
-    const surface = card.locator('.tarot-fan-face .tarot-card');
+    const face = card.locator('.tarot-fan-face');
+    const surface = face.locator('.tarot-card');
     const transform = () => surface.evaluate((element) => getComputedStyle(element).transform);
     await expect(instrument).toBeVisible();
     await expect(scene).toHaveAttribute('aria-hidden', 'true');
     await expect(scene).toHaveCSS('pointer-events', 'none');
-    await card.click();
-    await expect(card).toHaveAttribute('aria-pressed', 'true');
-    const area = (await scene.boundingBox())!;
+    // Pointing at a back brings the whole of it above the deck, without moving its target.
     const lane = (await card.boundingBox())!;
+    const resting = (await face.boundingBox())!;
+    await card.hover();
+    await expect(face).toHaveCSS('z-index', '1000');
+    await expect.poll(async () => (await face.boundingBox())!.y).toBeLessThan(resting.y - 5);
+    expect(await card.boundingBox()).toEqual(lane);
+    const area = (await scene.boundingBox())!;
     const move = (fraction: number) =>
       page.mouse.move(area.x + area.width * fraction, area.y + area.height * 0.3);
-    await move(0.2);
-    await expect.poll(transform).toMatch(/^matrix3d\(/);
     const look = () =>
       stage.evaluate(
         (element) =>
           Number.parseFloat(getComputedStyle(element).getPropertyValue('--oracle-look-x')) || 0,
       );
+    await move(0.2);
     await expect.poll(look).toBeLessThan(0);
-    const firstAngle = await transform();
     const firstOrbit = await instrument.evaluate((element) => getComputedStyle(element).transform);
     await move(0.8);
     await expect.poll(look).toBeGreaterThan(0);
-    await expect.poll(transform).not.toBe(firstAngle);
     await expect(instrument).not.toHaveCSS('transform', firstOrbit);
-    expect(await card.boundingBox()).toEqual(lane);
     expect((await roomAs(page, roomId)).game!.community).toHaveLength(0);
 
+    // One click reveals. While the draw is saved, the chosen back stays raised and lit.
+    let release = () => {};
+    const held = new Promise<void>((resolve) => (release = resolve));
+    await page.route(
+      `**/api/backend/v1/rooms/${roomId}/actions`,
+      async (route) => {
+        await held;
+        await route.continue();
+      },
+      { times: 1 },
+    );
+    await card.click();
+    await expect(card).toHaveAttribute('data-picked', 'true');
+    await expect(card).toBeDisabled();
+    await expect(page.locator('.tarot-lift-hint')).toHaveText('Drawing your card…');
+    await expect(face).toHaveCSS('z-index', '1002');
+    await move(0.2);
+    await expect.poll(transform).toMatch(/^matrix3d\(/);
+    const firstAngle = await transform();
+    await move(0.8);
+    await expect.poll(transform).not.toBe(firstAngle);
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await move(0.25);
     await expect.poll(transform).toBe('none');
     await expect.poll(look).toBe(0);
     await expect(instrument).toBeVisible();
-    await expect(card).toHaveAttribute('aria-pressed', 'true');
-    await card.press('Enter');
+    release();
     await expect(page.locator('.tarot-spread-slot .tarot-name')).toHaveCount(1);
     expect((await roomAs(page, roomId)).game!.community).toHaveLength(1);
   });
@@ -556,7 +651,8 @@ test('the gallery opens any card page, moves between cards and returns to the sa
     const previous = dialog.getByRole('button', { name: 'Previous card', exact: true });
     for (const control of [next, previous, dialog.getByRole('button', { name: 'All cards' })]) {
       const box = (await control.boundingBox())!;
-      expect(Math.min(box.width, box.height)).toBeGreaterThanOrEqual(44);
+      // Layout can report a 44px control a hair under (43.99998): compare to a hundredth.
+      expect(Math.round(Math.min(box.width, box.height) * 100) / 100).toBeGreaterThanOrEqual(44);
       await expect(control).toBeInViewport();
     }
     await next.click();
