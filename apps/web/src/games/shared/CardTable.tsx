@@ -570,7 +570,12 @@ export function CardTable(props: TableProps) {
                   aria-label={`Swap with ${name(target)} · ${cardCount(count)}`}
                   onClick={() => commit(option.value)}
                 >
-                  <Avatar name={member?.name || 'Player'} seed={member?.avatar} size="sm" />
+                  <Avatar
+                    name={member?.name || 'Player'}
+                    seed={member?.avatar}
+                    size="sm"
+                    frame={member?.frame}
+                  />
                   <span className="uno-swap-name">{playerName(room, target)}</span>
                   <span className="uno-swap-count">{cardCount(count)}</span>
                 </Button>

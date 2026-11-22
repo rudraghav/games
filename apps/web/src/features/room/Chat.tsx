@@ -44,7 +44,12 @@ export function Chat({ room, selfId, send, pending }: ChatProps) {
             const member = room.members.find((member) => member.id === message.userId);
             return (
               <div key={message.id} className="chat-message" data-own={message.userId === selfId}>
-                <Avatar size="sm" name={member?.name || 'Player'} seed={member?.avatar} />
+                <Avatar
+                  size="sm"
+                  name={member?.name || 'Player'}
+                  seed={member?.avatar}
+                  frame={member?.frame}
+                />
                 <div>
                   <strong>{member?.name || 'Player'}</strong>
                   <p data-reaction={message.kind === 'reaction'}>{message.body}</p>

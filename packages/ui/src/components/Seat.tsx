@@ -25,6 +25,8 @@ interface SeatProps {
   badge?: string;
   /** Replaces the visible name while it is being edited in place. */
   nameEditor?: ReactNode;
+  /** The avatar frame this player wears, if any. Decoration only. */
+  frame?: string | null;
 }
 export function Seat({
   name,
@@ -42,6 +44,7 @@ export function Seat({
   displayName,
   badge,
   nameEditor,
+  frame,
 }: SeatProps) {
   const plainName = bot ? name?.replace(/^Bot\s+/i, '') : name;
   const status = !name
@@ -66,7 +69,7 @@ export function Seat({
       )}
     >
       {name ? (
-        <Avatar name={plainName || name} seed={avatar} size={compact ? 'sm' : 'lg'} />
+        <Avatar name={plainName || name} seed={avatar} size={compact ? 'sm' : 'lg'} frame={frame} />
       ) : (
         <span className="empty-avatar">+</span>
       )}

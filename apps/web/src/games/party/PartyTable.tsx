@@ -138,7 +138,7 @@ export function PartyTable(props: TableProps) {
           </span>
         </div>
         <div className="party-spotlight">
-          <Avatar name={spotlightName} seed={spotlight?.avatar} />
+          <Avatar name={spotlightName} seed={spotlight?.avatar} frame={spotlight?.frame} />
           <span>
             {/* In Most Likely the spotlight seat only paces the round; the question is about everyone. */}
             <small>
@@ -208,7 +208,12 @@ export function PartyTable(props: TableProps) {
                         data-share={share === undefined ? undefined : ''}
                         style={{ '--row': row, '--share': share ?? 0 } as CSSProperties}
                       >
-                        <Avatar name={seatName(seat)} seed={seat?.avatar} size="sm" />
+                        <Avatar
+                          name={seatName(seat)}
+                          seed={seat?.avatar}
+                          size="sm"
+                          frame={seat?.frame}
+                        />
                         <span className="party-reveal__identity">
                           <strong>{display(player.id)}</strong>
                           <small>
@@ -283,6 +288,7 @@ export function PartyTable(props: TableProps) {
                             name={seatName(member(option.value.target))}
                             seed={member(option.value.target)?.avatar}
                             size="sm"
+                            frame={member(option.value.target)?.frame}
                           />
                         ) : null}
                         <span className="party-choice__label">{label(option)}</span>

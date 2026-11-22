@@ -134,3 +134,32 @@ remains the evidence for those specific changes. The published
 remains the casino composition reference. Current rendered findings, fixes,
 per-game interaction inventories and verification limits are recorded in
 `evidence/game-info-2026-11-02/README.md`.
+
+## Home, progress and rewards — 23 November 2026
+
+Four product pages were read for this change. Each gave one or two patterns;
+no artwork, copy or layout was copied.
+
+- **Kahoot! home and family pages.** Joining with a code is a first-class
+  action on the home page, never buried: here, the code field beside Join a
+  room and the same button one tap away on phones. Content is grouped by who
+  it is for, which became the For teams, Two players and On your own rails.
+- **Jackbox how-to-play and at-work pages.** Every game states its player
+  range and length up front, so every card here shows both. Games are bundled
+  into a few named, curated sets rather than one long list. Their at-work page
+  is also where the pitfall came from: a "work-safe" label needs a real
+  filter behind it, hence the documented allowlist and its exclusions.
+- **Strava home.** Progress is measured against your own past, not ranked
+  against friends: level, streak and totals here are the player's own, with no
+  leaderboard. Streak wording stays encouraging and never punishes a gap.
+- **Apple Wallet overview.** Passes are grouped by type and each shows its
+  state clearly: rewards are grouped as Avatar frames and Card backs, each
+  coupon reads Locked, Ready to redeem, Redeemed or In use. The ticket shape
+  (stub, tear line, notches) is the common visual language for "yours to use".
+
+Decisions that came from the owner rather than a reference: cosmetics are
+earned by playing and never bought, and there is no money or outside offer.
+Pitfalls deliberately avoided: promotional clutter above the main action,
+streak mechanics that punish, and urgency copy ("claim now", countdowns).
+
+Several other product pages could not be read and are not cited.

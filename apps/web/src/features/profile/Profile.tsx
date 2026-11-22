@@ -2,6 +2,7 @@
 import { useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Award } from 'lucide-react';
 import { Avatar, Button } from '@games/ui';
 import { gameById } from '@games/api-client/catalog';
 import { api } from '@/lib/session';
@@ -43,6 +44,13 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
           <p className="eyebrow">Profile</p>
           <h1 className="hero-title">Your profile</h1>
           <p className="muted">Manage your name and account.</p>
+          <Link
+            href="/rewards"
+            className="button button--secondary button--md profile-rewards-link"
+          >
+            <Award size={17} aria-hidden="true" />
+            Progress and rewards
+          </Link>
         </div>
         {me.isPending ? (
           <p className="muted">Loading profile…</p>
@@ -76,7 +84,11 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
                       aria-pressed={chosenAvatar === i}
                       onClick={() => setAvatar(i)}
                     >
-                      <Avatar name={displayName || 'You'} seed={i} />
+                      <Avatar
+                        name={displayName || 'You'}
+                        seed={i}
+                        frame={me.data?.profile?.frame}
+                      />
                     </button>
                   ))}
                 </div>

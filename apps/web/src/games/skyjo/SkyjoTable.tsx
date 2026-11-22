@@ -258,6 +258,7 @@ export function SkyjoTable(props: TableProps) {
                   name={room.members.find((m) => m.id === own.id)?.name || 'Player'}
                   you
                   avatar={room.members.find((m) => m.id === own.id)?.avatar}
+                  frame={room.members.find((m) => m.id === own.id)?.frame}
                   active={current === own.id}
                   caption={`${own.score} total points`}
                   connected={room.members.find((m) => m.id === own.id)?.connected ?? false}

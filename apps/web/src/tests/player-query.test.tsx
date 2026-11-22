@@ -7,7 +7,14 @@ import { keys } from '@/shared/query-keys';
 const empty: Me = { profile: null, anonymous: true, invitations: [], rooms: [], history: [] };
 const joined: Me = {
   ...empty,
-  profile: { id: 'qa-player', name: 'A new friend', avatar: 0, username: null },
+  profile: {
+    id: 'qa-player',
+    name: 'A new friend',
+    avatar: 0,
+    username: null,
+    frame: null,
+    cardBack: null,
+  },
 };
 
 describe('Authoritative player refresh after room entry', () => {

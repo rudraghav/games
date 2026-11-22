@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { EyeOff, Gift } from 'lucide-react';
-import { Button, Wordmark } from '@games/ui';
+import { Button, Ticket, Wordmark } from '@games/ui';
 import type { SantaReveal } from '@games/api-client';
 import { SantaArtwork } from '@/shared/SantaArtwork';
 import { formatDay } from '@/games/secret-santa/santa-date';
@@ -14,7 +14,19 @@ export type SantaLinkState =
   | { kind: 'failed' }
   | { kind: 'ready'; reveal: SantaReveal };
 
-function Shell({ children, foot }: { children: ReactNode; foot?: ReactNode }) {
+/**
+ * The page's card is a gift tag: an eyelet at the top, and for someone with a
+ * draw, a tear-off part that holds the one action and the event details.
+ */
+function Shell({
+  children,
+  stub,
+  foot,
+}: {
+  children: ReactNode;
+  stub?: ReactNode;
+  foot?: ReactNode;
+}) {
   return (
     <main className="santa-page">
       {/* Leaving this page never tells the next one which link was open. */}
@@ -27,7 +39,16 @@ function Shell({ children, foot }: { children: ReactNode; foot?: ReactNode }) {
       >
         <Wordmark />
       </Link>
-      <section className="santa-page__card">{children}</section>
+      <Ticket
+        as="section"
+        className="santa-page__card"
+        layout="column"
+        shape="tag"
+        stub={stub}
+        stubClassName="santa-page__stub"
+      >
+        {children}
+      </Ticket>
       <footer className="santa-page__foot small muted">{foot}</footer>
     </main>
   );
@@ -108,6 +129,31 @@ export function SantaLinkView({
   ];
   return (
     <Shell
+      stub={
+        shown ? (
+          <>
+            <dl className="santa-page__details">
+              {details
+                .filter(([, value]) => value)
+                .map(([label, value]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+            </dl>
+            <Button variant="secondary" onClick={onHide}>
+              <EyeOff size={17} aria-hidden="true" />
+              Hide the name
+            </Button>
+          </>
+        ) : (
+          <Button size="lg" id="santa-page-show" onClick={onShow}>
+            <Gift size={18} aria-hidden="true" />
+            Show who I’m buying for
+          </Button>
+        )
+      }
       foot={
         <>
           <span>This link is yours. Anyone who has it can see the name, so don’t pass it on.</span>
@@ -124,20 +170,6 @@ export function SantaLinkView({
             {reveal.recipientName}
           </h1>
           <p className="muted">Keep it to yourself until the day.</p>
-          <dl className="santa-page__details">
-            {details
-              .filter(([, value]) => value)
-              .map(([label, value]) => (
-                <div key={label}>
-                  <dt>{label}</dt>
-                  <dd>{value}</dd>
-                </div>
-              ))}
-          </dl>
-          <Button variant="secondary" onClick={onHide}>
-            <EyeOff size={17} aria-hidden="true" />
-            Hide the name
-          </Button>
         </>
       ) : (
         <>
@@ -150,10 +182,6 @@ export function SantaLinkView({
             You’re part of a Secret Santa. Make sure nobody else can see your screen, then tap to
             find out who you’re buying for.
           </p>
-          <Button size="lg" id="santa-page-show" onClick={onShow}>
-            <Gift size={18} aria-hidden="true" />
-            Show who I’m buying for
-          </Button>
         </>
       )}
     </Shell>

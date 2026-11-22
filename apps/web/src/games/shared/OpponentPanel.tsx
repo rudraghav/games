@@ -50,6 +50,7 @@ export function OpponentPanel({
         displayName={label}
         nameLayout="wrap"
         avatar={member?.avatar}
+        frame={member?.frame}
         bot={member?.isBot}
         connected={member?.connected ?? false}
         active={active}

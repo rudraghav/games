@@ -1,7 +1,13 @@
 import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
 import { proxyFailure } from '@/lib/proxy-diagnostics';
-import { isBackendRoute, playerSearchRoute, savedReadingRoute } from '@/lib/backend-routes';
+import {
+  isBackendRoute,
+  playerSearchRoute,
+  progressRoute,
+  savedReadingRoute,
+  utcOffset,
+} from '@/lib/backend-routes';
 
 async function proxy(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
   const path = (await context.params).path.join('/');
@@ -41,6 +47,11 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
     if (terms.length !== 1 || terms[0].length > 32)
       return Response.json({ detail: 'Type at least 2 letters to search.' }, { status: 422 });
     target.searchParams.set('q', terms[0]);
+  }
+  if (progressRoute.test(path)) {
+    // A day boundary only; a missing or odd value falls back to the server's UTC day.
+    const offset = utcOffset(request.nextUrl.searchParams.getAll('tz_offset'));
+    if (offset) target.searchParams.set('tz_offset', offset);
   }
   const started = performance.now();
   try {

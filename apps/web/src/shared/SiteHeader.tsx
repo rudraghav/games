@@ -18,6 +18,7 @@ export function SiteHeader({
       {showGamesLink ? (
         <nav className="header-nav" aria-label="Main navigation">
           <Link href="/#games">Games</Link>
+          <Link href="/rewards">Rewards</Link>
         </nav>
       ) : null}
       <div className="header-actions">

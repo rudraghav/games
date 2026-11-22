@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Check, Copy, Link2, Share2 } from 'lucide-react';
 import type { Room } from '@games/api-client';
 import { gameById } from '@games/api-client/catalog';
-import { Button } from '@games/ui';
+import { Button, Ticket } from '@games/ui';
 import { api } from '@/lib/session';
 import { keys } from '@/shared/query-keys';
 import { groupRoomCode, roomShareText, roomShortPath } from '@/shared/room-invite';
@@ -89,7 +89,19 @@ export function InvitePanel({
       aria-label="Invite friends"
       data-open-seats={openSeats > 0 || undefined}
     >
-      <div className="invite-hub-share">
+      {/* The code is the stub: large, grouped and the first thing to read aloud. */}
+      <Ticket
+        className="invite-hub-share invite-ticket"
+        variant={openSeats > 0 ? 'default' : 'muted'}
+        stubSide="start"
+        stubClassName="invite-hub-code"
+        stub={
+          <>
+            <span className="eyebrow">Room code</span>
+            <strong className="room-code">{groupRoomCode(room.code)}</strong>
+          </>
+        }
+      >
         <div className="invite-hub-heading">
           <h3>Invite friends</h3>
           {openSeats > 0 ? (
@@ -98,13 +110,9 @@ export function InvitePanel({
             </span>
           ) : null}
         </div>
-        <div className="invite-hub-code">
-          <span className="eyebrow">Room code</span>
-          <strong className="room-code">{groupRoomCode(room.code)}</strong>
-          <span className="invite-link" translate="no">
-            {(origin.replace(/^https?:\/\//, '') || '') + path}
-          </span>
-        </div>
+        <span className="invite-link" translate="no">
+          {(origin.replace(/^https?:\/\//, '') || '') + path}
+        </span>
         <div className="invite-actions invite-hub-actions">
           {canShare ? (
             <Button onClick={() => void share()}>
@@ -132,7 +140,7 @@ export function InvitePanel({
         <p className="small invite-status" role="status">
           {status}
         </p>
-      </div>
+      </Ticket>
       <div className="invite-hub-friends">
         <InviteByUsername room={room} host={host} ownUsername={username} />
         {!me.data?.profile ? null : choosing ? (

@@ -104,3 +104,8 @@ moves to the card when it opens and back to the button that opened it.
 - Hand-made states: `apps/web/src/stories/fixtures/secret-santa.ts` and the
   `Games/Secret Santa` story. Engine-recorded states are in
   `stories/generated` and `/design/midgame`.
+
+Each row of "Share each person’s link" is a `Ticket` in its gift-tag shape:
+the person and Opened / Not opened yet on the tag, the sharing actions on the
+stub (below the tag on phones, beside it from 620px), sage once opened. The
+list item keeps its `santa-link` class and every button name.

@@ -9,10 +9,14 @@ test('compact discovery preserves solo intent and clear private setup', async ({
   for (const width of info.project.name === 'phone' ? [320, 390] : [1440]) {
     await page.setViewportSize({ width, height: info.project.name === 'phone' ? 844 : 1000 });
     await page.evaluate(() => document.fonts.ready);
-    const first = await page.locator('.game-tile').first().boundingBox();
-    expect(first!.y).toBeLessThan(420);
+    // The curated rails now come before the library, so the first fold holds the
+    // primary actions and the first rail; the featured tile is measured in place.
+    const rail = await page.locator('.game-rail-tile').first().boundingBox();
+    expect(rail!.y).toBeLessThan(640);
     const featured = page.getByRole('link', { name: 'Open Pop Tarot', exact: true });
     await expect(featured).toHaveAttribute('data-variant', 'featured');
+    await featured.scrollIntoViewIfNeeded();
+    const first = await page.locator('.game-tile').first().boundingBox();
     await expect(page.locator('.game-tile')).toHaveCount(catalogue.length);
     await expect(page.locator('.game-tile').first()).toHaveAccessibleName('Open Pop Tarot');
     await expect(featured.getByText('Featured', { exact: true })).toBeVisible();

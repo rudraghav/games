@@ -56,6 +56,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/progress": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Progress */
+        get: operations["progress_v1_progress_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/rewards/{reward_id}/redeem": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Redeem Reward */
+        post: operations["redeem_reward_v1_rewards__reward_id__redeem_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/profile/cosmetics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Wear */
+        put: operations["wear_v1_profile_cosmetics_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/players/search": {
         parameters: {
             query?: never;
@@ -935,6 +986,21 @@ export interface components {
             /** Utc Offset */
             utc_offset: string;
         };
+        /** BadgeView */
+        BadgeView: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Description */
+            description: string;
+            /** Earned */
+            earned: boolean;
+            /** Value */
+            value: number;
+            /** Goal */
+            goal: number;
+        };
         /**
          * BotSeat
          * @description One bot the host seats: an optional name of their own and how well it plays.
@@ -1012,6 +1078,16 @@ export interface components {
              * @enum {string}
              */
             kind: "message" | "reaction";
+        };
+        /**
+         * CosmeticsInput
+         * @description What to wear. None takes a frame off or returns to the standard card back.
+         */
+        CosmeticsInput: {
+            /** Frame */
+            frame?: string | null;
+            /** Card Back */
+            card_back?: string | null;
         };
         /** CreateRoom */
         CreateRoom: {
@@ -1247,6 +1323,8 @@ export interface components {
             name: string;
             /** Avatar */
             avatar: number;
+            /** Frame */
+            frame?: string | null;
             /** Ready */
             ready: boolean;
             /** Seated */
@@ -1303,8 +1381,12 @@ export interface components {
             name: string;
             /** Avatar */
             avatar: number;
+            /** Frame */
+            frame?: string | null;
             /** Username */
             username?: string | null;
+            /** Card Back */
+            card_back?: string | null;
         };
         /**
          * PendingInviteView
@@ -1386,6 +1468,37 @@ export interface components {
              * @default 0
              */
             avatar: number;
+        };
+        /** ProgressTotals */
+        ProgressTotals: {
+            /** Games */
+            games: number;
+            /** Wins */
+            wins: number;
+            /** Different Games */
+            different_games: number;
+            /** With Friends */
+            with_friends: number;
+        };
+        /**
+         * ProgressView
+         * @description A player's own progress, worked out from their finished games. Private to them.
+         */
+        ProgressView: {
+            /** Xp */
+            xp: number;
+            /** Level */
+            level: number;
+            /** Level Xp */
+            level_xp: number;
+            /** Next Level Xp */
+            next_level_xp: number;
+            streak: components["schemas"]["StreakView"];
+            totals: components["schemas"]["ProgressTotals"];
+            /** Badges */
+            badges?: components["schemas"]["BadgeView"][];
+            /** Rewards */
+            rewards?: components["schemas"]["RewardView"][];
         };
         /** PublicActionView */
         PublicActionView: {
@@ -1536,6 +1649,35 @@ export interface components {
         Ready: {
             /** Ready */
             ready: boolean;
+        };
+        /**
+         * RewardView
+         * @description A cosmetic earned by playing. `locked` until its requirement is met, then
+         *     `available` to redeem, then `redeemed` and free to wear.
+         */
+        RewardView: {
+            /** Id */
+            id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "frame" | "card_back";
+            /** Name */
+            name: string;
+            /** Requirement */
+            requirement: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "locked" | "available" | "redeemed";
+            /** Equipped */
+            equipped: boolean;
+            /** Value */
+            value: number;
+            /** Goal */
+            goal: number;
         };
         /** RoomInviteInput */
         RoomInviteInput: {
@@ -1740,6 +1882,18 @@ export interface components {
             /** Default */
             default: boolean;
         };
+        /**
+         * StreakView
+         * @description Days in a row with at least one finished game, counted in the player's own day.
+         */
+        StreakView: {
+            /** Current */
+            current: number;
+            /** Best */
+            best: number;
+            /** Played Today */
+            played_today: boolean;
+        };
         /** UpdateBot */
         UpdateBot: {
             /** Name */
@@ -1893,6 +2047,111 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["OwnProfileView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    progress_v1_progress_get: {
+        parameters: {
+            query?: {
+                tz_offset?: number;
+            };
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProgressView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    redeem_reward_v1_rewards__reward_id__redeem_post: {
+        parameters: {
+            query?: {
+                tz_offset?: number;
+            };
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                reward_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProgressView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    wear_v1_profile_cosmetics_put: {
+        parameters: {
+            query?: {
+                tz_offset?: number;
+            };
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CosmeticsInput"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProgressView"];
                 };
             };
             /** @description Validation Error */

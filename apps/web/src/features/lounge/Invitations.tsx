@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
 import type { Invitation, Me } from '@games/api-client';
 import { games } from '@games/api-client/catalog';
-import { Avatar, Button } from '@games/ui';
+import { Avatar, Button, Ticket } from '@games/ui';
 import { api } from '@/lib/session';
 import { keys } from '@/shared/query-keys';
 import { refreshPlayer } from '@/shared/player-query';
@@ -41,7 +41,33 @@ export function InvitationList({
                   const game = games.find((item) => item.id === invitation.gameId);
                   const answering = busy?.roomId === invitation.roomId ? busy.answer : null;
                   return (
-                    <li className="invitation" key={invitation.roomId}>
+                    <Ticket
+                      as="li"
+                      className="invitation"
+                      key={invitation.roomId}
+                      stubClassName="invitation-actions"
+                      stub={
+                        <>
+                          <Button
+                            pending={answering === 'join'}
+                            disabled={Boolean(busy)}
+                            aria-label={`Join ${invitation.roomName}`}
+                            onClick={() => onJoin(invitation)}
+                          >
+                            Join
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            pending={answering === 'decline'}
+                            disabled={Boolean(busy)}
+                            aria-label={`Decline invitation to ${invitation.roomName}`}
+                            onClick={() => onDecline(invitation)}
+                          >
+                            Decline
+                          </Button>
+                        </>
+                      }
+                    >
                       <Avatar name={invitation.fromName} seed={invitation.fromAvatar} />
                       <p className="invitation-copy">
                         <strong>
@@ -52,26 +78,7 @@ export function InvitationList({
                           players
                         </span>
                       </p>
-                      <div className="invitation-actions">
-                        <Button
-                          pending={answering === 'join'}
-                          disabled={Boolean(busy)}
-                          aria-label={`Join ${invitation.roomName}`}
-                          onClick={() => onJoin(invitation)}
-                        >
-                          Join
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          pending={answering === 'decline'}
-                          disabled={Boolean(busy)}
-                          aria-label={`Decline invitation to ${invitation.roomName}`}
-                          onClick={() => onDecline(invitation)}
-                        >
-                          Decline
-                        </Button>
-                      </div>
-                    </li>
+                    </Ticket>
                   );
                 })}
               </ul>

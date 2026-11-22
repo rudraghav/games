@@ -48,3 +48,16 @@ any field beyond the contract (for example who drew whom) is refused. The only
 recipient it accepts is inside `showing`. `santaLinks(roomId)` and
 `santaReveal(token)` map the organiser's links and one person's own draw; the
 token is checked against `santaTokenPattern` and travels only in the path.
+
+`progress()`, `redeemReward(id)` and `wearCosmetics({ frame, cardBack })` each
+return the player's whole progress through `mapProgress` (`progress.ts`): XP,
+level, the XP totals at which this level and the next begin, the streak,
+totals, badges and rewards. Counts must be whole and non-negative, a reward's
+state one of locked / available / redeemed, and the next level must begin
+after this one; anything else is refused. Names, descriptions and requirements
+pass through as the server's words. All three send `tz_offset` (minutes east
+of UTC). `mapRoom` adds `frame` to every member and `mapProfile` adds `frame`
+and `cardBack`; a missing value is `null`, an id the UI cannot draw passes
+through for the UI to ignore, and a value of the wrong shape reads as `null`
+rather than failing the room. `frameIds` and `cardBackIds` list what the UI
+can draw.

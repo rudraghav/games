@@ -35,3 +35,6 @@ player. The server's message is shown for a taken, reserved or invalid name. The
 field is disabled until a profile exists ("Save your name first, then choose a
 username."); guests can choose one too. The same field opens from the lobby's
 invite panel.
+
+The intro links to `/rewards` ("Progress and rewards"), and the avatar colour
+choices are drawn wearing the player's current frame (`profile.frame`).

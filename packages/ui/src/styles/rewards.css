@@ -1,0 +1,587 @@
+/*
+ * Progress and rewards: the level ring, avatar frames, the four card backs,
+ * the /rewards page (progress, badges, reward coupons) and the progress line
+ * under a result. Everything here is earned by playing; nothing is for sale.
+ */
+@layer components {
+  /* ---------- Level ring ---------- */
+  .level-ring {
+    position: relative;
+    display: inline-grid;
+    flex: none;
+    place-items: center;
+    width: var(--ring-size, 48px);
+    height: var(--ring-size, 48px);
+  }
+  .level-ring--sm {
+    --ring-size: 38px;
+  }
+  .level-ring--lg {
+    --ring-size: 88px;
+  }
+  .level-ring > svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .level-ring-track,
+  .level-ring-fill {
+    fill: none;
+    stroke-width: 9;
+  }
+  .level-ring-track {
+    stroke: var(--color-surface-muted);
+  }
+  .level-ring-fill {
+    stroke: var(--color-sage);
+    stroke-linecap: round;
+  }
+  .level-ring-number {
+    position: relative;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: calc(var(--ring-size, 48px) * 0.4);
+    font-weight: 600;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Avatar frames ---------- */
+  .avatar[data-frame] {
+    position: relative;
+  }
+  /* The drawing is 36% wider than the avatar, so each frame sits just outside it. */
+  .avatar-frame {
+    position: absolute;
+    inset: -18%;
+    pointer-events: none;
+  }
+  .avatar-frame > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  @media (forced-colors: active) {
+    .avatar-frame > svg * {
+      forced-color-adjust: none;
+    }
+  }
+
+  /* ---------- Card backs ---------- */
+  /*
+   * The viewer's own card back, set as data-card-back on the room. Each design
+   * changes the pattern as well as the colour, and keeps the paper frame, the
+   * inner keyline and the seal, so a compact back still reads as a card back.
+   * Tarot's deck has its own back and is not touched.
+   */
+  [data-card-back='back-midnight'] {
+    --back-fill: #1d2547;
+    --back-deep: #0d1330;
+    --back-seal: #33407a;
+    --back-art:
+      radial-gradient(circle at 25% 30%, #ffffffd9 0 1px, #0000 1.6px),
+      radial-gradient(circle at 70% 62%, #ffffffb3 0 0.9px, #0000 1.5px),
+      radial-gradient(circle at 48% 85%, #f3dc93cc 0 1px, #0000 1.6px);
+    --back-art-size: 22px 22px, 17px 17px, 29px 29px;
+  }
+  [data-card-back='back-sunrise'] {
+    --back-fill: #b4472f;
+    --back-deep: #7c2b19;
+    --back-seal: #cf6a35;
+    --back-art: repeating-conic-gradient(from 0deg at 50% 100%, #f6c66a4d 0 9deg, #0000 9deg 18deg);
+    --back-art-size: auto;
+  }
+  [data-card-back='back-emerald'] {
+    --back-fill: #175a3f;
+    --back-deep: #0b3423;
+    --back-seal: #2a7a58;
+    --back-art:
+      linear-gradient(135deg, #ffffff2b 25%, #0000 25%),
+      linear-gradient(225deg, #ffffff2b 25%, #0000 25%),
+      linear-gradient(45deg, #0000002e 25%, #0000 25%),
+      linear-gradient(315deg, #0000002e 25%, #0000 25%);
+    --back-art-size: 16px 16px;
+  }
+  [data-card-back='back-royal'] {
+    --back-fill: #4d2f63;
+    --back-deep: #2c1640;
+    --back-seal: #6c4589;
+    --back-art:
+      repeating-linear-gradient(90deg, #e6c36a66 0 2px, #0000 2px 9px),
+      linear-gradient(180deg, #ffffff14, #0000 40%, #00000033);
+    --back-art-size: auto;
+  }
+  :is(
+      [data-card-back='back-midnight'],
+      [data-card-back='back-sunrise'],
+      [data-card-back='back-emerald'],
+      [data-card-back='back-royal']
+    )
+    .playing-card.playing-card--back:not(.playing-card--empty) {
+    background: var(--back-fill);
+  }
+  :is(
+      [data-card-back='back-midnight'],
+      [data-card-back='back-sunrise'],
+      [data-card-back='back-emerald'],
+      [data-card-back='back-royal']
+    )
+    :is(
+      .playing-card--back:not(.playing-card--empty) .card-back-pattern,
+      .playing-card > .card-turn-back
+    ) {
+    background-color: var(--back-fill);
+    background-image: var(--back-art);
+    background-size: var(--back-art-size);
+    box-shadow:
+      inset 0 0 0 1px var(--back-deep),
+      inset 0 0 0 3px var(--back-fill),
+      inset 0 0 0 4px #ffffff59;
+  }
+  :is(
+      [data-card-back='back-midnight'],
+      [data-card-back='back-sunrise'],
+      [data-card-back='back-emerald'],
+      [data-card-back='back-royal']
+    )
+    :is(
+      .playing-card--back:not(.playing-card--empty) .card-back-pattern,
+      .playing-card > .card-turn-back
+    )
+    > span {
+    background: radial-gradient(circle at 34% 28%, var(--back-seal), var(--back-deep) 78%);
+  }
+
+  /* ---------- The /rewards page ---------- */
+  .rewards-page {
+    display: grid;
+    gap: 34px;
+    padding-block: 34px 70px;
+    min-width: 0;
+  }
+  .rewards-page > .profile-intro {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+  .rewards-page .hero-title {
+    margin: 0;
+    font-size: clamp(34px, 5vw, 52px);
+  }
+  .rewards-section {
+    display: grid;
+    gap: 14px;
+    min-width: 0;
+  }
+  .rewards-section-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 14px;
+  }
+  /* Held open while progress loads, so the page does not jump when it arrives. */
+  .rewards-loading {
+    display: grid;
+    place-items: center;
+    min-height: 420px;
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-panel);
+    color: var(--color-ink-muted);
+    font-size: 14px;
+  }
+  .rewards-empty {
+    display: grid;
+    justify-items: start;
+    gap: 12px;
+    padding: 28px 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-panel);
+    background: var(--color-surface);
+  }
+  .progress-card {
+    display: grid;
+    gap: 18px 28px;
+    padding: 20px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-panel);
+    background: var(--color-surface);
+  }
+  .progress-level,
+  .progress-streak {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+  .progress-level-copy,
+  .progress-streak > div {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .progress-level-copy > strong {
+    font: 500 28px/1.15 var(--font-display);
+    letter-spacing: -0.03em;
+  }
+  .progress-streak {
+    align-items: start;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border);
+  }
+  .progress-streak > svg {
+    flex: none;
+    margin-top: 2px;
+    color: var(--color-ink-muted);
+  }
+  .progress-streak[data-active='true'] > svg {
+    color: var(--color-coral);
+  }
+  .progress-streak strong {
+    font-size: 16px;
+    font-weight: 650;
+  }
+  .progress-totals {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0;
+  }
+  .progress-totals > div {
+    display: grid;
+    gap: 2px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: var(--color-canvas);
+  }
+  .progress-totals dt {
+    color: var(--color-ink-muted);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .progress-totals dd {
+    margin: 0;
+    font: 500 24px/1.2 var(--font-display);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Badges ---------- */
+  .badge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+  }
+  .badge-medal {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--color-ochre-light);
+    color: #6f5417;
+    box-shadow: inset 0 0 0 2px #a7844280;
+  }
+  .badge-copy {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .badge-copy > strong {
+    font-size: 15px;
+    font-weight: 650;
+  }
+  .badge-description {
+    color: var(--color-ink-muted);
+  }
+  .badge-earned {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--color-pine);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  /* Not earned yet: the same card, quieter, with a thin bar and "3 of 10". */
+  .badge[data-earned='false'] {
+    background: var(--color-canvas);
+  }
+  .badge[data-earned='false'] .badge-medal {
+    background: var(--color-surface-muted);
+    color: var(--color-ink-muted);
+    box-shadow: inset 0 0 0 2px var(--color-border);
+  }
+  .badge[data-earned='false'] .badge-copy > strong {
+    color: var(--color-ink-muted);
+  }
+  .badge-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 3px;
+    color: var(--color-ink-muted);
+    font-size: 12px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .badge-progress > progress,
+  .results-progress-bar > progress {
+    flex: 1 1 60px;
+    width: 100%;
+    max-width: 150px;
+    height: 5px;
+    overflow: hidden;
+    border: 0;
+    border-radius: 99px;
+    background: var(--color-border);
+    appearance: none;
+  }
+  .badge-progress > progress::-webkit-progress-bar,
+  .results-progress-bar > progress::-webkit-progress-bar {
+    background: var(--color-border);
+  }
+  .badge-progress > progress::-webkit-progress-value,
+  .results-progress-bar > progress::-webkit-progress-value {
+    border-radius: 99px;
+    background: var(--color-sage);
+  }
+  .badge-progress > progress::-moz-progress-bar,
+  .results-progress-bar > progress::-moz-progress-bar {
+    border-radius: 99px;
+    background: var(--color-sage);
+  }
+
+  /* ---------- Reward coupons ---------- */
+  .rewards-status {
+    min-height: 21px;
+    margin: 0;
+    color: var(--color-pine);
+    font-weight: 600;
+  }
+  .reward-group {
+    display: grid;
+    gap: 10px;
+    min-width: 0;
+  }
+  .reward-group + .reward-group {
+    margin-top: 12px;
+  }
+  .reward-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .reward-coupon > .reward-preview {
+    display: grid;
+    place-items: center;
+    width: 104px;
+    padding: 14px 10px;
+  }
+  .reward-preview > span {
+    display: grid;
+    place-items: center;
+  }
+  .reward-preview .playing-card {
+    --card-width: 54px;
+    --card-height: 76px;
+  }
+  .reward-coupon > .ticket-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    min-height: 118px;
+    padding: 14px 16px;
+  }
+  .reward-copy {
+    display: grid;
+    flex: 1 1 130px;
+    gap: 3px;
+    min-width: 0;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .reward-copy > h4 {
+    font-size: 16px;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+  .reward-state {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--color-ink-muted);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .reward-coupon[data-state='available'] .reward-state {
+    color: #8a4a12;
+  }
+  .reward-coupon[data-state='redeemed'] .reward-state {
+    color: var(--color-pine);
+  }
+  .reward-requirement {
+    color: var(--color-ink-muted);
+  }
+  .reward-actions {
+    display: flex;
+    flex: none;
+    gap: 8px;
+  }
+  .reward-actions > .button {
+    min-width: 92px;
+  }
+  .reward-coupon .reward-error {
+    flex: 1 1 100%;
+    margin: 0;
+  }
+  /* A locked preview is the real cosmetic, dimmed. */
+  .reward-coupon[data-state='locked'] .reward-preview > span {
+    opacity: 0.55;
+    filter: saturate(0.5);
+  }
+  /* Redeeming tears the stub a little way off and lets it settle back. */
+  .reward-coupon[data-just-redeemed] > .reward-preview {
+    animation: coupon-tear 620ms var(--ease-out);
+  }
+  @keyframes coupon-tear {
+    0% {
+      transform: none;
+    }
+    35% {
+      transform: translateX(-9px) rotate(-5deg);
+    }
+    100% {
+      transform: none;
+    }
+  }
+
+  /* ---------- The progress line under a result ---------- */
+  .results-progress {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    /* The same height while loading, loaded or unavailable. */
+    min-height: 62px;
+    /* As wide as the result above it, not the whole table. */
+    width: min(100%, 560px);
+    margin: 12px auto 4px;
+    padding: 10px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+  }
+  .results-progress-copy {
+    display: grid;
+    flex: 1 1 150px;
+    gap: 3px;
+    min-width: 0;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .results-progress-copy > strong {
+    font-size: 14px;
+    font-weight: 650;
+  }
+  .results-progress-copy > strong > span {
+    margin-left: 6px;
+    color: var(--color-sage);
+  }
+  .results-progress-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    color: var(--color-ink-muted);
+    font-size: 12px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .results-progress-link {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    color: var(--color-sage);
+    font-size: 13px;
+    font-weight: 650;
+  }
+  .results-progress-link:hover {
+    background: var(--color-sage-light);
+  }
+  .results-progress-link:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+  .profile-rewards-link {
+    justify-self: start;
+    margin-top: 6px;
+  }
+
+  @media (min-width: 760px) {
+    .progress-card {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      padding: 26px;
+    }
+    .progress-streak {
+      padding-top: 0;
+      padding-left: 28px;
+      border-top: 0;
+      border-left: 1px solid var(--color-border);
+      align-self: center;
+    }
+    .progress-totals {
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 600px) {
+    /* Room for the XP line to wrap under its bar, loaded or not. */
+    .results-progress {
+      min-height: 92px;
+    }
+  }
+  @media (max-width: 420px) {
+    .reward-coupon > .reward-preview {
+      width: 88px;
+    }
+    .reward-actions,
+    .reward-actions > .button {
+      flex: 1 1 100%;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    /* The state change is instant; the words and the live region carry it. */
+    .reward-coupon[data-just-redeemed] > .reward-preview {
+      animation: none;
+    }
+  }
+}

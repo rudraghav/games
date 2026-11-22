@@ -132,6 +132,7 @@ export function Lobby({
                 nameLayout="wrap"
                 you={member?.id === selfId}
                 avatar={member?.avatar}
+                frame={member?.frame}
                 ready={member?.ready}
                 connected={member?.connected}
               />

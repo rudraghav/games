@@ -1,4 +1,13 @@
 export const savedReadingRoute = /^v1\/readings\/[\da-f-]{36}$/;
+/** Progress reads and reward writes; each may carry the player's UTC offset. */
+export const progressRoute =
+  /^v1\/(?:progress|rewards\/[a-z0-9-]{1,32}\/redeem|profile\/cosmetics)$/;
+/** Minutes east of UTC, inside the range the backend accepts. Anything else is dropped. */
+export function utcOffset(values: readonly string[]) {
+  if (values.length !== 1 || !/^-?\d{1,3}$/.test(values[0])) return null;
+  const minutes = Number(values[0]);
+  return minutes >= -720 && minutes <= 840 ? String(minutes) : null;
+}
 export const playerSearchRoute = /^v1\/players\/search$/;
 /** One person's Secret Santa draw. The token is the whole secret: a single URL-safe segment. */
 export const santaRevealRoute = /^v1\/secret-santa\/[A-Za-z0-9_-]{20,120}$/;
@@ -8,6 +17,9 @@ const routes: [RegExp, readonly string[]][] = [
   [/^v1\/me$/, ['GET']],
   [/^v1\/profile$/, ['PUT']],
   [/^v1\/profile\/username$/, ['PUT', 'DELETE']],
+  [/^v1\/progress$/, ['GET']],
+  [/^v1\/rewards\/[a-z0-9-]{1,32}\/redeem$/, ['POST']],
+  [/^v1\/profile\/cosmetics$/, ['PUT']],
   [playerSearchRoute, ['GET']],
   [/^v1\/invitations\/[\da-f-]{36}\/accept$/, ['POST']],
   [/^v1\/invitations\/[\da-f-]{36}$/, ['DELETE']],

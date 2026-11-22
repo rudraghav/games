@@ -2,7 +2,7 @@
 import { useState, useSyncExternalStore } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Check, Link2, Share2, Smartphone } from 'lucide-react';
-import { Avatar, Button } from '@games/ui';
+import { Avatar, Button, Ticket } from '@games/ui';
 import type { Match, Room, SantaDetails, SantaLink } from '@games/api-client';
 import { api } from '@/lib/session';
 import { usePrivateViewScope } from '@/shared/use-private-view-scope';
@@ -130,7 +130,61 @@ export function SantaLinks({
         {detail.people.map((person, index) => {
           const hasLink = ready && tokens.has(person.id);
           return (
-            <li className="santa-link" key={person.id} data-opened={person.opened}>
+            <Ticket
+              as="li"
+              shape="tag"
+              className="santa-link"
+              key={person.id}
+              data-opened={person.opened}
+              variant={person.opened ? 'success' : 'default'}
+              stubClassName="santa-link__actions"
+              stub={
+                <>
+                  {canShare ? (
+                    <Button
+                      size="sm"
+                      aria-label={`Share link for ${person.name}`}
+                      disabled={!hasLink}
+                      onClick={() => void share(person.id, person.name)}
+                    >
+                      <Share2 size={15} aria-hidden="true" />
+                      Share
+                    </Button>
+                  ) : null}
+                  <Button
+                    size="sm"
+                    variant={canShare ? 'secondary' : 'primary'}
+                    aria-label={
+                      copied === person.id
+                        ? `Link copied for ${person.name}`
+                        : `Copy link for ${person.name}`
+                    }
+                    disabled={!hasLink}
+                    onClick={() => void copy(person.id, person.name)}
+                  >
+                    {copied === person.id ? (
+                      <Check size={15} aria-hidden="true" />
+                    ) : (
+                      <Link2 size={15} aria-hidden="true" />
+                    )}
+                    {copied === person.id ? 'Link copied' : 'Copy link'}
+                  </Button>
+                  {canDo(match, 'reveal', person.id) ? (
+                    <Button
+                      id={`santa-show-${person.id}`}
+                      size="sm"
+                      variant="secondary"
+                      aria-label={`Show on this phone for ${person.name}`}
+                      disabled={paused}
+                      onClick={() => onShow(person.id)}
+                    >
+                      <Smartphone size={15} aria-hidden="true" />
+                      Show on this phone
+                    </Button>
+                  ) : null}
+                </>
+              }
+            >
               <span aria-hidden="true">
                 <Avatar name={person.name} seed={index} size="sm" />
               </span>
@@ -146,50 +200,6 @@ export function SantaLinks({
                   )}
                 </span>
               </div>
-              <div className="santa-link__actions">
-                {canShare ? (
-                  <Button
-                    size="sm"
-                    aria-label={`Share link for ${person.name}`}
-                    disabled={!hasLink}
-                    onClick={() => void share(person.id, person.name)}
-                  >
-                    <Share2 size={15} aria-hidden="true" />
-                    Share
-                  </Button>
-                ) : null}
-                <Button
-                  size="sm"
-                  variant={canShare ? 'secondary' : 'primary'}
-                  aria-label={
-                    copied === person.id
-                      ? `Link copied for ${person.name}`
-                      : `Copy link for ${person.name}`
-                  }
-                  disabled={!hasLink}
-                  onClick={() => void copy(person.id, person.name)}
-                >
-                  {copied === person.id ? (
-                    <Check size={15} aria-hidden="true" />
-                  ) : (
-                    <Link2 size={15} aria-hidden="true" />
-                  )}
-                  {copied === person.id ? 'Link copied' : 'Copy link'}
-                </Button>
-                {canDo(match, 'reveal', person.id) ? (
-                  <Button
-                    id={`santa-show-${person.id}`}
-                    size="sm"
-                    variant="secondary"
-                    aria-label={`Show on this phone for ${person.name}`}
-                    disabled={paused}
-                    onClick={() => onShow(person.id)}
-                  >
-                    <Smartphone size={15} aria-hidden="true" />
-                    Show on this phone
-                  </Button>
-                ) : null}
-              </div>
               {manual === person.id ? (
                 <input
                   className="input santa-link__manual"
@@ -199,7 +209,7 @@ export function SantaLinks({
                   onFocus={(event) => event.target.select()}
                 />
               ) : null}
-            </li>
+            </Ticket>
           );
         })}
       </ul>

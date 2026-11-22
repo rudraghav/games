@@ -142,12 +142,76 @@ class ProfileView(BaseModel):
     id: str
     name: str
     avatar: int
+    # An avatar frame the player earned and chose to wear. Everyone at the table sees it.
+    frame: str | None = None
 
 
 class OwnProfileView(ProfileView):
     """A player's own profile. The username is never part of another player's view of them."""
 
     username: str | None = None
+    # The card back this player chose for their own screen.
+    card_back: str | None = None
+
+
+class StreakView(BaseModel):
+    """Days in a row with at least one finished game, counted in the player's own day."""
+
+    current: int = Field(ge=0)
+    best: int = Field(ge=0)
+    played_today: bool
+
+
+class ProgressTotals(BaseModel):
+    games: int = Field(ge=0)
+    wins: int = Field(ge=0)
+    different_games: int = Field(ge=0)
+    with_friends: int = Field(ge=0)
+
+
+class BadgeView(BaseModel):
+    id: str
+    name: str
+    description: str
+    earned: bool
+    # Progress toward the badge, capped at the goal.
+    value: int = Field(ge=0)
+    goal: int = Field(ge=1)
+
+
+class RewardView(BaseModel):
+    """A cosmetic earned by playing. `locked` until its requirement is met, then
+    `available` to redeem, then `redeemed` and free to wear."""
+
+    id: str
+    kind: Literal["frame", "card_back"]
+    name: str
+    requirement: str
+    state: Literal["locked", "available", "redeemed"]
+    equipped: bool
+    value: int = Field(ge=0)
+    goal: int = Field(ge=1)
+
+
+class ProgressView(BaseModel):
+    """A player's own progress, worked out from their finished games. Private to them."""
+
+    xp: int = Field(ge=0)
+    level: int = Field(ge=1)
+    # XP at which this level began and at which the next begins.
+    level_xp: int = Field(ge=0)
+    next_level_xp: int = Field(ge=1)
+    streak: StreakView
+    totals: ProgressTotals
+    badges: list[BadgeView] = Field(default_factory=list, max_length=40)
+    rewards: list[RewardView] = Field(default_factory=list, max_length=40)
+
+
+class CosmeticsInput(Request):
+    """What to wear. None takes a frame off or returns to the standard card back."""
+
+    frame: str | None = Field(default=None, max_length=32)
+    card_back: str | None = Field(default=None, max_length=32)
 
 
 class PlayerHit(BaseModel):

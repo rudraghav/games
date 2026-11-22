@@ -18,6 +18,7 @@ from app.games.tarot.style import ReadingStyle
 from app.rooms.schemas import (
     AddBots,
     ChatInput,
+    CosmeticsInput,
     CreateRoom,
     DriveBots,
     JoinRoom,
@@ -26,6 +27,7 @@ from app.rooms.schemas import (
     OwnProfileView,
     PlayerSearch,
     ProfileInput,
+    ProgressView,
     QuickPlay,
     Ready,
     RoomInviteInput,
@@ -70,6 +72,31 @@ def set_username(data: UsernameInput, actor: Actor, svc: Service) -> OwnProfileV
 @router.delete("/profile/username", response_model=OwnProfileView)
 def clear_username(actor: Actor, svc: Service) -> OwnProfileView:
     return svc.set_username(actor, None)
+
+
+@router.get("/progress", response_model=ProgressView)
+def progress(
+    actor: Actor, svc: Service,
+    # Minutes east of UTC, so a streak follows the player's own midnight.
+    tz_offset: Annotated[int, Query(ge=-720, le=840)] = 0,
+) -> ProgressView:
+    return svc.progress(actor, tz_offset)
+
+
+@router.post("/rewards/{reward_id}/redeem", response_model=ProgressView)
+def redeem_reward(
+    reward_id: str, actor: Actor, svc: Service,
+    tz_offset: Annotated[int, Query(ge=-720, le=840)] = 0,
+) -> ProgressView:
+    return svc.redeem_reward(actor, reward_id, tz_offset)
+
+
+@router.put("/profile/cosmetics", response_model=ProgressView)
+def wear(
+    data: CosmeticsInput, actor: Actor, svc: Service,
+    tz_offset: Annotated[int, Query(ge=-720, le=840)] = 0,
+) -> ProgressView:
+    return svc.wear(actor, data, tz_offset)
 
 
 @router.get("/players/search", response_model=PlayerSearch)

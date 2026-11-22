@@ -207,6 +207,199 @@
         }
       }
     },
+    "/v1/progress": {
+      "get": {
+        "summary": "Progress",
+        "operationId": "progress_v1_progress_get",
+        "parameters": [
+          {
+            "name": "tz_offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 840,
+              "minimum": -720,
+              "default": 0,
+              "title": "Tz Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgressView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/rewards/{reward_id}/redeem": {
+      "post": {
+        "summary": "Redeem Reward",
+        "operationId": "redeem_reward_v1_rewards__reward_id__redeem_post",
+        "parameters": [
+          {
+            "name": "reward_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Reward Id"
+            }
+          },
+          {
+            "name": "tz_offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 840,
+              "minimum": -720,
+              "default": 0,
+              "title": "Tz Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgressView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/profile/cosmetics": {
+      "put": {
+        "summary": "Wear",
+        "operationId": "wear_v1_profile_cosmetics_put",
+        "parameters": [
+          {
+            "name": "tz_offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 840,
+              "minimum": -720,
+              "default": 0,
+              "title": "Tz Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CosmeticsInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgressView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/players/search": {
       "get": {
         "summary": "Search Players",
@@ -3008,6 +3201,46 @@
         ],
         "title": "AstrologyTimeResolution"
       },
+      "BadgeView": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "earned": {
+            "type": "boolean",
+            "title": "Earned"
+          },
+          "value": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Value"
+          },
+          "goal": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Goal"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "earned",
+          "value",
+          "goal"
+        ],
+        "title": "BadgeView"
+      },
       "BotSeat": {
         "properties": {
           "name": {
@@ -3200,6 +3433,38 @@
           "body"
         ],
         "title": "ChatInput"
+      },
+      "CosmeticsInput": {
+        "properties": {
+          "frame": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Frame"
+          },
+          "card_back": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Card Back"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "CosmeticsInput",
+        "description": "What to wear. None takes a frame off or returns to the standard card back."
       },
       "CreateRoom": {
         "properties": {
@@ -3785,6 +4050,17 @@
             "type": "integer",
             "title": "Avatar"
           },
+          "frame": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Frame"
+          },
           "ready": {
             "type": "boolean",
             "title": "Ready"
@@ -3913,6 +4189,17 @@
             "type": "integer",
             "title": "Avatar"
           },
+          "frame": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Frame"
+          },
           "username": {
             "anyOf": [
               {
@@ -3923,6 +4210,17 @@
               }
             ],
             "title": "Username"
+          },
+          "card_back": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Card Back"
           }
         },
         "type": "object",
@@ -4105,6 +4403,95 @@
           "name"
         ],
         "title": "ProfileInput"
+      },
+      "ProgressTotals": {
+        "properties": {
+          "games": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Games"
+          },
+          "wins": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Wins"
+          },
+          "different_games": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Different Games"
+          },
+          "with_friends": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "With Friends"
+          }
+        },
+        "type": "object",
+        "required": [
+          "games",
+          "wins",
+          "different_games",
+          "with_friends"
+        ],
+        "title": "ProgressTotals"
+      },
+      "ProgressView": {
+        "properties": {
+          "xp": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Xp"
+          },
+          "level": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Level"
+          },
+          "level_xp": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Level Xp"
+          },
+          "next_level_xp": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Next Level Xp"
+          },
+          "streak": {
+            "$ref": "#/components/schemas/StreakView"
+          },
+          "totals": {
+            "$ref": "#/components/schemas/ProgressTotals"
+          },
+          "badges": {
+            "items": {
+              "$ref": "#/components/schemas/BadgeView"
+            },
+            "type": "array",
+            "maxItems": 40,
+            "title": "Badges"
+          },
+          "rewards": {
+            "items": {
+              "$ref": "#/components/schemas/RewardView"
+            },
+            "type": "array",
+            "maxItems": 40,
+            "title": "Rewards"
+          }
+        },
+        "type": "object",
+        "required": [
+          "xp",
+          "level",
+          "level_xp",
+          "next_level_xp",
+          "streak",
+          "totals"
+        ],
+        "title": "ProgressView",
+        "description": "A player's own progress, worked out from their finished games. Private to them."
       },
       "PublicActionView": {
         "properties": {
@@ -4581,6 +4968,66 @@
           "ready"
         ],
         "title": "Ready"
+      },
+      "RewardView": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "frame",
+              "card_back"
+            ],
+            "title": "Kind"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "requirement": {
+            "type": "string",
+            "title": "Requirement"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "locked",
+              "available",
+              "redeemed"
+            ],
+            "title": "State"
+          },
+          "equipped": {
+            "type": "boolean",
+            "title": "Equipped"
+          },
+          "value": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Value"
+          },
+          "goal": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Goal"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "name",
+          "requirement",
+          "state",
+          "equipped",
+          "value",
+          "goal"
+        ],
+        "title": "RewardView",
+        "description": "A cosmetic earned by playing. `locked` until its requirement is met, then\n`available` to redeem, then `redeemed` and free to wear."
       },
       "RoomInviteInput": {
         "properties": {
@@ -5141,6 +5588,32 @@
           "default"
         ],
         "title": "Setting"
+      },
+      "StreakView": {
+        "properties": {
+          "current": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Current"
+          },
+          "best": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Best"
+          },
+          "played_today": {
+            "type": "boolean",
+            "title": "Played Today"
+          }
+        },
+        "type": "object",
+        "required": [
+          "current",
+          "best",
+          "played_today"
+        ],
+        "title": "StreakView",
+        "description": "Days in a row with at least one finished game, counted in the player's own day."
       },
       "UpdateBot": {
         "properties": {

@@ -8,6 +8,7 @@ export const categories = [
   { value: 'casino', label: 'Casino' },
   { value: 'boards', label: 'Board games' },
   { value: 'party', label: 'Party' },
+  { value: 'teams', label: 'For teams' },
   { value: 'cooperative', label: 'Co-op' },
   { value: 'solo', label: 'Solo + bots' },
 ] as const;
@@ -52,9 +53,86 @@ const families: Record<Category, readonly string[]> = {
     'number-rows',
     'organiser',
   ],
+  // For teams is a hand-picked list of games, not a set of families: see `teamGames`.
+  teams: [],
   cooperative: [],
   solo: ['tarot', 'casino'],
 };
+
+/**
+ * Games picked for colleagues, in the order the section shows them. A game is
+ * here only if what it shows by default is fine in a work setting:
+ *
+ * - No casino tables (Hold'em, Teen Patti, Blackjack, Roulette, Slots) and no
+ *   poker-table look, so the cooperative The Gang is left out too.
+ * - No drinking games. Spill or Chill is out: its answers are whatever people
+ *   say aloud, so nothing we reviewed controls what comes up. Most Likely and
+ *   Hot Seat are in: every prompt on screen comes from their reviewed decks
+ *   (48 each; friendly votes and A/B preferences, nothing about alcohol,
+ *   romance or put-downs) and their optional sip prompts are off by default.
+ * - No game whose name or premise would be awkward at work (Shithead) and no
+ *   elimination variants that leave colleagues watching (the No Mercy decks).
+ *
+ * Secret Santa is included as the organiser's tool for a team gift exchange.
+ */
+export const teamGames: readonly string[] = [
+  'most-likely',
+  'hot-seat',
+  'word-agents',
+  'uno',
+  'flip-7',
+  'six-nimmt',
+  'trio',
+  'skyjo',
+  'secret-santa',
+  'sea-salt-paper',
+  'azul',
+  'gem-market',
+];
+/** The honest line shown wherever the team picks are. */
+export const teamsNote = 'Picked for colleagues: no betting games, and drink prompts stay off unless you turn them on.';
+
+export const teamSizes = [
+  { value: 'small', label: '2–4', min: 2, max: 4 },
+  { value: 'medium', label: '5–8', min: 5, max: 8 },
+  { value: 'large', label: '9+', min: 9, max: Infinity },
+] as const;
+export const teamTimes = [
+  { value: 'quick', label: 'Under 15 min' },
+  { value: 'standard', label: '15–30 min' },
+] as const;
+export type TeamSize = (typeof teamSizes)[number]['value'];
+export type TeamTime = (typeof teamTimes)[number]['value'];
+export interface TeamFilters {
+  size?: TeamSize | '';
+  time?: TeamTime | '';
+}
+
+/** A game's listed length in minutes: "10–20" is 10 to 20, "15" is 15 to 15. */
+export function gameMinutes(game: Pick<Game, 'minutes'>) {
+  const numbers = (game.minutes.match(/\d+/g) ?? []).map(Number);
+  const shortest = numbers[0] ?? 0;
+  return { shortest, longest: numbers.at(-1) ?? shortest };
+}
+
+/**
+ * The two quick filters inside For teams. A group size matches when the game
+ * seats some group in that range (an organiser's draw fits any group). "Under
+ * 15 min" means the game can finish in under 15 minutes (its shortest listed
+ * length); "15–30 min" means it is listed from 15 minutes up to 30 at most.
+ */
+export function matchesTeamFilters(game: Game, filters: TeamFilters = {}) {
+  const size = teamSizes.find((item) => item.value === filters.size);
+  if (
+    size &&
+    game.family !== 'organiser' &&
+    (game.maxPlayers < size.min || game.minPlayers > size.max)
+  )
+    return false;
+  if (!filters.time) return true;
+  const { shortest, longest } = gameMinutes(game);
+  return filters.time === 'quick' ? shortest < 15 : shortest >= 15 && longest <= 30;
+}
 const discoveryOrder = [
   'the-gang',
   'shithead',
@@ -126,11 +204,13 @@ export function matchesGame(game: Game, query: string, players: number, category
       (game.maxPlayers >= players &&
         (game.minPlayers <= players || (players === 1 && game.botsSupported)))) &&
     (category === 'all' ||
-      (category === 'solo'
-        ? game.minPlayers === 1 || game.botsSupported
-        : category === 'cooperative'
-          ? game.playMode === 'cooperative'
-          : casinoCards || families[category].includes(game.family))) &&
+      (category === 'teams'
+        ? teamGames.includes(game.id)
+        : category === 'solo'
+          ? game.minPlayers === 1 || game.botsSupported
+          : category === 'cooperative'
+            ? game.playMode === 'cooperative'
+            : casinoCards || families[category].includes(game.family))) &&
     (category !== 'solo' || game.minPlayers === 1 || game.botsSupported)
   );
 }
@@ -141,12 +221,23 @@ export function findGames(
   query: string,
   players: number,
   category: Category,
+  /** Only read inside For teams; every other category ignores it. */
+  team: TeamFilters = {},
 ) {
-  const eligible = games.filter((game) => matchesGame(game, '', players, category));
+  const teams = category === 'teams';
+  const eligible = games.filter(
+    (game) =>
+      matchesGame(game, '', players, category) && (!teams || matchesTeamFilters(game, team)),
+  );
   const normalized = searchableText(query);
   const exact = eligible.filter((game) => matchesGame(game, query, players, category));
   if (!normalized || exact.length)
-    return exact.sort((a, b) => discoveryRank(a.id) - discoveryRank(b.id));
+    return exact.sort((a, b) =>
+      // The team picks keep their curated order; everything else its discovery order.
+      teams
+        ? teamGames.indexOf(a.id) - teamGames.indexOf(b.id)
+        : discoveryRank(a.id) - discoveryRank(b.id),
+    );
   if (normalized.length < 3) return [];
   const index = new Fuse(
     eligible.map((game) => ({

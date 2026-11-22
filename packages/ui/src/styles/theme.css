@@ -34,6 +34,10 @@
 @import './tarot-guide.css';
 @import './tarot-preview.css';
 @import './secret-santa.css';
+/* Tickets and coupons, the home page around the library, progress and rewards. */
+@import './ticket.css';
+@import './home.css';
+@import './rewards.css';
 @theme static {
   --color-canvas: #f6f3ed;
   --color-surface: #fffcf7;

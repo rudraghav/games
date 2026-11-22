@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import time
+from typing import Any, TypeVar
 
-from sqlalchemy import and_, delete, func, or_, select
+from sqlalchemy import Select, and_, delete, func, or_, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session, aliased
 
@@ -20,6 +21,7 @@ from app.models import (
 )
 
 CHANCE_GAME_IDS = ("roulette", "slots")
+_Query = TypeVar("_Query", bound="Select[Any]")
 
 
 class Repository:
@@ -238,29 +240,72 @@ class Repository:
             ).tuples()
         )
 
-    def history(self, user_id: str) -> list[Match]:
+    @staticmethod
+    def _played(stmt: _Query, user_id: str) -> _Query:
+        """Narrow a match query to this player's saved results."""
         # A saved solo match can outlive its room membership.
+        return stmt.outerjoin(
+            Member, and_(Member.room_id == Match.room_id, Member.user_id == user_id)
+        ).where(
+            or_(
+                Member.user_id == user_id,
+                and_(
+                    Match.participants[0].as_string() == user_id,
+                    or_(
+                        Match.game_id == "tarot",
+                        and_(Match.game_id.in_(CHANCE_GAME_IDS),
+                             func.json_array_length(Match.participants) == 1,
+                             Match.state["phase"].as_string() == "finished"),
+                    ),
+                ),
+            ),
+            Match.result.is_not(None),
+        )
+
+    def history(self, user_id: str) -> list[Match]:
         return list(
             self.session.scalars(
-                select(Match)
-                .outerjoin(Member, and_(Member.room_id == Match.room_id, Member.user_id == user_id))
-                .where(
-                    or_(
-                        Member.user_id == user_id,
-                        and_(
-                            Match.participants[0].as_string() == user_id,
-                            or_(
-                                Match.game_id == "tarot",
-                                and_(Match.game_id.in_(CHANCE_GAME_IDS),
-                                     func.json_array_length(Match.participants) == 1,
-                                     Match.state["phase"].as_string() == "finished"),
-                            ),
-                        ),
-                    ),
-                    Match.result.is_not(None),
-                )
+                self._played(select(Match), user_id)
                 .order_by(Match.created_at.desc())
                 .limit(100)
+            ).all()
+        )
+
+    def played(self, user_id: str) -> list[tuple[str, float, dict[str, Any], list[str]]]:
+        """Every saved result this player could count, without the game state:
+        game, created time, result and participants. The caller keeps the matches
+        the player took part in and drops abandoned ones."""
+        return [
+            (game_id, created_at, result, participants)
+            for game_id, created_at, result, participants in self.session.execute(
+                self._played(
+                    select(Match.game_id, Match.created_at, Match.result, Match.participants),
+                    user_id,
+                ).order_by(Match.created_at)
+            )
+            if isinstance(result, dict) and isinstance(participants, list)
+        ]
+
+    def lock_profile(self, user_id: str) -> Profile | None:
+        """A player's profile, held for this transaction so two changes to what
+        they redeemed or wear cannot overwrite each other. Joining a room is not
+        blocked: the lock leaves the key free for new memberships."""
+        return self.session.scalar(
+            select(Profile).where(Profile.id == user_id)
+            .with_for_update(key_share=True)
+            .execution_options(populate_existing=True)
+        )
+
+    def lock_open_rooms(self, user_id: str) -> list[Room]:
+        """Open rooms this player is an active member of, locked in a stable order."""
+        return list(
+            self.session.scalars(
+                select(Room)
+                .join(Member, Member.room_id == Room.id)
+                .where(Member.user_id == user_id, Member.active.is_(True),
+                       Room.status != "closed")
+                .order_by(Room.id)
+                .with_for_update(of=Room)
             ).all()
         )
 

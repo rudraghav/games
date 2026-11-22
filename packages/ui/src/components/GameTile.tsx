@@ -28,12 +28,27 @@ export function GameTile({
   href?: string;
   edition?: 'standard' | 'house';
   soloMode?: boolean;
-  variant?: 'standard' | 'featured';
+  /**
+   * `rail` is the smaller card used in a collection rail. It is named by the
+   * game with its players and length ("Uno, 2–10 players, 10–20 min"), so the
+   * library's own "Open Uno" tile stays the one entry of that name on a page.
+   */
+  variant?: 'standard' | 'featured' | 'rail';
   actionLabel?: string;
   /** Who it is for, when seat counts would mislead (one organiser, a whole group). */
   groupLabel?: string;
 }) {
   const featured = variant === 'featured';
+  const rail = variant === 'rail';
+  const players = groupLabel
+    ? groupLabel
+    : soloMode && minPlayers > 1
+      ? 'You + bots'
+      : minPlayers === maxPlayers
+        ? minPlayers === 1
+          ? 'Solo'
+          : `${minPlayers} players`
+        : `${minPlayers}–${maxPlayers} players`;
   const content = (
     <>
       <div className="game-poster" data-tone={tone}>
@@ -53,15 +68,7 @@ export function GameTile({
             ) : (
               <UsersRound size={12} aria-hidden="true" />
             )}
-            {groupLabel
-              ? groupLabel
-              : soloMode && minPlayers > 1
-                ? 'You + bots'
-                : minPlayers === maxPlayers
-                  ? minPlayers === 1
-                    ? 'Solo'
-                    : `${minPlayers} players`
-                  : `${minPlayers}–${maxPlayers} players`}
+            {players}
           </span>
           <span>
             <Clock3 size={12} aria-hidden="true" />
@@ -77,10 +84,10 @@ export function GameTile({
     </>
   );
   const attributes = {
-    className: 'game-tile',
+    className: rail ? 'game-rail-tile' : 'game-tile',
     'data-edition': edition,
     'data-variant': variant,
-    'aria-label': `Open ${name}`,
+    'aria-label': rail ? `${name}, ${players}, ${minutes} min` : `Open ${name}`,
   };
   return href ? (
     <a {...attributes} href={href}>

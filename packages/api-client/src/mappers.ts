@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import type { components } from './generated/schema';
 import { cardSchema } from './card-schema';
+import { cosmeticId } from './progress';
 
 type Wire = components['schemas'];
 type WireCard = Wire['CardView'];
@@ -20,6 +21,8 @@ const memberGate = z
     id: memberId,
     is_bot: z.boolean().default(false),
     bot_level: botLevel.nullish(),
+    // The avatar frame this member wears, for everyone at the table to see.
+    frame: cosmeticId,
   })
   .refine(
     (member) => member.id.startsWith('bot:') === member.is_bot,
@@ -51,6 +54,8 @@ const profileGate = z.object({
   name: z.string(),
   avatar,
   username: username.nullish(),
+  frame: cosmeticId,
+  card_back: cosmeticId,
 });
 
 export function mapCard(card: CompatibleCard) {
@@ -138,8 +143,10 @@ export function mapRoom(wire: Wire['RoomView']) {
     inviteToken: wire.invite_token,
     // People invited by username who have not answered yet.
     pendingInvites: gate.pending_invites,
-    members: wire.members.map((member) => ({
+    members: wire.members.map((member, index) => ({
       id: member.id,
+      // Absent until the server sends cosmetics; an unknown id draws no frame.
+      frame: gate.members[index].frame ?? null,
       isBot: member.is_bot ?? false,
       // Bots without a stated level play each game's full policy, as they always have.
       botLevel: member.is_bot ? (member.bot_level ?? 'hard') : null,
@@ -169,6 +176,9 @@ export function mapProfile(wire: Wire['OwnProfileView']) {
     name: profile.name,
     avatar: profile.avatar,
     username: profile.username ?? null,
+    // The frame everyone sees on this player, and the card back only they see.
+    frame: profile.frame ?? null,
+    cardBack: profile.card_back ?? null,
   };
 }
 

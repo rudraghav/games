@@ -1,3 +1,23 @@
+## 2026-11-23 — Home restyle, player progress, earned rewards, ticket cards and a teams section
+
+- Owner asked to improve the UI by looking at corporate team-game apps, gamification and coupons, and chose all four parts offered: a home and library restyle, player progress, ticket and coupon-style cards, and a "for teams" section, with coupons meaning rewards earned and redeemed inside the app.
+
+- Home now opens with a welcome strip (level, XP to next level, streak, badges), keeps joining by code one tap away, shows invitations as tickets and a Continue row, then five curated collections above the unchanged library. A streak never says it was lost; yesterday still counts as alive.
+
+- The server works out progress from finished games (XP, levels, streak, 14 badges) and guards rewards: five avatar frames everyone sees and four card backs for the player's own screen, each a coupon that is locked, ready to redeem, redeemed or in use. A win needs someone to beat, so games played alone never count as wins. Nothing is sold.
+
+- "For teams" is a curated collection with group-size and time filters. Most Likely and Hot Seat are included because their decks read as fine for colleagues and their sip-prompt rule is off by default; the section says so instead of claiming there are no drinking games.
+
+- Migration 3002383be1bd adds profiles.cosmetics.
+
+- Local checks: frontend (481 unit tests), backend (8,096), contracts, tooling, multiplayer (337) and migrations pass; the full browser suite passes with 527 passed, 77 skipped, none failed. Docker is still down, so these ran against the temporary PostgreSQL. Evidence: docs/evidence/home-progress-rewards-2026-11-23.
+
+- Cleanup at this checkpoint: removed the Playwright output folder in the repo (162 MB), the superseded room-setup snapshot and old probe files from the session's scratch folder. Kept: the temporary PostgreSQL data folder (88 MB; the local API uses it until Docker is back), final screenshots, and the release helper records under .vercel.
+
+- AGENTS.md has an uncommitted "Required task cleanup" section that this work did not write; it is followed above and left out of this work's commits.
+
+- State: verified locally; not committed or released. Releasing needs the production migration first.
+
 ## 2026-11-22 — Secret Santa: names, date and location, exclusions by person and by group, private links
 
 - Owner asked for a Secret Santa game with names, a location and a date, and exclusions for anyone in a group or individually, after looking at how DrawNames does it.

@@ -105,6 +105,124 @@ host removes that player, and when the invitee clears their username.
 Tests: `test_room_codes.py`, `test_bot_setup_rooms.py`, `test_usernames_rooms.py`
 and `test_room_invitations.py` run in the `multiplayer` verification group.
 
+## Player progress and earned rewards
+
+Progress is worked out by the server from saved results every time it is asked
+for. No XP, level, streak or badge is stored, and no request carries a number
+the server would believe. `progress.py` holds every rule and is pure: it takes
+plain match facts and "now", so it has no database or clock access.
+
+**Counted matches.** A player's finished matches whose result is not abandoned
+and in which they were a participant (a watcher earns nothing).
+`Repository.played` returns game, created time, result and participants for
+every saved result the player can reach, with the same reach as the history in
+`GET /v1/me` (including solo Tarot and wheel/reel sessions that outlive
+membership) but with no limit and without the game state. A participant whose
+id starts with `bot:` is a bot.
+
+**XP.** 10 for each counted match, +10 for a win, +5 when at least one other
+person (not a bot) took part, +15 for each different game finished at least
+once. A win is being in `winners` of a match with at least two participants: it
+needs someone to beat, a person or a bot. Games played alone (Tarot readings,
+Secret Santa draws, the wheel and the reels) count as finished matches and are
+never wins, whatever the engine names as the winner.
+
+**Level.** Level L begins at `25 * L * (L - 1)` XP: 0, 50, 150, 300, 500, 750,
+1050, 1400 (level 8) and so on. `level_xp` is where the current level began and
+`next_level_xp` where the next begins.
+
+**Streak.** Days in a row with at least one counted match, in the player's own
+day: `tz_offset` (minutes east of UTC, -720 to 840) is added to each match's
+created time and to now. `current` is the run ending today or yesterday, so a
+streak is not shown as lost just after midnight; otherwise 0. `best` is the
+longest run ever. `played_today` says whether today already counts. The offset
+comes from the caller, so two offsets can split the same games into different
+days; it can move a day boundary but cannot create a day nobody played.
+
+**Totals.** `games`, `wins`, `different_games`, `with_friends` (matches with at
+least one other person).
+
+| Badge id | Name | Description | Goal | Counts |
+| --- | --- | --- | --- | --- |
+| `first-game` | First game | Finish your first game | 1 | finished games |
+| `regular` | Regular | Finish 10 games | 10 | finished games |
+| `veteran` | Veteran | Finish 50 games | 50 | finished games |
+| `first-win` | First win | Win a game | 1 | wins |
+| `five-wins` | Five wins | Win 5 games | 5 | wins |
+| `twenty-five-wins` | Champion | Win 25 games | 25 | wins |
+| `explorer` | Explorer | Finish 5 different games | 5 | different games |
+| `collector` | Collector | Finish 15 different games | 15 | different games |
+| `good-company` | Good company | Finish 5 games with other people | 5 | games with another person |
+| `full-table` | Full table | Finish a game with 3 or more other people | 1 | games with 4 or more people, bots not counted |
+| `streak-3` | Three in a row | Play 3 days in a row | 3 | best streak |
+| `streak-7` | Full week | Play 7 days in a row | 7 | best streak |
+| `reader` | Reader | Finish a Tarot reading | 1 | finished Tarot readings |
+| `organiser` | Organiser | Finish a Secret Santa draw | 1 | finished Secret Santa tables |
+
+A badge's `value` is its progress capped at `goal`; `earned` is `value >= goal`.
+
+| Reward id | Kind | Name | Requirement |
+| --- | --- | --- | --- |
+| `frame-gold` | frame | Gold frame | Reach level 2 |
+| `frame-laurel` | frame | Laurel frame | Earn the Five wins badge |
+| `frame-flame` | frame | Flame frame | Earn the Three in a row badge |
+| `frame-confetti` | frame | Confetti frame | Earn the Good company badge |
+| `frame-crown` | frame | Crown frame | Reach level 8 |
+| `back-midnight` | card_back | Midnight card back | Reach level 3 |
+| `back-sunrise` | card_back | Sunrise card back | Earn the Explorer badge |
+| `back-emerald` | card_back | Emerald card back | Earn the Regular badge |
+| `back-royal` | card_back | Royal card back | Reach level 6 |
+
+A reward's `value`/`goal` mirror its requirement: the level (capped at the
+level needed) or the badge's own progress. `state` is `locked` until the
+requirement is met, `available` once met and not yet redeemed, `redeemed` after
+that. `equipped` is true for the redeemed frame or card back in use. `BADGES`
+and `REWARDS` in `progress.py` are the only place these names, descriptions and
+requirements exist; the web shows what the API sends.
+
+Rewards are cosmetic and stay inside the app: there is no money, no code and no
+outside offer.
+
+**Routes.** All three answer the caller's own `ProgressView` and take the same
+optional `tz_offset`.
+
+- `GET /v1/progress`: a player with no profile or no games gets the empty
+  level-1 view, never a 404, and no profile is created. Limit: 60 a minute.
+- `POST /v1/rewards/{reward_id}/redeem`: unknown id 404; still locked 409
+  "Gold frame is not earned yet. Reach level 2 first."; available becomes
+  redeemed; already redeemed changes nothing. Limit: 30 a minute.
+- `PUT /v1/profile/cosmetics {frame, card_back}`: each is null or a reward of
+  that kind the caller has redeemed. An unknown id or the wrong kind is 422; a
+  reward not yet redeemed is 409. Both fields are always applied, so a field
+  left out or null takes that item off. Limit: 30 a minute.
+
+**What is stored.** Only `profiles.cosmetics`:
+`{"claimed": [reward ids], "frame": id or null, "card_back": id or null}`. It is
+read defensively (`read_cosmetics`): unknown ids and ids of the wrong kind are
+ignored. A stored claim counts only while its requirement is still met, so a
+claimed reward that is no longer earned is shown as `locked`, is not `equipped`
+and cannot be worn. Redeeming and wearing hold the profile row
+(`FOR NO KEY UPDATE`, so joins are not blocked) and two redeems at once both
+stick.
+
+**What is public.** Only the worn frame id: `ProfileView.frame`, so
+`MemberView.frame` in every `RoomView` and `OwnProfileView.frame`. A bot's frame
+is null, and a stored id that is not a known frame is projected as null. The
+projection checks that the id is a known frame, not that it is still earned;
+earning is checked when it is redeemed and when it is worn.
+`OwnProfileView.card_back` is returned to its owner only (`GET /v1/me`, the
+profile and username endpoints). XP, level, streak, totals, badges and rewards
+appear in no other response and nothing about another player's progress is ever
+returned.
+
+When the worn frame changes, every open room the player is an active member of
+has its revision bumped so tables showing their seat refresh. The rooms are
+locked in id order before the profile, the order a join uses. Changing only the
+card back, or wearing the same frame again, bumps nothing.
+
+Tests: `test_progress.py` (pure rules, `backend` group) and
+`test_progress_rooms.py` (HTTP, `multiplayer` group).
+
 ## Direct solo and bot starts
 
 `POST /v1/games/{game_id}/play` takes a UUID `request_id`. An intentional start

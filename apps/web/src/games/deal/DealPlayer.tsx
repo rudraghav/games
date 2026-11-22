@@ -320,6 +320,7 @@ export function DealPlayer(props: Props) {
           compact
           name={member?.name || 'Player'}
           avatar={member?.avatar}
+          frame={member?.frame}
           bot={member?.isBot}
           you
           active={match.currentPlayer === player.id}

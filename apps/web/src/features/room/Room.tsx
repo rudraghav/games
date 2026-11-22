@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { Button, Modal, Wordmark, TurnNotice, ChoiceGroup } from '@games/ui';
 import { gameById } from '@games/api-client/catalog';
+import { cardBackIds } from '@games/api-client';
 import { api } from '@/lib/session';
 import { RoomDialog } from '@/shared/RoomDialog';
 import { tableRegistry } from '@/games/registry';
@@ -31,6 +32,7 @@ import { RoomActivity } from './RoomActivity';
 import { ActionToasts } from './ActionToasts';
 import { Lobby } from './Lobby';
 import { RoomResults } from './RoomResults';
+import { ResultsProgress } from './ResultsProgress';
 import { TurnCoach } from '@/shared/tutorial/TurnCoach';
 import { GameRulebook } from '@/shared/tutorial/RulesIllustrations';
 import { setGuideEnabled, useGuideEnabled } from '@/shared/tutorial/guide-preference';
@@ -182,6 +184,12 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
     setPanel('rules');
   };
   const self = room.members.find((member) => member.id === selfId);
+  // The viewer's own card back. It restyles face-down cards on this screen only;
+  // an id this build cannot draw leaves the standard back in place.
+  const wornBack = me.data?.profile?.cardBack;
+  const cardBack = (cardBackIds as readonly string[]).includes(wornBack ?? '')
+    ? wornBack
+    : undefined;
   const Table = tableRegistry[room.gameId];
   const turn = room.game ? turnState(room.game, room, selfId) : null;
   // Offline, the saved table stays readable but stops looking or acting live.
@@ -255,7 +263,7 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
     </div>
   );
   return (
-    <div className="room-page">
+    <div className="room-page" data-card-back={cardBack ?? undefined}>
       <header className="room-header">
         <Link
           href={gamePath(room.gameId)}
@@ -449,6 +457,7 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
               {resultsFirst ? (
                 <>
                   <RoomResults room={room} game={game} />
+                  <ResultsProgress key={room.matchId} />
                   {lobby}
                   <h2 className="final-table-heading">Final table</h2>
                 </>

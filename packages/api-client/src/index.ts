@@ -17,6 +17,7 @@ import {
 } from './mappers';
 import type { AstrologyInput } from './astrology';
 import { mapSantaLinks, mapSantaReveal } from './secret-santa-details';
+import { mapProgress } from './progress';
 export type {
   Room,
   Match,
@@ -36,6 +37,18 @@ export type {
   SavedReading,
 } from './mappers';
 export { botLevels } from './mappers';
+export {
+  mapProgress,
+  frameIds,
+  cardBackIds,
+  type Progress,
+  type Badge,
+  type Reward,
+  type RewardKind,
+  type RewardState,
+  type FrameId,
+  type CardBackId,
+} from './progress';
 export { boardDetails, wordsDetails, gemsDetails } from './game-details';
 export { trioDetails, flipSevenDetails, azulDetails } from './modern-details';
 export { partyDetails } from './party-details';
@@ -136,6 +149,8 @@ export function createApi(accessToken?: () => Promise<string | null>) {
     },
   });
   const params = (id: string) => ({ path: { room_id: id } });
+  // A streak follows the player's own midnight: minutes east of UTC, as the server asks.
+  const day = () => ({ tz_offset: -new Date().getTimezoneOffset() });
   return {
     async me() {
       return mapMe(unwrap(await client.GET('/v1/me')));
@@ -149,6 +164,31 @@ export function createApi(accessToken?: () => Promise<string | null>) {
     },
     async clearUsername() {
       return mapProfile(unwrap(await client.DELETE('/v1/profile/username')));
+    },
+    /** The player's own level, streak, badges and rewards, computed by the server. */
+    async progress() {
+      return mapProgress(unwrap(await client.GET('/v1/progress', { params: { query: day() } })));
+    },
+    /** Redeem an earned reward. Refused with the server's words while it is locked. */
+    async redeemReward(rewardId: string) {
+      return mapProgress(
+        unwrap(
+          await client.POST('/v1/rewards/{reward_id}/redeem', {
+            params: { path: { reward_id: rewardId }, query: day() },
+          }),
+        ),
+      );
+    },
+    /** Wear a redeemed frame and card back. Both are always sent; null takes one off. */
+    async wearCosmetics(worn: { frame: string | null; cardBack: string | null }) {
+      return mapProgress(
+        unwrap(
+          await client.PUT('/v1/profile/cosmetics', {
+            params: { query: day() },
+            body: { frame: worn.frame, card_back: worn.cardBack },
+          }),
+        ),
+      );
     },
     /** Prefix search over usernames; at least two characters, at most eight players. */
     async searchPlayers(query: string) {

@@ -5,22 +5,46 @@ import { Button, ChoiceGroup, GameTile } from '@games/ui';
 import { games } from '@games/api-client/catalog';
 import { GameArt } from '@/shared/GameArt';
 import { gamePath } from '@/shared/game-paths';
-import { categories, findGames, type Category } from './catalogue-search';
+import {
+  categories,
+  findGames,
+  teamSizes,
+  teamTimes,
+  teamsNote,
+  type Category,
+  type TeamSize,
+  type TeamTime,
+} from './catalogue-search';
 
-export function GameLibrary({ initialSolo = false }: { initialSolo?: boolean }) {
+export function GameLibrary({
+  initialSolo = false,
+  preset,
+}: {
+  initialSolo?: boolean;
+  /** The view to open with, from Play solo or a collection's See all. */
+  preset?: { category: Category; players: number };
+}) {
   const [query, setQuery] = useState('');
-  const [players, setPlayers] = useState(initialSolo ? 1 : 0);
-  const [category, setCategory] = useState<Category>(initialSolo ? 'solo' : 'all');
+  const [players, setPlayers] = useState(preset?.players ?? (initialSolo ? 1 : 0));
+  const [category, setCategory] = useState<Category>(
+    preset?.category ?? (initialSolo ? 'solo' : 'all'),
+  );
+  // The two quick filters that exist only inside For teams.
+  const [teamSize, setTeamSize] = useState<TeamSize | ''>('');
+  const [teamTime, setTeamTime] = useState<TeamTime | ''>('');
   const search = useRef<HTMLInputElement>(null);
   const categoryRail = useRef<HTMLDivElement>(null);
+  const teams = category === 'teams';
   const hasFilters = query.trim().length > 0 || players !== 0 || category !== 'all';
-  const filtered = findGames(games, query, players, category);
+  const filtered = findGames(games, query, players, category, { size: teamSize, time: teamTime });
   const featured = filtered.find((game) => game.id === 'tarot');
   const ordered = featured ? [featured, ...filtered.filter((game) => game !== featured)] : filtered;
   const reset = () => {
     setQuery('');
     setPlayers(0);
     setCategory('all');
+    setTeamSize('');
+    setTeamTime('');
     if (categoryRail.current) categoryRail.current.scrollLeft = 0;
     search.current?.focus();
   };
@@ -83,7 +107,13 @@ export function GameLibrary({ initialSolo = false }: { initialSolo?: boolean }) 
               className="library-categories"
               options={categories}
               value={category}
-              onChange={setCategory}
+              onChange={(next) => {
+                setCategory(next);
+                if (next !== 'teams') {
+                  setTeamSize('');
+                  setTeamTime('');
+                }
+              }}
             />
           </div>
           <Button
@@ -98,6 +128,36 @@ export function GameLibrary({ initialSolo = false }: { initialSolo?: boolean }) 
             <RotateCcw size={17} aria-hidden="true" />
           </Button>
         </div>
+        {teams ? (
+          <div className="team-filters">
+            <p className="team-note">{teamsNote}</p>
+            <div className="team-filter">
+              <span className="team-filter-label" aria-hidden="true">
+                Group size
+              </span>
+              {/* Pressing the chosen size again clears it. */}
+              <ChoiceGroup
+                label="Group size"
+                className="team-choices"
+                options={teamSizes}
+                value={teamSize}
+                onChange={(next) => setTeamSize(next === teamSize ? '' : next)}
+              />
+            </div>
+            <div className="team-filter">
+              <span className="team-filter-label" aria-hidden="true">
+                Time
+              </span>
+              <ChoiceGroup
+                label="Time"
+                className="team-choices"
+                options={teamTimes}
+                value={teamTime}
+                onChange={(next) => setTeamTime(next === teamTime ? '' : next)}
+              />
+            </div>
+          </div>
+        ) : null}
         <p className="library-count sr-only" role="status" aria-atomic="true">
           {filtered.length} {filtered.length === 1 ? 'game' : 'games'}
         </p>
@@ -127,7 +187,11 @@ export function GameLibrary({ initialSolo = false }: { initialSolo?: boolean }) 
         ) : (
           <div className="library-empty">
             <h3>No games found</h3>
-            <p>Try another name, category or group size.</p>
+            <p>
+              {teams && (teamSize || teamTime)
+                ? 'No team pick fits both choices. Try another group size or time.'
+                : 'Try another name, category or group size.'}
+            </p>
             <Button variant="secondary" onClick={reset}>
               Show all games
             </Button>

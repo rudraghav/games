@@ -22,3 +22,8 @@ need not be present.
 
 Checks: `apps/web/src/tests/secret-santa.test.tsx` and the mocked link-page
 tests in `tests/browser/secret-santa.spec.ts`.
+
+The page's card is a `Ticket` in its gift-tag shape (an eyelet at the top).
+With a draw, the tear-off part holds the one action: "Show who I’m buying for"
+before the reveal, the event details and "Hide the name" after it. The loading
+and error states are the same tag with no tear line.

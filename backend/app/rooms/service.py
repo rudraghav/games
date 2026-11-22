@@ -47,6 +47,16 @@ from app.games.tarot.reading import (
 from app.games.tarot.style import ReadingStyle, saved_style
 from app.models import Match, Member, Message, Profile, Receipt, Room, RoomInvite, TarotReading
 from app.rooms.bots import BOT_DELAY_SECONDS, BOT_NAMES, bot_delay, next_bot_view
+from app.rooms.progress import (
+    REWARD_BY_ID,
+    Cosmetics,
+    MatchFact,
+    build_progress,
+    read_cosmetics,
+    stored_cosmetics,
+    worn_card_back,
+    worn_frame,
+)
 from app.rooms.public_actions import PUBLIC_ACTIONS, public_action
 from app.rooms.public_history import public_move
 from app.rooms.repository import CHANCE_GAME_IDS, Repository
@@ -55,6 +65,7 @@ from app.rooms.schemas import (
     AddBots,
     BotSeat,
     ChatInput,
+    CosmeticsInput,
     CreateRoom,
     DriveBots,
     InvitationView,
@@ -66,6 +77,7 @@ from app.rooms.schemas import (
     PlayerHit,
     PlayerSearch,
     ProfileInput,
+    ProgressView,
     QuickPlay,
     RoomLookup,
     RoomSettings,
@@ -1132,7 +1144,8 @@ class RoomService:
     @staticmethod
     def _own_profile(profile: Profile) -> OwnProfileView:
         return OwnProfileView(
-            id=profile.id, name=profile.name, avatar=profile.avatar, username=profile.username
+            id=profile.id, name=profile.name, avatar=profile.avatar, username=profile.username,
+            frame=worn_frame(profile.cosmetics), card_back=worn_card_back(profile.cosmetics),
         )
 
     def profile(self, actor: Identity, data: ProfileInput) -> OwnProfileView:
@@ -1317,6 +1330,105 @@ class RoomService:
                 room.revision += 1
             self.repo.flush()
         return SantaReveal.model_validate(draw)
+
+    # Player progress and earned rewards. Nothing here takes a number from the
+    # client: XP, level, streak and badges are recomputed from saved results, and a
+    # reward is redeemed or worn only when that computation says it is earned.
+    def _progress(
+        self, actor: Identity, tz_offset: int, cosmetics: Cosmetics,
+        facts: list[MatchFact] | None = None,
+    ) -> ProgressView:
+        if facts is None:
+            facts = self._match_facts(actor)
+        return build_progress(actor.id, facts, time.time(), tz_offset, cosmetics)
+
+    def _match_facts(self, actor: Identity) -> list[MatchFact]:
+        return [
+            MatchFact(
+                game_id=game_id,
+                created_at=created_at,
+                winners=tuple(w for w in result.get("winners") or [] if isinstance(w, str)),
+                participants=tuple(p for p in participants if isinstance(p, str)),
+                abandoned=bool(result.get("abandoned")),
+            )
+            for game_id, created_at, result, participants in self.repo.played(actor.id)
+        ]
+
+    def progress(self, actor: Identity, tz_offset: int = 0) -> ProgressView:
+        """The caller's own progress. A player who has not played yet is at level 1."""
+        self._rate(actor, "progress")
+        with self.session.begin():
+            profile = self.repo.profile(actor.id)
+            return self._progress(
+                actor, tz_offset, read_cosmetics(profile.cosmetics if profile else None)
+            )
+
+    def redeem_reward(self, actor: Identity, reward_id: str, tz_offset: int = 0) -> ProgressView:
+        self._rate(actor, "rewards", 30)
+        if reward_id not in REWARD_BY_ID:
+            raise HTTPException(404, "There is no reward with that name.")
+        with self.session.begin():
+            profile = self.repo.lock_profile(actor.id)
+            cosmetics = read_cosmetics(profile.cosmetics if profile else None)
+            facts = self._match_facts(actor)
+            view = self._progress(actor, tz_offset, cosmetics, facts)
+            reward = next(r for r in view.rewards if r.id == reward_id)
+            if reward.state == "locked" or profile is None:
+                raise HTTPException(
+                    409, f"{reward.name} is not earned yet. {reward.requirement} first."
+                )
+            if reward.state == "redeemed":
+                return view
+            cosmetics = Cosmetics(
+                cosmetics.claimed | {reward_id}, cosmetics.frame, cosmetics.card_back
+            )
+            profile.cosmetics = stored_cosmetics(cosmetics)
+            self.repo.flush()
+            return self._progress(actor, tz_offset, cosmetics, facts)
+
+    def wear(self, actor: Identity, data: CosmeticsInput, tz_offset: int = 0) -> ProgressView:
+        self._rate(actor, "cosmetics", 30)
+        for chosen, kind, wording in (
+            (data.frame, "frame", "a frame"), (data.card_back, "card_back", "a card back"),
+        ):
+            if chosen is not None and (
+                chosen not in REWARD_BY_ID or REWARD_BY_ID[chosen].kind != kind
+            ):
+                raise HTTPException(422, f"Choose {wording} from your rewards.")
+        with self.session.begin():
+            profile = self.repo.profile(actor.id)
+            # Rooms are locked before the profile, the order a join uses, and only
+            # when the frame everyone sees is about to change.
+            rooms = (
+                self.repo.lock_open_rooms(actor.id)
+                if profile is not None and worn_frame(profile.cosmetics) != data.frame else []
+            )
+            profile = self.repo.lock_profile(actor.id)
+            cosmetics = read_cosmetics(profile.cosmetics if profile else None)
+            facts = self._match_facts(actor)
+            view = self._progress(actor, tz_offset, cosmetics, facts)
+            states = {reward.id: reward for reward in view.rewards}
+            for chosen in (data.frame, data.card_back):
+                if chosen is not None and states[chosen].state != "redeemed":
+                    raise HTTPException(
+                        409,
+                        f"Redeem {states[chosen].name} before wearing it."
+                        if states[chosen].state == "available"
+                        else f"{states[chosen].name} is not earned yet. "
+                             f"{states[chosen].requirement} first.",
+                    )
+            if profile is None:
+                # Nothing to take off: a player with no profile wears nothing.
+                return view
+            changed = cosmetics.frame != data.frame
+            cosmetics = Cosmetics(cosmetics.claimed, data.frame, data.card_back)
+            profile.cosmetics = stored_cosmetics(cosmetics)
+            if changed:
+                # Tables showing this player's seat pick up the new frame.
+                for room in rooms:
+                    room.revision += 1
+            self.repo.flush()
+            return self._progress(actor, tz_offset, cosmetics, facts)
 
     def me(self, actor: Identity) -> MeView:
         with self.session.begin():

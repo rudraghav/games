@@ -12,6 +12,8 @@ const player: Me = {
     name: 'Jamie',
     avatar: 3,
     username: null,
+    frame: null,
+    cardBack: null,
   },
   anonymous: true,
   invitations: [],

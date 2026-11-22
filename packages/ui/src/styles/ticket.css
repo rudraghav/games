@@ -1,0 +1,371 @@
+/*
+ * Ticket: a body and a stub joined by a dashed tear line, with a semicircular
+ * notch cut from each edge where they meet. The notches are real holes (a mask),
+ * so whatever is behind the ticket shows through on light and dark surfaces
+ * alike, and the soft shadow follows the cut shape. No images.
+ */
+@layer components {
+  .ticket {
+    --ticket-notch: 9px;
+    --ticket-radius: 16px;
+    --ticket-paper: var(--color-surface);
+    --ticket-ink: var(--color-ink);
+    --ticket-line: color-mix(in srgb, var(--color-ink-muted) 45%, var(--ticket-paper));
+    /* One notch: a quarter circle cut from a corner of the piece it is drawn on. */
+    --ticket-cut: #0000 calc(var(--ticket-notch) - 0.5px), #000 calc(var(--ticket-notch) + 0.5px);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    color: var(--ticket-ink);
+    filter: drop-shadow(0 1px 1px #12291b24) drop-shadow(0 6px 14px #12291b1a);
+  }
+  .ticket[data-variant='success'] {
+    --ticket-paper: var(--color-sage-light);
+    --ticket-line: color-mix(in srgb, var(--color-sage) 70%, var(--ticket-paper));
+  }
+  .ticket[data-variant='muted'] {
+    --ticket-paper: var(--color-surface-muted);
+    --ticket-line: color-mix(in srgb, var(--color-ink-muted) 38%, var(--ticket-paper));
+    filter: drop-shadow(0 1px 1px #12291b1f);
+  }
+  .ticket-body,
+  .ticket-stub {
+    position: relative;
+    min-width: 0;
+    background: var(--ticket-paper);
+  }
+  .ticket-body {
+    flex: 1 1 auto;
+    padding: 16px 18px;
+    border-radius: var(--ticket-radius);
+  }
+  .ticket-stub {
+    flex: none;
+    padding: 14px 18px 16px;
+  }
+  /* The tear line sits on the stub's joining edge, clear of both notches. */
+  .ticket-stub::before {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+
+  /* ----- Stacked: the stub tears off below (or above) the body ----- */
+  .ticket[data-stub='end'] > .ticket-body {
+    border-radius: var(--ticket-radius) var(--ticket-radius) 0 0;
+    -webkit-mask:
+      radial-gradient(circle at 0 100%, var(--ticket-cut)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% 100%, var(--ticket-cut)) right / 51% 100% no-repeat;
+    mask:
+      radial-gradient(circle at 0 100%, var(--ticket-cut)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% 100%, var(--ticket-cut)) right / 51% 100% no-repeat;
+  }
+  .ticket[data-stub='end'] > .ticket-stub {
+    border-radius: 0 0 var(--ticket-radius) var(--ticket-radius);
+    -webkit-mask:
+      radial-gradient(circle at 0 0, var(--ticket-cut)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% 0, var(--ticket-cut)) right / 51% 100% no-repeat;
+    mask:
+      radial-gradient(circle at 0 0, var(--ticket-cut)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% 0, var(--ticket-cut)) right / 51% 100% no-repeat;
+  }
+  .ticket[data-stub='end'] > .ticket-stub::before {
+    inset: -1px calc(var(--ticket-notch) + 5px) auto;
+    border-top: 2px dashed var(--ticket-line);
+  }
+  .ticket[data-stub='start'] > .ticket-stub {
+    order: -1;
+    border-radius: var(--ticket-radius) var(--ticket-radius) 0 0;
+    -webkit-mask:
+      radial-gradient(circle at 0 100%, var(--ticket-cut)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% 100%, var(--ticket-cut)) right / 51% 100% no-repeat;
+    mask:
+      radial-gradient(circle at 0 100%, var(--ticket-cut)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% 100%, var(--ticket-cut)) right / 51% 100% no-repeat;
+  }
+  .ticket[data-stub='start'] > .ticket-body {
+    border-radius: 0 0 var(--ticket-radius) var(--ticket-radius);
+    -webkit-mask:
+      radial-gradient(circle at 0 0, var(--ticket-cut)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% 0, var(--ticket-cut)) right / 51% 100% no-repeat;
+    mask:
+      radial-gradient(circle at 0 0, var(--ticket-cut)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% 0, var(--ticket-cut)) right / 51% 100% no-repeat;
+  }
+  .ticket[data-stub='start'] > .ticket-stub::before {
+    inset: auto calc(var(--ticket-notch) + 5px) -1px;
+    border-top: 2px dashed var(--ticket-line);
+  }
+
+  /* ----- Side by side: the stub tears off beside the body ----- */
+  .ticket[data-layout='row'] {
+    flex-direction: row;
+  }
+  .ticket[data-layout='row'][data-stub='end'] > .ticket-body {
+    border-radius: var(--ticket-radius) 0 0 var(--ticket-radius);
+    -webkit-mask:
+      radial-gradient(circle at 100% 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+      radial-gradient(circle at 100% 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+    mask:
+      radial-gradient(circle at 100% 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+      radial-gradient(circle at 100% 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+  }
+  .ticket[data-layout='row'][data-stub='end'] > .ticket-stub {
+    border-radius: 0 var(--ticket-radius) var(--ticket-radius) 0;
+    -webkit-mask:
+      radial-gradient(circle at 0 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+      radial-gradient(circle at 0 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+    mask:
+      radial-gradient(circle at 0 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+      radial-gradient(circle at 0 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+  }
+  .ticket[data-layout='row'][data-stub='end'] > .ticket-stub::before {
+    inset: calc(var(--ticket-notch) + 5px) auto calc(var(--ticket-notch) + 5px) -1px;
+    border-top: 0;
+    border-left: 2px dashed var(--ticket-line);
+  }
+  .ticket[data-layout='row'][data-stub='start'] > .ticket-stub {
+    border-radius: var(--ticket-radius) 0 0 var(--ticket-radius);
+    -webkit-mask:
+      radial-gradient(circle at 100% 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+      radial-gradient(circle at 100% 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+    mask:
+      radial-gradient(circle at 100% 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+      radial-gradient(circle at 100% 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+  }
+  .ticket[data-layout='row'][data-stub='start'] > .ticket-body {
+    border-radius: 0 var(--ticket-radius) var(--ticket-radius) 0;
+    -webkit-mask:
+      radial-gradient(circle at 0 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+      radial-gradient(circle at 0 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+    mask:
+      radial-gradient(circle at 0 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+      radial-gradient(circle at 0 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+  }
+  .ticket[data-layout='row'][data-stub='start'] > .ticket-stub::before {
+    inset: calc(var(--ticket-notch) + 5px) -1px calc(var(--ticket-notch) + 5px) auto;
+    border-top: 0;
+    border-left: 2px dashed var(--ticket-line);
+  }
+  @media (min-width: 620px) {
+    .ticket[data-layout='auto'] {
+      flex-direction: row;
+    }
+    .ticket[data-layout='auto'][data-stub='end'] > .ticket-body {
+      border-radius: var(--ticket-radius) 0 0 var(--ticket-radius);
+      -webkit-mask:
+        radial-gradient(circle at 100% 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+        radial-gradient(circle at 100% 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+      mask:
+        radial-gradient(circle at 100% 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+        radial-gradient(circle at 100% 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+    }
+    .ticket[data-layout='auto'][data-stub='end'] > .ticket-stub {
+      border-radius: 0 var(--ticket-radius) var(--ticket-radius) 0;
+      -webkit-mask:
+        radial-gradient(circle at 0 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+        radial-gradient(circle at 0 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+      mask:
+        radial-gradient(circle at 0 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+        radial-gradient(circle at 0 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+    }
+    .ticket[data-layout='auto'][data-stub='end'] > .ticket-stub::before {
+      inset: calc(var(--ticket-notch) + 5px) auto calc(var(--ticket-notch) + 5px) -1px;
+      border-top: 0;
+      border-left: 2px dashed var(--ticket-line);
+    }
+    .ticket[data-layout='auto'][data-stub='start'] > .ticket-stub {
+      border-radius: var(--ticket-radius) 0 0 var(--ticket-radius);
+      -webkit-mask:
+        radial-gradient(circle at 100% 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+        radial-gradient(circle at 100% 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+      mask:
+        radial-gradient(circle at 100% 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+        radial-gradient(circle at 100% 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+    }
+    .ticket[data-layout='auto'][data-stub='start'] > .ticket-body {
+      border-radius: 0 var(--ticket-radius) var(--ticket-radius) 0;
+      -webkit-mask:
+        radial-gradient(circle at 0 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+        radial-gradient(circle at 0 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+      mask:
+        radial-gradient(circle at 0 0, var(--ticket-cut)) top / 100% 51% no-repeat,
+        radial-gradient(circle at 0 100%, var(--ticket-cut)) bottom / 100% 51% no-repeat;
+    }
+    .ticket[data-layout='auto'][data-stub='start'] > .ticket-stub::before {
+      inset: calc(var(--ticket-notch) + 5px) -1px calc(var(--ticket-notch) + 5px) auto;
+      border-top: 0;
+      border-left: 2px dashed var(--ticket-line);
+    }
+  }
+
+  /* ----- Gift tag: an eyelet on the body's outer edge ----- */
+  .ticket[data-shape='tag'] > .ticket-body {
+    padding-left: 38px;
+  }
+  .ticket[data-shape='tag'] > .ticket-body::after {
+    content: '';
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    translate: 0 -50%;
+    border: 2px solid var(--color-ochre);
+    border-radius: 50%;
+    background: var(--color-canvas);
+    box-shadow: inset 0 1px 2px #12291b40;
+    pointer-events: none;
+  }
+
+  @media (forced-colors: active) {
+    .ticket {
+      filter: none;
+    }
+    .ticket-body,
+    .ticket-stub {
+      -webkit-mask: none !important;
+      mask: none !important;
+      border: 1px solid CanvasText;
+    }
+  }
+}
+
+/* ---------- Where tickets are used ---------- */
+@layer components {
+  /* Home: an invitation. The answer buttons are the tear-off part. */
+  .invitation.ticket {
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+  .invitation > .ticket-body {
+    display: flex;
+    align-items: center;
+    gap: 12px 14px;
+    padding: 14px 16px;
+  }
+  .invitation > .ticket-body > .avatar {
+    flex: none;
+  }
+  .invitation > .ticket-stub.invitation-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+  @media (max-width: 619px) {
+    .invitation > .ticket-stub.invitation-actions > .button {
+      flex: 1;
+    }
+  }
+
+  /* Lobby: the room code is the stub; the link and the actions are the body. */
+  .lobby .invite-panel.invite-hub,
+  .lobby .invite-panel.invite-hub[data-open-seats] {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+  .invite-ticket > .ticket-body {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    padding: 16px 18px;
+  }
+  .invite-ticket > .ticket-stub.invite-hub-code {
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    gap: 4px;
+    padding: 16px 18px;
+  }
+  .invite-hub-friends {
+    padding: 16px 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+  }
+  @media (min-width: 620px) {
+    .invite-ticket > .ticket-stub.invite-hub-code {
+      justify-items: center;
+      min-width: 190px;
+      text-align: center;
+    }
+  }
+
+  /* Secret Santa: one gift tag per person, the sharing actions on its stub. */
+  .santa-link-list {
+    display: grid;
+    gap: 10px;
+  }
+  .santa-link.ticket {
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    border-top: 0;
+  }
+  .santa-link > .ticket-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    padding-block: 12px;
+    padding-right: 14px;
+  }
+  .santa-link > .ticket-body > .santa-link__who {
+    flex: 1 1 90px;
+  }
+  .santa-link > .ticket-stub.santa-link__actions {
+    margin-left: 0;
+    padding: 10px 12px;
+    align-content: center;
+  }
+  /* The private link page: a tag with its eyelet at the top. */
+  .santa-page__card.ticket {
+    display: flex;
+    gap: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .santa-page__card > .ticket-body,
+  .santa-page__card > .ticket-stub {
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+    text-align: center;
+  }
+  .santa-page__card > .ticket-body {
+    padding: 44px 20px 24px;
+  }
+  .santa-page__card > .ticket-stub {
+    padding: 22px 20px 24px;
+  }
+  .santa-page__card.ticket[data-shape='tag'] > .ticket-body::after {
+    left: 50%;
+    top: 16px;
+    translate: -50% 0;
+  }
+  .santa-page__card :is(.ticket-body, .ticket-stub) > .button {
+    width: 100%;
+    min-height: 56px;
+    font-size: 16px;
+  }
+  @media (min-width: 560px) {
+    .santa-page__card > .ticket-body {
+      padding: 50px 34px 28px;
+    }
+    .santa-page__card > .ticket-stub {
+      padding: 26px 34px 30px;
+    }
+  }
+}

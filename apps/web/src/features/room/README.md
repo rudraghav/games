@@ -129,3 +129,31 @@ flows per device, plus mocked lobby states for sharing and search errors).
 An `organiser` game (Secret Santa) is a solo room whose table states its own
 progress: like Tarot it has no turn banner, results panel or rematch lobby, and
 its saved moves read as plain sentences ("You added a name").
+
+## Progress line, frames and card backs (23 November 2026)
+
+- **Results**: `ResultsProgress.tsx` sits directly under `RoomResults`, above
+  the rematch controls, for multiplayer and solo tables alike. It asks for
+  progress once when the result appears (`staleTime: 0`, keyed per match) and
+  shows the level ring, "N XP to level M", the streak when there is one and a
+  "See rewards" link to `/rewards`. It states where the player stands now and
+  compares nothing. Its box is the same height while loading, loaded or
+  unavailable, and it never disables or delays Ready, Start rematch or Play
+  again.
+- **Avatar frames**: each member carries `frame` (an id or null). `Lobby`,
+  `Chat` and every table that draws a seat or an avatar (`PlayerStrip`,
+  `OpponentPanel`, Deal, Skyjo, the casino tables, the party tables, Uno's
+  swap choice) pass it to `Seat` or `Avatar`. A frame is decoration: the
+  avatar's accessible name is still the player's name, and an id this build
+  does not know draws nothing. Bots have no frame.
+- **Card backs**: `Room.tsx` sets `data-card-back` on `.room-page` from the
+  viewer's own `profile.cardBack`, and only when it is one of the four known
+  ids. The CSS in `rewards.css` restyles `.playing-card--back` under it, so
+  only this viewer's screen changes and nobody else's cards look different.
+  Dialogs render outside the room root and keep the standard back. Tarot's
+  deck is a different component and is not affected.
+- **Invite panel**: the share half of `InvitePanel` is a `Ticket`. The stub
+  holds "Room code" and `.room-code`, large and grouped; the body holds the
+  heading, `.invite-link`, Share / Copy link / Copy code and the status line.
+  On phones the stub is on top. The group name, classes and button names are
+  unchanged; finding a friend by username sits beside it in its own card.

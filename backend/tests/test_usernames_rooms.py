@@ -54,6 +54,7 @@ def test_a_username_needs_a_profile_and_is_returned_only_to_its_owner(client):
     assert saved.status_code == 200
     assert saved.json() == {
         "id": saved.json()["id"], "name": "Asha", "avatar": 3, "username": name,
+        "frame": None, "card_back": None,
     }
     assert saved.headers["cache-control"] == "private, no-store"
     assert client.get("/v1/me", headers=owner).json()["profile"]["username"] == name

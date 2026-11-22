@@ -401,6 +401,7 @@ export function CasinoTable(props: TableProps) {
                         name={member?.name || 'Player'}
                         you={player.id === selfId}
                         avatar={member?.avatar}
+                        frame={member?.frame}
                         bot={member?.isBot}
                         compact
                         nameLayout="wrap"

@@ -452,3 +452,97 @@ Every control is at least 44px, has a visible label or an accessible name that
 includes the person or group it acts on, and the shared focus ring. Layouts
 hold at 320px without horizontal scrolling. Reduced motion removes the button
 lift and uses instant scrolling.
+
+## Tickets, progress and rewards (23 November 2026)
+
+### Ticket
+
+`Ticket` (`@games/ui`, `styles/ticket.css`) is the ticket and coupon shell: a
+body and a stub joined by a dashed tear line, with a semicircular notch cut
+from each edge where they meet. The notches are real holes (a CSS mask on each
+piece), so the surface behind shows through on ivory and on dark felt, and the
+soft shadow (a drop-shadow filter) follows the cut shape. There are no images.
+
+- It is layout only. Content stays ordinary HTML with its own headings, labels
+  and buttons; `aria-*`, `role` and `data-*` land on the outer element, which
+  can be a `div`, `li`, `article` or `section`.
+- `variant`: `default`, `success` (sage paper: redeemed, in use, opened),
+  `muted` (grey paper, lighter shadow: locked, nothing to do).
+- `layout`: `auto` stacks the stub under the body below 620px and puts it
+  beside the body above; `row` and `column` hold one arrangement.
+- `stubSide`: `end` (default) or `start`. `shape="tag"` adds an eyelet for a
+  gift tag. Without a stub it is one piece with no tear line.
+- In forced-colours mode the masks are dropped and both pieces get a border.
+
+Used for: invitations on the home page (answers on the stub), the lobby invite
+panel (the room code on the stub), each person's row in Secret Santa and the
+private link page (gift tags), and reward coupons (the cosmetic on the stub).
+Do not use it for ordinary cards or panels; a ticket means "this is yours to
+use, redeem or hand over".
+
+### Level ring, streak and badges
+
+- `LevelRing` (sm 38px, md 48px, lg 88px): a sage arc on a muted track with the
+  level number inside. With a `label` it is one image ("Level 3, 40 of 150 XP
+  toward level 4"); beside written numbers it is decoration.
+- Progress is always measured against the player's own past. There are no
+  leaderboards and no comparisons with friends.
+- A streak is shown only as it stands: a flame and "4-day streak", with "Play
+  today to keep it going" only while a streak exists and today has no game.
+  No streak means no streak line (the rewards page says "No streak yet"). Never
+  write that a streak was lost, broken or missed, and never add a countdown.
+- A badge that is earned and one that is not differ by more than colour: a
+  check and "Earned", or a thin bar and "3 of 10".
+- Anything that loads later (the home strip, the line under a result, the
+  status line on the rewards page) reserves its height first.
+
+### Avatar frames
+
+`Avatar` takes `frame`. The five frames are inline SVG on a 100-unit square,
+36% wider than the avatar so they sit just outside it at 32, 42 and 56px:
+
+| id | shape |
+| --- | --- |
+| `frame-gold` | two plain rings |
+| `frame-laurel` | a wreath of leaves, open at the top, tied at the bottom |
+| `frame-flame` | a thin ring with flames over the top half |
+| `frame-confetti` | loose squares, dots and triangles all the way round |
+| `frame-crown` | a thin ring with a crown on top |
+
+They differ by shape, not colour alone, and the laurel and crown carry a pale
+edge so they read on pine felt. A frame is `aria-hidden`; the avatar's name is
+unchanged. An unknown id renders the plain avatar. Pass a member's `frame`
+wherever a player's avatar is drawn.
+
+### Card backs
+
+Four designs restyle `.playing-card--back` (and the turn-over back) under
+`[data-card-back='<id>']`, set on the room root from the viewer's own profile:
+
+| id | fill | pattern |
+| --- | --- | --- |
+| `back-midnight` | navy | scattered stars |
+| `back-sunrise` | terracotta | rays from the bottom edge |
+| `back-emerald` | green | a diamond lattice |
+| `back-royal` | plum | gold pinstripes |
+
+Each keeps the white paper frame, the inner keyline and the round "g." seal,
+so a compact back in an opponent's hand still reads as a card back, and each
+changes the pattern as well as the colour. The standard pine back stays the
+default with no attribute. Tarot's deck back is separate and untouched.
+
+### Rewards copy
+
+Rewards are earned by playing and redeemed in the app. Never show a price, a
+currency, a timer, "claim now" or an outside offer. States are named plainly:
+Locked, Ready to redeem, Redeemed, In use. Buttons say what they do: Redeem,
+Use, Take off, Use standard back.
+
+### Home page order
+
+Header, welcome strip, primary actions, invitations, Continue, tabs, curated
+rails, full library. Joining with a code is never more than one tap away. Every
+game card states its players and its length. Rails scroll inside themselves
+with `HorizontalRail`; the page never scrolls sideways, down to 320px. No
+promotional banner sits above the main actions. The "For teams" label is
+backed by a documented allowlist (see the lounge README).

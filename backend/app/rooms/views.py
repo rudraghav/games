@@ -6,6 +6,7 @@ from pydantic import ValidationError
 from app.games.registry import ENGINES
 from app.models import Room
 from app.rooms.bots import next_bot_view
+from app.rooms.progress import worn_frame
 from app.rooms.public_actions import PUBLIC_ACTIONS
 from app.rooms.repository import Repository
 from app.rooms.schemas import (
@@ -83,6 +84,8 @@ def room_view(repo: Repository, room: Room, user_id: str, cipher: Fernet) -> Roo
                 id=p.id,
                 name=p.name,
                 avatar=p.avatar,
+                # The one thing about a player's rewards that others see.
+                frame=None if m.is_bot else worn_frame(p.cosmetics),
                 ready=m.ready,
                 seated=m.seated,
                 connected=m.is_bot or now - m.seen_at < 45,

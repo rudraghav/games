@@ -321,3 +321,44 @@ A person opens `/santa/<token>`: "Hi Sam" and one button, **Show who I’m buyin
 for**, then the name with the event title, date, location and budget. A
 mistyped or outdated link and too many wrong links each get one plain message.
 Profile history lists a finished event as "Names drawn".
+
+## Home, progress and rewards (23 November 2026)
+
+**Home** (`/`), top to bottom: the header; a welcome strip; `Play solo` and
+`Join a room` (with a code field beside it on wide screens); invitations;
+Continue; the Games / Your games tabs; inside Games, five curated rails and
+then the full library.
+
+- A visitor who has never played sees one welcoming line. A player with a
+  finished game sees their level, the XP to the next one, a streak when they
+  have one and their badge count, as one link to `/rewards`.
+- Typing a code beside Join a room and pressing Enter joins at once for a
+  player the browser already knows; otherwise the join dialog opens with the
+  code filled in. With the field empty, and on phones, the button opens the
+  dialog as before.
+- Continue lists the rooms the player is in that are playing or waiting. The
+  Your games tab is unchanged and still lists finished games.
+- Each rail (Quick with bots, For teams, Game night, Two players, On your own)
+  has See all, which sets the library's filter and scrolls to it. For teams is
+  also a library category with two quick filters: group size and time.
+
+**Progress and rewards** (`/rewards`), reached from the home strip, the profile
+page, the header's Rewards link on inner pages and the line under a result:
+
+1. Progress: level, XP, streak (current and best) and four totals.
+2. Badges: earned or in progress.
+3. Rewards: avatar frames and card backs as coupons. Locked shows the
+   requirement and progress. Earned shows **Redeem**. Redeemed shows **Use**.
+   In use shows **Take off** (a frame) or **Use standard back** (a card back).
+
+Progress is worked out by the server from finished games: 10 XP a game, 10 more
+for a win, 5 more with another person, 15 the first time for each different
+game. Levels begin at 0, 50, 150, 300, 500, 750, 1050 and 1400 XP. Rewards are
+only ever earned by playing and redeemed in the app. There is no money, no
+outside offer and no ranking against other players.
+
+**In a room**: a worn frame shows around that player's avatar for everyone
+(lobby seats, table seats, chat). A worn card back changes face-down cards on
+the wearer's own screen only. After a match, a "Your progress" line under the
+result shows the level, XP to go and streak with a link to `/rewards`; the
+rematch controls stay where they were and work as before.

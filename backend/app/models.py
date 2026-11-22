@@ -21,6 +21,9 @@ class Profile(Base):
     # A handle friends can search for. Stored lowercase; only its owner sees it
     # outside player search and room invitations.
     username: Mapped[str | None] = mapped_column(String(20), unique=True, nullable=True)
+    # Rewards this player redeemed and what they wear: {"claimed": [ids], "frame": id
+    # or None, "card_back": id or None}. Written only by the rewards service.
+    cosmetics: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, server_default="{}")
 
 
 class Room(Base):

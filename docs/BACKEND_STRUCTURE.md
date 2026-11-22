@@ -120,6 +120,12 @@ table has RLS enabled and no grant to PUBLIC, `anon` or `authenticated`, like
 every Games table except the existing membership read. Existing rows are
 unchanged and no policy is added. It is forward-only.
 
+Migration `3002383be1bd` adds `profiles.cosmetics` (JSON, not null, server
+default `{}`): the rewards a player redeemed and the frame and card back they
+wear. It joins the existing private, RLS-protected `profiles` table and adds no
+grant or policy; existing profiles start empty. It is forward-only. XP, levels,
+streaks and badges are not stored: they are recomputed from saved match results.
+
 | Wire operation | Authorization and behavior |
 | --- | --- |
 | `POST /v1/rooms`, optional `bots` | Existing creation; atomically fills requested open seats with 0–9 bots |
@@ -133,9 +139,15 @@ unchanged and no policy is added. It is forward-only.
 | `GET /v1/rooms/lookup/{invite}` | Room id and game only for an active member of that room; otherwise one 404 |
 | `GET /v1/rooms/{id}/secret-santa/links` | The organiser of the room's current Secret Santa draw; one private link token per person |
 | `GET /v1/secret-santa/{token}` | Any signed-in session holding a current token; that person's own draw and the event details |
+| `GET /v1/progress?tz_offset=` | The caller's own XP, level, streak, totals, badges and rewards, computed from their finished matches; never another player's |
+| `POST /v1/rewards/{reward_id}/redeem` | The caller redeems a reward the server finds earned; 404 unknown, 409 still locked, idempotent |
+| `PUT /v1/profile/cosmetics`, `{frame, card_back}` | The caller wears redeemed rewards or takes them off; 422 unknown id or wrong kind, 409 not redeemed; a frame change bumps their open rooms |
 
-Room setup, six-digit codes, the wrong-code limit and invitations are described
-in `backend/app/rooms/README.md`; bot levels in `backend/app/bots/README.md`.
+Room setup, six-digit codes, the wrong-code limit, invitations and player
+progress with its badge and reward tables are described in
+`backend/app/rooms/README.md`; bot levels in `backend/app/bots/README.md`.
+`ProfileView.frame` (the worn frame id, null for bots) is the only part of a
+player's progress another player receives.
 
 `MemberView.is_bot` is explicit; `bot_due_at` is epoch seconds and is returned
 only when safe bot work is pending. The normal pacing interval is 800ms after a

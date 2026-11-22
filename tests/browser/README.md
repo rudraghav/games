@@ -228,3 +228,17 @@ finish. It closes its room from `afterEach`. The catalogue-wide specs know the
 organiser family: `Organise a draw` on the game page, `.santa-table` in place
 of the turn banner, a tutorial driver in `tutorial-depth.spec.ts`, and a
 shortest-event policy in `fullmatch-player.ts`.
+
+`home-progress-rewards.spec.ts` covers the home page around the library,
+progress and rewards on both device projects. Mocked tests cover a new visitor
+(welcome line, home order, the three primary actions, tabs, search and
+categories, no server request while browsing), rails at 320px and by keyboard,
+See all and the For teams filters, a returning player (level, streak, badges,
+the invitation ticket, Continue, no layout shift when progress arrives), the
+streak wording in each state, the code field beside Join a room, and `/rewards`
+from Redeem to Use to In use with a refused redeem and reduced motion. One real
+test plays Four in a Row against a bot and a Slots session, checks XP and the
+first badge on `/rewards`, the server's 409 for a locked reward, then redeems
+and wears the Gold frame, and a second guest sees it on the host's lobby seat
+and sees it go when it is taken off. It closes its three rooms from
+`afterEach`.

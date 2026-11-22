@@ -131,6 +131,7 @@ export function PlayerStrip({
                 name={name}
                 displayName={self ? 'You' : names[index]}
                 avatar={seat?.avatar}
+                frame={seat?.frame}
                 bot={seat?.isBot}
                 compact
                 nameLayout="wrap"
