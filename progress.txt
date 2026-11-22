@@ -12,7 +12,12 @@
 
 - Local checks: frontend (396 unit tests), backend (7,534), contracts and tooling pass. Browser suite: 468 passed, 75 skipped, 1 failed (a phone Uno saved-selection test that depends on the dealt hand; it passed 4 of 4 repeated alone, and no Uno file changed). Real local rooms on phone and desktop confirmed single-tap draws, finger scrolling, the bar, the hover preview and the card page. Evidence: docs/evidence/tarot-table-touch-2026-11-22.
 
-- State: verified locally; not committed or released.
+- Owner approved shipping. Released `28efb79b3ae77c8078563cfb8d9700d5e5705b12` to main and Games production as dpl_6dSFCZZW5ks2NT9ysHMxksfsBDy5 (READY, bom1, both source metadata fields match), one deployment, sent as a single archive. Production TAROT_PROVIDER_ORDER was set to Groq, Gemini, Cloudflare before the deployment. No migration; production head stays a6e442b15d80.
+- Live: HTTP and auth checks pass. Desktop room: three single clicks drew three cards; the first drawn card was a button while still choosing, its hover preview showed the name, position, orientation, keywords and short meaning, and a click opened the card page with both orientations. Phone-width room with touch input: 23 backs in view, a finger swipe on the cards and a finger drag on the bar both scrolled the deck without drawing, three single taps drew three cards, a tap on a drawn card opened its page with no preview. One real reading on a synthetic question came back in 5 seconds; the page listed the providers as Groq, Google Gemini, Cloudflare, and all three portrait bridges spoke to the question. No page errors.
+- Runtime and owner fingerprints unchanged; runtime and 5xx request logs since release start returned zero records; both QA rooms closed with no active memberships.
+- Still open in production from the previous release: one private Tarot test room (one guest, no bots). Not closed, pending the owner's choice.
+- Not verified: real phone hardware and Safari.
+- State: released.
 
 ## 2026-11-22 — Tarot readings that answer the question, reversed cards, card guide, Uno stacking, test repairs
 

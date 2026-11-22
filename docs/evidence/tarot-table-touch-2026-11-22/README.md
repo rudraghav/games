@@ -48,4 +48,13 @@
 
 - Engines other than Chromium and real touch hardware (the phone checks use Chromium
   touch emulation with native touch events).
-- Production: nothing is released yet, and production still has Gemini first.
+
+## Release
+
+- Commit `28efb79b3ae77c8078563cfb8d9700d5e5705b12`, deployment
+  `dpl_6dSFCZZW5ks2NT9ysHMxksfsBDy5` (production, READY). Production
+  `TAROT_PROVIDER_ORDER` set to Groq, Gemini, Cloudflare before the deployment.
+- Live desktop and phone-width rooms repeated the local checks above with the same
+  results. A real reading came back in 5 seconds with the providers listed as Groq,
+  Google Gemini, Cloudflare.
+- Runtime errors and 5xx requests since release start: none. Both QA rooms closed.
