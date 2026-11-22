@@ -16,7 +16,12 @@
 
 - Final local source: frontend (382 unit tests, build), backend (7,534), contracts, tooling, multiplayer (256) and migrations pass; the full browser suite passes with 465 passed, 71 skipped and none failed. Two Tarot phone tests failed once in an earlier full run (first tap did not lift a back) and passed when repeated; no cause found.
 
-- State: verified locally; owner approved shipping. Next: push, one deployment, live verification.
+- Released `30a09065403b89f38c3f6541e5102dacc1914398` to main and Games production as dpl_D7Qp8Dba9cdi3BGtGbj16JDZ4NtN (READY, bom1, both source metadata fields match), one deployment, sent as a single archive (`--archive=tgz`). No migration; production head stays a6e442b15d80.
+- Live: HTTP and auth checks pass; the catalogue serves stack_draws (Uno off, No Mercy on) and Tarot reversals (on). A Uno bot room with stacking turned on showed "Stack a +2 or higher, or draw 4. Drawing passes your turn.", accepted a +2 on a +2, took a 4-card penalty draw, finished with no page errors and was closed. A Tarot room on a phone width drew one card reversed (named in words on the spread and in the summary), opened the card page with Upright and Reversed tabs, and returned a real reading in 34 seconds with the new sections ("What this card says about your question", the portrait with "What this means for your question", "The plot twist"); the bridge text was on the generic side. The gallery listed 78 cards and opened a full card page. The catch and "Misses next turn" marker were not reached in the live match (seen locally only).
+- Runtime and owner fingerprints unchanged; runtime and 5xx request logs since release start returned zero records.
+- One private Tarot test room (one guest, no bots, no reading) from the gallery check is still open in production: its leave click did not go through and the guest session is gone. Closing it through the room service was not permitted in this session; pending the owner's choice. The finished reading room and the closed Uno room are as expected.
+- Open with the owner: Tarot provider order (Groq first is recommended; production setting unchanged) and the Uno edge rulings (no Draw Four challenge while stacking; penalty plus catch costs two turns).
+- State: released.
 
 ## 2026-11-21 — Visual polish across all games
 
