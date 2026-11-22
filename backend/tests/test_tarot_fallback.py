@@ -6,13 +6,10 @@ import json
 import httpx
 import pytest
 from test_astrology_reading import CARDS, synthetic_chart
-from test_tarot_alternative_providers import envelope, wire_payload
 from test_tarot_grounded import grounded_envelope, grounded_json_envelope
 
 from app.games.tarot import reading
 from app.games.tarot.characters import find_character
-from app.games.tarot.groq_qwen_astrology import PROFILE_VERSION as ASTROLOGY_PROFILE_VERSION
-from app.games.tarot.groq_qwen_astrology import build_groq_qwen_astrology_request
 from app.games.tarot.grounded import MODELS, OUTPUT_CAP, PROFILE_VERSION, build_grounded_request
 from app.games.tarot.grounded_json import INSTRUCT_PROFILE_VERSION, build_grounded_json_request
 from app.settings import settings
@@ -52,24 +49,11 @@ def transport(monkeypatch, handler):
 
 
 def qwen_envelope(canonical, chart=None):
+    """Groq's live shapes: the grounded schema, or its JSON transport beside any chart."""
     if not chart:
         return grounded_envelope("groq", canonical)
-    if len(chart.charts) > 1 or chart.charts[0].system == "vedic":
-        effective, _wire = build_grounded_json_request(canonical, reasoning_effort="none")
-        return grounded_json_envelope(effective, chart)
-    payload = wire_payload(canonical, chart)
-    for index in range(1, 4):
-        card = payload[f"card_{index}"]
-        card.pop("interpretation")
-        card["reflection_question"] = "What small possibility could you explore at your own pace?"
-        card["imagery"] = card.pop("quirky_interpretation")
-        card["connection"] = "What might this motif invite you to consider at your own pace?"
-    for current in chart.charts:
-        section = payload["astrology_interpretation"][current.system]
-        section["imagery"] = section.pop("quirky")
-    result = envelope("groq", payload)
-    result["model"] = MODEL
-    return result
+    effective, _wire = build_grounded_json_request(canonical, reasoning_effort="none")
+    return grounded_json_envelope(effective, chart)
 
 
 @pytest.mark.parametrize("mode", ["ordinary", "western", "vedic", "both"])
@@ -84,12 +68,9 @@ def test_runtime_groq_matches_evaluated_wire_and_binds_exact_evidence(configured
     ])
     chart = None if mode == "ordinary" else synthetic_chart(mode)
     canonical = reading.build_reading_request(CARDS, "private-question", astrology_chart=chart)
-    if mode in {"vedic", "both"}:
+    if chart:
         effective, expected = build_grounded_json_request(canonical, reasoning_effort="none")
         profile = INSTRUCT_PROFILE_VERSION
-    elif chart:
-        effective, expected = build_groq_qwen_astrology_request(canonical)
-        profile = ASTROLOGY_PROFILE_VERSION
     else:
         effective, expected = canonical, build_grounded_request("groq", canonical)
         profile = PROFILE_VERSION
@@ -98,7 +79,7 @@ def test_runtime_groq_matches_evaluated_wire_and_binds_exact_evidence(configured
         result = reading.generate_reading(CARDS, "private-question", astrology_chart=chart)
     assert len(calls) == 1 and json.loads(calls[0].content) == expected
     assert expected["model"] == MODEL and expected["max_completion_tokens"] == OUTPUT_CAP
-    assert expected["reasoning_effort"] == ("medium" if mode == "western" else "none")
+    assert expected["reasoning_effort"] == "none"
     assert expected["reasoning_format"] == "hidden"
     assert "include_reasoning" not in expected
     context = json.loads(effective["input"])
@@ -113,13 +94,14 @@ def test_runtime_groq_matches_evaluated_wire_and_binds_exact_evidence(configured
     assert "private-" not in ai_caplog.text and "PRIVATE" not in ai_caplog.text
 
 
-def test_legacy_western_fallback_keeps_the_same_chart_and_cf_canonical_shortlist(configured, monkeypatch):
+def test_western_fallback_keeps_the_same_chart_and_cf_canonical_shortlist(configured, monkeypatch):
     monkeypatch.setattr(configured, "tarot_provider_order", ["groq", "cloudflare"])
     chart = synthetic_chart("western")
     canonical = reading.build_reading_request(CARDS, "", astrology_chart=chart)
     def respond(request, attempt):
         provider = "groq" if attempt == 1 else "cloudflare"
-        expected = build_groq_qwen_astrology_request(canonical)[1] if provider == "groq" else build_grounded_request(provider, canonical)
+        expected = (build_grounded_json_request(canonical, reasoning_effort="none")[1]
+                    if provider == "groq" else build_grounded_request(provider, canonical))
         assert json.loads(request.content) == expected
         return httpx.Response(503) if attempt == 1 else httpx.Response(
             200, json=grounded_envelope(provider, canonical, chart))
@@ -412,10 +394,8 @@ def test_safe_correction_retains_all_context_and_reports_actual_stages(configure
         assert context.pop("validation_feedback") == {
             "check": "invalid_output", "field": "reading", "action": "correct_complete_output",
         }
-        if provider == "groq" and mode in {"vedic", "both"}:
+        if provider == "groq" and chart:
             original_wire = build_grounded_json_request(canonical, reasoning_effort="none")[1]
-        elif provider == "groq" and chart:
-            original_wire = build_groq_qwen_astrology_request(canonical)[1]
         else:
             original_wire = build_grounded_request(provider, canonical)
         original = json.loads(original_wire["messages"][1]["content"])
@@ -481,7 +461,7 @@ def test_all_modes_reach_groq_last_after_earlier_provider_failures(configured, m
             return httpx.Response(503) if failure == "temporary" else httpx.Response(200, json={})
         assert request.url.host == "api.groq.com"
         wire = json.loads(request.content)
-        assert wire["reasoning_effort"] == ("medium" if mode == "western" else "none")
+        assert wire["reasoning_effort"] == "none"
         if mode in {"vedic", "both"}:
             assert wire["response_format"] == {"type": "json_object"}
         return httpx.Response(200, json=qwen_envelope(canonical, chart))
@@ -527,8 +507,7 @@ def test_final_groq_attempt_cannot_return_an_unsupplied_reference(configured, mo
     ))
     with pytest.raises(reading.ReadingOutputError) as error:
         reading.generate_reading(CARDS, "", astrology_chart=chart)
-    expected = "invalid_reference_evidence" if mode == "western" else "invalid_reference_id"
-    assert error.value.reason == expected and len(calls) == 3
+    assert error.value.reason == "invalid_reference_id" and len(calls) == 3
     failure = reading.reading_failure(error.value)
     assert failure.retryable and failure.code == "invalid_output"
 
@@ -544,61 +523,82 @@ def test_no_network_call_after_the_first_reservation_exhausts_deadline(configure
     assert error.value.reason == "deadline_exhausted" and not calls
 
 
+LONE_QUESTION = ("What small possibility might you explore at your own pace over the coming days, and what would "
+                 "it take to notice it before deciding anything else about the question you brought here?")
+
+
+def with_card(body, card, **fields):
+    payload = json.loads(body["choices"][0]["message"]["content"])
+    payload[card].update(fields)
+    return {**body, "choices": [{**body["choices"][0], "message": {
+        **body["choices"][0]["message"], "content": json.dumps(payload)}}]}
+
+
 @pytest.mark.parametrize("provider", ["groq", "cloudflare"])
 @pytest.mark.parametrize("mode", ["ordinary", "western", "vedic", "both"])
-def test_failed_question_format_retries_without_only_that_field_check(configured, monkeypatch, ai_caplog, provider, mode):
+def test_a_part_that_only_asks_is_named_and_retried_never_accepted(configured, monkeypatch, ai_caplog, provider, mode):
     monkeypatch.setattr(configured, "tarot_provider_order", [provider])
     chart = None if mode == "ordinary" else synthetic_chart(mode)
     canonical = reading.build_reading_request(CARDS, "private-question", astrology_chart=chart)
-    body = qwen_envelope(canonical, chart) if provider == "groq" else grounded_envelope(provider, canonical, chart)
-    payload = json.loads(body["choices"][0]["message"]["content"])
-    reflection = "Consider one small possibility you might explore at your own pace."
-    payload["card_2"]["reflection_question"] = reflection
-    body["choices"][0]["message"]["content"] = json.dumps(payload)
+    good = qwen_envelope(canonical, chart) if provider == "groq" else grounded_envelope(provider, canonical, chart)
+    expected = json.loads(good["choices"][0]["message"]["content"])["card_2"]["reflection"]
     events = []
     def respond(request, attempt):
         wire = json.loads(request.content)
         context = json.loads(wire["messages"][1]["content"])
         if attempt == 1:
             assert "validation_feedback" not in context
-        else:
-            assert context["validation_feedback"] == {
-                "check": "question_form", "field": "cards.1.interpretation", "action": "allow_reflective_prose",
-            }
-            assert context["validation_relaxations"] == [{"check": "question_form", "field": "cards.1.interpretation"}]
-            assert "tentative reflective" in wire["messages"][0]["content"]
-            assert context["question"] == "private-question"
-        return httpx.Response(200, json=body)
+            return httpx.Response(200, json=with_card(good, "card_2", reflection=LONE_QUESTION))
+        assert context["validation_feedback"] == {
+            "check": "answer_form", "field": "cards.1.interpretation", "action": "correct_complete_output",
+        }
+        assert "validation_relaxations" not in context
+        assert "answer_form means that field must state in plain words" in wire["messages"][0]["content"]
+        assert "interpretation maps to reflection" in wire["messages"][0]["content"]
+        assert context["question"] == "private-question"
+        return httpx.Response(200, json=good)
     calls = transport(monkeypatch, respond)
     with ai_caplog.at_level("INFO", logger="games.ai"):
         result = reading.generate_reading(CARDS, "private-question", astrology_chart=chart, on_progress=events.append)
-    assert len(calls) == 2 and result.cards[1].interpretation == reflection
+    assert len(calls) == 2 and result.cards[1].interpretation == expected
     assert result.astrology.chart == chart if chart else result.astrology is None
     detail = next(event.retry_detail for event in events if event.stage == "retrying")
-    assert detail == "Card 2 wording didn't match the question format. Retrying without that format."
-    assert "check=question_form field=cards.1.interpretation relaxable=True" in ai_caplog.text
-    assert "private" not in repr(events) + ai_caplog.text and reflection not in ai_caplog.text
+    assert detail == "Card 2 wording asked without saying what it means. Retrying the reading."
+    assert "check=answer_form field=cards.1.interpretation" in ai_caplog.text and "relaxable" not in ai_caplog.text
+    assert "private" not in repr(events) + ai_caplog.text and LONE_QUESTION not in ai_caplog.text
+
+
+def test_a_part_that_only_asks_twice_fails_the_reading_instead_of_saving_it(configured, monkeypatch):
+    monkeypatch.setattr(configured, "tarot_provider_order", ["cloudflare"])
+    canonical = reading.build_reading_request(CARDS, "")
+    bad = with_card(grounded_envelope("cloudflare", canonical), "card_1", reflection=LONE_QUESTION)
+    calls = transport(monkeypatch, lambda *_: httpx.Response(200, json=bad))
+    with pytest.raises(reading.ReadingOutputError) as failed:
+        reading.generate_reading(CARDS, "")
+    assert len(calls) == 2
+    failure = reading.reading_failure(failed.value)
+    assert (failure.code, failure.retryable) == ("invalid_output", True)
+    assert failure.message == "Card 1 wording asked without saying what it means."
 
 
 @pytest.mark.parametrize("mode", ["ordinary", "western", "vedic", "both"])
-def test_failed_format_feedback_and_exact_relaxation_follow_next_provider(configured, monkeypatch, mode):
+def test_answer_feedback_follows_the_next_provider_without_relaxing_it(configured, monkeypatch, mode):
     monkeypatch.setattr(configured, "tarot_provider_order", ["cloudflare", "groq"])
     chart = None if mode == "ordinary" else synthetic_chart(mode)
     canonical = reading.build_reading_request(CARDS, "", astrology_chart=chart)
     def respond(request, attempt):
-        body = (grounded_envelope("cloudflare", canonical, chart) if attempt == 1
-                else qwen_envelope(canonical, chart))
-        payload = json.loads(body["choices"][0]["message"]["content"])
-        payload["card_1"]["reflection_question"] = "Consider a small possibility you might explore at your own pace."
-        body["choices"][0]["message"]["content"] = json.dumps(payload)
-        if attempt == 2:
-            context = json.loads(json.loads(request.content)["messages"][1]["content"])
-            assert request.url.host == "api.groq.com"
-            assert context["validation_feedback"]["field"] == "cards.0.interpretation"
-            assert context["validation_relaxations"] == [{"check": "question_form", "field": "cards.0.interpretation"}]
-        return httpx.Response(200, json=body)
+        if attempt == 1:
+            return httpx.Response(200, json=with_card(
+                grounded_envelope("cloudflare", canonical, chart), "card_1", imagery=LONE_QUESTION))
+        context = json.loads(json.loads(request.content)["messages"][1]["content"])
+        assert request.url.host == "api.groq.com"
+        assert context["validation_feedback"] == {
+            "check": "answer_form", "field": "cards.0.quirky_interpretation", "action": "correct_complete_output",
+        }
+        assert "validation_relaxations" not in context
+        return httpx.Response(200, json=qwen_envelope(canonical, chart))
     calls = transport(monkeypatch, respond)
-    assert reading.generate_reading(CARDS, "", astrology_chart=chart).cards[0].interpretation.startswith("Consider")
+    assert "?" not in reading.generate_reading(CARDS, "", astrology_chart=chart).cards[0].quirky_interpretation
     assert len(calls) == 2
 
 
@@ -637,13 +637,13 @@ def test_fun_retry_preserves_the_editorial_move_and_retries_only_the_ai_sections
             assert "CharacterConnection" not in json.dumps(wire["response_format"])
             return httpx.Response(503)
         assert "reference_characters" not in wire["messages"][1]["content"]
-        # Legacy/unrequested bad comparison text on the fallback is irrelevant.
+        # The fallback is told each portrait; its own comparison text is still irrelevant.
+        assert [card["portrait"]["name"] for card in json.loads(wire["messages"][1]["content"])["cards"]] == [
+            card["reference_characters"][0]["name"] for card in json.loads(canonical["input"])["cards"]]
         body = grounded_envelope("cloudflare", canonical)
         generated = json.loads(body["choices"][0]["message"]["content"])
         for index in range(1, 4):
             section = generated[f"card_{index}"]
-            section.pop("reference_id")
-            section.pop("connection_question")
             section["connection"] = "xx"
         body["choices"][0]["message"]["content"] = json.dumps(generated)
         return httpx.Response(200, json=body)
@@ -657,4 +657,5 @@ def test_fun_retry_preserves_the_editorial_move_and_retries_only_the_ai_sections
         ident = find_character(character.name, character.source)["id"]
         assert character.connection == reviewed_connections()[ident]["connection"]
         assert reviewed_connections()[ident]["anchor"] in character.evidence
-        assert section.interpretation.endswith("?")
+        # The generated layers say something, and the bridge ties the move to the question.
+        assert reading.says_something(section.interpretation) and section.pop_culture.startswith("For whatever")

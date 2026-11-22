@@ -30,7 +30,7 @@ def test_progress_is_private_durable_and_visible_during_the_original_post(client
     entered, switch, switched, finish = (threading.Event() for _ in range(4))
     calls = []
 
-    def provider(cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic"):
+    def provider(cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic", orientations=None):
         assert reading_style == "fun"
         calls.append(True)
         before_attempt()

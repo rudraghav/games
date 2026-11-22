@@ -9,6 +9,18 @@ export function spinFace(spin: Spin) {
     : spin.reels.map((face) => slotNames[face]).join(' · ');
 }
 
+/** Won, lost or even in a word, so the result never rests on colour or a sign alone. */
+export const spinOutcome = (net: number) => (net > 0 ? 'Won' : net < 0 ? 'Lost' : 'Even');
+
+/** The pocket as it looks on the wheel. The colour is always named beside it. */
+export function PocketToken({ spin }: { spin: Spin }) {
+  return 'pocket' in spin ? (
+    <span className="chance-token" data-color={spin.color} aria-hidden="true">
+      {spin.pocket}
+    </span>
+  ) : null;
+}
+
 export function ChanceHistory({
   history,
   expanded = false,
@@ -25,11 +37,14 @@ export function ChanceHistory({
       <ol reversed>
         {[...history].reverse().map((spin) => (
           <li key={spin.spin} value={spin.spin}>
+            <PocketToken spin={spin} />
             <div className="chance-history-heading">
               <strong>
                 Spin {spin.spin} · {spinFace(spin)}
               </strong>
-              <span data-gain={spin.net > 0}>{signedChips(spin.net)} net</span>
+              <span data-gain={spin.net > 0} data-loss={spin.net < 0 || undefined}>
+                {signedChips(spin.net)} net
+              </span>
             </div>
             <p>
               {'choice' in spin ? `${rouletteBetName(spin.choice)} · ` : ''}Staked {spin.stake} ·

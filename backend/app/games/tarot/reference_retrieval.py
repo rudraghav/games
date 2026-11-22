@@ -46,6 +46,16 @@ NEW_READING_EXCLUSIONS = {
         "Reviewed source context consists of massacres, enslavement and attempted "
         "eradication; unsuitable as a personal reflective comparison."
     ),
+    # Biographies that describe adult-industry work. The source text would appear
+    # under a reading's "Background"; it does not belong beside a personal question.
+    **dict.fromkeys(
+        (
+            "buck-angel-q958281", "candy-barr-q444001", "james-deen-q332641",
+            "jenna-jameson-q400", "john-holmes-q312688", "marilyn-chambers-q220693",
+            "ron-jeremy-q503013", "sasha-grey-q2709",
+        ),
+        "Reviewed source context describes adult-industry work; unsuitable beside a personal question.",
+    ),
 }
 ROLE_CONTEXTS = (
     "The present situation: notice the current tension, competing needs and what deserves attention.",

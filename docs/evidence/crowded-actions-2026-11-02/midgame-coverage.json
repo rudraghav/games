@@ -65,14 +65,14 @@
         "play",
         "uno"
       ],
-      "peakPrivateHand": 11,
+      "peakPrivateHand": 13,
       "phases": [
         "playing"
       ],
       "physicalInventoryChecked": true,
       "seats": 10,
       "seed": 31,
-      "steps": 54,
+      "steps": 119,
       "stress": false,
       "supplemental": false
     },
@@ -99,14 +99,14 @@
         "play",
         "uno"
       ],
-      "peakPrivateHand": 23,
+      "peakPrivateHand": 19,
       "phases": [
         "playing"
       ],
       "physicalInventoryChecked": true,
       "seats": 2,
       "seed": 17,
-      "steps": 96,
+      "steps": 109,
       "stress": false,
       "supplemental": false
     },
@@ -133,14 +133,14 @@
         "play",
         "uno"
       ],
-      "peakPrivateHand": 24,
+      "peakPrivateHand": 21,
       "phases": [
         "playing"
       ],
       "physicalInventoryChecked": true,
       "seats": 6,
       "seed": 31,
-      "steps": 129,
+      "steps": 64,
       "stress": false,
       "supplemental": false
     },
@@ -2389,7 +2389,8 @@
       "offeredActionTypes": [
         "choose",
         "draw",
-        "play"
+        "play",
+        "uno"
       ],
       "peakPrivateHand": 24,
       "phases": [
@@ -2398,7 +2399,7 @@
       "physicalInventoryChecked": true,
       "seats": 2,
       "seed": 11,
-      "steps": 16,
+      "steps": 18,
       "stress": true,
       "supplemental": false
     },
@@ -2508,7 +2509,81 @@
       "steps": 62,
       "stress": true,
       "supplemental": true
+    },
+    {
+      "captured": 5,
+      "capturedRules": [
+        "a seat misses its next turn",
+        "catch a missed UNO",
+        "draw the penalty",
+        "play the card just drawn",
+        "stack on a draw penalty"
+      ],
+      "finished": false,
+      "game": "uno",
+      "physicalInventoryChecked": true,
+      "seats": 4,
+      "seed": 1,
+      "stacking": true,
+      "steps": 53,
+      "stress": false,
+      "supplemental": true
+    },
+    {
+      "captured": 4,
+      "capturedRules": [
+        "a seat misses its next turn",
+        "catch a missed UNO",
+        "draw the penalty",
+        "play the card just drawn"
+      ],
+      "finished": false,
+      "game": "uno",
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 1,
+      "stacking": false,
+      "steps": 21,
+      "stress": false,
+      "supplemental": true
+    },
+    {
+      "captured": 5,
+      "capturedRules": [
+        "a seat misses its next turn",
+        "catch a missed UNO",
+        "draw the penalty",
+        "play the card just drawn",
+        "stack on a draw penalty"
+      ],
+      "finished": false,
+      "game": "uno-no-mercy",
+      "physicalInventoryChecked": true,
+      "seats": 4,
+      "seed": 2,
+      "stacking": true,
+      "steps": 43,
+      "stress": false,
+      "supplemental": true
+    },
+    {
+      "captured": 4,
+      "capturedRules": [
+        "a seat misses its next turn",
+        "catch a missed UNO",
+        "draw the penalty",
+        "play the card just drawn"
+      ],
+      "finished": false,
+      "game": "uno-no-mercy",
+      "physicalInventoryChecked": true,
+      "seats": 3,
+      "seed": 2,
+      "stacking": false,
+      "steps": 51,
+      "stress": false,
+      "supplemental": true
     }
   ],
-  "scenarios": 271
+  "scenarios": 289
 }

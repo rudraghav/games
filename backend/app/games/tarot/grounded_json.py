@@ -12,8 +12,8 @@ from app.games.tarot.grounded_astrology import (
 )
 from app.games.tarot.providers import AlternativeOutputError, _context, _payload
 
-PROFILE_VERSION = "grounded-qwen-json-2"
-INSTRUCT_PROFILE_VERSION = "grounded-qwen-json-instruct-1"
+PROFILE_VERSION = "grounded-qwen-json-3"
+INSTRUCT_PROFILE_VERSION = "grounded-qwen-json-instruct-2"
 
 
 def _compact_contract(schema: dict[str, Any]) -> object:
@@ -50,8 +50,8 @@ def json_transport(
     contract = json.dumps(_compact_contract(schema), ensure_ascii=False, separators=(",", ":"))
     body["response_format"] = {"type": "json_object"}
     body["messages"][0]["content"] = (body["messages"][0]["content"]
-        .replace("tarot_connection links", "astrology_tarot_connection links")
-        .replace("next_step is one practical invitation", "astrology_next_step is one practical invitation"))
+        .replace("tarot_connection says explicitly", "astrology_tarot_connection says explicitly")
+        .replace("next_step is one small concrete action tied", "astrology_next_step is one small concrete action tied"))
     identifiers = ("Use each chart's point IDs from the input." if "reference_id" not in schema["properties"]["card_1"]["properties"]
                    else "Use only the matching card's reference IDs and each chart's point IDs from the input.")
     body["messages"][0]["content"] += (

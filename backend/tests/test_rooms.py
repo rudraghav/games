@@ -236,7 +236,7 @@ def test_tarot_ai_output_is_saved_and_reading_private(client, monkeypatch):
     monkeypatch.setattr(settings(), "gemini_api_key", "local-test-adapter-only")
     calls = []
 
-    def provider(cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic"):
+    def provider(cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic", orientations=None):
         from app.games.tarot.reading import validate_reading
 
         if before_attempt:
@@ -350,7 +350,7 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
         ).json()
     monkeypatch.setattr(settings(), "gemini_api_key", "local-failure-test-key")
 
-    def fail(_cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic"):
+    def fail(_cards, question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic", orientations=None):
         if before_attempt:
             before_attempt()
         assert reading_style == "fun"
@@ -383,7 +383,7 @@ def test_tarot_provider_failure_keeps_spread_and_logs_only_diagnostics(
         after_cooldown = status["failure"]["retry_at"] + 1
         monkeypatch.setattr("app.rooms.service.time.time", lambda: after_cooldown)
 
-    def recover(cards, _question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic"):
+    def recover(cards, _question, *, before_attempt=None, astrology_chart=None, on_progress=None, reading_style="classic", orientations=None):
         assert reading_style == "fun"
         from app.games.tarot.reading import validate_reading
 
@@ -458,7 +458,11 @@ def test_tarot_regeneration_is_budgeted_and_saved_or_recoverable(
         assert context["reading_style"] == "fun"
         for section, card in zip(reading["cards"], context["cards"], strict=True):
             assert "reference_characters" not in card
+            # Fun: the model is told its portrait and writes only the bridge to the question.
+            assert set(card["portrait"]) == {"name", "source", "scene", "move"}
             section.pop("characters")
+            section["pop_culture"] = ("For your question, that could look like trying the move once this week. "
+                                      "Then there is something real to check before deciding anything else.")
         if len(calls) == 1:
             del reading["cards"][0]["interpretation"]
         return httpx.Response(200, json={"status": "completed", "steps": [{

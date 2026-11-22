@@ -9,7 +9,7 @@ from app.games.tarot.characters import find_character
 from app.games.tarot.grounded import build_grounded_request, decode_grounded_output
 from app.games.tarot.providers import AlternativeOutputError, _context
 
-PROFILE_VERSION = "grounded-qwen-astrology-2"
+PROFILE_VERSION = "grounded-qwen-astrology-3"
 CANDIDATE_LIMIT = 2
 
 

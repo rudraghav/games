@@ -1837,13 +1837,13 @@
           },
           "tarot_connection": {
             "type": "string",
-            "maxLength": 650,
+            "maxLength": 900,
             "minLength": 40,
             "title": "Tarot Connection"
           },
           "next_step": {
             "type": "string",
-            "maxLength": 300,
+            "maxLength": 400,
             "minLength": 15,
             "title": "Next Step"
           }
@@ -1869,7 +1869,7 @@
           },
           "normal": {
             "type": "string",
-            "maxLength": 650,
+            "maxLength": 1600,
             "minLength": 40,
             "title": "Normal"
           },
@@ -2420,6 +2420,21 @@
             },
             "type": "array",
             "title": "Rent Ladder"
+          },
+          "orientation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "upright",
+                  "reversed"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Orientation"
           }
         },
         "type": "object",
@@ -2445,7 +2460,7 @@
           },
           "connection": {
             "type": "string",
-            "maxLength": 300,
+            "maxLength": 450,
             "minLength": 30,
             "title": "Connection"
           },
@@ -4090,6 +4105,15 @@
             "type": "array",
             "maxItems": 2,
             "title": "Characters"
+          },
+          "orientation": {
+            "type": "string",
+            "enum": [
+              "upright",
+              "reversed"
+            ],
+            "title": "Orientation",
+            "default": "upright"
           }
         },
         "additionalProperties": false,

@@ -52,6 +52,25 @@ def editorial_portrait(choices: list[dict]) -> tuple[str, dict[str, str]]:
     }
 
 
+def fun_model_context(context: dict) -> dict:
+    """What a model sees in Fun: each card's one portrait with its reviewed scene and move.
+
+    The name, scene and move are the same server-owned text the reading will show.
+    The model receives them to relate the move to the question, never to rewrite them.
+    """
+    if context.get("reading_style") != "fun":
+        return context
+    cards = []
+    for card in context["cards"]:
+        portrait = editorial_portrait(card["reference_characters"])[1]
+        cards.append({
+            **{key: value for key, value in card.items() if key != "reference_characters"},
+            "portrait": {"name": portrait["name"], "source": portrait["source"],
+                         "scene": portrait["evidence"], "move": portrait["connection"]},
+        })
+    return {**context, "cards": cards}
+
+
 def lane_characters(lane: str) -> list[dict[str, str]]:
     return [{"name": c["name"], "source": c["source"]} for c in CHARACTERS if c["lane"] == lane]
 

@@ -1,7 +1,8 @@
-"""Allowlisted failure metadata and request-local presentation recovery.
+"""Allowlisted failure metadata and targeted correction feedback.
 
 Never retain provider prose, arbitrary schema keys or user inputs in diagnostics.
-Only question grammar may relax; persisted data and factual checks remain intact.
+Every part of a fresh reading must say something (``answer_form``). No check ever
+relaxes: a failed check is named to the next attempt, which must correct it.
 """
 
 import json
@@ -12,19 +13,15 @@ from typing import Any
 from pydantic import ValidationError
 
 CHECKS = frozenset({
-    "question_form", "text_length", "required_fields", "unexpected_fields",
+    "answer_form", "question_form", "text_length", "required_fields", "unexpected_fields",
     "duplicate_fields", "invalid_json", "cards", "reference", "reference_evidence",
     "reference_diversity", "scene_detail", "chart", "placeholder", "incomplete", "invalid_output",
 })
 _PATH = re.compile(
     r"^(?:reading|title|introduction|next_step|cards(?:\.[0-2](?:\.(?:card_id|position|title|"
-    r"interpretation|quirky_interpretation|characters(?:\.[0-1](?:\.(?:name|source|connection|evidence))?)?))?)?"
+    r"interpretation|pop_culture|quirky_interpretation|characters(?:\.[0-1](?:\.(?:name|source|connection|evidence))?)?))?)?"
     r"|astrology_interpretation(?:\.(?:tarot_connection|next_step|western|vedic)"
-    r"(?:\.(?:normal|quirky|focus_points(?:\.[0-2])?|focus_[12](?:\.(?:reflection_question|point_id))?))?)?)$"
-)
-_QUESTION_PATH = re.compile(
-    r"^(?:cards\.[0-2]\.(?:interpretation|characters\.0\.connection)"
-    r"|astrology_interpretation\.(?:western|vedic)\.focus_[12]\.reflection_question)$"
+    r"(?:\.(?:normal|quirky|focus_points(?:\.[0-2])?|focus_[12](?:\.(?:reflection|reflection_question|point_id))?))?)?)$"
 )
 
 
@@ -39,13 +36,8 @@ class ValidationIssue:
         if not isinstance(self.field, str) or not _PATH.fullmatch(self.field):
             object.__setattr__(self, "field", "reading")
 
-    @property
-    def relaxable(self) -> bool:
-        return self.check == "question_form" and bool(_QUESTION_PATH.fullmatch(self.field))
-
     def feedback(self) -> dict[str, str]:
-        return {"check": self.check, "field": self.field,
-                "action": "allow_reflective_prose" if self.relaxable else "correct_complete_output"}
+        return {"check": self.check, "field": self.field, "action": "correct_complete_output"}
 
     def message(self, *, retrying: bool = False) -> str:
         parts = self.field.split(".")
@@ -61,6 +53,7 @@ class ValidationIssue:
             label = {"title": "The title", "introduction": "The introduction",
                      "next_step": "The next step"}[self.field]
         reason = {
+            "answer_form": "asked without saying what it means",
             "question_form": "didn't match the question format",
             "text_length": "didn't fit the text limits",
             "required_fields": "was missing a required part",
@@ -77,10 +70,7 @@ class ValidationIssue:
             "incomplete": "was incomplete",
             "invalid_output": "couldn't be validated",
         }[self.check]
-        suffix = " Retrying without that format." if retrying and self.relaxable else (
-            " Retrying the reading." if retrying else ""
-        )
-        return f"{label} {reason}.{suffix}"
+        return f"{label} {reason}.{' Retrying the reading.' if retrying else ''}"
 
 
 class ReadingValidationError(ValueError):
@@ -110,43 +100,50 @@ def reason_issue(reason: str) -> ValidationIssue:
         "invalid_json": "invalid_json", "invalid_schema": "invalid_output",
         "invalid_wire_schema": "invalid_output", "duplicate_wire_key": "duplicate_fields",
         "invalid_text_length": "text_length", "placeholder_text": "placeholder",
-        "invalid_reflection_question": "question_form", "incorrect_cards": "cards",
+        "invalid_reflection_question": "question_form", "invalid_answer": "answer_form",
+        "incorrect_cards": "cards",
         "invalid_reference_id": "reference", "invalid_reference_evidence": "reference_evidence",
         "invalid_focus_id": "chart", "truncated": "incomplete", "empty_output": "incomplete",
         "not_completed": "incomplete",
     }.get(reason, "invalid_output"))
 
 
-def question_relaxed(source: dict[str, Any], field: str) -> bool:
-    issue = ValidationIssue("question_form", field)
-    if not issue.relaxable:
-        return False
-    context = json.loads(source["input"])
-    return {"check": issue.check, "field": issue.field} in context.get("validation_relaxations", [])
+# A part "goes somewhere" when it states something before, or instead of, asking.
+MAX_QUESTIONS = 2
+_SENTENCE = re.compile(r"[^.!?…]+(?:[.!?…]+[\"'”’)\]]*|$)")
+
+
+def says_something(text: str, *, max_questions: int = MAX_QUESTIONS, min_sentences: int = 1) -> bool:
+    """At least one declarative sentence and a bounded number of questions.
+
+    ``min_sentences=2`` is for an image that must be followed by what it means.
+
+    Structural only: it reads punctuation and sentence length, never names, topics
+    or the player's words, so it holds for any question in any language.
+    """
+    sentences = [part.strip() for part in _SENTENCE.findall(text) if part.strip()]
+    statements = [part for part in sentences
+                  if "?" not in part[-3:] and len(part.split()) >= 5]
+    return bool(statements) and len(sentences) >= min_sentences and text.count("?") <= max_questions
 
 
 def retry_request(request: dict[str, Any], issue: ValidationIssue) -> dict[str, Any]:
+    """Name the latest failed check to the next attempt; the rest of the request is unchanged."""
     context = json.loads(request["input"])
     context["validation_feedback"] = issue.feedback()
-    if issue.relaxable:
-        relaxations = context.get("validation_relaxations", [])
-        entry = {"check": issue.check, "field": issue.field}
-        if entry not in relaxations:
-            relaxations.append(entry)
-        context["validation_relaxations"] = relaxations
     return {**request, "input": json.dumps(context, ensure_ascii=False, separators=(",", ":"))}
 
 
 RETRY_INSTRUCTION = (
     " On validation_feedback correct the named check and field in a COMPLETE response. "
-    "Only fields explicitly listed in validation_relaxations may use tentative reflective "
-    "prose instead of the required question grammar. Keep every other field rule, "
+    "answer_form means that field must state in plain words what it means for the "
+    "question and ask at most one question. Keep every other field rule, "
     "length limit, supplied fact, identity and chart constraint."
 )
 
 
 ALTERNATIVE_RETRY_MAPPING = (
     " Feedback uses zero-based card paths: use each card's output_section; "
-    "interpretation maps to reflection_question, and character connection maps "
-    "to the schema's connection field."
+    "interpretation maps to reflection, quirky_interpretation to imagery, "
+    "pop_culture to bridge, and character connection to the schema's connection field."
 )

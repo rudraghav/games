@@ -14,10 +14,14 @@ export const cardSchema = z
     set_name: z.string().nullable().optional(),
     set_size: z.number().int().positive().nullable().optional(),
     rent_ladder: z.array(z.number().int().nonnegative()).default([]),
+    // Tarot: how a drawn card lies. The server sends it only for a card already revealed.
+    orientation: z.enum(['upright', 'reversed']).nullish(),
   })
-  .transform(({ set_name, set_size, rent_ladder, ...card }) => ({
+  .transform(({ set_name, set_size, rent_ladder, orientation, ...card }) => ({
     ...card,
     setName: set_name ?? null,
     setSize: set_size ?? null,
     rentLadder: rent_ladder,
+    // Absent for every other game, so their mapped cards keep the shape they had.
+    ...(orientation ? { orientation } : {}),
   }));

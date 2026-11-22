@@ -17,6 +17,11 @@ interface TarotCardProps {
   onFocus?: () => void;
   /** A short hint for the app tooltip, for a card that does something when pressed. */
   tip?: string;
+  /**
+   * A card drawn reversed: the picture turns half a circle, the name stays the right
+   * way up, the word "Reversed" sits under it and the accessible name says so.
+   */
+  reversed?: boolean;
 }
 export function TarotCard({
   id,
@@ -30,6 +35,7 @@ export function TarotCard({
   tabIndex,
   onFocus,
   tip,
+  reversed,
 }: TarotCardProps) {
   const artwork = id ? tarotArtwork[id] : undefined;
   const displayName = name || artwork?.name;
@@ -65,6 +71,7 @@ export function TarotCard({
             )}
           </span>
           <span className="tarot-name">{displayName}</span>
+          {reversed ? <span className="tarot-reversed-word">Reversed</span> : null}
         </>
       )}
     </>
@@ -75,8 +82,11 @@ export function TarotCard({
       !id && 'tarot-card--back',
       selected && 'tarot-card--selected',
       compact && 'tarot-card--compact',
+      id && reversed && 'tarot-card--reversed',
     ),
-    'aria-label': label || displayName || 'Choose a face-down Tarot card',
+    'aria-label':
+      (label || displayName || 'Choose a face-down Tarot card') +
+      (id && reversed ? ', reversed' : ''),
     'data-tip': tip,
   };
   return onClick ? (

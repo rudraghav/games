@@ -5,9 +5,11 @@ edition (https://service.mattel.com/instruction_sheets/uno%20basic%20is.pdf) and
 Show 'em No Mercy). Classic supports 2–10 players; No Mercy 2–6.
 
 Classic has seven starting cards, one card drawn when unable/unwilling to play,
-wild colour choice, skips/reverses, +2 and challengeable wild +4. Optional +2
-stacking and 7/0 rules default off. A hand ends on an empty hand, with remaining
-card values credited to its winner. Rematches retain room results.
+wild colour choice, skips/reverses, +2 and wild +4. The room options "Stack draw
+cards" and 7/0 default off; with stacking off a wild +4 may be challenged. A hand
+ends on an empty hand, with remaining card values credited to its winner.
+Rematches retain room results. See "Stacking, play-after-draw and missed turns"
+below for the current draw, stack and missed-UNO rules of both editions.
 
 Opening classic action cards apply their printed effects; an opening wild asks
 the first player for a colour, and an opening +4 is returned to the shuffled stock.
@@ -15,9 +17,9 @@ Final +2 draws count before scoring, and final +4 retains its challenge window.
 No Mercy ignores opening actions under the first number, wins immediately on
 an empty hand, and applies elimination as soon as a roulette draw reaches 25.
 
-No Mercy uses ascending draw stacking, mandatory 7 swaps/0 rotation, draw-until-
-playable, 25-card elimination, discard-all, skip-everyone, reverse +4, +6, +10
-and next-player colour roulette. Eliminated hands are recycled only when needed.
+No Mercy uses ascending draw stacking (the "Stack draw cards" option, on by
+default), mandatory 7 swaps/0 rotation, draw-until-playable, 25-card elimination,
+discard-all, skip-everyone, reverse +4, +6, +10 and next-player colour roulette. Eliminated hands are recycled only when needed.
 Two-player reverse +4 sends the penalty to its actor. UNO/catch windows close
 when the next player begins an ordinary move. All hand changes are server-owned.
 
@@ -96,3 +98,57 @@ hand counts, a panel for more than three swap targets, and keeps the dock pinned
 to the bottom of phones while the viewer has moves, sized to its content (at most
 216px or 42% of the screen) so the hand stays visible above it. Rules and outcomes
 are unchanged.
+
+## Stacking, play-after-draw and missed turns — 21 November 2026
+
+Outcome: the host chooses whether draw cards stack in either edition; a drawn
+card that fits can be played at once; drawing a penalty and being caught without
+UNO each cost a turn. Acceptance: every row of the table below, the missed turn
+and both older-data paths are covered by `backend/tests/test_uno_stacking.py`
+(engine, bots, random full matches in eight configurations) and
+`backend/tests/test_uno_rooms.py` (HTTP and Postgres).
+
+One setting on both games: `stack_draws`, label "Stack draw cards", default off
+for Uno and on for Uno No Mercy. A room or match saved with the retired
+`stack_draw_two: true` is read as stacking on; an explicit `stack_draws` wins.
+`rules_version` is `2` for both editions.
+
+| Game         | Stacking | What may be played on a pending draw                                                                                                                |
+| ------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Uno          | on       | +2 on +2; Wild +4 on +2 or +4. Never +2 on +4. Any colour; the wild's player names the colour. The total passes on. A Wild +4 cannot be challenged. |
+| Uno          | off      | Nothing: the penalty is drawn. A Wild +4 opens the accept/challenge window exactly as before.                                                       |
+| Uno No Mercy | on       | Any draw card of equal or higher value than the last one: +2, +4 (coloured or Reverse +4), +6, +10. Any colour.                                     |
+| Uno No Mercy | off      | Nothing: the penalty is drawn (a two-player Reverse +4 still returns its 4 to its player).                                                          |
+
+- Taking a pending penalty always ends that turn: a stacked total, a plain +2,
+  an accepted +4 and a failed challenge. A successful challenge keeps the turn.
+- After a voluntary draw the drawn card may be played in the same turn if it
+  fits. Classic draws one card and offers that card or Pass; No Mercy draws until
+  a card fits and that card is then played (no Pass). No other card may be played.
+- Caught without UNO: the player takes 2 cards and is marked in public state
+  (`missing`) to miss one turn. If it is their turn and nothing is pending on
+  them, that turn ends at once. Otherwise the mark is served the next time an
+  ordinary turn would start for them, and play passes over them. A draw penalty,
+  +4 challenge or roulette aimed at a marked seat is answered first and does not
+  use up the mark; a Skip card played on a marked seat costs its own turn too.
+  Marks follow the seat (not the hand) through 7 swaps and 0 passes, are never
+  doubled by a second catch before being served, and are cleared by elimination
+  and at the end of the hand.
+- Projection: `detail.stacking`, `detail.stack_floor` (the lowest draw value that
+  may answer the pending penalty; 0 when nothing may), `detail.missing_turn`
+  (seat ids) and `last_event.missed` (seats the latest action's turn passed over).
+  `next_player` names who takes the next ordinary turn, so it passes over a marked
+  seat. All four are public; no hand information is added.
+- Messages instruct the seat that acts: "Stack a +4 or higher, or draw 6. Drawing
+  passes your turn.", "Stack a +10, or draw 22 — drawing puts you out.",
+  "Draw 2; your turn then passes.".
+- Bots stack the smallest card that answers a penalty (the largest when the next
+  player holds two cards or fewer), never play a two-player Reverse +4 onto
+  themselves when they could draw instead, and accept a +4 they may not stack.
+  A marked bot has no decision and is not scheduled.
+
+The table (apps/web CardTable, uno-view) reads these fields: "+6 is on you: draw
+6 or stack." only when the room stacks, a "Misses next turn" chip on the seat and
+a felt line for everyone, "X was caught without UNO and misses this turn." when
+the mark is served, and "You drew Red 9 and it fits: play it now, or pass and
+keep it." with the drawn card outlined, first in the hand and first in the dock.

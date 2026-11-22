@@ -362,6 +362,26 @@
   .astrology-interpretation .tarot-perspectives {
     margin-top: 8px;
   }
+  /* Each focus point reads label, meaning, then what it could mean for the question. */
+  .astrology-points {
+    display: grid;
+    gap: 16px;
+  }
+  .astrology-point {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+  }
+  .astrology-interpretation .astrology-point-label {
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums;
+  }
+  .astrology-interpretation .astrology-point-question {
+    padding-left: 12px;
+    border-left: 3px solid var(--color-plum-light);
+  }
   @media (max-width: 800px) {
     .astrology-chart-layout {
       grid-template-columns: minmax(0, 1fr);

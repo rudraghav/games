@@ -2,6 +2,106 @@
 
 `TarotTable` owns the shuffled three-card selection, optional question, private reading request and saved reading. `TarotReading` preserves each card’s grounded read, quirky read and character connections. Existing readings without astrology render unchanged.
 
+## A reading that answers the question
+
+Each card reads in one order, in `CardSections`:
+
+1. **What this card says about your question** (`interpretation`). With no question
+   on the page the heading is "What this card says".
+2. **The figure.** Fun: "How it could play out" with the portrait, its scene and
+   its editorial move, then a tinted block, **What this means for your question**
+   (`pop_culture`, the one generated line about the figure; "What this could mean
+   for you" with no question). Classic: "Your connections", each a fact and what
+   it suggests, with Background collapsed.
+3. **The plot twist** (`quirky_interpretation`): an image and what it implies.
+
+A Fun reading saved before the bridge has no `pop_culture` and renders as it did:
+portrait first, then "The grounded read" and the plot twist together. A saved
+interpretation that is only a question keeps the "The grounded read" heading.
+Nothing is rewritten; only order and headings depend on what was saved.
+
+Chart perspectives follow the same rhythm. `chartPoints` splits `normal` into focus
+points and shows each as its computed label ("Sun in Sagittarius, house 9"), what
+the placement is traditionally associated with, then the sentence that begins
+"For your question" with a plum rule beside it. Text saved as one unlabelled
+paragraph stays one paragraph; labelled questions from an earlier profile keep
+their labels under "The grounded read".
+
+Copy and share (`reading-text.ts`) carry the page's words in the page's order:
+each card's reading, its figures with their move, the bridge, the plot twist, any
+chart perspective, how it meets the cards, and both next steps. Scenes, portraits,
+credits and the chart drawing stay on the page.
+
+The question field keeps its "What’s on your mind?" label and 400-character limit.
+Its placeholder invites context: "Ask your question and add what’s going on.
+Specifics make the reading more useful." The form keeps its height, because the
+progress card that replaces the button must still open on screen at 320 by 740;
+a count appears only for the last 100 characters.
+
+## Reversed cards, card pages and the deck ribbon — 22 November 2026
+
+### Reversed cards
+
+The server decides each card's orientation at the shuffle and sends it only with a
+drawn card (`card.orientation` in `match.community`, and `orientation` on each
+saved reading section). The web never knows, stores or guesses the orientation of
+a card still in the deck, and the deck backs carry no per-card data at all.
+
+- `orientation.ts` reads it (`orientationOf`); anything saved before reversals is
+  upright.
+- `TarotCard reversed` turns the picture half a circle (`.tarot-card--reversed
+.tarot-art`), leaves the name plate upright, prints the word "Reversed" under the
+  name and appends ", reversed" to the accessible name. Orientation is never shown
+  by rotation or colour alone.
+- The spread slot is labelled "Card 2, What is shifting: Ace of Wands, reversed. …",
+  carries `data-orientation`, and shows the meaning for that orientation (the
+  server's `subtitle`). The reveal flips straight into the drawn orientation; the
+  live region says "You drew Ace of Wands, reversed, for what is shifting."
+- In a reading: the jump list adds "· Reversed", the thumbnail turns, the card
+  heading's pill says `Upright` or `Reversed`, and the copied or shared text says
+  "(reversed)". A section's saved orientation wins; an older section falls back to
+  the drawn card.
+
+### Card pages
+
+`TarotCardPage` loads `TarotCardGuide` on demand (the guide JSON is about 300 KB and
+is not part of the first paint; the gallery preloads it when it opens).
+
+- **A drawn card** (`TarotCardDetail`): the dialog is named after the card, its
+  description says the position, what it asks and "Drawn upright." or "Drawn
+  reversed.", and the page opens on the drawn side with "Drawn as <position>". The
+  other side stays one tap away.
+- **The gallery** (`TarotDeckGallery`, "Explore the deck"): all 78 cards in printed
+  order behind the pinned suit filter. Every card is a button; the grid is one Tab
+  stop with arrow keys, Home and End. Opening a card shows its page in the same
+  dialog under a pinned bar: "All cards" (back), "Card N of M" within the current
+  filter, and Previous / Next, which wrap. Focus moves to the page heading on
+  opening and stays on Previous / Next while turning; Back or Escape returns to the
+  same filter and scroll position with focus on that card. A second Escape closes
+  the dialog. Every gallery page shows both orientations and opens on Upright: the
+  gallery knows nothing about the shuffled deck.
+
+### The deck ribbon
+
+`TarotDeckPicker` lays every remaining card in one row inside `HorizontalRail`'s
+native scroller: wheel, trackpad and touch drag with the browser's own momentum,
+`scroll-snap-type: x proximity` on card edges, no custom physics. The arrows page by
+about a screenful (instantly under reduced motion). `--fan-step` is the strip of
+each overlapped back that stays visible: about 12 backs across a 390px phone and 30
+across a 1440px desktop (the old fan showed 6 to 16 a page).
+
+- The strip is 27–31px, narrower than a finger on purpose. The first tap only lifts
+  a back, the lifted card's own lane is a full card wide (102–144px) for the
+  confirming tap, and one face-down back is as good as its neighbour, so a near
+  miss costs nothing.
+- "Cards 14–42 of 77" on the velvet follows the scroll. It is not a live region:
+  each back already says "Face-down card N of M, for <position>".
+- A lifted card is brought fully into view; scrolling it out of view puts it down.
+- One Tab stop; arrow keys, Home and End move focus and scroll the ribbon with it;
+  the first activation lifts and the second reveals, as before.
+- A finger drags the ribbon (sideways) or the page (vertically). The press-and-slide
+  preview remains for mouse and pen.
+
 ## Reading style
 
 After the third pick the Fun mode switch is on for a fresh spread. Its visible info hint describes both styles. Turning the switch off selects Classic. The choice stays with the question draft through refresh. The submitted style comes back from the reading service for recovery, retry and archive rendering. Fun moves the illustrated character connection before the card interpretation under **How it could play out**. The opt-in hosted browser check accepts `GAMES_TEST_TAROT_STYLE=fun` to exercise the full result, images, refresh, private archive and closed-room flow with a real provider.
@@ -20,8 +120,8 @@ positions, and pointer rendering does not run while the table is idle.
 
 ## Choosing and revealing
 
-- The face-down deck comes first. Each page fans the same illustrated back in front of the oracle sphere and leaves finger-width strips exposed. Tap a back or slide across the fan and release to lift a card. The highlighted card stays face-down. Tap another to change your choice, or tap the lifted card again to reveal it in the named spread position.
-- Previous and next controls reach the full deck. The deck uses one Tab stop. Arrows, Home and End move focus, Space or Enter lifts the focused card. Release the key and activate that card again to draw it. The screen reader hears the card’s ordinal and destination. Paging a lifted card out of view lowers it. A lifted card belongs only to the current draw on this device.
+- The face-down deck comes first: one ribbon of every remaining back in front of the oracle sphere (see "The deck ribbon" below). Tap a back to lift it; with a mouse or pen you can also press and slide across the backs and release. The highlighted card stays face-down. Tap another to change your choice, or tap the lifted card again to reveal it in the named spread position.
+- Previous and next controls page through the full deck. The deck uses one Tab stop. Arrows, Home and End move focus, Space or Enter lifts the focused card. Release the key and activate that card again to draw it. The screen reader hears the card’s ordinal and destination. Paging a lifted card out of view lowers it. A lifted card belongs only to the current draw on this device.
 - Empty spread slots have dashed outlines. Only the next slot is highlighted and labelled.
 - After a committed pick, the filled slot scrolls into view, takes focus and briefly highlights, and a polite live region says “You drew <card> for <position>.” A refresh starts from the saved spread without replaying a reveal. On phones a “Choose card N of 3” button below the spread returns to the deck. The public activity line still never names the card.
 - Spread position labels and card names are at least 11px and meanings 12px at every width.
@@ -249,12 +349,13 @@ secondary “Draw a new spread”, the spread, then `TarotReading` with `summary
   fallback). It holds the introduction as the one-sentence synthesis, the next
   small move, and three jump links to the card sections. On phones the links are
   a three-line contents list with 44px rows.
-- **Card sections** state the position, the card, `Upright` and what the position
+- **Card sections** state the position, the card, how it was drawn (`Upright` or
+  `Reversed`, from the saved section) and what the position
   asks (`spread.ts`, worded to match the service's `POSITION_FOCUS`). The grounded
   read is plain 16px text at a 64-character measure; the plot twist is a tinted
   aside; Fun connections come first as before.
 - **Thumbnails and spread cards** are buttons that open `TarotCardDetail`: the
-  full card, its position, the orientation note and the card meaning. Only cards
+  card's full page on the side it was drawn, with its position. Only cards
   already drawn by this viewer can be opened. Spread cards become buttons after
   the third pick, so the deck's single Tab stop is unchanged while choosing.
 - **Your next small move** closes the reading, followed by `ReadingShare`: Copy
@@ -263,8 +364,8 @@ secondary “Draw a new spread”, the spread, then `TarotReading` with `summary
   or charts), the device share sheet when the browser has one, and a link to the
   private saved copy. Image credits come last.
 
-The deck has no reversed cards, so `Upright` is a fact of the deck, not a saved
-field. The saved-reading page uses the same component without `summary`,
+Orientation is saved with each drawn card and each reading section (see
+"Reversed cards, card pages and the deck ribbon"). The saved-reading page uses the same component without `summary`,
 `question` or `savedHref`; its own header already shows the question and
 introduction.
 

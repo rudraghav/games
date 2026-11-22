@@ -311,7 +311,7 @@
   .astrology-option,
   .astrology-chart,
   .astrology-saved,
-  .modal:has(.tarot-card-detail, .tarot-deck-gallery) {
+  .modal:has(.tarot-card-detail, .tarot-deck-gallery, .tarot-gallery-view) {
     --color-ink-muted: #5c5f55;
     --tarot-velvet: #1c0f22;
     --tarot-on-velvet: #f3ead8;
@@ -511,7 +511,8 @@
     /* The deck fans out once when it is first laid down. Later remounts do not replay. */
     .tarot-fan-stage[data-entering] .tarot-fan-face {
       animation: tarot-fan-in 320ms var(--ease-out) backwards;
-      animation-delay: calc(var(--fan-layer) * 22ms);
+      /* The cards in view arrive in a quick run; the rest of the ribbon is already down. */
+      animation-delay: calc(min(var(--fan-layer), 32) * 12ms);
     }
     .tarot-reading-skeleton span {
       animation: tarot-status-pulse 1.1s ease-in-out infinite alternate;
@@ -789,6 +790,35 @@
     box-shadow: var(--shadow-rest);
   }
 
+  /* What the figure's move means for the question: the one generated line beside an
+     editorial portrait, set apart so the "so what" is easy to find. Ink on this
+     tint keeps the page's 4.5:1 text contrast. */
+  .tarot-figure-bridge {
+    max-width: 64ch;
+    margin-top: 12px;
+    padding: 12px 14px 14px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--color-coral) 9%, var(--color-surface));
+  }
+  .tarot-reading .tarot-figure-bridge > h5 {
+    margin-bottom: 6px;
+    color: var(--color-ink-muted);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  .tarot-reading .tarot-figure-bridge > p {
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+  /* The figure now sits between what the card says and its plot twist. */
+  .tarot-reading .tarot-character-connections + .tarot-perspectives {
+    margin-top: 18px;
+  }
+
   /* ---------- Next step, keeping the reading, credits ---------- */
   .tarot-reading .tarot-next-step {
     margin-top: 8px;
@@ -865,37 +895,110 @@
     width: 58%;
   }
 
-  /* ---------- The full card ---------- */
-  .tarot-card-detail {
-    display: grid;
-    justify-items: center;
-    gap: 20px;
+  /* ---------- A card drawn reversed ---------- */
+  /* Only the picture turns. The name stays the right way up and the word says so:
+     orientation is never carried by rotation or colour alone. */
+  .tarot-card--reversed .tarot-art {
+    rotate: 180deg;
   }
-  .tarot-card-detail > .tarot-card {
-    width: min(100%, 280px);
-    box-shadow: var(--shadow-lift);
-  }
-  .tarot-card-detail > .tarot-card .tarot-name {
-    min-height: 38px;
-    font-size: 14px;
-  }
-  .tarot-card-detail > dl {
-    display: grid;
-    gap: 12px;
-    width: 100%;
-    margin: 0;
-  }
-  .tarot-card-detail dt {
-    color: var(--color-ink-muted);
+  .tarot-reversed-word {
+    display: block;
+    padding: 1px 2px 0;
+    color: var(--color-ink-muted, #5c5f55);
     font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    text-align: center;
     text-transform: uppercase;
   }
-  .tarot-card-detail dd {
-    margin: 3px 0 0;
+  /* The heading beside a thumbnail states the orientation in words. */
+  .tarot-reading-card-heading > .tarot-card .tarot-reversed-word {
+    display: none;
+  }
+  .tarot-summary-reversed {
+    color: var(--color-ink-muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .tarot-position-meaning[data-orientation='reversed'] > span {
+    border-color: transparent;
+    background: var(--color-ochre-light);
+    color: var(--tarot-ochre-deep);
+  }
+
+  /* ---------- Card pages: a drawn card, and any card from the gallery ---------- */
+  .modal:has(.tarot-card-detail, .tarot-gallery-view) {
+    width: min(960px, calc(100% - 28px));
+  }
+  .tarot-card-detail,
+  .tarot-gallery-view[data-view='card'] {
+    display: block;
+    margin-top: 18px;
+  }
+  /* A drawn card's dialog is already named after the card. */
+  .tarot-card-detail .tarot-guide-name {
+    display: none;
+  }
+  .tarot-guide-name:focus {
+    outline: none;
+  }
+  .tarot-guide-name:focus-visible {
+    outline: 3px solid var(--color-focus, #af7535);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+  .tarot-card-page-loading {
+    display: grid;
+    min-height: 280px;
+    place-items: center;
+    margin: 0;
+    color: var(--color-ink-muted);
     font-size: 15px;
-    line-height: 1.6;
+  }
+  .tarot-deck-gallery button.tarot-card {
+    cursor: pointer;
+    font: inherit;
+    text-align: center;
+    /* Arrow keys keep the focused card clear of the pinned heading and filter. */
+    scroll-margin-block: 150px 24px;
+  }
+  .tarot-deck-gallery button.tarot-card:focus-visible {
+    outline: 3px solid var(--color-focus, #af7535);
+    outline-offset: 3px;
+  }
+  .tarot-gallery-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .tarot-gallery-bar .button {
+    min-height: 44px;
+  }
+  .tarot-gallery-bar .button--icon {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-ink);
+  }
+  .tarot-gallery-place {
+    min-width: 0;
+    margin: 0;
+    color: var(--color-ink-muted);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.4;
+    text-align: center;
+  }
+  .tarot-gallery-turn {
+    display: flex;
+    flex: none;
+    gap: 6px;
+  }
+  @media (min-width: 601px) {
+    .tarot-deck-gallery {
+      grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+    }
   }
 
   @media (max-width: 600px) {

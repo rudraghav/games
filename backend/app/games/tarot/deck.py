@@ -1,8 +1,15 @@
-"""Original concise meanings; 22 major + four suits of fourteen cards."""
+"""Original concise meanings; 22 major + four suits of fourteen cards.
 
+A card can be drawn upright or reversed. `TarotCard.meaning` is the upright line;
+`card_meaning` returns the line for an orientation from the card guide.
+"""
+
+from collections.abc import Mapping
 from dataclasses import dataclass
+from typing import cast
 
 from app.core.contracts import CardView
+from app.games.tarot.card_guide import Orientation, short_meaning
 
 
 @dataclass(frozen=True)
@@ -13,14 +20,16 @@ class TarotCard:
     suit: str = "major"
     rank: int = 0
 
-    def view(self) -> CardView:
+    def view(self, orientation: str = "upright") -> CardView:
+        """A drawn card as the table shows it: its orientation and that orientation's meaning."""
         return CardView(
             id=self.id,
             label=self.name,
-            subtitle=self.meaning,
+            subtitle=card_meaning(self.id, orientation),
             value=str(self.rank),
             color=self.suit,
             suit=self.suit,
+            orientation=cast(Orientation, card_orientation(self.id, {self.id: orientation})),
         )
 
 
@@ -148,8 +157,34 @@ POSITION_FOCUS = {
     "What is shifting": "what could be changing or asking for attention",
     "Your next move": "one possible direction to consider",
 }
-# The deck is dealt and read upright. Every saved meaning is the upright meaning.
+# A card is drawn upright or reversed (see engine.py). Upright is the default for
+# every reading saved before reversals existed.
 ORIENTATION = "upright"
+ORIENTATIONS = ("upright", "reversed")
+
+
+def card_orientation(card_id: str, drawn: Mapping[str, str] | None = None) -> str:
+    """The orientation this card was drawn in; upright unless ``drawn`` says otherwise.
+
+    Readings ask only this helper. ``drawn`` maps the ids of DRAWN cards to their
+    orientation; it never describes a card that is still in the deck.
+    """
+    orientation = (drawn or {}).get(card_id, ORIENTATION)
+    if card_id not in BY_ID or orientation not in ORIENTATIONS:
+        raise ValueError("Unknown card or orientation.")
+    return orientation
+
+
+def card_meaning(card_id: str, orientation: str = ORIENTATION) -> str:
+    """The one-line meaning to read for that orientation, from the card guide.
+
+    The guide's upright line is the deck's own meaning word for word (a test holds
+    them together, because the reference index is built from ``TarotCard.meaning``).
+    A reversed card gets its own reversed line, never an upright one passed off.
+    """
+    if card_id not in BY_ID or orientation not in ORIENTATIONS:
+        raise ValueError("Unknown card or orientation.")
+    return short_meaning(card_id, cast(Orientation, orientation))
 
 
 def spread_links(card_ids: list[str]) -> list[str]:

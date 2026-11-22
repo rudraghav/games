@@ -4,8 +4,43 @@ import { Button } from '@games/ui';
 import type { AstrologyReading as SavedAstrology } from '@games/api-client';
 import { AstrologyChart } from './AstrologyChart';
 import { formatDegree } from './astrology-presentation';
+import { asksOnly } from './reading-text';
 
-export function AstrologyReading({ astrology }: { astrology: SavedAstrology }) {
+/**
+ * A chart perspective as its focus points: the computed label, what the placement is
+ * traditionally associated with, then what that could mean for the question. Text
+ * saved without that shape stays one paragraph, exactly as written.
+ */
+/** Chart text saved before it had to explain itself: every focus point is a lone question. */
+function asksOnlyChart(normal: string) {
+  return chartPoints(normal).every((point) => !point.forQuestion && asksOnly(point.meaning));
+}
+
+export function chartPoints(normal: string) {
+  return normal
+    .split(/\n\s*\n|\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+    .map((paragraph) => {
+      const label = paragraph.match(/^([^:.!?\n]{2,60}?, house \d{1,2}):\s+(?=\S)/);
+      const body = label ? paragraph.slice(label[0].length) : paragraph;
+      const turn = body.search(/\bFor (?:your question|whatever you are carrying)\b/);
+      return {
+        label: label?.[1],
+        meaning: turn > 0 ? body.slice(0, turn).trim() : body,
+        forQuestion: turn > 0 ? body.slice(turn).trim() : undefined,
+      };
+    });
+}
+
+export function AstrologyReading({
+  astrology,
+  asked = true,
+}: {
+  astrology: SavedAstrology;
+  /** Whether a question was asked; the headings speak to it or to the spread in general. */
+  asked?: boolean;
+}) {
   const [visible, setVisible] = useState(true);
   const id = useId();
   return (
@@ -56,8 +91,26 @@ export function AstrologyReading({ astrology }: { astrology: SavedAstrology }) {
               ) : null}
               <div className="tarot-perspectives" data-variant="split">
                 <section>
-                  <h5>The grounded read</h5>
-                  <p>{section.normal}</p>
+                  <h5>
+                    {asksOnlyChart(section.normal)
+                      ? 'The grounded read'
+                      : asked
+                        ? 'What these placements say about your question'
+                        : 'What these placements say'}
+                  </h5>
+                  <div className="astrology-points">
+                    {chartPoints(section.normal).map((point, index) => (
+                      <div className="astrology-point" key={index}>
+                        {point.label ? (
+                          <p className="astrology-point-label">{point.label}</p>
+                        ) : null}
+                        <p>{point.meaning}</p>
+                        {point.forQuestion ? (
+                          <p className="astrology-point-question">{point.forQuestion}</p>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
                 </section>
                 <section className="tarot-quirky-read">
                   <h5>The plot twist</h5>

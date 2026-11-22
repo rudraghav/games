@@ -62,7 +62,14 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
     // Resolve legacy and stale links only from a successful member-only read.
     if (!room || !selfId || query.isError || me.isError) return;
     const canonical = roomPath(room);
-    if (pathname !== canonical) router.replace(canonical, { scroll: false });
+    if (pathname === canonical) return;
+    // After a change of game the table is already the right page with a stale slug.
+    // Correct the address in place: a navigation would remount the room and drop an
+    // open dialog or a move the player has not sent yet.
+    const table = /^\/games\/[^/]+\/rooms\/[^/]+$/;
+    if (table.test(pathname) && table.test(canonical))
+      window.history.replaceState(null, '', canonical + window.location.search);
+    else router.replace(canonical, { scroll: false });
   }, [room, selfId, query.isError, me.isError, pathname, router]);
   // A failed move stays readable until the table moves on after it, never for the
   // whole match. A stale move first refreshes the table, so the note belongs to
@@ -455,7 +462,8 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
         {!solo && desktop && (panel === 'chat' || panel === 'activity') ? (
           <aside className="desktop-chat">{tablePanel}</aside>
         ) : null}
-        {room.game && room.status === 'playing' ? (
+        {/* A solo table has no one else's moves to report. */}
+        {room.game && room.status === 'playing' && !solo ? (
           <ActionToasts room={room} selfId={selfId} />
         ) : null}
       </main>

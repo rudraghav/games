@@ -47,19 +47,20 @@ const unoMatch = rule(
 );
 const unoCall = rule(
   'Call UNO at one',
-  'When you go down to one card, tap UNO before another player catches you. Empty your hand to win.',
+  'When you go down to one card, tap UNO before another player catches you. If you are caught, you draw two cards and miss your next turn. Empty your hand to win.',
   picture('One card left in a hand and the UNO call.', back, icon('message', 'UNO!')),
 );
 const unoMoves = {
-  play: 'A matching colour, number or symbol makes a card playable. A wild can change the colour.',
-  draw: 'An ordinary draw takes one card. Taking a draw penalty instead adds the penalty cards and passes the turn.',
+  play: 'A matching colour, number or symbol makes a card playable. A wild can change the colour. When the room has Stack draw cards on, a +2 or Wild +4 can answer a +2, and a Wild +4 can answer a +4.',
+  draw: 'An ordinary draw takes one card, and a card that fits can be played at once. Taking a draw penalty instead adds the penalty cards and passes the turn.',
   uno: 'Calling UNO protects a one-card hand until the next ordinary move.',
-  catch_uno: 'Catching a player who missed their UNO call gives that player a draw penalty.',
+  catch_uno:
+    'Catching a player who missed their UNO call makes them draw two cards and miss their next turn.',
   choose: 'The chosen colour determines what can be played next.',
   end_turn: 'Passing after a draw leaves the top card in place for the next player.',
   accept: 'Accepting a draw penalty takes the required cards.',
   challenge:
-    'A challenge checks whether the Wild +4 player held the colour it replaced. An unsuccessful challenge costs two extra cards.',
+    'A challenge checks whether the Wild +4 player held the colour it replaced. An unsuccessful challenge costs two extra cards. Challenges exist only while Stack draw cards is off.',
 };
 const dealSet = rule(
   'Build three colours',
@@ -110,7 +111,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       unoMatch,
       rule(
         'Use the draw pile',
-        'Draw one card. If you draw a red 4 while red is in play, you can play that 4 immediately or pass. Only the newly drawn card can be played this turn.',
+        'Draw one card. If you draw a red 4 while red is in play, you can play that 4 immediately or pass. Only the newly drawn card can be played this turn. A draw penalty is different: taking it ends your turn.',
         picture('A red 4 is drawn from the stock.', back, arrow, uno('4', 'red')),
       ),
       unoCall,
@@ -123,7 +124,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       unoMatch,
       rule(
         'Pass the penalty',
-        'Stack an equal or higher draw card to send the combined penalty onward. A +2 followed by +4 makes the next player face six.',
+        'Stack an equal or higher draw card of any colour to send the combined penalty onward. A +2 followed by +4 makes the next player face six. Whoever draws the penalty loses their turn. A room can turn Stack draw cards off; then every penalty is simply drawn.',
         picture(
           'Draw two plus draw four builds a six-card penalty.',
           uno('+2', 'red'),
@@ -133,7 +134,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       ),
       rule(
         'Stay below 25',
-        'Draw until you find a playable card when you have no match. Reaching 25 cards puts you out. Empty your hand or be the last player left.',
+        'Draw until you find a playable card when you have no match, then play that card at once. Reaching 25 cards puts you out. Empty your hand or be the last player left.',
         picture(
           'A hand reaching 25 cards ends that player’s game.',
           icon('hand', '25 cards'),
@@ -145,7 +146,7 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
     actions: {
       ...unoMoves,
       draw: 'Ordinary draws continue until a match. A draw penalty makes you take the accumulated cards and pass. Reaching 25 cards puts you out.',
-      play: 'Match the discard or play a wild. Against a draw stack, only an equal or higher draw value can pass it on.',
+      play: 'Match the discard or play a wild. Against a draw stack, only an equal or higher draw value can pass it on, and only while Stack draw cards is on.',
       choose:
         'The selected colour becomes active. In colour roulette, the player draws until a non-wild of that colour appears or they reach 25 cards.',
     },

@@ -13,11 +13,11 @@
     "play_mode": "competitive",
     "score_label": "Points",
     "score_order": "high",
-    "rules_version": "1",
+    "rules_version": "2",
     "settings": [
       {
-        "key": "stack_draw_two",
-        "label": "Stack draw-two cards",
+        "key": "stack_draws",
+        "label": "Stack draw cards",
         "default": false
       },
       {
@@ -27,9 +27,10 @@
       }
     ],
     "rules": [
-      "Match the colour, number or symbol.",
-      "Call UNO when one card remains.",
-      "Empty your hand first. Draw four may be challenged."
+      "Match the colour, number or symbol. Or draw one card: if it fits, you may play it at once.",
+      "Call UNO when one card remains. If caught without it, draw 2 and miss your next turn.",
+      "Empty your hand first. Drawing a penalty passes your turn.",
+      "Stack draw cards on: answer a +2 with a +2 or Wild +4, and a +4 with a Wild +4; the total moves on and a Wild +4 cannot be challenged. Off: draw the penalty; a Wild +4 may be challenged."
     ]
   },
   {
@@ -46,12 +47,19 @@
     "play_mode": "competitive",
     "score_label": "Points",
     "score_order": "high",
-    "rules_version": "1",
-    "settings": [],
+    "rules_version": "2",
+    "settings": [
+      {
+        "key": "stack_draws",
+        "label": "Stack draw cards",
+        "default": true
+      }
+    ],
     "rules": [
-      "Match the colour, number or symbol.",
-      "Call UNO when one card remains.",
-      "25 cards means elimination; stack equal or higher draws."
+      "Match the colour, number or symbol. With no match, draw until a card fits, then play it.",
+      "Call UNO when one card remains. If caught without it, draw 2 and miss your next turn.",
+      "25 cards means elimination. Drawing a penalty passes your turn.",
+      "Stack draw cards on: answer a draw card with an equal or higher one of any colour (+2, +4, +6, +10) and the total moves on. Off: draw the penalty."
     ]
   },
   {
@@ -288,10 +296,17 @@
     "score_label": "Points",
     "score_order": "none",
     "rules_version": "1",
-    "settings": [],
+    "settings": [
+      {
+        "key": "reversals",
+        "label": "Include reversed cards",
+        "default": true
+      }
+    ],
     "rules": [
       "Think of a question, or simply see what comes up.",
       "Pick three cards: where you are, what is shifting, your next move.",
+      "A card can land upright or reversed; reversed turns its theme inward or blocks it.",
       "Get an AI-written personal reading with a pop-culture twist.",
       "A playful reflection, not a prediction or professional advice."
     ]

@@ -12,6 +12,3 @@ export const spreadPositions = [
 export function positionMeaning(position: string) {
   return spreadPositions.find((item) => item.name === position)?.meaning;
 }
-
-/** This deck is dealt and read upright; a saved card never carries a reversed meaning. */
-export const orientationNote = 'Upright. This deck reads every card upright.';

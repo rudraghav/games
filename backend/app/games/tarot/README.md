@@ -6,6 +6,176 @@ The server shuffles the 78 distinct cards once per match with fresh randomness. 
 
 Character retrieval balances the card, the position and the question. It allocates one lead to each spread position before allocating backups in rounds. When cards compete for the same reference, the card with the clearest lead goes first. Changing the shortlist size preserves every smaller shortlist as a prefix. A meme can appear as a secondary option if it fits; names and identity families stay distinct across the spread. A saved reading retains its original text and reference evidence.
 
+## Reversed cards — 22 November 2026
+
+A card can be drawn upright or reversed. The server decides it and keeps it secret
+until the card is drawn.
+
+- **Decided at the shuffle.** `TarotEngine.setup` shuffles the deck, then asks the
+  same private generator once per card: reversed one time in three, independently
+  (`REVERSED_ONE_IN`). The reversed card ids are saved as `state["reversed"]` beside
+  `state["deck"]`. Orientation is drawn after the shuffle, so a seeded deck order is
+  the one earlier seeds produced. A state saved before this has no `reversed` list
+  and every card in it is upright.
+- **A table setting.** The manifest setting `reversals` ("Include reversed cards",
+  default on) turns it off: `reversed` is then empty and every card is upright.
+- **Secrecy rule.** Deck order and the orientation of every card still in the deck
+  never leave the saved state. `drawn_orientations(state)` is the only reader and
+  returns the DRAWN cards only. `project_view` puts each drawn card in `community`
+  as `CardView(orientation=..., subtitle=<that orientation's meaning>)`; action
+  labels ("Choose card N"), messages, `detail.pickedPositions` and the public
+  history line ("Chose a Tarot card") carry no orientation. A non-member's
+  projection is empty. `CardView.orientation` is optional and omitted when unset,
+  so no other game's payload changed. Tests flip the orientation of every undrawn
+  card and require byte-identical projections and actions at every step
+  (`test_tarot_reversals.py`, and through the HTTP API in `test_tarot_archive.py`).
+- **Meanings.** `deck.card_meaning(card_id, orientation)` returns the card guide's
+  one-line meaning for that orientation (`card_guide.short_meaning`). The guide's
+  upright line equals `TarotCard.meaning` word for word (tested), because the
+  reference index is built from `TarotCard.meaning`.
+- **Readings.** The service passes `drawn_orientations(match.state)` to
+  `generate_reading`. The request names each card's `orientation` and sends that
+  orientation's `meaning`; the prompts (unchanged, `pop-tarot-16`) tell the model to
+  say a reversed card is reversed and what that changes. `Section.orientation`
+  (`"upright"` by default) is stamped by the server from the draw
+  (`with_orientations`) and is not in any provider schema: a model never authors
+  it. It is stored with the reading and returned by the live, saved and
+  alternate-style views. Readings saved earlier have no field and load as upright;
+  their stored JSON is not rewritten.
+- **Fun portraits and Classic references** are still matched on the card's upright
+  theme. The local index holds one precomputed vector per card
+  (`reference-index.npz`, guarded by `cardMeaningHash`); matching on reversed
+  meanings needs 78 more vectors and a regenerated index, which was left out. The
+  model still receives the reversed meaning, so the text it writes about a
+  reference follows the drawn orientation.
+- **Reference eligibility.** Eight catalogue biographies that describe
+  adult-industry work are in `NEW_READING_EXCLUSIONS`: their source text would
+  appear under a Classic reading's "Background". Saved readings still resolve them.
+
+Real check, 22 November 2026: four provider requests on seeded draws through this
+path with synthetic questions. One Gemini request returned 503 (no reading); three
+readings validated (Gemini Classic, Gemini Fun, Groq Classic). Each used the
+reversed meaning and none read the card as doom or a prediction. Two sections said
+"is reversed" in the card's own section; one (Gemini Classic, Three of Cups) named
+it reversed in the introduction only. Every saved payload carried the drawn
+orientation per section and loaded again unchanged.
+
+## Readings that answer the question — `pop-tarot-16`, 21 November 2026
+
+Earlier profiles made most fields one invitational question and one image, and in
+Fun the model was never told who each portrait was. A reading named figures,
+planets and houses without saying what any of them meant for the question. From
+`pop-tarot-16` every generated part says what it means for THIS question in plain
+words, as a possibility ("may", "could", "suggests"), and may then ask one question.
+
+| Part | Field | What it holds |
+| --- | --- | --- |
+| In short | `introduction` | 2–3 statements: what is really being asked, in the asker's own words; then the spread's overall answer, naming two cards and how they combine |
+| What this card says about your question | `cards[].interpretation` | 2–4 sentences: what this card in this position points to within the question, then what that suggests noticing or doing |
+| The figure, Fun | `cards[].characters[0]` + `cards[].pop_culture` | name, source, reviewed scene and editorial move stay server-owned; `pop_culture` is the one generated bridge, "What this means for your question", that carries the move into the asker's situation |
+| The figure, Classic | `cards[].characters[].connection` | a specific fact from `public_context`, then what that parallel suggests for the question |
+| The plot twist | `cards[].quirky_interpretation` | one everyday image, then what it implies for the question |
+| Next small move | `next_step` | one concrete action built from what the question mentions |
+| Chart perspective | `astrology.interpretation.*.normal` | per focus point: the computed body/sign/house label, what each is traditionally associated with in plain words, then what that could mean for the question |
+| How it meets your cards | `astrology.interpretation.tarot_connection` | how the placements reinforce, temper or complicate what the cards said, naming a placement and a card |
+
+**Fun portraits.** The model now sees each card's selected portrait (`portrait`:
+name, source, the exact reviewed scene and the editorial move) in place of
+`reference_characters`. It never writes biography: `validate_reading` still binds
+the name, source, evidence and move from the server's own catalogue and stores only
+the bridge the model wrote. A bridge is required for a fresh Fun reading, must be
+110–450 characters, must state something, and is rejected (`reference`) when it
+names another figure from the reviewed cast. The Classic view of a Fun reading
+drops the bridge together with its portrait. `pop_culture` stays optional in the
+stored contract, so readings saved before the bridge load unchanged.
+
+**Validation.** `answer_form` replaces the question-format check. `says_something`
+(`recovery.py`) is structural only, so it holds for a question in any language: a
+field needs at least one statement of five or more words and may hold at most two
+questions (one in the introduction, next step and chart link; one per focus point
+in chart text). A plot twist needs a second sentence. Fresh floors reject
+one-liners: introduction 120, interpretation 160, bridge 110, Classic connection
+80, plot twist 90, next step 50, chart text 300 per system, chart link 120.
+Nothing checks topic or wording: whether a part is specific to the question is a
+prompt and review matter, recorded in the evaluation below.
+
+**No relaxation.** A failed check is named to the next attempt (`validation_feedback`
+with `correct_complete_output`) on the same or the next provider. The old
+per-field `validation_relaxations` grant is removed: a field that only asks fails
+again rather than being accepted. Two failures end the attempt with a message such
+as "Card 2 wording asked without saying what it means." and the Retry action.
+
+**Every live profile shares the contract.**
+
+| Provider | Modes | Profile | Wire |
+| --- | --- | --- | --- |
+| Gemini | all | `pop-tarot-16` (`reading.py`) | structured schema; Fun adds a required `pop_culture` per card |
+| Cloudflare Llama 3.3 70B | all | `grounded-reading-4` (`grounded.py`) | `reflection`, then `bridge` (Fun) or `reference_id` + `connection` (Classic), then `imagery`; chart `focus_N.reflection` |
+| Groq Qwen | ordinary | `grounded-reading-4` | same strict schema |
+| Groq Qwen | Western, Vedic, Both | `grounded-qwen-json-instruct-2` (`grounded_json.py`) | the same contract through JSON-object transport |
+
+Groq Western previously used the question-only `qwen-astrology-medium-1` chain; it
+now uses the same JSON transport as Vedic and Both, so no mode falls back to
+question-only text. No longer routed, kept for the evaluation harness only:
+`providers.build_alternative_request` (`compact-reading-2`), `groq_qwen.py`,
+`groq_qwen_v2.py`, `groq_qwen_astrology.py`, `groq_high.py`, `groq_json.py`,
+`groq_medium.py`. Their question-only output no longer passes `validate_reading`.
+
+A grounded schema note states the length to aim for and a sentence count
+("260–520 characters, 2–4 sentences."); acceptance keeps the wider bounds in
+`grounded.BOUNDS`. In Fun the reviewed move is quoted once, in the note on the
+bridge field that must carry it over.
+
+**Orientation is per card.** Each card in the context carries `orientation` beside
+its `meaning`, read through `deck.card_orientation(card_id, drawn)` and
+`deck.card_meaning(card_id, orientation)`. `build_reading_request` and
+`generate_reading` accept `orientations` (card id to "upright" or "reversed");
+the service passes the saved draw (see "Reversed cards" above). A reversed card is
+read with the guide's reversed line, never the upright text. The prompts say a
+card's meaning is its meaning for its orientation and that a reversed card is named
+as reversed, with what that changes, never as simply bad or as a prediction.
+Validators do not look at orientation. `position_focus` and `orientation` are now
+always present; the context-level `card_orientation` is gone.
+
+**Blank and brief questions.** With no question the system text gains a short
+addendum: speak to "whatever you are carrying into this spread", presume no
+choice, person or feeling, never write "your question". The addendum depends only
+on whether a question was sent, never on its content.
+
+**Budget.** Still 16,000 characters, three transmissions and 105 seconds. The
+retry reserve is 1,050 characters: about 700 for feedback and retry instructions
+plus the few hundred by which a grounded wire can exceed the canonical request.
+Measured with a 400-character question on six spreads:
+
+| Request | Canonical | Gemini wire | Cloudflare wire | Groq wire | Classic references per card |
+| --- | --- | --- | --- | --- | --- |
+| Fun | 8,422–8,791 | 8,821–9,215 | 8,955–9,345 | 8,991–9,381 | 1 portrait |
+| Fun + two charts | 13,597–13,966 | 13,996–14,390 | 14,702–15,092 | 13,089–13,479 | 1 portrait |
+| Classic | 13,522–13,940 | same | 13,883–14,262 | 13,919–14,298 | 6 |
+| Classic + Western or Vedic | 13,733–14,898 | same | 13,914–15,167 | 11,614–11,949 | 3–4 |
+| Classic + two charts | 14,555–14,795 | same | 14,877–15,108 | 13,180–13,421 | 2 |
+
+The largest wire with retry feedback and instructions was 15,846;
+`test_every_live_wire_and_its_retry_stay_inside_the_request_budget` asserts the
+16,000 ceiling for every live wire. Classic with two charts now sends two
+references per card instead of three. When references are
+unusually long it falls to each card's distinct lead rather than failing, and a
+request that still cannot fit fails before any provider call. The question limit
+stays at 400 characters: 600 fits the measured spreads (largest retry wire
+15,940), but leaves about 60 characters under the ceiling and would send a single
+reference per card more often in Classic with two charts.
+
+**Stored contract.** Three maximums widened so explained text fits; nothing
+narrowed, so saved readings load: `CharacterConnection.connection` 300 to 450;
+astrology `normal` 650 to 1,600, `tarot_connection` 650 to 900 and chart
+`next_step` 300 to 400 (`app/astrology/models.py`). The OpenAPI document and
+generated client need regenerating for those four `maxLength` values.
+
+**Real evaluation.** 29 real requests with synthetic questions and the public
+J2000 chart produced 21 valid readings; see
+`docs/evidence/tarot-contextual-2026-11-21/README.md` for the rubric, sizes,
+latencies and what is still weak (chiefly Cloudflare's Fun bridges).
+
 ## Position focus and orientation — `pop-tarot-15`, 21 November 2026
 
 Every request already carried the question, each card's name, upright meaning and
@@ -22,6 +192,9 @@ These are fixed spread vocabulary, never derived from the player or a provider.
 All provider profiles receive them through the shared context; no system prompt,
 schema, validator, safety wording or privacy rule changed. The web table shows the
 same three sentences under each card heading.
+
+_Superseded by `pop-tarot-16`: orientation is per card and both hints are always
+sent; the reserve is 1,050 characters._
 
 The hints ride along only when they fit beside the shortlist already chosen: the
 request is built exactly as before, then the hints are added if the result is
@@ -65,6 +238,9 @@ action. Logs contain only those bounded identifiers, never rejected prose or
 unknown response keys. Feedback now reaches the next provider as well as a
 same-provider correction, while preserving the original question/cards/chart.
 
+_Superseded by `pop-tarot-16`: no check relaxes; the question-format check is
+replaced by `answer_form`. Feedback still names the check and field._
+
 A failed question-format check grants only that field permission to use tentative
 reflective prose on the next attempt. The grant lives only in this generation's
 request; later failures can add their own exact field within the same maximum of
@@ -91,6 +267,9 @@ The latest requested preference is Gemini → Cloudflare → Groq. Configured
 providers default to all four reading modes, and the hard-coded Groq Vedic/Both
 denial is removed. Explicit operational settings can still disable a provider;
 they do not make malformed responses acceptable.
+
+_Superseded by `pop-tarot-16`: Groq Western uses the same JSON transport as
+Vedic and Both, and no field is question-only._
 
 Ordinary Groq retains its grounded no-reasoning contract, and Western retains
 its established medium-reasoning contract. Vedic/Both use the compact JSON shape
@@ -331,8 +510,8 @@ fixed live evaluations and phone/desktop rendering of the expanded sections.
 
 An original reflective solo experience, not a competitive game. The player asks
 an optional question and chooses three face-down positions from a shuffled
-78-card deck: 22 major arcana and four 14-card suits. Cards are unique, upright
-only in this edition, and never leave the server until selected. The spread is
+78-card deck: 22 major arcana and four 14-card suits. Cards are unique, land
+upright or reversed (see "Reversed cards"), and never leave the server until selected. The spread is
 **Where you are / What is shifting / Your next move**. Picking cannot be undone.
 
 The meanings in `deck.py` are Games' concise editorial interpretation of

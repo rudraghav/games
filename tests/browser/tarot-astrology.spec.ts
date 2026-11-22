@@ -139,6 +139,8 @@ async function withReading(
         ...card,
         card_id: room.game!.community[index].id,
         title: room.game!.community[index].label,
+        // The server stamps each section with how the card was drawn.
+        orientation: room.game!.community[index].orientation ?? ('upright' as const),
         characters: card.characters.map((character) =>
           body.reading_style === 'fun' && character.name === 'Michael Scott'
             ? {
@@ -1358,6 +1360,7 @@ test('a lost generation response recovers the saved reading without a second sub
       ...card,
       card_id: room.game!.community[index].id,
       title: room.game!.community[index].label,
+      orientation: room.game!.community[index].orientation ?? ('upright' as const),
     }));
     let submissions = 0;
     // Synthetic lost response: POST never reaches the provider. A subsequent

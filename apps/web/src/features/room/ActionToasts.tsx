@@ -48,7 +48,6 @@ const NOTABLE = new Set([
   'pickup',
   'clue',
   'pay',
-  'spin',
 ]);
 const CARD_FAMILIES: Record<string, 'property' | 'shedding' | 'grid' | 'standard'> = {
   property: 'property',

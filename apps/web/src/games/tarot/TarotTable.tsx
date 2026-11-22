@@ -1,18 +1,11 @@
 'use client';
 import { usePrivateViewScope } from '@/shared/use-private-view-scope';
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from 'react';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useReducedMotion } from 'motion/react';
 import { Sparkles, ArrowRight, ArrowUp, RotateCcw, Layers3 } from 'lucide-react';
-import { Button, ChoiceGroup, Modal, TarotCard, tarotArtwork } from '@games/ui';
+import { Button, TarotCard } from '@games/ui';
 import {
   ApiError,
   type AstrologyInput,
@@ -34,8 +27,12 @@ import { AstrologyForm } from './AstrologyForm';
 import { ReadingProgress } from './ReadingProgress';
 import { ReadingAction } from './ReadingAction';
 import { TarotDeckPicker } from './TarotDeckPicker';
+import { TarotDeckGallery } from './TarotDeckGallery';
+import { nameWithOrientation, orientationOf } from './orientation';
 
 const positions = spreadPositions.map((position) => position.name);
+/** Matches the server's ReadingInput.question limit. */
+const QUESTION_LIMIT = 400;
 
 function subscribeToNetwork(notify: () => void) {
   window.addEventListener('online', notify);
@@ -76,7 +73,6 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
     () => !navigator.onLine,
     () => false,
   );
-  const [deckSuit, setDeckSuit] = useState('all');
   const [drawnNote, setDrawnNote] = useState('');
   const [fresh, setFresh] = useState<number | null>(null);
   const [recovering, setRecovering] = useState(false);
@@ -86,7 +82,6 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
   const reduced = useReducedMotion();
   const slots = useRef<(HTMLDivElement | null)[]>([]);
   const deck = useRef<HTMLDivElement>(null);
-  const filter = useRef<HTMLDivElement>(null);
   const cache = useQueryClient();
   const scope = usePrivateViewScope(selfId);
   const queryKey = ['tarot-reading', room.id, room.matchId, scope];
@@ -259,8 +254,9 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
       slot?.scrollIntoView({ block: 'nearest', behavior: reduceNow ? 'auto' : 'smooth' });
       slot?.focus({ preventScroll: true });
       setFresh(index);
+      const landed = match.community[index];
       setDrawnNote(
-        `You drew ${match.community[index].label} for ${positions[index].toLowerCase()}.`,
+        `You drew ${landed.label}${orientationOf(landed) === 'reversed' ? ', reversed,' : ''} for ${positions[index].toLowerCase()}.`,
       );
       // Optional feedback follows a committed pick, never a failed tap or refresh.
       if (
@@ -288,27 +284,6 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
     const timer = window.setTimeout(() => setFresh(null), 4000);
     return () => window.clearTimeout(timer);
   }, [fresh]);
-
-  // The gallery's suit filter stays reachable below the sticky dialog heading.
-  useLayoutEffect(() => {
-    if (!exploreDeck) return;
-    let observer: ResizeObserver | undefined;
-    const frame = requestAnimationFrame(() => {
-      const heading = filter.current
-        ?.closest('.modal')
-        ?.querySelector<HTMLElement>('.modal-heading');
-      if (!heading || !filter.current) return;
-      const place = () =>
-        filter.current?.style.setProperty('--tarot-filter-top', `${heading.offsetHeight}px`);
-      place();
-      observer = new ResizeObserver(place);
-      observer.observe(heading);
-    });
-    return () => {
-      cancelAnimationFrame(frame);
-      observer?.disconnect();
-    };
-  }, [exploreDeck]);
 
   const drawAgain = (top: boolean) =>
     canDrawAgain ? (
@@ -427,6 +402,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
       <div className="tarot-spread">
         {positions.map((position, i) => {
           const card = match.community[i];
+          const orientation = orientationOf(card);
           const next = match.phase === 'choosing' && i === drawn;
           return (
             <div
@@ -438,9 +414,10 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
               tabIndex={card ? -1 : undefined}
               data-fresh={fresh === i || undefined}
               data-next={next || undefined}
+              data-orientation={card ? orientation : undefined}
               aria-label={
                 card
-                  ? `Card ${i + 1}, ${position}: ${card.label}. ${card.subtitle || ''}`.trim()
+                  ? `Card ${i + 1}, ${position}: ${nameWithOrientation(card.label, orientation)}. ${card.subtitle || ''}`.trim()
                   : undefined
               }
             >
@@ -452,8 +429,10 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
                   <TarotCard
                     id={card.id}
                     name={card.label}
+                    // The picture lands the way it was drawn; the name stays readable.
+                    reversed={orientation === 'reversed'}
                     imageLoader={imageLoader}
-                    // Once the spread is complete, a card opens at full size.
+                    // Once the spread is complete, a card opens its full page.
                     {...(match.phase === 'choosing'
                       ? {}
                       : {
@@ -465,6 +444,7 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
                               label: card.label,
                               subtitle: card.subtitle ?? undefined,
                               position,
+                              orientation,
                             }),
                         })}
                   />
@@ -549,9 +529,9 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
             </span>
             <textarea
               className="input"
-              maxLength={400}
+              maxLength={QUESTION_LIMIT}
               rows={3}
-              placeholder="What would you like to reflect on?"
+              placeholder="Ask your question and add what’s going on. Specifics make the reading more useful."
               value={question}
               aria-describedby={providers.length ? 'tarot-data-use' : undefined}
               onChange={(event) => {
@@ -561,6 +541,13 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
               disabled={writing || recovering}
             />
           </label>
+          {/* Shown only near the limit, so the form keeps its height and the progress
+              card that replaces the button still opens on screen on a short phone. */}
+          {question.length >= QUESTION_LIMIT - 100 ? (
+            <p className="tarot-question-count small muted">
+              {question.length}/{QUESTION_LIMIT}
+            </p>
+          ) : null}
           <AstrologyForm
             searchPlaces={(query) => api.astrologyPlaces(room.id, room.matchId!, query)}
             calculateChart={(input) => api.astrologyChart(room.id, room.matchId!, input)}
@@ -659,39 +646,11 @@ export function TarotTable({ match, room, selfId, onAction, pending, imageLoader
         A playful reflection, not a prediction. You’re the one writing your story.
       </p>
       <TarotCardDetail card={detail} onClose={() => setDetail(null)} imageLoader={imageLoader} />
-      <Modal
+      <TarotDeckGallery
         open={exploreDeck}
         onOpenChange={setExploreDeck}
-        title="The whole cosmic cast"
-        description="Explore all 78 illustrations. Your shuffled cards stay a surprise."
-        wide
-        stickyHeader
-      >
-        <div className="tarot-deck-filter" ref={filter}>
-          <ChoiceGroup
-            label="Tarot suit"
-            value={deckSuit}
-            onChange={setDeckSuit}
-            options={[
-              { value: 'all', label: 'All 78' },
-              { value: 'major', label: 'Major arcana' },
-              { value: 'wands', label: 'Wands' },
-              { value: 'cups', label: 'Cups' },
-              { value: 'swords', label: 'Swords' },
-              { value: 'pentacles', label: 'Pentacles' },
-            ]}
-          />
-        </div>
-        <ul className="tarot-deck-gallery" aria-label="Tarot illustrations">
-          {Object.entries(tarotArtwork)
-            .filter(([id]) => deckSuit === 'all' || id.startsWith(`${deckSuit}-`))
-            .map(([id, artwork]) => (
-              <li key={id}>
-                <TarotCard id={id} name={artwork.name} imageLoader={imageLoader} />
-              </li>
-            ))}
-        </ul>
-      </Modal>
+        imageLoader={imageLoader}
+      />
     </div>
   );
 }

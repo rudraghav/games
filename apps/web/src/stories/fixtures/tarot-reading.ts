@@ -1,4 +1,4 @@
-import type { ReadingView } from '@games/api-client';
+import type { Reading } from '../../games/tarot/orientation';
 
 // Non-personal creative-hobby evaluation, Gemini 3.5 Flash-Lite, 1 November 2026.
 // Editorial sample based on a saved real response; one company-name typo corrected.
@@ -64,7 +64,7 @@ export const tarotReadingExample = {
   ],
   next_step:
     'Spend ten minutes today gathering your supplies for your hobby and place them in plain sight as a friendly invitation to play.',
-} satisfies NonNullable<ReadingView['reading']>;
+} satisfies Reading;
 
 export const tarotReadingCards = [
   { id: 'major-00', label: 'The Fool' },

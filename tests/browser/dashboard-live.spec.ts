@@ -168,10 +168,13 @@ test('two guests browse every setup, join a private room and play with the real 
       for (const room of me.rooms)
         if ([friendRoomName, botRoomName].includes(room.name)) ownedRooms.add(room.id);
     }
+    // Guest sessions start with the friend's first visit. If the run stopped before
+    // that, the friend is refused as signed out (401), never as a signed-in outsider (404).
+    const friendDenial = (await requestAs(friend, 'me')).status() === 401 ? 401 : 404;
     for (const id of [...ownedRooms]) {
       const beforeResponse = await requestAs(page, `rooms/${id}`);
       if (beforeResponse.status() === 404) {
-        expect((await requestAs(friend, `rooms/${id}`)).status()).toBe(404);
+        expect((await requestAs(friend, `rooms/${id}`)).status()).toBe(friendDenial);
         ownedRooms.delete(id);
         counts.cleanupActorDenials += 2;
         continue;
@@ -184,7 +187,7 @@ test('two guests browse every setup, join a private room and play with the real 
       if (!friendClosed) {
         const friendBefore = await requestAs(friend, `rooms/${id}`);
         if (friendBefore.ok()) await checked(friend, `rooms/${id}/leave`, 'POST');
-        else expect(friendBefore.status()).toBe(404);
+        else expect(friendBefore.status()).toBe(friendDenial);
       }
       const left = await checked<RoomView>(page, `rooms/${id}/leave`, 'POST');
       expect(left.status, 'The last human closes the owned room, including bot seats').toBe(
@@ -193,7 +196,9 @@ test('two guests browse every setup, join a private room and play with the real 
       expect(left.members).toHaveLength(0);
       counts.cleanupEmptyMemberResponses++;
       for (const actor of [page, friend]) {
-        expect((await requestAs(actor, `rooms/${id}`)).status()).toBe(404);
+        expect((await requestAs(actor, `rooms/${id}`)).status()).toBe(
+          actor === friend ? friendDenial : 404,
+        );
         counts.cleanupActorDenials++;
       }
       counts.cleanupClosedRooms++;
@@ -344,15 +349,16 @@ test('two guests browse every setup, join a private room and play with the real 
     await setup.getByRole('button', { name: 'Avatar colour 6', exact: true }).click();
     await openRoomOptions(setup);
     await setup.getByRole('textbox', { name: 'Room name', exact: true }).fill(friendRoomName);
-    await setup.getByRole('checkbox', { name: 'Stack draw-two cards', exact: true }).check();
+    await setup.getByRole('checkbox', { name: 'Stack draw cards', exact: true }).check();
     await setup.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
     await setup.getByRole('button', { name: 'Create room', exact: true }).click();
-    await expect.poll(() => new URL(page.url()).pathname.startsWith('/rooms/')).toBe(true);
+    // Rooms open under their game's named URL.
+    await expect(page).toHaveURL(/\/games\/uno\/rooms\/[\da-f-]+$/);
     const friendRoomId = new URL(page.url()).pathname.split('/').at(-1)!;
     ownedRooms.add(friendRoomId);
     const room = await roomAs(page, friendRoomId);
     hostId = room.owner_id;
-    expect(room.settings.stack_draw_two).toBe(true);
+    expect(room.settings.stack_draws).toBe(true);
     expect(room.members.find((member) => member.id === hostId)?.avatar).toBe(5);
     expect(room.name).toBe(friendRoomName);
     counts.optionalAvatarAndRulesSaved = true;
@@ -372,7 +378,7 @@ test('two guests browse every setup, join a private room and play with the real 
       throw new Error('The full private invite could not be entered.');
     }
     await friend.getByRole('button', { name: 'Join the room', exact: true }).click();
-    await expect.poll(() => new URL(friend.url()).pathname === `/rooms/${friendRoomId}`).toBe(true);
+    await expect(friend).toHaveURL(new RegExp(`/games/uno/rooms/${friendRoomId}$`));
     const joined = await roomAs(friend, friendRoomId);
     expect(joined.members).toHaveLength(2);
     friendId = joined.members.find((member) => member.id !== hostId)!.id;
@@ -393,7 +399,7 @@ test('two guests browse every setup, join a private room and play with the real 
     await openRoomOptions(botSetup);
     await botSetup.getByRole('textbox', { name: 'Room name', exact: true }).fill(botRoomName);
     await botSetup.getByRole('button', { name: 'Play game', exact: true }).click();
-    await expect.poll(() => new URL(page.url()).pathname.startsWith('/rooms/')).toBe(true);
+    await expect(page).toHaveURL(/\/games\/holdem\/rooms\/[\da-f-]+$/);
     const botRoomId = new URL(page.url()).pathname.split('/').at(-1)!;
     ownedRooms.add(botRoomId);
     let botRoom = await roomAs(page, botRoomId);

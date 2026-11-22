@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  useCallback,
   useEffect,
   useId,
   useLayoutEffect,
@@ -35,7 +36,8 @@ export function TarotDeckPicker({
   onDraw,
 }: TarotDeckPickerProps) {
   const hintId = useId();
-  const [perFan, setPerFan] = useState(2);
+  // The cards whose lanes are in view: the readout and the oracle's aim follow them.
+  const [range, setRange] = useState({ first: 0, last: 0 });
   // The deck fans out once when it is laid down, never again as cards regroup.
   const [entering, setEntering] = useState(true);
   const [focusIndex, setFocusIndex] = useState(0);
@@ -50,30 +52,60 @@ export function TarotDeckPicker({
     lift?.turn === drawn ? actions.findIndex((opt) => opt.value.choice === lift.choice) : -1;
   const roving = Math.min(focusIndex, actions.length - 1);
   const activeCard = preview?.turn === drawn ? preview.index : selected;
-  const fanStart = Math.floor(Math.max(0, activeCard) / perFan) * perFan;
-  const fanLength = Math.min(perFan, actions.length - fanStart);
+  const span = range.last - range.first;
   const aim =
-    activeCard < 0 || fanLength < 2 ? 0 : (2 * (activeCard - fanStart)) / (fanLength - 1) - 1;
+    activeCard < 0 || span < 1
+      ? 0
+      : Math.max(-1, Math.min(1, (2 * (activeCard - range.first)) / span - 1));
+  const hasLift = selected >= 0;
 
   useEffect(() => {
     const timer = window.setTimeout(() => setEntering(false), 700);
     return () => window.clearTimeout(timer);
   }, []);
 
+  // One ribbon of every remaining card, scrolled natively. Which lanes are in view is
+  // read back from the layout after a scroll, a resize, a lift or a draw.
+  const measure = useCallback(() => {
+    const viewport = rail.current?.querySelector<HTMLElement>('.tarot-deck');
+    const lanes = deckRef.current?.querySelectorAll<HTMLElement>('[data-card-index]');
+    if (!viewport || !lanes?.length) return;
+    const bounds = viewport.getBoundingClientRect();
+    let first = -1;
+    let last = -1;
+    lanes.forEach((lane, index) => {
+      const box = lane.getBoundingClientRect();
+      const centre = box.left + Math.min(box.width, 44) / 2;
+      if (centre < bounds.left || centre > bounds.right) return;
+      if (first < 0) first = index;
+      last = index;
+    });
+    if (first < 0) return;
+    setRange((current) =>
+      current.first === first && current.last === last ? current : { first, last },
+    );
+  }, [deckRef]);
+  const frame = useRef(0);
+  const measureSoon = useCallback(() => {
+    if (frame.current) return;
+    frame.current = requestAnimationFrame(() => {
+      frame.current = 0;
+      measure();
+    });
+  }, [measure]);
   useLayoutEffect(() => {
     const element = rail.current;
     if (!element) return;
-    // Keep an exposed finger-width strip for each overlapping card, even in a narrow sidebar.
-    const measure = () => {
-      const width = element.clientWidth;
-      const cardWidth = Math.min(144, Math.max(102, width * 0.28));
-      setPerFan(Math.max(2, Math.min(16, Math.floor((width - cardWidth * 1.34) / 44) + 1)));
-    };
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame.current);
+      frame.current = 0;
+    };
+  }, [measure]);
+  useLayoutEffect(() => measure(), [measure, actions.length, selected]);
 
   // A very fast response can advance the turn between taps in the same burst.
   // A rejected save instead re-arms the same lifted card for an immediate retry.
@@ -91,15 +123,16 @@ export function TarotDeckPicker({
     setFocusIndex(index);
   }
 
-  function activate(index: number, clickCount: number) {
+  /** `now` is the activating event's own timestamp (the clock performance.now() reads). */
+  function activate(index: number, clickCount: number, now: number) {
     if (disabled || !actions[index]) return;
-    const recent = performance.now() < lastDraw.current.until;
+    const recent = now < lastDraw.current.until;
     if (recent && (lastDraw.current.turn === drawn || clickCount > 2)) return;
     if (selected !== index) {
       choose(index);
       return;
     }
-    lastDraw.current = { turn: drawn, until: performance.now() + 350 };
+    lastDraw.current = { turn: drawn, until: now + 350 };
     onDraw(actions[index].value);
   }
 
@@ -161,6 +194,7 @@ export function TarotDeckPicker({
             event.target.classList.contains('tarot-deck')
           ) {
             lowerIfHidden(event.target);
+            measureSoon();
           }
         }}
       >
@@ -174,93 +208,85 @@ export function TarotDeckPicker({
           contentClassName="tarot-deck-content"
         >
           <div className="tarot-deck-cards" ref={deckRef} onKeyDown={moveFocus}>
-            {Array.from({ length: Math.ceil(actions.length / perFan) }, (_, page) => {
-              const start = page * perFan;
-              const group = actions.slice(start, start + perFan);
-              const hasLift = selected >= start && selected < start + group.length;
-              return (
-                <div
-                  key={start}
-                  data-has-lift={hasLift || undefined}
-                  className="tarot-fan"
-                  style={{ '--fan-gaps': perFan - 1 } as CSSProperties}
-                  onPointerDown={(event) => {
+            <div
+              data-has-lift={hasLift || undefined}
+              className="tarot-fan"
+              onPointerDown={(event) => {
+                ignoreClick.current = false;
+                // A finger drags the ribbon (native scrolling). A mouse or pen can
+                // press and slide across the backs to lift the one it stops on.
+                if (!event.isPrimary || event.button !== 0 || disabled) return;
+                if (event.pointerType === 'touch') return;
+                const first = cardAt(event);
+                if (first === null) return;
+                gesture.current = {
+                  id: event.pointerId,
+                  start: event.clientX,
+                  scrubbed: false,
+                };
+                setPreview({ turn: drawn, index: first });
+              }}
+              onPointerMove={(event) => {
+                const current = gesture.current;
+                if (!current || current.id !== event.pointerId) return;
+                const index = cardAt(event);
+                if (Math.abs(event.clientX - current.start) > 8) current.scrubbed = true;
+                if (index !== (preview?.turn === drawn ? preview.index : null))
+                  setPreview(index === null ? null : { turn: drawn, index });
+              }}
+              onPointerUp={(event) => {
+                const current = gesture.current;
+                if (!current || current.id !== event.pointerId) return;
+                if (current.scrubbed) {
+                  // The click that follows a slide belongs to the card under the pointer.
+                  ignoreClick.current = true;
+                  const index = cardAt(event);
+                  if (index !== null) choose(index);
+                }
+                endGesture();
+              }}
+              onPointerCancel={endGesture}
+              onPointerLeave={(event) => {
+                if (event.pointerType === 'mouse') endGesture();
+              }}
+            >
+              {actions.map((option, index) => (
+                <button
+                  key={option.value.choice}
+                  type="button"
+                  className="tarot-card tarot-fan-hit"
+                  style={
+                    {
+                      // Later cards lie on top, so each back shows its left edge. After a
+                      // lifted card the order turns over and each shows its right edge.
+                      '--fan-layer':
+                        hasLift && index > selected ? actions.length - index : index + 1,
+                      // A hand-laid ribbon: each back sits a touch off true.
+                      '--fan-angle': `${(Math.sin(index * 1.7) * 1.3).toFixed(2)}deg`,
+                      '--fan-drop': `${((Math.cos(index * 2.3) + 1) * 1.5).toFixed(1)}px`,
+                    } as CSSProperties
+                  }
+                  data-card-index={index}
+                  data-after-lift={(hasLift && index > selected) || undefined}
+                  data-preview={(preview?.turn === drawn && preview.index === index) || undefined}
+                  aria-label={`Face-down card ${index + 1} of ${actions.length}, for ${position.toLowerCase()}`}
+                  aria-pressed={selected === index}
+                  aria-describedby={selected === index ? hintId : undefined}
+                  tabIndex={index === roving ? 0 : -1}
+                  onFocus={() => setFocusIndex(index)}
+                  disabled={disabled}
+                  onClick={(event) => {
+                    if (!event.detail || !ignoreClick.current)
+                      activate(index, event.detail, event.timeStamp);
                     ignoreClick.current = false;
-                    if (!event.isPrimary || event.button !== 0 || disabled) return;
-                    const first = cardAt(event);
-                    if (first === null) return;
-                    gesture.current = {
-                      id: event.pointerId,
-                      start: event.clientX,
-                      scrubbed: false,
-                    };
-                    setPreview({ turn: drawn, index: first });
-                  }}
-                  onPointerMove={(event) => {
-                    const current = gesture.current;
-                    if (!current || current.id !== event.pointerId) return;
-                    const index = cardAt(event);
-                    if (Math.abs(event.clientX - current.start) > 8) current.scrubbed = true;
-                    if (index !== (preview?.turn === drawn ? preview.index : null))
-                      setPreview(index === null ? null : { turn: drawn, index });
-                  }}
-                  onPointerUp={(event) => {
-                    const current = gesture.current;
-                    if (!current || current.id !== event.pointerId) return;
-                    if (current.scrubbed) {
-                      // An implicit touch capture can also dispatch a click to the *first* card.
-                      ignoreClick.current = true;
-                      const index = cardAt(event);
-                      if (index !== null) choose(index);
-                    }
-                    endGesture();
-                  }}
-                  onPointerCancel={endGesture}
-                  onPointerLeave={(event) => {
-                    if (event.pointerType === 'mouse') endGesture();
                   }}
                 >
-                  {group.map((option, local) => {
-                    const index = start + local;
-                    const curve = group.length === 1 ? 0 : (2 * local) / (group.length - 1) - 1;
-                    return (
-                      <button
-                        key={option.value.choice}
-                        type="button"
-                        className="tarot-card tarot-fan-hit"
-                        style={
-                          {
-                            '--fan-layer':
-                              hasLift && index > selected ? group.length - local : local + 1,
-                            '--fan-angle': `${curve * 8}deg`,
-                            '--fan-drop': `${curve * curve * 9}px`,
-                          } as CSSProperties
-                        }
-                        data-card-index={index}
-                        data-after-lift={(hasLift && index > selected) || undefined}
-                        data-preview={
-                          (preview?.turn === drawn && preview.index === index) || undefined
-                        }
-                        aria-label={`Face-down card ${index + 1} of ${actions.length}, for ${position.toLowerCase()}`}
-                        aria-pressed={selected === index}
-                        aria-describedby={selected === index ? hintId : undefined}
-                        tabIndex={index === roving ? 0 : -1}
-                        onFocus={() => setFocusIndex(index)}
-                        disabled={disabled}
-                        onClick={(event) => {
-                          if (!event.detail || !ignoreClick.current) activate(index, event.detail);
-                          ignoreClick.current = false;
-                        }}
-                      >
-                        <span className="tarot-fan-face" aria-hidden="true">
-                          <TarotCard compact />
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              );
-            })}
+                  <span className="tarot-fan-face" aria-hidden="true">
+                    <TarotCard compact />
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </HorizontalRail>
         <p id={hintId} className="tarot-lift-hint" role="status" aria-atomic="true">
@@ -268,7 +294,7 @@ export function TarotDeckPicker({
             'Drawing your card…'
           ) : selected < 0 ? (
             <>
-              <span className="tarot-touch-hint">Tap or slide to lift a card.</span>
+              <span className="tarot-touch-hint">Swipe to browse. Tap a card to lift it.</span>
               <span className="tarot-pointer-hint">
                 Click to lift, or use the arrow keys and Enter.
               </span>
@@ -284,6 +310,10 @@ export function TarotDeckPicker({
               </span>
             </>
           )}
+        </p>
+        {/* Quiet and not live: every card already says its own place in the deck. */}
+        <p className="tarot-deck-range">
+          Cards {range.first + 1}–{range.last + 1} of {actions.length}
         </p>
       </div>
     </section>

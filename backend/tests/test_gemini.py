@@ -2,7 +2,7 @@ import json
 
 import httpx
 import pytest
-from test_tarot import example_reading
+from test_tarot import example_reading, stored_reading
 
 from app.games.tarot.reading import (
     ReadingLimitError,
@@ -79,7 +79,7 @@ def test_gemini_request_is_bounded_private_and_schema_checked(monkeypatch):
         assert "pop_culture" not in item["properties"]
         assert item["properties"]["characters"]["minItems"] == 1
         assert item["properties"]["characters"]["maxItems"] == 2
-    assert schema["$defs"]["CharacterConnection"]["properties"]["connection"]["description"] == "Use 30–300 characters."
+    assert schema["$defs"]["CharacterConnection"]["properties"]["connection"]["description"] == "Use 30–450 characters."
 
 
 def test_incomplete_provider_output_is_not_returned_as_a_reading(monkeypatch):
@@ -179,7 +179,7 @@ def test_one_fresh_generation_recovers_invalid_output_without_returning_or_loggi
     result = generate_reading(
         CARDS, "private-test-question", before_attempt=lambda: reservations.append(True)
     )
-    assert result.model_dump() == example_reading(CARDS)
+    assert result.model_dump() == stored_reading(CARDS)
     assert len(calls) == len(reservations) == 2
     feedback = json.loads(calls[1]["input"])
     assert feedback["validation_feedback"]["check"] == {

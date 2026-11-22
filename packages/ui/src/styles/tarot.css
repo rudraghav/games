@@ -261,6 +261,12 @@
   .tarot-question textarea {
     resize: vertical;
   }
+  .tarot-question > .tarot-question-count {
+    margin: 4px 0 0;
+    text-align: end;
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums;
+  }
   .tarot-reading-style {
     min-inline-size: 0;
     margin-bottom: 12px;
@@ -553,11 +559,17 @@
     position: relative;
     isolation: isolate;
   }
+  .tarot-fan-stage .tarot-deck,
   .tarot-oracle-scene,
   .tarot-fan {
     --fan-width: clamp(102px, 28cqi, 144px);
     --fan-clearance: clamp(109px, 30cqi, 161px);
     --fan-bottom: 18px;
+    /* The strip of each overlapped back that stays in view. It is the card's tap target,
+       so it never drops below 44px: about 8 backs across a phone and 30 across a
+       desktop table, with the rest one scroll away. */
+    --fan-step: 44px;
+    --fan-inset: calc(var(--fan-width) * 0.17);
   }
   .tarot-oracle-scene {
     position: absolute;
@@ -628,11 +640,15 @@
         rotateX(calc(63deg + var(--oracle-look-y, 0) * 8deg));
     }
   }
+  /* One ribbon of every remaining card. Scrolling is the browser's own: wheel,
+     trackpad and touch drag with momentum, settling on a card edge. */
   .tarot-fan-stage .tarot-deck {
     padding: 0;
     border-radius: var(--radius-card);
     background: transparent;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--fan-inset);
+    overscroll-behavior-x: contain;
     scrollbar-width: none;
   }
   .tarot-fan-stage .tarot-deck::-webkit-scrollbar {
@@ -643,22 +659,25 @@
   }
   .tarot-fan {
     display: flex;
-    flex: 0 0 100cqi;
+    flex: 0 0 auto;
+    /* A nearly empty deck still sits in the middle of the table. */
+    min-width: 100cqi;
     justify-content: center;
     align-items: center;
-    padding: var(--fan-clearance) calc(var(--fan-width) * 0.17) var(--fan-bottom);
+    padding: var(--fan-clearance) var(--fan-inset) var(--fan-bottom);
     overflow: clip;
     isolation: isolate;
-    scroll-snap-align: start;
-    touch-action: pan-y pinch-zoom;
+    /* A finger drags the ribbon sideways or the page up and down. */
+    touch-action: pan-x pan-y pinch-zoom;
     user-select: none;
     -webkit-user-select: none;
   }
   /* Browsing uses stable lanes. A lift opens one card-width gap, so the
      entire raised picture and every neighbouring strip have their own target. */
   .tarot-fan .tarot-fan-hit.tarot-card {
-    flex: 0 0 calc((100% - var(--fan-width)) / var(--fan-gaps));
-    min-width: 44px;
+    flex: 0 0 var(--fan-step);
+    min-width: 0;
+    scroll-snap-align: start;
     width: auto;
     height: calc(var(--fan-width) * 1.5);
     aspect-ratio: auto;
@@ -704,12 +723,13 @@
       0 2px 0 color-mix(in srgb, var(--color-ochre) 40%, var(--color-ink)),
       1px 4px 5px color-mix(in srgb, var(--color-black) 45%, transparent);
   }
+  /* Above every layer of a full 78-card ribbon. */
   .tarot-fan-hit:is([aria-pressed='true'], [data-preview], :focus-visible) .tarot-fan-face {
-    z-index: 20;
+    z-index: 100;
     transform: translateY(-12px) rotate(0deg);
   }
   .tarot-fan .tarot-fan-hit[aria-pressed='true'] .tarot-fan-face {
-    z-index: 22;
+    z-index: 102;
     pointer-events: auto;
   }
   .tarot-fan-hit[aria-pressed='true'] .tarot-fan-face .tarot-card {
@@ -759,7 +779,7 @@
       display: inline;
     }
     .tarot-fan-hit:enabled:not([aria-pressed='true']):hover .tarot-fan-face {
-      z-index: 20;
+      z-index: 100;
       transform: translateY(-9px) rotate(0deg);
     }
   }
@@ -774,6 +794,21 @@
     .tarot-fan-hit[aria-pressed='true'] .tarot-back::after {
       --foil-center: calc(46% + 28% * var(--oracle-look-x, 0) + 8% * var(--oracle-look-y, 0));
     }
+  }
+  /* Where the view sits in the deck: quiet gilt on the velvet, never a live region. */
+  .tarot-deck-range {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    z-index: 1;
+    margin: 0;
+    color: var(--tarot-gilt, #e6d6ae);
+    font-size: 11px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    pointer-events: none;
   }
   .tarot-fan-stage .tarot-lift-hint {
     position: relative;

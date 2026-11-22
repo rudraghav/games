@@ -136,6 +136,10 @@ test('keyboard board moves retain named public positions after a saved refresh',
       const started = await roomAs(page, roomId);
       const actor = players[identities.indexOf(started.game!.current_player)];
       await actor.reload();
+      // A link saved under the previous game re-opens under the current game's
+      // named URL, which remounts the table; wait for it before using the board.
+      const namedUrl = new RegExp(`/games/${game}/rooms/${roomId}$`);
+      await expect(actor).toHaveURL(namedUrl);
       await verifyBoard(actor, started);
       const before = await roomAs(actor, roomId);
       const option = before.game!.actions[0];
@@ -159,6 +163,7 @@ test('keyboard board moves retain named public positions after a saved refresh',
       expect(moved.match_version).toBe(before.match_version! + 1);
       expect(moved.game!.community).not.toEqual(before.game!.community);
       await actor.reload();
+      await expect(actor).toHaveURL(namedUrl);
       const saved = await roomAs(actor, roomId);
       expect(saved.match_version).toBe(moved.match_version);
       expect(saved.game!.community).toEqual(moved.game!.community);

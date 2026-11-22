@@ -8,7 +8,8 @@
     "./catalog": "./src/catalog.ts",
     "./mappers": "./src/mappers.ts",
     "./wire": "./src/generated/schema.d.ts",
-    "./characters": "./src/tarot-characters.ts"
+    "./characters": "./src/tarot-characters.ts",
+    "./card-guide": "./src/tarot-card-guide.ts"
   },
   "scripts": {
     "type-check": "tsc --noEmit"

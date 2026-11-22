@@ -54,6 +54,7 @@ const event = (value: Partial<UnoEvent>): UnoEvent => ({
   skipped: [],
   drew: {},
   eliminated: [],
+  missed: [],
   ...value,
 });
 const card = (id: string, color: string, value: string): Card => ({
@@ -72,7 +73,14 @@ const card = (id: string, color: string, value: string): Card => ({
 
 describe('Uno presentation from the authorized projection', () => {
   it('validates the public event and keeps older projections usable', () => {
-    expect(unoExtras({ color: 'red' })).toEqual({ lastEvent: null, youDrew: [], out: [] });
+    expect(unoExtras({ color: 'red' })).toEqual({
+      lastEvent: null,
+      youDrew: [],
+      out: [],
+      stacking: null,
+      stackFloor: 0,
+      missingTurn: [],
+    });
     expect(unoExtras({ last_event: { type: 'peek_at_deck' } }).lastEvent).toBeNull();
     const parsed = unoExtras({
       last_event: event({ type: 'challenge', actor: 'a', target: 'b', outcome: 'failed' }),
@@ -155,7 +163,7 @@ describe('Uno presentation from the authorized projection', () => {
       penalty: 25,
       pendingKind: null,
       actor: null,
-      stackDrawTwo: false,
+      stacking: true,
     });
     expect(situation).toMatch(/must draw 25 or stack\. Drawing puts .+ out \(\d+ cards\)\./);
     expect(situation).not.toMatch(/^Draw/);
@@ -180,11 +188,14 @@ describe('Uno presentation from the authorized projection', () => {
       penalty: 0,
       direction: 1,
       sevenZero: false,
-      stackDrawTwo: false,
+      stacking: true,
     };
     expect(cardConsequence(hand[0], context)).toBe('Also discards your other 2 red cards.');
     expect(cardConsequence(card('wild:wild10:0', 'wild', '+10'), context)).toMatch(
-      /^.+ must draw 10 or stack \+10 or more\. .+ would hold \d+; out at 25\.$/,
+      /^Choose a colour\. .+ must draw 10 or stack \+10\. .+ would hold \d+; out at 25\.$/,
+    );
+    expect(cardConsequence(card('wild:wild6:0', 'wild', '+6'), context)).toMatch(
+      /^Choose a colour\. .+ must draw 6 or stack \+6 or more\. /,
     );
     const classic = table('uno');
     expect(
@@ -193,6 +204,7 @@ describe('Uno presentation from the authorized projection', () => {
         ...classic,
         mercy: false,
         limit: null,
+        stacking: false,
       }),
     ).toContain('you still hold Red, so a challenge would make you draw 4');
   });
@@ -223,6 +235,7 @@ describe('Uno table states', () => {
     expect(html).toContain('Draw 22 — you’re out');
     expect(html).toMatch(/button--danger[^>]*>Draw 22 — you’re out/);
     expect(html).toContain('Stack +10 or more to pass it on.');
+    expect(html).not.toContain('Drawing passes your turn.');
     expect(html).toContain('Drawing puts you out with');
     // The stack that survives is one tap in the dock, wherever the card sits in the hand.
     expect(html).toContain(`Stack ${stack.label}…`);

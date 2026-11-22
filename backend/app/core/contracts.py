@@ -51,6 +51,11 @@ class CardView(BaseModel):
     set_name: str | None = None
     set_size: int | None = None
     rent_ladder: list[int] = Field(default_factory=list)
+    # How a revealed card lies on the table (Tarot). Present only on a card whose
+    # face is already public; never sent for a hidden or undrawn card.
+    orientation: Literal["upright", "reversed"] | None = Field(
+        default=None, exclude_if=lambda value: value is None
+    )
 
 
 class PlayerView(BaseModel):

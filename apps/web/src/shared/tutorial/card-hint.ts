@@ -6,7 +6,7 @@ import {
   type Match,
   type Room,
 } from '@games/api-client';
-import { cardConsequence } from '@/games/shared/uno-view';
+import { cardConsequence, stackingRule, unoExtras } from '@/games/shared/uno-view';
 import { playerName } from '@/games/types';
 
 /** Compare only the learner's legal discards with the server's analysis of their hand. */
@@ -34,6 +34,7 @@ export function cardPracticeHint(match: Match, option: ActionOption, room: Room,
   if (match.id === 'uno' || match.id === 'uno-no-mercy') {
     const details = sheddingDetails(match.detail);
     const mercy = match.id === 'uno-no-mercy';
+    const extras = unoExtras(match.detail);
     if (move.type === 'draw' && details.penalty > 0) {
       return `Take the ${details.penalty}-card penalty and pass the turn.${
         details.eliminationLimit && match.hand.length + details.penalty >= details.eliminationLimit
@@ -65,7 +66,8 @@ export function cardPracticeHint(match: Match, option: ActionOption, room: Room,
         direction: details.direction,
         penalty: details.penalty,
         sevenZero: Boolean(room.settings.seven_zero),
-        stackDrawTwo: Boolean(room.settings.stack_draw_two),
+        stacking: stackingRule(mercy, room.settings, extras.stacking),
+        missingTurn: extras.missingTurn,
       });
   }
   if (match.id === 'skyjo') {

@@ -31,6 +31,7 @@
 @import './polish.css';
 @import './card-motion.css';
 @import './piece-depth.css';
+@import './tarot-guide.css';
 @theme static {
   --color-canvas: #f6f3ed;
   --color-surface: #fffcf7;

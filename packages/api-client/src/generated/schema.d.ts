@@ -795,6 +795,8 @@ export interface components {
             set_size?: number | null;
             /** Rent Ladder */
             rent_ladder?: number[];
+            /** Orientation */
+            orientation?: ("upright" | "reversed") | null;
         };
         /** CharacterConnection */
         CharacterConnection: {
@@ -1404,6 +1406,12 @@ export interface components {
             quirky_interpretation?: string | null;
             /** Characters */
             characters?: components["schemas"]["CharacterConnection"][];
+            /**
+             * Orientation
+             * @default upright
+             * @enum {string}
+             */
+            orientation: "upright" | "reversed";
         };
         /** SessionToken */
         SessionToken: {

@@ -980,6 +980,26 @@
     color: #ffd9cf;
     opacity: 1;
   }
+  .uno-felt .uno-missing-turn {
+    color: #ffe7b3;
+    opacity: 1;
+  }
+  /* A seat that misses its next turn is wide enough to say so on one line. The strip
+     names the status in the seat's label, which is all that marks it from a "Next" seat. */
+  .uno-workspace .player-strip-content .seat .seat-badge {
+    white-space: nowrap;
+  }
+  .uno-workspace .player-strip-content > .player-strip-seat[aria-label*='Misses next turn'] {
+    flex-basis: 126px;
+    width: 126px;
+  }
+  .uno-workspace
+    .player-strip-content
+    > .player-strip-seat[aria-label*='Misses next turn']
+    .seat-badge {
+    display: block;
+    width: fit-content;
+  }
   .uno-workspace .hand-heading > .uno-colour-counts {
     display: inline-flex;
     flex: none;

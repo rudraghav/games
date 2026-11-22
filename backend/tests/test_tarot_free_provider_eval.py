@@ -8,7 +8,7 @@ from pathlib import Path
 
 import httpx
 import pytest
-from test_astrology_reading import interpretation
+from test_astrology_reading import PLAIN, interpretation
 from test_tarot import example_reading
 
 from app.games.tarot.characters import find_character
@@ -35,6 +35,10 @@ def isolated_evaluator(monkeypatch, tmp_path):
                         ("fixture-contract" if effort == "low" else "fixture-contract-medium")
                         if profile == "legacy-v1" else f"fixture-{profile}-{provider}-{effort}")
     monkeypatch.setattr(evaluation, "wait_for_groq_window", lambda *_args: None)
+
+
+STATEMENT = ("In this position the card may point to a pause before the next step, which is traditionally read as "
+             "room to look again at what the question holds. ")
 
 
 def prepared(provider="groq", scenario="ordinary-blank", effort=None, profile="legacy-v1"):
@@ -67,8 +71,10 @@ def envelope(entry, payload=None):
                     card["imagery"] = card.pop("quirky_interpretation")
                     if entry["report"]["profile"] in ("qwen-evidence-v2", evaluation.ASTROLOGY_PROFILE):
                         card.pop("interpretation")
-                        card["reflection_question"] = "What might this card invite someone to consider before taking a small next step?"
-                        card["connection"] = "How might this background offer a useful question about the card's possibilities?"
+                        # The retired question profiles still end each field with their one
+                        # question; the shared validator now also needs a statement before it.
+                        card["reflection_question"] = STATEMENT + "What might this card invite someone to consider before taking a small next step?"
+                        card["connection"] = STATEMENT + "How might this background offer a useful question about the card's possibilities?"
                 for system in ("western", "vedic"):
                     section = payload.get("astrology_interpretation", {}).get(system)
                     if section:
@@ -696,7 +702,8 @@ def test_real_astrology_anchor_failure_has_safe_specific_reason():
     entry = prepared(scenario="western-rest", profile="compact-medium-v1")
     body = envelope(entry)
     payload = json.loads(body["choices"][0]["message"]["content"])
-    payload["astrology_interpretation"]["western"]["normal"] = "Consider what a thoughtful pause might make possible, without a prediction about your future."
+    payload["astrology_interpretation"]["western"]["normal"] = (
+        "Consider what a thoughtful pause might make possible, without a prediction about your future." + PLAIN)
     result, diagnostic = evaluation.parse_response(envelope(entry, payload), entry)
     assert result is None and diagnostic["domain_reason"] == "astrology_anchor_mismatch"
 
@@ -991,8 +998,8 @@ def test_qwen_evidence_accepts_questions_without_an_english_prefix_whitelist(que
     entry = prepared(profile="qwen-evidence-v2")
     body = envelope(entry)
     payload = json.loads(body["choices"][0]["message"]["content"])
-    payload["card_1"]["reflection_question"] = question
-    payload["card_1"]["connection"] = question
+    payload["card_1"]["reflection_question"] = STATEMENT + question
+    payload["card_1"]["connection"] = STATEMENT + question
     body["choices"][0]["message"]["content"] = json.dumps(payload)
     result, diagnostic = evaluation.parse_response(body, entry)
     assert result is not None and diagnostic["reason"] == "valid_contract"
@@ -1404,10 +1411,10 @@ def old_grounded_length_failure(monkeypatch):
     original_bound = grounded._bounded
     with monkeypatch.context() as old:
         old.setattr(grounded, "PROFILE_VERSION", "grounded-reading-2")
-        old.setattr(grounded, "_target", lambda _min, _max, preferred_min, preferred_max:
+        old.setattr(grounded, "_target", lambda _min, _max, preferred_min, preferred_max, *_sentences:
                     grounded._prose(preferred_min, preferred_max))
-        def old_bound(value, field, minimum, maximum):
-            return original_bound(value, field, minimum, 350 if field == "introduction" else maximum)
+        def old_bound(value, field, minimum, maximum, **kwargs):
+            return original_bound(value, field, minimum, 350 if field == "introduction" else maximum, **kwargs)
         old.setattr(grounded, "_bounded", old_bound)
         entry = prepared("groq", "ordinary-grief", profile=evaluation.GROUNDED_PROFILE)
         body = grounded_envelope("groq", entry["canonical_request"])
@@ -1426,50 +1433,32 @@ def grounded_offline_args():
             "--revalidate-grounded-attempt", "1"]
 
 
-def test_grounded_offline_bounds_proof_preserves_failure_and_never_calls_provider(monkeypatch):
+@pytest.mark.parametrize("tamper", [None, "context", "capture"])
+def test_a_grounded_reading_2_capture_is_never_replayed_under_the_answer_contract(monkeypatch, tamper):
+    # The offline proof showed that a grounded-reading-2 response differed from the next
+    # profile only by wider length targets. grounded-reading-4 also says what each field
+    # must contain, so an old capture stays a preserved failure: no receipt, no provider call.
     record, calls = old_grounded_length_failure(monkeypatch)
     original = (evaluation.EVIDENCE / "groq-attempt-001-result.json").read_bytes()
-    monkeypatch.setattr(evaluation, "load_credentials", lambda *_: pytest.fail("Credential access"))
-    monkeypatch.setattr(evaluation.httpx, "Client", lambda *_args, **_kwargs: pytest.fail("Network access"))
-    assert evaluation.main(grounded_offline_args()) == 0
-    assert len(calls) == len(evaluation.combined_reservations()) == 1
-    assert (evaluation.EVIDENCE / "groq-attempt-001-result.json").read_bytes() == original
-    receipt = json.loads(evaluation.grounded_recheck_paths(record)[1].read_text())
-    assert receipt["provider_calls"] == receipt["attempts_reserved"] == 0
-    assert receipt["original_status"] == "failed" and not receipt["editorial_acceptance"]
-    entry = prepared("groq", "ordinary-grief", profile=evaluation.GROUNDED_PROFILE)
-    assert evaluation.grounded_recheck_matches(record, entry)
-    assert evaluation.smoke_passed("groq", "current", "none", evaluation.GROUNDED_PROFILE)
-    assert evaluation.main(grounded_offline_args()) == 1
-
-
-@pytest.mark.parametrize("tamper", ["system", "context", "model", "capture", "reservation", "preflight"])
-def test_grounded_offline_bounds_proof_rejects_unrelated_changes(monkeypatch, tamper):
-    from app.games.tarot import grounded
-
-    record, _calls = old_grounded_length_failure(monkeypatch)
-    if tamper == "system":
-        monkeypatch.setattr(grounded, "SYSTEM", grounded.SYSTEM + " Changed instruction.")
-    else:
+    if tamper:
         folder = evaluation.EVIDENCE / record["run_id"]
-        path = (evaluation.EVIDENCE / "groq-attempt-001-reserved.json" if tamper == "reservation" else
-                folder / "preflight.json" if tamper == "preflight" else
-                folder / "ordinary-grief-rejected-final-private.json" if tamper == "capture" else
-                folder / "ordinary-grief-request-private.json")
+        path = folder / ("ordinary-grief-rejected-final-private.json" if tamper == "capture"
+                         else "ordinary-grief-request-private.json")
         data = json.loads(path.read_text())
         if tamper == "context":
             data["context"]["question"] = "Changed question"
-        elif tamper == "model":
-            data["request"]["model"] = "another-model"
-        elif tamper == "capture":
-            data["content"] += " "
-        elif tamper == "reservation":
-            data["contract_sha256"] = "different"
         else:
-            data["scenarios"][0]["request_sha256"] = "different"
+            data["content"] += " "
         path.write_text(json.dumps(data))
+    monkeypatch.setattr(evaluation, "load_credentials", lambda *_: pytest.fail("Credential access"))
+    monkeypatch.setattr(evaluation.httpx, "Client", lambda *_args, **_kwargs: pytest.fail("Network access"))
     assert evaluation.main(grounded_offline_args()) == 1
+    assert len(calls) == len(evaluation.combined_reservations()) == 1
+    assert (evaluation.EVIDENCE / "groq-attempt-001-result.json").read_bytes() == original
     assert not evaluation.grounded_recheck_paths(record)[1].exists()
+    entry = prepared("groq", "ordinary-grief", profile=evaluation.GROUNDED_PROFILE)
+    assert not evaluation.grounded_recheck_matches(record, entry)
+    assert not evaluation.smoke_passed("groq", "current", "none", evaluation.GROUNDED_PROFILE)
 
 
 @pytest.mark.parametrize("scenario", evaluation.ASTROLOGY_SCENARIO_IDS)
@@ -1534,7 +1523,8 @@ def test_grounded_json_transport_changes_only_wire_contract_location(scenario):
     assert entry["body"]["max_completion_tokens"] == 4096
     assert entry["wire_schema"] == json_contract_schema(strict["wire_schema"])
     assert entry["body"]["messages"][1] == strict["body"]["messages"][1]
-    assert entry["report"]["estimated_input_plus_output_cap"] < 7000
+    # The answer contract's instructions are longer; the free-plan ceiling is 8,000.
+    assert entry["report"]["estimated_input_plus_output_cap"] < 7500
 
 
 def test_grounded_json_budget_retires_unused_medium_slots(monkeypatch):
@@ -1556,7 +1546,7 @@ def test_provider_failed_generation_shape_never_retains_unknown_fields_or_prose(
     }}, {}, entry["wire_schema"])
     shape = diagnostic["failed_generation"]["schema_shape"]
     assert "card_2" in shape["missing_required_fields"]
-    assert "card_1.reflection_question" in shape["missing_required_fields"]
+    assert "card_1.reflection" in shape["missing_required_fields"]
     assert shape["unknown_field_count"] == 1
     assert "PRIVATE" not in json.dumps(diagnostic)
 
@@ -1573,7 +1563,7 @@ def test_instruct_evaluation_matches_runtime_wire_without_reasoning(scenario):
     effective, runtime = build_grounded_json_request(entry["canonical_request"], reasoning_effort="none")
     assert effective == entry["canonical_request"] and runtime == expected
     assert entry["report"]["estimated_input_plus_output_cap"] < 8000
-    assert entry["report"]["wire_version"] == "grounded-qwen-json-instruct-1"
+    assert entry["report"]["wire_version"] == "grounded-qwen-json-instruct-2"
     assert entry["report"]["smoke_scenario"] == "vedic-resources"
     assert entry["wire_schema"] == medium["wire_schema"]
     assert entry["context"] == medium["context"]

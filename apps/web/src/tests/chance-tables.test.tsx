@@ -4,7 +4,14 @@ import { mapRoom } from '@games/api-client/mappers';
 import { slotsDetails, type Match, type SlotSpin } from '@games/api-client';
 import { ChanceTable } from '@/games/chance/ChanceTable';
 import { ChanceHistory } from '@/games/chance/ChanceHistory';
-import { EUROPEAN_WHEEL } from '@/games/chance/chance-format';
+import {
+  betCovers,
+  chipTier,
+  EUROPEAN_WHEEL,
+  pocketColor,
+  wheelTurn,
+  winningReels,
+} from '@/games/chance/chance-format';
 import { midgameScenarios } from '@/stories/generated/midgame-scenarios';
 
 const fixture = midgameScenarios.find((item) => item.id === 'blackjack-7-31-2')!;
@@ -108,4 +115,103 @@ it('keeps saved reel faces, returned chips, net and balance readable in reverse 
   });
   expect(ended).toContain('Spin 2 · Cherry · Bell · Cherry');
   expect(ended).not.toContain('aria-label="Your wager"');
+});
+it('marks covered pockets, bet spots and outcomes with words and shapes, never colour alone', () => {
+  const pockets = Array.from({ length: 37 }, (_, i) => i);
+  for (const bet of ['red', 'black', 'odd', 'even', 'low', 'high']) {
+    expect(pockets.filter((pocket) => betCovers(bet, pocket))).toHaveLength(18);
+    expect(betCovers(bet, 0)).toBe(false);
+  }
+  expect(pockets.filter((pocket) => betCovers('0', pocket))).toEqual([0]);
+  expect(pockets.filter((pocket) => betCovers('', pocket))).toEqual([]);
+  expect([0, 32, 26].map(pocketColor)).toEqual(['green', 'red', 'black']);
+  expect([1, 4, 5, 10, 24, 25, 99, 100].map(chipTier)).toEqual([1, 1, 5, 10, 10, 25, 25, 100]);
+  // A settled wheel always rests with the saved pocket under the top marker.
+  expect(wheelTurn()).toBe(0);
+  expect(wheelTurn({ spin: 2, pocket: 0 })).toBe(1440);
+  expect(wheelTurn({ spin: 1, pocket: 32 })).toBeCloseTo(720 - 360 / 37);
+  expect(winningReels({ reels: ['cherry', 'bell', 'cherry'], result: 'two_cherries' })).toEqual([
+    true,
+    false,
+    true,
+  ]);
+  expect(winningReels({ reels: ['star', 'star', 'star'], result: 'triple_star' })).toEqual([
+    true,
+    true,
+    true,
+  ]);
+  expect(winningReels({ reels: ['star', 'bell', 'star'], result: 'miss' })).toEqual([
+    false,
+    false,
+    false,
+  ]);
+
+  const spin = {
+    spin: 1,
+    choice: 'red',
+    stake: 5,
+    pocket: 32,
+    color: 'red' as const,
+    payout: 10,
+    net: 5,
+    balance: 105,
+  };
+  const html = table({
+    ...view('roulette', { ...session, spins_remaining: 4, history: [spin] }, ['red', 'black', '0']),
+    players: base.players.filter((p) => p.id === owner).map((p) => ({ ...p, chips: 105 })),
+  });
+  // The chosen bet carries the stake chip; every covered pocket is marked on the wheel.
+  expect(html.match(/class="chance-chip"/g)).toHaveLength(1);
+  expect(html.match(/data-cover="true"/g)).toHaveLength(18);
+  expect(html.match(/data-hit="true"/g)).toHaveLength(1);
+  expect(html).toContain('roulette-pointer');
+  expect(html).toContain('data-outcome="won"');
+  expect(html).toContain('<em>Won</em> +5 net');
+  expect(html).toContain('Red pays 1 to 1');
+  expect(html).toContain('>0 · Green</option>');
+  // Nothing plays a landing for a spin that was already saved when the table opened.
+  expect(html).not.toContain('data-landed');
+  expect(html).not.toContain('roulette-status');
+
+  const lost = { ...spin, payout: 0, net: -5, balance: 95 };
+  const waiting = table(
+    view('roulette', { ...session, spins_remaining: 4, history: [lost] }, ['red', '0']),
+    owner,
+    true,
+  );
+  expect(waiting).toContain('<em>Lost</em> −5 net');
+  expect(waiting).toContain('roulette-status');
+
+  const miss: SlotSpin = {
+    spin: 1,
+    stake: 2,
+    payout: 0,
+    net: -2,
+    balance: 98,
+    reels: ['lemon', 'bell', 'star'],
+    result: 'miss',
+    multiplier: 0,
+  };
+  const paytable = [
+    ...slotData.paytable,
+    { result: 'two_cherries', label: 'Exactly two cherries', multiplier: 2, ways: 384 },
+    { result: 'miss', label: 'All other lines', multiplier: 0, ways: 1236 },
+  ];
+  const reels = (history: SlotSpin[]) =>
+    table(view('slots', { ...slotData, paytable, history, spins_remaining: 4 }, ['']));
+  expect(reels([miss])).toContain('No winning line');
+  expect(reels([miss])).not.toContain('slot-reel" data-win');
+  const cherries = reels([
+    {
+      ...miss,
+      payout: 4,
+      net: 2,
+      balance: 102,
+      reels: ['cherry', 'bell', 'cherry'],
+      result: 'two_cherries',
+      multiplier: 2,
+    },
+  ]);
+  expect(cherries).toContain('Exactly two cherries · pays 2×');
+  expect(cherries.match(/class="slot-reel" data-win="true"/g)).toHaveLength(2);
 });

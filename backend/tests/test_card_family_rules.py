@@ -226,6 +226,7 @@ def test_uno_pending_cause_direction_recipient_and_elimination_are_public_withou
         detail = engine.project_view(state, player).detail
         assert detail == {"color": "red", "penalty": 0, "direction": -1,
                           "pending_kind": "roulette", "next_player": "p2", "elimination_limit": 25,
+                          "stacking": True, "stack_floor": 0, "missing_turn": [],
                           "last_event": None, "you_drew": [], "out": [{"player": "p3", "cards": 0}]}
     classic, state = uno_case()
     state["pending"] = {"type": "challenge", "actor": "p2", "illegal": True}

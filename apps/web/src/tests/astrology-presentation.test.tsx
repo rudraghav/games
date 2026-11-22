@@ -1,6 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { AstrologyChart } from '@/games/tarot/AstrologyChart';
+import { AstrologyReading, chartPoints } from '@/games/tarot/AstrologyReading';
 import { TarotReading } from '@/games/tarot/TarotReading';
 import {
   formatDegree,
@@ -98,5 +99,57 @@ describe('authoritative astrology presentation', () => {
     expect(extended.match(/Your connections/g)).toHaveLength(3);
     for (const card of tarotReadingExample.cards) expect(extended).toContain(card.interpretation);
     expect(extended).toContain(syntheticAstrologyReading.interpretation.tarot_connection);
+  });
+  it('reads each focus point as its label, its meaning, then what it could mean for the question', () => {
+    const sun =
+      'Sun is traditionally associated with vitality, Sagittarius with distant horizons, and house 9 with long journeys.';
+    const forQuestion = 'For your question, this could point to exploring the wider path first.';
+    const moon = 'Moon is traditionally associated with feelings and house 7 with partnership.';
+    const normal = `Sun in Sagittarius, house 9: ${sun} ${forQuestion}\n\nMoon in Libra, house 7: ${moon}`;
+    expect(chartPoints(normal)).toEqual([
+      { label: 'Sun in Sagittarius, house 9', meaning: sun, forQuestion },
+      { label: 'Moon in Libra, house 7', meaning: moon, forQuestion: undefined },
+    ]);
+    const astrology = {
+      ...syntheticAstrologyReading,
+      interpretation: {
+        ...syntheticAstrologyReading.interpretation,
+        western: { ...syntheticAstrologyReading.interpretation.western!, normal },
+      },
+    };
+    const html = renderToStaticMarkup(<AstrologyReading astrology={astrology} />);
+    expect(html).toContain('<h5>What these placements say about your question</h5>');
+    expect(html).toContain(
+      `<p class="astrology-point-label">Sun in Sagittarius, house 9</p><p>${sun}</p><p class="astrology-point-question">${forQuestion}</p>`,
+    );
+    expect(
+      renderToStaticMarkup(<AstrologyReading astrology={astrology} asked={false} />),
+    ).toContain('<h5>What these placements say</h5>');
+  });
+  it('keeps chart text saved in an older shape exactly as written', () => {
+    // One unlabelled paragraph stays one paragraph.
+    const { western } = syntheticAstrologyReading.interpretation;
+    expect(chartPoints(western!.normal)).toEqual([
+      { label: undefined, meaning: western!.normal, forQuestion: undefined },
+    ]);
+    // Labelled questions from an earlier profile keep their heading and their words.
+    const questions =
+      'Sun in Capricorn, house 10: What could steady effort offer here?\n\nMoon in Scorpio, house 8: Where might trust need time?';
+    const html = renderToStaticMarkup(
+      <AstrologyReading
+        astrology={{
+          ...syntheticAstrologyReading,
+          interpretation: {
+            ...syntheticAstrologyReading.interpretation,
+            western: { ...western!, normal: questions },
+          },
+        }}
+      />,
+    );
+    expect(html).toContain('<h5>The grounded read</h5>');
+    expect(html).toContain(
+      '<p class="astrology-point-label">Sun in Capricorn, house 10</p><p>What could steady effort offer here?</p>',
+    );
+    expect(html).toContain('<p>Where might trust need time?</p>');
   });
 });

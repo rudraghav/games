@@ -94,7 +94,8 @@ def test_historical_unknown_character_connections_remain_accepted_and_unchanged(
     payload["cards"][0]["characters"] = [unknown]
     assert CharacterConnection.model_validate(unknown).model_dump() == unknown
     saved = Reading.model_validate(payload)
-    assert saved.model_dump() == payload
+    # A reading saved before reversals loads unchanged, read upright.
+    assert saved.model_dump() == {**payload, "cards": [{**card, "orientation": "upright"} for card in payload["cards"]]}
     with pytest.raises(ValueError):
         validate_reading(saved.model_dump(), CARDS)
 

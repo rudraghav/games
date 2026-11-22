@@ -27,6 +27,7 @@ from app.astrology.models import (
 from app.auth import Identity
 from app.core.contracts import Action, GameView, RuleError
 from app.games.registry import ENGINES
+from app.games.tarot.engine import drawn_orientations
 from app.games.tarot.progress import ProgressEvent, ProgressState, ReadingProgress
 from app.games.tarot.reading import (
     PROMPT_VERSION,
@@ -677,7 +678,9 @@ class RoomService:
                     503, "Readings are unavailable."
                 )
             match_id = match.id
-            cards = [match.state["deck"][i] for i in match.state["picks"]]
+            # The saved draw: each drawn card's id and the orientation it landed in.
+            orientations = drawn_orientations(match.state)
+            cards = list(orientations)
             question = data.question.strip()
             self._check_reading_retry(saved, question)
             astrology_chart = self._saved_astrology_chart(saved) if data.reuse_saved_astrology else None
@@ -761,6 +764,7 @@ class RoomService:
             result = generate_reading(
                 cards, question, before_attempt=reserve_attempt, astrology_chart=astrology_chart,
                 on_progress=report_progress, reading_style=reading_style,
+                orientations=orientations,
             )
             report_progress(ProgressEvent(
                 "saving", last_progress.provider, last_progress.attempt, last_progress.max_attempts,

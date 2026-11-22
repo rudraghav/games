@@ -1,3 +1,23 @@
+## 2026-11-22 — Tarot readings that answer the question, reversed cards, card guide, Uno stacking, test repairs
+
+- Owner asked to finish the items left open after the visual polish release, then: make Tarot readings contextual (a player's reading "made no sense"), add a full card guide with both orientations, reversed draws, clickable gallery cards and a scrollable deck, and new Uno rules (stacking toggle on both games, missed turn after a caught UNO).
+
+- Tarot readings (prompt pop-tarot-16): every provider profile now requires each part to say what it means for the question; the Fun model sees each portrait and writes only the bridge "What this means for your question"; astrology glosses each placement and ties it to the question and the cards. 44 real provider requests on synthetic questions across the agents and the lead. Gemini and Groq readings pass or nearly pass the rubric; Cloudflare still ignores the portrait's move and is the slowest. A validator that rejected bridges repeating the move was tried and removed: with the current provider order it pushed readings to Cloudflare. Recommended to the owner: move Groq ahead of Cloudflare.
+
+- Card guide: original text for all 78 cards (upright and reversed meanings, love/work/self lines, figure and symbols from our art, correspondences, questions), exported to the client, with a card page opened from the gallery, the spread and reading thumbnails.
+
+- Reversed draws: decided by the server at the shuffle (1 in 3), never projected before a card is drawn (secrecy tests flip undrawn orientations and require identical projections); table setting "Include reversed cards". Readings use the reversed meaning and save each section's orientation. Deck is a native-scroll ribbon; its tap strip was set back to 44px by the lead (21 backs across a desktop table).
+
+- Uno and No Mercy: setting stack_draws (Uno off, No Mercy on; old stack_draw_two reads as on): equal-or-higher draw cards stack regardless of colour; no Draw Four challenge while stacking is on; a penalty draw ends the turn; a caught player takes 2 and misses a turn, shown on the seat. Played in a real local room after an API restart: stack prompt, penalty draw, catch and marker all appeared.
+
+- Repairs: the five browser tests that failed before the polish release were stale (game-switch redirect, one-step Deal placement, old room paths, saved draft across harness widths) and are updated; the intermittent split-Blackjack shift was a real one-frame delay of the rail's arrow row under reduced motion and is fixed. Roulette and Slots received the visual pass. Solo tables no longer show action notifications. The leftover production test room was closed through the room service's leave path; live phone flows passed after the guest sign-in limit reset.
+
+- After a change of game, a table on the old address now corrects its address in place instead of navigating, so the room no longer remounts and drops an open dialog or an unsent move.
+
+- Final local source: frontend (382 unit tests, build), backend (7,534), contracts, tooling, multiplayer (256) and migrations pass; the full browser suite passes with 465 passed, 71 skipped and none failed. Two Tarot phone tests failed once in an earlier full run (first tap did not lift a back) and passed when repeated; no cause found.
+
+- State: verified locally; owner approved shipping. Next: push, one deployment, live verification.
+
 ## 2026-11-21 — Visual polish across all games
 
 - Owner asked for better Deal colours and contrast, gradients instead of colour dots on any-colour Rent, refined faces, hover/click/processing states, tooltips and bottom-right action notifications; then the same for other games with depth, animation, and Tarot gaps and reading improvements.

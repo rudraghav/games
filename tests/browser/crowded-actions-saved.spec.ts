@@ -133,7 +133,17 @@ test('saved crowded-action families preserve exact moves, public state and narro
         ).toBe(200);
       }
       expect((await requestAs(page, `rooms/${roomId}/start`, 'POST')).status()).toBe(200);
-      await Promise.all(players.filter((actor) => !left.has(actor)).map((actor) => actor.reload()));
+      // A room lives at its game's named URL. A page reloaded on the previous
+      // game's URL shows the new table, then moves to the named URL and remounts
+      // the room. Act only once every seat has settled there.
+      await Promise.all(
+        players
+          .filter((actor) => !left.has(actor))
+          .map(async (actor) => {
+            await actor.reload();
+            await expect(actor).toHaveURL(new RegExp(`/games/${game}/rooms/${roomId}$`));
+          }),
+      );
       const snapshot = await roomAs(page, roomId!);
       expect(snapshot.game!.game_id).toBe(game);
       return snapshot;
@@ -151,8 +161,7 @@ test('saved crowded-action families preserve exact moves, public state and narro
       const started = await start(game);
       const actor = actorFor(started.game!.current_player!);
       const before = await roomAs(actor, roomId);
-      // An ordinary move: a property with one destination (a wild's several piles
-      // are a separate radio choice) or else a bank move.
+      // An ordinary move: a property with exactly one destination, or else a bank move.
       const placements = before.game!.actions.filter((item) => item.action.type === 'property');
       const option =
         placements.find(
@@ -163,21 +172,26 @@ test('saved crowded-action families preserve exact moves, public state and narro
       const index = before.game!.hand.findIndex((card) => card.id === option!.action.card);
       expect(index).toBeGreaterThanOrEqual(0);
       const card = before.game!.hand[index];
-      await actor.locator('.deal-hand-dock .card-hand > button').nth(index).click();
-      if (!(await actor.locator('.table-decision-panel').count()))
-        await actor.getByRole('button', { name: 'Choose move options', exact: true }).click();
+      const held = actor.locator('.deal-hand-dock .card-hand > button').nth(index);
+      await held.click();
+      await expect(held).toHaveAttribute('aria-pressed', 'true');
+      // Selecting a card opens its complete legal moves at once. Each destination
+      // row and the bank button is a one-step commit: there is no separate
+      // move picker or confirmation.
       const panel = actor.locator('.table-decision-panel');
+      await expect(panel).toBeVisible();
+      await expect(panel.getByRole('heading', { name: card.label, exact: true })).toBeVisible();
+      await expect(panel.getByRole('combobox')).toHaveCount(0);
+      const moves = panel.getByRole('group', { name: 'Card moves', exact: true });
       if (option!.action.type === 'property') {
-        const moves = panel.getByRole('combobox', { name: 'Card move', exact: true });
-        if (await moves.count()) await moves.selectOption(JSON.stringify(option!.action));
-      } else {
-        await panel.getByRole('button', { name: `Bank for ${card.value}`, exact: true }).click();
+        // The only legal destination is the only row offered.
+        await expect(moves.getByRole('button')).toHaveCount(1);
+        await expect(moves.getByRole('button')).toHaveAccessibleName(/^Place in /);
       }
-      const confirm = panel.getByRole('button', {
-        name:
-          option!.action.type === 'property' ? 'Place property' : `Confirm · bank ${card.value}`,
-        exact: true,
-      });
+      const confirm =
+        option!.action.type === 'property'
+          ? moves.getByRole('button')
+          : panel.getByRole('button', { name: `Bank for ${card.value}`, exact: true });
       await expect(confirm).toBeEnabled();
       const observer = players.find((item) => item !== actor)!;
       // This panel portals outside the room's inert frame. Losing the network

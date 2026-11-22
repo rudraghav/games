@@ -1,27 +1,24 @@
-"""Only a failed question's grammar can relax; original facts and bounds survive."""
+"""Correction feedback names the failed field; it never relaxes a check or a fact."""
 
 import json
 from copy import deepcopy
 
 import pytest
-from pydantic import ValidationError
 from test_astrology_reading import CARDS
 from test_tarot_alternative_providers import canonical as canonical
-from test_tarot_fallback import qwen_envelope
-from test_tarot_grounded import grounded_envelope
+from test_tarot_grounded import LONE_QUESTION, grounded_envelope
 
 from app.games.tarot import reading
-from app.games.tarot.groq_qwen_astrology import (
-    build_groq_qwen_astrology_request,
-    decode_groq_qwen_astrology_output,
-)
 from app.games.tarot.grounded import decode_grounded_output
 from app.games.tarot.providers import AlternativeOutputError
+from app.games.tarot.recovery import ValidationIssue, retry_request
 
-REFLECTION = "Consider which small possibility could offer a useful place to begin, at your own pace."
+ANSWER = ("In this position the card may point to one small possibility within the question, which is "
+          "traditionally read as a useful place to begin. That could mean trying it once, at your own pace.")
 
 
-def relax(request, field, check="question_form"):
+def forged(request, field, check="answer_form"):
+    """A request that claims an old-style relaxation; nothing honours it."""
     retry = deepcopy(request)
     context = json.loads(retry["input"])
     context["validation_relaxations"] = [{"check": check, "field": field}]
@@ -47,56 +44,55 @@ def validate(payload, request, chart):
 @pytest.mark.parametrize("provider", ["groq", "cloudflare"])
 @pytest.mark.parametrize("mode", ["ordinary", "western", "vedic", "both"])
 @pytest.mark.parametrize("wire_field,field", [
-    ("reflection_question", "cards.0.interpretation"),
-    ("connection_question", "cards.0.characters.0.connection"),
+    ("reflection", "cards.0.interpretation"),
+    ("imagery", "cards.0.quirky_interpretation"),
+    ("connection", "cards.0.characters.0.connection"),
 ])
-def test_grounded_retry_relaxes_only_identified_card_question(canonical, provider, mode, wire_field, field):
+def test_feedback_names_the_exact_card_field_and_a_corrected_answer_passes(canonical, provider, mode, wire_field, field):
     request, chart = canonical(mode)
     body = replace_payload(grounded_envelope(provider, request, chart),
-                           lambda payload: payload["card_1"].update({wire_field: REFLECTION}))
+                           lambda payload: payload["card_1"].update({wire_field: LONE_QUESTION}))
     before_request, before_body = deepcopy(request), deepcopy(body)
     with pytest.raises(AlternativeOutputError) as rejected:
         decode_grounded_output(provider, body, request)
-    assert rejected.value.reason == "invalid_reflection_question"
-    assert rejected.value.issue.check == "question_form"
-    assert rejected.value.issue.field == field
-    retry = relax(request, field)
-    result = validate(decode_grounded_output(provider, body, retry), retry, chart)
-    actual = (result.cards[0].interpretation if wire_field == "reflection_question"
-              else result.cards[0].characters[0].connection)
-    assert actual == REFLECTION
+    assert rejected.value.reason == "invalid_answer"
+    assert (rejected.value.issue.check, rejected.value.issue.field) == ("answer_form", field)
+    # The next attempt carries that feedback and is held to the same contract.
+    retry = retry_request(request, rejected.value.issue)
+    assert json.loads(retry["input"])["validation_feedback"] == {
+        "check": "answer_form", "field": field, "action": "correct_complete_output",
+    }
+    for source in (retry, forged(request, field), forged(request, field, "question_form")):
+        with pytest.raises(AlternativeOutputError) as again:
+            decode_grounded_output(provider, body, source)
+        assert again.value.issue == ValidationIssue("answer_form", field)
+    corrected = replace_payload(body, lambda payload: payload["card_1"].update({wire_field: ANSWER}))
+    result = validate(decode_grounded_output(provider, corrected, retry), retry, chart)
+    actual = {"reflection": result.cards[0].interpretation, "imagery": result.cards[0].quirky_interpretation,
+              "connection": result.cards[0].characters[0].connection}[wire_field]
+    assert actual == ANSWER
     assert request == before_request and body == before_body
-    with pytest.raises(AlternativeOutputError):
-        decode_grounded_output(provider, body, request)
 
 
 @pytest.mark.parametrize("provider", ["groq", "cloudflare"])
 @pytest.mark.parametrize("system", ["western", "vedic"])
 @pytest.mark.parametrize("focus", ["focus_1", "focus_2"])
-def test_grounded_astrology_retry_has_exact_focus_scope(canonical, provider, system, focus):
+def test_chart_feedback_has_exact_focus_scope(canonical, provider, system, focus):
     request, chart = canonical("both")
-    field = f"astrology_interpretation.{system}.{focus}.reflection_question"
+    field = f"astrology_interpretation.{system}.{focus}.reflection"
     body = replace_payload(grounded_envelope(provider, request, chart), lambda payload:
-                           payload["astrology_interpretation"][system][focus].update(reflection_question=REFLECTION))
+                           payload["astrology_interpretation"][system][focus].update(reflection=LONE_QUESTION))
     with pytest.raises(AlternativeOutputError) as rejected:
         decode_grounded_output(provider, body, request)
-    assert rejected.value.issue.field == field
-    retry = relax(request, field)
-    result = validate(decode_grounded_output(provider, body, retry), retry, chart)
-    assert REFLECTION in getattr(result.astrology.interpretation, system).normal
+    assert (rejected.value.issue.check, rejected.value.issue.field) == ("answer_form", field)
+    assert rejected.value.issue.message(retrying=True) == (
+        f"{system.capitalize()} astrology asked without saying what it means. Retrying the reading.")
+    retry = retry_request(request, rejected.value.issue)
+    corrected = replace_payload(body, lambda payload:
+                                payload["astrology_interpretation"][system][focus].update(reflection=ANSWER))
+    result = validate(decode_grounded_output(provider, corrected, retry), retry, chart)
+    assert ANSWER in getattr(result.astrology.interpretation, system).normal
     assert result.astrology.chart == chart
-
-
-def test_grounded_retry_does_not_relax_another_card(canonical):
-    request, chart = canonical()
-    def update(payload):
-        for card in ("card_1", "card_2"):
-            payload[card]["reflection_question"] = REFLECTION
-    body = replace_payload(grounded_envelope("groq", request, chart), update)
-    with pytest.raises(AlternativeOutputError) as rejected:
-        decode_grounded_output("groq", body, relax(request, "cards.0.interpretation"))
-    assert rejected.value.issue.check == "question_form"
-    assert rejected.value.issue.field == "cards.1.interpretation"
 
 
 @pytest.mark.parametrize("tamper,check", [
@@ -104,16 +100,15 @@ def test_grounded_retry_does_not_relax_another_card(canonical):
     ("reference", "reference"), ("focus", "chart"),
     ("missing", "required_fields"), ("extra", "unexpected_fields"),
 ])
-def test_relaxed_question_retains_hard_checks_and_safe_diagnostics(canonical, tamper, check):
+def test_a_retry_retains_hard_checks_and_safe_diagnostics(canonical, tamper, check):
     request, chart = canonical("both")
     def update(payload):
-        payload["card_1"]["reflection_question"] = REFLECTION
         if tamper == "short":
-            payload["card_1"]["reflection_question"] = "Maybe"
+            payload["card_1"]["reflection"] = "Maybe"
         elif tamper == "empty":
-            payload["card_1"]["reflection_question"] = "   "
+            payload["card_1"]["reflection"] = "   "
         elif tamper == "placeholder":
-            payload["card_1"]["reflection_question"] = "TBD"
+            payload["card_1"]["reflection"] = "TBD"
         elif tamper == "reference":
             payload["card_1"]["reference_id"] = "PRIVATE INVENTED REFERENCE"
         elif tamper == "focus":
@@ -123,54 +118,9 @@ def test_relaxed_question_retains_hard_checks_and_safe_diagnostics(canonical, ta
         else:
             payload["card_1"]["PRIVATE UNEXPECTED FIELD"] = "PRIVATE REJECTED VALUE"
     body = replace_payload(grounded_envelope("cloudflare", request, chart), update)
+    retry = retry_request(request, ValidationIssue("answer_form", "cards.0.interpretation"))
     with pytest.raises(AlternativeOutputError) as rejected:
-        decode_grounded_output("cloudflare", body, relax(request, "cards.0.interpretation"))
+        decode_grounded_output("cloudflare", body, retry)
     assert rejected.value.issue.check == check
     assert "PRIVATE" not in repr(rejected.value.issue)
     assert "PRIVATE" not in str(rejected.value)
-
-
-@pytest.mark.parametrize("wire_field,field", [
-    ("reflection_question", "cards.0.interpretation"),
-    ("connection", "cards.0.characters.0.connection"),
-])
-def test_legacy_western_retry_uses_same_field_scoped_policy(canonical, wire_field, field):
-    request, chart = canonical("western")
-    effective, _wire = build_groq_qwen_astrology_request(request)
-    body = replace_payload(qwen_envelope(effective, chart),
-                           lambda payload: payload["card_1"].update({wire_field: REFLECTION}))
-    with pytest.raises(AlternativeOutputError) as rejected:
-        decode_groq_qwen_astrology_output(body, effective)
-    assert rejected.value.issue.check == "question_form"
-    assert rejected.value.issue.field == field
-    retry = relax(effective, field)
-    result = validate(decode_groq_qwen_astrology_output(body, retry), retry, chart)
-    actual = result.cards[0].interpretation if wire_field == "reflection_question" else result.cards[0].characters[0].connection
-    assert actual == REFLECTION and result.astrology.chart == chart
-
-
-@pytest.mark.parametrize("value", ["", "TBD", "Maybe", "x" * 851])
-def test_legacy_western_relaxation_keeps_content_and_domain_bounds(canonical, value):
-    request, chart = canonical("western")
-    effective, _wire = build_groq_qwen_astrology_request(request)
-    body = replace_payload(qwen_envelope(effective, chart),
-                           lambda payload: payload["card_1"].update(reflection_question=value))
-    retry = relax(effective, "cards.0.interpretation")
-    with pytest.raises((AlternativeOutputError, ValidationError)):
-        validate(decode_groq_qwen_astrology_output(body, retry), retry, chart)
-
-
-@pytest.mark.parametrize("check,field", [
-    ("text_length", "cards.0.interpretation"),
-    ("question_form", "cards.1.interpretation"),
-    ("question_form", "cards.*.interpretation"),
-    ("PRIVATE UNKNOWN", "cards.0.interpretation"),
-])
-def test_unknown_or_unrelated_relaxation_never_changes_validation(canonical, check, field):
-    request, chart = canonical()
-    body = replace_payload(grounded_envelope("groq", request, chart),
-                           lambda payload: payload["card_1"].update(reflection_question=REFLECTION))
-    with pytest.raises(AlternativeOutputError) as rejected:
-        decode_grounded_output("groq", body, relax(request, field, check))
-    assert rejected.value.issue.check == "question_form"
-    assert rejected.value.issue.field == "cards.0.interpretation"

@@ -4,8 +4,11 @@ import { cardSchema } from './card-schema';
 
 type Wire = components['schemas'];
 type WireCard = Wire['CardView'];
+// `orientation` (CardView) and a reading section's `orientation` are typed here until
+// the generated wire types are regenerated from the backend (pnpm gen:api); the
+// intersection stays valid afterwards and can then be removed.
 type CompatibleCard = Omit<WireCard, 'colors' | 'effect'> &
-  Partial<Pick<WireCard, 'colors' | 'effect'>>;
+  Partial<Pick<WireCard, 'colors' | 'effect'>> & { orientation?: 'upright' | 'reversed' | null };
 const memberId = z.union([z.string().uuid(), z.string().regex(/^bot:[a-f0-9]{32}$/)]);
 const memberGate = z
   .object({ id: memberId, is_bot: z.boolean().default(false) })

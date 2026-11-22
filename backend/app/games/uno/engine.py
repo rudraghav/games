@@ -18,6 +18,9 @@ from app.core.contracts import (
 from app.games.uno.deck import COLORS, LABELS, deck, label, penalty, points, view
 
 LIMIT = 25
+STACK = "stack_draws"
+# Rooms and matches saved before the toggle covered every draw card.
+LEGACY_STACK = "stack_draw_two"
 
 
 class UnoEngine(BaseEngine):
@@ -34,18 +37,32 @@ class UnoEngine(BaseEngine):
                 minutes="20–40" if mercy else "10–20",
                 icon="layers",
                 color="coral",
-                settings=[]
-                if mercy
-                else [
-                    Setting(key="stack_draw_two", label="Stack draw-two cards", default=False),
-                    Setting(key="seven_zero", label="7 swaps & 0 passes", default=False),
+                rules_version="2",
+                settings=[
+                    Setting(key=STACK, label="Stack draw cards", default=mercy),
+                    *(
+                        []
+                        if mercy
+                        else [Setting(key="seven_zero", label="7 swaps & 0 passes", default=False)]
+                    ),
                 ],
                 rules=[
-                    "Match the colour, number or symbol.",
-                    "Call UNO when one card remains.",
-                    "25 cards means elimination; stack equal or higher draws."
+                    "Match the colour, number or symbol. With no match, draw until a card fits, "
+                    "then play it."
                     if mercy
-                    else "Empty your hand first. Draw four may be challenged.",
+                    else "Match the colour, number or symbol. Or draw one card: if it fits, "
+                    "you may play it at once.",
+                    "Call UNO when one card remains. If caught without it, draw 2 and miss "
+                    "your next turn.",
+                    "25 cards means elimination. Drawing a penalty passes your turn."
+                    if mercy
+                    else "Empty your hand first. Drawing a penalty passes your turn.",
+                    "Stack draw cards on: answer a draw card with an equal or higher one of any "
+                    "colour (+2, +4, +6, +10) and the total moves on. Off: draw the penalty."
+                    if mercy
+                    else "Stack draw cards on: answer a +2 with a +2 or Wild +4, and a +4 with a "
+                    "Wild +4; the total moves on and a Wild +4 cannot be challenged. "
+                    "Off: draw the penalty; a Wild +4 may be challenged.",
                 ],
             )
         )
@@ -72,6 +89,7 @@ class UnoEngine(BaseEngine):
             "eliminated": [],
             "called": [],
             "catchable": None,
+            "missing": [],
             "drawn": None,
             "pending": None,
             "winners": [],
@@ -111,6 +129,13 @@ class UnoEngine(BaseEngine):
         self._prompt(state)
         return state
 
+    def _stacking(self, s: State) -> bool:
+        """Whether a pending draw may be answered with an equal or higher draw card."""
+        settings = s.get("settings") or {}
+        if STACK in settings:
+            return bool(settings[STACK])
+        return True if settings.get(LEGACY_STACK) else self.mercy
+
     def _advance(self, s: State, steps: int = 1) -> None:
         for _ in range(steps):
             s["turn"] = (s["turn"] + s["direction"]) % len(s["order"])
@@ -118,12 +143,30 @@ class UnoEngine(BaseEngine):
                 s["turn"] = (s["turn"] + s["direction"]) % len(s["order"])
         s["drawn"] = None
 
+    def _settle(self, s: State) -> None:
+        """Pass over a seat that misses this turn for being caught without UNO.
+
+        A draw penalty, challenge or roulette aimed at that seat is answered
+        first; the mark then costs its next ordinary turn. One mark, one turn.
+        """
+        missing = s["missing"]
+        while (
+            not s["penalty"]
+            and not s["pending"]
+            and s["order"][s["turn"]] in missing
+            and len(s["order"]) - len(s["eliminated"]) > 1
+        ):
+            seat = s["order"][s["turn"]]
+            missing.remove(seat)
+            s["last_event"]["missed"].append(seat)
+            self._advance(s)
+
     def _event(self, s: State, event: str, actor: str | None, **extra: object) -> None:
         """What the latest action did, in public terms; drawn faces stay with their owner."""
         s["last_event"] = {
             "type": event, "actor": actor, "kind": None, "color": None, "target": None,
             "outcome": None, "discarded": 0, "skipped": [], "drew": {}, "cards": {},
-            "eliminated": [], **extra,
+            "eliminated": [], "missed": [], **extra,
         }
 
     def _take(self, s: State, player: str, count: int) -> None:
@@ -145,6 +188,7 @@ class UnoEngine(BaseEngine):
             event["cards"].setdefault(player, []).extend(taken)
         if self.mercy and len(s["hands"][player]) >= LIMIT and player not in s["eliminated"]:
             s["eliminated"].append(player)
+            s["missing"] = [p for p in s.get("missing", []) if p != player]
             s.setdefault("out", {})[player] = len(s["hands"][player])
             if event is not None:
                 event["eliminated"].append(player)
@@ -152,11 +196,8 @@ class UnoEngine(BaseEngine):
     def _can_play(self, s: State, card: str, player: str) -> bool:
         color, kind, _ = card.split(":")
         if s["penalty"]:
-            return (
-                (self.mercy or s["settings"].get("stack_draw_two", False))
-                and penalty(card) >= s["penalty_floor"]
-                and (self.mercy or kind == "draw2")
-            )
+            # Any colour: only the draw value has to equal or beat the last one.
+            return self._stacking(s) and penalty(card) >= s["penalty_floor"]
         if s["drawn"] and card != s["drawn"]:
             return False
         return color == "wild" or color == s["color"] or kind == s["discard"][-1].split(":")[1]
@@ -229,6 +270,7 @@ class UnoEngine(BaseEngine):
                     self._take(s, s["order"][s["turn"]], s["penalty"])
                     s["penalty"] = s["penalty_floor"] = 0
             s["winners"] = [winner]
+            s["missing"] = []
             s["scores"][winner] = sum(
                 points(c) for p in active if p != winner for c in s["hands"][p]
             ) + (250 * len(s["eliminated"]) if self.mercy else 0)
@@ -264,15 +306,18 @@ class UnoEngine(BaseEngine):
         elif pending and pending["type"] == "roulette":
             s["message"] = f"Name a colour, then draw until it appears (out at {LIMIT} cards)."
         elif s["penalty"]:
-            if self.mercy:
-                out = held + s["penalty"] >= LIMIT
-                s["message"] = f"Stack +{s['penalty_floor']} or higher, or draw {s['penalty']}" + (
-                    " — drawing puts you out." if out else "."
+            out = self.mercy and held + s["penalty"] >= LIMIT
+            end = " — drawing puts you out." if out else ". Drawing passes your turn."
+            if self._stacking(s):
+                top = s["penalty_floor"] >= (10 if self.mercy else 4)
+                s["message"] = (
+                    f"Stack a +{s['penalty_floor']}{'' if top else ' or higher'}, "
+                    f"or draw {s['penalty']}{end}"
                 )
-            elif s["settings"].get("stack_draw_two", False):
-                s["message"] = f"Stack a +2, or draw {s['penalty']}."
             else:
-                s["message"] = f"Draw {s['penalty']}; your turn then passes."
+                s["message"] = f"Draw {s['penalty']}" + (
+                    " — drawing puts you out." if out else "; your turn then passes."
+                )
         elif s["drawn"]:
             s["message"] = "Play the card you drew" + ("." if self.mercy else ", or pass.")
         else:
@@ -292,6 +337,7 @@ class UnoEngine(BaseEngine):
         if action not in [o.action for o in options]:
             raise RuleError("That card or action cannot be played now.")
         s = self.copy(state)
+        s.setdefault("missing", [])  # matches saved before the missed-turn rule
         if action.type == "uno":
             s["called"].append(player)
             s["catchable"] = None if s["catchable"] == player else s["catchable"]
@@ -300,7 +346,12 @@ class UnoEngine(BaseEngine):
             self._event(s, "catch_uno", player, target=action.target)
             self._take(s, action.target, 2)
             s["catchable"] = None
+            # Caught: two cards and one missed turn, however often before it is served.
+            if action.target not in s["eliminated"] and action.target not in s["missing"]:
+                s["missing"].append(action.target)
             self._finish(s)
+            if not s["winners"]:
+                self._settle(s)
             self._prompt(s)
             return s
         s["catchable"] = None
@@ -405,7 +456,7 @@ class UnoEngine(BaseEngine):
                     p for p in s["order"] if p != player and p not in s["eliminated"]
                 ]
             self._advance(s, steps)
-            if kind == "wild4":
+            if kind == "wild4" and not self._stacking(s):
                 s["pending"] = {"type": "challenge", "illegal": illegal_wild, "actor": player}
             elif kind == "roulette":
                 s["pending"] = {"type": "roulette"}
@@ -416,16 +467,21 @@ class UnoEngine(BaseEngine):
                 if len(s["hands"][p]) == 1 and p not in s["called"]:
                     s["catchable"] = p
         self._finish(s)
+        if not s["winners"]:
+            self._settle(s)
         self._prompt(s)
         return s
 
     def project_view(self, s: State, player: str) -> GameView:
-        following = next((
+        stacking = self._stacking(s)
+        missing = s.get("missing", [])
+        seats = [
             s["order"][(s["turn"] + distance * s["direction"]) % len(s["order"])]
             for distance in range(1, len(s["order"]) + 1)
-            if s["order"][(s["turn"] + distance * s["direction"]) % len(s["order"])]
-            not in s["eliminated"]
-        ), None)
+        ]
+        seats = [p for p in seats if p not in s["eliminated"]]
+        # Who takes the next ordinary turn: a seat that misses its turn is passed over.
+        following = next((p for p in seats if p not in missing), seats[0] if seats else None)
         return GameView(
             game_id=self.manifest.id,
             phase=s["phase"],
@@ -450,6 +506,11 @@ class UnoEngine(BaseEngine):
                 "pending_kind": s["pending"]["type"] if s["pending"] else None,
                 "next_player": following,
                 "elimination_limit": LIMIT if self.mercy else None,
+                # The room's stacking rule, the lowest draw value that may answer the
+                # pending penalty (0: nothing may), and seats that miss their next turn.
+                "stacking": stacking,
+                "stack_floor": s["penalty_floor"] if stacking and s["penalty"] else 0,
+                "missing_turn": [p for p in s["order"] if p in missing],
                 "last_event": self._public_event(s),
                 # Only the viewer's own new cards, and only while still in their hand.
                 "you_drew": [
@@ -475,4 +536,5 @@ class UnoEngine(BaseEngine):
             "target": event["target"], "outcome": event["outcome"],
             "discarded": event["discarded"], "skipped": list(event["skipped"]),
             "drew": dict(event["drew"]), "eliminated": list(event["eliminated"]),
+            "missed": list(event.get("missed", [])),
         }

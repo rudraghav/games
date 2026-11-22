@@ -17,8 +17,9 @@ from app.games.tarot.groq_qwen import (
     OUTPUT_CAP as OUTPUT_CAP,
 )
 from app.games.tarot.providers import COMPACT_ASTROLOGY_SYSTEM, AlternativeOutputError, _text
-from app.games.tarot.recovery import ValidationIssue, question_relaxed
-from app.games.tarot.style import FUN_CONNECTION, model_context
+from app.games.tarot.recovery import ValidationIssue
+from app.games.tarot.style import LEGACY_FUN_CONNECTION as FUN_CONNECTION
+from app.games.tarot.style import model_context
 
 PROFILE_VERSION = "compact-groq-qwen-evidence-3"
 CLASSIC_CONNECTION = """Choose one distinct reference_id from each card's candidates. The app displays
@@ -83,7 +84,7 @@ def _question(value: object, *, source: dict[str, Any], field: str, wire_field: 
     except AlternativeOutputError as error:
         check = "placeholder" if error.reason == "placeholder_text" else "invalid_output"
         raise AlternativeOutputError(error.reason, issue=ValidationIssue(check, field)) from None
-    if not question_relaxed(source, field) and (text.count("?") != 1 or not text.rstrip().endswith("?")):
+    if text.count("?") != 1 or not text.rstrip().endswith("?"):
         raise AlternativeOutputError("invalid_reflection_question", issue=ValidationIssue("question_form", field))
     return text
 

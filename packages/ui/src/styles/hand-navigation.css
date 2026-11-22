@@ -7,6 +7,16 @@
   :where(.horizontal-rail) {
     max-width: 100%;
   }
+  /*
+   * The room for the arrows (side gutters, or the row below a board) must land in
+   * the same frame as the arrows, before the rail measures and reveals. Under
+   * reduced motion the global reset gives every element a 0.01ms transition on
+   * all properties, which would apply that room one frame late.
+   */
+  .horizontal-rail,
+  .horizontal-rail-viewport {
+    transition-property: none;
+  }
   .horizontal-rail-viewport {
     overflow-x: auto;
     overscroll-behavior-x: contain;

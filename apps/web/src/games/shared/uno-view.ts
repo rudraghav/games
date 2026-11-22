@@ -29,6 +29,8 @@ const eventSchema = z.object({
   skipped: z.array(z.string()),
   drew: z.record(z.string(), z.number().int().nonnegative()),
   eliminated: z.array(z.string()),
+  // Seats this action's turn passed over because they were caught without UNO.
+  missed: z.array(z.string()).default([]),
 });
 // Older saved projections have none of these fields; they degrade to "nothing new".
 const extrasSchema = z.object({
@@ -38,13 +40,40 @@ const extrasSchema = z.object({
     .array(z.object({ player: z.string(), cards: z.number().int().nonnegative() }))
     .catch([])
     .default([]),
+  // Whether a pending draw may be answered with a draw card, and the lowest value that may.
+  stacking: z.boolean().nullable().catch(null).default(null),
+  stack_floor: z.number().int().nonnegative().catch(0).default(0),
+  // Seats caught without UNO that will miss their next turn.
+  missing_turn: z.array(z.string()).catch([]).default([]),
 });
 
 export type UnoEvent = z.infer<typeof eventSchema>;
 
 export function unoExtras(detail: Match['detail']) {
   const data = extrasSchema.parse(detail ?? {});
-  return { lastEvent: data.last_event, youDrew: data.you_drew, out: data.out };
+  return {
+    lastEvent: data.last_event,
+    youDrew: data.you_drew,
+    out: data.out,
+    stacking: data.stacking,
+    stackFloor: data.stack_floor,
+    missingTurn: data.missing_turn,
+  };
+}
+
+/**
+ * The room's "Stack draw cards" rule. The table projection states it; a
+ * projection from before that field falls back to the saved room settings
+ * (including the retired +2-only key) and then to each game's default.
+ */
+export function stackingRule(
+  mercy: boolean,
+  settings: Record<string, boolean>,
+  projected: boolean | null = null,
+) {
+  if (projected !== null) return projected;
+  if (typeof settings.stack_draws === 'boolean') return settings.stack_draws;
+  return settings.stack_draw_two ? true : mercy;
 }
 
 const COLOURS = ['red', 'yellow', 'green', 'blue', 'wild'] as const;
@@ -113,6 +142,22 @@ function people({ room, selfId }: Pick<Context, 'room' | 'selfId'>) {
   return { name, Name };
 }
 
+/** The first seat after `id` that will really take a turn: marked seats are passed over. */
+export function nextToPlay(
+  match: Match,
+  id: string,
+  direction: number,
+  missing: readonly string[] = [],
+  from = 1,
+) {
+  const count = activeOrder(match).length;
+  for (let steps = from; steps < from + count; steps += 1) {
+    const seat = seatAfter(match, id, direction, steps);
+    if (seat && !missing.includes(seat)) return seat;
+  }
+  return seatAfter(match, id, direction, from);
+}
+
 /** Players still in, in seat order. */
 export function activeOrder(match: Match) {
   return match.players.filter((player) => !player.eliminated);
@@ -135,11 +180,31 @@ const countOf = (match: Match, id: string | null | undefined) =>
  * only what that line cannot say: who drew how many, who swapped or was
  * skipped, a challenge result, an elimination, or the card you just drew.
  */
-export function describeEvent(
-  event: UnoEvent | null,
-  context: Context & { youDrew: Card[]; direction: number; sevenZero: boolean },
-): string | null {
+export function describeEvent(event: UnoEvent | null, context: EventContext): string | null {
   if (!event) return null;
+  const outcome = describeOutcome(event, context);
+  // A catch says so itself; any other move reports whose turn it passed over.
+  const { Name } = people(context);
+  const missed = event.type === 'catch_uno' ? [] : event.missed;
+  const skipped = missed
+    .map((id) =>
+      id === context.selfId
+        ? 'You were caught without UNO and miss this turn.'
+        : `${Name(id)} was caught without UNO and misses this turn.`,
+    )
+    .join(' ');
+  return [outcome, skipped].filter(Boolean).join(' ') || null;
+}
+
+type EventContext = Context & {
+  youDrew: Card[];
+  direction: number;
+  sevenZero: boolean;
+  /** Seats still marked to miss their next turn. */
+  missingTurn?: readonly string[];
+};
+
+function describeOutcome(event: UnoEvent, context: EventContext): string | null {
   const { match, selfId, mercy } = context;
   const { name, Name } = people(context);
   const is = (id: string | null | undefined) => (id === selfId ? 'are' : 'is');
@@ -164,8 +229,20 @@ export function describeEvent(
     }
     case 'accept':
       return null;
-    case 'catch_uno':
-      return `${Name(actor)} caught ${name(event.target)} without UNO: ${name(event.target)} drew ${drew(event.target || '') || 2}.`;
+    case 'catch_uno': {
+      const target = event.target || '';
+      const you = target === selfId;
+      const took = `${name(target)} drew ${drew(target) || 2}`;
+      // Two cards, then the turn: lost now if it was theirs, otherwise their next one.
+      const turn = event.eliminated.includes(target)
+        ? `.${out(target)}`
+        : event.missed.includes(target)
+          ? ` and ${you ? 'miss' : 'misses'} this turn.`
+          : context.missingTurn?.includes(target)
+            ? ` and ${you ? 'miss your' : 'misses their'} next turn.`
+            : '.';
+      return `${Name(actor)} caught ${name(target)} without UNO: ${took}${turn}`;
+    }
     case 'choose':
       if (event.kind === 'opening') return null;
       return `${Name(actor)} named ${colourName(event.color)} and drew ${cards(drew(actor || ''))}.${out(actor || '')}`;
@@ -178,7 +255,9 @@ export function describeEvent(
           ? `${Name(actor)} drew ${count} and is out with ${cards(countOf(match, actor))}.`
           : null;
       if (event.kind === 'penalty')
-        return `You drew ${count}.${event.eliminated.includes(selfId) ? ' You are out.' : ''}`;
+        return event.eliminated.includes(selfId)
+          ? `You drew ${count}. You are out.`
+          : `You drew ${count} and your turn passed.`;
       if (context.youDrew.length) {
         const last = context.youDrew.at(-1)!;
         const list =
@@ -235,7 +314,8 @@ export function tableSituation(
     penalty: number;
     pendingKind: string | null;
     actor: string | null;
-    stackDrawTwo: boolean;
+    /** The room's "Stack draw cards" rule. */
+    stacking: boolean;
     /** Whether the viewer, when it is their turn, holds a card that can stack. */
     canStack?: boolean;
   },
@@ -260,7 +340,7 @@ export function tableSituation(
     const total = countOf(match, current) + penalty;
     const danger =
       limit && total >= limit ? ` Drawing puts ${name(current)} out (${total} cards).` : '';
-    const stack = context.mercy || context.stackDrawTwo ? ' or stack' : '';
+    const stack = context.stacking ? ' or stack' : '';
     return you
       ? `+${penalty} is on you: draw ${penalty}${context.canStack === false ? '' : stack}.${danger}`
       : `${Name(current)} must draw ${penalty}${stack}.${danger}`;
@@ -280,18 +360,27 @@ export function cardConsequence(
     penalty: number;
     direction: number;
     sevenZero: boolean;
-    stackDrawTwo: boolean;
+    /** The room's "Stack draw cards" rule. */
+    stacking: boolean;
+    /** Seats that miss their next turn, so "plays next" names who really will. */
+    missingTurn?: readonly string[];
   },
 ): string | null {
   const { match, selfId, mercy, limit, hand } = context;
   const { name, Name } = people(context);
   const active = activeOrder(match);
+  const missing = context.missingTurn ?? [];
+  // A draw card or Skip lands on the very next seat; an ordinary turn passes over a marked one.
   const next = seatAfter(match, selfId, context.direction);
+  const player = nextToPlay(match, selfId, context.direction, missing);
   const two = active.length === 2;
   const held = hand.length - 1;
   const after = (id: string | null, extra: number) =>
     id && limit ? ` ${Name(id)} would hold ${countOf(match, id) + extra}; out at ${limit}.` : '';
-  const matchNext = `${Name(next)} plays next and must match ${colourName(card.color)} or ${card.value}.`;
+  const matchNext =
+    player === selfId
+      ? `You play again and must match ${colourName(card.color)} or ${card.value}.`
+      : `${Name(player)} plays next and must match ${colourName(card.color)} or ${card.value}.`;
   // Classic 7/0 still hands an empty hand on; every other last card simply wins.
   if (held === 0 && (mercy || !context.sevenZero || !['7', '0'].includes(card.value)))
     return 'Your last card: play it to win.';
@@ -312,14 +401,18 @@ export function cardConsequence(
       const from = seatAfter(match, selfId, -context.direction);
       return `Every hand passes ${context.direction === 1 ? 'clockwise' : 'counterclockwise'}: your ${cards(held)} go to ${name(next)}; you get ${name(from)}’s ${countOf(match, from)}.`;
     }
-    case 'Skip':
-      return two
+    case 'Skip': {
+      const then = nextToPlay(match, selfId, context.direction, missing, 2);
+      return two || then === selfId
         ? `${Name(next)} loses their turn; you play again.`
-        : `${Name(next)} loses their turn; ${name(seatAfter(match, selfId, context.direction, 2))} plays next.`;
-    case 'Reverse':
+        : `${Name(next)} loses their turn; ${name(then)} plays next.`;
+    }
+    case 'Reverse': {
+      const then = nextToPlay(match, selfId, -context.direction, missing);
       return two
         ? `With two players, Reverse skips ${name(next)}: you play again.`
-        : `Play turns ${context.direction === 1 ? 'counterclockwise' : 'clockwise'}; ${name(seatAfter(match, selfId, -context.direction))} plays next.`;
+        : `Play turns ${context.direction === 1 ? 'counterclockwise' : 'clockwise'}; ${then === selfId ? 'you play again' : `${name(then)} plays next`}.`;
+    }
     case 'Skip everyone':
       return 'Everyone else is skipped: you play again.';
     case 'Discard all': {
@@ -339,7 +432,7 @@ export function cardConsequence(
   const draw = card.value.match(/^\+(\d+)$/) || (card.value === 'Reverse +4' ? ['', '4'] : null);
   if (!draw) return null;
   const amount = Number(draw[1]);
-  if (!mercy && card.color === 'wild') {
+  if (!mercy && card.color === 'wild' && !context.stacking) {
     const holds = hand.some((item) => item.id !== card.id && item.color === context.color);
     const colour = colourName(context.color);
     return `Choose a colour. ${Name(next)} takes 4 or challenges: ${
@@ -352,11 +445,12 @@ export function cardConsequence(
   if (card.value === 'Reverse +4' && two)
     return `With two players the reverse sends +${total} back to you.`;
   const victim = card.value === 'Reverse +4' ? seatAfter(match, selfId, -context.direction) : next;
-  if (!mercy)
-    return context.stackDrawTwo
-      ? `${Name(victim)} draws ${total} or stacks another +2.`
-      : `${Name(victim)} draws ${total} and loses their turn.`;
-  return `${Name(victim)} must draw ${total} or stack +${amount} or more.${after(victim, total)}`;
+  const choose = card.color === 'wild' ? 'Choose a colour. ' : '';
+  if (!context.stacking)
+    return `${choose}${Name(victim)} draws ${total} and loses their turn.${after(victim, total)}`;
+  // Nothing beats the highest draw card of each game, so "or more" would mislead.
+  const top = amount >= (mercy ? 10 : 4);
+  return `${choose}${Name(victim)} must draw ${total} or stack +${amount}${top ? '' : ' or more'}.${after(victim, total)}`;
 }
 
 /** The smallest draw card that may stack on the current penalty (the top card's draw). */
@@ -371,8 +465,9 @@ export function stackFloor(discard: Card | null) {
 export function unplayableReason(
   card: Card,
   context: {
-    mercy: boolean;
-    stackDrawTwo: boolean;
+    stacking: boolean;
+    /** The lowest draw value that may answer the pending penalty. */
+    floor: number;
     color: string;
     penalty: number;
     drawn: boolean;
@@ -380,11 +475,9 @@ export function unplayableReason(
   },
 ) {
   if (context.penalty > 0)
-    return context.mercy
-      ? `Only a draw card of +${stackFloor(context.discard)} or more can stack on this +${context.penalty}.`
-      : context.stackDrawTwo
-        ? `Only a +2 can stack on this +${context.penalty}.`
-        : `Nothing stacks here: draw ${context.penalty}.`;
+    return context.stacking
+      ? `Only a draw card of +${context.floor || stackFloor(context.discard)} or more can stack on this +${context.penalty}.`
+      : `Stack draw cards is off in this room: draw ${context.penalty}.`;
   if (context.drawn) return 'Only the card you drew can be played now.';
   const top = context.discard;
   const match = top && top.color !== 'wild' ? ` or ${top.value}` : '';

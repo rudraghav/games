@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { tarotReadingExample } from '../../apps/web/src/stories/fixtures/tarot-reading';
+import cardGuide from '../../packages/api-client/src/generated/tarot-card-guide.json' with { type: 'json' };
 import { drawTarotCard, openGameSetup, requestAs, roomAs } from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off' });
@@ -7,6 +8,19 @@ test.skip(!!process.env.GAMES_TEST_URL, 'Synthetic reading responses use local d
 
 const deck = (page: Page) =>
   page.getByRole('group', { name: 'Choose from your shuffled 78-card deck' });
+
+type Drawn = { id: string; label: string; subtitle?: string; orientation?: string | null };
+/** The same draw with fixed orientations: the middle card reversed, the others upright. */
+function withMiddleReversed<Card extends Drawn>(cards: Card[]) {
+  return cards.map((card, index) => {
+    const orientation = index === 1 ? ('reversed' as const) : ('upright' as const);
+    return {
+      ...card,
+      orientation,
+      subtitle: cardGuide.find((entry) => entry.id === card.id)![orientation].short,
+    };
+  });
+}
 
 async function soloRoom(
   page: Page,
@@ -157,12 +171,43 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
         submissions.push(request.url());
     });
     await expect(lifted).toHaveCount(0);
+    // One ribbon of all 78 backs in a native scroller; the readout says which are in view.
+    const ribbon = page.locator('.tarot-deck');
+    const range = page.locator('.tarot-deck-range');
+    await expect(range).toHaveText(/^Cards 1–\d+ of 78$/);
+    const shownAtStart = Number((await range.textContent())!.match(/–(\d+) of/)![1]);
+    // Each back keeps a 44px tap strip, so even the narrowest phone shows six at once.
+    expect(shownAtStart).toBeGreaterThanOrEqual(6);
+    expect(
+      await page
+        .locator('.tarot-deck button.tarot-card')
+        .evaluateAll((backs) =>
+          Math.min(...backs.map((back) => back.getBoundingClientRect().width)),
+        ),
+    ).toBeGreaterThanOrEqual(44);
+    expect(await ribbon.evaluate((view) => view.scrollWidth > view.clientWidth * 4)).toBe(true);
+    expect(await ribbon.evaluate((view) => getComputedStyle(view).overflowX)).toBe('auto');
+    expect(await ribbon.evaluate((view) => getComputedStyle(view).scrollSnapType)).toContain('x');
     await cards.first().click();
     await expect(cards.first()).toHaveAttribute('aria-pressed', 'true');
+    // An arrow pages by about a screenful; a lift that leaves the view is put down.
     await page.getByRole('button', { name: 'Next tarot cards' }).click();
     await expect(lifted).toHaveCount(0);
+    await expect(range).not.toHaveText(/^Cards 1–/);
+    const paged = Number((await range.textContent())!.match(/^Cards (\d+)–/)![1]);
+    expect(paged).toBeGreaterThan(shownAtStart / 2);
+    expect(paged).toBeLessThanOrEqual(shownAtStart + 1);
+    // Scrolling by wheel, trackpad or finger is the browser's own; the readout follows it.
+    await ribbon.evaluate((view) => view.scrollTo({ left: view.scrollWidth, behavior: 'instant' }));
+    await expect(range).toHaveText(/^Cards \d+–78 of 78$/);
+    await expect(cards.last()).toBeInViewport();
+    await ribbon.evaluate((view) => view.scrollTo({ left: 0, behavior: 'instant' }));
+    await expect(range).toHaveText(/^Cards 1–\d+ of 78$/);
+    await page.getByRole('button', { name: 'Next tarot cards' }).click();
+    await expect(range).not.toHaveText(/^Cards 1–/);
     await page.getByRole('button', { name: 'Previous tarot cards' }).click();
     await expect(cards.first()).toBeInViewport();
+    await expect(range).toHaveText(/^Cards 1–\d+ of 78$/);
     await cards.nth(2).click();
     await expect(cards.first()).toHaveAttribute('aria-pressed', 'false');
     await expect(cards.nth(2)).toHaveAttribute('aria-pressed', 'true');
@@ -202,8 +247,18 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     const name = (await first.locator('.tarot-name').textContent())!;
     await expect(first).toBeFocused();
     await expect(first).toBeInViewport({ ratio: 0.9 });
+    // The server decides how the card lands; the page says it in words wherever it shows.
+    const landed = (await first.getAttribute('data-orientation'))!;
+    expect(['upright', 'reversed']).toContain(landed);
+    const spoken = landed === 'reversed' ? `${name}, reversed` : name;
     await expect(page.getByRole('status').filter({ hasText: `You drew ${name}` })).toHaveText(
-      `You drew ${name} for where you are.`,
+      `You drew ${landed === 'reversed' ? `${name}, reversed,` : name} for where you are.`,
+    );
+    await expect(first).toHaveAccessibleName(new RegExp(`^Card 1, Where you are: ${spoken}\\. `));
+    await expect(first.locator('.tarot-reversed-word')).toHaveCount(landed === 'reversed' ? 1 : 0);
+    await expect(first.locator('.tarot-art')).toHaveCSS(
+      'rotate',
+      landed === 'reversed' ? '180deg' : 'none',
     );
     for (const selector of ['.eyebrow', '.tarot-name', '.tarot-card-meaning']) {
       const size = await first
@@ -221,6 +276,7 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
     await page.keyboard.press('End');
     await expect(cards.last()).toBeFocused();
     await expect(cards.last()).toBeInViewport();
+    await expect(page.locator('.tarot-deck-range')).toHaveText(/^Cards \d+–77 of 77$/);
     await page.keyboard.press('ArrowLeft');
     await expect(page.locator(':focus')).toHaveAccessibleName(/^Face-down card 76 of 77/);
     expect(await pulses()).toEqual([12]);
@@ -273,7 +329,7 @@ test('each pick is revealed in its slot, named and focused; the deck is one Tab 
   });
 });
 
-test('a phone scrub lifts the card under the finger and a vertical swipe scrolls the table', async ({
+test('a phone swipe scrolls the deck, a tap lifts a card and a vertical swipe scrolls the table', async ({
   page,
   browserName,
   isMobile,
@@ -283,16 +339,16 @@ test('a phone scrub lifts the card under the finger and a vertical swipe scrolls
   await soloRoom(page, async (roomId) => {
     const cards = deck(page).locator('button.tarot-card');
     await expect(cards).toHaveCount(78);
-    const target = cards.nth(3);
-    const face = target.locator('.tarot-fan-face');
-    const initialFace = await face.boundingBox();
-    const start = await cards.first().boundingBox();
-    const end = await target.boundingBox();
-    expect(start).not.toBeNull();
-    expect(end).not.toBeNull();
-    const x = start!.x + start!.width / 2;
-    const y = start!.y + start!.height * 0.6;
-    const lastX = end!.x + end!.width / 2;
+    const ribbon = page.locator('.tarot-deck');
+    const range = page.locator('.tarot-deck-range');
+    await expect(range).toHaveText(/^Cards 1–\d+ of 78$/);
+    // Eight or so backs across a phone, each a full 44px tap strip; the rest scroll.
+    const shown = Number((await range.textContent())!.match(/–(\d+) of/)![1]);
+    expect(shown).toBeGreaterThanOrEqual(7);
+    expect(shown).toBeLessThanOrEqual(10);
+    const start = (await cards.nth(5).boundingBox())!;
+    const x = start.x + start.width / 2;
+    const y = start.y + start.height * 0.6;
     const session = await page.context().newCDPSession(page);
     const touch = (type: 'touchStart' | 'touchMove' | 'touchEnd', px = x, py = y) =>
       session.send('Input.dispatchTouchEvent', {
@@ -300,23 +356,44 @@ test('a phone scrub lifts the card under the finger and a vertical swipe scrolls
         touchPoints: type === 'touchEnd' ? [] : [{ x: px, y: py }],
       });
     try {
+      // A sideways drag moves the ribbon itself; it neither lifts nor draws a card.
       await touch('touchStart');
-      for (let step = 1; step <= 6; step++) await touch('touchMove', x + ((lastX - x) * step) / 6);
+      for (let step = 1; step <= 8; step++) await touch('touchMove', x - step * 22);
       await touch('touchEnd');
+      await expect.poll(() => ribbon.evaluate((view) => view.scrollLeft)).toBeGreaterThan(100);
+      await expect(range).not.toHaveText(/^Cards 1–/);
+      await expect(deck(page).getByRole('button', { pressed: true })).toHaveCount(0);
+      expect((await roomAs(page, roomId)).game!.community).toHaveLength(0);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+        true,
+      );
+
+      // A tap lifts the back under the finger and keeps it in view.
+      const first = Number((await range.textContent())!.match(/^Cards (\d+)–/)![1]);
+      const target = cards.nth(first + 3);
+      const face = target.locator('.tarot-fan-face');
+      const resting = (await face.boundingBox())!;
+      await target.tap();
       await expect(target).toHaveAttribute('aria-pressed', 'true');
-      await expect.poll(async () => (await face.boundingBox())!.y).toBeLessThan(initialFace!.y - 5);
+      await expect.poll(async () => (await face.boundingBox())!.y).toBeLessThan(resting.y - 5);
+      await expect(target).toBeInViewport();
       await expect(page.locator('.tarot-spread .tarot-name')).toHaveCount(0);
 
-      const previousTop = await page.evaluate(() => scrollY);
-      await touch('touchStart');
-      for (let step = 1; step <= 8; step++) await touch('touchMove', x, y - step * 15);
+      // A vertical drag that starts on the backs still scrolls the page, lift intact.
+      await page.evaluate(() => window.scrollTo(0, 0));
+      const backs = (await cards.nth(first + 6).boundingBox())!;
+      const dragX = backs.x + backs.width / 2;
+      const dragY = backs.y + backs.height * 0.6;
+      await touch('touchStart', dragX, dragY);
+      for (let step = 1; step <= 8; step++) await touch('touchMove', dragX, dragY - step * 15);
       await touch('touchEnd');
-      await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(previousTop);
+      await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(0);
       await expect(target).toHaveAttribute('aria-pressed', 'true');
       expect((await roomAs(page, roomId)).game!.community).toHaveLength(0);
-      // The lifted picture itself is the target, including the side that used to overlap a neighbour.
+      // The lifted picture itself is the target: a full card wide, far more than a finger.
       await target.scrollIntoViewIfNeeded();
       const raised = (await face.boundingBox())!;
+      expect((await target.boundingBox())!.width).toBeGreaterThanOrEqual(88);
       await page.touchscreen.tap(raised.x + raised.width * 0.78, raised.y + raised.height * 0.4);
       await expect(cards).toHaveCount(77);
       expect((await roomAs(page, roomId)).game!.community).toHaveLength(1);
@@ -407,6 +484,139 @@ test('an unsent question survives a refresh and the deck filter stays pinned', a
   });
 });
 
+test('the gallery opens any card page, moves between cards and returns to the same place', async ({
+  page,
+  isMobile,
+}) => {
+  await soloRoom(page, async (roomId) => {
+    const opener = page.getByRole('button', { name: 'Explore the deck', exact: true });
+    await opener.click();
+    const dialog = page.getByRole('dialog', { name: 'The whole cosmic cast', exact: true });
+    const grid = dialog.getByRole('list', { name: 'Tarot cards', exact: true });
+    const tiles = grid.getByRole('button');
+    await expect(tiles).toHaveCount(78);
+    // The grid is one Tab stop; arrow keys, Home and End move inside it.
+    expect(await tiles.evaluateAll((all) => all.filter((tile) => tile.tabIndex === 0).length)).toBe(
+      1,
+    );
+    await dialog.getByRole('button', { name: 'Cups', exact: true }).click();
+    await expect(tiles).toHaveCount(14);
+    await expect(tiles.first()).toHaveAttribute('tabindex', '0');
+    await tiles.first().focus();
+    await page.keyboard.press('ArrowRight');
+    await expect(dialog.getByRole('button', { name: 'Two of Cups', exact: true })).toBeFocused();
+    const columns = await grid.evaluate((list) => {
+      const tops = [...list.children].map((item) => Math.round(item.getBoundingClientRect().top));
+      return tops.filter((top) => top === tops[0]).length;
+    });
+    await page.keyboard.press('ArrowDown');
+    await expect(tiles.nth(1 + columns)).toBeFocused();
+    await page.keyboard.press('ArrowUp');
+    await expect(tiles.nth(1)).toBeFocused();
+    await page.keyboard.press('End');
+    await expect(dialog.getByRole('button', { name: 'King of Cups', exact: true })).toBeFocused();
+    await page.keyboard.press('Home');
+    await expect(dialog.getByRole('button', { name: 'Ace of Cups', exact: true })).toBeFocused();
+    expect(await tiles.evaluateAll((all) => all.filter((tile) => tile.tabIndex === 0).length)).toBe(
+      1,
+    );
+
+    // Open a card from the middle of a scrolled list.
+    const ten = dialog.getByRole('button', { name: 'Ten of Cups', exact: true });
+    await ten.scrollIntoViewIfNeeded();
+    const scrolled = await dialog.evaluate((element) => element.scrollTop);
+    await ten.focus();
+    await page.keyboard.press('Enter');
+    const cardPage = dialog.locator('.tarot-guide');
+    await expect(cardPage).toHaveAttribute('data-card', 'cups-10');
+    // Both orientations for every card, opening upright: nothing here knows the shuffle.
+    await expect(cardPage).toHaveAttribute('data-orientation', 'upright');
+    await expect(dialog.getByRole('tab', { name: 'Upright', exact: true })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
+    await expect(dialog.getByRole('tab', { name: 'Reversed', exact: true })).toBeVisible();
+    await expect(cardPage.locator('.tarot-guide-position')).toHaveCount(0);
+    const heading = dialog.getByRole('heading', { name: 'Ten of Cups', exact: true });
+    await expect(heading).toBeFocused();
+    // The page opens at its top: on a phone that is the picture, with the heading under it.
+    expect(await dialog.evaluate((element) => element.scrollTop)).toBe(0);
+    if (!isMobile) await expect(heading).toBeInViewport();
+    await expect(dialog.getByRole('status')).toHaveText('Ten of Cups, Card 10 of 14');
+    const entry = cardGuide.find((card) => card.id === 'cups-10')!;
+    await expect(cardPage).toContainText(entry.upright.meaning);
+    await expect(cardPage).toContainText(entry.figure);
+    await dialog.getByRole('tab', { name: 'Reversed', exact: true }).click();
+    await expect(cardPage).toHaveAttribute('data-orientation', 'reversed');
+    await expect(cardPage).toContainText(entry.reversed.meaning);
+    await expect(cardPage.locator('.tarot-guide-card .tarot-name')).toHaveCSS('rotate', 'none');
+
+    // Next and Previous stay inside the Cups filter, wrap at the ends and keep focus.
+    const next = dialog.getByRole('button', { name: 'Next card', exact: true });
+    const previous = dialog.getByRole('button', { name: 'Previous card', exact: true });
+    for (const control of [next, previous, dialog.getByRole('button', { name: 'All cards' })]) {
+      const box = (await control.boundingBox())!;
+      expect(Math.min(box.width, box.height)).toBeGreaterThanOrEqual(44);
+      await expect(control).toBeInViewport();
+    }
+    await next.click();
+    await expect(cardPage).toHaveAttribute('data-card', 'cups-11');
+    await expect(cardPage).toHaveAttribute('data-orientation', 'upright');
+    await expect(next).toBeFocused();
+    await expect(dialog.getByRole('status')).toHaveText('Page of Cups, Card 11 of 14');
+    await previous.click();
+    await previous.click();
+    await expect(cardPage).toHaveAttribute('data-card', 'cups-09');
+    for (let step = 0; step < 9; step++) await previous.click();
+    await expect(cardPage).toHaveAttribute('data-card', 'cups-14');
+    await next.click();
+    await expect(cardPage).toHaveAttribute('data-card', 'cups-01');
+    await previous.click();
+    await previous.click();
+    await previous.click();
+    await previous.click();
+    await previous.click();
+    await expect(cardPage).toHaveAttribute('data-card', 'cups-10');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    expect(await dialog.evaluate((element) => element.scrollWidth <= element.clientWidth + 1)).toBe(
+      true,
+    );
+
+    // Escape leaves the card page first: same filter, same scroll, focus on the card.
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeVisible();
+    await expect(cardPage).toHaveCount(0);
+    await expect(tiles).toHaveCount(14);
+    await expect(dialog.getByRole('button', { name: 'Cups', exact: true })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
+    await expect(ten).toBeFocused();
+    expect(await dialog.evaluate((element) => element.scrollTop)).toBe(scrolled);
+    // The Back button does the same from a card reached with Next.
+    await ten.click();
+    await expect(heading).toBeFocused();
+    await next.click();
+    await dialog.getByRole('button', { name: 'All cards' }).click();
+    await expect(dialog.getByRole('button', { name: 'Page of Cups', exact: true })).toBeFocused();
+    await expect(
+      dialog.getByRole('button', { name: 'Page of Cups', exact: true }),
+    ).toBeInViewport();
+    // A second Escape closes the dialog and returns to its opener.
+    await page.keyboard.press('Escape');
+    await expect(dialog).toHaveCount(0);
+    if (!isMobile) await expect(opener).toBeFocused();
+    // Reopening starts from the gallery, and browsing never touched the spread.
+    await opener.click();
+    await expect(tiles).toHaveCount(14);
+    await dialog.getByRole('button', { name: 'Close dialog', exact: true }).click();
+    expect((await roomAs(page, roomId)).game!.community).toHaveLength(0);
+    await expect(deck(page).locator('button.tarot-card')).toHaveCount(78);
+  });
+});
+
 test('a failed saved-reading check retries only GET and restores the question and reading action', async ({
   page,
 }) => {
@@ -462,7 +672,8 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
     for (let card = 0; card < 3; card++) await drawTarotCard(page);
     await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
     const room = await roomAs(page, roomId);
-    const cards = room.game!.community;
+    // Constructed: the same three cards with the middle one reversed, whatever was dealt.
+    const cards = withMiddleReversed(room.game!.community);
     const savedQuestion = 'How can I make a little room for a creative hobby this week?';
     const characters = [
       ['Michael Scott', 'The Office'],
@@ -479,7 +690,13 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
           ...body,
           status: 'finished',
           revision: body.revision + 1,
-          game: { ...body.game, phase: 'finished', message: 'Your reading is ready.', actions: [] },
+          game: {
+            ...body.game,
+            community: cards,
+            phase: 'finished',
+            message: 'Your reading is ready.',
+            actions: [],
+          },
         },
       });
     });
@@ -497,6 +714,7 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
                   ...card,
                   card_id: cards[index].id,
                   title: cards[index].label,
+                  orientation: cards[index].orientation,
                   characters: [
                     {
                       name: characters[index][0],
@@ -557,18 +775,51 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
     await expect(jumps).toHaveText(
       cards.map(
         (card, index) =>
-          `${['Where you are', 'What is shifting', 'Your next move'][index]}${card.label}`,
+          `${['Where you are', 'What is shifting', 'Your next move'][index]}${card.label}${index === 1 ? ' · Reversed' : ''}`,
       ),
     );
     for (const jump of await jumps.all())
       expect((await jump.boundingBox())!.height).toBeGreaterThanOrEqual(44);
     await jumps.nth(2).click();
     await expect(page.locator(`#reading-${cards[2].id}`)).toBeInViewport();
-    // Each section names its position, what it asks, and that the card is upright.
+    // Each section names its position, what it asks, and how the card was drawn.
     await expect(page.locator('.tarot-position-meaning')).toHaveText([
       'UprightA starting point to reflect on.',
-      'UprightWhat could be changing or asking for attention.',
+      'ReversedWhat could be changing or asking for attention.',
       'UprightOne possible direction to consider.',
+    ]);
+    // A reversed card turns its picture only, in the spread and beside its section; the
+    // name stays the right way up and the word "Reversed" is printed with it.
+    const slots = page.locator('.tarot-spread-slot');
+    expect(
+      await slots.evaluateAll((all) => all.map((slot) => slot.getAttribute('data-orientation'))),
+    ).toEqual(['upright', 'reversed', 'upright']);
+    await expect(slots.nth(1)).toHaveAccessibleName(
+      `Card 2, What is shifting: ${cards[1].label}, reversed. ${cards[1].subtitle}`,
+    );
+    await expect(slots.nth(1).locator('.tarot-card-meaning')).toHaveText(cards[1].subtitle);
+    await expect(slots.nth(1).locator('.tarot-art')).toHaveCSS('rotate', '180deg');
+    await expect(slots.nth(1).locator('.tarot-name')).toHaveCSS('rotate', 'none');
+    await expect(slots.nth(1).locator('.tarot-name')).toHaveText(cards[1].label);
+    await expect(slots.nth(1).locator('.tarot-reversed-word')).toHaveText('Reversed');
+    expect(
+      await slots
+        .nth(1)
+        .locator('.tarot-reversed-word')
+        .evaluate((element) => parseFloat(getComputedStyle(element).fontSize)),
+    ).toBeGreaterThanOrEqual(11);
+    await expect(slots.nth(0).locator('.tarot-art')).toHaveCSS('rotate', 'none');
+    await expect(page.locator('.tarot-spread .tarot-reversed-word')).toHaveCount(1);
+    const thumbnails = page.locator('.tarot-reading-card-heading .tarot-card');
+    await expect(thumbnails.nth(1).locator('.tarot-art')).toHaveCSS('rotate', '180deg');
+    await expect(thumbnails.nth(0).locator('.tarot-art')).toHaveCSS('rotate', 'none');
+    await expect(thumbnails.nth(1)).toHaveAccessibleName(`View ${cards[1].label} card, reversed`);
+    // Per card: what it says about the question, then its figures, then the plot twist.
+    const firstCard = page.locator('.tarot-reading article').first();
+    await expect(firstCard.locator('h4')).toHaveText([
+      'What this card says about your question',
+      'Your connections',
+      'The plot twist',
     ]);
     for (const selector of ['.tarot-perspectives p', '.tarot-summary-step p', '.tarot-next-step p'])
       expect(
@@ -584,11 +835,22 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
       .first()
       .getByRole('button', { name: `View ${cards[0].label} card`, exact: true });
     await thumbnail.click();
+    // The full card page opens on the side the card was drawn, and still offers the other.
     const detail = page.getByRole('dialog', { name: cards[0].label, exact: true });
-    await expect(detail).toContainText('Where you are. A starting point to reflect on.');
-    await expect(detail).toContainText('Upright. This deck reads every card upright.');
-    await expect(detail).toContainText(cards[0].subtitle!);
+    await expect(detail).toContainText(
+      'Where you are. A starting point to reflect on. Drawn upright.',
+    );
+    await expect(detail.locator('.tarot-guide')).toHaveAttribute('data-orientation', 'upright');
+    await expect(detail.locator('.tarot-guide-position')).toHaveText('Drawn as Where you are');
+    await expect(detail.locator('.tarot-guide-lead:visible')).toHaveText(cards[0].subtitle);
+    const firstEntry = cardGuide.find((entry) => entry.id === cards[0].id)!;
+    await expect(detail).toContainText(firstEntry.upright.meaning);
+    await expect(detail).toContainText(firstEntry.figure);
+    await expect(detail.getByRole('tab', { name: 'Reversed', exact: true })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    expect(await detail.evaluate((element) => element.scrollWidth <= element.clientWidth + 1)).toBe(
       true,
     );
     await page.keyboard.press('Escape');
@@ -596,12 +858,27 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
     await expect(thumbnail).toBeFocused();
     await page
       .locator('.tarot-spread')
-      .getByRole('button', { name: `View ${cards[1].label} card`, exact: true })
+      .getByRole('button', { name: `View ${cards[1].label} card, reversed`, exact: true })
       .click();
-    await expect(page.getByRole('dialog', { name: cards[1].label, exact: true })).toContainText(
-      'What is shifting.',
+    const turned = page.getByRole('dialog', { name: cards[1].label, exact: true });
+    await expect(turned).toContainText(
+      'What is shifting. What could be changing or asking for attention. Drawn reversed.',
     );
+    await expect(turned.locator('.tarot-guide')).toHaveAttribute('data-orientation', 'reversed');
+    await expect(turned.getByRole('tab', { name: 'Reversed', exact: true })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
+    await expect(turned.locator('.tarot-guide-showing')).toHaveText('Shown reversed');
+    await expect(turned.locator('.tarot-guide-position')).toHaveText('Drawn as What is shifting');
+    await expect(turned.locator('.tarot-guide-lead:visible')).toHaveText(cards[1].subtitle);
+    await expect(turned).toContainText(
+      cardGuide.find((entry) => entry.id === cards[1].id)!.reversed.meaning,
+    );
+    await turned.getByRole('tab', { name: 'Upright', exact: true }).click();
+    await expect(turned.locator('.tarot-guide')).toHaveAttribute('data-orientation', 'upright');
     await page.keyboard.press('Escape');
+    await expect(turned).toHaveCount(0);
     // Keeping it: plain text to the clipboard, and the private saved copy.
     const keep = page.getByRole('group', { name: 'Keep this reading', exact: true });
     await expect(keep.getByRole('link', { name: 'Saved reading', exact: true })).toHaveAttribute(
@@ -618,8 +895,12 @@ test('a finished solo reading offers a one-tap new spread and wraps credits on a
         copied.startsWith(`${tarotReadingExample.title}\n\nQuestion: ${savedQuestion}\n\n`),
       ).toBe(true);
       expect(copied).toContain(`1. Where you are: ${cards[0].label} (upright)`);
+      expect(copied).toContain(`2. What is shifting: ${cards[1].label} (reversed)`);
       expect(copied).toContain(`Next small move: ${tarotReadingExample.next_step}`);
-      expect(copied).not.toContain('Michael Scott');
+      // The copy follows the page: each card's reading, its figure, then the plot twist.
+      expect(copied).toContain(
+        '\nMichael Scott (The Office): Synthetic connection line.\nPlot twist: ',
+      );
     }
     await page.locator('.tarot-image-credits summary').click();
     await expect(page.locator('.tarot-image-credits li').first()).toContainText(
@@ -774,5 +1055,99 @@ test('a refused solo-reading invite explains itself and stays on the join page',
     }
     // The owner's table is unchanged: one member, no spectator.
     expect((await roomAs(page, roomId)).members).toHaveLength(1);
+  });
+});
+
+test('a Fun reading says what each figure means for the question, between the card and its plot twist', async ({
+  page,
+}) => {
+  await soloRoom(page, async (roomId) => {
+    for (let card = 0; card < 3; card++) await drawTarotCard(page);
+    await expect(page.getByRole('button', { name: 'Read my cards', exact: true })).toBeVisible();
+    // The prompt invites context without making the form taller.
+    await expect(page.getByRole('textbox', { name: 'What’s on your mind?' })).toHaveAttribute(
+      'placeholder',
+      'Ask your question and add what’s going on. Specifics make the reading more useful.',
+    );
+    const cards = (await roomAs(page, roomId)).game!.community;
+    const bridge =
+      'For your question, that could look like asking your teacher for one small brief this week. Then there is a real request to finish for before the urge to start something new arrives.';
+    // Constructed: the finished room and reading are synthetic responses; no reading is requested.
+    await page.route(new RegExp(`/api/backend/v1/rooms/${roomId}(/heartbeat)?$`), async (route) => {
+      const response = await route.fetch();
+      const body = await response.json();
+      await route.fulfill({
+        response,
+        json: {
+          ...body,
+          status: 'finished',
+          revision: body.revision + 1,
+          game: { ...body.game, phase: 'finished', message: 'Your reading is ready.', actions: [] },
+        },
+      });
+    });
+    await page.route(`**/api/backend/v1/rooms/${roomId}/reading`, (route) =>
+      route.request().method() === 'GET'
+        ? route.fulfill({
+            json: {
+              status: 'complete',
+              api_tier: 'paid',
+              reading_style: 'fun',
+              question: 'What is getting in the way of finishing my course?',
+              message: '',
+              reading: {
+                ...tarotReadingExample,
+                cards: tarotReadingExample.cards.map((card, index) => ({
+                  ...card,
+                  card_id: cards[index].id,
+                  pop_culture: bridge,
+                  characters: [
+                    {
+                      name: 'Michael Scott',
+                      source: 'The Office',
+                      evidence: 'A synthetic reviewed scene.',
+                      connection: 'Synthetic editorial move.',
+                    },
+                  ],
+                })),
+              },
+            },
+          })
+        : route.abort(),
+    );
+    for (const width of [390, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.reload();
+      const first = page.locator('.tarot-reading article').first();
+      await expect(first.locator('h4')).toHaveText([
+        'What this card says about your question',
+        'How it could play out',
+        'The plot twist',
+      ]);
+      const figure = first.locator('.tarot-character-connections li');
+      await expect(figure.locator('.tarot-character-copy > p')).toHaveText(
+        'Synthetic editorial move.',
+      );
+      const block = figure.locator('.tarot-figure-bridge');
+      await expect(block.getByRole('heading')).toHaveText('What this means for your question');
+      await expect(block.locator('p')).toHaveText(bridge);
+      await expect(page.locator('.tarot-figure-bridge')).toHaveCount(3);
+      // Reading order on screen: the card's answer, the move, its bridge, then the plot twist.
+      const tops = await Promise.all(
+        [
+          first.locator('.tarot-perspectives').first(),
+          figure.locator('.tarot-character-copy > p'),
+          block,
+          first.locator('.tarot-quirky-read'),
+        ].map(async (part) => (await part.boundingBox())!.y),
+      );
+      expect([...tops].sort((a, b) => a - b)).toEqual(tops);
+      expect(
+        await block.locator('p').evaluate((node) => parseFloat(getComputedStyle(node).fontSize)),
+      ).toBeGreaterThanOrEqual(15);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+        true,
+      );
+    }
   });
 });

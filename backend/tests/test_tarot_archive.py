@@ -326,3 +326,140 @@ def test_unavailable_alternate_never_hides_or_changes_the_saved_reading(client, 
     assert failed.status_code == 503 and failed.headers["cache-control"] == "private, no-store"
     assert "PRIVATE-LOOKUP-CANARY" not in failed.text + caplog.text
     assert client.get(path, headers=owner, params={"style": "classic"}).json() == original
+
+
+def seeded_spread(client, monkeypatch, *, settings=None):
+    """A real room whose shuffle and orientations come from a fixed seed."""
+    import random
+
+    monkeypatch.setattr("app.games.tarot.engine.rng", lambda seed=None: random.Random(7))
+    owner = player(client)
+    created = client.post("/v1/rooms", headers=owner, json={
+        "name": "Host", "game_id": "tarot", "capacity": 1, "room_name": "Reversal table",
+        **({"settings": settings} if settings is not None else {}),
+    })
+    assert created.status_code == 201, created.text
+    room = created.json()
+    assert client.put(f"/v1/rooms/{room['id']}/ready", headers=owner, json={"ready": True}).status_code == 200
+    room = client.post(f"/v1/rooms/{room['id']}/start", headers=owner).json()
+    views = [room]
+    for index in range(3):
+        response = client.post(f"/v1/rooms/{room['id']}/actions", headers=owner, json={
+            "match_id": room["match_id"], "expected_version": room["match_version"],
+            "action_id": str(uuid4()), "action": {"type": "pick", "choice": str(index)},
+        })
+        assert response.status_code == 200
+        room = response.json()
+        views.append(room)
+    return room, owner, views
+
+
+def test_a_reversed_draw_reaches_the_reading_is_saved_and_survives_every_view(client, monkeypatch):
+    import httpx
+
+    from app.games.tarot import card_guide
+    from app.games.tarot.reading import generate_reading
+    from app.settings import settings
+
+    room, owner, views = seeded_spread(client, monkeypatch)
+    drawn = [("cups-03", "reversed"), ("major-00", "upright"), ("pentacles-14", "upright")]
+    assert [(card["id"], card["orientation"]) for card in room["game"]["community"]] == drawn
+    assert room["game"]["community"][0]["subtitle"] == card_guide.short_meaning("cups-03", "reversed")
+    assert room["settings"] == {"reversals": True}
+    with sessions()() as session:
+        state = session.get(Match, room["match_id"]).state
+    # At every step the owner's room carries orientation for drawn cards only, and an
+    # undrawn card's id never appears; nobody else can open the room at all.
+    undrawn_turned = [card for card in state["reversed"] if card not in dict(drawn)]
+    assert len(undrawn_turned) == 24
+    for step, view in enumerate(views):
+        wire = json.dumps(view)
+        assert wire.count('"orientation"') == step
+        assert wire.count('"reversed"') == (1 if step else 0)
+        assert not any(json.dumps(card) in wire for card in undrawn_turned)
+        assert "reversed" not in json.dumps(view["game"]["actions"]) + view["game"]["message"]
+    assert client.get(f"/v1/rooms/{room['id']}", headers=player(client)).status_code == 404
+
+    real_client, wires = httpx.Client, []
+
+    def respond(request):
+        context = json.loads(json.loads(request.content)["input"])
+        wires.append(context)
+        reading = example_reading([card["card_id"] for card in context["cards"]])
+        for section, card in zip(reading["cards"], context["cards"], strict=True):
+            choice = card["reference_characters"][0]
+            section["characters"][0].update(name=choice["name"], source=choice["source"])
+        return httpx.Response(200, json={"status": "completed", "steps": [{
+            "type": "model_output", "content": [{"type": "text", "text": json.dumps(reading)}]}]})
+
+    # This test runs the real reading path against a mocked provider transport.
+    monkeypatch.setattr("app.rooms.service.generate_reading", generate_reading)
+    monkeypatch.setattr(settings(), "gemini_api_key", "test-reversal-provider")
+    monkeypatch.setattr(settings(), "tarot_provider_order", ["gemini"])
+    monkeypatch.setattr("app.games.tarot.reading.httpx.Client",
+                        lambda **kwargs: real_client(transport=httpx.MockTransport(respond), **kwargs))
+    live, archive = f"/v1/rooms/{room['id']}/reading", f"/v1/readings/{room['match_id']}"
+    result = client.post(live, headers=owner, json={
+        "match_id": room["match_id"], "question": "How do I rest this month?", "reading_style": "classic"})
+    assert result.status_code == 200, result.text
+    # The request named the drawn orientation and read the reversed meaning for it.
+    assert len(wires) == 1
+    assert [(card["card_id"], card["orientation"]) for card in wires[0]["cards"]] == drawn
+    assert wires[0]["cards"][0]["meaning"] == card_guide.short_meaning("cups-03", "reversed")
+    assert not any(card in json.dumps(wires[0]) for card in undrawn_turned)
+    sections = result.json()["reading"]["cards"]
+    assert [(section["card_id"], section["orientation"]) for section in sections] == drawn
+    with sessions()() as session:
+        payload = session.get(TarotReading, room["match_id"]).payload
+    assert [(section["card_id"], section["orientation"]) for section in payload["cards"]] == drawn
+    assert client.get(live, headers=owner).json()["reading"] == result.json()["reading"]
+    saved = client.get(archive, headers=owner).json()
+    assert saved["reading"] == result.json()["reading"]
+    assert [(card["id"], card["orientation"]) for card in saved["cards"]] == drawn
+    # The other style is a view of the same draw: the orientation stays with each card.
+    fun = client.get(archive, headers=owner, params={"style": "fun"})
+    assert fun.status_code == 200 and fun.json()["reading_style"] == "fun"
+    assert [(section["card_id"], section["orientation"]) for section in fun.json()["reading"]["cards"]] == drawn
+    assert [(card["id"], card["orientation"]) for card in fun.json()["cards"]] == drawn
+    assert len(wires) == 1
+    with sessions()() as session:
+        assert session.get(TarotReading, room["match_id"]).payload == payload
+
+
+def test_a_table_with_reversals_off_draws_and_reads_every_card_upright(client, monkeypatch):
+    room, owner, _views = seeded_spread(client, monkeypatch, settings={"reversals": False})
+    assert room["settings"] == {"reversals": False}
+    assert [(card["id"], card["orientation"]) for card in room["game"]["community"]] == [
+        ("cups-03", "upright"), ("major-00", "upright"), ("pentacles-14", "upright")]
+    with sessions()() as session:
+        assert session.get(Match, room["match_id"]).state["reversed"] == []
+    seen = []
+
+    def provider(cards, question, *, orientations, **_kwargs):
+        seen.append(orientations)
+        return Reading.model_validate(example_reading(cards))
+
+    from app.settings import settings
+
+    monkeypatch.setattr(settings(), "gemini_api_key", "test-archive-no-provider")
+    monkeypatch.setattr("app.rooms.service.generate_reading", provider)
+    result = client.post(f"/v1/rooms/{room['id']}/reading", headers=owner, json={"match_id": room["match_id"]})
+    assert result.status_code == 200
+    assert seen == [{"cups-03": "upright", "major-00": "upright", "pentacles-14": "upright"}]
+    assert [section["orientation"] for section in result.json()["reading"]["cards"]] == ["upright"] * 3
+
+
+def test_a_match_saved_before_reversals_still_opens_upright(client):
+    room, owner = spread(client)
+    payload = store(room)
+    with sessions()() as session, session.begin():
+        match = session.get(Match, room["match_id"])
+        match.state = {key: value for key, value in match.state.items() if key != "reversed"}
+    saved = client.get(f"/v1/readings/{room['match_id']}", headers=owner).json()
+    assert [card["orientation"] for card in saved["cards"]] == ["upright"] * 3
+    assert [section["orientation"] for section in saved["reading"]["cards"]] == ["upright"] * 3
+    assert "orientation" not in payload["cards"][0]
+    current = client.get(f"/v1/rooms/{room['id']}", headers=owner).json()
+    assert [card["orientation"] for card in current["game"]["community"]] == ["upright"] * 3
+    with sessions()() as session:
+        assert session.get(TarotReading, room["match_id"]).payload == payload

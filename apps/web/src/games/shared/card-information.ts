@@ -1,11 +1,17 @@
 import type { Card } from '@games/api-client';
+import { stackingRule } from './uno-view';
 
-/** Descriptions only: the server determines permitted moves and outcomes. */
+/**
+ * Descriptions only: the server determines permitted moves and outcomes.
+ * `stacking` is the table's projected "Stack draw cards" rule when known;
+ * otherwise it is read from the room settings and the game's default.
+ */
 export function sheddingCardInformation(
   card: Card,
   mercy: boolean,
   settings: Record<string, boolean>,
   activePlayers: number,
+  stacking: boolean = stackingRule(mercy, settings),
 ) {
   if (card.value === '7' && (mercy || settings.seven_zero))
     return 'Swap hands with one chosen player.';
@@ -22,16 +28,26 @@ export function sheddingCardInformation(
     return 'The next player chooses a colour, then draws until finding it. Reaching 25 cards eliminates them.';
   if (card.value === 'Reverse +4')
     return activePlayers === 2
-      ? 'Reverse play and take the four-card penalty yourself, unless you stack an allowed draw.'
-      : 'Reverse play and add four to the draw penalty. Stack an equal or higher draw to pass it on.';
+      ? stacking
+        ? 'Reverse play and take the four-card penalty yourself, unless you stack an allowed draw.'
+        : 'Reverse play. With two players the four-card penalty comes back to you.'
+      : stacking
+        ? 'Reverse play and add four to the draw penalty. Stack an equal or higher draw to pass it on.'
+        : 'Reverse play. The next player in the new direction draws four and loses their turn.';
   if (card.value === 'Wild') return 'Choose the colour for the next play.';
   if (card.value === '+4' && !mercy && card.color === 'wild')
-    return 'Choose a colour. The next player may challenge if you still hold the current colour.';
-  if (/^\+\d+$/.test(card.value))
-    return mercy
-      ? `Add ${card.value.slice(1)} to the draw penalty. Stack an equal or higher draw to pass it on; 25 cards means elimination.`
-      : settings.stack_draw_two
-        ? 'The next player draws two, or stacks another draw-two card.'
-        : 'The next player draws two and loses their turn.';
+    return stacking
+      ? 'Choose a colour. The next player draws four, or stacks another Wild +4. It cannot be challenged while stacking is on.'
+      : 'Choose a colour. The next player may challenge if you still hold the current colour.';
+  if (/^\+\d+$/.test(card.value)) {
+    const amount = card.value.slice(1);
+    if (mercy)
+      return stacking
+        ? `Add ${amount} to the draw penalty. Stack an equal or higher draw to pass it on; 25 cards means elimination.`
+        : `The next player draws ${amount} and loses their turn; 25 cards means elimination.`;
+    return stacking
+      ? 'The next player draws two, or stacks a +2 or Wild +4 to pass it on.'
+      : 'The next player draws two and loses their turn.';
+  }
   return null;
 }

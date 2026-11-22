@@ -23,7 +23,7 @@ engine's shuffle seed. No projection is saved wholesale.
 | Checkers | Bounded search with legal capture continuation, crowning, material and advancement |
 | Kalah/Mancala | Exact public sow/capture/extra-turn simulation and bounded lookahead |
 | boop. | Public push simulation, immediate adult wins, opponent one-move threats, graduation and bounded repeat avoidance |
-| Uno editions | Color retention, action pressure, swap hand counts, penalty stacking and legal UNO/catch reactions |
+| Uno editions | Color retention, action pressure, swap hand counts, legal UNO/catch reactions, and penalty stacking under the room's "Stack draw cards" rule: the smallest draw card that answers (the largest against a nearly empty hand), never a two-player Reverse +4 onto itself |
 | Deal editions | Property-set completion, action value and opponent pressure; minimum-cost bank-first payments preserving sets |
 | Hold'em | Samples unseen cards, prices the affordable call against contestable contributions, and bounds raises |
 | Teen Patti | Samples multiway hand strength for ordinary wagers and counts all 18,424 possible single-opponent hands for shows and sideshows. Equal hands favour the responder. A paid show must justify its cost. |

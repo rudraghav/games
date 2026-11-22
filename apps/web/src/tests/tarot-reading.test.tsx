@@ -199,9 +199,21 @@ describe('saved Tarot reading presentation', () => {
       })),
     };
     const html = renderToStaticMarkup(<TarotReading reading={reading} cards={tarotReadingCards} />);
-    expect(html.match(/The grounded read/g)).toHaveLength(3);
+    // With no question on the page the heading speaks to the spread in general.
+    expect(html.match(/>What this card says</g)).toHaveLength(3);
+    expect(html).not.toContain('The grounded read');
     expect(html.match(/The plot twist/g)).toHaveLength(3);
     expect(html.match(/Your connections/g)).toHaveLength(3);
+    const asked = renderToStaticMarkup(
+      <TarotReading reading={reading} cards={tarotReadingCards} question="How can I make room?" />,
+    );
+    expect(asked.match(/>What this card says about your question</g)).toHaveLength(3);
+    // Reading order per card: what it says, then its figures, then the plot twist.
+    const first = asked.slice(asked.indexOf('<article'), asked.indexOf('</article>'));
+    expect(first.indexOf('What this card says about your question')).toBeLessThan(
+      first.indexOf('Your connections'),
+    );
+    expect(first.indexOf('Your connections')).toBeLessThan(first.indexOf('The plot twist'));
     // These bounded WebPs must work through the Services public route without
     // depending on the unavailable root image-optimization endpoint.
     expect(html).not.toContain('/_next/image');
@@ -503,8 +515,14 @@ describe('saved Tarot reading presentation', () => {
     expect(blocks[0]).toBe(tarotReadingExample.title);
     expect(blocks[1]).toBe('Question: How can I make room for a hobby?');
     expect(blocks[2]).toBe(`In short: ${tarotReadingExample.introduction}`);
+    const fool = tarotReadingExample.cards[0];
     expect(blocks[3]).toBe(
-      `1. Where you are: The Fool (upright)\n${tarotReadingExample.cards[0].interpretation}`,
+      [
+        '1. Where you are: The Fool (upright)',
+        fool.interpretation,
+        `${fool.characters[0].name} (${fool.characters[0].source}): ${fool.characters[0].connection}`,
+        `Plot twist: ${fool.quirky_interpretation}`,
+      ].join('\n'),
     );
     expect(blocks[4].split('\n').slice(0, 2)).toEqual([
       '2. What is shifting: Ace of Wands (upright)',
@@ -512,12 +530,129 @@ describe('saved Tarot reading presentation', () => {
     ]);
     expect(blocks.at(-2)).toBe(`Next small move: ${tarotReadingExample.next_step}`);
     expect(blocks.at(-1)).toBe('A playful reflection, not a prediction.');
-    // Portrait names, credits and the playful layer stay on the page.
-    expect(text).not.toContain('Michael Scott');
-    expect(text).not.toContain(tarotReadingExample.cards[0].quirky_interpretation);
+    // Portraits, credits and the chart drawing stay on the page.
+    expect(text).not.toContain('Image credits');
     expect(readingAsText({ reading: tarotReadingExample, cards: tarotReadingCards })).not.toContain(
       'Question:',
     );
+  });
+
+  it('copies each figure, what its move means for the question and any chart perspective', () => {
+    const scene = 'She opens a small library for children in her home county.';
+    const bridge =
+      'For your question, that could look like leaving the sketchbook open on the kitchen table. Then the hobby is already in your hands when a free ten minutes turns up.';
+    const reading = {
+      ...tarotReadingExample,
+      astrology: syntheticAstrologyReading,
+      cards: tarotReadingExample.cards.map((card) => ({
+        ...card,
+        pop_culture: bridge,
+        characters: [
+          {
+            ...card.characters[0],
+            evidence: scene,
+            connection: 'Put the supplies straight into someone’s hands.',
+          },
+        ],
+      })),
+    };
+    const text = readingAsText({
+      reading,
+      cards: tarotReadingCards,
+      question: 'Room for a hobby?',
+    });
+    const first = text.split('\n\n')[3].split('\n');
+    expect(first.slice(2)).toEqual([
+      'Michael Scott (The Office): Put the supplies straight into someone’s hands.',
+      `What this means for your question: ${bridge}`,
+      `Plot twist: ${tarotReadingExample.cards[0].quirky_interpretation}`,
+    ]);
+    // The scene is the portrait's caption on the page, not part of the copied reading.
+    expect(text).not.toContain(scene);
+    const { interpretation } = syntheticAstrologyReading;
+    expect(text).toContain(`Western perspective\n${interpretation.western!.normal}`);
+    expect(text).toContain(`How it meets your cards: ${interpretation.tarot_connection}`);
+    expect(text.split('\n\n').at(-2)).toBe(`From your chart: ${interpretation.next_step}`);
+    // With no question the bridge speaks to the spread in general.
+    expect(readingAsText({ reading, cards: tarotReadingCards })).toContain(
+      `What this could mean for you: ${bridge}`,
+    );
+  });
+
+  it('puts what a Fun figure means for the question right after its move', () => {
+    const bridge =
+      'For your question, that could look like asking your teacher for one small brief. Then there is a real request to finish for.';
+    const fun = {
+      ...tarotReadingExample,
+      cards: tarotReadingExample.cards.map((card) => ({
+        ...card,
+        pop_culture: bridge,
+        characters: [
+          {
+            ...card.characters[0],
+            evidence: 'A reviewed scene from the source.',
+            connection: 'Ask someone for a small brief.',
+          },
+        ],
+      })),
+    };
+    const html = renderToStaticMarkup(
+      <TarotReading
+        reading={fun}
+        readingStyle="fun"
+        cards={tarotReadingCards}
+        question="What is getting in my way?"
+      />,
+    );
+    expect(html.match(/<h5>What this means for your question<\/h5>/g)).toHaveLength(3);
+    expect(html.match(/class="tarot-figure-bridge"/g)).toHaveLength(3);
+    const first = html.slice(html.indexOf('<article'), html.indexOf('</article>'));
+    const order = [
+      'What this card says about your question',
+      'How it could play out',
+      'A reviewed scene from the source.',
+      '<p>Ask someone for a small brief.</p>',
+      'What this means for your question',
+      bridge,
+      'The plot twist',
+    ].map((part) => first.indexOf(part));
+    expect(order.every((position) => position >= 0)).toBe(true);
+    expect([...order].sort((a, b) => a - b)).toEqual(order);
+    // The move stays the only direct paragraph of the figure's copy.
+    expect(first.match(/class="tarot-character-copy"><p>/g)).toHaveLength(1);
+    const blank = renderToStaticMarkup(
+      <TarotReading reading={fun} readingStyle="fun" cards={tarotReadingCards} />,
+    );
+    expect(blank.match(/<h5>What this could mean for you<\/h5>/g)).toHaveLength(3);
+    expect(blank).not.toContain('What this means for your question');
+    expect(blank).not.toContain('about your question');
+  });
+
+  it('renders a reading saved before the bridge exactly as it was', () => {
+    const older = {
+      ...tarotReadingExample,
+      cards: tarotReadingExample.cards.map((card) => ({
+        ...card,
+        interpretation: 'What competing ideas are currently vying for attention in your mind?',
+        characters: [{ ...card.characters[0], evidence: 'A reviewed scene from the source.' }],
+      })),
+    };
+    const fun = renderToStaticMarkup(
+      <TarotReading reading={older} readingStyle="fun" cards={tarotReadingCards} question="Why?" />,
+    );
+    expect(fun).not.toContain('tarot-figure-bridge');
+    expect(fun.match(/The grounded read/g)).toHaveLength(3);
+    const first = fun.slice(fun.indexOf('<article'), fun.indexOf('</article>'));
+    // The portrait led the card, then the grounded read and the plot twist together.
+    expect(first.indexOf('How it could play out')).toBeLessThan(first.indexOf('The grounded read'));
+    expect(first.indexOf('The grounded read')).toBeLessThan(first.indexOf('The plot twist'));
+    expect(first.match(/class="tarot-perspectives"/g)).toHaveLength(1);
+    // An older Classic reading that only asked keeps its own heading too.
+    const classic = renderToStaticMarkup(
+      <TarotReading reading={older} cards={tarotReadingCards} question="Why?" />,
+    );
+    expect(classic.match(/The grounded read/g)).toHaveLength(3);
+    expect(classic).not.toContain('What this card says');
   });
 
   it('shows the shape of a reading while a saved view opens', () => {

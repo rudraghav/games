@@ -130,13 +130,21 @@ test('a crowded Sly Deal exposes every exact target immediately and commits the 
   for (const width of info.project.name === 'phone' ? [320, 390] : [768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/design/deal');
+    // An unsent card choice is kept for this tab and table version (useTableDraft).
+    // A live room never returns to a version once a move is saved; this harness
+    // replays the same version, so the previous width's committed choice would be
+    // restored and the click below would deselect it. Start each width clean.
+    await page.evaluate(() => sessionStorage.clear());
     await page
       .getByRole('combobox', { name: 'Deal scenario', exact: true })
       .selectOption(fixture.id);
-    await page
+    const sly = page
       .getByRole('group', { name: 'Your hand', exact: true })
-      .getByRole('button', { name: /^Sly deal, bank value/ })
-      .click();
+      .getByRole('button', { name: /^Sly deal, bank value/ });
+    await expect(sly).toHaveAttribute('aria-pressed', 'false');
+    await expect(panel(page)).toHaveCount(0);
+    await sly.click();
+    await expect(sly).toHaveAttribute('aria-pressed', 'true');
     const choices = panel(page).getByRole('group', { name: 'Card moves', exact: true });
     await expect(choices.getByRole('button')).toHaveCount(3);
     await exposedAction(choices.getByRole('button').first());

@@ -1,9 +1,35 @@
+/*
+ * Roulette and Slots, in one place. The stage is the object (wheel on felt, reels behind
+ * glass); the dock is the betting layout (inlaid felt cells, a bet spot per cell, stake
+ * chips). Every text colour is paired with the fill it sits on at 4.5:1 or more, and
+ * every control edge at 3:1 or more. Red, black, wins and losses always carry a word,
+ * a number or a shape as well as a colour. Motion lives inside the no-preference query:
+ * reduced-motion players see each result at once.
+ */
 @layer components {
+  .chance-table,
+  .chance-history {
+    --wheel-red: #a8383c;
+    --wheel-black: #1b2321;
+    --wheel-green: #1f7a55;
+    --wheel-ivory: #fff9e9;
+    --brass: #d7bb80;
+    --brass-light: #ecd49e;
+    --brass-bright: #ffe9ae;
+    --brass-deep: #8a6a35;
+    --felt: #1c4638;
+    --felt-light: #245646;
+    --felt-lit: #2f6a57;
+    --felt-deep: #133027;
+    /* Brass at 70% over the felt: 3.6:1 against it. */
+    --felt-line: #d7bb80b3;
+    --chance-edge: #85887b;
+    --chance-gain: #2f6b47;
+    --chance-loss: #a93835;
+    --chance-wash: #f1ede5;
+  }
   .chance-table {
-    --wheel-red: #a43e40;
-    --wheel-black: #202b28;
-    --wheel-green: #31795c;
-    --brass: #cfb47d;
+    container: chance-table / inline-size;
     display: grid;
     gap: 12px;
     color: var(--color-ink);
@@ -20,132 +46,408 @@
     border: 1px solid var(--color-border);
     border-radius: 16px;
     background: var(--color-surface);
+    box-shadow: var(--shadow-rest);
   }
+
+  /* ---------- Balance and spins left ---------- */
   .chance-stats {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     gap: 8px;
-    padding: 10px 14px;
+    padding: 11px 14px;
     font-size: 0.84rem;
-    font-weight: 650;
+    font-weight: 600;
     font-variant-numeric: tabular-nums;
   }
   .chance-stats > span {
     display: inline-flex;
-    gap: 6px;
+    gap: 7px;
     align-items: center;
+    white-space: nowrap;
+  }
+  .chance-balance > b {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 800;
+  }
+  .chance-balance > svg {
+    color: var(--brass-deep);
+  }
+  .chance-pips {
+    display: inline-flex;
+    gap: 4px;
+  }
+  .chance-pips > i {
+    width: 7px;
+    height: 7px;
+    border: 1px solid var(--chance-edge);
+    border-radius: 50%;
+  }
+  .chance-pips > i[data-left] {
+    border-color: var(--color-sage);
+    background: var(--color-sage);
+  }
+
+  /* ---------- Chips ---------- */
+  /* One chip, three uses: a stake button, the chip on a bet spot, the bet on the cabinet. */
+  .chance-chip,
+  .chance-dock .chance-presets .button.chance-chip {
+    --chip: #f6f1e4;
+    --chip-ink: #23282a;
+    --chip-stripe: #3d5a6c;
+    --chip-side: #b9b3a2;
+    --chip-side-deep: #8a8573;
+    --chip-size: 26px;
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: var(--chip-size);
+    height: var(--chip-size);
+    border-radius: 50%;
+    color: var(--chip-ink);
+    font-size: calc(var(--chip-size) * 0.365);
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    /* A printed centre, an inlay ring, then eight edge stripes. */
+    background:
+      radial-gradient(
+        closest-side,
+        var(--chip) 0 64%,
+        color-mix(in srgb, var(--chip-ink) 40%, var(--chip)) 66% 70%,
+        transparent 72%
+      ),
+      repeating-conic-gradient(
+        from -11.25deg,
+        var(--chip-stripe) 0 22.5deg,
+        var(--chip) 22.5deg 45deg
+      );
+    /* The stacked shadows are the chip's side: its thickness. */
+    box-shadow:
+      inset 0 0 0 1px #0000003d,
+      inset 0 1px 0 #ffffff80,
+      0 1px 0 var(--chip-side),
+      0 2px 0 var(--chip-side-deep),
+      0 3px 3px #00000059;
+  }
+  .chance-chip[data-chip='5'],
+  .chance-dock .chance-presets .button.chance-chip[data-chip='5'] {
+    --chip: #b3373b;
+    --chip-ink: #fff;
+    --chip-stripe: #f6f1e4;
+    --chip-side: #7e2428;
+    --chip-side-deep: #5d1a1d;
+  }
+  .chance-chip[data-chip='10'],
+  .chance-dock .chance-presets .button.chance-chip[data-chip='10'] {
+    --chip: #2b5d9b;
+    --chip-ink: #fff;
+    --chip-stripe: #f6f1e4;
+    --chip-side: #1e4474;
+    --chip-side-deep: #16345a;
+  }
+  .chance-chip[data-chip='25'],
+  .chance-dock .chance-presets .button.chance-chip[data-chip='25'] {
+    --chip: #23764f;
+    --chip-ink: #fff;
+    --chip-stripe: #f6f1e4;
+    --chip-side: #185538;
+    --chip-side-deep: #103d28;
+  }
+  .chance-chip[data-chip='100'],
+  .chance-dock .chance-presets .button.chance-chip[data-chip='100'] {
+    --chip: #23282a;
+    --chip-ink: #f3dfae;
+    --chip-stripe: #d7bb80;
+    --chip-side: #111516;
+    --chip-side-deep: #000;
+  }
+  /* Where a chip rests. Empty spots show a dashed ring; a placed chip covers it. */
+  .chance-spot {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border: 1px dashed #fff9e95c;
+    border-radius: 50%;
+  }
+  .chance-spot:has(> .chance-chip) {
+    border-color: transparent;
+  }
+
+  /* ---------- Roulette: felt and wheel ---------- */
+  .roulette-felt,
+  .slot-machine {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      repeating-linear-gradient(45deg, #ffffff06 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(-45deg, #0000000d 0 1px, transparent 1px 3px),
+      radial-gradient(ellipse at 50% 30%, var(--felt-light), var(--felt) 58%, var(--felt-deep));
+    box-shadow:
+      inset 0 1px 0 #ffffff1f,
+      inset 0 -1px 0 #00000040;
+  }
+  /* A brass line inlaid in the felt, with the shadow of its groove. */
+  .roulette-felt::before,
+  .slot-machine::before {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    z-index: -1;
+    border: 1px solid var(--felt-line);
+    border-radius: 9px;
+    box-shadow:
+      0 1px 0 #00000040,
+      inset 0 1px 0 #00000040;
+    pointer-events: none;
   }
   .roulette-felt {
     display: grid;
     place-items: center;
-    padding: 15px;
-    overflow: hidden;
-    isolation: isolate;
-    background: radial-gradient(ellipse at 52% 28%, #315746, #1b3e34 64%, #16312a);
+    padding: 20px 16px 22px;
   }
   .roulette-wheel {
     position: relative;
-    width: min(100%, 278px);
+    container-type: inline-size;
+    width: min(100%, 320px);
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 5px solid #775035;
+    background:
+      /* The ball track: a slope from the lip of the rim down to the turning wheel. */
+      radial-gradient(
+        closest-side,
+        transparent 0 81.5%,
+        #1d130d 82%,
+        #4a3323 85%,
+        #7a573b 89%,
+        #5a3e2b 90.6%,
+        #c9a56f 91%,
+        #2a1c13 91.8%,
+        transparent 92%
+      ),
+      /* The rim: polished wood, lit from the upper left. */
+        conic-gradient(
+          from 215deg,
+          #4b3122,
+          #6f4d35 12%,
+          #a37a55 25%,
+          #7d583d 38%,
+          #4b3122 55%,
+          #37241a 72%,
+          #5d3f2b 88%,
+          #4b3122
+        );
     box-shadow:
-      0 0 0 1px #d0a574,
-      0 0 0 4px #422f25,
-      0 6px 12px #12261dcc;
-    background: #392b24;
+      0 0 0 1.5px var(--brass),
+      inset 0 0 0 1px #2a1c13,
+      inset 0 2px 2px #ffffff47,
+      inset 0 -3px 5px #00000080,
+      0 2px 3px #06120ecc,
+      0 18px 30px -8px #06120ecc;
+  }
+  /* A brass marker at the top of the rim: the winning pocket always rests beneath it. */
+  .roulette-wheel::before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 0.7%;
+    left: 48.6%;
+    width: 2.8%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--brass-bright), var(--brass));
+    box-shadow: 0 1px 1px #000000a6;
+    transform: rotate(45deg);
+  }
+  /* Fixed light on the cone, so the sheen stays put while the wheel turns under it. */
+  .roulette-wheel::after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    inset: 25.4%;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 280deg,
+      #ffffff00,
+      #ffffff47 9%,
+      #ffffff00 20%,
+      #0000002e 45%,
+      #00000047 55%,
+      #0000001f 68%,
+      #ffffff00 85%
+    );
+    pointer-events: none;
+  }
+  .roulette-spin,
+  .roulette-rotor,
+  .roulette-orbit {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .roulette-spin {
+    inset: 9%;
   }
   .roulette-rotor {
-    position: absolute;
-    inset: 1.8%;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 1px solid var(--brass);
-    box-shadow: inset 0 0 0 1px #3b2f23;
-    transition: transform 920ms cubic-bezier(0.18, 0.75, 0.18, 1);
+    inset: 0;
+    box-shadow:
+      0 0 0 1px #2a1c13,
+      inset 0 0 0 1.5px var(--brass);
   }
+  /* Frets: an opaque brass divider on every pocket boundary (3:1 or more on each colour). */
+  .roulette-rotor::before,
   .roulette-rotor::after {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
+  }
+  .roulette-rotor::before {
     background: repeating-conic-gradient(
-      from -4.864865deg,
-      #ebd09d88 0 0.45deg,
-      transparent 0.45deg 9.72973deg
+      from -5.314865deg,
+      var(--brass-light) 0 0.9deg,
+      transparent 0.9deg 9.72973deg
+    );
+  }
+  /* The pocket ring sits lower than the number ring; a brass circle parts the two. */
+  .roulette-rotor::after {
+    background: radial-gradient(
+      closest-side,
+      transparent 0 60%,
+      #00000070 60.5%,
+      #0000003d 68%,
+      #00000024 77.6%,
+      var(--brass-light) 78% 79.4%,
+      transparent 79.8%
     );
   }
   .roulette-number {
     position: absolute;
-    top: 1.5%;
-    left: 46%;
-    width: 8%;
-    height: 48.5%;
+    z-index: 1;
+    top: 0;
+    left: 45.8%;
+    width: 8.4%;
+    height: 50%;
+    padding-top: 2.5cqi;
     text-align: center;
-    font:
-      750 clamp(8px, 2.6vw, 12px)/1.05 system-ui,
-      sans-serif;
+    font-size: clamp(9px, 4.3cqi, 14px);
+    font-weight: 800;
+    line-height: 1;
     transform: rotate(var(--angle));
     transform-origin: center bottom;
-    color: #fff9e9;
+    color: var(--wheel-ivory);
     font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
   }
-  .roulette-number[data-choice] {
-    color: #fff29d;
-    text-decoration: underline 2px;
+  /* The chosen bet: a brass mark on the rim side of every pocket it pays on. */
+  .roulette-number[data-cover]::before {
+    content: '';
+    position: absolute;
+    top: 0.75cqi;
+    left: 14%;
+    right: 14%;
+    height: max(2px, 0.85cqi);
+    border-radius: 2px;
+    background: var(--brass-bright);
+    box-shadow: 0 1px 1px #00000080;
   }
+  /* The pocket the ball rests in: its number turns to an ivory plate. */
+  .roulette-number[data-hit] {
+    color: var(--wheel-black);
+  }
+  .roulette-number[data-hit]::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 1.75cqi;
+    left: 50%;
+    width: 6.1cqi;
+    height: 5.7cqi;
+    border-radius: 1.3cqi;
+    background: var(--wheel-ivory);
+    box-shadow:
+      0 0 0 1px #0000004d,
+      0 1px 2px #00000080;
+    transform: translateX(-50%);
+  }
+  .roulette-ball-arm {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 47.2%;
+    width: 5.6%;
+    height: 50%;
+    transform: rotate(var(--angle));
+    transform-origin: center bottom;
+    pointer-events: none;
+  }
+  .roulette-pointer,
+  .roulette-orbit::before {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 28%, #fff 0 14%, #f4efe2 40%, #cfc7b1 78%, #948d77);
+    box-shadow:
+      0 0 0 0.5px #00000059,
+      0 1.5px 2px #000000b3;
+  }
+  .roulette-pointer {
+    top: 24.9%;
+    left: 0;
+    width: 100%;
+    aspect-ratio: 1;
+  }
+  /* The cone and turret turn with the wheel; their shading is all concentric. */
   .roulette-bowl {
     position: absolute;
-    inset: 17%;
-    border-radius: 50%;
+    z-index: 2;
+    inset: 20%;
     display: grid;
     place-items: center;
-    border: 3px solid #c5a36c;
+    border-radius: 50%;
+    background:
+      repeating-radial-gradient(circle, #ffffff0a 0 1px, transparent 1px 4px),
+      radial-gradient(closest-side, #a57a55 0 30%, #8a6243 52%, #9b7250 74%, #7a5439 92%, #4a3122);
     box-shadow:
-      0 0 0 2px #342922,
-      inset 0 0 0 2px #68442f,
-      inset 0 4px 13px #33241b;
-    background: repeating-radial-gradient(
-      circle at 50% 55%,
-      #825a3e 0 4px,
-      #8e6749 5px,
-      #80583e 7px
-    );
+      0 0 0 1.5px var(--brass),
+      0 0 0 3px #2a1c13,
+      inset 0 0 0 1px #00000047;
   }
   .roulette-axle {
     position: relative;
     display: block;
-    width: 49%;
+    width: 46%;
     aspect-ratio: 1;
     border-radius: 50%;
     background: radial-gradient(
-      circle at 36% 30%,
-      #f8dfaa,
-      #c7a161 15%,
-      #81633b 22%,
-      #b39053 26%,
-      #83643e 37%,
-      #e1c994 40%,
-      #a5804f 50%,
-      #6a4b37 61%,
-      #c8aa74 64%,
-      #8e673f 69%
+      closest-side,
+      #f6e3b4 0 16%,
+      #a8854c 22%,
+      #d7bb80 34%,
+      #8a6a35 46%,
+      #ecd49e 58%,
+      #b08d52 72%,
+      #7b5c2f 88%,
+      #5d4424
     );
-    box-shadow: 1px 3px 6px #372a1dc9;
+    box-shadow:
+      0 0 0 1px #3b2a18,
+      0 2px 5px #2a1c13cc;
   }
   .roulette-axle::before,
   .roulette-axle::after {
     content: '';
     position: absolute;
-    width: 134%;
-    height: 13%;
-    top: 43.5%;
-    left: -17%;
+    width: 150%;
+    height: 12%;
+    top: 44%;
+    left: -25%;
     border-radius: 48%;
-    background: linear-gradient(#745534, #d5b985 30%, #f4d9a2 45%, #b08a4b 60%, #785d39);
-    box-shadow: 1px 2px 2px #443221aa;
+    background: linear-gradient(#745534, #d5b985 30%, #f6e3b4 45%, #b08a4b 62%, #6b5031);
+    box-shadow: 0 1px 2px #2a1c13b3;
     transform: rotate(32deg);
   }
   .roulette-axle::after {
@@ -154,65 +456,80 @@
   .roulette-pivot {
     position: absolute;
     z-index: 1;
-    inset: 32%;
+    inset: 31%;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #ffe9ae, #bd9558 62%, #6d5237);
-    box-shadow: 1px 2px 3px #584029;
+    background: radial-gradient(closest-side, #fff0c4, #d7bb80 55%, #7b5c2f);
+    box-shadow: 0 1px 3px #3b2a18;
   }
-  .roulette-pointer {
-    position: absolute;
-    top: 9%;
-    left: 48.4%;
-    width: 3.2%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 28%, #fffef4, #decda9 75%, #8c8569);
-    box-shadow: 0 2px 3px #30291f;
-  }
-  .slot-machine {
-    position: relative;
-    padding: clamp(18px, 4vw, 38px) clamp(12px, 3vw, 25px);
-    background: linear-gradient(155deg, #204939, #16382f 60%, #264e3c);
-    box-shadow: inset 0 1px 0 #7b956a;
-  }
-  .slot-machine::after {
-    content: '';
-    position: absolute;
+  .roulette-orbit {
+    inset: 0;
+    display: none;
     pointer-events: none;
-    inset: 7px;
-    border: 1px solid #b6aa7c55;
-    border-radius: 8px;
   }
+  .roulette-orbit::before {
+    content: '';
+    top: 4.3%;
+    left: 47.7%;
+    width: 4.6%;
+    aspect-ratio: 1;
+  }
+  /* A chip of dark glass over the felt while the server spins. */
+  .roulette-status {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 4px 10px;
+    border: 1px solid #ffffff24;
+    border-radius: 999px;
+    background: var(--glass-dark);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    backdrop-filter: var(--glass-blur);
+  }
+
+  /* ---------- Slots: cabinet, window, reels ---------- */
+  .slot-machine {
+    display: grid;
+    gap: 12px;
+    padding: clamp(20px, 5cqi, 34px) clamp(16px, 4cqi, 30px) 16px;
+  }
+  /* A bevelled brass frame. The reels sit in the recess behind its glass. */
   .slot-window {
     position: relative;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 3px;
-    padding: 5px;
-    border-radius: 10px;
-    background: #543f2a;
-    border: 2px solid #c8aa74;
+    padding: 8px;
+    border-radius: 15px;
+    background: linear-gradient(150deg, #f6e3b4, #c9a665 20%, #8a6a35 48%, #d7bb80 76%, #f6e3b4);
     box-shadow:
-      inset 0 2px 5px #181f19,
-      0 3px 6px #152c22;
+      inset 0 1px 0 #ffffff99,
+      inset 0 -1px 0 #00000080,
+      0 0 0 1px #2a1c13,
+      0 2px 3px #06120ecc,
+      0 16px 26px -10px #06120ecc;
   }
+  /* Payline markers on the frame, either side of the middle of the window. */
   .slot-window::before,
   .slot-window::after {
     content: '';
-    z-index: 1;
+    z-index: 3;
     position: absolute;
     top: 50%;
-    width: 9px;
-    height: 12px;
-    background: #c49043;
+    width: 10px;
+    height: 14px;
+    background: linear-gradient(var(--brass-bright), var(--brass));
+    filter: drop-shadow(0 1px 1px #000000b3);
     clip-path: polygon(0 0, 100% 50%, 0 100%);
     transform: translateY(-50%);
   }
   .slot-window::before {
-    left: -4px;
+    left: -3px;
   }
   .slot-window::after {
-    right: -4px;
+    right: -3px;
     transform: translateY(-50%) rotate(180deg);
   }
   .slot-reel {
@@ -220,66 +537,27 @@
     display: grid;
     place-items: center;
     overflow: hidden;
-    min-height: 93px;
-    border-radius: 4px;
-    background: linear-gradient(
-      #a89a84,
-      #e5ddc5 15%,
-      #fff8e7 36%,
-      #fff7e5 67%,
-      #e0d5bc 87%,
-      #a29580
-    );
+    min-height: 112px;
+    /* The payline, then the curve of the drum. */
+    background:
+      linear-gradient(#a67f38, #a67f38) center / 100% 1px no-repeat,
+      linear-gradient(#8f8370, #d8ccb0 14%, #fff8e7 34%, #fff8e7 66%, #d8ccb0 86%, #8f8370);
   }
-  @media (prefers-reduced-motion: no-preference) {
-    .roulette-felt[data-pending] .roulette-pointer,
-    .slot-machine[data-pending] .slot-face {
-      opacity: 0;
-    }
-    .roulette-felt[data-pending] .roulette-wheel::after {
-      content: '';
-      position: absolute;
-      inset: 1%;
-      pointer-events: none;
-      border-radius: 50%;
-      background: radial-gradient(circle at 50% 8%, #fff9d9 0 1.5%, transparent 2%);
-      animation: chance-wheel-orbit 0.8s linear infinite;
-    }
-    .slot-machine[data-pending] .slot-reel::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent 0 11px,
-        #a19273aa 15px,
-        transparent 21px
-      );
-      animation: chance-reel-travel 0.24s linear infinite;
-    }
-    @keyframes chance-wheel-orbit {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-    @keyframes chance-reel-travel {
-      to {
-        background-position: 0 21px;
-      }
-    }
+  .slot-reel:first-child {
+    border-radius: 7px 1px 1px 7px;
+  }
+  .slot-reel:nth-child(3) {
+    border-radius: 1px 7px 7px 1px;
   }
   .slot-face {
     display: grid;
     place-items: center;
-    gap: 2px;
-    color: #b9ac8d;
-  }
-  .slot-machine[data-landed] .slot-face[data-symbol] {
-    animation: chance-reel-land 0.32s ease-out;
+    color: #8a7c5f;
   }
   .slot-face svg {
-    width: clamp(30px, 8vw, 55px);
-    height: clamp(30px, 8vw, 55px);
+    width: clamp(34px, 11cqi, 62px);
+    height: clamp(34px, 11cqi, 62px);
+    filter: drop-shadow(0 2px 1px #5a442a40);
   }
   .slot-face[data-symbol='cherry'] svg {
     fill: #e68570;
@@ -298,76 +576,235 @@
     color: #35685b;
   }
   .slot-seven {
-    color: #af493d;
+    color: var(--wheel-red);
     font:
-      900 clamp(36px, 9vw, 58px)/0.95 Georgia,
+      900 clamp(40px, 12.5cqi, 68px) / 0.95 Georgia,
       serif;
     text-shadow:
       1px 1px #ffeac0,
       2px 2px #82532e;
   }
-  .slot-face-name {
-    font-weight: 700;
-    font-size: 0.75rem;
+  /* The symbol sits on the payline; its name is a caption at the foot of the reel. */
+  .slot-reel .slot-face-name {
+    position: absolute;
+    inset: auto 0 7px;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     color: #423a30;
   }
-  @keyframes chance-reel-land {
-    from {
-      transform: translateY(-13px);
-      opacity: 0.45;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  /* A winning reel is ringed, so the line reads without its colour. */
+  .slot-reel[data-win]::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 2px solid #9a7430;
+    border-radius: 5px;
+    box-shadow: inset 0 0 12px #e8b96266;
+    pointer-events: none;
   }
-  @media (prefers-reduced-motion: reduce) {
-    .roulette-rotor {
-      transition: none;
-    }
-    .slot-machine[data-landed] .slot-face[data-symbol] {
-      animation: none;
-    }
+  .slot-payline,
+  .slot-glass {
+    position: absolute;
+    inset: 8px;
+    border-radius: 7px;
+    pointer-events: none;
   }
-}
-@layer components {
+  .slot-payline {
+    z-index: 1;
+    overflow: hidden;
+  }
+  /* Glass: the recess shadow, and one reflection across the upper left. */
+  .slot-glass {
+    z-index: 2;
+    background: linear-gradient(
+      114deg,
+      #ffffff42 0%,
+      #ffffff14 19%,
+      #ffffff00 19.4% 74%,
+      #ffffff12 100%
+    );
+    box-shadow:
+      inset 0 0 0 1px #2a1c13,
+      inset 0 4px 9px #000000a6,
+      inset 0 -3px 7px #00000066;
+  }
+  .slot-plaque {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 34px;
+    color: var(--wheel-ivory);
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .slot-bet {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .slot-line {
+    margin-inline-start: auto;
+    padding: 6px 12px;
+    border: 1px solid var(--felt-line);
+    border-radius: 16px;
+    background: #0f2a22;
+    color: #c9d9cd;
+    line-height: 1.25;
+    text-align: center;
+    box-shadow: inset 0 1px 3px #00000080;
+  }
+  .slot-line[data-win] {
+    border-color: var(--brass-bright);
+    color: var(--brass-bright);
+    font-weight: 800;
+  }
+
+  /* ---------- Latest spin ---------- */
   .chance-last {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 3px 8px;
-    align-items: baseline;
-    padding: 9px 14px;
+    gap: 3px 10px;
+    align-items: center;
+    padding: 11px 14px 12px;
     color: var(--color-ink);
     font-variant-numeric: tabular-nums;
   }
-  .chance-last strong {
-    font-size: 0.9rem;
+  /* Slots: the three symbols take the first line; the amounts and the verdict share the second. */
+  .chance-last > strong {
+    grid-column: 1 / -1;
+    font-size: 0.92rem;
+    font-weight: 800;
+    text-wrap: balance;
   }
-  .chance-last > span,
-  .chance-history-heading > span {
-    font-size: 0.82rem;
-    font-weight: 700;
-  }
-  .chance-last small {
-    grid-column: 1/-1;
+  .chance-last > small {
+    grid-area: 2 / 1;
     font-size: 0.78rem;
     color: var(--color-ink-muted);
   }
-  .chance-table [data-gain='true'],
-  .chance-history [data-gain='true'] {
-    color: #356047;
+  .chance-last > .chance-net {
+    grid-area: 2 / 2;
   }
+  /* Roulette: the pocket leads, with the verdict beside the short headline. */
+  .chance-last:has(> .chance-token) {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+  .chance-last > .chance-token {
+    grid-area: 1 / 1 / span 2;
+  }
+  .chance-last > .chance-token ~ strong {
+    grid-column: 2;
+  }
+  .chance-last > .chance-token ~ .chance-net {
+    grid-area: 1 / 3;
+  }
+  .chance-last > .chance-token ~ small {
+    grid-area: 2 / 2 / auto / -1;
+  }
+  .chance-last small > b {
+    color: var(--color-ink);
+    font-weight: 800;
+  }
+  /* The pocket as it looks on the wheel; the text beside it always names the colour. */
+  .chance-token {
+    display: grid;
+    place-items: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: var(--wheel-black);
+    color: var(--wheel-ivory);
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    box-shadow:
+      inset 0 0 0 1.5px var(--brass-light),
+      inset 0 0 0 2.5px #00000059,
+      var(--shadow-rest);
+  }
+  .chance-token[data-color='red'] {
+    background: var(--wheel-red);
+  }
+  .chance-token[data-color='green'] {
+    background: var(--wheel-green);
+  }
+  /* Won or lost: a word, a signed number and then a colour. */
+  .chance-net {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: var(--color-surface-muted);
+    color: #4b5148;
+    font-size: 0.82rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .chance-net > em {
+    font-style: normal;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .chance-net[data-gain='true'] {
+    background: #e1eedd;
+    color: #23583a;
+  }
+  .chance-last[data-outcome='lost'] > .chance-net {
+    background: #f6e3df;
+    color: #8f2c2a;
+  }
+  /* Winnings: a short stack of brass chips beside the amount. */
+  .chance-winnings {
+    display: inline-grid;
+    padding-top: 4px;
+  }
+  .chance-winnings > i {
+    width: 15px;
+    height: 6px;
+    margin-top: -4px;
+    border-radius: 50%;
+    background: var(--brass);
+    box-shadow:
+      inset 0 0 0 1px var(--brass-deep),
+      0 1px 0 var(--brass-deep);
+  }
+  .chance-history-heading > span {
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+  .chance-history [data-gain='true'] {
+    color: var(--chance-gain);
+  }
+  .chance-history [data-loss] {
+    color: var(--chance-loss);
+  }
+
+  /* ---------- The wager ---------- */
   .chance-table .chance-dock {
     display: block;
     min-width: 0;
     width: 100%;
     height: auto;
     max-height: none;
-    padding: 12px;
+    padding: 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-rest);
   }
   .chance-dock form {
+    position: relative;
     display: grid;
-    gap: 10px;
+    gap: 12px;
     min-width: 0;
   }
   .chance-picks {
@@ -376,46 +813,167 @@
     border: 0;
     padding: 0;
     margin: 0;
-    gap: 7px;
   }
   .chance-picks legend {
     padding: 0;
-    margin: 0 0 6px;
-    font-weight: 750;
+    margin: 0 0 8px;
+    font-weight: 800;
+  }
+  /* The betting layout: felt, with brass lines inlaid between the bets. */
+  .chance-mat {
+    min-width: 0;
+    padding: 6px;
+    border-radius: 14px;
+    background:
+      repeating-linear-gradient(45deg, #ffffff06 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(-45deg, #0000000d 0 1px, transparent 1px 3px), var(--felt);
+    box-shadow:
+      inset 0 1px 0 #ffffff24,
+      inset 0 0 0 1px #0000004d,
+      var(--shadow-rest);
+    color: var(--wheel-ivory);
+    transition:
+      opacity 160ms var(--ease-out),
+      filter 160ms var(--ease-out);
+  }
+  .chance-picks:disabled .chance-mat {
+    opacity: 0.72;
+    filter: saturate(0.5);
   }
   .chance-outsides {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 5px;
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid var(--felt-line);
+    border-radius: 9px 9px 0 0;
+    background: var(--felt-line);
   }
-  .chance-dock .button {
+  .chance-dock .chance-outsides .button {
+    justify-content: space-between;
+    gap: 4px;
     min-width: 0;
-    min-height: 44px;
+    min-height: 48px;
+    padding: 6px 6px 6px 10px;
+    border: 0;
+    border-radius: 0;
+    background: var(--felt);
+    color: var(--wheel-ivory);
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: none;
+    transform: none;
+    transition:
+      background 160ms var(--ease-out),
+      box-shadow 160ms var(--ease-out);
   }
-  .chance-outsides .button {
-    gap: 5px;
-    padding: 4px;
+  .chance-dock .chance-outsides .button:hover:not(:disabled) {
+    background: var(--felt-light);
   }
-  .chance-outsides [data-pocket='red']::before,
-  .chance-outsides [data-pocket='black']::before {
+  .chance-dock .chance-outsides .button:active:not(:disabled) {
+    background: var(--felt-deep);
+  }
+  /* Chosen: lit felt, a brass ring, heavier type and the chip on its spot. */
+  .chance-dock .chance-outsides .button[aria-pressed='true'],
+  .chance-number-select[data-chosen] {
+    background: var(--felt-lit);
+    box-shadow: inset 0 0 0 2px var(--brass-light);
+    font-weight: 800;
+  }
+  .chance-dock .chance-outsides .button:disabled {
+    opacity: 1;
+  }
+  /* Focus is a wider ivory ring, so it never reads as the brass ring of the chosen bet. */
+  .chance-dock .chance-outsides .button:focus-visible {
+    z-index: 1;
+    outline: 3px solid #fff;
+    outline-offset: -4px;
+  }
+  .chance-bet-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+  }
+  /* Red is a diamond and black a disc, each with an ivory edge: shape as well as colour. */
+  [data-pocket='red'] > .chance-bet-name::before,
+  [data-pocket='black'] > .chance-bet-name::before {
     content: '';
+    flex: none;
     width: 9px;
     height: 9px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .chance-outsides [data-pocket='red']::before {
     background: var(--wheel-red);
+    box-shadow: 0 0 0 1.5px var(--wheel-ivory);
+    transform: rotate(45deg);
   }
-  .chance-outsides [data-pocket='black']::before {
+  [data-pocket='black'] > .chance-bet-name::before {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
     background: var(--wheel-black);
   }
-  .chance-dock .button[aria-pressed='true'] {
-    background: var(--color-sage-light);
-    border-color: var(--color-sage);
-    box-shadow: inset 0 0 0 1px var(--color-sage);
+  .chance-number-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    min-height: 58px;
+    padding: 6px 6px 6px 10px;
+    border: 1px solid var(--felt-line);
+    border-top: 0;
+    border-radius: 0 0 9px 9px;
+    background: var(--felt);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    transition:
+      background 160ms var(--ease-out),
+      box-shadow 160ms var(--ease-out);
   }
-  .chance-number-select,
+  /* On a narrow layout the label takes two lines so the picker keeps its full text. */
+  .chance-number-select > span:first-child {
+    flex: 0 100 auto;
+    min-width: min-content;
+  }
+  .chance-native-picker {
+    position: relative;
+    flex: 0 1 auto;
+    min-width: 0;
+    margin-inline-start: auto;
+  }
+  .chance-native-picker select {
+    appearance: none;
+    width: 100%;
+    height: 44px;
+    min-height: 44px;
+    padding: 5px 30px 5px 11px;
+    text-overflow: ellipsis;
+    border: 1px solid var(--brass);
+    border-radius: 9px;
+    background: var(--felt-deep);
+    color: var(--wheel-ivory);
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: inset 0 1px 3px #00000080;
+    transition:
+      border-color 160ms var(--ease-out),
+      background 160ms var(--ease-out);
+  }
+  .chance-native-picker select:hover:not(:disabled) {
+    border-color: var(--brass-bright);
+    background: #0f2a22;
+  }
+  .chance-native-picker select:focus-visible {
+    outline-offset: 2px;
+    outline-color: var(--brass-bright);
+  }
+  .chance-native-picker > svg {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
   .chance-stake {
     display: flex;
     flex-wrap: wrap;
@@ -423,61 +981,180 @@
     justify-content: space-between;
     gap: 5px 8px;
     font-size: 0.85rem;
-    font-weight: 700;
-  }
-  .chance-number-select select,
-  .chance-stake input {
-    color: var(--color-ink);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    font-size: 16px;
-    min-height: 44px;
-    padding: 5px 9px;
-  }
-  .chance-native-picker {
-    position: relative;
-    max-width: 100%;
-  }
-  .chance-native-picker select {
-    appearance: none;
-    height: 44px;
-    min-height: 44px;
-    max-width: 100%;
-    padding-inline-end: 30px;
-  }
-  .chance-native-picker > svg {
-    position: absolute;
-    top: 50%;
-    right: 9px;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-  .chance-stake input {
-    width: 76px;
+    font-weight: 800;
   }
   .chance-stake small {
     color: var(--color-ink-muted);
     font-size: 0.76rem;
-    font-weight: 550;
+    font-weight: 500;
     margin-inline-start: 4px;
   }
+  .chance-stake input {
+    width: 88px;
+    min-height: 46px;
+    padding: 5px 10px;
+    border: 1px solid var(--chance-edge);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--color-ink);
+    font-size: 17px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    box-shadow: inset 0 1px 2px #12291b1f;
+    transition:
+      border-color 160ms var(--ease-out),
+      box-shadow 160ms var(--ease-out),
+      background 160ms var(--ease-out);
+  }
+  .chance-stake input:hover:not(:disabled) {
+    border-color: var(--color-ink);
+  }
+  .chance-stake input:focus-visible {
+    border-color: var(--color-sage);
+    outline-offset: 2px;
+  }
+  .chance-stake input[aria-invalid='true'] {
+    border-color: var(--chance-loss);
+    background: #fdf4f2;
+    box-shadow: inset 0 0 0 1px var(--chance-loss);
+  }
+  .chance-stake input:disabled {
+    background: var(--color-surface-muted);
+    color: var(--color-ink-muted);
+    box-shadow: none;
+  }
+  /* Stake chips: round, striped at the edge and as thick as a short stack. */
   .chance-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    padding: 3px 2px 7px;
+  }
+  .chance-dock .chance-presets .button.chance-chip {
+    --chip-size: 48px;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    font-size: 15px;
+    color: var(--chip-ink);
+    box-shadow:
+      inset 0 0 0 1px #0000003d,
+      inset 0 1px 0 #ffffff80,
+      0 1px 0 var(--chip-side),
+      0 2px 0 var(--chip-side-deep),
+      0 3px 0 var(--chip-side),
+      0 4px 0 var(--chip-side-deep),
+      0 7px 8px #12291b47;
+    transition:
+      transform 160ms var(--ease-out),
+      box-shadow 160ms var(--ease-out),
+      opacity 160ms var(--ease-out),
+      filter 160ms var(--ease-out);
+  }
+  .chance-dock .chance-presets .button.chance-chip:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 0 0 1px #0000003d,
+      inset 0 1px 0 #ffffff80,
+      0 1px 0 var(--chip-side),
+      0 2px 0 var(--chip-side-deep),
+      0 3px 0 var(--chip-side),
+      0 4px 0 var(--chip-side-deep),
+      0 11px 14px #12291b52;
+  }
+  .chance-dock .chance-presets .button.chance-chip:active:not(:disabled) {
+    transform: translateY(3px);
+    box-shadow:
+      inset 0 0 0 1px #0000003d,
+      inset 0 1px 0 #ffffff80,
+      0 1px 0 var(--chip-side-deep),
+      0 2px 3px #12291b52;
+  }
+  /* The chosen stake stands proud of the row inside a dark ring. */
+  .chance-dock .chance-presets .button.chance-chip[aria-pressed='true'] {
+    transform: translateY(-3px);
+    box-shadow:
+      inset 0 0 0 1px #0000003d,
+      inset 0 1px 0 #ffffff80,
+      0 0 0 2px var(--color-surface),
+      0 0 0 4px var(--color-pine),
+      0 6px 0 -1px var(--chip-side-deep),
+      0 13px 14px #12291b59;
+  }
+  /* Unavailable: greyed and lying flat, with its numeral still at 4.5:1 or more. */
+  .chance-dock .chance-presets .button.chance-chip:disabled {
+    opacity: 0.9;
+    filter: grayscale(0.9);
+    box-shadow:
+      inset 0 0 0 1px #0000003d,
+      0 1px 0 var(--chip-side-deep);
+    transform: none;
+  }
+  /* The bet slip: what this stake returns, typeset as figures. */
+  .chance-slip {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-    gap: 5px;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 1px;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-border);
+    font-variant-numeric: tabular-nums;
+  }
+  .chance-slip > div {
+    display: grid;
+    gap: 3px;
+    padding: 8px 11px 9px;
+    background: var(--chance-wash);
+  }
+  .chance-slip dt {
+    color: #5a5e54;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  .chance-slip dd {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .chance-slip [data-gain] > dd {
+    color: #2a6341;
   }
   .chance-wager-note {
     margin: 0;
     font-size: 0.82rem;
     line-height: 1.4;
   }
+  /* The slip shows a valid wager; the sentence stays for screen readers. */
+  .chance-wager-note[data-valid] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .chance-stake:has([aria-invalid='true']) ~ .chance-wager-note {
+    color: var(--chance-loss);
+    font-weight: 600;
+  }
   .chance-spin {
     width: 100%;
+    min-height: 50px;
+    font-size: 15px;
   }
+
+  /* ---------- Payouts, odds and history ---------- */
   .chance-details {
     min-width: 0;
+    overflow: hidden;
     border: 1px solid var(--color-border);
     border-radius: 12px;
     color: var(--color-ink);
@@ -485,16 +1162,53 @@
     font-size: 0.86rem;
   }
   .chance-details > summary {
+    display: flex;
+    align-items: center;
+    gap: 9px;
     cursor: pointer;
-    min-height: 44px;
+    min-height: 46px;
     padding: 12px 14px;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 20px;
+    list-style: none;
+    transition: background 160ms var(--ease-out);
+  }
+  .chance-details > summary::-webkit-details-marker {
+    display: none;
+  }
+  .chance-details > summary::before {
+    content: '';
+    flex: none;
+    width: 7px;
+    height: 7px;
+    margin-inline: 2px 3px;
+    border: solid var(--color-ink-muted);
+    border-width: 0 2px 2px 0;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 200ms var(--ease-out);
+  }
+  .chance-details[open] > summary::before {
+    transform: translateY(1px) rotate(225deg);
+  }
+  .chance-details > summary:hover {
+    background: var(--chance-wash);
+  }
+  .chance-details > summary:active {
+    background: var(--color-surface-muted);
+  }
+  .chance-details > summary:focus-visible {
+    outline-offset: -3px;
   }
   .chance-details > summary span {
-    margin-inline-start: 4px;
-    color: var(--color-ink-muted);
-    font-size: 0.78rem;
+    min-width: 22px;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: var(--color-surface-muted);
+    color: #4b5148;
+    font-size: 0.74rem;
+    font-weight: 800;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
   }
   .chance-details > p,
   .chance-history ol {
@@ -513,33 +1227,76 @@
   .chance-details td {
     text-align: right;
     border-bottom: 1px solid var(--color-border);
-    padding: 6px 3px;
+    padding: 7px 3px;
+  }
+  .chance-details thead th {
+    color: var(--color-ink-muted);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .chance-details tbody th {
+    font-weight: 600;
+  }
+  .chance-details tbody td:nth-child(2) {
+    font-weight: 800;
   }
   .chance-details th:first-child {
     text-align: left;
+  }
+  .chance-payline-marks {
+    display: inline-flex;
+    justify-content: flex-end;
+    gap: 1px;
+    width: 52px;
+    margin-inline-end: 9px;
+    vertical-align: middle;
+  }
+  .chance-payline-marks svg {
+    width: 16px;
+    height: 16px;
+    filter: none;
+  }
+  .chance-payline-marks .slot-seven {
+    width: 16px;
+    font-size: 17px;
+    text-align: center;
+    text-shadow: none;
   }
   .chance-history ol {
     list-style: none;
   }
   .chance-history li {
-    padding: 8px 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3px 10px;
+    align-items: center;
+    padding: 9px 0;
     border-top: 1px solid var(--color-border);
+  }
+  .chance-history li:has(> .chance-token) {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .chance-history li > .chance-token {
+    grid-row: span 2;
   }
   .chance-history-heading {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 4px 9px;
+    font-variant-numeric: tabular-nums;
   }
   .chance-history li p {
-    margin: 4px 0 0;
+    margin: 0;
     color: var(--color-ink-muted);
     font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
   }
-  .chance-table {
-    container: chance-table / inline-size;
-  }
-  @container chance-table (min-width:580px) {
+
+  /* ---------- Sizes ---------- */
+  @container chance-table (min-width: 580px) {
     .chance-play {
       grid-template-columns: minmax(240px, 1.05fr) minmax(260px, 1fr);
     }
@@ -547,15 +1304,266 @@
       grid-template-columns: minmax(0, 1fr);
     }
     .slot-reel {
-      min-height: 150px;
+      min-height: 168px;
+    }
+    .slot-reel .slot-face-name {
+      bottom: 12px;
+      font-size: 0.8rem;
     }
   }
-  @container chance-table (max-width:579px) {
+  @container chance-table (max-width: 579px) {
     .roulette-wheel {
-      width: min(100%, 210px);
+      width: min(100%, 244px);
     }
     .roulette-felt {
-      padding: 12px;
+      padding: 16px 12px 18px;
+    }
+  }
+  @container chance-table (max-width: 419px) {
+    .chance-dock .chance-outsides .button {
+      padding-inline: 8px 5px;
+    }
+    .chance-bet-name {
+      gap: 6px;
+    }
+  }
+  /* Too narrow for three bets and their spots abreast: the pairs sit side by side. */
+  @container chance-table (max-width: 339px) {
+    .chance-outsides {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .chance-presets {
+      gap: 6px 9px;
+    }
+  }
+  @container chance-table (max-width: 299px) {
+    /* The count is still written out beside them. */
+    .chance-pips {
+      display: none;
+    }
+  }
+
+  /* ---------- Motion ---------- */
+  /*
+   * Nothing here runs before the server answers. While a spin is pending the wheel idles
+   * and a ball circles the track, or the reels blur: no pocket or symbol is implied.
+   * Once the result is on the page, the wheel turns to it in 920ms (as before) with the
+   * ball running the other way and dropping in, and the reels stop one by one inside
+   * 320ms (as before). Spin is never held back by any of it.
+   */
+  @media (prefers-reduced-motion: no-preference) {
+    .roulette-rotor {
+      transition: transform 920ms cubic-bezier(0.18, 0.75, 0.18, 1);
+    }
+    .roulette-felt[data-pending] .roulette-spin {
+      animation: chance-wheel-idle 2.8s linear infinite;
+    }
+    .roulette-felt[data-pending] .roulette-orbit {
+      display: block;
+      animation: chance-wheel-idle 0.85s linear infinite reverse;
+    }
+    .roulette-felt[data-pending] .roulette-ball-arm,
+    .roulette-felt[data-pending] .roulette-number[data-hit]::after,
+    .slot-machine[data-pending] .slot-face,
+    .slot-machine[data-pending] .slot-reel[data-win]::before {
+      opacity: 0;
+    }
+    .roulette-felt[data-pending] .roulette-number[data-hit] {
+      color: var(--wheel-ivory);
+    }
+    .roulette-felt[data-landed] .roulette-ball-arm {
+      animation: chance-ball-run 920ms cubic-bezier(0.18, 0.75, 0.18, 1) backwards;
+    }
+    .roulette-felt[data-landed] .roulette-pointer {
+      animation: chance-ball-drop 920ms linear backwards;
+    }
+    /* Reel blur: a strip of streaks sliding by one period, so the loop never jumps. */
+    .slot-machine[data-pending] .slot-reel::after,
+    .slot-machine[data-landed] .slot-reel:not(:first-child)::after {
+      content: '';
+      position: absolute;
+      inset: -42px 0 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0 11px,
+        #8f8370b3 15px,
+        transparent 21px
+      );
+    }
+    .slot-machine[data-pending] .slot-reel::after {
+      animation: chance-reel-travel 0.24s linear infinite;
+    }
+    .slot-machine[data-pending] .slot-reel:nth-child(2)::after {
+      animation-duration: 0.28s;
+    }
+    .slot-machine[data-pending] .slot-reel:nth-child(3)::after {
+      animation-duration: 0.2s;
+    }
+    /* Stops, left to right: 0, 70 and 140ms, each 180ms long. */
+    .slot-machine[data-landed] .slot-reel {
+      --stop: 0ms;
+    }
+    .slot-machine[data-landed] .slot-reel:nth-child(2) {
+      --stop: 70ms;
+    }
+    .slot-machine[data-landed] .slot-reel:nth-child(3) {
+      --stop: 140ms;
+    }
+    .slot-machine[data-landed] .slot-face[data-symbol] > :first-child {
+      animation: chance-reel-land 180ms var(--ease-out) var(--stop) backwards;
+    }
+    .slot-machine[data-landed] .slot-face-name {
+      animation: chance-fade-in 120ms linear calc(var(--stop) + 60ms) backwards;
+    }
+    .slot-machine[data-landed]:not([data-pending]) .slot-reel:nth-child(2)::after {
+      animation: chance-reel-coast 70ms linear forwards;
+    }
+    .slot-machine[data-landed]:not([data-pending]) .slot-reel:nth-child(3)::after {
+      animation: chance-reel-coast 140ms linear forwards;
+    }
+    /* A win: light travels the payline once, after the reels have stopped. */
+    .slot-machine[data-landed] .slot-payline[data-win]::after {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 34%;
+      background: linear-gradient(100deg, transparent, #fff8dcd9 50%, transparent);
+      opacity: 0;
+      animation: chance-payline-sweep 520ms var(--ease-out) 300ms;
+    }
+    .slot-machine[data-landed] .slot-reel[data-win]::before {
+      animation: chance-fade-in 200ms var(--ease-out) 300ms backwards;
+    }
+    .slot-machine[data-landed] .slot-reel[data-win] > .slot-face > :first-child {
+      animation:
+        chance-reel-land 180ms var(--ease-out) var(--stop) backwards,
+        chance-pop 300ms var(--ease-out) 320ms;
+    }
+    /* A chip slides onto its bet spot. */
+    .chance-spot > .chance-chip {
+      animation: chance-chip-place 240ms var(--ease-out);
+    }
+    /* Winnings come back: the balance ticks and the brass chips stack up. */
+    .chance-stage[data-landed] .chance-balance > b {
+      animation: chance-pop 280ms var(--ease-out);
+    }
+    .chance-stage[data-landed] .chance-winnings > i {
+      animation: chance-chip-return 260ms var(--ease-out) backwards;
+    }
+    .chance-stage[data-landed] .chance-winnings > i:nth-child(2) {
+      animation-delay: 70ms;
+    }
+    .chance-stage[data-landed] .chance-winnings > i:nth-child(1) {
+      animation-delay: 140ms;
+    }
+    .chance-stage[data-landed] .chance-net {
+      animation: chance-fade-in 220ms var(--ease-out);
+    }
+    .roulette-status {
+      animation: chance-fade-in 160ms var(--ease-out);
+    }
+    @keyframes chance-wheel-idle {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    /* The arm starts ahead of its pocket by the wheel's own turn plus the ball's run. */
+    @keyframes chance-ball-run {
+      from {
+        transform: rotate(calc(var(--angle) + var(--ball-lead)));
+      }
+    }
+    /* On the track, down the slope, one hop off a fret, then at rest. */
+    @keyframes chance-ball-drop {
+      0%,
+      38% {
+        transform: translateY(-324%);
+      }
+      60% {
+        transform: translateY(0);
+      }
+      71% {
+        transform: translateY(-70%);
+      }
+      83% {
+        transform: translateY(0);
+      }
+      91% {
+        transform: translateY(-16%);
+      }
+    }
+    @keyframes chance-reel-travel {
+      to {
+        transform: translateY(42px);
+      }
+    }
+    @keyframes chance-reel-coast {
+      from {
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+        transform: translateY(21px);
+      }
+    }
+    @keyframes chance-reel-land {
+      from {
+        transform: translateY(-90%);
+        opacity: 0;
+      }
+      70% {
+        transform: translateY(5%);
+        opacity: 1;
+      }
+    }
+    @keyframes chance-payline-sweep {
+      from {
+        opacity: 1;
+        transform: translateX(-100%) skewX(-14deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(300%) skewX(-14deg);
+      }
+    }
+    @keyframes chance-pop {
+      40% {
+        transform: scale(1.14);
+      }
+    }
+    @keyframes chance-fade-in {
+      from {
+        opacity: 0;
+      }
+    }
+    @keyframes chance-chip-place {
+      from {
+        opacity: 0;
+        transform: translateY(-14px) scale(1.25);
+      }
+    }
+    @keyframes chance-chip-return {
+      from {
+        opacity: 0;
+        transform: translateY(-16px);
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .chance-table *,
+    .chance-table *::before,
+    .chance-table *::after {
+      transition: none;
+    }
+  }
+  @media (forced-colors: active) {
+    .chance-dock [aria-pressed='true'],
+    .chance-number-select[data-chosen] {
+      outline: 2px solid Highlight;
+      outline-offset: -2px;
     }
   }
 }

@@ -58,6 +58,17 @@ Yellow-card ranks, corners and captions use measured contrasting ink.
 
 Both Uno tables offer a named play beside Draw when there is exactly one complete card play. Wild colour and swap-target choices stay explicit.
 
+Both Uno tables read the room's "Stack draw cards" rule from the projection
+(`detail.stacking`, `detail.stack_floor`; `stackingRule` falls back to the saved
+room settings, including the retired `stack_draw_two`, for older projections). A
+pending draw says "draw 6 or stack" and offers "Stack <card>" first only when the
+room stacks; otherwise the dock is the single "Draw N" with "then your turn
+passes". A card just drawn that fits is outlined, leads the hand and is the first
+dock button ("Play Red 9", then Pass in classic). A seat caught without UNO
+carries a "Misses next turn" chip (`detail.missing_turn`) plus a felt line, and the
+event line says "X was caught without UNO and misses this turn." when the turn
+passes over them. `cardConsequence` names who will really play next.
+
 Uno and Uno No Mercy retain the selected card while a move is saving or fails.
 The tab's room/match/version-scoped draft also survives refresh, so a failed
 same-version move can be retried deliberately. A saved version expires the

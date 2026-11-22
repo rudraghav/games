@@ -252,11 +252,33 @@ test('split blackjack hands have explicit navigation while the table and control
   await page.getByRole('combobox', { name: 'Game', exact: true }).selectOption('blackjack');
   await page.getByLabel('Mid-game scenario').selectOption('blackjack-7-31-11');
   await page.getByText('Recorded legal continuation', { exact: true }).click();
+  // The row reserved for the arrows must arrive in the same frame as the arrows,
+  // also under reduced motion; a frame later it would move the cards and the dock.
+  const rail = page.locator('.casino-own-cards .horizontal-rail');
+  const height = (node: Element) => node.getBoundingClientRect().height;
+  const arrowsAppear = await rail.evaluateHandle((node) => {
+    const seen: { height?: number } = {};
+    new MutationObserver(() => {
+      if (node.getAttribute('data-overflow') === 'true')
+        seen.height ??= node.getBoundingClientRect().height;
+    }).observe(node, { attributes: true, attributeFilter: ['data-overflow'] });
+    return seen;
+  });
+  const oneHand = await rail.evaluate(height);
   await page.getByRole('button', { name: 'Apply recorded legal move' }).click();
   await expect(page.locator('.blackjack-hand')).toHaveCount(2);
   const second = page.locator('.blackjack-hand').nth(1);
   const next = page.getByRole('button', { name: 'Next blackjack hands', exact: true });
   await expect(next).toBeEnabled();
+  await page.evaluate(
+    () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+  );
+  const settled = await rail.evaluate(height);
+  expect(settled, 'the arrows have their own row below the hands').toBeGreaterThan(oneHand + 43);
+  expect(
+    Math.abs((await arrowsAppear.jsonValue()).height! - settled),
+    'the arrows and their row arrive together',
+  ).toBeLessThanOrEqual(2);
   await steady(page, ['.casino-felt', '.casino-own-cards', '.casino-decision-shell'], () =>
     next.click(),
   );

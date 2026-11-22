@@ -2,16 +2,21 @@
 import { useId, useState } from 'react';
 import { ArrowDown, Sparkles } from 'lucide-react';
 import { TarotCard } from '@games/ui';
-import type { ReadingStyle, ReadingView } from '@games/api-client';
+import type { ReadingStyle } from '@games/api-client';
 import { tarotCharacter } from '@games/api-client/characters';
 import { TarotCharacterImage } from './TarotCharacterImage';
 import { AstrologyReading } from './AstrologyReading';
 import { TarotCardDetail, type DetailCard } from './TarotCardDetail';
 import { ReadingShare } from './ReadingShare';
-import { readingAsText } from './reading-text';
+import { asksOnly, readingAsText } from './reading-text';
 import { positionMeaning } from './spread';
-
-type Reading = NonNullable<ReadingView['reading']>;
+import {
+  nameWithOrientation,
+  orientationLabel,
+  orientationOf,
+  type Orientation,
+  type Reading,
+} from './orientation';
 
 function characterArtwork(name: string, source: string) {
   const artwork = tarotCharacter(name, source);
@@ -34,7 +39,18 @@ export function readableCredit(credit: string) {
   });
 }
 
-function CharacterConnections({ card, fun }: { card: Reading['cards'][number]; fun: boolean }) {
+function CharacterConnections({
+  card,
+  fun,
+  asked,
+}: {
+  card: Reading['cards'][number];
+  fun: boolean;
+  /** Whether a question was asked: the bridge speaks to it, or to the spread in general. */
+  asked: boolean;
+}) {
+  // Fun: the one generated line about the portrait. The figure, scene and move stay editorial.
+  const bridge = fun && card.characters?.length ? card.pop_culture?.trim() : undefined;
   return card.characters?.length ? (
     <div className="tarot-character-connections">
       <h4>{fun ? 'How it could play out' : 'Your connections'}</h4>
@@ -62,6 +78,14 @@ function CharacterConnections({ card, fun }: { card: Reading['cards'][number]; f
               </div>
               <div className="tarot-character-copy">
                 {move ? <p>{move}</p> : null}
+                {bridge ? (
+                  <div className="tarot-figure-bridge">
+                    <h5>
+                      {asked ? 'What this means for your question' : 'What this could mean for you'}
+                    </h5>
+                    <p>{bridge}</p>
+                  </div>
+                ) : null}
                 {!fun && character.evidence ? (
                   <details className="tarot-character-evidence">
                     <summary aria-label={`Background for ${character.name}`}>Background</summary>
@@ -80,6 +104,82 @@ function CharacterConnections({ card, fun }: { card: Reading['cards'][number]; f
       <p>{card.pop_culture}</p>
     </div>
   ) : null;
+}
+
+/**
+ * One card, in reading order: what it says about the question, the figure with what
+ * its move means for the question, then the image. A Fun reading saved before the
+ * bridge keeps its original order and labels.
+ */
+function CardSections({
+  card,
+  fun,
+  asked,
+  meaning,
+  classicView,
+}: {
+  card: Reading['cards'][number];
+  fun: boolean;
+  asked: boolean;
+  /** The card's own meaning, shown in the Classic view of a Fun reading. */
+  meaning?: string;
+  classicView: boolean;
+}) {
+  const twist = classicView ? undefined : card.quirky_interpretation;
+  const original = fun && !card.pop_culture;
+  const figure =
+    fun || !classicView ? <CharacterConnections card={card} fun={fun} asked={asked} /> : null;
+  const says = (
+    <section aria-labelledby={`${card.card_id}-grounded`}>
+      <h4 id={`${card.card_id}-grounded`}>
+        {original || asksOnly(card.interpretation)
+          ? 'The grounded read'
+          : asked
+            ? 'What this card says about your question'
+            : 'What this card says'}
+      </h4>
+      <p>{card.interpretation}</p>
+    </section>
+  );
+  const plotTwist = twist ? (
+    <section className="tarot-quirky-read" aria-labelledby={`${card.card_id}-quirky`}>
+      <h4 id={`${card.card_id}-quirky`}>
+        <Sparkles size={16} aria-hidden="true" /> The plot twist
+      </h4>
+      <p>{twist}</p>
+    </section>
+  ) : null;
+  const cardMeaning = meaning ? (
+    <section aria-labelledby={`${card.card_id}-meaning`}>
+      <h4 id={`${card.card_id}-meaning`}>Card meaning</h4>
+      <p>{meaning}</p>
+    </section>
+  ) : null;
+  if (original)
+    return (
+      <>
+        {figure}
+        <div className="tarot-perspectives" data-variant={meaning || twist ? 'split' : 'single'}>
+          {cardMeaning}
+          {says}
+          {plotTwist}
+        </div>
+      </>
+    );
+  return (
+    <>
+      <div className="tarot-perspectives" data-variant={meaning ? 'split' : 'single'}>
+        {cardMeaning}
+        {says}
+      </div>
+      {figure}
+      {plotTwist ? (
+        <div className="tarot-perspectives" data-variant="single">
+          {plotTwist}
+        </div>
+      ) : null}
+    </>
+  );
 }
 
 /** A quiet placeholder with the reading's shape while a saved view is being opened. */
@@ -116,7 +216,8 @@ export function TarotReading({
   reading: Reading;
   readingStyle?: ReadingStyle;
   cardMeanings?: boolean;
-  cards: readonly { id: string; label: string; subtitle?: string }[];
+  /** The drawn cards. `subtitle` is the meaning for the orientation the card was drawn in. */
+  cards: readonly { id: string; label: string; subtitle?: string; orientation?: Orientation }[];
   imageLoader?: (path: string) => string;
   /** Open with "In short": the one-sentence synthesis, the three cards and the next step. */
   summary?: boolean;
@@ -128,7 +229,11 @@ export function TarotReading({
   const [detail, setDetail] = useState<DetailCard | null>(null);
   const summaryId = useId();
   const fun = readingStyle === 'fun';
+  const asked = !!question?.trim();
   const deckCards = new Map(cards.map((card) => [card.id, card]));
+  // The orientation saved with the reading; an older section falls back to the drawn card.
+  const drawnAs = (section: Reading['cards'][number]): Orientation =>
+    section.orientation ?? orientationOf(deckCards.get(section.card_id));
   const portraits = [
     ...new Map(
       reading.cards
@@ -156,7 +261,12 @@ export function TarotReading({
               <li key={card.card_id}>
                 <a href={`#reading-${card.card_id}`}>
                   <span>{card.position}</span>
-                  <strong>{deckCards.get(card.card_id)?.label || card.title}</strong>
+                  <strong>
+                    {deckCards.get(card.card_id)?.label || card.title}
+                    {drawnAs(card) === 'reversed' ? (
+                      <span className="tarot-summary-reversed"> · Reversed</span>
+                    ) : null}
+                  </strong>
                   <ArrowDown size={14} aria-hidden="true" />
                 </a>
               </li>
@@ -173,10 +283,15 @@ export function TarotReading({
                 id={card.card_id}
                 name={deckCards.get(card.card_id)?.label}
                 label={`View ${deckCards.get(card.card_id)?.label} card`}
+                reversed={drawnAs(card) === 'reversed'}
                 tip="Open the full card"
                 imageLoader={imageLoader}
                 onClick={() =>
-                  setDetail({ ...deckCards.get(card.card_id)!, position: card.position })
+                  setDetail({
+                    ...deckCards.get(card.card_id)!,
+                    position: card.position,
+                    orientation: drawnAs(card),
+                  })
                 }
               />
             ) : null}
@@ -185,50 +300,30 @@ export function TarotReading({
                 {card.position}
                 {card.title.toLocaleLowerCase() !==
                 deckCards.get(card.card_id)?.label.toLocaleLowerCase()
-                  ? ` · ${deckCards.get(card.card_id)?.label || card.card_id}`
-                  : ''}
+                  ? ` · ${nameWithOrientation(deckCards.get(card.card_id)?.label || card.card_id, drawnAs(card))}`
+                  : drawnAs(card) === 'reversed'
+                    ? ' · Reversed'
+                    : ''}
               </span>
               <h3>{card.title}</h3>
               {positionMeaning(card.position) ? (
-                <p className="tarot-position-meaning">
-                  <span>Upright</span>
+                <p className="tarot-position-meaning" data-orientation={drawnAs(card)}>
+                  <span>{orientationLabel[drawnAs(card)]}</span>
                   {positionMeaning(card.position)}
                 </p>
               ) : null}
             </div>
           </header>
-          {fun ? <CharacterConnections card={card} fun /> : null}
-          <div
-            className="tarot-perspectives"
-            data-variant={
-              (cardMeanings ? deckCards.get(card.card_id)?.subtitle : card.quirky_interpretation)
-                ? 'split'
-                : 'single'
-            }
-          >
-            {cardMeanings && deckCards.get(card.card_id)?.subtitle ? (
-              <section aria-labelledby={`${card.card_id}-meaning`}>
-                <h4 id={`${card.card_id}-meaning`}>Card meaning</h4>
-                <p>{deckCards.get(card.card_id)?.subtitle}</p>
-              </section>
-            ) : null}
-            <section aria-labelledby={`${card.card_id}-grounded`}>
-              <h4 id={`${card.card_id}-grounded`}>The grounded read</h4>
-              <p>{card.interpretation}</p>
-            </section>
-            {!cardMeanings && card.quirky_interpretation ? (
-              <section className="tarot-quirky-read" aria-labelledby={`${card.card_id}-quirky`}>
-                <h4 id={`${card.card_id}-quirky`}>
-                  <Sparkles size={16} aria-hidden="true" /> The plot twist
-                </h4>
-                <p>{card.quirky_interpretation}</p>
-              </section>
-            ) : null}
-          </div>
-          {!fun && !cardMeanings ? <CharacterConnections card={card} fun={false} /> : null}
+          <CardSections
+            card={card}
+            fun={fun}
+            asked={asked}
+            meaning={cardMeanings ? deckCards.get(card.card_id)?.subtitle : undefined}
+            classicView={cardMeanings}
+          />
         </article>
       ))}
-      {reading.astrology ? <AstrologyReading astrology={reading.astrology} /> : null}
+      {reading.astrology ? <AstrologyReading astrology={reading.astrology} asked={asked} /> : null}
       <div className="tarot-next-step">
         <span className="eyebrow">Your next small move</span>
         <p>{reading.next_step}</p>

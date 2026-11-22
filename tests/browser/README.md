@@ -191,3 +191,11 @@ The retained receipt records that disclosure; it does not itself prove which
 provider completed a request. Release-scoped server logs establish that separately.
 
 `deal-retry.spec.ts` interrupts one card submission before it reaches the server, reloads the selected move and commits it once in each Deal edition. Use `GAMES_MARKET_DEAL_LIVE=1` with an explicit `GAMES_TEST_URL` for hosted sessions. `deal-payment-panel.spec.ts` covers linked-building payments in public engine replays. The Gem Market case in `expansion.spec.ts` plays a reservation and mandatory token return across two private seats.
+
+Rooms open under their game's named URL (`/games/<game>/rooms/<id>`). A spec
+that changes a room's game through the API and then reloads the old link must
+wait for the named URL before using the table: the redirect remounts the room,
+which closes an open dialog and drops an unsent step such as Azul's queued
+placement. `stable-game-tables.spec.ts` also checks that the row reserved for
+the blackjack hand arrows arrives in the same frame as the arrows under reduced
+motion, by measuring the rail when `data-overflow` changes.

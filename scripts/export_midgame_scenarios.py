@@ -22,6 +22,16 @@ INTERESTING = {"pay", "no", "choose", "keep", "give", "settle_debt", "rearrange"
                "swap", "reveal", "stop", "last_chance", "crab_card", "steal", "place", "freeze", "flip_three"}
 
 
+CAUGHT = ["catch a missed UNO", "a seat misses its next turn"]
+DRAWN = "play the card just drawn"
+UNO_RULES = [
+    ("uno", 4, 1, True, ["stack on a draw penalty", "draw the penalty", DRAWN, *CAUGHT]),
+    ("uno", 2, 1, False, ["draw the penalty", DRAWN, *CAUGHT]),
+    ("uno-no-mercy", 4, 2, True, ["stack on a draw penalty", "draw the penalty", DRAWN, *CAUGHT]),
+    ("uno-no-mercy", 3, 2, False, ["draw the penalty", DRAWN, *CAUGHT]),
+]
+
+
 def inventory(game, s):
     """Physical-card inventory, independent of each engine's projection."""
     if game.startswith("uno") or game.startswith("deal"):
@@ -124,11 +134,11 @@ def project(engine, state, viewer, players):
     return view
 
 
-def room(engine, state, viewer, players, key, step):
+def room(engine, state, viewer, players, key, step, settings=None):
     return RoomView(
         id=str(uuid5(NAMESPACE_DNS, f"midgame-room-{key}")), name="Synthetic legal mid-game",
         code="MIDGAME1", game_id=engine.manifest.id, owner_id=players[0], capacity=len(players),
-        settings={}, status="finished" if state["phase"] == "finished" else "playing", revision=step,
+        settings=settings or {}, status="finished" if state["phase"] == "finished" else "playing", revision=step,
         match_id=str(uuid5(NAMESPACE_DNS, f"midgame-match-{key}")), match_version=step,
         paused=False, missing_players=[], messages=[],
         members=[MemberView(id=p, name=NAMES[i], avatar=i % 8, ready=True, seated=True,
@@ -340,6 +350,65 @@ def generate():
             state = after
         raise AssertionError(f"Crowded legal trajectory failed its bounded target: {game}/{seats}/{seed}")
 
+    def uno_rules(game, seats, seed, stacking, wanted):
+        """Uno's stacking toggle and missed turns, from each seat that has to act on them.
+
+        The bots play their ordinary public policy; every other time someone
+        could be caught, the catcher is quicker than the UNO call.
+        """
+        engine = ENGINES[game]
+        players = [str(uuid5(NAMESPACE_DNS, f"midgame-player-{i}")) for i in range(seats)]
+        settings = {s.key: s.default for s in engine.manifest.settings} | {"stack_draws": stacking}
+        state = engine.setup(players, settings, seed=seed)
+        initial = inventory(game, state)
+        memory = {p: {"seed": f"rules:{seed}:{p}"} for p in players}
+        found, chances = {}, 0
+        for step in range(1, 3001):
+            if state["phase"] == "finished" or len(found) == len(wanted):
+                break
+            actor = actor_for(engine, state, players)
+            catchers = [p for p in players
+                        if any(o.action.type == "catch_uno" for o in engine.legal_actions(state, p))]
+            if catchers:
+                chances += 1
+                actor = catchers[0] if chances % 2 else actor
+            view = project(engine, state, actor, players)
+            decision = choose_action(view, actor, memory[actor])
+            memory[actor] = decision.memory
+            action = decision.action
+            after = engine.apply_action(state, actor, action)
+            assert inventory(game, after) == initial, f"Uno rules inventory drift: {game}/{seed}/{step}"
+            detail = view.detail
+            mine = view.current_player == actor
+            kind = None
+            if action.type == "catch_uno":
+                kind = "catch a missed UNO"
+            elif mine and detail["penalty"] and action.type == "play":
+                kind = "stack on a draw penalty"
+            elif mine and detail["penalty"] and action.type == "draw" and len(view.hand) <= 12 and any(
+                    card.value.startswith("+") for card in view.hand):
+                kind = "draw the penalty"
+            elif mine and action.type == "play" and action.card in detail["you_drew"] and len(view.hand) <= 12:
+                kind = "play the card just drawn"
+            elif mine and detail["missing_turn"] and action.type == "play" and not detail["penalty"]:
+                kind = "a seat misses its next turn"
+            if kind in wanted and kind not in found:
+                key = f"{game}-{seats}-{seed}-{step}-rules"
+                found[kind] = key
+                cases.append({
+                    "id": key, "game": game, "seats": seats, "seed": seed, "step": step,
+                    "label": f"{engine.manifest.name} · {seats} players · stacking {'on' if stacking else 'off'} · {kind}",
+                    "selfId": actor, "focusCard": action.card if any(card.id == action.card for card in view.hand) else None,
+                    "reachedBy": "legal engine actions from setup; public bot policy, with every other missed UNO caught",
+                    "room": room(engine, state, actor, players, key, step, settings),
+                    "next": {"action": action.model_dump(mode="json"), "game": project(engine, after, actor, players).model_dump(mode="json")},
+                })
+            state = after
+        assert set(found) == set(wanted), f"Uno rules scenario missing: {game}/{seats}/{seed}: {sorted(set(wanted) - set(found))}"
+        runs.append({"game": game, "seats": seats, "seed": seed, "supplemental": True, "stress": False,
+                     "steps": step, "stacking": stacking, "captured": len(found), "capturedRules": sorted(found),
+                     "finished": state["phase"] == "finished", "physicalInventoryChecked": True})
+
     for game, engine in ENGINES.items():
         for maximum in (False, True):
             seats = engine.manifest.max_players if maximum else engine.manifest.min_players
@@ -363,6 +432,10 @@ def generate():
     for game, seats, seed, minimum in [("blackjack", 1, 11, 5), ("blackjack", 7, 5, 5),
                                        ("shithead", 2, 1, 20), ("shithead", 5, 1, 20)]:
         crowded_cards(game, seats, seed, minimum)
+    # Both Uno editions under each "Stack draw cards" choice. Seeds found by a bounded
+    # 1..60 search with the same public-only policy, then pinned.
+    for game, seats, seed, stacking, wanted in UNO_RULES:
+        uno_rules(game, seats, seed, stacking, wanted)
     coverage = {"kind": "Legally reached engine projections, not saved API rooms", "games": len(ENGINES),
                 "scenarios": len(cases), "runs": runs,
                 "limits": ["Only generated legal trajectories are claimed; no guarantee that every rare action appears.",

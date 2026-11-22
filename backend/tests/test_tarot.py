@@ -8,6 +8,14 @@ from app.games.tarot.engine import TarotEngine
 from app.games.tarot.reading import Reading, validate_reading
 
 
+def stored_reading(card_ids, orientations=None):
+    """The example as the server saves it: each section stamped with its drawn orientation."""
+    reading = example_reading(card_ids)
+    for section in reading["cards"]:
+        section["orientation"] = (orientations or {}).get(section["card_id"], "upright")
+    return reading
+
+
 def test_full_deck_and_irreversible_unique_choices():
     engine = TarotEngine()
     assert len(DECK) == len({card.id for card in DECK}) == 78
@@ -47,24 +55,28 @@ def example_reading(card_ids):
     ]
     return {
         "title": "A fresh chapter",
-        "introduction": "A reflection on the three cards you chose.",
+        "introduction": ("You are asking how to begin something new without dropping what already works. "
+                         "Together the first and last cards suggest a small, deliberate start may serve better than a leap."),
         "cards": [
             {
                 "card_id": card_id,
                 "position": position,
                 "title": "Try a new angle",
-                "interpretation": "Make a little room for an intentional next step.",
+                "interpretation": ("In this position the card points to making a little room for an intentional next step. "
+                                   "That could mean choosing one part of the question to begin with and letting the rest wait a week."),
                 "pop_culture": None,
-                "quirky_interpretation": "Give your inner committee a snack break, then pick one manageable next step.",
+                "quirky_interpretation": ("Give your inner committee a snack break, then pick one manageable next step. "
+                                          "The image suggests the decision may be lighter than the debate around it."),
                 "characters": [{
                     "name": characters[index][0],
                     "source": characters[index][1],
-                    "connection": "Their willingness to try a new approach mirrors this card's invitation to begin.",
+                    "connection": ("Their willingness to try a new approach mirrors this card's invitation to begin. "
+                                   "For the question, that could mean starting before every detail is settled."),
                 }],
             }
             for index, (card_id, position) in enumerate(zip(card_ids, POSITIONS, strict=True))
         ],
-        "next_step": "Write down one small step you can take today.",
+        "next_step": "Write down one small step from the question that you could try before the weekend.",
     }
 
 

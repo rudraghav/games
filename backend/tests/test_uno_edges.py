@@ -159,7 +159,9 @@ def test_swaps_catches_and_discard_all_report_counts_but_no_faces():
     event = engine.project_view(caught, "a").detail["last_event"]
     assert event == {"type": "catch_uno", "actor": "c", "kind": None, "color": None, "from_color": None,
                      "target": "b", "outcome": None, "discarded": 0, "skipped": [], "drew": {"b": 2},
-                     "eliminated": []}
+                     "eliminated": [], "missed": ["b"]}
+    # Caught on their own turn: the two cards arrive and the turn passes at once.
+    assert caught["order"][caught["turn"]] == "c" and caught["missing"] == []
     assert engine.project_view(caught, "a").detail["you_drew"] == []
     assert len(engine.project_view(caught, "b").detail["you_drew"]) == 2
     mercy, state = three(True)
@@ -177,7 +179,7 @@ def test_no_mercy_warns_before_and_records_elimination_after_a_penalty():
     labels = [option.label for option in engine.legal_actions(state, "a")]
     assert labels == ["Draw 10 — you’re out"]
     engine._prompt(state)
-    assert state["message"] == "Stack +10 or higher, or draw 10 — drawing puts you out."
+    assert state["message"] == "Stack a +10, or draw 10 — drawing puts you out."
     result = engine.apply_action(state, "a", Action(type="draw"))
     detail = engine.project_view(result, "b").detail
     assert detail["last_event"]["eliminated"] == ["a"] and detail["last_event"]["drew"] == {"a": 10}

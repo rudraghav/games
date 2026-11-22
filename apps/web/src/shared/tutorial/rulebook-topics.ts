@@ -8,12 +8,13 @@ const partyTopics: RuleTopic[] = [
 
 export const rulebookTopics: Record<string, RuleTopic[]> = {
   uno: [
-    [0, 'Matching cards'],
-    [1, 'Calling UNO and challenging Draw Four'],
+    [0, 'Matching and drawing'],
+    [1, 'Calling UNO'],
+    [2, 'Penalties, stacking and Draw Four'],
   ],
   'uno-no-mercy': [
     [0, 'Matching cards and calling UNO'],
-    [2, 'Stacks and elimination'],
+    [2, 'Elimination, penalties and stacking'],
   ],
   deal: [
     [0, 'Sets and turn limits'],

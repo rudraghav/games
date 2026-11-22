@@ -139,15 +139,16 @@ class AstrologyPreview(PrivateModel):
 
 class AstrologyInterpretationSection(PrivateModel):
     focus_points: list[str] = Field(min_length=2, max_length=3)
-    normal: str = Field(min_length=40, max_length=650)
+    # Each focus point is named, glossed in plain words and tied to the question.
+    normal: str = Field(min_length=40, max_length=1600)
     quirky: str = Field(min_length=40, max_length=500)
 
 
 class AstrologyInterpretation(PrivateModel):
     western: AstrologyInterpretationSection | None = None
     vedic: AstrologyInterpretationSection | None = None
-    tarot_connection: str = Field(min_length=40, max_length=650)
-    next_step: str = Field(min_length=15, max_length=300)
+    tarot_connection: str = Field(min_length=40, max_length=900)
+    next_step: str = Field(min_length=15, max_length=400)
 
 
 class AstrologyReading(PrivateModel):

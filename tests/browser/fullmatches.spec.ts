@@ -234,8 +234,11 @@ test('every game finishes at both seat limits, renders results, rematches and ke
               await expect(submit).toBeEnabled();
               await submit.click();
               await expect(page.locator('.tarot-reading')).toBeVisible({ timeout: 74000 });
+              // Asked or not, each card opens with what it says (TarotReading's CardSections).
               await expect(
-                page.getByRole('heading', { name: 'The grounded read', exact: true }),
+                page.getByRole('heading', {
+                  name: /^What this card says( about your question)?$/,
+                }),
               ).toHaveCount(3);
               await expect(
                 page.getByRole('heading', { name: 'The plot twist', exact: true }),

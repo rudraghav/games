@@ -311,13 +311,11 @@ test('crowded decisions support keyboard selection, clear, blocked states and ex
   await reset(page);
   const opener = page.getByRole('button', { name: 'Explore the deck', exact: true });
   await opener.click();
-  await expect(page.getByRole('list', { name: 'Tarot illustrations' }).locator('li')).toHaveCount(
-    78,
-  );
+  // Every card in the gallery is a button that opens its card page.
+  const gallery = page.getByRole('list', { name: 'Tarot cards', exact: true });
+  await expect(gallery.getByRole('button')).toHaveCount(78);
   await page.getByRole('button', { name: 'Major arcana', exact: true }).click();
-  await expect(page.getByRole('list', { name: 'Tarot illustrations' }).locator('li')).toHaveCount(
-    22,
-  );
+  await expect(gallery.getByRole('button')).toHaveCount(22);
   await page.keyboard.press('Escape');
   await expect(opener).toBeFocused();
   expect(writes).toEqual([]);

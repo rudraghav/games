@@ -88,6 +88,11 @@ test('friends click modern game decisions and refresh the saved table', async ({
         await checked(actor, `rooms/${roomId}/ready`, 'PUT', { ready: true });
       let snapshot: RoomView = await checked(page, `rooms/${roomId}/start`);
       await Promise.all(players.map((actor) => actor.reload()));
+      // The reloaded link still names the previous game. The room re-opens under
+      // the current game's URL and remounts the table, which would drop a decision
+      // made in between (Azul would save the draft without its queued placement).
+      for (const actor of players)
+        await expect(actor).toHaveURL(new RegExp(`/games/${game}/rooms/${roomId}$`));
       const decisions = game === 'trio' ? 3 : 2;
       let lastActor = page;
       for (let move = 0; move < decisions; move++) {

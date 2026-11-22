@@ -18,6 +18,10 @@ def _number(card: CardView | None, default: float = 5.0) -> float:
         return default
 
 
+# Printed draw values by card kind (the id's middle part), as on the public faces.
+_UNO_DRAWS = {"draw2": 2, "draw4": 4, "wild4": 4, "reverse4": 4, "wild6": 6, "wild10": 10}
+
+
 def _uno(ctx: Context) -> Action:
     if options := ctx.of("uno", "catch_uno"):
         return ctx.action(options[0])
@@ -26,15 +30,25 @@ def _uno(ctx: Context) -> Action:
         return ctx.action(ctx.best(options, lambda o: colors[o.action.color]))
     if options := ctx.of("play"):
         counts = {p.id: p.count for p in ctx.view.players}
-        next_low = min(
-            (p.count for p in ctx.view.players if p.id != ctx.player and not p.eliminated),
-            default=7,
-        )
+        others = [p for p in ctx.view.players if p.id != ctx.player and not p.eliminated]
+        next_low = min((p.count for p in others), default=7)
+        penalty = int(ctx.detail.get("penalty") or 0)
+        following = counts.get(str(ctx.detail.get("next_player")), next_low)
+        last = len(ctx.view.hand) == 1
 
         def value(o: Any) -> float:
             card = next(c for c in ctx.view.hand if c.id == o.action.card)
             color = o.action.color or card.color
             kind = card.id.split(":")[1]
+            draws = _UNO_DRAWS.get(kind, 0)
+            if kind == "reverse4" and len(others) == 1 and not last:
+                # With two players the reverse sends the whole penalty back to its player.
+                return -1000 - penalty
+            if penalty:
+                # Passing a penalty on beats drawing it. Spend the smallest card that
+                # stacks, unless the next player is nearly out: then the largest,
+                # which is hardest to answer.
+                return (draws if following <= 2 else -draws) + colors[color] / 10
             score = colors[color] * 2 + (10 if card.color != "wild" else -5)
             if kind == "discard_all":
                 score += colors[color] * 20
@@ -42,20 +56,15 @@ def _uno(ctx: Context) -> Action:
                 score += (len(ctx.view.hand) - counts.get(o.action.target, 7)) * 15
             if kind == "0" and len(ctx.view.hand) <= 3:
                 score -= 30
-            if next_low <= 2 and kind in {
-                "skip",
-                "skip_all",
-                "reverse",
-                "+2",
-                "+4",
-                "+6",
-                "+10",
-                "reverse4",
-            }:
+            if next_low <= 2 and (draws or kind in {"skip", "skip_all", "reverse"}):
                 score += 18
             return score
 
-        return ctx.action(ctx.best(options, value))
+        choice = ctx.best(options, value)
+        # Drawing the penalty is better than stacking a card that returns a larger one.
+        if value(choice) <= -1000 and (draw := ctx.of("draw")):
+            return ctx.action(draw[0])
+        return ctx.action(choice)
     # A +4 challenge requires evidence about another hidden hand. With no such
     # evidence this policy accepts the penalty, rather than pretending to know it.
     options = ctx.of("accept", "draw", "end_turn")

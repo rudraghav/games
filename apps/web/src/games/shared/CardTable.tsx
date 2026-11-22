@@ -25,6 +25,7 @@ import {
   colourName,
   describeEvent,
   stackFloor,
+  stackingRule,
   tableSituation,
   unoExtras,
   unplayableReason,
@@ -42,7 +43,19 @@ export function CardTable(props: TableProps) {
   const extras = unoExtras(match.detail);
   const mercy = match.id === 'uno-no-mercy';
   const sevenZero = Boolean(room.settings.seven_zero);
-  const stackDrawTwo = Boolean(room.settings.stack_draw_two);
+  const stacking = stackingRule(mercy, room.settings, extras.stacking);
+  const missingTurn = extras.missingTurn;
+  // Who still has a turn to miss, unless the event line has just said so.
+  const missingNote = missingTurn.filter(
+    (id) => !(extras.lastEvent?.type === 'catch_uno' && extras.lastEvent.target === id),
+  );
+  const missingLine = !missingNote.length
+    ? null
+    : missingNote.length === 1 && missingNote[0] === selfId
+      ? 'You miss your next turn (caught without UNO)'
+      : `${missingNote.map((id) => (id === selfId ? 'You' : playerName(room, id))).join(', ')} ${
+          missingNote.length === 1 ? 'misses' : 'miss'
+        } their next turn (caught without UNO)`;
   const limit = details?.eliminationLimit ?? null;
   const color = details?.color ?? '';
   const direction = details?.direction ?? 1;
@@ -75,15 +88,23 @@ export function CardTable(props: TableProps) {
     .map((id) => match.hand.find((card) => card.id === id))
     .filter((card): card is Card => Boolean(card));
   const context = { match, room, selfId, mercy, limit };
-  const event = describeEvent(extras.lastEvent, { ...context, youDrew, direction, sevenZero });
+  const event = describeEvent(extras.lastEvent, {
+    ...context,
+    youDrew,
+    direction,
+    sevenZero,
+    missingTurn,
+  });
   const situation = tableSituation({
     ...context,
     penalty,
     pendingKind: details?.pendingKind ?? null,
     actor: extras.lastEvent?.actor ?? null,
-    stackDrawTwo,
+    stacking,
     canStack: match.actions.some((option) => option.value.type === 'play'),
   });
+  // The lowest draw value that may answer the pending penalty.
+  const floor = extras.stackFloor || stackFloor(match.discard);
   const active = activeOrder(match);
   // In a crowded match several moves pass between your turns; the public history
   // lists them so the felt is not the only memory of what changed.
@@ -187,16 +208,17 @@ export function CardTable(props: TableProps) {
           penalty,
           direction,
           sevenZero,
-          stackDrawTwo,
-        }) || sheddingCardInformation(selectedCard, mercy, room.settings, active.length);
+          stacking,
+          missingTurn,
+        }) || sheddingCardInformation(selectedCard, mercy, room.settings, active.length, stacking);
       if (current !== selfId || !match.actions.some((option) => option.value.type !== 'uno'))
         return `Not your turn yet.${effect ? ` On your turn: ${effect}` : ''}`;
       if (colours.length) return 'Choose a colour first.';
       if (of('challenge').length) return 'Take 4 or challenge first.';
       if (!cardMoves.length)
         return unplayableReason(selectedCard, {
-          mercy,
-          stackDrawTwo,
+          stacking,
+          floor,
           color,
           penalty,
           drawn: current === selfId && (of('end_turn').length > 0 || justDrew),
@@ -206,10 +228,10 @@ export function CardTable(props: TableProps) {
     }
     // On your own turn the last card simply wins, so the turn's decision comes first.
     if (urgent.some((option) => option.value.type === 'uno') && current !== selfId)
-      return 'One card left: call UNO! now, or anyone can catch you for 2 cards.';
+      return 'One card left: call UNO! now, or anyone can catch you: 2 cards and a missed turn.';
     const catchable = urgent.find((option) => option.value.type === 'catch_uno')?.value.target;
     if (catchable && current !== selfId)
-      return `${playerName(room, catchable)} has one card and didn’t call UNO: catch them for +2.`;
+      return `${playerName(room, catchable)} has one card and didn’t call UNO: catch them for +2 and a missed turn.`;
     if (colours.length)
       return details?.pendingKind === 'roulette'
         ? `Choose the colour you will draw until. Wild cards do not stop the draw.${limit ? ` At ${limit} cards you are out. You hold ${held}.` : ''}`
@@ -227,19 +249,26 @@ export function CardTable(props: TableProps) {
             ? ` Drawing puts you out with ${total} cards.`
             : ` You’d hold ${total}; out at ${limit}.`
           : '';
+        const lose = limit && total >= limit ? '' : ' Drawing passes your turn.';
         // With stack buttons below, the instruction only has to carry the consequence.
-        if (mercy)
-          return stackable
-            ? shortcuts.length
-              ? `Stack +${stackFloor(match.discard)} or more to pass it on.${fate}`
-              : `Stack a draw card of +${stackFloor(match.discard)} or more to pass it on, or draw ${penalty}.${fate}`
-            : `Nothing in your hand can stack: draw ${penalty}.${fate}`;
-        return stackable
-          ? `Stack a +2 to pass it on, or draw ${penalty}.`
-          : `Draw ${penalty}; then your turn passes.`;
+        if (stackable)
+          return shortcuts.length
+            ? `Stack +${floor} or more to pass it on.${lose}${fate}`
+            : `Stack a draw card of +${floor} or more to pass it on, or draw ${penalty}.${lose}${fate}`;
+        return stacking
+          ? `Nothing in your hand can stack: draw ${penalty}.${lose}${fate}`
+          : `Draw ${penalty}; then your turn passes.${fate}`;
       }
-      if (of('end_turn').length) return 'Play the card you drew, or pass.';
-      if (justDrew && playable.size) return 'Play the card you drew.';
+      // The card just drawn fits: it is the first button below and leads the hand.
+      const fresh = justDrew ? youDrew.findLast((card) => playable.has(card.id)) : undefined;
+      if (of('end_turn').length)
+        return fresh
+          ? `You drew ${fresh.label} and it fits: play it now, or pass and keep it.`
+          : 'Play the card you drew, or pass.';
+      if (justDrew && playable.size)
+        return fresh
+          ? `You drew ${fresh.label} and it fits: play it now.`
+          : 'Play the card you drew.';
       if (soleCard) {
         const consequence = cardConsequence(soleCard, {
           ...context,
@@ -248,7 +277,8 @@ export function CardTable(props: TableProps) {
           penalty,
           direction,
           sevenZero,
-          stackDrawTwo,
+          stacking,
+          missingTurn,
         });
         return consequence || `You can play ${soleCard.label}.`;
       }
@@ -259,6 +289,8 @@ export function CardTable(props: TableProps) {
       return mercy ? 'No card matches: draw until you can play.' : 'No card matches: draw a card.';
     }
     if (finished) return '';
+    if (missingTurn.includes(selfId) && current !== selfId)
+      return `${situation || turn.message} You were caught without UNO, so you miss your next turn.`;
     const next = details?.nextPlayer === selfId && current !== selfId ? ' You’re next.' : '';
     return `${situation || turn.message}${next}`;
   }
@@ -287,6 +319,9 @@ export function CardTable(props: TableProps) {
     <div className="table-layout stable-game-table card-game-layout uno-workspace">
       <PlayerStrip
         {...props}
+        playerBadge={(player) =>
+          !finished && missingTurn.includes(player.id) ? 'Misses next turn' : null
+        }
         playerCaption={(player) => {
           if (player.eliminated) {
             const at = extras.out.find((entry) => entry.player === player.id)?.cards;
@@ -330,6 +365,9 @@ export function CardTable(props: TableProps) {
             <p className="table-detail">
               Out at {limit} cards · you hold {held}
             </p>
+          ) : null}
+          {missingLine && !finished ? (
+            <p className="table-detail uno-missing-turn">{missingLine}</p>
           ) : null}
           {extras.out.length ? (
             <p className="table-detail uno-out-list">
@@ -408,7 +446,8 @@ export function CardTable(props: TableProps) {
             disabled={pending || room.paused}
             revealKey={`${current}:${[...playable].join(',')}:${extras.youDrew.join(',')}`}
             tip={(card) =>
-              sheddingCardInformation(card, mercy, room.settings, active.length) || undefined
+              sheddingCardInformation(card, mercy, room.settings, active.length, stacking) ||
+              undefined
             }
             onSelect={(id) => {
               setSelected(id === selected ? null : id);

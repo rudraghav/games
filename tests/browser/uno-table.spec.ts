@@ -1,6 +1,6 @@
 import { expect, test, type BrowserContext, type Page } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
-import { openGameSetup, requestAs, roomAs, type RoomView } from './helpers';
+import { openGameSetup, openRoomOptions, requestAs, roomAs, type RoomView } from './helpers';
 import {
   midgameScenarios,
   type MidgameScenario,
@@ -176,6 +176,173 @@ test.describe('Local Uno fixtures', () => {
       );
     }
   });
+
+  // Reached with each "Stack draw cards" choice; every other missed UNO is caught.
+  const rules = (game: string, stacking: 'on' | 'off', situation: string) =>
+    midgameScenarios.find(
+      (entry) => entry.game === game && entry.label.endsWith(`stacking ${stacking} · ${situation}`),
+    )!;
+  const dockButtons = (page: Page) =>
+    page.locator('.uno-dock .action-choices button').allTextContents();
+
+  test('a pending draw offers the stack first when stacking is on and only the draw when it is off', async ({
+    page,
+  }) => {
+    for (const game of ['uno', 'uno-no-mercy']) {
+      const on = rules(game, 'on', 'stack on a draw penalty');
+      await scenario(page, on);
+      const penalty = on.room.game!.detail!.penalty as number;
+      expect(on.room.game!.detail!.stacking).toBe(true);
+      await expect(page.locator('.uno-situation')).toHaveText(
+        `+${penalty} is on you: draw ${penalty} or stack.`,
+      );
+      await expect(page.locator('.uno-dock .action-context')).toContainText(
+        `Stack +${on.room.game!.detail!.stack_floor} or more to pass it on. Drawing passes your turn.`,
+      );
+      const buttons = await dockButtons(page);
+      expect(buttons[0]).toMatch(/^Stack /);
+      expect(buttons.at(-1)).toBe(`Draw ${penalty}`);
+      // Only draw cards of the floor or higher are lit, whatever their colour.
+      const lit = await page
+        .locator('.uno-hand .card-hand > [data-playable="true"]')
+        .evaluateAll((cards) => cards.map((card) => card.getAttribute('aria-label') || ''));
+      expect(lit.length).toBeGreaterThan(0);
+      for (const label of lit) expect(label).toMatch(/\+\d+|Draw \d+/);
+
+      const off = rules(game, 'off', 'draw the penalty');
+      await scenario(page, off);
+      const owed = off.room.game!.detail!.penalty as number;
+      expect(off.room.game!.detail!.stacking).toBe(false);
+      // The viewer holds a draw card here and still may not stack it.
+      expect(off.room.game!.hand.some((card) => card.value.startsWith('+'))).toBe(true);
+      await expect(page.locator('.uno-situation')).toHaveText(`+${owed} is on you: draw ${owed}.`);
+      await expect(page.locator('.uno-dock .action-context')).toContainText(
+        `Draw ${owed}; then your turn passes.`,
+      );
+      expect(await dockButtons(page)).toEqual([`Draw ${owed}`]);
+      await expect(page.locator('.uno-hand .card-hand > [data-playable="true"]')).toHaveCount(0);
+      await page.getByRole('button', { name: `Draw ${owed}`, exact: true }).click();
+      expect(JSON.parse((await page.getByLabel('Submitted action').textContent())!)).toEqual(
+        off.next.action,
+      );
+    }
+  });
+
+  test('the card just drawn leads the hand and is the first named move', async ({ page }) => {
+    for (const [game, stacking] of [
+      ['uno', 'on'],
+      ['uno', 'off'],
+      ['uno-no-mercy', 'on'],
+      ['uno-no-mercy', 'off'],
+    ] as const) {
+      const item = rules(game, stacking, 'play the card just drawn');
+      await scenario(page, item);
+      const drawn = item.room.game!.hand.find((card) => card.id === item.next.action.card)!;
+      const first = page.locator('.uno-hand .card-hand > .playing-card').first();
+      await expect(first).toHaveAttribute('aria-label', `${drawn.label}, playable, just drawn`);
+      await expect(first).toHaveClass(/uno-card--new/);
+      // Shown in the hand rail without scrolling it sideways.
+      const shown = await first.evaluate((card) => {
+        const box = card.getBoundingClientRect();
+        const rail = card.closest('.hand-scroll')!.getBoundingClientRect();
+        return box.left >= rail.left - 1 && box.left + box.width * 0.5 <= rail.right + 1;
+      });
+      expect(shown, `${item.id} drawn card in the rail`).toBe(true);
+      await expect(page.locator('.uno-dock .action-context')).toContainText(
+        `You drew ${drawn.label} and it fits: play it now${game === 'uno' ? ', or pass and keep it' : ''}.`,
+      );
+      // Classic may still pass; No Mercy must play the card it drew.
+      expect(await dockButtons(page)).toEqual(
+        game === 'uno' ? [`Play ${drawn.label}`, 'Pass'] : [`Play ${drawn.label}`],
+      );
+      await page.getByRole('button', { name: `Play ${drawn.label}`, exact: true }).click();
+      expect(JSON.parse((await page.getByLabel('Submitted action').textContent())!)).toEqual(
+        item.next.action,
+      );
+    }
+  });
+
+  test('a seat that misses its next turn is marked for everyone without breaking the strip', async ({
+    page,
+  }) => {
+    for (const [game, stacking] of [
+      ['uno', 'on'],
+      ['uno', 'off'],
+      ['uno-no-mercy', 'on'],
+      ['uno-no-mercy', 'off'],
+    ] as const) {
+      const item = rules(game, stacking, 'a seat misses its next turn');
+      const marked = item.room.game!.detail!.missing_turn as string[];
+      expect(marked.length).toBeGreaterThan(0);
+      await scenario(page, item);
+      for (const id of marked) {
+        const seat = page.locator(`.player-strip-seat[data-player="${id}"]`);
+        await expect(seat).toHaveAttribute('aria-label', /, Misses next turn, /);
+        const badge = seat.locator('.seat-badge');
+        await expect(badge).toHaveText('Misses next turn');
+        await seat.scrollIntoViewIfNeeded();
+        // One line, fully inside its seat.
+        const fits = await badge.evaluate((node) => {
+          const chip = node.getBoundingClientRect();
+          const box = node.closest('.seat')!.getBoundingClientRect();
+          return chip.height < 24 && chip.left >= box.left && chip.right <= box.right;
+        });
+        expect(fits, `${item.id} chip`).toBe(true);
+      }
+      await expect(page.locator('.uno-felt-info')).toContainText(
+        /miss(es)? (their|your) next turn/,
+      );
+      // The "Next" chip names who will really play, never a seat that misses its turn.
+      expect(marked).not.toContain(item.room.game!.detail!.next_player);
+    }
+    // The catch itself says what it costs before anyone commits to it.
+    const catching = rules('uno', 'on', 'catch a missed UNO');
+    await scenario(page, catching);
+    await expect(page.locator('.uno-dock .action-context')).toContainText(
+      'catch them for +2 and a missed turn.',
+    );
+  });
+});
+
+test('room setup and the in-room options offer the stacking toggle with each game’s default', async ({
+  page,
+}) => {
+  test.setTimeout(60000);
+  const owned: OwnedRoom = { actors: [page], contexts: [] };
+  cleanup.set(page, owned);
+  page.setDefaultTimeout(15000);
+  // Off for Uno, on for No Mercy; classic also keeps its 7/0 option.
+  const offered = async (dialog: ReturnType<Page['getByRole']>, game: string) => {
+    await dialog.getByRole('combobox', { name: 'The game', exact: true }).selectOption(game);
+    await openRoomOptions(dialog);
+    const stack = dialog.getByRole('checkbox', { name: 'Stack draw cards', exact: true });
+    await expect(stack).toBeVisible();
+    await expect(stack).toBeChecked({ checked: game === 'uno-no-mercy' });
+    await expect(dialog.getByRole('checkbox', { name: /Stack draw-two/ })).toHaveCount(0);
+    await expect(
+      dialog.getByRole('checkbox', { name: '7 swaps & 0 passes', exact: true }),
+    ).toHaveCount(game === 'uno' ? 1 : 0);
+  };
+  await page.goto('/');
+  const setup = await openGameSetup(page, 'Uno No Mercy');
+  await offered(setup, 'uno-no-mercy');
+  await offered(setup, 'uno');
+  await page.getByRole('textbox', { name: 'Your name', exact: true }).fill('Uno options host');
+  await page.getByRole('combobox', { name: 'Seats', exact: true }).selectOption('2');
+  const creation = page.waitForResponse(
+    (response) => response.url().endsWith('/v1/rooms') && response.request().method() === 'POST',
+  );
+  await page.getByRole('button', { name: 'Create room', exact: true }).click();
+  const created = await creation;
+  expect(created.status()).toBe(201);
+  owned.id = ((await created.json()) as RoomView).id;
+  await expect(page).toHaveURL(new RegExp(`/rooms/${owned.id}$`));
+  // The host's in-room dialog lists the same options; nothing is saved here.
+  await page.getByRole('button', { name: 'Change game and settings', exact: true }).click();
+  const options = page.getByRole('dialog', { name: 'Room settings', exact: true });
+  await expect(options).toBeVisible();
+  await offered(options, 'uno');
+  await offered(options, 'uno-no-mercy');
 });
 
 test('failed Uno saves preserve the exact selection through refresh and a deliberate retry', async ({
