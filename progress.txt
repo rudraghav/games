@@ -12,7 +12,11 @@
 
 - The Secret Santa work ran under the room-setup task claim because the task tool refuses a second claim on the same paths by the same owner.
 
-- State: verified locally; not committed or released.
+- Owner approved shipping both. Production migration applied first (`cloud_preview.py migrate --environment production`: head c4d19e7b52a6, no drift, private-table RLS and grants verified); the owner's rooms, memberships and identities were unchanged across it. Released `7936ef5fe7883e66500f8ddb311bc50251419b9c` to main and Games production as dpl_6rnpqeXepHw48byTn9ryZZJaeqQV (READY, bom1, both source metadata fields match), one deployment, sent as a single archive.
+- Live, two phone-sized guests: a Secret Santa with five names, an excluded pair and a group drew; two private links opened by the second guest each showed a valid recipient with the date and location; the organiser saw both as opened and no pairing; the second guest got 404 on the organiser's room. A Uno room made with a renamed Easy bot showed a six-digit code grouped as two threes and the /r/<code> link; the second guest joined through that link. The second guest claimed a username, the host found it by search (username, name and avatar only) and invited them to a second room; the invitation appeared on the guest's home page and Join seated them. Usernames did not appear in the room's member list.
+- Runtime fingerprint unchanged; owner data unchanged since the migration; runtime and 5xx request logs since release start returned zero records; the three test rooms are closed with no active memberships and the test username was removed.
+- Not verified: a real phone's share sheet and date picker. Docker on the development machine is still down, so the local Docker database has not received the migration.
+- State: released.
 
 ## 2026-11-22 — Room setup: bot count, level and names; six-digit codes and short links; usernames and invitations
 
@@ -30,7 +34,7 @@
 
 - Local checks: frontend (409 unit tests), backend (7,878), contracts, tooling, multiplayer (314) and migrations pass. Real two-guest browser flows for every new feature pass on desktop and phone. Full browser suite: 481 passed, 75 skipped, none failed. Evidence: docs/evidence/room-setup-invites-2026-11-22.
 
-- State: verified locally; not committed or released. Releasing needs the production migration first.
+- State: released together with Secret Santa as `7936ef5` / dpl_6rnpqeXepHw48byTn9ryZZJaeqQV; see the entry above for the release record.
 
 ## 2026-11-22 — Tarot table: one-tap draws, deck rows, drawn-card preview, Groq first
 

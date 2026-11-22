@@ -59,3 +59,15 @@ received the migration.
 - The real 429 responses for wrong codes and search in a browser (covered by backend
   tests and mocked browser tests).
 - The Supabase-role branch of the migration, which only runs where those roles exist.
+
+## Release
+
+- Production migration to `c4d19e7b52a6` applied first, then commit
+  `7936ef5fe7883e66500f8ddb311bc50251419b9c`, deployment
+  `dpl_6rnpqeXepHw48byTn9ryZZJaeqQV` (production, READY).
+- Live with two phone-sized guests: Secret Santa draw with an excluded pair and a
+  group, two private links opened with valid recipients, organiser saw Opened and no
+  pairing; a Uno room with a renamed Easy bot, a six-digit code and `/r/<code>` joined
+  by the second guest; username claimed, found by search, invited, invitation shown on
+  the home page and accepted.
+- Runtime errors and 5xx requests since release start: none. Test rooms closed.
