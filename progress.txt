@@ -1,3 +1,19 @@
+## 2026-11-23 — Local environment restored, remaining checks run, cleanup
+
+- Owner asked to finish everything left: run Docker, commit the AGENTS.md change, and close the pending items.
+
+- Docker Desktop's backend had been hung since the disk filled on 22 November and would not quit; that one process was force-stopped and Docker started again. The games-postgres container was started; its data was intact (6,341 rooms, 10,916 profiles and 7,708 matches before and after). Both pending migrations were applied (a6e442b15d80 to 3002383be1bd, no drift) and the local API now runs against it again. The temporary PostgreSQL cluster used in the meantime was stopped and deleted. `scripts/verify.py migrations` passes on the restored database.
+
+- AGENTS.md's "Required task cleanup" section, added outside this work, is committed as e84cacf at the owner's instruction.
+
+- Checks that had not been run: all 25 new Storybook stories (rewards, room setup, Secret Santa) render without errors. The full-match suite (every game to results, profile history and a rematch, with real seats) passed on desktop and phone in 52 minutes: 100 match records across 29 games, every one with history verified and a rematch; Tarot is left out by that suite unless a real reading is requested. With the owner's approval Playwright's WebKit build was downloaded (about 300 MB on disk) and the new screens were walked in it at iPhone size with two phones: home, Secret Santa setup with the date picker, draw and a private link opened on the second phone, the rewards page, a lobby with the ticket invite panel (the Share button shows there, as WebKit has a share sheet), joining by the short link, a started Uno table and a one-tap Tarot draw; no page errors and no sideways overflow.
+
+- Left as they are: Most Likely and Hot Seat stay in For teams with the honest note; the Uno stacking rulings stay as built; `tests/browser/hosted.spec.ts` was not run in full against production because it opens a room for every game there and the direct live checks at each release cover more.
+
+- Cleanup: the session's scratch folder went from 131 MB to under 40 MB (old trial screenshots, replay output, throwaway scripts and logs removed; final screenshots, the pnpm shim, the local API's log and the room cleanup helper kept). The repo's Playwright output folder was removed. Release helper records under .vercel and the Playwright browser downloads are kept.
+
+- State: done. Nothing pending from this session except the open question of which screen once showed "smut and fluff", which could not be found.
+
 ## 2026-11-23 — Home restyle, player progress, earned rewards, ticket cards and a teams section
 
 - Owner asked to improve the UI by looking at corporate team-game apps, gamification and coupons, and chose all four parts offered: a home and library restyle, player progress, ticket and coupon-style cards, and a "for teams" section, with coupons meaning rewards earned and redeemed inside the app.
