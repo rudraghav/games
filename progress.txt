@@ -8,7 +8,11 @@
 
 - Local checks: frontend (485 unit tests), contracts and tooling pass; the full browser suite passes with 527 passed, 77 skipped, none failed. WebKit shows the same layout.
 
-- State: verified locally; owner approved deploying once the checks finished.
+- Owner approved deploying once the checks finished. Released `0fab8f59a50dc32dc405a5556b3389f432053fd4` to main and Games production as dpl_465i6VDGTeUwg3UyMPNBrjKPKweU (READY, bom1, both source metadata fields match), one deployment, sent as a single archive. No database change.
+- Live at 1440x900 and 390x844: Pop Tarot first as the featured card across the full grid width (188px and 257px tall), then The Gang, Shithead, Sea Salt & Paper and boop.; 30 tiles, each game once, Pop Tarot once; one Featured label, one Start reading, one primary-styled button on the page; page height 2,008px and 3,404px; no sideways overflow. Under the Solo chip there was no featured card and Pop Tarot was an ordinary tile among four. The featured card opened the Tarot page. No test rooms were created.
+- Runtime and owner fingerprints unchanged; runtime and 5xx request logs since release start returned zero records.
+- Not verified: Firefox.
+- State: released.
 
 ## 2026-11-23 — A minimal home page
 

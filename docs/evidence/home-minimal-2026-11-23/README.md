@@ -61,3 +61,13 @@ nine mechanic chips (kinds of game are search words now: "cards", "board games",
   first tile on the first screen, 30 tiles each once, one of each action). A returning
   player saw one Continue line and the header chip.
 - Runtime errors and 5xx requests since release start: none. Test rooms closed.
+
+## Pop Tarot featured again (same day)
+
+The owner asked for Pop Tarot, the featured product, to stay featured. In the default
+Browse view it now leads the grid as one full-width card with a Start reading action
+and is not repeated as a tile; under a chip or a search it is an ordinary tile. Page
+height for a new visitor is 2,008px at 1440x900 and 3,404px at 390x844. Full browser
+suite: 527 passed, 77 skipped, none failed. Released as commit
+`0fab8f59a50dc32dc405a5556b3389f432053fd4`, deployment
+`dpl_465i6VDGTeUwg3UyMPNBrjKPKweU`, and confirmed live at both sizes.
