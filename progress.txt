@@ -10,7 +10,11 @@
 
 - Local checks: frontend (484 unit tests), contracts and tooling pass. Browser suite: 526 passed, 77 skipped, 1 failed (that Uno test, which passes 12 of 12 after the fix). WebKit shows the same layout. Evidence: docs/evidence/home-minimal-2026-11-23.
 
-- State: verified locally; not committed or released. No database change.
+- Owner approved shipping. Released `bf1863eff95ebe7e8b343cafa607feddc24f4527` to main and Games production as dpl_DsDsvhb5YXcGc1mgZcmEdoHDxGaL (READY, bom1, both source metadata fields match), one deployment, sent as a single archive. No database change; production head stays 3002383be1bd.
+- Live at 1440x900 and 390x844 as a new visitor: the headline, exactly one each of Play solo, Create room and Join a room, six chips, two tabs, 30 tiles each shown once, no rails or featured banner, no sideways overflow; page height 1,810px and 3,129px with the first tile at y=508 and y=516; five and two columns. Play solo selected Quick with bots (5 games), For teams showed 12 with its note, a search for "cards" found 16. As a returning player (a Uno table in progress and one finished solo session): one Continue line naming the Uno room, the header chip "Level 1, 1-day streak", still a single Create room, and both rooms under Your games.
+- Runtime and owner fingerprints unchanged; runtime and 5xx request logs since release start returned zero records; the two test rooms are closed.
+- Not verified: Firefox.
+- State: released.
 
 ## 2026-11-23 — Local environment restored, remaining checks run, cleanup
 

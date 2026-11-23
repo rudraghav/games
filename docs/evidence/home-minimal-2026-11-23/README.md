@@ -52,3 +52,12 @@ nine mechanic chips (kinds of game are search words now: "cards", "board games",
 - Firefox (cover scaling uses CSS `zoom`; checked in Chromium and WebKit only).
 - On a 664px-tall phone viewport, a player with both an invitation and a game in
   progress sees the first tiles start just below the first screen.
+
+## Release
+
+- Commit `bf1863eff95ebe7e8b343cafa607feddc24f4527`, deployment
+  `dpl_DsDsvhb5YXcGc1mgZcmEdoHDxGaL` (production, READY). No database change.
+- Live at both sizes: the measurements above reproduced exactly (1,810px and 3,129px,
+  first tile on the first screen, 30 tiles each once, one of each action). A returning
+  player saw one Continue line and the header chip.
+- Runtime errors and 5xx requests since release start: none. Test rooms closed.
