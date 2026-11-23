@@ -9,6 +9,7 @@ import { api } from '@/lib/session';
 import { keys } from '@/shared/query-keys';
 import { refreshPlayer } from '@/shared/player-query';
 import { roomPath } from '@/shared/game-paths';
+import { useMediaQuery } from '@/shared/use-media-query';
 
 /** "Sam invited you to Friday game night · Uno · 2 of 4 players", with Join and Decline. */
 export function InvitationList({
@@ -27,13 +28,16 @@ export function InvitationList({
   onJoin: (invitation: Invitation) => void;
   onDecline: (invitation: Invitation) => void;
 }) {
+  // One slim line: the answers sit beside the words wherever both fit.
+  const narrow = useMediaQuery('(max-width: 359px)');
   return (
     <>
       {invitations.length || error ? (
         <section className="invitations" aria-label="Invitations">
           {invitations.length ? (
             <>
-              <h2 className="eyebrow">
+              {/* The ticket says who invited you; the heading is for navigation only. */}
+              <h2 className="sr-only">
                 {invitations.length === 1 ? 'You’re invited' : `${invitations.length} invitations`}
               </h2>
               <ul className="invitation-list">
@@ -44,6 +48,7 @@ export function InvitationList({
                     <Ticket
                       as="li"
                       className="invitation"
+                      layout={narrow ? 'column' : 'row'}
                       key={invitation.roomId}
                       stubClassName="invitation-actions"
                       stub={
@@ -68,7 +73,7 @@ export function InvitationList({
                         </>
                       }
                     >
-                      <Avatar name={invitation.fromName} seed={invitation.fromAvatar} />
+                      <Avatar name={invitation.fromName} seed={invitation.fromAvatar} size="sm" />
                       <p className="invitation-copy">
                         <strong>
                           {invitation.fromName} invited you to {invitation.roomName}

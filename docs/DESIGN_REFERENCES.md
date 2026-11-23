@@ -143,7 +143,9 @@ no artwork, copy or layout was copied.
 - **Kahoot! home and family pages.** Joining with a code is a first-class
   action on the home page, never buried: here, the code field beside Join a
   room and the same button one tap away on phones. Content is grouped by who
-  it is for, which became the For teams, Two players and On your own rails.
+  it is for, which became the occasions (With friends, Two players, Solo, For
+  teams): first as rails, then, once the owner found those repetitive, as the
+  library's one row of chips.
 - **Jackbox how-to-play and at-work pages.** Every game states its player
   range and length up front, so every card here shows both. Games are bundled
   into a few named, curated sets rather than one long list. Their at-work page

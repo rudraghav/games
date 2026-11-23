@@ -3,7 +3,6 @@ import { useEffect, useState, type ComponentProps, type FormEvent } from 'react'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Plus } from 'lucide-react';
 import { Button, Wordmark, SegmentedTabs } from '@games/ui';
 import { api, passiveApi } from '@/lib/session';
 import { RoomDialog } from '@/shared/RoomDialog';
@@ -16,10 +15,8 @@ import { roomPath } from '@/shared/game-paths';
 import { GameLibrary } from './GameLibrary';
 import { RoomShortcut } from './RoomShortcut';
 import { Invitations } from './Invitations';
-import { WelcomeStrip } from './WelcomeStrip';
-import { ContinueRail } from './ContinueRail';
-import { CollectionRails } from './CollectionRails';
-import type { LibraryPreset } from './collections';
+import { ContinueLine } from './ContinueLine';
+import type { Occasion } from './occasions';
 
 /** How often the home page checks for a new invitation while it is in view. */
 const INVITATION_REFRESH_MS = 20000;
@@ -98,9 +95,9 @@ export function Lounge() {
     invite?: string;
   } | null>(null);
   const [tab, setTab] = useState<'games' | 'rooms'>('games');
-  // The library view that Play solo or a collection's See all asked for. Each
-  // request opens the library afresh with that view and brings it into sight.
-  const [view, setView] = useState<{ request: number; preset?: LibraryPreset }>({ request: 0 });
+  // The occasion Play solo asked for. Each request opens the library afresh
+  // with that occasion chosen and brings it into sight.
+  const [view, setView] = useState<{ request: number; occasion?: Occasion }>({ request: 0 });
   const [code, setCode] = useState('');
   const [joining, setJoining] = useState(false);
   const [joinError, setJoinError] = useState('');
@@ -119,17 +116,19 @@ export function Lounge() {
     const library = document.getElementById('games');
     if (!library) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // The chosen filter takes focus, so keyboard and screen-reader users land on it.
-    // On a phone it can sit off to the side of the category row: bring it into
-    // that row first, then bring the library itself up the page.
-    const chosen = library.querySelector<HTMLElement>('.library-categories [aria-pressed="true"]');
+    // The chosen occasion takes focus, so keyboard and screen-reader users land
+    // on it. On a phone it can sit off to the side of its row: bring it into
+    // that row first, then bring the library up the page.
+    const chosen = library.querySelector<HTMLElement>('.library-occasions [aria-pressed="true"]');
     chosen?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'nearest' });
     chosen?.focus({ preventScroll: true });
-    library.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    document
+      .getElementById('browse')
+      ?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
   }, [view.request]);
-  function showLibrary(preset: LibraryPreset) {
+  function showLibrary(occasion: Occasion) {
     setTab('games');
-    setView((current) => ({ request: current.request + 1, preset }));
+    setView((current) => ({ request: current.request + 1, occasion }));
   }
   /**
    * The code field beside Join a room, shown on wide screens. Empty (and always
@@ -165,27 +164,33 @@ export function Lounge() {
   }
   return (
     <>
-      <SiteHeader showGamesLink={false} onHomeClick={() => setTab('games')}>
-        <Button
-          size="sm"
-          className="lounge-create"
-          aria-label="Create room"
-          onClick={() => setDialog({ mode: 'create', gameId: 'uno' })}
-        >
-          <Plus size={16} />
-          <span>Create room</span>
-        </Button>
-      </SiteHeader>
+      <SiteHeader showGamesLink={false} onHomeClick={() => setTab('games')} />
       <main className="page-width lounge-dashboard">
-        <WelcomeStrip known={played || Boolean(me.data?.profile)} />
-        <section className="hero hero--compact">
-          <div>
-            <h1 className="hero-title">{tab === 'games' ? 'Choose a game' : 'Your games'}</h1>
-            <div className="hero-actions">
-              <Button size="lg" onClick={() => showLibrary({ category: 'solo', players: 1 })}>
+        {/* Time-sensitive, so it is the one thing allowed above the headline. */}
+        <Invitations invitations={me.data?.invitations || []} />
+        <section className="home-start" aria-labelledby="home-headline">
+          <h1 id="home-headline" className="home-headline">
+            How do you want to play?
+          </h1>
+          <div className="home-actions">
+            <div className="home-action" data-primary="true">
+              <Button size="lg" onClick={() => showLibrary('quick-bots')}>
                 Play solo
               </Button>
-              <form className="join-inline" onSubmit={join} noValidate>
+              <p>On your own or against bots</p>
+            </div>
+            <div className="home-action">
+              <Button
+                size="lg"
+                variant="secondary"
+                onClick={() => setDialog({ mode: 'create', gameId: 'uno' })}
+              >
+                Create room
+              </Button>
+              <p>Play with friends</p>
+            </div>
+            <form className="home-action join-inline" onSubmit={join} noValidate>
+              <div className="join-inline-row">
                 <input
                   className="input join-inline-code"
                   aria-label="Room code or invite link"
@@ -206,31 +211,34 @@ export function Lounge() {
                 <Button size="lg" variant="secondary" type="submit" pending={joining}>
                   Join a room
                 </Button>
-              </form>
-            </div>
-            {joinError ? (
-              <p className="error-note join-inline-error" id="join-inline-error" role="alert">
-                {joinError}
-              </p>
-            ) : null}
+              </div>
+              {joinError ? (
+                <p className="join-inline-error" id="join-inline-error" role="alert">
+                  {joinError}
+                </p>
+              ) : (
+                <p>Have a code?</p>
+              )}
+            </form>
           </div>
+          <ContinueLine rooms={me.data?.rooms || []} onShowAll={() => setTab('rooms')} />
         </section>
-        <Invitations invitations={me.data?.invitations || []} />
-        <ContinueRail rooms={me.data?.rooms || []} />
         <SegmentedTabs
           label="Browse"
+          variant="text"
+          className="home-browse"
+          heading={
+            <h2 id="browse" className="home-section-heading">
+              {tab === 'games' ? 'Browse games' : 'Your games'}
+            </h2>
+          }
           value={tab}
           onValueChange={setTab}
           items={[
             {
               value: 'games',
               label: 'Games',
-              content: (
-                <>
-                  <CollectionRails onSeeAll={(collection) => showLibrary(collection.preset)} />
-                  <GameLibrary key={view.request} preset={view.preset} />
-                </>
-              ),
+              content: <GameLibrary key={view.request} preset={view.occasion} />,
             },
             {
               value: 'rooms',

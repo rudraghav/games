@@ -52,24 +52,25 @@ Storybook covers primitive variants, table layouts, crowded/maximum hands,
 pending/disconnected states and narrow viewports.
 
 The catalogue composes shared GameTile and ChoiceGroup primitives, with a labeled
-search field and group-size select. Fixed seat counts and solo play use concise
-metadata. Filters intersect and offer a reset from an empty state. Mancala pits
+search field and one row of occasion chips (see "Home page" below; the earlier
+group-size select and category pills were removed). Fixed seat counts and solo
+play use concise metadata. Search and an occasion intersect and the empty state
+offers one way back to every game. Mancala pits
 and stores use a typed MancalaPit variant; Checkers extends the shared board
 renderer with source/destination selection and visible crowns.
 
-The home catalogue features Pop Tarot in one full-width GameTile variant. Its
-existing three-card artwork, short introduction and Start reading action share
-one padding layer; phones stack the art and copy while wider screens place them
-side by side. It remains a single keyboard action and respects catalogue filters.
+Pop Tarot was once a full-width featured tile on the home catalogue. It is now
+one compact tile like every other game, in its discovery slot, so no game is
+shown twice or larger than the rest; its Start reading action is on its own
+game page.
 
-Browsing keeps search, category pills and group controls in deliberate rows.
-Phone category pills scroll inside their own rail; keyboard focus reveals the
-selected filter without widening the page. Co-op discovery reads the engine's
-play-mode metadata. Search accepts familiar names, punctuation and accented input;
-Clear search and Escape preserve the category/group, while Reset filters restores
-all choices and returns focus to search. One live result count follows the
-controls. Phone hero actions occupy full rows, and tile subtitles remain readable
-so unfamiliar games can be understood before opening their public game page.
+Browsing keeps search and the occasion chips in one deliberate row (two on a
+phone). Phone chips scroll inside their own row; keyboard focus reveals the
+chosen one without widening the page. Search accepts familiar names, kinds of
+game, punctuation and accented input; Clear search and Escape preserve the
+occasion, while Show all games (the empty state) restores everything and
+returns focus to search. One live result count follows the controls. A tile
+shows a name and one line; a game's blurb and rules are on its public game page.
 Game tiles are real links with an Open game accessible name. Game entry reuses
 GameArt, semantic Button variants and a labelled rules disclosure. The phone view
 keeps art, title and full-row play actions together without a large hero gap.
@@ -493,8 +494,9 @@ use, redeem or hand over".
   write that a streak was lost, broken or missed, and never add a countdown.
 - A badge that is earned and one that is not differ by more than colour: a
   check and "Earned", or a thin bar and "3 of 10".
-- Anything that loads later (the home strip, the line under a result, the
-  status line on the rewards page) reserves its height first.
+- Anything that loads later (the line under a result, the status line on the
+  rewards page) reserves its height first. The header chip sits in the header,
+  so the page below it never moves.
 
 ### Avatar frames
 
@@ -538,11 +540,40 @@ currency, a timer, "claim now" or an outside offer. States are named plainly:
 Locked, Ready to redeem, Redeemed, In use. Buttons say what they do: Redeem,
 Use, Take off, Use standard back.
 
-### Home page order
+### Home page
 
-Header, welcome strip, primary actions, invitations, Continue, tabs, curated
-rails, full library. Joining with a code is never more than one tap away. Every
-game card states its players and its length. Rails scroll inside themselves
-with `HorizontalRail`; the page never scrolls sideways, down to 320px. No
-promotional banner sits above the main actions. The "For teams" label is
-backed by a documented allowlist (see the lounge README).
+Two sections only: **Start**, then **Browse**. The eye should land on the
+headline, then the filled button, then the search box and the occasions, then
+the grid.
+
+- **One headline, three actions.** "How do you want to play?" with Play solo,
+  Create room and Join a room, each a different verb with one short caption.
+  Only the first is filled: the accent colour belongs to the primary action
+  and to nothing else on the page. Wide screens show three equal cards in one
+  row; phones show the primary button full width and the other two side by
+  side under it, so all three and the first tiles fit a 390x844 screen.
+- **One library, nothing repeated.** A search field, one row of at most six
+  occasion chips and one grid. Each game appears once. There are no rails, no
+  "See all", no featured banner and no second set of filters; kinds of game are
+  search words. A chosen chip is ink on paper turned round (ink fill, light
+  text), not a second accent.
+- **Compact tiles.** A cover, the name and one quiet line ("2–10 players ·
+  10–20 min"). No card, border or resting shadow around a tile; a cover lifts
+  slightly on hover. Five columns from 1200px, four from 960px, three from
+  620px, two below. Cover art is scaled whole into the smaller poster.
+- **Hierarchy from size and space.** One type-scale step between the headline
+  (30 to 46px), a section heading (22 to 26px) and body text (12 to 15px). No
+  border where spacing can do the job, and at most one shadowed surface in a
+  section (the invitation ticket).
+- **Demoted, not removed.** Progress is a 44px chip in the header. An
+  invitation is one slim ticket above the headline, only while one exists. A
+  game in progress is one text line under the actions. Your games is a quiet
+  text tab on the Browse heading's row, drawn with `SegmentedTabs`
+  `variant="text"` (same tab roles and keys as the filled variant).
+- **Nothing else.** No promotional banner, welcome copy or explanatory
+  paragraph. The "For teams" note appears only while that occasion is chosen
+  and is backed by a documented allowlist (see the lounge README).
+- Reduced motion, 44px targets, visible focus and 320px without sideways page
+  scrolling hold as everywhere else. Size check for the default view: about
+  1,800px tall at 1440x900 and about 3,150px at 390x844, with the first tiles
+  in the first viewport at both.

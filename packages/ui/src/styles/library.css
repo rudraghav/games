@@ -6,8 +6,7 @@
     margin: 0 0 16px;
     min-width: 0;
   }
-  .library-search,
-  .library-players {
+  .library-search {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -18,8 +17,7 @@
     padding: 0 15px;
     color: var(--color-ink-muted);
   }
-  .library-search:focus-within,
-  .library-players:focus-within {
+  .library-search:focus-within {
     outline: 2px solid var(--color-focus);
     outline-offset: 2px;
   }
@@ -47,48 +45,6 @@
   .library-search input::-webkit-search-cancel-button {
     display: none;
   }
-  .library-players {
-    font-size: 12px;
-    gap: 8px;
-  }
-  .library-players select {
-    border: 0;
-    background: transparent;
-    color: var(--color-ink);
-    font-size: 13px;
-    min-height: 44px;
-    min-width: 0;
-    width: 100%;
-  }
-  .library-toolbar {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 150px;
-    gap: 10px;
-  }
-  .library-category-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 44px;
-    gap: 8px;
-    align-items: center;
-  }
-  .library-reset {
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
-    background: var(--color-surface);
-  }
-  .library-category-rail {
-    min-width: 0;
-    max-width: 100%;
-    overflow-x: auto;
-    padding: 3px 2px 7px;
-    scroll-padding-inline: 2px;
-    overscroll-behavior-x: contain;
-    scrollbar-width: thin;
-  }
-  .library-categories {
-    flex-wrap: nowrap;
-    width: max-content;
-  }
   .choice-group {
     display: flex;
     gap: 7px;
@@ -113,11 +69,6 @@
     color: var(--color-sage);
     background: var(--color-sage-light);
     border-color: var(--color-sage);
-  }
-  .library-categories button {
-    border-color: var(--color-border);
-    background: var(--color-surface);
-    padding: 10px 17px;
   }
   .library-empty {
     padding: 45px 20px;
@@ -340,39 +291,12 @@
     .library-search input {
       font-size: 16px;
     }
-    .library-toolbar {
-      grid-template-columns: minmax(0, 1fr) 122px;
-      gap: 8px;
-    }
-    .library-players {
-      justify-content: space-between;
-      padding-inline: 10px;
-      gap: 6px;
-    }
-    .library-players select {
-      font-size: 12px;
-    }
-    .library-category-rail {
-      overflow-x: auto;
-      padding: 3px 2px 7px;
-      scroll-padding-inline: 2px;
-      overscroll-behavior-x: contain;
-    }
-    .library-categories {
-      flex-wrap: nowrap;
-      width: max-content;
-      gap: 7px;
-    }
     .choice-group {
       gap: 3px;
     }
     .choice-group button {
       padding: 10px 12px;
       font-size: 12px;
-    }
-    .library-categories button {
-      padding: 11px 16px;
-      flex-shrink: 0;
     }
     .classic-board--checkers .board-surface {
       min-width: 352px;
@@ -404,14 +328,6 @@
       font-size: 8px;
     }
   }
-  @media (max-width: 360px) {
-    .library-toolbar {
-      grid-template-columns: minmax(0, 1fr) 108px;
-    }
-    .library-players > svg {
-      display: none;
-    }
-  }
 }
 
 /* Keep catalogue phone rules in the same layer as shared component variants. */
@@ -425,11 +341,6 @@
     .game-library .section-heading .small {
       display: block;
     }
-    .game-tile[data-edition='house'] .game-tile-body > p {
-      display: block;
-      margin-top: 7px;
-      font-size: 11px;
-    }
     .hero-actions {
       flex-direction: column;
       align-items: stretch;
@@ -439,40 +350,10 @@
       min-height: 50px;
       justify-content: center;
     }
-    .game-library .game-tile h3 {
-      min-height: 2.8em;
-    }
-    .game-library .game-tile .game-tile-body > p {
-      display: block;
-      margin-top: 7px;
-      min-height: 3.2em;
-      font-size: 11px;
-      line-height: 1.6;
-    }
   }
 }
 
 @layer components {
-  .game-library .game-tile {
-    border-radius: 20px;
-    box-shadow: 0 2px 4px #332d2310;
-    transition:
-      transform 160ms ease,
-      box-shadow 160ms ease,
-      border-color 160ms ease;
-  }
-  .game-library .game-tile:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--color-sage) 35%, var(--color-border));
-    box-shadow: 0 9px 22px #332d2314;
-  }
-  .game-library .game-tile:active {
-    transform: translateY(-1px);
-  }
-  .game-library .game-tile:focus-visible {
-    outline: 3px solid var(--color-focus);
-    outline-offset: 3px;
-  }
   .game-library .game-poster {
     container-type: inline-size;
     height: 180px;
@@ -731,50 +612,9 @@
     .game-library .game-poster {
       height: 150px;
     }
-    .game-library .game-tile {
-      padding: 6px;
-    }
-    .game-library .game-tile-body {
-      padding: 12px 5px 8px;
-    }
-    .game-library .game-tile h3 {
-      font-size: 13px;
-      min-height: 2.6em;
-      line-height: 1.3;
-    }
-    .game-library .game-tile .game-tile-body > p {
-      min-height: 2.7em;
-      font-size: 11px;
-      line-height: 1.35;
-    }
-    .game-library .game-meta {
-      margin-top: 10px;
-      padding-top: 10px;
-      gap: 7px;
-      font-size: 9px;
-    }
     .casino-cover-chips {
       width: 30px;
       height: 30px;
-    }
-  }
-  @media (max-width: 359px) {
-    .lounge-create > span {
-      display: none;
-    }
-    .header-actions > .lounge-create {
-      width: 44px;
-      min-height: 44px;
-      padding: 0;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .game-library .game-tile {
-      transition: none;
-    }
-    .game-library .game-tile:hover,
-    .game-library .game-tile:active {
-      transform: none;
     }
   }
 }
@@ -905,82 +745,6 @@
 }
 
 @layer components {
-  .game-library .game-tile[data-variant='featured'] {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
-    overflow: hidden;
-    padding: 0;
-    border-color: color-mix(in srgb, var(--color-plum) 30%, var(--color-border));
-  }
-  .game-library .game-tile[data-variant='featured'] .game-poster {
-    height: auto;
-    min-height: 260px;
-    border-radius: 0;
-  }
-  .game-library .game-tile[data-variant='featured'] .game-tile-body {
-    align-self: center;
-    min-width: 0;
-    padding: 24px;
-  }
-  .game-featured-label {
-    display: block;
-    margin-bottom: 6px;
-    color: var(--color-plum);
-  }
-  .game-library .game-tile[data-variant='featured'] h3 {
-    min-height: 0;
-    font: 500 36px/1.15 var(--font-display);
-  }
-  .game-library .game-tile[data-variant='featured'] .game-tile-body > p {
-    min-height: 0;
-    max-width: 44ch;
-    font-size: 15px;
-    line-height: 1.5;
-  }
-  .game-library .game-tile[data-variant='featured'] .game-meta {
-    flex-wrap: wrap;
-    margin-top: 12px;
-    padding: 0;
-    border: 0;
-    gap: 16px;
-    font-size: 12px;
-  }
-  .game-featured-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    min-height: 44px;
-    margin-top: 16px;
-    padding: 10px 16px;
-    border-radius: var(--radius-control);
-    background: var(--color-plum);
-    color: var(--color-white);
-    font-size: 14px;
-    font-weight: 650;
-  }
-  @media (max-width: 600px) {
-    .game-library .game-tile[data-variant='featured'] {
-      grid-template-columns: minmax(0, 1fr);
-    }
-    .game-library .game-tile[data-variant='featured'] .game-poster {
-      height: 156px;
-      min-height: 0;
-    }
-    .game-library .game-tile[data-variant='featured'] .game-tile-body {
-      padding: 14px;
-    }
-    .game-library .game-tile[data-variant='featured'] h3 {
-      font-size: 28px;
-    }
-    .game-library .game-tile[data-variant='featured'] .game-tile-body > p {
-      font-size: 14px;
-    }
-    .game-library .game-tile[data-variant='featured'] .game-featured-action {
-      width: 100%;
-    }
-  }
   /* The surface, full brass stand and printed faces share one light direction. */
   :is(.game-library .game-tile[data-variant='featured'], .game-entry[data-game='tarot'])
     .game-poster:has(> .game-art--tarot) {

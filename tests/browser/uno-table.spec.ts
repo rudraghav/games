@@ -396,37 +396,51 @@ test('failed Uno saves preserve the exact selection through refresh and a delibe
         ).status(),
       ).toBe(200);
     }
-    for (const member of [page, friend]) {
-      expect((await requestAs(member, `rooms/${roomId}/heartbeat`, 'POST')).status()).toBe(200);
-      expect(
-        (await requestAs(member, `rooms/${roomId}/ready`, 'PUT', { ready: true })).status(),
-      ).toBe(200);
-    }
-    expect((await requestAs(page, `rooms/${roomId}/start`, 'POST')).status()).toBe(200);
+    const deal = async () => {
+      // A deal that ran out of steps without ending is put away before the next one.
+      if ((await roomAs(page, roomId)).status === 'playing')
+        expect((await requestAs(page, `rooms/${roomId}/abandon`, 'POST')).status()).toBe(200);
+      for (const member of [page, friend]) {
+        expect((await requestAs(member, `rooms/${roomId}/heartbeat`, 'POST')).status()).toBe(200);
+        expect(
+          (await requestAs(member, `rooms/${roomId}/ready`, 'PUT', { ready: true })).status(),
+        ).toBe(200);
+      }
+      expect((await requestAs(page, `rooms/${roomId}/start`, 'POST')).status()).toBe(200);
+    };
     let actor = page;
     let before = await roomAs(page, roomId);
     const plainPlay = (room: RoomView) =>
-      room.game!.actions.find(
-        ({ action }) => action.type === 'play' && !action.color && !action.target,
-      );
-    // Reach a normal card play using only each actor's current legal projection.
-    for (let step = 0; step < 40; step++) {
-      actor = before.game!.current_player === before.owner_id ? page : friend;
-      before = await roomAs(actor, roomId);
-      if (plainPlay(before)) break;
-      const option = before.game!.actions.find(({ action }) => action.type !== 'uno')!;
-      expect(option).toBeTruthy();
-      expect(
-        (
-          await requestAs(actor, `rooms/${roomId}/actions`, 'POST', {
-            match_id: before.match_id,
-            expected_version: before.match_version,
-            action_id: randomUUID(),
-            action: option.action,
-          })
-        ).status(),
-      ).toBe(200);
+      room.status === 'playing'
+        ? room.game!.actions.find(
+            ({ action }) => action.type === 'play' && !action.color && !action.target,
+          )
+        : undefined;
+    // Reach a normal card play using only each actor's current legal projection. About
+    // one No Mercy deal in fifty ends first: taking the first legal move can stack draws
+    // until someone passes 25 cards and is out. Such a deal is simply dealt again.
+    for (let attempt = 0; attempt < 5 && !plainPlay(before); attempt++) {
+      await deal();
       before = await roomAs(page, roomId);
+      for (let step = 0; step < 40 && before.status === 'playing'; step++) {
+        actor = before.game!.current_player === before.owner_id ? page : friend;
+        before = await roomAs(actor, roomId);
+        if (plainPlay(before)) break;
+        const option = before.game!.actions.find(({ action }) => action.type !== 'uno');
+        if (!option) break;
+        expect(
+          (
+            await requestAs(actor, `rooms/${roomId}/actions`, 'POST', {
+              match_id: before.match_id,
+              expected_version: before.match_version,
+              action_id: randomUUID(),
+              action: option.action,
+            })
+          ).status(),
+        ).toBe(200);
+        before = await roomAs(page, roomId);
+      }
+      if (plainPlay(before)) before = await roomAs(actor, roomId);
     }
     const option = plainPlay(before);
     expect(option, `${game} reaches a legal plain card play`).toBeTruthy();

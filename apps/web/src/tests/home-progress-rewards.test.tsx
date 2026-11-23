@@ -4,7 +4,7 @@ import { mapMe, mapProfile, mapRoom } from '@games/api-client/mappers';
 import { mapProgress, frameIds, cardBackIds, type Progress } from '@games/api-client';
 import type { components } from '@games/api-client/wire';
 import { games } from '@games/api-client/catalog';
-import { Avatar, GameTile, LevelRing, Seat, Ticket, isAvatarFrame } from '@games/ui';
+import { Avatar, GameTile, LevelRing, Seat, SegmentedTabs, Ticket, isAvatarFrame } from '@games/ui';
 import { fixtures } from '@/stories/generated/rooms';
 import { isBackendRoute, progressRoute, utcOffset } from '@/lib/backend-routes';
 import {
@@ -23,16 +23,15 @@ import {
   teamGames,
   teamsNote,
 } from '@/features/lounge/catalogue-search';
-import { collectionGames, collections } from '@/features/lounge/collections';
-import { CollectionRails } from '@/features/lounge/CollectionRails';
-import { ContinueRail, activeRooms } from '@/features/lounge/ContinueRail';
+import { browseGames, occasionGames, occasions } from '@/features/lounge/occasions';
+import { ContinueLine, gamesInProgress } from '@/features/lounge/ContinueLine';
 import { GameLibrary } from '@/features/lounge/GameLibrary';
 import { InvitationList } from '@/features/lounge/Invitations';
-import { WelcomeStripView } from '@/features/lounge/WelcomeStrip';
 import { BadgeGrid } from '@/features/rewards/BadgeGrid';
 import { RewardCoupon, removeLabel, rewardStateLabel } from '@/features/rewards/RewardCoupon';
 import { RewardsView, rewardNotice } from '@/features/rewards/Rewards';
 import { ResultsProgressView } from '@/features/room/ResultsProgress';
+import { ProgressChipView } from '@/shared/ProgressChip';
 
 type Wire = components['schemas'];
 
@@ -283,7 +282,7 @@ describe('streak wording', () => {
   it('never words a streak as lost anywhere it is shown', () => {
     const ended = progress({ streak: { current: 0, best: 9, played_today: false } });
     const html =
-      renderToStaticMarkup(<WelcomeStripView state="ready" progress={ended} />) +
+      renderToStaticMarkup(<ProgressChipView progress={ended} />) +
       renderToStaticMarkup(<RewardsView progress={ended} player={player} onAction={noop} />) +
       renderToStaticMarkup(<ResultsProgressView progress={ended} />);
     expect(html).not.toMatch(/lost|broke|missed|ended|expired|hurry|last chance|claim now/i);
@@ -292,36 +291,28 @@ describe('streak wording', () => {
   });
 });
 
-describe('the welcome strip', () => {
-  it('shows level, XP to go, the streak nudge and badges as one link to /rewards', () => {
-    const html = renderToStaticMarkup(<WelcomeStripView state="ready" progress={progress()} />);
-    expect(html).toMatch(/^<a class="welcome-strip"[^>]*href="\/rewards"/);
-    expect(html).toContain('Level 3');
-    expect(html).toContain('110 XP to level 4');
-    expect(html).toContain('4-day streak');
-    expect(html).toContain('Play today to keep it going');
-    expect(html).toContain('1 of 3 badges');
-    expect(html).toContain('Open your progress and rewards');
-  });
-  it('drops the nudge once today is played, and the streak when there is none', () => {
-    const played = renderToStaticMarkup(
-      <WelcomeStripView
-        state="ready"
-        progress={progress({ streak: { current: 4, best: 6, played_today: true } })}
-      />,
+describe('the header progress chip', () => {
+  it('shows the level and the streak count as one link to /rewards', () => {
+    const html = renderToStaticMarkup(<ProgressChipView progress={progress()} />);
+    expect(html).toMatch(
+      /^<a class="progress-chip" aria-label="Level 3, 4-day streak\. Open your progress and rewards" href="\/rewards">/,
     );
-    expect(played).toContain('4-day streak');
-    expect(played).not.toContain('Play today');
-    const none = renderToStaticMarkup(
-      <WelcomeStripView
-        state="ready"
+    // The ring repeats the number beside it, so it is decoration here.
+    expect(html).toContain('class="level-ring level-ring--sm" aria-hidden="true"');
+    // What is drawn: the ring's number, the level, the flame's day count. No XP, badges or nudge.
+    expect(html.replace(/<svg.*?<\/svg>/g, '').replace(/<[^>]+>/g, '')).toBe('3Level 34');
+  });
+  it('drops the flame when there is no streak', () => {
+    const html = renderToStaticMarkup(
+      <ProgressChipView
         progress={progress({ streak: { current: 0, best: 6, played_today: false } })}
       />,
     );
-    expect(none).not.toContain('streak');
-    expect(none).toContain('Level 3');
+    expect(html).toContain('aria-label="Level 3. Open your progress and rewards"');
+    expect(html).not.toContain('streak');
+    expect(html).not.toContain('progress-chip-streak');
   });
-  it('gives a visitor who has never played one friendly line with no numbers', () => {
+  it('shows nothing at all to someone who has never finished a game', () => {
     const fresh = progress({
       xp: 0,
       level: 1,
@@ -330,23 +321,9 @@ describe('the welcome strip', () => {
       totals: { games: 0, wins: 0, different_games: 0, with_friends: 0 },
     });
     expect(hasPlayedAGame(fresh)).toBe(false);
-    for (const html of [
-      renderToStaticMarkup(<WelcomeStripView state="new" />),
-      renderToStaticMarkup(<WelcomeStripView state="ready" progress={fresh} />),
-      renderToStaticMarkup(<WelcomeStripView state="ready" progress={null} />),
-    ]) {
-      expect(html).toContain('Welcome.');
-      // The words themselves, without the icon's drawing.
-      expect(html.replace(/<svg.*?<\/svg>/g, '').replace(/<[^>]+>/g, '')).not.toMatch(/\d/);
-      expect(html).not.toContain('href');
-    }
-    // Before the browser knows who this is, the strip holds its place and says nothing.
-    const pending = renderToStaticMarkup(<WelcomeStripView state="pending" />);
-    expect(pending).toContain('data-state="pending"');
-    expect(pending.replace(/<[^>]+>/g, '')).toBe('');
-    const loading = renderToStaticMarkup(<WelcomeStripView state="loading" />);
-    expect(loading).toContain('aria-busy="true"');
-    expect(loading).toContain('Loading your progress…');
+    expect(renderToStaticMarkup(<ProgressChipView progress={fresh} />)).toBe('');
+    expect(renderToStaticMarkup(<ProgressChipView progress={null} />)).toBe('');
+    expect(renderToStaticMarkup(<ProgressChipView />)).toBe('');
   });
 });
 
@@ -587,29 +564,30 @@ describe('the progress line under a result', () => {
   });
 });
 
-describe('collections and the team picks', () => {
-  const ids = (id: (typeof collections)[number]['id']) =>
-    collectionGames(
-      collections.find((item) => item.id === id)!,
-      games,
-    ).map((game) => game.id);
-  it('lists the five rails in order, each with a library view behind See all', () => {
-    expect(collections.map((item) => [item.title, item.preset])).toEqual([
-      ['Quick with bots', { category: 'solo', players: 0 }],
-      ['For teams', { category: 'teams', players: 0 }],
-      ['Game night', { category: 'party', players: 0 }],
-      ['Two players', { category: 'all', players: 2 }],
-      ['On your own', { category: 'solo', players: 1 }],
+describe('occasions and the team picks', () => {
+  const ids = (occasion: (typeof occasions)[number]['value']) =>
+    occasionGames(occasion, games).map((game) => game.id);
+  it('offers six occasions in one row, All first', () => {
+    expect(occasions.map((item) => item.label)).toEqual([
+      'All',
+      'Quick with bots',
+      'With friends',
+      'Two players',
+      'Solo',
+      'For teams',
     ]);
-    for (const collection of collections) {
-      const rail = collectionGames(collection, games);
-      expect(rail.length).toBeGreaterThan(0);
-      expect(rail.length).toBeLessThanOrEqual(12);
-      expect(new Set(rail).size).toBe(rail.length);
-      // Everything on a rail is in the view its See all opens.
-      const all = findGames(games, '', collection.preset.players, collection.preset.category);
-      for (const game of rail) expect(all).toContain(game);
+    for (const { value } of occasions) {
+      const shown = occasionGames(value, games);
+      expect(shown.length).toBeGreaterThan(0);
+      // No game twice, whatever is chosen.
+      expect(new Set(shown).size).toBe(shown.length);
     }
+  });
+  it('All: every game once, in discovery order', () => {
+    expect(ids('all')).toHaveLength(games.length);
+    expect(new Set(ids('all')).size).toBe(games.length);
+    expect(ids('all').slice(0, 4)).toEqual(['the-gang', 'shithead', 'sea-salt-paper', 'boop']);
+    expect(ids('all')).toEqual(findGames(games, '', 0, 'all').map((game) => game.id));
   });
   it('Quick with bots: bots supported and twenty minutes at most', () => {
     expect(ids('quick-bots').sort()).toEqual(
@@ -621,12 +599,12 @@ describe('collections and the team picks', () => {
       expect(gameMinutes(game).longest).toBeLessThanOrEqual(20);
     }
   });
-  it('Game night: party-shelf games that seat four or more', () => {
-    const night = ids('game-night');
-    expect(night).toEqual(expect.arrayContaining(['most-likely', 'hot-seat', 'spill-or-chill']));
-    expect(night).toEqual(expect.arrayContaining(['uno', 'flip-7', 'six-nimmt', 'word-agents']));
-    expect(night).not.toContain('secret-santa');
-    for (const id of night)
+  it('With friends: party-shelf games that seat four or more', () => {
+    const friends = ids('friends');
+    expect(friends).toEqual(expect.arrayContaining(['most-likely', 'hot-seat', 'spill-or-chill']));
+    expect(friends).toEqual(expect.arrayContaining(['uno', 'flip-7', 'six-nimmt', 'word-agents']));
+    expect(friends).not.toContain('secret-santa');
+    for (const id of friends)
       expect(games.find((item) => item.id === id)!.maxPlayers).toBeGreaterThanOrEqual(4);
   });
   it('Two players: only games two can play, the ones made for two first', () => {
@@ -639,11 +617,10 @@ describe('collections and the team picks', () => {
       expect(game.maxPlayers).toBeGreaterThanOrEqual(2);
     }
   });
-  it('On your own: the games that need nobody else', () => {
+  it('Solo: the games that need nobody else', () => {
     expect(ids('solo').sort()).toEqual(['blackjack', 'roulette', 'slots', 'tarot']);
   });
   it('For teams is the documented allowlist, in order, with nothing unsuitable in it', () => {
-    expect(categories).toContainEqual({ value: 'teams', label: 'For teams' });
     expect(teamGames).toEqual([
       'most-likely',
       'hot-seat',
@@ -660,7 +637,9 @@ describe('collections and the team picks', () => {
     ]);
     expect(ids('teams')).toEqual(teamGames);
     expect(findGames(games, '', 0, 'teams').map((game) => game.id)).toEqual(teamGames);
-    expect(teamsNote).toBe('Picked for colleagues: no betting games, and drink prompts stay off unless you turn them on.');
+    expect(teamsNote).toBe(
+      'Picked for colleagues: no betting games, and drink prompts stay off unless you turn them on.',
+    );
     for (const id of teamGames) {
       const game = games.find((item) => item.id === id)!;
       expect(game, id).toBeDefined();
@@ -686,7 +665,7 @@ describe('collections and the team picks', () => {
   });
   it('filters the team picks by group size', () => {
     const size = (value: 'small' | 'medium' | 'large') =>
-      findGames(games, '', 0, 'teams', { size: value }).map((game) => game.id);
+      occasionGames('teams', games, { size: value }).map((game) => game.id);
     expect(size('large')).toEqual([
       'most-likely',
       'hot-seat',
@@ -724,7 +703,7 @@ describe('collections and the team picks', () => {
   });
   it('filters the team picks by time, alone and together with size', () => {
     const time = (value: 'quick' | 'standard', size?: 'small' | 'medium' | 'large') =>
-      findGames(games, '', 0, 'teams', { time: value, size }).map((game) => game.id);
+      occasionGames('teams', games, { time: value, size }).map((game) => game.id);
     expect(time('quick')).toEqual(['most-likely', 'hot-seat', 'uno', 'trio', 'secret-santa']);
     expect(time('standard')).toEqual(['word-agents', 'flip-7', 'skyjo', 'sea-salt-paper']);
     expect(time('standard', 'large')).toEqual(['word-agents', 'flip-7']);
@@ -732,34 +711,97 @@ describe('collections and the team picks', () => {
     expect(gameMinutes({ minutes: '10–20' })).toEqual({ shortest: 10, longest: 20 });
     expect(gameMinutes({ minutes: '15' })).toEqual({ shortest: 15, longest: 15 });
     // Outside For teams the two filters are ignored.
-    expect(findGames(games, '', 0, 'all', { size: 'large', time: 'quick' })).toHaveLength(
+    expect(occasionGames('all', games, { size: 'large', time: 'quick' })).toHaveLength(
       games.length,
     );
+    expect(categories).toContainEqual({ value: 'teams', label: 'For teams' });
   });
-  it('still searches and intersects with the Players choice inside For teams', () => {
-    expect(findGames(games, 'santa', 0, 'teams').map((game) => game.id)).toEqual(['secret-santa']);
-    expect(findGames(games, 'poker', 0, 'teams')).toEqual([]);
-    expect(
-      findGames(games, '', 9, 'teams').every(
-        (game) => game.maxPlayers >= 9 || game.id === 'secret-santa',
-      ),
-    ).toBe(true);
+  it('searches inside the chosen occasion', () => {
+    const found = (query: string, occasion: (typeof occasions)[number]['value'] = 'all') =>
+      browseGames(games, query, occasion).map((game) => game.id);
+    expect(found('santa', 'teams')).toEqual(['secret-santa']);
+    expect(found('poker', 'teams')).toEqual([]);
+    expect(found('uno', 'quick-bots')).toEqual(['uno']);
+    expect(found('uno', 'solo')).toEqual([]);
+    expect(found('', 'solo')).toEqual(ids('solo'));
+    expect(found('   ')).toHaveLength(games.length);
+    expect(found('not a game')).toEqual([]);
+    // An ordinary typo still finds the game.
+    expect(found('chekers')).toEqual(['checkers']);
+  });
+  it('finds kinds of game by searching, now that they are not filters', () => {
+    const found = (query: string) => browseGames(games, query, 'all').map((game) => game.id);
+    // Every game on the cards shelf, plus any whose own description says "cards".
+    expect(found('cards')).toEqual(
+      expect.arrayContaining(findGames(games, '', 0, 'cards').map((game) => game.id)),
+    );
+    expect(found('cards')).not.toContain('checkers');
+    expect(found('casino').sort()).toEqual(
+      ['blackjack', 'holdem', 'roulette', 'slots', 'teen-patti'].sort(),
+    );
+    expect(found('board games')).toEqual(
+      expect.arrayContaining(['checkers', 'reversi', 'four-in-a-row', 'mancala', 'azul', 'boop']),
+    );
+    expect(found('board games')).not.toContain('uno');
+    expect(found('party')).toEqual(
+      expect.arrayContaining(['spill-or-chill', 'most-likely', 'hot-seat']),
+    );
+    expect(found('cooperative')).toEqual(['the-gang']);
+    expect(found('co-op')[0]).toBe('the-gang');
+    expect(found('poker')).toEqual(expect.arrayContaining(['holdem', 'teen-patti']));
+    expect(found('bots')).toEqual(
+      games
+        .filter((game) => game.minPlayers === 1 || game.botsSupported)
+        .map((game) => game.id)
+        .sort((a, b) => found('').indexOf(a) - found('').indexOf(b)),
+    );
   });
 });
 
-describe('the home page around the library', () => {
-  it('still lists every catalogue game exactly once in the default library view', () => {
-    const html = renderToStaticMarkup(<GameLibrary />);
-    const tiles = [...html.matchAll(/aria-label="Open ([^"]+)"/g)].map((match) =>
+describe('the home library', () => {
+  const tiles = (html: string) =>
+    [...html.matchAll(/aria-label="Open ([^"]+)"/g)].map((match) =>
       match[1].replaceAll('&amp;', '&'),
     );
-    expect(tiles.sort()).toEqual(games.map((game) => game.name).sort());
+  it('lists every catalogue game exactly once by default, with nothing repeated around it', () => {
+    const html = renderToStaticMarkup(<GameLibrary />);
+    expect([...tiles(html)].sort()).toEqual(games.map((game) => game.name).sort());
     expect(html.match(/class="game-tile"/g)).toHaveLength(games.length);
-    expect(html).not.toContain('team-filters');
-    expect(findGames(games, '', 0, 'all')).toHaveLength(games.length);
+    expect(html).toContain('<section id="games" class="game-library" aria-label="Games">');
+    expect(html).toContain('role="group" aria-label="Occasion"');
+    expect(html).toContain('<button type="button" aria-pressed="true">All</button>');
+    for (const label of ['Quick with bots', 'With friends', 'Two players', 'Solo', 'For teams'])
+      expect(html).toContain(`<button type="button" aria-pressed="false">${label}</button>`);
+    // One row of six occasions and nothing else to choose from.
+    expect(html.match(/aria-pressed=/g)).toHaveLength(6);
+    for (const gone of [
+      'team-filters',
+      'Featured',
+      'See all',
+      '<select',
+      'Modern favourites',
+      'Board games',
+      'Solo + bots',
+      'Reset filters',
+      'game-rail-tile',
+    ])
+      expect(html).not.toContain(gone);
+    expect(html).toContain('>30 games</p>');
   });
-  it('opens the library in the view a rail asked for, with the team filters inside For teams', () => {
-    const teams = renderToStaticMarkup(<GameLibrary preset={{ category: 'teams', players: 0 }} />);
+  it('opens with the occasion it was asked for', () => {
+    const quick = renderToStaticMarkup(<GameLibrary preset="quick-bots" />);
+    expect(quick).toContain('<button type="button" aria-pressed="true">Quick with bots</button>');
+    expect(tiles(quick).sort()).toEqual(['Blackjack', 'Four in a Row', 'Mancala', 'Trio', 'Uno']);
+    // These open ready to play against bots, and say so.
+    expect(quick).toContain('href="/games/uno?mode=bots"');
+    expect(quick).toContain('You + bots · 10–20 min');
+    expect(quick).toContain('1–7 players · 5–15 min');
+    const all = renderToStaticMarkup(<GameLibrary />);
+    expect(all).toContain('href="/games/uno"');
+    expect(all).not.toContain('mode=bots');
+  });
+  it('shows the team note and its two filters only inside For teams', () => {
+    const teams = renderToStaticMarkup(<GameLibrary preset="teams" />);
     expect(teams.match(/class="game-tile"/g)).toHaveLength(teamGames.length);
     expect(teams).toContain(teamsNote);
     expect(teams).toContain('role="group" aria-label="Group size"');
@@ -767,41 +809,13 @@ describe('the home page around the library', () => {
     for (const label of ['2–4', '5–8', '9+', 'Under 15 min', '15–30 min'])
       expect(teams).toContain(`<button type="button" aria-pressed="false">${label}</button>`);
     expect(teams).toContain('<button type="button" aria-pressed="true">For teams</button>');
-    const two = renderToStaticMarkup(<GameLibrary preset={{ category: 'all', players: 2 }} />);
-    expect(two).toContain('<option value="2" selected="">2 people</option>');
-    // Play solo still opens Solo + bots for one.
-    const solo = renderToStaticMarkup(<GameLibrary initialSolo />);
-    expect(solo).toContain('<button type="button" aria-pressed="true">Solo + bots</button>');
-    expect(solo).toContain('href="/games/uno?mode=bots"');
+    for (const occasion of ['all', 'quick-bots', 'friends', 'two-players', 'solo'] as const)
+      expect(renderToStaticMarkup(<GameLibrary preset={occasion} />)).not.toContain(teamsNote);
   });
-  it('draws rails with their own cards, so the library keeps the only "Open …" links', () => {
-    const html = renderToStaticMarkup(<CollectionRails onSeeAll={noop} />);
-    expect(html).not.toContain('class="game-tile"');
-    expect(html).not.toContain('aria-label="Open ');
-    for (const collection of collections) {
-      expect(html).toContain(`>${collection.title}</h2>`);
-      expect(html).toContain(`aria-label="See all: ${collection.title}"`);
-      expect(html).toContain(`role="group" aria-label="${collection.title} games"`);
-    }
-    expect(html).toContain(teamsNote);
-    // Every card says who and how long, in words and in its name.
-    expect(html).toContain('aria-label="Uno, You + bots, 10–20 min"');
-    expect(html).toContain('href="/games/uno?mode=bots"');
-    expect(html).toContain('aria-label="Word Agents, 4–10 players, 15–30 min"');
-    expect(html).toContain('aria-label="Secret Santa, Any group, 5–10 min"');
-    expect(html).toContain('aria-label="Checkers, 2 players, 10–25 min"');
-    expect(html).toContain('aria-label="Pop Tarot, Solo, 5–10 min"');
-    const cards = html.match(/class="game-rail-tile"/g)!;
-    expect(cards).toHaveLength(
-      collections.reduce((total, item) => total + collectionGames(item, games).length, 0),
-    );
-  });
-  it('names a rail card by game, players and length', () => {
+  it('draws a tile as a cover, a name and one quiet line', () => {
     const html = renderToStaticMarkup(
       <GameTile
-        variant="rail"
         name="Azul"
-        subtitle="Draft tiles"
         minPlayers={2}
         maxPlayers={4}
         minutes="25–40"
@@ -810,45 +824,111 @@ describe('the home page around the library', () => {
         href="/games/azul"
       />,
     );
-    expect(html).toContain('class="game-rail-tile"');
-    expect(html).toContain('aria-label="Azul, 2–4 players, 25–40 min"');
-    expect(html).toContain('2–4 players');
-    expect(html).toContain('25–40 min');
+    expect(html).toBe(
+      '<a class="game-tile" data-edition="standard" aria-label="Open Azul" href="/games/azul">' +
+        '<div class="game-poster" data-tone="sky"></div>' +
+        '<h3 class="game-tile-name">Azul</h3>' +
+        '<p class="game-tile-meta">2–4 players · 25–40 min</p></a>',
+    );
+    const line = (props: Partial<Parameters<typeof GameTile>[0]>) =>
+      renderToStaticMarkup(
+        <GameTile
+          name="Game"
+          minPlayers={2}
+          maxPlayers={2}
+          minutes="5–10"
+          tone="sage"
+          artwork={null}
+          {...props}
+        />,
+      ).match(/game-tile-meta">([^<]+)</)![1];
+    expect(line({})).toBe('2 players · 5–10 min');
+    expect(line({ minPlayers: 1, maxPlayers: 1 })).toBe('Solo · 5–10 min');
+    expect(line({ groupLabel: 'Any group' })).toBe('Any group · 5–10 min');
+    expect(line({ soloMode: true })).toBe('You + bots · 5–10 min');
+    const library = renderToStaticMarkup(<GameLibrary />);
+    expect(library).toContain('Any group · 5–10 min');
+    // No blurb, arrow or badge on any tile.
+    expect(library).not.toContain('tile-arrow');
+    expect(library).not.toContain('Match colors and numbers');
   });
-  it('offers Continue only for rooms in play or waiting, the match in progress first', () => {
+  it('offers Continue only for a game in progress: one line, the most recent, and a count', () => {
     const rooms = [
       {
         id: '11111111-1111-4111-8111-111111111111',
         name: 'Tile club',
         gameId: 'azul',
         status: 'lobby',
-        players: 2,
-      },
-      {
-        id: '33333333-3333-4333-8333-333333333333',
-        name: 'Last game',
-        gameId: 'holdem',
-        status: 'finished',
-        players: 2,
       },
       {
         id: '22222222-2222-4222-8222-222222222222',
         name: 'Friday table',
         gameId: 'uno',
         status: 'playing',
-        players: 3,
+      },
+      {
+        id: '33333333-3333-4333-8333-333333333333',
+        name: 'Last game',
+        gameId: 'holdem',
+        status: 'finished',
+      },
+      {
+        id: '44444444-4444-4444-8444-444444444444',
+        name: 'Slow chess',
+        gameId: 'checkers',
+        status: 'playing',
       },
     ];
-    expect(activeRooms(rooms).map((room) => room.name)).toEqual(['Friday table', 'Tile club']);
-    const html = renderToStaticMarkup(<ContinueRail rooms={rooms} />);
-    expect(html).toContain('>Continue</h2>');
-    expect(html).toContain('aria-label="Continue Friday table, Uno"');
+    expect(gamesInProgress(rooms).map((room) => room.name)).toEqual(['Friday table', 'Slow chess']);
+    const html = renderToStaticMarkup(<ContinueLine rooms={rooms} onShowAll={noop} />);
+    expect(html).toContain('<section class="continue-line" aria-label="Continue">');
+    expect(html.match(/<a /g)).toHaveLength(1);
     expect(html).toContain('href="/games/uno/rooms/22222222-2222-4222-8222-222222222222"');
-    expect(html).toContain('In progress');
-    expect(html).not.toContain('Last game');
-    // Its own card, so the Your games tab keeps the only "Open …" room links.
-    expect(html).not.toContain('class="room-shortcut"');
-    expect(renderToStaticMarkup(<ContinueRail rooms={[rooms[1]]} />)).toBe('');
+    expect(html.replace(/<svg.*?<\/svg>/g, '').replace(/<[^>]+>/g, '')).toBe(
+      'Continue Friday table · Unoand 1 more',
+    );
+    const one = renderToStaticMarkup(<ContinueLine rooms={rooms.slice(0, 3)} onShowAll={noop} />);
+    expect(one).not.toContain('more');
+    expect(one).not.toContain('<button');
+    // Waiting and finished rooms never reach the home view.
+    expect(
+      renderToStaticMarkup(<ContinueLine rooms={[rooms[0], rooms[2]]} onShowAll={noop} />),
+    ).toBe('');
+    expect(renderToStaticMarkup(<ContinueLine rooms={[]} onShowAll={noop} />)).toBe('');
+  });
+  it('keeps both tabs and their roles when they are drawn as quiet text', () => {
+    const html = renderToStaticMarkup(
+      <SegmentedTabs
+        label="Browse"
+        variant="text"
+        heading={<h2>Browse games</h2>}
+        value="games"
+        onValueChange={noop}
+        items={[
+          { value: 'games', label: 'Games', content: 'library' },
+          { value: 'rooms', label: 'Your games', content: 'rooms' },
+        ]}
+      />,
+    );
+    expect(html).toContain('class="segmented-tabs" data-variant="text"');
+    // The section heading shares the row with the tabs, and comes first.
+    expect(html).toMatch(
+      /<div class="segmented-tabs-bar"><h2>Browse games<\/h2><div class="segmented-tabs-list" role="tablist" aria-label="Browse"/,
+    );
+    expect(html.match(/role="tab"/g)).toHaveLength(2);
+    expect(html.match(/role="tabpanel"/g)).toHaveLength(2);
+    expect(html).toMatch(/aria-selected="true"[^>]*>Games<\/button>/);
+    expect(html).toMatch(/aria-selected="false"[^>]*>Your games<\/button>/);
+    expect(
+      renderToStaticMarkup(
+        <SegmentedTabs
+          label="x"
+          value="a"
+          onValueChange={noop}
+          items={[{ value: 'a', label: 'A', content: null }]}
+        />,
+      ),
+    ).toContain('data-variant="segmented"');
   });
 });
 

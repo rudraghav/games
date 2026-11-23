@@ -40,7 +40,6 @@ function Components() {
       <div style={{ maxWidth: 300 }}>
         <GameTile
           name="Mancala"
-          subtitle="Sow a little. Steal a march."
           minPlayers={2}
           maxPlayers={2}
           minutes="5–15"
@@ -50,7 +49,6 @@ function Components() {
         />
         <GameTile
           name="Monopoly Deal No Mercy"
-          subtitle="Games house deck. No mercy."
           minPlayers={2}
           maxPlayers={5}
           minutes="15–25"

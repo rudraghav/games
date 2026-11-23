@@ -9,21 +9,26 @@ import { RoomShortcut } from '@/features/lounge/RoomShortcut';
 import { GameLibrary } from '@/features/lounge/GameLibrary';
 
 describe('Dashboard discovery and private room entry', () => {
-  it('features one Tarot entry first while keeping the complete catalogue discoverable', () => {
+  it('lists the complete catalogue once, in discovery order, with no featured banner', () => {
     const html = renderToStaticMarkup(<GameLibrary />);
-    const choices = [...html.matchAll(/aria-label="Open ([^"]+)"/g)].map((match) => match[1]);
+    const choices = [...html.matchAll(/aria-label="Open ([^"]+)"/g)].map((match) =>
+      match[1].replaceAll('&amp;', '&'),
+    );
     expect(choices).toHaveLength(games.length);
     expect(new Set(choices).size).toBe(games.length);
-    expect(choices[0]).toBe('Pop Tarot');
+    // The first four discovery slots.
+    expect(choices.slice(0, 4)).toEqual(['The Gang', 'Shithead', 'Sea Salt & Paper', 'boop.']);
+    expect(choices).toEqual(findGames(games, '', 0, 'all').map((game) => game.name));
+    for (const game of games) expect(html).toContain(`href="/games/${game.id}"`);
+    // Pop Tarot is one tile among the others, with its own cover.
     expect(html).toContain('aria-label="Open Pop Tarot"');
     expect(html).toContain('href="/games/tarot"');
-    for (const game of games) expect(html).toContain(`href="/games/${game.id}"`);
-    expect(html.match(/data-variant="featured"/g)).toHaveLength(1);
-    expect(html).toContain('Start reading');
-    expect(html).toContain('game-featured-label');
     expect(html).toContain('The Magician');
     expect(html).toContain('The High Priestess');
     expect(html).toContain('The Fool');
+    expect(html).not.toContain('data-variant="featured"');
+    expect(html).not.toContain('Featured');
+    expect(html).not.toContain('Start reading');
   });
   it('accepts raw codes and shared invite links without following the URL', () => {
     const token = 'A_private_invite_token_1234567890';
@@ -40,7 +45,6 @@ describe('Dashboard discovery and private room entry', () => {
     const solo = renderToStaticMarkup(
       <GameTile
         name="Uno"
-        subtitle="Match colours and numbers"
         minPlayers={2}
         maxPlayers={10}
         minutes="15–30"
@@ -53,7 +57,6 @@ describe('Dashboard discovery and private room entry', () => {
     const friends = renderToStaticMarkup(
       <GameTile
         name="Uno"
-        subtitle="Match colours and numbers"
         minPlayers={2}
         maxPlayers={10}
         minutes="15–30"

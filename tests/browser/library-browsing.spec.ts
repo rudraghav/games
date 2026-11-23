@@ -8,44 +8,51 @@ test('browsing filters intersect, reset deliberately and keep keyboard focus', a
   const library = page.getByRole('region', { name: 'Games' });
   const search = library.getByRole('searchbox', { name: 'Search games' });
   const tiles = library.getByRole('link', { name: /^Open / });
+  const occasion = (name: string) =>
+    library
+      .getByRole('group', { name: 'Occasion', exact: true })
+      .getByRole('button', { name, exact: true });
 
-  await library.getByRole('button', { name: 'Cards', exact: true }).click();
-  await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('4');
+  // The occasions replaced the kinds of game and the Players dropdown as filters;
+  // search and an occasion still intersect.
+  await occasion('Two players').click();
   await search.fill('SEA SALT & PAPER');
   await expect(tiles).toHaveCount(1);
   await expect(tiles).toHaveAccessibleName('Open Sea Salt & Paper');
   await expect(library.getByRole('status')).toHaveText('1 game');
 
-  await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('5');
+  await occasion('Solo').click();
   await expect(library.getByRole('heading', { name: 'No games found' })).toBeVisible();
-  await library.getByRole('button', { name: 'Reset filters', exact: true }).click();
+  await library.getByRole('button', { name: 'Show all games', exact: true }).click();
   await expect(search).toBeFocused();
   await expect(search).toHaveValue('');
   await expect(tiles).toHaveCount(catalogue.length);
-  await expect(library.getByRole('button', { name: 'All games', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'true',
-  );
-  await expect(library.getByRole('button', { name: 'All games', exact: true })).toBeInViewport();
+  await expect(occasion('All')).toHaveAttribute('aria-pressed', 'true');
+  await expect(occasion('All')).toBeInViewport();
 
-  const cooperative = library.getByRole('button', { name: 'Co-op', exact: true });
-  await cooperative.focus();
-  await page.keyboard.press('Enter');
-  await expect(cooperative).toHaveAttribute('aria-pressed', 'true');
-  await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('6');
+  // Kinds of game are found by searching for them.
+  await search.fill('cooperative');
   await expect(tiles).toHaveCount(1);
   await expect(tiles).toHaveAccessibleName('Open The Gang');
+  const friends = occasion('With friends');
+  await friends.focus();
+  await page.keyboard.press('Enter');
+  await expect(friends).toHaveAttribute('aria-pressed', 'true');
+  await expect(tiles).toHaveCount(1);
   await search.fill('not a game');
+  await expect(tiles).toHaveCount(0);
   await search.press('Escape');
   await expect(search).toBeFocused();
-  await expect(tiles).toHaveCount(1);
-  await expect(cooperative).toHaveAttribute('aria-pressed', 'true');
-  await expect(library.getByRole('combobox', { name: 'Players', exact: true })).toHaveValue('6');
+  await expect(search).toHaveValue('');
+  await expect(friends).toHaveAttribute('aria-pressed', 'true');
+  await expect(library.getByRole('link', { name: 'Open The Gang', exact: true })).toBeVisible();
 
   await search.fill('gang');
+  await expect(tiles).toHaveCount(1);
   await library.getByRole('button', { name: 'Clear search', exact: true }).click();
   await expect(search).toBeFocused();
-  await expect(tiles).toHaveCount(1);
+  await expect(friends).toHaveAttribute('aria-pressed', 'true');
+  expect(await tiles.count()).toBeGreaterThan(1);
   await expect(page.locator('html')).toHaveJSProperty(
     'scrollWidth',
     await page.evaluate(() => innerWidth),
@@ -56,20 +63,25 @@ test('mobile browsing keeps primary actions in full rows and filters within the 
   page,
 }, testInfo) => {
   await page.goto('/');
-  const actions = page.locator('.hero-actions');
+  const actions = page.locator('.home-actions');
   const buttons = actions.getByRole('button');
+  await expect(buttons).toHaveText(['Play solo', 'Create room', 'Join a room']);
   if (testInfo.project.name === 'phone') {
     for (const width of [390, 320]) {
       await page.setViewportSize({ width, height: 844 });
       const actionBounds = await actions.boundingBox();
       const first = await buttons.nth(0).boundingBox();
       const second = await buttons.nth(1).boundingBox();
+      const third = await buttons.nth(2).boundingBox();
       expect(actionBounds).not.toBeNull();
+      // The primary action is one full row; the two secondary actions share the row under it.
       expect(first!.width).toBeCloseTo(actionBounds!.width, 0);
-      expect(second!.width).toBeCloseTo(actionBounds!.width, 0);
       expect(second!.y).toBeGreaterThanOrEqual(first!.y + first!.height);
-      expect(first!.height).toBeGreaterThanOrEqual(44);
-      expect(second!.height).toBeGreaterThanOrEqual(44);
+      expect(third!.y).toBe(second!.y);
+      expect(third!.x).toBeGreaterThanOrEqual(second!.x + second!.width);
+      expect(second!.width).toBeCloseTo(third!.width, 0);
+      expect(third!.x + third!.width).toBeCloseTo(actionBounds!.x + actionBounds!.width, 0);
+      for (const box of [first, second, third]) expect(box!.height).toBeGreaterThanOrEqual(44);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
         true,
       );
@@ -78,17 +90,16 @@ test('mobile browsing keeps primary actions in full rows and filters within the 
   }
   const library = page.getByRole('region', { name: 'Games' });
   await library.scrollIntoViewIfNeeded();
-  const solo = library.getByRole('button', { name: 'Solo + bots', exact: true });
-  await solo.focus();
+  // The last occasion in the row comes into view inside the row, not by moving the page sideways.
+  const teams = library.getByRole('button', { name: 'For teams', exact: true });
+  await teams.focus();
   await page.keyboard.press('Enter');
-  await expect(solo).toBeInViewport();
-  await expect(solo).toHaveAttribute('aria-pressed', 'true');
-  await library.getByRole('button', { name: 'Reset filters', exact: true }).click();
-  await expect(library.getByRole('button', { name: 'All games', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'true',
-  );
-  await expect(library.getByRole('button', { name: 'All games', exact: true })).toBeInViewport();
+  await expect(teams).toBeInViewport();
+  await expect(teams).toHaveAttribute('aria-pressed', 'true');
+  const all = library.getByRole('button', { name: 'All', exact: true });
+  await all.click();
+  await expect(all).toHaveAttribute('aria-pressed', 'true');
+  await expect(all).toBeInViewport();
   await expect(library.getByRole('status')).toHaveText(`${catalogue.length} games`);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: testInfo.outputPath('browsing.png') });

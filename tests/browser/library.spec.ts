@@ -48,22 +48,26 @@ test('catalogue search, category and group size work with keyboard and reduced m
   const tiles = page.getByRole('link', { name: /^Open / });
   await expect(tiles).toHaveCount(catalogue.length);
   await expect(page.getByText(`${catalogue.length} games`, { exact: true })).toBeVisible();
+  // Tiles carry a name and one line now; the house-deck note is on the game's own page.
   await expect(
     page
       .getByRole('link', { name: 'Open Monopoly Deal No Mercy', exact: true })
-      .getByText(/Games house deck/),
-  ).toBeVisible();
+      .locator('.game-tile-meta'),
+  ).toHaveText('2–5 players · 15–25 min');
   await page.getByRole('searchbox', { name: 'Search games' }).fill('poker');
   await expect(page.getByRole('link', { name: 'Open Texas Hold’em', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Clear search' }).click();
-  await page.getByRole('button', { name: 'Board games', exact: true }).click();
+  // Kinds of game are searched for; group size is an occasion.
+  await page.getByRole('searchbox', { name: 'Search games' }).fill('board games');
   await expect(page.getByRole('link', { name: 'Open Checkers', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Open Mancala', exact: true })).toBeVisible();
-  await page.getByLabel('Players', { exact: true }).selectOption('10');
+  await page.getByRole('button', { name: 'Solo', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'No games found' })).toBeVisible();
   await page.getByRole('button', { name: 'Show all games' }).focus();
   await page.keyboard.press('Enter');
   await expect(tiles).toHaveCount(catalogue.length);
+  await page.goto('/games/deal-no-mercy');
+  await expect(page.getByText(/Games house deck/).first()).toBeVisible();
   await expect
     .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
     .toBe(true);

@@ -32,9 +32,13 @@ viewports, exercises all 27 setup forms, an invite flow and an actual bot reply,
 and closes only its own rooms. Storybook previews block submission and use an
 isolated fresh query cache so inspecting controls never creates a room.
 
-`progress.ts` holds the small pure helpers the lounge strip, the rewards page
+`progress.ts` holds the small pure helpers the header chip, the rewards page
 and the results line share: `levelProgress` (XP inside the level, the span,
 what remains, a 0 to 1 fraction), `levelLabel`, `streakLine` (the streak in
 words, or nothing; never a "lost" wording), `badgeCount`, `hasPlayedAGame` and
 `wornCosmetics`. `keys.progress` is the one query key for a player's progress.
-`SiteHeader`'s inner-page navigation links to Rewards beside Games.
+`SiteHeader`'s inner-page navigation links to Rewards beside Games, and every
+page's header carries `ProgressChip`: the level ring, "Level N" and a flame
+with the day count while a streak exists, as one link to `/rewards`. It reads
+progress with the passive client, only for a player this browser knows, and
+draws nothing for someone with no finished game.

@@ -1,3 +1,17 @@
+## 2026-11-23 — A minimal home page
+
+- Owner found the home page repetitive, cluttered and badly organised, and asked for a minimal page where starting a new game comes first and earlier rooms do not.
+
+- Home is now two parts. Start: one headline and three actions (Play solo as the only filled button, Create room, Join a room). Browse: a search field, six occasion chips and one grid where each game appears once with its name, players and minutes. The page is 1,810px tall on desktop (was 5,876) and 3,129px on a phone (was about 7,300), with the first games on the first screen.
+
+- Removed: the five collection rails, the Featured banner, the Players dropdown, the nine mechanic chips, the welcome strip and the Continue rail. Demoted: progress to a header chip, a game in progress to one slim line, Your games to a quiet text tab, an invitation to one slim ticket above the headline.
+
+- The intermittent Uno saved-selection browser test is fixed at its cause: about one No Mercy deal in fifty ends by elimination before a plain card can be played when the test takes the first legal move; it now deals again.
+
+- Local checks: frontend (484 unit tests), contracts and tooling pass. Browser suite: 526 passed, 77 skipped, 1 failed (that Uno test, which passes 12 of 12 after the fix). WebKit shows the same layout. Evidence: docs/evidence/home-minimal-2026-11-23.
+
+- State: verified locally; not committed or released. No database change.
+
 ## 2026-11-23 — Local environment restored, remaining checks run, cleanup
 
 - Owner asked to finish everything left: run Docker, commit the AGENTS.md change, and close the pending items.

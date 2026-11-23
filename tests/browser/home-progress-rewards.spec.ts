@@ -5,7 +5,7 @@ import catalogue from '../../packages/api-client/src/generated/catalog.json' wit
 import { openGameSetup, requestAs, roomAs, type RoomView } from './helpers';
 import { matchPlayer } from './fullmatch-player';
 
-// The home page around the library, progress and rewards. The first group runs
+// The home page (Start, then Browse), progress and rewards. The first group runs
 // against mocked progress (every state on demand, no rooms created). The last
 // test plays real games against the local backend and closes what it creates.
 
@@ -145,7 +145,15 @@ async function expectTouchTargets(page: Page, scope: string) {
   expect(small).toEqual([]);
 }
 
-test('a new visitor sees a welcome, the same primary actions and the rails before the library', async ({
+const TEAMS_NOTE =
+  'Picked for colleagues: no betting games, and drink prompts stay off unless you turn them on.';
+const OCCASIONS = ['All', 'Quick with bots', 'With friends', 'Two players', 'Solo', 'For teams'];
+const tileNames = (page: Page) =>
+  page
+    .locator('.game-tile')
+    .evaluateAll((tiles) => tiles.map((tile) => tile.getAttribute('aria-label')));
+
+test('a new visitor gets one headline, three ways to start, and one library with every game once', async ({
   page,
 }, info) => {
   const phone = info.project.name === 'phone';
@@ -155,65 +163,184 @@ test('a new visitor sees a welcome, the same primary actions and the rails befor
     if (path === '/api/dev-session' || path.includes('/api/backend/')) asked.push(path);
   });
   await page.goto('/');
-  // One friendly line, no numbers and no link: there is no progress to show yet.
-  const strip = page.locator('.welcome-strip');
-  await expect(strip).toHaveAttribute('data-state', 'new');
-  await expect(strip).toContainText('Welcome.');
-  expect(await strip.innerText()).not.toMatch(/\d/);
-  await expect(strip.getByRole('link')).toHaveCount(0);
+  await page.evaluate(() => document.fonts.ready);
 
-  // Home order: welcome, the actions, the tabs, the rails, then the whole library.
-  const order = [
-    await top(page, '.site-header'),
-    await top(page, '.welcome-strip'),
-    await top(page, '.hero-actions'),
-    await top(page, '[role="tablist"]'),
-    await top(page, '.game-collection'),
-    await top(page, '#games'),
-  ];
-  expect(order).toEqual([...order].sort((a, b) => a - b));
-  expect(order[4]).toBeLessThan(page.viewportSize()!.height);
-  await expect(page.getByRole('heading', { level: 2 })).toHaveText([
-    'Quick with bots',
-    'For teams',
-    'Game night',
-    'Two players',
-    'On your own',
-    'Games',
+  // Start: one headline, then exactly three actions, each a different verb with one caption.
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('How do you want to play?');
+  const start = page.getByRole('region', { name: 'How do you want to play?', exact: true });
+  await expect(start.getByRole('button')).toHaveText(['Play solo', 'Create room', 'Join a room']);
+  await expect(start.locator('.home-action > p')).toHaveText([
+    'On your own or against bots',
+    'Play with friends',
+    'Have a code?',
   ]);
-  await expect(
-    page.getByText('Picked for colleagues: no betting games, and drink prompts stay off unless you turn them on.'),
-  ).toBeVisible();
-  // No promotion sits above the main actions.
-  await expect(
-    page.locator('.lounge-dashboard > :not(.welcome-strip, .hero, .segmented-tabs)'),
-  ).toHaveCount(0);
+  // Each of the three names exists once on the whole page: the header has no second copy.
+  for (const name of ['Play solo', 'Create room', 'Join a room'])
+    await expect(page.getByRole('button', { name, exact: true })).toHaveCount(1);
+  await expect(page.locator('.site-header').getByRole('button')).toHaveCount(0);
+  // Only the first action is filled.
+  await expect(start.locator('.button--primary')).toHaveText(['Play solo']);
 
-  // The library is complete, and the rails add no second "Open …" link.
+  // Nothing for someone who has never played: no welcome line, no level, no rooms, no invitation.
+  await expect(page.locator('.welcome-strip, .progress-chip')).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Continue', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Invitations', exact: true })).toHaveCount(0);
+  // The page is Start, then Browse, and nothing else.
+  await expect(page.locator('.lounge-dashboard > *')).toHaveCount(2);
+  await expect(page.getByRole('heading', { level: 2 })).toHaveText(['Browse games']);
+
+  // Browse: a search box, one row of six occasions, and each game exactly once.
+  const library = page.getByRole('region', { name: 'Games', exact: true });
+  await expect(library.getByRole('searchbox', { name: 'Search games' })).toBeVisible();
+  const occasions = library.getByRole('group', { name: 'Occasion', exact: true });
+  await expect(occasions.getByRole('button')).toHaveText(OCCASIONS);
+  await expect(occasions.getByRole('button', { name: 'All', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
   await expect(page.locator('.game-tile')).toHaveCount(catalogue.length);
   await expect(page.getByRole('link', { name: /^Open / })).toHaveCount(catalogue.length);
-  const cards = page.locator('.game-rail-tile');
-  expect(await cards.count()).toBeGreaterThan(20);
-  // Every card, rail or library, states its players and its length.
-  for (const meta of await page
-    .locator('.game-rail-tile .game-meta, .game-tile .game-meta')
-    .all()) {
-    const text = await meta.innerText();
-    expect(text).toMatch(/players|Solo|bots|Any group/);
-    expect(text).toMatch(/\d\s*min/);
-  }
+  const names = await tileNames(page);
+  expect(new Set(names).size).toBe(catalogue.length);
+  // The first four discovery slots.
+  expect(names.slice(0, 4)).toEqual([
+    'Open The Gang',
+    'Open Shithead',
+    'Open Sea Salt & Paper',
+    'Open boop.',
+  ]);
+  // Removed on purpose: rails, See all, the Featured banner, the Players dropdown and the
+  // nine kinds of game as filters.
+  await expect(
+    page.locator('.game-rail-tile, .game-collection, [data-variant="featured"]'),
+  ).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /^See all/ })).toHaveCount(0);
+  await expect(page.getByRole('combobox')).toHaveCount(0);
+  for (const gone of [
+    'Modern favourites',
+    'Cards',
+    'Casino',
+    'Board games',
+    'Party',
+    'Co-op',
+    'Solo + bots',
+  ])
+    await expect(page.getByRole('button', { name: gone, exact: true })).toHaveCount(0);
+  await expect(page.getByText('Featured', { exact: true })).toHaveCount(0);
+
+  // A tile is a cover, a name and one quiet line: who can play and for how long.
+  const lines = await page.locator('.game-tile .game-tile-meta').allInnerTexts();
+  expect(lines).toHaveLength(catalogue.length);
+  for (const line of lines)
+    expect(line).toMatch(/^(\d+(–\d+)? players|Solo|Any group) · \d+(–\d+)? min$/);
+  const uno = library.getByRole('link', { name: 'Open Uno', exact: true });
+  await expect(uno.locator('.game-tile-name')).toHaveText('Uno');
+  await expect(uno.locator('.game-tile-meta')).toHaveText('2–10 players · 10–20 min');
+  // Nothing else under the cover: no blurb, arrow or badge.
+  expect(await uno.locator(':scope > :not(.game-poster)').count()).toBe(2);
+  await expect(uno).toHaveAttribute('href', '/games/uno');
   expect(
     await page
-      .locator('.game-rail-tile .game-meta, .game-tile .game-meta')
+      .locator('.game-tile-meta')
       .evaluateAll((items) =>
         Math.min(...items.map((item) => parseFloat(getComputedStyle(item).fontSize))),
       ),
-  ).toBeGreaterThanOrEqual(11);
+  ).toBeGreaterThanOrEqual(12);
+  // The cover art is scaled whole into the smaller poster, never cut off.
+  expect(
+    await page.locator('.game-tile').evaluateAll((tiles) =>
+      tiles.flatMap((tile) => {
+        const poster = tile.querySelector('.game-poster')!.getBoundingClientRect();
+        return [
+          ...tile.querySelectorAll(
+            '.game-poster .playing-card, .game-poster .tarot-card, .game-poster .word-tile',
+          ),
+        ].flatMap((card) => {
+          const box = card.getBoundingClientRect();
+          return box.left < poster.left - 1 ||
+            box.right > poster.right + 1 ||
+            box.top < poster.top - 1 ||
+            box.bottom > poster.bottom + 1
+            ? [tile.getAttribute('aria-label')]
+            : [];
+        });
+      }),
+    ),
+  ).toEqual([]);
 
+  // Order down the page, and the start of the grid inside the first screen.
+  const order = [
+    await top(page, '.site-header'),
+    await top(page, '.home-headline'),
+    await top(page, '.home-actions'),
+    await top(page, '#browse'),
+    await top(page, '.library-search'),
+    await top(page, '.catalogue-grid'),
+  ];
+  expect(order).toEqual([...order].sort((a, b) => a - b));
+  const viewport = page.viewportSize()!;
+  const firstTile = (await page.locator('.game-tile').first().boundingBox())!;
+  expect(firstTile.y).toBeLessThan(viewport.height - 60);
+  for (const button of await start.getByRole('button').all())
+    await expect(button).toBeInViewport({ ratio: 1 });
+  // The whole page is a fraction of what it was (5,876px on desktop, about 7,300px on a phone).
+  const pageHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+  expect(pageHeight).toBeLessThan(phone ? 3300 : 1950);
+  // Columns: two on a phone, five on a wide screen.
+  const firstRow = await page
+    .locator('.game-tile')
+    .evaluateAll(
+      (tiles) =>
+        tiles.filter(
+          (tile) => tile.getBoundingClientRect().top === tiles[0].getBoundingClientRect().top,
+        ).length,
+    );
+  expect(firstRow).toBe(phone ? 2 : 5);
+  if (!phone) {
+    await page.setViewportSize({ width: 800, height: 900 });
+    expect(
+      await page
+        .locator('.game-tile')
+        .evaluateAll(
+          (tiles) =>
+            tiles.filter(
+              (tile) => tile.getBoundingClientRect().top === tiles[0].getBoundingClientRect().top,
+            ).length,
+        ),
+    ).toBe(3);
+    await fits(page);
+    await page.setViewportSize(viewport);
+  }
+
+  // Layout of the three actions.
+  const boxes = await Promise.all(
+    (await start.getByRole('button').all()).map(async (button) => (await button.boundingBox())!),
+  );
+  for (const box of boxes) expect(box.height).toBeGreaterThanOrEqual(44);
+  if (phone) {
+    const row = (await page.locator('.home-actions').boundingBox())!;
+    // The primary action is a full-width button; the other two share the row under it.
+    expect(boxes[0].width).toBeCloseTo(row.width, 0);
+    expect(boxes[1].y).toBeGreaterThanOrEqual(boxes[0].y + boxes[0].height);
+    expect(boxes[2].y).toBe(boxes[1].y);
+    expect(boxes[2].x).toBeGreaterThan(boxes[1].x + boxes[1].width);
+    expect(boxes[1].width).toBeCloseTo(boxes[2].width, 0);
+  } else {
+    // One row of three equal cards, the primary one first.
+    const cards = await page
+      .locator('.home-action')
+      .evaluateAll((items) => items.map((item) => item.getBoundingClientRect().toJSON()));
+    expect(new Set(cards.map((card) => Math.round(card.top))).size).toBe(1);
+    expect(Math.round(cards[0].width)).toBe(Math.round(cards[1].width));
+    expect(Math.round(cards[1].width)).toBe(Math.round(cards[2].width));
+    expect(cards[0].left).toBeLessThan(cards[1].left);
+  }
+  await expectTouchTargets(page, '.lounge-dashboard');
+  await fits(page);
   // Browsing asked the server for nothing: no guest, no profile, no progress.
   expect(asked).toEqual([]);
 
-  // The three primary actions still do what they did.
+  // The three actions do what they did.
   await page.getByRole('button', { name: 'Create room', exact: true }).click();
   const create = page.getByRole('dialog', { name: 'Create room', exact: true });
   await expect(create).toBeVisible();
@@ -227,149 +354,123 @@ test('a new visitor sees a welcome, the same primary actions and the rails befor
   if (phone) await expect(inlineCode).toBeHidden();
   else await expect(inlineCode).toBeVisible();
 
+  // Play solo chooses Quick with bots below and moves focus there.
   await page.getByRole('button', { name: 'Play solo', exact: true }).click();
-  const library = page.getByRole('region', { name: 'Games', exact: true });
-  const solo = library.getByRole('button', { name: 'Solo + bots', exact: true });
-  await expect(solo).toHaveAttribute('aria-pressed', 'true');
-  await expect(solo).toBeInViewport();
-  await expect(solo).toBeFocused();
-  await expect(library.getByRole('combobox', { name: 'Players', exact: true })).toHaveValue('1');
+  const quick = occasions.getByRole('button', { name: 'Quick with bots', exact: true });
+  await expect(quick).toHaveAttribute('aria-pressed', 'true');
+  await expect(quick).toBeFocused();
+  await expect(quick).toBeInViewport();
   await expect(page.getByRole('dialog')).toHaveCount(0);
+  expect((await tileNames(page)).sort()).toEqual([
+    'Open Blackjack',
+    'Open Four in a Row',
+    'Open Mancala',
+    'Open Trio',
+    'Open Uno',
+  ]);
+  await expect(uno).toHaveAttribute('href', '/games/uno?mode=bots');
+  await expect(uno).toContainText('You + bots · 10–20 min');
 
-  // Tabs, search and categories.
-  await library.getByRole('button', { name: 'Reset filters', exact: true }).click();
-  await library.getByRole('searchbox', { name: 'Search games' }).fill('poker');
+  // Tabs: two quiet text tabs on the heading's row; the rooms view is unchanged.
+  const games = page.getByRole('tab', { name: 'Games', exact: true });
+  const rooms = page.getByRole('tab', { name: 'Your games', exact: true });
+  // Measured in one reading, since the page may still be gliding to the library.
+  const bar = await page.locator('.segmented-tabs-bar').evaluate((row) => {
+    const box = (element: Element) => element.getBoundingClientRect().toJSON();
+    return {
+      heading: box(row.querySelector('h2')!),
+      tabs: [...row.querySelectorAll('[role="tab"]')].map(box),
+    };
+  });
+  expect(bar.tabs).toHaveLength(2);
+  for (const box of bar.tabs) {
+    expect(box.height).toBeGreaterThanOrEqual(44);
+    expect(box.width).toBeGreaterThanOrEqual(44);
+    expect(box.left).toBeGreaterThan(bar.heading.right);
+    expect(
+      Math.abs(box.top + box.height / 2 - (bar.heading.top + bar.heading.height / 2)),
+    ).toBeLessThan(12);
+  }
+  await rooms.click();
   await expect(
-    library.getByRole('link', { name: 'Open Texas Hold’em', exact: true }),
+    page.getByRole('heading', { level: 2, name: 'Your games', exact: true }),
   ).toBeVisible();
-  await library.getByRole('button', { name: 'Clear search', exact: true }).click();
-  await library.getByRole('button', { name: 'Board games', exact: true }).click();
-  await expect(library.getByRole('link', { name: 'Open Checkers', exact: true })).toBeVisible();
-  await page.getByRole('tab', { name: 'Your games', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'No games yet', exact: true })).toBeVisible();
-  await expect(cards.first()).toBeHidden();
-  await page.getByRole('tab', { name: 'Games', exact: true }).click();
-  await expect(library.getByRole('button', { name: 'Board games', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'true',
-  );
+  await expect(page.locator('.game-tile:visible')).toHaveCount(0);
+  await games.click();
+  await expect(quick).toHaveAttribute('aria-pressed', 'true');
   await fits(page);
 });
 
-test('rails scroll inside themselves at 320px and by keyboard, never the page', async ({
-  page,
-}, info) => {
+test('one row of occasions filters the grid, and it holds at 320px', async ({ page }, info) => {
   const phone = info.project.name === 'phone';
-  if (phone) await page.setViewportSize({ width: 320, height: 844 });
+  if (phone) await page.setViewportSize({ width: 320, height: 640 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await page.evaluate(() => document.fonts.ready);
   await fits(page);
-  const teams = page.getByRole('region', { name: 'For teams', exact: true });
-  const rail = teams.getByRole('group', { name: 'For teams games', exact: true });
-  await teams.scrollIntoViewIfNeeded();
-  const size = await rail.evaluate((frame) => ({
-    scroll: frame.scrollWidth,
-    client: frame.clientWidth,
-    left: frame.scrollLeft,
-  }));
-  expect(size.scroll).toBeGreaterThan(size.client);
-  expect(size.left).toBe(0);
-  // A cut-off card shows there is more to the side.
-  const frame = (await rail.boundingBox())!;
-  const boxes = await rail.locator('.game-rail-tile').evaluateAll((items) =>
-    items.map((item) => {
-      const box = item.getBoundingClientRect();
-      return { left: box.left, right: box.right };
-    }),
-  );
-  expect(
-    boxes.some((box) => box.left < frame.x + frame.width && box.right > frame.x + frame.width),
-  ).toBe(true);
-  for (const card of await rail.locator('.game-rail-tile').all())
-    expect((await card.boundingBox())!.height).toBeGreaterThanOrEqual(44);
-
-  // Keyboard: focusing a card further along brings it into the rail's view.
-  const last = rail.locator('.game-rail-tile').last();
-  await last.focus();
-  await expect(last).toBeInViewport({ ratio: 0.95 });
-  expect(await rail.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
-  expect(await page.evaluate(() => scrollX)).toBe(0);
-  await expect(last).toHaveCSS('outline-style', 'solid');
-  await fits(page);
-
-  const next = teams.getByRole('button', { name: 'Next games in For teams', exact: true });
-  const previous = teams.getByRole('button', { name: 'Previous games in For teams', exact: true });
-  if (phone) {
-    // Touch scrolling is the control on a phone; the arrows are not drawn.
-    await expect(next).toBeHidden();
-  } else {
-    await expect(next).toBeDisabled();
-    // Each press moves most of a rail's width; a few reach the start.
-    for (let press = 0; press < 4 && (await previous.isEnabled()); press++) {
-      const from = await rail.evaluate((element) => element.scrollLeft);
-      await previous.click();
-      await expect.poll(() => rail.evaluate((element) => element.scrollLeft)).toBeLessThan(from);
-      await page.waitForTimeout(400);
-    }
-    await expect.poll(() => rail.evaluate((element) => element.scrollLeft)).toBe(0);
-    await expect(previous).toBeDisabled();
-    await next.click();
-    await expect.poll(() => rail.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
-    for (const arrow of [next, previous]) {
-      const box = (await arrow.boundingBox())!;
-      expect(Math.min(box.width, box.height)).toBeGreaterThanOrEqual(44);
-    }
-    // A rail that fits has no arrows at all.
-    await expect(
-      page
-        .getByRole('region', { name: 'On your own', exact: true })
-        .getByRole('button', { name: /^(Next|Previous) games/ }),
-    ).toHaveCount(0);
-  }
-  await expectTouchTargets(page, '.game-collections');
-  await fits(page);
-});
-
-test('See all sets the library filter, and For teams narrows by group size and time', async ({
-  page,
-}, info) => {
-  if (info.project.name === 'phone') await page.setViewportSize({ width: 320, height: 844 });
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/');
   const library = page.getByRole('region', { name: 'Games', exact: true });
+  const occasions = library.getByRole('group', { name: 'Occasion', exact: true });
   const tiles = library.getByRole('link', { name: /^Open / });
-  const pressed = (name: string) => library.getByRole('button', { name, exact: true });
+  const chip = (name: string) => occasions.getByRole('button', { name, exact: true });
+  const row = page.locator('.library-occasion-row');
 
-  await page.getByRole('button', { name: 'See all: Quick with bots', exact: true }).click();
-  await expect(pressed('Solo + bots')).toHaveAttribute('aria-pressed', 'true');
-  await expect(pressed('Solo + bots')).toBeFocused();
-  await expect(library).toBeInViewport();
-  await expect(library.getByRole('link', { name: 'Open Uno', exact: true })).toHaveAttribute(
-    'href',
-    '/games/uno?mode=bots',
-  );
+  // One row, whatever the width: on a phone it scrolls inside itself, never the page.
+  const tops = await occasions
+    .getByRole('button')
+    .evaluateAll((chips) => chips.map((item) => Math.round(item.getBoundingClientRect().top)));
+  expect(new Set(tops).size).toBe(1);
+  if (phone) {
+    // All three actions are still on the first screen of the smallest phone.
+    for (const name of ['Play solo', 'Create room', 'Join a room'])
+      await expect(page.getByRole('button', { name, exact: true })).toBeInViewport({ ratio: 1 });
+    expect(await row.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+    await chip('For teams').focus();
+    await expect(chip('For teams')).toBeInViewport({ ratio: 0.95 });
+    expect(await row.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
+    expect(await page.evaluate(() => scrollX)).toBe(0);
+    await expect(chip('For teams')).toHaveCSS('outline-style', 'solid');
+  } else {
+    expect(await row.evaluate((element) => element.scrollWidth <= element.clientWidth + 1)).toBe(
+      true,
+    );
+  }
+  await expectTouchTargets(page, '.game-library');
 
-  await page.getByRole('button', { name: 'See all: Two players', exact: true }).click();
-  await expect(pressed('All games')).toHaveAttribute('aria-pressed', 'true');
-  await expect(library.getByRole('combobox', { name: 'Players', exact: true })).toHaveValue('2');
-  await expect(library.getByRole('link', { name: 'Open Checkers', exact: true })).toBeVisible();
+  // Each occasion shows its own games, once each.
+  await chip('With friends').click();
+  await expect(chip('With friends')).toHaveAttribute('aria-pressed', 'true');
+  await expect(chip('All')).toHaveAttribute('aria-pressed', 'false');
+  for (const name of ['Most Likely', 'Uno', 'Word Agents'])
+    await expect(library.getByRole('link', { name: `Open ${name}`, exact: true })).toBeVisible();
+  for (const name of ['Checkers', 'Pop Tarot', 'Secret Santa'])
+    await expect(library.getByRole('link', { name: `Open ${name}`, exact: true })).toHaveCount(0);
+  await chip('Two players').click();
+  expect((await tileNames(page)).slice(0, 5).sort()).toEqual([
+    'Open Checkers',
+    'Open Four in a Row',
+    'Open Mancala',
+    'Open Reversi',
+    'Open boop.',
+  ]);
   await expect(library.getByRole('link', { name: 'Open Pop Tarot', exact: true })).toHaveCount(0);
+  await chip('Solo').focus();
+  await page.keyboard.press('Enter');
+  expect((await tileNames(page)).sort()).toEqual([
+    'Open Blackjack',
+    'Open Pop Tarot',
+    'Open Roulette',
+    'Open Slots',
+  ]);
+  await expect(library.getByRole('status')).toHaveText('4 games');
+  // The team note and its filters exist only inside For teams.
+  await expect(library.getByText(TEAMS_NOTE, { exact: true })).toHaveCount(0);
+  await expect(library.getByRole('group', { name: 'Group size', exact: true })).toHaveCount(0);
 
-  await page.getByRole('button', { name: 'See all: Game night', exact: true }).click();
-  await expect(pressed('Party')).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('button', { name: 'See all: On your own', exact: true }).click();
-  await expect(pressed('Solo + bots')).toHaveAttribute('aria-pressed', 'true');
-  await expect(library.getByRole('combobox', { name: 'Players', exact: true })).toHaveValue('1');
-
-  // For teams: the note, the allowlist, and the two quick filters.
-  await page.getByRole('button', { name: 'See all: For teams', exact: true }).click();
-  await expect(pressed('For teams')).toHaveAttribute('aria-pressed', 'true');
-  await expect(library.getByRole('combobox', { name: 'Players', exact: true })).toHaveValue('0');
+  await chip('For teams').click();
   await expect(tiles).toHaveCount(TEAM_PICKS);
   await expect(library.getByRole('status')).toHaveText(`${TEAM_PICKS} games`);
-  await expect(
-    library.getByText('Picked for colleagues: no betting games, and drink prompts stay off unless you turn them on.', { exact: true }),
-  ).toBeVisible();
+  await expect(library.getByText(TEAMS_NOTE, { exact: true })).toBeVisible();
   for (const name of ['Secret Santa', 'Word Agents', 'Most Likely', 'Hot Seat'])
     await expect(library.getByRole('link', { name: `Open ${name}`, exact: true })).toBeVisible();
   for (const name of [
@@ -381,7 +482,6 @@ test('See all sets the library filter, and For teams narrows by group size and t
     'Shithead',
   ])
     await expect(library.getByRole('link', { name: `Open ${name}`, exact: true })).toHaveCount(0);
-
   const sizes = library.getByRole('group', { name: 'Group size', exact: true });
   const times = library.getByRole('group', { name: 'Time', exact: true });
   await expect(sizes.getByRole('button')).toHaveText(['2–4', '5–8', '9+']);
@@ -396,11 +496,8 @@ test('See all sets the library filter, and For teams narrows by group size and t
   await expect(library.getByRole('link', { name: 'Open Azul', exact: true })).toHaveCount(0);
   await times.getByRole('button', { name: 'Under 15 min', exact: true }).click();
   await expect(tiles).toHaveCount(4);
-  await expect(library.getByRole('status')).toHaveText('4 games');
   await times.getByRole('button', { name: '15–30 min', exact: true }).click();
-  expect(
-    await tiles.evaluateAll((items) => items.map((item) => item.getAttribute('aria-label'))),
-  ).toEqual(['Open Word Agents', 'Open Flip 7']);
+  expect(await tileNames(page)).toEqual(['Open Word Agents', 'Open Flip 7']);
   // Pressing a chosen filter again clears it.
   await sizes.getByRole('button', { name: '9+', exact: true }).click();
   await expect(sizes.getByRole('button', { name: '9+', exact: true })).toHaveAttribute(
@@ -408,17 +505,13 @@ test('See all sets the library filter, and For teams narrows by group size and t
     'false',
   );
   await expect(tiles).toHaveCount(4);
-  await sizes.getByRole('button', { name: '2–4', exact: true }).focus();
-  await page.keyboard.press('Enter');
-  await expect(tiles).toHaveCount(4);
   await fits(page);
-
-  // Reset returns to every game and puts the team filters away.
-  await library.getByRole('button', { name: 'Reset filters', exact: true }).click();
-  await expect(tiles).toHaveCount(catalogue.length);
+  // All puts the team filters away and brings every game back.
+  await chip('All').click();
   await expect(sizes).toHaveCount(0);
-  await pressed('For teams').click();
-  await expect(sizes.getByRole('button', { name: '2–4', exact: true })).toHaveAttribute(
+  await expect(tiles).toHaveCount(catalogue.length);
+  await chip('For teams').click();
+  await expect(sizes.getByRole('button', { name: '9+', exact: true })).toHaveAttribute(
     'aria-pressed',
     'false',
   );
@@ -426,14 +519,74 @@ test('See all sets the library filter, and For teams narrows by group size and t
   await fits(page);
 });
 
-test('a returning player sees level, streak and badges, an invitation ticket and rooms to continue', async ({
+test('search finds games by name and by kind, inside the chosen occasion, with a way back', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  const library = page.getByRole('region', { name: 'Games', exact: true });
+  const search = library.getByRole('searchbox', { name: 'Search games' });
+  const tiles = library.getByRole('link', { name: /^Open / });
+  const chip = (name: string) =>
+    library
+      .getByRole('group', { name: 'Occasion', exact: true })
+      .getByRole('button', { name, exact: true });
+
+  await search.fill('poker');
+  await expect(
+    library.getByRole('link', { name: 'Open Texas Hold’em', exact: true }),
+  ).toBeVisible();
+  await expect(library.getByRole('link', { name: 'Open Uno', exact: true })).toHaveCount(0);
+  // Kinds of game are found by typing them, now that they are not filters.
+  await search.fill('board games');
+  for (const name of ['Checkers', 'Mancala', 'Reversi', 'Azul'])
+    await expect(library.getByRole('link', { name: `Open ${name}`, exact: true })).toBeVisible();
+  await expect(library.getByRole('link', { name: 'Open Uno', exact: true })).toHaveCount(0);
+  await search.fill('casino');
+  await expect(tiles).toHaveCount(5);
+  await search.fill('cards');
+  await expect(library.getByRole('link', { name: 'Open Uno', exact: true })).toBeVisible();
+  await expect(library.getByRole('link', { name: 'Open Checkers', exact: true })).toHaveCount(0);
+  // A typo still finds the game.
+  await search.fill('chekers');
+  expect(await tileNames(page)).toEqual(['Open Checkers']);
+  await expect(library.getByRole('status')).toHaveText('1 game');
+
+  // Search stays inside the chosen occasion.
+  await search.fill('uno');
+  await chip('Solo').click();
+  await expect(library.getByRole('heading', { name: 'No games found', exact: true })).toBeVisible();
+  await expect(library.getByRole('status')).toHaveText('0 games');
+  await chip('Quick with bots').click();
+  expect(await tileNames(page)).toEqual(['Open Uno']);
+  await search.press('Escape');
+  await expect(search).toHaveValue('');
+  await expect(search).toBeFocused();
+  await expect(tiles).toHaveCount(5);
+  await expect(chip('Quick with bots')).toHaveAttribute('aria-pressed', 'true');
+
+  // Nothing found: one plain message and one button back to everything.
+  await search.fill('zzzz');
+  await expect(library.getByRole('heading', { name: 'No games found', exact: true })).toBeVisible();
+  await expect(tiles).toHaveCount(0);
+  await library.getByRole('button', { name: 'Show all games', exact: true }).click();
+  await expect(search).toHaveValue('');
+  await expect(search).toBeFocused();
+  await expect(chip('All')).toHaveAttribute('aria-pressed', 'true');
+  await expect(tiles).toHaveCount(catalogue.length);
+  await search.fill('gang');
+  await library.getByRole('button', { name: 'Clear search', exact: true }).click();
+  await expect(search).toBeFocused();
+  await expect(tiles).toHaveCount(catalogue.length);
+  await fits(page);
+});
+
+test('a returning player gets a small level chip, one invitation line and one Continue line', async ({
   page,
 }, info) => {
   const phone = info.project.name === 'phone';
-  let release: () => void = () => undefined;
-  const held = new Promise<void>((resolve) => {
-    release = resolve;
-  });
+  // The reference phone screen for "everything to start with, and the first games, in view".
+  if (phone) await page.setViewportSize({ width: 390, height: 844 });
   let progressAsked = '';
   await returning(page, {
     me: member({
@@ -467,6 +620,14 @@ test('a returning player sees level, streak and badges, an invitation ticket and
           capacity: 4,
         },
         {
+          id: '55555555-5555-4555-8555-555555555555',
+          name: 'Slow game',
+          game_id: 'checkers',
+          status: 'playing',
+          players: 2,
+          capacity: 2,
+        },
+        {
           id: '33333333-3333-4333-8333-333333333333',
           name: 'Last game',
           game_id: 'holdem',
@@ -477,53 +638,28 @@ test('a returning player sees level, streak and badges, an invitation ticket and
       ],
     }),
   });
-  await page.unroute('**/api/backend/v1/progress*');
-  await page.route('**/api/backend/v1/progress*', async (route) => {
-    progressAsked = route.request().url();
-    await held;
-    await json(route, midLevel());
+  page.on('request', (request) => {
+    if (new URL(request.url()).pathname.endsWith('/v1/progress')) progressAsked = request.url();
   });
   await page.goto('/');
-  const strip = page.locator('.welcome-strip');
-  // While progress is on its way the strip holds its place.
-  await expect(strip).toHaveAttribute('data-state', 'loading');
-  await expect(page.getByRole('region', { name: 'Invitations', exact: true })).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
-  const before = {
-    strip: (await strip.boundingBox())!,
-    title: await top(page, '.hero-title'),
-    tabs: await top(page, '[role="tablist"]'),
-  };
-  release();
-  await expect(strip).toHaveAttribute('data-state', 'ready');
-  // Nothing below moved when the numbers arrived.
-  expect((await strip.boundingBox())!.height).toBe(before.strip.height);
-  expect(await top(page, '.hero-title')).toBe(before.title);
-  expect(await top(page, '[role="tablist"]')).toBe(before.tabs);
+
+  // Progress is a small chip in the header: the ring, the level, a flame with the day count.
+  const chip = page.locator('.site-header .progress-chip');
+  await expect(chip).toBeVisible();
+  await expect(chip).toHaveAttribute('href', '/rewards');
+  await expect(chip).toHaveAccessibleName('Level 3, 4-day streak. Open your progress and rewards');
+  await expect(chip.locator('.level-ring')).toBeVisible();
+  await expect(chip.locator('.progress-chip-streak')).toContainText('4');
+  expect(await chip.innerText()).not.toMatch(/lost|broke|ended|hurry|claim|XP|badge/i);
+  const chipBox = (await chip.boundingBox())!;
+  expect(chipBox.height).toBeGreaterThanOrEqual(44);
+  expect(chipBox.height).toBeLessThanOrEqual(48);
   // The player's own day decides the streak, so the request carries their UTC offset.
   expect(new URL(progressAsked).searchParams.get('tz_offset')).toMatch(/^-?\d{1,3}$/);
+  await expect(page.locator('.welcome-strip')).toHaveCount(0);
 
-  await expect(strip).toContainText('Level 3');
-  await expect(strip).toContainText('110 XP to level 4');
-  await expect(strip).toContainText('4-day streak');
-  await expect(strip).toContainText('Play today to keep it going');
-  await expect(strip).toContainText('4 of 6 badges');
-  await expect(strip).toHaveAttribute('href', '/rewards');
-  expect(await strip.innerText()).not.toMatch(/lost|broke|ended|hurry|claim/i);
-  expect((await strip.boundingBox())!.height).toBeGreaterThanOrEqual(44);
-
-  // Order: strip, actions, invitations, Continue, tabs, rails.
-  const order = [
-    await top(page, '.welcome-strip'),
-    await top(page, '.hero-actions'),
-    await top(page, '.invitations'),
-    await top(page, '.continue-rail'),
-    await top(page, '[role="tablist"]'),
-    await top(page, '.game-collection'),
-  ];
-  expect(order).toEqual([...order].sort((a, b) => a - b));
-
-  // The invitation is a ticket, with the same region, names and buttons as before.
+  // The invitation is the one thing above the headline: a single slim ticket.
   const invitations = page.getByRole('region', { name: 'Invitations', exact: true });
   const ticket = invitations.locator('.ticket.invitation');
   await expect(ticket).toHaveCount(1);
@@ -538,7 +674,6 @@ test('a returning player sees level, streak and badges, an invitation ticket and
       exact: true,
     }),
   ).toBeVisible();
-  // The notches are cut out of the paper, not drawn on it.
   expect(
     await ticket
       .locator('.ticket-body')
@@ -546,48 +681,74 @@ test('a returning player sees level, streak and badges, an invitation ticket and
         (body) => getComputedStyle(body).maskImage || getComputedStyle(body).webkitMaskImage,
       ),
   ).toContain('radial-gradient');
-  expect(await ticket.evaluate((item) => getComputedStyle(item).flexDirection)).toBe(
-    phone ? 'column' : 'row',
-  );
+  const ticketBox = (await ticket.boundingBox())!;
+  expect(ticketBox.height).toBeLessThanOrEqual(phone ? 96 : 72);
+  expect(ticketBox.y + ticketBox.height).toBeLessThanOrEqual(await top(page, '.home-headline'));
   await expectTouchTargets(page, '.invitations');
 
-  // Continue: the match in progress first, then the lobby; finished games stay in the tab.
+  // Continue: one slim line under the actions, for the game in progress only.
   const cont = page.getByRole('region', { name: 'Continue', exact: true });
-  await expect(cont.getByRole('link')).toHaveCount(2);
-  await expect(cont.getByRole('link').nth(0)).toHaveAccessibleName('Continue Friday table, Uno');
-  await expect(cont.getByRole('link').nth(1)).toHaveAccessibleName('Continue Tile club, Azul');
-  await expect(cont.getByRole('link').first()).toHaveAttribute(
+  await expect(cont.getByRole('link')).toHaveCount(1);
+  await expect(cont.getByRole('link')).toHaveText('Continue Friday table · Uno');
+  await expect(cont.getByRole('link')).toHaveAttribute(
     'href',
     '/games/uno/rooms/22222222-2222-4222-8222-222222222222',
   );
+  await expect(cont).not.toContainText('Tile club');
   await expect(cont).not.toContainText('Last game');
-  await page.getByRole('tab', { name: 'Your games', exact: true }).click();
-  await expect(
-    page.getByRole('link', { name: 'Open Last game, Texas Hold’em', exact: true }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole('link', { name: 'Open Friday table, Uno', exact: true }),
-  ).toBeVisible();
+  const contBox = (await cont.boundingBox())!;
+  expect(contBox.height).toBeLessThanOrEqual(48);
+  expect(contBox.y).toBeGreaterThan(await top(page, '.home-actions'));
+  expect(contBox.y + contBox.height).toBeLessThan(await top(page, '#browse'));
+  await expect(page.locator('.room-shortcut:visible, .continue-card')).toHaveCount(0);
+
+  // The order: header, invitation, headline, actions, Continue, Browse.
+  const order = [
+    await top(page, '.site-header'),
+    await top(page, '.invitations'),
+    await top(page, '.home-headline'),
+    await top(page, '.home-actions'),
+    await top(page, '.continue-line'),
+    await top(page, '#browse'),
+    await top(page, '.catalogue-grid'),
+  ];
+  expect(order).toEqual([...order].sort((a, b) => a - b));
+  // Even with all of that, the grid starts on the first screen.
+  expect(order[6]).toBeLessThan(page.viewportSize()!.height - 40);
+  await fits(page);
+
+  // "and 1 more" opens Your games, where every room still is.
+  await cont.getByRole('button', { name: 'and 1 more', exact: true }).click();
+  await expect(page.getByRole('tab', { name: 'Your games', exact: true })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  );
+  for (const name of [
+    'Open Friday table, Uno',
+    'Open Slow game, Checkers',
+    'Open Tile club, Azul',
+    'Open Last game, Texas Hold’em',
+  ])
+    await expect(page.getByRole('link', { name, exact: true })).toBeVisible();
   await fits(page);
   if (phone) {
-    await page.setViewportSize({ width: 320, height: 844 });
+    await page.setViewportSize({ width: 320, height: 640 });
     await fits(page);
-    await expect(strip).toContainText('Play today to keep it going');
+    await expect(chip).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Sign in' })).toBeInViewport({ ratio: 1 });
   }
 
   await page.getByRole('tab', { name: 'Games', exact: true }).click();
-  await strip.click();
+  await chip.click();
   await expect(page).toHaveURL(/\/rewards$/);
   await expect(
     page.getByRole('heading', { level: 1, name: 'Progress and rewards', exact: true }),
   ).toBeVisible();
 });
 
-test('the streak is shown only as it stands, and a failed progress read falls back to the welcome', async ({
+test('the header chip shows a streak only while there is one, and nothing without progress', async ({
   page,
-}, info) => {
-  // The narrowest phone, where the strip's parts stack and must still hold one height.
-  if (info.project.name === 'phone') await page.setViewportSize({ width: 320, height: 844 });
+}) => {
   let state: Progress | null = midLevel();
   await returning(page, { progress: () => state });
   // Each load is judged once its progress reply has been drawn.
@@ -599,23 +760,20 @@ test('the streak is shown only as it stands, and a failed progress read falls ba
     await answered;
   };
   await load(() => page.goto('/'));
-  const strip = page.locator('.welcome-strip');
-  await expect(strip).toContainText('Play today to keep it going');
-  const height = (await strip.boundingBox())!.height;
-
-  state = { ...midLevel(), streak: { current: 4, best: 6, played_today: true } };
-  await load(() => page.reload());
-  await expect(strip).toContainText('4-day streak');
-  await expect(strip).not.toContainText('Play today');
-  expect((await strip.boundingBox())!.height).toBe(height);
+  const chip = page.locator('.progress-chip');
+  await expect(chip).toContainText('Level 3');
+  await expect(chip).toHaveAccessibleName('Level 3, 4-day streak. Open your progress and rewards');
+  const headline = await top(page, '.home-headline');
 
   state = { ...midLevel(), streak: { current: 0, best: 6, played_today: false } };
   await load(() => page.reload());
-  await expect(strip).toContainText('Level 3');
-  await expect(strip).not.toContainText('streak');
-  expect(await strip.innerText()).not.toMatch(/lost|broke|ended|missed/i);
-  expect((await strip.boundingBox())!.height).toBe(height);
+  await expect(chip).toHaveAccessibleName('Level 3. Open your progress and rewards');
+  await expect(chip.locator('.progress-chip-streak')).toHaveCount(0);
+  expect(await chip.innerText()).not.toMatch(/streak|lost|broke|ended|missed/i);
+  // The chip lives in the header, so the page below it never moves.
+  expect(await top(page, '.home-headline')).toBe(headline);
 
+  // No finished game, or no reply: no chip and no welcome line, and the page still works.
   state = {
     ...midLevel(),
     xp: 0,
@@ -625,15 +783,13 @@ test('the streak is shown only as it stands, and a failed progress read falls ba
     totals: { games: 0, wins: 0, different_games: 0, with_friends: 0 },
   };
   await load(() => page.reload());
-  await expect(strip).toHaveAttribute('data-state', 'new');
-  await expect(strip).toContainText('Welcome.');
-  expect(await strip.innerText()).not.toMatch(/\d/);
-  expect((await strip.boundingBox())!.height).toBe(height);
-
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await expect(chip).toHaveCount(0);
+  expect(await top(page, '.home-headline')).toBe(headline);
   state = null;
   await load(() => page.reload());
-  await expect(strip).toHaveAttribute('data-state', 'new');
-  await expect(strip).toContainText('Welcome.');
+  await expect(chip).toHaveCount(0);
+  await expect(page.locator('.welcome-strip')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Play solo', exact: true })).toBeVisible();
 });
 

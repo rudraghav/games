@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Wordmark } from '@games/ui';
 import { AccountNav } from './AccountNav';
+import { ProgressChip } from './ProgressChip';
 export function SiteHeader({
   children,
   onHomeClick,
@@ -22,6 +23,7 @@ export function SiteHeader({
         </nav>
       ) : null}
       <div className="header-actions">
+        <ProgressChip />
         <AccountNav />
         {children}
       </div>

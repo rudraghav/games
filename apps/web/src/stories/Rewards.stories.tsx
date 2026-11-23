@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { mapProgress, frameIds, cardBackIds } from '@games/api-client';
 import { Avatar, Button, LevelRing, PlayingCard, Ticket } from '@games/ui';
-import { WelcomeStripView } from '@/features/lounge/WelcomeStrip';
+import { ProgressChipView } from '@/shared/ProgressChip';
 import { RewardsView } from '@/features/rewards/Rewards';
 import { ResultsProgressView } from '@/features/room/ResultsProgress';
 
@@ -165,12 +165,10 @@ export const LevelRings: Story = {
   ),
 };
 
-export const HomeStrip: Story = {
+export const HeaderChipAndResultLine: Story = {
   render: () => (
-    <div style={{ display: 'grid', gap: 14, maxWidth: 900 }}>
-      <WelcomeStripView state="new" />
-      <WelcomeStripView state="loading" />
-      <WelcomeStripView state="ready" progress={progress} />
+    <div style={{ display: 'grid', gap: 14, maxWidth: 900, justifyItems: 'start' }}>
+      <ProgressChipView progress={progress} />
       <ResultsProgressView progress={progress} />
       <ResultsProgressView loading />
     </div>

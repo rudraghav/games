@@ -1,132 +1,84 @@
 'use client';
 import { useRef, useState } from 'react';
-import { Search, UsersRound, RotateCcw, X } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import { Button, ChoiceGroup, GameTile } from '@games/ui';
 import { games } from '@games/api-client/catalog';
 import { GameArt } from '@/shared/GameArt';
 import { gamePath } from '@/shared/game-paths';
-import {
-  categories,
-  findGames,
-  teamSizes,
-  teamTimes,
-  teamsNote,
-  type Category,
-  type TeamSize,
-  type TeamTime,
-} from './catalogue-search';
+import { teamSizes, teamTimes, teamsNote, type TeamSize, type TeamTime } from './catalogue-search';
+import { browseGames, occasions, opensWithBots, type Occasion } from './occasions';
 
+/**
+ * The one library on the home page: a search box, one row of occasions, and a
+ * grid in which every game appears once. For teams adds its note and two quick
+ * filters, and only while it is chosen.
+ */
 export function GameLibrary({
-  initialSolo = false,
   preset,
 }: {
-  initialSolo?: boolean;
-  /** The view to open with, from Play solo or a collection's See all. */
-  preset?: { category: Category; players: number };
+  /** The occasion to open with, for example from Play solo. */
+  preset?: Occasion;
 }) {
   const [query, setQuery] = useState('');
-  const [players, setPlayers] = useState(preset?.players ?? (initialSolo ? 1 : 0));
-  const [category, setCategory] = useState<Category>(
-    preset?.category ?? (initialSolo ? 'solo' : 'all'),
-  );
-  // The two quick filters that exist only inside For teams.
+  const [occasion, setOccasion] = useState<Occasion>(preset ?? 'all');
   const [teamSize, setTeamSize] = useState<TeamSize | ''>('');
   const [teamTime, setTeamTime] = useState<TeamTime | ''>('');
   const search = useRef<HTMLInputElement>(null);
-  const categoryRail = useRef<HTMLDivElement>(null);
-  const teams = category === 'teams';
-  const hasFilters = query.trim().length > 0 || players !== 0 || category !== 'all';
-  const filtered = findGames(games, query, players, category, { size: teamSize, time: teamTime });
-  const featured = filtered.find((game) => game.id === 'tarot');
-  const ordered = featured ? [featured, ...filtered.filter((game) => game !== featured)] : filtered;
+  const occasionRow = useRef<HTMLDivElement>(null);
+  const teams = occasion === 'teams';
+  const shown = browseGames(games, query, occasion, { size: teamSize, time: teamTime });
+  const choose = (next: Occasion) => {
+    setOccasion(next);
+    if (next !== 'teams') {
+      setTeamSize('');
+      setTeamTime('');
+    }
+  };
   const reset = () => {
     setQuery('');
-    setPlayers(0);
-    setCategory('all');
-    setTeamSize('');
-    setTeamTime('');
-    if (categoryRail.current) categoryRail.current.scrollLeft = 0;
+    choose('all');
+    if (occasionRow.current) occasionRow.current.scrollLeft = 0;
     search.current?.focus();
   };
   return (
-    <section id="games" className="game-library" aria-labelledby="library-heading">
-      <h2 id="library-heading" className="sr-only">
-        Games
-      </h2>
+    <section id="games" className="game-library" aria-label="Games">
       <div className="library-controls">
-        <div className="library-toolbar">
-          <label className="library-search">
-            <Search size={18} aria-hidden="true" />
-            <span className="sr-only">Search games</span>
-            <input
-              ref={search}
-              type="search"
-              aria-label="Search games"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search games"
-              aria-controls="game-catalogue"
-              onKeyDown={(event) => {
-                if (event.key === 'Escape' && query) setQuery('');
+        <label className="library-search">
+          <Search size={18} aria-hidden="true" />
+          <span className="sr-only">Search games</span>
+          <input
+            ref={search}
+            type="search"
+            aria-label="Search games"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search games"
+            aria-controls="game-catalogue"
+            onKeyDown={(event) => {
+              if (event.key === 'Escape' && query) setQuery('');
+            }}
+          />
+          {query ? (
+            <button
+              type="button"
+              aria-label="Clear search"
+              onClick={() => {
+                setQuery('');
+                search.current?.focus();
               }}
-            />
-            {query ? (
-              <button
-                type="button"
-                aria-label="Clear search"
-                onClick={() => {
-                  setQuery('');
-                  search.current?.focus();
-                }}
-              >
-                <X size={16} />
-              </button>
-            ) : null}
-          </label>
-          <label className="library-players">
-            <UsersRound size={16} aria-hidden="true" />
-            <span className="sr-only">Players</span>
-            <select
-              aria-label="Players"
-              value={players}
-              onChange={(event) => setPlayers(Number(event.target.value))}
             >
-              <option value={0}>Players</option>
-              {Array.from({ length: 10 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i === 0 ? 'Just me' : `${i + 1} people`}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <div className="library-category-row">
-          <div className="library-category-rail" ref={categoryRail}>
-            <ChoiceGroup
-              label="Game categories"
-              className="library-categories"
-              options={categories}
-              value={category}
-              onChange={(next) => {
-                setCategory(next);
-                if (next !== 'teams') {
-                  setTeamSize('');
-                  setTeamTime('');
-                }
-              }}
-            />
-          </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="library-reset"
-            onClick={reset}
-            disabled={!hasFilters}
-            aria-label="Reset filters"
-            title="Reset filters"
-          >
-            <RotateCcw size={17} aria-hidden="true" />
-          </Button>
+              <X size={16} />
+            </button>
+          ) : null}
+        </label>
+        <div className="library-occasion-row" ref={occasionRow}>
+          <ChoiceGroup
+            label="Occasion"
+            className="library-occasions"
+            options={occasions}
+            value={occasion}
+            onChange={choose}
+          />
         </div>
         {teams ? (
           <div className="team-filters">
@@ -159,28 +111,25 @@ export function GameLibrary({
           </div>
         ) : null}
         <p className="library-count sr-only" role="status" aria-atomic="true">
-          {filtered.length} {filtered.length === 1 ? 'game' : 'games'}
+          {shown.length} {shown.length === 1 ? 'game' : 'games'}
         </p>
       </div>
       <div id="game-catalogue">
-        {filtered.length ? (
+        {shown.length ? (
           <div className="catalogue-grid">
-            {ordered.map((game) => (
+            {shown.map((game) => (
               <GameTile
                 key={game.id}
                 name={game.name}
-                subtitle={game.subtitle}
                 minPlayers={game.minPlayers}
                 maxPlayers={game.maxPlayers}
                 minutes={game.minutes}
                 tone={game.color}
-                variant={game.id === 'tarot' ? 'featured' : 'standard'}
-                actionLabel={game.id === 'tarot' ? 'Start reading' : undefined}
                 groupLabel={game.family === 'organiser' ? 'Any group' : undefined}
-                soloMode={players === 1 || category === 'solo'}
+                soloMode={opensWithBots(occasion, game)}
                 edition={game.rulesVersion.startsWith('house-') ? 'house' : 'standard'}
                 artwork={<GameArt game={game} />}
-                href={`${gamePath(game.id)}${(players === 1 || category === 'solo') && game.botsSupported ? '?mode=bots' : ''}`}
+                href={`${gamePath(game.id)}${opensWithBots(occasion, game) ? '?mode=bots' : ''}`}
               />
             ))}
           </div>
@@ -188,9 +137,9 @@ export function GameLibrary({
           <div className="library-empty">
             <h3>No games found</h3>
             <p>
-              {teams && (teamSize || teamTime)
+              {teams && (teamSize || teamTime) && !query.trim()
                 ? 'No team pick fits both choices. Try another group size or time.'
-                : 'Try another name, category or group size.'}
+                : 'Try another name, or look through all games.'}
             </p>
             <Button variant="secondary" onClick={reset}>
               Show all games

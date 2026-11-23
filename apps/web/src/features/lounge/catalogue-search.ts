@@ -1,6 +1,11 @@
 import type { Game } from '@games/api-client/catalog';
 import Fuse from 'fuse.js';
 
+/**
+ * Kinds of game. They are the search vocabulary ("cards", "board games") and
+ * the party shelf behind the With friends occasion; the home page's own
+ * filters are the occasions in `occasions.ts`.
+ */
 export const categories = [
   { value: 'all', label: 'All games' },
   { value: 'modern', label: 'Modern favourites' },
@@ -90,7 +95,8 @@ export const teamGames: readonly string[] = [
   'gem-market',
 ];
 /** The honest line shown wherever the team picks are. */
-export const teamsNote = 'Picked for colleagues: no betting games, and drink prompts stay off unless you turn them on.';
+export const teamsNote =
+  'Picked for colleagues: no betting games, and drink prompts stay off unless you turn them on.';
 
 export const teamSizes = [
   { value: 'small', label: '2–4', min: 2, max: 4 },
@@ -187,13 +193,38 @@ function searchableText(value: string) {
     .trim();
 }
 
+/** The three casino tables that are also card games. */
+const casinoCardTables = ['holdem', 'teen-patti', 'blackjack'];
+
+/**
+ * The shelves a game sits on, as words. The home page no longer lists shelves
+ * as filters, so typing "cards", "board games", "party" or "co-op" in the
+ * search box is how someone browses by kind of game.
+ */
+function shelfWords(game: Game) {
+  const words: string[] = categories
+    .filter(
+      ({ value }) =>
+        value !== 'all' &&
+        value !== 'teams' &&
+        value !== 'solo' &&
+        (value === 'cooperative'
+          ? game.playMode === 'cooperative'
+          : families[value].includes(game.family) ||
+            (value === 'cards' && casinoCardTables.includes(game.id))),
+    )
+    .map(({ label }) => label);
+  if (game.playMode === 'cooperative') words.push('cooperative');
+  if (game.minPlayers === 1 || game.botsSupported) words.push('solo', 'bots');
+  return words.join(' ');
+}
+
 export function matchesGame(game: Game, query: string, players: number, category: Category) {
   const casino = game.family === 'casino';
   const text = searchableText(
-    `${game.name} ${game.subtitle} ${aliases[game.id] || ''} ${casino ? 'casino' : ''}`,
+    `${game.name} ${game.subtitle} ${aliases[game.id] || ''} ${shelfWords(game)}`,
   );
-  const casinoCards =
-    category === 'cards' && casino && ['holdem', 'teen-patti', 'blackjack'].includes(game.id);
+  const casinoCards = category === 'cards' && casino && casinoCardTables.includes(game.id);
   return (
     searchableText(query)
       .split(/\s+/)

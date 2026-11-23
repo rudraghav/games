@@ -10,7 +10,6 @@ import { GameArt } from '@/shared/GameArt';
 const meta = {
   title: 'Dashboard/Discovery',
   component: GameLibrary,
-  args: { initialSolo: false },
 } satisfies Meta<typeof GameLibrary>;
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -22,7 +21,6 @@ export const SoloTile: Story = {
       <div className="game-library" style={{ maxWidth: 260 }}>
         <GameTile
           name={game.name}
-          subtitle={game.subtitle}
           minPlayers={game.minPlayers}
           maxPlayers={game.maxPlayers}
           minutes={game.minutes}

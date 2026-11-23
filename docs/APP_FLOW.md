@@ -324,25 +324,37 @@ Profile history lists a finished event as "Names drawn".
 
 ## Home, progress and rewards (23 November 2026)
 
-**Home** (`/`), top to bottom: the header; a welcome strip; `Play solo` and
-`Join a room` (with a code field beside it on wide screens); invitations;
-Continue; the Games / Your games tabs; inside Games, five curated rails and
-then the full library.
+**Home** (`/`) is two things, in this order. (A first version the same day had
+five rails, a featured banner and nine category chips before the library; the
+owner found it cluttered, so it was reduced to this.)
 
-- A visitor who has never played sees one welcoming line. A player with a
-  finished game sees their level, the XP to the next one, a streak when they
-  have one and their badge count, as one link to `/rewards`.
-- Typing a code beside Join a room and pressing Enter joins at once for a
-  player the browser already knows; otherwise the join dialog opens with the
-  code filled in. With the field empty, and on phones, the button opens the
-  dialog as before.
-- Continue lists the rooms the player is in that are playing or waiting. The
-  Your games tab is unchanged and still lists finished games.
-- Each rail (Quick with bots, For teams, Game night, Two players, On your own)
-  has See all, which sets the library's filter and scrolls to it. For teams is
-  also a library category with two quick filters: group size and time.
+1. **Start**: the headline "How do you want to play?" and three actions.
+   - `Play solo`, on your own or against bots: chooses Quick with bots in the
+     library below and moves there.
+   - `Create room`, to play with friends: opens the create dialog.
+   - `Join a room`, with a code: on a wide screen, type the code beside the
+     button and press Enter (a player the browser already knows joins at once;
+     anyone else gets the join dialog with the code filled in). With the field
+     empty, and on phones, the button opens the dialog.
+2. **Browse**: "Browse games", a search box, one row of six occasions (All,
+   Quick with bots, With friends, Two players, Solo, For teams) and a grid in
+   which every game appears once, as a cover, a name and "2–10 players · 10–20
+   min". Kinds of game (cards, board games, casino, party) are found by
+   searching. For teams shows its note and two quick filters, group size and
+   time, only while it is chosen.
 
-**Progress and rewards** (`/rewards`), reached from the home strip, the profile
+Everything else is demoted:
+
+- **An invitation** is the one thing above the headline, and only while there
+  is one: a single slim ticket with Join and Decline.
+- **A game in progress** gets one line under the three actions, "Continue
+  Friday table · Uno". Waiting and finished rooms are only under the **Your
+  games** tab, which sits as quiet text beside the Browse heading.
+- **Progress** is a small chip in the header (level, and a flame with the day
+  count while a streak exists) that opens `/rewards`. A visitor who has never
+  played sees no chip and no welcome line.
+
+**Progress and rewards** (`/rewards`), reached from the header chip, the profile
 page, the header's Rewards link on inner pages and the line under a result:
 
 1. Progress: level, XP, streak (current and best) and four totals.

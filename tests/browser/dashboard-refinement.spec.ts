@@ -9,23 +9,18 @@ test('compact discovery preserves solo intent and clear private setup', async ({
   for (const width of info.project.name === 'phone' ? [320, 390] : [1440]) {
     await page.setViewportSize({ width, height: info.project.name === 'phone' ? 844 : 1000 });
     await page.evaluate(() => document.fonts.ready);
-    // The curated rails now come before the library, so the first fold holds the
-    // primary actions and the first rail; the featured tile is measured in place.
-    const rail = await page.locator('.game-rail-tile').first().boundingBox();
-    expect(rail!.y).toBeLessThan(640);
-    const featured = page.getByRole('link', { name: 'Open Pop Tarot', exact: true });
-    await expect(featured).toHaveAttribute('data-variant', 'featured');
-    await featured.scrollIntoViewIfNeeded();
+    // The home page is Start, then one library: the first tiles are on the first screen.
     const first = await page.locator('.game-tile').first().boundingBox();
+    expect(first!.y).toBeLessThan(page.viewportSize()!.height - 80);
+    // There is no featured banner now; every game is one compact tile in discovery order.
     await expect(page.locator('.game-tile')).toHaveCount(catalogue.length);
-    await expect(page.locator('.game-tile').first()).toHaveAccessibleName('Open Pop Tarot');
-    await expect(featured.getByText('Featured', { exact: true })).toBeVisible();
-    await expect(featured.getByText('Start reading', { exact: true })).toBeVisible();
+    await expect(page.locator('.game-tile').first()).toHaveAccessibleName('Open The Gang');
+    await expect(page.locator('[data-variant="featured"]')).toHaveCount(0);
+    const tarot = page.getByRole('link', { name: 'Open Pop Tarot', exact: true });
+    await expect(tarot).toHaveCount(1);
+    await expect(tarot.locator('.game-tile-meta')).toHaveText('Solo · 5–10 min');
     const grid = await page.locator('.catalogue-grid').boundingBox();
-    expect(Math.abs(first!.width - grid!.width)).toBeLessThanOrEqual(1);
-    const action = await featured.locator('.game-featured-action').boundingBox();
-    expect(action!.height).toBeGreaterThanOrEqual(44);
-    expect(action!.y + action!.height).toBeLessThanOrEqual(page.viewportSize()!.height);
+    expect(first!.width).toBeLessThan(grid!.width / 2 + 1);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,
     );
@@ -50,8 +45,8 @@ test('compact discovery preserves solo intent and clear private setup', async ({
     expect(clippedCovers).toEqual([]);
   }
   const library = page.getByRole('region', { name: 'Games', exact: true });
-  const featured = library.getByRole('link', { name: 'Open Pop Tarot', exact: true });
-  await featured.focus();
+  const tarot = library.getByRole('link', { name: 'Open Pop Tarot', exact: true });
+  await tarot.focus();
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/\/games\/tarot$/);
   await expect(page.getByRole('button', { name: 'Start reading', exact: true })).toBeVisible();
@@ -59,21 +54,23 @@ test('compact discovery preserves solo intent and clear private setup', async ({
   await page.goto('/');
   const search = library.getByRole('searchbox', { name: 'Search games' });
   await search.fill('poker');
-  await expect(featured).toHaveCount(0);
+  await expect(tarot).toHaveCount(0);
   await expect(
     library.getByRole('link', { name: 'Open Texas Hold’em', exact: true }),
   ).toBeVisible();
   await search.fill('tarot');
   await expect(page.locator('.game-tile')).toHaveCount(1);
-  await expect(featured).toBeVisible();
-  await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('2');
-  await expect(featured).toHaveCount(0);
+  await expect(tarot).toBeVisible();
+  // The Players dropdown is gone; the Two players occasion narrows by group size instead.
+  await library.getByRole('button', { name: 'Two players', exact: true }).click();
+  await expect(tarot).toHaveCount(0);
   await expect(library.getByRole('heading', { name: 'No games found', exact: true })).toBeVisible();
-  await library.getByRole('button', { name: 'Reset filters', exact: true }).click();
+  await library.getByRole('button', { name: 'Show all games', exact: true }).click();
   await expect(page.locator('.game-tile')).toHaveCount(catalogue.length);
-  await library.getByRole('combobox', { name: 'Players', exact: true }).selectOption('1');
+  // Quick with bots opens a game ready to play alone.
+  await library.getByRole('button', { name: 'Quick with bots', exact: true }).click();
   const uno = library.getByRole('link', { name: 'Open Uno', exact: true });
-  await expect(uno.getByText('You + bots', { exact: true })).toBeVisible();
+  await expect(uno.locator('.game-tile-meta')).toHaveText('You + bots · 10–20 min');
   await uno.click();
   await expect(page).toHaveURL(/\/games\/uno\?mode=bots$/);
   await expect(page.getByRole('button', { name: 'Play with bots', exact: true })).toBeVisible();
@@ -81,10 +78,9 @@ test('compact discovery preserves solo intent and clear private setup', async ({
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.goto('/');
   await page.getByRole('button', { name: 'Play solo', exact: true }).click();
-  await expect(library.getByRole('button', { name: 'Solo + bots', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'true',
-  );
+  await expect(
+    library.getByRole('button', { name: 'Quick with bots', exact: true }),
+  ).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(uno).toBeVisible();
 });
@@ -262,9 +258,10 @@ test('Games and Rooms use keyboard tabs, preserve filters and never create a bro
   }
   const search = page.getByRole('searchbox', { name: 'Search games', exact: true });
   await search.fill('uno');
-  await page.getByRole('combobox', { name: 'Players', exact: true }).selectOption('2');
-  await page.getByRole('button', { name: 'Cards', exact: true }).click();
+  // One row of occasions is the only filter beside search.
+  await page.getByRole('button', { name: 'With friends', exact: true }).click();
   const tiles = await page.locator('.game-tile').allTextContents();
+  expect(tiles.length).toBeGreaterThan(0);
   await games.focus();
   await games.press('ArrowRight');
   await expect(rooms).toBeFocused();
@@ -290,8 +287,7 @@ test('Games and Rooms use keyboard tabs, preserve filters and never create a bro
   await page.getByRole('link', { name: 'Games home', exact: true }).click();
   await expect(games).toHaveAttribute('aria-selected', 'true');
   await expect(search).toHaveValue('uno');
-  await expect(page.getByRole('combobox', { name: 'Players', exact: true })).toHaveValue('2');
-  await expect(page.getByRole('button', { name: 'Cards', exact: true })).toHaveAttribute(
+  await expect(page.getByRole('button', { name: 'With friends', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
   );

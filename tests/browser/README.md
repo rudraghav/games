@@ -229,13 +229,15 @@ organiser family: `Organise a draw` on the game page, `.santa-table` in place
 of the turn banner, a tutorial driver in `tutorial-depth.spec.ts`, and a
 shortest-event policy in `fullmatch-player.ts`.
 
-`home-progress-rewards.spec.ts` covers the home page around the library,
+`home-progress-rewards.spec.ts` covers the home page (Start, then Browse),
 progress and rewards on both device projects. Mocked tests cover a new visitor
-(welcome line, home order, the three primary actions, tabs, search and
-categories, no server request while browsing), rails at 320px and by keyboard,
-See all and the For teams filters, a returning player (level, streak, badges,
-the invitation ticket, Continue, no layout shift when progress arrives), the
-streak wording in each state, the code field beside Join a room, and `/rewards`
+(one headline, exactly three actions and their layout, one library with every
+game once and nothing repeated, compact tiles, columns, the page-height limit,
+no server request while browsing), the one row of occasions at 320px and the
+For teams filters, search by name and by kind of game, a returning player (the
+header chip, one slim invitation ticket above the headline, one Continue line
+for the game in progress, "and 1 more" opening Your games), the chip with and
+without a streak, the code field beside Join a room, and `/rewards`
 from Redeem to Use to In use with a refused redeem and reduced motion. One real
 test plays Four in a Row against a bot and a Slots session, checks XP and the
 first badge on `/rewards`, the server's 409 for a locked reward, then redeems

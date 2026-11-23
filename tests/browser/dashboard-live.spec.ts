@@ -220,8 +220,8 @@ test('two guests browse every setup, join a private room and play with the real 
   async function checkTabs(actor: Page, expectedRooms: number) {
     const search = actor.getByRole('searchbox', { name: 'Search games', exact: true });
     await search.fill('uno');
-    await actor.getByRole('combobox', { name: 'Players', exact: true }).selectOption('2');
-    await actor.getByRole('button', { name: 'Cards', exact: true }).click();
+    // One row of occasions is the only filter beside search.
+    await actor.getByRole('button', { name: 'With friends', exact: true }).click();
     const tiles = await actor.locator('.game-tile:visible').count();
     expect(tiles).toBeGreaterThan(0);
     await expect(actor.locator('.room-shortcut:visible')).toHaveCount(0);
@@ -242,8 +242,7 @@ test('two guests browse every setup, join a private room and play with the real 
     else await expect(botShortcut).toHaveCount(0);
     await actor.getByRole('tab', { name: 'Your games', exact: true }).press('ArrowLeft');
     await expect(search).toHaveValue('uno');
-    await expect(actor.getByRole('combobox', { name: 'Players', exact: true })).toHaveValue('2');
-    await expect(actor.getByRole('button', { name: 'Cards', exact: true })).toHaveAttribute(
+    await expect(actor.getByRole('button', { name: 'With friends', exact: true })).toHaveAttribute(
       'aria-pressed',
       'true',
     );
@@ -390,7 +389,7 @@ test('two guests browse every setup, join a private room and play with the real 
         await checkTabs(actor, 1);
       }
     }
-    await page.getByRole('button', { name: 'Reset filters', exact: true }).click();
+    await page.getByRole('button', { name: 'All', exact: true }).click();
     const holdem = catalogue.find((game) => game.id === 'holdem')!;
     await openGameSetup(page, `${holdem.name}`);
     const botSetup = page.getByRole('dialog', { name: 'Create room', exact: true });
