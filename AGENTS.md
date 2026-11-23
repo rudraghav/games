@@ -1,5 +1,18 @@
 # Games engineering instructions
 
+## Required task cleanup
+
+Before marking a task done, delete its verified disposable temporary scripts,
+exports, superseded test/render files, automatic browser replay frames/videos/
+traces and unused test caches. Review growth at checkpoints; reuse scratch paths.
+Preserve chats, plans, final outputs/screenshots, source/unfinished work, models,
+audio projects/originals, databases, credentials, recovery copies and active apps.
+Check ownership, references, symlinks and open files first; never delete a whole
+project/app-data folder or use age alone. The user's standing approval covers
+these verified temporary files. Record cleanup and retained exceptions in the
+existing journal; follow `~/.codex/policies/task-cleanup.md` for safeguards.
+
+
 Read the latest `progress.txt` entry, `docs/PRD.md`, `docs/APP_FLOW.md`, and the
 relevant architecture/UI/rules document before meaningful changes.
 
