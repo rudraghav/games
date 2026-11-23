@@ -8,10 +8,15 @@ import { gamePath } from '@/shared/game-paths';
 import { teamSizes, teamTimes, teamsNote, type TeamSize, type TeamTime } from './catalogue-search';
 import { browseGames, occasions, opensWithBots, type Occasion } from './occasions';
 
+/** The one featured game. It leads the default view and is an ordinary tile everywhere else. */
+export const FEATURED_GAME = 'tarot';
+
 /**
  * The one library on the home page: a search box, one row of occasions, and a
- * grid in which every game appears once. For teams adds its note and two quick
- * filters, and only while it is chosen.
+ * grid in which every game appears once. In the default view (All, no search)
+ * the featured game comes first as one wide card and the rest follow in
+ * discovery order. For teams adds its note and two quick filters, and only
+ * while it is chosen.
  */
 export function GameLibrary({
   preset,
@@ -26,7 +31,13 @@ export function GameLibrary({
   const search = useRef<HTMLInputElement>(null);
   const occasionRow = useRef<HTMLDivElement>(null);
   const teams = occasion === 'teams';
-  const shown = browseGames(games, query, occasion, { size: teamSize, time: teamTime });
+  const found = browseGames(games, query, occasion, { size: teamSize, time: teamTime });
+  // Featured only when nothing narrows the list, and never shown twice.
+  const featured =
+    occasion === 'all' && !query.trim()
+      ? found.find((game) => game.id === FEATURED_GAME)
+      : undefined;
+  const shown = featured ? [featured, ...found.filter((game) => game !== featured)] : found;
   const choose = (next: Occasion) => {
     setOccasion(next);
     if (next !== 'teams') {
@@ -125,6 +136,9 @@ export function GameLibrary({
                 maxPlayers={game.maxPlayers}
                 minutes={game.minutes}
                 tone={game.color}
+                variant={game === featured ? 'featured' : 'standard'}
+                subtitle={game === featured ? game.subtitle : undefined}
+                actionLabel={game === featured ? 'Start reading' : undefined}
                 groupLabel={game.family === 'organiser' ? 'Any group' : undefined}
                 soloMode={opensWithBots(occasion, game)}
                 edition={game.rulesVersion.startsWith('house-') ? 'house' : 'standard'}

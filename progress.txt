@@ -1,3 +1,15 @@
+## 2026-11-23 — Pop Tarot featured again on the minimal home page
+
+- Owner said Pop Tarot is the featured product and should still be featured.
+
+- In the default Browse view (All, no search) Pop Tarot now leads the grid as one card across its full width: cover, a "Featured" label, the name, one line, "Solo · 5–10 min" and a Start reading action. It is not repeated as a tile there, so each of the 30 games still appears once. Under any other chip or a search it is an ordinary tile. Play solo remains the only primary-styled start action.
+
+- Page height for a new visitor: 2,008px at 1440x900 (was 1,810) and 3,404px at 390x844 (was 3,129). On desktop the featured card and the first row of games fit the first screen; on a phone the whole featured card does.
+
+- Local checks: frontend (485 unit tests), contracts and tooling pass; the full browser suite passes with 527 passed, 77 skipped, none failed. WebKit shows the same layout.
+
+- State: verified locally; owner approved deploying once the checks finished.
+
 ## 2026-11-23 — A minimal home page
 
 - Owner found the home page repetitive, cluttered and badly organised, and asked for a minimal page where starting a new game comes first and earlier rooms do not.

@@ -9,26 +9,32 @@ import { RoomShortcut } from '@/features/lounge/RoomShortcut';
 import { GameLibrary } from '@/features/lounge/GameLibrary';
 
 describe('Dashboard discovery and private room entry', () => {
-  it('lists the complete catalogue once, in discovery order, with no featured banner', () => {
+  it('features Pop Tarot first, then the whole catalogue once in discovery order', () => {
     const html = renderToStaticMarkup(<GameLibrary />);
     const choices = [...html.matchAll(/aria-label="Open ([^"]+)"/g)].map((match) =>
       match[1].replaceAll('&amp;', '&'),
     );
     expect(choices).toHaveLength(games.length);
     expect(new Set(choices).size).toBe(games.length);
-    // The first four discovery slots.
-    expect(choices.slice(0, 4)).toEqual(['The Gang', 'Shithead', 'Sea Salt & Paper', 'boop.']);
-    expect(choices).toEqual(findGames(games, '', 0, 'all').map((game) => game.name));
-    for (const game of games) expect(html).toContain(`href="/games/${game.id}"`);
-    // Pop Tarot is one tile among the others, with its own cover.
-    expect(html).toContain('aria-label="Open Pop Tarot"');
+    // One featured card leads; it is Pop Tarot's only appearance.
+    expect(choices[0]).toBe('Pop Tarot');
+    expect(html.match(/data-variant="featured"/g)).toHaveLength(1);
+    expect(html.match(/aria-label="Open Pop Tarot"/g)).toHaveLength(1);
     expect(html).toContain('href="/games/tarot"');
+    expect(html).toContain('game-featured-label');
+    expect(html).toContain('Start reading');
+    expect(html).toContain('Choose three cards for a personal reading');
     expect(html).toContain('The Magician');
     expect(html).toContain('The High Priestess');
     expect(html).toContain('The Fool');
-    expect(html).not.toContain('data-variant="featured"');
-    expect(html).not.toContain('Featured');
-    expect(html).not.toContain('Start reading');
+    // The first four discovery slots follow it, and the rest keep their order.
+    expect(choices.slice(1, 5)).toEqual(['The Gang', 'Shithead', 'Sea Salt & Paper', 'boop.']);
+    expect(choices.slice(1)).toEqual(
+      findGames(games, '', 0, 'all')
+        .map((game) => game.name)
+        .filter((name) => name !== 'Pop Tarot'),
+    );
+    for (const game of games) expect(html).toContain(`href="/games/${game.id}"`);
   });
   it('accepts raw codes and shared invite links without following the URL', () => {
     const token = 'A_private_invite_token_1234567890';

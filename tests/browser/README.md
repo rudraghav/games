@@ -232,8 +232,9 @@ shortest-event policy in `fullmatch-player.ts`.
 `home-progress-rewards.spec.ts` covers the home page (Start, then Browse),
 progress and rewards on both device projects. Mocked tests cover a new visitor
 (one headline, exactly three actions and their layout, one library with every
-game once and nothing repeated, compact tiles, columns, the page-height limit,
-no server request while browsing), the one row of occasions at 320px and the
+game once and nothing repeated, Pop Tarot as the one featured card at the head
+of the default view and an ordinary tile under any chip or search, compact
+tiles, columns, the page-height limit, no server request while browsing), the one row of occasions at 320px and the
 For teams filters, search by name and by kind of game, a returning player (the
 header chip, one slim invitation ticket above the headline, one Continue line
 for the game in progress, "and 1 more" opening Your games), the chip with and

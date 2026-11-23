@@ -9,18 +9,23 @@ test('compact discovery preserves solo intent and clear private setup', async ({
   for (const width of info.project.name === 'phone' ? [320, 390] : [1440]) {
     await page.setViewportSize({ width, height: info.project.name === 'phone' ? 844 : 1000 });
     await page.evaluate(() => document.fonts.ready);
-    // The home page is Start, then one library: the first tiles are on the first screen.
+    // The home page is Start, then one library: the featured card is on the first screen.
     const first = await page.locator('.game-tile').first().boundingBox();
     expect(first!.y).toBeLessThan(page.viewportSize()!.height - 80);
-    // There is no featured banner now; every game is one compact tile in discovery order.
+    // Pop Tarot is featured first, once; every other game is one compact tile after it.
+    const featured = page.getByRole('link', { name: 'Open Pop Tarot', exact: true });
+    await expect(featured).toHaveCount(1);
+    await expect(featured).toHaveAttribute('data-variant', 'featured');
     await expect(page.locator('.game-tile')).toHaveCount(catalogue.length);
-    await expect(page.locator('.game-tile').first()).toHaveAccessibleName('Open The Gang');
-    await expect(page.locator('[data-variant="featured"]')).toHaveCount(0);
-    const tarot = page.getByRole('link', { name: 'Open Pop Tarot', exact: true });
-    await expect(tarot).toHaveCount(1);
-    await expect(tarot.locator('.game-tile-meta')).toHaveText('Solo · 5–10 min');
+    await expect(page.locator('.game-tile').first()).toHaveAccessibleName('Open Pop Tarot');
+    await expect(page.locator('.game-tile').nth(1)).toHaveAccessibleName('Open The Gang');
+    await expect(featured.getByText('Featured', { exact: true })).toBeVisible();
+    await expect(featured.getByText('Start reading', { exact: true })).toBeVisible();
+    await expect(featured.locator('.game-tile-meta')).toHaveText('Solo · 5–10 min');
     const grid = await page.locator('.catalogue-grid').boundingBox();
-    expect(first!.width).toBeLessThan(grid!.width / 2 + 1);
+    expect(Math.abs(first!.width - grid!.width)).toBeLessThanOrEqual(1);
+    const action = await featured.locator('.game-featured-action').boundingBox();
+    expect(action!.height).toBeGreaterThanOrEqual(44);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,
     );
@@ -61,6 +66,8 @@ test('compact discovery preserves solo intent and clear private setup', async ({
   await search.fill('tarot');
   await expect(page.locator('.game-tile')).toHaveCount(1);
   await expect(tarot).toBeVisible();
+  // A search shows it as an ordinary tile, not the featured card.
+  await expect(tarot).not.toHaveAttribute('data-variant', 'featured');
   // The Players dropdown is gone; the Two players occasion narrows by group size instead.
   await library.getByRole('button', { name: 'Two players', exact: true }).click();
   await expect(tarot).toHaveCount(0);

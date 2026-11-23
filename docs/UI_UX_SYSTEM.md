@@ -59,10 +59,10 @@ offers one way back to every game. Mancala pits
 and stores use a typed MancalaPit variant; Checkers extends the shared board
 renderer with source/destination selection and visible crowns.
 
-Pop Tarot was once a full-width featured tile on the home catalogue. It is now
-one compact tile like every other game, in its discovery slot, so no game is
-shown twice or larger than the rest; its Start reading action is on its own
-game page.
+Pop Tarot is the one featured game on the home catalogue: a single wide card
+at the head of the default view (see "Home page" below). It is never shown a
+second time, and under a filter or a search it is a compact tile like every
+other game.
 
 Browsing keeps search and the occasion chips in one deliberate row (two on a
 phone). Phone chips scroll inside their own row; keyboard focus reveals the
@@ -554,13 +554,22 @@ the grid.
   side under it, so all three and the first tiles fit a 390x844 screen.
 - **One library, nothing repeated.** A search field, one row of at most six
   occasion chips and one grid. Each game appears once. There are no rails, no
-  "See all", no featured banner and no second set of filters; kinds of game are
-  search words. A chosen chip is ink on paper turned round (ink fill, light
+  "See all" and no second set of filters; kinds of game are search words. A chosen chip is ink on paper turned round (ink fill, light
   text), not a second accent.
 - **Compact tiles.** A cover, the name and one quiet line ("2–10 players ·
   10–20 min"). No card, border or resting shadow around a tile; a cover lifts
   slightly on hover. Five columns from 1200px, four from 960px, three from
   620px, two below. Cover art is scaled whole into the smaller poster.
+- **One featured game.** In the default view only (All, empty search) Pop Tarot
+  leads the grid as one full-width `GameTile` `variant="featured"`: its cover
+  beside a "Featured" eyebrow, the name, one line, the usual meta line and one
+  `Start reading` action. It replaces Pop Tarot's ordinary tile rather than
+  adding to it. Keep it a highlight, not a banner: one calm surface with no
+  border or resting shadow, about 190px tall on a wide screen and no more than
+  about 260px stacked on a phone. Its action is plum (Tarot's own tone), 44px
+  and smaller than Play solo, which stays the only button in the page's accent.
+  Any other occasion or any search text removes the card. Only one game is
+  ever featured.
 - **Hierarchy from size and space.** One type-scale step between the headline
   (30 to 46px), a section heading (22 to 26px) and body text (12 to 15px). No
   border where spacing can do the job, and at most one shadowed surface in a
@@ -575,5 +584,6 @@ the grid.
   and is backed by a documented allowlist (see the lounge README).
 - Reduced motion, 44px targets, visible focus and 320px without sideways page
   scrolling hold as everywhere else. Size check for the default view: about
-  1,800px tall at 1440x900 and about 3,150px at 390x844, with the first tiles
-  in the first viewport at both.
+  2,000px tall at 1440x900 (the featured card and the first row of tiles on the
+  first screen) and about 3,400px at 390x844 (the featured card starting on the
+  first screen).

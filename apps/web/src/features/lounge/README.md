@@ -3,8 +3,8 @@
 The home page is two things, in this order: **Start** (one headline, three
 actions) and **Browse** (one library in which every game appears once). The
 current structure is described under "Home page" below; it replaced the rails,
-the featured banner, the nine category chips and the Players dropdown later on
-23 November 2026.
+the nine category chips and the Players dropdown later on 23 November 2026.
+One game, Pop Tarot, is featured at the head of the default view.
 
 `Lounge.tsx` composes the header, the start actions, the tabs and the shared
 room dialog. `GameLibrary.tsx` owns the search box, the occasion row and the
@@ -54,8 +54,8 @@ The owner found the first version of this page cluttered: every game appeared tw
 or three times (five rails, a featured banner, then all thirty large tiles), the
 page was 5,876px tall on a desktop and about 7,300px on a phone, and a welcome
 strip, a title, tabs, a search box, a Players dropdown and nine category chips
-all came before or between the games. The page is now about 1,800px and 3,150px
-tall, and the first tiles are on the first screen at both sizes.
+all came before or between the games. The page is now about 2,000px and 3,400px
+tall, and the library starts on the first screen at both sizes.
 
 Top to bottom:
 
@@ -94,10 +94,11 @@ Top to bottom:
    - one row of six occasions (group `Occasion`): `All`, `Quick with bots`,
      `With friends`, `Two players`, `Solo`, `For teams`. On a phone the row
      scrolls inside itself;
-   - the grid, in which each game appears exactly once.
+   - the grid, in which each game appears exactly once. In the default view
+     the featured game leads it (see "The featured game" below).
 
-Nothing else is on the page: no rails, no See all, no featured banner, no
-Players dropdown, no promotional or explanatory copy. The footer is unchanged.
+Nothing else is on the page: no rails, no See all, no Players dropdown, no
+promotional or explanatory copy. The footer is unchanged.
 
 ### Occasions (`occasions.ts`)
 
@@ -128,8 +129,32 @@ is two columns on a phone, three from 620px, four from 960px and five from
 this one (`zoom`), so nothing in it is cut off. The house-deck note for the
 Games-owned decks is on the game's own page.
 
-Pop Tarot is no longer a featured banner; it is one tile in its discovery slot.
-The first four discovery slots are The Gang, Shithead, Sea Salt & Paper, boop.
+### The featured game
+
+Pop Tarot is the product's featured game (`FEATURED_GAME` in
+`GameLibrary.tsx`). The first minimal revision made it an ordinary tile in slot
+12; the owner asked for it back as the one highlight, without the repetition.
+
+- **Where**: only in the default view, which is the `All` occasion with an
+  empty search box. It is the first item of the grid and spans its full width.
+  The other 29 games follow in discovery order: The Gang, Shithead, Sea Salt &
+  Paper, boop. and so on. Pop Tarot is not listed a second time, so the default
+  view still shows each of the 30 games exactly once.
+- **What**: the shared `GameTile` with `variant="featured"`: Tarot's cover on
+  one side; a small "Featured" eyebrow, the name, one line ("Choose three cards
+  for a personal reading"), the same quiet meta line as every tile ("Solo ·
+  5–10 min") and one `Start reading` call to action in Tarot's plum. About
+  190px tall on a wide screen; stacked and about 257px on a phone.
+- **One link**: the whole card is one link to `/games/tarot`, named `Open Pop
+  Tarot` like the tile, and counts as that game's `.game-tile`. `Start reading`
+  is part of that link, not a second control; the game page's own Start reading
+  begins the reading.
+- **Not a second primary**: `Play solo` remains the only filled button in
+  Start and is larger; the featured action is smaller and plum, not the page's
+  accent.
+- **Everywhere else it is an ordinary tile**: with any other occasion chosen
+  or any text in the search box there is no featured card. Pop Tarot appears
+  as a plain tile wherever it matches (the Solo chip, a search for "tarot").
 
 ## For teams
 

@@ -774,9 +774,14 @@ describe('the home library', () => {
       expect(html).toContain(`<button type="button" aria-pressed="false">${label}</button>`);
     // One row of six occasions and nothing else to choose from.
     expect(html.match(/aria-pressed=/g)).toHaveLength(6);
+    // One featured game, first, and it is not listed a second time.
+    expect(tiles(html)[0]).toBe('Pop Tarot');
+    expect(tiles(html).slice(1, 5)).toEqual(['The Gang', 'Shithead', 'Sea Salt & Paper', 'boop.']);
+    expect(html.match(/data-variant="featured"/g)).toHaveLength(1);
+    expect(html.match(/>Featured</g)).toHaveLength(1);
+    expect(html.match(/Start reading/g)).toHaveLength(1);
     for (const gone of [
       'team-filters',
-      'Featured',
       'See all',
       '<select',
       'Modern favourites',
@@ -787,6 +792,42 @@ describe('the home library', () => {
     ])
       expect(html).not.toContain(gone);
     expect(html).toContain('>30 games</p>');
+  });
+  it('features Pop Tarot only in the default view, and as an ordinary tile elsewhere', () => {
+    const featured = renderToStaticMarkup(<GameLibrary />).match(
+      /<a class="game-tile" data-edition="standard" data-variant="featured" aria-label="Open Pop Tarot" href="\/games\/tarot">.*?<\/a>/,
+    )![0];
+    // Its cover, then an eyebrow, the name, one line, the same quiet meta line, one action.
+    expect(
+      featured
+        .slice(featured.indexOf('<div class="game-featured-body">'))
+        .replace(/<svg.*?<\/svg>/g, ''),
+    ).toBe(
+      '<div class="game-featured-body">' +
+        '<span class="eyebrow game-featured-label">Featured</span>' +
+        '<h3 class="game-tile-name">Pop Tarot</h3>' +
+        '<p class="game-featured-line">Choose three cards for a personal reading</p>' +
+        '<p class="game-tile-meta">Solo · 5–10 min</p>' +
+        '<span class="game-featured-action">Start reading </span>' +
+        '</div></a>',
+    );
+    // The call to action is part of the one link, not a second control.
+    expect(featured).not.toContain('<button');
+    expect(featured.match(/<a /g)).toHaveLength(1);
+    // Under any other occasion there is no featured card; Solo lists Pop Tarot as a tile.
+    for (const occasion of ['quick-bots', 'friends', 'two-players', 'solo', 'teams'] as const) {
+      const html = renderToStaticMarkup(<GameLibrary preset={occasion} />);
+      expect(html).not.toContain('data-variant="featured"');
+      expect(html).not.toContain('Featured');
+      expect(html).not.toContain('Start reading');
+    }
+    const solo = renderToStaticMarkup(<GameLibrary preset="solo" />);
+    expect(solo).toContain(
+      '<h3 class="game-tile-name">Pop Tarot</h3><p class="game-tile-meta">Solo · 5–10 min</p></a>',
+    );
+    expect(solo.match(/aria-label="Open Pop Tarot"/g)).toHaveLength(1);
+    // With All chosen, the order behind the featured card is plain discovery order.
+    expect(occasionGames('all', games)[0].id).toBe('the-gang');
   });
   it('opens with the occasion it was asked for', () => {
     const quick = renderToStaticMarkup(<GameLibrary preset="quick-bots" />);
@@ -846,6 +887,27 @@ describe('the home library', () => {
     expect(line({ minPlayers: 1, maxPlayers: 1 })).toBe('Solo · 5–10 min');
     expect(line({ groupLabel: 'Any group' })).toBe('Any group · 5–10 min');
     expect(line({ soloMode: true })).toBe('You + bots · 5–10 min');
+    // The featured layout keeps the same name, link and meta line.
+    const featured = renderToStaticMarkup(
+      <GameTile
+        variant="featured"
+        name="Azul"
+        subtitle="Draft tiles"
+        actionLabel="Play Azul"
+        minPlayers={2}
+        maxPlayers={4}
+        minutes="25–40"
+        tone="sky"
+        artwork={null}
+        href="/games/azul"
+      />,
+    );
+    expect(featured).toContain(
+      '<a class="game-tile" data-edition="standard" data-variant="featured" aria-label="Open Azul" href="/games/azul">',
+    );
+    expect(featured).toContain('<p class="game-tile-meta">2–4 players · 25–40 min</p>');
+    expect(featured).toContain('<p class="game-featured-line">Draft tiles</p>');
+    expect(featured).toContain('<span class="game-featured-action">Play Azul ');
     const library = renderToStaticMarkup(<GameLibrary />);
     expect(library).toContain('Any group · 5–10 min');
     // No blurb, arrow or badge on any tile.

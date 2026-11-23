@@ -202,18 +202,58 @@ test('a new visitor gets one headline, three ways to start, and one library with
   await expect(page.getByRole('link', { name: /^Open / })).toHaveCount(catalogue.length);
   const names = await tileNames(page);
   expect(new Set(names).size).toBe(catalogue.length);
-  // The first four discovery slots.
-  expect(names.slice(0, 4)).toEqual([
+  // Pop Tarot, the featured game, leads; then the first four discovery slots.
+  expect(names.slice(0, 5)).toEqual([
+    'Open Pop Tarot',
     'Open The Gang',
     'Open Shithead',
     'Open Sea Salt & Paper',
     'Open boop.',
   ]);
-  // Removed on purpose: rails, See all, the Featured banner, the Players dropdown and the
-  // nine kinds of game as filters.
-  await expect(
-    page.locator('.game-rail-tile, .game-collection, [data-variant="featured"]'),
-  ).toHaveCount(0);
+  // One featured card: a full-width tile with an eyebrow, the name, one line, the same
+  // quiet meta line and one call to action. It is Pop Tarot's only appearance here.
+  const featured = page.locator('.game-tile[data-variant="featured"]');
+  await expect(featured).toHaveCount(1);
+  await expect(featured).toHaveAccessibleName('Open Pop Tarot');
+  await expect(featured).toHaveAttribute('href', '/games/tarot');
+  await expect(page.getByRole('link', { name: 'Open Pop Tarot', exact: true })).toHaveCount(1);
+  await expect(featured.locator('.game-featured-body > *')).toHaveText([
+    'Featured',
+    'Pop Tarot',
+    'Choose three cards for a personal reading',
+    'Solo · 5–10 min',
+    'Start reading',
+  ]);
+  const grid = (await page.locator('.catalogue-grid').boundingBox())!;
+  const card = (await featured.boundingBox())!;
+  expect(Math.abs(card.width - grid.width)).toBeLessThanOrEqual(1);
+  expect(card.y).toBe(grid.y);
+  // Calm and compact, not a banner.
+  expect(card.height).toBeLessThanOrEqual(phone ? 264 : 200);
+  const action = (await featured.locator('.game-featured-action').boundingBox())!;
+  expect(action.height).toBeGreaterThanOrEqual(44);
+  // Play solo stays the page's primary action: the only filled button in Start, and
+  // larger than the featured card's own call to action.
+  const playSolo = (await page
+    .getByRole('button', { name: 'Play solo', exact: true })
+    .boundingBox())!;
+  expect(playSolo.height).toBeGreaterThan(action.height);
+  expect(playSolo.width).toBeGreaterThan(action.width);
+  expect(playSolo.y).toBeLessThan(card.y);
+  await expect(page.locator('.button--primary:visible')).toHaveCount(1);
+  // The featured button wears Tarot's plum, not the page's accent.
+  expect(
+    await featured
+      .locator('.game-featured-action')
+      .evaluate((element) => getComputedStyle(element).backgroundColor),
+  ).not.toBe(
+    await page
+      .getByRole('button', { name: 'Play solo', exact: true })
+      .evaluate((element) => getComputedStyle(element).backgroundColor),
+  );
+  // Removed on purpose: rails, See all, the Players dropdown and the nine kinds of game
+  // as filters.
+  await expect(page.locator('.game-rail-tile, .game-collection')).toHaveCount(0);
   await expect(page.getByRole('button', { name: /^See all/ })).toHaveCount(0);
   await expect(page.getByRole('combobox')).toHaveCount(0);
   for (const gone of [
@@ -226,7 +266,7 @@ test('a new visitor gets one headline, three ways to start, and one library with
     'Solo + bots',
   ])
     await expect(page.getByRole('button', { name: gone, exact: true })).toHaveCount(0);
-  await expect(page.getByText('Featured', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('Featured', { exact: true })).toHaveCount(1);
 
   // A tile is a cover, a name and one quiet line: who can play and for how long.
   const lines = await page.locator('.game-tile .game-tile-meta').allInnerTexts();
@@ -279,16 +319,19 @@ test('a new visitor gets one headline, three ways to start, and one library with
   ];
   expect(order).toEqual([...order].sort((a, b) => a - b));
   const viewport = page.viewportSize()!;
-  const firstTile = (await page.locator('.game-tile').first().boundingBox())!;
-  expect(firstTile.y).toBeLessThan(viewport.height - 60);
+  // The featured card starts on the first screen; on a wide screen so does the whole
+  // first row of ordinary tiles under it.
+  expect(card.y).toBeLessThan(viewport.height - 60);
+  const firstTile = (await page.locator('.game-tile:not([data-variant])').first().boundingBox())!;
+  if (!phone) expect(firstTile.y + firstTile.height).toBeLessThanOrEqual(viewport.height);
   for (const button of await start.getByRole('button').all())
     await expect(button).toBeInViewport({ ratio: 1 });
   // The whole page is a fraction of what it was (5,876px on desktop, about 7,300px on a phone).
   const pageHeight = await page.evaluate(() => document.documentElement.scrollHeight);
-  expect(pageHeight).toBeLessThan(phone ? 3300 : 1950);
+  expect(pageHeight).toBeLessThan(phone ? 3450 : 2050);
   // Columns: two on a phone, five on a wide screen.
   const firstRow = await page
-    .locator('.game-tile')
+    .locator('.game-tile:not([data-variant])')
     .evaluateAll(
       (tiles) =>
         tiles.filter(
@@ -300,7 +343,7 @@ test('a new visitor gets one headline, three ways to start, and one library with
     await page.setViewportSize({ width: 800, height: 900 });
     expect(
       await page
-        .locator('.game-tile')
+        .locator('.game-tile:not([data-variant])')
         .evaluateAll(
           (tiles) =>
             tiles.filter(
@@ -463,6 +506,18 @@ test('one row of occasions filters the grid, and it holds at 320px', async ({ pa
     'Open Slots',
   ]);
   await expect(library.getByRole('status')).toHaveText('4 games');
+  // Under a chip there is no featured card: Pop Tarot is an ordinary tile where it belongs.
+  const featured = page.locator('.game-tile[data-variant="featured"]');
+  await expect(featured).toHaveCount(0);
+  await expect(library.getByText('Featured', { exact: true })).toHaveCount(0);
+  const tarot = library.getByRole('link', { name: 'Open Pop Tarot', exact: true });
+  await expect(tarot.locator('.game-tile-meta')).toHaveText('Solo · 5–10 min');
+  await expect(tarot.getByText('Start reading')).toHaveCount(0);
+  const plain = (await tarot.boundingBox())!;
+  const other = (await library
+    .getByRole('link', { name: 'Open Blackjack', exact: true })
+    .boundingBox())!;
+  expect(Math.round(plain.width)).toBe(Math.round(other.width));
   // The team note and its filters exist only inside For teams.
   await expect(library.getByText(TEAMS_NOTE, { exact: true })).toHaveCount(0);
   await expect(library.getByRole('group', { name: 'Group size', exact: true })).toHaveCount(0);
@@ -510,7 +565,10 @@ test('one row of occasions filters the grid, and it holds at 320px', async ({ pa
   await chip('All').click();
   await expect(sizes).toHaveCount(0);
   await expect(tiles).toHaveCount(catalogue.length);
+  await expect(featured).toHaveCount(1);
+  expect((await tileNames(page))[0]).toBe('Open Pop Tarot');
   await chip('For teams').click();
+  await expect(featured).toHaveCount(0);
   await expect(sizes.getByRole('button', { name: '9+', exact: true })).toHaveAttribute(
     'aria-pressed',
     'false',
@@ -532,11 +590,22 @@ test('search finds games by name and by kind, inside the chosen occasion, with a
       .getByRole('group', { name: 'Occasion', exact: true })
       .getByRole('button', { name, exact: true });
 
+  const featured = page.locator('.game-tile[data-variant="featured"]');
+  await expect(featured).toHaveCount(1);
   await search.fill('poker');
   await expect(
     library.getByRole('link', { name: 'Open Texas Hold’em', exact: true }),
   ).toBeVisible();
   await expect(library.getByRole('link', { name: 'Open Uno', exact: true })).toHaveCount(0);
+  await expect(featured).toHaveCount(0);
+  // A search for the featured game finds it as an ordinary tile, once.
+  await search.fill('tarot');
+  expect(await tileNames(page)).toEqual(['Open Pop Tarot']);
+  await expect(featured).toHaveCount(0);
+  await expect(library.getByText('Featured', { exact: true })).toHaveCount(0);
+  await expect(
+    library.getByRole('link', { name: 'Open Pop Tarot', exact: true }).locator('.game-tile-meta'),
+  ).toHaveText('Solo · 5–10 min');
   // Kinds of game are found by typing them, now that they are not filters.
   await search.fill('board games');
   for (const name of ['Checkers', 'Mancala', 'Reversi', 'Azul'])
@@ -573,6 +642,14 @@ test('search finds games by name and by kind, inside the chosen occasion, with a
   await expect(search).toHaveValue('');
   await expect(search).toBeFocused();
   await expect(chip('All')).toHaveAttribute('aria-pressed', 'true');
+  await expect(tiles).toHaveCount(catalogue.length);
+  // Back in the default view the featured card leads again, and Start reading opens Tarot.
+  await expect(featured).toHaveCount(1);
+  await featured.getByText('Start reading').click();
+  await expect(page).toHaveURL(/\/games\/tarot$/);
+  await expect(page.getByRole('button', { name: 'Start reading', exact: true })).toBeVisible();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.goBack();
   await expect(tiles).toHaveCount(catalogue.length);
   await search.fill('gang');
   await library.getByRole('button', { name: 'Clear search', exact: true }).click();

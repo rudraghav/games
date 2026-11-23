@@ -339,7 +339,11 @@ owner found it cluttered, so it was reduced to this.)
 2. **Browse**: "Browse games", a search box, one row of six occasions (All,
    Quick with bots, With friends, Two players, Solo, For teams) and a grid in
    which every game appears once, as a cover, a name and "2–10 players · 10–20
-   min". Kinds of game (cards, board games, casino, party) are found by
+   min". With All chosen and nothing typed, the grid opens with **Pop Tarot,
+   the featured game**: one wide card with a line about it and Start reading,
+   which opens `/games/tarot`. Under any other occasion, or once something is
+   typed in search, there is no featured card and Pop Tarot is an ordinary
+   tile wherever it matches. Kinds of game (cards, board games, casino, party) are found by
    searching. For teams shows its note and two quick filters, group size and
    time, only while it is chosen.
 
