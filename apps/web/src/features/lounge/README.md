@@ -1,13 +1,12 @@
 # Lounge and catalogue
 
-The home page is two things, in this order: **Start** (one headline, three
-actions) and **Browse** (one library in which every game appears once). The
-current structure is described under "Home page" below; it replaced the rails,
-the nine category chips and the Players dropdown later on 23 November 2026.
-One game, Pop Tarot, is featured at the head of the default view.
+The home page opens on the games: one heading, one search box, one row of
+occasions and one grid in which every game appears once, with Pop Tarot
+featured at its head. Joining with a code is a header button; Create room and
+the rest are in the header's More menu. The structure and how it got here are
+under "Home page" below.
 
-`Lounge.tsx` composes the header, the start actions, the tabs and the shared
-room dialog. `GameLibrary.tsx` owns the search box, the occasion row and the
+`Lounge.tsx` composes the header actions, the tabs and the shared room dialog. `GameLibrary.tsx` owns the search box, the occasion row and the
 grid. `occasions.ts` decides which games an occasion shows; `catalogue-search.ts`
 holds the search itself (exact name and alias matches first, then a bounded typo
 fallback), the kinds of game as search vocabulary, and the For teams allowlist.
@@ -26,8 +25,9 @@ backend catalogue. Controls keep 44px targets, visible focus, selected states,
 an announced count and a recovery action for zero results.
 
 Game entry lives in `features/game-entry`; `shared/game-paths` owns canonical
-game, session and archive links. The home page's Create room keeps the full
-setup dialog, while a game page's Play with friends fixes the chosen game.
+game, session and archive links. More > Create room keeps the full setup
+dialog with the game picker, while a game page's Play with friends fixes the
+chosen game.
 
 ## Invitations
 
@@ -48,57 +48,74 @@ Secret Santa (family `organiser`) is found under All and For teams and by
 search. One organiser runs it for a whole group, so its tile reads "Any group"
 through GameTile's `groupLabel` instead of a seat count.
 
-## Home page (23 November 2026, minimal revision)
+## Home page
 
-The owner found the first version of this page cluttered: every game appeared two
-or three times (five rails, a featured banner, then all thirty large tiles), the
-page was 5,876px tall on a desktop and about 7,300px on a phone, and a welcome
-strip, a title, tabs, a search box, a Players dropdown and nine category chips
-all came before or between the games. The page is now about 2,000px and 3,400px
-tall, and the library starts on the first screen at both sizes.
+The page opens on the games. A player's first decision is which game; how to
+play it (with bots, with friends, joining with a code) follows from that and is
+offered on each game's own page.
+
+How it got here: the first version (23 November 2026) had five rails, a
+featured banner and thirty large tiles, 5,876px tall on a desktop and about
+7,300px on a phone. The minimal revision cut it to a headline with three
+actions (Play solo, Create room, Join a room) above one library. The owner
+then asked why those actions came before the games at all, so the action block
+was removed and its jobs moved into the header and the occasion chips. The page
+is now about 1,770px and 3,150px tall, and the first screen is almost entirely
+games.
 
 Top to bottom:
 
-1. **Header**: the wordmark, the account link and, for a player with a finished
-   game, a small progress chip (`shared/ProgressChip.tsx`): the level ring,
-   "Level 3" and a flame with the day count while a streak exists. It is one
-   link to `/rewards`, named "Level 3, 4-day streak. Open your progress and
-   rewards". A visitor who has never played sees no chip and no welcome line.
-   The header no longer has its own Create room.
+1. **Header**, one row at every width down to 320px: the wordmark, then
+   - the **progress chip** for a player with a finished game
+     (`shared/ProgressChip.tsx`): the level ring, "Level 3" and a flame with the
+     day count while a streak exists, one link to `/rewards` named "Level 3,
+     4-day streak. Open your progress and rewards". Below 430px it is the ring
+     alone, and below 360px it is hidden (Progress and rewards is in More). A
+     visitor who has never played sees no chip;
+   - **`Join a room`**, a quiet secondary button that opens the join dialog.
+     Someone arriving with a code is one tap away from the field. On a phone
+     its visible text is "Join"; its name is always "Join a room";
+   - **`More`**, a menu button (the shared `Menu`) holding `Create room` (the
+     full setup dialog with the game picker), `Your games` (switches to that
+     tab) and `Progress and rewards` (a link to `/rewards`);
+   - the **account** link ("Sign in", or the profile), which is its icon alone
+     on a phone.
 2. **An invitation**, only when there is one: a single slim `Ticket` line above
-   the headline, because it is time-sensitive. Region `Invitations`, buttons
-   `Join <room>` and `Decline invitation to <room>`, as before. The answers sit
-   beside the words from 360px; below that they go under them.
-3. **Start**: the headline "How do you want to play?" and exactly three
-   actions, each a different verb with one caption:
-   - `Play solo` (the only filled button), "On your own or against bots". It
-     chooses the Quick with bots occasion below and moves focus to it.
-   - `Create room`, "Play with friends". Opens the create dialog. This is the
-     only Create room on the page.
-   - `Join a room`, "Have a code?". From 900px a code field ("Room code or
-     invite link") sits beside it; a player this browser knows joins at once,
-     anyone else gets the dialog with the code filled in. Empty, and always on
-     phones, the button opens the join dialog.
-   On a wide screen the three are equal cards in one row. On a phone the
-   primary action is a full-width button and the other two share the row under
-   it.
+   the heading, because it is time-sensitive. Region `Invitations`, buttons
+   `Join <room>` and `Decline invitation to <room>`. The answers sit beside the
+   words from 360px; below that they go under them.
+3. **The heading row**: the page's one h1, "Choose a game", with two quiet text
+   tabs at the end of the row, `Games` and `Your games` (same roles, names and
+   keyboard behaviour as before; the h1 reads "Your games" while that tab is
+   open). At 320px the tabs wrap under the heading.
 4. **Continue**, only while the player has a game in progress right now: one
-   slim line, "Continue Friday table · Uno" (region `Continue`, one link). With
-   several, it is the first the server lists and "and 2 more" opens Your games.
-   Waiting and finished rooms are not on the home view at all.
-5. **Browse**: the heading "Browse games" with two quiet text tabs at the end of
-   its row, `Games` and `Your games` (same roles, names and keyboard behaviour
-   as before; the heading reads "Your games" while that tab is open). Inside
-   Games:
+   slim line under the heading row, "Continue Friday table · Uno" (region
+   `Continue`, one link). With several, it is the first the server lists and
+   "and 2 more" opens Your games. Waiting and finished rooms are not on the
+   home view at all.
+5. **The library**:
    - a search field (`Search games`);
    - one row of six occasions (group `Occasion`): `All`, `Quick with bots`,
      `With friends`, `Two players`, `Solo`, `For teams`. On a phone the row
-     scrolls inside itself;
+     scrolls inside itself. `Solo` and `Quick with bots` do what the old Play
+     solo button did;
    - the grid, in which each game appears exactly once. In the default view
      the featured game leads it (see "The featured game" below).
 
-Nothing else is on the page: no rails, no See all, no Players dropdown, no
-promotional or explanatory copy. The footer is unchanged.
+Nothing else is on the page: no headline-with-actions block, no rails, no See
+all, no Players dropdown, no promotional or explanatory copy. Nothing in the
+page body is a filled primary button; the only filled control is the featured
+card's plum Start reading. The footer is unchanged.
+
+### After choosing a game
+
+Each game's page (`features/game-entry`) asks how to play, first thing under
+the title. All 26 multiplayer games support bots, so each shows two large
+buttons, `Play with friends` and `Play with bots` (friends first and filled by
+default; bots first and filled when the link carried `?mode=bots`, as from the
+Quick with bots chip), with a quieter `Join a room` below. The four solo
+entries show their single start: `Play solo` (Roulette, Slots), `Start reading`
+(Pop Tarot), `Organise a draw` (Secret Santa).
 
 ### Occasions (`occasions.ts`)
 
@@ -112,7 +129,7 @@ promotional or explanatory copy. The footer is unchanged.
 | For teams | the `teamGames` allowlist, narrowed by its two filters | the allowlist's order |
 
 In Quick with bots a tile reads "You + bots" and opens the game with
-`?mode=bots`. Search works inside the chosen occasion. The kinds of game that
+`?mode=bots`, so its page leads with Play with bots. Search works inside the chosen occasion. The kinds of game that
 used to be chips (Modern favourites, Cards, Casino, Board games, Party, Co-op,
 Solo + bots) are now search words: typing "cards", "board games", "casino",
 "party" or "cooperative" finds that shelf, beside names and aliases such as
@@ -149,9 +166,8 @@ Pop Tarot is the product's featured game (`FEATURED_GAME` in
   Tarot` like the tile, and counts as that game's `.game-tile`. `Start reading`
   is part of that link, not a second control; the game page's own Start reading
   begins the reading.
-- **Not a second primary**: `Play solo` remains the only filled button in
-  Start and is larger; the featured action is smaller and plum, not the page's
-  accent.
+- **The only filled control**: nothing else in the page body is filled. The
+  action is small (44px) and plum, Tarot's own tone.
 - **Everywhere else it is an ordinary tile**: with any other occasion chosen
   or any text in the search box there is no featured card. Pop Tarot appears
   as a plain tile wherever it matches (the Solo chip, a search for "tarot").

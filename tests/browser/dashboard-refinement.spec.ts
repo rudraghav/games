@@ -84,12 +84,12 @@ test('compact discovery preserves solo intent and clear private setup', async ({
   await expect(page.getByRole('button', { name: 'Play with friends', exact: true })).toBeVisible();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.goto('/');
-  await page.getByRole('button', { name: 'Play solo', exact: true }).click();
-  await expect(
-    library.getByRole('button', { name: 'Quick with bots', exact: true }),
-  ).toHaveAttribute('aria-pressed', 'true');
+  // There is no Play solo button now: the Solo and Quick with bots chips do that job.
+  await expect(page.getByRole('button', { name: 'Play solo', exact: true })).toHaveCount(0);
+  await library.getByRole('button', { name: 'Solo', exact: true }).click();
+  await expect(library.getByRole('link', { name: 'Open Roulette', exact: true })).toBeVisible();
   await expect(page.getByRole('dialog')).toHaveCount(0);
-  await expect(uno).toBeVisible();
+  await expect(uno).toHaveCount(0);
 });
 
 test('private room shortcuts and pasted invite links stay membership-scoped', async ({

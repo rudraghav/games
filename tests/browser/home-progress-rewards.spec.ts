@@ -2,7 +2,7 @@ import { expect, test, type Page, type Route } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
-import { openGameSetup, requestAs, roomAs, type RoomView } from './helpers';
+import { openCreateRoom, openGameSetup, requestAs, roomAs, type RoomView } from './helpers';
 import { matchPlayer } from './fullmatch-player';
 
 // The home page (Start, then Browse), progress and rewards. The first group runs
@@ -153,7 +153,7 @@ const tileNames = (page: Page) =>
     .locator('.game-tile')
     .evaluateAll((tiles) => tiles.map((tile) => tile.getAttribute('aria-label')));
 
-test('a new visitor gets one headline, three ways to start, and one library with every game once', async ({
+test('a new visitor lands on the games: one heading, one library, every game once', async ({
   page,
 }, info) => {
   const phone = info.project.name === 'phone';
@@ -165,31 +165,24 @@ test('a new visitor gets one headline, three ways to start, and one library with
   await page.goto('/');
   await page.evaluate(() => document.fonts.ready);
 
-  // Start: one headline, then exactly three actions, each a different verb with one caption.
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('How do you want to play?');
-  const start = page.getByRole('region', { name: 'How do you want to play?', exact: true });
-  await expect(start.getByRole('button')).toHaveText(['Play solo', 'Create room', 'Join a room']);
-  await expect(start.locator('.home-action > p')).toHaveText([
-    'On your own or against bots',
-    'Play with friends',
-    'Have a code?',
-  ]);
-  // Each of the three names exists once on the whole page: the header has no second copy.
-  for (const name of ['Play solo', 'Create room', 'Join a room'])
-    await expect(page.getByRole('button', { name, exact: true })).toHaveCount(1);
-  await expect(page.locator('.site-header').getByRole('button')).toHaveCount(0);
-  // Only the first action is filled.
-  await expect(start.locator('.button--primary')).toHaveText(['Play solo']);
-
+  // The page opens on the games. Its one h1 is the library's own heading; there is no
+  // headline-with-actions block and no Play solo button (the chips do that job).
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(['Choose a game']);
+  await expect(page.locator('.home-start, .home-actions, .home-action')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Play solo', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Create room', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('textbox', { name: 'Room code or invite link' })).toHaveCount(0);
+  // Nothing on the page is a filled primary button competing with the games.
+  await expect(page.locator('.button--primary:visible')).toHaveCount(0);
   // Nothing for someone who has never played: no welcome line, no level, no rooms, no invitation.
   await expect(page.locator('.welcome-strip, .progress-chip')).toHaveCount(0);
   await expect(page.getByRole('region', { name: 'Continue', exact: true })).toHaveCount(0);
   await expect(page.getByRole('region', { name: 'Invitations', exact: true })).toHaveCount(0);
-  // The page is Start, then Browse, and nothing else.
-  await expect(page.locator('.lounge-dashboard > *')).toHaveCount(2);
-  await expect(page.getByRole('heading', { level: 2 })).toHaveText(['Browse games']);
+  // The body is the library and nothing else.
+  await expect(page.locator('.lounge-dashboard > *')).toHaveCount(1);
+  await expect(page.getByRole('heading', { level: 2 })).toHaveCount(0);
 
-  // Browse: a search box, one row of six occasions, and each game exactly once.
+  // A search box, one row of six occasions, and each game exactly once.
   const library = page.getByRole('region', { name: 'Games', exact: true });
   await expect(library.getByRole('searchbox', { name: 'Search games' })).toBeVisible();
   const occasions = library.getByRole('group', { name: 'Occasion', exact: true });
@@ -232,25 +225,6 @@ test('a new visitor gets one headline, three ways to start, and one library with
   expect(card.height).toBeLessThanOrEqual(phone ? 264 : 200);
   const action = (await featured.locator('.game-featured-action').boundingBox())!;
   expect(action.height).toBeGreaterThanOrEqual(44);
-  // Play solo stays the page's primary action: the only filled button in Start, and
-  // larger than the featured card's own call to action.
-  const playSolo = (await page
-    .getByRole('button', { name: 'Play solo', exact: true })
-    .boundingBox())!;
-  expect(playSolo.height).toBeGreaterThan(action.height);
-  expect(playSolo.width).toBeGreaterThan(action.width);
-  expect(playSolo.y).toBeLessThan(card.y);
-  await expect(page.locator('.button--primary:visible')).toHaveCount(1);
-  // The featured button wears Tarot's plum, not the page's accent.
-  expect(
-    await featured
-      .locator('.game-featured-action')
-      .evaluate((element) => getComputedStyle(element).backgroundColor),
-  ).not.toBe(
-    await page
-      .getByRole('button', { name: 'Play solo', exact: true })
-      .evaluate((element) => getComputedStyle(element).backgroundColor),
-  );
   // Removed on purpose: rails, See all, the Players dropdown and the nine kinds of game
   // as filters.
   await expect(page.locator('.game-rail-tile, .game-collection')).toHaveCount(0);
@@ -295,8 +269,8 @@ test('a new visitor gets one headline, three ways to start, and one library with
           ...tile.querySelectorAll(
             '.game-poster .playing-card, .game-poster .tarot-card, .game-poster .word-tile',
           ),
-        ].flatMap((card) => {
-          const box = card.getBoundingClientRect();
+        ].flatMap((item) => {
+          const box = item.getBoundingClientRect();
           return box.left < poster.left - 1 ||
             box.right > poster.right + 1 ||
             box.top < poster.top - 1 ||
@@ -308,27 +282,24 @@ test('a new visitor gets one headline, three ways to start, and one library with
     ),
   ).toEqual([]);
 
-  // Order down the page, and the start of the grid inside the first screen.
+  // Order down the page, and a first screen that is almost entirely games.
   const order = [
     await top(page, '.site-header'),
-    await top(page, '.home-headline'),
-    await top(page, '.home-actions'),
-    await top(page, '#browse'),
+    await top(page, 'h1'),
     await top(page, '.library-search'),
     await top(page, '.catalogue-grid'),
   ];
   expect(order).toEqual([...order].sort((a, b) => a - b));
   const viewport = page.viewportSize()!;
-  // The featured card starts on the first screen; on a wide screen so does the whole
-  // first row of ordinary tiles under it.
-  expect(card.y).toBeLessThan(viewport.height - 60);
+  // The featured card starts in the top third or so, and at least the top of the first
+  // row of ordinary tiles is on the first screen (the whole row on a wide screen).
+  expect(card.y).toBeLessThan(phone ? 300 : 280);
   const firstTile = (await page.locator('.game-tile:not([data-variant])').first().boundingBox())!;
-  if (!phone) expect(firstTile.y + firstTile.height).toBeLessThanOrEqual(viewport.height);
-  for (const button of await start.getByRole('button').all())
-    await expect(button).toBeInViewport({ ratio: 1 });
+  expect(firstTile.y).toBeLessThan(viewport.height - 40);
+  if (!phone) expect(firstTile.y + firstTile.height).toBeLessThan(viewport.height - 200);
   // The whole page is a fraction of what it was (5,876px on desktop, about 7,300px on a phone).
   const pageHeight = await page.evaluate(() => document.documentElement.scrollHeight);
-  expect(pageHeight).toBeLessThan(phone ? 3450 : 2050);
+  expect(pageHeight).toBeLessThan(phone ? 3250 : 1850);
   // Columns: two on a phone, five on a wide screen.
   const firstRow = await page
     .locator('.game-tile:not([data-variant])')
@@ -354,56 +325,16 @@ test('a new visitor gets one headline, three ways to start, and one library with
     await fits(page);
     await page.setViewportSize(viewport);
   }
-
-  // Layout of the three actions.
-  const boxes = await Promise.all(
-    (await start.getByRole('button').all()).map(async (button) => (await button.boundingBox())!),
-  );
-  for (const box of boxes) expect(box.height).toBeGreaterThanOrEqual(44);
-  if (phone) {
-    const row = (await page.locator('.home-actions').boundingBox())!;
-    // The primary action is a full-width button; the other two share the row under it.
-    expect(boxes[0].width).toBeCloseTo(row.width, 0);
-    expect(boxes[1].y).toBeGreaterThanOrEqual(boxes[0].y + boxes[0].height);
-    expect(boxes[2].y).toBe(boxes[1].y);
-    expect(boxes[2].x).toBeGreaterThan(boxes[1].x + boxes[1].width);
-    expect(boxes[1].width).toBeCloseTo(boxes[2].width, 0);
-  } else {
-    // One row of three equal cards, the primary one first.
-    const cards = await page
-      .locator('.home-action')
-      .evaluateAll((items) => items.map((item) => item.getBoundingClientRect().toJSON()));
-    expect(new Set(cards.map((card) => Math.round(card.top))).size).toBe(1);
-    expect(Math.round(cards[0].width)).toBe(Math.round(cards[1].width));
-    expect(Math.round(cards[1].width)).toBe(Math.round(cards[2].width));
-    expect(cards[0].left).toBeLessThan(cards[1].left);
-  }
   await expectTouchTargets(page, '.lounge-dashboard');
+  await expectTouchTargets(page, '.site-header');
   await fits(page);
   // Browsing asked the server for nothing: no guest, no profile, no progress.
   expect(asked).toEqual([]);
 
-  // The three actions do what they did.
-  await page.getByRole('button', { name: 'Create room', exact: true }).click();
-  const create = page.getByRole('dialog', { name: 'Create room', exact: true });
-  await expect(create).toBeVisible();
-  await create.getByRole('button', { name: 'Cancel', exact: true }).click();
-  await page.getByRole('button', { name: 'Join a room', exact: true }).click();
-  const join = page.getByRole('dialog', { name: 'Join room', exact: true });
-  await expect(join.getByRole('textbox', { name: 'Room code', exact: true })).toBeVisible();
-  await join.getByRole('button', { name: 'Cancel', exact: true }).click();
-  const inlineCode = page.getByRole('textbox', { name: 'Room code or invite link', exact: true });
-  // The code field sits beside Join a room only where there is room for it.
-  if (phone) await expect(inlineCode).toBeHidden();
-  else await expect(inlineCode).toBeVisible();
-
-  // Play solo chooses Quick with bots below and moves focus there.
-  await page.getByRole('button', { name: 'Play solo', exact: true }).click();
+  // The chips do what Play solo did: Quick with bots opens games ready to play alone.
   const quick = occasions.getByRole('button', { name: 'Quick with bots', exact: true });
+  await quick.click();
   await expect(quick).toHaveAttribute('aria-pressed', 'true');
-  await expect(quick).toBeFocused();
-  await expect(quick).toBeInViewport();
-  await expect(page.getByRole('dialog')).toHaveCount(0);
   expect((await tileNames(page)).sort()).toEqual([
     'Open Blackjack',
     'Open Four in a Row',
@@ -417,11 +348,10 @@ test('a new visitor gets one headline, three ways to start, and one library with
   // Tabs: two quiet text tabs on the heading's row; the rooms view is unchanged.
   const games = page.getByRole('tab', { name: 'Games', exact: true });
   const rooms = page.getByRole('tab', { name: 'Your games', exact: true });
-  // Measured in one reading, since the page may still be gliding to the library.
   const bar = await page.locator('.segmented-tabs-bar').evaluate((row) => {
     const box = (element: Element) => element.getBoundingClientRect().toJSON();
     return {
-      heading: box(row.querySelector('h2')!),
+      heading: box(row.querySelector('h1')!),
       tabs: [...row.querySelectorAll('[role="tab"]')].map(box),
     };
   });
@@ -435,14 +365,142 @@ test('a new visitor gets one headline, three ways to start, and one library with
     ).toBeLessThan(12);
   }
   await rooms.click();
-  await expect(
-    page.getByRole('heading', { level: 2, name: 'Your games', exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(['Your games']);
   await expect(page.getByRole('heading', { name: 'No games yet', exact: true })).toBeVisible();
   await expect(page.locator('.game-tile:visible')).toHaveCount(0);
   await games.click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(['Choose a game']);
   await expect(quick).toHaveAttribute('aria-pressed', 'true');
   await fits(page);
+});
+
+test('the header keeps Join a room one tap away and puts the rest in a More menu', async ({
+  page,
+}, info) => {
+  const phone = info.project.name === 'phone';
+  await page.goto('/');
+  await page.evaluate(() => document.fonts.ready);
+  const header = page.locator('.site-header');
+  const join = header.getByRole('button', { name: 'Join a room', exact: true });
+  const more = header.getByRole('button', { name: 'More', exact: true });
+  const account = header.getByRole('link', { name: 'Sign in', exact: true });
+  const menu = page.getByRole('menu', { name: 'More', exact: true });
+
+  // One calm row at every width: wordmark, Join a room, More, the account. Nothing wraps.
+  for (const width of phone ? [390, 360, 320] : [1440, 800]) {
+    await page.setViewportSize({ width, height: phone ? 844 : 900 });
+    const boxes = await Promise.all(
+      [header.getByRole('link', { name: 'Games home' }), join, more, account].map(
+        async (control) => (await control.boundingBox())!,
+      ),
+    );
+    for (let index = 1; index < boxes.length; index++) {
+      expect(boxes[index].x).toBeGreaterThanOrEqual(boxes[index - 1].x + boxes[index - 1].width);
+      expect(boxes[index].height).toBeGreaterThanOrEqual(44);
+      expect(boxes[index].width).toBeGreaterThanOrEqual(44);
+      // Vertically centred on one line.
+      expect(
+        Math.abs(boxes[index].y + boxes[index].height / 2 - (boxes[1].y + boxes[1].height / 2)),
+      ).toBeLessThanOrEqual(2);
+    }
+    const edge = (await header.boundingBox())!;
+    expect(boxes[3].x + boxes[3].width).toBeLessThanOrEqual(edge.x + edge.width + 0.5);
+    await fits(page);
+  }
+  // The visible words shorten on a phone; the name does not.
+  expect(await join.innerText()).toBe(phone ? 'Join' : 'Join a room');
+  // Quiet: neither header control is a filled button.
+  await expect(header.locator('.button--primary')).toHaveCount(0);
+
+  // Join a room opens the join dialog directly, with no menu in between.
+  await join.click();
+  const joinDialog = page.getByRole('dialog', { name: 'Join room', exact: true });
+  await expect(joinDialog.getByRole('textbox', { name: 'Room code', exact: true })).toBeVisible();
+  await joinDialog.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await expect(joinDialog).toHaveCount(0);
+  await expect(join).toBeFocused();
+
+  // More is a real menu button.
+  await expect(more).toHaveAttribute('aria-haspopup', 'menu');
+  await expect(more).toHaveAttribute('aria-expanded', 'false');
+  await expect(menu).toHaveCount(0);
+  await more.click();
+  await expect(more).toHaveAttribute('aria-expanded', 'true');
+  await expect(menu).toBeVisible();
+  await expect(more).toHaveAttribute('aria-controls', (await menu.getAttribute('id'))!);
+  const items = menu.getByRole('menuitem');
+  await expect(items).toHaveText(['Create room', 'Your games', 'Progress and rewards']);
+  await expect(items.nth(2)).toHaveAttribute('href', '/rewards');
+  for (const item of await items.all())
+    expect((await item.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  // It stays inside the page.
+  const list = (await menu.boundingBox())!;
+  expect(list.x).toBeGreaterThanOrEqual(0);
+  expect(list.x + list.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+  await fits(page);
+
+  // Keyboard: focus starts on the first item; arrows wrap; Home and End jump; a letter finds.
+  await expect(items.nth(0)).toBeFocused();
+  await page.keyboard.press('ArrowDown');
+  await expect(items.nth(1)).toBeFocused();
+  await page.keyboard.press('End');
+  await expect(items.nth(2)).toBeFocused();
+  await page.keyboard.press('ArrowDown');
+  await expect(items.nth(0)).toBeFocused();
+  await page.keyboard.press('ArrowUp');
+  await expect(items.nth(2)).toBeFocused();
+  await page.keyboard.press('Home');
+  await expect(items.nth(0)).toBeFocused();
+  await page.keyboard.press('y');
+  await expect(items.nth(1)).toBeFocused();
+  await expect(items.nth(1)).toHaveCSS('outline-style', 'solid');
+  // Escape closes it and returns focus to the button.
+  await page.keyboard.press('Escape');
+  await expect(menu).toHaveCount(0);
+  await expect(more).toBeFocused();
+  await expect(more).toHaveAttribute('aria-expanded', 'false');
+  // Arrow Up on the button opens it at the last item.
+  await page.keyboard.press('ArrowUp');
+  await expect(items.nth(2)).toBeFocused();
+  // A press outside closes it.
+  await page.mouse.click(8, page.viewportSize()!.height - 8);
+  await expect(menu).toHaveCount(0);
+  // Tabbing away closes it too.
+  await more.focus();
+  await page.keyboard.press('Enter');
+  await expect(items.nth(0)).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(menu).toHaveCount(0);
+
+  // Your games switches to that tab.
+  await more.click();
+  await menu.getByRole('menuitem', { name: 'Your games', exact: true }).click();
+  await expect(menu).toHaveCount(0);
+  await expect(more).toBeFocused();
+  await expect(page.getByRole('tab', { name: 'Your games', exact: true })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  );
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(['Your games']);
+  await page.getByRole('link', { name: 'Games home', exact: true }).click();
+  await expect(page.getByRole('tab', { name: 'Games', exact: true })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  );
+
+  // Create room opens the full setup dialog with the game picker; closing it returns to More.
+  const dialog = await openCreateRoom(page);
+  await expect(dialog.getByRole('combobox', { name: 'The game', exact: true })).toHaveValue('uno');
+  await expect(menu).toHaveCount(0);
+  await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await expect(dialog).toHaveCount(0);
+  await expect(more).toBeFocused();
+
+  // Progress and rewards is a link to the page.
+  await more.press('Enter');
+  await page.keyboard.press('End');
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/\/rewards$/);
 });
 
 test('one row of occasions filters the grid, and it holds at 320px', async ({ page }, info) => {
@@ -464,9 +522,10 @@ test('one row of occasions filters the grid, and it holds at 320px', async ({ pa
     .evaluateAll((chips) => chips.map((item) => Math.round(item.getBoundingClientRect().top)));
   expect(new Set(tops).size).toBe(1);
   if (phone) {
-    // All three actions are still on the first screen of the smallest phone.
-    for (const name of ['Play solo', 'Create room', 'Join a room'])
-      await expect(page.getByRole('button', { name, exact: true })).toBeInViewport({ ratio: 1 });
+    // Joining with a code is still one tap away on the smallest phone.
+    await expect(page.getByRole('button', { name: 'Join a room', exact: true })).toBeInViewport({
+      ratio: 1,
+    });
     expect(await row.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
     await chip('For teams').focus();
     await expect(chip('For teams')).toBeInViewport({ ratio: 0.95 });
@@ -775,23 +834,36 @@ test('a returning player gets a small level chip, one invitation line and one Co
   await expect(cont).not.toContainText('Last game');
   const contBox = (await cont.boundingBox())!;
   expect(contBox.height).toBeLessThanOrEqual(48);
-  expect(contBox.y).toBeGreaterThan(await top(page, '.home-actions'));
-  expect(contBox.y + contBox.height).toBeLessThan(await top(page, '#browse'));
+  // It sits under the heading row and above the search, and costs one line.
+  expect(contBox.y).toBeGreaterThan(await top(page, 'h1'));
+  expect(contBox.y + contBox.height).toBeLessThanOrEqual(await top(page, '.library-search'));
   await expect(page.locator('.room-shortcut:visible, .continue-card')).toHaveCount(0);
 
-  // The order: header, invitation, headline, actions, Continue, Browse.
+  // The order: header, invitation, heading, Continue, search, games.
   const order = [
     await top(page, '.site-header'),
     await top(page, '.invitations'),
-    await top(page, '.home-headline'),
-    await top(page, '.home-actions'),
+    await top(page, 'h1'),
     await top(page, '.continue-line'),
-    await top(page, '#browse'),
+    await top(page, '.library-search'),
     await top(page, '.catalogue-grid'),
   ];
   expect(order).toEqual([...order].sort((a, b) => a - b));
-  // Even with all of that, the grid starts on the first screen.
-  expect(order[6]).toBeLessThan(page.viewportSize()!.height - 40);
+  // Even with all of that, the games start in the top half of the first screen.
+  expect(order[5]).toBeLessThan(page.viewportSize()!.height / 2);
+  // The header is one row: chip, Join a room, More, the account.
+  const headerRow = await Promise.all(
+    [
+      chip,
+      page.getByRole('button', { name: 'Join a room', exact: true }),
+      page.getByRole('button', { name: 'More', exact: true }),
+      page.getByRole('link', { name: 'Sign in', exact: true }),
+    ].map(async (control) => (await control.boundingBox())!),
+  );
+  for (let index = 1; index < headerRow.length; index++)
+    expect(headerRow[index].x).toBeGreaterThanOrEqual(
+      headerRow[index - 1].x + headerRow[index - 1].width,
+    );
   await fits(page);
 
   // "and 1 more" opens Your games, where every room still is.
@@ -809,10 +881,22 @@ test('a returning player gets a small level chip, one invitation line and one Co
     await expect(page.getByRole('link', { name, exact: true })).toBeVisible();
   await fits(page);
   if (phone) {
-    await page.setViewportSize({ width: 320, height: 640 });
+    // At 360 the ring still fits beside Join, More and the account.
+    await page.setViewportSize({ width: 360, height: 740 });
     await fits(page);
     await expect(chip).toBeVisible();
     await expect(page.getByRole('link', { name: 'Sign in' })).toBeInViewport({ ratio: 1 });
+    // At 320 it gives way; Progress and rewards is still in More.
+    await page.setViewportSize({ width: 320, height: 640 });
+    await fits(page);
+    await expect(chip).toBeHidden();
+    await expect(page.getByRole('link', { name: 'Sign in' })).toBeInViewport({ ratio: 1 });
+    await page.getByRole('button', { name: 'More', exact: true }).click();
+    await expect(
+      page.getByRole('menuitem', { name: 'Progress and rewards', exact: true }),
+    ).toHaveAttribute('href', '/rewards');
+    await page.keyboard.press('Escape');
+    await page.setViewportSize({ width: 390, height: 844 });
   }
 
   await page.getByRole('tab', { name: 'Games', exact: true }).click();
@@ -867,42 +951,8 @@ test('the header chip shows a streak only while there is one, and nothing withou
   await load(() => page.reload());
   await expect(chip).toHaveCount(0);
   await expect(page.locator('.welcome-strip')).toHaveCount(0);
-  await expect(page.getByRole('button', { name: 'Play solo', exact: true })).toBeVisible();
-});
-
-test('the code field beside Join a room joins a known player or shows the server’s words', async ({
-  page,
-}, info) => {
-  test.skip(info.project.name === 'phone', 'Phones join through the dialog.');
-  await returning(page, {});
-  const sent: unknown[] = [];
-  await page.route('**/api/backend/v1/rooms/join', async (route) => {
-    sent.push(route.request().postDataJSON());
-    await json(route, { detail: 'That code doesn’t match an open room.' }, 404);
-  });
-  await page.goto('/');
-  const code = page.getByRole('textbox', { name: 'Room code or invite link', exact: true });
-  const join = page.getByRole('button', { name: 'Join a room', exact: true });
-  for (const control of [code, join])
-    expect((await control.boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  await code.fill('482913');
-  await expect(code).toHaveValue('482 913');
-  await code.press('Enter');
-  const alert = page.locator('.join-inline-error');
-  await expect(alert).toHaveText('That code doesn’t match an open room.');
-  await expect(alert).toHaveAttribute('role', 'alert');
-  expect(sent).toEqual([{ invite: '482913', ...PLAYER }]);
-  await expect(page.getByRole('dialog')).toHaveCount(0);
-  // Something that is not a code is refused before anything is sent.
-  await code.fill('javascript:alert(1)');
-  await join.click();
-  await expect(alert).toHaveText('Enter a room code or invite link.');
-  expect(sent).toHaveLength(1);
-  // Empty, the same button opens the dialog as it always has.
-  await code.fill('');
-  await expect(alert).toHaveCount(0);
-  await join.click();
-  await expect(page.getByRole('dialog', { name: 'Join room', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Join a room', exact: true })).toBeVisible();
+  await expect(page.locator('.game-tile')).toHaveCount(catalogue.length);
 });
 
 test('rewards: progress, badges, and a coupon from Redeem to Use to In use, with a refusal', async ({

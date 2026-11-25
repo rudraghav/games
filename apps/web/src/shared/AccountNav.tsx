@@ -17,7 +17,7 @@ export function AccountNav() {
       aria-label={signedIn ? 'Your profile' : undefined}
     >
       <UserRound size={18} />
-      {signedIn ? null : 'Sign in'}
+      {signedIn ? null : <span className="account-label">Sign in</span>}
     </Link>
   );
 }

@@ -1,8 +1,8 @@
 /*
- * The home page: Start (one headline, three actions) and Browse (one search
- * box, one row of occasions, one grid). Hierarchy comes from size and space,
- * not from boxes: the filled button is the only accent, and nothing here has a
- * border or a shadow that spacing could replace.
+ * The home page opens on the games: one heading, one search box, one row of
+ * occasions, one grid. Joining with a code and the rest of the actions live in
+ * the header. Hierarchy comes from size and space, not from boxes: nothing here
+ * has a border or a shadow that spacing could replace.
  */
 @layer components {
   /* ---------- Header: the player's level, small ---------- */
@@ -39,77 +39,91 @@
     color: var(--color-coral);
   }
 
-  /* ---------- Start ---------- */
-  .home-start {
+  /* ---------- Header: join with a code, and a menu for the rest ---------- */
+  /* Every header control is a full touch target, the wordmark link included. */
+  .site-header > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .site-header .header-actions > .button {
+    min-height: 44px;
+  }
+  .site-header .header-actions > .header-join {
+    min-height: 44px;
+    padding-inline: 14px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .menu {
+    position: relative;
+    display: inline-flex;
+  }
+  .menu-button:focus-visible,
+  .menu-item:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+  .menu[data-open='true'] > .menu-button {
+    background: var(--color-surface-muted);
+  }
+  .menu-list {
+    position: absolute;
+    top: calc(100% + 8px);
+    z-index: 40;
     display: grid;
-    gap: 26px;
-    padding: 40px 0 40px;
+    gap: 2px;
+    min-width: 232px;
+    padding: 6px;
+    border-radius: 16px;
+    background: var(--color-surface);
+    box-shadow:
+      0 0 0 1px #1d211e14,
+      0 14px 34px #12291b2e;
+  }
+  .menu-list[data-align='end'] {
+    right: 0;
+  }
+  .menu-list[data-align='start'] {
+    left: 0;
+  }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 10px;
+    background: none;
+    color: var(--color-ink);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .menu-item > svg {
+    flex: none;
+    color: var(--color-ink-muted);
+  }
+  .menu-item:hover,
+  .menu-item:focus-visible {
+    background: var(--color-surface-muted);
+  }
+
+  /* ---------- The page heading, on the same row as the two text tabs ---------- */
+  .lounge-dashboard {
+    padding-top: 30px;
   }
   .home-headline {
     font-family: var(--font-display);
-    font-size: clamp(30px, 4vw, 46px);
+    font-size: clamp(26px, 3.2vw, 38px);
     font-weight: 500;
-    line-height: 1.08;
-    letter-spacing: -0.05em;
-    text-wrap: balance;
-  }
-  .home-actions {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-  }
-  /* Three equal, calm cards. Only the first carries the filled button. */
-  .home-action {
-    display: grid;
-    align-content: start;
-    gap: 10px;
-    min-width: 0;
-    padding: 18px;
-    border-radius: var(--radius-card);
-    background: var(--color-surface);
-  }
-  .home-action > .button,
-  .join-inline-row > .button {
-    width: 100%;
-    min-height: 54px;
-    font-size: 15px;
-  }
-  .home-action > p {
-    color: var(--color-ink-muted);
-    font-size: 13px;
-    line-height: 1.4;
-    text-align: center;
-  }
-  .home-action > .join-inline-error {
-    color: var(--color-danger);
-    font-weight: 600;
-  }
-  .join-inline-row {
-    display: flex;
-    gap: 8px;
-    min-width: 0;
-  }
-  .join-inline-row > .button {
-    flex: 1 1 auto;
-    white-space: nowrap;
-  }
-  /* Phones use the join dialog, so the field appears only where there is room. */
-  .join-inline-code {
-    display: none;
-  }
-  @media (min-width: 900px) {
-    .join-inline-code {
-      display: block;
-      flex: 1 1 0;
-      min-width: 0;
-      min-height: 54px;
-      font-size: 15px;
-      font-variant-numeric: tabular-nums;
-    }
-    .join-inline-row > .button {
-      flex: none;
-      width: auto;
-    }
+    line-height: 1.12;
+    letter-spacing: -0.045em;
+    scroll-margin-top: 16px;
   }
 
   /* One slim line, and only while a game is in progress. */
@@ -118,6 +132,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 2px 14px;
+    margin: -6px 0 6px;
     font-size: 14px;
   }
   .continue-link {
@@ -156,9 +171,9 @@
     color: var(--color-ink-muted);
   }
 
-  /* An invitation is time-sensitive, so it alone sits above the headline. */
+  /* An invitation is time-sensitive, so it alone sits above the heading. */
   .lounge-dashboard > .invitations {
-    margin: 22px 0 -22px;
+    margin: -8px 0 20px;
   }
   .lounge-dashboard .invitation > .ticket-body {
     padding: 10px 16px;
@@ -193,14 +208,6 @@
     justify-content: space-between;
     gap: 12px;
     margin-bottom: 14px;
-  }
-  .home-section-heading {
-    font-family: var(--font-display);
-    font-size: 26px;
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: -0.035em;
-    scroll-margin-top: 16px;
   }
   .segmented-tabs[data-variant='text'] .segmented-tabs-list {
     flex: none;
@@ -520,43 +527,12 @@
   }
 
   /* ---------- Phones ---------- */
-  @media (max-width: 899px) {
-    /* The primary action is a full-width button; the other two share a row. */
-    .home-actions {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px 10px;
-    }
-    .home-action {
-      gap: 6px;
-      padding: 0;
-      border-radius: 0;
-      background: none;
-    }
-    .home-action[data-primary='true'] {
-      grid-column: 1 / -1;
-    }
-    .home-action > .button,
-    .join-inline-row > .button {
-      min-height: 50px;
-      padding-inline: 10px;
-    }
-    .home-action[data-primary='true'] > .button {
-      min-height: 54px;
-    }
-    .home-action > p {
-      font-size: 12px;
-    }
-  }
   @media (max-width: 600px) {
-    .home-start {
-      gap: 18px;
-      padding: 26px 0 30px;
+    .lounge-dashboard {
+      padding-top: 18px;
     }
     .lounge-dashboard > .invitations {
-      margin: 14px 0 -10px;
-    }
-    .home-section-heading {
-      font-size: 22px;
+      margin: -4px 0 14px;
     }
     .segmented-tabs[data-variant='text'] > .segmented-tabs-bar {
       margin-bottom: 8px;
@@ -580,16 +556,13 @@
       overflow: hidden;
       clip-path: inset(50%);
     }
-    .site-header .header-actions {
-      gap: 6px;
-    }
-    .home-section-heading {
-      font-size: 20px;
+    .home-headline {
+      font-size: 23px;
       white-space: nowrap;
     }
     .segmented-tabs[data-variant='text'] > .segmented-tabs-bar {
       flex-wrap: wrap;
-      gap: 0 8px;
+      gap: 0 6px;
     }
     .segmented-tabs[data-variant='text'] .segmented-tab {
       padding-inline: 6px;
@@ -605,6 +578,48 @@
       overflow: hidden;
       clip-path: inset(50%);
       white-space: nowrap;
+    }
+  }
+  /* The home header on a phone: Join, More and the account stay one row. */
+  @media (max-width: 520px) {
+    .site-header:has(.menu) {
+      gap: 10px;
+    }
+    .header-actions:has(> .menu) {
+      gap: 6px;
+    }
+    .header-join-rest {
+      display: none;
+    }
+    /* The account link keeps its name and becomes its icon. */
+    .header-actions:has(> .menu) > a.button {
+      width: 44px;
+      min-height: 44px;
+      padding: 0;
+      border-radius: 50%;
+    }
+    .header-actions:has(> .menu) .account-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+  @media (max-width: 429px) {
+    /* The ring alone: the streak is still in the chip's name and on the rewards page. */
+    .header-actions:has(> .menu) > .progress-chip {
+      padding: 3px;
+    }
+    .header-actions:has(> .menu) .progress-chip-streak {
+      display: none;
+    }
+  }
+  @media (max-width: 359px) {
+    /* No room for the ring here; Progress and rewards is in More. */
+    .header-actions:has(> .menu) > .progress-chip {
+      display: none;
     }
   }
   @media (prefers-reduced-motion: reduce) {

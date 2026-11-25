@@ -1,3 +1,17 @@
+## 2026-11-25 — Home opens on the games; start actions move to the header
+
+- Owner asked why Play solo, Create room and Join a room sat at the top of the home page, and said they belong in a menu or after choosing a game.
+
+- The Start block is gone. The page is the h1 "Choose a game" with the Games / Your games text tabs, then search, the six occasion chips, the featured Pop Tarot card and the grid. Join a room is a quiet header button on every size ("Join" on phones); a "More" menu in the header holds Create room, Your games and Progress and rewards. Play solo is no longer a button; the Solo and Quick with bots chips do that job. Each multiplayer game's own page already opens with Play with friends and Play with bots, and solo games with their single start, so no change was needed there.
+
+- New shared Menu component (packages/ui) with menu-button semantics, arrow keys, Escape and focus return. Tests reach Create room through a new helper, openCreateRoom.
+
+- Page height for a new visitor: 1,765px at 1440x900 and 3,151px at 390x844. The featured card starts at y=250 and y=264, with two rows of games on the first desktop screen and the first row on a phone.
+
+- Local checks: frontend (486 unit tests), contracts and tooling pass; the full browser suite passes with 528 passed, 76 skipped, none failed. An earlier full run had two Shithead phone failures under load that never touch the home page; they passed 8 of 8 and 6 of 6 when repeated. WebKit shows the same layout.
+
+- State: verified locally; owner approved deploying once the checks finished.
+
 ## 2026-11-23 — Pop Tarot featured again on the minimal home page
 
 - Owner said Pop Tarot is the featured product and should still be featured.

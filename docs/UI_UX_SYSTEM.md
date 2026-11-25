@@ -542,48 +542,60 @@ Use, Take off, Use standard back.
 
 ### Home page
 
-Two sections only: **Start**, then **Browse**. The eye should land on the
-headline, then the filled button, then the search box and the occasions, then
-the grid.
+The page opens on the games. The eye should land on the heading, then the
+featured card, then the grid; the search box and the occasions sit between
+them without competing.
 
-- **One headline, three actions.** "How do you want to play?" with Play solo,
-  Create room and Join a room, each a different verb with one short caption.
-  Only the first is filled: the accent colour belongs to the primary action
-  and to nothing else on the page. Wide screens show three equal cards in one
-  row; phones show the primary button full width and the other two side by
-  side under it, so all three and the first tiles fit a 390x844 screen.
+- **Games first.** There is no headline-with-actions block. The game is the
+  first decision; how to play it is asked on the game's own page (Play with
+  friends, Play with bots). The page's one h1 is the library's heading,
+  "Choose a game", on the same row as the two text tabs.
+- **A calm header carries the actions.** In order: wordmark, progress chip,
+  `Join a room`, `More`, the account. Join a room is a quiet secondary button,
+  visible at every width, because arriving with a code must stay one tap away;
+  on a phone its text shortens to "Join" and its name does not. Everything
+  else (Create room, Your games, Progress and rewards) is in More. No header
+  control is filled. The row must hold at 320px without wrapping: the account
+  link becomes its icon on phones, the chip becomes its ring below 430px and
+  gives way below 360px.
+- **Menu.** `Menu` (`@games/ui`) is the pattern for a few secondary actions
+  behind one button: a 44px icon button with `aria-haspopup="menu"` and
+  `aria-expanded`; a small surface with a soft shadow, aligned to the button's
+  end; 44px `menuitem`s with an icon and a label. Arrow keys wrap, Home and End
+  jump, a letter finds an item, Escape closes and returns focus, and a press
+  or focus elsewhere closes it. Do not put a primary or time-sensitive action
+  only inside a menu.
 - **One library, nothing repeated.** A search field, one row of at most six
   occasion chips and one grid. Each game appears once. There are no rails, no
-  "See all" and no second set of filters; kinds of game are search words. A chosen chip is ink on paper turned round (ink fill, light
-  text), not a second accent.
-- **Compact tiles.** A cover, the name and one quiet line ("2–10 players ·
-  10–20 min"). No card, border or resting shadow around a tile; a cover lifts
-  slightly on hover. Five columns from 1200px, four from 960px, three from
-  620px, two below. Cover art is scaled whole into the smaller poster.
+  "See all" and no second set of filters; kinds of game are search words. A
+  chosen chip is ink on paper turned round (ink fill, light text), not an
+  accent. The Solo and Quick with bots chips replace the old Play solo button.
 - **One featured game.** In the default view only (All, empty search) Pop Tarot
   leads the grid as one full-width `GameTile` `variant="featured"`: its cover
   beside a "Featured" eyebrow, the name, one line, the usual meta line and one
   `Start reading` action. It replaces Pop Tarot's ordinary tile rather than
   adding to it. Keep it a highlight, not a banner: one calm surface with no
   border or resting shadow, about 190px tall on a wide screen and no more than
-  about 260px stacked on a phone. Its action is plum (Tarot's own tone), 44px
-  and smaller than Play solo, which stays the only button in the page's accent.
-  Any other occasion or any search text removes the card. Only one game is
-  ever featured.
-- **Hierarchy from size and space.** One type-scale step between the headline
-  (30 to 46px), a section heading (22 to 26px) and body text (12 to 15px). No
-  border where spacing can do the job, and at most one shadowed surface in a
-  section (the invitation ticket).
-- **Demoted, not removed.** Progress is a 44px chip in the header. An
-  invitation is one slim ticket above the headline, only while one exists. A
-  game in progress is one text line under the actions. Your games is a quiet
-  text tab on the Browse heading's row, drawn with `SegmentedTabs`
+  about 260px stacked on a phone. Its plum action (Tarot's own tone, 44px) is
+  the only filled control in the page body. Any other occasion or any search
+  text removes the card. Only one game is ever featured.
+- **Compact tiles.** A cover, the name and one quiet line ("2–10 players ·
+  10–20 min"). No card, border or resting shadow around a tile; a cover lifts
+  slightly on hover. Five columns from 1200px, four from 960px, three from
+  620px, two below. Cover art is scaled whole into the smaller poster.
+- **Hierarchy from size and space.** One type-scale step between the heading
+  (23 to 38px) and body text (12 to 15px). No border where spacing can do the
+  job, and at most one shadowed surface in a section (the invitation ticket,
+  or an open menu).
+- **Only when they apply.** An invitation is one slim ticket above the
+  heading. A game in progress is one text line under the heading row. Your
+  games is a quiet text tab on the heading's row, drawn with `SegmentedTabs`
   `variant="text"` (same tab roles and keys as the filled variant).
 - **Nothing else.** No promotional banner, welcome copy or explanatory
   paragraph. The "For teams" note appears only while that occasion is chosen
   and is backed by a documented allowlist (see the lounge README).
 - Reduced motion, 44px targets, visible focus and 320px without sideways page
   scrolling hold as everywhere else. Size check for the default view: about
-  2,000px tall at 1440x900 (the featured card and the first row of tiles on the
-  first screen) and about 3,400px at 390x844 (the featured card starting on the
-  first screen).
+  1,770px tall at 1440x900 (the featured card and two rows of tiles on the
+  first screen) and about 3,150px at 390x844 (the featured card and the first
+  row on the first screen).

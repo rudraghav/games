@@ -37,6 +37,18 @@ and the results line share: `levelProgress` (XP inside the level, the span,
 what remains, a 0 to 1 fraction), `levelLabel`, `streakLine` (the streak in
 words, or nothing; never a "lost" wording), `badgeCount`, `hasPlayedAGame` and
 `wornCosmetics`. `keys.progress` is the one query key for a player's progress.
+`SiteHeader` lays its actions out as: progress chip, the page's own controls
+(its `children`), then the account link. The home page passes two controls:
+`Join a room`, a quiet button that opens the join dialog, and `More`, the
+shared `Menu` from `@games/ui` with Create room, Your games and Progress and
+rewards. Other pages pass none, so a game page's own Join a room stays the only
+one there. `Menu` is a menu button: `aria-haspopup="menu"`, `aria-expanded`,
+`menuitem`s, arrow keys with wrap-around, Home and End, a letter to jump,
+Escape to close and return focus, and a press or focus outside to close. An
+item closes the menu before it acts, so a dialog it opens hands focus back to
+the menu button when it closes. On phones the account link shows its icon only
+(its name is unchanged).
+
 `SiteHeader`'s inner-page navigation links to Rewards beside Games, and every
 page's header carries `ProgressChip`: the level ring, "Level N" and a flame
 with the day count while a streak exists, as one link to `/rewards`. It reads

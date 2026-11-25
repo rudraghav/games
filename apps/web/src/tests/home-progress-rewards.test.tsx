@@ -4,7 +4,16 @@ import { mapMe, mapProfile, mapRoom } from '@games/api-client/mappers';
 import { mapProgress, frameIds, cardBackIds, type Progress } from '@games/api-client';
 import type { components } from '@games/api-client/wire';
 import { games } from '@games/api-client/catalog';
-import { Avatar, GameTile, LevelRing, Seat, SegmentedTabs, Ticket, isAvatarFrame } from '@games/ui';
+import {
+  Avatar,
+  GameTile,
+  LevelRing,
+  Menu,
+  Seat,
+  SegmentedTabs,
+  Ticket,
+  isAvatarFrame,
+} from '@games/ui';
 import { fixtures } from '@/stories/generated/rooms';
 import { isBackendRoute, progressRoute, utcOffset } from '@/lib/backend-routes';
 import {
@@ -991,6 +1000,32 @@ describe('the home library', () => {
         />,
       ),
     ).toContain('data-variant="segmented"');
+  });
+});
+
+describe('the header menu', () => {
+  it('is a closed menu button until it is opened: named, and saying it has a menu', () => {
+    const html = renderToStaticMarkup(
+      <Menu
+        label="More"
+        icon={<span>…</span>}
+        items={[
+          { label: 'Create room', onSelect: noop },
+          { label: 'Your games', onSelect: noop },
+          { label: 'Progress and rewards', href: '/rewards' },
+        ]}
+      />,
+    );
+    expect(html).toMatch(
+      /^<div class="menu" data-open="false"><button type="button" id="[^"]+-button"/,
+    );
+    expect(html).toContain('aria-label="More"');
+    expect(html).toContain('aria-haspopup="menu"');
+    expect(html).toContain('aria-expanded="false"');
+    // Closed, there is no menu in the page and nothing it controls.
+    expect(html).not.toContain('role="menu"');
+    expect(html).not.toContain('aria-controls');
+    expect(html).not.toContain('Create room');
   });
 });
 

@@ -229,16 +229,26 @@ organiser family: `Organise a draw` on the game page, `.santa-table` in place
 of the turn banner, a tutorial driver in `tutorial-depth.spec.ts`, and a
 shortest-event policy in `fullmatch-player.ts`.
 
-`home-progress-rewards.spec.ts` covers the home page (Start, then Browse),
-progress and rewards on both device projects. Mocked tests cover a new visitor
-(one headline, exactly three actions and their layout, one library with every
-game once and nothing repeated, Pop Tarot as the one featured card at the head
-of the default view and an ordinary tile under any chip or search, compact
-tiles, columns, the page-height limit, no server request while browsing), the one row of occasions at 320px and the
-For teams filters, search by name and by kind of game, a returning player (the
-header chip, one slim invitation ticket above the headline, one Continue line
-for the game in progress, "and 1 more" opening Your games), the chip with and
-without a streak, the code field beside Join a room, and `/rewards`
+`helpers.ts` has `openCreateRoom(page)`: the home page's Create room is in the
+header's More menu, so it opens `More`, chooses the `Create room` menu item and
+returns the setup dialog. `openGameSetup(page, game)` uses it and then picks
+the game. Use one of the two from the home page; the dialog's own submit button
+is also named "Create room" and is clicked directly, as before. `Join a room`
+is a header button with that name on every screen size.
+
+`home-progress-rewards.spec.ts` covers the home page, progress and rewards on
+both device projects. Mocked tests cover a new visitor (one h1 "Choose a game",
+no action block and no Play solo, one library with every game once and nothing
+repeated, Pop Tarot as the one featured card at the head of the default view
+and an ordinary tile under any chip or search, compact tiles, columns, the
+page-height limit, a first screen that is almost all games, no server request
+while browsing), the header (one row from 1440px to 320px, Join a room opening
+the join dialog directly, the More menu's items, keyboard behaviour, closing
+and focus return, Create room and Your games from it), the one row of
+occasions at 320px and the For teams filters, search by name and by kind of
+game, a returning player (the header chip, one slim invitation ticket above
+the heading, one Continue line for the game in progress, "and 1 more" opening
+Your games), the chip with and without a streak, and `/rewards`
 from Redeem to Use to In use with a refused redeem and reduced motion. One real
 test plays Four in a Row against a bot and a Slots session, checks XP and the
 first badge on `/rewards`, the server's 409 for a locked reward, then redeems

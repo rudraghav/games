@@ -1,22 +1,18 @@
 'use client';
-import { useEffect, useState, type ComponentProps, type FormEvent } from 'react';
+import { useEffect, useState, type ComponentProps } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Button, Wordmark, SegmentedTabs } from '@games/ui';
-import { api, passiveApi } from '@/lib/session';
+import { useQuery } from '@tanstack/react-query';
+import { Award, LayoutGrid, MoreHorizontal, Plus } from 'lucide-react';
+import { Button, Menu, Wordmark, SegmentedTabs } from '@games/ui';
+import { passiveApi } from '@/lib/session';
 import { RoomDialog } from '@/shared/RoomDialog';
 import { SiteHeader } from '@/shared/SiteHeader';
 import { keys } from '@/shared/query-keys';
-import { rememberedPlayer, rememberPlayer, useHasPlayed } from '@/shared/player-preferences';
-import { refreshPlayer } from '@/shared/player-query';
-import { formatInviteInput, roomInvite } from '@/shared/room-invite';
-import { roomPath } from '@/shared/game-paths';
+import { useHasPlayed } from '@/shared/player-preferences';
 import { GameLibrary } from './GameLibrary';
 import { RoomShortcut } from './RoomShortcut';
 import { Invitations } from './Invitations';
 import { ContinueLine } from './ContinueLine';
-import type { Occasion } from './occasions';
 
 /** How often the home page checks for a new invitation while it is in view. */
 const INVITATION_REFRESH_MS = 20000;
@@ -86,21 +82,10 @@ export function LoungeRooms({
 }
 
 export function Lounge() {
-  const router = useRouter();
-  const cache = useQueryClient();
-  const [dialog, setDialog] = useState<{
-    mode: 'create' | 'join';
-    gameId: string;
-    withBots?: boolean;
-    invite?: string;
-  } | null>(null);
+  const [dialog, setDialog] = useState<{ mode: 'create' | 'join'; gameId: string } | null>(null);
   const [tab, setTab] = useState<'games' | 'rooms'>('games');
-  // The occasion Play solo asked for. Each request opens the library afresh
-  // with that occasion chosen and brings it into sight.
-  const [view, setView] = useState<{ request: number; occasion?: Occasion }>({ request: 0 });
-  const [code, setCode] = useState('');
-  const [joining, setJoining] = useState(false);
-  const [joinError, setJoinError] = useState('');
+  // Set when the header menu asks for Your games, so the tabs come into view.
+  const [roomsRequest, setRoomsRequest] = useState(0);
   const played = useHasPlayed();
   // Returning to the tab and a modest interval bring a new invitation without a
   // reload. A hidden tab does not poll, and a visitor who never played is not read.
@@ -112,125 +97,66 @@ export function Lounge() {
     refetchOnWindowFocus: 'always',
   });
   useEffect(() => {
-    if (!view.request) return;
-    const library = document.getElementById('games');
-    if (!library) return;
+    if (!roomsRequest) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // The chosen occasion takes focus, so keyboard and screen-reader users land
-    // on it. On a phone it can sit off to the side of its row: bring it into
-    // that row first, then bring the library up the page.
-    const chosen = library.querySelector<HTMLElement>('.library-occasions [aria-pressed="true"]');
-    chosen?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'nearest' });
-    chosen?.focus({ preventScroll: true });
     document
       .getElementById('browse')
       ?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-  }, [view.request]);
-  function showLibrary(occasion: Occasion) {
-    setTab('games');
-    setView((current) => ({ request: current.request + 1, occasion }));
-  }
-  /**
-   * The code field beside Join a room, shown on wide screens. Empty (and always
-   * on phones, where the field is not shown) the button opens the join dialog.
-   * With a code, a player we already know joins at once; anyone else gets the
-   * dialog with the code filled in, to add their name.
-   */
-  async function join(event: FormEvent) {
-    event.preventDefault();
-    setJoinError('');
-    if (!code.trim()) return setDialog({ mode: 'join', gameId: 'uno' });
-    let invite: string;
-    try {
-      invite = roomInvite(code);
-    } catch (failure) {
-      return setJoinError(failure instanceof Error ? failure.message : 'Please try again.');
-    }
-    const player = me.data?.profile ?? rememberedPlayer();
-    if (!player) return setDialog({ mode: 'join', gameId: 'uno', invite: code });
-    setJoining(true);
-    try {
-      const room = await api.join(invite, player.name, player.avatar);
-      rememberPlayer(player.name, player.avatar);
-      cache.setQueryData(keys.room(room.id), room);
-      // The seat is taken; a failed identity read must not offer to join again.
-      await refreshPlayer(cache, () => api.me()).catch(() => undefined);
-      router.push(roomPath(room));
-    } catch (failure) {
-      setJoinError(failure instanceof Error ? failure.message : 'Please try again.');
-    } finally {
-      setJoining(false);
-    }
+  }, [roomsRequest]);
+  function showRooms() {
+    setTab('rooms');
+    setRoomsRequest((request) => request + 1);
   }
   return (
     <>
-      <SiteHeader showGamesLink={false} onHomeClick={() => setTab('games')} />
+      {/* The game is the first decision, so the page opens on the games. Joining
+          with a code stays one tap away here; everything else is in More. */}
+      <SiteHeader showGamesLink={false} onHomeClick={() => setTab('games')}>
+        <Button
+          size="sm"
+          variant="secondary"
+          className="header-join"
+          aria-label="Join a room"
+          onClick={() => setDialog({ mode: 'join', gameId: 'uno' })}
+        >
+          <span>
+            Join<span className="header-join-rest"> a room</span>
+          </span>
+        </Button>
+        <Menu
+          label="More"
+          icon={<MoreHorizontal size={20} aria-hidden="true" />}
+          linkAs={Link}
+          items={[
+            {
+              label: 'Create room',
+              icon: <Plus size={17} aria-hidden="true" />,
+              onSelect: () => setDialog({ mode: 'create', gameId: 'uno' }),
+            },
+            {
+              label: 'Your games',
+              icon: <LayoutGrid size={17} aria-hidden="true" />,
+              onSelect: showRooms,
+            },
+            {
+              label: 'Progress and rewards',
+              icon: <Award size={17} aria-hidden="true" />,
+              href: '/rewards',
+            },
+          ]}
+        />
+      </SiteHeader>
       <main className="page-width lounge-dashboard">
-        {/* Time-sensitive, so it is the one thing allowed above the headline. */}
+        {/* Time-sensitive, so it is the one thing allowed above the heading. */}
         <Invitations invitations={me.data?.invitations || []} />
-        <section className="home-start" aria-labelledby="home-headline">
-          <h1 id="home-headline" className="home-headline">
-            How do you want to play?
-          </h1>
-          <div className="home-actions">
-            <div className="home-action" data-primary="true">
-              <Button size="lg" onClick={() => showLibrary('quick-bots')}>
-                Play solo
-              </Button>
-              <p>On your own or against bots</p>
-            </div>
-            <div className="home-action">
-              <Button
-                size="lg"
-                variant="secondary"
-                onClick={() => setDialog({ mode: 'create', gameId: 'uno' })}
-              >
-                Create room
-              </Button>
-              <p>Play with friends</p>
-            </div>
-            <form className="home-action join-inline" onSubmit={join} noValidate>
-              <div className="join-inline-row">
-                <input
-                  className="input join-inline-code"
-                  aria-label="Room code or invite link"
-                  aria-describedby={joinError ? 'join-inline-error' : undefined}
-                  aria-invalid={joinError ? true : undefined}
-                  value={code}
-                  onChange={(event) => {
-                    setCode(formatInviteInput(event.target.value));
-                    setJoinError('');
-                  }}
-                  placeholder="Room code"
-                  inputMode="text"
-                  autoComplete="off"
-                  autoCapitalize="off"
-                  autoCorrect="off"
-                  spellCheck={false}
-                />
-                <Button size="lg" variant="secondary" type="submit" pending={joining}>
-                  Join a room
-                </Button>
-              </div>
-              {joinError ? (
-                <p className="join-inline-error" id="join-inline-error" role="alert">
-                  {joinError}
-                </p>
-              ) : (
-                <p>Have a code?</p>
-              )}
-            </form>
-          </div>
-          <ContinueLine rooms={me.data?.rooms || []} onShowAll={() => setTab('rooms')} />
-        </section>
         <SegmentedTabs
           label="Browse"
           variant="text"
           className="home-browse"
           heading={
-            <h2 id="browse" className="home-section-heading">
-              {tab === 'games' ? 'Browse games' : 'Your games'}
-            </h2>
+            <h1 id="browse" className="home-headline">
+              {tab === 'games' ? 'Choose a game' : 'Your games'}
+            </h1>
           }
           value={tab}
           onValueChange={setTab}
@@ -238,7 +164,12 @@ export function Lounge() {
             {
               value: 'games',
               label: 'Games',
-              content: <GameLibrary key={view.request} preset={view.occasion} />,
+              content: (
+                <>
+                  <ContinueLine rooms={me.data?.rooms || []} onShowAll={showRooms} />
+                  <GameLibrary />
+                </>
+              ),
             },
             {
               value: 'rooms',
@@ -269,8 +200,6 @@ export function Lounge() {
           }}
           mode={dialog.mode}
           gameId={dialog.gameId}
-          withBots={dialog.withBots}
-          invite={dialog.invite}
         />
       ) : null}
     </>

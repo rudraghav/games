@@ -11,6 +11,7 @@ export { TurnNotice } from './components/TurnNotice';
 export { PaperCardArt, paperCardKinds, type PaperCardKind } from './components/PaperCardArt';
 export { Avatar, isAvatarFrame } from './components/Avatar';
 export { Ticket } from './components/Ticket';
+export { Menu, type MenuItem } from './components/Menu';
 export { LevelRing } from './components/LevelRing';
 export { Modal } from './components/Modal';
 export { PlayingCard, type CardPresentation } from './components/PlayingCard';

@@ -5,9 +5,7 @@ import gameCatalogue from '../../packages/api-client/src/generated/catalog.json'
 
 test('the complete catalogue and every table scenario fit the viewport', async ({ page }) => {
   await page.goto('/');
-  await expect(
-    page.getByRole('heading', { name: 'How do you want to play?', exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Choose a game', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: /^Open / })).toHaveCount(gameCatalogue.length);
   await expect(page.getByRole('link', { name: 'Open Pop Tarot' })).toBeVisible();
   for (const selector of ['.game-art--board', '.game-art--words']) {

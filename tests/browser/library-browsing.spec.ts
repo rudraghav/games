@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
+import { openCreateRoom } from './helpers';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
 test('browsing filters intersect, reset deliberately and keep keyboard focus', async ({ page }) => {
@@ -59,34 +60,37 @@ test('browsing filters intersect, reset deliberately and keep keyboard focus', a
   );
 });
 
-test('mobile browsing keeps primary actions in full rows and filters within the page', async ({
+test('mobile browsing keeps the header actions on one row and filters within the page', async ({
   page,
 }, testInfo) => {
   await page.goto('/');
-  const actions = page.locator('.home-actions');
-  const buttons = actions.getByRole('button');
-  await expect(buttons).toHaveText(['Play solo', 'Create room', 'Join a room']);
+  // The page body has no action block now; Join a room and More sit in the header.
+  await expect(page.locator('.home-actions, .hero-actions')).toHaveCount(0);
+  const join = page.getByRole('button', { name: 'Join a room', exact: true });
+  const more = page.getByRole('button', { name: 'More', exact: true });
   if (testInfo.project.name === 'phone') {
     for (const width of [390, 320]) {
       await page.setViewportSize({ width, height: 844 });
-      const actionBounds = await actions.boundingBox();
-      const first = await buttons.nth(0).boundingBox();
-      const second = await buttons.nth(1).boundingBox();
-      const third = await buttons.nth(2).boundingBox();
-      expect(actionBounds).not.toBeNull();
-      // The primary action is one full row; the two secondary actions share the row under it.
-      expect(first!.width).toBeCloseTo(actionBounds!.width, 0);
-      expect(second!.y).toBeGreaterThanOrEqual(first!.y + first!.height);
-      expect(third!.y).toBe(second!.y);
-      expect(third!.x).toBeGreaterThanOrEqual(second!.x + second!.width);
-      expect(second!.width).toBeCloseTo(third!.width, 0);
-      expect(third!.x + third!.width).toBeCloseTo(actionBounds!.x + actionBounds!.width, 0);
-      for (const box of [first, second, third]) expect(box!.height).toBeGreaterThanOrEqual(44);
+      const first = await join.boundingBox();
+      const second = await more.boundingBox();
+      // Side by side on the header's one row, each a full touch target.
+      expect(second!.x).toBeGreaterThanOrEqual(first!.x + first!.width);
+      expect(
+        Math.abs(second!.y + second!.height / 2 - (first!.y + first!.height / 2)),
+      ).toBeLessThan(2);
+      for (const box of [first, second]) {
+        expect(box!.height).toBeGreaterThanOrEqual(44);
+        expect(box!.width).toBeGreaterThanOrEqual(44);
+        expect(box!.x + box!.width).toBeLessThanOrEqual(width);
+      }
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
         true,
       );
     }
     await page.setViewportSize({ width: 390, height: 844 });
+  } else {
+    await expect(join).toBeVisible();
+    await expect(more).toBeVisible();
   }
   const library = page.getByRole('region', { name: 'Games' });
   await library.scrollIntoViewIfNeeded();
@@ -165,12 +169,9 @@ test('room setup groups profile and game fields with full phone action rows', as
   for (const width of widths) {
     await page.setViewportSize({ width, height: width > 700 ? 1000 : 844 });
     for (const mode of ['create', 'join'] as const) {
-      await page
-        .getByRole('button', {
-          name: mode === 'create' ? 'Create room' : 'Join a room',
-          exact: true,
-        })
-        .click();
+      // Create room is in the header's More menu; Join a room is a header button.
+      if (mode === 'create') await openCreateRoom(page);
+      else await page.getByRole('button', { name: 'Join a room', exact: true }).click();
       const dialog = page.getByRole('dialog');
       const form = dialog.locator('form');
       const primary = form.locator('button[type="submit"]');

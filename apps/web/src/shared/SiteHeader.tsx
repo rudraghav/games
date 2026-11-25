@@ -24,8 +24,8 @@ export function SiteHeader({
       ) : null}
       <div className="header-actions">
         <ProgressChip />
-        <AccountNav />
         {children}
+        <AccountNav />
       </div>
     </header>
   );

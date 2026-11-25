@@ -142,10 +142,21 @@ export async function roomAs(page: Page, id: string): Promise<RoomView> {
 export async function openGameSetup(page: Page, gameIdOrName: string) {
   const game = catalogue.find((item) => item.id === gameIdOrName || item.name === gameIdOrName);
   if (!game) throw new Error(`Unknown browser fixture game: ${gameIdOrName}`);
-  await page.getByRole('button', { name: 'Create room', exact: true }).click();
+  const dialog = await openCreateRoom(page);
+  await dialog.getByRole('combobox', { name: 'The game', exact: true }).selectOption(game.id);
+  return dialog;
+}
+
+/**
+ * The home page's Create room is in the header's More menu. Opens the menu,
+ * chooses Create room and returns the setup dialog (the one with the game
+ * picker). The dialog's own submit button is also named "Create room".
+ */
+export async function openCreateRoom(page: Page) {
+  await page.getByRole('button', { name: 'More', exact: true }).click();
+  await page.getByRole('menuitem', { name: 'Create room', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Create room', exact: true });
   await expect(dialog).toBeVisible();
-  await dialog.getByRole('combobox', { name: 'The game', exact: true }).selectOption(game.id);
   return dialog;
 }
 

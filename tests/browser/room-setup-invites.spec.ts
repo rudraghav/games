@@ -462,9 +462,7 @@ test('a guest claims a username, is found by search, and answers invitations fro
   );
   await expect(cancel).toHaveCount(0);
   await friend.reload();
-  await expect(
-    friend.getByRole('heading', { name: 'How do you want to play?', exact: true }),
-  ).toBeVisible();
+  await expect(friend.getByRole('heading', { name: 'Choose a game', exact: true })).toBeVisible();
   await expect
     .poll(
       async () =>
@@ -522,9 +520,7 @@ test('a guest claims a username, is found by search, and answers invitations fro
   // The invited guest sees their own handle in the panel, with no prompt to choose one.
   await expect(invitePanel(friend)).toContainText(`Friends can find you as @${username}.`);
   await friend.goto('/');
-  await expect(
-    friend.getByRole('heading', { name: 'How do you want to play?', exact: true }),
-  ).toBeVisible();
+  await expect(friend.getByRole('heading', { name: 'Choose a game', exact: true })).toBeVisible();
   await expect(invitations).toHaveCount(0);
 });
 

@@ -324,39 +324,44 @@ Profile history lists a finished event as "Names drawn".
 
 ## Home, progress and rewards (23 November 2026)
 
-**Home** (`/`) is two things, in this order. (A first version the same day had
-five rails, a featured banner and nine category chips before the library; the
-owner found it cluttered, so it was reduced to this.)
+**Home** (`/`) opens on the games, because the game is the first decision and
+how to play it follows from that. (Two earlier versions the same week put
+things before the games: first five rails and a featured banner, then a
+headline with Play solo, Create room and Join a room. Both were removed.)
 
-1. **Start**: the headline "How do you want to play?" and three actions.
-   - `Play solo`, on your own or against bots: chooses Quick with bots in the
-     library below and moves there.
-   - `Create room`, to play with friends: opens the create dialog.
-   - `Join a room`, with a code: on a wide screen, type the code beside the
-     button and press Enter (a player the browser already knows joins at once;
-     anyone else gets the join dialog with the code filled in). With the field
-     empty, and on phones, the button opens the dialog.
-2. **Browse**: "Browse games", a search box, one row of six occasions (All,
+1. **Choose a game**: the heading, a search box, one row of six occasions (All,
    Quick with bots, With friends, Two players, Solo, For teams) and a grid in
    which every game appears once, as a cover, a name and "2–10 players · 10–20
    min". With All chosen and nothing typed, the grid opens with **Pop Tarot,
    the featured game**: one wide card with a line about it and Start reading,
    which opens `/games/tarot`. Under any other occasion, or once something is
    typed in search, there is no featured card and Pop Tarot is an ordinary
-   tile wherever it matches. Kinds of game (cards, board games, casino, party) are found by
-   searching. For teams shows its note and two quick filters, group size and
-   time, only while it is chosen.
+   tile wherever it matches. Kinds of game (cards, board games, casino, party)
+   are found by searching. For teams shows its note and two quick filters,
+   group size and time, only while it is chosen.
+2. **Open the game**: its page asks how to play. A multiplayer game offers
+   **Play with friends** (the setup dialog for that game) and **Play with
+   bots** (starts at once), with Join a room below; a solo game offers its one
+   start (Play solo, Start reading, Organise a draw).
 
-Everything else is demoted:
+In the header, on every screen size:
 
-- **An invitation** is the one thing above the headline, and only while there
-  is one: a single slim ticket with Join and Decline.
-- **A game in progress** gets one line under the three actions, "Continue
-  Friday table · Uno". Waiting and finished rooms are only under the **Your
-  games** tab, which sits as quiet text beside the Browse heading.
-- **Progress** is a small chip in the header (level, and a flame with the day
-  count while a streak exists) that opens `/rewards`. A visitor who has never
-  played sees no chip and no welcome line.
+- **Join a room** opens the join dialog (a six-digit code or a pasted invite
+  link). It is always one tap away for someone who arrives with a code.
+- **More** opens a menu: **Create room** (the full setup dialog with a game
+  picker, for someone who wants a room first), **Your games** and **Progress
+  and rewards**.
+- **Progress** is a small chip (level, and a flame with the day count while a
+  streak exists) that opens `/rewards`. A visitor who has never played sees no
+  chip and no welcome line.
+
+Also on the page, only when they apply:
+
+- **An invitation** is the one thing above the heading: a single slim ticket
+  with Join and Decline.
+- **A game in progress** gets one line under the heading, "Continue Friday
+  table · Uno". Waiting and finished rooms are only under the **Your games**
+  tab, which sits as quiet text beside the heading.
 
 **Progress and rewards** (`/rewards`), reached from the header chip, the profile
 page, the header's Rewards link on inner pages and the line under a result:
