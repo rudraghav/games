@@ -44,7 +44,7 @@
     min-width: 0;
     overflow: hidden;
     border: 1px solid var(--color-border);
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: var(--color-surface);
     box-shadow: var(--shadow-rest);
   }
@@ -69,7 +69,7 @@
   .chance-balance > b {
     display: inline-block;
     font-size: 0.95rem;
-    font-weight: 800;
+    font-weight: 700;
   }
   .chance-balance > svg {
     color: var(--brass-deep);
@@ -678,7 +678,7 @@
   .chance-last > strong {
     grid-column: 1 / -1;
     font-size: 0.92rem;
-    font-weight: 800;
+    font-weight: 700;
     text-wrap: balance;
   }
   .chance-last > small {
@@ -707,7 +707,7 @@
   }
   .chance-last small > b {
     color: var(--color-ink);
-    font-weight: 800;
+    font-weight: 700;
   }
   /* The pocket as it looks on the wheel; the text beside it always names the colour. */
   .chance-token {
@@ -744,15 +744,13 @@
     background: var(--color-surface-muted);
     color: #4b5148;
     font-size: 0.82rem;
-    font-weight: 800;
+    font-weight: 700;
     white-space: nowrap;
   }
   .chance-net > em {
     font-style: normal;
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
   }
   .chance-net[data-gain='true'] {
     background: #e1eedd;
@@ -779,7 +777,7 @@
   }
   .chance-history-heading > span {
     font-size: 0.82rem;
-    font-weight: 800;
+    font-weight: 700;
   }
   .chance-history [data-gain='true'] {
     color: var(--chance-gain);
@@ -797,7 +795,7 @@
     max-height: none;
     padding: 14px;
     border: 1px solid var(--color-border);
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: var(--color-surface);
     box-shadow: var(--shadow-rest);
   }
@@ -817,7 +815,7 @@
   .chance-picks legend {
     padding: 0;
     margin: 0 0 8px;
-    font-weight: 800;
+    font-weight: 700;
   }
   /* The betting layout: felt, with brass lines inlaid between the bets. */
   .chance-mat {
@@ -878,7 +876,7 @@
   .chance-number-select[data-chosen] {
     background: var(--felt-lit);
     box-shadow: inset 0 0 0 2px var(--brass-light);
-    font-weight: 800;
+    font-weight: 700;
   }
   .chance-dock .chance-outsides .button:disabled {
     opacity: 1;
@@ -949,7 +947,7 @@
     padding: 5px 30px 5px 11px;
     text-overflow: ellipsis;
     border: 1px solid var(--brass);
-    border-radius: 9px;
+    border-radius: var(--radius-small);
     background: var(--felt-deep);
     color: var(--wheel-ivory);
     font-size: 16px;
@@ -981,7 +979,7 @@
     justify-content: space-between;
     gap: 5px 8px;
     font-size: 0.85rem;
-    font-weight: 800;
+    font-weight: 700;
   }
   .chance-stake small {
     color: var(--color-ink-muted);
@@ -994,11 +992,11 @@
     min-height: 46px;
     padding: 5px 10px;
     border: 1px solid var(--chance-edge);
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     background: #fff;
     color: var(--color-ink);
     font-size: 17px;
-    font-weight: 800;
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
     box-shadow: inset 0 1px 2px #12291b1f;
     transition:
@@ -1100,7 +1098,7 @@
     margin: 0;
     overflow: hidden;
     border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     background: var(--color-border);
     font-variant-numeric: tabular-nums;
   }
@@ -1112,16 +1110,14 @@
   }
   .chance-slip dt {
     color: #5a5e54;
-    font-size: 0.66rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
     line-height: 1.2;
-    text-transform: uppercase;
   }
   .chance-slip dd {
     margin: 0;
     font-size: 1.1rem;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.1;
   }
   .chance-slip [data-gain] > dd {
@@ -1156,7 +1152,7 @@
     min-width: 0;
     overflow: hidden;
     border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     color: var(--color-ink);
     background: var(--color-surface);
     font-size: 0.86rem;
@@ -1168,7 +1164,7 @@
     cursor: pointer;
     min-height: 46px;
     padding: 12px 14px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 20px;
     list-style: none;
     transition: background 160ms var(--ease-out);
@@ -1205,8 +1201,8 @@
     border-radius: 999px;
     background: var(--color-surface-muted);
     color: #4b5148;
-    font-size: 0.74rem;
-    font-weight: 800;
+    font-size: 0.75rem;
+    font-weight: 700;
     text-align: center;
     font-variant-numeric: tabular-nums;
   }
@@ -1231,16 +1227,14 @@
   }
   .chance-details thead th {
     color: var(--color-ink-muted);
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
   }
   .chance-details tbody th {
     font-weight: 600;
   }
   .chance-details tbody td:nth-child(2) {
-    font-weight: 800;
+    font-weight: 700;
   }
   .chance-details th:first-child {
     text-align: left;

@@ -82,7 +82,7 @@
     padding: 17px;
     min-width: 0;
     border: 1px solid #d9c9ad;
-    border-radius: 18px;
+    border-radius: var(--radius-card);
     background: #fffaf2;
   }
   .flip-player[data-current='true'] {
@@ -102,9 +102,7 @@
     overflow-wrap: anywhere;
   }
   .flip-player-name > span {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-size: 12px;
     color: var(--color-ink-muted);
   }
   .flip-card-row {
@@ -205,7 +203,7 @@
     border: 1px solid #d9cbdc;
     background: #fffcf7;
     padding: 14px;
-    border-radius: 15px;
+    border-radius: var(--radius-control);
     min-width: 0;
   }
   .trio-player > div:first-child {
@@ -235,12 +233,12 @@
     gap: 3px;
     background: #e8d7ed;
     padding: 6px 9px;
-    border-radius: 8px;
+    border-radius: var(--radius-small);
     font-size: 22px;
     font-weight: 700;
   }
   .trio-collections small {
-    font-size: 10px;
+    font-size: 12px;
   }
   .trio-own-hand {
     margin-top: 22px;
@@ -291,7 +289,7 @@
     min-height: 44px;
     background: none;
     border: 1px solid transparent;
-    border-radius: 9px;
+    border-radius: var(--radius-small);
     padding: 3px;
     font-size: 12px;
   }
@@ -531,7 +529,7 @@
     .trio-table,
     .azul-table {
       padding: 16px 12px;
-      border-radius: 20px;
+      border-radius: var(--radius-card);
     }
     .modern-game-heading {
       display: grid;
@@ -752,7 +750,7 @@
     .flip-round-score {
       margin: 0;
       align-self: center;
-      font-size: 10px;
+      font-size: 12px;
     }
     .flip-round-score b {
       display: block;
@@ -800,14 +798,14 @@
     font-size: 13px;
   }
   .flip-player-identity small {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-ink-muted);
     text-transform: capitalize;
   }
   .flip-player-name .flip-round-score {
     margin: 0;
     flex: none;
-    font-size: 11px;
+    font-size: 12px;
     text-align: right;
   }
   .flip-player-name .flip-round-score b {
@@ -829,7 +827,7 @@
     gap: 5px;
   }
   .trio-table-slot > small {
-    font-size: 10px;
+    font-size: 12px;
     color: var(--color-ink-muted);
     font-variant-numeric: tabular-nums;
   }
@@ -1029,7 +1027,7 @@
     min-height: 52px;
     padding: 6px;
     border: 1px solid #b08336;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     background: #fff3d6;
     color: var(--color-ink);
     font: inherit;
@@ -1048,7 +1046,7 @@
   }
   .azul-choice > small[data-cost='true'] {
     color: #8a332b;
-    font-weight: 650;
+    font-weight: 600;
   }
   .azul-choice:not(:disabled):hover {
     border-color: var(--color-focus);
@@ -1075,7 +1073,7 @@
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 2px 12px;
     padding: 6px 10px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     background: #f6f2e8;
     font-size: 14px;
   }
@@ -1404,7 +1402,7 @@
     border-radius: 999px;
     background: var(--color-sage-light);
     color: var(--color-sage);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     vertical-align: 1px;
   }
@@ -1414,7 +1412,7 @@
     border-radius: 999px;
     background: var(--color-coral-light);
     color: #7c2a1b;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 1.5;
   }
@@ -1434,7 +1432,7 @@
     min-width: 24px;
     height: 24px;
     padding: 0 5px;
-    border-radius: 5px;
+    border-radius: var(--radius-small);
     /* The same fill and print pairs as the Flip 7 faces (card-faces.css). */
     background: var(--face-amber);
     box-shadow: inset 0 0 0 1px #946e24;
@@ -1499,7 +1497,7 @@
     margin: 0 0 14px;
     padding: 12px;
     border: 1px solid #d9c9ad;
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     background: #fffaf2;
   }
   .flip-round-results h3 {
@@ -1519,7 +1517,7 @@
     align-items: baseline;
     column-gap: 12px;
     padding: 5px 8px;
-    border-radius: 8px;
+    border-radius: var(--radius-small);
     font-size: 13px;
   }
   .flip-round-results li[data-own='true'] {
@@ -1545,7 +1543,7 @@
   .flip-result-gap {
     grid-column: 1 / -1;
     color: var(--color-ink-muted);
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
@@ -1630,7 +1628,7 @@
   }
   .trio-table-slot > small,
   .trio-collections small {
-    font-size: 11px;
+    font-size: 12px;
   }
   .trio-you {
     flex: none;
@@ -1638,7 +1636,7 @@
     border-radius: 999px;
     background: var(--color-plum-light);
     color: var(--color-plum);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
   }
   .trio-player[data-current='true'] {
@@ -1677,7 +1675,7 @@
       margin-bottom: 10px;
       padding: 10px;
       border: 1px solid #dacbdc;
-      border-radius: 14px;
+      border-radius: var(--radius-control);
       background: #fbf8fc;
     }
     .trio-reveals[data-active='true'] {

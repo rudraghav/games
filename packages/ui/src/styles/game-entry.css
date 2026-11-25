@@ -12,7 +12,7 @@
   .game-entry-art.game-poster {
     min-width: 0;
     height: 330px;
-    border-radius: 24px;
+    border-radius: var(--radius-panel);
     border: 1px solid var(--color-border);
   }
   .game-entry-art > .game-art,
@@ -113,7 +113,7 @@
     }
     .game-entry-art.game-poster {
       height: 200px;
-      border-radius: 18px;
+      border-radius: var(--radius-card);
     }
     .game-entry-art > .game-art,
     .game-entry-art > .party-art {
@@ -161,7 +161,7 @@
   .turn-coach__progress {
     color: var(--color-pine);
     font-size: 0.85rem;
-    font-weight: 650;
+    font-weight: 600;
   }
   .turn-coach__body {
     margin-block: 6px;

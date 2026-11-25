@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { Button, DecisionDock } from '@games/ui';
 import type { Action, ActionOption, Card } from '@games/api-client';
 import type { TableProps } from '../types';
-import { turnState } from '../shared/turn-state';
+import { repeatsNotice, turnState } from '../shared/turn-state';
 import type { RummyOut } from './rummy-view';
 
 type Analysis = { valid: boolean; deadwood: number };
@@ -134,12 +134,19 @@ export function RummyDock({
   if (discarding && !selectedCard && winning.length)
     choices.push(
       <div className="rummy-win-chips" role="group" aria-label="Winning discards" key="win">
-        {winning.map((card) => {
+        {winning.map((card, index) => {
           const move = match.actions.find(
             (item) => item.value.type === 'declare' && item.value.card === card.id,
           );
           return move ? (
-            <Button key={card.id} size="sm" disabled={blocked} onClick={() => onDecide(move)}>
+            <Button
+              key={card.id}
+              size="sm"
+              // One filled button: the first winning discard; the others stay quiet.
+              variant={index === 0 ? 'primary' : 'secondary'}
+              disabled={blocked}
+              onClick={() => onDecide(move)}
+            >
               {move.label}
             </Button>
           ) : null;
@@ -170,9 +177,11 @@ export function RummyDock({
       size={discarding ? 'extended' : 'standard'}
       pending={pending}
     >
+      {/* The notice above the table names the turn: the dock adds one line at most. */}
       <div className="action-context">
-        <strong>{turn.label}</strong>
-        <span className="small muted">{context}</span>
+        {choices.length && repeatsNotice(context, turn.message) ? null : (
+          <span className="small muted">{context}</span>
+        )}
         {note ? <span className="small rummy-dock-note">{note}</span> : null}
         <button
           className="text-button action-clear"

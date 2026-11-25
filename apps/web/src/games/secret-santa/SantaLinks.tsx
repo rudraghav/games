@@ -140,9 +140,11 @@ export function SantaLinks({
               stubClassName="santa-link__actions"
               stub={
                 <>
+                  {/* A list of the same action per person: every one stays quiet. */}
                   {canShare ? (
                     <Button
                       size="sm"
+                      variant="secondary"
                       aria-label={`Share link for ${person.name}`}
                       disabled={!hasLink}
                       onClick={() => void share(person.id, person.name)}
@@ -153,7 +155,7 @@ export function SantaLinks({
                   ) : null}
                   <Button
                     size="sm"
-                    variant={canShare ? 'secondary' : 'primary'}
+                    variant="secondary"
                     aria-label={
                       copied === person.id
                         ? `Link copied for ${person.name}`

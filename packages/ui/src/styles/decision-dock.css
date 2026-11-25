@@ -9,7 +9,7 @@
     overflow-y: auto;
     padding: 12px;
     border: 1px solid #aebba4;
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     background: var(--color-surface);
     box-shadow: 0 15px 55px #202f2440;
   }

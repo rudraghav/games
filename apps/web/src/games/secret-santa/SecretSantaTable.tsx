@@ -26,11 +26,11 @@ function readDetails(detail: TableProps['match']['detail']): SantaDetails | null
 
 const INTRO: Record<string, { step: string; text: string }> = {
   setup: {
-    step: 'Step 1 of 2 · Set up',
+    step: 'Step 1 of 2: set up',
     text: 'Add everyone taking part, say who can’t draw whom, then draw names. Nobody draws their own name.',
   },
   drawn: {
-    step: 'Step 2 of 2 · Share the links',
+    step: 'Step 2 of 2: share the links',
     text: 'Names are drawn. Only each person can see who they drew.',
   },
   finished: {

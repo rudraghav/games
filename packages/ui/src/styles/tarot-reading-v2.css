@@ -37,7 +37,7 @@
     background: var(--color-surface-muted);
   }
   .tarot-character-portrait figcaption {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.4;
     color: var(--color-ink-muted);
     margin-top: 6px;
@@ -189,7 +189,7 @@
     min-width: 0;
     padding: 20px;
     border: 1px solid var(--color-border);
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: var(--color-surface);
   }
   .tarot-perspectives[data-variant='single'] {
@@ -202,7 +202,7 @@
   }
   .tarot-reading h4 {
     font-size: 12px;
-    font-weight: 650;
+    font-weight: 600;
     line-height: 1.5;
   }
   .tarot-perspectives h4 {
@@ -338,7 +338,7 @@
     max-width: 100%;
     margin: 12px 0 0;
     padding: 9px 14px;
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     background: var(--color-plum-light);
     color: var(--tarot-plum-deep);
     font-size: 14px;
@@ -610,9 +610,8 @@
     margin: 0;
     color: var(--color-plum);
     font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
+    font-size: 12px;
+    font-weight: 700;
   }
   .tarot-summary-lead {
     max-width: 60ch;
@@ -651,7 +650,7 @@
     min-height: 52px;
     padding: 8px 10px 8px 12px;
     border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     background: var(--color-surface);
     color: var(--color-ink);
     text-decoration: none;
@@ -663,7 +662,7 @@
   .tarot-summary-cards a > span {
     grid-column: 1;
     color: var(--color-ink-muted);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 1.3;
   }
@@ -732,11 +731,9 @@
     padding: 0 7px;
     border: 1px solid currentColor;
     border-radius: 999px;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 18px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
   }
   .tarot-reading .tarot-perspectives {
     grid-template-columns: minmax(0, 1fr);
@@ -753,11 +750,9 @@
   .tarot-reading .tarot-character-connections > h4 {
     margin-bottom: 8px;
     color: var(--color-ink-muted);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
+    font-size: 13px;
+    font-weight: 600;
     line-height: 1.4;
-    text-transform: uppercase;
   }
   .tarot-reading .tarot-perspectives p,
   .tarot-reading .tarot-character-connections li > p:last-child {
@@ -767,7 +762,7 @@
   }
   .tarot-reading .tarot-perspectives > .tarot-quirky-read {
     padding: 16px 18px 18px;
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: var(--color-plum-light);
     color: var(--tarot-plum-deep);
   }
@@ -797,17 +792,15 @@
     max-width: 64ch;
     margin-top: 12px;
     padding: 12px 14px 14px;
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     background: color-mix(in srgb, var(--color-coral) 9%, var(--color-surface));
   }
   .tarot-reading .tarot-figure-bridge > h5 {
     margin-bottom: 6px;
     color: var(--color-ink-muted);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
+    font-size: 12px;
+    font-weight: 700;
     line-height: 1.4;
-    text-transform: uppercase;
   }
   .tarot-reading .tarot-figure-bridge > p {
     font-size: 15px;
@@ -828,7 +821,7 @@
   }
   .tarot-next-step > .eyebrow {
     color: var(--tarot-ochre-deep);
-    font-weight: 800;
+    font-weight: 700;
   }
   .tarot-reading .tarot-next-step > p {
     max-width: 62ch;
@@ -880,7 +873,7 @@
   }
   .tarot-reading-skeleton span {
     height: 14px;
-    border-radius: 7px;
+    border-radius: var(--radius-small);
     background: var(--color-surface-muted);
   }
   .tarot-reading-skeleton span:first-child {
@@ -906,7 +899,7 @@
     padding: 1px 2px 0;
     color: var(--color-ink-muted, #5c5f55);
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0.06em;
     line-height: 1.25;
     text-align: center;
@@ -946,7 +939,7 @@
   .tarot-guide-name:focus-visible {
     outline: 3px solid var(--color-focus, #af7535);
     outline-offset: 4px;
-    border-radius: 4px;
+    border-radius: var(--radius-small);
   }
   .tarot-card-page-loading {
     display: grid;
@@ -1004,7 +997,7 @@
   @media (max-width: 600px) {
     .tarot-table:not([data-phase='choosing']) .tarot-spread {
       padding: 14px 10px 16px;
-      border-radius: 16px;
+      border-radius: var(--radius-card);
     }
     .tarot-table[data-reading-state='complete'] .tarot-spread {
       padding-bottom: 52px;
@@ -1020,7 +1013,7 @@
       gap: 12px;
       margin: -38px 8px 4px;
       padding: 18px 16px 14px;
-      border-radius: 16px;
+      border-radius: var(--radius-card);
     }
     .tarot-summary-lead {
       font-size: 17px;

@@ -3,7 +3,7 @@ import { useId } from 'react';
 import { Button, DecisionDock } from '@games/ui';
 import type { ActionOption } from '@games/api-client';
 import type { TableProps } from '../types';
-import { turnState } from '../shared/turn-state';
+import { repeatsNotice, turnState } from '../shared/turn-state';
 import { useTableDraft } from '../shared/table-draft';
 import {
   casinoInstruction,
@@ -22,6 +22,8 @@ export function CasinoDock({ match, room, selfId, onAction, pending }: TableProp
   if (match.phase === 'finished' && !match.actions.length) return null;
   const turn = turnState(match, room, selfId);
   const instruction = casinoInstruction(match, room, selfId);
+  const said = instruction ?? turn.message;
+  const line = match.actions.length && repeatsNotice(said, turn.message) ? '' : said;
   const locked = pending || room.paused;
   // Saving or a pause is a separate line: the decision's explanation stays readable.
   const status = pending
@@ -41,6 +43,11 @@ export function CasinoDock({ match, room, selfId, onAction, pending }: TableProp
       : undefined;
   const directAmounts = teenBet ? shortWagerAmounts(teenBet) : [];
   const editable = wagers.filter(({ choice }) => choice !== teenBet || !directAmounts.length);
+  // One filled button per dock: the first choice drawn takes it, the rest stay quiet.
+  const leadSimple = directAmounts.length
+    ? -1
+    : simple.findIndex(({ view }) => view.tone === 'primary');
+  const leadWager = !directAmounts.length && leadSimple < 0 ? 0 : -1;
   return (
     <DecisionDock
       className="action-panel casino-dock"
@@ -49,15 +56,15 @@ export function CasinoDock({ match, room, selfId, onAction, pending }: TableProp
       pending={pending}
       data-choices={simple.length + directAmounts.length + editable.length}
     >
+      {/* The notice above the table names the turn: the dock adds one line at most. */}
       <div className="action-context">
-        <strong>{turn.label}</strong>
-        <span className="small casino-dock-instruction">{instruction ?? turn.message}</span>
+        {line ? <span className="small casino-dock-instruction">{line}</span> : null}
         {status ? <span className="casino-dock-status">{status}</span> : null}
       </div>
       {match.actions.length ? (
         <div className="action-choices casino-choices">
           {teenBet &&
-            directAmounts.map((amount) => {
+            directAmounts.map((amount, index) => {
               const impact = wagerImpact(match, selfId, amount);
               return (
                 <Choice
@@ -65,7 +72,7 @@ export function CasinoDock({ match, room, selfId, onAction, pending }: TableProp
                   option={teenBet}
                   name={`${teenBet.label} ${amount} ${amount === 1 ? 'chip' : 'chips'}`}
                   note={impact ? `${impact.remaining} left unbet` : undefined}
-                  tone="primary"
+                  tone={index === 0 ? 'primary' : 'secondary'}
                   disabled={locked}
                   onPick={() => onAction({ ...teenBet.value, amount })}
                 />
@@ -78,7 +85,7 @@ export function CasinoDock({ match, room, selfId, onAction, pending }: TableProp
               name={view.name}
               suffix={view.suffix}
               description={view.description}
-              tone={view.tone}
+              tone={index === leadSimple ? 'primary' : 'secondary'}
               disabled={locked}
               onPick={() => onAction(choice.value)}
             />
@@ -91,6 +98,7 @@ export function CasinoDock({ match, room, selfId, onAction, pending }: TableProp
               room={room}
               selfId={selfId}
               locked={locked}
+              lead={index === leadWager}
               onAction={onAction}
               pending={pending}
             />
@@ -162,8 +170,9 @@ function Wager({
   room,
   selfId,
   locked,
+  lead,
   onAction,
-}: TableProps & { option: ActionOption; locked: boolean }) {
+}: TableProps & { option: ActionOption; locked: boolean; lead: boolean }) {
   const id = useId();
   const view = wagerView(match, selfId, option);
   // The typed amount survives a refresh of this same decision, never a later one.
@@ -209,6 +218,7 @@ function Wager({
         </label>
         <Button
           type="submit"
+          variant={lead ? 'primary' : 'secondary'}
           aria-describedby={`${id}-feedback`}
           disabled={locked || Boolean(problem)}
         >

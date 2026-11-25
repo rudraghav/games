@@ -216,9 +216,12 @@ test.describe('Local Uno fixtures', () => {
       // The viewer holds a draw card here and still may not stack it.
       expect(off.room.game!.hand.some((card) => card.value.startsWith('+'))).toBe(true);
       await expect(page.locator('.uno-situation')).toHaveText(`+${owed} is on you: draw ${owed}.`);
-      await expect(page.locator('.uno-dock .action-context')).toContainText(
-        `Draw ${owed}; then your turn passes.`,
-      );
+      // The engine's own message says this in the notice above the table. The dock repeats
+      // it only where it has more to add: in No Mercy, how close drawing takes you to the limit.
+      expect(off.room.game!.message).toBe(`Draw ${owed}; your turn then passes.`);
+      const line = page.locator('.uno-dock .action-context');
+      if (game === 'uno') await expect(line).not.toContainText('your turn passes');
+      else await expect(line).toContainText(`Draw ${owed}; then your turn passes. You’d hold `);
       expect(await dockButtons(page)).toEqual([`Draw ${owed}`]);
       await expect(page.locator('.uno-hand .card-hand > [data-playable="true"]')).toHaveCount(0);
       await page.getByRole('button', { name: `Draw ${owed}`, exact: true }).click();

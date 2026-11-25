@@ -7,7 +7,7 @@
 @layer components {
   .ticket {
     --ticket-notch: 9px;
-    --ticket-radius: 16px;
+    --ticket-radius: var(--radius-card);
     --ticket-paper: var(--color-surface);
     --ticket-ink: var(--color-ink);
     --ticket-line: color-mix(in srgb, var(--color-ink-muted) 45%, var(--ticket-paper));
@@ -288,7 +288,7 @@
   .invite-hub-friends {
     padding: 16px 18px;
     border: 1px solid var(--color-border);
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: var(--color-surface);
   }
   @media (min-width: 620px) {

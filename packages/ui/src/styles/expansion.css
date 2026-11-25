@@ -105,7 +105,7 @@
     margin-bottom: 6px;
   }
   .gem-purchase-quote dt {
-    font-weight: 650;
+    font-weight: 600;
   }
   .board-surface {
     width: min(100%, 540px);
@@ -223,7 +223,7 @@
     justify-content: center;
     margin-left: 15px;
     min-width: 44px;
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     background: #ede4d3;
     font-family: var(--font-body);
   }
@@ -389,7 +389,7 @@
     border: 0;
     background: transparent;
     padding: 5px;
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     min-width: 55px;
     position: relative;
   }
@@ -399,7 +399,7 @@
   .gem-supply-choice small {
     display: block;
     margin-top: 7px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .gem-take-controls {
     display: flex;
@@ -506,7 +506,7 @@
     padding: 18px;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: 16px;
+    border-radius: var(--radius-card);
   }
   .gem-engines h3 {
     font-size: 14px;
@@ -522,7 +522,7 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 10px;
+    font-size: 12px;
     color: var(--color-ink-muted);
   }
   .game-art.game-art--words {
@@ -619,7 +619,7 @@
       grid-column: 1 / -1;
     }
     .word-score {
-      font-size: 11px;
+      font-size: 12px;
     }
     .gem-supply {
       gap: 5px;
@@ -723,7 +723,7 @@
     padding: 14px;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     min-width: 0;
   }
   .gem-engines > details > summary {
@@ -989,7 +989,7 @@
     min-width: 0;
   }
   .gem-wallet-color > small {
-    font-size: 10px;
+    font-size: 12px;
     color: var(--color-ink-muted);
     white-space: nowrap;
   }
@@ -1003,7 +1003,7 @@
     gap: 8px;
   }
   .gem-tier-heading > small {
-    font-size: 11px;
+    font-size: 12px;
   }
   @media (max-width: 600px) {
     .gem-layout .gem-wallet {
@@ -1210,7 +1210,7 @@
     padding: 10px 14px;
     border: 1px solid #e3c98d;
     border-left: 4px solid #c79b3f;
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     background: #fff8e6;
     color: #4c3a25;
     font-size: 14px;
@@ -1223,7 +1223,7 @@
     margin: 10px 0 14px;
     padding: 14px;
     border: 1px solid var(--color-border);
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     background: var(--color-surface);
   }
   .gem-final-summary h3 {
@@ -1240,7 +1240,7 @@
     justify-content: space-between;
     gap: 4px 12px;
     padding: 8px 10px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     background: var(--color-surface-muted);
     font-size: 14px;
   }
@@ -1305,7 +1305,7 @@
   .gem-supply-gold > small {
     display: block;
     margin-top: 7px;
-    font-size: 11px;
+    font-size: 12px;
     color: #4c3a25;
   }
   .gem-take-controls > .gem-take-hint {
@@ -1318,7 +1318,7 @@
     font-size: 13px;
   }
   .gem-take-hint[data-ready='true'] {
-    font-weight: 650;
+    font-weight: 600;
     color: #24543a;
   }
   .gem-tier-navigation > .button {
@@ -1328,7 +1328,7 @@
     line-height: 1.2;
   }
   .gem-tier-navigation > .button > small {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--color-ink-muted);
   }
@@ -1359,7 +1359,7 @@
     color: #4c3a25;
   }
   .gem-patrons[data-choosing='true'] .patron-row {
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     background: #fff8e6cc;
   }
   .gem-engine-rows {
@@ -1373,7 +1373,7 @@
   }
   .gem-engine-rows dt {
     font-size: 12px;
-    font-weight: 650;
+    font-weight: 600;
     color: var(--color-ink-muted);
   }
   .gem-engine-rows dd {
@@ -1400,7 +1400,7 @@
     max-block-size: min(62vh, 440px);
     overflow-y: auto;
     border: 1px solid #c9b98f;
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     background: var(--color-surface);
     box-shadow:
       0 10px 34px #26382238,
@@ -1489,7 +1489,7 @@
     min-height: 52px;
     padding: 4px;
     border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     background: var(--color-surface);
     cursor: pointer;
   }

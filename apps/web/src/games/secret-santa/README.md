@@ -64,7 +64,8 @@ Unsent text (a title being typed, a name not yet added) is kept per tab with
 
 ## Phases
 
-- `setup`: event card, people, groups, and **Draw names**. When the server does
+- `setup`: event card, people, groups, and **Draw names**, the one filled
+  button (`Add` and `Add group` are secondary). When the server does
   not offer `draw` the button is disabled and `blocked` is shown under it. One
   confirmation precedes the draw.
 - `drawn`: event card, the links list, a read-only list of the rules, **Redraw**

@@ -15,7 +15,7 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
     border: 1px solid var(--color-border);
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: #f7f5ec;
     overflow: clip;
   }
@@ -45,7 +45,7 @@
     min-width: 0;
     max-width: none;
     padding: 4px 8px 8px 10px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     position: relative;
   }
   .deal-opponents > .deal-opponent[data-active='true'] {
@@ -64,7 +64,7 @@
   .deal-opponents > .deal-opponent > .seat .avatar {
     width: 30px;
     height: 30px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .deal-opponent .seat-copy strong {
     font-size: 13px;
@@ -91,7 +91,7 @@
     text-overflow: ellipsis;
   }
   .deal-opponent .seat-kind {
-    font-size: 11px;
+    font-size: 12px;
   }
   .deal-opponent .seat .turn-light {
     left: 22px;
@@ -135,7 +135,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 5px 6px;
+    gap: 5px var(--space-1);
     min-width: 0;
     min-height: 26px;
     margin: 0;
@@ -144,10 +144,10 @@
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2px 5px;
+    gap: 2px var(--space-1);
     min-height: 26px;
-    padding: 2px 8px 2px 6px;
-    border-radius: 6px;
+    padding: 2px 6px 2px 5px;
+    border-radius: var(--radius-small);
     background: #eef1e4;
     font-size: 13px;
     line-height: 1.2;
@@ -156,12 +156,12 @@
     font-variant-numeric: tabular-nums;
   }
   .deal-summary-label {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     color: #5b6055;
   }
   .deal-summary-notes {
-    font-size: 11px;
+    font-size: 12px;
     color: #5b6055;
   }
   .deal-summary-debt {
@@ -169,10 +169,10 @@
     align-items: center;
     min-height: 26px;
     padding: 2px 8px;
-    border-radius: 6px;
+    border-radius: var(--radius-small);
     background: var(--color-coral-light);
     color: var(--color-danger);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
   }
   .deal-summary-empty {
@@ -182,14 +182,15 @@
   .deal-chip {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    /* 12px text in the room 11px had: the chip gives up padding, not legibility. */
+    gap: 3px;
     min-height: 26px;
-    padding: 2px 7px 2px 3px;
+    padding: 2px 5px 2px 3px;
     border: 1px solid #d6d2c4;
-    border-radius: 6px;
+    border-radius: var(--radius-small);
     background: #fffdf7;
     color: var(--color-ink);
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.2;
     white-space: nowrap;
   }
@@ -281,7 +282,7 @@
   }
   .deal-pile-copy > span,
   .deal-discard-copy > span {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-ink-muted);
   }
   .deal-discard {
@@ -295,7 +296,7 @@
     height: 48px;
     padding: 6px 10px 6px 18px;
     border: 1px solid #d4cfc2;
-    border-radius: 8px;
+    border-radius: var(--radius-small);
     background: #fffdf6;
     color: var(--color-ink);
     text-align: left;
@@ -352,7 +353,7 @@
     margin: 0;
     min-width: 0;
     font-size: 13px;
-    font-weight: 650;
+    font-weight: 600;
     line-height: 1.35;
     overflow-wrap: anywhere;
   }
@@ -538,13 +539,13 @@
   .deal-board-scroll .deal-player-heading .seat .avatar {
     width: 28px;
     height: 28px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .deal-board-scroll .deal-player-heading .seat-copy > span {
     font-size: 12px;
   }
   .deal-board-scroll .deal-player-heading .seat-self {
-    font-size: 11px;
+    font-size: 12px;
   }
   .deal-board-scroll .deal-player-heading .turn-light {
     left: 21px;
@@ -629,7 +630,7 @@
     padding: 6px 8px 4px;
     border: 1px solid #e2dfd3;
     border-top: 4px solid var(--property-ink);
-    border-radius: 8px;
+    border-radius: var(--radius-small);
     background: #fffdf7;
   }
   :is(.deal-board-scroll, .opponent-panel-inspection) .deal-collection[data-complete='true'] {
@@ -693,7 +694,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    font-size: 11px;
+    font-size: 12px;
     grid-column: 1 / -1;
   }
   .deal-transfer-card {
@@ -709,7 +710,7 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    border-radius: 5px;
+    border-radius: var(--radius-small);
     padding: 4px 6px;
     background: #fffdf7;
     border: 1px solid var(--color-border);

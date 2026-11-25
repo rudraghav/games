@@ -1,13 +1,5 @@
 import type { Game } from '@games/api-client/catalog';
-import {
-  discoveryRank,
-  findGames,
-  gameMinutes,
-  matchesGame,
-  matchesTeamFilters,
-  teamGames,
-  type TeamFilters,
-} from './catalogue-search';
+import { discoveryRank, findGames, gameMinutes, matchesGame, teamGames } from './catalogue-search';
 
 /**
  * The one row of filters on the home page. Each is an occasion ("who is
@@ -36,14 +28,9 @@ const byDiscovery = (a: Game, b: Game) => discoveryRank(a.id) - discoveryRank(b.
  * - With friends: the party shelf's games that seat four or more.
  * - Two players: playable by exactly two, the games made for two first.
  * - Solo: nobody else needed (the organiser's tool is not a solo game).
- * - For teams: the documented allowlist, in its own order, narrowed by the two
- *   team filters.
+ * - For teams: the documented allowlist, in its own order.
  */
-export function occasionGames(
-  occasion: Occasion,
-  games: readonly Game[],
-  team: TeamFilters = {},
-): Game[] {
+export function occasionGames(occasion: Occasion, games: readonly Game[]): Game[] {
   switch (occasion) {
     case 'quick-bots':
       return games
@@ -66,7 +53,7 @@ export function occasionGames(
     case 'teams':
       return teamGames.flatMap((id) => {
         const game = games.find((item) => item.id === id);
-        return game && matchesTeamFilters(game, team) ? [game] : [];
+        return game ? [game] : [];
       });
     default:
       return [...games].sort(byDiscovery);
@@ -74,13 +61,8 @@ export function occasionGames(
 }
 
 /** What the grid shows: the occasion's games, narrowed by the search box. */
-export function browseGames(
-  games: readonly Game[],
-  query: string,
-  occasion: Occasion,
-  team: TeamFilters = {},
-): Game[] {
-  const pool = occasionGames(occasion, games, team);
+export function browseGames(games: readonly Game[], query: string, occasion: Occasion): Game[] {
+  const pool = occasionGames(occasion, games);
   return query.trim() ? findGames(pool, query, 0, 'all') : pool;
 }
 

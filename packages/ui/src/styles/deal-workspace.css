@@ -42,7 +42,7 @@
   }
   .deal-player {
     border: 1px solid var(--color-border);
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: var(--color-surface);
     min-width: 0;
   }
@@ -71,7 +71,7 @@
   .deal-player-heading .avatar {
     width: 30px;
     height: 30px;
-    font-size: 11px;
+    font-size: 12px;
   }
   /* The turn light sits on the avatar, beside the name it belongs to. */
   .deal-player-heading .turn-light {
@@ -99,7 +99,7 @@
   .deal-player[data-empty='true'] .deal-empty-collection {
     min-height: 52px;
     padding: 0;
-    font-size: 11px;
+    font-size: 12px;
   }
   .deal-player[data-empty='true'] .deal-set-slots {
     display: none;
@@ -165,7 +165,7 @@
   .deal-empty {
     display: block;
     padding: 10px 0;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-ink-muted);
   }
   .deal-collections {
@@ -182,7 +182,7 @@
     max-width: 440px;
     border: 1px solid var(--color-border);
     border-top: 4px solid var(--property-ink);
-    border-radius: 9px;
+    border-radius: var(--radius-small);
     background: white;
     padding: 8px;
   }
@@ -193,7 +193,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 10px;
+    font-size: 12px;
     margin-bottom: 7px;
     min-width: 0;
   }
@@ -253,7 +253,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .deal-set-reference {
     position: relative;
@@ -272,11 +272,11 @@
     position: static;
   }
   .deal-set-reference > div {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.6;
     padding: 12px;
     background: #f6f3ed;
-    border-radius: 8px;
+    border-radius: var(--radius-small);
     max-width: 240px;
   }
   .deal-set-reference ul {
@@ -289,7 +289,7 @@
   }
   .deal-set-reference li[data-owned='true'] {
     color: var(--color-pine);
-    font-weight: 650;
+    font-weight: 600;
   }
   .deal-collection:has(.deal-set-reference[open]) {
     max-width: 360px;
@@ -320,7 +320,7 @@
     border: 1px dashed var(--color-sage);
     color: var(--color-sage);
     background: var(--color-sage-light);
-    border-radius: 8px;
+    border-radius: var(--radius-small);
     font-size: 12px;
     min-height: 44px;
     padding: 8px 12px;
@@ -347,7 +347,7 @@
   .deal-hand-dock {
     min-width: 0;
     border: 1px solid var(--color-border);
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: var(--color-surface);
     overflow: hidden;
   }
@@ -405,7 +405,7 @@
   .deal-move-form > label {
     display: grid;
     gap: 5px;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-ink-muted);
   }
   .deal-move-form .input {
@@ -427,7 +427,7 @@
     padding: 15px;
     border: 1px solid #c8b989;
     background: #fbf6e7;
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     display: grid;
     gap: 12px;
   }
@@ -494,7 +494,7 @@
     display: flex;
     align-items: center;
     border: 1px solid var(--color-border);
-    border-radius: 8px;
+    border-radius: var(--radius-small);
   }
   .deal-payment-row:has(:checked) {
     border-color: var(--color-sage);
@@ -578,7 +578,7 @@
       font-size: 21px;
     }
     .deal-selected-preview p {
-      font-size: 11px;
+      font-size: 12px;
     }
     .deal-commit-actions,
     .deal-resolution-actions {
@@ -625,7 +625,7 @@
     min-height: 44px;
     padding: 8px 10px;
     border: 1px solid var(--color-border);
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     background: #fffdf7;
     color: var(--color-ink);
     font: inherit;
@@ -724,7 +724,7 @@
     gap: 8px;
   }
   .deal-composer[data-compact='true'] .deal-choice {
-    border-radius: 12px;
+    border-radius: var(--radius-control);
   }
   .deal-expand-choices {
     justify-self: end;
@@ -771,7 +771,7 @@
   }
   .deal-resolution .deal-resolution-warning {
     padding: 6px 8px;
-    border-radius: 8px;
+    border-radius: var(--radius-small);
     background: #fbe9e2;
     color: #8a2f1c;
     font-size: 12px;
@@ -791,7 +791,7 @@
     min-width: 0;
     padding: 4px 4px 4px 8px;
     border: 1px solid var(--color-border);
-    border-radius: 8px;
+    border-radius: var(--radius-small);
     background: #fffdf7;
     font-size: 12px;
     line-height: 1.4;

@@ -18,8 +18,8 @@
     color: var(--color-ink-muted);
   }
   .library-search:focus-within {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
+    outline: 3px solid var(--color-focus);
+    outline-offset: 4px;
   }
   .library-search input {
     flex: 1;
@@ -53,7 +53,7 @@
   }
   .choice-group button {
     border: 1px solid transparent;
-    border-radius: 100px;
+    border-radius: 999px;
     background: transparent;
     color: var(--color-ink-muted);
     padding: 11px 18px;
@@ -358,7 +358,6 @@
     container-type: inline-size;
     height: 180px;
     box-shadow: inset 0 0 0 1px #ffffff66;
-    background-image: radial-gradient(ellipse at 30% 20%, #ffffff55, transparent 70%);
   }
   .game-library .game-poster::after {
     width: 85%;
@@ -624,7 +623,7 @@
     margin-block: 4px 22px;
   }
   .lounge-room-section > h2 {
-    font: 650 14px/1.4 var(--font-body);
+    font: 600 14px/1.4 var(--font-body);
     margin-bottom: 10px;
     color: var(--color-ink-muted);
   }
@@ -646,7 +645,7 @@
     min-width: 0;
     padding: 10px 12px;
     border: 1px solid var(--color-border);
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: var(--color-surface);
     scroll-snap-align: start;
   }
@@ -665,7 +664,7 @@
     height: 58px;
     flex: none;
     overflow: hidden;
-    border-radius: 11px;
+    border-radius: var(--radius-control);
     background: var(--color-sage-light);
     container-type: inline-size;
   }
@@ -683,17 +682,17 @@
   }
   .room-shortcut-copy > strong {
     font-size: 14px;
-    font-weight: 650;
+    font-weight: 600;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
   .room-shortcut-copy > small {
-    font-size: 10px;
+    font-size: 12px;
     color: var(--color-sage);
   }
   .room-shortcut-copy > span {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-ink-muted);
   }
   .lounge-room-section--recent {

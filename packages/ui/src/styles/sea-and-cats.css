@@ -315,7 +315,7 @@
     align-items: start;
     background: var(--color-sky-light);
     padding: 16px 20px;
-    border-radius: 18px;
+    border-radius: var(--radius-card);
   }
   .paper-stock {
     display: grid;
@@ -355,7 +355,7 @@
   }
   .paper-last-chance {
     background: var(--color-ochre-light);
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     padding: 16px;
     margin-bottom: 20px;
     font-size: 14px;
@@ -370,7 +370,7 @@
   .paper-collections details {
     border: 1px solid var(--color-border);
     padding: 16px;
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     min-width: 0;
   }
   .paper-collections .paper-card-row {
@@ -386,13 +386,13 @@
   .paper-collections summary {
     cursor: pointer;
     font-size: 13px;
-    font-weight: 650;
+    font-weight: 600;
     min-height: 44px;
     overflow-wrap: anywhere;
   }
   .paper-collections summary > span {
     display: block;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-ink-muted);
     font-weight: 400;
     margin-top: 5px;
@@ -416,7 +416,7 @@
     padding: 9px 16px;
     background: var(--color-canvas);
     border: 1px solid var(--color-border);
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     color: var(--color-ink);
   }
   .boop-pool-choice[aria-pressed='true'] {
@@ -619,7 +619,7 @@
   }
   .paper-pile-label {
     font-size: 12px;
-    font-weight: 650;
+    font-weight: 600;
     color: var(--color-ink-muted);
     text-align: center;
   }
@@ -637,7 +637,7 @@
     padding: 10px 14px;
     list-style: none;
     border-left: 4px solid var(--color-focus);
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     background: var(--color-ochre-light);
     font-size: 14px;
     line-height: 1.5;
@@ -648,7 +648,7 @@
     margin-bottom: 14px;
     padding: 14px 16px;
     border: 1px solid var(--color-border);
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     background: var(--color-sky-light);
   }
   .paper-round-summary h3 {
@@ -675,7 +675,7 @@
     min-height: 44px;
     cursor: pointer;
     font-size: 13px;
-    font-weight: 650;
+    font-weight: 600;
     overflow-wrap: anywhere;
   }
   .paper-round-summary--previous > p,
@@ -715,7 +715,7 @@
     margin-block: 4px 14px;
     padding: 12px;
     border: 1px solid var(--color-border);
-    border-radius: 14px;
+    border-radius: var(--radius-control);
   }
   .paper-source-dock .paper-private-choice {
     margin-top: 0;

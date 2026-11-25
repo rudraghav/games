@@ -100,6 +100,8 @@ export function RewardCoupon({
         <div className="reward-actions">
           {reward.state === 'available' ? (
             <Button
+              // A list of the same action per reward: every one stays quiet.
+              variant="secondary"
               aria-label={`Redeem ${reward.name}`}
               pending={busy === 'redeem'}
               disabled={disabled || Boolean(busy)}
@@ -119,6 +121,7 @@ export function RewardCoupon({
             </Button>
           ) : (
             <Button
+              variant="secondary"
               aria-label={`Use ${reward.name}`}
               pending={busy === 'use'}
               disabled={disabled || Boolean(busy)}

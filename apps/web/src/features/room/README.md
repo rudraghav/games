@@ -101,8 +101,11 @@ display Rules. Rooms shared with other humans offer the same illustrated book.
   Other players see the level as the seat badge. "Add bot" still seats a Hard bot.
 - `InvitePanel` (group "Invite friends"): `.room-code` holds the grouped code,
   `.invite-link` the short link, then Share (only when `navigator.share` exists),
-  "Copy link" and "Copy code" with a status line. The copied link is
-  `<origin>/r/<code>`; the long invite token is no longer copied.
+  "Copy link" and "Copy code" with a status line. All three are secondary
+  buttons: the lobby's one filled button is "I’m ready" until you are ready,
+  then "Start game" for the host once it can start (a disabled Start is never
+  filled). The copied link is `<origin>/r/<code>`; the long invite token is no
+  longer copied.
 - `InviteByUsername`: searchbox "Find a friend by username" (2+ characters,
   250ms debounce, `api.searchPlayers`), results with "Invite <name> (@username)",
   and the "Invited" list from `room.pendingInvites` with "Cancel invitation to
@@ -157,3 +160,5 @@ its saved moves read as plain sentences ("You added a name").
   heading, `.invite-link`, Share / Copy link / Copy code and the status line.
   On phones the stub is on top. The group name, classes and button names are
   unchanged; finding a friend by username sits beside it in its own card.
+- **No outer panel**: the lobby sits on the canvas. The seats, the ticket and
+  the friend search are the cards; nothing wraps them in another one.

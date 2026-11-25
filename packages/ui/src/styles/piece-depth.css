@@ -1051,7 +1051,7 @@
       0 18px 26px -10px #18271b80;
   }
   .casino-felt .pot strong {
-    font-weight: 800;
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
     text-shadow: 0 1px 0 #00000059;
   }
@@ -1152,7 +1152,7 @@
     background: var(--party-accent);
     color: #fff;
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1;
   }
   .party-locked {
@@ -1193,7 +1193,7 @@
   }
   .party-earned {
     font-variant-numeric: tabular-nums;
-    font-weight: 800;
+    font-weight: 700;
   }
   @media (prefers-reduced-motion: no-preference) {
     .party-reveal__row {

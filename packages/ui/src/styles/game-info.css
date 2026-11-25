@@ -46,7 +46,7 @@
   }
   .game-information-context {
     padding: 12px;
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     background: var(--color-surface-muted);
   }
   .game-information-context p {
@@ -60,7 +60,7 @@
   }
   .game-information-rent caption {
     text-align: left;
-    font-weight: 650;
+    font-weight: 600;
     margin-bottom: 10px;
   }
   .game-information-rent th,
@@ -84,7 +84,7 @@
   .blackjack-hand-value {
     font-size: 13px;
     line-height: 1.5;
-    font-weight: 650;
+    font-weight: 600;
   }
   .game-information-settlement {
     margin-top: 18px;

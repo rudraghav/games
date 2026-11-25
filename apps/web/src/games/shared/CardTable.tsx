@@ -15,7 +15,7 @@ import { sheddingDetails, type ActionOption, type Card } from '@games/api-client
 import { playerName, type TableProps } from '../types';
 import { PlayerStrip } from './PlayerStrip';
 import { sheddingCardInformation } from './card-information';
-import { turnState } from './turn-state';
+import { repeatsNotice, turnState } from './turn-state';
 import { useTableDraft } from './table-draft';
 import {
   activeOrder,
@@ -295,17 +295,38 @@ export function CardTable(props: TableProps) {
     return `${situation || turn.message}${next}`;
   }
 
-  const dockHeading = isOut ? 'You’re out' : turn.label;
+  // A line that only repeats the notice above the table is dropped. While the game is
+  // paused the line says why the buttons are off.
+  const said = room.paused ? 'Waiting for players to reconnect.' : instruction();
+  const dockLine = match.actions.length && repeatsNotice(said, turn.message) ? '' : said;
   const disabled = pending || room.paused;
+  const keyOf = (option: ActionOption) => JSON.stringify(option.value);
+  const generalTone = (option: ActionOption) =>
+    option.label.includes('you’re out')
+      ? ('danger' as const)
+      : option.value.type === 'end_turn' || (cardMoves.length > 0 && option.value.type === 'draw')
+        ? ('secondary' as const)
+        : ('primary' as const);
+  // One filled button per dock: the first choice drawn takes it, the rest stay quiet.
+  const lead = [
+    ...urgent.map(keyOf),
+    ...shortcuts.map((card) => `card:${card.id}`),
+    ...plainMoves.map(keyOf),
+    ...(swapMoves.length > DOCK_TARGETS ? ['swap'] : swapMoves.map(keyOf)),
+    ...general.filter((option) => generalTone(option) === 'primary').map(keyOf),
+  ][0];
+  const tone = <T extends string>(wanted: T, key: string) =>
+    wanted === 'primary' && key !== lead ? ('secondary' as const) : wanted;
   const button = (
     option: ActionOption,
     text: string = option.label,
     variant: 'primary' | 'secondary' | 'danger' = 'primary',
     className?: string,
+    leadKey: string = keyOf(option),
   ) => (
-    <div className="decision-control" key={JSON.stringify(option.value)}>
+    <div className="decision-control" key={keyOf(option)}>
       <Button
-        variant={variant}
+        variant={tone(variant, leadKey)}
         className={className}
         disabled={disabled}
         onClick={() => commit(option.value)}
@@ -464,9 +485,9 @@ export function CardTable(props: TableProps) {
           pending={pending}
           data-has-actions={match.actions.length > 0}
         >
+          {/* The notice above the table names the turn: the dock adds one line at most. */}
           <div className="action-context">
-            <strong>{dockHeading}</strong>
-            <span className="small muted">{instruction()}</span>
+            {dockLine ? <span className="small muted">{dockLine}</span> : null}
             <button
               className="text-button action-clear"
               data-empty={!selectedCard}
@@ -501,10 +522,14 @@ export function CardTable(props: TableProps) {
               );
               const verb = penalty > 0 ? 'Stack' : 'Play';
               return moves.length === 1 && !moves[0].value.color && !moves[0].value.target ? (
-                button(moves[0], `${verb} ${card.label}`)
+                button(moves[0], `${verb} ${card.label}`, 'primary', undefined, `card:${card.id}`)
               ) : (
                 <div className="decision-control" key={card.id}>
-                  <Button disabled={disabled} onClick={() => setSelected(card.id)}>
+                  <Button
+                    variant={tone('primary', `card:${card.id}`)}
+                    disabled={disabled}
+                    onClick={() => setSelected(card.id)}
+                  >
                     {verb} {card.label}…
                   </Button>
                 </div>
@@ -523,23 +548,16 @@ export function CardTable(props: TableProps) {
               : null}
             {swapMoves.length > DOCK_TARGETS ? (
               <div className="decision-control">
-                <Button disabled={disabled} onClick={() => setDismissedSwap(null)}>
+                <Button
+                  variant={tone('primary', 'swap')}
+                  disabled={disabled}
+                  onClick={() => setDismissedSwap(null)}
+                >
                   Choose who to swap with
                 </Button>
               </div>
             ) : null}
-            {general.map((option) =>
-              button(
-                option,
-                option.label,
-                option.label.includes('you’re out')
-                  ? 'danger'
-                  : option.value.type === 'end_turn' ||
-                      (cardMoves.length > 0 && option.value.type === 'draw')
-                    ? 'secondary'
-                    : 'primary',
-              ),
-            )}
+            {general.map((option) => button(option, option.label, generalTone(option)))}
           </div>
         </DecisionDock>
       )}

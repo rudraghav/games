@@ -71,9 +71,19 @@
   --color-overlay: #17201880;
   --font-sans: var(--font-body, 'Helvetica Neue'), Arial, sans-serif;
   --font-display: var(--font-heading, Georgia), serif;
+  /* Corners: small 8, control 12, card 20, panel 28; pills are 999px. */
+  --radius-small: 8px;
   --radius-control: 12px;
   --radius-card: 20px;
   --radius-panel: 28px;
+  /* Space: a 4px scale. New and edited rules use these rather than raw pixels. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
   --shadow-soft: 0 12px 40px #2638220c;
   --shadow-card: 0 4px 12px #12291b26;
 }
@@ -106,6 +116,11 @@
   :focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 4px;
+  }
+  /* The browser's `bolder` turns a 600 label into 900; the scale stops at 700. */
+  b,
+  strong {
+    font-weight: 700;
   }
   button {
     cursor: pointer;
@@ -219,12 +234,12 @@
     font-size: 13px;
     line-height: 1.6;
   }
+  /* A plain label above a heading or value: sentence case, never tracked capitals. */
   .eyebrow {
     color: var(--color-ink-muted);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
   }
   .heading-md {
     font-family: var(--font-display);
@@ -283,7 +298,7 @@
   .avatar--sm {
     width: 32px;
     height: 32px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .avatar--md {
     width: 42px;
@@ -359,7 +374,7 @@
   .error-note {
     color: var(--color-danger);
     background: var(--color-coral-light);
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     padding: 12px 15px;
     font-size: 13px;
     line-height: 1.6;
@@ -369,7 +384,7 @@
     padding: 13px 18px;
     background: var(--color-ochre-light);
     color: var(--color-ink);
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     font-size: 13px;
     line-height: 1.6;
   }
@@ -662,10 +677,17 @@
   }
   .header-nav {
     display: flex;
-    gap: 28px;
+    gap: var(--space-4);
     align-items: center;
     font-size: 13px;
     color: var(--color-ink-muted);
+  }
+  /* Each link is a 44px target; the padding keeps the words where they were. */
+  .header-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: 6px;
   }
   .header-nav a:hover {
     color: var(--color-ink);
@@ -693,7 +715,7 @@
   }
   .hero-title em {
     color: var(--color-sage);
-    font-weight: 450;
+    font-weight: 400;
   }
   .hero-copy {
     font-size: 15px;
@@ -711,7 +733,7 @@
     gap: 7px;
     align-items: center;
     margin-top: 19px;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-ink-muted);
   }
   .hero-scene {
@@ -807,7 +829,7 @@
     position: relative;
     height: 174px;
     overflow: hidden;
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     background: var(--color-coral-light);
   }
   .game-poster[data-tone='sage'] {
@@ -908,10 +930,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 0 40px;
+    padding: var(--space-4) 0 var(--space-6);
     border-top: 1px solid var(--color-border);
     color: var(--color-ink-muted);
-    font-size: 11px;
+    font-size: 13px;
+  }
+  /* A 44px target for a one-word link. */
+  .site-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-width: 44px;
+    min-height: 44px;
   }
   .recent-rooms {
     display: grid;
@@ -922,7 +951,7 @@
     padding: 18px;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: 15px;
+    border-radius: var(--radius-control);
     display: grid;
     gap: 8px;
   }
@@ -1046,8 +1075,8 @@
       max-width: none;
     }
     .site-footer {
-      align-items: start;
-      gap: 20px;
+      align-items: center;
+      gap: var(--space-4);
     }
     .site-footer .wordmark {
       display: none;

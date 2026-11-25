@@ -41,7 +41,6 @@ export function ProfileScreen({ confirmation }: { confirmation?: AccountNotice }
       <SiteHeader />
       <main className="profile-page page-width">
         <div className="profile-intro">
-          <p className="eyebrow">Profile</p>
           <h1 className="hero-title">Your profile</h1>
           <p className="muted">Manage your name and account.</p>
           <Link

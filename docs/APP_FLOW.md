@@ -337,8 +337,8 @@ headline with Play solo, Create room and Join a room. Both were removed.)
    which opens `/games/tarot`. Under any other occasion, or once something is
    typed in search, there is no featured card and Pop Tarot is an ordinary
    tile wherever it matches. Kinds of game (cards, board games, casino, party)
-   are found by searching. For teams shows its note and two quick filters,
-   group size and time, only while it is chosen.
+   are found by searching. For teams shows one line about how its games
+   were picked, only while it is chosen, and no filters of its own.
 2. **Open the game**: its page asks how to play. A multiplayer game offers
    **Play with friends** (the setup dialog for that game) and **Play with
    bots** (starts at once), with Join a room below; a solo game offers its one

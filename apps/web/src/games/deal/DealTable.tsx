@@ -143,6 +143,21 @@ export function DealTable(props: TableProps) {
     status.title === 'Card received'
       ? match.hand.find((item) => item.id === match.actions[0]?.value.card) || null
       : null;
+  // "Your move" and "<name>’s turn" only repeat the notice above the table.
+  const turnTitle = status.title === 'Your move' || /’s turn$/.test(status.title);
+  const commandTitle = pay
+    ? `Pay ${details.paymentAmount}M · ${paidValue}M selected`
+    : card
+      ? card.label
+      : responding
+        ? 'Your response'
+        : armed
+          ? `Rent ×${details.rentMultiplier} armed`
+          : gift
+            ? `Received: ${gift.label}`
+            : turnTitle
+              ? ''
+              : status.title;
   const discard = match.discard;
   const discardColors = discard?.colors?.length
     ? discard.colors
@@ -264,7 +279,9 @@ export function DealTable(props: TableProps) {
               variant="ghost"
               aria-label="Card info"
               disabled={!informationCards.length}
-              onClick={() => setInspected(selected || match.hand[0]?.id || informationCards[0].card.id)}
+              onClick={() =>
+                setInspected(selected || match.hand[0]?.id || informationCards[0].card.id)
+              }
             >
               <Info size={16} />
               <span className="deal-hand-info-label">Card info</span>
@@ -297,19 +314,9 @@ export function DealTable(props: TableProps) {
           hidden={finished}
         >
           <div className="deal-command-title">
-            <strong>
-              {pay
-                ? `Pay ${details.paymentAmount}M · ${paidValue}M selected`
-                : card
-                  ? card.label
-                  : responding
-                    ? 'Your response'
-                    : armed
-                      ? `Rent ×${details.rentMultiplier} armed`
-                      : gift
-                        ? `Received: ${gift.label}`
-                        : status.title}
-            </strong>
+            {/* The notice above the table already names the turn: the bar titles only a
+                payment, a card, a response or something received. */}
+            {commandTitle ? <strong>{commandTitle}</strong> : null}
             {card || responding ? (
               <>
                 {card ? (

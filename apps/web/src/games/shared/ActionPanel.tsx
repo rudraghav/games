@@ -3,15 +3,21 @@ import { useState, type ReactNode } from 'react';
 import { Button, PlayingCard, DecisionDock } from '@games/ui';
 import type { Action, ActionOption, Card } from '@games/api-client';
 import { playerName, type TableProps } from '../types';
-import { turnState } from './turn-state';
+import { repeatsNotice, turnState } from './turn-state';
+
+/** Choices that back out of a turn never take the filled button. */
+const QUIET = ['fold', 'end_turn', 'decline'];
 
 function Decision({
   option,
+  lead,
   onAction,
   pending,
   assets,
 }: {
   option: ActionOption;
+  /** The one filled choice in the dock. */
+  lead: boolean;
   onAction: (action: Action) => void;
   pending: boolean;
   assets: Card[];
@@ -64,9 +70,7 @@ function Decision({
         </div>
       ) : null}
       <Button
-        variant={
-          ['fold', 'end_turn', 'decline'].includes(option.value.type) ? 'secondary' : 'primary'
-        }
+        variant={lead ? 'primary' : 'secondary'}
         disabled={
           pending ||
           (option.input === 'amount' &&
@@ -123,6 +127,19 @@ export function ActionPanel({
   );
   if (match.phase === 'finished' && !match.actions.length) return null;
   const turn = turnState(match, room, selfId);
+  const line = pending
+    ? 'Saving your move…'
+    : room.paused
+      ? 'Waiting for players to reconnect.'
+      : instruction
+        ? instruction
+        : selected
+          ? 'Choose what to do with this card.'
+          : match.actions.some((option) => option.value.card)
+            ? 'Select a card to see its moves.'
+            : turn.message;
+  // The first choice that commits to something is the filled one; the rest stay quiet.
+  const lead = choices.find((option) => !QUIET.includes(option.value.type)) ?? choices[0];
   return (
     <DecisionDock
       className={`action-panel${pinSelection && selected ? ' action-panel--pinned' : ''}`}
@@ -130,21 +147,11 @@ export function ActionPanel({
       size={dockSize}
       pending={pending}
     >
+      {/* The notice above the table names the turn: the dock adds one line at most. */}
       <div className="action-context">
-        <strong>{turn.label}</strong>
-        <span className="small muted">
-          {pending
-            ? 'Saving your move…'
-            : room.paused
-              ? 'Waiting for players to reconnect.'
-              : instruction
-                ? instruction
-                : selected
-                  ? 'Choose what to do with this card.'
-                  : match.actions.some((option) => option.value.card)
-                    ? 'Select a card to see its moves.'
-                    : turn.message}
-        </span>
+        {line && !(choices.length && repeatsNotice(line, turn.message)) ? (
+          <span className="small muted">{line}</span>
+        ) : null}
         {selectionDetails}
         {clear ? (
           <button
@@ -172,6 +179,7 @@ export function ActionPanel({
                 option.label +
                 (option.value.target ? ` · ${playerName(room, option.value.target)}` : ''),
             }}
+            lead={option === lead}
             onAction={onAction}
             pending={pending || room.paused}
             assets={assets}
@@ -179,11 +187,6 @@ export function ActionPanel({
         ))}
         {selected && !choices.length ? (
           <span className="small muted">This card has no available move.</span>
-        ) : null}
-        {!match.actions.length && !instruction ? (
-          <span className="small muted">
-            {match.phase === 'finished' ? 'That’s a wrap.' : turn.message}
-          </span>
         ) : null}
       </div>
     </DecisionDock>

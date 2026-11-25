@@ -60,9 +60,6 @@
   .room-page .lobby {
     display: block;
   }
-  .room-page .lobby-body {
-    padding: 18px;
-  }
   .lobby-body .section-heading {
     padding: 0;
     margin-bottom: 14px;
@@ -80,7 +77,7 @@
     min-height: 0;
     flex: none;
     padding: 0;
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     overflow: hidden;
   }
   .lobby-summary .lobby-game .game-art {
@@ -116,11 +113,11 @@
     display: inline-flex;
     align-items: center;
     gap: 3px;
-    font-size: 10px;
+    font-size: 12px;
     color: var(--color-sage);
     padding: 2px 5px;
     background: var(--color-sage-light);
-    border-radius: 6px;
+    border-radius: var(--radius-small);
     line-height: 1;
     flex: none;
   }
@@ -174,19 +171,16 @@
       gap: 2px;
     }
     .room-page .room-title h1 {
-      font-size: 12px;
+      font-size: 14px;
     }
     .room-page .room-title > span {
-      font-size: 11px;
+      font-size: 12px;
     }
     .room-page .room-toolbar .connection-state {
       display: none;
     }
     .room-page .room-main {
       padding: 10px 12px 24px;
-    }
-    .room-page .lobby-body {
-      padding: 14px;
     }
     .room-page .lobby-seats {
       grid-template-columns: minmax(0, 1fr);

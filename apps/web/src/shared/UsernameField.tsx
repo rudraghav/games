@@ -92,6 +92,8 @@ export function UsernameField({
         <Button
           type="submit"
           size="sm"
+          // Never the page's main action: Save profile or the lobby's Ready keeps the fill.
+          variant="secondary"
           pending={busy === 'save'}
           disabled={Boolean(unavailable) || busy !== null || !value || value === username}
         >

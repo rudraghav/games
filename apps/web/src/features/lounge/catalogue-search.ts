@@ -98,22 +98,6 @@ export const teamGames: readonly string[] = [
 export const teamsNote =
   'Picked for colleagues: no betting games, and drink prompts stay off unless you turn them on.';
 
-export const teamSizes = [
-  { value: 'small', label: '2–4', min: 2, max: 4 },
-  { value: 'medium', label: '5–8', min: 5, max: 8 },
-  { value: 'large', label: '9+', min: 9, max: Infinity },
-] as const;
-export const teamTimes = [
-  { value: 'quick', label: 'Under 15 min' },
-  { value: 'standard', label: '15–30 min' },
-] as const;
-export type TeamSize = (typeof teamSizes)[number]['value'];
-export type TeamTime = (typeof teamTimes)[number]['value'];
-export interface TeamFilters {
-  size?: TeamSize | '';
-  time?: TeamTime | '';
-}
-
 /** A game's listed length in minutes: "10–20" is 10 to 20, "15" is 15 to 15. */
 export function gameMinutes(game: Pick<Game, 'minutes'>) {
   const numbers = (game.minutes.match(/\d+/g) ?? []).map(Number);
@@ -121,24 +105,6 @@ export function gameMinutes(game: Pick<Game, 'minutes'>) {
   return { shortest, longest: numbers.at(-1) ?? shortest };
 }
 
-/**
- * The two quick filters inside For teams. A group size matches when the game
- * seats some group in that range (an organiser's draw fits any group). "Under
- * 15 min" means the game can finish in under 15 minutes (its shortest listed
- * length); "15–30 min" means it is listed from 15 minutes up to 30 at most.
- */
-export function matchesTeamFilters(game: Game, filters: TeamFilters = {}) {
-  const size = teamSizes.find((item) => item.value === filters.size);
-  if (
-    size &&
-    game.family !== 'organiser' &&
-    (game.maxPlayers < size.min || game.minPlayers > size.max)
-  )
-    return false;
-  if (!filters.time) return true;
-  const { shortest, longest } = gameMinutes(game);
-  return filters.time === 'quick' ? shortest < 15 : shortest >= 15 && longest <= 30;
-}
 const discoveryOrder = [
   'the-gang',
   'shithead',
@@ -252,14 +218,9 @@ export function findGames(
   query: string,
   players: number,
   category: Category,
-  /** Only read inside For teams; every other category ignores it. */
-  team: TeamFilters = {},
 ) {
   const teams = category === 'teams';
-  const eligible = games.filter(
-    (game) =>
-      matchesGame(game, '', players, category) && (!teams || matchesTeamFilters(game, team)),
-  );
+  const eligible = games.filter((game) => matchesGame(game, '', players, category));
   const normalized = searchableText(query);
   const exact = eligible.filter((game) => matchesGame(game, query, players, category));
   if (!normalized || exact.length)

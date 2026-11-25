@@ -1,3 +1,19 @@
+## 2026-11-25 — UI craft pass over the interface chrome
+
+- Owner added docs/UI_CRAFT.md (and a line in AGENTS.md and CLAUDE.md pointing to it) and asked for the app to be reviewed against it and improved, and whether more skills or connectors were needed. None were: the UI Design Review, design critique, accessibility and frontend-design skills were available and Mobbin is connected; UXKIN is optional and needs the owner's sign-in.
+
+- Review: seven screens (home, a game page, rewards, profile, a lobby, a live Uno table, Secret Santa setup) rendered at 320, 390, 768, 1024 and 1440 and measured. Must fix: interface text at 10-11px and several targets under 44px. Should fix: more than one filled button per view, tracked all-caps labels, cards inside cards, one instruction repeated three times at a table, a second set of filters under For teams, about 22 corner sizes and 8 weights against the tokens, no spacing tokens, a decorative sheen on posters.
+
+- Fixed: every interface text is at least 12px; one filled button per view (lobby 3 to 1, table decisions up to 4 to 1); no tracked capitals; the lobby's outer panel and double border-plus-shadow surfaces removed; the dock no longer repeats the turn notice; team sub-filters and the poster sheen removed; corners mapped to 8 / 12 / 20 / 28px and pills; weights to 400 / 500 / 600 / 700; spacing tokens added and used in rewritten rules; all targets at least 44px on phones; rewards badges two to a row on a phone. Game art was left alone.
+
+- Still open (listed in docs/UI_CRAFT.md): bordered player cards inside a bordered panel on Flip 7, Trio, Azul, Gem Market and the party tables; Deal's table centre still prints "Your turn" under the notice; Mancala seed counts at 10px on the board art.
+
+- Checks: keyboard tab-through shows a focus ring at every stop; reduced motion leaves nothing animating; lowest text contrast 4.75:1. Frontend (485 unit tests), contracts and tooling pass; the full browser suite passes with 528 passed, 76 skipped, none failed. An earlier full run caught a real regression (the larger text made Deal's phone hand overflow by 12px), fixed before this run.
+
+- The server side of four new games (Housie, Liar's Dice, Bluff, Truth or Dare) is finished and set aside in a git stash ("batch1-backend-games") so this pass can ship on its own.
+
+- State: verified locally; not committed or released.
+
 ## 2026-11-25 — Home opens on the games; start actions move to the header
 
 - Owner asked why Play solo, Create room and Join a room sat at the top of the home page, and said they belong in a menu or after choosing a game.

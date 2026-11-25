@@ -126,7 +126,7 @@ entries show their single start: `Play solo` (Roulette, Slots), `Start reading`
 | With friends | the party shelf's games that seat four or more | discovery order |
 | Two players | playable by exactly two | games made for two first |
 | Solo | minimum one player, not the organiser's tool | discovery order |
-| For teams | the `teamGames` allowlist, narrowed by its two filters | the allowlist's order |
+| For teams | the `teamGames` allowlist | the allowlist's order |
 
 In Quick with bots a tile reads "You + bots" and opens the game with
 `?mode=bots`, so its page leads with Play with bots. Search works inside the chosen occasion. The kinds of game that
@@ -158,7 +158,7 @@ Pop Tarot is the product's featured game (`FEATURED_GAME` in
   Paper, boop. and so on. Pop Tarot is not listed a second time, so the default
   view still shows each of the 30 games exactly once.
 - **What**: the shared `GameTile` with `variant="featured"`: Tarot's cover on
-  one side; a small "Featured" eyebrow, the name, one line ("Choose three cards
+  one side; a small "Featured" label (sentence case, no tracking), the name, one line ("Choose three cards
   for a personal reading"), the same quiet meta line as every tile ("Solo ·
   5–10 min") and one `Start reading` call to action in Tarot's plum. About
   190px tall on a wide screen; stacked and about 257px on a phone.
@@ -167,7 +167,10 @@ Pop Tarot is the product's featured game (`FEATURED_GAME` in
   is part of that link, not a second control; the game page's own Start reading
   begins the reading.
 - **The only filled control**: nothing else in the page body is filled. The
-  action is small (44px) and plum, Tarot's own tone.
+  action is small (44px) and plum, Tarot's own tone. While an invitation is
+  waiting above the heading, its Join is the one filled button and this action
+  is drawn as a plum outline (`.lounge-dashboard:has(.invitations)` in
+  `home.css`).
 - **Everywhere else it is an ordinary tile**: with any other occasion chosen
   or any text in the search box there is no featured card. Pop Tarot appears
   as a plain tile wherever it matches (the Solo chip, a search for "tarot").
@@ -205,17 +208,13 @@ their optional sip-prompt room rule, which is off by default.
   colleagues watching).
 - **In: Secret Santa**, the organiser's tool for a team gift exchange.
 
-Two quick filters appear only inside For teams, as toggle chips (press again to
-clear), and combine with search:
-
-- **Group size** 2–4, 5–8, 9+: the game seats some group in that range. Secret
-  Santa fits any size.
-- **Time** Under 15 min: the game can finish in under 15 minutes (its shortest
-  listed length is below 15). 15–30 min: listed from 15 minutes up to 30 at
-  most. Games listed longer than 30 minutes show only with no time filter.
+For teams adds one line under the occasions saying how the games were picked,
+and nothing to choose: the occasions are the page's only row of filters. The
+Group size and Time chips were removed on 25 November 2026 (a second set of
+filters; see `docs/UI_CRAFT.md`). Search still narrows the team picks.
 
 Unit coverage: `apps/web/src/tests/home-progress-rewards.test.tsx` (each
-occasion's games, the allowlist and what is kept out of it, both team filters,
+occasion's games, the allowlist and what is kept out of it, no second row of filters,
 search by kind of game, the compact tile, the Continue line, the header chip,
 and that the default library lists every game once) and
 `dashboard-discovery.test.tsx`. Browser coverage:

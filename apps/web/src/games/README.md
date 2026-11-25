@@ -226,6 +226,15 @@ the hand. The compact, standard and extended variants use bounded internal
 scrolling. Selection never switches a dock's size. The clear-control footprint
 stays reserved, and board squares, factories and card piles remain in place.
 
+The instruction is said once. The `TurnNotice` above the table names the turn
+and gives the instruction (the tutorial coach does in guided play), so a dock
+(`ActionPanel`, the Uno dock in `CardTable`, `CasinoDock`, `RummyDock`) has no
+"Your turn" heading. It shows its buttons and at most one line, and drops that
+line when it only repeats the notice (`repeatsNotice` in
+`shared/turn-state.ts`); a dock with no buttons keeps its one waiting line.
+One button in a dock is filled: the first choice that commits to something.
+Every other choice is secondary.
+
 Family compositions reserve the controls that can appear later in a turn:
 Rummy's grouping lane, Trio's reveal/review lane, Azul's tile preview and own
 floor action, Boop's graduation choices, Word Agents' clue/guess controls,

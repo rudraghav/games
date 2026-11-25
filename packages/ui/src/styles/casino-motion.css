@@ -54,20 +54,20 @@
   .casino-seat-surface {
     isolation: isolate;
     position: relative;
-    border-radius: 16px;
+    border-radius: var(--radius-card);
   }
   .casino-public-cards-trigger {
     width: 100%;
     min-height: 44px;
     padding-inline: 4px;
     white-space: normal;
-    font-size: 11px;
+    font-size: 12px;
   }
   .casino-turn-halo {
     position: absolute;
     inset: -3px;
     border: 2px solid var(--color-ochre);
-    border-radius: 18px;
+    border-radius: var(--radius-card);
     background: #c6ac6520;
     pointer-events: none;
     box-shadow: 0 0 0 3px #a7844210;
@@ -129,7 +129,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-weight: 750;
+    font-weight: 700;
   }
   .casino-cue-move {
     min-width: 0;
@@ -206,12 +206,12 @@
     max-width: 100%;
     margin: 4px auto 0;
     padding: 3px 6px;
-    border-radius: 6px;
+    border-radius: var(--radius-small);
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     box-shadow: var(--shadow-soft);
-    font-size: 10px;
-    font-weight: 750;
+    font-size: 12px;
+    font-weight: 700;
     color: var(--color-sage);
     line-height: 1.2;
   }
@@ -263,7 +263,7 @@
       font-size: 11px;
     }
     .casino-seat-action {
-      font-size: 11px;
+      font-size: 12px;
     }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -348,7 +348,7 @@
   .casino-wager-range {
     margin: 0;
     font-size: 12px;
-    font-weight: 650;
+    font-weight: 600;
     color: var(--color-ink-muted);
   }
   .casino-wager-row {
@@ -366,7 +366,7 @@
     width: 100%;
     min-width: 0;
     font-size: 16px;
-    font-weight: 650;
+    font-weight: 600;
   }
   .casino-layout .casino-wager .amount-control:has(input[aria-invalid='true']) {
     border-color: var(--color-danger);
@@ -390,7 +390,7 @@
   .casino-wager-impact {
     margin: 0;
     font-size: 12px;
-    font-weight: 650;
+    font-weight: 600;
   }
   .casino-wager-impact {
     color: var(--color-ink);
@@ -420,7 +420,7 @@
     border: 1px solid #c8aa6c88;
     color: #fffdf8;
     font-size: 14px;
-    font-weight: 750;
+    font-weight: 700;
   }
   .casino-card[data-winning] .playing-card {
     outline: 3px solid #e7c873;
@@ -454,10 +454,10 @@
   }
   .casino-layout .seat-bet {
     font-size: 12px;
-    font-weight: 650;
+    font-weight: 600;
   }
   .casino-layout .casino-seat .seat-self {
-    font-size: 11px;
+    font-size: 12px;
   }
   /* Room for the turn dot, so it never sits on the name or the "you" tag. */
   .casino-layout .casino-seat .seat-copy > strong {
@@ -496,8 +496,8 @@
     border-radius: 999px;
     background: var(--color-ochre-light);
     color: var(--color-ink);
-    font-size: 11px;
-    font-weight: 750;
+    font-size: 12px;
+    font-weight: 700;
   }
   .casino-seat[data-sideshow='true'] .seat {
     border-color: var(--color-ochre);
@@ -512,14 +512,14 @@
     background: var(--color-surface);
     color: var(--color-ink);
     font-size: 12px;
-    font-weight: 750;
+    font-weight: 700;
     line-height: 1.5;
   }
   .casino-seat-hand > .casino-seat-total {
     padding: 0 5px;
   }
   .casino-layout .casino-seat :is(.seat-kind, .seat-kind-label) {
-    font-size: 11px;
+    font-size: 12px;
   }
   .casino-seat[data-revealed='true'] .seat-cards .playing-card {
     width: 48px;
@@ -584,7 +584,7 @@
     padding: 2px 8px;
     border-radius: 999px;
     font-size: 12px;
-    font-weight: 750;
+    font-weight: 700;
     background: var(--color-surface-muted);
   }
   .blackjack-hand-result[data-tone='win'] {

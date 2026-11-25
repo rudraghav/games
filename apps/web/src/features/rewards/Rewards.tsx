@@ -223,7 +223,6 @@ export function RewardsScreen() {
       <SiteHeader />
       <main className="rewards-page page-width">
         <div className="profile-intro">
-          <p className="eyebrow">Your progress</p>
           <h1 className="hero-title">Progress and rewards</h1>
           <p className="muted">
             Play games to level up, earn badges and unlock avatar frames and card backs.

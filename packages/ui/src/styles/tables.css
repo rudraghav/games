@@ -43,6 +43,42 @@
   .profile-card > .heading-md {
     margin-bottom: 26px;
   }
+  /* Avatar colours: 48px targets, 8px apart; the chosen one is ringed and ticked,
+     so the choice still shows when a frame covers the ring. */
+  .profile-card .avatar-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-block: var(--space-4) var(--space-5);
+  }
+  .profile-card .avatar-option {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background: transparent;
+  }
+  .profile-card .avatar-option[aria-pressed='true'] {
+    border-color: var(--color-sage);
+    background: var(--color-sage-light);
+  }
+  .profile-card .avatar-option[aria-pressed='true']::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    bottom: -4px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-surface);
+    border-radius: 50%;
+    background: var(--color-sage)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fffdf8' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")
+      center / 12px no-repeat;
+  }
   .account-link {
     padding-top: 25px;
     margin-top: 28px;
@@ -229,11 +265,8 @@
     margin-top: 6px;
     line-height: 1.5;
   }
+  /* The lobby sits on the canvas: its seats, ticket and friend search are the cards. */
   .lobby {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-panel);
-    overflow: hidden;
     display: grid;
     grid-template-columns: minmax(180px, 0.7fr) 1.4fr;
     margin: 8px auto 0;
@@ -280,7 +313,7 @@
     max-width: 200px;
   }
   .lobby-body {
-    padding: 32px;
+    padding: 0;
   }
   .lobby-body .section-heading {
     margin: 0 0 28px;
@@ -304,13 +337,14 @@
     min-width: 0;
     position: relative;
     padding: 14px 12px;
-    border-radius: 18px;
+    border-radius: var(--radius-card);
     border: 1px solid var(--color-border);
     background: var(--color-surface);
   }
+  /* One treatment: a sage edge on a sage-tinted ground, no ring. */
   .seat--active {
     border-color: var(--color-sage);
-    box-shadow: 0 0 0 2px var(--color-sage-light);
+    background: color-mix(in srgb, var(--color-sage-light) 55%, var(--color-surface));
   }
   .seat--empty {
     border-style: dashed;
@@ -319,7 +353,7 @@
   .seat--compact {
     padding: 8px 10px;
     gap: 8px;
-    border-radius: 14px;
+    border-radius: var(--radius-control);
   }
   .seat-copy {
     min-width: 0;
@@ -335,7 +369,7 @@
   }
   .seat-copy > span {
     display: block;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-ink-muted);
     margin-top: 4px;
     line-height: 1.4;
@@ -367,7 +401,7 @@
     align-items: center;
     padding: 20px;
     margin: 28px 0 12px;
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: var(--color-canvas);
   }
   .room-code {
@@ -433,7 +467,7 @@
     min-width: 0;
   }
   .chat-message strong {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-ink-muted);
     font-weight: 500;
   }
@@ -458,7 +492,7 @@
     width: 38px;
     height: 44px;
     font-size: 19px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
   }
   .chat-reactions button:hover {
     background: var(--color-canvas);
@@ -499,7 +533,7 @@
     min-height: 180px;
     margin: 0;
     padding: 20px 10px;
-    border-radius: 24px;
+    border-radius: var(--radius-panel);
   }
   .card-game-layout .center-piles {
     gap: 14px;
@@ -549,7 +583,7 @@
     font-size: 12px;
   }
   .casino-seat .seat-copy > span {
-    font-size: 11px;
+    font-size: 12px;
   }
   .player-strip {
     display: flex;
@@ -604,7 +638,7 @@
   }
   .card-pile > span {
     display: block;
-    font-size: 11px;
+    font-size: 12px;
     margin-top: 10px;
     opacity: 0.7;
   }
@@ -615,7 +649,7 @@
       5px 5px 0 var(--color-ink-muted);
   }
   .table-detail {
-    font-size: 11px;
+    font-size: 12px;
     margin-top: 18px;
     opacity: 0.8;
   }
@@ -695,7 +729,7 @@
     border: 1px solid var(--color-border);
     border-radius: var(--radius-control);
     height: 46px;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-ink-muted);
   }
   .amount-control input {
@@ -811,8 +845,8 @@
     display: inline-block;
     background: var(--color-ochre-light);
     padding: 3px 9px;
-    border-radius: 20px;
-    font-size: 11px;
+    border-radius: 999px;
+    font-size: 12px;
   }
   .deal-piles,
   .skyjo-piles {
@@ -1012,9 +1046,6 @@
     .casino-seat .avatar {
       display: none;
     }
-    .lobby-body {
-      padding: 24px;
-    }
   }
   @media (max-width: 900px) {
     .room-content {
@@ -1052,7 +1083,7 @@
       gap: 10px;
     }
     .rummy-tools > label {
-      font-size: 11px;
+      font-size: 12px;
     }
     .private-hand:has(.rummy-tools) > .hand-heading {
       flex-wrap: wrap;
@@ -1084,10 +1115,10 @@
       height: 42px;
     }
     .room-title h1 {
-      font-size: 12px;
+      font-size: 14px;
     }
     .room-title > span {
-      font-size: 10px;
+      font-size: 12px;
     }
     .room-main {
       padding: 20px 12px 32px;
@@ -1124,9 +1155,6 @@
     .lobby-game h2 {
       font-size: 27px;
       line-height: 1.1;
-    }
-    .lobby-body {
-      padding: 24px 18px;
     }
     .lobby-seats {
       gap: 10px;
@@ -1197,7 +1225,7 @@
       flex-wrap: wrap;
     }
     .action-context > span {
-      font-size: 11px;
+      font-size: 12px;
     }
     .action-choices .button {
       font-size: 12px;
@@ -1225,7 +1253,7 @@
     .card-game-layout > .card-table {
       min-height: 136px;
       padding: 12px;
-      border-radius: 20px;
+      border-radius: var(--radius-card);
     }
     .card-game-layout .center-piles .playing-card {
       --card-width: 54px;
@@ -1262,10 +1290,10 @@
       display: none;
     }
     .casino-seat .seat-copy strong {
-      font-size: 11px;
+      font-size: 12px;
     }
     .casino-seat .seat-copy > span {
-      font-size: 10px;
+      font-size: 12px;
     }
     .seat-cards {
       min-height: 58px;
@@ -1359,7 +1387,7 @@
     padding: 14px 16px;
     border: 1px solid var(--color-border);
     border-left: 3px solid var(--color-border);
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     background: var(--color-surface);
     display: flex;
     align-items: center;
@@ -1409,10 +1437,9 @@
     border-radius: 999px;
     background: var(--color-surface-muted);
     color: var(--color-ink-muted);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     line-height: 1.6;
-    letter-spacing: 0.02em;
   }
   .turn-notice[data-tone='complete'] {
     border-left-color: var(--color-ochre);
@@ -1452,7 +1479,7 @@
   .seat-self {
     flex: none;
     color: var(--color-ink-muted);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
     white-space: nowrap;
   }
@@ -1504,7 +1531,7 @@
   }
   .scoreboard > div[data-winner='true'] {
     background: var(--color-sage-light);
-    border-radius: 10px;
+    border-radius: var(--radius-control);
   }
   .team-result-score {
     margin: 18px 0 0;
@@ -1707,7 +1734,7 @@
     min-width: 0;
     flex: 0 0 100%;
     border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     padding: 8px;
   }
   .blackjack-hands:has(.blackjack-hand:nth-child(2)) .blackjack-hand {
@@ -1722,7 +1749,7 @@
     flex-wrap: wrap;
     gap: 5px 12px;
     justify-content: space-between;
-    font-size: 11px;
+    font-size: 12px;
   }
   .blackjack-hand > p > span {
     color: var(--color-ink-muted);

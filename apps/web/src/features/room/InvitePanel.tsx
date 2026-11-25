@@ -114,13 +114,14 @@ export function InvitePanel({
           {(origin.replace(/^https?:\/\//, '') || '') + path}
         </span>
         <div className="invite-actions invite-hub-actions">
+          {/* Quiet buttons: the lobby's one filled action is readying up or starting. */}
           {canShare ? (
-            <Button onClick={() => void share()}>
+            <Button variant="secondary" onClick={() => void share()}>
               <Share2 size={16} aria-hidden="true" />
               Share
             </Button>
           ) : null}
-          <Button variant={canShare ? 'secondary' : 'primary'} onClick={() => void copy('link')}>
+          <Button variant="secondary" onClick={() => void copy('link')}>
             {copied === 'link' ? (
               <Check size={16} aria-hidden="true" />
             ) : (

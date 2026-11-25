@@ -287,7 +287,11 @@ export function SantaPeople({
                 add(splitNames(pasted, detail.limits.name));
               }}
             />
-            <Button type="submit" disabled={paused || !tidy(text) || room === 0}>
+            <Button
+              type="submit"
+              variant="secondary"
+              disabled={paused || !tidy(text) || room === 0}
+            >
               <Plus size={17} aria-hidden="true" />
               Add
             </Button>

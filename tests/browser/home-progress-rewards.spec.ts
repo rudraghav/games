@@ -577,9 +577,9 @@ test('one row of occasions filters the grid, and it holds at 320px', async ({ pa
     .getByRole('link', { name: 'Open Blackjack', exact: true })
     .boundingBox())!;
   expect(Math.round(plain.width)).toBe(Math.round(other.width));
-  // The team note and its filters exist only inside For teams.
+  // The team note exists only inside For teams, and there is never a second row of filters.
   await expect(library.getByText(TEAMS_NOTE, { exact: true })).toHaveCount(0);
-  await expect(library.getByRole('group', { name: 'Group size', exact: true })).toHaveCount(0);
+  await expect(library.getByRole('group')).toHaveCount(1);
 
   await chip('For teams').click();
   await expect(tiles).toHaveCount(TEAM_PICKS);
@@ -596,42 +596,22 @@ test('one row of occasions filters the grid, and it holds at 320px', async ({ pa
     'Shithead',
   ])
     await expect(library.getByRole('link', { name: `Open ${name}`, exact: true })).toHaveCount(0);
-  const sizes = library.getByRole('group', { name: 'Group size', exact: true });
-  const times = library.getByRole('group', { name: 'Time', exact: true });
-  await expect(sizes.getByRole('button')).toHaveText(['2–4', '5–8', '9+']);
-  await expect(times.getByRole('button')).toHaveText(['Under 15 min', '15–30 min']);
-  await expectTouchTargets(page, '.team-filters');
-  await sizes.getByRole('button', { name: '9+', exact: true }).click();
-  await expect(sizes.getByRole('button', { name: '9+', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'true',
-  );
-  await expect(tiles).toHaveCount(7);
-  await expect(library.getByRole('link', { name: 'Open Azul', exact: true })).toHaveCount(0);
-  await times.getByRole('button', { name: 'Under 15 min', exact: true }).click();
-  await expect(tiles).toHaveCount(4);
-  await times.getByRole('button', { name: '15–30 min', exact: true }).click();
-  expect(await tileNames(page)).toEqual(['Open Word Agents', 'Open Flip 7']);
-  // Pressing a chosen filter again clears it.
-  await sizes.getByRole('button', { name: '9+', exact: true }).click();
-  await expect(sizes.getByRole('button', { name: '9+', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'false',
-  );
-  await expect(tiles).toHaveCount(4);
+  // Group size and Time are gone: the occasions are the only filters.
+  await expect(library.getByRole('group')).toHaveCount(1);
+  await expect(library.getByRole('group', { name: 'Occasion', exact: true })).toBeVisible();
+  for (const name of ['Group size', 'Time'])
+    await expect(library.getByRole('group', { name, exact: true })).toHaveCount(0);
+  for (const name of ['2–4', '5–8', '9+', 'Under 15 min', '15–30 min'])
+    await expect(library.getByRole('button', { name, exact: true })).toHaveCount(0);
   await fits(page);
-  // All puts the team filters away and brings every game back.
+  // All puts the note away and brings every game back.
   await chip('All').click();
-  await expect(sizes).toHaveCount(0);
+  await expect(library.getByText(TEAMS_NOTE, { exact: true })).toHaveCount(0);
   await expect(tiles).toHaveCount(catalogue.length);
   await expect(featured).toHaveCount(1);
   expect((await tileNames(page))[0]).toBe('Open Pop Tarot');
   await chip('For teams').click();
   await expect(featured).toHaveCount(0);
-  await expect(sizes.getByRole('button', { name: '9+', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'false',
-  );
   await expect(tiles).toHaveCount(TEAM_PICKS);
   await fits(page);
 });

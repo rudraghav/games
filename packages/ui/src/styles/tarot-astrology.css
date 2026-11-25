@@ -22,7 +22,7 @@
     color: var(--color-plum);
   }
   .astrology-data summary {
-    border-radius: 8px;
+    border-radius: var(--radius-small);
     transition: color 160ms;
   }
   .astrology-data summary:hover {
@@ -62,7 +62,7 @@
   }
   .astrology-preview-state {
     border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border-radius: var(--radius-control);
     padding: 14px;
     display: grid;
     gap: 10px;
@@ -236,7 +236,7 @@
     min-height: 90px;
     background: var(--color-plum-light);
     padding: 12px;
-    border-radius: 12px;
+    border-radius: var(--radius-control);
   }
   .astrology-inspection {
     color: var(--color-ink);
@@ -296,7 +296,7 @@
     display: block;
     color: var(--color-ink-muted);
     font-weight: 500;
-    font-size: 11px;
+    font-size: 12px;
   }
   .astro-placements-table th:first-child {
     width: 31%;
@@ -374,7 +374,7 @@
   }
   .astrology-interpretation .astrology-point-label {
     font-size: 14px;
-    font-weight: 650;
+    font-weight: 600;
     line-height: 1.5;
     font-variant-numeric: tabular-nums;
   }

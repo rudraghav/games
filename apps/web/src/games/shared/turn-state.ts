@@ -144,3 +144,14 @@ export function turnState(
     };
   return { label: 'At the table', tone: 'waiting', message: match.message };
 }
+
+/**
+ * True when a dock line would only repeat the notice above the table. The
+ * notice already names the turn and gives its instruction, so a dock with
+ * buttons keeps a line only when it adds a consequence the notice lacks.
+ */
+export function repeatsNotice(line: string, notice: string) {
+  const words = (text: string) =>
+    (text.toLowerCase().match(/[\p{L}\p{N}+]+/gu) ?? []).sort().join(' ');
+  return Boolean(line) && words(line) === words(notice);
+}

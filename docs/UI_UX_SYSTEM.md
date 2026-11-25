@@ -39,6 +39,27 @@ Skyjo uses a 3×4 grid. Never shrink a full desktop table into an unreadable pho
 One token source in `@games/ui`: colours, type scale, spacing, radii, borders,
 shadows and motion. One shared primitive layer, typed variants, accessible
 Radix dialogs/sheets, Lucide icons, reduced-motion-aware Motion animations.
+Craft rules and the pre-handover check: [UI_CRAFT.md](UI_CRAFT.md); this file decides values.
+
+The scales for everything around the game art, in `theme.css`:
+
+- **Corners**: `--radius-small` 8px (badges, small chips, list rows), `--radius-control`
+  12px (buttons, inputs, compact seats), `--radius-card` 20px (seats, cards, docks),
+  `--radius-panel` 28px (page panels, table surfaces); pills are `999px`, circles `50%`.
+  An inner corner is its outer corner minus the gap.
+- **Weights**: 400 body, 500 emphasis and Fraunces display headings, 600 controls and
+  labels, 700 sans headings and `strong`. Weight never changes on hover or selection.
+- **Space**: `--space-1` to `--space-7` are 4, 8, 12, 16, 24, 32 and 48px. New and edited
+  rules use them; many older rules still hold raw pixels and move over as they are touched.
+- **Type**: no interface text under 12px; inputs stay 16px on phones. `.eyebrow` is a plain
+  13px label in sentence case, never uppercase or letter-spaced.
+- **Fill**: one filled (primary) button in a view's body. A list that repeats one action per
+  row (reward coupons, Secret Santa links) uses secondary buttons throughout.
+- **Surfaces**: a surface takes a hairline border or a shadow, not both, and a card never
+  sits inside another card.
+
+Card faces, boards, pieces, felt and tarot illustrations keep their own corners, weights
+and small print.
 
 Game layouts compose shared cards, hands, piles, seats, chips, action controls,
 chat and rule sheets. Features own composition, packages own vocabulary. Use
@@ -143,6 +164,10 @@ turn owner from the responder ("Your response", "You owe a payment"), an
 eliminated seat reads "You’re out", and Word Agents names the guessing team. A
 "Last move" line repeats the latest public move from room history with its
 actor, public cards, targets and amount (`features/room/move-description.ts`).
+The instruction is said once: the notice (or the tutorial coach) names the turn, so a
+decision dock has no "Your turn" heading. It holds its buttons and at most one line, and
+drops that line when it only repeats the notice. One dock button is filled, the first
+choice that commits to something; every alternative is secondary.
 Commit buttons inside a TableDecisionPanel or DecisionDock sit in a sticky
 `data-decision-actions` footer and docks may size to content (`size="fit"`), so
 no legal control scrolls out of reach. Decision panels focus their container on
@@ -398,8 +423,10 @@ Styles live in `packages/ui/src/styles/room-setup.css`; no new tokens.
   level as the seat badge.
 - **Invite panel**: the centre of an unfilled lobby (sage tint while a seat is
   open). Code at 30 to 42px in tabular figures, the short link as selectable
-  text, then Share / Copy link / Copy code. On phones each action is a full
-  row, like Ready and Start; from 760px they sit in one row. A reserved status
+  text, then Share / Copy link / Copy code, all secondary. On phones each
+  action is a full row, like Ready and Start; from 760px they sit in one row.
+  The lobby has no outer panel: seats, the ticket and the friend search sit on
+  the canvas. Its one filled button is Ready, then Start once it can start. A reserved status
   line confirms each action, so nothing moves.
 - **Username search**: a labelled search field, 250ms debounce, at most eight
   rows (avatar, name, @username, Invite). The results area has a fixed height
@@ -572,13 +599,14 @@ them without competing.
   accent. The Solo and Quick with bots chips replace the old Play solo button.
 - **One featured game.** In the default view only (All, empty search) Pop Tarot
   leads the grid as one full-width `GameTile` `variant="featured"`: its cover
-  beside a "Featured" eyebrow, the name, one line, the usual meta line and one
+  beside a plain "Featured" label, the name, one line, the usual meta line and one
   `Start reading` action. It replaces Pop Tarot's ordinary tile rather than
   adding to it. Keep it a highlight, not a banner: one calm surface with no
   border or resting shadow, about 190px tall on a wide screen and no more than
   about 260px stacked on a phone. Its plum action (Tarot's own tone, 44px) is
-  the only filled control in the page body. Any other occasion or any search
-  text removes the card. Only one game is ever featured.
+  the only filled control in the page body; while an invitation is waiting, the
+  invitation's Join keeps the fill and this action is drawn as a plum outline.
+  Any other occasion or any search text removes the card. Only one game is ever featured.
 - **Compact tiles.** A cover, the name and one quiet line ("2–10 players ·
   10–20 min"). No card, border or resting shadow around a tile; a cover lifts
   slightly on hover. Five columns from 1200px, four from 960px, three from
@@ -593,7 +621,8 @@ them without competing.
   `variant="text"` (same tab roles and keys as the filled variant).
 - **Nothing else.** No promotional banner, welcome copy or explanatory
   paragraph. The "For teams" note appears only while that occasion is chosen
-  and is backed by a documented allowlist (see the lounge README).
+  and is backed by a documented allowlist (see the lounge README). It adds no
+  filters of its own: Group size and Time were removed.
 - Reduced motion, 44px targets, visible focus and 320px without sideways page
   scrolling hold as everywhere else. Size check for the default view: about
   1,770px tall at 1440x900 (the featured card and two rows of tiles on the

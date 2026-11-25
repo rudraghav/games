@@ -56,7 +56,12 @@ export function Lobby({
           )}
         </Button>
         {host ? (
-          <Button onClick={start} disabled={!canStart || pending}>
+          <Button
+            // One filled action: readying up first, then starting once that is possible.
+            variant={own?.ready && canStart ? 'primary' : 'secondary'}
+            onClick={start}
+            disabled={!canStart || pending}
+          >
             {rematch ? 'Start rematch' : game.family === 'tarot' ? 'Open my deck' : 'Start game'}
             <ArrowRight size={16} />
           </Button>

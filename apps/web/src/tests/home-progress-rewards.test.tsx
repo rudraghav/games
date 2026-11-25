@@ -28,7 +28,6 @@ import {
   categories,
   findGames,
   gameMinutes,
-  matchesTeamFilters,
   teamGames,
   teamsNote,
 } from '@/features/lounge/catalogue-search';
@@ -672,57 +671,12 @@ describe('occasions and the team picks', () => {
     ])
       expect(teamGames).not.toContain(out);
   });
-  it('filters the team picks by group size', () => {
-    const size = (value: 'small' | 'medium' | 'large') =>
-      occasionGames('teams', games, { size: value }).map((game) => game.id);
-    expect(size('large')).toEqual([
-      'most-likely',
-      'hot-seat',
-      'word-agents',
-      'uno',
-      'flip-7',
-      'six-nimmt',
-      'secret-santa',
-    ]);
-    expect(size('medium')).toEqual([
-      'most-likely',
-      'hot-seat',
-      'word-agents',
-      'uno',
-      'flip-7',
-      'six-nimmt',
-      'trio',
-      'skyjo',
-      'secret-santa',
-    ]);
-    expect(size('small')).toEqual(teamGames);
-    // An organiser's draw fits any group.
-    expect(
-      matchesTeamFilters(
-        games.find((game) => game.id === 'secret-santa')!,
-        { size: 'large' },
-      ),
-    ).toBe(true);
-    expect(
-      matchesTeamFilters(
-        games.find((game) => game.id === 'azul')!,
-        { size: 'medium' },
-      ),
-    ).toBe(false);
-  });
-  it('filters the team picks by time, alone and together with size', () => {
-    const time = (value: 'quick' | 'standard', size?: 'small' | 'medium' | 'large') =>
-      occasionGames('teams', games, { time: value, size }).map((game) => game.id);
-    expect(time('quick')).toEqual(['most-likely', 'hot-seat', 'uno', 'trio', 'secret-santa']);
-    expect(time('standard')).toEqual(['word-agents', 'flip-7', 'skyjo', 'sea-salt-paper']);
-    expect(time('standard', 'large')).toEqual(['word-agents', 'flip-7']);
-    expect(time('quick', 'large')).toEqual(['most-likely', 'hot-seat', 'uno', 'secret-santa']);
+  it('has no second set of filters inside For teams', () => {
+    // The team picks are the allowlist as it stands: nothing narrows it but the search box.
+    expect(occasionGames('teams', games).map((game) => game.id)).toEqual(teamGames);
+    expect(browseGames(games, '', 'teams').map((game) => game.id)).toEqual(teamGames);
     expect(gameMinutes({ minutes: '10–20' })).toEqual({ shortest: 10, longest: 20 });
     expect(gameMinutes({ minutes: '15' })).toEqual({ shortest: 15, longest: 15 });
-    // Outside For teams the two filters are ignored.
-    expect(occasionGames('all', games, { size: 'large', time: 'quick' })).toHaveLength(
-      games.length,
-    );
     expect(categories).toContainEqual({ value: 'teams', label: 'For teams' });
   });
   it('searches inside the chosen occasion', () => {
@@ -850,14 +804,16 @@ describe('the home library', () => {
     expect(all).toContain('href="/games/uno"');
     expect(all).not.toContain('mode=bots');
   });
-  it('shows the team note and its two filters only inside For teams', () => {
+  it('shows the team note, and no second row of filters, only inside For teams', () => {
     const teams = renderToStaticMarkup(<GameLibrary preset="teams" />);
     expect(teams.match(/class="game-tile"/g)).toHaveLength(teamGames.length);
-    expect(teams).toContain(teamsNote);
-    expect(teams).toContain('role="group" aria-label="Group size"');
-    expect(teams).toContain('role="group" aria-label="Time"');
+    expect(teams).toContain(`<p class="team-note">${teamsNote}</p>`);
+    // One row of filters: the occasions. Group size and Time are gone.
+    expect(teams.match(/role="group"/g)).toHaveLength(1);
+    expect(teams).not.toContain('aria-label="Group size"');
+    expect(teams).not.toContain('aria-label="Time"');
     for (const label of ['2–4', '5–8', '9+', 'Under 15 min', '15–30 min'])
-      expect(teams).toContain(`<button type="button" aria-pressed="false">${label}</button>`);
+      expect(teams).not.toContain(`>${label}</button>`);
     expect(teams).toContain('<button type="button" aria-pressed="true">For teams</button>');
     for (const occasion of ['all', 'quick-bots', 'friends', 'two-players', 'solo'] as const)
       expect(renderToStaticMarkup(<GameLibrary preset={occasion} />)).not.toContain(teamsNote);

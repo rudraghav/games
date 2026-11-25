@@ -9,6 +9,14 @@ belong here. Application services, game outcomes and API dependencies do not.
 Face-down card names/colours stay hidden, and interactive cards use real buttons.
 Motion respects the player's reduced-motion preference.
 
+The interface around the art keeps to short scales (`docs/UI_CRAFT.md`):
+corners `--radius-small` 8px, `--radius-control` 12px, `--radius-card` 20px,
+`--radius-panel` 28px, pills `999px`; weights 400, 500, 600 and 700; space
+`--space-1` to `--space-7` (4, 8, 12, 16, 24, 32, 48px) in new and edited
+rules; no interface text under 12px. `.eyebrow` is a plain sentence-case label,
+never tracked capitals. Card faces, boards, pieces and felt keep their own
+corners, weights and small print.
+
 WordTile provides unknown/red/blue/bystander/assassin and selected/revealed
 variants. DevelopmentCard reuses the playing-card surface, with bonus/prestige
 and readable costs. Its width/height use shared card dimension variables so

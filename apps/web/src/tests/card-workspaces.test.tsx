@@ -108,6 +108,8 @@ describe('Card table decisions stay with their cards', () => {
     expect(html).toContain('aria-label="Reveal, row 1, column 1"');
     expect(html).toMatch(/aria-label="Reveal, row 1, column 1"[^>]*disabled=""/);
     expect(html).not.toContain('>Reveal card 1<');
-    expect(html).toContain('Game paused');
+    // The notice above the table says "Game paused"; the dock adds only what it means here.
+    expect(html).not.toContain('Game paused');
+    expect(html).toContain('Waiting for players to reconnect.');
   });
 });

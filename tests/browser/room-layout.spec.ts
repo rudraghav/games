@@ -186,7 +186,12 @@ test('phone move rows and actor seats remain usable during pending and paused st
   ).toBe(true);
   await page.getByLabel('Saving a move', { exact: true }).uncheck();
   await page.getByLabel('Disconnected', { exact: true }).check();
-  await expect(actions.getByText('Game paused', { exact: true })).toBeVisible();
+  // The notice above the table says "Game paused"; the dock has no heading of its own and
+  // says only why its buttons are off.
+  await expect(actions.getByText('Game paused', { exact: true })).toHaveCount(0);
+  await expect(
+    actions.getByText('Waiting for players to reconnect.', { exact: true }),
+  ).toBeVisible();
   expect(
     await actions
       .getByRole('button')

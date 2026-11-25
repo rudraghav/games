@@ -87,9 +87,7 @@
     color: var(--tarot-gilt);
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.12em;
     line-height: 1.4;
-    text-transform: uppercase;
   }
 
   /* ---------- Name and essence ---------- */
@@ -107,10 +105,8 @@
     margin: 0;
     color: var(--color-plum);
     font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
+    font-weight: 700;
     line-height: 1.4;
-    text-transform: uppercase;
   }
   .tarot-guide-name {
     margin: 0;
@@ -140,7 +136,7 @@
     background: var(--color-plum-light);
     color: var(--tarot-plum-deep);
     font-size: 14px;
-    font-weight: 650;
+    font-weight: 600;
     line-height: 1.4;
   }
   .tarot-guide-position > span {
@@ -227,10 +223,8 @@
     color: var(--color-ink-muted);
     font-family: var(--font-sans);
     font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
+    font-weight: 700;
     line-height: 1.4;
-    text-transform: uppercase;
   }
   .tarot-guide-areas dd {
     max-width: 60ch;
@@ -243,7 +237,7 @@
     display: grid;
     gap: 4px;
     padding: 14px 16px;
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     background: var(--color-ochre-light);
   }
   .tarot-guide-advice > h3 {
@@ -307,7 +301,7 @@
   .tarot-guide-correspondences > div {
     min-width: 0;
     padding: 14px 16px;
-    border-radius: 14px;
+    border-radius: var(--radius-control);
     background: var(--color-surface-muted);
   }
   .tarot-guide-correspondences dt {
