@@ -10,7 +10,11 @@
 
 - Local checks: frontend (486 unit tests), contracts and tooling pass; the full browser suite passes with 528 passed, 76 skipped, none failed. An earlier full run had two Shithead phone failures under load that never touch the home page; they passed 8 of 8 and 6 of 6 when repeated. WebKit shows the same layout.
 
-- State: verified locally; owner approved deploying once the checks finished.
+- Owner approved deploying once the checks finished. Released `33b2c04a68a5aca57fabd9576b7aa2d4c0f6aa8f` to main and Games production as dpl_6DRNawn2nQ76hcMv1PXvBnF1ycX7 (READY, bom1, both source metadata fields match), one deployment, sent as a single archive. No database change.
+- Live at 1440x900, 390x844 and 320x640: one h1 "Choose a game"; no Play solo and no Create room on the page; one Join a room and one More in the header; Pop Tarot featured first at y=250, 264 and 290 with the first row at 462, 539 and 565; 30 tiles, each once; no primary-styled button; no sideways overflow. The More menu listed Create room, Your games and Progress and rewards, closed on Escape with focus back on More, and Create room opened the dialog with the game picker. Join a room opened the join dialog with the code field. The Uno game page offered Play with friends and Play with bots. No test rooms were created.
+- Runtime and owner fingerprints unchanged; runtime and 5xx request logs since release start returned zero records.
+- Not verified: Firefox.
+- State: released.
 
 ## 2026-11-23 — Pop Tarot featured again on the minimal home page
 
