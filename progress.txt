@@ -12,7 +12,10 @@
 
 - The server side of four new games (Housie, Liar's Dice, Bluff, Truth or Dare) is finished and set aside in a git stash ("batch1-backend-games") so this pass can ship on its own.
 
-- State: verified locally; not committed or released.
+- Owner approved deploying. Released `84e0496b88c1aa5384c3d3927c0c43e45284d296` (with docs/UI_CRAFT.md and the owner's AGENTS.md and CLAUDE.md pointers) to main and Games production as dpl_4Kw6cDJRXBrgcjAWEkbti1VVvNCa (READY, bom1, both source metadata fields match), one deployment, sent as a single archive. No database change. The first deploy attempt never ran because the session's scratch folder (and its pnpm shim) had been cleared; the shim was recreated.
+- Live at 390x844: home, the Uno game page, a Flip 7 lobby with two bots and a live Flip 7 table all measured smallest interface text 12px, no tracked capitals, no target under 44px and no sideways overflow. Filled buttons: home none, game page one (Play with friends), lobby one (I'm ready, then Start game once ready), table one (Hit), and the dock no longer repeats "Your turn". The test rooms are closed.
+- Runtime and owner fingerprints unchanged; runtime and 5xx request logs since release start returned zero records.
+- State: released.
 
 ## 2026-11-25 — Home opens on the games; start actions move to the header
 
