@@ -98,9 +98,13 @@ test('personal cloud: all games, private views, revisions and a saved reading', 
       });
       expect(unauthorized.status()).toBe(401);
       await page.reload();
-      await expect(
-        page.locator(manifest.family === 'organiser' ? '.santa-table' : '.table-announcement'),
-      ).toBeVisible();
+      const tableRoot =
+        manifest.family === 'organiser'
+          ? '.santa-table'
+          : manifest.id === 'tarot'
+            ? '.tarot-table'
+            : '.table-announcement';
+      await expect(page.locator(tableRoot)).toBeVisible();
       const actor = players[identities.indexOf(started.game.current_player)];
       const view = await roomAs(actor, id);
       const options = view.game!.actions;
