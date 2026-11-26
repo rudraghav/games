@@ -4,6 +4,10 @@ import { boardTutorials, playBoardDecision } from './tutorial-board-player';
 import { playCardDecision } from './tutorial-card-player';
 import { playPartyDecision } from './tutorial-party-player';
 import { runTutorial, type TutorialDriver } from './tutorial-depth-run';
+import { playHousieDecision } from './housie-tutorial-player';
+import { playLiarsDiceDecision } from './liars-dice-tutorial-player';
+import { playBluffDecision } from './bluff-tutorial-player';
+import { playTruthOrDareDecision } from './truth-or-dare-tutorial-player';
 
 const cards = [
   'uno',
@@ -31,6 +35,12 @@ const drivers = new Map<string, TutorialDriver>();
 for (const game of cards) drivers.set(game, playCardDecision);
 for (const game of boardTutorials) drivers.set(game, playBoardDecision);
 for (const game of parties) drivers.set(game, playPartyDecision);
+
+// The parlour games: each driver makes one real learner decision on its own table.
+drivers.set('housie', playHousieDecision);
+drivers.set('liars-dice', playLiarsDiceDecision);
+drivers.set('bluff', playBluffDecision);
+drivers.set('truth-or-dare', playTruthOrDareDecision);
 
 for (const game of ['roulette', 'slots']) {
   drivers.set(game, async (page) => {

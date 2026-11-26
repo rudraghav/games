@@ -1,0 +1,343 @@
+/*
+ * Truth or Dare table and the 18+ edition badge. Existing tokens only. The prompt
+ * card is the one surface; the dock and the result sit on the table without
+ * cards around them. Every control keeps a 44px target with 8px between.
+ */
+@layer components {
+  /* The 18+ edition, said in words on the table and in the lobby. */
+  .adults-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 0 var(--space-2);
+    border: 1px solid var(--color-coral);
+    border-radius: 999px;
+    color: var(--color-danger);
+    background: var(--color-coral-light);
+    font-size: 12px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  /* Create room / Room settings: the host's confirmation sits under the 18+ toggle. */
+  .toggle-row.adults-confirm {
+    padding-left: var(--space-5);
+    font-weight: 600;
+  }
+  .lobby-summary .adults-badge {
+    margin-top: var(--space-1);
+  }
+
+  .adults-gate {
+    max-width: 520px;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .adults-gate__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .tod-table {
+    width: 100%;
+    max-width: 720px;
+    min-width: 0;
+    margin-inline: auto;
+    display: grid;
+    gap: var(--space-4);
+  }
+  .tod-topline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    min-height: 24px;
+  }
+  .tod-bot-note {
+    margin: 0;
+  }
+
+  /* ---------- The prompt card ---------- */
+  .tod-card {
+    --tod-tint: var(--color-sage-light);
+    --tod-accent: var(--color-sage);
+    display: grid;
+    gap: var(--space-3);
+    min-width: 0;
+    padding: clamp(20px, 5vw, 36px);
+    border-radius: var(--radius-card);
+    background: var(--tod-tint);
+    box-shadow: var(--shadow-card);
+  }
+  /* Accents are each tint's own hue darkened to 4.5:1 on that tint for the kind label. */
+  .tod-card[data-kind='truth'] {
+    --tod-tint: var(--color-sky-light);
+    --tod-accent: #3f6474;
+  }
+  .tod-card[data-kind='dare'] {
+    --tod-tint: var(--color-coral-light);
+    --tod-accent: #a4422f;
+  }
+  .tod-card[data-kind='burning'] {
+    --tod-tint: var(--color-ochre-light);
+    --tod-accent: #7a5d24;
+  }
+  .tod-card--empty {
+    --tod-tint: var(--color-surface-muted);
+    box-shadow: none;
+  }
+  .tod-card__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+  .tod-kind {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--tod-accent);
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .tod-kind--muted {
+    color: var(--color-ink-muted);
+  }
+  .tod-card__by {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-ink-muted);
+    overflow-wrap: anywhere;
+  }
+  .tod-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 0 var(--space-2);
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tod-card__text {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: clamp(1.45rem, 4.6vw, 2.2rem);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+  .tod-card--empty .tod-card__text {
+    font-size: clamp(1.2rem, 3.6vw, 1.6rem);
+  }
+  .tod-candidates {
+    display: grid;
+    gap: var(--space-1);
+    margin: 0;
+    padding-left: var(--space-5);
+    font-size: 16px;
+    overflow-wrap: anywhere;
+  }
+
+  /* ---------- The result ---------- */
+  .tod-result {
+    display: grid;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+  .tod-result h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    overflow-wrap: anywhere;
+  }
+  .tod-result--latest h3 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+  }
+  .tod-result p {
+    margin: 0;
+  }
+  .tod-result__text {
+    color: var(--color-ink-muted);
+    overflow-wrap: anywhere;
+  }
+  .tod-fates {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tod-fates li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-3);
+    padding-block: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+  .tod-fates li:last-child {
+    border-bottom: 0;
+  }
+
+  /* ---------- Decisions ---------- */
+  .stable-game-table .tod-dock {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-1) 0;
+    background: transparent;
+  }
+  .tod-picks,
+  .tod-answer,
+  .tod-next {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-2);
+  }
+  .tod-dock [data-decision-actions] {
+    position: static;
+    box-shadow: none;
+    background: transparent;
+  }
+  .tod-pick.button,
+  .tod-answer > .button,
+  .tod-next > .button {
+    min-height: 52px;
+  }
+  .tod-swap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1) var(--space-3);
+  }
+
+  .tod-assign {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .tod-fate-row {
+    display: grid;
+    gap: var(--space-2);
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .tod-fate-row legend {
+    padding: 0;
+    margin-bottom: var(--space-2);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  .tod-fate-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+  /* A native radio inside each label: the dot says which fate is chosen, not colour alone. */
+  .tod-fate {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    min-width: 0;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 140ms var(--ease-out),
+      border-color 140ms var(--ease-out);
+  }
+  .tod-fate span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  /* The native radio covers the whole option, so the 44px option is its target;
+     the dot is drawn beside the word and fills when the radio is checked. */
+  .tod-fate {
+    position: relative;
+  }
+  .tod-fate input {
+    position: absolute;
+    /* Over the 1px border too, so the radio itself measures the full 44px. */
+    inset: -1px;
+    width: auto;
+    height: auto;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .tod-fate::before {
+    content: '';
+    flex: none;
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-ink-muted);
+    border-radius: 50%;
+    background: var(--color-surface);
+  }
+  .tod-fate:has(input:checked)::before {
+    border-color: var(--color-sage);
+    background: radial-gradient(circle, var(--color-sage) 0 4px, var(--color-surface) 4.5px);
+  }
+  .tod-fate:hover {
+    background: var(--color-surface-muted);
+  }
+  .tod-fate:has(input:checked) {
+    border-color: var(--color-sage);
+    background: var(--color-sage-light);
+  }
+  .tod-fate:has(input:focus-visible) {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 4px;
+  }
+  .tod-fate-row:disabled .tod-fate {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  .tod-assign__commit {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .tod-assign__commit p {
+    margin: 0;
+  }
+  @media (min-width: 701px) {
+    .tod-assign__commit {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+    }
+  }
+  /* Phones keep the three fates side by side: the dot sits above its word. */
+  @media (max-width: 420px) {
+    .tod-fate {
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-1);
+      padding: var(--space-2) var(--space-1);
+      text-align: center;
+      font-size: 13px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tod-fate {
+      transition: none;
+    }
+  }
+}

@@ -3,11 +3,14 @@ import {
   back,
   board,
   cat,
+  die,
   district,
   face,
   flip,
   gem,
   grid,
+  housieBall,
+  housieCell,
   icon,
   number,
   paper,
@@ -550,6 +553,187 @@ export const tutorialLessons: Record<string, TutorialLesson> = {
       redraw:
         'Redrawing takes you back to the list so you can change it. The links you already sent stop working, and the next draw makes new ones.',
       finish: 'Finishing closes the event. The links keep working.',
+    },
+  },
+  housie: {
+    goal: 'Mark the numbers that are called on your ticket and be first to claim each prize.',
+    rules: [
+      rule(
+        'Numbers are called',
+        'Your ticket holds 15 numbers in three rows of five. Numbers from 1 to 90 come out one at a time and never repeat. Players take turns calling the next one.',
+        picture(
+          'The number 42 is called, and 42 is on the ticket.',
+          housieBall(42),
+          arrow,
+          housieCell(7),
+          housieCell(42),
+          housieCell(81),
+        ),
+      ),
+      rule(
+        'Mark your ticket',
+        'A called number on your ticket gets a stamp. With “Mark called numbers for me” on, it is stamped for you. With it off, tap the number to mark it yourself.',
+        picture(
+          'The called 42 goes from unmarked to stamped.',
+          housieCell(42),
+          arrow,
+          housieCell(42, true),
+        ),
+      ),
+      rule(
+        'Claim the prizes',
+        'Any five marked numbers claim Early five, a whole row claims its line and all fifteen claim Full house. You can claim at any time, not only on your turn. Full house ends the match.',
+        picture(
+          'Five stamped numbers claim Early five.',
+          housieCell(3, true),
+          housieCell(19, true),
+          housieCell(42, true),
+          housieCell(56, true),
+          housieCell(88, true),
+          arrow,
+          icon('crown', 'Early five'),
+        ),
+      ),
+    ],
+    actions: {
+      call_number:
+        'Calling draws the next number for everyone, then the call passes to the next player.',
+      mark: 'Marking stamps a called number on your ticket. A claim counts only numbers that are called and marked.',
+      claim:
+        'Claiming wins the prize and its points. Anyone else who completes it before the next number shares it in full.',
+    },
+  },
+  'liars-dice': {
+    goal: 'Keep your dice the longest: bid on what is under every cup, and call liar when a bid is too high.',
+    rules: [
+      rule(
+        'Bid on the whole table',
+        'Everyone rolls five dice and sees only their own. A bid such as “3 × fours” says there are at least three fours among all the dice on the table.',
+        picture(
+          'Two of your dice show four, so three fours on the table is a fair bid.',
+          die(4),
+          die(4),
+          die(2),
+          arrow,
+          icon('message', '3 × fours'),
+        ),
+      ),
+      rule(
+        'Raise or call liar',
+        'On your turn, raise with more dice of any face, or the same number of a higher face. Or call liar, and every die is shown.',
+        picture(
+          '3 × fours can be raised to 3 × fives or to 4 of any face.',
+          icon('message', '3 × fours'),
+          arrow,
+          icon('message', '3 × fives'),
+        ),
+      ),
+      rule(
+        'Lose a die',
+        'If the table holds the bid, the caller loses a die; if not, the bidder does. With ones wild, a one counts as any face. The last player with dice wins.',
+        picture(
+          'Two fours and a wild one make three fours, so the bid held.',
+          die(4, 'face'),
+          die(1, 'wild'),
+          die(4, 'face'),
+          icon('check', 'Bid held'),
+        ),
+      ),
+    ],
+    actions: {
+      bid: 'A bid names a face and how many of it are on the whole table. Each face offers its own lowest and highest legal quantity.',
+      call_liar:
+        'Calling liar shows every die. If the bid is met, you lose a die; if not, the bidder does.',
+      next_round:
+        'Rolling starts the next round: every remaining die is rolled again and you open the bidding.',
+    },
+  },
+  bluff: {
+    goal: 'Be the first to get rid of every card, bluffing when you have to.',
+    rules: [
+      rule(
+        'Play face down',
+        'Start a round by playing one to four cards face down and saying what rank they are. What you say does not have to be true.',
+        picture(
+          'Two cards go down face down as two sevens.',
+          back,
+          back,
+          arrow,
+          icon('message', 'Two 7s'),
+        ),
+      ),
+      rule(
+        'Follow, pass or call',
+        'Each next player plays more cards as the same rank, passes, or calls bluff on the last play. Only that last play is turned over.',
+        picture(
+          'The called play shows a seven and a king, so it was a bluff.',
+          face('7', '♥'),
+          face('K', '♠'),
+          icon('eye', 'Bluff'),
+        ),
+      ),
+      rule(
+        'Take the pile',
+        'If every called card matches, the caller takes the whole pile; otherwise the bluffer does. If everyone passes, the pile is set aside. Your last cards win once that play stands.',
+        picture(
+          'The player who was caught takes the pile into their hand.',
+          back,
+          back,
+          back,
+          arrow,
+          icon('hand', 'Into a hand'),
+        ),
+      ),
+    ],
+    actions: {
+      play: 'Your chosen cards go face down on the pile as the declared rank. Starting a round, you choose the rank; after that, every play uses it.',
+      skip: 'Passing plays nothing. If everyone else passes after a play, the pile is set aside and that player starts again.',
+      call_bluff:
+        'Calling turns over only the last play. If every card matches, you take the pile; if not, the player who bluffed does.',
+      continue: 'Continuing hands the pile to whoever takes it and starts a new round.',
+    },
+  },
+  'truth-or-dare': {
+    goal: 'Take your turns answering truths and doing dares, and finish with the most points.',
+    rules: [
+      rule(
+        'Choose truth or dare',
+        'On your turn choose truth, dare or, when it is on, a burning-building round. Everyone at the table sees the prompt drawn for you.',
+        picture(
+          'Truth, dare and burning building are the three choices.',
+          icon('message', 'Truth'),
+          icon('flag', 'Dare'),
+          icon('flame', 'Burning building'),
+        ),
+      ),
+      rule(
+        'Do it, pass or swap',
+        'Answer or do it out loud, then mark it done: a truth scores 1 and a dare 2. You can always pass, which scores nothing. Once a match you can swap a prompt for another.',
+        picture(
+          'Done scores the dare; Pass scores nothing.',
+          icon('check', 'Done · 2'),
+          icon('hand', 'Pass · 0'),
+        ),
+      ),
+      rule(
+        'Save one from the fire',
+        'A burning-building round shows three candidates. Give each one a different fate, then confirm. Everyone sees your choice, and it scores 1.',
+        picture(
+          'Three candidates each get one of three different fates.',
+          icon('people', 'Three candidates'),
+          arrow,
+          icon('check', 'Three fates'),
+        ),
+      ),
+    ],
+    actions: {
+      pick: 'The chosen kind of prompt is drawn and shown to everyone at the table.',
+      done: 'Marking it done scores the prompt: a truth 1, a dare 2.',
+      skip: 'Passing is always allowed. It scores nothing and costs nothing else.',
+      swap: 'Swapping draws another prompt of the same kind. Each player can swap once in the match.',
+      assign:
+        'Confirming gives each candidate a different fate. Everyone sees the choice, and it scores 1.',
+      next: 'Moving on hands the turn to the next player.',
     },
   },
   'four-in-a-row': {

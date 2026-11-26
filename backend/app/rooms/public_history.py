@@ -92,7 +92,30 @@ LABELS: dict[str, dict[str, str]] = {
                      "clear": "Cleared a detail", "draw": "Drew the names",
                      "reveal": "Showed one person their name", "hide": "Hid the name again",
                      "redraw": "Went back to change the list", "finish": "Finished the draw"},
+    # The number just called is public. Which numbers are on a ticket is not copied.
+    "housie": {"call_number": "Called a number", "mark": "Marked a number",
+               "claim": "Claimed a prize"},
+    # A bid is said aloud. Dice enter history only as the outcome of a call.
+    "liars-dice": {"bid": "Raised the bid", "call_liar": "Called liar",
+                   "next_round": "Rolled the next round"},
+    # Read as "Dev played 2 as Queens"; faces appear only for the one play that was called.
+    "bluff": {"play": "Played cards face down", "skip": "Passed", "call_bluff": "Called bluff",
+              "continue": "Moved on from the reveal"},
+    # Fixed wording only: a prompt's text never enters durable history.
+    "truth-or-dare": {"pick": "Chose a prompt", "done": "Marked it done", "skip": "Passed",
+                      "swap": "Swapped the prompt", "assign": "Chose three fates",
+                      "next": "Moved to the next turn"},
 }
+# Allowlisted words for the labels above; nothing else from an action is copied.
+HOUSIE_PRIZES = {"early_five": "Early five", "top_line": "Top line", "middle_line": "Middle line",
+                 "bottom_line": "Bottom line", "full_house": "Full house"}
+DICE_FACES = {1: "ones", 2: "twos", 3: "threes", 4: "fours", 5: "fives", 6: "sixes"}
+BLUFF_RANKS = {"A": "Aces", "2": "Twos", "3": "Threes", "4": "Fours", "5": "Fives", "6": "Sixes",
+               "7": "Sevens", "8": "Eights", "9": "Nines", "10": "Tens", "J": "Jacks",
+               "Q": "Queens", "K": "Kings"}
+PROMPT_KINDS = {"truth": "Chose truth", "dare": "Chose dare", "burning": "Chose burning building"}
+# Games with no card faces at all: nothing is ever gathered into a move's cards.
+FACELESS_GAMES = {"party", "tarot", "housie", "liars-dice", "truth-or-dare"}
 
 PRIVATE_CARD_MOVES = {
     ("deal", "settle_debt"), ("tarot", "pick"), ("six-nimmt", "select_number"),
@@ -259,7 +282,7 @@ def public_move(
                 targets = [str(effect["target"])]
     count: int | None = None
     cards: list[CardView] = []
-    if known and group not in BOARD_GAMES and group not in {"party", "tarot"} and (group, kind) not in PRIVATE_CARD_MOVES:
+    if known and group not in BOARD_GAMES and group not in FACELESS_GAMES and (group, kind) not in PRIVATE_CARD_MOVES:
         old, new = public_cards(before_views), public_cards(after_views)
         chosen = [action.card, *action.cards]
         if group == "deal" and action.choice in old:
@@ -340,6 +363,43 @@ def public_move(
             if kind == "pickup":
                 picked = last.get("count")
                 count = picked if isinstance(picked, int) and picked >= 0 else count
+    if group == "housie":
+        number = after.detail.get("last_called")
+        if (kind == "call_number" and isinstance(number, int) and not isinstance(number, bool)
+                and 1 <= number <= 90
+                and all(view.detail.get("last_called") == number for view in after_views.values())):
+            label = f"Called {number}"
+        elif kind == "claim" and action.choice in HOUSIE_PRIZES:
+            label = f"Claimed {HOUSIE_PRIZES[action.choice]}"
+    if group == "liars-dice":
+        bid, reveal = after.detail.get("bid"), after.detail.get("reveal")
+        if kind == "bid" and isinstance(bid, dict) and all(
+                view.detail.get("bid") == bid for view in after_views.values()):
+            quantity, face = bid.get("quantity"), bid.get("face")
+            if (isinstance(quantity, int) and 1 <= quantity <= 30
+                    and isinstance(face, int) and face in DICE_FACES):
+                label = f"Bid {quantity} × {DICE_FACES[face]}"
+        elif kind == "call_liar" and isinstance(reveal, dict) and all(
+                view.detail.get("reveal") == reveal for view in after_views.values()):
+            # The table has just seen every die; only who was right is recorded.
+            label = "Called liar and was wrong" if reveal.get("held") is True else "Called liar and was right"
+    if group == "bluff":
+        laid, rank, reveal = (after.detail.get(key) for key in ("last_play", "rank", "reveal"))
+        if kind == "play" and isinstance(laid, dict) and all(
+                view.detail.get("last_play") == laid and view.detail.get("rank") == rank
+                for view in after_views.values()):
+            size = laid.get("count")
+            if laid.get("player") != actor:
+                # The match ended: this move let a last play stand and laid nothing.
+                label = "Let the last play stand"
+            elif (isinstance(size, int) and 1 <= size <= 4
+                  and isinstance(rank, str) and rank in BLUFF_RANKS):
+                label, count = f"Played {size} as {BLUFF_RANKS[rank]}", size
+        elif kind == "call_bluff" and isinstance(reveal, dict) and all(
+                view.detail.get("reveal") == reveal for view in after_views.values()):
+            label = "Called bluff and was wrong" if reveal.get("truthful") is True else "Called bluff and was right"
+    if group == "truth-or-dare" and kind == "pick" and action.choice in PROMPT_KINDS:
+        label = PROMPT_KINDS[action.choice]
     if group == "word-agents" and kind == "clue":
         clue = after.detail.get("clue")
         if isinstance(clue, str) and all(v.detail.get("clue") == clue for v in after_views.values()):

@@ -1,0 +1,352 @@
+/*
+ * Liar's Dice table. Existing tokens only. The dice are art (pips, not colour,
+ * say the face); every control keeps a 44px target and the table holds at
+ * 320px without sideways scrolling.
+ */
+@layer components {
+  /* ---------- Dice art ---------- */
+  .liars-die {
+    --die: 44px;
+    inline-size: var(--die);
+    block-size: var(--die);
+    flex: none;
+    overflow: visible;
+  }
+  .liars-die[data-size='xs'] {
+    --die: 18px;
+  }
+  .liars-die[data-size='sm'] {
+    --die: 32px;
+  }
+  .liars-die[data-size='lg'] {
+    --die: 52px;
+  }
+  .liars-die__body {
+    fill: var(--color-white);
+    stroke: var(--color-ink);
+    stroke-width: 5;
+  }
+  .liars-die__pip {
+    fill: var(--color-ink);
+  }
+  /* A die that counts for the bid: a sage ring and a tinted face. The cell
+     under it also says "counts" or "wild" in words. */
+  .liars-die[data-counts] .liars-die__body {
+    fill: var(--color-sage-light);
+    stroke: var(--color-sage);
+    stroke-width: 10;
+  }
+  .liars-dice-cell {
+    display: inline-grid;
+    justify-items: center;
+    gap: var(--space-1);
+    min-inline-size: 40px;
+  }
+  .liars-dice-mark {
+    min-block-size: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    color: var(--color-sage);
+  }
+  .liars-dice-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-2);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  @media (max-width: 380px) {
+    .liars-die[data-size='lg'] {
+      --die: 40px;
+    }
+  }
+
+  /* ---------- Each seat's dice as pips under its name ---------- */
+  .liars-dice-game .player-strip-seat .seat-copy::after {
+    content: '';
+    display: block;
+    inline-size: calc(var(--dice, 0) * 9px);
+    block-size: 7px;
+    margin-block-start: var(--space-1);
+    background: radial-gradient(
+        circle at 3.5px 3.5px,
+        var(--color-ink-muted) 2.5px,
+        transparent 3px
+      )
+      0 0 / 9px 7px repeat-x;
+  }
+
+  /* ---------- The table ---------- */
+  .liars-dice-table {
+    display: grid;
+    gap: var(--space-5);
+    inline-size: 100%;
+    max-inline-size: 960px;
+    min-inline-size: 0;
+    margin-inline: auto;
+    margin-block-start: var(--space-3);
+    padding: clamp(16px, 3vw, 28px);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-panel);
+  }
+  .liars-dice-table h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .liars-dice-topline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-4);
+    margin: 0;
+    color: var(--color-ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .liars-dice-bid {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-canvas);
+    border-radius: var(--radius-card);
+  }
+  .liars-dice-bid > div {
+    display: grid;
+    gap: var(--space-1);
+    min-inline-size: 0;
+  }
+  .liars-dice-bid h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 6vw, 34px);
+    font-weight: 500;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .liars-dice-bid p {
+    margin: 0;
+  }
+  .liars-dice-own {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .liars-dice-own > p {
+    margin: 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .liars-dice-row--own .liars-die {
+      animation: liars-dice-roll 280ms var(--ease-out) both;
+    }
+    .liars-dice-row--own .liars-dice-cell:nth-child(2) .liars-die {
+      animation-delay: 30ms;
+    }
+    .liars-dice-row--own .liars-dice-cell:nth-child(3) .liars-die {
+      animation-delay: 60ms;
+    }
+    .liars-dice-row--own .liars-dice-cell:nth-child(4) .liars-die {
+      animation-delay: 90ms;
+    }
+    .liars-dice-row--own .liars-dice-cell:nth-child(5) .liars-die {
+      animation-delay: 120ms;
+    }
+  }
+  @keyframes liars-dice-roll {
+    from {
+      opacity: 0;
+      transform: rotate(-80deg) scale(0.7);
+    }
+  }
+
+  /* ---------- Bids this round ---------- */
+  .liars-dice-history {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .liars-dice-history ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .liars-dice-history li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3) var(--space-1) var(--space-2);
+    border-radius: 999px;
+    background: var(--color-surface-muted);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+  .liars-dice-history li[data-latest] {
+    background: var(--color-sage-light);
+  }
+  .liars-dice-history strong {
+    font-weight: 600;
+  }
+
+  /* ---------- The reveal ---------- */
+  .liars-dice-reveal {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .liars-dice-reveal > h3 {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .liars-dice-reveal__winner {
+    margin: 0;
+    font-weight: 600;
+  }
+  .liars-dice-reveal__rows {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .liars-dice-reveal__row {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-control);
+  }
+  .liars-dice-reveal__row[data-loser='true'] {
+    background: var(--color-coral-light);
+  }
+  .liars-dice-reveal__who {
+    display: grid;
+    gap: 2px;
+    min-inline-size: 0;
+  }
+  .liars-dice-reveal__who strong {
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  @media (min-width: 560px) {
+    .liars-dice-reveal__row {
+      grid-template-columns: minmax(120px, 200px) minmax(0, 1fr);
+      align-items: center;
+    }
+  }
+
+  /* ---------- The bid builder ---------- */
+  .stable-game-table .liars-dice-dock {
+    display: grid;
+    gap: var(--space-3);
+    padding: 0;
+  }
+  .liars-dice-dock__line {
+    margin: 0;
+  }
+  .liars-dice-faces {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+  @media (min-width: 560px) {
+    .liars-dice-faces {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+  .liars-dice-face {
+    display: grid;
+    place-items: center;
+    gap: 2px;
+    min-block-size: 64px;
+    min-inline-size: 44px;
+    padding: var(--space-1);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      transform 140ms var(--ease-out),
+      background-color 140ms var(--ease-out),
+      box-shadow 140ms var(--ease-out);
+  }
+  .liars-dice-face:hover:not(:disabled) {
+    background: var(--color-canvas);
+    transform: translateY(-1px);
+  }
+  .liars-dice-face:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .liars-dice-face:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 4px;
+  }
+  .liars-dice-face[aria-pressed='true'] {
+    background: var(--color-sage-light);
+    box-shadow: inset 0 0 0 2px var(--color-sage);
+  }
+  .liars-dice-face:disabled {
+    cursor: not-allowed;
+    color: var(--color-ink-muted);
+    background: var(--color-canvas);
+  }
+  .liars-dice-face:disabled .liars-die {
+    opacity: 0.45;
+  }
+  .liars-dice-stepper {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    gap: var(--space-2);
+    align-items: center;
+  }
+  .liars-dice-stepper__value {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .liars-dice-stepper[data-empty] .liars-dice-stepper__value {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-ink-muted);
+  }
+  /* The dock grows with its content, so its buttons never need the sticky scroll edge. */
+  .liars-dice-dock .liars-dice-dock__actions {
+    position: static;
+    box-shadow: none;
+    padding-block: 0;
+    background: transparent;
+  }
+  .liars-dice-dock__actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+    gap: var(--space-2);
+  }
+  .liars-dice-dock__actions:empty {
+    display: none;
+  }
+
+  /* ---------- Wide canvases: the bid builder beside the table ---------- */
+  @media (min-width: 960px) {
+    .liars-dice-table {
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 340px);
+      align-items: start;
+      column-gap: var(--space-6);
+    }
+    .liars-dice-table > :not(.liars-dice-dock) {
+      grid-column: 1;
+    }
+    .liars-dice-table > .liars-dice-dock {
+      grid-column: 2;
+      grid-row: 1 / span 5;
+      position: sticky;
+      top: var(--space-4);
+    }
+    .liars-dice-faces {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+}

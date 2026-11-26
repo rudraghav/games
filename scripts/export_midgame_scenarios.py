@@ -107,6 +107,8 @@ def inventory(game, s):
         return Counter(s["bag"] + s["discard"] + s["center"] + s["draft"] + sum(s["factories"], []) + [c for lines in s["lines"].values() for line in lines for c in line] + [c for wall in s["wall"].values() for row in wall for c in row if c] + [c for floor in s["floor"].values() for c in floor if c != "first"])
     if game == "tarot":
         return Counter(s["deck"])
+    if game == "bluff":
+        return Counter(s["pile"] + s["discarded"] + sum(s["hands"].values(), []))
     return None
 
 
@@ -144,6 +146,11 @@ def project(engine, state, viewer, players):
                             if card and not state["revealed"][player][slot])
     if engine.manifest.id == "shithead":
         hidden_stock.update(card for player in players for card in state["face_down"][player] if card)
+    if engine.manifest.id == "bluff":
+        # Face-down piles stay hidden; a call turns over its one play and nothing under it.
+        called = state["last"]["cards"] if state["phase"] == "reveal" else []
+        hidden_stock.update(state["discarded"])
+        hidden_stock.update(card for card in state["pile"] if card not in called)
     assert not shown.intersection(hidden_stock), f"Stock identity leaked: {engine.manifest.id}"
     # Other players' genuinely private cards may not occur as CardViews. A
     # public showdown/reveal is allowed only when that player's own public list
@@ -172,6 +179,15 @@ def project(engine, state, viewer, players):
             assert not (set(private) - allowed).intersection(shown), f"Other hand leaked: {engine.manifest.id}"
     payload = json.dumps(data)
     assert not any(f'"{field}"' in payload for field in ("_shuffle_key", "_shuffle_nonce", "_stops", "_pockets"))
+    if engine.manifest.id == "housie":
+        # The call order and every other ticket stay in the saved state.
+        assert '"bag"' not in payload and '"tickets"' not in payload, "Housie call order leaked"
+        assert data["detail"]["called"] == state["called"], "Housie called numbers drifted"
+    if engine.manifest.id == "liars-dice":
+        # One dice list (the viewer's own) until a call puts every die on the table.
+        assert payload.count('"dice"') == (1 if state["reveal"] is None else 2), "Dice leaked"
+    if engine.manifest.id == "truth-or-dare":
+        assert '"stock"' not in payload, "Undrawn prompts leaked"
     if engine.manifest.id == "secret-santa":
         # Who drew whom stays in the saved state; one recipient shows only while shown.
         assert '"assignment"' not in payload, "Secret Santa draw leaked"
@@ -256,6 +272,16 @@ def generate():
                 classification = "after-win" if net > 0 else "after-loss"
                 if view.detail["spins_remaining"] == 1:
                     classification += ":last-spin"
+            if game == "housie":
+                won = sum(bool(prize["winners"]) for prize in view.detail["prizes"])
+                classification = f"{action.type}:{won}-won"
+            if game == "liars-dice":
+                classification = f"{action.type}:{len(view.detail['out'])}-out"
+            if game == "bluff":
+                classification = action.type + ("" if view.detail["rank"] else ":new-round")
+            if game == "truth-or-dare":
+                prompt = view.detail["prompt"]
+                classification = action.type + (f":{prompt['kind']}" if prompt else "")
             if game == "teen-patti":
                 classification += ":blind" if view.detail.get("blind") else ":seen"
             if game == "skyjo" and view.detail.get("finisher") and phase != "between_rounds":

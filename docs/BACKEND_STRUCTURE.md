@@ -164,6 +164,23 @@ vary legal choices when a pickup cycle repeats. There is no forced turn limit,
 hidden-state search or model request. An unscored outcome lists all escaped
 players as winners and the final remaining player as the loser.
 
+Housie (`housie`), Liar's Dice (`dice`), Bluff (`bluff`) and Truth or Dare
+(`truth-dare`) are four independent families added on 25 November 2026. Housie
+keeps every ticket and the whole call order in the saved state: a projection
+carries the viewer's own ticket, the numbers already called and each player's
+marked count. Its marks and claims are legal for every seat at any time while
+`current_player` stays the caller, so the scheduler lets a bot that can mark or
+claim act before a bot caller, and paces bot calls at 3 seconds. Liar's Dice
+derives each round's roll from a private number and the round, projects only
+the viewer's dice until a call, and then shows every die until the loser rolls
+again. Bluff projects the viewer's hand and counts; a call turns over the one
+called play in `community` for the length of the reveal, and the rest of the
+pile is only ever seen as part of the hand that picks it up. Truth or Dare is a
+shared table whose only hidden state is the undrawn prompts; its friendly and
+adult decks are separate lists and the adult fate labels are sent only when the
+room's adults-only rule is on. All four have bots that read only their own
+projection, and none needed a schema change.
+
 Secret Santa's `organiser` family is a solo table with no bot and no score. The
 organiser types the people, pairs and groups; the engine decides exactly whether
 a complete draw exists and draws from its own saved random number. Who drew whom

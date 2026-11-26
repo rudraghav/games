@@ -2,11 +2,11 @@
 
 Choose a game before choosing how to play. Tarot opens directly into a private
 reading; bot play starts immediately. Friends use game → setup → invite lobby →
-ready → play → results → rematch/change game. The catalogue now contains 30 entries: 29 games and Secret Santa, a name draw run by one organiser.
+ready → play → results → rematch/change game. The catalogue now contains 34 entries: 33 games and Secret Santa, a name draw run by one organiser.
 
 ## Learn through play
 
-All 30 game pages keep normal play as the default. **Rules & tutorial** opens a
+All 34 game pages keep normal play as the default. **Rules & tutorial** opens a
 public illustrated rulebook with the goal, three worked examples, the rules by
 topic and an optional **Play tutorial** action. Reading it creates no session.
 Players can turn coaching on or off in the same rulebook during a solo or
@@ -172,3 +172,28 @@ exhaustion behavior as `base58-exhaust-1`, explaining its difference from the
 licensed online implementation. No timers, real-money features, public matchmaking,
 new identities or hidden-state exposure are added. Source details and per-ticket
 acceptance are retained in `evidence/audit-fixes-2026-11-02/README.md`.
+
+## Parlour games (26 November 2026)
+
+Housie (Tambola), Liar's Dice, Bluff (Cheat) and Truth or Dare extend the
+catalogue to 34 entries. Each has a pure engine, a bounded bot policy, its own
+table, an illustrated lesson with a tutorial driver and a browser spec covering
+a two-person room and a one-person match against bots.
+
+- **Housie**, 2–10 players: everyone holds a private ticket; seats take turns
+  calling; anyone can mark and claim at any time (Early five, three lines, Full
+  house). In With friends and For teams.
+- **Liar's Dice**, 2–6: five hidden dice each, a face-then-quantity bid builder
+  bounded by the server's legal range, Call liar and a reveal that says the
+  outcome in words. In Quick with bots, With friends and Two players.
+- **Bluff**, 2–6: a standard 52-card hand, one to four cards played face down as
+  a declared rank, Pass or Call bluff; a reveal turns over only the called play.
+  In Quick with bots, With friends and Two players.
+- **Truth or Dare**, 2–10: a shared prompt card, Done / Pass / one Swap a match,
+  and burning-building rounds where three candidates get three different fates.
+  The optional **Naughty edition (18+)** is off by default. Creating it requires
+  the host to confirm "Everyone in this room is 18 or older", and anyone opening
+  such a room confirms "This room uses the 18+ edition. Continue?" once per room
+  in that tab before anything of the room is shown. No 18+ prompt or fate ever
+  appears outside such a room (catalogue, lessons, stories or history). Truth or
+  Dare is in With friends and Two players, never in For teams.

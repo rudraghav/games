@@ -22,6 +22,10 @@ import { PaperTable } from './sea/PaperTable';
 import { BoopTable } from './boop/BoopTable';
 import { ShitheadTable } from './shithead/ShitheadTable';
 import { SecretSantaTable } from './secret-santa/SecretSantaTable';
+import { HousieTable } from './housie/HousieTable';
+import { LiarsDiceTable } from './liars-dice/LiarsDiceTable';
+import { BluffTable } from './bluff/BluffTable';
+import { TruthOrDareTable } from './truth-or-dare/TruthOrDareTable';
 
 // The expanded illustrated reference library is needed only by Tarot players.
 const TarotTable = dynamic(() => import('./tarot/TarotTable').then((module) => module.TarotTable));
@@ -47,6 +51,10 @@ const familyTables: Record<string, ComponentType<TableProps>> = {
   boop: BoopTable,
   palace: ShitheadTable,
   organiser: SecretSantaTable,
+  housie: HousieTable,
+  dice: LiarsDiceTable,
+  bluff: BluffTable,
+  'truth-dare': TruthOrDareTable,
 };
 export const tableRegistry = Object.fromEntries(
   games.map((game) => {

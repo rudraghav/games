@@ -377,4 +377,5 @@ def test_quick_play_opens_an_empty_organiser_table(client):
     assert room["game"]["detail"]["people"] == [] and room["game"]["detail"]["drawn"] is False
     assert {action["action"]["type"] for action in room["game"]["actions"]} == {
         "add_name", "add_group", "set_title", "set_location", "set_budget", "set_day", "clear"}
-    assert client.get("/v1/games").json()[-1]["id"] == "secret-santa"
+    # Listed in the catalogue; later games are appended after it.
+    assert "secret-santa" in [game["id"] for game in client.get("/v1/games").json()]

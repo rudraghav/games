@@ -159,6 +159,40 @@ test('personal cloud: all games, private views, revisions and a saved reading', 
           (await roomAs(operative, id)).game!.community.every((card) => card.color === 'unknown'),
         ).toBe(true);
       }
+      if (['housie', 'liars-dice', 'bluff'].includes(manifest.id)) {
+        // Each seat's ticket, dice or hand reaches only that seat's own projection.
+        const room = id!;
+        const seated = (await roomAs(page, room)).members.filter((member) => member.seated);
+        const views = await Promise.all(
+          seated.map(async (member) => {
+            const json = JSON.stringify(
+              (await roomAs(players[identities.indexOf(member.id)], room)).game,
+            );
+            const game = JSON.parse(json);
+            const secret =
+              manifest.id === 'housie'
+                ? JSON.stringify(game.detail.ticket)
+                : manifest.id === 'liars-dice'
+                  ? null
+                  : game.hand.map((card: { id: string }) => card.id);
+            return { json, game, secret };
+          }),
+        );
+        for (const [index, view] of views.entries()) {
+          for (const [other, theirs] of views.entries()) {
+            if (other === index) continue;
+            if (manifest.id === 'housie')
+              expect(theirs.json.includes(view.secret as string)).toBe(false);
+            if (manifest.id === 'bluff')
+              for (const card of view.secret as string[])
+                expect(theirs.json.includes(`"${card}"`)).toBe(false);
+          }
+          if (manifest.id === 'liars-dice' && view.game.phase === 'bidding')
+            expect(view.json.match(/"dice":/g)).toHaveLength(1);
+          // The call order, the roll and the deal never leave the server.
+          expect(view.json).not.toMatch(/"(bag|seed|tickets|hands|stock|pile)":/);
+        }
+      }
       if (manifest.id === 'tarot') {
         for (let pick = 0; pick < 2; pick++) {
           const current = await roomAs(actor, id);

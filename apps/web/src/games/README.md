@@ -15,6 +15,10 @@ amount steps/payment eligibility. Shared visual vocabulary lives in `@games/ui`.
 - `words`: private spymaster key, one-word clues and confirmed team guesses.
 - `gems`: resource selection, development/patron cards, private reservations and prestige.
 - `secret-santa` (family `organiser`): one organiser's page for names, exclusions, the draw and a private link per person. It has no seats, hand or turn banner; see its README.
+- `housie` (family `housie`): the viewer's ticket, the last called number, a 1–90 board, the caller's call and prize chips that anyone can claim at any time.
+- `liars-dice` (family `dice`): the viewer's dice as original SVG art, everyone's dice left, the bid headline and history, a face-then-quantity bid builder and a reveal that says the outcome.
+- `bluff` (family `bluff`): the shared standard hand with 1–4 card selection, a starter's declared rank, the face-down pile and a reveal of only the called play.
+- `truth-or-dare` (family `truth-dare`): a shared prompt card, Done / Pass / Swap, and three-fate burning-building rounds; fate labels come from `detail.fates`. The 18+ edition is gated in `features/room` (see its README).
 
 Typed detail parsers in the API client validate new-family metadata. The renderer
 registry fails on an unknown family. PlayerStrip accepts a caption variant for

@@ -61,6 +61,19 @@ the departed shortcut; profile, history and other memberships stay intact while
 the player query refreshes. Failed leaves keep the room open and show the normal
 mutation error. The dashboard browser test checks the return without a reload.
 
+## The 18+ edition (Truth or Dare)
+
+A room whose settings have `adults_only` on (Truth or Dare's "Naughty edition
+(18+)") shows `AdultsOnlyGate` before anything else of the room: no lobby,
+table, chat or prompt renders until the viewer answers "This room uses the 18+
+edition. Continue?". Continue is remembered for that room id in this tab's
+`sessionStorage` (`shared/adults-only.ts`), so a reload does not ask again but a
+new tab does. Leave the room is an ordinary Leave. The host who ticked
+"Everyone in this room is 18 or older" in Create room (or Room settings) is
+remembered for the new room and goes straight in. The lobby and the table both
+carry an "18+" badge while the setting is on. The gate is presentation only:
+the server already keeps the adult deck and fates out of every friendly room.
+
 ## Bots
 
 A connected human's page drives the one due bot move at `room.botDueAt`. The

@@ -6,6 +6,7 @@ import { gameById } from '@games/api-client/catalog';
 import { GameArt } from '@/shared/GameArt';
 import { BotSeat } from './BotSeat';
 import { InvitePanel } from './InvitePanel';
+import { adultsOnly } from '@/shared/adults-only';
 
 interface LobbyProps {
   room: Room;
@@ -99,6 +100,12 @@ export function Lobby({
                 <p className="small muted">
                   {seated.length} of {room.capacity} seats
                 </p>
+              ) : null}
+              {/* The 18+ edition is marked in words wherever the room is shown. */}
+              {adultsOnly(room.settings) ? (
+                <span className="adults-badge" title="Naughty edition (18+)">
+                  18+
+                </span>
               ) : null}
             </div>
           </div>

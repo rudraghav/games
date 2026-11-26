@@ -220,3 +220,14 @@ and that the default library lists every game once) and
 `dashboard-discovery.test.tsx`. Browser coverage:
 `tests/browser/home-progress-rewards.spec.ts`, with `dashboard-refinement`,
 `dashboard-live`, `library` and `library-browsing`.
+
+## Parlour games
+
+Housie, Liar's Dice, Bluff and Truth or Dare sit on the party shelf, so With
+friends shows all four (each seats four or more); Bluff is also on the cards
+shelf. Their listed lengths run past 20 minutes, so Quick with bots adds Liar's
+Dice and Bluff by name (`quickBotPicks` in `occasions.ts`): their turns are
+quick and they play well against bots. Two players includes all four. For
+teams adds Housie at the end of its allowlist; Truth or Dare stays out of it on
+purpose, because its prompts are personal and it has an 18+ edition. Aliases:
+"tambola", "bingo", "perudo", "cheat", "I doubt it", "spin the bottle".

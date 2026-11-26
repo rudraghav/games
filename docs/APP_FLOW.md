@@ -15,7 +15,7 @@ Trio's Lowest/Highest requests identify the target player in their accessible
 names without including hidden ranks. Keyboard moves retain the server's legal
 request and saved public reveals agree across all seats after refresh.
 
-- `/`: public, server-rendered lounge with 26 multiplayer games, Pop Tarot, Roulette, Slots and Secret Santa; search/category/group-size discovery, create/join and member-only room shortcuts.
+- `/`: public, server-rendered lounge with 30 multiplayer games, Pop Tarot, Roulette, Slots and Secret Santa; search/category/group-size discovery, create/join and member-only room shortcuts.
 - `/games/[gameId]`: public game introduction, rules and play choices; opening or refreshing it never starts a session.
 - `/games/[gameId]/rooms/[id]`: authenticated membership-only multiplayer lobby, live table, results and room chat.
 - `/games/tarot/play/[id]`: private active Tarot spread, opened directly by Start reading.
@@ -321,6 +321,39 @@ A person opens `/santa/<token>`: "Hi Sam" and one button, **Show who I’m buyin
 for**, then the name with the event title, date, location and budget. A
 mistyped or outdated link and too many wrong links each get one plain message.
 Profile history lists a finished event as "Names drawn".
+
+## Parlour games: Housie, Liar's Dice, Bluff and Truth or Dare
+
+All four open from their game pages like any multiplayer game (Play with bots,
+Play with friends, Rules & tutorial). Housie and Truth or Dare are in With
+friends; Liar's Dice and Bluff are in Quick with bots and With friends; all
+four are in Two players; Housie is also in For teams. Search also finds them as
+"tambola", "perudo", "cheat" and "spin the bottle".
+
+- **Housie**: the ticket is the table. The caller's **Call the next number** is
+  the one move on their turn, but a claim (and, with "Mark called numbers for
+  me" off, a mark) is offered to every seat at any time, so the claim chips are
+  reachable without waiting for a turn. Full house ends the match.
+- **Liar's Dice**: choose a face, step the quantity inside that face's legal
+  range, then **Bid** or **Call liar**. The reveal shows every die and says who
+  loses a die; the next round's starter rolls.
+- **Bluff**: select one to four cards; a round's starter also picks the rank to
+  declare; **Play**, **Pass** or **Call bluff**. A reveal shows only the called
+  play; the next round's starter continues.
+- **Truth or Dare**: the player whose turn it is chooses Truth, Dare or Burning
+  building; **Done**, **Pass** or **Swap for another** (once a match). A burning
+  building round gives three candidates three different fates, then **Confirm
+  fates**; the result shows to everyone until **Next turn**.
+
+**18+ gate.** In Create room (and the lobby's Change game and settings), turning
+on "Naughty edition (18+)" shows a required "Everyone in this room is 18 or
+older" checkbox; Create room stays disabled until it is ticked. The host's
+confirmation is remembered for that room in the tab. Anyone else who opens a
+room with the setting on (lobby or table, by code, link or invitation) sees only
+"This room uses the 18+ edition. Continue?" with **Continue** and **Leave the
+room** until they continue; the answer is kept per room in `sessionStorage`, so
+a reload does not ask again and a new tab does. The lobby and the table show an
+"18+" badge. With the setting off nothing changes.
 
 ## Home, progress and rewards (23 November 2026)
 

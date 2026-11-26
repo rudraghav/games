@@ -53,7 +53,13 @@ export function describeMove(room: Room, move: PublicMove, selfId: string) {
   const savedLabel =
     room.gameId === 'the-gang' && move.actorId === selfId
       ? correctedLabel.replace(/\btheir\b/, 'your')
-      : correctedLabel;
+      : room.gameId === 'bluff'
+        ? // "Played 2 as Queens" reads as "played 2 cards as Queens": a count, never a face.
+          correctedLabel.replace(
+            /^Played (\d) as /,
+            (_, count: string) => `Played ${count} card${count === '1' ? '' : 's'} as `,
+          )
+        : correctedLabel;
   const label = event ? savedLabel : savedLabel.charAt(0).toLocaleLowerCase() + savedLabel.slice(1);
   const cards = move.cards.slice(0, 2).map((card) => card.label);
   const extraCards = move.cards.length - cards.length;

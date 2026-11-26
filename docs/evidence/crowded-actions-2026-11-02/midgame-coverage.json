@@ -1,5 +1,5 @@
 {
-  "games": 30,
+  "games": 34,
   "kind": "Legally reached engine projections, not saved API rooms",
   "limits": [
     "Only generated legal trajectories are claimed; no guarantee that every rare action appears.",
@@ -2237,6 +2237,306 @@
       "supplemental": false
     },
     {
+      "captured": 8,
+      "capturedActionTypes": [
+        "call_number",
+        "claim"
+      ],
+      "capturedPhases": [
+        "calling"
+      ],
+      "chosenActionTypes": [
+        "call_number",
+        "claim"
+      ],
+      "finished": true,
+      "game": "housie",
+      "offeredActionTypes": [
+        "call_number",
+        "claim"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "calling"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 17,
+      "steps": 93,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 8,
+      "capturedActionTypes": [
+        "call_number",
+        "claim"
+      ],
+      "capturedPhases": [
+        "calling"
+      ],
+      "chosenActionTypes": [
+        "call_number",
+        "claim"
+      ],
+      "finished": true,
+      "game": "housie",
+      "offeredActionTypes": [
+        "call_number",
+        "claim"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "calling"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 10,
+      "seed": 31,
+      "steps": 83,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 3,
+      "capturedActionTypes": [
+        "bid",
+        "call_liar",
+        "next_round"
+      ],
+      "capturedPhases": [
+        "bidding",
+        "reveal"
+      ],
+      "chosenActionTypes": [
+        "bid",
+        "call_liar",
+        "next_round"
+      ],
+      "finished": true,
+      "game": "liars-dice",
+      "offeredActionTypes": [
+        "bid",
+        "call_liar",
+        "next_round"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "bidding",
+        "reveal"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 17,
+      "steps": 24,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 8,
+      "capturedActionTypes": [
+        "bid",
+        "call_liar",
+        "next_round"
+      ],
+      "capturedPhases": [
+        "bidding",
+        "reveal"
+      ],
+      "chosenActionTypes": [
+        "bid",
+        "call_liar",
+        "next_round"
+      ],
+      "finished": true,
+      "game": "liars-dice",
+      "offeredActionTypes": [
+        "bid",
+        "call_liar",
+        "next_round"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "bidding",
+        "reveal"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 6,
+      "seed": 31,
+      "steps": 101,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 5,
+      "capturedActionTypes": [
+        "call_bluff",
+        "continue",
+        "play",
+        "skip"
+      ],
+      "capturedPhases": [
+        "playing",
+        "reveal"
+      ],
+      "chosenActionTypes": [
+        "call_bluff",
+        "continue",
+        "play",
+        "skip"
+      ],
+      "finished": true,
+      "game": "bluff",
+      "offeredActionTypes": [
+        "call_bluff",
+        "continue",
+        "play",
+        "skip"
+      ],
+      "peakPrivateHand": 26,
+      "phases": [
+        "playing",
+        "reveal"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 2,
+      "seed": 17,
+      "steps": 47,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 5,
+      "capturedActionTypes": [
+        "call_bluff",
+        "continue",
+        "play",
+        "skip"
+      ],
+      "capturedPhases": [
+        "playing",
+        "reveal"
+      ],
+      "chosenActionTypes": [
+        "call_bluff",
+        "continue",
+        "play",
+        "skip"
+      ],
+      "finished": true,
+      "game": "bluff",
+      "offeredActionTypes": [
+        "call_bluff",
+        "continue",
+        "play",
+        "skip"
+      ],
+      "peakPrivateHand": 16,
+      "phases": [
+        "playing",
+        "reveal"
+      ],
+      "physicalInventoryChecked": true,
+      "seats": 6,
+      "seed": 31,
+      "steps": 49,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 7,
+      "capturedActionTypes": [
+        "assign",
+        "done",
+        "next",
+        "pick",
+        "skip",
+        "swap"
+      ],
+      "capturedPhases": [
+        "assign",
+        "choose",
+        "prompt",
+        "result"
+      ],
+      "chosenActionTypes": [
+        "assign",
+        "done",
+        "next",
+        "pick",
+        "skip",
+        "swap"
+      ],
+      "finished": true,
+      "game": "truth-or-dare",
+      "offeredActionTypes": [
+        "assign",
+        "done",
+        "next",
+        "pick",
+        "skip",
+        "swap"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "assign",
+        "choose",
+        "prompt",
+        "result"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 2,
+      "seed": 17,
+      "steps": 18,
+      "stress": false,
+      "supplemental": false
+    },
+    {
+      "captured": 6,
+      "capturedActionTypes": [
+        "assign",
+        "done",
+        "next",
+        "pick",
+        "skip"
+      ],
+      "capturedPhases": [
+        "assign",
+        "choose",
+        "prompt",
+        "result"
+      ],
+      "chosenActionTypes": [
+        "assign",
+        "done",
+        "next",
+        "pick",
+        "skip"
+      ],
+      "finished": true,
+      "game": "truth-or-dare",
+      "offeredActionTypes": [
+        "assign",
+        "done",
+        "next",
+        "pick",
+        "skip",
+        "swap"
+      ],
+      "peakPrivateHand": 0,
+      "phases": [
+        "assign",
+        "choose",
+        "prompt",
+        "result"
+      ],
+      "physicalInventoryChecked": false,
+      "seats": 10,
+      "seed": 31,
+      "steps": 46,
+      "stress": false,
+      "supplemental": false
+    },
+    {
       "captured": 0,
       "capturedActionTypes": [],
       "capturedPhases": [],
@@ -2708,5 +3008,5 @@
       "supplemental": true
     }
   ],
-  "scenarios": 300
+  "scenarios": 350
 }

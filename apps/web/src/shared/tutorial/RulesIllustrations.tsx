@@ -6,6 +6,7 @@ import {
   Crown,
   Eye,
   Flag,
+  Flame,
   Hand,
   Landmark,
   LockKeyhole,
@@ -31,6 +32,7 @@ import {
   type TokenKind,
 } from '@games/ui';
 import { optimizeCardArt } from '@/shared/card-art';
+import { Die } from '@/games/liars-dice/Die';
 import { tutorialLessons } from './lessons';
 import type { LessonPicture, PicturePiece } from './lesson-pictures';
 import { rulebookTopics } from './rulebook-topics';
@@ -49,6 +51,7 @@ const symbols = {
   bank: Landmark,
   vault: Vault,
   crown: Crown,
+  flame: Flame,
   arrow: ArrowRight,
 };
 const discs: Record<string, TokenKind> = { r: 'coral', g: 'gold', b: 'ink', w: 'ivory' };
@@ -186,6 +189,22 @@ function PicturePieceView({ item }: { item: PicturePiece }) {
         </span>
       );
     }
+    case 'die':
+      return (
+        <span className="lesson-die">
+          <Die face={item.face} size="sm" counts={item.counts} label="" />
+          {item.counts ? <small>{item.counts === 'wild' ? 'wild' : 'counts'}</small> : null}
+        </span>
+      );
+    case 'housie-cell':
+      return (
+        <span className="lesson-housie-cell" data-stamped={item.stamped || undefined}>
+          {item.value}
+          {item.stamped ? <Check aria-hidden="true" /> : null}
+        </span>
+      );
+    case 'housie-ball':
+      return <span className="lesson-housie-ball">{item.value}</span>;
     case 'full-number-row':
       return (
         <span className="lesson-number-run">

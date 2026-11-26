@@ -39,3 +39,9 @@ the test room. Screenshots and private projections stay in local test output.
 Secret Santa offers many edits at once, so `organiser-direction.ts` picks the
 one that moves the draw forward: add a name until a draw is offered, then draw,
 then show or hide one name. `focusMove` lands on the matching control.
+
+The parlour games add three picture pieces: `die(face, counts)` (the Liar's Dice
+SVG die, ringed with "counts" or "wild" as in a reveal), `housieCell(value,
+stamped)` (a ticket square, stamped with a tick) and `housieBall(value)` (the
+number just called), plus a `flame` icon for burning building. No lesson shows
+an 18+ prompt or fate; Truth or Dare's lesson speaks of "three different fates".

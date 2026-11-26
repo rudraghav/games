@@ -31,7 +31,7 @@ import {
   teamGames,
   teamsNote,
 } from '@/features/lounge/catalogue-search';
-import { browseGames, occasionGames, occasions } from '@/features/lounge/occasions';
+import { browseGames, occasionGames, occasions, quickBotPicks } from '@/features/lounge/occasions';
 import { ContinueLine, gamesInProgress } from '@/features/lounge/ContinueLine';
 import { GameLibrary } from '@/features/lounge/GameLibrary';
 import { InvitationList } from '@/features/lounge/Invitations';
@@ -597,21 +597,26 @@ describe('occasions and the team picks', () => {
     expect(ids('all').slice(0, 4)).toEqual(['the-gang', 'shithead', 'sea-salt-paper', 'boop']);
     expect(ids('all')).toEqual(findGames(games, '', 0, 'all').map((game) => game.id));
   });
-  it('Quick with bots: bots supported and twenty minutes at most', () => {
+  it('Quick with bots: bots supported and twenty minutes at most, plus the quick-turn picks', () => {
     expect(ids('quick-bots').sort()).toEqual(
-      ['blackjack', 'four-in-a-row', 'mancala', 'trio', 'uno'].sort(),
+      ['blackjack', 'bluff', 'four-in-a-row', 'liars-dice', 'mancala', 'trio', 'uno'].sort(),
     );
     for (const id of ids('quick-bots')) {
       const game = games.find((item) => item.id === id)!;
       expect(game.botsSupported).toBe(true);
-      expect(gameMinutes(game).longest).toBeLessThanOrEqual(20);
+      if (!quickBotPicks.includes(id)) expect(gameMinutes(game).longest).toBeLessThanOrEqual(20);
     }
+    expect(ids('quick-bots')).not.toContain('housie');
+    expect(ids('quick-bots')).not.toContain('truth-or-dare');
   });
   it('With friends: party-shelf games that seat four or more', () => {
     const friends = ids('friends');
     expect(friends).toEqual(expect.arrayContaining(['most-likely', 'hot-seat', 'spill-or-chill']));
     expect(friends).toEqual(expect.arrayContaining(['uno', 'flip-7', 'six-nimmt', 'word-agents']));
     expect(friends).not.toContain('secret-santa');
+    expect(friends).toEqual(
+      expect.arrayContaining(['housie', 'truth-or-dare', 'liars-dice', 'bluff']),
+    );
     for (const id of friends)
       expect(games.find((item) => item.id === id)!.maxPlayers).toBeGreaterThanOrEqual(4);
   });
@@ -642,6 +647,7 @@ describe('occasions and the team picks', () => {
       'sea-salt-paper',
       'azul',
       'gem-market',
+      'housie',
     ]);
     expect(ids('teams')).toEqual(teamGames);
     expect(findGames(games, '', 0, 'teams').map((game) => game.id)).toEqual(teamGames);
@@ -668,6 +674,8 @@ describe('occasions and the team picks', () => {
       'shithead',
       'uno-no-mercy',
       'deal-no-mercy',
+      // Personal prompts, and an 18+ edition behind a setting.
+      'truth-or-dare',
     ])
       expect(teamGames).not.toContain(out);
   });
@@ -754,7 +762,7 @@ describe('the home library', () => {
       'game-rail-tile',
     ])
       expect(html).not.toContain(gone);
-    expect(html).toContain('>30 games</p>');
+    expect(html).toContain('>34 games</p>');
   });
   it('features Pop Tarot only in the default view, and as an ordinary tile elsewhere', () => {
     const featured = renderToStaticMarkup(<GameLibrary />).match(
@@ -795,7 +803,15 @@ describe('the home library', () => {
   it('opens with the occasion it was asked for', () => {
     const quick = renderToStaticMarkup(<GameLibrary preset="quick-bots" />);
     expect(quick).toContain('<button type="button" aria-pressed="true">Quick with bots</button>');
-    expect(tiles(quick).sort()).toEqual(['Blackjack', 'Four in a Row', 'Mancala', 'Trio', 'Uno']);
+    expect(tiles(quick).sort()).toEqual([
+      'Blackjack',
+      'Bluff',
+      'Four in a Row',
+      'Liar’s Dice',
+      'Mancala',
+      'Trio',
+      'Uno',
+    ]);
     // These open ready to play against bots, and say so.
     expect(quick).toContain('href="/games/uno?mode=bots"');
     expect(quick).toContain('You + bots · 10–20 min');

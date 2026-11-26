@@ -332,6 +332,26 @@ test('two guests browse every setup, join a private room and play with the real 
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
           true,
         );
+        if (game.settings.some((rule) => rule.key === 'adults_only')) {
+          // The 18+ edition cannot be created until the host confirms everyone is an adult.
+          await openRoomOptions(dialog);
+          const adults = dialog.getByRole('checkbox', {
+            name: 'Everyone in this room is 18 or older',
+            exact: true,
+          });
+          await expect(adults).toHaveCount(0);
+          await dialog
+            .getByRole('checkbox', { name: 'Naughty edition (18+)', exact: true })
+            .check();
+          await expect(adults).toBeVisible();
+          await expect(submit).toBeDisabled();
+          await adults.check();
+          await expect(submit).toBeEnabled();
+          await dialog
+            .getByRole('checkbox', { name: 'Naughty edition (18+)', exact: true })
+            .uncheck();
+          await expect(adults).toHaveCount(0);
+        }
         await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
         counts.inspectedGameDialogs++;
       }

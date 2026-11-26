@@ -38,6 +38,12 @@
 @import './ticket.css';
 @import './home.css';
 @import './rewards.css';
+/* Housie, Liar's Dice, Bluff and Truth or Dare. */
+@import './parlour-games.css';
+@import './housie.css';
+@import './liars-dice.css';
+@import './bluff.css';
+@import './truth-or-dare.css';
 @theme static {
   --color-canvas: #f6f3ed;
   --color-surface: #fffcf7;

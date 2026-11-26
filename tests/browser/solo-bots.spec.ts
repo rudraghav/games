@@ -448,7 +448,8 @@ test('one human plays every multiplayer game with the real bot driver', async ({
         }
       });
     }
-    expect(summaries.length).toBe(filter?.length || 25);
+    // Every multiplayer game: 30 since Housie, Liar's Dice, Bluff and Truth or Dare.
+    expect(summaries.length).toBe(filter?.length || 30);
     run.complete = true;
   } catch (error) {
     failure = error instanceof Error ? error.name : 'Unknown failure';

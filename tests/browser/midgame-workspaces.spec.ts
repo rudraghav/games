@@ -108,7 +108,9 @@ test('selecting a mid-game card keeps the public table and hand in place', async
   test.setTimeout(120000);
   const selected = new Set<string>();
   for (const item of midgameScenarios.filter((entry) =>
-    ['uno', 'uno-no-mercy', 'deal', 'deal-no-mercy', 'rummy', 'shithead'].includes(entry.game),
+    ['uno', 'uno-no-mercy', 'deal', 'deal-no-mercy', 'rummy', 'shithead', 'bluff'].includes(
+      entry.game,
+    ),
   )) {
     const key = `${item.game}:${item.seats}:${item.room.game!.phase}`;
     if (selected.has(key)) continue;
@@ -158,6 +160,12 @@ test('legal split, insurance, declaration, challenge and round-closing continuat
     ['boop', 'graduate'],
     ['sea-salt-paper', 'steal'],
     ['deal-no-mercy', 'keep'],
+    // The parlour games: a claim offered off-turn, a call on the dice, a called
+    // play and three fates set one row at a time.
+    ['housie', 'claim'],
+    ['liars-dice', 'call_liar'],
+    ['bluff', 'call_bluff'],
+    ['truth-or-dare', 'assign'],
   ];
   for (const [game, action] of required) {
     const item = midgameScenarios.find(
@@ -189,6 +197,22 @@ test('legal split, insurance, declaration, challenge and round-closing continuat
         .getByRole('group', { name: 'Keep one, hand out the rest', exact: true })
         .getByRole('button', { name: new RegExp('^Keep ' + name) })
         .click();
+    } else if (game === 'truth-or-dare') {
+      const detail = item!.room.game!.detail as {
+        fates: string[];
+        prompt: { candidates: { label: string | null; player: string | null }[] };
+      };
+      const choice = item!.next.action.choice!;
+      for (const [index, candidate] of detail.prompt.candidates.entries()) {
+        const name =
+          candidate.label ??
+          item!.room.members.find((member) => member.id === candidate.player)!.name;
+        await page
+          .getByRole('group', { name, exact: true })
+          .getByRole('radio', { name: detail.fates[Number(choice[index])], exact: true })
+          .check();
+      }
+      await page.getByRole('button', { name: 'Confirm fates', exact: true }).click();
     } else {
       await page.getByRole('button', { name: move.label, exact: true }).click();
     }

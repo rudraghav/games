@@ -47,7 +47,12 @@ def choose(view, randomizer):
     if option.input == "amount":
         action = action.model_copy(update={"amount": option.minimum})
     elif option.input == "cards":
-        action = action.model_copy(update={"cards": option.eligible_cards})
+        cards = option.eligible_cards
+        if view.game_id == "bluff":
+            # A Bluff play is one to four cards of the hand, never the whole
+            # eligible list, so the generic "submit everything" is not legal here.
+            cards = randomizer.sample(cards, randomizer.randint(option.minimum, option.maximum))
+        action = action.model_copy(update={"cards": cards})
     elif option.input == "text":
         action = action.model_copy(update={"choice": "galactic"})
     return action

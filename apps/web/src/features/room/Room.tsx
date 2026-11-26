@@ -40,6 +40,8 @@ import { describeMove, latestMove } from './move-description';
 import { useMediaQuery } from '@/shared/use-media-query';
 import { forgetRoomMembership } from '@/shared/player-query';
 import { gamePath, roomPath } from '@/shared/game-paths';
+import { adultsOnly, useAdultsOnlyConsent } from '@/shared/adults-only';
+import { AdultsOnlyGate } from './AdultsOnlyGate';
 import './room-rules.css';
 
 /** The shortest time a failed-move note stays up once the table has moved on. */
@@ -59,6 +61,8 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
   const selfId = me.data?.profile?.id || '';
   const guidePreference = useGuideEnabled(room?.matchId, selfId);
   const openedRulesFromCoach = useRef(false);
+  // A room with the 18+ edition asks this tab once before showing anything of it.
+  const [adultsConfirmed, confirmAdults] = useAdultsOnlyConsent(id);
   useEffect(() => {
     // A slug is navigation context, never permission or authority over the game.
     // Resolve legacy and stale links only from a successful member-only read.
@@ -147,6 +151,22 @@ export function RoomScreen({ id, tutorialMatchId }: { id: string; tutorialMatchI
       </main>
     );
   const game = gameById(room.gameId);
+  if (adultsOnly(room.settings) && !adultsConfirmed)
+    return (
+      <AdultsOnlyGate
+        gameName={game.name}
+        onContinue={confirmAdults}
+        leaving={mutation.isPending}
+        onLeave={() =>
+          mutation.mutate(() => api.leave(id), {
+            onSuccess: async () => {
+              await forgetRoomMembership(cache, id);
+              router.push('/');
+            },
+          })
+        }
+      />
+    );
   const solo = game.maxPlayers === 1;
   const reading = game.id === 'tarot';
   // One organiser sets up a draw for people who never join the room.

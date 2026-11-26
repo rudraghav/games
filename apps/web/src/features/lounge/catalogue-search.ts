@@ -43,6 +43,7 @@ const families: Record<Category, readonly string[]> = {
     'cooperative-poker',
     'number-rows',
     'paper',
+    'bluff',
   ],
   casino: ['casino'],
   boards: ['board', 'mancala', 'gems', 'azul', 'boop'],
@@ -57,6 +58,10 @@ const families: Record<Category, readonly string[]> = {
     'cooperative-poker',
     'number-rows',
     'organiser',
+    'housie',
+    'dice',
+    'bluff',
+    'truth-dare',
   ],
   // For teams is a hand-picked list of games, not a set of families: see `teamGames`.
   teams: [],
@@ -79,6 +84,8 @@ const families: Record<Category, readonly string[]> = {
  *   elimination variants that leave colleagues watching (the No Mercy decks).
  *
  * Secret Santa is included as the organiser's tool for a team gift exchange.
+ * Housie is in: numbers and a ticket, the office-party classic. Truth or Dare is
+ * kept out on purpose, even in its friendly edition: its prompts are personal.
  */
 export const teamGames: readonly string[] = [
   'most-likely',
@@ -93,6 +100,7 @@ export const teamGames: readonly string[] = [
   'sea-salt-paper',
   'azul',
   'gem-market',
+  'housie',
 ];
 /** The honest line shown wherever the team picks are. */
 export const teamsNote =
@@ -148,6 +156,10 @@ const aliases: Record<string, string> = {
   shithead: 'shit head palace china hand ten two slide shedding',
   'secret-santa':
     'secret santa gift exchange draw names drawnames name draw kris kringle kriskindle christmas xmas presents organiser organizer party group',
+  housie: 'tambola bingo lotto numbers ticket full house caller',
+  'liars-dice': 'liars dice perudo dudo cup bidding call liar',
+  bluff: 'cheat i doubt it bs face down cards call bluff',
+  'truth-or-dare': 'truth dare questions dares party burning building spin the bottle',
 };
 function searchableText(value: string) {
   return value

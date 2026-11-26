@@ -54,3 +54,11 @@ page's header carries `ProgressChip`: the level ring, "Level N" and a flame
 with the day count while a streak exists, as one link to `/rewards`. It reads
 progress with the passive client, only for a player this browser knows, and
 draws nothing for someone with no finished game.
+
+`adults-only.ts` holds the 18+ edition rules shared by `RoomDialog` and the room
+page. `adultsGate(mode, gameSettings, settings, confirmed)` says whether Create
+room or Room settings uses the edition and whether the submit stays disabled
+until the host ticks "Everyone in this room is 18 or older" (shown under the
+"Naughty edition (18+)" toggle). `rememberAdultsOnly(roomId)` stores a tab-only
+confirmation in `sessionStorage`; `useAdultsOnlyConsent(roomId)` reads it as
+React state and is never confirmed during server rendering.

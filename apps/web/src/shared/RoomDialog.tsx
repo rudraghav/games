@@ -15,6 +15,7 @@ import { botNameProblem, emptyBotRows, type BotRow } from './bot-seats';
 import { createRoomInput, setupBotCount, startsImmediately } from './room-setup';
 import { BotPlayersFields } from './BotPlayersFields';
 import { RoomCodeField } from './RoomCodeField';
+import { ADULTS_ONLY, adultsGate, rememberAdultsOnly } from './adults-only';
 
 interface RoomDialogProps {
   open: boolean;
@@ -60,6 +61,8 @@ export function RoomDialog({
       : Math.min(4, gameById(gameId).maxPlayers),
   );
   const [settings, setSettings] = useState<Record<string, boolean>>({});
+  // The 18+ edition needs the host to confirm everyone in the room is an adult.
+  const [adultsConfirmed, setAdultsConfirmed] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
   const game = gameById(selectedGame);
@@ -71,10 +74,16 @@ export function RoomDialog({
   const bots = botRows.slice(0, botCount);
   const botProblem = botCount ? botNameProblem(bots, displayName) : null;
   const autoStart = mode === 'create' && startsImmediately(choice);
+  const { wanted: wantsAdults, blocked: adultsBlocked } = adultsGate(
+    mode,
+    game.settings,
+    settings,
+    adultsConfirmed,
+  );
   async function submit(event: FormEvent) {
     event.preventDefault();
     // The clash is already explained beside the bot names.
-    if (botProblem) return;
+    if (botProblem || adultsBlocked) return;
     setPending(true);
     setError('');
     try {
@@ -103,6 +112,8 @@ export function RoomDialog({
           room = await api.room(room.id).catch(() => room);
         }
       }
+      // The host already confirmed the 18+ edition here; the room won't ask them again.
+      if (wantsAdults) rememberAdultsOnly(room.id);
       rememberPlayer(displayName.trim(), chosenAvatar);
       cache.setQueryData(keys.room(room.id), room);
       // Room entry already committed. A failed identity read must lead to the
@@ -164,6 +175,7 @@ export function RoomDialog({
                     setSelectedGame(next.id);
                     setCapacity(Math.max(next.minPlayers, Math.min(capacity, next.maxPlayers)));
                     setSettings({});
+                    setAdultsConfirmed(false);
                   }}
                 >
                   {games.map((item) => (
@@ -321,19 +333,38 @@ export function RoomDialog({
                 </label>
               ) : null}
               {game.settings.map((setting) => (
-                <label className="toggle-row" key={setting.key}>
-                  <input
-                    type="checkbox"
-                    checked={settings[setting.key] ?? setting.default}
-                    onChange={(event) =>
-                      setSettings({ ...settings, [setting.key]: event.target.checked })
-                    }
-                  />
-                  {setting.label}
-                </label>
+                <div className="room-setting" key={setting.key}>
+                  <label className="toggle-row">
+                    <input
+                      type="checkbox"
+                      checked={settings[setting.key] ?? setting.default}
+                      onChange={(event) => {
+                        setSettings({ ...settings, [setting.key]: event.target.checked });
+                        if (setting.key === ADULTS_ONLY) setAdultsConfirmed(false);
+                      }}
+                    />
+                    {setting.label}
+                  </label>
+                  {setting.key === ADULTS_ONLY && wantsAdults ? (
+                    <label className="toggle-row adults-confirm">
+                      <input
+                        type="checkbox"
+                        required
+                        checked={adultsConfirmed}
+                        onChange={(event) => setAdultsConfirmed(event.target.checked)}
+                      />
+                      Everyone in this room is 18 or older
+                    </label>
+                  ) : null}
+                </div>
               ))}
             </div>
           </details>
+        ) : null}
+        {adultsBlocked ? (
+          <p className="small muted" role="status">
+            Confirm everyone in this room is 18 or older to use the 18+ edition.
+          </p>
         ) : null}
         {error ? (
           <p className="error-note" role="alert">
@@ -344,7 +375,7 @@ export function RoomDialog({
           <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
-          <Button type="submit" pending={pending}>
+          <Button type="submit" pending={pending} disabled={adultsBlocked}>
             {mode === 'join'
               ? 'Join the room'
               : mode === 'configure'

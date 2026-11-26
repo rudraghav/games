@@ -64,6 +64,26 @@ export const rulebookTopics: Record<string, RuleTopic[]> = {
     [2, 'Drawing and sharing'],
     [4, 'Privacy and redrawing'],
   ],
+  housie: [
+    [0, 'Tickets and calling'],
+    [2, 'Marking and claiming'],
+    [4, 'Sharing and scores'],
+  ],
+  'liars-dice': [
+    [0, 'Dice and bids'],
+    [3, 'Calling liar and wild ones'],
+    [5, 'Rounds and winning'],
+  ],
+  bluff: [
+    [0, 'Playing face down'],
+    [3, 'Calling bluff'],
+    [5, 'Passing and going out'],
+  ],
+  'truth-or-dare': [
+    [0, 'Choosing and answering'],
+    [2, 'Burning building and swaps'],
+    [4, 'Scoring, turns and editions'],
+  ],
   'four-in-a-row': [
     [0, 'Dropping a disc'],
     [1, 'Wins and draws'],

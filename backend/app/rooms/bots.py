@@ -15,6 +15,9 @@ BOT_REVIEW_DELAY_SECONDS = {
     "next_prompt": 6.0,  # Party games: the prompt's reveal and points
     "next_round": 8.0,  # Round summaries: Skyjo, Flip 7, Azul, Sea Salt & Paper, 6 nimmt!
     "next_heist": 8.0,  # The Gang: revealed hands and the heist result
+    "next": 6.0,  # Truth or Dare: the three burning-building fates
+    # Housie: a bot caller leaves each number up long enough to find, mark and claim.
+    "call_number": 3.0,
 }
 # A person who has just reached one card gets a fair chance to call UNO before
 # any bot may catch them. Catching stays an ordinary, legal engine action.
@@ -42,6 +45,13 @@ def next_bot_view(
     # ordinary turn/catch. The one-card count and action are already authorized.
     for bot_id, view in eligible:
         if any(option.action.type == "uno" for option in view.actions):
+            return bot_id, view
+    # Housie: tickets are marked and prizes claimed before a bot calls again, so a
+    # bot's claim lands on the call that earned it. All are that bot's own legal moves.
+    for bot_id, view in eligible:
+        if view.game_id == "housie" and any(
+            option.action.type != "call_number" for option in view.actions
+        ):
             return bot_id, view
     for bot_id, view in eligible:
         if view.current_player == bot_id:

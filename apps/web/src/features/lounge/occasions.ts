@@ -16,6 +16,9 @@ export const occasions = [
 ] as const;
 export type Occasion = (typeof occasions)[number]['value'];
 
+/** Longer matches made of quick turns that play well against bots. */
+export const quickBotPicks: readonly string[] = ['liars-dice', 'bluff'];
+
 const byDiscovery = (a: Game, b: Game) => discoveryRank(a.id) - discoveryRank(b.id);
 
 /**
@@ -24,7 +27,8 @@ const byDiscovery = (a: Game, b: Game) => discoveryRank(a.id) - discoveryRank(b.
  *
  * - All: the whole catalogue in discovery order.
  * - Quick with bots: bots can fill the seats and the longest listed length is
- *   20 minutes or less.
+ *   20 minutes or less, plus the hand-picked `quickBotPicks`, whose matches run
+ *   longer but whose turns are quick and play well against bots.
  * - With friends: the party shelf's games that seat four or more.
  * - Two players: playable by exactly two, the games made for two first.
  * - Solo: nobody else needed (the organiser's tool is not a solo game).
@@ -34,7 +38,11 @@ export function occasionGames(occasion: Occasion, games: readonly Game[]): Game[
   switch (occasion) {
     case 'quick-bots':
       return games
-        .filter((game) => game.botsSupported && gameMinutes(game).longest <= 20)
+        .filter(
+          (game) =>
+            game.botsSupported &&
+            (gameMinutes(game).longest <= 20 || quickBotPicks.includes(game.id)),
+        )
         .sort(byDiscovery);
     case 'friends':
       return games

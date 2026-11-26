@@ -70,6 +70,21 @@ export {
 } from './casino-details';
 export { sheddingDetails } from './shedding-details';
 export { shitheadDetails } from './shithead-details';
+export {
+  housieDetails,
+  type HousieDetails,
+  type HousiePrizeKey,
+} from './housie-details';
+export { liarsDiceDetails, type LiarsDiceDetails, type LiarsDiceBid } from './liars-dice-details';
+export { bluffDetails, bluffRanks, type BluffDetails, type BluffRank } from './bluff-details';
+export {
+  truthOrDareDetails,
+  assignmentChoice,
+  fateAssignments,
+  type TruthOrDareDetails,
+  type TruthOrDareKind,
+  type TruthOrDareCandidate,
+} from './truth-or-dare-details';
 export { dealDetails, type DealGroup, type DealDetails } from './deal-details';
 export {
   santaDetails,

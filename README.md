@@ -12,8 +12,10 @@ The catalogue contains Uno, Uno No Mercy, Monopoly Deal, Monopoly Deal No Mercy,
 Texas Hold'em, Indian 13-card rummy, Teen Patti, blackjack, Skyjo and solo Pop
 Tarot, Four in a Row, Reversi, Word Agents, Gem Market, Checkers, Mancala,
 Flip 7, Trio, Azul, Spill or Chill, Most Likely, Hot Seat, The Gang, 6 nimmt!,
-Sea Salt & Paper, boop., Shithead, single-zero Roulette, three-reel Slots and a
-Secret Santa name draw for one organiser: **30 experiences**. All 78 Tarot cards
+Sea Salt & Paper, boop., Shithead, Housie (Tambola), Liar's Dice, Bluff (Cheat),
+Truth or Dare, single-zero Roulette, three-reel Slots and a Secret Santa name
+draw for one organiser: **34 experiences**. Truth or Dare has an optional 18+
+edition that a host must confirm and every joining player must accept. All 78 Tarot cards
 have original pop-art illustrations and an explorable deck. Fresh personal
 Gemini readings give each card a grounded interpretation, a quirky take and
 one or two explained character parallels. Existing saved readings stay intact.

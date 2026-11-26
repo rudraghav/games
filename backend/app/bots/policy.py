@@ -9,6 +9,7 @@ from app.bots.casino import casino_action
 from app.bots.context import BotDecision, Context
 from app.bots.modern import forget_plan, modern_action, observe_modern
 from app.bots.palace import palace_action
+from app.bots.parlour import parlour_action
 from app.bots.words import word_action
 from app.core.contracts import Action, GameView, LegalAction, RuleError
 
@@ -28,6 +29,7 @@ STEADY_ACTIONS = frozenset(
         "next_prompt",
         "next_selection",
         "next_heist",
+        "next",
         "reveal_hand",
         "reveal_mermaids",
         # Calling or catching UNO.
@@ -76,6 +78,10 @@ BOT_GAMES = frozenset(
         "sea-salt-paper",
         "boop",
         "shithead",
+        "housie",
+        "liars-dice",
+        "bluff",
+        "truth-or-dare",
     }
 )
 
@@ -149,6 +155,7 @@ def choose_action(
         or casino_action(ctx)
         or modern_action(ctx)
         or palace_action(ctx)
+        or parlour_action(ctx)
         or word_action(ctx)
     )
     if action is None:

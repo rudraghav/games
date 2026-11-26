@@ -769,5 +769,139 @@
       "Send each person their private link, or pass the phone round and show one name at a time.",
       "You never see the full list. Changing the people means drawing again, which replaces every link."
     ]
+  },
+  {
+    "id": "housie",
+    "name": "Housie",
+    "subtitle": "Mark your ticket and claim the prizes",
+    "family": "housie",
+    "min_players": 2,
+    "max_players": 10,
+    "minutes": "10\u201325",
+    "icon": "grid",
+    "color": "ochre",
+    "bots_supported": true,
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
+    "rules_version": "friendly-1",
+    "settings": [
+      {
+        "key": "auto_mark",
+        "label": "Mark called numbers for me",
+        "default": true
+      }
+    ],
+    "rules": [
+      "Also known as Tambola. Everyone holds one ticket: three rows of nine, fifteen numbers, five in each row.",
+      "Numbers 1 to 90 are called one at a time and never repeat. Players take turns calling the next number.",
+      "Mark called numbers on your ticket. With \u201cMark called numbers for me\u201d on, your ticket is marked for you.",
+      "Claim a prize when your marked numbers complete it: Early five (any five), Top line, Middle line, Bottom line, Full house (all fifteen).",
+      "Each prize is won once, by the first claim. Anyone else who claims it before the next number is called shares it, and each sharer scores it in full.",
+      "A prize nobody has won can still be claimed on any later call.",
+      "Early five scores 1, each line 2 and Full house 5. Full house ends the match; every ticket complete on that call shares it.",
+      "Most points wins. Equal highest scores share the win."
+    ]
+  },
+  {
+    "id": "liars-dice",
+    "name": "Liar\u2019s Dice",
+    "subtitle": "Bid on hidden dice and call the liar",
+    "family": "dice",
+    "min_players": 2,
+    "max_players": 6,
+    "minutes": "10\u201325",
+    "icon": "circle-dot",
+    "color": "plum",
+    "bots_supported": true,
+    "play_mode": "competitive",
+    "score_label": "Dice left",
+    "score_order": "high",
+    "rules_version": "friendly-1",
+    "settings": [
+      {
+        "key": "wild_ones",
+        "label": "Ones are wild",
+        "default": true
+      }
+    ],
+    "rules": [
+      "Everyone starts with five dice. Each round all dice are rolled and you see only your own.",
+      "On your turn, raise the bid or call liar. A bid names a quantity and a face: how many dice of that face are on the whole table.",
+      "A raise is a higher quantity of any face, or the same quantity of a higher face.",
+      "Call liar and every die is shown. If the bid is met, the caller loses a die; if not, the bidder loses one.",
+      "With \u201cOnes are wild\u201d on, ones count as any face. A bid on ones itself counts only ones.",
+      "Whoever lost the die starts the next round. A player with no dice is out; the next player still in starts instead.",
+      "The last player with dice wins."
+    ]
+  },
+  {
+    "id": "bluff",
+    "name": "Bluff",
+    "subtitle": "Shed your cards face down and call the bluffs",
+    "family": "bluff",
+    "min_players": 2,
+    "max_players": 6,
+    "minutes": "15\u201330",
+    "icon": "spade",
+    "color": "sky",
+    "bots_supported": true,
+    "play_mode": "competitive",
+    "score_label": "Cards left",
+    "score_order": "low",
+    "rules_version": "friendly-1",
+    "settings": [],
+    "rules": [
+      "Also known as Cheat. All 52 cards are dealt out. Be the first to get rid of yours.",
+      "Whoever starts a round plays one to four cards face down and says what rank they are. They need not tell the truth.",
+      "Each next player plays one to four cards as that same rank, passes, or calls bluff on the last play.",
+      "On a call only the last play is turned over. If every card is the declared rank the caller takes the whole pile; otherwise the player who bluffed takes it.",
+      "Whoever took the pile does not start. The other of the two starts a new round with any rank.",
+      "If everyone else passes after a play, the pile is set aside face down and the last player who played starts a new round.",
+      "Playing your last cards wins once that play stands: the next player plays or passes, or calls and finds it honest."
+    ]
+  },
+  {
+    "id": "truth-or-dare",
+    "name": "Truth or Dare",
+    "subtitle": "Answer honestly, take the dare, or save one from the fire",
+    "family": "truth-dare",
+    "min_players": 2,
+    "max_players": 10,
+    "minutes": "10\u201325",
+    "icon": "flame",
+    "color": "coral",
+    "bots_supported": true,
+    "play_mode": "competitive",
+    "score_label": "Points",
+    "score_order": "high",
+    "rules_version": "house-1",
+    "settings": [
+      {
+        "key": "adults_only",
+        "label": "Naughty edition (18+)",
+        "default": false
+      },
+      {
+        "key": "burning_building",
+        "label": "Burning building rounds",
+        "default": true
+      },
+      {
+        "key": "name_players",
+        "label": "Burning building can name players in this room",
+        "default": false
+      }
+    ],
+    "rules": [
+      "Take turns. On your turn choose truth, dare or, when it is on, burning building. Everyone sees the prompt that is drawn.",
+      "Truth or dare: answer or do it out loud, then mark it done. You can always pass; a pass scores nothing and costs nothing.",
+      "Burning building: three candidates, three different fates. Give each candidate one fate. Everyone sees your choice.",
+      "Once per match you may swap the prompt you drew for another of the same kind.",
+      "A truth done scores 1, a dare done 2 and a burning-building choice 1.",
+      "Everyone gets the same number of turns: four with 2 to 4 players, three with 5 to 7, two with 8 to 10. No prompt repeats in a match.",
+      "Most points wins. Equal highest scores share the win.",
+      "The naughty edition is for adults only and uses a separate deck and blunter fates. Any dare involving another player needs that player's yes."
+    ]
   }
 ]

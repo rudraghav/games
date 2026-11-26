@@ -255,3 +255,21 @@ first badge on `/rewards`, the server's 409 for a locked reward, then redeems
 and wears the Gold frame, and a second guest sees it on the host's lobby seat
 and sees it go when it is taken off. It closes its three rooms from
 `afterEach`.
+
+`housie.spec.ts`, `liars-dice.spec.ts`, `bluff.spec.ts` and
+`truth-or-dare.spec.ts` cover the parlour games on both device projects. Each
+plays a real two-person room in two browser contexts through a meaningful part
+of a match with secrecy checks (the other ticket, the uncalled numbers, the
+other player's dice or hand and the face-down pile never appear in the DOM or
+the room JSON; Truth or Dare's friendly edition never shows an 18+ prompt or
+fate), then one person against bots to the end. Truth or Dare also covers the
+18+ gate: the create dialog's required confirmation and the joining player's
+one-time "This room uses the 18+ edition. Continue?". Every test closes its
+rooms, also from `afterEach`. The catalogue-wide specs know them too: a mobile
+tutorial driver per game (`<game>-tutorial-player.ts`, wired in
+`tutorial-depth.spec.ts`), short terminating policies in `fullmatch-player.ts`,
+30 multiplayer games in `solo-bots.spec.ts`, per-seat secrecy in `hosted.spec.ts`,
+recorded continuations (a claim, Call liar, Call bluff and three fates) and Bluff
+card selection in `midgame-workspaces.spec.ts`, the 18+ confirmation in
+`dashboard-live.spec.ts` and the absence of 18+ text on the public page in
+`game-entry.spec.ts`.

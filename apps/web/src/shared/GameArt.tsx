@@ -13,6 +13,7 @@ import { ModernArtwork } from './ModernArtwork';
 import { PartyArtwork } from './PartyArtwork';
 import { ContemporaryArtwork } from './ContemporaryArtwork';
 import { SantaArtwork } from './SantaArtwork';
+import { ParlourArtwork } from './ParlourArtwork';
 import { Flame } from 'lucide-react';
 
 function card(
@@ -68,6 +69,8 @@ export function GameArt({ game }: { game: Game }) {
   if (['flip-7', 'trio', 'azul'].includes(game.id)) return <ModernArtwork gameId={game.id} />;
   if (game.family === 'party') return <PartyArtwork gameId={game.id} />;
   if (game.family === 'organiser') return <SantaArtwork />;
+  if (['housie', 'liars-dice', 'bluff', 'truth-or-dare'].includes(game.id))
+    return <ParlourArtwork gameId={game.id} />;
   if (game.id === 'checkers')
     return (
       <div className="game-art game-art--checkers" aria-hidden="true">

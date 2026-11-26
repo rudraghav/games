@@ -159,6 +159,12 @@ test('all game pages are public, readable and browse without creating a guest or
       await expect(
         page.getByRole('button', { name: 'Play with friends', exact: true }),
       ).toBeVisible();
+    if (game.id === 'truth-or-dare') {
+      // The public page describes the 18+ edition but never shows its fates or prompts.
+      await page.getByRole('button', { name: 'Rules & tutorial', exact: true }).click();
+      const text = await page.locator('body').innerText();
+      for (const word of ['Fuck', 'Kill']) expect(text).not.toContain(word);
+    }
     await fits(page);
   }
   if (info.project.name === 'phone') {

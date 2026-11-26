@@ -37,12 +37,16 @@ export type PicturePiece =
         | 'bank'
         | 'vault'
         | 'crown'
+        | 'flame'
         | 'arrow';
       label: string;
     }
   | { kind: 'full-number-row'; numbers: [number, number, number, number, number, number] }
   | { kind: 'number'; value: number; horns: number }
-  | { kind: 'board'; rows: string[]; checkered: boolean };
+  | { kind: 'board'; rows: string[]; checkered: boolean }
+  | { kind: 'die'; face: number; counts: 'face' | 'wild' | null }
+  | { kind: 'housie-cell'; value: number; stamped: boolean }
+  | { kind: 'housie-ball'; value: number };
 
 export type LessonPicture = { description: string; pieces: PicturePiece[]; column?: boolean };
 export const picture = (description: string, ...pieces: PicturePiece[]): LessonPicture => ({
@@ -124,3 +128,17 @@ export const board = (rows: string[], checkered = false): PicturePiece => ({
   checkered,
 });
 export const arrow = icon('arrow');
+/** A die face; `counts` rings it as it is ringed in a Liar's Dice reveal. */
+export const die = (face: number, counts: 'face' | 'wild' | null = null): PicturePiece => ({
+  kind: 'die',
+  face,
+  counts,
+});
+/** One number square of a Housie ticket, stamped once it is marked. */
+export const housieCell = (value: number, stamped = false): PicturePiece => ({
+  kind: 'housie-cell',
+  value,
+  stamped,
+});
+/** The number just called. */
+export const housieBall = (value: number): PicturePiece => ({ kind: 'housie-ball', value });

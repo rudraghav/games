@@ -628,3 +628,37 @@ them without competing.
   1,770px tall at 1440x900 (the featured card and two rows of tiles on the
   first screen) and about 3,150px at 390x844 (the featured card and the first
   row on the first screen).
+
+## Parlour games (Housie, Liar's Dice, Bluff, Truth or Dare)
+
+Styles live in `packages/ui/src/styles/parlour-games.css` (covers) and one file
+per table (`housie.css`, `liars-dice.css`, `bluff.css`, `truth-or-dare.css`); no
+new tokens. Covers (`ParlourArtwork`) are original inline SVGs: a ticket with
+stamped numbers and a called ball, dice under a tipped cup, a fan of face-down
+cards with one turned over, and a bottle with a small flame. Each table follows
+the shared table shell (player strip, turn notice, one decision dock with one
+filled button) and the folder README describes it in detail.
+
+- **Housie ticket**: a 3 × 9 grid on ochre. A marked number carries a coral ring
+  and a tick badge and says "marked" to screen readers (never colour alone).
+  With auto-mark off, a called unmarked number has a dashed ring, and a
+  full-size **Mark N** button sits under the ticket, because a ticket square is
+  under 44px on a phone. Prizes are chips that become **Claim …** buttons when
+  claimable and say "Won by …" afterwards. The 1–90 board is a disclosure.
+- **Dice**: `games/liars-dice/Die` draws an original SVG die whose pips are the
+  art; its accessible name says the face. In a reveal a die that counts gets a
+  ring and the word "counts" or "wild". The bid builder is six face buttons, a
+  − / + stepper bounded by the offered range and one filled **Bid N × faces**.
+  The lessons reuse the same die.
+- **Bluff**: the shared standard faces and `Hand`; a selected card lifts without
+  covering its neighbour's corner. A round's starter declares from 13 rank
+  buttons ("Aces" … "Kings"). The pile is a face-down `CardPile` with its count.
+- **Truth or Dare**: the prompt is the one shadowed card, labelled Truth, Dare
+  or Burning building in words with an icon. Fates are one fieldset per
+  candidate with three radio options whose native input covers the whole 44px
+  option; the dot is drawn beside the word and fills when checked. Picking a
+  fate another row holds swaps the two rows. An "18+" badge marks the naughty
+  edition on the table and in the lobby.
+- **18+ gate**: a required checkbox under the setting in the room dialog, and a
+  full-page confirmation (`features/room/AdultsOnlyGate`) with one filled
+  **Continue** and a quiet **Leave the room**.

@@ -2,6 +2,7 @@ from app.bots import supports_bots
 from app.core.contracts import Engine
 from app.games.azul.engine import AzulEngine
 from app.games.blackjack.engine import BlackjackEngine
+from app.games.bluff.engine import BluffEngine
 from app.games.board.checkers import CheckersEngine
 from app.games.board.four import FourEngine
 from app.games.board.mancala import MancalaEngine
@@ -11,6 +12,8 @@ from app.games.deal.engine import DealEngine
 from app.games.flip_seven.engine import FlipSevenEngine
 from app.games.gem_market.engine import GemMarketEngine
 from app.games.holdem.engine import HoldemEngine
+from app.games.housie.engine import HousieEngine
+from app.games.liars_dice.engine import LiarsDiceEngine
 from app.games.party.engine import PartyEngine
 from app.games.roulette.engine import RouletteEngine
 from app.games.rummy.engine import RummyEngine
@@ -24,6 +27,7 @@ from app.games.tarot.engine import TarotEngine
 from app.games.teen_patti.engine import TeenPattiEngine
 from app.games.the_gang.engine import GangEngine
 from app.games.trio.engine import TrioEngine
+from app.games.truth_or_dare.engine import TruthOrDareEngine
 from app.games.uno.engine import UnoEngine
 from app.games.word_agents.engine import WordAgentsEngine
 
@@ -58,6 +62,10 @@ ALL_ENGINES: list[Engine] = [
     BoopEngine(),
     ShitheadEngine(),
     SecretSantaEngine(),
+    HousieEngine(),
+    LiarsDiceEngine(),
+    BluffEngine(),
+    TruthOrDareEngine(),
 ]
 ENGINES: dict[str, Engine] = {engine.manifest.id: engine for engine in ALL_ENGINES}
 for _engine in ALL_ENGINES:

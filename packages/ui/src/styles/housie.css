@@ -1,0 +1,329 @@
+/*
+ * Housie table: the caller's ball, the viewer's ticket, the prizes and the 1–90
+ * board. Existing tokens only. The ticket and the balls are game art; every
+ * control keeps a 44px target and the table holds at 320px without sideways scroll.
+ */
+@layer components {
+  .housie-table {
+    display: grid;
+    gap: var(--space-5);
+    width: 100%;
+    max-width: 880px;
+    min-width: 0;
+    margin-inline: auto;
+    padding-block: var(--space-4) var(--space-6);
+  }
+  .housie-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+  .housie-heading h2 {
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  /* ---------- The caller ---------- */
+  .housie-caller {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .housie-ball {
+    display: grid;
+    place-items: center;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: var(--color-card-yellow);
+    box-shadow: var(--shadow-card);
+  }
+  .housie-ball[data-empty='true'] {
+    background: var(--color-surface-muted);
+    box-shadow: none;
+  }
+  .housie-ball__number {
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-white);
+    color: var(--color-ink);
+    font: 500 30px/1 var(--font-display);
+    font-variant-numeric: tabular-nums;
+    animation: housie-ball-in 240ms var(--ease-out);
+  }
+  .housie-caller__facts {
+    display: grid;
+    gap: var(--space-1);
+    min-width: 0;
+  }
+  .housie-caller__label {
+    font-weight: 600;
+  }
+  .housie-recent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin: var(--space-1) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .housie-recent li {
+    min-width: 32px;
+    padding: 2px var(--space-2);
+    border-radius: 999px;
+    background: var(--color-ochre-light);
+    font-size: 13px;
+    text-align: center;
+  }
+  .housie-call-slot {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 46px;
+  }
+  .housie-call-slot[hidden] {
+    display: none;
+  }
+
+  /* ---------- The ticket ---------- */
+  .housie-ticket {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: var(--space-1);
+    padding: var(--space-1);
+    border-radius: var(--radius-control);
+    background: var(--color-ochre);
+  }
+  .housie-cell {
+    position: relative;
+    height: clamp(44px, 11vw, 60px);
+    padding: 0;
+    border-radius: var(--radius-small);
+    background: var(--color-white);
+    text-align: center;
+    vertical-align: middle;
+  }
+  .housie-cell[data-blank] {
+    background: var(--color-ochre-light);
+    opacity: 0.55;
+  }
+  .housie-cell__number {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(14px, 3.6vw, 20px);
+    font-weight: 600;
+  }
+  /* Called but not yet marked (auto-mark off): a dashed ring to tap. */
+  .housie-cell[data-called]:not([data-marked]) {
+    box-shadow: inset 0 0 0 2px var(--color-ink);
+    outline: 2px dashed var(--color-coral);
+    outline-offset: -6px;
+  }
+  .housie-cell[data-mark] {
+    cursor: pointer;
+  }
+  .housie-cell[data-mark]:hover {
+    background: var(--color-coral-light);
+  }
+  /* The stamp: a coral disc behind the number and a tick in the corner. */
+  .housie-cell[data-marked] {
+    background: var(--color-coral-light);
+  }
+  .housie-cell[data-marked]::before {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: min(80%, 40px);
+    aspect-ratio: 1;
+    border: 3px solid var(--color-coral);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(-12deg);
+    animation: housie-stamp 200ms var(--ease-out);
+  }
+  .housie-stamp {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: grid;
+    place-items: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-coral);
+    color: var(--color-white);
+  }
+  .housie-key {
+    margin-top: var(--space-2);
+  }
+  .housie-marks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+
+  /* ---------- Prizes ---------- */
+  .housie-prize-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(156px, 1fr));
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .housie-prize {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border-radius: var(--radius-control);
+    background: var(--color-surface-muted);
+  }
+  .housie-prize[data-state='claimable'] {
+    background: var(--color-sage-light);
+  }
+  .housie-prize[data-state='won'] {
+    background: var(--color-ochre-light);
+  }
+  .housie-prize__name {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2);
+    font-weight: 600;
+  }
+  .housie-prize__points {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+  }
+  .housie-prize__status {
+    color: var(--color-ink-muted);
+    overflow-wrap: anywhere;
+  }
+  .housie-prize .button {
+    width: 100%;
+  }
+
+  /* ---------- The 1–90 board ---------- */
+  .housie-board > summary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 160ms var(--ease-out);
+  }
+  .housie-board > summary:hover {
+    background: var(--color-surface-muted);
+  }
+  .housie-board > summary:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 4px;
+  }
+  .housie-board__grid {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: var(--space-1);
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .housie-board__grid li {
+    display: grid;
+    place-items: center;
+    min-height: 32px;
+    border-radius: var(--radius-small);
+    color: var(--color-ink-muted);
+    font-size: 13px;
+  }
+  .housie-board__grid li[data-called] {
+    background: var(--color-coral-light);
+    box-shadow: inset 0 0 0 2px var(--color-coral);
+    color: var(--color-ink);
+  }
+  .housie-board__grid li[data-last] {
+    box-shadow: inset 0 0 0 3px var(--color-ink);
+  }
+
+  @media (max-width: 640px) {
+    .housie-table {
+      gap: var(--space-4);
+      padding-top: var(--space-3);
+    }
+    .housie-caller {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+    .housie-ball {
+      width: 72px;
+      height: 72px;
+    }
+    .housie-ball__number {
+      width: 50px;
+      height: 50px;
+      font-size: 25px;
+    }
+    .housie-call-slot {
+      grid-column: 1 / -1;
+      justify-content: stretch;
+    }
+    .housie-call-slot > .button {
+      width: 100%;
+    }
+    .housie-ticket {
+      border-spacing: 3px;
+      padding: 3px;
+    }
+    .housie-stamp {
+      width: 14px;
+      height: 14px;
+      top: 1px;
+      right: 1px;
+    }
+    .housie-prize-list {
+      grid-template-columns: 1fr;
+    }
+    .housie-prize {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+    }
+    .housie-prize .button {
+      width: auto;
+    }
+    .housie-marks > .button {
+      flex: 1 1 96px;
+    }
+  }
+
+  @keyframes housie-stamp {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(-12deg) scale(1.3);
+    }
+  }
+  @keyframes housie-ball-in {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+  }
+  /* Reduced motion keeps every stamp and number, without the movement. */
+  @media (prefers-reduced-motion: reduce) {
+    .housie-ball__number,
+    .housie-cell[data-marked]::before {
+      animation: none;
+    }
+  }
+}

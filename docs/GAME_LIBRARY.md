@@ -1,6 +1,6 @@
 # Games library
 
-The catalogue has 26 multiplayer games plus Pop Tarot, Roulette and Slots for solo play, and Secret Santa, a solo organiser table. The owner authorized
+The catalogue has 30 multiplayer games plus Pop Tarot, Roulette and Slots for solo play, and Secret Santa, a solo organiser table. The owner authorized
 main/production and the expanded acceptance run on 1 November 2026.
 Additions reuse private rooms, profiles, action retries, chat,
 presence, results and rematches, with independent rules engines and renderers.
@@ -132,4 +132,22 @@ replaces every link. The people in the draw need no account and are not room
 members. Its [owning rules](../backend/app/games/secret_santa/README.md) record
 the action list, the exact can-draw test, how fairness is tested and the link
 token scheme. Backend rule and HTTP tests are local; the web table and browser
+evidence are recorded separately in progress.txt.
+
+## Housie, Liar's Dice, Bluff and Truth or Dare — 25 November 2026
+
+Four traditional, public-domain games as original implementations: our own
+names and wording, no third-party art or trade dress, and for Truth or Dare a
+prompt deck written for Games.
+
+| Module | Seats | Included format | Owning rules |
+| --- | --- | --- | --- |
+| Housie | 2–10 | Tambola: one 3×9 ticket each, 90 numbers called in turn, Early five, three lines and Full house; optional self-marking | [Housie](../backend/app/games/housie/README.md) |
+| Liar's Dice | 2–6 | Five hidden dice each, rising bids, a call that reveals all; ones wild by default | [Liar's Dice](../backend/app/games/liars_dice/README.md) |
+| Bluff | 2–6 | Cheat with 52 cards: face-down plays of one declared rank, pass, or call the last play | [Bluff](../backend/app/games/bluff/README.md) |
+| Truth or Dare | 2–10 | Shared truths and dares, one swap each, burning-building rounds; a separate adults-only edition, off by default | [Truth or Dare](../backend/app/games/truth_or_dare/README.md) |
+
+Housie's call order, the dice of other players and Bluff's face-down piles stay
+in the saved match state. Each game has a bot policy that reads only its own
+view. Backend rule and HTTP tests are local; the web tables and browser
 evidence are recorded separately in progress.txt.

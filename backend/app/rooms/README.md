@@ -57,6 +57,21 @@ rows from before levels existed are NULL and are shown and played as hard.
 `MemberView.bot_level` is the level for a bot and null for a person. Quick play
 seats hard bots. `drive_bots` passes the acting bot's level to its policy.
 
+### Bot pacing and order
+
+After every committed move `app/rooms/bots.py` sets `bot_due_at`. An ordinary
+bot move waits 0.8s. A bot that can only close a review waits longer
+(`BOT_REVIEW_DELAY_SECONDS`): `continue` 5s (Trio, Bluff's reveal),
+`next_selection` 4s, `next_prompt` 6s, `next` 6s (Truth or Dare's
+burning-building result), `next_round` 8s (round summaries, Liar's Dice's
+reveal) and `next_heist` 8s. A Housie bot whose only move is `call_number`
+waits 3s before each call.
+
+Which bot goes first: a bot's own UNO announcement, then a Housie bot that can
+mark or claim (before a bot caller draws again), then the bot whose turn it
+is, then any other bot with a legal move. These choose among each bot's own
+legal actions and never change a rule.
+
 ## Usernames and player search
 
 `PUT /v1/profile/username` sets the caller's username: 3 to 20 of a-z, 0-9 and

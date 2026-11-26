@@ -39,6 +39,8 @@ export function matchPlayer(seed = 73) {
         ...(next.input === 'text' ? { choice: `Guest ${people + 1}` } : {}),
       };
     }
+    const parlour = parlourAction(game, ofType, pick);
+    if (parlour) return parlour;
     let choices: Option[];
     if (game.game_id.startsWith('uno')) {
       choices = ofType('uno');
@@ -116,4 +118,82 @@ function gemChoices(game: Game, options: Option[]): Option[] {
       : option.action.choice!.split(',').reduce((sum, color) => sum + (deficits[color] ? 1 : 0), 0);
   const best = Math.max(...takes.map(usefulness));
   return takes.filter((o) => usefulness(o) === best);
+}
+
+/**
+ * Housie, Liar's Dice, Bluff and Truth or Dare: short, terminating choices from
+ * the actor's own projection only (their ticket, their dice, their hand).
+ */
+function parlourAction(
+  game: Game,
+  ofType: (...types: string[]) => Option[],
+  pick: <T>(values: T[]) => T,
+): Action | null {
+  const detail = (game.detail || {}) as Record<string, unknown>;
+  if (game.game_id === 'housie') {
+    // Claim first (smallest prize first, so Full house ends it last), then mark, then call.
+    const order = ['early_five', 'top_line', 'middle_line', 'bottom_line', 'full_house'];
+    const claims = ofType('claim').sort(
+      (a, b) => order.indexOf(a.action.choice || '') - order.indexOf(b.action.choice || ''),
+    );
+    const [next] = claims.length
+      ? claims
+      : ofType('mark').length
+        ? ofType('mark')
+        : ofType('call_number');
+    return next ? { ...next.action } : null;
+  }
+  if (game.game_id === 'liars-dice') {
+    const [roll] = ofType('next_round');
+    if (roll) return { ...roll.action };
+    const bid = detail.bid as { quantity: number; face: number } | null;
+    const total = Number(detail.total_dice) || 0;
+    const bids = ofType('bid');
+    const [call] = ofType('call_liar');
+    if (call && (!bids.length || (bid && bid.quantity * 3 >= total))) return { ...call.action };
+    const dice = (detail.dice as number[]) || [];
+    const held = (option: Option) =>
+      dice.filter((die) => String(die) === option.action.choice).length;
+    const best = Math.max(...bids.map(held));
+    const option = pick(bids.filter((item) => held(item) === best));
+    return { ...option.action, amount: option.minimum ?? 1 };
+  }
+  if (game.game_id === 'bluff') {
+    const [next] = ofType('continue');
+    if (next) return { ...next.action };
+    const hand = game.hand || [];
+    const plays = ofType('play');
+    const [skip] = ofType('skip');
+    const [call] = ofType('call_bluff');
+    // An occasional call exercises the reveal; passing sets the pile aside, so the match always ends.
+    if (call && pick([0, 1, 2, 3, 4, 5]) === 0) return { ...call.action };
+    if (plays.length > 1) {
+      // Starting a round: declare the rank held most, and play up to four of it.
+      const count = (rank: string) => hand.filter((card) => card.value === rank).length;
+      const option = plays.reduce((a, b) =>
+        count(b.action.choice || '') > count(a.action.choice || '') ? b : a,
+      );
+      const cards = hand
+        .filter((card) => card.value === option.action.choice)
+        .slice(0, option.maximum ?? 4);
+      return {
+        ...option.action,
+        cards: (cards.length ? cards : hand.slice(0, 1)).map((card) => card.id),
+      };
+    }
+    const [play] = plays;
+    const honest = hand.filter((card) => card.value === detail.rank).slice(0, play?.maximum ?? 4);
+    if (play && honest.length) return { ...play.action, cards: honest.map((card) => card.id) };
+    return {
+      ...(skip || play || call).action,
+      ...(skip ? {} : { cards: hand.slice(0, 1).map((card) => card.id) }),
+    };
+  }
+  if (game.game_id === 'truth-or-dare') {
+    const [done] = ofType('done', 'next');
+    if (done) return { ...done.action };
+    const options = ofType('pick', 'assign');
+    return options.length ? { ...pick(options).action } : null;
+  }
+  return null;
 }

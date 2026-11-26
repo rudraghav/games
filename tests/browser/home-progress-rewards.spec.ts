@@ -15,7 +15,7 @@ type Me = components['schemas']['MeView'];
 
 test.use({ trace: 'off', screenshot: 'off' });
 
-const TEAM_PICKS = 12;
+const TEAM_PICKS = 13;
 const PLAYER = { name: 'Maya Rao', avatar: 2 };
 
 const badge = (id: string, name: string, description: string, value: number, goal: number) => ({
@@ -298,8 +298,9 @@ test('a new visitor lands on the games: one heading, one library, every game onc
   expect(firstTile.y).toBeLessThan(viewport.height - 40);
   if (!phone) expect(firstTile.y + firstTile.height).toBeLessThan(viewport.height - 200);
   // The whole page is a fraction of what it was (5,876px on desktop, about 7,300px on a phone).
+  // 34 games since the parlour games: one more row of five, or two more rows of two.
   const pageHeight = await page.evaluate(() => document.documentElement.scrollHeight);
-  expect(pageHeight).toBeLessThan(phone ? 3250 : 1850);
+  expect(pageHeight).toBeLessThan(phone ? 3650 : 2050);
   // Columns: two on a phone, five on a wide screen.
   const firstRow = await page
     .locator('.game-tile:not([data-variant])')
@@ -337,7 +338,9 @@ test('a new visitor lands on the games: one heading, one library, every game onc
   await expect(quick).toHaveAttribute('aria-pressed', 'true');
   expect((await tileNames(page)).sort()).toEqual([
     'Open Blackjack',
+    'Open Bluff',
     'Open Four in a Row',
+    'Open Liar’s Dice',
     'Open Mancala',
     'Open Trio',
     'Open Uno',
@@ -670,7 +673,8 @@ test('search finds games by name and by kind, inside the chosen occasion, with a
   await search.press('Escape');
   await expect(search).toHaveValue('');
   await expect(search).toBeFocused();
-  await expect(tiles).toHaveCount(5);
+  // Five quick games plus Liar's Dice and Bluff, picked for quick turns.
+  await expect(tiles).toHaveCount(7);
   await expect(chip('Quick with bots')).toHaveAttribute('aria-pressed', 'true');
 
   // Nothing found: one plain message and one button back to everything.

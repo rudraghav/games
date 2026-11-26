@@ -1,0 +1,20 @@
+/*
+ * Parlour games: Housie, Liar's Dice, Bluff and Truth or Dare. Their catalogue
+ * covers and tables. Existing tokens only; every control keeps a 44px target and
+ * each table holds at 320px without sideways scrolling.
+ */
+@layer components {
+  /* ---------- Catalogue covers ---------- */
+  .game-art.game-art--parlour {
+    padding: 0;
+  }
+  .game-art--parlour > svg {
+    width: min(86%, 300px);
+    height: 92%;
+    overflow: visible;
+  }
+  .room-shortcut-art .game-art--parlour > svg {
+    width: 100%;
+    height: 100%;
+  }
+}
