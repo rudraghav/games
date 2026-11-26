@@ -240,11 +240,14 @@ Tests: `test_progress.py` (pure rules, `backend` group) and
 
 ## Direct solo and bot starts
 
-`POST /v1/games/{game_id}/play` takes a UUID `request_id`. An intentional start
-preserves an existing profile or inserts Guest, fills the minimum supported bot
-group (at least one bot), readies the human and starts through the same engine
-path in one transaction. Tarot uses one seat. Failure rolls back the profile,
-room, members and match together. Creation/start limits still apply.
+`POST /v1/games/{game_id}/play` takes a UUID `request_id` and an optional
+`bot_count`. Bot games accept one human plus the selected number of hard bots,
+from `max(1, min_players - 1)` through `max_players - 1`. Omitting the count
+uses the minimum. Solo games use zero bots. A replay with a different effective
+count returns 409. A start preserves an existing profile or inserts Guest,
+readies the human and starts through the same engine path in one transaction.
+Failure rolls back the profile, room, members and match together. Creation/start
+limits still apply.
 
 Room and first-match IDs are derived from authenticated actor plus request ID.
 A transaction-scoped advisory lock serializes duplicate launches even before a

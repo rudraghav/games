@@ -2,6 +2,23 @@ import { expect, test, type Locator, type Page } from '@playwright/test';
 import type { components } from '../../packages/api-client/src/generated/schema';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 
+export function entryAction(game: (typeof catalogue)[number]) {
+  if (game.id === 'tarot') return 'Start reading';
+  if (game.family === 'organiser') return 'Organise a draw';
+  if (game.play_mode === 'solo') return 'Play solo';
+  const count = game.max_players - 1;
+  return game.min_players === game.max_players
+    ? `Play with ${count} ${count === 1 ? 'bot' : 'bots'}`
+    : 'Play with bots';
+}
+
+export async function startBotTable(page: Page) {
+  await page
+    .getByRole('dialog', { name: 'Play with bots', exact: true })
+    .getByRole('button', { name: 'Start game', exact: true })
+    .click();
+}
+
 /** The first activation lifts a back. A second activation on that back reveals it. */
 const lastTarotDraw = new WeakMap<Page, number>();
 

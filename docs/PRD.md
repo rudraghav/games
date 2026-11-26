@@ -1,7 +1,9 @@
 # Games product contract
 
 Choose a game before choosing how to play. Tarot opens directly into a private
-reading; bot play starts immediately. Friends use game → setup → invite lobby →
+reading. For bot games, choose how many computer players to seat and start a
+private match. Two-player games show their single bot and start directly.
+Friends use game → setup → invite lobby →
 ready → play → results → rematch/change game. The catalogue now contains 34 entries: 33 games and Secret Santa, a name draw run by one organiser.
 
 ## Learn through play
@@ -20,8 +22,10 @@ the chart and in the placements and houses tables.
 ## Confirmed decisions
 
 Every game has a public `/games/[gameId]` page with rules and clear play actions.
-Browsing creates no identity or session. Start reading and Play with bots need
-no name form or room setup; existing player profiles remain unchanged. Private
+Browsing creates no identity or session. Starting a reading or bot game skips
+the name form and lobby and preserves existing player profiles. The bot count
+defaults to the smallest supported table with at least one bot. Each bot uses
+Hard difficulty. Blackjack counts the automated dealer separately. Private
 sessions still persist server-side, with idempotent launch retries and authorized
 game-specific URLs. Tarot uses `/games/tarot/play/[id]` for the active spread and
 `/games/tarot/readings/[matchId]` for its immutable archive. Old room/reading links

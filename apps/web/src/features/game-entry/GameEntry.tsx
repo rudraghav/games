@@ -13,7 +13,7 @@ import {
   Sparkles,
   UsersRound,
 } from 'lucide-react';
-import { Button } from '@games/ui';
+import { Button, Modal } from '@games/ui';
 import type { Game } from '@games/api-client/catalog';
 import { SiteHeader } from '@/shared/SiteHeader';
 import { GameArt } from '@/shared/GameArt';
@@ -28,7 +28,8 @@ export function GameEntry({
   game: Game;
   preferredMode?: 'friends' | 'bots';
 }) {
-  const [dialog, setDialog] = useState<'create' | 'join' | null>(null);
+  const [dialog, setDialog] = useState<'create' | 'join' | 'bots' | null>(null);
+  const [chosenBotCount, setChosenBotCount] = useState<number | null>(null);
   const [rulesOpen, setRulesOpen] = useState(false);
   const learningActions = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -42,14 +43,33 @@ export function GameEntry({
   const reading = game.id === 'tarot';
   const organising = game.family === 'organiser';
   const quickPlay = solo || game.botsSupported;
+  const withBots = !solo && game.botsSupported;
+  const minimumBots = Math.max(1, game.minPlayers - 1);
+  const maximumBots = game.maxPlayers - 1;
+  const chooseBots = withBots && minimumBots < maximumBots;
+  const botCount = chosenBotCount ?? launch.resumeBotCount ?? minimumBots;
+  const playFailure =
+    launch.failure?.mode === 'play' && (!withBots || launch.failure.botCount === botCount)
+      ? launch.failure
+      : null;
+  const playLabel = launch.label('play', withBots ? botCount : undefined);
+  const fixedBotLabel = `Play with ${minimumBots} ${minimumBots === 1 ? 'bot' : 'bots'}`;
   const start = quickPlay ? (
     <Button
       size="lg"
       variant={solo || preferredMode === 'bots' ? 'primary' : 'secondary'}
       pending={launch.pending === 'play'}
       disabled={launch.pending !== null}
-      onClick={() => void launch.start()}
-      aria-describedby={launch.failure?.mode === 'play' ? 'game-start-error' : undefined}
+      onClick={() => {
+        if (chooseBots) {
+          setChosenBotCount(botCount);
+          setDialog('bots');
+        } else {
+          void launch.start('play', withBots ? minimumBots : undefined);
+        }
+      }}
+      aria-haspopup={chooseBots ? 'dialog' : undefined}
+      aria-describedby={playFailure && dialog !== 'bots' ? 'game-start-error' : undefined}
     >
       {launch.pending !== 'play' ? (
         reading ? (
@@ -60,7 +80,11 @@ export function GameEntry({
           <Bot size={18} />
         )
       ) : null}
-      {launch.label('play')}
+      {chooseBots && launch.pending !== 'play'
+        ? 'Play with bots'
+        : withBots && !playFailure && launch.pending !== 'play'
+          ? fixedBotLabel
+          : playLabel}
       {launch.pending !== 'play' ? <ArrowRight size={18} /> : null}
     </Button>
   ) : null;
@@ -125,9 +149,9 @@ export function GameEntry({
                 </>
               )}
             </div>
-            {launch.failure?.mode === 'play' ? (
+            {playFailure && dialog !== 'bots' ? (
               <p id="game-start-error" className="error-note" role="alert">
-                {launch.failure.message}
+                {playFailure.message}
               </p>
             ) : null}
             <div className="game-entry-secondary" ref={learningActions}>
@@ -185,7 +209,58 @@ export function GameEntry({
           />
         </div>
       </main>
-      {dialog ? (
+      {dialog === 'bots' ? (
+        <Modal
+          open
+          onOpenChange={(open) => {
+            if (!open) setDialog(null);
+          }}
+          title="Play with bots"
+          description={`${game.name} · Hard difficulty`}
+        >
+          <form
+            className="room-setup-form room-setup-form--simple"
+            onSubmit={(event) => {
+              event.preventDefault();
+              void launch.start('play', botCount);
+            }}
+          >
+            <label className="field">
+              Number of bots
+              <select
+                className="input"
+                value={botCount}
+                disabled={launch.pending !== null}
+                onChange={(event) => setChosenBotCount(Number(event.target.value))}
+              >
+                {Array.from({ length: maximumBots - minimumBots + 1 }, (_, i) => {
+                  const count = minimumBots + i;
+                  return (
+                    <option key={count} value={count}>
+                      {count} {count === 1 ? 'bot' : 'bots'}
+                    </option>
+                  );
+                })}
+              </select>
+            </label>
+            {playFailure ? (
+              <p id="bot-start-error" className="error-note" role="alert">
+                {playFailure.message}
+              </p>
+            ) : null}
+            <div className="form-footer">
+              <Button
+                type="submit"
+                pending={launch.pending === 'play'}
+                disabled={launch.pending !== null}
+                aria-describedby={playFailure ? 'bot-start-error' : undefined}
+              >
+                {playFailure || launch.pending === 'play' ? playLabel : 'Start game'}
+              </Button>
+            </div>
+          </form>
+        </Modal>
+      ) : dialog ? (
         <RoomDialog
           open
           mode={dialog}

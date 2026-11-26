@@ -57,8 +57,9 @@ pre-deal seats never invent card backs; the dealer's unrevealed card stays hidde
 
 On compact casino canvases the order is felt, own cards/decisions, then opponent
 seats. The full-size ring keeps the dock immediately below the table. Uno marks
-only server-legal cards while leaving other cards inspectable; card moves appear
-after selection, and colour/draw/challenge instructions reflect the legal choices.
+the viewer’s legal cards. A tap plays an ordinary card or stacks a legal draw card.
+Wild cards open their colour choices, and a swap offers targets. Inspect lets the player
+read a card, including who its effect reaches, without playing it. Tapping an unavailable card explains its restrictions.
 Yellow-card ranks, corners and captions use measured contrasting ink.
 
 Both Uno tables offer a named play beside Draw when there is exactly one complete card play. Wild colour and swap-target choices stay explicit.
@@ -143,7 +144,7 @@ its print with container units (`packages/ui/src/styles/card-faces.css`):
   `shedding`): numbers carry no colour word, +N reads "points", ×2 "double", and
   Freeze, Flip Three and Second Chance have distinct pictograms and names.
 - Uno prints an R/Y/G/B colour letter beside every corner index, so colours never
-  rely on hue; captions drop below 55px (discards, activity) instead of colliding.
+  rely on hue; captions drop when the available inner width is 50px or less (discards, activity).
   A wild is an ink card whose white well is ringed by all four colours, so its print
   sits on one dark background instead of a gradient.
 - Skyjo (five value bands), Trio (one colour per number, gold 7) and 6 nimmt!

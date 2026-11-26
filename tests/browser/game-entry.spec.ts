@@ -3,6 +3,8 @@ import { writeFile } from 'node:fs/promises';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
 import {
   drawTarotCard,
+  entryAction,
+  startBotTable,
   attachPreviewAccess,
   openRoomOptions,
   requestAs,
@@ -31,16 +33,6 @@ function own(run: Run, room: RoomView, actor: Page) {
     run.rooms.push({ id: room.id, actors: [actor] });
 }
 
-function normalAction(game: (typeof catalogue)[number]) {
-  return game.id === 'tarot'
-    ? 'Start reading'
-    : game.family === 'organiser'
-      ? 'Organise a draw'
-      : game.play_mode === 'solo'
-        ? 'Play solo'
-        : 'Play with bots';
-}
-
 async function start(page: Page, run: Run, gameId: string) {
   const game = catalogue.find((item) => item.id === gameId)!;
   await page.goto(`/games/${gameId}`);
@@ -50,10 +42,13 @@ async function start(page: Page, run: Run, gameId: string) {
   );
   await page
     .getByRole('button', {
-      name: normalAction(game),
+      name: entryAction(game),
       exact: true,
     })
     .click();
+  if (game.bots_supported && game.min_players < game.max_players) {
+    await startBotTable(page);
+  }
   const response = await created;
   expect(response.ok()).toBe(true);
   const room = (await response.json()) as RoomView;
@@ -139,10 +134,10 @@ test('all game pages are public, readable and browse without creating a guest or
     ).toBeVisible();
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(page.locator('.game-entry-actions .button--primary')).toHaveText(
-      game.play_mode === 'solo' ? normalAction(game) : 'Play with friends',
+      game.play_mode === 'solo' ? entryAction(game) : 'Play with friends',
     );
     const action = page.getByRole('button', {
-      name: normalAction(game),
+      name: entryAction(game),
       exact: true,
     });
     if (game.play_mode === 'solo' || game.bots_supported) {
@@ -150,6 +145,26 @@ test('all game pages are public, readable and browse without creating a guest or
       const box = await action.boundingBox();
       expect(box!.height).toBeGreaterThanOrEqual(44);
       expect(box!.y + box!.height).toBeLessThanOrEqual(page.viewportSize()!.height);
+    }
+    if (game.bots_supported && game.min_players < game.max_players) {
+      await action.click();
+      const dialog = page.getByRole('dialog', { name: 'Play with bots', exact: true });
+      const count = dialog.getByRole('combobox', { name: 'Number of bots', exact: true });
+      await expect(dialog).toContainText('Hard difficulty');
+      const min = Math.max(1, game.min_players - 1);
+      const max = game.max_players - 1;
+      await expect(count).toHaveValue(String(min));
+      expect(
+        await count
+          .locator('option')
+          .evaluateAll((options) => options.map((option) => (option as HTMLOptionElement).value)),
+      ).toEqual(Array.from({ length: max - min + 1 }, (_, index) => String(min + index)));
+      await count.selectOption(String(max));
+      await expect(dialog.getByRole('button', { name: 'Start game', exact: true })).toBeEnabled();
+      await fits(page);
+      await page.keyboard.press('Escape');
+      await expect(dialog).toHaveCount(0);
+      await expect(action).toBeFocused();
     }
     if (game.play_mode === 'solo') {
       await expect(
@@ -305,6 +320,52 @@ test('a lost start response retries the same saved game after a reload', async (
   expect(rooms[1]!.match_id).toBe(rooms[0]!.match_id);
   const me = await (await requestAs(page, 'me')).json();
   expect(me.rooms).toHaveLength(1);
+});
+
+test('a bot-count choice survives a lost launch response and creates one table at the default difficulty', async ({
+  page,
+}) => {
+  test.skip(Boolean(process.env.GAMES_TEST_URL), 'Injects one lost local response.');
+  const run = runs.get(page)!;
+  const launches: { request: { request_id: string; bot_count: number }; room: RoomView }[] = [];
+  await page.route('**/api/backend/v1/games/uno/play', async (route) => {
+    const response = await route.fetch();
+    expect(response.ok()).toBe(true);
+    const room: RoomView = await response.json();
+    own(run, room, page);
+    launches.push({ request: route.request().postDataJSON(), room });
+    if (launches.length === 1) await route.abort('failed');
+    else await route.fulfill({ response });
+  });
+  await page.goto('/games/uno?mode=bots');
+  const open = page.getByRole('button', { name: 'Play with bots', exact: true });
+  const dialog = page.getByRole('dialog', { name: 'Play with bots', exact: true });
+  const count = dialog.getByRole('combobox', { name: 'Number of bots', exact: true });
+  await open.click();
+  await count.selectOption('3');
+  expect(launches).toHaveLength(0);
+  await startBotTable(page);
+  await expect(dialog.getByRole('button', { name: 'Try again', exact: true })).toBeEnabled();
+  await expect(count).toHaveValue('3');
+  expect(launches).toHaveLength(1);
+  await page.reload();
+  await open.click();
+  await expect(count).toHaveValue('3');
+  await startBotTable(page);
+  const first = launches[0]!;
+  await expect(page).toHaveURL(new RegExp(`/games/uno/rooms/${first.room.id}$`));
+  expect(launches).toHaveLength(2);
+  expect(first.request.bot_count).toBe(3);
+  expect(launches[1]!.request).toEqual(first.request);
+  expect(launches[1]!.room.match_id).toBe(first.room.match_id);
+  const saved = await roomAs(page, first.room.id);
+  expect(saved.capacity).toBe(4);
+  expect(saved.members.filter((m) => !m.is_bot)).toHaveLength(1);
+  expect(saved.members.filter((m) => m.is_bot).map((m) => m.bot_level)).toEqual([
+    'hard',
+    'hard',
+    'hard',
+  ]);
 });
 
 test('friends create from the chosen game, join an invitation and follow changed game routes', async ({

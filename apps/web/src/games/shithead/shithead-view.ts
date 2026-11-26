@@ -1,7 +1,14 @@
-import type { Card, shitheadDetails } from '@games/api-client';
+import type { ActionOption, Card, shitheadDetails } from '@games/api-client';
 
 type Details = ReturnType<typeof shitheadDetails>;
 type LastPlay = Details['last_play'];
+
+/** A tap is final only when this card has one offered use, as a play on its own. */
+export function directCardPlay(actions: ActionOption[], id: string) {
+  const uses = actions.filter(({ value }) => value.card === id || value.cards?.includes(id));
+  const only = uses.length === 1 ? uses[0].value : undefined;
+  return only?.type === 'play' && only.cards?.length === 1 ? only : undefined;
+}
 
 /** Plain-language stages for opponent summaries. */
 export const stageNames: Record<Details['stages'][string], string> = {

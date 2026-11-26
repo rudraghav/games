@@ -61,3 +61,51 @@ test('small hands keep their full width while Deal navigation leaves two complet
   const afterArea = await cards.first().boundingBox();
   expect(afterArea!.width).toBe(area!.width);
 });
+
+test('the phone fan leaves a finger-width target on each exposed Uno card', async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== 'phone');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/design');
+  await page.getByLabel('Table scenario').selectOption({ label: 'Uno · maximum seats' });
+  const hand = page.getByRole('group', { name: 'Your hand', exact: true });
+  const rail = hand.locator('..');
+  await expect(rail).toHaveAttribute('data-overflow', 'true');
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    await hand.scrollIntoViewIfNeeded();
+    await expect
+      .poll(() =>
+        hand.evaluate((frame) => {
+          const view = frame.getBoundingClientRect();
+          const railWidth = frame.parentElement!.clientWidth;
+          const cards = [...frame.querySelectorAll('button.playing-card')];
+          const reachable = cards.filter((card) => {
+            const rect = card.getBoundingClientRect();
+            if (rect.left < view.left || rect.left + 44 > view.right) return false;
+            const middle = rect.top + rect.height / 2;
+            return [0.5, 22, 43.5].every((x) =>
+              [-21.5, 0, 21.5].every((y) =>
+                card.contains(document.elementFromPoint(rect.left + x, middle + y)),
+              ),
+            );
+          }).length;
+          return view.width >= railWidth - 1 && reachable >= Math.floor((railWidth - 8) / 44);
+        }),
+      )
+      .toBe(true);
+    const arrow = await rail.locator('.rail-navigation--next').boundingBox();
+    const frame = await hand.boundingBox();
+    expect(arrow!.y + arrow!.height).toBeLessThanOrEqual(frame!.y + 1);
+  }
+  // A seven-card opening hand in either edition should fit the 390px phone.
+  for (const edition of ['Uno', 'Uno No Mercy']) {
+    await page.getByLabel('Table scenario').selectOption({ label: `${edition} · minimum seats` });
+    await expect(hand.getByRole('button')).toHaveCount(7);
+    await expect(rail).toHaveAttribute('data-overflow', 'false');
+    const last = await hand.getByRole('button').last().boundingBox();
+    const frame = await hand.boundingBox();
+    expect(last!.x + last!.width).toBeLessThanOrEqual(frame!.x + frame!.width + 1);
+  }
+});

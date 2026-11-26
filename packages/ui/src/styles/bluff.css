@@ -185,7 +185,7 @@
     --bluff-card-w: 72px;
     --bluff-card-h: 102px;
     --bluff-step: clamp(
-      26px,
+      var(--bluff-min-step, 26px),
       calc((100cqw - var(--bluff-card-w) - 8px) / 12),
       calc(var(--bluff-card-w) + 8px)
     );
@@ -274,6 +274,18 @@
     .bluff-felt,
     .bluff-workspace {
       padding: var(--space-3);
+    }
+    .bluff-workspace {
+      padding: var(--space-2);
+      gap: var(--space-2);
+    }
+    .bluff-hand[data-density='fan'] {
+      --bluff-card-w: 56px;
+      --bluff-card-h: 80px;
+      --bluff-min-step: 44px;
+    }
+    .bluff-game .bluff-hand[data-density='fan'] .card-hand {
+      row-gap: var(--space-2);
     }
     .bluff-pile {
       gap: var(--space-3);

@@ -1,5 +1,6 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
+import * as ui from '@games/ui';
 import { mapRoom } from '@games/api-client/mappers';
 import { dealDetails } from '@games/api-client';
 import { DealTable } from '@/games/deal/DealTable';
@@ -12,6 +13,7 @@ import {
   suggestBankPayment,
 } from '@/games/deal/presentation';
 import { dealScenarios } from '@/stories/generated/deal-scenarios';
+import { fixtures } from '@/stories/generated/rooms';
 
 function scenario(id: string) {
   const fixture = dealScenarios.find((item) => item.id === id)!;
@@ -27,6 +29,41 @@ function scenario(id: string) {
 }
 
 describe('Engine-projected Deal workspace', () => {
+  it.each(['deal', 'deal-no-mercy'])(
+    'banks only printed cash directly from the %s hand',
+    (game) => {
+      const fixture = fixtures.find(
+        (item) => item.room.game_id === game && item.room.capacity === 5,
+      )!;
+      const room = mapRoom(fixture.room);
+      const match = room.game!;
+      const onAction = vi.fn();
+      const hand = vi.spyOn(ui, 'Hand');
+      try {
+        renderToStaticMarkup(
+          <DealTable
+            room={room}
+            match={match}
+            selfId={fixture.selfId}
+            pending={false}
+            onAction={onAction}
+          />,
+        );
+        const select = hand.mock.calls[0][0].onSelect!;
+        const cash = match.hand.find((card) => card.subtitle === 'MONEY')!;
+        const bank = match.actions.find(
+          (option) => option.value.card === cash.id && option.value.type === 'bank',
+        )!;
+        for (const card of match.hand.filter((card) => card.id !== cash.id)) select(card.id);
+        expect(onAction).not.toHaveBeenCalled();
+        select(cash.id);
+        expect(onAction).toHaveBeenCalledExactlyOnceWith(bank.value);
+      } finally {
+        hand.mockRestore();
+      }
+    },
+  );
+
   it.each(['linked-payment-classic', 'linked-payment-no-mercy'])(
     'quotes every actual carried asset once before the conserved %s transfer',
     (id) => {

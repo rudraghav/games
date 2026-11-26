@@ -76,13 +76,16 @@ export function DealTable(props: TableProps) {
         setInspected(id);
         return;
       }
-      // Selecting reveals the concrete legal actions, including property destinations
-      // and banking. It never submits a move itself.
-      setDecisionOpen(id !== selected && moves.length > 0);
-      setSelected(id === selected ? null : id);
+      const bankCash =
+        moves.length === 1 &&
+        moves[0].value.type === 'bank' &&
+        match.hand.some((item) => item.id === id && item.subtitle === 'MONEY');
+      setDecisionOpen(!bankCash && id !== selected);
+      setSelected(!bankCash && id === selected ? null : id);
       setChoiceKey(null);
       setTarget('');
       setTakeId(null);
+      if (bankCash) props.onAction(moves[0].value);
     }
   };
   const commit: TableProps['onAction'] = (action) => {

@@ -86,6 +86,27 @@ test('all complex Deal decisions fit the viewport and preserve hand privacy and 
   }
 });
 
+test('a phone hand exposes complete Deal faces', async ({ page }) => {
+  await selectScenario(page, 'information-hand');
+  for (const [width, visible] of [
+    [320, 3],
+    [390, 4],
+  ]) {
+    await page.setViewportSize({ width, height: 640 });
+    await expect
+      .poll(() =>
+        hand(page).evaluate((element) => {
+          const viewport = element.getBoundingClientRect();
+          return [...element.querySelectorAll('button.playing-card')].filter((card) => {
+            const face = card.getBoundingClientRect();
+            return face.left >= viewport.left - 1 && face.right <= viewport.right + 1;
+          }).length;
+        }),
+      )
+      .toBeGreaterThanOrEqual(visible);
+  }
+});
+
 test('first selection exposes exact property destinations and commits each in one click', async ({
   page,
 }) => {
@@ -202,6 +223,11 @@ test('simple plays, cash and bank-only actions are available immediately on a 32
     await hand(page)
       .getByRole('button', { name: new RegExp(`^${card.label}, bank value`) })
       .click();
+    if (kind === 'cash') {
+      expect(await submitted(page)).toEqual(expected);
+      await expect(panel(page)).toHaveCount(0);
+      continue;
+    }
     await expect(panel(page)).toBeVisible();
     await expect(page.getByLabel('Submitted action', { exact: true })).toHaveText(
       'No action submitted',

@@ -6,6 +6,13 @@ SiteHeader and RoomDialog are shared. The rules disclosure sits in the secondary
 action row and controls the illustrated document below. Friends setup fixes the selected game. `?mode=bots` only changes action
 emphasis. Tarot places the crystal-and-brass still life beside the start action on desktop and above it on phones. Starting opens card selection directly.
 
+For games with several table sizes, **Play with bots** opens a **Number of bots**
+selector. The options use the catalogue's player limits, with one seat for
+the person starting the game and at least one bot. The smallest supported
+count is selected initially. **Start game** launches the selected number of
+Hard bots. A fixed-size table names the count on its launch button and starts
+immediately. Tutorials keep their own direct launch from the rulebook.
+
 useQuickPlay starts only from an explicit click. It stores a launch UUID in
 sessionStorage per game, blocks duplicate taps and reuses the UUID after a lost
 response or refresh. The server atomically returns the existing or new match.

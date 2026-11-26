@@ -155,7 +155,13 @@ test('friends choose real table cards, play a hand card and restore the saved ta
       const card = snapshot.game!.hand.find((card) => card.id === cardId)!;
       await actor.getByRole('button', { name: card.label, exact: true }).click();
     }
-    await actor.getByRole('button', { name: /^Play selected/ }).click();
+    const couldCombine = snapshot.game!.actions.some(
+      ({ action }) =>
+        action.type === 'play' &&
+        (action.cards?.length ?? 0) > 1 &&
+        action.cards?.includes(option.action.cards![0]),
+    );
+    if (couldCombine) await actor.getByRole('button', { name: /^Play selected/ }).click();
     await expect
       .poll(async () => (await roomAs(actor, id!)).match_version)
       .toBe(snapshot.match_version! + 1);

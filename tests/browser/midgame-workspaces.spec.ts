@@ -115,8 +115,30 @@ test('selecting a mid-game card keeps the public table and hand in place', async
     const key = `${item.game}:${item.seats}:${item.room.game!.phase}`;
     if (selected.has(key)) continue;
     await scenario(page, item);
-    const card = page.locator('.midgame-review-table .card-hand > button:not(:disabled)').first();
-    if (!(await card.count())) continue;
+    const enabled = page.locator('.midgame-review-table .card-hand > button:not(:disabled)');
+    if (!(await enabled.count())) continue;
+    let card = enabled.first();
+    if (item.game === 'shithead' && item.room.game!.phase === 'playing') {
+      // A single with no matching rank plays on one tap; only a card that can join a
+      // set is selected first.
+      const plays = item.room.game!.actions!.filter(({ action }) => action.type === 'play');
+      const combinable = item.room.game!.hand.find((face) =>
+        plays.some(
+          ({ action }) => (action.cards?.length ?? 0) > 1 && action.cards!.includes(face.id),
+        ),
+      );
+      if (!combinable) {
+        await card.click();
+        const action = JSON.parse((await page.getByLabel('Submitted action').textContent())!);
+        expect(action.type).toBe('play');
+        expect(action.cards).toHaveLength(1);
+        expect(plays.map((move) => move.action)).toContainEqual(action);
+        continue;
+      }
+      card = enabled.and(page.getByRole('button', { name: combinable.label, exact: true })).first();
+    }
+    if (item.game === 'uno' || item.game === 'uno-no-mercy')
+      await page.getByRole('button', { name: 'Inspect cards', exact: true }).click();
     selected.add(key);
     const positions = () =>
       card.evaluate((node) => {

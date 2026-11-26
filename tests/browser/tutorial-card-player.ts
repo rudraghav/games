@@ -39,11 +39,12 @@ export const playCardDecision: TutorialDriver = async (page, before, step) => {
           table.getByRole('group', { name: 'Your hand', exact: true }),
           card!.label,
         ).click();
-        const choice = button(
-          table,
-          /^Choose (Red|Green|Yellow|Blue)|^Play .* (Red|Green|Yellow|Blue)$|^Swap with |^Play |^Stack /i,
-        );
-        await choice.click();
+        if (play.action.color) {
+          await button(table, play.label).click();
+        } else if (play.action.target) {
+          const dialog = page.getByRole('dialog', { name: /^Swap hands/ });
+          await button((await dialog.isVisible()) ? dialog : table, /^Swap with /).click();
+        }
       } else {
         await click(/^(?:UNO!|Catch |Draw |Take |Choose |Pass$|Challenge)/i);
       }
@@ -73,6 +74,12 @@ export const playCardDecision: TutorialDriver = async (page, before, step) => {
           table.getByRole('group', { name: 'Your hand', exact: true }),
           handCard(play.action.card)!.label,
         ).click();
+        if (
+          play.action.type === 'bank' &&
+          handCard(play.action.card)?.subtitle === 'MONEY' &&
+          choices.filter((item) => item.action.card === play.action.card).length === 1
+        )
+          return;
         await button(
           dialog,
           /^(?:Place in |Add to |Bank for|Bank |Draw |Play |Discard |Give |Settle |Pay )/i,
@@ -147,7 +154,16 @@ export const playCardDecision: TutorialDriver = async (page, before, step) => {
           handCard(chosen) ? hand : table.getByLabel('Your table cards', { exact: true }),
           card.label,
         ).click();
-        await click(/^Play selected/);
+        const couldCombine = choices.some(
+          ({ action }) =>
+            action.type === 'play' &&
+            (action.cards?.length ?? 0) > 1 &&
+            action.cards?.includes(chosen),
+        );
+        const couldTakeWithPile = choices.some(
+          ({ action }) => action.type === 'pickup' && action.card === chosen,
+        );
+        if (couldCombine || couldTakeWithPile) await click(/^Play selected/);
       } else if (option('flip')) await click(/^Flip hidden/);
       else await click(/^Take pile/);
       return;

@@ -1,6 +1,13 @@
 import { expect, test, type Page } from '@playwright/test';
 import catalogue from '../../packages/api-client/src/generated/catalog.json' with { type: 'json' };
-import { attachPreviewAccess, requestAs, roomAs, type RoomView } from './helpers';
+import {
+  attachPreviewAccess,
+  entryAction,
+  startBotTable,
+  requestAs,
+  roomAs,
+  type RoomView,
+} from './helpers';
 
 test.use({ trace: 'off', screenshot: 'off', reducedMotion: 'reduce' });
 
@@ -17,17 +24,11 @@ async function withMatch(
   const created = page.waitForResponse(
     (r) => r.request().method() === 'POST' && r.url().endsWith(`/games/${game}/play`),
   );
-  const action =
-    mode === 'tutorial'
-      ? 'Play tutorial'
-      : game === 'tarot'
-        ? 'Start reading'
-        : catalogue.find((entry) => entry.id === game)?.family === 'organiser'
-          ? 'Organise a draw'
-          : catalogue.find((entry) => entry.id === game)?.play_mode === 'solo'
-            ? 'Play solo'
-            : 'Play with bots';
+  const manifest = catalogue.find((entry) => entry.id === game)!;
+  const action = mode === 'tutorial' ? 'Play tutorial' : entryAction(manifest);
   await page.getByRole('button', { name: action, exact: true }).click();
+  if (mode === 'play' && manifest.bots_supported && manifest.min_players < manifest.max_players)
+    await startBotTable(page);
   const response = await created;
   expect(response.ok()).toBe(true);
   const room = (await response.json()) as RoomView;

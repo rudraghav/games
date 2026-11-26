@@ -279,15 +279,17 @@ function propertyAccessibleName(card: CardPresentation) {
 
 /* ---------- Uno ---------- */
 
-function DrawMark({ value }: { value: string }) {
+/** Four printed panels keep the plain Wild recognisable at hand and pile sizes. */
+function WildMark({ size }: { size?: number }) {
   return (
-    <span className="shedding-draw-mark">
-      <svg viewBox="0 0 80 64" aria-hidden="true">
-        <rect x="12" y="8" width="34" height="46" rx="5" transform="rotate(-13 29 31)" />
-        <rect x="32" y="10" width="34" height="46" rx="5" transform="rotate(12 49 33)" />
-      </svg>
-      <strong>{value}</strong>
-    </span>
+    <svg viewBox="0 0 32 32" width={size} height={size} aria-hidden="true">
+      <g transform="rotate(12 16 16)" stroke="var(--face-ink)" strokeWidth="1.5">
+        <path fill="var(--face-red)" d="M16 2a14 14 0 0 0-14 14h14Z" />
+        <path fill="var(--face-yellow)" d="M16 2a14 14 0 0 1 14 14H16Z" />
+        <path fill="var(--face-green)" d="M30 16a14 14 0 0 1-14 14V16Z" />
+        <path fill="var(--face-blue)" d="M16 30A14 14 0 0 1 2 16h14Z" />
+      </g>
+    </svg>
   );
 }
 /** Uno's reverse: two parallel arrows pointing opposite ways. */
@@ -315,7 +317,7 @@ const unoSymbols: Partial<Record<string, ComponentType<{ size?: number }>>> = {
   Reverse: ReverseMark,
   'Discard all': Layers,
   'Skip everyone': SkipForward,
-  Wild: Sparkles,
+  Wild: WildMark,
   'Reverse +4': ReverseMark,
   'Colour roulette': Shuffle,
 };
@@ -358,14 +360,10 @@ function SheddingFace({ card }: { card: CardPresentation }) {
         }
         aria-hidden="true"
       >
-        {draw ? (
-          <DrawMark value={index} />
-        ) : (
-          <>
-            {Icon ? <Icon /> : null}
-            {index ? <strong>{index}</strong> : null}
-          </>
-        )}
+        {Icon ? <Icon /> : null}
+        {index ? (
+          <strong data-baseline={index === '6' || index === '9' || undefined}>{index}</strong>
+        ) : null}
       </span>
       <span className="card-action-name">{unoName(card)}</span>
     </>

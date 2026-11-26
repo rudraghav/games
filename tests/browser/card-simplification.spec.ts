@@ -101,6 +101,20 @@ test('a 6 nimmt! card can be compared, changed and cleared before locking', asyn
   await expect(page.getByLabel('Submitted action')).toHaveText('No action submitted');
 });
 
+test('an unambiguous Shithead hand card plays on its first tap', async ({ page }) => {
+  const fixture = await open(page, 'shithead-2-17-3');
+  const card = page
+    .locator('.shithead-private-cards')
+    .getByRole('button', { name: '3 ♠', exact: true });
+  await page.getByLabel('Saving a move').check();
+  await expect(card).toBeDisabled();
+  await page.getByLabel('Saving a move').uncheck();
+  await card.click({ position: { x: 8, y: 18 } });
+  expect(JSON.parse((await page.getByLabel('Submitted action').textContent())!)).toEqual(
+    fixture.next.action,
+  );
+});
+
 test('one selected Shithead card offers its exact full rank and still allows a smaller play', async ({
   page,
 }) => {

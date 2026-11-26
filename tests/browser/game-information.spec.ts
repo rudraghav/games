@@ -83,9 +83,14 @@ test('effect instructions and alternate victory conditions are available without
     page.getByText('Win with three cats in a row, or eight cats on the bed.', { exact: true }),
   ).toBeVisible();
   await scenario(page, 'uno-2-17-2');
+  // An ordinary legal card plays on one tap, so Inspect explains a card without playing it.
+  await page.getByRole('button', { name: 'Inspect cards', exact: true }).click();
   await page.locator('.card-hand > button[aria-label*="Green Skip"]').click();
   // The effect names who is affected: with two players a Skip comes straight back.
-  await expect(page.getByText(/^.+ loses their turn; you play again\.$/)).toBeVisible();
+  await expect(
+    page.getByText(/^Green Skip · .+ loses their turn; you play again\.$/),
+  ).toBeVisible();
+  await expect(page.getByLabel('Submitted action')).toHaveText('No action submitted');
 });
 
 test('opponent Gem Market tokens are public while reserved card identities remain hidden', async ({

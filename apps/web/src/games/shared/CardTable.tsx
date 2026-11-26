@@ -35,6 +35,11 @@ const cardCount = (count: number) => `${count} card${count === 1 ? '' : 's'}`;
 // More than this many swap targets open a panel instead of crowding the dock.
 const DOCK_TARGETS = 3;
 
+function directPlay(moves: ActionOption[]) {
+  const option = moves.length === 1 ? moves[0] : undefined;
+  return option && !option.value.color && !option.value.target && !option.input ? option : null;
+}
+
 /** Uno and Uno No Mercy: discard and situation, the viewer's hand, then their moves. */
 export function CardTable(props: TableProps) {
   const { match, room, selfId, pending } = props;
@@ -71,6 +76,7 @@ export function CardTable(props: TableProps) {
     `uno:${room.id}:${room.matchId}:${room.matchVersion}`,
     null,
   );
+  const [inspecting, setInspecting] = useState(false);
   const [dismissedSwap, setDismissedSwap] = useState<string | null>(null);
   const selectedCard = match.hand.find((card) => card.id === selected) || null;
   const playable = useMemo(
@@ -120,20 +126,19 @@ export function CardTable(props: TableProps) {
   const urgent = of('uno', 'catch_uno');
   const colours = of('choose');
   const general = of('accept', 'challenge', 'draw', 'end_turn');
-  const cardMoves = selectedCard
-    ? match.actions.filter(
-        (option) => option.value.type === 'play' && option.value.card === selectedCard.id,
-      )
-    : [];
-  const wildMoves = cardMoves.filter((option) => option.value.color);
-  const swapMoves = cardMoves
+  const movesFor = (id: string) =>
+    match.actions.filter((option) => option.value.type === 'play' && option.value.card === id);
+  const cardMoves = selectedCard ? movesFor(selectedCard.id) : [];
+  const availableMoves = inspecting ? [] : cardMoves;
+  const wildMoves = availableMoves.filter((option) => option.value.color);
+  const swapMoves = availableMoves
     .filter((option) => option.value.target)
     .sort(
       (a, b) =>
         (match.players.find((p) => p.id === a.value.target)?.count ?? 0) -
         (match.players.find((p) => p.id === b.value.target)?.count ?? 0),
     );
-  const plainMoves = cardMoves.filter((option) => !option.value.color && !option.value.target);
+  const plainMoves = availableMoves.filter((option) => !option.value.color && !option.value.target);
   const swapKey = selectedCard ? `${selectedCard.id}:${room.matchVersion}` : null;
   const swapPanel = swapMoves.length > DOCK_TARGETS && !pending && dismissedSwap !== swapKey;
   const held = match.hand.length;
@@ -152,6 +157,7 @@ export function CardTable(props: TableProps) {
   // The card an instruction names (a stack on a penalty, the card just drawn) is
   // also a one-tap move here, so it never depends on finding it in a long hand.
   const shortcuts =
+    !inspecting &&
     !selectedCard &&
     current === selfId &&
     (soleCard || penalty > 0 || of('end_turn').length > 0 || justDrew)
@@ -189,9 +195,11 @@ export function CardTable(props: TableProps) {
   }, [myTurn, reduced]);
 
   const commit = (action: ActionOption['value']) => {
-    props.onAction(action);
-    // Keep the choice retryable until a saved version replaces this draft.
+    // Keep a failed card tap available to retry until the server advances the turn.
+    if (action.type === 'play' && action.card) setSelected(action.card);
+    setInspecting(false);
     setDismissedSwap(null);
+    props.onAction(action);
   };
 
   function instruction() {
@@ -211,6 +219,7 @@ export function CardTable(props: TableProps) {
           stacking,
           missingTurn,
         }) || sheddingCardInformation(selectedCard, mercy, room.settings, active.length, stacking);
+      if (inspecting) return [selectedCard.label, effect].filter(Boolean).join(' · ');
       if (current !== selfId || !match.actions.some((option) => option.value.type !== 'uno'))
         return `Not your turn yet.${effect ? ` On your turn: ${effect}` : ''}`;
       if (colours.length) return 'Choose a colour first.';
@@ -226,6 +235,7 @@ export function CardTable(props: TableProps) {
         });
       return effect || `Play ${selectedCard.label}.`;
     }
+    if (inspecting) return 'Tap a card to see what it does.';
     // On your own turn the last card simply wins, so the turn's decision comes first.
     if (urgent.some((option) => option.value.type === 'uno') && current !== selfId)
       return 'One card left: call UNO! now, or anyone can catch you: 2 cards and a missed turn.';
@@ -446,7 +456,22 @@ export function CardTable(props: TableProps) {
               ))}
             </span>
           ) : null}
-          {selectedCard ? <span className="small muted">{selectedCard.label}</span> : null}
+          {held > 0 && !isOut && !finished ? (
+            <Button
+              className="uno-inspect"
+              size="sm"
+              variant={inspecting ? 'secondary' : 'ghost'}
+              aria-label="Inspect cards"
+              aria-pressed={inspecting}
+              disabled={disabled}
+              onClick={() => {
+                setSelected(null);
+                setInspecting(!inspecting);
+              }}
+            >
+              Inspect
+            </Button>
+          ) : null}
         </div>
         {isOut ? (
           <div className="uno-out-notice" role="status">
@@ -471,6 +496,11 @@ export function CardTable(props: TableProps) {
               undefined
             }
             onSelect={(id) => {
+              const play = !inspecting && directPlay(movesFor(id));
+              if (play) {
+                commit(play.value);
+                return;
+              }
               setSelected(id === selected ? null : id);
               setDismissedSwap(null);
             }}
@@ -517,12 +547,10 @@ export function CardTable(props: TableProps) {
               />
             ) : null}
             {shortcuts.map((card) => {
-              const moves = match.actions.filter(
-                (option) => option.value.type === 'play' && option.value.card === card.id,
-              );
+              const play = directPlay(movesFor(card.id));
               const verb = penalty > 0 ? 'Stack' : 'Play';
-              return moves.length === 1 && !moves[0].value.color && !moves[0].value.target ? (
-                button(moves[0], `${verb} ${card.label}`, 'primary', undefined, `card:${card.id}`)
+              return play ? (
+                button(play, `${verb} ${card.label}`, 'primary', undefined, `card:${card.id}`)
               ) : (
                 <div className="decision-control" key={card.id}>
                   <Button
@@ -682,14 +710,15 @@ function UnoHand({
       const viewport = root.querySelector<HTMLElement>('.hand-scroll');
       const first = root.querySelector<HTMLElement>('.card-hand > .playing-card');
       if (!rail || !viewport || !first) return;
-      const width = first.offsetWidth;
+      const width = parseFloat(getComputedStyle(first).width);
       const style = getComputedStyle(viewport);
       const available =
         rail.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - 4;
       const closed = cards.length - 1 - open;
       const gap = 6;
-      // Over half of each card stays visible: its corner, colour and a centre you can tap.
-      const minimum = Math.ceil(width * 0.52) - width;
+      // Leave a finger-width target and keep each card’s centre reachable. One spare
+      // pixel absorbs the subpixel snapping of the lifted neighbour that covers the edge.
+      const minimum = Math.max(45, Math.ceil(width * 0.52)) - width;
       const fitting = closed > 0 ? (available - cards.length * width - open * gap) / closed : gap;
       const overlap = Math.max(minimum, Math.min(gap, Math.floor(fitting)));
       root.style.setProperty('--uno-overlap', `${overlap}px`);

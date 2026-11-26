@@ -5,6 +5,7 @@ import { mapRoom } from '@games/api-client/mappers';
 import { shitheadDetails, type Card } from '@games/api-client';
 import { midgameScenarios } from '@/stories/generated/midgame-scenarios';
 import { ShitheadTable } from '@/games/shithead/ShitheadTable';
+import { directCardPlay } from '@/games/shithead/shithead-view';
 import type { TableProps } from '@/games/types';
 
 function props(): TableProps {
@@ -118,6 +119,19 @@ function playing(): TableProps {
   const room = mapRoom(fixture.room);
   return { room, match: room.game!, selfId: fixture.selfId, pending: false, onAction: () => {} };
 }
+
+it('commits only singleton plays with no alternative use of that same card', () => {
+  const p = playing();
+  const play = p.match.actions.find(({ value }) => value.type === 'play')!;
+  const id = play.value.cards![0];
+  const sameRank = { ...play, value: { ...play.value, cards: [id, 'other-of-rank'] } };
+  const pickup = { ...play, value: { ...play.value, type: 'pickup', card: id, cards: [] } };
+  expect(directCardPlay(p.match.actions, id)).toBe(play.value);
+  expect(directCardPlay([play, sameRank], id)).toBeUndefined();
+  expect(directCardPlay([play, pickup], id)).toBeUndefined();
+  expect(directCardPlay([pickup], id)).toBeUndefined();
+  expect(directCardPlay([], id)).toBeUndefined();
+});
 const face = (id: string, value: string, suit = '♠'): Card => ({
   id,
   label: `${value} ${suit}`,

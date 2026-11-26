@@ -303,7 +303,7 @@ real hosted image decoding is a release check, alongside the asset hash check.
 Uno and Deal consume canonical metadata in one shared renderer. Deal has all28
 US property names, ten rent schedules and24distinct action effects; wild/rent
 bands print both names and orientation stays separate. Full cards use126×178px
-frames and compact table cards80×114px. Hands separate card faces with a gap;
+frames, compact table cards80×114px and phone Deal hand cards76–88px wide. Deal hands separate card faces with a gap;
 horizontal scrolling preserves legibility instead of covering neighbouring text.
 The281-face inventory retains each named property and legal wild orientation at
 normal/compact sizes. Two widths check1,124instances, including instructions and
@@ -313,7 +313,7 @@ rent cells. Historical card-inventory evidence remains; current review is in
 Deal uses authoritative collection counts, completion and rent from the server.
 Each set can reveal its printed property checklist and rent ladder. Selecting a
 card exposes only personalized legal moves, including exact existing/new pile
-destinations. Banking has an explicit confirmation. Payments select actual bank
+destinations. A printed money card goes directly to the bank when that is its sole move. Converting an action into money remains an explicit choice. Payments select actual bank
 or property assets and show value, amount remaining and overpayment; a bank-only
 suggestion never automatically commits collateral. Counter prompts identify the
 actor, target, amount and blocked state while keeping the board available.
@@ -335,9 +335,9 @@ Yellow Uno text uses measured 4.5:1-or-better ink in both card sizes. Complete
 281-face paired sheets and focused behavior/visual evidence are retained in
 `docs/evidence/card-workspaces-2026-11-02`.
 
-Stable gameplay uses shared DecisionDock variants with bounded internal scrolling and a persistent clear/status slot. Deal keeps a fixed command-bar footprint, a stable hand, compact public opponent summaries and content-sized owned bank/collection rows. On phones, owned properties use named 44px deed rows; full faces remain in the hand and Inspect views. Deal card selection immediately opens TableDecisionPanel, a modeless Radix dialog with named action CTAs, an explicit peek toggle, Escape/focus restoration and no blocking overlay. Its compact toolkit exposes up to three exact choices, with All N moves/properties and Fewer moves/properties expanding or collapsing the same panel without changing a partial swap. Complete legal choices commit from their labelled row; Forced Deal retains only the take/give decisions. Bank conversion is explained beside its direct CTA, outside the scrolling card-choice area so it cannot cover focused rows. Complete No Mercy Take/Keep/Give choices use direct rows too; payments and counteractions keep their existing review controls. Portalled inspectors use their own viewport rules.
+Stable gameplay uses shared DecisionDock variants with bounded internal scrolling and a persistent clear/status slot. Deal keeps a fixed command-bar footprint, a stable hand, compact public opponent summaries and content-sized owned bank/collection rows. On phones, owned properties use named 44px deed rows; full faces remain in the hand and Inspect views. Deal cards with a destination or game action open TableDecisionPanel, a modeless Radix dialog with named action CTAs, an explicit peek toggle, Escape/focus restoration and no blocking overlay. Its compact toolkit exposes up to three exact choices, with All N moves/properties and Fewer moves/properties expanding or collapsing the same panel without changing a partial swap. Complete legal choices commit from their labelled row; Forced Deal retains only the take/give decisions. Bank conversion is explained beside its direct CTA, outside the scrolling card-choice area so it cannot cover focused rows. Complete No Mercy Take/Keep/Give choices use direct rows too; payments and counteractions keep their existing review controls. Portalled inspectors use their own viewport rules.
 
-HorizontalRail owns overflow detection, external 44px arrows, native touch scrolling and reduced-motion navigation. It reveals focused cards horizontally without moving the page vertically. OpponentPanel owns the public summary/Inspect vocabulary; features provide only authorized public children. RoomActivity displays the latest 80 durable, server-redacted moves with optional public card details. The same sidebar tabs serve chat/activity on desktop and phone.
+HorizontalRail owns overflow detection, external 44px arrows, native touch scrolling and reduced-motion navigation. On phones Uno and Deal put the arrows above the cards. An overlapped phone hand keeps at least 44px of each card exposed (the Uno fan steps 45px, so a lifted neighbour's subpixel edge never trims the target). A fanned Uno hand reserves the arrows' corner in its heading even before it overflows, so opening a selected card never rewraps the heading or moves the hand. It reveals focused cards horizontally without moving the page vertically. OpponentPanel owns the public summary/Inspect vocabulary; features provide only authorized public children. RoomActivity displays the latest 80 durable, server-redacted moves with optional public card details. The same sidebar tabs serve chat/activity on desktop and phone.
 
 Current stable-play evidence lives in `evidence/stable-play-2026-11-02`: 235 legally reached projections across all 27 games, critical interaction/geometry checks, and inspected phone/desktop captures. This fixture review is distinct from real saved-room full matches and hosted release checks in the journal.
 
@@ -371,9 +371,7 @@ inspector, with matching native hover hints. Phone reference portraits and names
 share a row while their explanations use the full available width. Tarot's deck
 precedes the spread in DOM and visual order, and main actions wrap without clipping.
 
-Audit refinement retains stable decision footprints. Uno uses two-column colour
-choices at every width with a 180px desktop / 244px phone dock; long docks have
-scroll-edge shadows. Four/Reversi/checkers/Mancala share BoardViewport using existing
+Uno's phone dock sizes to its instructions and choices. The action row stays reachable on short screens. Four/Reversi/checkers/Mancala share BoardViewport using existing
 HorizontalRail/Modal primitives, with a read-only overview and full-size move targets.
 Boop graduation requires preview/confirm; Paper public inspection never takes a
 card. Five corrected Tarot cards opt into full-frame SVG fitting. Acceptance

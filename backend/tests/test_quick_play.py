@@ -27,10 +27,10 @@ def client():
         yield value
 
 
-def play(client, headers, game="tarot", request_id=None):
+def play(client, headers, game="tarot", request_id=None, **options):
     return client.post(
         f"/v1/games/{game}/play", headers=headers,
-        json={"request_id": request_id or str(uuid4())},
+        json={"request_id": request_id or str(uuid4()), **options},
     )
 
 
@@ -63,6 +63,46 @@ def test_every_game_quick_starts_at_default_capacity_with_one_human(client, game
         assert room["game"]["detail"]["history"] == []
         assert room["game"]["detail"]["spins_remaining"] == 5
         assert '"_pockets"' not in response.text and '"_stops"' not in response.text
+
+
+@pytest.mark.parametrize(("game", "count"), [
+    ("uno", 9), ("word-agents", 4), ("four-in-a-row", 1), ("blackjack", 6), ("tarot", 0),
+])
+def test_requested_bot_count_starts_and_replays_the_same_roster(client, game, count):
+    headers, request_id = player(client), str(uuid4())
+    response = play(client, headers, game, request_id, bot_count=count)
+    assert response.status_code == 200, response.text
+    room = response.json()
+    assert room["capacity"] == count + 1
+    assert len(room["game"]["players"]) == len(room["members"]) == count + 1
+    bots = [member for member in room["members"] if member["is_bot"]]
+    assert len(bots) == count and all(member["bot_level"] == "hard" for member in bots)
+    replay = play(client, headers, game, request_id, bot_count=count)
+    assert replay.status_code == 200 and replay.json() == room
+
+
+@pytest.mark.parametrize(("game", "count"), [
+    ("uno", -1), ("uno", 10), ("uno", 1.5), ("uno", True), ("uno", "2"),
+    ("blackjack", 0), ("uno-no-mercy", 6), ("word-agents", 2), ("tarot", 1),
+])
+def test_invalid_bot_count_is_rejected_before_creating_the_profile(client, game, count):
+    headers = player(client)
+    assert play(client, headers, game, bot_count=count).status_code == 422
+    assert client.get("/v1/me", headers=headers).json()["profile"] is None
+
+
+def test_reused_request_id_with_a_different_bot_count_preserves_the_first_match(client):
+    headers, request_id = player(client), str(uuid4())
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        responses = list(pool.map(
+            lambda count: play(client, headers, "uno", request_id, bot_count=count), (1, 4)
+        ))
+    assert sorted(response.status_code for response in responses) == [200, 409]
+    saved = next(response.json() for response in responses if response.status_code == 200)
+    retry = play(client, headers, "uno", request_id, bot_count=saved["capacity"] - 1)
+    assert retry.status_code == 200 and retry.json() == saved
+    default = play(client, headers, "uno", request_id)
+    assert default.status_code == (200 if saved["capacity"] == 2 else 409)
 
 
 def test_concurrent_repeated_intent_commits_one_room_match_and_bot_group(client):

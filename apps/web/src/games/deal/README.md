@@ -3,10 +3,11 @@
 `DealTable` lays the table out in content-sized rows, top to bottom: one card per
 opponent, the shared centre, your private hand, the command dock, then your own
 bank and sets. Table rows use page scrolling without fixed clipping windows. Selecting
-a playable card immediately opens the shared modeless decision panel with named
+a printed money card banks it when banking is its sole legal move. Selecting another
+playable card opens the shared modeless decision panel with named
 action buttons in a compact toolkit. Up to three exact choices are exposed first;
 **All N moves/properties** expands the same panel and **Fewer moves/properties**
-returns to the compact view without losing a partial swap. Selecting never submits a move.
+returns to the compact view without losing a partial swap.
 Public property cards without an available move and unplayable hand cards open
 information when clicked. A separate **Card info** control inspects a card without selecting,
 paying, banking or submitting it. Each public property set also has an **Info**
@@ -43,7 +44,8 @@ faces carry their instruction as a `data-tip` tooltip. See
   discard never moves the hand.
 - **Hand and dock.** The hand sits directly under the centre, so it is on the
   first screen at 320×640 and 1280×720. Its rail arrows sit in the heading row and
-  never cover a card. An empty hand says when cards come back. The dock keeps a
+  never cover a card. Narrow tables show 76–88px faces with a 4px gap. Card info
+  shows the full face and rent ladder. An empty hand says when cards come back. The dock keeps a
   fixed footprint; seats that cannot act get a read-only **View pending action**
   instead of a disabled response button, and a finished match hides it.
 - **Your table.** Bank as denominations (individual notes only while paying), and
@@ -133,8 +135,8 @@ the viewer's own hand. `DealComposer.tsx` and `DealResolution.tsx` render it.
   colours, with its active colour, value and the set it sits in, e.g.
   "Wild Green/Dark blue · Green active · 4M · from Green set 2 (1/3)". The
   any-colour wild says "no cash value" rather than a glyph.
-- **Direct card actions.** Selecting a card exposes its legal destination, action
-  and bank buttons immediately. The compact panel shows up to three exact moves,
+- **Direct card actions.** Printed cash with one legal bank move banks on the first tap.
+  Other hand cards open their legal destination, action and bank buttons. The compact panel shows up to three exact moves,
   with a labelled expansion for the entire legal list. It does not infer a best
   move or silently commit a choice; rent keeps its existing amount ordering.
   A complete choice commits directly: place in a

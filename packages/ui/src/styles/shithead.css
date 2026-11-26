@@ -272,7 +272,7 @@
     }
     .shithead-player-table,
     .shithead-workspace {
-      padding: 12px;
+      padding: var(--space-2);
     }
   }
 
@@ -308,7 +308,7 @@
     --shithead-card-h: 116px;
     --shithead-gaps-per-row: 15;
     --shithead-step: clamp(
-      22px,
+      var(--shithead-min-step, 22px),
       calc((100cqw - var(--shithead-card-w) - 8px) / var(--shithead-gaps-per-row)),
       calc(var(--shithead-card-w) + 8px)
     );
@@ -384,9 +384,31 @@
   }
   @media (max-width: 600px) {
     .shithead-private-cards[data-density='fan'] {
-      --shithead-card-w: 69px;
-      --shithead-card-h: 99px;
-      --shithead-gaps-per-row: 11;
+      --shithead-card-w: 56px;
+      --shithead-card-h: 80px;
+      --shithead-min-step: 44px;
+      --shithead-gaps-per-row: 6;
+    }
+    .shithead-game .shithead-private-cards {
+      min-height: 0;
+    }
+    .shithead-game .shithead-private-cards[data-density='fan'] .playing-card--selected {
+      z-index: auto;
+    }
+    .shithead-game .shithead-private-cards[data-density='fan'] .card-hand {
+      row-gap: var(--space-2);
+    }
+    /* Six setup cards share one row where they fit: five 8px gaps keep each card
+       visibly separate, and the width also leaves the rail's 4px inline padding
+       and a little slack (48px in all). Narrower phones wrap to a second row. */
+    .shithead-game .shithead-private-cards[data-density='setup'] .card-hand {
+      gap: var(--space-2);
+    }
+    .shithead-game .shithead-private-cards[data-density='setup'] .playing-card {
+      --card-width: clamp(44px, calc((100cqw - 48px) / 6), 62px);
+      --card-height: calc(var(--card-width) * 1.44);
+      width: var(--card-width);
+      height: var(--card-height);
     }
     /* The card to beat is never smaller than an opponent's face-up card. */
     .shithead-pile-top > .playing-card {

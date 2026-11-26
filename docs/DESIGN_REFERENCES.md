@@ -2,6 +2,10 @@
 
 Reviewed 31 October 2026. Inspiration is separated from reusable assets.
 
+## Mobile card hands, 26 November 2026
+
+Tanmay Kaper’s [Card Hand on Framer](https://www.framer.com/marketplace/components/card-hand/) uses a fan with readable corner indices. Sarok Ali’s [Uno app on Dribbble](https://dribbble.com/shots/22689293-UNO-App-card-game) separates a prominent discard from the hand below. The Games tables use an original face with its rank and colour letter together, and keep each exposed strip tappable. Deal’s property names and rent details require whole faces.
+
 ## 1 November 2026 discovery and table review
 
 Fresh phone/desktop captures of the current production lounge were inspected.

@@ -51,13 +51,14 @@ test('hand selections and grouping controls keep card and board wells stationary
   page,
 }) => {
   await gallery(page, 'Uno · maximum seats');
+  await page.getByRole('button', { name: 'Inspect cards', exact: true }).click();
   // In a room the table scrolls the hand above the pinned phone dock when the turn
   // starts; the gallery mounts mid-turn, so show the hand the same way first.
   await page.locator('.private-hand').evaluate((node) => node.scrollIntoView({ block: 'start' }));
-  await steady(page, ['.card-table', '.private-hand', '.action-panel'], () =>
+  await steady(page, ['.card-table', '.private-hand'], () =>
     page.getByRole('group', { name: 'Your hand', exact: true }).getByRole('button').first().click(),
   );
-  await steady(page, ['.card-table', '.private-hand', '.action-panel'], () =>
+  await steady(page, ['.card-table', '.private-hand'], () =>
     page.getByRole('button', { name: 'Clear selection', exact: true }).click(),
   );
 

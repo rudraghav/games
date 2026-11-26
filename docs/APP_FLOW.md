@@ -44,15 +44,21 @@ supported multiplayer games, emphasizing Play with bots without starting play.
 
 The home page starts with a compact game picker rather than a large promotional
 hero. Play solo filters the catalogue to solo and bot-capable games. On a game
-page, Start reading or Play with bots creates and starts the private session in
-one transaction, without a name form or lobby. Existing profiles are preserved;
-first-time players receive Guest. Bot play uses the minimum supported group,
-with at least one bot. Play with friends opens setup with that game fixed and
+page, Start reading opens a private solo session. Play with bots on a
+variable-size game opens the bot count picker. Its range reserves one seat for
+the player and starts at the game's minimum, with at least one bot. The
+selected count starts at the lower end. For example, classic Uno offers one
+through nine bots. A two-player game shows the single bot in its launch button
+and starts directly. All quick-play bots use Hard difficulty. The blackjack
+dealer is separate from the player seats. Starting creates the session and
+match together and skips the name form and lobby. Existing profiles are
+preserved and first-time players receive Guest. Play with friends opens setup with that game fixed and
 then the invite lobby. The global Create room dialog retains advanced setup.
 
-Quick play sends a UUID request ID stored per game in this browser tab. Pending
-controls prevent duplicate taps. A lost response offers Try again and reuses the
-same ID, including after a refresh, so the same original match is recovered.
+Quick play sends a UUID for the launch and remembers its intent in this browser
+tab. Pending controls prevent duplicate taps. A lost response offers Try again
+and reuses the original ID and bot count, including after a refresh, so the same
+match is recovered.
 An ended, abandoned or changed session offers an explicit Start a new reading/game
 instead of silently restarting it. Browsing never submits this request.
 One-person discovery includes supported bot games. Search uses exact aliases
@@ -85,8 +91,8 @@ side panel on desktop and a sheet on phones. Forms and card controls work withou
 
 Deal's play area runs opponents → stock/latest move → private hand → command
 bar → own bank/property sets. Opponent summaries keep bank value and set progress
-visible; Inspect opens their public assets. Card selection never moves these
-regions or submits a move. Selecting a playable card immediately opens named
+visible; Inspect opens their public assets. A tap banks printed money when the
+server offers only banking for that card. Selecting other playable cards opens named
 buttons for its legal destinations/actions and banking. The compact modeless
 toolkit shows up to three exact choices; All N moves/properties expands the full
 list, and Fewer returns without discarding a partial swap. Changing the selected
@@ -111,7 +117,7 @@ private hands and Paper's keep choices retain keyboard/touch rail navigation.
 Word Agents and Boop preserve readable board cells with navigation below when
 needed. Grouping a Rummy hand cannot make its navigation arrows oscillate.
 
-A single complete Uno play and verified Rummy winning discards have named buttons on the first decision view. Teen Patti shows the legal chip amounts directly for small ranges. Sea Salt & Paper names the exact cards of a unique duo, and Boop highlights a sole graduation line before the player commits it. In scrollable hands and boards, a tap activates the touched item before bringing it fully into view. Keyboard focus reveals it immediately. For all 25 games outside Deal, the [decision review](evidence/simpler-turns-2026-11-19/README.md) describes the steps, including choices that remain editable before locking.
+Tapping an ordinary legal Uno card plays it immediately in either edition. A Wild opens colour choices and a swap opens player choices. Inspect cards previews the face and its effect. A single complete Uno play and verified Rummy winning discards also have named buttons on the first decision view. Teen Patti shows the legal chip amounts directly for small ranges. Sea Salt & Paper names the exact cards of a unique duo, and Boop highlights a sole graduation line before the player commits it. In scrollable hands and boards, a tap activates the touched item before bringing it fully into view. Keyboard focus reveals it immediately. For all 25 games outside Deal, the [decision review](evidence/simpler-turns-2026-11-19/README.md) describes the steps, including choices that remain editable before locking.
 
 The normal play buttons start an uncoached game. **Rules & tutorial** opens the
 same illustrated rulebook players can consult at the table. Opening it starts

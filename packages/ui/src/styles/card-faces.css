@@ -292,142 +292,115 @@
     --card-color: var(--face-blue);
     --card-deep: var(--face-blue-deep);
   }
-  /* A wild is every colour: an ink card whose well is ringed by all four, so its print
-     has one dark background instead of a gradient no text colour could hold. */
+  .playing-card.playing-card--shedding:not(.playing-card--back) {
+    --face-frame: 2px;
+    --face-radius: 8px;
+    background: var(--card-color);
+  }
   .playing-card.playing-card--shedding[data-color='wild']:not(.playing-card--back) {
     --card-color: var(--face-ink);
-    --card-edge: #000;
-    background: var(--face-ink) linear-gradient(172deg, #ffffff17, #0000 55%);
+    --card-deep: var(--face-ink);
   }
+  /* The rank and colour letter share the exposed edge of an overlapped card. */
   .playing-card--shedding .shedding-index {
     position: absolute;
     z-index: 1;
-    top: 2px;
-    left: 3px;
+    top: 3%;
+    left: 5%;
     display: flex;
     align-items: center;
-    gap: 2px;
-    font-size: clamp(11px, 19cqw, 15px);
+    gap: 0.18em;
+    font-size: clamp(12px, 24cqw, 18px);
     font-weight: 800;
+    font-variant-numeric: lining-nums tabular-nums;
     line-height: 1;
   }
   .playing-card--shedding .shedding-index > svg {
-    width: 1.05em;
-    height: 1.05em;
-    stroke-width: 2.6;
+    width: 1em;
+    height: 1em;
+    stroke-width: 2.8;
   }
-  /* The colour, spelled out: R / Y / G / B never depends on seeing hue. */
   .playing-card--shedding .shedding-colour {
-    display: grid;
-    place-items: center;
-    width: clamp(15px, 24cqw, 18px);
-    height: clamp(15px, 24cqw, 18px);
-    border-radius: 50%;
-    background: var(--face-paper);
-    box-shadow: 0 0 0 1px var(--card-edge);
-    color: var(--card-deep);
-    font-size: clamp(11px, 16cqw, 12.5px);
-    font-weight: 800;
+    padding-inline-start: 0.24em;
+    border-inline-start: 1px solid currentColor;
+    font-size: clamp(9px, 15cqw, 12px);
+    font-weight: 700;
     line-height: 1;
   }
   .playing-card--shedding .shedding-face {
     position: absolute;
-    inset: 19px 5px 28px;
+    inset: 22% 5% 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1px;
-    border-radius: 48%;
+    border-radius: 75% 28% 75% 28% / 68% 30% 68% 30%;
     background: var(--face-paper);
-    box-shadow:
-      0 0 0 1px var(--card-edge),
-      inset 0 2px 3px #00000024;
+    box-shadow: 0 0.18em 0 var(--card-deep);
     color: var(--card-deep);
     font-weight: 800;
   }
   .playing-card--shedding[data-color='wild'] .shedding-face {
-    border: clamp(2px, 5cqw, 4px) solid #0000;
+    --wild-band: conic-gradient(
+      from -30deg,
+      var(--face-red) 0 25%,
+      var(--face-yellow) 25% 50%,
+      var(--face-green) 50% 75%,
+      var(--face-blue) 75% 100%
+    );
+    border: clamp(2px, 5cqw, 4px) solid transparent;
     background:
       linear-gradient(var(--face-paper), var(--face-paper)) padding-box,
-      conic-gradient(
-          from 20deg,
-          var(--face-red),
-          var(--face-yellow),
-          var(--face-green),
-          var(--face-blue),
-          var(--face-red)
-        )
-        border-box;
+      var(--wild-band) border-box;
     background-color: var(--face-paper);
     box-shadow: none;
   }
   .playing-card--shedding .shedding-face > strong {
-    font-size: clamp(15px, 45cqw, 34px);
+    font-size: clamp(20px, 59cqw, 46px);
     line-height: 1;
-    letter-spacing: -0.04em;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    transform: skewX(-8deg);
+  }
+  .playing-card--shedding .shedding-face > strong[data-baseline] {
+    text-decoration: underline;
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.02em;
   }
   .playing-card--shedding .shedding-face > svg {
-    width: 44cqw;
-    height: 44cqw;
+    width: 47cqw;
+    height: 47cqw;
     flex: none;
-    stroke-width: 2.5;
+    stroke-width: 2.8;
+  }
+  .playing-card--shedding .shedding-face[data-design='draw'] > strong {
+    font-size: clamp(17px, 44cqw, 34px);
   }
   .playing-card--shedding .shedding-face[data-design='reverse-draw'] > svg {
-    width: 30cqw;
-    height: 30cqw;
+    width: 26cqw;
+    height: 26cqw;
   }
   .playing-card--shedding .shedding-face[data-design='reverse-draw'] > strong {
-    font-size: clamp(12px, 29cqw, 22px);
-  }
-  .playing-card--shedding .shedding-draw-mark {
-    position: relative;
-    display: grid;
-    place-items: center;
-    width: 100%;
-    height: 100%;
-  }
-  .playing-card--shedding .shedding-draw-mark > svg {
-    position: absolute;
-    inset: 4% 8%;
-    width: 84%;
-    height: 92%;
-    fill: currentColor;
-    fill-opacity: 0.09;
-    stroke: currentColor;
-    stroke-width: 2;
-    opacity: 0.5;
-  }
-  .playing-card--shedding .shedding-draw-mark > strong {
-    position: relative;
-    font-size: clamp(14px, 44cqw, 32px);
-    line-height: 1;
-    letter-spacing: -0.05em;
-    text-shadow: 0 0 3px var(--face-paper);
+    font-size: clamp(12px, 26cqw, 20px);
   }
   .playing-card.playing-card--shedding .card-action-name {
-    left: 3px;
-    right: 3px;
-    bottom: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 23px;
+    inset: auto 4% 3%;
+    display: grid;
+    align-content: end;
     color: var(--card-on);
-    font-size: clamp(11px, 15cqw, 12px);
-    line-height: 1.05;
-    font-weight: 600;
-    letter-spacing: 0.01em;
+    font-size: clamp(9px, 16cqw, 12px);
+    line-height: 1.03;
+    font-weight: 700;
+    letter-spacing: 0;
     text-transform: none;
     overflow-wrap: normal;
   }
-  /* Discards, activity and phone piles: no room for a caption, so the face and corners carry it. */
-  @container (max-width: 54px) {
+  @container (max-width: 50px) {
     .playing-card.playing-card--shedding .card-action-name {
       display: none;
     }
     .playing-card--shedding .shedding-face {
-      inset: clamp(13px, 32cqw, 17px) 3px 6px;
+      inset-block: 28% 10%;
     }
   }
 

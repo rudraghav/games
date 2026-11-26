@@ -422,8 +422,13 @@ class RoomService:
             engine.manifest.play_mode == "solo" or supports_bots(game_id)
         ):
             raise HTTPException(422, "Choose a game that supports solo play or bots.")
-        capacity = (1 if engine.manifest.play_mode == "solo"
-                    else max(2, engine.manifest.min_players))
+        manifest = engine.manifest
+        minimum_bots = 0 if manifest.play_mode == "solo" else max(1, manifest.min_players - 1)
+        maximum_bots = manifest.max_players - 1
+        bot_count = minimum_bots if data.bot_count is None else data.bot_count
+        if not minimum_bots <= bot_count <= maximum_bots:
+            raise HTTPException(422, "Choose a supported number of bots for this game.")
+        capacity = bot_count + 1
         values = self._settings(game_id, capacity, {})
         # Bind both IDs to the authenticated actor, independently of the URL's game.
         # One intent cannot open another actor's session or be reused for a new game.
@@ -440,6 +445,8 @@ class RoomService:
                 self._room(room_id, actor)
                 if existing.game_id != game_id or existing.match_id != match_id:
                     raise HTTPException(409, "This start belongs to an earlier game.")
+                if existing.capacity != capacity:
+                    raise HTTPException(409, "This start used a different number of bots.")
                 return room_view(self.repo, existing, actor.id, self.cipher)
 
             # Retries have their own request throttle above; only a new committed
@@ -451,8 +458,8 @@ class RoomService:
             profile = self.repo.ensure_player(actor.id, "Guest")
             token, hashed = invite()
             room = Room(
-                id=room_id, name=f"{profile.name}'s {engine.manifest.name}"[:60],
-                code=self._fresh_code(retired=engine.manifest.play_mode == "solo"),
+                id=room_id, name=f"{profile.name}'s {manifest.name}"[:60],
+                code=self._fresh_code(retired=manifest.play_mode == "solo"),
                 owner_id=actor.id, game_id=game_id,
                 capacity=capacity, settings=values, invite_hash=hashed,
                 invite_ciphertext=self.cipher.encrypt(token.encode()).decode(),
@@ -461,8 +468,8 @@ class RoomService:
             self.repo.flush()
             self.repo.add(Member(room_id=room.id, user_id=actor.id, ready=True))
             self.repo.flush()
-            if capacity > 1:
-                self._add_bots(room, [BotSeat()] * (capacity - 1))
+            if bot_count:
+                self._add_bots(room, [BotSeat()] * bot_count)
             self._start_match(room, match_id=match_id)
             return room_view(self.repo, room, actor.id, self.cipher)
 

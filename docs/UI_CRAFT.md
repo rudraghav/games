@@ -84,7 +84,6 @@ with its own artwork from `docs/UI_CRAFT_RULES.md` in the private `Shikha-Learni
 - Deal's table centre still prints "Your turn" beside the play counter, under the notice that says the same.
 - The rewards page and Secret Santa's links step have no filled button: every row offers the same action.
 - On the roulette mat a chosen bet turns heavier (700). The mat is board art, but it is a weight change on selection.
-- On phones the Uno dock sticks to the bottom of the screen with a hairline and an upward shadow together.
 - Flip 7, Trio, Azul, Gem Market and the party tables draw bordered player cards and a bordered dock inside a
   bordered table panel. The panel stands in for the table, but it reads as cards inside a card.
 

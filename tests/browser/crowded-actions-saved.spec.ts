@@ -173,25 +173,24 @@ test('saved crowded-action families preserve exact moves, public state and narro
       expect(index).toBeGreaterThanOrEqual(0);
       const card = before.game!.hand[index];
       const held = actor.locator('.deal-hand-dock .card-hand > button').nth(index);
-      await held.click();
-      await expect(held).toHaveAttribute('aria-pressed', 'true');
-      // Selecting a card opens its complete legal moves at once. Each destination
-      // row and the bank button is a one-step commit: there is no separate
-      // move picker or confirmation.
+      const cash = option!.action.type === 'bank' && card.subtitle === 'MONEY';
       const panel = actor.locator('.table-decision-panel');
-      await expect(panel).toBeVisible();
-      await expect(panel.getByRole('heading', { name: card.label, exact: true })).toBeVisible();
-      await expect(panel.getByRole('combobox')).toHaveCount(0);
-      const moves = panel.getByRole('group', { name: 'Card moves', exact: true });
-      if (option!.action.type === 'property') {
-        // The only legal destination is the only row offered.
-        await expect(moves.getByRole('button')).toHaveCount(1);
-        await expect(moves.getByRole('button')).toHaveAccessibleName(/^Place in /);
+      let confirm = held;
+      if (!cash) {
+        await held.click();
+        await expect(held).toHaveAttribute('aria-pressed', 'true');
+        await expect(panel).toBeVisible();
+        await expect(panel.getByRole('heading', { name: card.label, exact: true })).toBeVisible();
+        await expect(panel.getByRole('combobox')).toHaveCount(0);
+        const moves = panel.getByRole('group', { name: 'Card moves', exact: true });
+        if (option!.action.type === 'property') {
+          confirm = moves.getByRole('button');
+          await expect(confirm).toHaveCount(1);
+          await expect(confirm).toHaveAccessibleName(/^Place in /);
+        } else {
+          confirm = panel.getByRole('button', { name: `Bank for ${card.value}`, exact: true });
+        }
       }
-      const confirm =
-        option!.action.type === 'property'
-          ? moves.getByRole('button')
-          : panel.getByRole('button', { name: `Bank for ${card.value}`, exact: true });
       await expect(confirm).toBeEnabled();
       const observer = players.find((item) => item !== actor)!;
       // This panel portals outside the room's inert frame. Losing the network
@@ -200,7 +199,7 @@ test('saved crowded-action families preserve exact moves, public state and narro
       try {
         await expect(actor.locator('.room-offline')).toContainText('Moves resume');
         await expect(confirm).toBeDisabled();
-        await expect(panel).not.toContainText('Saving…');
+        if (!cash) await expect(panel).not.toContainText('Saving…');
         expect((await roomAs(observer, roomId)).match_version).toBe(before.match_version);
       } finally {
         await actor.context().setOffline(false);

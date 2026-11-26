@@ -15,7 +15,14 @@ import { shitheadDetails, type Card } from '@games/api-client';
 import { PlayerStrip } from '../shared/PlayerStrip';
 import { useTableDraft } from '../shared/table-draft';
 import { playerName, type TableProps } from '../types';
-import { finishPlace, pileEvent, requirement, stageNames, topRun } from './shithead-view';
+import {
+  directCardPlay,
+  finishPlace,
+  pileEvent,
+  requirement,
+  stageNames,
+  topRun,
+} from './shithead-view';
 
 /** Hands longer than this wrap into overlapped rows so every card stays in view. */
 const FAN_FROM = 9;
@@ -76,10 +83,13 @@ function ShitheadDecision(props: TableProps) {
       o.value.type === 'pickup' &&
       (ownStage !== 'face_up' || (selected.length === 1 && o.value.card === selected[0])),
   );
-  // Reserve a stable choice area only while this viewer has controls to use.
-  // Selection does not affect this flag, so Clear selection cannot shift cards.
   const hasPickup = match.actions.some((option) => option.value.type === 'pickup');
-  const hasDecision = Boolean(arrange || options.length || hasPickup || canPreselect);
+  const playsInSets = options.some((option) => (option.value.cards?.length ?? 0) > 1);
+  const faceUpPickup = ownStage === 'face_up' && hasPickup;
+  const showPlayButton = options.length > 0 && (faceUpPickup || playsInSets);
+  const hasDecision = Boolean(
+    arrange || showPlayButton || hasPickup || canPreselect || selected.length,
+  );
   // Server-legal cards for this turn; everything else is shown dimmed.
   const playableIds = [...new Set(options.flatMap((option) => option.value.cards ?? []))];
   const markPlayable = myTurn && (ownStage === 'hand' || options.length > 0);
@@ -108,13 +118,15 @@ function ShitheadDecision(props: TableProps) {
               ? `Flip one of your hidden cards. If it can’t beat ${need.short}, you take the pile.`
               : 'Flip any hidden card to lead.'
             : ownStage === 'face_up'
-              ? options.length
-                ? `Play a face-up card (${need.text}), or choose one to take with the pile.`
-                : `No face-up card beats ${need.short}. Choose one to add to the pile; you then take all ${data.pile_count + 1} cards.`
-              : !data.pile_count
-                ? 'Lead any card from your hand: one card or several of the same rank.'
+              ? !faceUpPickup
+                ? 'Tap a face-up card to lead. Matching ranks can be played together.'
                 : options.length
-                  ? `Play ${need.text} from your hand: one card or several of the same rank.`
+                  ? `Play a face-up card (${need.text}), or choose one to take with the pile.`
+                  : `No face-up card beats ${need.short}. Choose one to add to the pile; you then take all ${data.pile_count + 1} cards.`
+              : !data.pile_count
+                ? 'Tap a card to lead. Matching ranks can be played together.'
+                : options.length
+                  ? `Play ${need.text} from your hand. Tap a single to play it, or select matching ranks together.`
                   : `Nothing in your hand beats ${need.short}. Take the pile (${data.pile_count} cards).`;
   const selectionNote = shownHint
     ? shownHint
@@ -126,6 +138,13 @@ function ShitheadDecision(props: TableProps) {
 
   function select(card: Card) {
     setHint(null);
+    if (!setup && !blocked) {
+      const direct = directCardPlay(match.actions, card.id);
+      if (direct) {
+        commit(direct);
+        return;
+      }
+    }
     setDraft((old) => {
       const kept = old.filter((id) => pool.some((c) => c.id === id));
       if (kept.includes(card.id)) return kept.filter((id) => id !== card.id);
@@ -283,7 +302,7 @@ function ShitheadDecision(props: TableProps) {
                   selectedIds={selected}
                   playableIds={markPlayable && ownStage === 'hand' ? playableIds : undefined}
                   onSelect={
-                    (setup ? canPreselect : !blocked)
+                    (setup ? canPreselect : myTurn)
                       ? (id) => select(match.hand.find((c) => c.id === id)!)
                       : undefined
                   }
@@ -299,7 +318,7 @@ function ShitheadDecision(props: TableProps) {
             <DecisionDock
               className="shithead-actions"
               label="Your Shithead actions"
-              size={setup ? 'fit' : 'standard'}
+              size="fit"
               pending={pending}
             >
               {!setup && selectionNote ? (
@@ -324,7 +343,7 @@ function ShitheadDecision(props: TableProps) {
                     </span>
                   </Button>
                 ) : null}
-                {options.length ? (
+                {showPlayButton ? (
                   <Button disabled={blocked || !play} onClick={() => play && commit(play.value)}>
                     Play selected{selected.length ? ` · ${selected.length}` : ''}
                   </Button>

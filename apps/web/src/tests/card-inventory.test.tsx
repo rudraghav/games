@@ -177,6 +177,18 @@ describe('Printed faces that identify the card without colour or tiny print', ()
     expect(new Set(['skip', 'skip_all', 'reverse'].map(face)).size).toBe(3);
     expect(render(faces('uno').find((face) => face.kind === 'draw2')!)).toContain('Draw 2');
   });
+  it('underlines the two reversible Uno digits and prints the four panels of a Wild', () => {
+    for (const face of [...faces('uno'), ...faces('uno-no-mercy')]) {
+      if (/^\d$/.test(face.card.value)) {
+        expect(render(face).includes('data-baseline="true"')).toBe(
+          face.card.value === '6' || face.card.value === '9',
+        );
+      }
+    }
+    const wild = render(faces('uno').find((face) => face.card.value === 'Wild')!);
+    for (const color of ['red', 'yellow', 'green', 'blue'])
+      expect(wild).toContain(`fill="var(--face-${color})"`);
+  });
   it('gives grid games their own palettes and dark numerals on light faces', () => {
     const band = (value: number) =>
       render(faces('skyjo').find((face) => face.card.value === String(value))!).match(

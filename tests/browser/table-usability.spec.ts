@@ -14,7 +14,7 @@ test('table decisions stay near the hand and explain direct grid actions', async
   await expect(page.getByRole('button', { name: 'End turn' })).toBeVisible();
   const firstCard = page
     .getByRole('group', { name: 'Your hand', exact: true })
-    .getByRole('button')
+    .locator('button[data-playable="true"]:not([data-card-kind="money"])')
     .first();
   await firstCard.focus();
   await firstCard.press('Enter');

@@ -93,17 +93,20 @@ test.describe('Local Uno fixtures', () => {
             first: cards[0].getAttribute('aria-label') || '',
           };
         });
-        // Before this change two cards fit at 320px and three at 390px.
         expect(report.corners, `${item.id} at ${width}px`).toBeGreaterThanOrEqual(
-          width === 320 ? 4 : 5,
+          width === 320 ? 5 : 6,
         );
         // Every card keeps more than half its width, so its centre stays tappable.
-        expect(report.minStep).toBeGreaterThanOrEqual(report.width * 0.5);
+        expect(report.minStep).toBeGreaterThanOrEqual(Math.max(44, report.width * 0.5));
         if (playable.size) expect(report.first).toMatch(/, playable/);
         // The first card is clickable at its centre and opens fully when selected.
+        const inspect = page.getByRole('button', { name: 'Inspect cards', exact: true });
+        await inspect.click();
         await cards.first().click();
+        await expect(page.getByLabel('Submitted action')).toHaveText('No action submitted');
         await expect(cards.first()).toHaveAttribute('aria-pressed', 'true');
         await page.getByRole('button', { name: 'Clear selection', exact: true }).click();
+        await inspect.click();
       }
     }
   });
@@ -134,26 +137,43 @@ test.describe('Local Uno fixtures', () => {
     );
   });
 
-  test('on a 320px phone the moves stay on screen after choosing a card', async ({ page }) => {
-    const item = midgameScenarios.find(
-      (entry) =>
-        entry.game === 'uno' &&
-        entry.room.game!.actions!.some((option) => option.action.type === 'play') &&
-        entry.room.game!.hand.length >= 20,
-    )!;
+  test('a card tap plays an ordinary move or opens its required choice', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 568 });
-    await scenario(page, item);
-    const card = page.locator('.uno-hand .card-hand > [data-playable="true"]').first();
-    await card.scrollIntoViewIfNeeded();
-    await card.click();
-    const play = page
-      .locator('.uno-dock .action-choices button')
-      .filter({ hasText: /^Play / })
-      .first();
-    await expect(play).toBeVisible();
-    const box = (await play.boundingBox())!;
-    expect(box.y).toBeGreaterThanOrEqual(0);
-    expect(box.y + box.height).toBeLessThanOrEqual(568 + 1);
+    for (const [id, label, kind] of [
+      ['uno-2-17-2', 'Green Skip', 'plain'],
+      ['uno-10-31-2', 'Wild +4', 'colour'],
+      ['uno-no-mercy-2-17-2', 'Green 1', 'plain'],
+      ['uno-no-mercy-6-31-2', 'Wild Reverse +4', 'colour'],
+      ['uno-no-mercy-2-11-19', 'Red 7', 'swap'],
+    ]) {
+      const item = midgameScenarios.find((entry) => entry.id === id)!;
+      await scenario(page, item);
+      const game = item.room.game!;
+      const face = game.hand.find((card) => card.label === label)!;
+      const option = game.actions!.find(
+        ({ action }) => action.type === 'play' && action.card === face.id,
+      )!;
+      const drawn = (game.detail!.you_drew as string[] | undefined)?.includes(face.id);
+      await page
+        .getByRole('group', { name: 'Your hand', exact: true })
+        .getByRole('button', {
+          name: `${face.label}, playable${drawn ? ', just drawn' : ''}`,
+          exact: true,
+        })
+        .click();
+      if (kind !== 'plain') {
+        await expect(page.getByLabel('Submitted action')).toHaveText('No action submitted');
+        const choice = page.getByRole('button', {
+          name: kind === 'colour' ? option.label : /^Swap with /,
+          exact: kind === 'colour',
+        });
+        await expect(choice).toBeInViewport();
+        await choice.click();
+      }
+      expect(JSON.parse((await page.getByLabel('Submitted action').textContent())!)).toEqual(
+        option.action,
+      );
+    }
   });
 
   test('colour choices show a swatch, the colour name and how many the viewer holds', async ({
@@ -463,12 +483,9 @@ test('failed Uno saves preserve the exact selection through refresh and a delibe
     const card = hand
       .getByRole('button', { name: new RegExp(`^${label}, playable(?:, just drawn)?$`) })
       .nth(duplicateIndex);
-    await card.click();
-    const selectedName = await card.getAttribute('aria-label');
     const play = actor
       .locator('.uno-dock')
       .getByRole('button', { name: option!.label, exact: true });
-    await expect(card).toHaveAttribute('aria-pressed', 'true');
     await actor.route(
       '**/api/backend/v1/rooms/*/actions',
       (route) =>
@@ -478,7 +495,7 @@ test('failed Uno saves preserve the exact selection through refresh and a delibe
     const failure = actor.waitForResponse((response) =>
       response.url().endsWith(`/rooms/${roomId}/actions`),
     );
-    await play.click();
+    await card.click();
     expect((await failure).status()).toBe(503);
     await expect(
       actor.getByText('We could not reach the table. Please try again.', { exact: true }),
@@ -489,25 +506,17 @@ test('failed Uno saves preserve the exact selection through refresh and a delibe
     await actor.reload();
     await expect(card).toHaveAttribute('aria-pressed', 'true');
     await expect(play).toBeEnabled();
-    // A retained draft remains editable and clearable; it never commits itself.
-    await actor.getByRole('button', { name: 'Clear selection', exact: true }).click();
+    const inspect = actor.getByRole('button', { name: 'Inspect cards', exact: true });
+    await inspect.click();
     await expect(hand.getByRole('button', { pressed: true })).toHaveCount(0);
-    await card.click();
-    const otherName = (
-      await hand
-        .getByRole('button')
-        .evaluateAll((buttons) => buttons.map((button) => button.getAttribute('aria-label')!))
-    ).find((label) => label !== selectedName)!;
-    const otherCard = hand.getByRole('button', { name: otherName, exact: true }).first();
-    await otherCard.click();
-    await expect(otherCard).toHaveAttribute('aria-pressed', 'true');
     await card.click();
     await expect(card).toHaveAttribute('aria-pressed', 'true');
     expect((await roomAs(actor, roomId)).match_version).toBe(before.match_version);
+    await inspect.click();
     const retry = actor.waitForResponse((response) =>
       response.url().endsWith(`/rooms/${roomId}/actions`),
     );
-    await play.click();
+    await card.click();
     const savedResponse = await retry;
     expect(savedResponse.status()).toBe(200);
     expect(savedResponse.request().postDataJSON().action).toEqual(option!.action);

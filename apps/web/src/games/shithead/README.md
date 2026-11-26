@@ -9,9 +9,11 @@ workspace and dock, their own table, and opponents through the shared
   explains why Play is disabled ("4 ♥ can't be played on 5. Play 5 or higher,
   or a 2 or 10, or take the pile."). With nothing playable the instruction says
   so and Take pile becomes the primary button.
-- **Matching ranks.** Selecting a playable card exposes a direct Play all button
-  when the server offers the entire same-rank stack. Players can still tap
-  individual cards to choose a smaller set.
+- **Playing cards.** Tapping a hand or face-up card plays it immediately when
+  the only move involving that card is its single-card play. Cards that can
+  form a set stay selected until Play. The Play all button submits the full
+  rank. When a face-up card can be played or taken with the pile, its two
+  choices appear in the dock.
 - **The pile.** A run of equal ranks on top (from the public pile tail) is
   fanned with "Q ×3 on top: one more Q burns". The pile note explains the last
   pile change from `last_play`: who burned how many cards and why (a 10, or four
@@ -23,8 +25,7 @@ workspace and dock, their own table, and opponents through the shared
   With no face-up card able to beat the pile, the copy says which card you add
   and how many cards you then take ("…you then take all 5 cards").
 - **Long hands and setup.** Hands of 9+ cards wrap into overlapped rows sized
-  to the container (12 corners per row on phones), so a 36-card pickup stays in
-  view; the heading counts the hand. Setup shows all six cards at once.
+  to the container. Phone rows expose at least 44px per card and wrap a large pickup. Setup shows all six cards at once, 8px apart; they share one row on a 390px phone and wrap to two at 320px.
 - **Setup choices** keep the confirmation and clear controls together in a content-sized row. A fourth-pick hint replaces the setup instruction above the hand. Setup picks use `useTableDraft`, scoped to the room, match and setup
   round: a waiting player can pick early (confirmed on their turn) and a
   refresh keeps the picks. A fourth tap is refused with a hint instead of

@@ -18,7 +18,8 @@ type Frame = { label: string; width: number; height: number; compact?: boolean; 
 const frames: Record<string, Frame[]> = {
   uno: [
     { label: 'hand 1440', width: 82, height: 116 },
-    { label: 'hand phone', width: 69, height: 99 },
+    { label: 'hand phone', width: 56, height: 80 },
+    { label: 'hand large phone', width: 66, height: 94 },
     { label: 'discard', width: 54, height: 78 },
     { label: 'activity phone', width: 45, height: 65, compact: true },
   ],
@@ -49,6 +50,7 @@ const frames: Record<string, Frame[]> = {
     { label: 'phone seat', width: 35, height: 50, compact: true },
   ],
   deal: [
+    { label: 'hand phone', width: 76, height: 108 },
     { label: 'hand', width: 126, height: 178 },
     { label: 'board', width: 80, height: 114, compact: true },
     { label: 'discard 1440', width: 80, height: 114, compact: true, scale: 0.675 },
@@ -114,10 +116,10 @@ function CardInventory({ game = 'uno', family }: { game?: string; family?: Famil
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: `repeat(auto-fill,minmax(${Math.max(
+              gridTemplateColumns: `repeat(auto-fill,minmax(min(100%, ${Math.max(
                 200,
                 sizes.reduce((sum, size) => sum + size.width + 10, 24),
-              )}px,1fr))`,
+              )}px),1fr))`,
               gap: 12,
             }}
           >
@@ -138,7 +140,13 @@ function CardInventory({ game = 'uno', family }: { game?: string; family?: Famil
                 >
                   <div
                     className="card-inventory-frames"
-                    style={{ display: 'flex', alignItems: 'end', gap: 8, minHeight: 130 }}
+                    style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      alignItems: 'end',
+                      gap: 8,
+                      minHeight: 130,
+                    }}
                   >
                     {sizes.map((size) => (
                       <div
@@ -185,7 +193,7 @@ function CardInventory({ game = 'uno', family }: { game?: string; family?: Famil
       ))}
       <section data-card-group="Interactive states">
         <h2 style={{ fontSize: 16 }}>Interactive states</h2>
-        <div style={{ display: 'flex', gap: 20, padding: '24px 8px 8px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, padding: '24px 8px 8px' }}>
           <PlayingCard
             card={faces[0].card}
             family={family || faces[0].family}

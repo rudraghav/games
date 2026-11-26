@@ -809,14 +809,17 @@
       grid-row: 2;
       color: var(--color-ink-muted);
     }
+    .paper-table {
+      padding-inline: var(--space-2);
+    }
     .paper-card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-      gap: 6px;
+      grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+      gap: var(--space-2) var(--space-1);
     }
     .paper-hand-cards {
-      min-height: 150px;
-      padding-top: 12px;
+      min-height: 0;
+      padding: var(--space-2) var(--space-1);
     }
     .paper-card-grid > .paper-playing-card {
       width: auto;
@@ -838,7 +841,7 @@
       white-space: nowrap;
     }
     .paper-card-grid .paper-playing-card__art {
-      height: 58px;
+      height: 48px;
     }
     .paper-card-grid .paper-playing-card > strong {
       font-size: 12px;

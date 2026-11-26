@@ -95,7 +95,10 @@ test('large-hand and selected-rent inspection preserve selection, geometry and e
   const fixture = dealScenarios.find((item) => item.id === 'information-hand')!;
   const before = await bounds(page);
   const info = page.getByRole('button', { name: 'Card info', exact: true });
-  const first = page.locator('.card-hand > button').first();
+  const first = page
+    .locator('.card-hand')
+    .getByRole('button', { name: /^Pass Go,/i })
+    .first();
   await first.click();
   const panel = page.locator('.table-decision-panel');
   await expect(panel).toBeVisible();

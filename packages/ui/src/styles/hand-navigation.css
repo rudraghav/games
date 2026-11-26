@@ -116,4 +116,64 @@
   .hand-rail[data-overflow='true'] .playing-card--selected {
     outline-offset: -3px;
   }
+  .uno-workspace .uno-hand-panel > .hand-heading {
+    block-size: auto;
+    min-block-size: 44px;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-2);
+    overflow: visible;
+  }
+  @media (max-width: 600px) {
+    .uno-hand,
+    .hand-rail--standard,
+    .casino-hand-rail {
+      --card-width: clamp(56px, 15vw, 66px);
+      --card-height: calc(var(--card-width) * 1.43);
+    }
+    .uno-hand .hand-rail > .hand-scroll,
+    .hand-rail--standard > .hand-scroll {
+      padding-block: var(--space-4) var(--space-1);
+    }
+    .hand-rail:is(.hand-rail--standard, .casino-hand-rail)[data-overflow='true'] {
+      padding-block-end: 44px;
+    }
+    .hand-rail:is(.hand-rail--standard, .casino-hand-rail)[data-overflow='true'] > .hand-scroll,
+    .uno-hand .hand-rail[data-overflow='true'] > .hand-scroll {
+      margin-inline: 0;
+    }
+    .hand-rail:is(.hand-rail--standard, .casino-hand-rail) > .rail-navigation,
+    .uno-hand .hand-rail > .rail-navigation {
+      top: auto;
+      bottom: 0;
+      translate: none;
+    }
+    .hand-rail:is(.hand-rail--standard, .casino-hand-rail) > .rail-navigation--previous,
+    .uno-hand .hand-rail > .rail-navigation--previous {
+      left: auto;
+      right: calc(44px + var(--space-2));
+    }
+    /* Reserve the arrows' corner for any fanned hand, not only an overflowing one:
+       opening a selected card can tip a full fan into overflow, and the heading
+       must not rewrap and move the hand when that happens. */
+    .uno-hand-panel:has(.hand-rail[data-overflow='true'], .uno-hand[data-fan='true'])
+      > .hand-heading {
+      padding-inline-end: calc(88px + var(--space-3));
+    }
+    /* On a crowded phone, keep Inspect alongside the heading. The colour
+       totals can then wrap together in one short line beside the arrows. */
+    .uno-hand-panel:has(.hand-rail[data-overflow='true'], .uno-hand[data-fan='true'])
+      > .hand-heading
+      > .uno-colour-counts {
+      order: 1;
+      gap: var(--space-1);
+    }
+    .uno-hand .hand-rail > .rail-navigation {
+      bottom: 100%;
+    }
+  }
+  @media (hover: none) {
+    .uno-hand .card-hand > .playing-card:hover:not(:focus-visible):not(.playing-card--selected) {
+      z-index: auto;
+    }
+  }
 }

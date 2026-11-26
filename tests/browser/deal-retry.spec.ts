@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { attachPreviewAccess, requestAs, roomAs, type RoomView } from './helpers';
+import { attachPreviewAccess, startBotTable, requestAs, roomAs, type RoomView } from './helpers';
 
 test.use({ reducedMotion: 'reduce', trace: 'off', screenshot: 'off' });
 
@@ -21,6 +21,7 @@ for (const game of ['deal', 'deal-no-mercy']) {
         new URL(r.url()).pathname.endsWith('/games/' + game + '/play'),
     );
     await page.getByRole('button', { name: 'Play with bots', exact: true }).click();
+    await startBotTable(page);
     const response = await launch;
     expect(response.status()).toBe(200);
     const initial: RoomView = await response.json();
@@ -33,9 +34,11 @@ for (const game of ['deal', 'deal-no-mercy']) {
       expect(index).toBeGreaterThanOrEqual(0);
       const panel = page.locator('.table-decision-panel');
       const card = page.locator('.deal-hand-dock .card-hand button.playing-card').nth(index);
-      await card.click();
-      const commit =
-        move.action.type === 'bank'
+      const cash = move.action.type === 'bank' && match.hand[index].subtitle === 'MONEY';
+      if (!cash) await card.click();
+      const commit = cash
+        ? card
+        : move.action.type === 'bank'
           ? panel.getByRole('button', { name: /^Bank for/ })
           : panel.locator('.deal-choice-list[data-mode="action"] button').first();
       await expect(commit).toBeEnabled();

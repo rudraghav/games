@@ -109,11 +109,12 @@ card's plum Start reading. The footer is unchanged.
 
 ### After choosing a game
 
-Each game's page (`features/game-entry`) asks how to play, first thing under
-the title. All 26 multiplayer games support bots, so each shows two large
-buttons, `Play with friends` and `Play with bots` (friends first and filled by
-default; bots first and filled when the link carried `?mode=bots`, as from the
-Quick with bots chip), with a quieter `Join a room` below. The four solo
+Each game's page (`features/game-entry`) asks how to play under the title.
+All 30 multiplayer games offer friends and bot play. Friends comes first by
+default. The Quick with bots filter opens the page with `?mode=bots` and puts
+bot play first. `Play with bots` opens a count picker for a variable-size game.
+For a two-player game, `Play with 1 bot` starts the match. A quieter
+`Join a room` sits below the play choices. The four solo
 entries show their single start: `Play solo` (Roulette, Slots), `Start reading`
 (Pop Tarot), `Organise a draw` (Secret Santa).
 

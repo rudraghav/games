@@ -221,12 +221,12 @@ export function createApi(accessToken?: () => Promise<string | null>) {
         unwrap(await client.DELETE('/v1/invitations/{room_id}', { params: params(roomId) })),
       );
     },
-    async quickPlay(gameId: string, requestId: string) {
+    async quickPlay(gameId: string, requestId: string, botCount?: number) {
       return mapRoom(
         unwrap(
           await client.POST('/v1/games/{game_id}/play', {
             params: { path: { game_id: gameId } },
-            body: { request_id: requestId },
+            body: { request_id: requestId, bot_count: botCount },
           }),
         ),
       );

@@ -18,7 +18,7 @@ rules, actions and `detail` contract are in `backend/app/games/bluff/README.md`;
   every card matches", who called whose play, who takes the pile and how many
   cards, and who starts next. The rest of the pile never reaches the client.
 - **Your hand.** The server's order (Ace to King). More than eight cards wrap
-  into overlapped rows so every rank corner stays in view. Following a round,
+  into overlapped rows so every rank corner stays in view. On phones a long hand uses 56px cards with a minimum 44px exposed per card. Following a round,
   "Choose my Queens · 2" selects the viewer's own matching cards (their own
   information; any card may still be played).
 

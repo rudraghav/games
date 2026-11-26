@@ -256,6 +256,12 @@ export function tableStatus(
   const left = Math.max(0, details.moves);
   if (current === selfId) {
     const extra = match.hand.length - 7;
+    const handChoices = match.hand.filter((card) =>
+      match.actions.some((option) => option.value.card === card.id),
+    );
+    const handHint = handChoices.some((card) => card.subtitle === 'MONEY')
+      ? 'Tap a money card to bank it.'
+      : 'Choose a card to see its moves.';
     return {
       text:
         extra > 0 && left > 0
@@ -264,10 +270,8 @@ export function tableStatus(
       tone: 'active',
       plays: { left, owner: 'you', mine: true },
       title: 'Your move',
-      hint: match.actions.some(
-        (option) => option.value.card && match.hand.some((card) => card.id === option.value.card),
-      )
-        ? 'Select a card in your hand to play, place or bank it.'
+      hint: handChoices.length
+        ? handHint
         : match.actions.some((option) => option.value.type === 'rearrange')
           ? 'Select a property in your sets to move it, or end your turn.'
           : acting

@@ -188,7 +188,7 @@ describe('Deal table layout', () => {
     expect(html).toMatch(/Bank<\/span><b>19M<\/b>/);
     expect(html).toContain('1M ×3 · 2M ×5 · 3M ×2');
     // A waiting seat sees whose turn it is, never an instruction to play.
-    expect(html).not.toContain('Select a card in your hand');
+    expect(html).not.toContain('Tap a money card to bank it.');
     expect(html).toContain('You can inspect any public card while you wait.');
   });
 

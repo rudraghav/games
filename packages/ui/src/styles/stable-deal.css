@@ -743,6 +743,23 @@
   }
 
   @container (max-width: 559px) {
+    /* Show whole deeds in the hand; Card info carries the full-size face. */
+    .deal-hand-dock .card-hand > .playing-card.playing-card--property {
+      --card-width: clamp(76px, calc((100cqw - 28px) / 4), 88px);
+      --card-height: calc(var(--card-width) * 1.425);
+      --deal-head: 21px;
+      border-radius: var(--radius-small);
+    }
+    .deal-stage-container .deal-workspace .deal-hand-dock .card-hand {
+      gap: var(--space-1);
+      padding: 19px 5px 0;
+    }
+    .deal-stage-container .deal-workspace .deal-hand-dock .hand-scroll {
+      padding-block: 0 6px;
+    }
+    .deal-hand-dock .playing-card--property .property-name {
+      overflow-wrap: anywhere;
+    }
     .deal-workspace .deal-opponents {
       padding: 6px;
       gap: 6px;

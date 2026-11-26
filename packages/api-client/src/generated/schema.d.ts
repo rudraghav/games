@@ -1542,6 +1542,8 @@ export interface components {
              * Format: uuid
              */
             request_id: string;
+            /** Bot Count */
+            bot_count?: number | null;
         };
         /** Reading */
         Reading: {

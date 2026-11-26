@@ -6,9 +6,7 @@ personalized actions; nothing here infers a rule outcome.
 
 - **`RummyHand`** draws one group of the viewer's own cards as a wrapped,
   overlapped fan on `HorizontalRail` + `PlayingCard`. The step between card
-  corners fits 14 cards per row on wide tables and 7 per row on phones (62 px
-  cards at 360 px and below), so a 13/14-card hand is readable without
-  scrolling. Markers are classes on the card, drawn by Rummy CSS inside each
+  corners fits 14 cards per row on wide tables. Phone hands use 58px cards with a minimum 44px exposed width and wrap to the available space. Markers are classes on the card, drawn by Rummy CSS inside each
   visible strip: **Wild** (printed jokers and the wild rank), **Win** (a discard
   that leaves a valid declaration, from `discard_analyses[*].valid`), **New**
   (the card just drawn: the engine appends it) and **Taken** (the card taken

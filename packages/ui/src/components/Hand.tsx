@@ -31,7 +31,7 @@ export function Hand({
   const revealIndex = revealId ? cards.findIndex((card) => card.id === revealId) : -1;
   return (
     <HorizontalRail
-      className="hand-rail"
+      className={cn('hand-rail', family === 'standard' && 'hand-rail--standard')}
       viewportClassName={cn('hand-scroll', compact && 'hand-scroll--compact')}
       contentClassName="card-hand"
       label={label}

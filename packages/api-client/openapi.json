@@ -4619,6 +4619,19 @@
             "type": "string",
             "format": "uuid",
             "title": "Request Id"
+          },
+          "bot_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 9.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bot Count"
           }
         },
         "additionalProperties": false,

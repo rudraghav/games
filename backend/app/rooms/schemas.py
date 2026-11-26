@@ -74,6 +74,7 @@ class CreateRoom(ProfileInput):
 
 class QuickPlay(Request):
     request_id: UUID
+    bot_count: int | None = Field(default=None, ge=0, le=9, strict=True)
 
 
 class JoinRoom(ProfileInput):

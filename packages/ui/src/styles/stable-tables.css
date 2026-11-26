@@ -1171,27 +1171,51 @@
       position: sticky;
       bottom: 0;
       z-index: 12;
-      box-shadow: 0 -10px 24px #2638222b;
+      box-shadow: none;
     }
   }
   @media (max-width: 700px) {
-    /* Only as tall as the decision needs, so the hand stays visible above it;
-       longer choices scroll under the pinned commit row. */
-    .uno-workspace > .uno-dock.decision-dock[data-size='standard'] {
+    .uno-workspace.card-game-layout {
+      gap: var(--space-2);
+    }
+    .uno-workspace > .uno-hand-panel {
+      padding: 0 var(--space-2) var(--space-1);
+    }
+    .uno-workspace > .uno-dock.decision-dock {
       block-size: auto;
       min-block-size: 0;
       max-block-size: min(216px, 42dvh);
+      padding: var(--space-2);
+      gap: var(--space-1);
+      scrollbar-gutter: auto;
     }
-    .uno-workspace > .uno-dock.decision-dock[data-size='compact'] {
-      --decision-height: 112px;
+    .uno-workspace > .uno-dock .action-context {
+      min-height: 0;
+      flex-wrap: nowrap;
+    }
+    .uno-workspace > .uno-dock .action-context > .small {
+      flex: 1 1 auto;
+      order: 0;
+      margin: 0;
+    }
+    .uno-workspace > .uno-dock .action-clear[data-empty='true'],
+    .uno-workspace > .uno-dock .action-context:not(:has(.small, .action-clear:enabled)) {
+      display: none;
     }
     .uno-workspace > .uno-dock .action-choices[data-decision-actions] {
-      padding-block: 8px 4px;
-      box-shadow: 0 -12px 12px -12px #202f2440;
+      padding-block: 0;
+      box-shadow: none;
     }
     .uno-workspace > .uno-felt {
-      gap: 8px 16px;
-      padding: 12px;
+      gap: var(--space-2) var(--space-3);
+      padding: var(--space-2);
+    }
+    .uno-felt .uno-felt-info {
+      flex-basis: 7rem;
+      gap: var(--space-1);
+    }
+    .uno-workspace .center-piles {
+      gap: var(--space-2);
     }
   }
 }

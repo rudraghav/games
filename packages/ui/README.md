@@ -7,7 +7,7 @@ provide typed size/family/selection/pending variants and accessible Radix dialog
 Cards, hands, piles, seats, avatars, buttons, dialogs, wordmark and Tarot frames
 belong here. Application services, game outcomes and API dependencies do not.
 Face-down card names/colours stay hidden, and interactive cards use real buttons.
-Motion respects the player's reduced-motion preference.
+Motion respects the player's reduced-motion preference. Phone hand rails place navigation outside the card row. Uno prints the rank or action and its colour initial in the exposed corner. Deal's text-heavy hand uses separate full-width faces and offers the larger Card info view.
 
 The interface around the art keeps to short scales (`docs/UI_CRAFT.md`):
 corners `--radius-small` 8px, `--radius-control` 12px, `--radius-card` 20px,
